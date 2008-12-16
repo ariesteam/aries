@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<plugin id="org.integratedmodelling.aries.core" version="0.8.0" class="org.integratedmodelling.aries.core.ARIESCorePlugin">
+
+	<requires>
+		<import plugin-id="org.integratedmodelling.thinklab.core"/>
+		<import plugin-id="org.integratedmodelling.thinklab.opal"/>
+		<import plugin-id="org.integratedmodelling.thinklab.clojure"/>
+		<import plugin-id="org.integratedmodelling.thinklab.corescience"/>
+		<import plugin-id="org.integratedmodelling.thinklab.dolce"/>
+		<import plugin-id="org.integratedmodelling.thinklab.ecology"/>
+		<import plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true"/>
+		<import plugin-id="org.integratedmodelling.thinklab.time"/>
+		<import plugin-id="org.integratedmodelling.thinklab.databridge"/>
+		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
+		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
+		<import plugin-id="org.integratedmodelling.thinklab.geoclustering"/>
+		<import plugin-id="org.integratedmodelling.thinklab.workflow"/>
+		<import plugin-id="org.integratedmodelling.thinklab.rules"/>
+		<import plugin-id="org.integratedmodelling.thinklab.agents"/>
+		<import plugin-id="org.integratedmodelling.thinklab.riskwiz"/>
+	</requires>
+
+	<runtime>
+		<library id="core" path="classes/" type="code">
+			<export prefix="*"/>
+		</library>
+		
+		<library type="resources" path="ontologies/" id="ontologies" />
+		<library type="resources" path="bindings/clojure/" id="bindings" />
+		<library type="resources" path="config/" id="config" />
+		
+	</runtime>
+	
+	<!-- ontologies -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="aries">
+		<parameter id="url" value="aries/aries.owl"/>
+		<parameter id="concept-space" value="aries" />
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="eserv">
+		<parameter id="url" value="es/eserv.owl"/>
+		<parameter id="concept-space" value="eserv" />
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="climateChange">
+		<parameter id="url" value="es/services/climateChange.owl"/>
+		<parameter id="concept-space" value="climateChange"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="carbonService">
+		<parameter id="url" value="es/services/carbonService.owl"/>
+		<parameter id="concept-space" value="carbonService"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="carbonEcology">
+		<parameter id="url" value="es/services/carbonEcology.owl"/>
+		<parameter id="concept-space" value="carbonEcology"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="floodService">
+		<parameter id="url" value="es/services/floodService.owl"/>
+		<parameter id="concept-space" value="floodService"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="floodEcology">
+		<parameter id="url" value="es/services/floodEcology.owl"/>
+		<parameter id="concept-space" value="floodEcology"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="soilretentionService">
+		<parameter id="url" value="es/services/soilretentionService.owl"/>
+		<parameter id="concept-space" value="soilretentionService"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="soilretentionEcology">
+		<parameter id="url" value="es/services/soilretentionEcology.owl"/>
+		<parameter id="concept-space" value="soilretentionEcology"/>
+	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="rawMaterialsService">
+		<parameter id="url" value="es/services/rawMaterialsService.owl"/>
+		<parameter id="concept-space" value="rawMaterialsService"/>
+	</extension>
+
+	<!-- commands -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="command-handler" id="ariescmd">
+		<parameter id="class" value="org.integratedmodelling.aries.commands.Aries"/>
+		<parameter id="command-name" value="aries"/>
+		<parameter id="command-description" value="Run an ARIES workflow with appropriate initialization"/>
+		<parameter id="optional-argument-names" value="workflow"/>
+		<parameter id="optional-argument-types" value="thinklab-core:Text"/>
+		<parameter id="optional-argument-descriptions" value="workflow to run"/>
+		<parameter id="optional-argument-default-values" value="aries"/>
+	</extension>
+	
+	<!-- bindings -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
+		<parameter id="language" value="clojure"/>
+		<parameter id="resource" value="aries-core.clj"/>
+		<parameter id="resource" value="offline-tasks.clj"/>
+		<parameter id="resource" value="applications.clj"/>
+	</extension>
+	
+</plugin>

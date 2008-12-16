@@ -1,0 +1,1162 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://www.integratedmodelling.org/ks/es/carbonEcology.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+    xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+  xml:base="http://www.integratedmodelling.org/ks/es/carbonEcology.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+  </owl:Ontology>
+  <rdfs:Class rdf:ID="UnstableClimate">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(THIS IS AN UNDESIRED ENDURANT)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
+  </rdfs:Class>
+  <owl:Class rdf:ID="CarbonCyclingProcesses">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The processes that move carbon between parts of the biosphere, the lithosphere, and the atmosphere.</rdfs:comment>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialEnergyFlow">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        ></rdfs:comment>
+      </rdf:Description>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VegetativeCPool">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="BiosphereCPool"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Photosynthesis"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Respiration"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon stored in living or dead vegetation (Marta - this make sense?  Not sure if we need/want a separate category for coarse woody debris, for example).  Forest biomass comprises 90% of all terrestrial vegetation biomass on earth (Jenkins et al. 2001).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="IncreasedForestFirePotential">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="leadsToMore"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Natural"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ClimateChange"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fires will limit the ability of forests to store carbon.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Cropland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Cropland typically loses carbon due to tilling and erosion, but various agricultural practices can increase soil carbon sequestration and storage either temporarily or permanently.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Agriculture"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CarbonSequesteringWetland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some wetland types have limited methanogenesis. Carbon sequestering wetlands have greater rates of photosynthesis and carbon storage than methanogenesis and respiration.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Wetland"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Photosynthesis"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Respiration"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Methanogenesis"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="SedimentTrappingAndRelease"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CStoringOrSequesteringHabitat">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="UndergoesProcess"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Photosynthesis"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Respiration"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#UndergoesProcess"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#UndergoesProcess"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Decomposition"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="CSequestration"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="CStorage"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LateSuccessionalDiverseForest">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Multispecies forest dominated by older trees.  May include mixed age classes as local disturbance creates openings for young trees.  Generally low rates of carbon sequestration but high carbon storage.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DiverseForest"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Permafrost">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Permafrost may store carbon in the form of methane, as decomposition is inhibited by cold and/or low oxygen conditions.  Warming may lead to methane release from these systems (Walter et al. 2006).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DiverseForest">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Forests are likely to store more of their carbon aboveground, although some forests have substantial soil carbon storage as well.  Multispecies forests provide a mix of ecosystem services, including carbon sequestration and storage.  For Madagascar, the succession process is slow even in humid forests (greater than 50 years for forestry purposes, to say nothing of other ecosystem services' recovery).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BiomassBurning">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Burning of biomass moves carbon from the biosphere to the atmosphere.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnthropogenicRelease"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Tilling">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The frequency and intensity of tilling is the most important determinant of soil carbon storage.  Tilling can lead to soil erosion and oxidation of soil carbon, reducing soil carbon.  Similarly, reduced tilling can lead to increased soil carbon storage (Ogle et al. 2005).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AgriculturalPractices"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MeanGrowingSeasonTemp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GrowingSeason"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Climates with same growing season length can still have a warmer vs. colder climate (i.e., oceanic vs. continental climates).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Plantation">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Forests are likely to store more of their carbon aboveground, although some forests have substantial soil carbon storage as well.  Plantations may have greater carbon sequestration rates, but often lower values for other ecosystem services, such as habitat- and water-related services.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Decomposition">
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Decay of dead organic matter releases terrestrial (biosphere) carbon into the atmosphere.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OceanUptake">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="SurfaceRoughness"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="OceanpH"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The exchange of carbon between the atmosphere and ocean (biosphere), including both its uptake and release by the oceans.  CO2 diffuses into water at the ocean surface, forming carbonic acid (CO3).  This process is dependent on ocean pH and surface roughness (i.e., wind).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="RootCPool">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dependent on rooting depth, density, turnover rate.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#VegetativeCPool"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DecompositionRate">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="OxygenConditions"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Affected mainly by climate (already included?)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Shrubland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shrublands will have relatively less carbon stored aboveground than forests</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="IncreasedForestDroughtDiseaseRisk">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="leadsToLess"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#PrimaryProductivity">
+            <rdfs:subClassOf>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:ID="Rainfall"/>
+                </owl:someValuesFrom>
+              </owl:Restriction>
+            </rdfs:subClassOf>
+            <rdfs:subClassOf>
+              <owl:Restriction>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:ID="GrowingSeasonLength"/>
+                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+              </owl:Restriction>
+            </rdfs:subClassOf>
+            <rdfs:subClassOf>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="#MeanGrowingSeasonTemp"/>
+                <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+              </owl:Restriction>
+            </rdfs:subClassOf>
+            <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >NPP is critical to carbon sequestration rates.</rdfs:comment>
+          </rdf:Description>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ClimateChange"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Forests may be subject to greater drought and disease, reducing their ability to provide various ecosystem services.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Ocean">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(Need to better identify the oceanic processes involved in carbon storage/uptake)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="RootTurnoverAndDensity">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Texture"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Depth"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#OxygenConditions"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="OrganicMatterDensity"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soils allowing greater root density are assumed to have greater root turnover and contribution to soil carbon pools (e.g., grasslands).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Pasture">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Agriculture"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas grazed by domestic animals.  Depending on its intensity, grazing may alter plant species composition.  Extensive grazing can also lead to soil compaction and erosion.  These changes to the plant community and soil characteristics can change soil carbon sequestration and storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Deforestation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Removal of trees from a region, generally as raw materials or to clear the land for other uses.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CarbonCyclingLandUseChanges"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#OxygenConditions">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The presence of oxygen (aerobic environment) allows respiration to take place, where sugars are oxidized and CO2 is produced.  In anaerobic environments, methanogenesis may occur.  Falling water tables in wetlands can also allow oxidation of soils, reducing their carbon storage.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CarbonCyclingLandUseChanges">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Changes in land use or land cover that affect carbon sequestration and storage dynamics.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Methanogenesis">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The release of methane from hydrates or permafrost, or its production (methanogenesis), usually in anaerobic environments like wetlands.  Methane is a powerful greenhouse gas.  This process transfers carbon from the biosphere to the atmosphere.  Mitra et al. (2005) provide methanogenesis rates for global wetlands.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom rdf:resource="#OxygenConditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SalineCoastalWetlands">
+    <rdfs:subClassOf rdf:resource="#CarbonSequesteringWetland"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Methanogenesis is inhibited under saline conditions, so some coastal wetlands may have net uptake of greenhouse gases.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#CStorage">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ability of an ecosystem to store carbon relatively permanently (on human time scales, and in the absence of disturbance) in soils, peat, or standing biomass.  Storage capacity in Madagascar ranges from 160-400 tons/ha, depending on rainfall (Rarivoarivelomanana 2001).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LithosphereCPool">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon deposits in the earth's crust, including fossil fuels (i.e., coal, oil, natural gas, tar sands).  Also includes carbon being naturally moved into the crust by geologic processes (i.e., along naturally subsiding river deltas).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialStock"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="GeologicSequestration"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="FossilFuelBurning"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CarbonSequestrationAndStorage">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Storage (a stock) and sequestration (a flow) of carbon.  Both must be accounted for.  This service is for global carbon sequestration and storage, and does not include regional or local microcliamte regulation benefits, which would be classified elsewhere. (SPLIT THESE INTO SEQUESTRATION AND STORAGE?)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="ClimateStability"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GeologicSequestration">
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AgriculturalPractices">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A given set of agricultural practices bring soil carbon sequestration and storage rates into equilibrium.  Changing these practices can alter both the uptake/release rate and the soil C saturation level, as it reaches a new equilibrium (Ogle et al. 2005, West and Six 2007)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ManagementStructure"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AtmosphereCPool">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialStock"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CarbonCyclingProcesses"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Atmospheric carbon, primarily as CO2.  Atmospheric CO2 concentrations are currently around 380 ppm; 450 ppm is currently recognized as a potentially dangerous threshold for climate change effects.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="MidSuccessionalPlantation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plantation dominated by middle aged trees.  Generally high to moderate rates of carbon sequestration, moderate to high storage.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Plantation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Texture">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soil texture affects quantities of carbon likely to be stored in soil (i.e., less C in sandy soils?)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Elevation">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A region's elevation affects its climate, hence the vegetation types that can grow there.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="IncreasedDroughtLikelihood">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#leadsToLess"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#PrimaryProductivity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="RainfallAmount"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#leadsToLess"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ClimateChange"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#leadsToMore"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Decomposition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Drought may change the long-term distribution of ecosystems such as forests or grasslands.  Drier and/or warmer conditions may also lower the water table in wetlands, allowing oxidation of stored soil carbon in wetlands.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="AnthropogenicGeologicSequestration">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The intentional sequestration of CO2 into geologic formations to store it in the lithosphere rather than the atmosphere.  This is generally an energy-intensive process.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GeologicSequestration"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GrazingIntensity">
+    <rdfs:subClassOf rdf:resource="#AgriculturalPractices"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Grazing intensity can change the plant community and soil characteristics, altering both carbon sequestration and storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Salinity">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >In saline environments, methanogenesis may be inhibited, potentially resulting in greater carbon accumulation (?).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StemCPool">
+    <rdfs:subClassOf rdf:resource="#VegetativeCPool"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dependent on size, life cycle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LandUseChange">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wider, landscape-scale land use change that alters carbon sequestration and storage dynamics.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingLandUseChanges"/>
+  </owl:Class>
+  <owl:Class rdf:about="#GrowingSeasonLength">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GrowingSeason"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A longer growing season (typically at lower elevations and latitudes) generally leads to ecosystems capable of sequestering and storing more carbon.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DeadVegCPool">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dead vegetation, including snags and coarse woody debris.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#BiosphereCPool"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Depth">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Less carbon can be stored in soils that are shallow, versus those with deep soil horizons.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Afforestation">
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingLandUseChanges"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Replanting of trees by humans, with the goal of increasing forest cover.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CropRotation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Crop rotation can result in increased organic matter and incorporation of plant residues into the soil, leading to greater soil carbon storage.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AgriculturalPractices"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LeafCPool">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dependent on volume, leaf type, seasonality.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#VegetativeCPool"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GrasslandHerbaceous">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Herbaceous systems (i.e., grasslands) may store relatively more of their carbon in the soil, and are likely to have less aboveground carbon storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Natural">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas where fires burn on a "natural" basis (these may not exist any more).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ClimateChange">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#DirectedInteraction"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Photosynthesis">
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The photosynthetic uptake of atmospheric CO2 by plants, which moves carbon from the atmosphere to the biosphere.  Plants store carbon in organic molecules that may eventually be incorporated into the soil and animal biomass.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="VarianceOceanTemp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OceanQuality"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OceanicCPool">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#BiosphereCPool"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#OceanUptake"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon dissolved in ocean water, plus as part of creatures with shells, coral reefs, oceanic limestones.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AnthropogenicRelease">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extracting and burning fossil fuels and biomass converts terrestrial carbon, including that formerly stored in the earth, to atmospheric CO2.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ClimateExtremeMitigation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >"Proper" concentrations of greenhouse gases in the atmosphere keep Earth's climate from being too cold or too hot.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EarlySuccessionalDiverseForest">
+    <rdfs:subClassOf rdf:resource="#DiverseForest"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Multispecies forest dominated by young trees.  Generally high rates of carbon sequestration, low storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#SedimentTrappingAndRelease">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialEnergyFlow"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The rate of sediment trapping or release, especially in riverine wetlands, is important for the sequestration of carbon in wetland soils or the release of carbon from wetlands to locations where it may be oxidized (Mitra et al. 2005).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Fire">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fire events.  Fire converts carbon in living vegetation and soil to atmospheric CO2.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingLandUseChanges"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MeanOceanTemp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OceanQuality"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plus other oceanic variables affecting ocean carbon exchange?  Does temp affect it?</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SoilCStorage">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Texture"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#Depth"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CStorage"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#Salinity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The storage of carbon in the soil matrix.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#OxygenConditions"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Slope"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#AgriculturalPractices"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RootTurnoverAndDensity"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#BiosphereCPool">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialStock"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon currently tied up in terrestrial or oceanic systems.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Irrigation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Irrigation can increase plant growth, potentially leading to greater soil carbon sequestration rates.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AgriculturalPractices"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DurableWoodProductsCPool">
+    <rdfs:subClassOf rdf:resource="#BiosphereCPool"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Furniture, books, etc. that "permanently" store carbon (unless there's a fire)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DeltaicSubsidence">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The natural subsidence of deltas and large inland water bodies (i.e., Mississippi Delta, Black Sea) moves carbon from the atmosphere to the lithosphere.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GeologicSequestration"/>
+  </owl:Class>
+  <owl:Class rdf:about="#OceanQuality">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Oceanic factors affecting C exchange between atmosphere and ocean C pools.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Early">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SuccessionalStage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CSequestration">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ability of an ecosystem to sequester more carbon through photosynthesis than it releases through respiration and decomposition (and GHG equivalents for methanogenesis).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="VegetationType"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#PrimaryProductivity"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="VegetativeCover"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Suppressed">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas where fire is actively suppressed by humans.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Wetland">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some estimates state that wetlands contain 20-25% of global soil carbon, yet are responsible for about 20% of global methane emissions (Mitra et al. 2005).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CarbonUptakeAndStorage">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(THIS IS A TRANSFORMATIVE PROCESS, NOT PERFORMANCE) Transformation of atmospheric carbon into terrestrial, aquatic, or oceanic carbon stored temporarily or permanently in vegetation, soils, geological formations, or the ocean. (SPLIT THESE INTO SEQUESTRATION AND STORAGE?)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Late">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SuccessionalStage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#FossilFuelBurning">
+    <rdfs:subClassOf rdf:resource="#AnthropogenicRelease"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extraction and burning of fossil fuels moves carbon from the lithosphere to the atmosphere.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Slope">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soil on slopes can be washed away.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Agriculture">
+    <rdfs:subClassOf rdf:resource="#CStoringOrSequesteringHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas primarily used by humans for raising food.  The storage of carbon, particularly in their soils, is an important process.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#OceanpH">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The ocean's pH dictates how much additional CO2 can be absorped.  As the oceans grow more acidic, rates of oceanic CO2 uptake are expected to slow.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#OceanQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#VegetativeCover">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Percent vegetative cover.  IVMP makes notes of areas with &gt;70% cover vs. &lt;70% cover.  Ask Paula if this is a useful threshold.  Note that different vegetation types also have different rooting depths, root densities, and transpiration rates, affecting their ability to aid in infiltration of water and/or slowing of wind and wave energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Rainfall"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#GrowingSeasonLength"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#MeanGrowingSeasonTemp"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#OrganicMatterDensity">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Affects soil C storage capacity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SuccessionalStage">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The stage of vegetation regrowth following a major disturbance event.  The rate succession will vary widely in different plant communities and regions of the world.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LateSuccessionalPlantation">
+    <rdfs:subClassOf rdf:resource="#Plantation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plantation dominated by older trees.  Generally low rates of carbon sequestration but high carbon storage.  Often harvested before spending too long in this successional state.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#ClimateStability">
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >An ecosystem service groups together one or more instances of Benefit 
+    provided by nature and valuable to humans. The benefits are what ESV 
+    values. The existence of both producer and user at the (temporal, spatial) 
+    scale of the component denotes the potential for ES provision, and as such 
+    is already amenable to valuation. If provision and usage can be observed 
+    and are larger than zero, the Benefit is provided. In order for the 
+    Benefit to be provided, both processes of provision and usage must be 
+    co-located in all locational extents defined for the Benefit. The 
+    definition of co-location depends on the focal scales of the two processes 
+    and is expressed in the observations of provision and usage according to 
+    the Core Science ontologies.</rdfs:comment>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+        <owl:allValuesFrom rdf:resource="#CarbonUptakeAndStorage"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#ClimateExtremeMitigation"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A stable climate within comfortable range for survival of humans and the species (i.e., food and others) on which they depend.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PlantSuccession">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The gradual natural process of species turnover and community change, generally following disturbance.  Depending on the biome, disturbance type and intensity, this may include natural regrowth of trees.  In Madagascar, this is generally a slow process.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingLandUseChanges"/>
+  </owl:Class>
+  <owl:Class rdf:ID="IncreasedPermafrostMelt">
+    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Melting permafrost may release methane stored in permafrost thaw lakes, leading to increased methane release (Walter et al. 2006).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallAmount">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Total average amount of yearly rainfall.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Rainfall"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GrowingSeason">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Length of time between last and first frosts where the vast majority of plant photosynthesis and growth occurs.  Warmer climates with longer growing seasons would be expected to have greater plant growth, thus to harbor ecosystems with greater carbon sequestration and storage.  This has been demonstrated for agricultural soil carbon storage (Ogle et al. 2005).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="VegetativeCStorage">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#Texture"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VegetationType"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#Elevation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Depth"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Rainfall"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The storage of carbon in vegetation.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#SuccessionalStage"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CStorage"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Slope"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HumanPopulation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SoilCSequestration">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#OxygenConditions"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Rainfall"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Texture"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RootTurnoverAndDensity"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VegetationType"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The addition of carbon to the soil through the interaction between biotic and abiotic components of the soil ecosystem.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Depth"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CSequestration"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Peatlands">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Peatlands store substantial carbon in the soil as carbon-rich peat.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonSequesteringWetland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RainfallSeasonality">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Rainfall"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Distribution of rainfall throughout the year (i.e., are there rainy and dry seasons, or is it more evenly distributed?)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Respiration">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The biotic process of oxidizing sugars to release stored chemical energy releases CO2.  Carbon is transferred from the biosphere to the atmosphere.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CarbonCyclingProcesses"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Structure">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The arrangement of solids and pores in the soil, which influences soil properties and processes - infiltration, runoff, drainage, aeration, moisture availability, erosion, availability of substrates, nutrients, and other solutes, solute transport, and habitat for the soil microbiotic community (Jastrow et al. 2007).  Over time, roots and fungal hyphae help stabilize soil aggregates, increasing soil strutcure.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="VegetativeCSequestration">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The addition of carbon to vegetation through plant growth.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CSequestration"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Rainfall"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#SuccessionalStage"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VegetationType"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Elevation"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Fertilization">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organic or chemical fertilizers, and the rates and timing when they are applied, can impact soil carbon sequestration rates.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AgriculturalPractices"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Mid">
+    <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NonCarbonSequesteringWetland">
+    <rdfs:subClassOf rdf:resource="#Wetland"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Respiration"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SedimentTrappingAndRelease"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Methanogenesis"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnProcess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Many wetlands may have negligable overall greenhouse gas balance - although they may sequester carbon, they produce methane, a powerful greenhouse gas.  Non-carbon sequestering wetlands have greater rates of methanogenesis and respiration than photosynthesis and carbon storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="MidSuccessionalDiverseForest">
+    <rdfs:subClassOf rdf:resource="#DiverseForest"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Multispecies forest dominated by middle aged trees.  Generally high to moderate rates of carbon sequestration, moderate to high storage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="EarlySuccessionalPlantation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plantation dominated by young trees.  Generally high rates of carbon sequestration, low storage.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Plantation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#VegetationType">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Different species and groups of plant species have different carbon sequestration rates and different capacity to store carbon (Jenkins et al. 2003).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SurfaceRoughness">
+    <rdfs:subClassOf rdf:resource="#OceanQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wind blowing across the ocean surface increases the area of the surface-air interface, allowing for more exchange of C between the atmosphere and oceans.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Managed">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas where fire is used by humans to manage the system.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SoilCPool">
+    <rdfs:subClassOf rdf:resource="#BiosphereCPool"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon stored in the soil.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Rainfall">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rainfall influences net primary productivity, a key indicator of sequestration and storage potential.  Plants in wetter cliamtes can generally grow faster (sequestering more carbon), but also grow larger (store more carbon).  This has been demonstrated for agricultural soil carbon storage (Ogle et al. 2005).</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#leadsToMore">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Climate change leads to more of this certain condition</rdfs:comment>
+    <rdfs:domain rdf:resource="#ClimateChange"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#leadsToLess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Climate change leads to less of this certain condition</rdfs:comment>
+    <rdfs:domain rdf:resource="#ClimateChange"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#UndergoesProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#CStoringOrSequesteringHabitat"/>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Different vegetation types will have different rooting depths, root densities, and transpiration rates, affecting their ability to aid in infiltration of water and/or slowing of wind and wave energy.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Slope affects runoff speed and length of time that infiltration is possible.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatMatrix">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A habitat made up of one or more habitats.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ShrubLand">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Herbaceous">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#TreeLand">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 110)  http://protege.stanford.edu -->
