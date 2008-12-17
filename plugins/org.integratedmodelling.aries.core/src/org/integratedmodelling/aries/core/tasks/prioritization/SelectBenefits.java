@@ -2,12 +2,12 @@ package org.integratedmodelling.aries.core.tasks.prioritization;
 
 import java.util.Collection;
 
-import org.integratedmodelling.aries.core.tasks.ITask;
 import org.integratedmodelling.thinklab.interfaces.IConcept;
+import org.integratedmodelling.thinklab.interfaces.ITask;
 
-public class BenefitSelectionTask implements ITask {
+public class SelectBenefits implements ITask {
 
-	public void setEcosystemServices() {
+	public void setEcosystemService(IConcept ecosystemService) {
 		
 	}
 

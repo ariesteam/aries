@@ -1,9 +1,9 @@
 package org.integratedmodelling.aries.core.tasks.prioritization;
 
-import org.integratedmodelling.aries.core.tasks.ITask;
 import org.integratedmodelling.geospace.values.ShapeValue;
+import org.integratedmodelling.thinklab.interfaces.ITask;
 
-public class RegionOfInterestSelectionTask implements ITask {
+public class SelectRegionOfInterest implements ITask {
 
 	public ShapeValue getRegionOfInterest() {
 		return null;
