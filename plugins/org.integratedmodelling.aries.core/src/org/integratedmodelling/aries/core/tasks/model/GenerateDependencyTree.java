@@ -1,7 +1,9 @@
 package org.integratedmodelling.aries.core.tasks.model;
 
 import org.integratedmodelling.aries.core.datastructures.DependencyTree;
+import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.IConcept;
+import org.integratedmodelling.thinklab.interfaces.ISession;
 import org.integratedmodelling.thinklab.interfaces.ITask;
 
 
@@ -22,7 +24,7 @@ public class GenerateDependencyTree implements ITask {
 	}
 	
 	@Override
-	public void run() {
+	public void run(ISession session) throws ThinklabException {
 		// TODO Auto-generated method stub
 
 	}
