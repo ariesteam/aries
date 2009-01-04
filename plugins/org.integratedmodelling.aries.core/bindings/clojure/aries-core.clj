@@ -5,8 +5,7 @@
 ;; --------------------------------------------------------------------------------------
 
 (ns aries
-	(:refer-clojure)
-	(:use tl))
+	(:refer-clojure))
 
 (defn generate-dependency-tree 
 	"Build a tree of dependencies for the specified benefit in the specified context"
