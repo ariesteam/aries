@@ -1,22 +1,27 @@
 package org.integratedmodelling.aries.core.tasks.query;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.integratedmodelling.aries.core.datastructures.DependencyTree;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.interfaces.IConcept;
-import org.integratedmodelling.thinklab.interfaces.IInstance;
-import org.integratedmodelling.thinklab.interfaces.ISession;
-import org.integratedmodelling.thinklab.interfaces.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 
 public class RetrieveObservations implements ITask {
 
+	DependencyTree dTree = null;
+	boolean exhaustive = false;
+	HashMap<IConcept, IInstance> results = new HashMap<IConcept, IInstance>();
+	
 	public void setDependencyTree(DependencyTree tree) {
-		
+		this.dTree = tree;
 	}
 	
 	public void setExhaustive(boolean b) {
-		
+		this.exhaustive = b;
 	}
 	
 	/**

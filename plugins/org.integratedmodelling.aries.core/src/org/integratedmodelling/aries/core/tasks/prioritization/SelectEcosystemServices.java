@@ -5,9 +5,9 @@ import java.util.Collection;
 
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.interfaces.IConcept;
-import org.integratedmodelling.thinklab.interfaces.ISession;
-import org.integratedmodelling.thinklab.interfaces.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
 public class SelectEcosystemServices implements ITask {
 	

@@ -37,10 +37,10 @@ import org.integratedmodelling.aries.core.ARIESNamespace;
 import org.integratedmodelling.thinklab.dolce.DOLCE;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.graph.KnowledgeGraph;
-import org.integratedmodelling.thinklab.interfaces.IConcept;
-import org.integratedmodelling.thinklab.interfaces.IKnowledgeSubject;
-import org.integratedmodelling.thinklab.interfaces.IProperty;
-import org.integratedmodelling.thinklab.interfaces.IRelationship;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IKnowledgeSubject;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IProperty;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IRelationship;
 
 public class DependencyTree extends KnowledgeGraph {
 

@@ -1,4 +1,4 @@
-package org.integratedmodelling.aries.core.harmonization;
+package org.integratedmodelling.aries.core.tasks.harmonization;
 
 import java.util.Collection;
 
@@ -7,9 +7,9 @@ import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.databridge.ObservationFactory;
 import org.integratedmodelling.geospace.values.ShapeValue;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.interfaces.IInstance;
-import org.integratedmodelling.thinklab.interfaces.ISession;
-import org.integratedmodelling.thinklab.interfaces.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 import org.integratedmodelling.utils.Polylist;
 
 /**

@@ -2,9 +2,9 @@ package org.integratedmodelling.aries.core.tasks.model;
 
 import org.integratedmodelling.aries.core.datastructures.DependencyTree;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.interfaces.IConcept;
-import org.integratedmodelling.thinklab.interfaces.ISession;
-import org.integratedmodelling.thinklab.interfaces.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
 
 /**

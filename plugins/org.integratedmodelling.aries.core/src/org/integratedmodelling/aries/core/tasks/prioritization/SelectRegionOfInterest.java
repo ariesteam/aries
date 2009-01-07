@@ -4,8 +4,8 @@ import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.values.ShapeValue;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.interfaces.ISession;
-import org.integratedmodelling.thinklab.interfaces.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 
 /**
  * This is an obviously interactive task, so what this one should do is to return a random 
