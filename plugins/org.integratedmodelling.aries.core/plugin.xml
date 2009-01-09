@@ -88,9 +88,11 @@
 	<!-- bindings -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
 		<parameter id="language" value="clojure"/>
+		<parameter id="classpath" value="bindings/clojure/"/>
 		<parameter id="task-package" value="org.integratedmodelling.aries.core.tasks"/>
 		<parameter id="resource" value="aries-core.clj"/>
 		<parameter id="resource" value="offline-tasks.clj"/>
+		<parameter id="resource" value="district/gssm.clj"/>
 	</extension>
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="test">
