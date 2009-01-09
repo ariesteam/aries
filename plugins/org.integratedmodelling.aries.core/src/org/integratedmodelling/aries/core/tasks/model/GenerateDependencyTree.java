@@ -4,6 +4,7 @@ import org.integratedmodelling.aries.core.datastructures.DependencyTree;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
 
@@ -14,6 +15,7 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
  * @author Ferdinando
  *
  */
+@TaskNamespace(ns = "aries")
 public class GenerateDependencyTree implements ITask {
 
 	public void setTargetConcept(IConcept c) {	

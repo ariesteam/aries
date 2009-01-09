@@ -7,8 +7,10 @@ import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
+@TaskNamespace(ns = "aries")
 public class SelectEcosystemServices implements ITask {
 	
 	ArrayList<IConcept> es = new ArrayList<IConcept>();

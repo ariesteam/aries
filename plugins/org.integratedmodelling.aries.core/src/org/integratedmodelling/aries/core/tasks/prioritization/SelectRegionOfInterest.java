@@ -6,6 +6,7 @@ import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
 
 /**
  * This is an obviously interactive task, so what this one should do is to return a random 
@@ -14,6 +15,7 @@ import org.integratedmodelling.thinklab.interfaces.applications.ITask;
  * @author Ferdinando
  *
  */
+@TaskNamespace(ns = "aries")
 public class SelectRegionOfInterest implements ITask {
 
 	static public final String UPPER_EASTERN_USA = "POLYGON((-78.046875 48.515625,-106.875 48.515625,-106.875 31.640625,-78.75 31.640625,-78.75 31.640625,-78.046875 48.515625))";

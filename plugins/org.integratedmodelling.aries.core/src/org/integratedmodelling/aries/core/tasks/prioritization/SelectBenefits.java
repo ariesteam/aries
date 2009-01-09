@@ -5,8 +5,10 @@ import java.util.Collection;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
+@TaskNamespace(ns = "aries")
 public class SelectBenefits implements ITask {
 
 	public void setEcosystemService(IConcept ecosystemService) {
