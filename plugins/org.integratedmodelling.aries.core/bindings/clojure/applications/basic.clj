@@ -5,16 +5,14 @@
 ;; @date Nov 13, 2008 
 ;; -----------------------------------------------------------------------------------------------
 
-(ns aries)
-
 (tl/load-bindings 'aries.core)
 
 (defn get-data-for-benefit
 	""
 	[benefit]
-	(harmonize-observations
-		(retrieve-observations (generate-dependency-tree benefit) false)
-		(select-region-of-interest)
+	(aries/harmonize-observations
+		(aries/retrieve-observations (aries/generate-dependency-tree benefit) false)
+		(aries/select-region-of-interest)
 		512))
 
 (. javax.swing.JOptionPane (showMessageDialog nil "Hello Fuok"))		

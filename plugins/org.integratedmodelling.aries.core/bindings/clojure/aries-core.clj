@@ -3,6 +3,3 @@
 ;; All ARIES data structures have a counterpart in Java that can be initialized with them
 ;; 
 ;; --------------------------------------------------------------------------------------
-
-(ns aries
-	(:refer-clojure))
