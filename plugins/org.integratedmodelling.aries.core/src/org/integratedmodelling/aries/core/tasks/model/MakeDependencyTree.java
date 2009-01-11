@@ -1,7 +1,7 @@
 package org.integratedmodelling.aries.core.tasks.model;
 
-import org.integratedmodelling.aries.core.datastructures.DependencyTree;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
+import org.integratedmodelling.thinklab.graph.KnowledgeGraph;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
@@ -12,16 +12,19 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
  * Given a concept of interest, generate a dependency tree with that concept at its root. Any
  * model of that concept will be composed of observations of those concepts. 
  * 
+ * TODO this needs to know more context and will eventually incorporate the probabilistic reasoning
+ * engine to select the appropriate model based on context.
+ * 
  * @author Ferdinando
  *
  */
 @TaskNamespace(ns = "aries")
-public class GenerateDependencyTree implements ITask {
+public class MakeDependencyTree implements ITask {
 
 	public void setTargetConcept(IConcept c) {	
 	}
 	
-	public DependencyTree getDependencyTree() {
+	public KnowledgeGraph getDependencyTree() {
 		return null;
 	}
 	

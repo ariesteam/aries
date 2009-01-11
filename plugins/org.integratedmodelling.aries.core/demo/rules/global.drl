@@ -1,0 +1,79 @@
+# created on: May 29, 2008
+# Rules in package global only depend on where (Region) and possibly what (ESContext). They are invoked when the base 
+# selections are made, and the dependency model exists but no BN models have been extracted yet. A typical usage
+# of the global package is to ensure that the model contains all necessary data and the user has been given all
+# customization options before BNs are generated.
+#
+package global
+
+import org.integratedmodelling.aries.rules.facts.Region
+import org.integratedmodelling.aries.behaviors.AriesBehavior
+import org.integratedmodelling.aries.behaviors.RuleEngineBehavior
+import org.integratedmodelling.aries.rules.actions.Action
+import org.integratedmodelling.aries.rules.actions.ActionScheduler
+import org.integratedmodelling.aries.rules.actions.Action.Response
+
+#declare any global variables here
+global org.integratedmodelling.aries.behaviors.AriesBehavior aries;
+global org.integratedmodelling.aries.rules.actions.ActionScheduler scheduler;
+
+rule "Use Population data"
+	
+	when
+		# there is a currently selected region
+		region : Region() 
+		# and at least some of it is in the tropics
+		eval( region.intersects(Region.TROPICS) )
+		
+	then 
+	
+		#add population to the ES model
+		Action action = scheduler.enqueueAction(
+			RuleEngineBehavior.ACTIVATE_DEPENDENCY, 
+			Action.Response.BINARY_CONDITIONAL);
+		
+		action.setLabel("Population effects in tropical carbon cycle");
+		action.setDescription(
+		    "Gaston (2005) suggests that population density influences carbon sequestration in " +
+			"tropical areas. Population density data are available. Do you want to consider " +
+			"population density effects?");	
+		
+		action.addParameter("carbonEcology:VegetativeCStorageCapacity");
+		action.addParameter("habitat:HumanPopulation");
+			 
+end
+
+
+rule "Snowmelt factor"
+	
+	when
+		# there is a currently selected region
+		region : Region() 
+		# and at least some of it is in the arctic
+		eval( region.intersects(Region.ARCTIC) )
+		
+	then 
+	
+		#add population to the ES model
+		Action action = scheduler.enqueueAction(
+			RuleEngineBehavior.ACTIVATE_DEPENDENCY, 
+			Action.Response.BINARY_CONDITIONAL);
+			
+		action.setLabel("Beneficiaries in arctic regions");
+		action.setDescription(
+			"Snowmelt-dependent populations in arctic regions are important beneficiaries of " +
+			"climate stability. Do you want to include snowmelt-dependent populations in  " +
+			"the carbon model?");
+
+		# todo add dependencies		
+			 
+end
+
+rule "Your Second Rule"
+	#include attributes such as "salience" here...
+	when
+		#conditions
+	then 
+		#actions
+		
+end

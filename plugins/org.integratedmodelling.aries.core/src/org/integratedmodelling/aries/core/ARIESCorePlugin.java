@@ -5,11 +5,11 @@ import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
 
 public class ARIESCorePlugin extends ThinklabPlugin {
-
+	
 	public static final String PLUGIN_ID = 
 		"org.integratedmodelling.aries.core";
 	
-	public ARIESCorePlugin get() {
+	public static ARIESCorePlugin get() {
 		return (ARIESCorePlugin) getPlugin(PLUGIN_ID);
 	}
 	
