@@ -75,6 +75,8 @@ public class DemoDependencyTree extends KnowledgeGraph {
 		if (infile.exists()) {
 			read(infile);
 		}
+		
+		this.setRoot(rootObservable);
 	}
 	
 	@Override

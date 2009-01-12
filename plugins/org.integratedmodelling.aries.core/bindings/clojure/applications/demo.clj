@@ -15,17 +15,14 @@
 	adjusted to obtain square pixels according to the aspect ratio."
 	[benefit region-of-interest resolution]
 	(aries/harmonize-observations
+		512
 		(aries/retrieve-observations 
-			(aries/get-demo-data-kbox)
 			(aries/make-demo-dependency-tree benefit) 
-			region-of-interest
-			false)
-		select-region-of-interest
-		resolution))
+			false
+			(aries/get-demo-data-kbox)
+			region-of-interest)
+		region-of-interest))
 
-(aries/generate-demo-dependency-tree (conc 'carbonService:ClimateStability))
-
-(. javax.swing.JOptionPane (showMessageDialog nil "Hello Fuok"))		
-
-;;(get-data-for-benefit (tl/conc 'carbonService:ClimateStability) (aries/get-region-of-interest))
-(. javax.swing.JOptionPane (showMessageDialog nil "Hello World"))
+(. javax.swing.JOptionPane (showMessageDialog nil "Starting..."))		
+(get-data-for-benefit (tl/conc 'carbonService:ClimateStability) (aries/select-region-of-interest) 512)
+(. javax.swing.JOptionPane (showMessageDialog nil "Done"))
