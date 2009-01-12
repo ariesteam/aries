@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.core.tasks.harmonization;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.databridge.ObservationFactory;
@@ -9,6 +10,7 @@ import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 import org.integratedmodelling.utils.Polylist;
 
@@ -27,13 +29,18 @@ import org.integratedmodelling.utils.Polylist;
 @TaskNamespace(ns = "aries")
 public class HarmonizeObservations implements ITask {
 
-	Collection<IInstance> observations = null;
+	Map<IConcept, IInstance> observations = null;
 	ShapeValue regionOfInterest = null;
 	
 	IInstance result = null;
 	private int maxLinearResolution;
+	private IConcept observable;
 	
-	public void setObservations(Collection<IInstance> observations) {
+	public void setObservable(IConcept observable) {
+		this.observable = observable;
+	}
+	
+	public void setObservations(Map<IConcept, IInstance> observations) {
 		this.observations = observations;
 	}
 	
@@ -55,12 +62,12 @@ public class HarmonizeObservations implements ITask {
 		/*
 		 * create main observation for benefit
 		 */
-		Polylist dset = ObservationFactory.createIdentification();
+		Polylist dset = ObservationFactory.createIdentification(observable.toString());
 		
 		/*
 		 * add all data as dependencies of the main benefit identification
 		 */
-		for (IInstance data : observations) {
+		for (IInstance data : observations.values()) {
 			dset = ObservationFactory.addDependency(dset, data);
 		}
 		

@@ -1,5 +1,7 @@
 package org.integratedmodelling.aries.core.tasks.model;
 
+import java.util.Set;
+
 import org.integratedmodelling.aries.core.datastructures.demo.DemoDependencyTree;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.graph.KnowledgeGraph;

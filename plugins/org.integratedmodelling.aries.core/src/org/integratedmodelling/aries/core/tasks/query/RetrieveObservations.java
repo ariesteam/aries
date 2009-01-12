@@ -98,10 +98,10 @@ public class RetrieveObservations implements ITask {
 		
 		IInstance ret = null;
 		
-		if (results == null || results.size() == 0)
+		if (result == null || result.getResultCount() == 0)
 			return null;
 		
-		if (results.size() > 1) {
+		if (result.getResultCount() > 1) {
 			
 			/* 
 			 * TODO compute score for each observations and assign it to result using

@@ -5,6 +5,7 @@
 ;; @date Nov 13, 2008 
 ;; -----------------------------------------------------------------------------------------------
 
+(tl/load-bindings 'corescience)
 (tl/load-bindings 'aries.core)
 
 (defn get-demo-ecosystem-services 
@@ -21,14 +22,23 @@
 	adjusted to obtain square pixels according to the aspect ratio."
 	[observable region-of-interest resolution]
 	(aries/harmonize-observations
-		512
+		256
+		observable
 		(aries/retrieve-observations 
 			(aries/make-demo-dependency-tree observable) 
-			false
+			true
 			(aries/get-demo-data-kbox)
 			region-of-interest)
 		region-of-interest))
+	
+;; ---------------------------------------------------------------------------------------------------
+;; test: this should return the observation map ready for GSSM
+;; ---------------------------------------------------------------------------------------------------
+(println 
+	(corescience/map-dependent-states
+		(get-demo-data-for-observable 
+			(tl/conc 'carbonService:ClimateStability) 
+			(aries/select-region-of-interest) 
+			512)))
 
-(. javax.swing.JOptionPane (showMessageDialog nil "Starting..."))		
-(get-demo-data-for-observable (tl/conc 'carbonService:ClimateStability) (aries/select-region-of-interest) 512)
 (. javax.swing.JOptionPane (showMessageDialog nil "Done"))

@@ -16,7 +16,7 @@ import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 @TaskNamespace(ns = "aries")
 public class GetDemoDataKbox implements ITask {
 
-	IKBox kbox = null;
+	static IKBox kbox = null;
 	
 	@Override
 	public void run(ISession session) throws ThinklabException {
