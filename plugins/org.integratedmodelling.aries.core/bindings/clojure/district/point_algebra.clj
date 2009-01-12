@@ -101,7 +101,15 @@
      (take k (repeatedly #(make-point n origin mean stdev)))))
 
 (defn euclidean-distance
-  "Returns the Euclidean distance between pointA and pointB."
+  "Returns the Euclidean distance between two n-dimensional points."
   [pointA pointB]
   (assert (and pointA pointB (== (count pointA) (count pointB))))
   (Math/sqrt (reduce + (map (fn [a b] (Math/pow (- a b) 2)) pointA pointB))))
+
+(defn slope3d-between
+  "Slope between two 3D points. Rise = z difference, Run = distance in
+   the plane."
+  [pointA pointB]
+  (let [[i j k] pointA
+	[x y z] pointB]
+    (/ (- z k) (euclidean-distance [i j] [x y]))))

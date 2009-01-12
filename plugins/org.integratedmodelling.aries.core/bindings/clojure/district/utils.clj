@@ -17,7 +17,65 @@
 ;;; <http://www.gnu.org/licenses/>.
 
 (ns district.utils
-  (:refer-clojure))
+  (:refer-clojure)
+  (:import (java.util HashMap)))
+
+(defn print-sysprops
+  "Print out the result of System.getProperties()"
+  []
+  (doseq [[key val] (. System getProperties)]
+      (printf "%s = %s\n" key val)))
+
+(defn maphash
+  "Creates a new map by applying keyfn to every key of in-map and
+   valfn to every corresponding val."
+  [keyfn valfn in-map]
+  (loop [keyvals (seq in-map)
+	 out-map {}]
+    (if (empty? keyvals)
+      out-map
+      (let [[key val] (first keyvals)]
+	(recur (rest keyvals)
+	       (assoc out-map (keyfn key) (valfn val)))))))
+
+(defn maphash-java
+  "Creates a new Java map by applying keyfn to every key of in-map and
+   valfn to every corresponding val."
+  [keyfn valfn in-map]
+  (loop [keyvals (seq in-map)
+	 out-map (new HashMap)]
+    (if (empty? keyvals)
+      out-map
+      (let [[key val] (first keyvals)]
+	(recur (rest keyvals)
+	       (doto out-map (.put (keyfn key) (valfn val))))))))
+
+(defn linearize
+  "Transforms a 2D matrix into a 1D vector."
+  [matrix]
+  (vec (mapcat identity matrix)))
+
+(defn vectorize
+  "Creates a vect of vects from a 2D Java array."
+  [java-array]
+  (into [] (map #(into [] %) java-array)))
+
+(defn arrayify
+  "Creates a 2D Java array (of Objects) from a vect of vects."
+  [vect-of-vects]
+  (into-array (map into-array vect-of-vects)))
+
+(defn vectorize-map
+  "Creates a map of {keywords -> vect-of-vects} from a Java
+   HashMap<String,Array[]>."
+  [java-map]
+  (maphash keyword vectorize java-map))
+
+(defn arrayify-map
+  "Creates a Java HashMap<String,Array[]> from a map of {keywords ->
+   vect-of-vects}."
+  [clojure-map]
+  (maphash-java name arrayify clojure-map))
 
 (defn multi-conj
   "Conjoins an element multiple times onto a base-coll."

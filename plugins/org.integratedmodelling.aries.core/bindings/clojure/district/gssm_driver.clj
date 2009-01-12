@@ -18,25 +18,56 @@
 
 (ns district.gssm-driver
   (:refer-clojure)
-  (:use district.gssm))
+  (:use district.gssm
+	[district.matrix-ops :only (print-matrix)]))
 
 (defn view-provisionshed
-  [location]
-  (println "Provisionshed stuff"))
+  "Prints a matrix representation of the location's provisionshed."
+  [location rows cols]
+  (print-matrix
+   (coord-map-to-matrix (find-provisionshed location) rows cols)
+   "%5s "))
 
 (defn view-benefitshed
-  [location locations]
-  (println "Benefitshed stuff"))
+  "Prints a matrix representation of the location's benefitshed."
+  [location locations rows cols]
+  (print-matrix
+   (coord-map-to-matrix (find-benefitshed location locations) rows cols)
+   "%5s "))
 
 (defn view-location-properties
+  "Prints a summary of the post-simulation properties of the
+  location."
   [location]
-  (println "Location property stuff"))
+  (let [fmt-str (concat
+		 "Location %s\n"
+		 "--------------------\n"
+		 "Neighbors: %d\n"
+		 "Sunk: %d\n"
+		 "Used: %d\n"
+		 "Consumed: %d\n"
+		 "Carriers Encountered: %d\n"
+		 "Source: %d\n"
+		 "Sink: %d\n"
+		 "Usage: %d\n"
+		 "Consumption: %d\n")]
+    (printf fmt-str
+	    (:coords location)
+	    (count (:paths location))
+	    @(:sunk location)
+	    @(:used location)
+	    @(:consumed location)
+	    (count @(:carrier-bin location))
+	    (force (:source location))
+	    (force (:sink location))
+	    (force (:usage location))
+	    (force (:consumption location)))))
 
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
   corresponding to their selection."
   []
-  (println "Action Menu (0 quits):")
+  (println "\nAction Menu (0 quits):")
   (let [prompts ["View Provisionshed" "View Benefitshed"
 		 "View Location Properties" "Count Locations"]]
     (dotimes [i (count prompts)]
@@ -46,10 +77,11 @@
   (read))
 
 (defn select-location
+  "Prompts for coords and returns the cooresponding location object."
   [locations rows cols]
   (println "Input location coords")
-  (let [coords [(or (printf "Row [0-%d]: " rows) (flush) (read))
-		(or (printf "Col [0-%d]: " cols) (flush) (read))]]
+  (let [coords [(or (printf "Row [0-%d]: " (dec rows)) (flush) (read))
+		(or (printf "Col [0-%d]: " (dec cols)) (flush) (read))]]
     (some #(and (= (:coords %) coords) %) locations)))
 
 (defn gssm-interface
@@ -63,9 +95,12 @@
   (let [locations '({:coords [0 1]} {:coords [2 1]} {:coords [3 2]} {:coords [0 0]})]
     (loop [choice (select-menu-action)]
       (when (not= choice 0)
-	(cond (== choice 1) (view-provisionshed (select-location locations rows cols))
-	      (== choice 2) (view-benefitshed (select-location locations rows cols) locations)
-	      (== choice 3) (view-location-properties (select-location locations rows cols))
+	(cond (== choice 1) (view-provisionshed
+			     (select-location locations rows cols) rows cols)
+	      (== choice 2) (view-benefitshed
+			     (select-location locations rows cols) locations rows cols)
+	      (== choice 3) (view-location-properties
+			     (select-location locations rows cols))
 	      (== choice 4) (println (count locations))
 	      :otherwise    (println "Invalid selection."))
 	(recur (select-menu-action))))))

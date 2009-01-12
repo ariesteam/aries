@@ -18,7 +18,8 @@
 
 (ns district.gssm
   (:refer-clojure)
-  (:use [district.matrix-ops   :only (get-neighbors)]
+  (:use [district.utils        :only (maphash)]
+	[district.matrix-ops   :only (get-neighbors)]
 	[district.service-defs :only (source-val sink-prob usage-prob
 				      consumption-prob transition-prob)]))
 
@@ -45,13 +46,7 @@
 (defn extract-features
   "Returns a map of feature names to the observation values at i j."
   [observation i j cols]
-  (loop [names (keys observation)
-	 features {}]
-    (if (empty? names)
-      features
-      (let [name (first names)]
-	(recur (rest names)
-	       (assoc features name (get-in observation [name (+ (* i cols) j)])))))))
+  (maphash identity #(nth % (+ (* i cols) j)) observation))
 
 (defn make-locations
   "Returns a map of coords to location objects, one per matrix cell."
@@ -145,8 +140,6 @@
 	    (start-carrier loc (make-service-carrier source [loc]) trans-threshold))))
     locations))
 
-; sunk, used, consumed, carrier-bin
-
 (defn- add-anyway
   "Sums the non-nil argument values."
   [x y]
@@ -159,7 +152,7 @@
   [beneficiary-location]
   (loop [absorption (+ (force (:consumption beneficiary-location))
 		       (force (:usage beneficiary-location)))
-	 carriers (deref (:carrier-bin beneficiary-location))
+	 carriers @(:carrier-bin beneficiary-location)
 	 provider-contributions {}]
     (if (empty? carriers)
       provider-contributions
@@ -187,4 +180,12 @@
 		    (reduce + (map :weight
 				   (filter #(= provider-location
 					       ((comp first :route) %))
-					   (deref (:carrier-bin beneficiary-location))))))))))))
+					   @(:carrier-bin beneficiary-location)))))))))))
+
+(defn coord-map-to-matrix
+  "Renders a map of {[i j] -> value} into a 2D matrix."
+  [coord-map rows cols]
+  (let [matrix (make-array Double/TYPE rows cols)]
+    (doseq [[i j :as key] (keys coord-map)]
+	(aset-double matrix i j (coord-map key)))
+    matrix))

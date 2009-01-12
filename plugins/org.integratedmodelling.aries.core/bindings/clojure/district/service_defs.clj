@@ -19,54 +19,58 @@
 (ns district.service-defs
   (:refer-clojure))
 
-(defmulti source-val (fn [benefit features] ()))
-(defmulti sink-prob  (fn [benefit features] ()))
-(defmulti usage-prob (fn [benefit features] ()))
-(defmulti consumption-prob (fn [benefit features] ()))
-(defmulti transition-prob  (fn [benefit src-features dest-features] ()))
+(defmulti
+  #^{:doc "Expected units of service carrier provision."}
+  source-val (fn [benefit features] benefit))
 
-;;;(source-val benefit features)
-;    Expected units of service carrier provision. \textbf{(Source
-;      value)}
-;    \pause
-;  \item
-;;;(sink-prob  benefit features)
-;    Likelihood of \textbf{destructively absorbing} a unit of the
-;    service carrier. [0-1] \textbf{(Sink value)}
-;    \pause
-;  \item
-;;;(usage-prob benefit features)
-;    Likelihood of \textbf{non-destructively caching} a unit of the
-;    service carrier. [0-1] \textbf{(Non-Destructive Use value)}
-;    \pause
-;;;(consumption-prob benefit features)
-;    Likelihood of \textbf{destructively caching} a unit of the service
-;    carrier. [0-1] \textbf{(Destructive Use value)}
-;    \pause
-;  \item
-;
-;;;(transition-prob benefit src-features dest-features)
-;    \textbf{Sink value + Destructive Use value} represents the
-;    likelihood that a unit of the service carrier will be absorbed by
-;    the location as it flows through the network.
-;    \pause
-;  \item
-;    Remaining outflow likelihood \textbf{(1 - Sink value - Destructive
-;      Use value)} must be distributed among next step locations in the
-;    network.
-;    \pause
-;  \item
-;    Every half-edge must be assigned a likelihood value that a service
-;    carrier unit may traverse it.
-;    \pause
-;  \item
-;    This is first computed with a probabilistic function of the source
-;    and destination feature distributions.
-;    \pause
-;  \item
-;    Probabilities are normalized with respect to all other half-edges
-;    which share a tail.
-;    \pause
-;  \item
-;    Finally probabilities are weighted by the outflow probabilities at
-;    their tails.
+(defmulti
+  #^{:doc "Likelihood of destroying a unit of the service carrier without using it."}
+  sink-prob  (fn [benefit features] benefit))
+
+(defmulti
+  #^{:doc "Likelihood of non-destructively using a unit of the service carrier."}
+  usage-prob (fn [benefit features] benefit))
+
+(defmulti
+  #^{:doc "Likelihood of destructively using a unit of the service carrier."}
+  consumption-prob (fn [benefit features] benefit))
+
+(defmulti
+  #^{:doc "Likelihood that a unit of the service carrier will travel from src to dest."}
+  transition-prob  (fn [benefit src-features dest-features] benefit))
+
+
+;;; Flood Prevention Functions
+
+(defmethod source-val FloodPreventionBenefit [benefit features]
+  "")
+
+(defmethod sink-prob FloodPreventionBenefit [benefit features]
+  "")
+
+(defmethod usage-prob FloodPreventionBenefit [benefit features]
+  "")
+
+(defmethod consumption-prob FloodPreventionBenefit [benefit features]
+  "")
+
+(defmethod transition-prob FloodPreventionBenefit [benefit features]
+  "")
+
+
+;;; Climate Stability Functions
+
+(defmethod source-val ClimateStabilityBenefit [benefit features]
+  "")
+
+(defmethod sink-prob ClimateStabilityBenefit [benefit features]
+  "")
+
+(defmethod usage-prob ClimateStabilityBenefit [benefit features]
+  "")
+
+(defmethod consumption-prob ClimateStabilityBenefit [benefit features]
+  "")
+
+(defmethod transition-prob ClimateStabilityBenefit [benefit features]
+  "")
