@@ -7,22 +7,28 @@
 
 (tl/load-bindings 'aries.core)
 
-(defn get-data-for-benefit
+(defn get-demo-ecosystem-services 
+	"Return the services used in the demo. Benefits for these are extracted from the ontologies.
+	Data dependencies are predefined in the demo/models directory of the aries.core plugin."
+	[]
+	(list (tl/conc 'carbonService:CarbonSequestration)))
+
+(defn get-demo-data-for-observable
 	"Returns a harmonized observation, collecting (as dependencies) all the data available 
-	to observe the passed benefit in the passed region of interest. Uses the demo kbox and the
+	to observe the passed observable in the passed region of interest. Uses the demo kbox and the
 	demo dependency tree. The third parameter (resolution) is the number of pixels desired on
 	the longest dimension of the resulting maps; the resolution in the other dimension will be 
 	adjusted to obtain square pixels according to the aspect ratio."
-	[benefit region-of-interest resolution]
+	[observable region-of-interest resolution]
 	(aries/harmonize-observations
 		512
 		(aries/retrieve-observations 
-			(aries/make-demo-dependency-tree benefit) 
+			(aries/make-demo-dependency-tree observable) 
 			false
 			(aries/get-demo-data-kbox)
 			region-of-interest)
 		region-of-interest))
 
 (. javax.swing.JOptionPane (showMessageDialog nil "Starting..."))		
-(get-data-for-benefit (tl/conc 'carbonService:ClimateStability) (aries/select-region-of-interest) 512)
+(get-demo-data-for-observable (tl/conc 'carbonService:ClimateStability) (aries/select-region-of-interest) 512)
 (. javax.swing.JOptionPane (showMessageDialog nil "Done"))

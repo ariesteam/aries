@@ -6,10 +6,10 @@
 		<import plugin-id="org.integratedmodelling.thinklab.core"/>
 		<import plugin-id="org.integratedmodelling.thinklab.opal"/>
 		<import plugin-id="org.integratedmodelling.thinklab.clojure"/>
-		<import plugin-id="org.integratedmodelling.thinklab.corescience"/>
+		<import plugin-id="org.integratedmodelling.thinklab.corescience" reverse-lookup="true" />
 		<import plugin-id="org.integratedmodelling.thinklab.dolce"/>
 		<import plugin-id="org.integratedmodelling.thinklab.ecology"/>
-		<import plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true"/>
+		<import plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true" />
 		<import plugin-id="org.integratedmodelling.thinklab.time"/>
 		<import plugin-id="org.integratedmodelling.thinklab.databridge"/>
 		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
@@ -92,7 +92,7 @@
 		<parameter id="task-package" value="org.integratedmodelling.aries.core.tasks"/>
 		<parameter id="resource" value="aries-core.clj"/>
 		<parameter id="resource" value="offline-tasks.clj"/>
-		<parameter id="resource" value="district/gssm.clj"/>
+		<parameter id="resource" value="district/gssm-driver.clj"/>
 		<parameter id="resource" value="district/worldgen.clj"/>
 	</extension>
 	
