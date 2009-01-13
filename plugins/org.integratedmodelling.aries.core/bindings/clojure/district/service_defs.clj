@@ -23,54 +23,23 @@
   #^{:doc "Expected units of service carrier provision."}
   source-val (fn [benefit features] benefit))
 
-(defmulti
-  #^{:doc "Likelihood of destroying a unit of the service carrier without using it."}
-  sink-prob  (fn [benefit features] benefit))
+(defmethod source-val :default [benefit features]
+  100.0)
+
+(defstruct flows :sink :use :consume :out)
 
 (defmulti
-  #^{:doc "Likelihood of non-destructively using a unit of the service carrier."}
-  usage-prob (fn [benefit features] benefit))
+  #^{:doc "Returns a flows map specifying the distribution of a
+           service carrier's weight between being sunk, used,
+           consumed, or propagated on to neighboring locations."}
+  compute-flows (fn [benefit features neighbor-features] benefit))
 
-(defmulti
-  #^{:doc "Likelihood of destructively using a unit of the service carrier."}
-  consumption-prob (fn [benefit features] benefit))
+(defmethod compute-flows :default [benefit features neighbor-features]
+  (let [num-neighbors (count neighbor-features)
+	outval (/ 0.8 num-neighbors)]
+    (struct-map flows
+      :sink 0.1
+      :use 0.1
+      :consume 0.1
+      :out (replicate num-neighbors outval))))
 
-(defmulti
-  #^{:doc "Likelihood that a unit of the service carrier will travel from src to dest."}
-  transition-prob  (fn [benefit src-features dest-features] benefit))
-
-
-;;; Flood Prevention Functions
-
-(defmethod source-val 'FloodPreventionBenefit [benefit features]
-  "")
-
-(defmethod sink-prob 'FloodPreventionBenefit [benefit features]
-  "")
-
-(defmethod usage-prob 'FloodPreventionBenefit [benefit features]
-  "")
-
-(defmethod consumption-prob 'FloodPreventionBenefit [benefit features]
-  "")
-
-(defmethod transition-prob 'FloodPreventionBenefit [benefit features]
-  "")
-
-
-;;; Climate Stability Functions
-
-(defmethod source-val 'ClimateStabilityBenefit [benefit features]
-  "")
-
-(defmethod sink-prob 'ClimateStabilityBenefit [benefit features]
-  "")
-
-(defmethod usage-prob 'ClimateStabilityBenefit [benefit features]
-  "")
-
-(defmethod consumption-prob 'ClimateStabilityBenefit [benefit features]
-  "")
-
-(defmethod transition-prob 'ClimateStabilityBenefit [benefit features]
-  "")

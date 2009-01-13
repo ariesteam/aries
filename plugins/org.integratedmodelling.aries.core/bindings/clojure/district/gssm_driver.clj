@@ -47,21 +47,22 @@
 		 "Used: %d\n"
 		 "Consumed: %d\n"
 		 "Carriers Encountered: %d\n"
-		 "Source: %d\n"
-		 "Sink: %d\n"
-		 "Usage: %d\n"
-		 "Consumption: %d\n")]
+		 "Source-Val: %d\n"
+		 "Sink-Prob: %d\n"
+		 "Use-Prob: %d\n"
+		 "Consume-Prob: %d\n")
+	flows (force (:flows location))]
     (printf fmt-str
 	    (:coords location)
-	    (count (:paths location))
+	    (count (:neighbors location))
 	    @(:sunk location)
 	    @(:used location)
 	    @(:consumed location)
 	    (count @(:carrier-bin location))
-	    (force (:source location))
-	    (force (:sink location))
-	    (force (:usage location))
-	    (force (:consumption location)))))
+	    (:source location)
+	    (:sink flows)
+	    (:use flows)
+	    (:consume flows))))
 
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
@@ -80,8 +81,8 @@
   "Prompts for coords and returns the cooresponding location object."
   [locations rows cols]
   (println "Input location coords")
-  (let [coords [(or (printf "Row [0-%d]: " (dec rows)) (flush) (read))
-		(or (printf "Col [0-%d]: " (dec cols)) (flush) (read))]]
+  (let [coords [(do (printf "Row [0-%d]: " (dec rows)) (flush) (read))
+		(do (printf "Col [0-%d]: " (dec cols)) (flush) (read))]]
     (some #(and (= (:coords %) coords) %) locations)))
 
 (defn gssm-interface
@@ -90,9 +91,8 @@
    flows, and provides a simple menu-based interface to view the
    results."
   [benefit observation rows cols trans-threshold]
-;;  (let [locations (simulate-service-flows benefit observation rows
-;;					  cols trans-threshold)]
-  (let [locations '({:coords [0 1]} {:coords [2 1]} {:coords [3 2]} {:coords [0 0]})]
+  (let [locations (simulate-service-flows benefit observation rows
+					  cols trans-threshold)]
     (loop [choice (select-menu-action)]
       (when (not= choice 0)
 	(cond (== choice 1) (view-provisionshed
