@@ -8,7 +8,6 @@ import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
-import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
 
 /**
  * This is an obviously interactive task, so what this one should do is to return a random 
