@@ -42,35 +42,35 @@
 
 ;;; Flood Prevention Functions
 
-(defmethod source-val FloodPreventionBenefit [benefit features]
+(defmethod source-val 'FloodPreventionBenefit [benefit features]
   "")
 
-(defmethod sink-prob FloodPreventionBenefit [benefit features]
+(defmethod sink-prob 'FloodPreventionBenefit [benefit features]
   "")
 
-(defmethod usage-prob FloodPreventionBenefit [benefit features]
+(defmethod usage-prob 'FloodPreventionBenefit [benefit features]
   "")
 
-(defmethod consumption-prob FloodPreventionBenefit [benefit features]
+(defmethod consumption-prob 'FloodPreventionBenefit [benefit features]
   "")
 
-(defmethod transition-prob FloodPreventionBenefit [benefit features]
+(defmethod transition-prob 'FloodPreventionBenefit [benefit features]
   "")
 
 
 ;;; Climate Stability Functions
 
-(defmethod source-val ClimateStabilityBenefit [benefit features]
+(defmethod source-val 'ClimateStabilityBenefit [benefit features]
   "")
 
-(defmethod sink-prob ClimateStabilityBenefit [benefit features]
+(defmethod sink-prob 'ClimateStabilityBenefit [benefit features]
   "")
 
-(defmethod usage-prob ClimateStabilityBenefit [benefit features]
+(defmethod usage-prob 'ClimateStabilityBenefit [benefit features]
   "")
 
-(defmethod consumption-prob ClimateStabilityBenefit [benefit features]
+(defmethod consumption-prob 'ClimateStabilityBenefit [benefit features]
   "")
 
-(defmethod transition-prob ClimateStabilityBenefit [benefit features]
+(defmethod transition-prob 'ClimateStabilityBenefit [benefit features]
   "")

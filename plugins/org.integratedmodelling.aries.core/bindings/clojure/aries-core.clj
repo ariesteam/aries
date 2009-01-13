@@ -10,12 +10,12 @@
 	dependency tree for the observable extracted from the knowledge base. The last parameter (resolution) 
 	is the number of pixels desired on the longest dimension of the resulting maps; the resolution in 
 	the other dimension will be adjusted to obtain square pixels according to the aspect ratio."
-	[observable region-of-interest kbox resolution]
+	[observable region-of-interest kbox resolution exhaustive]
 	(aries/harmonize-observations
-		512
+		resolution
 		(aries/retrieve-observations 
 			(aries/make-dependency-tree observable) 
-			false
+			exhaustive
 			kbox
 			region-of-interest)
 		region-of-interest))

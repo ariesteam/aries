@@ -29,10 +29,7 @@ public class SelectRegionOfInterest implements ITask {
 	
 	@Override
 	public void run(ISession session)  throws ThinklabException  {
-		
-		if (Geospace.get() instanceof ThinklabPlugin)
-			System.out.println("Cuak");
-		
+
 		// TODO could randomize a region for testing.
 		chosen = 
 			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), UPPER_EASTERN_USA, null);

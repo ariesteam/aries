@@ -22,7 +22,7 @@
 	adjusted to obtain square pixels according to the aspect ratio."
 	[observable region-of-interest resolution]
 	(aries/harmonize-observations
-		256
+		resolution
 		observable
 		(aries/retrieve-observations 
 			(aries/make-demo-dependency-tree observable) 
@@ -32,13 +32,13 @@
 		region-of-interest))
 	
 ;; ---------------------------------------------------------------------------------------------------
-;; test: this should return the observation map ready for GSSM
+;; test: this should return the observation map of climate stability, ready for GSSM
 ;; ---------------------------------------------------------------------------------------------------
-(println 
-	(corescience/map-dependent-states
-		(get-demo-data-for-observable 
-			(tl/conc 'carbonService:ClimateStability) 
-			(aries/select-region-of-interest) 
-			512)))
 
-(. javax.swing.JOptionPane (showMessageDialog nil "Done"))
+(corescience/map-dependent-states
+	(get-demo-data-for-observable 
+		(tl/conc 'carbonService:ClimateStability) 
+		(aries/select-region-of-interest) 
+		312))
+		
+(tl/alert "done")
