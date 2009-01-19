@@ -23,14 +23,14 @@
 	[district.service-defs :only (source-val compute-flows)]))
 
 (defstruct location
-  :coords :neighbors :features :sunk :used
+  :id :neighbors :features :sunk :used
   :consumed :carrier-bin :source :flows)
 
 (defn make-location
   "Location constructor"
-  [coords neighbors features benefit]
+  [id neighbors features benefit]
   (struct-map location
-    :coords      coords
+    :id          id
     :neighbors   neighbors
     :features    features
     :sunk        (ref 0.0)
@@ -42,10 +42,11 @@
 (defn extract-features
   "Returns a map of feature names to the observation values at i j."
   [observation i j cols]
-  (maphash identity #(nth % (+ (* i cols) j)) observation))
+  (let [idx (+ (* i cols) j)]
+    (maphash identity #(nth % idx) observation)))
 
 (defn make-location-map
-  "Returns a map of coords to location objects, one per matrix cell."
+  "Returns a map of ids to location objects, one per matrix cell."
   [observation rows cols benefit]
   (loop [location-seq (for [i (range rows) j (range cols)]
 			(make-location [i j]
@@ -58,27 +59,19 @@
       (let [this-location (first location-seq)]
 	(recur (rest location-seq)
 	       (assoc location-map
-		 (:coords this-location) this-location))))))
-
-(defn link-locations
-  "Extracts the list of locations from location-map and returns a new
-  list of locations in which each one's neighbors field has been
-  transformed from a list of coords to a list of locations."
-  [location-map]
-  (map (fn [loc] (update-in loc [:neighbors] #(map location-map %)))
-       (vals location-map)))
+		 (:id this-location) this-location))))))
 
 (defn add-flows
-  "Call on the result of link-locations.  Adds to each location a
-   flows field, which contains a delayed evaluation of the location's
-   flow probabilities."
-  [benefit locations]
-  (map (fn [loc]
-	 (assoc loc :flows
-		(delay (compute-flows benefit
-				      (:features loc)
-				      (map :features (:neighbors loc))))))
-       locations))
+  "Updates location-map such that each location's flows field will
+   contain a delayed evaluation of its carrier flow probabilities."
+  [benefit location-map]
+  (maphash identity
+	   #(assoc % :flows
+		   (delay (compute-flows benefit
+					 (:features %)
+					 (map (comp :features location-map)
+					      (:neighbors %)))))
+	   location-map))
 
 (defstruct service-carrier :weight :route)
 
@@ -93,7 +86,7 @@
    location-specific flow probabilities.  It then stores itself in the
    location's carrier-bin and propagates service carriers to every
    neighbor where (> (* weight trans-prob) trans-threshold)."
-  [loc carrier trans-threshold]
+  [location-map loc carrier trans-threshold]
   (let [weight   (:weight carrier)
 	flows    (force (:flows loc))
 	sunk     (* weight (:sink flows))
@@ -104,10 +97,11 @@
      (alter (:used        loc) +    used)
      (alter (:consumed    loc) +    consumed)
      (alter (:carrier-bin loc) conj carrier))
-    (doseq [[loc trans-prob] (zipmap (:neighbors loc) (:out flows))]
+    (doseq [[loc trans-prob] (zipmap (map location-map (:neighbors loc))
+				     (:out flows))]
 	(let [trans-weight (* weight trans-prob)]
 	  (when (> trans-weight trans-threshold)
-	    (start-carrier loc
+	    (start-carrier location-map loc
 			   (make-service-carrier trans-weight
 						 (conj (:route carrier) loc))
 			   trans-threshold))))))
@@ -117,16 +111,16 @@
    service-carrier propagating in every location whose source value is
    greater than 0.  These carriers propagate child carriers through
    the network which all update properties of the locations.  When the
-   simulation completes, the list of locations is returned."
+   simulation completes, the network of locations is returned."
   [benefit observation rows cols trans-threshold]
-  (let [locations (add-flows benefit
-			     (link-locations
-			      (make-location-map observation rows cols benefit)))]
-    (doseq [loc locations]
+  (let [location-map (add-flows benefit	(make-location-map observation rows cols benefit))]
+    (doseq [loc (vals location-map)]
 	(let [source (:source loc)]
 	  (when (> source 0.0)
-	    (start-carrier loc (make-service-carrier source [loc]) trans-threshold))))
-    locations))
+	    (start-carrier location-map loc
+			   (make-service-carrier source [loc])
+			   trans-threshold))))
+    location-map))
 
 (defn- add-anyway
   "Sums the non-nil argument values."
@@ -136,7 +130,7 @@
 	:otherwise (+ x y)))
 
 (defn find-provisionshed
-  "Returns a map of {provider-coords -> benefit-provided}."
+  "Returns a map of {provider-id -> benefit-provided}."
   [beneficiary-location]
   (let [flows (force (:flows beneficiary-location))
 	absorption (+ (:use flows) (:consume flows))]
@@ -147,11 +141,11 @@
 	(let [carrier (first carriers)]
 	  (recur (rest carriers)
 		 (update-in provider-contributions
-			    [((comp :coords first :route) carrier)]
+			    [((comp :id first :route) carrier)]
 			    add-anyway (* absorption (:weight carrier)))))))))
 
 (defn find-benefitshed
-  "Returns a map of {beneficiary-coords -> benefit-received}."
+  "Returns a map of {beneficiary-id -> benefit-received}."
   [provider-location all-locations]
   (loop [locations all-locations
 	 beneficiary-acquisitions {}]
@@ -162,7 +156,7 @@
 	    absorption (+ (:use flows) (:consume flows))]
 	(recur (rest locations)
 	       (assoc beneficiary-acquisitions
-		 [(:coords beneficiary-location)]
+		 (:id beneficiary-location)
 		 (* absorption
 		    (reduce + (map :weight
 				   (filter #(= provider-location

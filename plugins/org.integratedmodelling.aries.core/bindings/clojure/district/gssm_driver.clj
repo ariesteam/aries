@@ -24,37 +24,39 @@
 (defn view-provisionshed
   "Prints a matrix representation of the location's provisionshed."
   [location rows cols]
+  (newline)
   (print-matrix
    (coord-map-to-matrix (find-provisionshed location) rows cols)
-   "%5s "))
+   "%7.2f "))
 
 (defn view-benefitshed
   "Prints a matrix representation of the location's benefitshed."
   [location locations rows cols]
+  (newline)
   (print-matrix
    (coord-map-to-matrix (find-benefitshed location locations) rows cols)
-   "%5s "))
+   "%7.2f "))
 
 (defn view-location-properties
   "Prints a summary of the post-simulation properties of the
   location."
   [location]
-  (let [fmt-str (concat
-		 "Location %s\n"
-		 "--------------------\n"
-		 "Neighbors: %d\n"
-		 "Sunk: %d\n"
-		 "Used: %d\n"
-		 "Consumed: %d\n"
-		 "Carriers Encountered: %d\n"
-		 "Source-Val: %d\n"
-		 "Sink-Prob: %d\n"
-		 "Use-Prob: %d\n"
-		 "Consume-Prob: %d\n")
+  (let [fmt-str (str
+		 "%nLocation %s%n"
+		 "--------------------%n"
+		 "Neighbors: %s%n"
+		 "Sunk: %.2f%n"
+		 "Used: %.2f%n"
+		 "Consumed: %.2f%n"
+		 "Carriers Encountered: %d%n"
+		 "Source-Val: %.2f%n"
+		 "Sink-Prob: %.2f%n"
+		 "Use-Prob: %.2f%n"
+		 "Consume-Prob: %.2f%n")
 	flows (force (:flows location))]
     (printf fmt-str
-	    (:coords location)
-	    (count (:neighbors location))
+	    (:id location)
+	    (:neighbors location)
 	    @(:sunk location)
 	    @(:used location)
 	    @(:consumed location)
@@ -68,11 +70,11 @@
   "Prompts the user with a menu of choices and returns the number
   corresponding to their selection."
   []
-  (println "\nAction Menu (0 quits):")
+  (printf "%nAction Menu (0 quits):%n")
   (let [prompts ["View Provisionshed" "View Benefitshed"
 		 "View Location Properties" "Count Locations"]]
     (dotimes [i (count prompts)]
-	(printf " %d) %s\n" (inc i) (prompts i))))
+	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
   (flush)
   (read))
@@ -80,10 +82,10 @@
 (defn select-location
   "Prompts for coords and returns the cooresponding location object."
   [locations rows cols]
-  (println "Input location coords")
+  (printf "%nInput location coords%n")
   (let [coords [(do (printf "Row [0-%d]: " (dec rows)) (flush) (read))
 		(do (printf "Col [0-%d]: " (dec cols)) (flush) (read))]]
-    (some #(and (= (:coords %) coords) %) locations)))
+    (some #(and (= (:id %) coords) %) locations)))
 
 (defn gssm-interface
   "Takes a benefit and an observation of the relevant features
@@ -91,8 +93,8 @@
    flows, and provides a simple menu-based interface to view the
    results."
   [benefit observation rows cols trans-threshold]
-  (let [locations (simulate-service-flows benefit observation rows
-					  cols trans-threshold)]
+  (let [locations (vals (simulate-service-flows benefit observation rows
+						cols trans-threshold))]
     (loop [choice (select-menu-action)]
       (when (not= choice 0)
 	(cond (== choice 1) (view-provisionshed
@@ -101,6 +103,6 @@
 			     (select-location locations rows cols) locations rows cols)
 	      (== choice 3) (view-location-properties
 			     (select-location locations rows cols))
-	      (== choice 4) (println (count locations))
-	      :otherwise    (println "Invalid selection."))
+	      (== choice 4) (printf "%n%d%n" (count locations))
+	      :otherwise    (printf "%nInvalid selection.%n"))
 	(recur (select-menu-action))))))
