@@ -80,31 +80,64 @@
   [weight route]
   (struct-map service-carrier :weight weight :route route))
 
-(defn start-carrier
+(defn propagate-carrier-tailrec
+  "A service carrier distributes its weight between being sunk or
+   consumed by the location or flowing on to its neighbors based on
+   location-specific flow probabilities.  It then stores itself in the
+   location's carrier-bin and propagates service carriers to every
+   neighbor where (> (* weight trans-prob) trans-threshold)."
+  [location-map location root-carrier trans-threshold]
+  (loop [loc location
+	 carrier root-carrier
+	 open-list ()]
+    (let [weight        (:weight carrier)
+	  flows         (force (:flows loc))
+	  sunk          (* weight (:sink flows))
+	  used          (* weight (:use flows))
+	  consumed      (* weight (:consume flows))
+	  neighbors     (map location-map (:neighbors loc))
+	  trans-weights (map #(* weight %) (:out flows))
+	  trans-pairs   (concat (filter #(> (val %) trans-threshold)
+					(zipmap neighbors trans-weights)) open-list)]
+      (dosync
+       (alter (:sunk        loc) +    sunk)
+       (alter (:used        loc) +    used)
+       (alter (:consumed    loc) +    consumed)
+       (alter (:carrier-bin loc) conj carrier))
+      (when (seq trans-pairs)
+	(let [[next-loc trans-weight] (first trans-pairs)]
+	  (recur next-loc
+		 (make-service-carrier trans-weight
+				       (conj (:route carrier) next-loc))
+		 (rest trans-pairs)))))))
+
+(defn propagate-carrier
   "A service carrier distributes its weight between being sunk or
    consumed by the location or flowing on to its neighbors based on
    location-specific flow probabilities.  It then stores itself in the
    location's carrier-bin and propagates service carriers to every
    neighbor where (> (* weight trans-prob) trans-threshold)."
   [location-map loc carrier trans-threshold]
-  (let [weight   (:weight carrier)
-	flows    (force (:flows loc))
-	sunk     (* weight (:sink flows))
-	used     (* weight (:use flows))
-	consumed (* weight (:consume flows))]
+  (let [weight        (:weight carrier)
+	flows         (force (:flows loc))
+	sunk          (* weight (:sink flows))
+	used          (* weight (:use flows))
+	consumed      (* weight (:consume flows))
+	neighbors     (map location-map (:neighbors loc))
+	trans-weights (map #(* weight %) (:out flows))
+	trans-pairs   (filter #(> (val %) trans-threshold)
+			      (zipmap neighbors trans-weights))]
     (dosync
      (alter (:sunk        loc) +    sunk)
      (alter (:used        loc) +    used)
      (alter (:consumed    loc) +    consumed)
      (alter (:carrier-bin loc) conj carrier))
-    (doseq [[loc trans-prob] (zipmap (map location-map (:neighbors loc))
-				     (:out flows))]
-	(let [trans-weight (* weight trans-prob)]
-	  (when (> trans-weight trans-threshold)
-	    (start-carrier location-map loc
+    (doseq [[next-loc trans-weight] trans-pairs]
+	(propagate-carrier location-map
+			   next-loc
 			   (make-service-carrier trans-weight
-						 (conj (:route carrier) loc))
-			   trans-threshold))))))
+						 (conj (:route carrier) next-loc))
+			   trans-threshold))))
 
 (defn simulate-service-flows
   "Creates a network of interconnected locations, and starts a
@@ -114,12 +147,11 @@
    simulation completes, the network of locations is returned."
   [benefit observation rows cols trans-threshold]
   (let [location-map (add-flows benefit	(make-location-map observation rows cols benefit))]
-    (doseq [loc (vals location-map)]
-	(let [source (:source loc)]
-	  (when (> source 0.0)
-	    (start-carrier location-map loc
-			   (make-service-carrier source [loc])
-			   trans-threshold))))
+    (doseq [loc (filter #(> (:source %) 0.0) (vals location-map))]
+	(propagate-carrier location-map
+			   loc
+			   (make-service-carrier (:source loc) [loc])
+			   trans-threshold))
     location-map))
 
 (defn- add-anyway
