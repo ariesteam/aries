@@ -3,7 +3,7 @@ package org.integratedmodelling.aries.core.tasks.harmonization;
 import java.util.Collection;
 import java.util.Map;
 
-import org.integratedmodelling.corescience.interfaces.IObservation;
+import org.integratedmodelling.corescience.observation.IObservation;
 import org.integratedmodelling.databridge.ObservationFactory;
 import org.integratedmodelling.geospace.values.ShapeValue;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
