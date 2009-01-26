@@ -3,7 +3,7 @@ package org.integratedmodelling.aries.core.tasks.query;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.integratedmodelling.databridge.ObservationFactory;
+import org.integratedmodelling.modelling.observations.ObservationFactory;
 import org.integratedmodelling.geospace.values.ShapeValue;
 import org.integratedmodelling.thinklab.constraint.Constraint;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
