@@ -18,7 +18,7 @@
 
 (ns district.gssm
   (:refer-clojure)
-  (:use [district.utils        :only (maphash)]
+  (:use [district.utils        :only (maphash seq2map seq2redundant-map)]
 	[district.matrix-ops   :only (get-neighbors)]
 	[district.service-defs :only (source-val compute-flows)]))
 
@@ -39,27 +39,42 @@
     :carrier-bin (ref ())
     :source      (source-val benefit features)))
 
-(defn extract-features
-  "Returns a map of feature names to the observation values at i j."
-  [observation i j cols]
+(defn- extract-features
+  "Returns a map of feature names to the observed values at i j."
+  [observation-states i j cols]
   (let [idx (+ (* i cols) j)]
-    (maphash identity #(nth % idx) observation)))
+    (maphash identity #(nth % idx) observation-states)))
 
-(defn make-location-map
-  "Returns a map of ids to location objects, one per matrix cell."
-  [observation rows cols benefit]
-  (loop [location-seq (for [i (range rows) j (range cols)]
-			(make-location [i j]
-				       (get-neighbors [i j] rows cols)
-				       (extract-features observation i j cols)
-				       benefit))
-	 location-map {}]
-    (if (empty? location-seq)
-      location-map
-      (let [this-location (first location-seq)]
-	(recur (rest location-seq)
-	       (assoc location-map
-		 (:id this-location) this-location))))))
+(defmulti
+  #^{:doc "Returns a map of ids to location objects, one per location in observation."}
+  make-location-map (fn [observation benefit] (geospace/grid-extent? observation)))
+
+(defmethod make-location-map true
+  [observation benefit]
+  (let [rows   (geospace/grid-rows observation)
+	cols   (geospace/grid-columns observation)
+	states (corescience/map-dependent-states observation)]
+    (seq2map (for [i (range rows) j (range cols)]
+	       (make-location [i j]
+			      (get-neighbors [i j] rows cols)
+			      (extract-features states i j cols)
+			      benefit))
+	     (fn [location] [(:id location) location]))))
+
+(defmethod make-location-map false
+  [observation benefit]
+  {})
+;;;  (let [districts (corescience/get-districts observation)]
+;;;    (seq2map (map (fn [district id]
+;;;		    (make-location id
+;;;				   (corescience/get-poly-neighbors district)
+;;;				   (corescience/get-district-features district)
+;;;				   benefit))
+;;;		  districts (range (count districts)))
+;;;	     (fn [location] [(:id location) location]))))
+;;; FIXME: affects: id, neighbors, features, source of location objects
+;;; These corescience/* functions are not implemented.
+;;; Location-map keys may not work with the return value of get-poly-neighbors.
 
 (defn add-flows
   "Updates location-map such that each location's flows field will
@@ -145,13 +160,13 @@
    greater than 0.  These carriers propagate child carriers through
    the network which all update properties of the locations.  When the
    simulation completes, the network of locations is returned."
-  [benefit observation rows cols trans-threshold]
-  (let [location-map (add-flows benefit	(make-location-map observation rows cols benefit))]
+  [benefit observation trans-threshold]
+  (let [location-map (add-flows benefit	(make-location-map observation benefit))]
     (doseq [loc (filter #(> (:source %) 0.0) (vals location-map))]
-	(propagate-carrier location-map
-			   loc
-			   (make-service-carrier (:source loc) [loc])
-			   trans-threshold))
+	(propagate-carrier-tailrec location-map
+				   loc
+				   (make-service-carrier (:source loc) [loc])
+				   trans-threshold))
     location-map))
 
 (defn- add-anyway
@@ -166,39 +181,21 @@
   [beneficiary-location]
   (let [flows (force (:flows beneficiary-location))
 	absorption (+ (:use flows) (:consume flows))]
-    (loop [carriers @(:carrier-bin beneficiary-location)
-	   provider-contributions {}]
-      (if (empty? carriers)
-	provider-contributions
-	(let [carrier (first carriers)]
-	  (recur (rest carriers)
-		 (update-in provider-contributions
-			    [((comp :id first :route) carrier)]
-			    add-anyway (* absorption (:weight carrier)))))))))
+    (seq2redundant-map @(:carrier-bin beneficiary-location)
+		       (fn [carrier] [((comp :id first :route) carrier)
+				      (* absorption (:weight carrier))])
+		       add-anyway)))
 
 (defn find-benefitshed
   "Returns a map of {beneficiary-id -> benefit-received}."
   [provider-location all-locations]
-  (loop [locations all-locations
-	 beneficiary-acquisitions {}]
-    (if (empty? locations)
-      beneficiary-acquisitions
-      (let [beneficiary-location (first locations)
-	    flows (force (:flows beneficiary-location))
-	    absorption (+ (:use flows) (:consume flows))]
-	(recur (rest locations)
-	       (assoc beneficiary-acquisitions
-		 (:id beneficiary-location)
-		 (* absorption
-		    (reduce + (map :weight
-				   (filter #(= provider-location
-					       ((comp first :route) %))
-					   @(:carrier-bin beneficiary-location)))))))))))
-
-(defn coord-map-to-matrix
-  "Renders a map of {[i j] -> value} into a 2D matrix."
-  [coord-map rows cols]
-  (let [matrix (make-array Double/TYPE rows cols)]
-    (doseq [[i j :as key] (keys coord-map)]
-	(aset-double matrix i j (coord-map key)))
-    matrix))
+  (seq2map all-locations
+	   (fn [location]
+	     (let [flows (force (:flows location))
+		   absorption (+ (:use flows) (:consume flows))]
+	       [(:id location)
+		(* absorption
+		   (reduce + (map :weight
+				  (filter #(= provider-location
+					      ((comp first :route) %))
+					  @(:carrier-bin location)))))]))))

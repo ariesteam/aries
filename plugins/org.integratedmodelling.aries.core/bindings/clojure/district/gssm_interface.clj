@@ -16,10 +16,18 @@
 ;;; along with CLJ-DISTRICT.  If not, see
 ;;; <http://www.gnu.org/licenses/>.
 
-(ns district.gssm-driver
+(ns district.gssm-interface
   (:refer-clojure)
   (:use district.gssm
 	[district.matrix-ops :only (print-matrix)]))
+
+(defn coord-map-to-matrix-
+  "Renders a map of {[i j] -> value} into a 2D matrix."
+  [coord-map rows cols]
+  (let [matrix (make-array Double/TYPE rows cols)]
+    (doseq [[i j :as key] (keys coord-map)]
+	(aset-double matrix i j (coord-map key)))
+    matrix))
 
 (defn view-provisionshed
   "Prints a matrix representation of the location's provisionshed."
@@ -88,21 +96,24 @@
     (some #(and (= (:id %) coords) %) locations)))
 
 (defn gssm-interface
-  "Takes a benefit and an observation of the relevant features
-   (currently a map of {feature -> 1D matrix}), calculates the gssm
-   flows, and provides a simple menu-based interface to view the
-   results."
-  [benefit observation rows cols trans-threshold]
-  (let [locations (vals (simulate-service-flows benefit observation rows
-						cols trans-threshold))]
-    (loop [choice (select-menu-action)]
-      (when (not= choice 0)
-	(cond (== choice 1) (view-provisionshed
-			     (select-location locations rows cols) rows cols)
-	      (== choice 2) (view-benefitshed
-			     (select-location locations rows cols) locations rows cols)
-	      (== choice 3) (view-location-properties
-			     (select-location locations rows cols))
-	      (== choice 4) (printf "%n%d%n" (count locations))
-	      :otherwise    (printf "%nInvalid selection.%n"))
-	(recur (select-menu-action))))))
+  "Takes a benefit and an observation of the relevant features,
+   calculates the gssm flows, and provides a simple menu-based
+   interface to view the results.  This currently only works on
+   observations with grid-based extents."
+  [benefit observation trans-threshold]
+  (if (not (geospace/grid-extent? observation))
+    (println "NOTE: gssm-interface currently only works for observations with grid extents.")
+    (let [locations (vals (simulate-service-flows benefit observation trans-threshold))
+	  rows (geospace/grid-rows observation)
+	  cols (geospace/grid-columns observation)]
+      (loop [choice (select-menu-action)]
+	(when (not= choice 0)
+	  (cond (== choice 1) (view-provisionshed
+			       (select-location locations rows cols) rows cols)
+		(== choice 2) (view-benefitshed
+			       (select-location locations rows cols) locations rows cols)
+		(== choice 3) (view-location-properties
+			       (select-location locations rows cols))
+		(== choice 4) (printf "%n%d%n" (count locations))
+		:otherwise    (printf "%nInvalid selection.%n"))
+	  (recur (select-menu-action)))))))

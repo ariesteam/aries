@@ -26,17 +26,39 @@
   (doseq [[key val] (. System getProperties)]
       (printf "%s = %s\n" key val)))
 
+(defn seq2map
+  "Constructs a map from a sequence by applying keyvalfn to each
+   element of the sequence.  keyvalfn should return a pair [key val]
+   to be added to the map for each input sequence element."
+  [aseq keyvalfn]
+  (loop [aseq aseq
+	 amap {}]
+    (if (empty? aseq)
+      amap
+      (let [[key val] (keyvalfn (first aseq))]
+	(recur (rest aseq)
+	       (assoc amap key val))))))
+
+(defn seq2redundant-map
+  "Constructs a map from a sequence by applying keyvalfn to each
+   element of the sequence.  keyvalfn should return a pair [key val]
+   to be added to the map for each input sequence element.  If key is
+   already in the map, its current value will be combined with the new
+   val using (mergefn curval val)."
+  [aseq keyvalfn mergefn]
+  (loop [aseq aseq
+	 amap {}]
+    (if (empty? aseq)
+      amap
+      (let [[key val] (keyvalfn (first aseq))]
+	(recur (rest aseq)
+	       (update-in amap [key] mergefn val))))))
+
 (defn maphash
   "Creates a new map by applying keyfn to every key of in-map and
    valfn to every corresponding val."
   [keyfn valfn in-map]
-  (loop [keyvals (seq in-map)
-	 out-map {}]
-    (if (empty? keyvals)
-      out-map
-      (let [[key val] (first keyvals)]
-	(recur (rest keyvals)
-	       (assoc out-map (keyfn key) (valfn val)))))))
+  (seq2map (seq in-map) (fn [[key val]] [(keyfn key) (valfn val)]))
 
 (defn maphash-java
   "Creates a new Java map by applying keyfn to every key of in-map and

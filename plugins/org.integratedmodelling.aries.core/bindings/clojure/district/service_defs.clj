@@ -43,3 +43,12 @@
       :consume 0.1
       :out (replicate num-neighbors outval))))
 
+(defmethod compute-flows :water [benefit features neighbor-features]
+  (let [elevs (map :elevation neighbor-features)
+	min-elev (min elevs)
+	num-paths (count (filter #(== min-elev %) elevs))]
+    (struct-map flows
+      :sink 0.2
+      :use 0.0
+      :consume 0.0
+      :out (map #(if (== min-elev %) (/ 0.8 num-paths) 0.0) elevs))))
