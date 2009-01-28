@@ -32,23 +32,14 @@
 			(aries/get-demo-data-kbox)
 			region-of-interest)
 		region-of-interest))
-	
+
 (defn run-gssm-demo
 	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
 	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
 	resolution on the longest dimension."
 	[benefit max-resolution transition-threshold]
 	(let [benf (tl/conc benefit)
-		  data (get-demo-data-for-observable 
-				  benf	   
-				  (aries/select-region-of-interest) 
-				  max-resolution)
-		  states (corescience/map-dependent-states data)
-		  rows   (geospace/grid-rows data)
-		  cols   (geospace/grid-columns data)]	
-	(district.gssm-driver/gssm-interface 
-		benf
-		states
-		rows
-		cols
-		transition-threshold)))
+	      data (get-demo-data-for-observable benf	   
+						 (aries/select-region-of-interest) 
+						 max-resolution)]
+	  (district.gssm-interface/gssm-interface benf data transition-threshold)))
