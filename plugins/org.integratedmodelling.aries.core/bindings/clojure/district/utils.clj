@@ -58,7 +58,7 @@
   "Creates a new map by applying keyfn to every key of in-map and
    valfn to every corresponding val."
   [keyfn valfn in-map]
-  (seq2map (seq in-map) (fn [[key val]] [(keyfn key) (valfn val)]))
+  (seq2map (seq in-map) (fn [[key val]] [(keyfn key) (valfn val)])))
 
 (defn maphash-java
   "Creates a new Java map by applying keyfn to every key of in-map and

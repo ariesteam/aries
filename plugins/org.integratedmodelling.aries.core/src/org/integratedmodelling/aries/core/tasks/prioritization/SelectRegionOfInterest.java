@@ -2,12 +2,12 @@ package org.integratedmodelling.aries.core.tasks.prioritization;
 
 
 import org.integratedmodelling.geospace.Geospace;
-import org.integratedmodelling.geospace.values.ShapeValue;
+import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
-import org.integratedmodelling.thinklab.interfaces.applications.annotations.TaskNamespace;
+import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
 
 /**
  * This is an obviously interactive task, so what this one should do is to return a random 
@@ -31,7 +31,7 @@ public class SelectRegionOfInterest implements ITask {
 
 		// TODO could randomize a region for testing.
 		chosen = 
-			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), UPPER_EASTERN_USA, null);
+			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), UPPER_EASTERN_USA);
 	}
 
 }
