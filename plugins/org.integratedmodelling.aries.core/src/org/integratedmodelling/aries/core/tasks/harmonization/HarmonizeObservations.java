@@ -2,7 +2,7 @@ package org.integratedmodelling.aries.core.tasks.harmonization;
 
 import java.util.Map;
 
-import org.integratedmodelling.corescience.contextualization.AbstractCompiler;
+import org.integratedmodelling.corescience.contextualization.Compiler;
 import org.integratedmodelling.corescience.interfaces.observation.IObservation;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.observations.ObservationFactory;
@@ -85,7 +85,7 @@ public class HarmonizeObservations implements ITask {
 
 		IObservation o = (IObservation) obs.getImplementation();
 		
-		result = AbstractCompiler.contextualize(o, session);		
+		result = Compiler.contextualize(o, session);		
 	}
 
 }
