@@ -21,7 +21,7 @@
   (:use district.gssm
 	[district.matrix-ops :only (print-matrix)]))
 
-(defn coord-map-to-matrix-
+(defn- coord-map-to-matrix
   "Renders a map of {[i j] -> value} into a 2D matrix."
   [coord-map rows cols]
   (let [matrix (make-array Double/TYPE rows cols)]

@@ -161,12 +161,21 @@
    the network which all update properties of the locations.  When the
    simulation completes, the network of locations is returned."
   [benefit observation trans-threshold]
-  (let [location-map (add-flows benefit	(make-location-map observation benefit))]
-    (doseq [loc (filter #(> (:source %) 0.0) (vals location-map))]
-	(propagate-carrier-tailrec location-map
-				   loc
-				   (make-service-carrier (:source loc) [loc])
-				   trans-threshold))
+  (let [location-map     (add-flows benefit (make-location-map observation benefit))
+	src-locations    (filter #(> (:source %) 0.0) (vals location-map))
+	num-locations    (count src-locations)
+	completedThreads (atom 0)]
+    (doseq [loc src-locations]
+	(.start (Thread. (fn []
+			   (println "Starting thread" (Thread/currentThread))
+			   (propagate-carrier-tailrec location-map
+						      loc
+						      (make-service-carrier (:source loc) [loc])
+						      trans-threshold)
+			   (println "Stopping thread" (Thread/currentThread))
+			   (swap! completedThreads inc)))))
+    (while (< @completedThreads num-locations)
+	   (Thread/sleep 100))
     location-map))
 
 (defn- add-anyway
