@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.integratedmodelling.aries.core plug-in build file"
+<project name="org.integratedmodelling.thinklab.core plug-in build file"
          default="help"
          basedir=".">
 	<jpf-info manifest="${basedir}/plugin.xml"
@@ -9,7 +9,7 @@
 	          value="${basedir}/../../build/plugins/${plugin.id}" />
 
 	<path id="plugin.classpath">
-		<fileset dir="${env.THINKLAB_HOME}/lib" includes="*.jar" />
+		<fileset dir="${basedir}/../../lib" includes="*.jar" />
 	</path>
 	<jpf-path pathidref="plugin.classpath" pluginid="${plugin.id}">
 		<fileset dir="${plugin.home}/.."
@@ -33,7 +33,6 @@ Use top-level project build file to build application.
 		<javac destdir="${plugin.home}/classes"
 		       srcdir="${basedir}/src"
 		       classpathref="plugin.classpath"
-		       excludes=""
 		       target="1.5"
 		       debug="true"
 		       optimize="false">
@@ -54,7 +53,7 @@ Use top-level project build file to build application.
 		<javadoc destdir="${plugin.home}/docs/api"
 		         classpathref="plugin.classpath"
 		         sourcepath="${basedir}/src"
-				packagenames="org.integratedmodelling.*">
+		         packagenames="org.integratedmodelling.*">
 		</javadoc>
 	</target>
 </project>
