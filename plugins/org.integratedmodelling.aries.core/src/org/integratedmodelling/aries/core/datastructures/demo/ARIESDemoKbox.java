@@ -40,7 +40,6 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
-import org.integratedmodelling.aries.core.ARIESNamespace;
 import org.integratedmodelling.aries.core.exceptions.ARIESException;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.opal.OPALValidator;
@@ -189,7 +188,7 @@ public class ARIESDemoKbox implements IKBox {
 		for (Polylist pl : data) {
 
 			InstanceList il = new InstanceList(pl);
-			if (il.getTargetConcept(CoreScience.HAS_OBSERVABLE).is(observable)) {
+			if (il.getTargetConcept(CoreScience.HAS_OBSERVABLE).equals(observable)) {
 				results.add(pl);
 			}
 		}

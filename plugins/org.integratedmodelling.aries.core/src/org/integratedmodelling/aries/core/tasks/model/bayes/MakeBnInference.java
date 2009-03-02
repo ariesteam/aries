@@ -1,0 +1,79 @@
+package org.integratedmodelling.aries.core.tasks.model.bayes;
+
+import java.io.File;
+import java.util.HashMap;
+
+import org.integratedmodelling.aries.core.ARIESCorePlugin;
+import org.integratedmodelling.aries.core.exceptions.ARIESRuntimeException;
+import org.integratedmodelling.riskwiz.bn.BeliefNetwork;
+import org.integratedmodelling.riskwiz.inference.ls.JoinTreeCompiler;
+import org.integratedmodelling.riskwiz.io.genie.GenieReader;
+import org.integratedmodelling.riskwiz.jtree.JTInference;
+import org.integratedmodelling.thinklab.exception.ThinklabException;
+import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
+import org.integratedmodelling.thinklab.interfaces.applications.ISession;
+import org.integratedmodelling.thinklab.interfaces.applications.ITask;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+
+@TaskNamespace(ns = "aries")
+public class MakeBnInference implements ITask {
+
+	private IConcept benefit = null;
+	private File dataDir = null;
+	private JTInference<?> result = null;
+
+	private static HashMap<IConcept, BeliefNetwork> networks = new HashMap<IConcept, BeliefNetwork>();
+	
+	public MakeBnInference() {
+		
+		/*
+		 * find demo model dir; if nowhere, complain
+		 */
+		dataDir  = 
+			new File(ARIESCorePlugin.get().getLoadDirectory() + "/demo/bn");
+		
+		if (!dataDir.exists() || !dataDir.isDirectory() || !dataDir.canRead())
+			throw new ARIESRuntimeException(
+					"aries: demo data directory " +
+					dataDir +
+					" is not readable");
+	}
+	
+	public void setBenefit(IConcept benefit) {
+		this.benefit = benefit;
+	}
+	
+	private BeliefNetwork requireBeliefNetwork(IConcept concept) {
+		
+		BeliefNetwork ret = networks.get(concept);
+		
+		if (ret == null) {
+			String filename = benefit.toString().replace(':', '_') + ".xdsl";
+			GenieReader gReader = new GenieReader();
+			ret = gReader.loadFromFile(dataDir + "/" + filename);
+			
+			if (ret == null)
+				throw new ARIESRuntimeException(
+						"aries: cannot find a network model for " + 
+						concept +
+						" in " +
+						dataDir);
+			
+			networks.put(concept, ret);
+		}
+		
+		return ret;
+	}
+	
+	@Override
+	public void run(ISession session) throws ThinklabException {
+
+		BeliefNetwork nw = requireBeliefNetwork(benefit);
+		result = new JTInference();
+		result.initialize(nw, new JoinTreeCompiler());
+	}
+	
+	public JTInference<?> getInference() {
+		return result;
+	}
+}

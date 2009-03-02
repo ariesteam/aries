@@ -40,6 +40,6 @@
 	[benefit max-resolution transition-threshold]
 	(let [benf (tl/conc benefit)
 	      data (get-demo-data-for-observable benf	   
-						 (aries/select-region-of-interest) 
-						 max-resolution)]
+						 	  (aries/select-region-of-interest) 
+						     max-resolution)]
 	  (district.gssm-interface/gssm-interface benf data transition-threshold)))

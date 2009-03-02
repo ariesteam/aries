@@ -68,11 +68,13 @@ public class RetrieveObservations implements ITask {
 	}
 	
 	private void collectObservationFor(IConcept observable, ISession session) throws ThinklabException {
-		
+				
 		/* you never know */
 		if (results.containsKey(observable))
 			return;
-		
+
+		System.out.println("Collecting " + observable);
+
 		Constraint query = 
 			ObservationFactory.queryObservation(kbox, observable.toString(), where);
 
