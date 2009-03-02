@@ -10,6 +10,32 @@
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
+	<measurement:RankingSetRemapper measurement:hasDefaultValue="0">
+	
+		<!-- select all forested land cover -->
+		<measurement:hasMapping>1: 41,43</measurement:hasMapping>
+
+		<observation:hasObservable>
+			<anderson1:Forested />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/NCLD_King.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4140</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:RankingSetRemapper>
+
 	<measurement:Ranking id="landcover">
 		<rdfs:label>Vegetation type</rdfs:label>
 		<rdfs:comment>
