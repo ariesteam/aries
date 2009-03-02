@@ -28,7 +28,7 @@
 		observable
 		(aries/retrieve-observations 
 			(aries/make-demo-dependency-tree observable) 
-			true
+			false
 			(aries/get-demo-data-kbox)
 			region-of-interest)
 		region-of-interest))

@@ -73,22 +73,24 @@ public class RetrieveObservations implements ITask {
 		if (results.containsKey(observable))
 			return;
 
-		System.out.println("Collecting " + observable);
+		/*
+		 * we want to store the obs if we want them all OR it's a leaf observation
+		 */
+		if (exhaustive || dTree.outgoingEdgesOf(observable).size() == 0) {
 
-		Constraint query = 
-			ObservationFactory.queryObservation(kbox, observable.toString(), where);
+			Constraint query = 
+				ObservationFactory.queryObservation(kbox, observable.toString(), where);
 
-		IQueryResult result = this.kbox.query(query);
+			IQueryResult result = this.kbox.query(query);
 		
-		IInstance ret = selectBestCandidate(result, session);
+			IInstance ret = selectBestCandidate(result, session);
 
-		if (ret != null) 
-			results.put(observable, ret);
-	
-		if (exhaustive || ret == null) {
-			for (Object edge : dTree.outgoingEdgesOf(observable)) {
-				collectObservationFor((IConcept) dTree.getEdgeTarget(edge), session);
-			}
+			if (ret != null) 
+				results.put(observable, ret);
+		}
+		
+		for (Object edge : dTree.outgoingEdgesOf(observable)) {
+			collectObservationFor((IConcept) dTree.getEdgeTarget(edge), session);
 		}
 	}
 	
