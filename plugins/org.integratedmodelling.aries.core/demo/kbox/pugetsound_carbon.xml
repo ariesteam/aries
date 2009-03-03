@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kbox
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
+	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
+	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
+	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
+	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
+	
+	<measurement:Ranking id="HydroelectricDams">
+		<observation:hasObservable>
+			<carbonService:HydroelectricDams />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="MountainGlaciers">
+		<observation:hasObservable>
+			<carbonService:MountainGlaciers />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="PopulationDensity">
+		<observation:hasObservable>
+			<carbonService:PopulationDensity />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="CoastalFloodZone">
+		<observation:hasObservable>
+			<carbonService:CoastalFloodZone />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="CoastalProperty">
+		<observation:hasObservable>
+			<carbonService:CoastalProperty />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="LandslideRiskZone">
+		<observation:hasObservable>
+			<carbonService:LandslideRiskZone />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="DownslopeHousing">
+		<observation:hasObservable>
+			<carbonService:DownslopeHousing />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="Rainfall">
+		<observation:hasObservable>
+			<carbonService:Rainfall />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="PotentialEvapotranspiration">
+		<observation:hasObservable>
+			<carbonService:PotentialEvapotranspiration />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="AgriculturalLand">
+		<observation:hasObservable>
+			<carbonService:AgriculturalLand />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="FireProneHousing">
+		<observation:hasObservable>
+			<carbonService:FireProneHousing />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="FireFrequency">
+		<observation:hasObservable>
+			<carbonService:FireFrequency />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="Forest">
+		<observation:hasObservable>
+			<carbonService:Forest />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="GreenhouseGasEmitters">
+		<observation:hasObservable>
+			<carbonService:GreenhouseGasEmitters />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="VegetationCarbonStorage">
+		<observation:hasObservable>
+			<carbonService:VegetationCarbonStorage />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="SoilCarbonStorage">
+		<observation:hasObservable>
+			<carbonService:SoilCarbonStorage />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="CanopyCover">
+		<observation:hasObservable>
+			<carbonService:CanopyCover />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="SuccessionalStage">
+		<observation:hasObservable>
+			<carbonService:SuccessionalStage />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="HardwoodSoftwoodRatio">
+		<observation:hasObservable>
+			<carbonService:HardwoodSoftwoodRatio />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="SoilCNRatio">
+		<observation:hasObservable>
+			<carbonService:SoilCNRatio />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="SummerHighWinterLow">
+		<observation:hasObservable>
+			<carbonService:SummerHighWinterLow />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	
+</kbox>
