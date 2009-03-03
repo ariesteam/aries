@@ -20,6 +20,7 @@ import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
 public class SelectRegionOfInterest implements ITask {
 
 	static public final String UPPER_EASTERN_USA = "POLYGON((-78.046875 48.515625,-106.875 48.515625,-106.875 31.640625,-78.75 31.640625,-78.75 31.640625,-78.046875 48.515625))";
+	static public final String KING_COUNTY_PORTION = "POLYGON((-123.842070 47.723772, -121.619678 47.723772,-121.619678 47.028239, -123.842070 47.723772))";
 	ShapeValue chosen = null;
 	
 	public ShapeValue getRegionOfInterest() {
