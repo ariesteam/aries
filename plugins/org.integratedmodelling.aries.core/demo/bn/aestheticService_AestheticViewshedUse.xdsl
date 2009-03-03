@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Highways">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="CommercialIndustrialTransportation">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Clearcuts">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Obstructions">
+			<state id="Full" />
+			<state id="Partial" />
+			<state id="None" />
+			<probabilities>0.3333333333333334 0.3333333333333333 0.3333333333333333</probabilities>
+		</cpt>
+		<cpt id="HousingValues">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="PresenceOfHousing">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<noisymax id="VisualBlight">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="None" />
+			<parents>Highways CommercialIndustrialTransportation Clearcuts</parents>
+			<strengths>0 1 0 1 0 1</strengths>
+			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
+		</noisymax>
+		<cpt id="AestheticViewshedUse">
+			<state id="DestructiveUse" />
+			<state id="NoUse" />
+			<state id="Sink" />
+			<parents>Obstructions HousingValues PresenceOfHousing VisualBlight</parents>
+			<probabilities>0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0</probabilities>
+		</cpt>
+		<cpt id="NondestructiveUse">
+			<state id="NondestructiveUse" />
+			<state id="NoUse" />
+			<parents>Obstructions HousingValues PresenceOfHousing VisualBlight</parents>
+			<probabilities>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.05 0.95 0.2 0.8 0.25 0.75 0.4 0.6 0 1 0 1 0 1 0 1 0.05 0.95 0.15 0.85 0.2 0.8 0.35 0.65 0 1 0 1 0 1 0 1 0.03 0.97 0.07000000000000001 0.9300000000000001 0.15 0.85 0.2 0.8 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.15 0.85 0.25 0.75 0.5 0.5 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.2 0.8 0.4 0.6 0.5 0.5 0 1 0 1 0 1 0 1 0.05 0.95 0.1 0.9 0.2 0.8 0.25 0.75 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+			<node id="AestheticViewshedUse">
+				<name>AestheticViewshedUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>275 119 421 151</position>
+			</node>
+			<node id="Clearcuts">
+				<name>Clearcuts</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>629 291 694 324</position>
+			</node>
+			<node id="CommercialIndustrialTransportation">
+				<name>CommercialIndustrialTransportation</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>390 295 612 324</position>
+			</node>
+			<node id="Highways">
+				<name>Highways</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>304 297 378 324</position>
+			</node>
+			<node id="Obstructions">
+				<name>Obstructions</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>603 230 697 261</position>
+				<comment>e.g., trees, buildings, topography/elevation</comment>
+			</node>
+			<textbox>
+				<caption>Puget Sound aesthetic viewshed use</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>222 97 427 111</position>
+			</textbox>
+			<node id="PresenceOfHousing">
+				<name>PresenceOfHousing</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>142 226 278 256</position>
+			</node>
+			<node id="HousingValues">
+				<name>HousingValues</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>314 227 414 256</position>
+			</node>
+			<node id="VisualBlight">
+				<name>VisualBlight</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>455 227 547 256</position>
+				<comment>Leak is set here to account for blight we don&apos;t catch through highways, clearcuts, or commercial/industrial/transportation.</comment>
+			</node>
+			<node id="NondestructiveUse">
+				<name>NondestructiveUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>467 117 604 150</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>

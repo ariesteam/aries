@@ -7,35 +7,88 @@
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:carbonEcology="http://www.integratedmodelling.org/ks/es/services/carbonEcology.owl#"
+	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+	xmlns:anderson1="http://www.integratedmodelling.org/ks/ecology/lulc/anderson1.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
-	<measurement:RankingSetRemapper measurement:hasDefaultValue="0">
-	
-		<!-- select all forested land cover -->
-		<measurement:hasMapping>1: 41,43</measurement:hasMapping>
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0">
+			measurement:hasMapping="1:41,43" />
 
 		<observation:hasObservable>
 			<anderson1:Forested />
 		</observation:hasObservable>
+
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/NCLD_King.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>2240655.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-2303835.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3180435.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-1523115.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:RankingSetRemapper>
 
+	<measurement:RankingIntervalRemapper 
+		measurement:hasDefaultValue="0"
+		measurement:hasMapping="1:[1980">
+
+		<observation:hasObservable>
+			<aestheticService:AppropriateElevationForHousing />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43200</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>18000</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:RankingIntervalRemapper>
+
+
+	<measurement:RankingSetRemapper measurement:hasDefaultValue="0">
+	
+		<measurement:hasMapping>1:22,24</measurement:hasMapping>
+
+		<observation:hasObservable>
+			<aestheticService:Housing />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:RasterFileDataSource>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
+			</geospace:RasterFileDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:RankingSetRemapper>
 	<measurement:Ranking id="landcover">
 		<rdfs:label>Vegetation type</rdfs:label>
 		<rdfs:comment>
@@ -175,21 +228,11 @@
 		</observation:hasObservable>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasCoordinateReferenceSystem>
-					EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>
-					-60.0
-				</geospace:hasLatLowerBound>
-				<geospace:hasLatUpperBound>
-					80.0
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonLowerBound>
-					-180.0
-				</geospace:hasLonLowerBound>
-				<geospace:hasLonUpperBound>
-					180.0
-				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLatUpperBound>80.0</geospace:hasLatUpperBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 				<geospace:hasXRangeMax>42544</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>16545</geospace:hasYRangeMax>
 			</geospace:RasterGrid>

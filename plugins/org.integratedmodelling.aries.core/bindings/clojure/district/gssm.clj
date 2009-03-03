@@ -167,12 +167,12 @@
 	completedThreads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
-			   (println "Starting thread" (Thread/currentThread))
+;;			   (println "Starting thread" (Thread/currentThread))
 			   (propagate-carrier-tailrec location-map
 						      loc
 						      (make-service-carrier (:source loc) [loc])
 						      trans-threshold)
-			   (println "Stopping thread" (Thread/currentThread))
+;;			   (println "Stopping thread" (Thread/currentThread))
 			   (swap! completedThreads inc)))))
     (while (< @completedThreads num-locations)
 	   (Thread/sleep 100))

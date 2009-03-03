@@ -72,7 +72,10 @@
 		<parameter id="url" value="es/services/rawMaterialsService.owl"/>
 		<parameter id="concept-space" value="rawMaterialsService"/>
 	</extension>
-
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="aestheticService">
+		<parameter id="url" value="es/services/aestheticService.owl"/>
+		<parameter id="concept-space" value="aestheticService"/>
+	</extension>
 	<!-- commands
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="command-handler" id="ariescmd">
 		<parameter id="class" value="org.integratedmodelling.aries.commands.Aries"/>

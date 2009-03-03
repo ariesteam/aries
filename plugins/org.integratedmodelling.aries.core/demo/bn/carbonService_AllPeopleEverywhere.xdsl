@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Everyone">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<state id="None" />
+			<probabilities>0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
+		</cpt>
+		<cpt id="ClimateStabilityUse">
+			<state id="DestructiveUse" />
+			<state id="Sink" />
+			<state id="NoUse" />
+			<parents>Everyone</parents>
+			<probabilities>1 0 0 0.8 0 0.2 0.6 0 0.4 0.4 0 0.6 0.2 0 0.8 0 0 1</probabilities>
+		</cpt>
+		<cpt id="NondestructiveUse">
+			<state id="NondestructiveUse" />
+			<state id="NoUse" />
+			<probabilities>0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+			<node id="Everyone">
+				<name>Everyone</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>417 297 487 326</position>
+				<comment>Use population density map here.</comment>
+			</node>
+			<node id="ClimateStabilityUse">
+				<name>ClimateStabilityUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>355 154 550 183</position>
+				<comment>NO USE and DESTRUCTIVE USE are important, sum to 1 (no SINK or NONDESTRUCTIVE USE).</comment>
+			</node>
+			<textbox>
+				<caption>Puget Sound climate stability use: everyone</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>89 121 275 149</position>
+			</textbox>
+			<node id="NondestructiveUse">
+				<name>NondestructiveUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>580 152 699 185</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>
