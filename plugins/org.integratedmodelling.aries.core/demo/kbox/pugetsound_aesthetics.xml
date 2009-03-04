@@ -31,6 +31,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- TODO this works, but simply sends the elevation data to the
+	     Clojure discretizer. Must use the remapper (see globaldata.xml) 
+	     to do it correctly. -->
 	<measurement:Ranking id="Mountain">
 		<observation:hasObservable>
 			<aestheticService:Mountain />
@@ -43,13 +46,13 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>43200</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>18000</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
