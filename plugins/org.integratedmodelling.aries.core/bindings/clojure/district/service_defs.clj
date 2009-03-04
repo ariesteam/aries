@@ -19,38 +19,37 @@
 (ns district.service-defs
   (:refer-clojure))
 
+(defn expected-value
+  [distribution]
+  0.5)
+
+(defn source-val
+  "Expected amount of service carrier provision."
+  [benefit-source features source-inference-engine]
+  (let [inference-results (run-inference (set-evidence source-inference-engine features))
+	source-distribution (get-marginals-table inference-results (.getLocalName benefit-source))]
+    (expected-value source-distribution)))
+
 (defmulti
-  #^{:doc "Expected units of service carrier provision."}
-  source-val (fn [benefit features] benefit))
+  #^{:doc "Service-specific flow distribution function."}
+  distribute-flow (fn [benefit-sink features neighbor-features flow-amount]
+		    (.getLocalName benefit-sink)))
 
-(defmethod source-val :default [_ features] 100.0)
+(defmethod distribute-flow :default [benefit-sink _ _ _]
+  (throw (Exception. (str "Service " (.getLocalName benefit-sink) " is unrecognized."))))
 
-(defmethod source-val :water [_ features] (features :rainfall))
+(defstruct flows :use :sink :consume :out)
 
-(defstruct flows :sink :use :consume :out)
-
-(defmulti
-  #^{:doc "Returns a flows map specifying the distribution of a
-           service carrier's weight between being sunk, used,
-           consumed, or propagated on to neighboring locations."}
-  compute-flows (fn [benefit features neighbor-features] benefit))
-
-(defmethod compute-flows :default [_ features neighbor-features]
-  (let [num-neighbors (count neighbor-features)
-	outval (/ 0.8 num-neighbors)]
+(defn compute-flows
+  "Returns a flows map specifying the distribution of a service
+   carrier's weight between being used, sunk, consumed, or propagated
+   on to neighboring locations."
+  [benefit-sink features neighbor-features sink-inference-engine]
+  (let [inference-results (run-inference (set-evidence sink-inference-engine features))
+	sink-distribution (get-marginals-table inference-results (.getLocalName benefit-sink))]
     (struct-map flows
-      :sink 0.1
-      :use 0.1
-      :consume 0.1
-      :out (replicate num-neighbors outval))))
-
-(defmethod compute-flows :water [_ features neighbor-features]
-  (let [elevs (map :elevation neighbor-features)
-	min-elev (let [e (min elevs)] (if (<= e (:elevation features)) e 0))
-	num-paths (count (filter #(== min-elev %) elevs))
-	path-weight (if (> num-paths 0) (/ 0.8 num-paths) 0.0)]
-    (struct-map flows
-      :sink 0.2
-      :use 0.0
-      :consume 0.0
-      :out (map #(if (== min-elev %) path-weight 0.0) elevs))))
+      :use     (get-marginals inference-results "NondestructiveUse" "NondestructiveUse")
+      :sink    (get sink-distribution "Sink")
+      :consume (get sink-distribution "DestructiveUse")
+      :out     (distribute-flow benefit-sink features neighbor-features
+				(get sink-distribution "NoUse")))))

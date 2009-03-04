@@ -18,9 +18,10 @@
 
 (ns district.gssm
   (:refer-clojure)
-  (:use [district.utils        :only (maphash seq2map seq2redundant-map)]
-	[district.matrix-ops   :only (get-neighbors)]
-	[district.service-defs :only (source-val compute-flows)]))
+  (:use [district.utils          :only (maphash seq2map seq2redundant-map)]
+	[district.matrix-ops     :only (get-neighbors)]
+	[district.service-defs   :only (source-val compute-flows)]
+	[district.discretization :only (discretization-table)]))
 
 (defstruct location
   :id :neighbors :features :sunk :used
@@ -28,7 +29,7 @@
 
 (defn make-location
   "Location constructor"
-  [id neighbors features benefit]
+  [id neighbors features benefit-source source-inference-engine]
   (struct-map location
     :id          id
     :neighbors   neighbors
@@ -37,32 +38,43 @@
     :used        (ref 0.0)
     :consumed    (ref 0.0)
     :carrier-bin (ref ())
-    :source      (source-val benefit features)))
+    :source      (source-val benefit-source features source-inference-engine)))
+
+(defn- discretize-value
+  "Transforms the value to the string name of its corresponding
+   discretized value, using the particular concept's transformation
+   procedure in the global discretization-table."
+  [concept value]
+  ((discretization-table (.getLocalName concept)) value))
 
 (defn- extract-features
   "Returns a map of feature names to the observed values at i j."
-  [observation-states i j cols]
-  (let [idx (+ (* i cols) j)]
-    (maphash identity #(nth % idx) observation-states)))
+  [observation-states idx]
+  (seq2map (seq observation-states) (fn [[key val]] [(.getLocalName key) (discretize-value key (nth val idx))])))
 
 (defmulti
   #^{:doc "Returns a map of ids to location objects, one per location in observation."}
-  make-location-map (fn [observation benefit] (geospace/grid-extent? observation)))
+  make-location-map (fn [benefit-source benefit-sink source-observation sink-observation]
+		      (and (geospace/grid-extent? source-observation)
+			   (geospace/grid-extent? sink-observation))))
 
 (defmethod make-location-map true
-  [observation benefit]
-  (let [rows   (geospace/grid-rows observation)
-	cols   (geospace/grid-columns observation)
-	states (corescience/map-dependent-states observation)]
+  [benefit-source source-observation sink-observation]
+  (let [rows          (geospace/grid-rows source-observation)
+	cols          (geospace/grid-columns source-observation)
+	source-states (corescience/map-dependent-states source-observation)
+	sink-states   (corescience/map-dependent-states sink-observation)
+	source-inference-engine (make-bn-inference benefit-source)]
     (seq2map (for [i (range rows) j (range cols)]
 	       (make-location [i j]
 			      (get-neighbors [i j] rows cols)
-			      (extract-features states i j cols)
-			      benefit))
+			      (extract-features (merge source-states sink-states) (+ (* i cols) j))
+			      benefit-source
+			      source-inference-engine))
 	     (fn [location] [(:id location) location]))))
 
 (defmethod make-location-map false
-  [observation benefit]
+  [benefit-source benefit-sink source-observation sink-observation]
   {})
 ;;;  (let [districts (corescience/get-districts observation)]
 ;;;    (seq2map (map (fn [district id]
@@ -79,14 +91,15 @@
 (defn add-flows
   "Updates location-map such that each location's flows field will
    contain a delayed evaluation of its carrier flow probabilities."
-  [benefit location-map]
-  (maphash identity
-	   #(assoc % :flows
-		   (delay (compute-flows benefit
-					 (:features %)
-					 (map (comp :features location-map)
-					      (:neighbors %)))))
-	   location-map))
+  [benefit-sink location-map]
+  (let [sink-inference-engine (make-bn-inference benefit-sink)]
+    (maphash identity
+	     #(assoc % :flows
+		     (delay (compute-flows benefit-sink
+					   (:features %)
+					   (map (comp :features location-map) (:neighbors %))
+					   sink-inference-engine)))
+	     location-map)))
 
 (defstruct service-carrier :weight :route)
 
@@ -112,8 +125,8 @@
 	  consumed      (* weight (:consume flows))
 	  neighbors     (map location-map (:neighbors loc))
 	  trans-weights (map #(* weight %) (:out flows))
-	  trans-pairs   (concat (filter #(> (val %) trans-threshold)
-					(zipmap neighbors trans-weights)) open-list)]
+	  trans-pairs   (lazy-cat (filter #(> (val %) trans-threshold)
+					  (zipmap neighbors trans-weights)) open-list)]
       (dosync
        (alter (:sunk        loc) +    sunk)
        (alter (:used        loc) +    used)
@@ -160,22 +173,25 @@
    greater than 0.  These carriers propagate child carriers through
    the network which all update properties of the locations.  When the
    simulation completes, the network of locations is returned."
-  [benefit observation trans-threshold]
-  (let [location-map     (add-flows benefit (make-location-map observation benefit))
+  [benefit-source benefit-sink source-observation sink-observation trans-threshold]
+  (let [location-map     (add-flows benefit-sink
+				    (make-location-map benefit-source
+						       source-observation
+						       sink-observation))
 	src-locations    (filter #(> (:source %) 0.0) (vals location-map))
 	num-locations    (count src-locations)
 	completedThreads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
-;;			   (println "Starting thread" (Thread/currentThread))
+;			   (println "Starting thread" (Thread/currentThread))
 			   (propagate-carrier-tailrec location-map
 						      loc
 						      (make-service-carrier (:source loc) [loc])
 						      trans-threshold)
-;;			   (println "Stopping thread" (Thread/currentThread))
+;			   (println "Stopping thread" (Thread/currentThread))
 			   (swap! completedThreads inc)))))
     (while (< @completedThreads num-locations)
-	   (Thread/sleep 100))
+	   (Thread/sleep 500))
     location-map))
 
 (defn- add-anyway

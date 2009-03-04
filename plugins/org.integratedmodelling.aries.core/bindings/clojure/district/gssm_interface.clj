@@ -96,24 +96,26 @@
     (some #(and (= (:id %) coords) %) locations)))
 
 (defn gssm-interface
-  "Takes a benefit and an observation of the relevant features,
+  "Takes the benefits and observations of their relevant features,
    calculates the gssm flows, and provides a simple menu-based
    interface to view the results.  This currently only works on
    observations with grid-based extents."
-  [benefit observation trans-threshold]
-  (if (not (geospace/grid-extent? observation))
-    (println "NOTE: gssm-interface currently only works for observations with grid extents.")
-    (let [locations (vals (simulate-service-flows benefit observation trans-threshold))
-	  rows (geospace/grid-rows observation)
-	  cols (geospace/grid-columns observation)]
-      (loop [choice (select-menu-action)]
-	(when (not= choice 0)
-	  (cond (== choice 1) (view-provisionshed
-			       (select-location locations rows cols) rows cols)
-		(== choice 2) (view-benefitshed
-			       (select-location locations rows cols) locations rows cols)
-		(== choice 3) (view-location-properties
-			       (select-location locations rows cols))
-		(== choice 4) (printf "%n%d%n" (count locations))
-		:otherwise    (printf "%nInvalid selection.%n"))
-	  (recur (select-menu-action)))))))
+  [benefit-source benefit-sink source-observation sink-observation trans-threshold]
+  (assert (and (geospace/grid-extent? source-observation)
+	       (geospace/grid-extent? sink-observation)))
+  (let [locations (vals (simulate-service-flows benefit-source benefit-sink
+						source-observation sink-observation
+						trans-threshold))
+	rows (geospace/grid-rows source-observation)
+	cols (geospace/grid-columns source-observation)]
+    (loop [choice (select-menu-action)]
+      (when (not= choice 0)
+	(cond (== choice 1) (view-provisionshed
+			     (select-location locations rows cols) rows cols)
+	      (== choice 2) (view-benefitshed
+			     (select-location locations rows cols) locations rows cols)
+	      (== choice 3) (view-location-properties
+			     (select-location locations rows cols))
+	      (== choice 4) (printf "%n%d%n" (count locations))
+	      :otherwise    (printf "%nInvalid selection.%n"))
+	(recur (select-menu-action)))))))
