@@ -34,3 +34,23 @@ the observables in the data kbox, i.e.
 		<observation:hasObservable>
 			<aestheticService:Park />
 		</observation:hasObservable>
+		
+TO CHANGE THE REGION OF INTEREST:
+
+The ROI is the result of aries/select-region-of-interest and it must be a ShapeValue. The default 
+binding is generated from the Java task 
+org.integratedmodelling.aries.core.task.prioritization.SelectRegionOfInterest. In the source code you'll
+find strings that specify the WKT definition for the ROI (a polygon; the last point must coincide with
+the first.) The default value is a portion of king county.
+
+If you want to override that without touching Java (more efficient if you're testing in Clojure) the
+way to do it is
+
+(defn select-region-of-interest 
+	""
+	[]
+	(tl/lit 'geospace:SpatialRecord "POLYGON((-122.2 47.6,-122.1 47.6,-122.1 47.5,-122.1 47.5,-122.2 47.6))"))
+	
+Obviously you're on your own selecting the polygon, but this should work as long as the WKT is
+correct. Otherwise you can add your region as a constant in the Java task and substitute the constant
+in the call to validateLiteral in run() - your choice.
