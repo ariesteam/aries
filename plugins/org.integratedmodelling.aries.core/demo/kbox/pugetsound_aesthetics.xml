@@ -90,18 +90,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/HousingValue.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>3600</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1200</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.3313682</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.3078982</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.4301401</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-122.016159</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -212,18 +212,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/Area.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>3490</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1500</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.1068980</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.4700932</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.6129963</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.2925713</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -281,30 +281,33 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/FormalProtection.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>3377</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1504</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.1043906</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.4343830</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.6139716</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.2901974</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="Farm">
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0"
+			measurement:hasMapping="1:81,82" 
+			id="Farm">
 		<observation:hasObservable>
 			<aestheticService:Farm />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -318,7 +321,7 @@
 				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:RankingSetRemapper>
 	
 	<measurement:Ranking id="Park">
 		<observation:hasObservable>
@@ -327,18 +330,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/Park.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>1682</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1254</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.1818403</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.4199870</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.6076278</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.8488750</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -373,18 +376,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/LakeFront.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>543</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>248</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.2290497</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.3582970</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.5266497</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.7066970</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -396,18 +399,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/RiverFront.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>588</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>251</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.1399584</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.3623440</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.5917584</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.3039440</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -435,14 +438,17 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="EmergentWetland">
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0"
+			measurement:hasMapping="1:95" 
+			id="EmergentWetland">
 		<observation:hasObservable>
 			<aestheticService:EmergentWetland />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -456,16 +462,18 @@
 				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:RankingSetRemapper>
 	
-	<measurement:Ranking id="WoodyWetland">
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0"
+			measurement:hasMapping="1:90"  id="WoodyWetland">
 		<observation:hasObservable>
 			<aestheticService:WoodyWetland />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -479,16 +487,18 @@
 				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:RankingSetRemapper>
 	
-	<measurement:Ranking id="Forest">
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0"
+			measurement:hasMapping="1:41,42,43"  id="Forest">
 		<observation:hasObservable>
 			<aestheticService:Forest />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -502,7 +512,7 @@
 				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:RankingSetRemapper>
 	
 	<measurement:Ranking id="UrbanProximity">
 		<observation:hasObservable>
@@ -511,18 +521,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/UrbanProximity.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>563</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>255</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.1056104</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.4217260</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.6156104</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.2957260</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

@@ -232,7 +232,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="#UnstableClimate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -244,25 +256,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
+                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:allValuesFrom rdf:resource="#ClimateStability"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:allValuesFrom rdf:resource="#UnstableClimate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -278,7 +278,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
+                <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -290,19 +296,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
+                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:allValuesFrom rdf:resource="#ClimateStability"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -324,13 +324,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#ParticularlyVulnerableGroups"/>
+                <owl:allValuesFrom rdf:resource="#AllPeopleEverywhere"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:allValuesFrom rdf:resource="#AllPeopleEverywhere"/>
+                <owl:someValuesFrom rdf:resource="#ParticularlyVulnerableGroups"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -346,6 +346,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="#CStorage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
                 <owl:someValuesFrom rdf:resource="#CUptake"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -353,12 +359,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
                 <owl:allValuesFrom rdf:resource="#ClimateExtremeMitigation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="#CStorage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -491,6 +491,14 @@
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Poor subsistence populations directly collect water, food, fiber, and fuel from nature.  Deviations from optimal climate conditions may reduce the provisioning of these important goods.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#GreenhouseGasEmissions -->
+
+    <owl:Class rdf:about="#GreenhouseGasEmissions">
+        <rdfs:subClassOf rdf:resource="&eserv;UndesiredEndurant"/>
     </owl:Class>
     
 
