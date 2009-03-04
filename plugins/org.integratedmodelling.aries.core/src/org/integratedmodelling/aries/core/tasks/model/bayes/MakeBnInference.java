@@ -8,6 +8,7 @@ import org.integratedmodelling.aries.core.exceptions.ARIESRuntimeException;
 import org.integratedmodelling.riskwiz.bn.BeliefNetwork;
 import org.integratedmodelling.riskwiz.inference.ls.JoinTreeCompiler;
 import org.integratedmodelling.riskwiz.io.genie.GenieReader;
+import org.integratedmodelling.riskwiz.io.riskwiz.RiskWizReader;
 import org.integratedmodelling.riskwiz.jtree.JTInference;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
@@ -48,9 +49,16 @@ public class MakeBnInference implements ITask {
 		BeliefNetwork ret = networks.get(concept);
 		
 		if (ret == null) {
-			String filename = benefit.toString().replace(':', '_') + ".xdsl";
-			GenieReader gReader = new GenieReader();
-			ret = gReader.loadFromFile(dataDir + "/" + filename);
+
+			String fname = benefit.toString().replace(':', '_');
+			
+			if (new File(dataDir + "/" + fname + ".xdsl").exists()) {
+				GenieReader gReader = new GenieReader();
+				ret = gReader.loadFromFile(dataDir + "/" + fname + ".xdsl");
+			} else if (new File(dataDir + "/" + fname + ".rwz").exists()) {
+				RiskWizReader gReader = new RiskWizReader();
+				ret = gReader.loadFromFile(dataDir + "/" + fname + ".rwz");
+			}
 			
 			if (ret == null)
 				throw new ARIESRuntimeException(

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="GreenhouseGasEmitters">
+		<cpt id="GreenhouseGasEmissions">
 			<state id="VeryHigh" />
 			<state id="High" />
 			<state id="Moderate" />
@@ -10,11 +10,11 @@
 			<state id="None" />
 			<probabilities>0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
 		</cpt>
-		<cpt id="ClimateStabilityUse">
+		<cpt id="GreenhouseGasEmitters">
 			<state id="DestructiveUse" />
 			<state id="Sink" />
 			<state id="NoUse" />
-			<parents>GreenhouseGasEmitters</parents>
+			<parents>GreenhouseGasEmissions</parents>
 			<probabilities>1 0 0 0.8 0 0.2 0.6 0 0.4 0.4 0 0.6 0.2 0 0.8 0 0 1</probabilities>
 		</cpt>
 		<cpt id="NondestructiveUse">
@@ -25,8 +25,8 @@
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
-			<node id="ClimateStabilityUse">
-				<name>ClimateStabilityUse</name>
+			<node id="GreenhouseGasEmitters">
+				<name>GreenhouseGasEmitters</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -38,8 +38,8 @@
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>34 98 220 126</position>
 			</textbox>
-			<node id="GreenhouseGasEmitters">
-				<name>GreenhouseGasEmitters</name>
+			<node id="GreenhouseGasEmissions">
+				<name>GreenhouseGasEmissions</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

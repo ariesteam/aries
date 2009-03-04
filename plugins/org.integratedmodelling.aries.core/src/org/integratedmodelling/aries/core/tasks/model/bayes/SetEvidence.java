@@ -24,6 +24,7 @@ public class SetEvidence implements ITask {
 	
 	@Override
 	public void run(ISession session) throws ThinklabException {
+		
 		for (Object state : stateMap.keySet()) {
 			inference.setObservation(state.toString(), stateMap.get(state).toString());
 		}	
