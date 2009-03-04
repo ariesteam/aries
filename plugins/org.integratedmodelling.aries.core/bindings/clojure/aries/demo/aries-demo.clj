@@ -37,9 +37,15 @@
 	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
 	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
 	resolution on the longest dimension."
-	[benefit max-resolution transition-threshold]
-	(let [benf (tl/conc benefit)
-	      data (get-demo-data-for-observable benf	   
-						 	  (aries/select-region-of-interest) 
-						     max-resolution)]
-	  (district.gssm-interface/gssm-interface benf data transition-threshold)))
+	[benefit-source benefit-sink max-resolution transition-threshold]
+	(let [benf-source (tl/conc benefit-source)
+	      benf-sink   (tl/conc benefit-sink)
+	      source-data (get-demo-data-for-observable benf-source	   
+							(aries/select-region-of-interest) 
+							max-resolution)
+	      sink-data   (get-demo-data-for-observable benf-sink	   
+							(aries/select-region-of-interest) 
+							max-resolution)]
+	  (district.gssm-interface/gssm-interface benf-source benf-sink
+						  source-data sink-data
+						  transition-threshold)))
