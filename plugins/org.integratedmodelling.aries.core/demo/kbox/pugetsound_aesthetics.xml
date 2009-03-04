@@ -8,6 +8,7 @@
 	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
+	<!-- done -->
 	<measurement:Ranking id="WaterBody">
 		<observation:hasObservable>
 			<aestheticService:WaterBody />
@@ -34,6 +35,7 @@
 	<!-- TODO this works, but simply sends the elevation data to the
 	     Clojure discretizer. Must use the remapper (see globaldata.xml) 
 	     to do it correctly. -->
+	<!-- done -->
 	<measurement:Ranking id="Mountain">
 		<observation:hasObservable>
 			<aestheticService:Mountain />
@@ -57,6 +59,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- done -->
 	<measurement:Ranking id="PresenceOfHousing">
 		<observation:hasObservable>
 			<aestheticService:PresenceOfHousing />
@@ -64,18 +67,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/PresenceOfHousing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>600</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>212</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.3289438</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.3100060</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.433810</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-122.0144289</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -103,6 +106,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- done -->
 	<measurement:Ranking id="Highways">
 		<observation:hasObservable>
 			<aestheticService:Highways />
@@ -126,6 +130,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- done -->
 	<measurement:Ranking id="CommercialIndustrialTransportation">
 		<observation:hasObservable>
 			<aestheticService:CommercialIndustrialTransportation />
@@ -133,22 +138,23 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/CommercialIndustrialTransportation.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>535</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>209</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.3284286</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.3126180</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.4449374</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-122.0143778</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+<!-- no clearcuts in king county 
 	<measurement:Ranking id="Clearcuts">
 		<observation:hasObservable>
 			<aestheticService:Clearcuts />
@@ -171,7 +177,10 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+-->
 	
+<!-- we don't have data for this here
+
 	<measurement:Ranking id="Obstructions">
 		<observation:hasObservable>
 			<aestheticService:Obstructions />
@@ -194,6 +203,7 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+-->
 	
 	<measurement:Ranking id="Area">
 		<observation:hasObservable>

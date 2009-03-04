@@ -169,6 +169,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- done -->
 	<measurement:Ranking id="Rainfall">
 		<observation:hasObservable>
 			<carbonService:Rainfall />
@@ -176,18 +177,18 @@
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/elevation.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/Rainfall.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasXRangeMax>43200</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>18000</geospace:hasYRangeMax>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
