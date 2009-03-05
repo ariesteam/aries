@@ -24,57 +24,67 @@
 	[district.discretization :only (discretization-table)]))
 
 (defstruct location
-  :id :neighbors :features :sunk :used
-  :consumed :carrier-bin :source :flows)
+  :id :neighbors :source-features :sink-features
+  :sunk :used :consumed :carrier-bin :source :flows)
 
 (defn make-location
   "Location constructor"
-  [id neighbors features benefit-source source-inference-engine]
+  [id neighbors source-features sink-features benefit-source-name source-inference-engine]
   (struct-map location
-    :id          id
-    :neighbors   neighbors
-    :features    features
-    :sunk        (ref 0.0)
-    :used        (ref 0.0)
-    :consumed    (ref 0.0)
-    :carrier-bin (ref ())
-    :source      (source-val benefit-source features source-inference-engine)))
+    :id              id
+    :neighbors       neighbors
+    :source-features source-features
+    :sink-features   sink-features
+    :sunk            (ref 0.0)
+    :used            (ref 0.0)
+    :consumed        (ref 0.0)
+    :carrier-bin     (ref ())
+    :source          (source-val benefit-source-name
+				 source-inference-engine
+				 source-features)))
 
 (defn- discretize-value
   "Transforms the value to the string name of its corresponding
    discretized value, using the particular concept's transformation
    procedure in the global discretization-table."
-  [concept value]
-  ((discretization-table (.getLocalName concept)) value))
+  [concept-name value]
+  ((discretization-table concept-name) value))
 
 (defn- extract-features
   "Returns a map of feature names to the observed values at i j."
   [observation-states idx]
-  (seq2map (seq observation-states) (fn [[key val]] [(.getLocalName key) (discretize-value key (nth val idx))])))
+  (seq2map (seq observation-states)
+	   (fn [[feature-name values]]
+	     [feature-name (discretize-value feature-name (nth values idx))])))
 
 (defmulti
   #^{:doc "Returns a map of ids to location objects, one per location in observation."}
-  make-location-map (fn [benefit-source benefit-sink source-observation sink-observation]
+  make-location-map (fn [benefit-source source-observation sink-observation]
 		      (and (geospace/grid-extent? source-observation)
 			   (geospace/grid-extent? sink-observation))))
 
 (defmethod make-location-map true
   [benefit-source source-observation sink-observation]
-  (let [rows          (geospace/grid-rows source-observation)
-	cols          (geospace/grid-columns source-observation)
-	source-states (corescience/map-dependent-states source-observation)
-	sink-states   (corescience/map-dependent-states sink-observation)
-	source-inference-engine (aries/make-bn-inference benefit-source)]
+  (let [rows                    (geospace/grid-rows source-observation)
+	cols                    (geospace/grid-columns source-observation)
+	benefit-source-name     (.getLocalName benefit-source)
+	source-inference-engine (make-bn-inference benefit-source)
+	source-states           (maphash (memfn getLocalName) identity
+					 (corescience/map-dependent-states source-observation))
+	sink-states             (maphash (memfn getLocalName) identity
+					 (corescience/map-dependent-states sink-observation))]
     (seq2map (for [i (range rows) j (range cols)]
-	       (make-location [i j]
-			      (get-neighbors [i j] rows cols)
-			      (extract-features (merge source-states sink-states) (+ (* i cols) j))
-			      benefit-source
-			      source-inference-engine))
+	       (let [feature-idx (+ (* i cols) j)]
+		 (make-location [i j]
+				(get-neighbors [i j] rows cols)
+				(extract-features source-states feature-idx)
+				(extract-features sink-states feature-idx)
+				benefit-source-name
+				source-inference-engine)))
 	     (fn [location] [(:id location) location]))))
 
 (defmethod make-location-map false
-  [benefit-source benefit-sink source-observation sink-observation]
+  [benefit-source source-observation sink-observation]
   {})
 ;;;  (let [districts (corescience/get-districts observation)]
 ;;;    (seq2map (map (fn [district id]
@@ -92,12 +102,13 @@
   "Updates location-map such that each location's flows field will
    contain a delayed evaluation of its carrier flow probabilities."
   [benefit-sink location-map]
-  (let [sink-inference-engine (aries/make-bn-inference benefit-sink)]
+  (let [benefit-sink-name     (.getLocalName benefit-sink)
+	sink-inference-engine (make-bn-inference benefit-sink)]
     (maphash identity
 	     #(assoc % :flows
-		     (delay (compute-flows benefit-sink
-					   (:features %)
-					   (map (comp :features location-map) (:neighbors %))
+		     (delay (compute-flows benefit-sink-name
+					   (:sink-features %)
+					   (map (comp :sink-features location-map) (:neighbors %))
 					   sink-inference-engine)))
 	     location-map)))
 

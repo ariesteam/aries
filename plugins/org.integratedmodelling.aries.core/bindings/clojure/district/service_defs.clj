@@ -17,26 +17,29 @@
 ;;; <http://www.gnu.org/licenses/>.
 
 (ns district.service-defs
-  (:refer-clojure))
+  (:refer-clojure)
+  (:use [district.discretization :only (undiscretization-table)]))
 
 (defn expected-value
-  [distribution]
-  0.5)
+  [concept-name distribution]
+  (reduce + (map (fn [[state prob]]
+		   (* ((undiscretization-table concept-name) state) prob))
+		 distribution)))
 
 (defn source-val
   "Expected amount of service carrier provision."
-  [benefit-source features source-inference-engine]
-  (let [inference-results (aries/run-inference (aries/set-evidence source-inference-engine features))
-	source-distribution (aries/get-marginals-table inference-results (.getLocalName benefit-source))]
-    (expected-value source-distribution)))
+  [benefit-source-name source-inference-engine source-features]
+  (let [inference-results (run-inference (set-evidence source-inference-engine source-features))
+	source-distribution (get-marginals-table inference-results benefit-source-name)]
+    (expected-value benefit-source-name source-distribution)))
 
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
-  distribute-flow (fn [benefit-sink features neighbor-features flow-amount]
-		    (.getLocalName benefit-sink)))
+  distribute-flow (fn [benefit-sink-name sink-features neighbor-sink-features flow-amount]
+		    benefit-sink-name)
 
-(defmethod distribute-flow :default [benefit-sink _ _ _]
-  (throw (Exception. (str "Service " (.getLocalName benefit-sink) " is unrecognized."))))
+(defmethod distribute-flow :default [benefit-sink-name _ _ _]
+  (throw (Exception. (str "Service " benefit-sink-name " is unrecognized."))))
 
 (defstruct flows :use :sink :consume :out)
 
@@ -44,12 +47,12 @@
   "Returns a flows map specifying the distribution of a service
    carrier's weight between being used, sunk, consumed, or propagated
    on to neighboring locations."
-  [benefit-sink features neighbor-features sink-inference-engine]
-  (let [inference-results (aries/run-inference (aries/set-evidence sink-inference-engine features))
-	sink-distribution (aries/get-marginals-table inference-results (.getLocalName benefit-sink))]
+  [benefit-sink-name sink-features neighbor-sink-features sink-inference-engine]
+  (let [inference-results (run-inference (set-evidence sink-inference-engine sink-features))
+	sink-distribution (get-marginals-table inference-results benefit-sink-name)]
     (struct-map flows
-      :use     (aries/get-marginals inference-results "NondestructiveUse" "NondestructiveUse")
+      :use     (get-marginals inference-results "NondestructiveUse" "NondestructiveUse")
       :sink    (get sink-distribution "Sink")
       :consume (get sink-distribution "DestructiveUse")
-      :out     (distribute-flow benefit-sink features neighbor-features
+      :out     (distribute-flow benefit-sink-name sink-features neighbor-sink-features
 				(get sink-distribution "NoUse")))))
