@@ -19,7 +19,7 @@
 (ns district.gssm-interface
   (:refer-clojure)
   (:use district.gssm
-	[district.utils :only (seq2map)]))
+	[district.utils :only (seq2map)]
 	[district.matrix-ops :only (print-matrix)]))
 
 (defn- coord-map-to-matrix
