@@ -104,7 +104,7 @@
 
 (defn get-property-coord-map
   [property-extractor locations]
-  (seq2map #([(:id %) (property-extractor %)]) locations))
+  (seq2map locations #([(:id %) (property-extractor %)])))
 
 (defn view-property-map
   "Prints the chosen property value for every location as a matrix."
