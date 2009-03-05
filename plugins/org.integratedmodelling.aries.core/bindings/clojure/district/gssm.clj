@@ -73,15 +73,23 @@
 					 (corescience/map-dependent-states source-observation))
 	sink-states             (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states sink-observation))]
+    (do
+      (println "Rows: " rows)
+      (println "Cols: " cols)
+      (println "Benefit-Source-Name: " benefit-source-name)
+      (println "Source-Inference-Engine: " source-inference-engine)
+      (println "Source-States: " (keys source-states))
+      (println "Sink-States: " (keys sink-states))
     (seq2map (for [i (range rows) j (range cols)]
 	       (let [feature-idx (+ (* i cols) j)]
+		 (do (println "MAKING LOCATION [" i " " j "]")
 		 (make-location [i j]
 				(get-neighbors [i j] rows cols)
 				(extract-features source-states feature-idx)
 				(extract-features sink-states feature-idx)
 				benefit-source-name
-				source-inference-engine)))
-	     (fn [location] [(:id location) location]))))
+				source-inference-engine))))
+	     (fn [location] [(:id location) location])))))
 
 (defmethod make-location-map false
   [benefit-source source-observation sink-observation]
