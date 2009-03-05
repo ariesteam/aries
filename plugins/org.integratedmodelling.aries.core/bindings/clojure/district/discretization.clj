@@ -63,7 +63,6 @@
    "AgriculturalLand"   {0.0 "No", 1.0 "Yes"}
    "FireProneHousing"   {0.0 "Absent", 1.0 "Present"}
    "FireFrequency"      #(get-range-name [0.0 1.0 3.0] ["None" "Low" "Moderate" "High"] %)
-   "Forest "            {1.0 "Forest", 2.0 "Forest", 3.0 "Forest", 4.0 "Forest", 5.0 "Forest", 6.0 "Forest"}
    "GreenhouseGasEmitters"   #(get-range-name [0.0 2.0 5.0 10.0 20.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
    "VegetationCarbonStorage" #(get-range-name [0.0 50.0 100.0 150.0 200.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
    "SoilCarbonStorage"       #(get-range-name [0.0 5.0 10.0 15.0 30.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)

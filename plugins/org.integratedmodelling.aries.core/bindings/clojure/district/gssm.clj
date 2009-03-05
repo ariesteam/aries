@@ -55,7 +55,8 @@
    discretized value, using the particular concept's transformation
    procedure in the global discretization-table."
   [concept-name value]
-  ((discretization-table concept-name) value))
+  (let [transformer (discretization-table concept-name)]
+    (or (transformer value) (transformer 0.0))))
 
 (defn- extract-features
   "Returns a map of feature names to the observed values at i j."
