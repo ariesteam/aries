@@ -47,7 +47,7 @@
   "Returns a flows map specifying the distribution of a service
    carrier's weight between being used, sunk, consumed, or propagated
    on to neighboring locations."
-  [benefit-sink-name sink-features neighbor-sink-features sink-inference-engine]
+  [benefit-sink-name sink-inference-engine sink-features neighbor-sink-features]
   (let [inference-results (aries/run-inference (aries/set-evidence sink-inference-engine sink-features))
 	sink-distribution (aries/get-marginals-table inference-results benefit-sink-name)]
     (struct-map flows
