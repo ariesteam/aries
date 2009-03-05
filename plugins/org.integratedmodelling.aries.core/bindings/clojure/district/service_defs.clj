@@ -36,7 +36,7 @@
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
   distribute-flow (fn [benefit-sink-name sink-features neighbor-sink-features flow-amount]
-		    benefit-sink-name)
+		    benefit-sink-name))
 
 (defmethod distribute-flow :default [benefit-sink-name _ _ _]
   (throw (Exception. (str "Service " benefit-sink-name " is unrecognized."))))
