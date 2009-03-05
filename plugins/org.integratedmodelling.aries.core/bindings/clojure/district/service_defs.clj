@@ -22,8 +22,14 @@
 
 (defn expected-value
   [concept-name distribution]
+  (println  distribution)
   (reduce + (map (fn [[state prob]]
-		   (* ((undiscretization-table concept-name) state) prob))
+		   (println "State:" state " Prob:" prob)
+		   (let [transformer (undiscretization-table concept-name)
+			 new-val (transformer state)]
+		     (println "Transformer:" transformer)
+		     (println "Undiscretized Value:" new-val)
+		     (* ((undiscretization-table concept-name) state) prob)))
 		 distribution)))
 
 (defn source-val
