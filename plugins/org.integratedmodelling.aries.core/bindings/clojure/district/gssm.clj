@@ -68,7 +68,7 @@
   (let [rows                    (geospace/grid-rows source-observation)
 	cols                    (geospace/grid-columns source-observation)
 	benefit-source-name     (.getLocalName benefit-source)
-	source-inference-engine (make-bn-inference benefit-source)
+	source-inference-engine (aries/make-bn-inference benefit-source)
 	source-states           (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states source-observation))
 	sink-states             (maphash (memfn getLocalName) identity
@@ -103,7 +103,7 @@
    contain a delayed evaluation of its carrier flow probabilities."
   [benefit-sink location-map]
   (let [benefit-sink-name     (.getLocalName benefit-sink)
-	sink-inference-engine (make-bn-inference benefit-sink)]
+	sink-inference-engine (aries/make-bn-inference benefit-sink)]
     (maphash identity
 	     #(assoc % :flows
 		     (delay (compute-flows benefit-sink-name
