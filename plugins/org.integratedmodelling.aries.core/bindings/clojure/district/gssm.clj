@@ -33,8 +33,8 @@
   (do
     (println "ID:" id)
     (println "Neighbors:" neighbors)
-    (println "Source-Features:" (vals source-features))
-    (println "Sink-Features:" (vals sink-features))
+    (println "Source-Features:" source-features)
+    (println "Sink-Features:" sink-features)
     (println "Benefit-Source-Name:" benefit-source-name)
     (println "Source-Inference-Engine:" source-inference-engine)
   (struct-map location
@@ -85,8 +85,8 @@
       (println "Cols: " cols)
       (println "Benefit-Source-Name: " benefit-source-name)
       (println "Source-Inference-Engine: " source-inference-engine)
-      (println "Source-States: " (keys source-states))
-      (println "Sink-States: " (keys sink-states))
+      (println "Source-States: " source-states)
+      (println "Sink-States: " sink-states)
     (seq2map (for [i (range rows) j (range cols)]
 	       (let [feature-idx (+ (* i cols) j)]
 		 (do (println "MAKING LOCATION [" i " " j "]")
