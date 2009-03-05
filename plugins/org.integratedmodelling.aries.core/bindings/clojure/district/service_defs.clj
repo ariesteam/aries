@@ -52,7 +52,12 @@
   distribute-flow (fn [benefit-sink-name sink-features neighbor-sink-features flow-amount]
 		    benefit-sink-name))
 
-(defmethod distribute-flow :default [benefit-sink-name _ _ _]
+(defmethod distribute-flow :default [benefit-sink-name sink-features neighbor-sink-features flow-amount]
+  (let [num-neighbors (count neighbor-sink-features)
+	amt (/ flow-amount num-neighbors)]
+    (replicate num-neighbors amt)))
+
+(defmethod distribute-flow :default-old [benefit-sink-name _ _ _]
   (throw (Exception. (str "Service " benefit-sink-name " is unrecognized."))))
 
 (defstruct flows :use :sink :consume :out)
