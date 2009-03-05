@@ -30,6 +30,13 @@
 (defn make-location
   "Location constructor"
   [id neighbors source-features sink-features benefit-source-name source-inference-engine]
+  (do
+    (println "ID:" id)
+    (println "Neighbors:" neighbors)
+    (println "Source-Features:" (vals source-features))
+    (println "Sink-Features:" (vals sink-features))
+    (println "Benefit-Source-Name:" benefit-source-name)
+    (println "Source-Inference-Engine:" source-inference-engine)
   (struct-map location
     :id              id
     :neighbors       neighbors
@@ -41,7 +48,7 @@
     :carrier-bin     (ref ())
     :source          (source-val benefit-source-name
 				 source-inference-engine
-				 source-features)))
+				 source-features))))
 
 (defn- discretize-value
   "Transforms the value to the string name of its corresponding
