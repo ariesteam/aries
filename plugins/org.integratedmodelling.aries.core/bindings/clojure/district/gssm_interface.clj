@@ -60,7 +60,8 @@
 		 "Source-Val: %.2f%n"
 		 "Sink-Prob: %.2f%n"
 		 "Use-Prob: %.2f%n"
-		 "Consume-Prob: %.2f%n")
+		 "Consume-Prob: %.2f%n"
+		 "Out-Prob: %s%n")
 	flows (force (:flows location))]
     (printf fmt-str
 	    (:id location)
@@ -72,15 +73,54 @@
 	    (:source location)
 	    (:sink flows)
 	    (:use flows)
-	    (:consume flows))))
+	    (:consume flows)
+	    (:out flows))))
+
+(def property-lookup-table
+  {1  :id,
+   2  #(@(:sunk %)),
+   3  #(@(:used %)),
+   4  #(@(:consumed %)),
+   5  #(count @(:carrier-bin %)),
+   6  :source,
+   7  #(:sink (force (:flows %))),
+   8  #(:use (force (:flows %))),
+   9  #(:consume (force (:flows %))),
+   10 #(reduce + (:out (force (:flows %))))})
+
+(defn select-property
+  "Prompts the user with a menu of choices and returns the number
+   corresponding to their selection."
+  []
+  (printf "%nProperty Menu:%n")
+  (let [prompts ["ID" "Sunk" "Used" "Consumed" "Carriers Encountered"
+		 "Source-Val" "Sink-Prob" "Use-Prob" "Consume-Prob" "Out-Prob"]]
+    (dotimes [i (count prompts)]
+	(printf " %d) %s%n" (inc i) (prompts i))))
+  (print "Choice: ")
+  (flush)
+  (property-lookup-table (read)))
+
+(defn get-property-coord-map
+  [property-extractor locations]
+  (seq2map #([(:id %) (property-extractor %)]) locations))
+
+(defn view-property-map
+  "Prints the chosen property value for every location as a matrix."
+  [locations rows cols]
+  (newline)
+  (print-matrix
+   (coord-map-to-matrix (get-property-coord-map (select-property) locations) rows cols)
+   "%s "))
 
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
-  corresponding to their selection."
+   corresponding to their selection."
   []
   (printf "%nAction Menu (0 quits):%n")
   (let [prompts ["View Provisionshed" "View Benefitshed"
-		 "View Location Properties" "Count Locations"]]
+		 "View Location Properties" "View Property Map"
+		 "Count Locations"]]
     (dotimes [i (count prompts)]
 	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
@@ -116,6 +156,7 @@
 			     (select-location locations rows cols) locations rows cols)
 	      (== choice 3) (view-location-properties
 			     (select-location locations rows cols))
-	      (== choice 4) (printf "%n%d%n" (count locations))
+	      (== choice 4) (view-property-map locations rows cols)
+	      (== choice 5) (printf "%n%d%n" (count locations))
 	      :otherwise    (printf "%nInvalid selection.%n"))
 	(recur (select-menu-action))))))

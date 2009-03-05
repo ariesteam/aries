@@ -64,6 +64,17 @@
 		      (and (geospace/grid-extent? source-observation)
 			   (geospace/grid-extent? sink-observation))))
 
+(defn- count-distinct-states
+  [observation-states]
+  (maphash identity
+	   (fn [vals]
+	     (let [distinct-vals (distinct vals)]
+	       (if (<= (count distinct-vals) 10)
+		 (for [val distinct-vals]
+		   [val (count (filter #(= % val) vals))])
+		 "Many distinct values...")))
+	   observation-states))
+
 (defmethod make-location-map true
   [benefit-source source-observation sink-observation]
   (let [rows                    (geospace/grid-rows source-observation)
@@ -79,12 +90,8 @@
       (println "Cols: " cols)
       (println "Benefit-Source-Name: " benefit-source-name)
       (println "Source-Inference-Engine: " source-inference-engine)
-;      (println "Source-States: " (map (fn [[k v]] (let [n (count (distinct v))]
-;						    [k (if (<= n 10) (distinct v) "Many values...")]))
-;				      source-states))
-;      (println "Sink-States: " (map (fn [[k v]] (let [n (count (distinct v))]
-;						  [k (if (<= n 10) (distinct v) "Many values...")]))
-;				    sink-states))
+      (println "Source-States: " (count-distinct-states source-states))
+      (println "Sink-States: " (count-distinct-states sink-states))
       (seq2map (for [i (range rows) j (range cols)]
 		 (let [feature-idx (+ (* i cols) j)]
 		   (make-location [i j]
