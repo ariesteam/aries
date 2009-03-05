@@ -30,13 +30,6 @@
 (defn make-location
   "Location constructor"
   [id neighbors source-features sink-features benefit-source-name source-inference-engine]
-  (do
-    (println "ID:" id)
-    (println "Neighbors:" neighbors)
-    (println "Source-Features:" source-features)
-    (println "Sink-Features:" sink-features)
-    (println "Benefit-Source-Name:" benefit-source-name)
-    (println "Source-Inference-Engine:" source-inference-engine)
   (struct-map location
     :id              id
     :neighbors       neighbors
@@ -48,7 +41,7 @@
     :carrier-bin     (ref ())
     :source          (source-val benefit-source-name
 				 source-inference-engine
-				 source-features))))
+				 source-features)))
 
 (defn- discretize-value
   "Transforms the value to the string name of its corresponding
@@ -86,18 +79,21 @@
       (println "Cols: " cols)
       (println "Benefit-Source-Name: " benefit-source-name)
       (println "Source-Inference-Engine: " source-inference-engine)
-      (println "Source-States: " (map (fn [[k v]] [k (count v) (distinct v)]) source-states))
-      (println "Sink-States: " (map (fn [[k v]] [k (count v) (distinct v)]) sink-states))
-    (seq2map (for [i (range rows) j (range cols)]
-	       (let [feature-idx (+ (* i cols) j)]
-		 (do (println "MAKING LOCATION [" i " " j "]")
-		 (make-location [i j]
-				(get-neighbors [i j] rows cols)
-				(extract-features source-states feature-idx)
-				(extract-features sink-states feature-idx)
-				benefit-source-name
-				source-inference-engine))))
-	     (fn [location] [(:id location) location])))))
+      (println "Source-States: " (map (fn [[k v]] (let [n (count (distinct v))]
+						    [k (if (<= n 10) (distinct v) "Many values...")]))
+				      source-states))
+      (println "Sink-States: " (map (fn [[k v]] (let [n (count (distinct v))]
+						  [k (if (<= n 10) (distinct v) "Many values...")]))
+				    sink-states))
+      (seq2map (for [i (range rows) j (range cols)]
+		 (let [feature-idx (+ (* i cols) j)]
+		   (make-location [i j]
+				  (get-neighbors [i j] rows cols)
+				  (extract-features source-states feature-idx)
+				  (extract-features sink-states feature-idx)
+				  benefit-source-name
+				  source-inference-engine)))
+	       (fn [location] [(:id location) location])))))
 
 (defmethod make-location-map false
   [benefit-source source-observation sink-observation]
@@ -122,10 +118,10 @@
 	sink-inference-engine (aries/make-bn-inference benefit-sink)]
     (maphash identity
 	     #(assoc % :flows
-		     (compute-flows benefit-sink-name
-				    sink-inference-engine
-				    (:sink-features %)
-				    (map (comp :sink-features location-map) (:neighbors %))))
+		     (delay (compute-flows benefit-sink-name
+					   sink-inference-engine
+					   (:sink-features %)
+					   (map (comp :sink-features location-map) (:neighbors %)))))
 	     location-map)))
 
 (defstruct service-carrier :weight :route)
@@ -201,10 +197,10 @@
    the network which all update properties of the locations.  When the
    simulation completes, the network of locations is returned."
   [benefit-source benefit-sink source-observation sink-observation trans-threshold]
-  (let [location-map     (add-flows benefit-sink
-				    (make-location-map benefit-source
-						       source-observation
-						       sink-observation))]
+  (let [location-map (add-flows benefit-sink
+				(make-location-map benefit-source
+						   source-observation
+						   sink-observation))]
     location-map))
 
 (defn simulate-service-flows-old
@@ -223,12 +219,10 @@
 	completedThreads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
-;			   (println "Starting thread" (Thread/currentThread))
 			   (propagate-carrier-tailrec location-map
 						      loc
 						      (make-service-carrier (:source loc) [loc])
 						      trans-threshold)
-;			   (println "Stopping thread" (Thread/currentThread))
 			   (swap! completedThreads inc)))))
     (while (< @completedThreads num-locations)
 	   (Thread/sleep 500))

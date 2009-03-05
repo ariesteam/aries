@@ -22,25 +22,11 @@
 
 (defn expected-value
   [concept-name distribution]
-  (println  distribution)
   (reduce + (map (fn [[state prob]]
-		   (println "State:" state " Prob:" prob)
-		   (let [transformer (undiscretization-table concept-name)
-			 new-val (transformer state)]
-		     (println "Transformer:" transformer)
-		     (println "Undiscretized Value:" new-val)
-		     (* ((undiscretization-table concept-name) state) prob)))
+		   (* ((undiscretization-table concept-name) state) prob))
 		 distribution)))
 
 (defn source-val
-  "Expected amount of service carrier provision."
-  [benefit-source-name source-inference-engine source-features]
-  (let [inf-post-set (aries/set-evidence source-inference-engine source-features)
-	inference-results (do (println "Inf-Post-Set:" inf-post-set) (aries/run-inference inf-post-set))
-	source-distribution (do (println "Inference-Results:" inference-results) (aries/get-marginals-table inference-results benefit-source-name))]
-    (expected-value benefit-source-name source-distribution)))
-
-(defn source-val-old
   "Expected amount of service carrier provision."
   [benefit-source-name source-inference-engine source-features]
   (let [inference-results (aries/run-inference (aries/set-evidence source-inference-engine source-features))
