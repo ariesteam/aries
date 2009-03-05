@@ -188,6 +188,19 @@
   (let [location-map     (add-flows benefit-sink
 				    (make-location-map benefit-source
 						       source-observation
+						       sink-observation))]
+    location-map))
+
+(defn simulate-service-flows-old
+  "Creates a network of interconnected locations, and starts a
+   service-carrier propagating in every location whose source value is
+   greater than 0.  These carriers propagate child carriers through
+   the network which all update properties of the locations.  When the
+   simulation completes, the network of locations is returned."
+  [benefit-source benefit-sink source-observation sink-observation trans-threshold]
+  (let [location-map     (add-flows benefit-sink
+				    (make-location-map benefit-source
+						       source-observation
 						       sink-observation))
 	src-locations    (filter #(> (:source %) 0.0) (vals location-map))
 	num-locations    (count src-locations)
