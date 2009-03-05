@@ -118,4 +118,4 @@
 			     (select-location locations rows cols))
 	      (== choice 4) (printf "%n%d%n" (count locations))
 	      :otherwise    (printf "%nInvalid selection.%n"))
-	(recur (select-menu-action)))))))
+	(recur (select-menu-action))))))

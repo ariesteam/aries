@@ -64,7 +64,7 @@
 	cols          (geospace/grid-columns source-observation)
 	source-states (corescience/map-dependent-states source-observation)
 	sink-states   (corescience/map-dependent-states sink-observation)
-	source-inference-engine (make-bn-inference benefit-source)]
+	source-inference-engine (aries/make-bn-inference benefit-source)]
     (seq2map (for [i (range rows) j (range cols)]
 	       (make-location [i j]
 			      (get-neighbors [i j] rows cols)
@@ -92,7 +92,7 @@
   "Updates location-map such that each location's flows field will
    contain a delayed evaluation of its carrier flow probabilities."
   [benefit-sink location-map]
-  (let [sink-inference-engine (make-bn-inference benefit-sink)]
+  (let [sink-inference-engine (aries/make-bn-inference benefit-sink)]
     (maphash identity
 	     #(assoc % :flows
 		     (delay (compute-flows benefit-sink
