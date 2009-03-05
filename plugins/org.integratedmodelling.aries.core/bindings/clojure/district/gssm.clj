@@ -85,8 +85,8 @@
       (println "Cols: " cols)
       (println "Benefit-Source-Name: " benefit-source-name)
       (println "Source-Inference-Engine: " source-inference-engine)
-      (println "Source-States: " source-states)
-      (println "Sink-States: " sink-states)
+      (println "Source-States: " (seq (vals source-states)))
+      (println "Sink-States: " (seq (vals (sink-states))))
     (seq2map (for [i (range rows) j (range cols)]
 	       (let [feature-idx (+ (* i cols) j)]
 		 (do (println "MAKING LOCATION [" i " " j "]")
