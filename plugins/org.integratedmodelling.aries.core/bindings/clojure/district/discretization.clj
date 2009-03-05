@@ -27,95 +27,95 @@
 	:otherwise (recur (rest range-boundaries) (rest range-names) value)))
 
 (def discretization-table
-  {"WaterBody"          {0 "NoWater", 1 "Lake", 2 "Ocean"}
-   "Mountain"           #(get-range-name [2000 2750] ["NoMountain" "SmallMountain" "LargeMountain"] %)
-   "PresenceOfHousing"  {0 "No", 1 "Yes"}
-   "HousingValue"       #(get-range-name [100000 200000 400000 1000000] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "Highways"           {0 "No", 1 "Yes"}
-   "CommercialIndustrialTransportation" {0 "No", 1 "Yes"}
-   "Clearcuts"          {0 "No", 1 "Yes"}
-   "Obstructions"       {0 "None", 1 "Partial", 2 "Full"}
-   "Area"               #(get-range-name [20230 101200 404700] ["VerySmall" "Small" "Large" "VeryLarge"] %)
-   "WaterQuality"       {0 "NoSurfaceWater", 5 "RequiringTMDL", 2 "OfConcern", 4 "OfConcern",
-			 24 "OfConcern", 1 "MeetsStandards"}
-   "Crime"              {0 "NonUrban", 1 "Urban"}
-   "FormalProtection"   {0 "NonProtected", 1 "Protected"}
-   "Farm"               {0 "No", 1 "Yes"}
-   "Park"               {0 "No", 1 "Yes"}
-   "Cemetery"           {0 "No", 1 "Yes"}
-   "GolfCourse"         {0 "No", 1 "Yes"}
-   "LakeFront"          {0 "No", 1 "Yes"}
-   "RiverFront"         {0 "No", 1 "Yes"}
-   "Beach"              {0 "No", 1 "Yes"}
-   "EmergentWetland"    {0 "No", 1 "Yes"}
-   "WoodyWetland"       {0 "No", 1 "Yes"}
-   "Forest"             {0 "No", 1 "Yes"}
+  {"WaterBody"          {0.0 "NoWater", 1.0 "Lake", 2.0 "Ocean"}
+   "Mountain"           #(get-range-name [2000.0 2750.0] ["NoMountain" "SmallMountain" "LargeMountain"] %)
+   "PresenceOfHousing"  {0.0 "No", 1.0 "Yes"}
+   "HousingValue"       #(get-range-name [100000.0 200000.0 400000.0 1000000.0] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
+   "Highways"           {0.0 "No", 1.0 "Yes"}
+   "CommercialIndustrialTransportation" {0.0 "No", 1.0 "Yes"}
+   "Clearcuts"          {0.0 "No", 1.0 "Yes"}
+   "Obstructions"       {0.0 "None", 1.0 "Partial", 2.0 "Full"}
+   "Area"               #(get-range-name [20230.0 101200.0 404700.0] ["VerySmall" "Small" "Large" "VeryLarge"] %)
+   "WaterQuality"       {0.0 "NoSurfaceWater", 5.0 "RequiringTMDL", 2.0 "OfConcern", 4.0 "OfConcern",
+			 24.0 "OfConcern", 1.0 "MeetsStandards"}
+   "Crime"              {0.0 "NonUrban", 1.0 "Urban"}
+   "FormalProtection"   {0.0 "NonProtected", 1.0 "Protected"}
+   "Farm"               {0.0 "No", 1.0 "Yes"}
+   "Park"               {0.0 "No", 1.0 "Yes"}
+   "Cemetery"           {0.0 "No", 1.0 "Yes"}
+   "GolfCourse"         {0.0 "No", 1.0 "Yes"}
+   "LakeFront"          {0.0 "No", 1.0 "Yes"}
+   "RiverFront"         {0.0 "No", 1.0 "Yes"}
+   "Beach"              {0.0 "No", 1.0 "Yes"}
+   "EmergentWetland"    {0.0 "No", 1.0 "Yes"}
+   "WoodyWetland"       {0.0 "No", 1.0 "Yes"}
+   "Forest"             {0.0 "No", 1.0 "Yes"}
    "UrbanProximity"     #(get-range-name [77.2 308.9] ["Rural" "Suburban" "Urban"] %)
-   "HydroelectricDams"  {0 "Absent", 1 "Present"}
-   "MountainGlaciers"   {0 "Absent", 1 "Present"}
+   "HydroelectricDams"  {0.0 "Absent", 1.0 "Present"}
+   "MountainGlaciers"   {0.0 "Absent", 1.0 "Present"}
    "PopulationDensity"  #(get-range-name [38.6 193.0 772.2 1930.5] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "CoastalFloodZone"   {0 "No", 1 "Yes"}
-   "CoastalProperty"     {22 "LowDensity", 23 "ModerateDensity", 24 "HighDensity"}
-   "LandslideRiskZone"  {0 "NoRisk", 1 "ModerateRisk", 2 "HighRisk"}
-   "DownslopeHousing"   {0 "Absent", 1 "Present"}
+   "CoastalFloodZone"   {0.0 "No", 1.0 "Yes"}
+   "CoastalProperty"     {22.0 "LowDensity", 23.0 "ModerateDensity", 24.0 "HighDensity"}
+   "LandslideRiskZone"  {0.0 "NoRisk", 1.0 "ModerateRisk", 2.0 "HighRisk"}
+   "DownslopeHousing"   {0.0 "Absent", 1.0 "Present"}
    "Rainfall"           #(get-range-name [76.2 152.4 228.6 330.2] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "PotentialEvapotranspiration" #(get-range-name [50 100] ["Low" "Moderate" "High"] %)
-   "AgriculturalLand"   {0 "No", 1 "Yes"}
-   "FireProneHousing"   {0 "Absent", 1 "Present"}
-   "FireFrequency"      #(get-range-name [0 1 3] ["None" "Low" "Moderate" "High"] %)
-   "Forest "            {1 "Forest", 2 "Forest", 3 "Forest", 4 "Forest", 5 "Forest", 6 "Forest"}
-   "GreenhouseGasEmitters"   #(get-range-name [0 2 5 10 20] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "VegetationCarbonStorage" #(get-range-name [0 50 100 150 200] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "SoilCarbonStorage"       #(get-range-name [0 5 10 15 30] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
-   "CanopyCover"             #(get-range-name [20 40 60 80] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
+   "PotentialEvapotranspiration" #(get-range-name [50.0 100.0] ["Low" "Moderate" "High"] %)
+   "AgriculturalLand"   {0.0 "No", 1.0 "Yes"}
+   "FireProneHousing"   {0.0 "Absent", 1.0 "Present"}
+   "FireFrequency"      #(get-range-name [0.0 1.0 3.0] ["None" "Low" "Moderate" "High"] %)
+   "Forest "            {1.0 "Forest", 2.0 "Forest", 3.0 "Forest", 4.0 "Forest", 5.0 "Forest", 6.0 "Forest"}
+   "GreenhouseGasEmitters"   #(get-range-name [0.0 2.0 5.0 10.0 20.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
+   "VegetationCarbonStorage" #(get-range-name [0.0 50.0 100.0 150.0 200.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
+   "SoilCarbonStorage"       #(get-range-name [0.0 5.0 10.0 15.0 30.0] ["None" "VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
+   "CanopyCover"             #(get-range-name [20.0 40.0 60.0 80.0] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
    "SuccessionalStage"       #(get-range-name [12.7 25.4 50.8 76.2] ["Early" "Pole" "Mid" "Late" "OldGrowth"] %)
-   "HardwoodSoftwoodRatio"   #(get-range-name [20 40 60 80] ["VerySoft" "Soft" "Moderate" "Hard" "VeryHard"] %)
-   "SoilCNRatio"             #(get-range-name [5 10 20] ["VeryLow" "Low" "High" "VeryHigh"] %)
-   "SummerHighWinterLow"     #(get-range-name [20 40 60 80] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)})
+   "HardwoodSoftwoodRatio"   #(get-range-name [20.0 40.0 60.0 80.0] ["VerySoft" "Soft" "Moderate" "Hard" "VeryHard"] %)
+   "SoilCNRatio"             #(get-range-name [5.0 10.0 20.0] ["VeryLow" "Low" "High" "VeryHigh"] %)
+   "SummerHighWinterLow"     #(get-range-name [20.0 40.0 60.0 80.0] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)})
 
 (def undiscretization-table
-  {"WaterBody"          {"NoWater" 0, "Lake" 1, "Ocean" 2}
-   "Mountain"           {"NoMountain" 1000, "SmallMountain" 2375, "LargeMountain" 3750}
-   "PresenceOfHousing"  {"No" 0, "Yes" 1}
-   "HousingValue"       {"VeryLow" 50000, "Low" 150000, "Moderate" 300000, "High" 700000, "VeryHigh" 1500000}
-   "Highways"           {"No" 0, "Yes" 1}
-   "CommercialIndustrialTransportation" {"No" 0, "Yes" 1}
-   "Clearcuts"          {"No" 0, "Yes" 1}
-   "Obstructions"       {"None" 0, "Partial" 1, "Full" 2}
-   "Area"               {"VerySmall" 10115, "Small" 60715, "Large" 252950, "VeryLarge" 809400}
-   "WaterQuality"       {"NoSurfaceWater" 0, "RequiringTMDL" 5, "OfConcern" 2, "OfConcern" 4,
-			 "OfConcern" 24, "MeetsStandards" 1}
-   "Crime"              {"NonUrban" 0, "Urban" 1}
-   "FormalProtection"   {"NonProtected" 0, "Protected" 1}
-   "Farm"               {"No" 0, "Yes" 1}
-   "Park"               {"No" 0, "Yes" 1}
-   "Cemetery"           {"No" 0, "Yes" 1}
-   "GolfCourse"         {"No" 0, "Yes" 1}
-   "LakeFront"          {"No" 0, "Yes" 1}
-   "RiverFront"         {"No" 0, "Yes" 1}
-   "Beach"              {"No" 0, "Yes" 1}
-   "EmergentWetland"    {"No" 0, "Yes" 1}
-   "WoodyWetland"       {"No" 0, "Yes" 1}
-   "Forest"             {"No" 0, "Yes" 1}
+  {"WaterBody"          {"NoWater" 0.0, "Lake" 1.0, "Ocean" 2.0}
+   "Mountain"           {"NoMountain" 1000.0, "SmallMountain" 2375.0, "LargeMountain" 3750.0}
+   "PresenceOfHousing"  {"No" 0.0, "Yes" 1.0}
+   "HousingValue"       {"VeryLow" 50000.0, "Low" 150000.0, "Moderate" 300000.0, "High" 700000.0, "VeryHigh" 1500000.0}
+   "Highways"           {"No" 0.0, "Yes" 1.0}
+   "CommercialIndustrialTransportation" {"No" 0.0, "Yes" 1.0}
+   "Clearcuts"          {"No" 0.0, "Yes" 1.0}
+   "Obstructions"       {"None" 0.0, "Partial" 1.0, "Full" 2.0}
+   "Area"               {"VerySmall" 10115.0, "Small" 60715.0, "Large" 252950.0, "VeryLarge" 809400.0}
+   "WaterQuality"       {"NoSurfaceWater" 0.0, "RequiringTMDL" 5.0, "OfConcern" 2.0, "OfConcern" 4.0,
+			 "OfConcern" 24.0, "MeetsStandards" 1.0}
+   "Crime"              {"NonUrban" 0.0, "Urban" 1.0}
+   "FormalProtection"   {"NonProtected" 0.0, "Protected" 1.0}
+   "Farm"               {"No" 0.0, "Yes" 1.0}
+   "Park"               {"No" 0.0, "Yes" 1.0}
+   "Cemetery"           {"No" 0.0, "Yes" 1.0}
+   "GolfCourse"         {"No" 0.0, "Yes" 1.0}
+   "LakeFront"          {"No" 0.0, "Yes" 1.0}
+   "RiverFront"         {"No" 0.0, "Yes" 1.0}
+   "Beach"              {"No" 0.0, "Yes" 1.0}
+   "EmergentWetland"    {"No" 0.0, "Yes" 1.0}
+   "WoodyWetland"       {"No" 0.0, "Yes" 1.0}
+   "Forest"             {"No" 0.0, "Yes" 1.0}
    "UrbanProximity"     {"Rural" 38.6, "Suburban" 193.05, "Urban" 965.25}
-   "HydroelectricDams"  {"Absent" 0, "Present" 1}
-   "MountainGlaciers"   {"Absent" 0, "Present" 1}
+   "HydroelectricDams"  {"Absent" 0.0, "Present" 1.0}
+   "MountainGlaciers"   {"Absent" 0.0, "Present" 1.0}
    "PopulationDensity"  {"VeryLow" 19.3, "Low" 115.8, "Moderate" 482.6, "High" 1351.35, "VeryHigh" 2702.7}
-   "CoastalFloodZone"   {"No" 0, "Yes" 1}
-   "CoastalProperty"    {"LowDensity" 22, "ModerateDensity" 23, "HighDensity" 24}
-   "LandslideRiskZone"  {"NoRisk" 0, "ModerateRisk" 1, "HighRisk" 2}
-   "DownslopeHousing"   {"Absent" 0, "Present" 1}
+   "CoastalFloodZone"   {"No" 0.0, "Yes" 1.0}
+   "CoastalProperty"    {"LowDensity" 22.0, "ModerateDensity" 23.0, "HighDensity" 24.0}
+   "LandslideRiskZone"  {"NoRisk" 0.0, "ModerateRisk" 1.0, "HighRisk" 2.0}
+   "DownslopeHousing"   {"Absent" 0.0, "Present" 1.0}
    "Rainfall"           {"VeryLow" 38.1, "Low" 114.3, "Moderate" 190.5, "High" 279.4, "VeryHigh" 409.8}
-   "PotentialEvapotranspiration" {"Low" 25, "Moderate" 75, "High" 125}
-   "AgriculturalLand"   {"No" 0, "Yes" 1}
-   "FireProneHousing"   {"Absent" 0, "Present" 1}
-   "FireFrequency"      {"None" 0, "Low" 1, "Moderate" 2.5, "High" 4}
-   "Forest "            {"No" 0, "Yes" 1}
-   "GreenhouseGasEmitters"   {"None" 0, "VeryLow" 1, "Low" 3.5, "Moderate" 7.5, "High" 15, "VeryHigh" 30}
-   "VegetationCarbonStorage" {"None" 0, "VeryLow" 25, "Low" 75, "Moderate" 125, "High" 175, "VeryHigh" 225}
-   "SoilCarbonStorage"       {"None" 0, "VeryLow" 2.5, "Low" 7.5, "Moderate" 12.5, "High" 22.5, "VeryHigh" 37.5}
-   "CanopyCover"             {"VeryLow" 10, "Low" 30, "Moderate" 50, "High" 70, "VeryHigh" 90}
+   "PotentialEvapotranspiration" {"Low" 25.0, "Moderate" 75.0, "High" 125.0}
+   "AgriculturalLand"   {"No" 0.0, "Yes" 1.0}
+   "FireProneHousing"   {"Absent" 0.0, "Present" 1.0}
+   "FireFrequency"      {"None" 0.0, "Low" 1.0, "Moderate" 2.5, "High" 4.0}
+   "Forest "            {"No" 0.0, "Yes" 1.0}
+   "GreenhouseGasEmitters"   {"None" 0.0, "VeryLow" 1.0, "Low" 3.5, "Moderate" 7.5, "High" 15.0, "VeryHigh" 30.0}
+   "VegetationCarbonStorage" {"None" 0.0, "VeryLow" 25.0, "Low" 75.0, "Moderate" 125.0, "High" 175.0, "VeryHigh" 225.0}
+   "SoilCarbonStorage"       {"None" 0.0, "VeryLow" 2.5, "Low" 7.5, "Moderate" 12.5, "High" 22.5, "VeryHigh" 37.5}
+   "CanopyCover"             {"VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}
    "SuccessionalStage"       {"Early" 6.35, "Pole" 19.05, "Mid" 38.1, "Late" 63.5, "OldGrowth" 95.25}
-   "HardwoodSoftwoodRatio"   {"VerySoft" 10, "Soft" 30, "Moderate" 50, "Hard" 70, "VeryHard" 90}
-   "SoilCNRatio"             {"VeryLow" 2.5, "Low" 7.5, "High" 15, "VeryHigh" 30}
-   "SummerHighWinterLow"     {"VeryLow" 10, "Low" 30, "Moderate" 50, "High" 70, "VeryHigh" 90}})
+   "HardwoodSoftwoodRatio"   {"VerySoft" 10.0, "Soft" 30.0, "Moderate" 50.0, "Hard" 70.0, "VeryHard" 90.0}
+   "SoilCNRatio"             {"VeryLow" 2.5, "Low" 7.5, "High" 15.0, "VeryHigh" 30.0}
+   "SummerHighWinterLow"     {"VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}})
