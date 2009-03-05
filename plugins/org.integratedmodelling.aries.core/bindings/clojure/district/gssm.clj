@@ -79,12 +79,12 @@
       (println "Cols: " cols)
       (println "Benefit-Source-Name: " benefit-source-name)
       (println "Source-Inference-Engine: " source-inference-engine)
-      (println "Source-States: " (map (fn [[k v]] (let [n (count (distinct v))]
-						    [k (if (<= n 10) (distinct v) "Many values...")]))
-				      source-states))
-      (println "Sink-States: " (map (fn [[k v]] (let [n (count (distinct v))]
-						  [k (if (<= n 10) (distinct v) "Many values...")]))
-				    sink-states))
+;      (println "Source-States: " (map (fn [[k v]] (let [n (count (distinct v))]
+;						    [k (if (<= n 10) (distinct v) "Many values...")]))
+;				      source-states))
+;      (println "Sink-States: " (map (fn [[k v]] (let [n (count (distinct v))]
+;						  [k (if (<= n 10) (distinct v) "Many values...")]))
+;				    sink-states))
       (seq2map (for [i (range rows) j (range cols)]
 		 (let [feature-idx (+ (* i cols) j)]
 		   (make-location [i j]
@@ -111,6 +111,20 @@
 ;;; Location-map keys may not work with the return value of get-poly-neighbors.
 
 (defn add-flows
+  "Updates location-map such that each location's flows field will
+   contain a delayed evaluation of its carrier flow probabilities."
+  [benefit-sink location-map]
+  (let [benefit-sink-name     (.getLocalName benefit-sink)
+	sink-inference-engine (aries/make-bn-inference benefit-sink)]
+    (maphash identity
+	     #(assoc % :flows
+		     (compute-flows benefit-sink-name
+				    sink-inference-engine
+				    (:sink-features %)
+				    (map (comp :sink-features location-map) (:neighbors %))))
+	     location-map)))
+
+(defn add-flows-old
   "Updates location-map such that each location's flows field will
    contain a delayed evaluation of its carrier flow probabilities."
   [benefit-sink location-map]
