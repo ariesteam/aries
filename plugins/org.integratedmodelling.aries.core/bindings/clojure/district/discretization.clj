@@ -118,4 +118,7 @@
    "SuccessionalStage"       {"Early" 6.35, "Pole" 19.05, "Mid" 38.1, "Late" 63.5, "OldGrowth" 95.25}
    "HardwoodSoftwoodRatio"   {"VerySoft" 10.0, "Soft" 30.0, "Moderate" 50.0, "Hard" 70.0, "VeryHard" 90.0}
    "SoilCNRatio"             {"VeryLow" 2.5, "Low" 7.5, "High" 15.0, "VeryHigh" 30.0}
-   "SummerHighWinterLow"     {"VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}})
+   "SummerHighWinterLow"     {"VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}
+   "SensoryEnjoyment"  {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
+   "ProximityToBeauty" {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
+   "ClimateStability"  {"None" 0.0, "VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}})
