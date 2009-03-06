@@ -27,10 +27,12 @@
 			 undiscretized-val (transformer state)]
 		     (cond (Double/isNaN undiscretized-val)
 			   (throw (Exception. (str "Undiscretized Value for" concept-name
-						   "/" state "is NaN:" undiscretized-val)))
+						   "/" state "is NaN:" undiscretized-val
+						   ".\nTable says: " (seq distribution))))
 			   (Double/isNaN prob)
 			   (throw (Exception. (str "Probability Value for" concept-name
-						   "/" state "is NaN:" undiscretized-val))))
+						   "/" state "is NaN:" prob
+						   ".\nTable says: " (seq distribution)))))
 		     (* undiscretized-val prob)))
 		 distribution)))
 
