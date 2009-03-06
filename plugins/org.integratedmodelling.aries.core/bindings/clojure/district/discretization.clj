@@ -85,7 +85,7 @@
    "WaterQuality"       {"NoSurfaceWater" 0.0, "RequiringTMDL" 5.0, "OfConcern" 2.0, "OfConcern" 4.0,
 			 "OfConcern" 24.0, "MeetsStandards" 1.0}
    "Crime"              {"NonUrban" 0.0, "Urban" 1.0}
-   "FormalProtection"   {"NonProtected" 0.0, "Protected" 1.0}
+   "FormalProtection"   {"NotProtected" 0.0, "Protected" 1.0}
    "Farm"               {"No" 0.0, "Yes" 1.0}
    "Park"               {"No" 0.0, "Yes" 1.0}
    "Cemetery"           {"No" 0.0, "Yes" 1.0}

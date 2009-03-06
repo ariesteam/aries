@@ -64,7 +64,7 @@
   (let [inference-results (aries/run-inference (aries/set-evidence sink-inference-engine sink-features))
 	sink-distribution (aries/get-marginals-table inference-results benefit-sink-name)]
     (struct-map flows
-      :use     (aries/get-marginals inference-results "NondestructiveUse" "NondestructiveUse")
+      :use     (aries/get-marginals inference-results "NonDestructiveUse" "Yes")
       :sink    (get sink-distribution "Sink")
       :consume (get sink-distribution "DestructiveUse")
       :out     (distribute-flow benefit-sink-name sink-features neighbor-sink-features
