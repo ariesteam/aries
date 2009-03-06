@@ -122,7 +122,7 @@
   (newline)
   (print-matrix
    (coord-map-to-matrix (get-property-coord-map (select-property) locations) rows cols)
-   "%s "))
+   "%7.2f "))
 
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
