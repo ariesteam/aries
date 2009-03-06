@@ -136,3 +136,5 @@
 				(cons this-node closed-list)
 				successors
 				goal?)))))
+
+(defn between [val low high] (and (>= val low) (< val high)))
