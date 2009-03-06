@@ -73,7 +73,7 @@
 	       (if (<= num-distinct 10)
 		 (for [val distinct-vals]
 		   [val (count (filter #(= % val) vals))])
-		 (str num-distinct "distinct values..."))))
+		 (str num-distinct " distinct values..."))))
 	   observation-states))
 
 (defmethod make-location-map true

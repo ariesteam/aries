@@ -104,6 +104,17 @@
 
 (defn get-property-coord-map
   [property-extractor locations]
+  (println "Property-Extractor: " property-extractor)
+  (seq2map locations
+	   (fn [loc]
+	     (let [id (:id loc)
+		   prop (property-extractor loc)]
+	       (println "ID:" id)
+	       (println "Property:" prop)
+	       [id prop]))))
+
+(defn get-property-coord-map-old
+  [property-extractor locations]
   (seq2map locations #(vector (:id %) (property-extractor %))))
 
 (defn view-property-map
