@@ -21,18 +21,20 @@
   (:use [district.discretization :only (undiscretization-table)]))
 
 (defn expected-value
-  [concept-name distribution]
+  [concept-name distribution source-features]
   (reduce + (map (fn [[state prob]]
 		   (let [transformer (undiscretization-table concept-name)
 			 undiscretized-val (transformer state)]
 		     (cond (Double/isNaN undiscretized-val)
-			   (throw (Exception. (str "Undiscretized Value for" concept-name
-						   "/" state "is NaN:" undiscretized-val
-						   ".\nTable says: " (seq distribution))))
+			   (throw (Exception. (str "Undiscretized Value for " concept-name
+						   "/" state " is NaN: " undiscretized-val
+						   ".\nTable says: " (seq distribution)
+						   "\nEvidence was: " source-features)))
 			   (Double/isNaN prob)
-			   (throw (Exception. (str "Probability Value for" concept-name
-						   "/" state "is NaN:" prob
-						   ".\nTable says: " (seq distribution)))))
+			   (throw (Exception. (str "Probability Value for " concept-name
+						   "/" state " is NaN: " prob
+						   ".\nTable says: " (seq distribution)
+						   "\nEvidence was: " source-features))))
 		     (* undiscretized-val prob)))
 		 distribution)))
 
@@ -41,7 +43,7 @@
   [benefit-source-name source-inference-engine source-features]
   (let [inference-results (aries/run-inference (aries/set-evidence source-inference-engine source-features))
 	source-distribution (aries/get-marginals-table inference-results benefit-source-name)]
-    (expected-value benefit-source-name source-distribution)))
+    (expected-value benefit-source-name source-distribution source-features)))
 
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
