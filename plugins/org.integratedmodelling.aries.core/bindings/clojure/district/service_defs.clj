@@ -23,7 +23,15 @@
 (defn expected-value
   [concept-name distribution]
   (reduce + (map (fn [[state prob]]
-		   (* ((undiscretization-table concept-name) state) prob))
+		   (let [transformer (undiscretization-table concept-name)
+			 undiscretized-val (transformer state)]
+		     (cond (Double/isNaN undiscretized-val)
+			   (throw (Exception. (str "Undiscretized Value for" concept-name
+						   "/" state "is NaN:" undiscretized-val)))
+			   (Double/isNaN prob)
+			   (throw (Exception. (str "Probability Value for" concept-name
+						   "/" state "is NaN:" undiscretized-val))))
+		     (* undiscretized-val prob)))
 		 distribution)))
 
 (defn source-val

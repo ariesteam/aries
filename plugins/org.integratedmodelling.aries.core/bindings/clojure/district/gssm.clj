@@ -68,11 +68,12 @@
   [observation-states]
   (maphash identity
 	   (fn [vals]
-	     (let [distinct-vals (distinct vals)]
-	       (if (<= (count distinct-vals) 10)
+	     (let [distinct-vals (distinct vals)
+		   num-distinct (count distinct-vals)]
+	       (if (<= num-distinct 10)
 		 (for [val distinct-vals]
 		   [val (count (filter #(= % val) vals))])
-		 "Many distinct values...")))
+		 (str num-distinct "distinct values..."))))
 	   observation-states))
 
 (defmethod make-location-map true
@@ -86,21 +87,23 @@
 	sink-states             (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states sink-observation))]
     (do
-      (println "Rows: " rows)
-      (println "Cols: " cols)
-      (println "Benefit-Source-Name: " benefit-source-name)
-      (println "Source-Inference-Engine: " source-inference-engine)
-      (println "Source-States: " (count-distinct-states source-states))
-      (println "Sink-States: " (count-distinct-states sink-states))
-      (seq2map (for [i (range rows) j (range cols)]
-		 (let [feature-idx (+ (* i cols) j)]
-		   (make-location [i j]
-				  (get-neighbors [i j] rows cols)
-				  (extract-features source-states feature-idx)
-				  (extract-features sink-states feature-idx)
-				  benefit-source-name
-				  source-inference-engine)))
-	       (fn [location] [(:id location) location])))))
+      (let [location-map
+	    (seq2map (for [i (range rows) j (range cols)]
+		       (let [feature-idx (+ (* i cols) j)]
+			 (make-location [i j]
+					(get-neighbors [i j] rows cols)
+					(extract-features source-states feature-idx)
+					(extract-features sink-states feature-idx)
+					benefit-source-name
+					source-inference-engine)))
+		     (fn [location] [(:id location) location]))]
+	(println "Rows: " rows)
+	(println "Cols: " cols)
+	(println "Benefit-Source-Name: " benefit-source-name)
+	(println "Source-Inference-Engine: " source-inference-engine)
+	(println "Source-States: " (count-distinct-states source-states))
+	(println "Sink-States: " (count-distinct-states sink-states))
+	location-map))))
 
 (defmethod make-location-map false
   [benefit-source source-observation sink-observation]
