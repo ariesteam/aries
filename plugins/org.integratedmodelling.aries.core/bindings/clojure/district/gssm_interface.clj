@@ -78,31 +78,30 @@
 	    (:out flows))))
 
 (def property-lookup-table
-  {1  :id,
-   2  #(@(:sunk %)),
-   3  #(@(:used %)),
-   4  #(@(:consumed %)),
-   5  #(count @(:carrier-bin %)),
-   6  :source,
-   7  #(:sink (force (:flows %))),
-   8  #(:use (force (:flows %))),
-   9  #(:consume (force (:flows %))),
-   10 #(reduce + (:out (force (:flows %))))})
+  {1 #(deref (:sunk %)),
+   2 #(deref (:used %)),
+   3 #(deref (:consumed %)),
+   4 #(count @(:carrier-bin %)),
+   5 :source,
+   6 #(:sink (force (:flows %))),
+   7 #(:use (force (:flows %))),
+   8 #(:consume (force (:flows %))),
+   9 #(reduce + (:out (force (:flows %))))})
 
 (defn select-property
   "Prompts the user with a menu of choices and returns the number
    corresponding to their selection."
   []
   (printf "%nProperty Menu:%n")
-  (let [prompts ["ID" "Sunk" "Used" "Consumed" "Carriers Encountered"
-		 "Source-Val" "Sink-Prob" "Use-Prob" "Consume-Prob" "Out-Prob"]]
+  (let [prompts ["Sunk" "Used" "Consumed" "Carriers Encountered" "Source-Val"
+		 "Sink-Prob" "Use-Prob" "Consume-Prob" "Out-Prob"]]
     (dotimes [i (count prompts)]
 	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
   (flush)
   (property-lookup-table (read)))
 
-(defn get-property-coord-map
+(defn get-property-coord-map-old
   [property-extractor locations]
   (println "Property-Extractor: " property-extractor)
   (seq2map locations
@@ -113,7 +112,7 @@
 	       (println "Property:" prop)
 	       [id prop]))))
 
-(defn get-property-coord-map-old
+(defn get-property-coord-map
   [property-extractor locations]
   (seq2map locations #(vector (:id %) (property-extractor %))))
 
