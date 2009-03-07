@@ -127,7 +127,7 @@
 
 (defn get-feature-coord-map
   [feature-name locations]
-  (seq2map locations #(vector (:id %) (feature-name (:features %)))))
+  (seq2map locations #(vector (:id %) ((:features %) feature-name))))
 
 (defn view-feature-map
   "Prints the chosen feature value for every location as a matrix."
