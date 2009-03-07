@@ -120,10 +120,10 @@
   (printf "%nFeature Menu:%n")
   (let [prompts (keys (:features sample-location))]
     (dotimes [i (count prompts)]
-	(printf " %d) %s%n" (inc i) (prompts i))))
-  (print "Choice: ")
-  (flush)
-  (nth prompts (dec (read))))
+	(printf " %d) %s%n" (inc i) (prompts i)))
+    (print "Choice: ")
+    (flush)
+    (nth prompts (dec (read)))))
 
 (defn get-feature-coord-map
   [feature-name locations]
