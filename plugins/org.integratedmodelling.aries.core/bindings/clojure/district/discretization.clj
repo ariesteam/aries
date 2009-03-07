@@ -26,7 +26,7 @@
 
 (def discretization-table
   {"WaterBody"          {0.0 "NoWater", 1.0 "Lake", 2.0 "Ocean"}
-   "Mountain"           #(get-range-name [2000.0 2750.0] ["NoMountain" "SmallMountain" "LargeMountain"] %)
+   "Mountain"           #(get-range-name [2000.0 2750.0 50000.0] ["NoMountain" "SmallMountain" "LargeMountain" "NoMountain"] %)
    "PresenceOfHousing"  {0.0 "No", 1.0 "Yes"}
    "HousingValue"       #(get-range-name [100000.0 200000.0 400000.0 1000000.0] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)
    "Highways"           {0.0 "No", 1.0 "Yes"}
