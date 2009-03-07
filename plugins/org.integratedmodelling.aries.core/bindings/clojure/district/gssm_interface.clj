@@ -135,7 +135,7 @@
   (newline)
   (print-matrix
    (coord-map-to-matrix (get-feature-coord-map (select-feature (first locations)) locations) rows cols)
-   "%7.2f "))
+   "%5.0f "))
 
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
