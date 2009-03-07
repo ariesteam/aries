@@ -222,16 +222,17 @@
 
 (defmethod distribute-flow! "ClimateStability"
   [_ location-map _]
-  (let [locations (vals location-map)
-	total-sequestration (reduce + (map #(force (:source %)) locations))
-	use-dist (map #(:consume (force (:flows %))) locations)
-	total-use (let [use (reduce + use-dist)] (if (== use 0.0) 1.0 use))
-	fractional-use-dist (map #(/ % total-use) use-dist)]
-    (dosync
-     (map (fn [loc fractional-use]
-	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
-	  locations fractional-use-dist))
-    location-map))
+;  (let [locations (vals location-map)
+;	total-sequestration (reduce + (map #(force (:source %)) locations))
+;	use-dist (map #(:consume (force (:flows %))) locations)
+;	total-use (let [use (reduce + use-dist)] (if (== use 0.0) 1.0 use))
+;	fractional-use-dist (map #(/ % total-use) use-dist)]
+;    (dosync
+;     (map (fn [loc fractional-use]
+;	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
+;	  locations fractional-use-dist))
+;    location-map))
+    location-map)
 
 (defmethod distribute-flow! "FloodPrevention"
   [_ location-map trans-threshold]
