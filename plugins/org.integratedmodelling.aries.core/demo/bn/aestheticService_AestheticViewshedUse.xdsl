@@ -22,7 +22,7 @@
 			<state id="None" />
 			<probabilities>0.3333333333333334 0.3333333333333333 0.3333333333333333</probabilities>
 		</cpt>
-		<cpt id="HousingValues">
+		<cpt id="HousingValue">
 			<state id="VeryHigh" />
 			<state id="High" />
 			<state id="Moderate" />
@@ -48,13 +48,13 @@
 			<state id="DestructiveUse" />
 			<state id="NoUse" />
 			<state id="Sink" />
-			<parents>Obstructions HousingValues PresenceOfHousing VisualBlight</parents>
-			<probabilities>0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0</probabilities>
+			<parents>Obstructions VisualBlight</parents>
+			<probabilities>0 0 1 0 0 1 0 0 1 0 0 1 0 0.1 0.9 0 0.33 0.67 0 0.67 0.33 0 0.8 0.2 0 0.25 0.75 0 0.5 0.5 0 0.75 0.25 0 1 0</probabilities>
 		</cpt>
-		<cpt id="NondestructiveUse">
-			<state id="NondestructiveUse" />
-			<state id="NoUse" />
-			<parents>Obstructions HousingValues PresenceOfHousing VisualBlight</parents>
+		<cpt id="NonDestructiveUse">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Obstructions HousingValue PresenceOfHousing VisualBlight</parents>
 			<probabilities>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.05 0.95 0.2 0.8 0.25 0.75 0.4 0.6 0 1 0 1 0 1 0 1 0.05 0.95 0.15 0.85 0.2 0.8 0.35 0.65 0 1 0 1 0 1 0 1 0.03 0.97 0.07000000000000001 0.9300000000000001 0.15 0.85 0.2 0.8 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.15 0.85 0.25 0.75 0.5 0.5 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.2 0.8 0.4 0.6 0.5 0.5 0 1 0 1 0 1 0 1 0.05 0.95 0.1 0.9 0.2 0.8 0.25 0.75 0 1 0 1 0 1 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -108,8 +108,8 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>142 226 278 256</position>
 			</node>
-			<node id="HousingValues">
-				<name>HousingValues</name>
+			<node id="HousingValue">
+				<name>HousingValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -123,8 +123,8 @@
 				<position>455 227 547 256</position>
 				<comment>Leak is set here to account for blight we don&apos;t catch through highways, clearcuts, or commercial/industrial/transportation.</comment>
 			</node>
-			<node id="NondestructiveUse">
-				<name>NondestructiveUse</name>
+			<node id="NonDestructiveUse">
+				<name>NonDestructiveUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

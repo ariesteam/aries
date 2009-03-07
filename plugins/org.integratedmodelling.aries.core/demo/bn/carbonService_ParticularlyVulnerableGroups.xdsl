@@ -8,13 +8,13 @@
 			<probabilities>0 0 1</probabilities>
 		</cpt>
 		<cpt id="MountainGlaciers">
-			<state id="Present" />
-			<state id="Absent" />
+			<state id="Yes" />
+			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="HydroelectricDams">
-			<state id="Present" />
-			<state id="Absent" />
+			<state id="Yes" />
+			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="PopulationDensity">
@@ -23,14 +23,15 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="VeryLow" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<state id="None" />
+			<probabilities>0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
 		</cpt>
 		<cpt id="SnowmeltDependentPopulations">
 			<state id="High" />
 			<state id="Moderate" />
 			<state id="None" />
 			<parents>MountainGlaciers HydroelectricDams PopulationDensity</parents>
-			<probabilities>1 0 0 1 0 0 0.8 0.2 0 0.6 0.4 0 0.4 0.6 0 1 0 0 1 0 0 0.7 0.2 0.1 0.5 0.4 0.1 0.3 0.6 0.1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+			<probabilities>1 0 0 1 0 0 0.8 0.2 0 0.6 0.4 0 0.4 0.6 0 0.3333333333333333 0.3333333333333333 0.3333333333333333 1 0 0 1 0 0 0.7000000000000001 0.2000000000000001 0.1 0.5 0.4 0.1 0.3 0.6000000000000001 0.1 0.3333333333333333 0.3333333333333333 0.3333333333333333 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0.3333333333333333 0.3333333333333333 0.3333333333333333 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0.3333333333333333 0.3333333333333333 0.3333333333333333</probabilities>
 		</cpt>
 		<cpt id="CoastalFloodZone">
 			<state id="Yes" />
@@ -38,17 +39,16 @@
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="CoastalProperty">
-			<state id="HighDensity" />
-			<state id="ModerateDensity" />
-			<state id="LowDensity" />
-			<probabilities>0.3333333333333334 0.3333333333333334 0.3333333333333333</probabilities>
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="CoastalDwellers">
 			<state id="High" />
 			<state id="Moderate" />
 			<state id="None" />
 			<parents>CoastalFloodZone CoastalProperty</parents>
-			<probabilities>0.9 0.1 0 0.75 0.15 0.1 0.6 0.3 0.1 0 0 1 0 0 1 0 0 1</probabilities>
+			<probabilities>0.9 0.1 0 0.75 0.15 0.1 0 0 1 0 0 1</probabilities>
 		</cpt>
 		<cpt id="AridRegionDwellers">
 			<state id="High" />
@@ -69,8 +69,8 @@
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="FireProneHousing">
-			<state id="Present" />
-			<state id="Absent" />
+			<state id="Yes" />
+			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="ResidentsAtRiskOfForestFires">
@@ -119,14 +119,13 @@
 			<probabilities>0 0 1</probabilities>
 		</cpt>
 		<cpt id="LandslideRiskZone">
-			<state id="HighRisk" />
-			<state id="ModerateRisk" />
+			<state id="AtRisk" />
 			<state id="NoRisk" />
-			<probabilities>0.3333333333333334 0.3333333333333334 0.3333333333333333</probabilities>
+			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="DownslopeHousing">
-			<state id="Present" />
-			<state id="Absent" />
+			<state id="Yes" />
+			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="MountainZoneResidents">
@@ -134,7 +133,7 @@
 			<state id="Moderate" />
 			<state id="None" />
 			<parents>LandslideRiskZone Rainfall DownslopeHousing</parents>
-			<probabilities>0.8 0.2 0 0 0 1 0.8 0.2 0 0 0 1 0.7 0.25 0.05 0 0 1 0.6 0.3 0.1 0 0 1 0.5 0.3 0.2 0 0 1 0.4 0.4 0.2 0 0 1 0.4 0.4 0.2 0 0 1 0.3 0.4 0.3 0 0 1 0.2 0.4 0.4 0 0 1 0.2 0.4 0.4 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+			<probabilities>0.4 0.4 0.2 0 0 1 0.4 0.4 0.2 0 0 1 0.3 0.4 0.3 0 0 1 0.2 0.4 0.4 0 0 1 0.2 0.4 0.4 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
 		</cpt>
 		<noisymax id="ParticularlyVulnerableGroups">
 			<state id="DestructiveUse" />
@@ -144,9 +143,9 @@
 			<strengths>0 1 2 0 1 2 0 1 2 0 1 2 0 1 2 0 1 2 0 1 2 0 1 2 0 1 2</strengths>
 			<parameters>0.5 0 0.5 0.25 0 0.75 0 0 1 0.5 0 0.5 0.25 0 0.75 0 0 1 0.9 0 0.1 0.75 0 0.25 0 0 1 0.9 0 0.1 0.75 0 0.25 0 0 1 0.5 0 0.5 0.25 0 0.75 0 0 1 0.75 0 0.25 0.5 0 0.5 0 0 1 0.75 0 0.25 0.5 0 0.5 0 0 1 0.75 0 0.25 0.5 0 0.5 0 0 1 0.75 0 0.25 0.5 0 0.5 0 0 1 0.05000000000000004 0 0.95</parameters>
 		</noisymax>
-		<cpt id="NondestructiveUse">
-			<state id="NondestrucitveUse" />
-			<state id="NoUse" />
+		<cpt id="NonDestructiveUse">
+			<state id="Yes" />
+			<state id="No" />
 			<probabilities>0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -330,8 +329,8 @@
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>828 11 1023 81</position>
 			</textbox>
-			<node id="NondestructiveUse">
-				<name>NondestructiveUse</name>
+			<node id="NonDestructiveUse">
+				<name>NonDestructiveUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

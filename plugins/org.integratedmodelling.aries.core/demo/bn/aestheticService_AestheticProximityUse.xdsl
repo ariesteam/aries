@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="OpenSpaceSource">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
-		</cpt>
 		<cpt id="UrbanProximity">
 			<state id="Urban" />
 			<state id="Suburban" />
@@ -36,14 +29,14 @@
 			<state id="DestructiveUse" />
 			<state id="NoUse" />
 			<state id="Sink" />
-			<parents>OpenSpaceSource UrbanProximity HousingValue PresenceOfHousing Highways</parents>
-			<probabilities>0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0 0 0.1 0.9 0 1 0</probabilities>
+			<parents>Highways</parents>
+			<probabilities>0 0.1 0.9 0 1 0</probabilities>
 		</cpt>
-		<cpt id="NondestructiveUse">
-			<state id="NondestructiveUse" />
-			<state id="NoUse" />
-			<parents>OpenSpaceSource UrbanProximity HousingValue PresenceOfHousing Highways</parents>
-			<probabilities>0.1 0.9 0.9 0.1 0 1 0 1 0.1 0.9 0.9 0.1 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.1 0.9 0.6 0.4 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0.05 0.95 0.3 0.7 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0.1 0.9 0.6 0.4 0 1 0 1 0.1 0.9 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0.05 0.95 0.3 0.7 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0 1 0.3 0.7 0 1 0 1 0 1 0.2 0.8 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0 1 0.5 0.5 0 1 0 1 0 1 0.4 0.6 0 1 0 1 0 1 0.3 0.7 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0 1 0.4 0.6 0 1 0 1 0 1 0.3 0.7 0 1 0 1 0 1 0.2 0.8 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0 1 0.3 0.7 0 1 0 1 0 1 0.2 0.8 0 1 0 1 0 1 0.1 0.9 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</probabilities>
+		<cpt id="NonDestructiveUse">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>UrbanProximity HousingValue PresenceOfHousing Highways</parents>
+			<probabilities>0.1 0.9 0.9 0.1 0 1 0 1 0.1 0.9 0.9 0.1 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.1 0.9 0.6 0.4 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.8 0.2 0 1 0 1 0.1 0.9 0.7 0.3 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.6 0.4 0 1 0 1 0.05 0.95 0.5 0.5 0 1 0 1 0.05 0.95 0.4 0.6 0 1 0 1 0.05 0.95 0.3 0.7 0 1 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -53,19 +46,12 @@
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>160 21 363 35</position>
 			</textbox>
-			<node id="OpenSpaceSource">
-				<name>OpenSpaceSource</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>199 165 336 197</position>
-			</node>
 			<node id="UrbanProximity">
 				<name>UrbanProximity</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>356 166 456 196</position>
+				<position>356 163 456 193</position>
 			</node>
 			<node id="HousingValue">
 				<name>HousingValue</name>
@@ -79,14 +65,14 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>594 161 715 192</position>
+				<position>598 164 719 195</position>
 			</node>
 			<node id="AestheticProximityUse">
 				<name>AestheticProximityUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>328 70 519 97</position>
+				<position>645 74 836 101</position>
 			</node>
 			<node id="Highways">
 				<name>Highways</name>
@@ -95,12 +81,12 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>740 159 823 190</position>
 			</node>
-			<node id="NondestructiveUse">
-				<name>NondestructiveUse</name>
+			<node id="NonDestructiveUse">
+				<name>NonDestructiveUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>543 71 699 98</position>
+				<position>465 76 621 103</position>
 			</node>
 		</genie>
 	</extensions>

@@ -2,10 +2,10 @@
 <smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Area">
-			<state id="VLarge" />
+			<state id="VeryLarge" />
 			<state id="Large" />
 			<state id="Small" />
-			<state id="VSmall" />
+			<state id="VerySmall" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="WaterQuality">
@@ -53,7 +53,7 @@
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
-		<cpt id="Lakefront">
+		<cpt id="LakeFront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
@@ -68,12 +68,12 @@
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
-		<cpt id="Forests">
+		<cpt id="Forest">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
-		<cpt id="Riverfront">
+		<cpt id="RiverFront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
@@ -88,7 +88,7 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="None" />
-			<parents>Farm Park Cemetery GolfCourse Beach Lakefront Riverfront EmergentWetland Forests WoodyWetland</parents>
+			<parents>Farm Park Cemetery GolfCourse Beach LakeFront RiverFront EmergentWetland Forest WoodyWetland</parents>
 			<strengths>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</strengths>
 			<parameters>0.09999999999999998 0.2999999999999999 0.6 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.2 0.5 0.3 0 0 0 0 1 0.3 0.4 0.3 0 0 0 0 1 0.7 0.2 0.1 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0 0 0 1</parameters>
 			<property id="ResourceType">ResourceType=ManagedOpenSpace+NaturalEcosystems</property>
@@ -174,8 +174,8 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>699 209 802 242</position>
 			</node>
-			<node id="Forests">
-				<name>Forests</name>
+			<node id="Forest">
+				<name>Forest</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -209,15 +209,15 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>606 340 674 382</position>
 			</node>
-			<node id="Lakefront">
-				<name>Lakefront</name>
+			<node id="LakeFront">
+				<name>LakeFront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>683 344 744 382</position>
 			</node>
-			<node id="Riverfront">
-				<name>Riverfront</name>
+			<node id="RiverFront">
+				<name>RiverFront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

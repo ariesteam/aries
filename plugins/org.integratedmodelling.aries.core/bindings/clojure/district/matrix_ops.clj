@@ -95,8 +95,8 @@
   ([matrix]
      (print-matrix matrix "%3s "))
   ([matrix format-string]
-     (doseq [row (reverse (seq matrix))]
-       (doseq [elt (reverse (seq row))]
+     (doseq [row (seq matrix)]
+       (doseq [elt (seq row)]
          (printf format-string elt))
        (newline))))
 

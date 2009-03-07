@@ -33,18 +33,30 @@
 			region-of-interest)
 		region-of-interest))
 
+(defn select-region-of-interest-by-service
+	""
+	[service-id]
+	(tl/lit 'geospace:SpatialRecord
+		(cond (= service-id 'aestheticService:SensoryEnjoyment)
+					"POLYGON((-122.420446 47.464349, -121.759593 47.464349, -121.759593 46.85382, -122.420446 46.85382, -122.420446 47.464349))"
+					(= service-id 'aestheticService:ProximityToBeauty)
+					"POLYGON((-122.276913 47.421371, -122.202813 47.421371, -122.202813 47.373763, -122.276913 47.373763, -122.276913 47.421371))"
+					(= service-id 'carbonService:ClimateStability)
+					"POLYGON((-122.535334 47.76684, -121.409633 47.76684, -121.409633 47.110871, -122.535334 47.110871, -122.535334 47.76684))")))
+
 (defn run-gssm-demo
 	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
 	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
 	resolution on the longest dimension."
 	[benefit-source benefit-sink max-resolution transition-threshold]
-	(let [benf-source (tl/conc benefit-source)
-	      benf-sink   (tl/conc benefit-sink)
-	      source-data (get-demo-data-for-observable benf-source	   
-							(aries/select-region-of-interest) 
+	(let [benf-source  (tl/conc benefit-source)
+	      benf-sink    (tl/conc benefit-sink)
+	      study-region (select-region-of-interest-by-service benefit-source)
+	      source-data (get-demo-data-for-observable benf-source
+							study-region
 							max-resolution)
 	      sink-data   (get-demo-data-for-observable benf-sink	   
-							(aries/select-region-of-interest) 
+							study-region
 							max-resolution)]
 	  (district.gssm-interface/gssm-interface benf-source benf-sink
 						  source-data sink-data
