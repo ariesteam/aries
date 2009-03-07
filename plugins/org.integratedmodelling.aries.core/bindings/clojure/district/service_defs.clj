@@ -45,31 +45,17 @@
 	source-distribution (aries/get-marginals-table inference-results benefit-source-name)]
     (expected-value benefit-source-name source-distribution source-features)))
 
-(defmulti
-  #^{:doc "Service-specific flow distribution function."}
-  distribute-flow (fn [benefit-sink-name sink-features neighbor-sink-features flow-amount]
-		    benefit-sink-name))
-
-(defmethod distribute-flow :default [benefit-sink-name sink-features neighbor-sink-features flow-amount]
-  (let [num-neighbors (count neighbor-sink-features)
-	amt (/ flow-amount num-neighbors)]
-    (replicate num-neighbors amt)))
-
-(defmethod distribute-flow :default-old [benefit-sink-name _ _ _]
-  (throw (Exception. (str "Service " benefit-sink-name " is unrecognized."))))
-
 (defstruct flows :use :sink :consume :out)
 
 (defn compute-flows
   "Returns a flows map specifying the distribution of a service
    carrier's weight between being used, sunk, consumed, or propagated
    on to neighboring locations."
-  [benefit-sink-name sink-inference-engine sink-features neighbor-sink-features]
+  [benefit-sink-name sink-inference-engine sink-features]
   (let [inference-results (aries/run-inference (aries/set-evidence sink-inference-engine sink-features))
 	sink-distribution (aries/get-marginals-table inference-results benefit-sink-name)]
     (struct-map flows
-      :use     (aries/get-marginals inference-results "NonDestructiveUse" "Yes")
-      :sink    (get sink-distribution "Sink")
-      :consume (get sink-distribution "DestructiveUse")
-      :out     (distribute-flow benefit-sink-name sink-features neighbor-sink-features
-				(get sink-distribution "NoUse")))))
+      :use      (aries/get-marginals inference-results "NonDestructiveUse" "Yes")
+      :sink     (get sink-distribution "Sink")
+      :consume  (get sink-distribution "DestructiveUse")
+      :out      (get sink-distribution "NoUse"))))

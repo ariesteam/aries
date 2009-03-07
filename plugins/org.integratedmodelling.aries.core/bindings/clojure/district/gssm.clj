@@ -24,17 +24,18 @@
 	[district.discretization :only (discretization-table)]))
 
 (defstruct location
-  :id :neighbors :source-features :sink-features
+  :id :neighbors :source-features :sink-features :features
   :sunk :used :consumed :carrier-bin :source :flows)
 
 (defn make-location
   "Location constructor"
-  [id neighbors source-features sink-features benefit-source-name source-inference-engine]
+  [id neighbors source-features sink-features features benefit-source-name source-inference-engine]
   (struct-map location
     :id              id
     :neighbors       neighbors
     :source-features source-features
     :sink-features   sink-features
+    :features        features
     :sunk            (ref 0.0)
     :used            (ref 0.0)
     :consumed        (ref 0.0)
@@ -43,7 +44,7 @@
 				 source-inference-engine
 				 source-features)))
 
-(defn- discretize-value
+(defn discretize-value
   "Transforms the value to the string name of its corresponding
    discretized value, using the particular concept's transformation
    procedure in the global discretization-table."
@@ -51,12 +52,17 @@
   (let [transformer (discretization-table concept-name)]
     (or (transformer value) (transformer 0.0))))
 
-(defn- extract-features
+(defn extract-features
   "Returns a map of feature names to the observed values at i j."
   [observation-states idx]
   (seq2map (seq observation-states)
 	   (fn [[feature-name values]]
 	     [feature-name (discretize-value feature-name (nth values idx))])))
+
+(defn extract-features-undiscretized
+  "Returns a map of feature names to the observed values at i j."
+  [observation-states idx]
+  (maphash identity #(nth % idx) observation-states))
 
 (defmulti
   #^{:doc "Returns a map of ids to location objects, one per location in observation."}
@@ -64,7 +70,7 @@
 		      (and (geospace/grid-extent? source-observation)
 			   (geospace/grid-extent? sink-observation))))
 
-(defn- count-distinct-states
+(defn count-distinct-states
   [observation-states]
   (maphash identity
 	   (fn [vals]
@@ -94,13 +100,15 @@
 					(get-neighbors [i j] rows cols)
 					(extract-features source-states feature-idx)
 					(extract-features sink-states feature-idx)
+					(extract-features-undiscretized
+					 (merge source-states sink-states)
+					 feature-idx)
 					benefit-source-name
 					source-inference-engine)))
 		     (fn [location] [(:id location) location]))]
 	(println "Rows: " rows)
 	(println "Cols: " cols)
 	(println "Benefit-Source-Name: " benefit-source-name)
-	(println "Source-Inference-Engine: " source-inference-engine)
 	(println "Source-States: " (count-distinct-states source-states))
 	(println "Sink-States: " (count-distinct-states sink-states))
 	location-map))))
@@ -108,17 +116,6 @@
 (defmethod make-location-map false
   [benefit-source source-observation sink-observation]
   {})
-;;;  (let [districts (corescience/get-districts observation)]
-;;;    (seq2map (map (fn [district id]
-;;;		    (make-location id
-;;;				   (corescience/get-poly-neighbors district)
-;;;				   (corescience/get-district-features district)
-;;;				   benefit))
-;;;		  districts (range (count districts)))
-;;;	     (fn [location] [(:id location) location]))))
-;;; FIXME: affects: id, neighbors, features, source of location objects
-;;; These corescience/* functions are not implemented.
-;;; Location-map keys may not work with the return value of get-poly-neighbors.
 
 (defn add-flows
   "Updates location-map such that each location's flows field will
@@ -130,22 +127,7 @@
 	     #(assoc % :flows
 		     (compute-flows benefit-sink-name
 				    sink-inference-engine
-				    (:sink-features %)
-				    (map (comp :sink-features location-map) (:neighbors %))))
-	     location-map)))
-
-(defn add-flows-old
-  "Updates location-map such that each location's flows field will
-   contain a delayed evaluation of its carrier flow probabilities."
-  [benefit-sink location-map]
-  (let [benefit-sink-name     (.getLocalName benefit-sink)
-	sink-inference-engine (aries/make-bn-inference benefit-sink)]
-    (maphash identity
-	     #(assoc % :flows
-		     (delay (compute-flows benefit-sink-name
-					   sink-inference-engine
-					   (:sink-features %)
-					   (map (comp :sink-features location-map) (:neighbors %)))))
+				    (:sink-features %)))
 	     location-map)))
 
 (defstruct service-carrier :weight :route)
@@ -155,7 +137,14 @@
   [weight route]
   (struct-map service-carrier :weight weight :route route))
 
-(defn propagate-carrier-tailrec
+(defn get-outflow-distribution
+  "FIXME: Memoize this function!"
+  [location neighbors flow-amount]
+  (let [num-neighbors (count neighbors)
+	amt (/ flow-amount num-neighbors)]
+    (replicate num-neighbors amt)))
+
+(defn propagate-carrier-tailrec!
   "A service carrier distributes its weight between being sunk or
    consumed by the location or flowing on to its neighbors based on
    location-specific flow probabilities.  It then stores itself in the
@@ -170,8 +159,9 @@
 	  sunk          (* weight (:sink flows))
 	  used          (* weight (:use flows))
 	  consumed      (* weight (:consume flows))
+	  out           (* weight (:out flows))
 	  neighbors     (map location-map (:neighbors loc))
-	  trans-weights (map #(* weight %) (:out flows))
+	  trans-weights (get-outflow-distribution loc neighbors out)
 	  trans-pairs   (lazy-cat (filter #(> (val %) trans-threshold)
 					  (zipmap neighbors trans-weights)) open-list)]
       (dosync
@@ -186,7 +176,7 @@
 				       (conj (:route carrier) next-loc))
 		 (rest trans-pairs)))))))
 
-(defn propagate-carrier
+(defn propagate-carrier!
   "A service carrier distributes its weight between being sunk or
    consumed by the location or flowing on to its neighbors based on
    location-specific flow probabilities.  It then stores itself in the
@@ -198,8 +188,9 @@
 	sunk          (* weight (:sink flows))
 	used          (* weight (:use flows))
 	consumed      (* weight (:consume flows))
+	out           (* weight (:out flows))
 	neighbors     (map location-map (:neighbors loc))
-	trans-weights (map #(* weight %) (:out flows))
+	trans-weights (get-outflow-distribution loc neighbors out)
 	trans-pairs   (filter #(> (val %) trans-threshold)
 			      (zipmap neighbors trans-weights))]
     (dosync
@@ -214,6 +205,57 @@
 						 (conj (:route carrier) next-loc))
 			   trans-threshold))))
 
+(defmulti
+  #^{:doc "Service-specific flow distribution function."}
+  distribute-flow!
+  (fn [benefit-source-name location-map trans-threshold] benefit-source-name))
+
+(defmethod distribute-flow! :default
+  [benefit-source-name _ _]
+  (throw (Exception. (str "Service " benefit-source-name " is unrecognized."))))
+
+(defmethod distribute-flow! "SensoryEnjoyment"
+  [_ location-map trans-threshold]
+;  [benefit-sink-name sink-features neighbor-sink-features flow-amount]
+;  (let [num-neighbors (count neighbor-sink-features)
+;	amt (/ flow-amount num-neighbors)]
+;    (replicate num-neighbors amt)))
+  location-map)
+
+(defmethod distribute-flow! "ProximityToBeauty"
+  [_ location-map trans-threshold]
+;  [benefit-sink-name features neighbor-features flow-amount]
+;  (let [elevs (map :elevation neighbor-features)
+;	min-elev (let [e (min elevs)] (if (<= e (:elevation features)) e 0))
+;	num-paths (count (filter #(== min-elev %) elevs))
+;	path-weight (if (> num-paths 0) (/ 0.8 num-paths) 0.0)]
+;    (map #(if (== min-elev %) path-weight 0.0) elevs)))
+  location-map)
+
+(defmethod distribute-flow! "ClimateStability"
+  [_ location-map trans-threshold]
+;  [benefit-sink-name features neighbor-features flow-amount]
+;  (let [num-neighbors (count neighbor-features)
+;	outval (/ 0.8 num-neighbors)]
+;    (replicate num-neighbors outval)))
+  location-map)
+
+(defmethod distribute-flow! "FloodPrevention"
+  [_ location-map trans-threshold]
+  (let [src-locations    (filter #(> (:source %) 0.0) (vals location-map))
+	num-locations    (count src-locations)
+	completedThreads (atom 0)]
+    (doseq [loc src-locations]
+	(.start (Thread. (fn []
+			   (propagate-carrier-tailrec! location-map
+						       loc
+						       (make-service-carrier (:source loc) [loc])
+						       trans-threshold)
+			   (swap! completedThreads inc)))))
+    (while (< @completedThreads num-locations)
+	   (Thread/sleep 500))
+    location-map))
+
 (defn simulate-service-flows
   "Creates a network of interconnected locations, and starts a
    service-carrier propagating in every location whose source value is
@@ -225,34 +267,9 @@
 				(make-location-map benefit-source
 						   source-observation
 						   sink-observation))]
-    location-map))
+    (distribute-flow! (.getLocalName benefit-source) location-map trans-threshold)))
 
-(defn simulate-service-flows-old
-  "Creates a network of interconnected locations, and starts a
-   service-carrier propagating in every location whose source value is
-   greater than 0.  These carriers propagate child carriers through
-   the network which all update properties of the locations.  When the
-   simulation completes, the network of locations is returned."
-  [benefit-source benefit-sink source-observation sink-observation trans-threshold]
-  (let [location-map     (add-flows benefit-sink
-				    (make-location-map benefit-source
-						       source-observation
-						       sink-observation))
-	src-locations    (filter #(> (:source %) 0.0) (vals location-map))
-	num-locations    (count src-locations)
-	completedThreads (atom 0)]
-    (doseq [loc src-locations]
-	(.start (Thread. (fn []
-			   (propagate-carrier-tailrec location-map
-						      loc
-						      (make-service-carrier (:source loc) [loc])
-						      trans-threshold)
-			   (swap! completedThreads inc)))))
-    (while (< @completedThreads num-locations)
-	   (Thread/sleep 500))
-    location-map))
-
-(defn- add-anyway
+(defn add-anyway
   "Sums the non-nil argument values."
   [x y]
   (cond (nil? x) y

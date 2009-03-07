@@ -22,7 +22,7 @@
 	[district.utils :only (seq2map)]
 	[district.matrix-ops :only (print-matrix)]))
 
-(defn- coord-map-to-matrix
+(defn coord-map-to-matrix
   "Renders a map of {[i j] -> value} into a 2D matrix."
   [coord-map rows cols]
   (let [matrix (make-array Double/TYPE rows cols)]
@@ -83,10 +83,10 @@
    3 #(deref (:consumed %)),
    4 #(count @(:carrier-bin %)),
    5 :source,
-   6 #(:sink (force (:flows %))),
-   7 #(:use (force (:flows %))),
+   6 #(:sink    (force (:flows %))),
+   7 #(:use     (force (:flows %))),
    8 #(:consume (force (:flows %))),
-   9 #(reduce + (:out (force (:flows %))))})
+   9 #(:out     (force (:flows %)))})
 
 (defn select-property
   "Prompts the user with a menu of choices and returns the number
@@ -101,17 +101,6 @@
   (flush)
   (property-lookup-table (read)))
 
-(defn get-property-coord-map-old
-  [property-extractor locations]
-  (println "Property-Extractor: " property-extractor)
-  (seq2map locations
-	   (fn [loc]
-	     (let [id (:id loc)
-		   prop (property-extractor loc)]
-	       (println "ID:" id)
-	       (println "Property:" prop)
-	       [id prop]))))
-
 (defn get-property-coord-map
   [property-extractor locations]
   (seq2map locations #(vector (:id %) (property-extractor %))))
@@ -124,6 +113,30 @@
    (coord-map-to-matrix (get-property-coord-map (select-property) locations) rows cols)
    "%7.2f "))
 
+(defn select-feature
+  "Prompts the user with a menu of choices and returns the number
+   corresponding to their selection."
+  [sample-location]
+  (printf "%nFeature Menu:%n")
+  (let [prompts (keys (:features sample-location))]
+    (dotimes [i (count prompts)]
+	(printf " %d) %s%n" (inc i) (prompts i))))
+  (print "Choice: ")
+  (flush)
+  (nth prompts (dec (read))))
+
+(defn get-feature-coord-map
+  [feature-name locations]
+  (seq2map locations #(vector (:id %) (feature-name (:features %)))))
+
+(defn view-feature-map
+  "Prints the chosen feature value for every location as a matrix."
+  [locations rows cols]
+  (newline)
+  (print-matrix
+   (coord-map-to-matrix (get-feature-coord-map (select-feature (first locations)) locations) rows cols)
+   "%7.2f "))
+
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
    corresponding to their selection."
@@ -131,7 +144,7 @@
   (printf "%nAction Menu (0 quits):%n")
   (let [prompts ["View Provisionshed" "View Benefitshed"
 		 "View Location Properties" "View Property Map"
-		 "Count Locations"]]
+		 "View Feature Map" "Count Locations"]]
     (dotimes [i (count prompts)]
 	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
@@ -168,6 +181,7 @@
 	      (== choice 3) (view-location-properties
 			     (select-location locations rows cols))
 	      (== choice 4) (view-property-map locations rows cols)
-	      (== choice 5) (printf "%n%d%n" (count locations))
+	      (== choice 5) (view-feature-map locations rows cols)
+	      (== choice 6) (printf "%n%d%n" (count locations))
 	      :otherwise    (printf "%nInvalid selection.%n"))
 	(recur (select-menu-action))))))
