@@ -137,14 +137,30 @@
   [weight route]
   (struct-map service-carrier :weight weight :route route))
 
-(defn get-outflow-distribution
-  "FIXME: Memoize this function!"
-  [location neighbors flow-amount]
-  (let [num-neighbors (count neighbors)
-	amt (/ flow-amount num-neighbors)]
-    (replicate num-neighbors amt)))
+(defn memoize-by-first-arg
+  [function]
+  (let [cache (ref {})]
+    (fn [& args]
+      (or (@cache (first args))
+          (let [result (apply function args)]
+            (dosync
+             (commute cache assoc (first args) result))
+            result)))))
 
-(defn propagate-carrier-tailrec!
+(def get-outflow-distribution
+  (memoize-by-first-arg (fn [location location-map]
+    (let [local-elev ((:features location) "Elevation")
+	  neighbors (map location-map (:neighbors location))
+	  neighbor-elevs (map #((:features %) "Elevation") neighbors)
+	  min-elev (min local-elev (min neighbor-elevs))
+	  num-downhill-paths (count (filter #(== min-elev %) neighbor-elevs))
+	  path-weight (if (> num-downhill-paths 0) (/ (:out (force (:flows location)))
+						      num-downhill-paths) 0.0)]
+      (filter #(> (val %) 0.0)
+	      (zipmap neighbors
+		      (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))
+
+(defn propagate-carrier!
   "A service carrier distributes its weight between being sunk or
    consumed by the location or flowing on to its neighbors based on
    location-specific flow probabilities.  It then stores itself in the
@@ -154,56 +170,28 @@
   (loop [loc location
 	 carrier root-carrier
 	 open-list ()]
-    (let [weight        (:weight carrier)
-	  flows         (force (:flows loc))
-	  sunk          (* weight (:sink flows))
-	  used          (* weight (:use flows))
-	  consumed      (* weight (:consume flows))
-	  out           (* weight (:out flows))
-	  neighbors     (map location-map (:neighbors loc))
-	  trans-weights (get-outflow-distribution loc neighbors out)
-	  trans-pairs   (lazy-cat (filter #(> (val %) trans-threshold)
-					  (zipmap neighbors trans-weights)) open-list)]
+    (let [weight      (:weight carrier)
+	  flows       (force (:flows loc))
+	  out-pairs   (seq2map (get-outflow-distribution loc location-map)
+			       (fn [[neighbor trans-prob]]
+				 [neighbor (make-service-carrier (* weight trans-prob)
+								 (conj (:route carrier) neighbor))]))
+	  trans-pairs (lazy-cat (filter (fn [loc carrier]
+					  (> (:weight carrier) trans-threshold)) out-pairs)
+				open-list)]
       (dosync
-       (alter (:sunk        loc) +    sunk)
-       (alter (:used        loc) +    used)
-       (alter (:consumed    loc) +    consumed)
-       (alter (:carrier-bin loc) conj carrier))
+       (commute (:sunk        loc) +    (* weight
+					   (if (empty? out-pairs)
+					     (+ (:sink flows) (:out flows))
+					     (:sink flows))))
+       (commute (:used        loc) +    (* weight (:use flows)))
+       (commute (:consumed    loc) +    (* weight (:consume flows)))
+       (commute (:carrier-bin loc) conj carrier))
       (when (seq trans-pairs)
-	(let [[next-loc trans-weight] (first trans-pairs)]
+	(let [[next-loc carrier] (first trans-pairs)]
 	  (recur next-loc
-		 (make-service-carrier trans-weight
-				       (conj (:route carrier) next-loc))
+		 carrier
 		 (rest trans-pairs)))))))
-
-(defn propagate-carrier!
-  "A service carrier distributes its weight between being sunk or
-   consumed by the location or flowing on to its neighbors based on
-   location-specific flow probabilities.  It then stores itself in the
-   location's carrier-bin and propagates service carriers to every
-   neighbor where (> (* weight trans-prob) trans-threshold)."
-  [location-map loc carrier trans-threshold]
-  (let [weight        (:weight carrier)
-	flows         (force (:flows loc))
-	sunk          (* weight (:sink flows))
-	used          (* weight (:use flows))
-	consumed      (* weight (:consume flows))
-	out           (* weight (:out flows))
-	neighbors     (map location-map (:neighbors loc))
-	trans-weights (get-outflow-distribution loc neighbors out)
-	trans-pairs   (filter #(> (val %) trans-threshold)
-			      (zipmap neighbors trans-weights))]
-    (dosync
-     (alter (:sunk        loc) +    sunk)
-     (alter (:used        loc) +    used)
-     (alter (:consumed    loc) +    consumed)
-     (alter (:carrier-bin loc) conj carrier))
-    (doseq [[next-loc trans-weight] trans-pairs]
-	(propagate-carrier location-map
-			   next-loc
-			   (make-service-carrier trans-weight
-						 (conj (:route carrier) next-loc))
-			   trans-threshold))))
 
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
@@ -242,15 +230,15 @@
 
 (defmethod distribute-flow! "FloodPrevention"
   [_ location-map trans-threshold]
-  (let [src-locations    (filter #(> (:source %) 0.0) (vals location-map))
+  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
 	num-locations    (count src-locations)
 	completedThreads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
-			   (propagate-carrier-tailrec! location-map
-						       loc
-						       (make-service-carrier (:source loc) [loc])
-						       trans-threshold)
+			   (propagate-carrier! location-map
+					       loc
+					       (make-service-carrier (force (:source loc)) [loc])
+					       trans-threshold)
 			   (swap! completedThreads inc)))))
     (while (< @completedThreads num-locations)
 	   (Thread/sleep 500))

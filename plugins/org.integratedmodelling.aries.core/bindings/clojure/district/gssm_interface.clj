@@ -71,7 +71,7 @@
 	    @(:used location)
 	    @(:consumed location)
 	    (count @(:carrier-bin location))
-	    (:source location)
+	    (force (:source location))
 	    (:sink flows)
 	    (:use flows)
 	    (:consume flows)
@@ -82,7 +82,7 @@
    2 #(deref (:used %)),
    3 #(deref (:consumed %)),
    4 #(count @(:carrier-bin %)),
-   5 :source,
+   5 #(force (:source %)),
    6 #(:sink    (force (:flows %))),
    7 #(:use     (force (:flows %))),
    8 #(:consume (force (:flows %))),
