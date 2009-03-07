@@ -40,9 +40,9 @@
     :used            (ref 0.0)
     :consumed        (ref 0.0)
     :carrier-bin     (ref ())
-    :source          (source-val benefit-source-name
-				 source-inference-engine
-				 source-features)))
+    :source          (delay (source-val benefit-source-name
+					source-inference-engine
+					source-features))))
 
 (defn discretize-value
   "Transforms the value to the string name of its corresponding
@@ -125,9 +125,9 @@
 	sink-inference-engine (aries/make-bn-inference benefit-sink)]
     (maphash identity
 	     #(assoc % :flows
-		     (compute-flows benefit-sink-name
-				    sink-inference-engine
-				    (:sink-features %)))
+		     (delay (compute-flows benefit-sink-name
+					   sink-inference-engine
+					   (:sink-features %))))
 	     location-map)))
 
 (defstruct service-carrier :weight :route)
@@ -221,12 +221,17 @@
   location-map)
 
 (defmethod distribute-flow! "ClimateStability"
-  [_ location-map trans-threshold]
-;  [benefit-sink-name features neighbor-features flow-amount]
-;  (let [num-neighbors (count neighbor-features)
-;	outval (/ 0.8 num-neighbors)]
-;    (replicate num-neighbors outval)))
-  location-map)
+  [_ location-map _]
+  (let [locations (vals location-map)
+	total-sequestration (reduce + (map #(force (:source %)) locations))
+	use-dist (map #(:consume (force (:flows %))) locations)
+	total-use (let [use (reduce + use-dist)] (if (== use 0.0) 1.0 use))
+	fractional-use-dist (map #(/ % total-use) use-dist)]
+    (dosync
+     (map (fn [loc fractional-use]
+	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
+	  locations fractional-use-dist))
+    location-map))
 
 (defmethod distribute-flow! "FloodPrevention"
   [_ location-map trans-threshold]
