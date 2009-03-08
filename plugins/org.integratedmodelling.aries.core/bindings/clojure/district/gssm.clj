@@ -212,27 +212,33 @@
 
 (defmethod distribute-flow! "ProximityToBeauty"
   [_ location-map trans-threshold]
-;  [benefit-sink-name features neighbor-features flow-amount]
-;  (let [elevs (map :elevation neighbor-features)
-;	min-elev (let [e (min elevs)] (if (<= e (:elevation features)) e 0))
-;	num-paths (count (filter #(== min-elev %) elevs))
-;	path-weight (if (> num-paths 0) (/ 0.8 num-paths) 0.0)]
-;    (map #(if (== min-elev %) path-weight 0.0) elevs)))
   location-map)
+;  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
+;	num-locations    (count src-locations)
+;	completedThreads (atom 0)]
+;    (doseq [loc src-locations]
+;	(.start (Thread. (fn []
+;			   (propagate-carrier! location-map
+;					       loc
+;					       (make-service-carrier (force (:source loc)) [loc])
+;					       trans-threshold)
+;			   (swap! completedThreads inc)))))
+;    (while (< @completedThreads num-locations)
+;	   (Thread/sleep 500))
+;    location-map))
 
 (defmethod distribute-flow! "ClimateStability"
   [_ location-map _]
-;  (let [locations (vals location-map)
-;	total-sequestration (reduce + (map #(force (:source %)) locations))
-;	use-dist (map #(:consume (force (:flows %))) locations)
-;	total-use (let [use (reduce + use-dist)] (if (== use 0.0) 1.0 use))
-;	fractional-use-dist (map #(/ % total-use) use-dist)]
-;    (dosync
-;     (map (fn [loc fractional-use]
-;	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
-;	  locations fractional-use-dist))
-;    location-map))
-    location-map)
+  (let [locations (vals location-map)
+	total-sequestration (reduce + (map #(force (:source %)) locations))
+	use-dist (map #(:consume (force (:flows %))) locations)
+	total-use (let [use (reduce + use-dist)] (if (== use 0.0) 1.0 use))
+	fractional-use-dist (map #(/ % total-use) use-dist)]
+    (dosync
+     (map (fn [loc fractional-use]
+	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
+	  locations fractional-use-dist))
+    location-map))
 
 (defmethod distribute-flow! "FloodPrevention"
   [_ location-map trans-threshold]

@@ -25,17 +25,12 @@
   (reduce + (map (fn [[state prob]]
 		   (let [transformer (undiscretization-table concept-name)
 			 undiscretized-val (transformer state)]
-		     (cond (Double/isNaN undiscretized-val)
-			   (throw (Exception. (str "Undiscretized Value for " concept-name
-						   "/" state " is NaN: " undiscretized-val
-						   ".\nTable says: " (seq distribution)
-						   "\nEvidence was: " source-features)))
-			   (Double/isNaN prob)
-			   (throw (Exception. (str "Probability Value for " concept-name
-						   "/" state " is NaN: " prob
-						   ".\nTable says: " (seq distribution)
-						   "\nEvidence was: " source-features))))
-		     (* undiscretized-val prob)))
+;		     (if (Double/isNaN prob)
+;		       (throw (Exception. (str "Probability Value for " concept-name
+;					       "/" state " is NaN: " prob
+;					       ".\nTable says: " (seq distribution)
+;					       "\nEvidence was: " source-features))))
+		     (if (Double/isNaN prob) 0.0 (* undiscretized-val prob))))
 		 distribution)))
 
 (defn source-val
@@ -55,7 +50,11 @@
   (let [inference-results (aries/run-inference (aries/set-evidence sink-inference-engine sink-features))
 	sink-distribution (aries/get-marginals-table inference-results benefit-sink-name)]
     (struct-map flows
-      :use      (aries/get-marginals inference-results "NonDestructiveUse" "Yes")
-      :sink     (get sink-distribution "Sink")
-      :consume  (get sink-distribution "DestructiveUse")
-      :out      (get sink-distribution "NoUse"))))
+      :use      (let [use (aries/get-marginals inference-results "NonDestructiveUse" "Yes")]
+		  (if (Double/isNaN use) 0.0 use))
+      :sink     (let [sink (get sink-distribution "Sink")]
+		  (if (Double/isNaN sink) 0.0 sink))
+      :consume  (let [consume (get sink-distribution "DestructiveUse")]
+		  (if (Double/isNaN consume) 0.0 consume))
+      :out      (let [out (get sink-distribution "NoUse")]
+		  (if (Double/isNaN out) 0.0 out)))))

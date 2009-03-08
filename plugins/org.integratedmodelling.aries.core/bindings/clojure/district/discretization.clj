@@ -33,7 +33,9 @@
    "CommercialIndustrialTransportation" {0.0 "No", 1.0 "Yes"}
    "Clearcuts"          {0.0 "No", 1.0 "Yes"}
    "Obstructions"       {0.0 "None", 1.0 "Partial", 2.0 "Full"}
-   "Area"               #(get-range-name [20230.0 101200.0 404700.0] ["VerySmall" "Small" "Large" "VeryLarge"] %)
+   "Area"               #(if (Double/isNaN %)
+			   "VerySmall"
+			   (get-range-name [20230.0 101200.0 404700.0] ["VerySmall" "Small" "Large" "VeryLarge"] %))
    "WaterQuality"       {0.0 "NoSurfaceWater", 1.0 "MeetsStandards",  2.0 "OfConcern", 5.0 "RequiringTMDL"}
    "Crime"              {0.0 "NonUrban", 1.0 "Urban"}
    "FormalProtection"   {0.0 "NotProtected", 1.0 "Protected"}
