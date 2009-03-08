@@ -66,13 +66,13 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>563</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>255</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>8916</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>4306</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>47.1056104</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-122.4217260</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>47.6156104</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.2957260</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.067788</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.567770</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.796836</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.058204</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -215,29 +215,32 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	<measurement:Ranking id="AgriculturalLand">
+
+	<measurement:RankingSetRemapper 
+			measurement:hasDefaultValue="0"
+			measurement:hasMapping="1:81,82" 
+			id="AgriculturalLand">
 		<observation:hasObservable>
 			<carbonService:AgriculturalLand />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
 			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>file:/d:/A/AgriculturalLand.tif</geospace:hasSourceURL>
+				<geospace:hasSourceURL>file:/d:/A/NCLDKing.tif</geospace:hasSourceURL>
 			</geospace:RasterFileDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>12376</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>5825</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>45.427591</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.846553</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.163234</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-116.909674</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:RankingSetRemapper>
 	
 	<measurement:Ranking id="FireProneHousing">
 		<observation:hasObservable>
@@ -322,13 +325,13 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>563</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>255</geospace:hasYRangeMax>
+				<geospace:hasXRangeMax>8916</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>4306</geospace:hasYRangeMax>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>47.105610</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-122.421726</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>47.615610</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.295726</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>47.067788</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.567770</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.796836</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.058204</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

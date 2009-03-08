@@ -90,15 +90,27 @@
 	  (recur r c n points)
 	  (recur r c (dec n) (cons point points)))))))
 
+(defn print-matrix-old
+  "Pretty prints a matrix to *out* according to format-string."
+  ([matrix]
+     (print-matrix-old matrix "%3s "))
+  ([matrix format-string]
+     (doseq [row (seq matrix)]
+       (doseq [elt (seq row)]
+         (printf format-string elt))
+       (newline))))
+
 (defn print-matrix
   "Pretty prints a matrix to *out* according to format-string."
   ([matrix]
      (print-matrix matrix "%3s "))
   ([matrix format-string]
-     (doseq [row (reverse (seq matrix))]
-       (doseq [elt (reverse (seq row))]
-         (printf format-string elt))
-       (newline))))
+     (let [rows (count matrix)
+     	     cols (count (first matrix))]
+       (dotimes [j cols]
+         (dotimes [i rows]
+           (printf format-string (aget matrix (- rows (inc i)) (- cols (inc j)))))
+         (newline)))))
 
 (defn add-or-nil
   "Return a + b unless a or b are nil, in which case we return nil."

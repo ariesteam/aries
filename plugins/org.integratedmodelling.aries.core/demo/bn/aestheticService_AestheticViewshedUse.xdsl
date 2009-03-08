@@ -20,7 +20,7 @@
 			<state id="Full" />
 			<state id="Partial" />
 			<state id="None" />
-			<probabilities>0.3333333333333334 0.3333333333333333 0.3333333333333333</probabilities>
+			<probabilities>0.025 0.05 0.925</probabilities>
 		</cpt>
 		<cpt id="HousingValue">
 			<state id="VeryHigh" />
@@ -42,7 +42,7 @@
 			<state id="None" />
 			<parents>Highways CommercialIndustrialTransportation Clearcuts</parents>
 			<strengths>0 1 0 1 0 1</strengths>
-			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
+			<parameters>0.3999999999999999 0.2000000000000001 0.1 0.3 0 0 0 1 0.3999999999999999 0.2000000000000001 0.1 0.3 0 0 0 1 0.2 0.2000000000000001 0.3 0.3 0 0 0 1 0.02499999999999991 0.02500000000000002 0.05000000000000004 0.9</parameters>
 		</noisymax>
 		<cpt id="AestheticViewshedUse">
 			<state id="DestructiveUse" />
@@ -65,36 +65,41 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>275 119 421 151</position>
+				<position>299 141 445 173</position>
+				<barchart active="true" width="128" height="72" />
 			</node>
 			<node id="Clearcuts">
 				<name>Clearcuts</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>629 291 694 324</position>
+				<position>528 414 593 447</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="CommercialIndustrialTransportation">
 				<name>CommercialIndustrialTransportation</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>390 295 612 324</position>
+				<position>302 463 524 492</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Highways">
 				<name>Highways</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>304 297 378 324</position>
+				<position>229 423 303 450</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Obstructions">
 				<name>Obstructions</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>603 230 697 261</position>
+				<position>482 287 576 318</position>
 				<comment>e.g., trees, buildings, topography/elevation</comment>
+				<barchart active="true" width="128" height="72" />
 			</node>
 			<textbox>
 				<caption>Puget Sound aesthetic viewshed use</caption>
@@ -106,29 +111,33 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>142 226 278 256</position>
+				<position>624 265 760 295</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="HousingValue">
 				<name>HousingValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>314 227 414 256</position>
+				<position>801 276 901 305</position>
+				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VisualBlight">
 				<name>VisualBlight</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>455 227 547 256</position>
+				<position>304 307 396 336</position>
 				<comment>Leak is set here to account for blight we don&apos;t catch through highways, clearcuts, or commercial/industrial/transportation.</comment>
+				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="NonDestructiveUse">
 				<name>NonDestructiveUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>467 117 604 150</position>
+				<position>512 141 649 174</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>
 	</extensions>
