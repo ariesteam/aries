@@ -193,8 +193,8 @@
 (defn nearest-neighbor
   [loc-id frontier]
   (let [neighbor-distances (map (fn [[l c :as f]] [f (manhattan-distance loc-id (:id l))]) frontier)
-	one-step-away  (first (some (fn [[f dist]] (== dist 1)) neighbor-distances))
-	two-steps-away (first (some (fn [[f dist]] (== dist 2)) neighbor-distances))]
+	one-step-away  (first (some (fn [[f dist]] (and (== dist 1) dist)) neighbor-distances))
+	two-steps-away (first (some (fn [[f dist]] (and (== dist 2) dist)) neighbor-distances))]
     (or one-step-away two-steps-away)))
 
 (defn distribute-gaussian!
