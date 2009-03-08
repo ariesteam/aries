@@ -160,7 +160,77 @@
 	      (zipmap neighbors
 		      (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))
 
-(defn propagate-carrier!
+(defn expand-box
+  "Returns a new list of points which completely bounds the
+   rectangular region defined by points and remains within the bounds
+   [0-rows],[0-cols]."
+  [points rows cols]
+  (when (seq points)
+    (let [row-coords (map #(get % 0) points)
+	  col-coords (map #(get % 1) points)
+	  min-i (apply min row-coords)
+	  min-j (apply min col-coords)
+	  max-i (apply max row-coords)
+	  max-j (apply max col-coords)
+	  bottom (dec min-i)
+	  top    (inc max-i)
+	  left   (dec min-j)
+	  right  (inc max-j)]
+      (concat
+       (when (>= left   0)    (for [i (range min-i top) j [left]]     [i j]))
+       (when (<  right  cols) (for [i (range min-i top) j [right]]    [i j]))
+       (when (>= bottom 0)    (for [i [bottom] j (range min-j right)] [i j]))
+       (when (<  top    rows) (for [i [top]    j (range min-j right)] [i j]))
+       (when (and (>= left 0)     (<  top rows)) (list [left  top]))
+       (when (and (>= left 0)     (>= bottom 0)) (list [left  bottom]))
+       (when (and (<  right cols) (<  top rows)) (list [right top]))
+       (when (and (<  right cols) (>= bottom 0)) (list [right bottom]))))))
+
+(defn manhattan-distance
+  [[i1 j1] [i2 j2]]
+  (+ (Math/abs (- i1 i2)) (Math/abs (- j1 j2))))
+
+(defn nearest-neighbor
+  [loc-id frontier]
+  (let [neighbor-distances (map (fn [[l c :as f]] [f (manhattan-distance loc-id (:id l))]) frontier)
+	one-step-away  (first (some (fn [[f dist]] (== dist 1)) neighbor-distances))
+	two-steps-away (first (some (fn [[f dist]] (== dist 2)) neighbor-distances))]
+    (or one-step-away two-steps-away)))
+
+(defn distribute-gaussian!
+  "A service carrier distributes its weight between being sunk or
+   consumed by the location or flowing on to its neighbors based on
+   location-specific flow probabilities.  It then stores itself in the
+   location's carrier-bin and propagates service carriers to every
+   neighbor where (> (* weight trans-prob) trans-threshold)."
+  [location-map location root-carrier decay-rate trans-threshold rows cols]
+  (loop [frontier {location root-carrier}]
+    (when (seq frontier)
+      (doseq [[loc carrier] frontier]
+	  (let [weight (:weight carrier)
+		flows  (force (:flows loc))]
+	    (dosync
+	     (commute (:sunk        loc) +    (* weight (:sink flows)))
+	     (commute (:used        loc) +    (* weight (:use flows)))
+	     (commute (:consumed    loc) +    (* weight (:consume flows)))
+	     (commute (:carrier-bin loc) conj carrier))))
+      (recur
+       (let [new-frontier-locs (map location-map
+				    (expand-box (map (comp :id first) frontier)
+						rows cols))]
+	 (filter #(and (val %) (> (:weight (val %)) trans-threshold))
+		 (seq2map new-frontier-locs
+			  (fn [new-frontier-loc]
+			    [new-frontier-loc
+			     (let [[l c] (nearest-neighbor
+					  (:id new-frontier-loc)
+					  frontier)
+				   flows (force (:flows l))]
+			       (make-service-carrier
+				(* (:weight c) (:out flows) decay-rate)
+				(conj (:route c) new-frontier-loc)))]))))))))
+
+(defn distribute-downhill!
   "A service carrier distributes its weight between being sunk or
    consumed by the location or flowing on to its neighbors based on
    location-specific flow probabilities.  It then stores itself in the
@@ -196,39 +266,39 @@
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
   distribute-flow!
-  (fn [benefit-source-name location-map trans-threshold] benefit-source-name))
+  (fn [benefit-source-name location-map trans-threshold rows cols] benefit-source-name))
 
 (defmethod distribute-flow! :default
-  [benefit-source-name _ _]
+  [benefit-source-name _ _ _ _]
   (throw (Exception. (str "Service " benefit-source-name " is unrecognized."))))
 
 (defmethod distribute-flow! "SensoryEnjoyment"
-  [_ location-map trans-threshold]
-;  [benefit-sink-name sink-features neighbor-sink-features flow-amount]
-;  (let [num-neighbors (count neighbor-sink-features)
-;	amt (/ flow-amount num-neighbors)]
-;    (replicate num-neighbors amt)))
+  [_ location-map trans-threshold rows cols]
   location-map)
 
 (defmethod distribute-flow! "ProximityToBeauty"
-  [_ location-map trans-threshold]
-  location-map)
-;  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
-;	num-locations    (count src-locations)
-;	completedThreads (atom 0)]
-;    (doseq [loc src-locations]
-;	(.start (Thread. (fn []
-;			   (propagate-carrier! location-map
-;					       loc
-;					       (make-service-carrier (force (:source loc)) [loc])
-;					       trans-threshold)
-;			   (swap! completedThreads inc)))))
-;    (while (< @completedThreads num-locations)
-;	   (Thread/sleep 500))
-;    location-map))
+  [_ location-map trans-threshold rows cols]
+  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
+	num-locations    (count src-locations)
+	completedThreads (atom 0)
+	decay-rate 0.75]  ; yes, I hard-coded this. It must be used with trans-threshold 9.0.
+                          ; This makes Source:Low=3 steps(1/4mi), Moderate=6 steps(1/2mi), High=8 steps(2/3mi)
+    (doseq [loc src-locations]
+	(.start (Thread. (fn []
+			   (distribute-gaussian! location-map
+						 loc
+						 (make-service-carrier (force (:source loc)) [loc])
+						 decay-rate
+						 trans-threshold
+						 rows
+						 cols)
+			   (swap! completedThreads inc)))))
+    (while (< @completedThreads num-locations)
+	   (Thread/sleep 1000))
+    location-map))
 
 (defmethod distribute-flow! "ClimateStability"
-  [_ location-map _]
+  [_ location-map _ _ _]
   (let [locations (vals location-map)
 	total-sequestration (reduce + (map #(force (:source %)) locations))
 	use-dist (map #(:consume (force (:flows %))) locations)
@@ -241,19 +311,19 @@
     location-map))
 
 (defmethod distribute-flow! "FloodPrevention"
-  [_ location-map trans-threshold]
+  [_ location-map trans-threshold _ _]
   (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
 	num-locations    (count src-locations)
 	completedThreads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
-			   (propagate-carrier! location-map
-					       loc
-					       (make-service-carrier (force (:source loc)) [loc])
-					       trans-threshold)
+			   (distribute-downhill! location-map
+						 loc
+						 (make-service-carrier (force (:source loc)) [loc])
+						 trans-threshold)
 			   (swap! completedThreads inc)))))
     (while (< @completedThreads num-locations)
-	   (Thread/sleep 500))
+	   (Thread/sleep 1000))
     location-map))
 
 (defn simulate-service-flows
@@ -267,7 +337,11 @@
 				(make-location-map benefit-source
 						   source-observation
 						   sink-observation))]
-    (distribute-flow! (.getLocalName benefit-source) location-map trans-threshold)))
+    (distribute-flow! (.getLocalName benefit-source)
+		      location-map
+		      trans-threshold
+		      (geospace/grid-rows source-observation)
+		      (geospace/grid-columns source-observation))))
 
 (defn add-anyway
   "Sums the non-nil argument values."
