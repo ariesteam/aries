@@ -137,6 +137,24 @@
    (coord-map-to-matrix (get-feature-coord-map (select-feature (first locations)) locations) rows cols)
    "%.0f "))
 
+;; fv -- must finish
+(defn view-feature-coverage
+  "Make and show a coverage for the chosen feature value for every location as a matrix."
+  [locations observation rows cols]
+  (newline)
+  (.show (geospace/build-coverage
+   (geospace/get-spatial-extent observation)
+   (get-feature-coord-map (select-feature (first locations)) locations))))
+   
+ ;; fv -- must finish
+ (defn view-property-coverage
+   "Make and show a coverage for the chosen property value for every location as a matrix."
+  [locations observation rows cols]
+  (newline)
+  (.show (geospace/build-coverage
+   (geospace/get-spatial-extent observation)
+   (get-property-coord-map (select-property) locations))))
+
 (defn select-menu-action
   "Prompts the user with a menu of choices and returns the number
    corresponding to their selection."
@@ -144,7 +162,8 @@
   (printf "%nAction Menu (0 quits):%n")
   (let [prompts ["View Provisionshed" "View Benefitshed"
 		 "View Location Properties" "View Property Map"
-		 "View Feature Map" "Count Locations"]]
+		 "View Feature Map" "Count Locations"
+		 "View Property Coverage" "View Feature Coverage"]]
     (dotimes [i (count prompts)]
 	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
@@ -183,5 +202,7 @@
 	      (== choice 4) (view-property-map locations rows cols)
 	      (== choice 5) (view-feature-map locations rows cols)
 	      (== choice 6) (printf "%n%d%n" (count locations))
-	      :otherwise    (printf "%nInvalid selection.%n"))
+	      (== choice 7) (view-property-coverage locations source-observation rows cols)
+	      (== choice 8) (view-feature-coverage locations source-observation rows cols)
+	   	  :otherwise    (printf "%nInvalid selection.%n"))
 	(recur (select-menu-action))))))

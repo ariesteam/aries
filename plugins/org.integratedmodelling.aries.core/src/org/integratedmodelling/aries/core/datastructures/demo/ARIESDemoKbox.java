@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Properties;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.exceptions.ARIESException;
@@ -70,6 +71,7 @@ import org.integratedmodelling.utils.instancelist.InstanceList;
 public class ARIESDemoKbox implements IKBox {
 
 	File dataDir = null;
+	Properties properties = new Properties();
 	
 	ArrayList<Polylist> data = new ArrayList<Polylist>();
 	
@@ -106,6 +108,11 @@ public class ARIESDemoKbox implements IKBox {
 					data.addAll(obss);
 			}
 		}
+		
+		/*
+		 * merge in plugin properties so we can use relative paths
+		 */
+		properties.putAll(ARIESCorePlugin.get().getProperties());
 	}
 	
 	public IKBoxCapabilities getKBoxCapabilities() {
@@ -193,7 +200,7 @@ public class ARIESDemoKbox implements IKBox {
 			}
 		}
 		
-		return new ListQueryResult(q, this, results);
+		return new ListQueryResult(q, this, results, properties);
 			
 	}
 
@@ -218,6 +225,11 @@ public class ARIESDemoKbox implements IKBox {
 	public String getUri() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Properties getProperties() {
+		return properties;
 	}
 
 }
