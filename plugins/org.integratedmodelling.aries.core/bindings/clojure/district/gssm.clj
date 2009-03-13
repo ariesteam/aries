@@ -137,28 +137,76 @@
   [weight route]
   (struct-map service-carrier :weight weight :route route))
 
-(defn memoize-by-first-arg
-  [function]
-  (let [cache (ref {})]
-    (fn [& args]
-      (or (@cache (first args))
-          (let [result (apply function args)]
-            (dosync
-             (commute cache assoc (first args) result))
-            result)))))
+(defn cast-ray!
+  [location-seq]
+  (let [out-weight
+	(reduce 
+	 (fn [weight loc]
+	   (let [flows (force (:flows loc))]
+	     (dosync
+	      (commute (:sunk     loc) + (* weight (:sink flows)))
+	      (commute (:used     loc) + (* weight (:use flows)))
+	      (commute (:consumed loc) + (* weight (:consume flows))))
+	     (* weight (:out flows))))
+	 (force (:source (first location-seq)))
+	 location-seq)]
+    (let [beneficiary-loc     (last location-seq)
+	  beneficiary-outflow (:out (force (:flows beneficiary-loc)))
+	  benefit-received  (if (== beneficiary-outflow 0.0)
+			      0.0
+			      (/ out-weight beneficiary-outflow))]
+      (dosync (commute (:carrier-bin beneficiary-loc) conj
+		       (make-service-carrier benefit-received location-seq))))))
 
-(def get-outflow-distribution
-  (memoize-by-first-arg (fn [location location-map]
-    (let [local-elev ((:features location) "Elevation")
-	  neighbors (map location-map (:neighbors location))
-	  neighbor-elevs (map #((:features %) "Elevation") neighbors)
-	  min-elev (min local-elev (min neighbor-elevs))
-	  num-downhill-paths (count (filter #(== min-elev %) neighbor-elevs))
-	  path-weight (if (> num-downhill-paths 0) (/ (:out (force (:flows location)))
-						      num-downhill-paths) 0.0)]
-      (filter #(> (val %) 0.0)
-	      (zipmap neighbors
-		      (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))
+(defn find-viewpaths
+  "Returns a sequence of paths (one for each combination of p and b),
+   where a path is represented by the sequence of all points [i j]
+   intersected by the line from p to b for each p,b pair.  Since this
+   is calculated over a regular integer-indexed grid, diagonal lines
+   will be approximated by lines bending at right angles along the
+   p-to-b line.  This calculation imagines the indeces of each point
+   to be located at the center of a square of side length 1.  Note
+   that the first point in each path will be its p, and the last will
+   be its b.  If p=b, the path will contain only this one point."
+  [providers beneficiaries]
+  (for [p providers b beneficiaries]
+    (let [[pi pj] (:id p)
+	  [bi bj] (:id b)
+	  m (if (not= pj bj) (/ (- bi pi) (- bj pj)))
+	  b (if m (- pi (* m pj)))
+	  f (fn [x] (+ (* m x) b))]
+      (if m
+	(let [j-range (if (< pj bj) (range pj (inc bj)) (range pj (dec bj) -1))]
+	  (if (== m 0)
+	    (for [j j-range] [pi j])
+	    (concat		  
+	     (for [j j-range]
+	       (let [left-i  (Math/round (f (- j 1/2)))
+		     right-i (Math/round (f (+ j 1/2)))
+		     i-range (cond (and (< pi bi) (< pj bj)) (range left-i  (inc right-i))
+				   (and (< pi bi) (> pj bj)) (range right-i (inc left-i))
+				   (and (> pi bi) (< pj bj)) (range left-i  (dec right-i) -1)
+				   (and (> pi bi) (> pj bj)) (range right-i (dec left-i)  -1))]
+		 (for [i i-range] [i j]))))))
+	(let [i-range (if (< pi bi) (range pi (inc bi)) (range pi (dec bi) -1))]
+	  (for [i i-range] [i pj]))))))
+
+(defn distribute-raycast!
+  "A service carrier distributes its weight between being sunk or
+   consumed by the location or flowing on to its neighbors based on
+   location-specific flow probabilities.  It then stores itself in the
+   location's carrier-bin and propagates service carriers to every
+   neighbor where (> (* weight trans-prob) trans-threshold)."
+  [location-map providers beneficiaries]
+  (let [viewpaths (find-viewpaths providers beneficiaries)
+	num-paths (count viewpaths)
+	completed-threads (atom 0)]
+    (doseq [path viewpaths]
+	(.start (Thread. (fn []
+			   (cast-ray! (map location-map path))
+			   (swap! completed-threads inc)))))
+    (while (< @completed-threads num-paths)
+	   (Thread/sleep 1000))))
 
 (defn expand-box
   "Returns a new list of points which completely bounds the
@@ -213,7 +261,8 @@
 	     (commute (:sunk        loc) +    (* weight (:sink flows)))
 	     (commute (:used        loc) +    (* weight (:use flows)))
 	     (commute (:consumed    loc) +    (* weight (:consume flows)))
-	     (commute (:carrier-bin loc) conj carrier))))
+	     (if (> (+ (:use flows) (:consume flows)) 0.0)
+	       (commute (:carrier-bin loc) conj carrier)))))
       (recur
        (let [new-frontier-locs (map location-map
 				    (expand-box (map (comp :id first) frontier)
@@ -229,6 +278,29 @@
 			       (make-service-carrier
 				(* (:weight c) (:out flows) decay-rate)
 				(conj (:route c) new-frontier-loc)))]))))))))
+
+(defn memoize-by-first-arg
+  [function]
+  (let [cache (ref {})]
+    (fn [& args]
+      (or (@cache (first args))
+          (let [result (apply function args)]
+            (dosync
+             (commute cache assoc (first args) result))
+            result)))))
+
+(def get-outflow-distribution
+  (memoize-by-first-arg (fn [location location-map]
+    (let [local-elev ((:features location) "Elevation")
+	  neighbors (map location-map (:neighbors location))
+	  neighbor-elevs (map #((:features %) "Elevation") neighbors)
+	  min-elev (min local-elev (min neighbor-elevs))
+	  num-downhill-paths (count (filter #(== min-elev %) neighbor-elevs))
+	  path-weight (if (> num-downhill-paths 0) (/ (:out (force (:flows location)))
+						      num-downhill-paths) 0.0)]
+      (filter #(> (val %) 0.0)
+	      (zipmap neighbors
+		      (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))
 
 (defn distribute-downhill!
   "A service carrier distributes its weight between being sunk or
@@ -256,7 +328,8 @@
 					     (:sink flows))))
        (commute (:used        loc) +    (* weight (:use flows)))
        (commute (:consumed    loc) +    (* weight (:consume flows)))
-       (commute (:carrier-bin loc) conj carrier))
+       (if (> (+ (:use flows) (:consume flows)) 0.0)
+	 (commute (:carrier-bin loc) conj carrier)))
       (when (seq trans-pairs)
 	(let [[next-loc carrier] (first trans-pairs)]
 	  (recur next-loc
@@ -273,14 +346,18 @@
   (throw (Exception. (str "Service " benefit-source-name " is unrecognized."))))
 
 (defmethod distribute-flow! "SensoryEnjoyment"
-  [_ location-map trans-threshold rows cols]
-  location-map)
+  [_ location-map _ rows cols]
+  (let [locations         (vals location-map)
+	src-locations     (filter #(> (force (:source %)) 0.0) locations)
+	use-locations     (filter #(> (:use (force (:flows %))) 0.0) locations)]
+    (distribute-raycast! location-map src-locations use-locations)
+    location-map))
 
 (defmethod distribute-flow! "ProximityToBeauty"
   [_ location-map trans-threshold rows cols]
   (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
 	num-locations    (count src-locations)
-	completedThreads (atom 0)
+	completed-threads (atom 0)
 	decay-rate 0.75]  ; yes, I hard-coded this. It must be used with trans-threshold 9.0.
                           ; This makes Source:Low=3 steps(1/4mi), Moderate=6 steps(1/2mi), High=8 steps(2/3mi)
     (doseq [loc src-locations]
@@ -292,8 +369,8 @@
 						 trans-threshold
 						 rows
 						 cols)
-			   (swap! completedThreads inc)))))
-    (while (< @completedThreads num-locations)
+			   (swap! completed-threads inc)))))
+    (while (< @completed-threads num-locations)
 	   (Thread/sleep 1000))
     location-map))
 
@@ -314,15 +391,15 @@
   [_ location-map trans-threshold _ _]
   (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
 	num-locations    (count src-locations)
-	completedThreads (atom 0)]
+	completed-threads (atom 0)]
     (doseq [loc src-locations]
 	(.start (Thread. (fn []
 			   (distribute-downhill! location-map
 						 loc
 						 (make-service-carrier (force (:source loc)) [loc])
 						 trans-threshold)
-			   (swap! completedThreads inc)))))
-    (while (< @completedThreads num-locations)
+			   (swap! completed-threads inc)))))
+    (while (< @completed-threads num-locations)
 	   (Thread/sleep 1000))
     location-map))
 
