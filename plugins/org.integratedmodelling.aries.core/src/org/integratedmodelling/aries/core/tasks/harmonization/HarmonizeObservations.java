@@ -81,7 +81,7 @@ public class HarmonizeObservations implements ITask {
 		/*
 		 * initialize 
 		 */
-		IInstance obs = session.createObject(dset, null);
+		IInstance obs = session.createObject(dset);
 
 		IObservation o = (IObservation) obs.getImplementation();
 		
