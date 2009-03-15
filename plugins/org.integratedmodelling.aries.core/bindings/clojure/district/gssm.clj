@@ -27,23 +27,6 @@
   :id :neighbors :source-features :sink-features :features
   :sunk :used :consumed :carrier-bin :source :flows)
 
-(defn make-location
-  "Location constructor"
-  [id neighbors source-features sink-features features benefit-source-name source-inference-engine]
-  (struct-map location
-    :id              id
-    :neighbors       neighbors
-    :source-features source-features
-    :sink-features   sink-features
-    :features        features
-    :sunk            (ref 0.0)
-    :used            (ref 0.0)
-    :consumed        (ref 0.0)
-    :carrier-bin     (ref ())
-    :source          (delay (source-val benefit-source-name
-					source-inference-engine
-					source-features))))
-
 (defn discretize-value
   "Transforms the value to the string name of its corresponding
    discretized value, using the particular concept's transformation
@@ -95,17 +78,24 @@
     (do
       (let [location-map
 	    (seq2map (for [i (range rows) j (range cols)]
-		       (let [feature-idx (+ (* i cols) j)]
-			 (make-location [i j]
-					(get-neighbors [i j] rows cols)
-					(extract-features source-states feature-idx)
-					(extract-features sink-states feature-idx)
-					(extract-features-undiscretized
-					 (merge source-states sink-states)
-					 feature-idx)
-					benefit-source-name
-					source-inference-engine)))
-		     (fn [location] [(:id location) location]))]
+		       (let [feature-idx (+ (* i cols) j)
+			     source-features (extract-features source-states feature-idx)]
+			 (struct-map location
+			   :id              [i j]
+			   :neighbors       (get-neighbors [i j] rows cols)
+			   :source-features source-features
+			   :sink-features   (extract-features sink-states feature-idx)
+			   :features        (extract-features-undiscretized
+					     (merge source-states sink-states)
+					     feature-idx)
+			   :sunk            (ref 0.0)
+			   :used            (ref 0.0)
+			   :consumed        (ref 0.0)
+			   :carrier-bin     (ref ())
+			   :source          (delay (source-val benefit-source-name
+							       source-inference-engine
+							       source-features)))))
+		     (fn [loc] [(:id loc) loc]))]
 	(println "Rows: " rows)
 	(println "Cols: " cols)
 	(println "Benefit-Source-Name: " benefit-source-name)
@@ -132,31 +122,38 @@
 
 (defstruct service-carrier :weight :route)
 
-(defn make-service-carrier
-  "Service carrier constructor"
-  [weight route]
-  (struct-map service-carrier :weight weight :route route))
+(defn update-local-accumulators!
+  [location carrier]
+  (let [weight  (:weight carrier)
+	flows   (force (:flows location))
+	sink    (:sink flows)
+	use     (:use flows)
+	consume (:consume flows)]
+    (dosync
+     (if (> sink 0.0)
+       (commute (:sunk        location) + (* weight sink)))
+     (when (> (+ use consume) 0.0)
+       (commute (:used        location) + (* weight use))
+       (commute (:consumed    location) + (* weight consume))
+       (commute (:carrier-bin location) conj carrier)))))
 
 (defn cast-ray!
-  [location-seq]
-  (let [out-weight
-	(reduce 
-	 (fn [weight loc]
-	   (let [flows (force (:flows loc))]
-	     (dosync
-	      (commute (:sunk     loc) + (* weight (:sink flows)))
-	      (commute (:used     loc) + (* weight (:use flows)))
-	      (commute (:consumed loc) + (* weight (:consume flows))))
-	     (* weight (:out flows))))
-	 (force (:source (first location-seq)))
-	 location-seq)]
-    (let [beneficiary-loc     (last location-seq)
-	  beneficiary-outflow (:out (force (:flows beneficiary-loc)))
-	  benefit-received  (if (== beneficiary-outflow 0.0)
-			      0.0
-			      (/ out-weight beneficiary-outflow))]
-      (dosync (commute (:carrier-bin beneficiary-loc) conj
-		       (make-service-carrier benefit-received location-seq))))))
+  [location-seq trans-threshold]
+  (loop [location-seq location-seq
+	 carrier (struct service-carrier
+			 (force (:source (first location-seq)))
+			 [(first location-seq)])]
+    (when (seq location-seq)
+      (let [loc    (first location-seq)
+	    weight (:weight carrier)
+	    flows  (force (:flows loc))]
+	(update-local-accumulators! loc carrier)
+	(let [outweight (* weight (:out flows))]
+	  (if (> outweight trans-threshold)
+	    (recur (rest location-seq)
+		   (struct service-carrier
+			   outweight
+			   (conj (:route carrier) (second location-seq))))))))))
 
 (defn find-viewpaths
   "Returns a sequence of paths (one for each combination of p and b),
@@ -197,13 +194,13 @@
    location-specific flow probabilities.  It then stores itself in the
    location's carrier-bin and propagates service carriers to every
    neighbor where (> (* weight trans-prob) trans-threshold)."
-  [location-map providers beneficiaries]
+  [location-map providers beneficiaries trans-threshold]
   (let [viewpaths (find-viewpaths providers beneficiaries)
 	num-paths (count viewpaths)
 	completed-threads (atom 0)]
     (doseq [path viewpaths]
 	(.start (Thread. (fn []
-			   (cast-ray! (map location-map path))
+			   (cast-ray! (map location-map path) trans-threshold)
 			   (swap! completed-threads inc)))))
     (while (< @completed-threads num-paths)
 	   (Thread/sleep 1000))))
@@ -254,15 +251,7 @@
   [location-map location root-carrier decay-rate trans-threshold rows cols]
   (loop [frontier {location root-carrier}]
     (when (seq frontier)
-      (doseq [[loc carrier] frontier]
-	  (let [weight (:weight carrier)
-		flows  (force (:flows loc))]
-	    (dosync
-	     (commute (:sunk        loc) +    (* weight (:sink flows)))
-	     (commute (:used        loc) +    (* weight (:use flows)))
-	     (commute (:consumed    loc) +    (* weight (:consume flows)))
-	     (if (> (+ (:use flows) (:consume flows)) 0.0)
-	       (commute (:carrier-bin loc) conj carrier)))))
+      (doseq [[loc carrier] frontier] (update-local-accumulators! loc carrier))
       (recur
        (let [new-frontier-locs (map location-map
 				    (expand-box (map (comp :id first) frontier)
@@ -273,20 +262,19 @@
 			    [new-frontier-loc
 			     (let [[l c] (nearest-neighbor
 					  (:id new-frontier-loc)
-					  frontier)
-				   flows (force (:flows l))]
-			       (make-service-carrier
-				(* (:weight c) (:out flows) decay-rate)
-				(conj (:route c) new-frontier-loc)))]))))))))
+					  frontier)]
+			       (if (and l c)
+				 (struct service-carrier
+					 (* (:weight c) (:out (force (:flows l))) decay-rate)
+					 (conj (:route c) new-frontier-loc))))]))))))))
 
 (defn memoize-by-first-arg
   [function]
-  (let [cache (ref {})]
+  (let [cache (atom {})]
     (fn [& args]
       (or (@cache (first args))
           (let [result (apply function args)]
-            (dosync
-             (commute cache assoc (first args) result))
+	    (swap! cache assoc (first args) result)
             result)))))
 
 (def get-outflow-distribution
@@ -294,13 +282,13 @@
     (let [local-elev ((:features location) "Elevation")
 	  neighbors (map location-map (:neighbors location))
 	  neighbor-elevs (map #((:features %) "Elevation") neighbors)
-	  min-elev (min local-elev (min neighbor-elevs))
-	  num-downhill-paths (count (filter #(== min-elev %) neighbor-elevs))
-	  path-weight (if (> num-downhill-paths 0) (/ (:out (force (:flows location)))
-						      num-downhill-paths) 0.0)]
-      (filter #(> (val %) 0.0)
-	      (zipmap neighbors
-		      (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))
+	  min-elev (apply min (cons local-elev neighbor-elevs))
+	  num-downhill-paths (count (filter #(== min-elev %) neighbor-elevs))]
+      (if (> num-downhill-paths 0)
+	(let [path-weight (/ (:out (force (:flows location))) num-downhill-paths)]
+	  (filter #(> (val %) 0.0)
+		  (zipmap neighbors
+			  (map #(if (== min-elev %) path-weight 0.0) neighbor-elevs)))))))))
 
 (defn distribute-downhill!
   "A service carrier distributes its weight between being sunk or
@@ -312,29 +300,24 @@
   (loop [loc location
 	 carrier root-carrier
 	 open-list ()]
-    (let [weight      (:weight carrier)
-	  flows       (force (:flows loc))
-	  out-pairs   (seq2map (get-outflow-distribution loc location-map)
-			       (fn [[neighbor trans-prob]]
-				 [neighbor (make-service-carrier (* weight trans-prob)
-								 (conj (:route carrier) neighbor))]))
-	  trans-pairs (lazy-cat (filter (fn [loc carrier]
-					  (> (:weight carrier) trans-threshold)) out-pairs)
-				open-list)]
-      (dosync
-       (commute (:sunk        loc) +    (* weight
-					   (if (empty? out-pairs)
-					     (+ (:sink flows) (:out flows))
-					     (:sink flows))))
-       (commute (:used        loc) +    (* weight (:use flows)))
-       (commute (:consumed    loc) +    (* weight (:consume flows)))
-       (if (> (+ (:use flows) (:consume flows)) 0.0)
-	 (commute (:carrier-bin loc) conj carrier)))
-      (when (seq trans-pairs)
-	(let [[next-loc carrier] (first trans-pairs)]
+    (let [weight    (:weight carrier)
+	  flows     (force (:flows loc))
+	  out-pairs (seq2map (get-outflow-distribution loc location-map)
+			     (fn [[neighbor trans-prob]]
+			       [neighbor (struct service-carrier
+						 (* weight trans-prob)
+						 (conj (:route carrier) neighbor))]))
+	  new-open-list (lazy-cat (filter (fn [loc carrier] (> (:weight carrier) trans-threshold))
+					  out-pairs)
+				  open-list)]
+      (update-local-accumulators! loc carrier)
+      (if (empty? out-pairs)
+	(dosync (commute (:sunk loc) + (* weight (:out flows)))))
+      (when (seq new-open-list)
+	(let [[next-loc carrier] (first new-open-list)]
 	  (recur next-loc
 		 carrier
-		 (rest trans-pairs)))))))
+		 (rest new-open-list)))))))
 
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
@@ -346,11 +329,11 @@
   (throw (Exception. (str "Service " benefit-source-name " is unrecognized."))))
 
 (defmethod distribute-flow! "SensoryEnjoyment"
-  [_ location-map _ rows cols]
+  [_ location-map trans-threshold _ _]
   (let [locations         (vals location-map)
 	src-locations     (filter #(> (force (:source %)) 0.0) locations)
 	use-locations     (filter #(> (:use (force (:flows %))) 0.0) locations)]
-    (distribute-raycast! location-map src-locations use-locations)
+    (distribute-raycast! location-map src-locations use-locations trans-threshold)
     location-map))
 
 (defmethod distribute-flow! "ProximityToBeauty"
@@ -364,7 +347,7 @@
 	(.start (Thread. (fn []
 			   (distribute-gaussian! location-map
 						 loc
-						 (make-service-carrier (force (:source loc)) [loc])
+						 (struct service-carrier (force (:source loc)) [loc])
 						 decay-rate
 						 trans-threshold
 						 rows
@@ -396,7 +379,7 @@
 	(.start (Thread. (fn []
 			   (distribute-downhill! location-map
 						 loc
-						 (make-service-carrier (force (:source loc)) [loc])
+						 (struct service-carrier (force (:source loc)) [loc])
 						 trans-threshold)
 			   (swap! completed-threads inc)))))
     (while (< @completed-threads num-locations)
@@ -450,3 +433,11 @@
 				  (filter #(= provider-location
 					      ((comp first :route) %))
 					  @(:carrier-bin location)))))]))))
+
+(comment
+  FIXME: 
+  distribute-gaussian! uses a hard-coded decay-rate and requires a correspondingly specific trans-threshold
+  threading should be spread over a thread pool (possibly with agents + send-off by number of CPUs)
+  cast-ray! should use a decay-rate for visual distance fade-out
+  distribute-raycast! needs to remove repeated subpaths
+)
