@@ -137,7 +137,7 @@
        (commute (:consumed    location) + (* weight consume))
        (commute (:carrier-bin location) conj carrier)))))
 
-(defn cast-ray!
+(defn distribute-raycast!
   [location-seq trans-threshold]
   (loop [location-seq location-seq
 	 carrier (struct service-carrier
@@ -187,23 +187,6 @@
 		 (for [i i-range] [i j]))))))
 	(let [i-range (if (< pi bi) (range pi (inc bi)) (range pi (dec bi) -1))]
 	  (for [i i-range] [i pj]))))))
-
-(defn distribute-raycast!
-  "A service carrier distributes its weight between being sunk or
-   consumed by the location or flowing on to its neighbors based on
-   location-specific flow probabilities.  It then stores itself in the
-   location's carrier-bin and propagates service carriers to every
-   neighbor where (> (* weight trans-prob) trans-threshold)."
-  [location-map providers beneficiaries trans-threshold]
-  (let [viewpaths (find-viewpaths providers beneficiaries)
-	num-paths (count viewpaths)
-	completed-threads (atom 0)]
-    (doseq [path viewpaths]
-	(.start (Thread. (fn []
-			   (cast-ray! (map location-map path) trans-threshold)
-			   (swap! completed-threads inc)))))
-    (while (< @completed-threads num-paths)
-	   (Thread/sleep 1000))))
 
 (defn expand-box
   "Returns a new list of points which completely bounds the
@@ -319,6 +302,13 @@
 		 carrier
 		 (rest new-open-list)))))))
 
+(defn distribute-load-over-processors
+  [action-fn arg-seq]
+  (let [num-processors (.availableProcessors (Runtime/getRuntime))
+	agents (map agent (replicate num-processors nil))]
+    (map #(send %1 action-fn %2) (cycle agents) arg-seq)
+    (apply await agents)))
+
 (defmulti
   #^{:doc "Service-specific flow distribution function."}
   distribute-flow!
@@ -330,32 +320,27 @@
 
 (defmethod distribute-flow! "SensoryEnjoyment"
   [_ location-map trans-threshold _ _]
-  (let [locations         (vals location-map)
-	src-locations     (filter #(> (force (:source %)) 0.0) locations)
-	use-locations     (filter #(> (:use (force (:flows %))) 0.0) locations)]
-    (distribute-raycast! location-map src-locations use-locations trans-threshold)
-    location-map))
+  (let [locations     (vals location-map)
+	providers     (filter #(> (force (:source %)) 0.0) locations)
+	beneficiaries (filter #(> (:use (force (:flows %))) 0.0) locations)]
+    (distribute-load-over-processors
+     (fn [_ path] (distribute-raycast! (map location-map path) trans-threshold))
+     (find-viewpaths providers beneficiaries))))
 
 (defmethod distribute-flow! "ProximityToBeauty"
   [_ location-map trans-threshold rows cols]
-  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
-	num-locations    (count src-locations)
-	completed-threads (atom 0)
-	decay-rate 0.75]  ; yes, I hard-coded this. It must be used with trans-threshold 9.0.
+  (let [decay-rate 0.75]  ; yes, I hard-coded this. It must be used with trans-threshold 9.0.
                           ; This makes Source:Low=3 steps(1/4mi), Moderate=6 steps(1/2mi), High=8 steps(2/3mi)
-    (doseq [loc src-locations]
-	(.start (Thread. (fn []
-			   (distribute-gaussian! location-map
-						 loc
-						 (struct service-carrier (force (:source loc)) [loc])
-						 decay-rate
-						 trans-threshold
-						 rows
-						 cols)
-			   (swap! completed-threads inc)))))
-    (while (< @completed-threads num-locations)
-	   (Thread/sleep 1000))
-    location-map))
+    (distribute-load-over-processors
+     (fn [_ loc]
+       (distribute-gaussian! location-map
+			     loc
+			     (struct service-carrier (force (:source loc)) [loc])
+			     decay-rate
+			     trans-threshold
+			     rows
+			     cols))
+     (filter #(> (force (:source %)) 0.0) (vals location-map)))))
 
 (defmethod distribute-flow! "ClimateStability"
   [_ location-map _ _ _]
@@ -367,24 +352,17 @@
     (dosync
      (map (fn [loc fractional-use]
 	    (commute (:consumed loc) + (* fractional-use total-sequestration)))
-	  locations fractional-use-dist))
-    location-map))
+	  locations fractional-use-dist))))
 
 (defmethod distribute-flow! "FloodPrevention"
   [_ location-map trans-threshold _ _]
-  (let [src-locations    (filter #(> (force (:source %)) 0.0) (vals location-map))
-	num-locations    (count src-locations)
-	completed-threads (atom 0)]
-    (doseq [loc src-locations]
-	(.start (Thread. (fn []
-			   (distribute-downhill! location-map
-						 loc
-						 (struct service-carrier (force (:source loc)) [loc])
-						 trans-threshold)
-			   (swap! completed-threads inc)))))
-    (while (< @completed-threads num-locations)
-	   (Thread/sleep 1000))
-    location-map))
+  (distribute-load-over-processors
+   (fn [_ loc]
+     (distribute-downhill! location-map
+			   loc
+			   (struct service-carrier (force (:source loc)) [loc])
+			   trans-threshold))
+   (filter #(> (force (:source %)) 0.0) (vals location-map))))
 
 (defn simulate-service-flows
   "Creates a network of interconnected locations, and starts a
@@ -401,7 +379,8 @@
 		      location-map
 		      trans-threshold
 		      (geospace/grid-rows source-observation)
-		      (geospace/grid-columns source-observation))))
+		      (geospace/grid-columns source-observation))
+    location-map))
 
 (defn add-anyway
   "Sums the non-nil argument values."
@@ -435,9 +414,8 @@
 					  @(:carrier-bin location)))))]))))
 
 (comment
-  FIXME: 
+  FIXME
   distribute-gaussian! uses a hard-coded decay-rate and requires a correspondingly specific trans-threshold
-  threading should be spread over a thread pool (possibly with agents + send-off by number of CPUs)
-  cast-ray! should use a decay-rate for visual distance fade-out
+  distribute-raycast! should use a decay-rate for visual distance fade-out
   distribute-raycast! needs to remove repeated subpaths
-)
+  )
