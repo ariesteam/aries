@@ -12,7 +12,11 @@
 		<fileset dir="${env.THINKLAB_HOME}/lib" includes="*.jar" />
 	</path>
 	<jpf-path pathidref="plugin.classpath" pluginid="${plugin.id}">
-		<fileset dir="${env.THINKLAB_HOME}"
+		<fileset dir="${plugin.home}/.."
+		         includes="*/plugin*.xml"
+		         excludes="${plugin.id}/**" />
+		<fileset file="plugin.xml" />
+		<fileset dir="${env.THINKLAB_HOME}/plugins"
 		         includes="*/plugin*.xml"
 		         excludes="${plugin.id}/**" />
 		<fileset file="plugin.xml" />
