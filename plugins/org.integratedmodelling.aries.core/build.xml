@@ -9,7 +9,7 @@
 	          value="${basedir}/../../build/plugins/${plugin.id}" />
 
 	<path id="plugin.classpath">
-		<fileset dir="${basedir}/../../lib" includes="*.jar" />
+		<fileset dir="${env.THINKLAB_HOME}/lib" includes="*.jar" />
 	</path>
 	<jpf-path pathidref="plugin.classpath" pluginid="${plugin.id}">
 		<fileset dir="${plugin.home}/.."
