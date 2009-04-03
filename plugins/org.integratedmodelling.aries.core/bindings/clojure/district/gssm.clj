@@ -305,7 +305,7 @@
 (defn distribute-load-over-processors
   [action-fn arg-seq]
   (let [num-processors (.availableProcessors (Runtime/getRuntime))
-	agents (map agent (replicate num-processors nil))]
+	agents (map agent (replicate (* 2 num-processors) nil))]
     (map #(send %1 action-fn %2) (cycle agents) arg-seq)
     (apply await agents)))
 
@@ -390,7 +390,18 @@
 	:otherwise (+ x y)))
 
 (defn find-provisionshed
-  "Returns a map of {provider-id -> benefit-provided}."
+  "Returns a map of {provider-id -> benefit-provided}.
+
+   Explanation:
+
+   A location's carrier-bin contains the sequence of all carriers
+   which transport benefit to this location.  Each carrier is
+   represented as a pair of Route (sequence of location ids in its
+   path from provider to beneficiary) and Weight (amount of benefit
+   that reaches the beneficiary).  We compute the provisionshed of a
+   beneficiary location by assigning to each provider location the sum
+   of all carrier weights (in that beneficiary's carrier-bin) whose
+   routes begin at the provider location."
   [beneficiary-location]
   (let [flows (force (:flows beneficiary-location))
 	absorption (+ (:use flows) (:consume flows))]
@@ -400,7 +411,18 @@
 		       add-anyway)))
 
 (defn find-benefitshed
-  "Returns a map of {beneficiary-id -> benefit-received}."
+  "Returns a map of {beneficiary-id -> benefit-received}.
+
+   Explanation:
+
+   A location's carrier-bin contains the sequence of all carriers
+   which transport benefit to this location.  Each carrier is
+   represented as a pair of Route (sequence of location ids in its
+   path from provider to beneficiary) and Weight (amount of benefit
+   that reaches the beneficiary).  We compute the benefitshed of a
+   provider location by assigning to each beneficiary location the sum
+   of all carrier weights (in that beneficiary's carrier-bin) whose
+   routes begin at the provider location."
   [provider-location all-locations]
   (seq2map all-locations
 	   (fn [location]
@@ -413,9 +435,46 @@
 					      ((comp first :route) %))
 					  @(:carrier-bin location)))))]))))
 
+(defn find-critical-regions
+  "Returns a map of {location-id -> criticality}.
+
+   Explanation:
+
+   A location's carrier-bin contains the sequence of all carriers
+   which transport benefit to this location.  Each carrier is
+   represented as a pair of Route (sequence of location ids in its
+   path from provider to beneficiary) and Weight (amount of benefit
+   that reaches the beneficiary).  We compute the criticality of each
+   location as a three-step process:
+
+   1) Transform each carrier in each location into a map of
+      {route-loc1 weight, route-loc2 weight, ... route-locN weight}
+
+   2) Merge all the maps in each location s.t. each location now
+      contains one map with the union of all keys, whose values are
+      the sums of the submap values.
+
+   3) Merge all the maps across the locations s.t. the final map
+      contains the union of all keys, whose values are the sums of the
+      submap values.
+
+   This final map now contains an entry for every location, which is
+   part of any carrier's route, whose value represents the total
+   amount of service throughput that depends on that location."
+  [all-locations]
+  (apply merge-with +
+	 (for [location all-locations]
+	   (apply merge-with +
+		  (for [carrier @(:carrier-bin location)]
+		    (let [weight (:weight carrier)]
+		      (seq2map (:route carrier)
+			       (fn [route-step] [(:id route-step) weight]))))))))
+
+
 (comment
   FIXME
   distribute-gaussian! uses a hard-coded decay-rate and requires a correspondingly specific trans-threshold
   distribute-raycast! should use a decay-rate for visual distance fade-out
   distribute-raycast! needs to remove repeated subpaths
-  )
+  delay sunk/used/consumed calculations (which are O(n)) until property viewing time. not during simulation!
+)

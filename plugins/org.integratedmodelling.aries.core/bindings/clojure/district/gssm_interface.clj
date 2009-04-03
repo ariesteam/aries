@@ -46,6 +46,14 @@
    (coord-map-to-matrix (find-benefitshed location locations) rows cols)
    "%7.2f "))
 
+(defn view-critical-regions
+  "Prints a matrix representation of each location's criticality."
+  [locations rows cols]
+  (newline)
+  (print-matrix
+   (coord-map-to-matrix (find-critical-regions locations) rows cols)
+   "%7.2f "))
+
 (defn view-location-properties
   "Prints a summary of the post-simulation properties of the
   location."
@@ -163,7 +171,7 @@
   (let [prompts ["View Provisionshed" "View Benefitshed"
 		 "View Location Properties" "View Property Map"
 		 "View Feature Map" "Count Locations"
-		 "View Property Coverage" "View Feature Coverage"]]
+		 "View Property Coverage" "View Feature Coverage" "View Critical Regions"]]
     (dotimes [i (count prompts)]
 	(printf " %d) %s%n" (inc i) (prompts i))))
   (print "Choice: ")
@@ -204,5 +212,7 @@
 	      (== choice 6) (printf "%n%d%n" (count locations))
 	      (== choice 7) (view-property-coverage locations source-observation rows cols)
 	      (== choice 8) (view-feature-coverage locations source-observation rows cols)
+	      (== choice 9) (view-critical-regions locations rows cols)
+	      
 	   	  :otherwise    (printf "%nInvalid selection.%n"))
 	(recur (select-menu-action))))))
