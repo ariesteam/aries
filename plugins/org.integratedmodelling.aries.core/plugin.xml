@@ -74,16 +74,6 @@
 		<parameter id="url" value="es/services/aestheticService.owl"/>
 		<parameter id="concept-space" value="aestheticService"/>
 	</extension>
-	<!-- commands
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="command-handler" id="ariescmd">
-		<parameter id="class" value="org.integratedmodelling.aries.commands.Aries"/>
-		<parameter id="command-name" value="aries"/>
-		<parameter id="command-description" value="Run an ARIES workflow with appropriate initialization"/>
-		<parameter id="optional-argument-names" value="workflow"/>
-		<parameter id="optional-argument-types" value="thinklab-core:Text"/>
-		<parameter id="optional-argument-descriptions" value="workflow to run"/>
-		<parameter id="optional-argument-default-values" value="aries"/>
-	</extension>  -->
 	
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
@@ -95,6 +85,7 @@
 		<parameter id="resource" value="district/gssm_interface.clj"/>
 		<parameter id="resource" value="district/dummy_data.clj"/>
 		<parameter id="resource" value="aries/demo/aries-demo.clj"/>
+		<parameter id="resource" value="aries/models/aesthetics.clj" />
 	</extension> 
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="test">
