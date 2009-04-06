@@ -44,6 +44,16 @@
 					(= service-id 'carbonService:ClimateStability)
 					"POLYGON((-122.535334 47.76684, -121.409633 47.76684, -121.409633 47.110871, -122.535334 47.110871, -122.535334 47.76684))")))
 
+(defn make-dataset
+	"Create a netCDF file with all the harmonized data describing a concept"
+	[concept-id filename resolution]
+	(let [concept (tl/conc concept-id)
+			  study-region (select-region-of-interest-by-service concept-id)
+			  dataset (get-demo-data-for-observable concept
+							   study-region
+							   resolution)]
+			(modelling/write-netcdf dataset filename)))
+
 (defn run-gssm-demo
 	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
 	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
