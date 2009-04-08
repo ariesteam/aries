@@ -7,6 +7,19 @@
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
+
+<!--
+1.0 native proj: (works)
+http://127.0.0.1:8080/geoserver/wcs?service=wcs&version=1.0.0&request=GetCoverage&coverage=puget:NCLD_King&bbox=1088921.93,-96339.66,1111495.9,-76887.06&crs=EPSG:2285&width=512&height=298&format=geotiff
+1.0 orig to wgs84: won't convert from other crs (this coverage does not support the requested response-crs)
+http://127.0.0.1:8080/geoserver/wcs?service=wcs&version=1.0.0&request=GetCoverage&coverage=puget:NCLD_King&bbox=-122.53533,47.11087,-121.40963,47.76684&crs=EPSG:4326&responseCRS=4326&width=512&height=298&format=geotiff
+1.0 works with converted WSG84 coverage so the intersection isn't null if reprojected
+http://127.0.0.1:8080/geoserver/wcs?service=wcs&version=1.0.0&request=GetCoverage&coverage=topp:NCLDKing&bbox=-122.53533,47.11087,-121.40963,47.76684,urn:ogc:def:crs:EPSG:4326&crs=EPSG:4326&width=512&height=298&format=geotiff
+1.1: (null pointer exception)
+http://127.0.0.1:8080/geoserver/wcs?service=wcs&version=1.1.1&request=GetCoverage&identifier=puget:NCLD_King&boundingBox=-122.53533,47.11087,-121.40963,47.76684,urn:ogc:def:crs:EPSG:4326&gridCRS=EPSG:4326&width=512&height=298&format=tiff
+1:0 describe (works)
+http://127.0.0.1:8080/geoserver/wcs?service=WCS&version=1.0.0&request=DescribeCoverage&identifiers=puget:NCLD_King
+-->
 	
 	<measurement:Ranking id="HydroelectricDams">
 		<observation:hasObservable>
@@ -354,7 +367,7 @@
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>-180.0044643</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>90.0089280</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-180.0044631</geospace:hasLonUpperBound>
+				<geospace:hasLonUpperBound>180.0044631</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
