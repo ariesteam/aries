@@ -42,9 +42,9 @@
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
-			<geospace:RasterFileDataSource>
-				<geospace:hasSourceURL>elevation.tif</geospace:hasSourceURL>
-			</geospace:RasterFileDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasCoverageId>global:elevation</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
