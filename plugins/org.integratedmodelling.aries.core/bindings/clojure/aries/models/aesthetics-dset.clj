@@ -1,7 +1,6 @@
 (ns aries.models
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification ranking identification
-  			 									 random-classification noisymax-classification)))
+  (:refer modelling :only (defmodel measurement classification ranking identification)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 	(classification (ranking 'nlcd:NLCDNumeric)

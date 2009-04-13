@@ -1,7 +1,7 @@
 (ns aries.models
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification ranking
-  			 									 random-classification noisymax-classification)))
+  			 									 noisymax)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 		 (classification (ranking 'nlcd:NLCDNumeric)
@@ -22,16 +22,15 @@
  	  4 levels of provision of aesthetic enjoyment based on altitude and NCLD numeric class
  	  data."
  	  
- 	 (noisymax-classification 'aestheticService:SensoryEnjoyment
- 	 
- 	 	 ; 4 states -- should be all the disjoint subclasses, but we don't know the ordering unless we specify
- 	 	 ('aestheticService:NoSensoryEnjoyment 'aestheticService:LowSensoryEnjoyment 
- 	 	 	'aestheticService:ModerateSensoryEnjoyment 'aestheticService:HighSensoryEnjoyment)	
+ 	 (classification 'aestheticService:SensoryEnjoyment
+ 	 	 0 'aestheticService:NoSensoryEnjoyment 
+ 	 	 1 'aestheticService:LowSensoryEnjoyment 
+ 	 	 2 'aestheticService:ModerateSensoryEnjoyment 
+ 	 	 3 'aestheticService:HighSensoryEnjoyment)
  	 	 	
-	   ; cpt for the noisymax - all others default to uniform
- 		 [0.4 0.3 0.2 0.1 0.2 0.3 0.3 0.2 0.0 0.0 0.0 1.0 0.7 0.1
- 	 		0.1 0.1 0.5 0.2 0.2 0.1 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0])
- 	 		
  	 	 :context
-  	 	 ((random-classification valuable-mountain)
-  	 	  (random-classification valuable-waterbodies)))
+  	 	 (valuable-mountain valuable-waterbodies)
+  	 	 
+ 	 	 :probability	 	 	
+ 			 (noisymax [0.4 0.3 0.2 0.1 0.2 0.3 0.3 0.2 0.0 0.0 0.0 1.0 0.7 0.1
+ 	 								0.1 0.1 0.5 0.2 0.2 0.1 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]))
