@@ -24,7 +24,7 @@
  	  
  	 (noisymax-classification 'aestheticService:SensoryEnjoyment
  	 
- 	 	 ; states -- should be all the disjoint subclasses, but we don't know the ordering unless we specify
+ 	 	 ; 4 states -- should be all the disjoint subclasses, but we don't know the ordering unless we specify
  	 	 ('aestheticService:NoSensoryEnjoyment 'aestheticService:LowSensoryEnjoyment 
  	 	 	'aestheticService:ModerateSensoryEnjoyment 'aestheticService:HighSensoryEnjoyment)	
  	 	 	

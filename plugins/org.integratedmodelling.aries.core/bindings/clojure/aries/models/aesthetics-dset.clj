@@ -4,10 +4,10 @@
   			 									 random-classification noisymax-classification)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
-		 (classification (ranking 'nlcd:NLCDNumeric)
-	 			23   'aestheticService:Lake
-	 			32   'aestheticService:Ocean
-	 			:otherwise 'aestheticService:NoWater))
+	(classification (ranking 'nlcd:NLCDNumeric)
+	 		23   'aestheticService:Lake
+			32   'aestheticService:Ocean
+			:otherwise 'aestheticService:NoWater))
 
 (defmodel valuable-mountain 'aestheticService:Mountain
    "Classifies an elevation model into three levels of provision of beautiful mountains"
@@ -22,6 +22,6 @@
  	  harmonizes data."
  	  
  	 (identification 'aestheticService:SensoryEnjoyment)
- 	 	 	:context
+ 	 	 :context
   	 	 (valuable-mountain    :as mountain 
   	 	  valuable-waterbodies :as water))
