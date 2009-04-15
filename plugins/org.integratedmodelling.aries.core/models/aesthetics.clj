@@ -1,7 +1,7 @@
 (ns aries.models
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification ranking
-  			 									 noisymax)))
+  			 									 noisymax gssm)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 		 (classification (ranking 'nlcd:NLCDNumeric)
@@ -34,3 +34,17 @@
  	 	 :probability	 	 	
  			 (noisymax [0.4 0.3 0.2 0.1 0.2 0.3 0.3 0.2 0.0 0.0 0.0 1.0 0.7 0.1
  	 								0.1 0.1 0.5 0.2 0.2 0.1 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]))
+ 	 								
+(defmodel aesthetic-views 'aestheticService:ViewService
+	
+		"Hypothetical for now. The GSSM connecting view provision to usage of views, using
+		 raytracing to model the flows, influenced by athmospheric pollution."
+		 
+		(gssm 'aestheticService:ViewFlow
+					:source      source-of-beauty
+					:destination use-of-beauty
+		 			:transport   'aestheticService:viewFlow
+		 			:sink        'aestheticService:Ugliness) 
+		 	:context
+		 		(aesthetic-enjoyment-provision :as source-of-beauty
+		 		 real-estate-use               :as use-of-beauty))
