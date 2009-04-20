@@ -7,8 +7,8 @@
 
 (ns aries.demo)
 
-(tl/load-bindings 'corescience)
-(tl/load-bindings 'geospace)
+;(tl/load-bindings 'corescience)
+;(tl/load-bindings 'geospace)
 
 (defn get-demo-ecosystem-services 
 	"Return the services used in the demo. Benefits for these are extracted from the ontologies.
