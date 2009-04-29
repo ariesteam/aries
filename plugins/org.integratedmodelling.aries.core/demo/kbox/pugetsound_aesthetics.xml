@@ -2,6 +2,7 @@
 <kbox
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
+	xmlns:geophysics="http://www.integratedmodelling.org/ks/geospace/geophysics.owl#"
 	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
 	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
@@ -150,6 +151,29 @@
 				<geospace:hasLonLowerBound>-122.684817</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>47.560655</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-121.603492</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="Altitude">
+		<observation:hasObservable>
+			<geophysics:Altitude />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasCoverageId>global:elevation</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43200</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>18000</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

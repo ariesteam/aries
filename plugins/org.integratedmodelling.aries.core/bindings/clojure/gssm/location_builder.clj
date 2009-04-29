@@ -31,6 +31,11 @@
 	   (fn [[feature-name values]]
 	     [feature-name (discretize-value feature-name (nth values idx))])))
 
+(defn extract-features
+  "Returns a map of feature names to the values at i j."
+  [observation-states idx]
+	(maphash identity #(nth % idx) observation-states))
+
 (defn count-distinct-states
   [observation-states]
   (maphash identity
@@ -66,14 +71,13 @@
 					 (corescience/map-dependent-states use-observation))
 	flow-feature-map        (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states flow-observation))]
-    (do
       (let [location-map
 	    (seq2map (for [i (range rows) j (range cols)]
-		       (let [feature-idx     (+ (* i cols) j)
+			       (let [feature-idx     (+ (* i cols) j)
 			     source-features (extract-features-discretized source-feature-map feature-idx)
 			     sink-features   (extract-features-discretized sink-feature-map   feature-idx)
 			     use-features    (extract-features-discretized use-feature-map    feature-idx)
-			     flow-features   (extract-features-discretized flow-feature-map   feature-idx)]
+			     flow-features   (extract-features             flow-feature-map   feature-idx)]
 			 (struct-map location
 			   :id            [i j]
 			   :neighbors     (get-neighbors [i j] rows cols)
@@ -88,7 +92,7 @@
 								use-features))
 			   :carrier-cache (ref ())
 			   :flow-features flow-features)))
-		     (fn [loc] [(:id loc) loc]))]
+			     (fn [loc] [(:id loc) loc]))]
 	(println "Rows x Cols: " rows " x " cols)
 	(println "Source-Concept-Name: "   source-concept-name)
 	(println "Source-Feature-States: " (count-distinct-states source-feature-map))
@@ -98,4 +102,4 @@
 	(println "Use-Feature-States: "    (count-distinct-states use-feature-map))
 	(println "Flow-Concept-Name: "     flow-concept-name)
 	(println "Flow-Feature-States: "   (count-distinct-states flow-feature-map))
-	location-map))))
+	location-map)))

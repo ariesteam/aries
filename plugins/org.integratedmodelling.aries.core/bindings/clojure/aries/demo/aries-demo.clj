@@ -58,16 +58,27 @@
 	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
 	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
 	resolution on the longest dimension."
-	[benefit-source benefit-sink max-resolution transition-threshold]
+	[benefit-source benefit-use benefit-sink benefit-flow flow-params max-resolution]
 	(let [benf-source  (tl/conc benefit-source)
+	      benf-use     (tl/conc benefit-use)
 	      benf-sink    (tl/conc benefit-sink)
+	      benf-flow    (tl/conc benefit-flow)
 	      study-region (select-region-of-interest-by-service benefit-source)
 	      source-data (get-demo-data-for-observable benf-source
 							study-region
 							max-resolution)
+				use-data (get-demo-data-for-observable benf-use
+							study-region
+							max-resolution)
 	      sink-data   (get-demo-data-for-observable benf-sink	   
 							study-region
+							max-resolution)
+			  flow-data (get-demo-data-for-observable benf-flow
+							study-region
 							max-resolution)]
-	  (district.gssm-interface/gssm-interface benf-source benf-sink
-						  source-data sink-data
-						  transition-threshold)))
+	  (gssm.interface/gssm-interface
+	  		 benf-source source-data
+	  		 benf-sink   sink-data
+	  		 benf-use    use-data
+	  		 benf-flow   flow-data
+				 flow-params)))

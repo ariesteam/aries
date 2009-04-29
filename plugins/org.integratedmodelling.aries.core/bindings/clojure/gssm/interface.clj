@@ -130,13 +130,14 @@
 							 flow-concept   flow-observation
 							 flow-params)
 	locations (vals location-map)
-	menu {"View Theoretical Source"  #(theoretical-source       locations)
+	menu (array-map
+				"View Theoretical Source"  #(theoretical-source       locations)
 	      "View Theoretical Sink"    #(theoretical-sink         locations flow-params)
 	      "View Theoretical Use"     #(theoretical-use          locations flow-params)
 	      "View Inacessible Source"  #(inaccessible-source      locations)
 	      "View Inacessible Sink"    #(inaccessible-sink        locations flow-params)
 	      "View Inacessible Use"     #(inaccessible-use         locations flow-params)
-	      "View Possible Flow"       #(possible-flow            locations)
+	      "View Possible Flow"       #(possible-flow            locations flow-params)
 	      "View Possible Source"     #(possible-source          locations)
 	      "View Possible Inflow"     #(possible-inflow          locations)
 	      "View Possible Sink"       #(possible-sink            locations flow-params)
@@ -161,7 +162,7 @@
 								    flow-observation
 								    rows
 								    cols)
-	      "Quit"                     nil}
+	      "Quit"                     nil)
 	prompts (vec (keys menu))
 	num-prompts (count prompts)]
     (loop [choice (select-menu-option prompts num-prompts)]
@@ -169,13 +170,10 @@
 	(when (fn? action)
 	  (let [coord-map (apply action)]
 	    (when (map? coord-map)
+		  	(.show
+			   (geospace/build-coverage
+    			(geospace/get-spatial-extent source-observation)
+    			coord-map))
 	      (newline)
 	      (print-matrix (coord-map-to-matrix coord-map rows cols) "%7.2f ")
 	      (recur (select-menu-option prompts num-prompts)))))))))
-
-(comment
-  (.show
-   (geospace/build-coverage
-    (geospace/get-spatial-extent observation)
-    (feature-map locations)))
-)

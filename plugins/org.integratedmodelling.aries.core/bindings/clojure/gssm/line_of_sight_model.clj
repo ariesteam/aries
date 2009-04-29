@@ -58,10 +58,10 @@
         (let [j-range (if (< pj bj) (range pj (inc bj)) (range pj (dec bj) -1))]
           (if (== m 0)
             (for [j j-range] [pi j])
-            (concat               
+            (apply concat               
              (for [j j-range]
-               (let [left-i  (Math/round (f (- j 1/2)))
-                     right-i (Math/round (f (+ j 1/2)))
+               (let [left-i  (Math/round (f (- j 0.5)))
+                     right-i (Math/round (f (+ j 0.5)))
                      i-range (cond (and (< pi bi) (< pj bj)) (range left-i  (inc right-i))
                                    (and (< pi bi) (> pj bj)) (range right-i (inc left-i))
                                    (and (> pi bi) (< pj bj)) (range left-i  (dec right-i) -1)
@@ -81,13 +81,13 @@
   [location-seq path-length]
   (let [source-loc  (first location-seq)
         use-loc     (last  location-seq)
-        source-elev ((:flow-features source-loc) "Elevation")
-        rise        (- ((:flow-features use-loc) "Elevation") source-elev)
+        source-elev ((:flow-features source-loc) "Altitude")
+        rise        (- ((:flow-features use-loc) "Altitude") source-elev)
         run         (euclidean-distance (:id source-loc) (:id use-loc))
         view-slope  (/ rise run)
-        step-size   (/ euclidean-distance path-length)]
+        step-size   (/ run path-length)]
     (every? (fn [[loc steps-from-source]]
-              (< ((:flow-features loc) "Elevation")
+              (< ((:flow-features loc) "Altitude")
                  (+ source-elev (* view-slope steps-from-source step-size))))
             (rest (butlast (zipmap location-seq (range (inc path-length))))))))
 

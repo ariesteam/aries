@@ -124,6 +124,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink -->
+
+    <owl:Class rdf:about="#AbsoluteSink">
+        <rdfs:subClassOf rdf:resource="#Sink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse -->
+
+    <owl:Class rdf:about="#AbsoluteUse">
+        <rdfs:subClassOf rdf:resource="#UseType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation -->
 
     <owl:Class rdf:about="#ConservativeExploitation">
@@ -270,6 +286,14 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Flow -->
+
+    <owl:Class rdf:about="#Flow">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer -->
 
     <owl:Class rdf:about="#HumanConsumer">
@@ -295,6 +319,14 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
         <owl:disjointWith rdf:resource="#RenewableTransformation"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Usage that does not preserve the identity of the resource but turns into something else that is relevant to the conceptual context of analysis.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit -->
+
+    <owl:Class rdf:about="#NonRivalBenefit">
+        <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
     </owl:Class>
     
 
@@ -331,12 +363,54 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink -->
+
+    <owl:Class rdf:about="#RelativeSink">
+        <rdfs:subClassOf rdf:resource="#Sink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeUse -->
+
+    <owl:Class rdf:about="#RelativeUse">
+        <rdfs:subClassOf rdf:resource="#UseType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RenewableTransformation -->
 
     <owl:Class rdf:about="#RenewableTransformation">
         <rdfs:subClassOf rdf:resource="#TransformationalExploitation"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Usage that preserves the identity of the resource after usage.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RivalBenefit -->
+
+    <owl:Class rdf:about="#RivalBenefit">
+        <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Sink -->
+
+    <owl:Class rdf:about="#Sink">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment
+            >Whatever diminishes a benefit by capturing it along its flow path.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType -->
+
+    <owl:Class rdf:about="#SourceType">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -386,6 +460,14 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     <owl:Class rdf:about="#UsageProcess">
         <rdfs:comment rdf:datatype="&xsd;string"
             >The quantifiable process by which the HumanConsumer enjoys the Benefit.  Its quantification (an observation of which an instance of Usage is the observable) captures the supply side of the value function. TODO this should probably be a functional relationship between Benefit and Consumer, whose quantification becomes a dependency in the observation ontology.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseType -->
+
+    <owl:Class rdf:about="#UseType">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
