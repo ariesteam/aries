@@ -37,14 +37,12 @@
  	 								
 (defmodel aesthetic-views 'aestheticService:ViewService
 	
-		"Hypothetical for now. The GSSM connecting view provision to usage of views, using
-		 raytracing to model the flows, influenced by athmospheric pollution."
+		"Hypothetical for now. The GSSM connecting view provision to use of views, using
+		 raycasting to model the flows, influenced by athmospheric pollution."
 		 
-		(gssm 'aestheticService:ViewFlow
-					:source      source-of-beauty
-					:destination use-of-beauty
-		 			:transport   'aestheticService:viewFlow
-		 			:sink        'aestheticService:Ugliness) 
-		 	:context
-		 		(aesthetic-enjoyment-provision :as source-of-beauty
-		 		 real-estate-use               :as use-of-beauty))
+		(gssm 'aestheticService:ViewService :transport-model 'aestheticService:RayCast
+					:source    aesthetic-enjoyment-provision
+					:use       real-estate-use
+		 			:flow      'aestheticService:LineOfSight
+		 			:sink      'aestheticService:VisualBlight))
+		 			
