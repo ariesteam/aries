@@ -1,7 +1,7 @@
 (ns aries.models
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification ranking
-  			 									 noisymax gssm)))
+  			 									 noisymax gssm flow)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 		 (classification (ranking 'nlcd:NLCDNumeric)
@@ -35,14 +35,25 @@
  			 (noisymax [0.4 0.3 0.2 0.1 0.2 0.3 0.3 0.2 0.0 0.0 0.0 1.0 0.7 0.1
  	 								0.1 0.1 0.5 0.2 0.2 0.1 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]))
  	 								
+(defmodel raycast-view-flow
+	
+		"Hypothetical for now. Will map to the raycast flow model in the gssm package. The model/flow 
+		 proxy produces only the harmonized data; the actual computation is integrated with gssm, and 
+		 the observable class from this will select the raycasting submodel in it."
+		
+		(flow 'aestheticService:LineOfSight)
+			:context 
+				((measurement 'geophysics:Altitude "m")
+				 (measurement 'geophysics:GroundElevation "m")))
+ 	 								
 (defmodel aesthetic-views 'aestheticService:ViewService
 	
 		"Hypothetical for now. The GSSM connecting view provision to use of views, using
 		 raycasting to model the flows, influenced by athmospheric pollution."
 		 
-		(gssm 'aestheticService:ViewService :transport-model 'aestheticService:RayCast
-					:source    aesthetic-enjoyment-provision
-					:use       real-estate-use
-		 			:flow      'aestheticService:LineOfSight
-		 			:sink      'aestheticService:VisualBlight))
+		(gssm 'aestheticService:ViewService 
+					:source     aesthetic-enjoyment-provision
+					:use        real-estate-use
+		 			:transport  raycast-view-flow
+		 			:sink       aesthetic-visual-blight))
 		 			
