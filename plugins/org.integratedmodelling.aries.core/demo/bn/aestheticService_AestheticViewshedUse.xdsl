@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="Highways">
-			<state id="Yes" />
-			<state id="No" />
-			<probabilities>0.5 0.5</probabilities>
-		</cpt>
-		<cpt id="CommercialIndustrialTransportation">
-			<state id="Yes" />
-			<state id="No" />
-			<probabilities>0.5 0.5</probabilities>
-		</cpt>
-		<cpt id="Clearcuts">
-			<state id="Yes" />
-			<state id="No" />
-			<probabilities>0.5 0.5</probabilities>
-		</cpt>
-		<cpt id="Obstructions">
-			<state id="Full" />
-			<state id="Partial" />
-			<state id="None" />
-			<probabilities>0.025 0.05 0.925</probabilities>
-		</cpt>
-		<cpt id="HousingValue">
+		<cpt id="HousingValues">
 			<state id="VeryHigh" />
 			<state id="High" />
 			<state id="Moderate" />
@@ -33,91 +12,40 @@
 		<cpt id="PresenceOfHousing">
 			<state id="Yes" />
 			<state id="No" />
-			<probabilities>0.5 0.5</probabilities>
+			<probabilities>0.25 0.75</probabilities>
 		</cpt>
-		<noisymax id="VisualBlight">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
-			<parents>Highways CommercialIndustrialTransportation Clearcuts</parents>
-			<strengths>0 1 0 1 0 1</strengths>
-			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
-		</noisymax>
-		<cpt id="AestheticViewshedUse">
+		<cpt id="ViewUse">
 			<state id="Yes" />
 			<state id="No" />
-			<parents>Obstructions HousingValue PresenceOfHousing VisualBlight</parents>
-			<probabilities>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.25 0.75 0.4 0.6 0.6 0.4 0 1 0 1 0 1 0 1 0.05 0.95 0.2 0.8 0.25 0.75 0.4 0.6 0 1 0 1 0 1 0 1 0.05 0.95 0.15 0.85 0.2 0.8 0.35 0.65 0 1 0 1 0 1 0 1 0.03 0.97 0.07000000000000001 0.9300000000000001 0.15 0.85 0.2 0.8 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.2 0.8 0.4 0.6 0.6 0.4 0.8 0.2 0 1 0 1 0 1 0 1 0.15 0.85 0.25 0.75 0.5 0.5 0.6 0.4 0 1 0 1 0 1 0 1 0.1 0.9 0.2 0.8 0.4 0.6 0.5 0.5 0 1 0 1 0 1 0 1 0.05 0.95 0.1 0.9 0.2 0.8 0.25 0.75 0 1 0 1 0 1 0 1</probabilities>
+			<parents>HousingValues PresenceOfHousing</parents>
+			<probabilities>0.8 0.2 0 1 0.8 0.2 0 1 0.6 0.4 0 1 0.4 0.6 0 1 0.25 0.75 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
-			<node id="Clearcuts">
-				<name>Clearcuts</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>658 372 723 405</position>
-				<barchart width="128" height="64" />
-			</node>
-			<node id="CommercialIndustrialTransportation">
-				<name>CommercialIndustrialTransportation</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>385 375 607 404</position>
-				<barchart width="128" height="64" />
-			</node>
-			<node id="Highways">
-				<name>Highways</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>249 377 323 404</position>
-				<barchart width="128" height="64" />
-			</node>
-			<node id="Obstructions">
-				<name>Obstructions</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>317 279 411 310</position>
-				<comment>e.g., trees, buildings, topography/elevation</comment>
-				<barchart width="128" height="72" />
-			</node>
 			<node id="PresenceOfHousing">
 				<name>PresenceOfHousing</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>557 280 693 310</position>
-				<barchart width="128" height="64" />
+				<position>342 258 478 288</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="HousingValue">
-				<name>HousingValue</name>
+			<node id="HousingValues">
+				<name>HousingValues</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>712 281 812 310</position>
-				<barchart width="128" height="108" />
+				<barchart active="true" width="128" height="108" />
 			</node>
-			<node id="VisualBlight">
-				<name>VisualBlight</name>
+			<node id="ViewUse">
+				<name>ViewUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>450 282 542 311</position>
-				<comment>Leak is set here to account for blight we don&apos;t catch through highways, clearcuts, or commercial/industrial/transportation.</comment>
-				<barchart width="128" height="90" />
-			</node>
-			<node id="AestheticViewshedUse">
-				<name>AestheticViewshedUse</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>499 129 652 162</position>
-				<barchart width="128" height="64" />
+				<position>499 129 636 162</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>
 	</extensions>
