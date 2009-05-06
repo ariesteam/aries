@@ -51,13 +51,16 @@ public class MakeBnInference implements ITask {
 		if (ret == null) {
 
 			String fname = benefit.toString().replace(':', '_');
-			
-			if (new File(dataDir + "/" + fname + ".xdsl").exists()) {
-				GenieReader gReader = new GenieReader();
-				ret = gReader.loadFromFile(dataDir + "/" + fname + ".xdsl");
-			} else if (new File(dataDir + "/" + fname + ".rwz").exists()) {
-				RiskWizReader gReader = new RiskWizReader();
-				ret = gReader.loadFromFile(dataDir + "/" + fname + ".rwz");
+			try {
+				if (new File(dataDir + "/" + fname + ".xdsl").exists()) {
+					GenieReader gReader = new GenieReader();
+					ret = gReader.loadFromFile(dataDir + "/" + fname + ".xdsl");
+				} else if (new File(dataDir + "/" + fname + ".rwz").exists()) {
+					RiskWizReader gReader = new RiskWizReader();
+					ret = gReader.loadFromFile(dataDir + "/" + fname + ".rwz");
+				}
+			} catch (Exception e) {
+				throw new ARIESRuntimeException(e);
 			}
 			
 			if (ret == null)
@@ -78,7 +81,11 @@ public class MakeBnInference implements ITask {
 
 		BeliefNetwork nw = requireBeliefNetwork(benefit);
 		result = new JTInference();
-		result.initialize(nw, new JoinTreeCompiler());
+		try {
+			result.initialize(nw, new JoinTreeCompiler());
+		} catch (Exception e) {
+			throw new ARIESRuntimeException(e);
+		}
 	}
 	
 	public JTInference<?> getInference() {
