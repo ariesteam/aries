@@ -17,7 +17,7 @@
 
 (ns gssm.location-builder
   (:refer-clojure)
-  (:use [misc.utils        :only (maphash seq2map)]
+  (:use [misc.utils        :only (maphash seq2map count-distinct)]
 	[misc.matrix-ops   :only (get-neighbors)]
 	[gssm.discretizer  :only (discretize-value)]
 	[gssm.bn-interface :only (run-bayes-net)]))
@@ -34,19 +34,7 @@
 (defn extract-features
   "Returns a map of feature names to the values at i j."
   [observation-states idx]
-	(maphash identity #(nth % idx) observation-states))
-
-(defn count-distinct-states
-  [observation-states]
-  (maphash identity
-	   (fn [vals]
-	     (let [distinct-vals (distinct vals)
-		   num-distinct (count distinct-vals)]
-	       (if (<= num-distinct 10)
-		 (for [val distinct-vals]
-		   [val (count (filter #(= % val) vals))])
-		 (str num-distinct " distinct values..."))))
-	   observation-states))
+  (maphash identity #(nth % idx) observation-states))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
@@ -71,35 +59,24 @@
 					 (corescience/map-dependent-states use-observation))
 	flow-feature-map        (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states flow-observation))]
-      (let [location-map
-	    (seq2map (for [i (range rows) j (range cols)]
-			       (let [feature-idx     (+ (* i cols) j)
-			     source-features (extract-features-discretized source-feature-map feature-idx)
-			     sink-features   (extract-features-discretized sink-feature-map   feature-idx)
-			     use-features    (extract-features-discretized use-feature-map    feature-idx)
-			     flow-features   (extract-features             flow-feature-map   feature-idx)]
-			 (struct-map location
-			   :id            [i j]
-			   :neighbors     (get-neighbors [i j] rows cols)
-			   :source        (delay (run-bayes-net source-concept-name
-								source-inference-engine
-								source-features))
-			   :sink          (delay (run-bayes-net sink-concept-name
-								sink-inference-engine
-								sink-features))
-			   :use           (delay (run-bayes-net use-concept-name
-								use-inference-engine
-								use-features))
-			   :carrier-cache (ref ())
-			   :flow-features flow-features)))
-			     (fn [loc] [(:id loc) loc]))]
-	(println "Rows x Cols: " rows " x " cols)
-	(println "Source-Concept-Name: "   source-concept-name)
-	(println "Source-Feature-States: " (count-distinct-states source-feature-map))
-	(println "Sink-Concept-Name: "     sink-concept-name)
-	(println "Sink-Feature-States: "   (count-distinct-states sink-feature-map))
-	(println "Use-Concept-Name: "      use-concept-name)
-	(println "Use-Feature-States: "    (count-distinct-states use-feature-map))
-	(println "Flow-Concept-Name: "     flow-concept-name)
-	(println "Flow-Feature-States: "   (count-distinct-states flow-feature-map))
-	location-map)))
+    (seq2map (for [i (range rows) j (range cols)]
+	       (let [feature-idx     (+ (* i cols) j)
+		     source-features (extract-features-discretized source-feature-map feature-idx)
+		     sink-features   (extract-features-discretized sink-feature-map   feature-idx)
+		     use-features    (extract-features-discretized use-feature-map    feature-idx)
+		     flow-features   (extract-features             flow-feature-map   feature-idx)]
+		 (struct-map location
+		   :id            [i j]
+		   :neighbors     (get-neighbors [i j] rows cols)
+		   :source        (delay (run-bayes-net source-concept-name
+							source-inference-engine
+							source-features))
+		   :sink          (delay (run-bayes-net sink-concept-name
+							sink-inference-engine
+							sink-features))
+		   :use           (delay (run-bayes-net use-concept-name
+							use-inference-engine
+							use-features))
+		   :carrier-cache (ref ())
+		   :flow-features flow-features)))
+	     (fn [loc] [(:id loc) loc]))))

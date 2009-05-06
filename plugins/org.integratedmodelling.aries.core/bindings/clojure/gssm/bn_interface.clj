@@ -23,7 +23,8 @@
   [concept-name distribution]
   (reduce + (map (fn [[state prob]]
 		   (if (Double/isNaN prob)
-		     0.0 
+		     (throw (Exception. (str "NaN encountered in " concept-name
+					     "/" state ": " (seq distribution))))
 		     (* (undiscretize-value concept-name state) prob)))
 		 distribution)))
 

@@ -160,3 +160,19 @@
   [pointA pointB]
   (assert (and pointA pointB (== (count pointA) (count pointB))))
   (Math/sqrt (reduce + (map (fn [a b] (Math/pow (- a b) 2)) pointA pointB))))
+
+(defn count-distinct
+  "Returns a map of {distinct-val -> num-instances, ...} for all the
+   distinct values in a sequence.  If n is given, only count-distinct
+   for sequences where distinct-vals <= n.  For sequences with more
+   distinct-vals than n, simply return a map of {'*' ->
+   num-distinct}."
+  ([vals]
+     (seq2map
+      (distinct vals)
+      (fn [val] [val (count (filter #(= % val) vals))])))
+  ([vals n]
+     (let [num-distinct (count (distinct vals))]
+       (if (<= num-distinct n)
+	 (count-distinct vals)
+	 {"*" num-distinct}))))

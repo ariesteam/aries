@@ -31,11 +31,11 @@
    of the sink BN.  If it is relative, the sink-value will be the sink
    BN result * the total theoretical source-value."
   [locations {sink-type :sink-type}]
-  (seq2map locations
-	   (if (= sink-type :absolute)
-	     #(vector (:id %) (force (:sink %)))
-	     (let [theoretical-source (reduce + (map (comp force :source) locations))]
-	       #(vector (:id %) (* (force (:sink %)) theoretical-source))))))
+  (seq2map locations #(vector (:id %) (force (:sink %)))))
+;;	   (if (= sink-type :absolute)
+;;	     #(vector (:id %) (force (:sink %)))))
+;;	     (let [theoretical-source (reduce + (map (comp force :source) locations))]
+;;	       #(vector (:id %) (* (force (:sink %)) theoretical-source))))))
 
 (defn theoretical-use
   "Returns a map of {location-id -> use-value}.
@@ -43,11 +43,11 @@
    the use BN.  If it is relative, the use-value will be the use BN
    result * the total theoretical source-value."
   [locations {use-type :use-type}]
-  (seq2map locations
-	   (if (= use-type :absolute)
-	     #(vector (:id %) (force (:use %)))
-	     (let [theoretical-source (reduce + (map (comp force :source) locations))]
-	       #(vector (:id %) (* (force (:use %)) theoretical-source))))))
+  (seq2map locations #(vector (:id %) (force (:use %)))))
+;;	   (if (= use-type :absolute)
+;;           #(vector (:id %) (force (:use %)))))
+;;	     (let [theoretical-source (reduce + (map (comp force :source) locations))]
+;;	       #(vector (:id %) (* (force (:use %)) theoretical-source))))))
 
 (defn- possible-local-flows
   "Returns a map of {location-id -> flow-density}.
@@ -231,6 +231,10 @@
   (merge-with (fn [t p] (max 0.0 (- t p)))
 	      (theoretical-use locations flow-params)
 	      (possible-use locations flow-params)))
+
+(defn carriers-encountered
+  [locations]
+  (seq2map locations #(vector (:id %) (double (count @(:carrier-cache %))))))
 
 (declare
  blocked-flow

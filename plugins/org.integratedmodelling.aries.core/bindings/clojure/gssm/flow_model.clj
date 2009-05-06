@@ -47,9 +47,9 @@
 					use-concept    use-observation
 					flow-concept   flow-observation
 					rows           cols)]
-    (distribute-flow! flow-concept
-		      flow-params
-		      location-map
-		      rows
-		      cols)
+;;    (distribute-flow! flow-concept
+;;		      flow-params
+;;		      location-map
+;;		      rows
+;;		      cols)
     [location-map rows cols]))

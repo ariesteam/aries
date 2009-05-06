@@ -72,26 +72,42 @@
 
 (defn distance-within-range?
   [location-seq path-length decay-rate trans-threshold]
-  (>
-   (* ((comp force :source first) location-seq)
-      (Math/pow decay-rate path-length))
-   trans-threshold))
+  (println "- Checking range: (length " path-length ") -> ")
+  (println "-- Source-val: " ((comp force :source first) location-seq))
+  (println "-- Source-loc: " (first location-seq))
+  (let [asset-propagated (* ((comp force :source first) location-seq)
+			    (Math/pow decay-rate path-length))]
+    (println "-- Asset-propagated" asset-propagated)
+    (> asset-propagated trans-threshold)))
 
 (defn no-elevation-interference?
   [location-seq path-length]
+  (println "- Checking elevation: (length " path-length ") -> ")
   (let [source-loc  (first location-seq)
         use-loc     (last  location-seq)
         source-elev ((:flow-features source-loc) "Altitude")
         rise        (- ((:flow-features use-loc) "Altitude") source-elev)
         run         (euclidean-distance (:id source-loc) (:id use-loc))
-        view-slope  (/ rise run)
-        step-size   (/ run path-length)]
-    (every? (fn [[loc steps-from-source]]
-              (< ((:flow-features loc) "Altitude")
-                 (+ source-elev (* view-slope steps-from-source step-size))))
-            (rest (butlast (zipmap location-seq (range (inc path-length))))))))
+        view-slope  (if (> run 0.0) (/ rise run) 0.0)
+        step-size   (if (> path-length 0) (/ run path-length) 0.0)]
+    (println "-- Source-Elev: " source-elev)
+    (println "-- Rise: "        rise)
+    (println "-- Run: "         run)
+    (println "-- Slope: "       view-slope)
+    (println "-- Step-Size: "   step-size)
+    (println "-- PROCESSING...")
+    (let [all-steps (map vector location-seq (range (inc path-length)))
+	  middle-steps (rest (butlast all-steps))
+	  foo (every? (fn [[loc steps-from-source]]
+			(< ((:flow-features loc) "Altitude")
+			   (+ source-elev (* view-slope steps-from-source step-size))))
+		      middle-steps)]
+      (println "-- All-Steps: "    (count all-steps))
+      (println "-- Middle-Steps: " (count middle-steps))
+      (println "-- Foo: "          foo)
+      foo)))
 
-(defmethod distribute-flow! "LineOfSight"
+(defmethod distribute-flow! "LineOfSight_NoDebug"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
   (let [locations     (vals location-map)
         providers     (filter #(> (force (:source %)) trans-threshold) locations)
@@ -103,3 +119,38 @@
                      (no-elevation-interference? % path-length)))
              (map #(map location-map %)
                   (find-viewpaths providers beneficiaries))))))
+
+(defmethod distribute-flow! "LineOfSight"
+  [_ {:keys [decay-rate trans-threshold]} location-map _ _]
+  (let [locations      (vals location-map)
+        providers      (filter #(> (force (:source %)) trans-threshold) locations)
+        beneficiaries  (filter #(> (force (:use %)) 0.0) locations)
+	viewpaths      (map #(map location-map %) (find-viewpaths providers beneficiaries))
+	path-info      (map #(let [path-length (dec (count %))]
+			       (println "Assessing next path " (:id (first %))
+					"->" (:id (last %)) "(length " path-length ")")
+			       (let [range? (distance-within-range? % path-length
+								    decay-rate trans-threshold)
+				     elev?  (if range?
+					      (no-elevation-interference? % path-length)
+					      (println "-- OUT OF RANGE"))]
+				 (println "Building hash-map...")
+				 (let [hmap (hash-map
+					     :path   %
+					     :steps  path-length
+					     :range? range?
+					     :elev?  elev?)]
+				   (println "Built hash-map")
+				   hash-map)))
+			    viewpaths)
+	good-path?     (do (println "WHEE!!!") #(and (:range? %) (:elev? %)))
+	good-path-info (filter good-path? path-info)
+	bad-path-info  (filter (complement good-path?) path-info)]
+    (println "Total Viewpaths Computed: " (count viewpaths))
+    (println "Total Viewpaths Accepted: " (count good-path-info))
+    (println "Total Viewpaths Rejected: " (count bad-path-info))
+    ;;(println "Accepted Paths: " good-path-info)
+    ;;(println "Rejected Paths: " bad-path-info)
+    (distribute-load-over-processors
+     (fn [_ viewpath] (distribute-raycast! viewpath decay-rate))
+     (map :path good-path-info))))
