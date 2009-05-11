@@ -124,7 +124,7 @@
    carriers in this location's carrier-cache.  Inflow is only mappable
    for sink and use locations."
   [location]
-  (reduce + (map :weight @(:carrier-cache location))))
+  (double (reduce + (map :weight @(:carrier-cache location)))))
 
 (defn possible-inflow
   "Returns a map of {location-id -> asset-encountered}.

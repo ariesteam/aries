@@ -22,24 +22,47 @@
 			       service-carrier
 			       distribute-load-over-processors)]))
 
-(defn distribute-raycast!
-  [location-seq decay-rate]
-  (let [source-val ((comp force :source first) location-seq)]
-    (loop [traversed-locs   []
-           untraversed-locs location-seq]
-      (when (seq untraversed-locs)
-	(println "Traversed-locs:   " (map :id traversed-locs))
-	(newline)
-	(println "Untraversed-locs: " (map :id untraversed-locs))
-	(newline)
-	(let [current-loc (first untraversed-locs)]
-	  (if (or (> (force (:sink current-loc)) 0.0) (empty? (rest untraversed-locs)))
-	    (swap! (:carrier-cache current-loc) conj
-		   (struct service-carrier
-			   (* source-val (Math/pow decay-rate (count traversed-locs)))
-			   traversed-locs)))
-	  (recur (conj traversed-locs current-loc)
-		 (rest untraversed-locs)))))))
+(defn find-viewpath
+  [provider beneficiary]
+  (let [[pi pj] (:id provider)
+	[bi bj] (:id beneficiary)
+	m (if (not= pj bj) (/ (- bi pi) (- bj pj)))
+	b (if m (- pi (* m pj)))
+	f (fn [x] (+ (* m x) b))]
+    (cond (nil? m) (map (fn [i] [i pj])
+			(if (< pi bi)
+			  (range pi (inc bi))
+			  (range pi (dec bi) -1)))
+
+	  (== m 0) (map (fn [j] [pi j])
+			(if (< pj bj)
+			  (range pj (inc bj))
+			  (range pj (dec bj) -1)))
+
+	  :otherwise (let [get-i-range
+			   (cond (and (< pi bi) (< pj bj))
+				 (fn [j] (let [left-i  (Math/round (f (- j (if (== j pj) 0.0 0.5))))
+					       right-i (Math/round (f (+ j (if (== j bj) 0.0 0.5))))]
+					   (range left-i (inc right-i))))
+					       
+				 (and (< pi bi) (> pj bj))
+				 (fn [j] (let [left-i  (Math/round (f (- j (if (== j bj) 0.0 0.5))))
+					       right-i (Math/round (f (+ j (if (== j pj) 0.0 0.5))))]
+					   (range right-i (inc left-i))))
+					       
+				 (and (> pi bi) (< pj bj))
+				 (fn [j] (let [left-i  (Math/round (f (- j (if (== j pj) 0.0 0.5))))
+					       right-i (Math/round (f (+ j (if (== j bj) 0.0 0.5))))]
+					   (range left-i  (dec right-i) -1)))
+					       
+				 (and (> pi bi) (> pj bj))
+				 (fn [j] (let [left-i  (Math/round (f (- j (if (== j bj) 0.0 0.5))))
+					       right-i (Math/round (f (+ j (if (== j pj) 0.0 0.5))))]
+					   (range right-i (dec left-i)  -1))))
+			   j-range (if (< pj bj)
+				     (range pj (inc bj))
+				     (range pj (dec bj) -1))]
+		       (for [j j-range i (get-i-range j)] [i j])))))
 
 (defn find-viewpaths
   "Returns a sequence of paths (one for each combination of p and b),
@@ -53,86 +76,75 @@
    be its b.  If p=b, the path will contain only this one point."
   [providers beneficiaries]
   (for [p providers b beneficiaries]
-    (let [[pi pj] (:id p)
-          [bi bj] (:id b)
-          m (if (not= pj bj) (/ (- bi pi) (- bj pj)))
-          b (if m (- pi (* m pj)))
-          f (fn [x] (+ (* m x) b))]
-      (cond (nil? m) (map (fn [i] [i pj])
-			  (if (< pi bi)
-			    (range pi (inc bi))
-			    (range pi (dec bi) -1)))
+    (find-viewpath p b)))
 
-	    (== m 0) (map (fn [j] [pi j])
-			  (if (< pj bj)
-			    (range pj (inc bj))
-			    (range pj (dec bj) -1)))
+(defn get-valid-elevation
+  [location]
+  (let [elev ((:flow-features location) "Altitude")]
+    (if (> elev 55530.0) 0.0 elev)))
 
-	    :otherwise (let [get-i-range (cond (and (< pi bi) (< pj bj))
-					       (fn [j] (let [left-i  (Math/round (f (- j (if (== j pj) 0.0 0.5))))
-							     right-i (Math/round (f (+ j (if (== j bj) 0.0 0.5))))]
-							 (range left-i (inc right-i))))
-					       
-					       (and (< pi bi) (> pj bj))
-					       (fn [j] (let [left-i  (Math/round (f (- j (if (== j bj) 0.0 0.5))))
-							     right-i (Math/round (f (+ j (if (== j pj) 0.0 0.5))))]
-							 (range right-i (inc left-i))))
-					       
-					       (and (> pi bi) (< pj bj))
-					       (fn [j] (let [left-i  (Math/round (f (- j (if (== j pj) 0.0 0.5))))
-							     right-i (Math/round (f (+ j (if (== j bj) 0.0 0.5))))]
-							 (range left-i  (dec right-i) -1)))
-					       
-					       (and (> pi bi) (> pj bj))
-					       (fn [j] (let [left-i  (Math/round (f (- j (if (== j bj) 0.0 0.5))))
-							     right-i (Math/round (f (+ j (if (== j pj) 0.0 0.5))))]
-							 (range right-i (dec left-i)  -1))))
-			     j-range (if (< pj bj)
-				       (range pj (inc bj))
-				       (range pj (dec bj) -1))]
-			 (for [j j-range i (get-i-range j)] [i j]))))))
+(defn distribute-raycast!
+  [provider beneficiary decay-rate location-map]
+;;  (println "Casting from" (:id provider))
+  (let [source-val (force (:source provider))]
+    (if (= provider beneficiary)
+;;      (do (println "Provider = Beneficiary")
+      (swap! (:carrier-cache beneficiary) conj
+	     (struct service-carrier source-val [provider]))
+      (let [source-elev (get-valid-elevation provider)
+	    rise  (- (get-valid-elevation beneficiary) source-elev)
+	    run   (euclidean-distance (:id provider) (:id beneficiary))
+	    m     (/ rise run)
+	    f     (fn [x] (+ (* m x) source-elev))
+	    path  (find-viewpath provider beneficiary)
+	    steps (dec (count path))
+	    dx    (/ run steps)]
+;;	(println "Path steps:" steps)
+	(loop [step 0
+	       traversed-locs []
+	       untraversed-ids path]
+	  (when (seq untraversed-ids)
+	    (let [current-loc (location-map (first untraversed-ids))]
+	      (if (or (> (force (:sink current-loc)) 0.14)
+		      (== step steps))
+;;		(do (println "Hit a Sink/Use Location")
+		(swap! (:carrier-cache current-loc) conj
+		       (struct service-carrier
+			       (* source-val (Math/pow decay-rate (* step dx)))
+			       (conj traversed-locs current-loc))))
+	      (let [current-elev (get-valid-elevation current-loc)
+		    view-elev    (f (* step dx))]
+;;		(println "Current elev:" current-elev)
+;;		(println "View elev:   " view-elev)
+		(when (<= current-elev view-elev)
+;;		  (println "Recurring (STEP" (inc step) ")")
+		  (recur (inc step)
+			 (conj traversed-locs current-loc)
+			 (rest untraversed-ids)))))))))))
 
 (defn distance-within-range?
-  [location-seq path-length decay-rate trans-threshold]
-;;  (println "- Checking range: (length " path-length ") -> ")
-;;  (if (nil? location-seq) (println "-- Sequence empty!"))
-;;  (println "-- Source-val: " ((comp force :source first) location-seq))
-;;  (println "-- Source-loc: " (first location-seq))
-  (let [asset-propagated (* ((comp force :source first) location-seq)
-			    (Math/pow decay-rate path-length))]
-;;    (println "-- Asset-propagated" asset-propagated)
+  [provider beneficiary decay-rate trans-threshold]
+  (let [source-val       (force (:source provider))
+	path-length      (euclidean-distance (:id provider) (:id beneficiary))
+	asset-propagated (* source-val (Math/pow decay-rate path-length))]
     (> asset-propagated trans-threshold)))
 
-(defn no-elevation-interference?
-  [location-seq path-length]
-;;  (println "- Checking elevation: (length " path-length ") -> ")
-  (if (<= path-length 1)
-    (do
-;;      (println "-- No-Interference?: " true)
-      true)
-    (let [source-loc  (first location-seq)
-	  use-loc     (last  location-seq)
-	  source-elev ((:flow-features source-loc) "Altitude")
-	  rise        (- ((:flow-features use-loc) "Altitude") source-elev)
-	  run         (euclidean-distance (:id source-loc) (:id use-loc))
-	  view-slope  (/ rise run)
-	  step-size   (/ run path-length)]
-;;      (println "-- Source-Elev: " source-elev)
-;;      (println "-- Rise: "        rise)
-;;      (println "-- Run: "         run)
-;;      (println "-- Slope: "       view-slope)
-;;      (println "-- Step-Size: "   step-size)
-;;      (println "-- PROCESSING...")
-      (let [all-steps (map vector location-seq (range (inc path-length)))
-	    middle-steps (rest (butlast all-steps))
-	    no-interference? (every? (fn [[loc steps-from-source]]
-				       (< ((:flow-features loc) "Altitude")
-					  (+ source-elev (* view-slope steps-from-source step-size))))
-				     middle-steps)]
-;;	(println "-- All-Steps:        " (count all-steps))
-;;	(println "-- Middle-Steps:     " (count middle-steps))
-;;	(println "-- No-Interference?: " no-interference?)
-	no-interference?))))
+(defmethod distribute-flow! "LineOfSight"
+  [_ {:keys [decay-rate trans-threshold]} location-map _ _]
+  (println "Global LineOfSight Model begins...")
+  (let [locations     (vals location-map)
+        providers     (filter #(> (force (:source %)) trans-threshold) locations)
+        beneficiaries (filter #(> (force (:use %)) 0.0) locations)]
+    (println "Num Providers:" (count providers))
+    (println "Num Beneficiaries:" (count beneficiaries))
+    (doseq [p (take 270 providers)]
+	(doseq [b beneficiaries]
+	    (if (distance-within-range? p b decay-rate trans-threshold)
+;;	      (do (println "PATH IN RANGE")
+	      (distribute-raycast! p b decay-rate location-map))))))
+;;	      (println "PATH OUT OF RANGE"))))))
+
+(comment
 
 (defmethod distribute-flow! "LineOfSight_Foo"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
@@ -147,7 +159,7 @@
              (map #(map location-map %)
                   (find-viewpaths providers beneficiaries))))))
 
-(defmethod distribute-flow! "LineOfSight"
+(defmethod distribute-flow! "LineOfSight_Bar"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
   (println "LineOfSight Model begins...")
   (let [locations      (vals location-map)
@@ -185,7 +197,7 @@
 ;;       (map :path good-path-info))
 ;;      (println "Distribute-Load Returned."))))
 
-(defmethod distribute-flow! "LineOfSight_Debug2"
+(defmethod distribute-flow! "LineOfSight_Baz"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
   (println "LineOfSight Model begins...")
   (let [locations      (vals location-map)
@@ -213,3 +225,5 @@
 ;;    (newline)
 ;;    (println "Loc-seq 2691: " (map :id (nth viewpaths 2690)))))
 ))
+
+)
