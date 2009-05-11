@@ -63,7 +63,7 @@
      (if (> (+ (force (:sink loc))
 	       (force (:use loc)))
 	    0.0)
-       (dosync (commute (:carrier-cache loc) conj carrier)))
+       (swap! (:carrier-cache loc) conj carrier))
      false)))
 
 (defmethod distribute-flow! "Water"

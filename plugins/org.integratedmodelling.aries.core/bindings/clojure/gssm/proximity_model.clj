@@ -84,7 +84,7 @@
 	  (if (> (+ (force (:sink loc))
 		    (force (:use loc)))
 		 0.0)
-	    (dosync (commute (:carrier-cache loc) conj carrier))))
+	    (swap! (:carrier-cache loc) conj carrier)))
       (recur
        (let [new-frontier-locs (map location-map
 				    (expand-box (map (comp :id first) frontier)

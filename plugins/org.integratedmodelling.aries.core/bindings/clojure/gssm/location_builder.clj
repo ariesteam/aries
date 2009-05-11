@@ -77,6 +77,6 @@
 		   :use           (delay (run-bayes-net use-concept-name
 							use-inference-engine
 							use-features))
-		   :carrier-cache (ref ())
+		   :carrier-cache (atom ())
 		   :flow-features flow-features)))
 	     (fn [loc] [(:id loc) loc]))))

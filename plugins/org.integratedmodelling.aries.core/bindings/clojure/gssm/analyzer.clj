@@ -251,57 +251,6 @@
  actual-outflow)
 
 (comment
-  menu {"View Theoretical Source"  #(theoretical-source       locations)
-	"View Theoretical Sink"    #(theoretical-sink         locations flow-params)
-	"View Theoretical Use"     #(theoretical-use          locations flow-params)
-	"View Inacessible Source"  #(inacessible-source       locations)
-	"View Inacessible Sink"    #(inacessible-sink         locations flow-params)
-	"View Inacessible Use"     #(inacessible-use          locations flow-params)
-	"View Possible Flow"       #(possible-flow            locations flow-params)
-	"View Possible Source"     #(possible-source          locations)
-	"View Possible Inflow"     #(possible-inflow          locations)
-	"View Possible Sink"       #(possible-sink            locations flow-params)
-	"View Possible Use"        #(possible-use             locations flow-params)
-	"View Possible Outflow"    #(possible-outflow         locations flow-params)
-	"View Blocked Flow"        #(blocked-flow             locations)
-	"View Blocked Source"      #(blocked-source           locations)
-	"View Blocked Inflow"      #(blocked-inflow           locations)
-	"View Blocked Sink"        #(blocked-sink             locations flow-params)
-	"View Blocked Use"         #(blocked-use              locations flow-params)
-	"View Blocked Outflow"     #(blocked-outflow          locations flow-params)
-	"View Actual Flow"         #(actual-flow              locations)
-	"View Actual Source"       #(actual-source            locations)
-	"View Actual Inflow"       #(actual-inflow            locations)
-	"View Actual Sink"         #(actual-sink              locations flow-params)
-	"View Actual Use"          #(actual-use               locations flow-params)
-	"View Actual Outflow"      #(actual-outflow           locations flow-params)}
-
-  (defn update-caches!
-    "Adds to the sink-cache and use-cache the number of units each
-     takes from the carrier's weight.  If their sum is greater than 0,
-     stores the carrier in this location's carrier-cache.  Returns the
-     number of units removed from the carrier's weight by this
-     process."
-    [location carrier {:keys [sink-type use-type use-effect]}]
-    (let [weight      (:weight carrier)
-	  sink        (force (:sink location))
-	  use         (force (:use  location))
-	  sink-amount (if (= sink-type :relative)
-			(* weight sink)
-			(min weight (- sink @(:sink-cache location))))
-	  use-amount  (if (= use-type :relative)
-			(* (- weight sink-amount) use)
-			(min (- weight sink-amount) (- use @(:use-cache location))))]
-      (dosync
-       (if (> sink-amount 0.0)
-	 (commute (:sink-cache location) + sink-amount))
-       (if (> use-amount 0.0)
-	 (commute (:use-cache location) + use-amount))
-       (if (> (+ sink-amount use-amount) 0.0)
-	 (commute (:carrier-cache location) conj carrier)))
-      (if (= use-effect :destructive)
-	(+ sink-amount use-amount)
-	sink-amount)))
 
 (defn find-potential-flow
   "Make a list of all use and target locations.

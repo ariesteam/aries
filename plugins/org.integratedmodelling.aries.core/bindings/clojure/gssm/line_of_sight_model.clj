@@ -34,11 +34,10 @@
 	(newline)
 	(let [current-loc (first untraversed-locs)]
 	  (if (or (> (force (:sink current-loc)) 0.0) (empty? (rest untraversed-locs)))
-	    (dosync
-	     (commute (:carrier-cache current-loc) conj
-		      (struct service-carrier
-			      (* source-val (Math/pow decay-rate (count traversed-locs)))
-			      traversed-locs))))
+	    (swap! (:carrier-cache current-loc) conj
+		   (struct service-carrier
+			   (* source-val (Math/pow decay-rate (count traversed-locs)))
+			   traversed-locs)))
 	  (recur (conj traversed-locs current-loc)
 		 (rest untraversed-locs)))))))
 

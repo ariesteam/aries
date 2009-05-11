@@ -34,13 +34,12 @@
 					  #(vector % (/ (force (:source %)) total-production)))
 	    consumer-units       (seq2map (filter #(> (force (:use %)) 0.0) locations)
 					  #(vector % (* (force (:use %)) production-consumption-ratio)))]
-	(dosync
-	 (doseq [p (keys producer-percentages)]
-	     (doseq [c (keys consumer-units)]
-		 (commute (:carrier-cache c) conj
-			  (struct service-carrier
-				  (* (producer-percentages p) (consumer-units c))
-				  [p c])))))))))
+	(doseq [p (keys producer-percentages)]
+	    (doseq [c (keys consumer-units)]
+		(swap! (:carrier-cache c) conj
+		       (struct service-carrier
+			       (* (producer-percentages p) (consumer-units c))
+			       [p c]))))))))
 
 (defmethod distribute-flow! "Carbon-Uneven"
   [_ _ location-map _ _]
@@ -60,24 +59,22 @@
 		       (* num-consumers min-unmet-demand))
 		  [min-extra-credits (/ min-extra-credits num-consumers)]
 		  [min-unmet-demand  (/ min-unmet-demand  num-producers)])]
-	    (dosync
-	     (doseq [p (keys producer-map)]
-		 (doseq [c (keys consumer-map)]
-		     (commute (:carrier-cache c) conj
-			      (struct service-carrier
-				      max-allocable-increment
-				      [p c])))))
+	    (doseq [p (keys producer-map)]
+		(doseq [c (keys consumer-map)]
+		    (swap! (:carrier-cache c) conj
+			   (struct service-carrier
+				   max-allocable-increment
+				   [p c]))))
 	    (recur (filter (fn [[k v]] (> v 0.0))
 			   (maphash identity #(- % credits-allocable)) producer-map)
 		   (filter (fn [[k v]] (> v 0.0))
 			   (maphash identity #(- % credits-allocable)) consumer-map)))
 	  (let [consumers     (filter #(> (force (:use %)) 0.0) locations)
 		num-consumers (count consumers)]
-	    (dosync
-	     (doseq [p (keys producer-map)]
-		 (let [max-allocable-increment (/ (producer-map p) num-consumers)]
-		   (doseq [c consumers]
-		       (commute (:carrier-cache c) conj
-				(struct service-carrier
-					:weight max-allocable-increment
-					:route  [p c]))))))))))))
+	    (doseq [p (keys producer-map)]
+		(let [max-allocable-increment (/ (producer-map p) num-consumers)]
+		  (doseq [c consumers]
+		      (swap! (:carrier-cache c) conj
+			     (struct service-carrier
+				     max-allocable-increment
+				     [p c])))))))))))
