@@ -155,8 +155,14 @@
 
 (defn between [val low high] (and (>= val low) (< val high)))
 
+(defn manhattan-distance
+  "Returns the manhattan distance between two n-dimensional points."
+  [pointA pointB]
+  (assert (and pointA pointB (== (count pointA) (count pointB))))
+  (reduce + (map (fn [a b] (Math/abs (- a b))) pointA pointB)))
+
 (defn euclidean-distance
-  "Returns the Euclidean distance between two n-dimensional points."
+  "Returns the euclidean distance between two n-dimensional points."
   [pointA pointB]
   (assert (and pointA pointB (== (count pointA) (count pointB))))
   (Math/sqrt (reduce + (map (fn [a b] (Math/pow (- a b) 2)) pointA pointB))))

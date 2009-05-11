@@ -17,8 +17,7 @@
 
 (ns gssm.line-of-sight-model
   (:refer-clojure)
-  (:use [misc.utils     :only (euclidean-distance)]
-	[gssm.model-api :only (distribute-flow!
+  (:use [gssm.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]))
 
@@ -73,54 +72,48 @@
 				     (range pj (dec bj) -1))]
 		       (for [j j-range i (get-i-range j)] [i j])))))
 
-(defn find-viewpaths
-  [providers beneficiaries]
-  (for [p providers b beneficiaries]
-    (find-viewpath p b)))
-
 (defn get-valid-elevation
   [location]
   (let [elev ((:flow-features location) "Altitude")]
     (if (> elev 55535.0) 0.0 elev)))
 
-(defn distribute-raycast!
-  [provider beneficiary decay-rate location-map]
-  (let [source-val (force (:source provider))]
-    (if (= provider beneficiary)
-      (swap! (:carrier-cache beneficiary) conj
-	     (struct service-carrier source-val [provider]))
-      (let [source-elev (get-valid-elevation provider)
-	    rise  (- (get-valid-elevation beneficiary) source-elev)
-	    run   (euclidean-distance (:id provider) (:id beneficiary))
-	    m     (/ rise run)
-	    f     (fn [x] (+ (* m x) source-elev))
-	    path  (find-viewpath provider beneficiary)
-	    steps (dec (count path))
-	    dx    (/ run steps)]
-	(loop [step 0
-	       traversed-locs []
-	       untraversed-ids path]
-	  (when (seq untraversed-ids)
-	    (let [current-loc (location-map (first untraversed-ids))]
-	      (if (or (> (force (:sink current-loc)) 0.14)
-		      (== step steps))
-		(swap! (:carrier-cache current-loc) conj
-		       (struct service-carrier
-			       (* source-val (Math/pow decay-rate (* step dx)))
-			       (conj traversed-locs current-loc))))
-	      (let [current-elev (get-valid-elevation current-loc)
-		    view-elev    (f (* step dx))]
-		(when (<= current-elev view-elev)
-		  (recur (inc step)
-			 (conj traversed-locs current-loc)
-			 (rest untraversed-ids)))))))))))
+(defn elevation-interference?
+  [provider beneficiary path steps]
+  (let [source-elev (get-valid-elevation provider)
+	rise     (- (get-valid-elevation beneficiary) source-elev)
+	m        (/ rise steps)
+	f        (fn [x] (+ (* m x) source-elev))]
+    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
+	  (map vector path (range (inc steps))))))
 
-(defn distance-within-range?
-  [provider beneficiary decay-rate trans-threshold]
-  (let [source-val       (force (:source provider))
-	path-length      (euclidean-distance (:id provider) (:id beneficiary))
-	asset-propagated (* source-val (Math/pow decay-rate path-length))]
-    (> asset-propagated trans-threshold)))
+(defn update-sinks!
+  [source-val decay-rate path]
+  (loop [step 0
+	 traversed-locs []
+	 untraversed-locs path]
+    (when-first [current-loc untraversed-locs]
+	(let [current-path (conj traversed-locs current-loc)]
+	  (if (> (force (:sink current-loc)) 0.14)
+	    (swap! (:carrier-cache current-loc) conj
+		   (struct service-carrier
+			   (* source-val (Math/pow decay-rate step))
+			   current-path)))
+	  (recur (inc step)
+		 current-path
+		 (rest untraversed-locs))))))
+
+(defn distribute-raycast!
+  [provider beneficiary decay-rate trans-threshold location-map]
+  (let [source-val (force (:source provider))
+	path       (map location-map (find-viewpath provider beneficiary))
+	steps      (dec (count path))
+	asset-propagated (* source-val (Math/pow decay-rate steps))]
+    (when (> steps 0)
+      (if (and (> asset-propagated trans-threshold)
+	       (not (elevation-interference? provider beneficiary path steps)))
+	(update-sinks! source-val decay-rate (butlast path))))
+    (swap! (:carrier-cache beneficiary) conj
+	   (struct service-carrier asset-propagated path))))
 
 (defmethod distribute-flow! "LineOfSight"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
@@ -131,6 +124,5 @@
     (println "Num Providers:" (count providers))
     (println "Num Beneficiaries:" (count beneficiaries))
     (distribute-load-over-processors
-     (fn [_ [p b]] (if (distance-within-range? p b decay-rate trans-threshold)
-			(distribute-raycast! p b decay-rate location-map)))
-     (for [p (take 270 providers) b beneficiaries] [p b]))))
+     (fn [_ [p b]] (distribute-raycast! p b decay-rate trans-threshold location-map))
+     (for [p providers b beneficiaries] [p b]))))

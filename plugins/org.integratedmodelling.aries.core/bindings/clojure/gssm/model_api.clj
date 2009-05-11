@@ -33,6 +33,6 @@
 (defn distribute-load-over-processors
   [action-fn arg-seq]
   (let [num-processors (.availableProcessors (Runtime/getRuntime))
-	agents (map agent (replicate (* 4 num-processors) nil))]
+	agents (map agent (replicate (* 2 num-processors) nil))]
     (dorun (map #(send %1 action-fn %2) (cycle agents) arg-seq))
     (apply await agents)))
