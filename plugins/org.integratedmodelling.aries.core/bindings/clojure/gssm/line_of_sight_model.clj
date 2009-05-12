@@ -134,4 +134,4 @@
     (println "Num Beneficiaries:" (count beneficiaries))
     (distribute-load-over-processors
      (fn [_ [p b]] (distribute-raycast! p b decay-rate trans-threshold location-map))
-     (for [p (take 810 providers) b beneficiaries] [p b]))))
+     (for [p providers b beneficiaries] [p b]))))
