@@ -83,24 +83,33 @@
 	rise     (- (get-valid-elevation beneficiary) source-elev)
 	m        (/ rise steps)
 	f        (fn [x] (+ (* m x) source-elev))]
-    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
-	  (map vector path (range (inc steps))))))
+    (loop [step 0
+	   untraversed-locs path]
+      (when (< step steps)
+	(let [current-loc (first untraversed-locs)]
+	  (if (> (get-valid-elevation current-loc) (f step))
+	    true
+	    (recur (inc step)
+		   (rest untraversed-locs))))))))
+;;    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
+;;	  (map vector path (range (inc steps))))))
 
 (defn update-sinks!
-  [source-val decay-rate path]
+  [source-val decay-rate path steps]
   (loop [step 0
 	 traversed-locs []
 	 untraversed-locs path]
-    (when-first [current-loc untraversed-locs]
-	(let [current-path (conj traversed-locs current-loc)]
-	  (if (> (force (:sink current-loc)) 0.14)
-	    (swap! (:carrier-cache current-loc) conj
-		   (struct service-carrier
-			   (* source-val (Math/pow decay-rate step))
-			   current-path)))
-	  (recur (inc step)
-		 current-path
-		 (rest untraversed-locs))))))
+    (when (< step steps)
+      (let [current-loc  (first untraversed-locs)
+	    current-path (conj traversed-locs current-loc)]
+	(if (> (force (:sink current-loc)) 0.14)
+	  (swap! (:carrier-cache current-loc) conj
+		 (struct service-carrier
+			 (* source-val (Math/pow decay-rate step))
+			 current-path)))
+	(recur (inc step)
+	       current-path
+	       (rest untraversed-locs))))))
 
 (defn distribute-raycast!
   [provider beneficiary decay-rate trans-threshold location-map]
@@ -111,7 +120,7 @@
     (when (> steps 0)
       (if (and (> asset-propagated trans-threshold)
 	       (not (elevation-interference? provider beneficiary path steps)))
-	(update-sinks! source-val decay-rate (butlast path))))
+	(update-sinks! source-val decay-rate path steps)))
     (swap! (:carrier-cache beneficiary) conj
 	   (struct service-carrier asset-propagated path))))
 
@@ -125,4 +134,4 @@
     (println "Num Beneficiaries:" (count beneficiaries))
     (distribute-load-over-processors
      (fn [_ [p b]] (distribute-raycast! p b decay-rate trans-threshold location-map))
-     (for [p providers b beneficiaries] [p b]))))
+     (for [p (take 810 providers) b beneficiaries] [p b]))))
