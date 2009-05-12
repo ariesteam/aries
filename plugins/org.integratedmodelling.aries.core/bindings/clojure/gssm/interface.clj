@@ -78,7 +78,7 @@
 
 (defn coord-map-to-matrix
   "Renders a map of {[i j] -> value} into a 2D matrix."
-  [coord-map rows cols]
+  [rows cols coord-map]
   (let [matrix (make-array Double/TYPE rows cols)]
     (doseq [[i j :as key] (keys coord-map)]
 	(aset-double matrix i j (coord-map key)))
@@ -117,10 +117,56 @@
 	    (force (:use location))
 	    (count @(:carrier-cache location)))))
 
+(defn gssm-autopilot
+  "Takes the source, sink, use, and flow concepts along with
+   observations of their dependent features, calculates the gssm
+   flows, and returns an array of functions which can be run to
+   recover each of the possible flow analysis results."
+  [source-concept source-observation
+   sink-concept   sink-observation
+   use-concept    use-observation
+   flow-concept   flow-observation
+   flow-params]
+  (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
+							 sink-concept   sink-observation
+							 use-concept    use-observation
+							 flow-concept   flow-observation
+							 flow-params)
+	locations (vals location-map)]
+    (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
+		(list
+		 (theoretical-source  locations)
+		 (theoretical-sink    locations flow-params)
+		 (theoretical-use     locations flow-params)
+		 (inaccessible-source locations)
+		 (inaccessible-sink   locations flow-params)
+		 (inaccessible-use    locations flow-params)
+		 (possible-flow       locations flow-params)
+		 (possible-source     locations)
+		 (possible-inflow     locations)
+		 (possible-sink       locations flow-params)
+		 (possible-use        locations flow-params)
+		 (possible-outflow    locations flow-params))))))
+
+;;       (blocked-flow             locations)
+;;       (blocked-source           locations)
+;;       (blocked-inflow           locations)
+;;       (blocked-sink             locations flow-params)
+;;       (blocked-use              locations flow-params)
+;;       (blocked-outflow          locations flow-params)
+;;       (actual-flow              locations)
+;;       (actual-source            locations)
+;;       (actual-inflow            locations)
+;;       (actual-sink              locations flow-params)
+;;       (actual-use               locations flow-params)
+;;       (actual-outflow           locations flow-params)
+;;       (carriers-encountered locations)
+
 (defn gssm-interface
-  "Takes the source, sink, and use concepts along with observations of
-   their dependent features, calculates the gssm flows, and provides a
-   simple menu-based interface to view the results."
+  "Takes the source, sink, use, and flow concepts along with
+   observations of their dependent features, calculates the gssm
+   flows, and provides a simple menu-based interface to view the
+   results."
   [source-concept source-observation
    sink-concept   sink-observation
    use-concept    use-observation
@@ -186,5 +232,4 @@
 		  coord-map))
 		(newline)
 		(println "Distinct values: " (count-distinct (vals coord-map) 10)))
-	      ;; (print-matrix (coord-map-to-matrix coord-map rows cols) "%7.2f "))
 	      (recur (select-menu-option prompts num-prompts)))))))))
