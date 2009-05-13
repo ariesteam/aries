@@ -23,8 +23,8 @@
 	"Run the proximity model at the given resolution" 
 	[resolution]
 	(let [view-params 
-					{:decay-rate      0.8
-				 	 :trans-threshold 0.15
+					{:decay-rate      0.75
+				 	 :trans-threshold 0.25
 				 	 :sink-type       :relative
 				 	 :use-type        :relative
 				 	 :benefit-type    :non-rival}]

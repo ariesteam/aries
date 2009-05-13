@@ -28,8 +28,8 @@
    [0-rows],[0-cols]."
   [points rows cols]
   (when (seq points)
-    (let [row-coords (map #(get % 0) points)
-	  col-coords (map #(get % 1) points)
+    (let [row-coords (map first  points)
+	  col-coords (map second points)
 	  min-i (apply min row-coords)
 	  min-j (apply min col-coords)
 	  max-i (apply max row-coords)
@@ -43,10 +43,10 @@
        (when (<  right  cols) (for [i (range min-i top) j [right]]    [i j]))
        (when (>= bottom 0)    (for [i [bottom] j (range min-j right)] [i j]))
        (when (<  top    rows) (for [i [top]    j (range min-j right)] [i j]))
-       (when (and (>= left 0)     (<  top rows)) (list [left  top]))
-       (when (and (>= left 0)     (>= bottom 0)) (list [left  bottom]))
-       (when (and (<  right cols) (<  top rows)) (list [right top]))
-       (when (and (<  right cols) (>= bottom 0)) (list [right bottom]))))))
+       (when (and (>= left 0)     (<  top rows)) (list [top left]))
+       (when (and (>= left 0)     (>= bottom 0)) (list [bottom left]))
+       (when (and (<  right cols) (<  top rows)) (list [top right]))
+       (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
 
 (defn manhattan-distance
   [[i1 j1] [i2 j2]]
@@ -91,14 +91,12 @@
 						rows cols))]
 	 (filter #(and (val %) (> (:weight (val %)) trans-threshold))
 		 (seq2map new-frontier-locs
-			  (fn [new-frontier-loc]
-			    [new-frontier-loc
-			     (construct-optimal-carrier new-frontier-loc
-							frontier
-							decay-rate)]))))))))
+			  #(vector % (construct-optimal-carrier
+				      % frontier decay-rate)))))))))
 
 (defmethod distribute-flow! "Proximity"
   [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
+  (println "Local Proximity Model begins...")
   (distribute-load-over-processors
    (fn [_ source-loc]
      (distribute-gaussian! flow-params
@@ -108,3 +106,18 @@
 			   source-loc
 			   (struct service-carrier (force (:source source-loc)) [source-loc])))
    (filter #(> (force (:source %)) trans-threshold) (vals location-map))))
+
+(defmethod distribute-flow! "Proximity_Sequential"
+  [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
+  (println "Local Proximity Model begins...")
+  (let [sources (vec (filter #(> (force (:source %)) trans-threshold) (vals location-map)))
+	num-sources (count sources)]
+    (dotimes [i num-sources]
+	(let [source-loc (sources i)]
+	  (println "Projection" i "/" num-sources)
+	  (distribute-gaussian! flow-params
+				location-map
+				rows
+				cols
+				source-loc
+				(struct service-carrier (force (:source source-loc)) [source-loc]))))))
