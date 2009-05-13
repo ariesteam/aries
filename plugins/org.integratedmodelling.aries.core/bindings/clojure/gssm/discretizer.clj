@@ -71,11 +71,13 @@
    "SummerHighWinterLow"     #(get-range-name [20.0 40.0 60.0 80.0] ["VeryLow" "Low" "Moderate" "High" "VeryHigh"] %)})
 
 (def undiscretization-table
-  {"SensoryEnjoyment"  {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
-   "AestheticViewshedUse" {"No" 0.0, "Yes" 1.0}
-   "ViewSink"          {"No" 0.0, "Yes" 1.0}
-   "ProximityToBeauty" {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
-   "ClimateStability"  {"None" 0.0, "VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}})
+  {"SensoryEnjoyment"      {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
+   "ViewSink"              {"No" 0.0, "Yes" 1.0}
+   "AestheticViewshedUse"  {"No" 0.0, "Yes" 1.0}
+   "ProximityToBeauty"     {"None" 0.0, "Low" 16.7, "Moderate" 50.0, "High" 83.3}
+   "ProximitySink"         {"No" 0.0, "Yes" 1.0}
+   "AestheticProximityUse" {"No" 0.0, "Yes" 1.0}
+   "ClimateStability"      {"None" 0.0, "VeryLow" 10.0, "Low" 30.0, "Moderate" 50.0, "High" 70.0, "VeryHigh" 90.0}})
 
 (defn discretize-value
   "Transforms the value to the string name of its corresponding

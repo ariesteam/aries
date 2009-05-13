@@ -90,7 +90,8 @@
 				(merge (corescience/map-dependent-states source-observation)
 				       (corescience/map-dependent-states sink-observation)
 				       (corescience/map-dependent-states use-observation)
-				       (corescience/map-dependent-states flow-observation)))
+				       (if flow-observation
+					 (corescience/map-dependent-states flow-observation))))
 	feature-names  (vec (keys feature-states))
 	num-features   (count feature-names)
 	feature-name   (select-menu-option feature-names num-features)]

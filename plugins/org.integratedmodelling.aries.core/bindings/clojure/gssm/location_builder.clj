@@ -57,8 +57,9 @@
 					 (corescience/map-dependent-states sink-observation))
 	use-feature-map         (maphash (memfn getLocalName) identity
 					 (corescience/map-dependent-states use-observation))
-	flow-feature-map        (maphash (memfn getLocalName) identity
-					 (corescience/map-dependent-states flow-observation))]
+	flow-feature-map        (when flow-observation
+				  (maphash (memfn getLocalName) identity
+					   (corescience/map-dependent-states flow-observation)))]
     (seq2map (for [i (range rows) j (range cols)]
 	       (let [feature-idx     (+ (* i cols) j)
 		     source-features (extract-features-discretized source-feature-map feature-idx)

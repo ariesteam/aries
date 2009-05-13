@@ -36,10 +36,7 @@
    use-concept    use-observation
    flow-concept   flow-observation
    flow-params]
-  (assert (and (geospace/grid-extent? source-observation)
-	       (geospace/grid-extent? sink-observation)
-	       (geospace/grid-extent? use-observation)
-	       (geospace/grid-extent? flow-observation)))
+  (assert (geospace/grid-extent? source-observation))
   (let [rows (geospace/grid-rows    source-observation)
 	cols (geospace/grid-columns source-observation)
 	location-map (make-location-map source-concept source-observation
