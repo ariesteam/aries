@@ -19,4 +19,20 @@
 					'aestheticService:ViewSink
 					'aestheticService:LineOfSight view-params resolution output-file)))
 		
-(save-view-model 200 "C:/A/results/viewflow.nc")
+(defn save-proximity-model
+  "Run the proximity model at the given resolution" 
+  [resolution output-file]
+  (let [view-params 
+	{:decay-rate      0.6
+	 :trans-threshold 1.0
+	 :sink-type       :relative
+	 :use-type        :relative
+	 :benefit-type    :non-rival}]
+    (aries.demo/save-gssm-demo-data
+     'aestheticService:ProximityToBeauty
+     'aestheticService:AestheticProximityUse
+     'aestheticService:ProximitySink
+     'aestheticService:Proximity view-params resolution output-file)))		
+		
+; (save-view-model 200 "C:/A/results/viewflow.nc")
+(save-proximity-model 256 "C:/A/results/proximityflow.nc")
