@@ -18,8 +18,23 @@
 			'aestheticService:AestheticViewshedUse
 			'aestheticService:ViewSink
 			'aestheticService:LineOfSight view-params resolution)))
-		
-(run-view-model 64)
+
+(defn run-proximity-model
+	"Run the proximity model at the given resolution" 
+	[resolution]
+	(let [view-params 
+					{:decay-rate      0.8
+				 	 :trans-threshold 0.15
+				 	 :sink-type       :relative
+				 	 :use-type        :relative
+				 	 :benefit-type    :non-rival}]
+		(aries.demo/run-gssm-demo 
+			'aestheticService:ProximityToBeauty
+			'aestheticService:AestheticProximityUse
+			'aestheticService:ProximitySink
+			'aestheticService:Proximity view-params resolution)))
+
+(run-proximity-model 100)
 
 ;(aries.demo/make-dataset 'aestheticService:ProximityToBeauty "proximity_data" 512)
 ;(aries.demo/run-gssm-demo 'aestheticService:ProximityToBeauty 'aestheticService:AestheticProximityUse 64 0.2)

@@ -380,8 +380,16 @@
 
     <owl:Class rdf:about="#LineOfSight">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
-        <rdfs:comment
-            >Flow of aesthetic view, carried by light across line of sight.</rdfs:comment>
+        <rdfs:comment>Flow of aesthetic view, carried by light across line of sight.</rdfs:comment>
+    </owl:Class>
+
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#Proximity -->
+
+    <owl:Class rdf:about="#Proximity">
+        <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
+        <rdfs:comment>Flow of proximal accessibility, represented as a path of travel from resource to user .</rdfs:comment>
     </owl:Class>
     
 
@@ -556,8 +564,16 @@
 
     <owl:Class rdf:about="#ViewSink">
         <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
-        <rdfs:comment
-            >Whatever detracts from an aesthetic view by being visible along the sight line.</rdfs:comment>
+        <rdfs:comment>Whatever detracts from an aesthetic view by being visible along the sight line.</rdfs:comment>
+    </owl:Class>
+
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ProximitySink -->
+
+    <owl:Class rdf:about="#ProximitySink">
+        <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
+        <rdfs:comment>Whatever reduces accessibility along a Proximity flow path.</rdfs:comment>
     </owl:Class>
     
 

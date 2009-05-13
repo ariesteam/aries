@@ -2,10 +2,10 @@
 <smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Area">
-			<state id="VLarge" />
+			<state id="VeryLarge" />
 			<state id="Large" />
 			<state id="Small" />
-			<state id="VSmall" />
+			<state id="VerySmall" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="WaterQuality">
@@ -53,7 +53,7 @@
 			<state id="No" />
 			<probabilities>0.01 0.99</probabilities>
 		</cpt>
-		<cpt id="Lakefront">
+		<cpt id="LakeFront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
@@ -68,12 +68,12 @@
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
-		<cpt id="Forests">
+		<cpt id="Forest">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
-		<cpt id="Riverfront">
+		<cpt id="RiverFront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
@@ -88,12 +88,12 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="None" />
-			<parents>Farm Park Cemetery GolfCourse Beach Lakefront Riverfront EmergentWetland Forests WoodyWetland</parents>
+			<parents>Farm Park Cemetery GolfCourse Beach LakeFront RiverFront EmergentWetland Forest WoodyWetland</parents>
 			<strengths>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</strengths>
 			<parameters>0.09999999999999998 0.2999999999999999 0.6 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.2 0.5 0.3 0 0 0 0 1 0.3 0.4 0.3 0 0 0 0 1 0.7 0.2 0.1 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0 0 0 1</parameters>
 			<property id="ResourceType">ResourceType=ManagedOpenSpace+NaturalEcosystems</property>
 		</noisymax>
-		<cpt id="ProximitySourceValue">
+		<cpt id="ProximityToBeauty">
 			<state id="High" />
 			<state id="Moderate" />
 			<state id="Low" />
@@ -105,8 +105,8 @@
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network3" faultnameformat="nodestate">
-			<node id="ProximitySourceValue">
-				<name>ProximitySourceValue</name>
+			<node id="ProximityToBeauty">
+				<name>ProximityToBeauty</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -178,8 +178,8 @@
 				<position>702 237 805 270</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="Forests">
-				<name>Forests</name>
+			<node id="Forest">
+				<name>Forest</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -218,16 +218,16 @@
 				<position>601 366 669 408</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="Lakefront">
-				<name>Lakefront</name>
+			<node id="LakeFront">
+				<name>LakeFront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>681 390 742 428</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="Riverfront">
-				<name>Riverfront</name>
+			<node id="RiverFront">
+				<name>RiverFront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
