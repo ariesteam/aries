@@ -23,15 +23,15 @@
 	the longest dimension of the resulting maps; the resolution in the other dimension will be 
 	adjusted to obtain square pixels according to the aspect ratio."
 	[observable region-of-interest resolution]
-	(aries/harmonize-observations
-		resolution
+	(if (nil? observable) nil (aries/harmonize-observations
+		resolution	
 		observable
 		(aries/retrieve-observations 
 			(aries/make-demo-dependency-tree observable) 
 			false
 			(aries/get-demo-data-kbox)
 			region-of-interest)
-		region-of-interest))
+		region-of-interest)))
 
 (defn select-region-of-interest-by-service
 	""
@@ -113,4 +113,7 @@
 	  		 benf-flow   flow-data
 				 flow-params)
 				source-data
+				use-data
+				sink-data
+				flow-data
 				output-file)))

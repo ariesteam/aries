@@ -35,11 +35,23 @@ public class FlowObservationBuilder {
 		"ActualOutflow"
 	};
 	
-	static public void buildObservation(Collection<Object> coll,
-			IInstance sourceData, Object output) throws ThinklabException {
+	static public void buildObservation(
+			Collection<Object> coll,
+			IInstance sourceData, 
+			IInstance useData, 
+			IInstance sinkData, 
+			IInstance flowData, 
+			Object output) throws ThinklabException {
 		
 		NetCDFArchive netcdf = new NetCDFArchive();
 		netcdf.setObservation(sourceData);
+		
+		if (useData != null)
+			netcdf.addObservation(useData);
+		if (sinkData != null)
+			netcdf.addObservation(sinkData);
+		if (flowData != null)
+			netcdf.addObservation(flowData);
 		
 		int i = 0;
 		for (Object o : coll) {
