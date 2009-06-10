@@ -232,4 +232,9 @@ public class ARIESDemoKbox implements IKBox {
 		return properties;
 	}
 
+	@Override
+	public long getObjectCount() {
+		return data.size();
+	}
+
 }

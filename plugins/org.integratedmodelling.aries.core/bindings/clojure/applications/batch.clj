@@ -33,6 +33,6 @@
      'aestheticService:AestheticProximityUse
      'aestheticService:ProximitySink
      'aestheticService:Proximity view-params resolution output-file)))		
-		
-; (save-view-model 200 "C:/A/results/viewflow.nc")
-(save-proximity-model 256 "C:/A/results/proximityflow.nc")
+
+(save-view-model 200 "C:/A/results/viewflow.nc")
+;(save-proximity-model 256 "C:/A/results/proximityflow.nc")
