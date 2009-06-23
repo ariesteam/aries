@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
@@ -51,6 +52,7 @@ import org.integratedmodelling.thinklab.exception.ThinklabIOException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
+import org.integratedmodelling.thinklab.interfaces.literals.IValue;
 import org.integratedmodelling.thinklab.interfaces.query.IQuery;
 import org.integratedmodelling.thinklab.interfaces.query.IQueryResult;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
@@ -138,26 +140,26 @@ public class ARIESDemoKbox implements IKBox {
 		return null;
 	}
 
-	public String storeObject(Polylist list, String id, ISession session)
+	public String storeObject(Polylist list, String id, Map<String, IValue> metadata, ISession session)
 			throws ThinklabException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String storeObject(Polylist list, String id, ISession session,
-			HashMap<String, String> refTable) throws ThinklabException {
+	public String storeObject(Polylist list, String id, Map<String, IValue> metadata,
+			ISession session, HashMap<String, String> refTable) throws ThinklabException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String storeObject(IInstance object, String id, ISession session)
+	public String storeObject(IInstance object, String id, Map<String, IValue> metadata, ISession session)
 			throws ThinklabException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String storeObject(IInstance object, String id, ISession session,
-			HashMap<String, String> references) throws ThinklabException {
+	public String storeObject(IInstance object, String id, Map<String, IValue> metadata,
+			ISession session, HashMap<String, String> references) throws ThinklabException {
 		// TODO Auto-generated method stub
 		return null;
 	}
