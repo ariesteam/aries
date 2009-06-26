@@ -11,8 +11,6 @@ public class ARIESValuationPlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -22,7 +20,7 @@ public class ARIESValuationPlugin extends ThinklabPlugin {
 	}
 
 	public static ARIESValuationPlugin get() {
-		return (ARIESValuationPlugin) Thinklab.getPlugin(ID);
+		return (ARIESValuationPlugin)getPlugin(ID);
 	}
 	
 }
