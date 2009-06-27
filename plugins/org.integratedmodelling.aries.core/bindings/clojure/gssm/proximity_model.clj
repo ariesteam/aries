@@ -105,12 +105,12 @@
 			   cols
 			   source-loc
 			   (struct service-carrier (force (:source source-loc)) [source-loc])))
-   (filter #(> (force (:source %)) 10.0) (vals location-map))))
+   (filter #(> (force (:source %)) 0.0) (vals location-map))))
 
 (defmethod distribute-flow! "Proximity_Sequential"
   [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
   (println "Local Proximity Model begins...")
-  (let [sources (vec (filter #(> (force (:source %)) 10.0) (vals location-map)))
+  (let [sources (vec (filter #(> (force (:source %)) 0.0) (vals location-map)))
 	num-sources (count sources)]
     (dotimes [i num-sources]
 	(let [source-loc (sources i)]

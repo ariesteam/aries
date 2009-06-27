@@ -182,3 +182,12 @@
        (if (<= num-distinct n)
 	 (count-distinct vals)
 	 {"*" num-distinct}))))
+
+(defn memoize-by-first-arg
+  [function]
+  (let [cache (atom {})]
+    (fn [& args]
+      (or (@cache (first args))
+	  (let [result (apply function args)]
+	    (swap! cache assoc (first args) result)
+	    result)))))

@@ -121,8 +121,8 @@
 (defn gssm-autopilot
   "Takes the source, sink, use, and flow concepts along with
    observations of their dependent features, calculates the gssm
-   flows, and returns an array of functions which can be run to
-   recover each of the possible flow analysis results."
+   flows, and returns a list of matrices representing the flow
+   analysis results."
   [source-concept source-observation
    sink-concept   sink-observation
    use-concept    use-observation
@@ -136,32 +136,31 @@
 	locations (vals location-map)]
     (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
 		(list
-		 (theoretical-source  locations)
-		 (theoretical-sink    locations flow-params)
-		 (theoretical-use     locations flow-params)
-		 (inaccessible-source locations)
-		 (inaccessible-sink   locations flow-params)
-		 (inaccessible-use    locations flow-params)
-		 (possible-flow       locations flow-params)
-		 (possible-source     locations)
-		 (possible-inflow     locations)
-		 (possible-sink       locations flow-params)
-		 (possible-use        locations flow-params)
-		 (possible-outflow    locations flow-params))))))
-
-;;       (blocked-flow             locations)
-;;       (blocked-source           locations)
-;;       (blocked-inflow           locations)
-;;       (blocked-sink             locations flow-params)
-;;       (blocked-use              locations flow-params)
-;;       (blocked-outflow          locations flow-params)
-;;       (actual-flow              locations)
-;;       (actual-source            locations)
-;;       (actual-inflow            locations)
-;;       (actual-sink              locations flow-params)
-;;       (actual-use               locations flow-params)
-;;       (actual-outflow           locations flow-params)
-;;       (carriers-encountered locations)
+		 (theoretical-source   locations)
+		 (theoretical-sink     locations flow-params)
+		 (theoretical-use      locations flow-params)
+		 (inaccessible-source  locations)
+		 (inaccessible-sink    locations flow-params)
+		 (inaccessible-use     locations flow-params)
+		 (possible-flow        locations flow-params)
+		 (possible-source      locations)
+		 (possible-inflow      locations)
+		 (possible-sink        locations flow-params)
+		 (possible-use         locations flow-params)
+		 (possible-outflow     locations flow-params)
+		 (blocked-flow         locations flow-params)
+		 (blocked-source       locations flow-params)
+		 (blocked-inflow       locations flow-params)
+		 (blocked-sink         locations flow-params)
+		 (blocked-use          locations flow-params)
+		 (blocked-outflow      locations flow-params)
+		 (actual-flow          locations flow-params)
+		 (actual-source        locations flow-params)
+		 (actual-inflow        locations flow-params)
+		 (actual-sink          locations flow-params)
+		 (actual-use           locations flow-params)
+		 (actual-outflow       locations flow-params)
+		 (carriers-encountered locations))))))
 
 (defn gssm-interface
   "Takes the source, sink, use, and flow concepts along with
@@ -194,15 +193,15 @@
 		"View Possible Sink"        #(possible-sink            locations flow-params)
 		"View Possible Use"         #(possible-use             locations flow-params)
 		"View Possible Outflow"     #(possible-outflow         locations flow-params)
-		"View Blocked Flow"         #(blocked-flow             locations)
-		"View Blocked Source"       #(blocked-source           locations)
-		"View Blocked Inflow"       #(blocked-inflow           locations)
+		"View Blocked Flow"         #(blocked-flow             locations flow-params)
+		"View Blocked Source"       #(blocked-source           locations flow-params)
+		"View Blocked Inflow"       #(blocked-inflow           locations flow-params)
 		"View Blocked Sink"         #(blocked-sink             locations flow-params)
 		"View Blocked Use"          #(blocked-use              locations flow-params)
 		"View Blocked Outflow"      #(blocked-outflow          locations flow-params)
-		"View Actual Flow"          #(actual-flow              locations)
-		"View Actual Source"        #(actual-source            locations)
-		"View Actual Inflow"        #(actual-inflow            locations)
+		"View Actual Flow"          #(actual-flow              locations flow-params)
+		"View Actual Source"        #(actual-source            locations flow-params)
+		"View Actual Inflow"        #(actual-inflow            locations flow-params)
 		"View Actual Sink"          #(actual-sink              locations flow-params)
 		"View Actual Use"           #(actual-use               locations flow-params)
 		"View Actual Outflow"       #(actual-outflow           locations flow-params)

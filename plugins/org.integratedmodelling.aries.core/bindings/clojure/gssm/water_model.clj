@@ -17,29 +17,23 @@
 
 (ns gssm.water-model
   (:refer-clojure)
-  (:use [misc.utils     :only (seq2map depth-first-tree-search)]
+  (:use [misc.utils     :only (seq2map
+			       memoize-by-first-arg
+			       depth-first-tree-search)]
 	[gssm.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]))
 
-(defn memoize-by-first-arg
-  [function]
-  (let [cache (atom {})]
-    (fn [& args]
-      (or (@cache (first args))
-          (let [result (apply function args)]
-	    (swap! cache assoc (first args) result)
-            result)))))
-
-(def most-downhill-neighbors
-  (memoize-by-first-arg (fn [location location-map]
-    (let [neighbors      (map location-map (:neighbors location))
-	  neighbor-elevs (map #((:flow-features %) "Elevation") neighbors)
-	  local-elev     ((:flow-features location) "Elevation")
-	  min-elev       (apply min local-elev neighbor-elevs)]
-      (filter identity
-	      (map (fn [n elev] (if (== elev min-elev) n))
-		   neighbors neighbor-elevs))))))
+(defn most-downhill-neighbors
+  [location location-map]
+  (let [neighbors      (map location-map (:neighbors location))
+	neighbor-elevs (map #((:flow-features %) "Elevation") neighbors)
+	local-elev     ((:flow-features location) "Elevation")
+	min-elev       (apply min local-elev neighbor-elevs)]
+    (filter identity
+	    (map (fn [n elev] (if (== elev min-elev) n))
+		 neighbors neighbor-elevs))))
+(def most-downhill-neighbors (memoize-by-first-arg most-downhill-neighbors))
 
 (defn distribute-downhill!
   "Depth-first search with successors = downhill neighbors.
@@ -51,7 +45,7 @@
    (fn [[loc carrier]]
      (let [downhill-neighbors (most-downhill-neighbors loc location-map)
 	   downhill-weight    (if (seq downhill-neighbors)
-				(/ (:weight carrier)
+			        (/ (:weight carrier)
 				   (count downhill-neighbors))
 				0.0)]
        (when (> downhill-weight trans-threshold)
@@ -76,4 +70,4 @@
 			   (struct service-carrier
 				   (force (:source source-location))
 				   [source-location])))
-   (filter #(> (force (:source %)) trans-threshold) (vals location-map))))
+   (filter #(> (force (:source %)) 0.0) (vals location-map))))

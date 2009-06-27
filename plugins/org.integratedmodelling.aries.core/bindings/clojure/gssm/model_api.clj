@@ -34,7 +34,7 @@
   [action-fn arg-seq]
   (let [num-processors (.availableProcessors (Runtime/getRuntime))
 	agents (map agent (replicate (* 2 num-processors) nil))]
-    (println "Num Processors:" num-processors)
-    (println "Num Agents:" (count agents))
+    (println "Sending Tasks to" (count agents) "Agents...")
     (dorun (map #(send %1 action-fn %2) (cycle agents) arg-seq))
+    (println "Waiting for Agents to Finish...")
     (apply await agents)))

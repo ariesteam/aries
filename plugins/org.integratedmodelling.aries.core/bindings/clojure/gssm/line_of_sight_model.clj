@@ -128,7 +128,7 @@
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
   (println "Global LineOfSight Model begins...")
   (let [locations     (vals location-map)
-        providers     (filter #(> (force (:source %)) trans-threshold) locations)
+        providers     (filter #(> (force (:source %)) 0.0) locations)
         beneficiaries (filter #(> (force (:use %)) 0.0) locations)]
     (println "Num Providers:" (count providers))
     (println "Num Beneficiaries:" (count beneficiaries))
