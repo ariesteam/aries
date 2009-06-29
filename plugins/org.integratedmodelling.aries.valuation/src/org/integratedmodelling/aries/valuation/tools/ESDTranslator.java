@@ -161,6 +161,7 @@ public class ESDTranslator {
 					(comment == null ? "" : ("\"" + trim(comment) + "\"\n\t")) +
 					(where == null ? "" : ("(" + whereprop + " \"" + trim(originator) + "\")\n\t")) +
 					(originator == null ? "" : ("(bibtex:hasAuthor \"" + trim(originator) + "\")\n\t")) +
+					(title == null ? "" : ("(bibtex:hasTitle \"" + trim(title) + "\")\n\t")) +
 					(date == null ? "" : ("(bibtex:hasYear " + trim(date) + ")\n\t")) +
 					(issue == null ? "" : ("(bibtex:hasNumber " + trim(issue) + ")\n\t")) +
 					(pages == null ? "" : ("(bibtex:hasPages \"" + trim(pages) + "\")\n\t")) +
