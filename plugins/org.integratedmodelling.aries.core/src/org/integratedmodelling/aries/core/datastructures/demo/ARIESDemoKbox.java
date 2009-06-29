@@ -239,4 +239,10 @@ public class ARIESDemoKbox implements IKBox {
 		return data.size();
 	}
 
+	@Override
+	public void resetToEmpty() throws ThinklabException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

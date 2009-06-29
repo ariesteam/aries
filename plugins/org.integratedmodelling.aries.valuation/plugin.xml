@@ -4,6 +4,9 @@
 
 	<requires>
 		<import plugin-id="org.integratedmodelling.thinklab.core"/>
+		<import plugin-id="org.integratedmodelling.thinklab.modelling"/>
+		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
+		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
 		<import plugin-id="org.integratedmodelling.aries.core"/>
 	</requires>
 
@@ -15,19 +18,17 @@
 <!--		<library type="resources" path="ontologies/" id="ontologies" />
 		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
 		<library type="resources" path="models/" id="models" /> -->
-		<library type="resources" path="data/" id="data" />
+		<library type="resources" path="utils/" id="utils" />
 		<library type="resources" path="config/" id="config" />
-		
 	</runtime>
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="command-handler" id="translate">
-		<parameter id="class" value="org.integratedmodelling.aries.valuation.commands.Translate"/>
-		<parameter id="command-name" value="esd-translate"/>
-		<parameter id="command-description" value="Translate legacy data (temporary)"/>
-		<parameter id="optional-argument-names" value="file"/>
-		<parameter id="optional-argument-types" value="thinklab-core:Text"/>
-		<parameter id="optional-argument-descriptions" value="file to translate"/>
-		<parameter id="optional-argument-default-values" value="__none"/>
+	<!-- create kboxes if necessary; must have pg installed  -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="import-esd">
+		<parameter id="id" value="import-esd"/>
+		<parameter id="declaration">
+			<parameter id="language" value="clojure"/>
+			<parameter id="script" value="applications/bibliodata.clj"/>
+		</parameter>
 	</extension>
 	
 </plugin>
