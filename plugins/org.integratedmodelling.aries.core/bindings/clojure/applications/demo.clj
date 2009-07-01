@@ -34,7 +34,7 @@
      'aestheticService:ProximitySink
      'aestheticService:Proximity view-params resolution)))
 
-(run-proximity-model 100)
+(run-view-model 100)
 
 ;(aries.demo/make-dataset 'aestheticService:ProximityToBeauty "proximity_data" 512)
 ;(aries.demo/run-gssm-demo 'aestheticService:ProximityToBeauty 'aestheticService:AestheticProximityUse 64 0.2)

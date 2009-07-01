@@ -18,7 +18,8 @@
 (ns gssm.flow-model
   (:refer-clojure)
   (:use [gssm.location-builder :only (make-location-map)]
-	[gssm.model-api        :only (distribute-flow!)])
+	[gssm.model-api        :only (distribute-flow!)]
+	[gssm.analyzer         :only (cache-all-actual-routes!)])
   (:require gssm.water-model
 	    gssm.carbon-model
 	    gssm.proximity-model
@@ -49,4 +50,5 @@
 		      location-map
 		      rows
 		      cols)
+    (cache-all-actual-routes! (vals location-map) flow-params)
     [location-map rows cols]))

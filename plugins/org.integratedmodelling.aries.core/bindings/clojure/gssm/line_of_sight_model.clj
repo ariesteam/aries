@@ -94,6 +94,7 @@
 ;;    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
 ;;	  (map vector path (range (inc steps))))))
 
+;; FIXME: change 0.14 to 0.0 in this function.
 (defn update-sinks!
   [source-val decay-rate path steps]
   (loop [step 0
