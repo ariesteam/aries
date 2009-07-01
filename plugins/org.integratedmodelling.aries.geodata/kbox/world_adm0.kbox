@@ -1,0 +1,49 @@
+#-----------------------------------------------------------------------------------------------
+# example kbox file to translate a shapefile into knowledge. The following attributes work with
+# any feature source (shapefile, WFS):
+#
+#  featureID -> the ID of the feature being processed (a String)
+#  shape -> the shape of the feature (a JTS Geometry object);
+#
+# In addition to these, all attributes of the feature are translated into IValues with the
+# corresponding names according to the type of each attribute. This can be manipulated in 
+# several ways, including reclassification and typing, as exemplified below.
+#
+# This file is meant to work with the world_adm0.shp fileset, which defines the following
+# attributes per feature:
+#    NAME -> Country name (narrative, in English)
+#    GMI_CNTRY -> String, admin code (unique) for each country
+#    REGION -> narrative name of continent that the country is in
+# ----------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------
+# Define any number of named variables for the shapefile. Can use all attributes in the shapefile.
+# Technically they should also use previously defined templates, but because properties files are
+# hash tables, there is no guarantee as to the order of calculation, so it's currently unsafe to 
+# refer to other variables. NOTE: do not duplicate the names of existing attributes.
+#
+# All attributes get here after being converted to IValue. You can use the IValue API in the
+# expressions.
+#
+# These are MVEL expressions (see http://mvel.codehouse.org for language details).
+# ----------------------------------------------------------------------------------------------
+geospace.world_adm0.variable.internalID = featureID.replace(".", "_")
+
+# ----------------------------------------------------------------------------------------------
+# Each template will be converted to the list representation of each feature's corresponding
+# instance. Either specify one template as done below, or a number of them using the notation
+# xxx.template.1, xxx.template.2. These are alternatives: if you use ".template" alone, any
+# numbered template will be ignored. 
+# 
+# All attribute names from the shapefile and all variables defined above can be used here. Both
+# attributes and variables must be prefixed with the dollar sign. 
+# 
+# Attributes will have be converted to IValue before substitution.
+# ----------------------------------------------------------------------------------------------
+geospace.world_adm0.instance.template = \
+	(observation:Identification#$internalID \
+		(observation:hasObservable \
+			(geofeatures:Country#$GMI_CNTRY  \
+				(geofeatures:hasLocalName $NAME))) \
+		(observation:hasObservationExtent \
+			(geospace:ArealLocation#$GMI_CNTRY_shape (# "EPSG:4326 $shape"))))
