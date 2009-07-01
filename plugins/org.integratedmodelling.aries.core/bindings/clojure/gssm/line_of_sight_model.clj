@@ -103,7 +103,8 @@
     (when (< step steps)
       (let [current-loc  (first untraversed-locs)
 	    current-path (conj traversed-locs current-loc)]
-	(if (> (force (:sink current-loc)) 0.14)
+	(if (and (== (force (:use current-loc)) 0.0)
+		 (> (force (:sink current-loc)) 0.14))
 	  (swap! (:carrier-cache current-loc) conj
 		 (struct service-carrier
 			 (* source-val (Math/pow decay-rate step))
@@ -123,7 +124,7 @@
 	       (not (elevation-interference? provider beneficiary path steps)))
 	(update-sinks! source-val decay-rate path steps)))
     (swap! (:carrier-cache beneficiary) conj
-	   (struct service-carrier asset-propagated path))))
+	   (struct service-carrier asset-propagated (vec path)))))
 
 (defmethod distribute-flow! "LineOfSight"
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]

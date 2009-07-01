@@ -524,44 +524,67 @@
 
 (defn- upstream-carriers
   [carrier benefit-type]
+  (println "Finding upstream carriers for:" (:id (peek (:route carrier))))
+  (flush)
   (some (fn [loc] (and (or (> (force (:sink loc)) 0.0)
 			   (and (= benefit-type :rival)
 				(> (force (:use loc)) 0.0)))
 		       @(:carrier-cache loc)))
-	(reverse (:route carrier))))
+	(rest (reverse (:route carrier)))))
 
 (defn- order-carriers-by-dependence
   "This should be a topological sort."
   [carriers benefit-type]
-  (loop [unordered (set carriers)
-	 ordered   []
-	 open-list (list (first carriers))]
+  (println "Building a set of unordered carriers...")
+  (loop [unordered   (set carriers)
+	 ordered     []
+	 open-list   (list (first carriers))]
+    (println "Unordered set size:" (count unordered))
+    (println "Ordered list size: " (count ordered))
+    (println "Open list size:    " (count open-list))
     (if (empty? open-list)
-      (if (empty? unordered)
-	ordered
-	(recur unordered
-	       ordered
-	       (list (first unordered))))
-      (let [c          (first open-list)
-	    successors (filter unordered (upstream-carriers c benefit-type))]
-	(if (nil? successors)
-	  (recur (disj unordered c)
-		 (conj ordered c)
-		 (rest open-list))
-	  (recur unordered
-		 ordered
-		 (concat successors open-list)))))))
+      (do
+	(println "OPEN LIST is empty. Tree completed.")
+	(if (empty? unordered)
+	  (do
+	    (println "All trees completed.")
+	    ordered)
+	  (do
+	    (println "Beginning new tree.")
+	    (recur unordered
+		   ordered
+		   (list (first unordered))))))
+      (do
+	(println "Beginning tree descent.")
+;;	(println "Continue? ")(read)
+	(let [c          (first open-list)
+	      successors (filter unordered (upstream-carriers c benefit-type))]
+	  (println "Num successors:" (count successors))
+	  (flush)
+;;	  (println "Continue? ")(read)
+	  (if (nil? successors)
+	    (recur (disj unordered c)
+		   (conj ordered c)
+		   (rest open-list))
+	    (recur unordered
+		   ordered
+		   (concat successors open-list))))))))
 
 (defn cache-all-actual-routes!
   [locations {:keys [benefit-type] :as flow-params}]
   (println "Computing actual routes from possible routes...")
-  (let [carriers (apply concat (map (comp deref :carrier-cache) locations))]
+  (let [carriers (apply concat (map (comp deref :carrier-cache) locations))
+	distinct-carriers (distinct carriers)]
     (println "Total carriers:" (count carriers))
+    (println "Distinct carriers:" (count distinct-carriers))
+    (println "Num Sink&Use locations:" (count (filter #(and (> (force (:sink %)) 0.0) (> (force (:use %)) 0.0)) locations)))
     (println "Ordering carriers by dependence...")
-    (let [sorted-carriers (order-carriers-by-dependence carriers benefit-type)]
+;;    (println "BTW...first location" (:id (some #(and (not (empty? (deref (:carrier-cache %)))) %) locations)) "has" (count (some #(deref (:carrier-cache %)) locations)) "carriers.")
+    (let [sorted-carriers (order-carriers-by-dependence (take 2000 distinct-carriers) benefit-type)]
       (println "Rerunning routes by dependence order...")
       (doseq [c sorted-carriers]
-	(rerun-actual-route c flow-params)))))
+	(println "Bogorun:" (:id (peek (:route c))))))))
+;	(rerun-actual-route c flow-params)))))
 
 ;;; End actualizer code ------------------------------------------------------
 
