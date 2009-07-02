@@ -19,7 +19,7 @@
   (:refer-clojure)
   (:use [gssm.location-builder :only (make-location-map)]
 	[gssm.model-api        :only (distribute-flow!)]
-	[gssm.analyzer         :only (cache-all-actual-routes!)])
+	[gssm.actualizer       :only (cache-all-actual-routes!)])
   (:require gssm.water-model
 	    gssm.carbon-model
 	    gssm.proximity-model

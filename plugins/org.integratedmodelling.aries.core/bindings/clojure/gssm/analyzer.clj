@@ -22,8 +22,6 @@
 			   add-anyway
 			   memoize-by-first-arg)]))
 
-(declare rerun-actual-route) ; needed by actual-* functions
-
 (defn theoretical-source
   "Returns a map of {location-id -> source-value}.
    Here, source-value is the result of the source BN."
@@ -73,9 +71,9 @@
 	 (for [carrier @(:carrier-cache location)]
 	   (let [weight (:weight carrier)
 		 route  (:route  carrier)]
-	     (zipmap (map :id (reverse route))
+	     (zipmap (map :id route)
 		     (map #(/ weight (Math/pow decay-rate %))
-			  (range (count route))))))))
+			  (range (dec (count route)) -1 -1)))))))
 
 (defn possible-flow
   "Returns a map of {location-id -> flow-density}.
@@ -246,6 +244,60 @@
 	      (theoretical-use locations flow-params)
 	      (possible-use locations flow-params)))
 
+(declare actual-local-inflow actual-local-outflow)
+
+(defn rerun-actual-route
+  [carrier {:keys [decay-rate trans-threshold sink-type use-type benefit-type] :as flow-params}]
+  (loop [path           (:route carrier)
+	 acc            []
+	 carrier-weight (/ (:weight carrier)
+			   (Math/pow decay-rate (dec (count path))))]
+    (if (empty? (rest path))
+      (conj acc carrier-weight)
+      (if (== carrier-weight 0.0)
+	(conj acc 0.0)
+	(recur (rest path)
+	       (conj acc carrier-weight)
+	       (let [loc (first path)
+		     amount-propagated (if (and (== (force (:sink loc)) 0.0)
+						(or (= benefit-type :non-rival)
+						    (== (force (:use loc)) 0.0)))
+					 (* carrier-weight decay-rate)
+					 (if (or (and (= sink-type :absolute) (> (force (:sink loc)) 0.0))
+						 (and (= use-type :absolute) (= benefit-type :rival) (> (force (:use loc)) 0.0)))
+					   (let [total-encountered    (actual-local-inflow loc flow-params)
+						 contributing-percent (/ carrier-weight total-encountered)]
+					     (* (actual-local-outflow loc flow-params) contributing-percent decay-rate))
+					   (* carrier-weight
+					      (- 1.0 (force (:sink loc)))
+					      (if (= benefit-type :rival) ; use-type must be :relative
+						(- 1.0 (force (:use loc)))
+						1.0)
+					      decay-rate)))]
+		 (comment
+		   amount-propagated (if (> (force (:sink loc)) 0.0)
+				       (if (= sink-type :absolute)
+					 XXX OPTION ABS ; carriers have been sorted and its dependencies have been cached
+					 (if (> (force (:use loc)) 0.0)
+					   (if (= benefit-type :rival)
+					     (if (= use-type :absolute)
+					       XXX OPTION ABS
+					       XXX OPTION REL - sink and use)
+					     XXX OPTION REL - sink only)
+					   XXX OPTION REL - sink only))
+				       (if (> (force (:use loc)) 0.0)
+					 (if (= benefit-type :rival)
+					   (if (= use-type :absolute)
+					     XXX OPTION ABS
+					     XXX OPTION REL - use only)
+					   XXX OPTION SIMPLE)
+					 XXX OPTION SIMPLE))
+		   )
+		 (if (< amount-propagated trans-threshold)
+		   0.0
+		   amount-propagated)))))))
+(def rerun-actual-route (memoize-by-first-arg rerun-actual-route))
+
 (defn- actual-local-flow
   "Returns a map of {location-id -> flow-density}.
    We compute the flow-density of each location contributing to this
@@ -260,14 +312,11 @@
    This final map now contains an entry for every location, which is
    part of any carrier's route, whose value represents the total
    amount of asset flow through that location."
-  [location {:keys [decay-rate] :as flow-params}]
+  [location flow-params]
   (apply merge-with +
 	 (for [carrier @(:carrier-cache location)]
-	   (let [weight (peek (rerun-actual-route carrier flow-params))
-		 route  (:route  carrier)]
-	     (zipmap (map :id (reverse route))
-		     (map #(/ weight (Math/pow decay-rate %))
-			  (range (count route))))))))
+	   (zipmap (map :id (:route carrier))
+		   (rerun-actual-route carrier flow-params)))))
 
 (defn actual-flow
   "Returns a map of {location-id -> flow-density}.
@@ -469,243 +518,3 @@
 (defn carriers-encountered
   [locations]
   (seq2map locations #(vector (:id %) (double (count @(:carrier-cache %))))))
-
-;;; Begin actualizer code ----------------------------------------------------
-
-(defn- rerun-aux
-  [path carrier-weight {:keys [decay-rate trans-threshold benefit-type] :as flow-params} acc]
-  (if (empty? (rest path))
-    (conj acc carrier-weight)
-    (if (== carrier-weight 0.0)
-      (conj acc 0.0)
-      (recur (rest path)
-	     (let [loc (first path)
-		   amount-propagated (if (and (== (force (:sink loc)) 0.0)
-					      (or (= benefit-type :non-rival)
-						  (== (force (:use loc)) 0.0)))
-				       (* carrier-weight decay-rate)
-				       (let [total-encountered    (actual-local-inflow loc flow-params)
-					     contributing-percent (/ carrier-weight total-encountered)]
-					 (* (actual-local-outflow loc flow-params) contributing-percent decay-rate)))]
-	       (if (< amount-propagated trans-threshold)
-		 0.0
-		 amount-propagated))
-	     flow-params
-	     (conj acc carrier-weight)))))
-
-(defn- rerun-aux-lazy
-  [path carrier-weight {:keys [decay-rate trans-threshold benefit-type] :as flow-params}]
-  (if (empty? (rest path))
-    (list carrier-weight)
-    (if (== carrier-weight 0.0)
-      (list 0.0)
-      (lazy-cons carrier-weight
-		 (rerun-aux-lazy (rest path)
-			    (let [loc (first path)
-				  amount-propagated (if (and (== (force (:sink loc)) 0.0)
-							     (or (= benefit-type :non-rival)
-								 (== (force (:use loc)) 0.0)))
-						      (* carrier-weight decay-rate)
-						      (let [total-encountered    (actual-local-inflow loc flow-params)
-							    contributing-percent (/ carrier-weight total-encountered)]
-							(* (actual-local-outflow loc flow-params) contributing-percent decay-rate)))]
-			      (if (< amount-propagated trans-threshold)
-				0.0
-				amount-propagated))
-			    flow-params)))))
-
-(defn- rerun-actual-route
-  [carrier {:keys [decay-rate] :as flow-params}]
-  (let [path (:route carrier)
-	w (/ (:weight carrier)
-	     (Math/pow decay-rate (dec (count path))))]
-    (rerun-aux path w flow-params [])))
-(def rerun-actual-route (memoize-by-first-arg rerun-actual-route))
-
-(defn- upstream-carriers
-  [carrier benefit-type]
-  (println "Finding upstream carriers for:" (:id (peek (:route carrier))))
-  (flush)
-  (some (fn [loc] (and (or (> (force (:sink loc)) 0.0)
-			   (and (= benefit-type :rival)
-				(> (force (:use loc)) 0.0)))
-		       @(:carrier-cache loc)))
-	(rest (reverse (:route carrier)))))
-
-(defn- order-carriers-by-dependence
-  "This should be a topological sort."
-  [carriers benefit-type]
-  (println "Building a set of unordered carriers...")
-  (loop [unordered   (set carriers)
-	 ordered     []
-	 open-list   (list (first carriers))]
-    (println "Unordered set size:" (count unordered))
-    (println "Ordered list size: " (count ordered))
-    (println "Open list size:    " (count open-list))
-    (if (empty? open-list)
-      (do
-	(println "OPEN LIST is empty. Tree completed.")
-	(if (empty? unordered)
-	  (do
-	    (println "All trees completed.")
-	    ordered)
-	  (do
-	    (println "Beginning new tree.")
-	    (recur unordered
-		   ordered
-		   (list (first unordered))))))
-      (do
-	(println "Beginning tree descent.")
-;;	(println "Continue? ")(read)
-	(let [c          (first open-list)
-	      successors (filter unordered (upstream-carriers c benefit-type))]
-	  (println "Num successors:" (count successors))
-	  (flush)
-;;	  (println "Continue? ")(read)
-	  (if (nil? successors)
-	    (recur (disj unordered c)
-		   (conj ordered c)
-		   (rest open-list))
-	    (recur unordered
-		   ordered
-		   (concat successors open-list))))))))
-
-(defn cache-all-actual-routes!
-  [locations {:keys [benefit-type] :as flow-params}]
-  (println "Computing actual routes from possible routes...")
-  (let [carriers (apply concat (map (comp deref :carrier-cache) locations))
-	distinct-carriers (distinct carriers)]
-    (println "Total carriers:" (count carriers))
-    (println "Distinct carriers:" (count distinct-carriers))
-    (println "Num Sink&Use locations:" (count (filter #(and (> (force (:sink %)) 0.0) (> (force (:use %)) 0.0)) locations)))
-    (println "Ordering carriers by dependence...")
-;;    (println "BTW...first location" (:id (some #(and (not (empty? (deref (:carrier-cache %)))) %) locations)) "has" (count (some #(deref (:carrier-cache %)) locations)) "carriers.")
-    (let [sorted-carriers (order-carriers-by-dependence (take 2000 distinct-carriers) benefit-type)]
-      (println "Rerunning routes by dependence order...")
-      (doseq [c sorted-carriers]
-	(println "Bogorun:" (:id (peek (:route c))))))))
-;	(rerun-actual-route c flow-params)))))
-
-;;; End actualizer code ------------------------------------------------------
-
-
-
-
-(comment
-(declare actual-local-inflow actual-local-outflow rerun-actual-route-cached)
-
-(defn- rerun-actual-route
-  [carrier {:keys [decay-rate trans-threshold benefit-type] :as flow-params}]
-  (loop [path (:route carrier)
-	 w (/ (:weight carrier)
-	      (Math/pow decay-rate (dec (count path))))]
-    (if (empty? (rest path))
-      w
-      (let [loc (first path)
-	    amount-propagated (if (and (== (force (:sink loc)) 0.0)
-				       (or (= benefit-type :non-rival)
-					   (== (force (:use loc)) 0.0)))
-				(* w decay-rate)
-				(let [total-encountered    (actual-local-inflow loc flow-params)
-;;								  (struct service-carrier w (vec (take-while #(not= (second path) %) (:route carrier)))))
-				      contributing-percent (/ w total-encountered)]
-				  (* (actual-local-outflow loc flow-params) contributing-percent decay-rate)))]
-	(if (< amount-propagated trans-threshold)
-	  0.0
-	  (recur (rest path)
-		 amount-propagated))))))
-(def rerun-actual-route (memoize-by-first-arg rerun-actual-route))
-
-(defn- rerun-aux
-  [path carrier-weight {:keys [decay-rate trans-threshold] :as flow-params}]
-  (if (empty? path)
-    ()
-    (if (== carrier-weight 0.0)
-      (list 0.0)
-      (lazy-cons carrier-weight
-		 (rerun-aux (rest path)
-			    (let [loc (first path)
-				  amount-propagated (if (== (+ (force (:sink loc)) (force (:use loc))) 0.0)
-						      (* carrier-weight decay-rate)
-						      (let [total-encountered    (actual-local-inflow loc flow-params)
-							    contributing-percent (/ carrier-weight total-encountered)]
-							(* (actual-local-outflow loc flow-params) contributing-percent decay-rate)))]
-			      (if (< amount-propagated trans-threshold)
-				0.0
-				amount-propagated))
-			    flow-params)))))
-
-(defn- rerun-aux
-  [path carrier-weight {:keys [decay-rate trans-threshold benefit-type] :as flow-params}]
-  (if (rest (empty? path))
-    (list carrier-weight) ; terminal condition (set first to :complete)
-    (if (== carrier-weight 0.0)
-      (list 0.0) ; terminal condition (set first to :complete)
-      (lazy-cons carrier-weight
-		 (let [loc (first path)
-		       amount-propagated (if (and (== (force (:sink loc)) 0.0)
-						  (or (= benefit-type :non-rival)
-						      (== (force (:use loc)) 0.0)))
-					   (* carrier-weight decay-rate)
-					   (let [first-incomplete-path
-						 (some (fn [c]
-							 (let [next-path (rerun-actual-route-cached c flow-params)]
-							   (and (= :incomplete (first next-path)) next-path)))
-						       @(:carrier-cache loc))]
-					     (if (nil? first-incomplete-path)
-					       (let [total-encountered    (actual-local-inflow loc flow-params)
-						     contributing-percent (/ carrier-weight total-encountered)]
-						 (* (actual-local-outflow loc flow-params) contributing-percent decay-rate))
-					       #(and (last first-incomplete-path) :repeat))))]
-		   (if (fn? amount-propagated)
-		     (list amount-propagated)
-		     (rerun-aux (rest path)
-				(if (< amount-propagated trans-threshold) 0.0 amount-propagated)
-				flow-params)))))))
-
-(defn- rerun-actual-route-cached
-  [carrier {:keys [decay-rate] :as flow-params}]
-  (cons :incomplete
-	(rerun-aux (:route carrier)
-		   (/ (:weight carrier) (Math/pow decay-rate (dec (count (:route carrier)))))
-		   flow-params)))
-(def rerun-actual-route-cached (memoize-by-first-arg rerun-actual-route-cached))
-
-(defn- rerun-actual-route
-  [carrier flow-params]
-  (let [actual-route    (rerun-actual-route-cached carrier flow-params)
-	terminal-weight (trampoline last actual-route)]
-    (if (= terminal-weight :repeat)
-      (recur carrier flow-params)
-;;      (do (rerun-actual-route-cached carrier flow-params :reset)
-;;	  (recur carrier flow-params))
-      (reverse (rest actual-route)))))
-(def rerun-actual-route (memoize-by-first-arg rerun-actual-route))
-
-(defn order-carriers-by-dependence
-  [carriers {:keys [benefit-type] :as flow-params}]
-  (let [edges (apply merge-with +
-		     (for [carrier carriers]
-		       (loop [dep-seq (loop [path (:route carrier)
-					     dependencies []]
-					(let [loc (first path)]
-					  (if (empty? (rest path))
-					    (conj dependencies @(:carrier-cache loc))
-					    (recur (rest path)
-						   (if (and (== (force (:sink loc)) 0.0)
-							    (or (= benefit-type :non-rival)
-								(== (force (:use loc)) 0.0)))
-						     dependencies
-						     (conj dependencies @(:carrier-cache loc)))))))
-			      dep-map {}]
-			 (if (empty? (rest dep-seq))
-			   dep-map
-			   (let [U (first dep-seq)
-				 V (second dep-seq)]
-			     (recur (rest dep-seq)
-				    (merge-with concat
-						dep-map
-						(seq2redundant-map (for [u U v V] [u v]) identity conj))))))))]
-    edges))
-
-)
