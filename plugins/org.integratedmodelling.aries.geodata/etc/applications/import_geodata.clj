@@ -14,7 +14,10 @@
 				
 	  ;; rebuild the db from scratch every time this is run
 		:storage-policy :recreate-always
-		:metadata-generator {}
+		:metadata-generator {
+			:centroid    #(geospace/get-centroid %)
+			:boundingbox #(geospace/get-bounding-box %)
+		}
 	
 	 ;; admin data
 	 (import (tl/get-plugin-resource 'aries.geodata "world_adm0.shp")) 
