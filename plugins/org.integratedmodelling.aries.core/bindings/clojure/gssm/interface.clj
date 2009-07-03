@@ -18,10 +18,12 @@
 (ns gssm.interface
   (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
-  (:use [misc.utils      :only (seq2map maphash count-distinct)]
-	[misc.matrix-ops :only (print-matrix)]
+  (:use [misc.utils      :only (maphash count-distinct)]
 	[gssm.flow-model :only (simulate-service-flows)]
-	[gssm.analyzer   :only (theoretical-source
+	[gssm.analyzer   :only (*source-threshold*
+				*sink-threshold*
+				*use-threshold*
+				theoretical-source
 				theoretical-sink
 				theoretical-use
 				inaccessible-source
@@ -127,40 +129,43 @@
    sink-concept   sink-observation
    use-concept    use-observation
    flow-concept   flow-observation
-   flow-params]
-  (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
-							 sink-concept   sink-observation
-							 use-concept    use-observation
-							 flow-concept   flow-observation
-							 flow-params)
-	locations (vals location-map)]
-    (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
-		(list
-		 (theoretical-source   locations)
-		 (theoretical-sink     locations flow-params)
-		 (theoretical-use      locations flow-params)
-		 (inaccessible-source  locations)
-		 (inaccessible-sink    locations flow-params)
-		 (inaccessible-use     locations flow-params)
-		 (possible-flow        locations flow-params)
-		 (possible-source      locations)
-		 (possible-inflow      locations)
-		 (possible-sink        locations flow-params)
-		 (possible-use         locations flow-params)
-		 (possible-outflow     locations flow-params)
-		 (blocked-flow         locations flow-params)
-		 (blocked-source       locations flow-params)
-		 (blocked-inflow       locations flow-params)
-		 (blocked-sink         locations flow-params)
-		 (blocked-use          locations flow-params)
-		 (blocked-outflow      locations flow-params)
-		 (actual-flow          locations flow-params)
-		 (actual-source        locations flow-params)
-		 (actual-inflow        locations flow-params)
-		 (actual-sink          locations flow-params)
-		 (actual-use           locations flow-params)
-		 (actual-outflow       locations flow-params)
-		 (carriers-encountered locations))))))
+   {:keys [source-threshold sink-threshold use-threshold] :as flow-params}]
+  (binding [*source-threshold* source-threshold
+	    *sink-threshold*   sink-threshold
+	    *use-threshold*    use-threshold]
+    (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
+							   sink-concept   sink-observation
+							   use-concept    use-observation
+							   flow-concept   flow-observation
+							   flow-params)
+	  locations (vals location-map)]
+      (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
+		  (list
+		   (theoretical-source   locations)
+		   (theoretical-sink     locations flow-params)
+		   (theoretical-use      locations flow-params)
+		   (inaccessible-source  locations)
+		   (inaccessible-sink    locations flow-params)
+		   (inaccessible-use     locations flow-params)
+		   (possible-flow        locations flow-params)
+		   (possible-source      locations)
+		   (possible-inflow      locations)
+		   (possible-sink        locations flow-params)
+		   (possible-use         locations flow-params)
+		   (possible-outflow     locations flow-params)
+		   (blocked-flow         locations flow-params)
+		   (blocked-source       locations flow-params)
+		   (blocked-inflow       locations flow-params)
+		   (blocked-sink         locations flow-params)
+		   (blocked-use          locations flow-params)
+		   (blocked-outflow      locations flow-params)
+		   (actual-flow          locations flow-params)
+		   (actual-source        locations flow-params)
+		   (actual-inflow        locations flow-params)
+		   (actual-sink          locations flow-params)
+		   (actual-use           locations flow-params)
+		   (actual-outflow       locations flow-params)
+		   (carriers-encountered locations)))))))
 
 (defn gssm-interface
   "Takes the source, sink, use, and flow concepts along with
@@ -171,8 +176,11 @@
    sink-concept   sink-observation
    use-concept    use-observation
    flow-concept   flow-observation
-   flow-params]
-  (binding [*out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
+   {:keys [source-threshold sink-threshold use-threshold] :as flow-params}]
+  (binding [*source-threshold* source-threshold
+	    *sink-threshold*   sink-threshold
+	    *use-threshold*    use-threshold
+	    *out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
 	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream  (tl/get-session))))]
     (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
 							   sink-concept   sink-observation

@@ -17,7 +17,7 @@
 
 (ns gssm.location-builder
   (:refer-clojure)
-  (:use [misc.utils        :only (maphash seq2map count-distinct)]
+  (:use [misc.utils        :only (maphash seq2map)]
 	[misc.matrix-ops   :only (get-neighbors)]
 	[gssm.discretizer  :only (discretize-value)]
 	[gssm.bn-interface :only (run-bayes-net)]))

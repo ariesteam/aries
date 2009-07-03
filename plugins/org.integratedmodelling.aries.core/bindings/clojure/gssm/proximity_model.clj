@@ -20,7 +20,8 @@
   (:use [misc.utils     :only (seq2map)]
 	[gssm.model-api :only (distribute-flow!
 			       service-carrier
-			       distribute-load-over-processors)]))
+			       distribute-load-over-processors)]
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
 
 (defn expand-box
   "Returns a new list of points which completely bounds the
@@ -81,9 +82,7 @@
   (loop [frontier (list [source-location root-carrier])]
     (when (seq frontier)
       (doseq [[loc carrier] frontier]
-	  (if (> (+ (force (:sink loc))
-		    (force (:use loc)))
-		 0.0)
+	  (if (or (sink-loc? loc) (use-loc? loc))
 	    (swap! (:carrier-cache loc) conj carrier)))
       (recur
        (let [new-frontier-locs (map location-map
@@ -105,12 +104,12 @@
 			   cols
 			   source-loc
 			   (struct service-carrier (force (:source source-loc)) [source-loc])))
-   (filter #(> (force (:source %)) 0.0) (vals location-map))))
+   (filter source-loc? (vals location-map))))
 
 (defmethod distribute-flow! "Proximity_Sequential"
   [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
   (println "Local Proximity Model begins...")
-  (let [sources (vec (filter #(> (force (:source %)) 0.0) (vals location-map)))
+  (let [sources (vec (filter source-loc? (vals location-map)))
 	num-sources (count sources)]
     (dotimes [i num-sources]
 	(let [source-loc (sources i)]

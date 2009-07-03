@@ -17,7 +17,7 @@
 
 (ns gssm.actualizer
   (:refer-clojure)
-  (:use [gssm.analyzer :only (rerun-actual-route)]))
+  (:use [gssm.analyzer :only (rerun-actual-route sink-loc? use-loc?)]))
 
 (defn- upstream-dependent-carriers
   [carrier dependency?]
@@ -35,13 +35,12 @@
     (let [dependency? (if (= sink-type :absolute)
 			(if (= use-type :absolute)
 			  (if (= benefit-type :rival)
-			    #(or (> (force (:sink %)) 0.0)
-				 (> (force (:use %)) 0.0))
-			    #(> (force (:sink %)) 0.0))
-			  #(> (force (:sink %)) 0.0))
+			    #(or (sink-loc? %) (use-loc? %))
+			    sink-loc?)
+			  sink-loc?)
 			(if (= use-type :absolute)
 			  (if (= benefit-type :rival)
-			    #(> (force (:use %)) 0.0)
+			    use-loc?
 			    (constantly false))
 			  (constantly false)))]
       ;;(println "Building a set of unordered carriers...")
@@ -81,7 +80,7 @@
 (defn cache-all-actual-routes!
   [locations flow-params]
   (println "Computing actual routes from possible routes...")
-  (let [carriers (apply concat (map (comp deref :carrier-cache) locations))
+  (let [carriers (apply concat (map (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations)))
 	distinct-carriers (distinct carriers)]
     (println "Total carriers:" (count carriers))
     (println "Distinct carriers:" (count distinct-carriers))

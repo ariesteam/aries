@@ -18,7 +18,8 @@
 (ns gssm.carbon-model
   (:refer-clojure)
   (:use [misc.utils     :only (seq2map maphash)]
-	[gssm.model-api :only (distribute-flow! service-carrier)]))
+	[gssm.model-api :only (distribute-flow! service-carrier)]
+	[gssm.analyzer  :only (source-loc? use-loc?)]))
 
 (defmethod distribute-flow! "Carbon"
   [_ _ location-map _ _]
@@ -26,13 +27,15 @@
    the consumers (carbon emitters) according to their relative :use
    values."
   (let [locations         (vals location-map)
-	total-production  (reduce + (map (comp force :source) locations))
-	total-consumption (reduce + (map (comp force :use)    locations))]
+	source-locations  (filter source-loc? locations)
+	use-locations     (filter use-loc? locations)
+	total-production  (reduce + (map (comp force :source) source-locations))
+	total-consumption (reduce + (map (comp force :use)    use-locations))]
     (when (> total-consumption 0.0)
       (let [production-consumption-ratio (/ total-production total-consumption)
-	    producer-percentages (seq2map (filter #(> (force (:source %)) 0.0) locations)
+	    producer-percentages (seq2map source-locations
 					  #(vector % (/ (force (:source %)) total-production)))
-	    consumer-units       (seq2map (filter #(> (force (:use %)) 0.0) locations)
+	    consumer-units       (seq2map use-locations
 					  #(vector % (* (force (:use %)) production-consumption-ratio)))]
 	(doseq [p (keys producer-percentages)]
 	    (doseq [c (keys consumer-units)]
@@ -43,11 +46,11 @@
 
 (defmethod distribute-flow! "Carbon-Uneven"
   [_ _ location-map _ _]
-  (let [locations (vals location-map)]
-    (loop [producer-map (seq2map (filter #(> (force (:source %)) 0.0) locations)
-				 #(vector % (force (:source %))))
-	   consumer-map (seq2map (filter #(> (force (:use %)) 0.0) locations)
-				 #(vector % (force (:use %))))]
+  (let [locations        (vals location-map)
+	source-locations (filter source-loc? locations)
+	use-locations    (filter use-loc? locations)]
+    (loop [producer-map (seq2map source-locations #(vector % (force (:source %))))
+	   consumer-map (seq2map use-locations #(vector % (force (:use %))))]
       (when (seq producer-map)
 	(if (seq consumer-map)
 	  (let [num-producers     (count producer-map)
@@ -69,7 +72,7 @@
 			   (maphash identity #(- % credits-allocable)) producer-map)
 		   (filter (fn [[k v]] (> v 0.0))
 			   (maphash identity #(- % credits-allocable)) consumer-map)))
-	  (let [consumers     (filter #(> (force (:use %)) 0.0) locations)
+	  (let [consumers     use-locations
 		num-consumers (count consumers)]
 	    (doseq [p (keys producer-map)]
 		(let [max-allocable-increment (/ (producer-map p) num-consumers)]

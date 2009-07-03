@@ -19,7 +19,8 @@
   (:refer-clojure)
   (:use [gssm.model-api :only (distribute-flow!
 			       service-carrier
-			       distribute-load-over-processors)]))
+			       distribute-load-over-processors)]
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
 
 (defn find-viewpath
   "Returns the sequence of all points [i j] intersected by the line
@@ -94,7 +95,6 @@
 ;;    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
 ;;	  (map vector path (range (inc steps))))))
 
-;; FIXME: change 0.14 to 0.0 in this function.
 (defn update-sinks!
   [source-val decay-rate path steps]
   (loop [step 0
@@ -103,8 +103,8 @@
     (when (< step steps)
       (let [current-loc  (first untraversed-locs)
 	    current-path (conj traversed-locs current-loc)]
-	(if (and (== (force (:use current-loc)) 0.0)
-		 (> (force (:sink current-loc)) 0.14))
+	(if (and (sink-loc? current-loc)
+		 (not (use-loc? current-loc)))
 	  (swap! (:carrier-cache current-loc) conj
 		 (struct service-carrier
 			 (* source-val (Math/pow decay-rate step))
@@ -130,8 +130,8 @@
   [_ {:keys [decay-rate trans-threshold]} location-map _ _]
   (println "Global LineOfSight Model begins...")
   (let [locations     (vals location-map)
-        providers     (filter #(> (force (:source %)) 0.0) locations)
-        beneficiaries (filter #(> (force (:use %)) 0.0) locations)]
+        providers     (filter source-loc? locations)
+        beneficiaries (filter use-loc? locations)]
     (println "Num Providers:" (count providers))
     (println "Num Beneficiaries:" (count beneficiaries))
     (distribute-load-over-processors

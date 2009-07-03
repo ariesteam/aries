@@ -22,7 +22,8 @@
 			       depth-first-tree-search)]
 	[gssm.model-api :only (distribute-flow!
 			       service-carrier
-			       distribute-load-over-processors)]))
+			       distribute-load-over-processors)]
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
 
 (defn most-downhill-neighbors
   [location location-map]
@@ -54,9 +55,7 @@
 				 (conj (:route carrier) %)))
 	      downhill-neighbors))))
    (fn [[loc carrier]]
-     (if (> (+ (force (:sink loc))
-	       (force (:use loc)))
-	    0.0)
+     (if (or (sink-loc? loc) (use-loc? loc))
        (swap! (:carrier-cache loc) conj carrier))
      false)))
 
@@ -70,4 +69,4 @@
 			   (struct service-carrier
 				   (force (:source source-location))
 				   [source-location])))
-   (filter #(> (force (:source %)) 0.0) (vals location-map))))
+   (filter source-loc? (vals location-map))))
