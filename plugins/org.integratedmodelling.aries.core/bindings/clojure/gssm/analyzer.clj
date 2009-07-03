@@ -66,14 +66,12 @@
    This final map now contains an entry for every location, which is
    part of any carrier's route, whose value represents the total
    amount of asset flow through that location."
-  [location decay-rate]
+  [location decay-factors]
   (apply merge-with +
 	 (for [carrier @(:carrier-cache location)]
-	   (let [weight (:weight carrier)
-		 route  (:route  carrier)]
-	     (zipmap (map :id route)
-		     (map #(/ weight (Math/pow decay-rate %))
-			  (range (dec (count route)) -1 -1)))))))
+	   (let [weight (:weight carrier)]
+	     (zipmap (map :id (reverse (:route carrier)))
+		     (map #(* weight %) decay-factors))))))
 
 (defn possible-flow
   "Returns a map of {location-id -> flow-density}.
@@ -93,9 +91,10 @@
    part of any carrier's route, whose value represents the total
    amount of service flow through that location."
   [locations {decay-rate :decay-rate}]
-  (apply merge-with +
-	 (for [location (filter #(> (force (:use %)) 0.0) locations)]
-	   (possible-local-flow location decay-rate))))
+  (let [decay-factors (iterate #(/ % decay-rate) 1.0)]
+    (apply merge-with +
+	   (for [location (filter #(> (force (:use %)) 0.0) locations)]
+	     (possible-local-flow location decay-factors)))))
 
 (defn- possible-local-source
   "Returns a map of {location-id -> asset-provided}.
