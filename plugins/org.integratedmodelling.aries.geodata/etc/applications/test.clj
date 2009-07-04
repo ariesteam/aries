@@ -7,7 +7,7 @@
 	        	:gmicode      thinklab-core:Text
 	       	  :region       thinklab-core:Text
 	       	  :centroid     geospace:Point
-	          :boundingbox  geospace:Polygon)run g
+	          :boundingbox  geospace:Polygon)
 	        :parameters (:srid 4326)
 			  	:sql.use.pooling "false" 
 				  :sql.log.queries "true")
