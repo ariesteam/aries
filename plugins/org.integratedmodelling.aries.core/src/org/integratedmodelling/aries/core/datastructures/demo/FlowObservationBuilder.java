@@ -56,6 +56,8 @@ public class FlowObservationBuilder {
 		int i = 0;
 		for (Object o : coll) {
 			netcdf.addRasterVariable(flowObservables[i++], (double[][])o);
+			if (i == 24)
+				break;
 		}
 		
 		netcdf.write(output.toString());
