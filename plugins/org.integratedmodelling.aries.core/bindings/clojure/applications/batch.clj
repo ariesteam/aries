@@ -7,9 +7,11 @@
 (defn save-view-model
 	"Run the view model at the given resolution" 
 	[resolution output-file]
-	(let [view-params 
-					{:decay-rate      0.98
-				 	 :trans-threshold 0.01
+	(let [view-params               {:decay-rate       0.95
+					 :trans-threshold  1.0
+					 :source-threshold 0.05
+					 :sink-threshold   0.20
+					 :use-threshold    0.05
 				 	 :source-threshold 0.05
 	 				 :sink-threshold   0.20
 	         :use-threshold    0.05
@@ -23,9 +25,9 @@
 					'aestheticService:LineOfSight view-params resolution output-file)))
 		
 (defn save-proximity-model
-  "Run the proximity model at the given resolution" 
+  "Run the proximity model at the given resolution"
   [resolution output-file]
-  (let [view-params 
+  (let [view-params
 	{:decay-rate      0.6
 	 :trans-threshold 1.0
 	 :source-threshold 0.0
@@ -38,7 +40,7 @@
      'aestheticService:ProximityToBeauty
      'aestheticService:AestheticProximityUse
      'aestheticService:ProximitySink
-     'aestheticService:Proximity view-params resolution output-file)))		
+     'aestheticService:Proximity view-params resolution output-file)))
 
-(save-view-model 220 "C:/A/results/viewflow.nc")
+(save-view-model 256 "/home/gjohnson/viewflow.nc")
 ;(save-proximity-model 256 "C:/A/results/proximityflow.nc")

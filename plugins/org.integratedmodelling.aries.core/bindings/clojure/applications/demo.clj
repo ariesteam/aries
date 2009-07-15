@@ -7,7 +7,7 @@
 (defn run-view-model
   "Run the view model at the given resolution"
   [resolution]
-  (let [view-params
+  (let [flow-params
 	{:decay-rate       0.95
 	 :trans-threshold  1.0
 	 :source-threshold 0.05
@@ -20,12 +20,12 @@
      'aestheticService:SensoryEnjoyment
      'aestheticService:AestheticViewshedUse
      'aestheticService:ViewSink
-     'aestheticService:LineOfSight view-params resolution)))
+     'aestheticService:LineOfSight flow-params resolution)))
 
 (defn run-proximity-model
   "Run the proximity model at the given resolution" 
   [resolution]
-  (let [view-params 
+  (let [flow-params 
 	{:decay-rate       0.6
 	 :trans-threshold  1.0
 	 :source-threshold 0.0
@@ -38,7 +38,7 @@
      'aestheticService:ProximityToBeauty
      'aestheticService:AestheticProximityUse
      'aestheticService:ProximitySink
-     'aestheticService:Proximity view-params resolution)))
+     'aestheticService:Proximity flow-params resolution)))
 
 (run-view-model 150)
 
