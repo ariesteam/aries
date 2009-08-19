@@ -173,7 +173,6 @@ public class ESDTranslator {
 		
 		out.close();
 		
-
 	}
 	
 	static public void translate() {
