@@ -16,7 +16,7 @@ import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
-@TaskNamespace(ns = "aries")
+@TaskNamespace(ns = "aries.riskwiz")
 public class MakeBnInference implements ITask {
 
 	private IConcept benefit = null;

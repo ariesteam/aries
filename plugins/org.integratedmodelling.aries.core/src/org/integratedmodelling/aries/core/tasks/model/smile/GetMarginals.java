@@ -1,20 +1,21 @@
-package org.integratedmodelling.aries.core.tasks.model.bayes;
+package org.integratedmodelling.aries.core.tasks.model.smile;
 
-import org.integratedmodelling.riskwiz.jtree.JTInference;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 
-@TaskNamespace(ns = "aries.riskwiz")
+import smile.Network;
+
+@TaskNamespace(ns = "aries")
 public class GetMarginals implements ITask {
 	
 	private Double result = null;
-	private JTInference<?> inference;
+	private Network inference;
 	private Object nodeId;
 	private String stateId;
 
-	public void setInference(JTInference<?> inference) {
+	public void setInference(Network inference) {
 		this.inference = inference;
 	}
 	
@@ -28,7 +29,15 @@ public class GetMarginals implements ITask {
 	
 	@Override
 	public void run(ISession session) throws ThinklabException {
-		result = inference.getMarginal(nodeId.toString()).getDomainValuePairs().get(stateId);
+
+		double[] vals = inference.getNodeValue(nodeId.toString());
+		int i = 0;
+		for (String s : inference.getOutcomeIds(nodeId.toString())) {
+			if (s.equals(stateId)) {
+				result = vals[i++];
+				break;
+			}
+		}
 	}
 	
 	public Double getResult() {

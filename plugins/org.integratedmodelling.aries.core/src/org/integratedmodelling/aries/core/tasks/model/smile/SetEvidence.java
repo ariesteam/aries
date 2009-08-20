@@ -1,20 +1,21 @@
-package org.integratedmodelling.aries.core.tasks.model.bayes;
+package org.integratedmodelling.aries.core.tasks.model.smile;
 
 import java.util.Map;
 
-import org.integratedmodelling.riskwiz.jtree.JTInference;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
 
-@TaskNamespace(ns = "aries.riskwiz")
+import smile.Network;
+
+@TaskNamespace(ns = "aries")
 public class SetEvidence implements ITask {
 
-	private JTInference<?> inference = null;
+	private Network inference = null;
 	private Map<Object,Object> stateMap = null;
 
-	public void setInference(JTInference<?> inference) {
+	public void setInference(Network inference) {
 		this.inference  = inference;
 	}
 	
@@ -26,11 +27,11 @@ public class SetEvidence implements ITask {
 	public void run(ISession session) throws ThinklabException {
 		
 		for (Object state : stateMap.keySet()) {
-			inference.setObservation(state.toString(), stateMap.get(state).toString());
+			inference.setEvidence(state.toString(), stateMap.get(state).toString());
 		}	
 	}
 	
-	public JTInference<?> getInference() {
+	public Network getInference() {
 		return inference;
 	}
 
