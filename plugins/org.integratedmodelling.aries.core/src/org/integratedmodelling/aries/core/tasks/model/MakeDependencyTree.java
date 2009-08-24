@@ -21,7 +21,7 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 @TaskNamespace(ns = "aries")
 public class MakeDependencyTree implements ITask {
 
-	public void setTargetConcept(IConcept c) {	
+	public void setTargetConcept(IConcept c) {
 	}
 	
 	public KnowledgeGraph getDependencyTree() {

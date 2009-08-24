@@ -15,25 +15,24 @@
    		[:< 2000]    'aestheticService:NoMountain
    		[2000 2750]  'aestheticService:SmallMountain 
    		[2750 :>]    'aestheticService:LargeMountain))
-   		    		 
-(defmodel aesthetic-enjoyment-provision 'aestheticService:SensoryEnjoyment
+   		
+(defmodel aesthetic-sensory-enjoyment 'aestheticService:SensoryEnjoyment
 
- 	 "Unconditional bayesian model of sensory enjoyment provision. Will assign probabilities to 
- 	  4 levels of provision of aesthetic enjoyment based on altitude and NCLD numeric class
- 	  data."
- 	  
- 	 (classification 'aestheticService:SensoryEnjoyment
+ 	 "4 levels of provision of aesthetic enjoyment"
+    (classification 'aestheticService:SensoryEnjoyment
  	 	 0 'aestheticService:NoSensoryEnjoyment 
  	 	 1 'aestheticService:LowSensoryEnjoyment 
  	 	 2 'aestheticService:ModerateSensoryEnjoyment 
- 	 	 3 'aestheticService:HighSensoryEnjoyment)
- 	 	 	
- 	 	 :context
-  	 	 (valuable-mountain valuable-waterbodies)
-  	 	 
- 	 	 :probability	 	 	
- 			 (noisymax [0.4 0.3 0.2 0.1 0.2 0.3 0.3 0.2 0.0 0.0 0.0 1.0 0.7 0.1
- 	 								0.1 0.1 0.5 0.2 0.2 0.1 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]))
+ 	 	 3 'aestheticService:HighSensoryEnjoyment))
+   		    		 
+(defmodel aesthetic-enjoyment-provision 'aestheticService:SensoryEnjoymentProvision
+	
+		"This one will harmonize the context, then retrieve and run the BN with the given
+		evidence, and produce a new observation of stochastic values for all its nodes."
+	  (bnmodel 'aestheticService:SensoryEnjoymentProvision "bn/aestheticService_SensoryEnjoyment.xsdl") 	 	
+	 	 	:context
+  	 	 (valuable-mountain
+  	 	  valuable-waterbodies))
  	 								
 (defmodel raycast-view-flow
 	

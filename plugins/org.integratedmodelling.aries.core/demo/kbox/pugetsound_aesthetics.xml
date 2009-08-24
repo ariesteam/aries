@@ -155,11 +155,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="Altitude">
+	<measurement:Measurement id="Altitude">
 		<observation:hasObservable>
 			<geophysics:Altitude />
 		</observation:hasObservable>
-
+	    <measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasCoverageId>global:elevation</geospace:hasCoverageId>
@@ -176,7 +176,7 @@
 				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 <!-- no clearcuts in king county 
 	<measurement:Ranking id="Clearcuts">
