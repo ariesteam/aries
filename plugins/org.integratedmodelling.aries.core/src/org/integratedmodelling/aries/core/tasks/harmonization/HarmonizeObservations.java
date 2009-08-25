@@ -5,7 +5,7 @@ import java.util.Map;
 import org.integratedmodelling.corescience.contextualization.Compiler;
 import org.integratedmodelling.corescience.interfaces.observation.IObservation;
 import org.integratedmodelling.geospace.literals.ShapeValue;
-import org.integratedmodelling.modelling.observations.ObservationFactory;
+import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
