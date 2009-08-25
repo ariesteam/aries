@@ -16,7 +16,8 @@
    (classification  (measurement 'geophysics:Altitude "m")
    		[:< 2000]    'aestheticService:NoMountain
    		[2000 2750]  'aestheticService:SmallMountain 
-   		[2750 :>]    'aestheticService:LargeMountain))
+   		[2750 :>]    'aestheticService:LargeMountain
+   		))
    		    		 
 (defmodel view-data 'aestheticService:SensoryEnjoyment
 
