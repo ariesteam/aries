@@ -10,6 +10,10 @@
 			32   'aestheticService:Ocean
 			:otherwise 'aestheticService:NoWater))
 
+;; obvious, for testing
+(defmodel altitude-in-meters 'geophysics:Altitude
+	(measurement 'geophysics:Altitude "m"))
+
 (defmodel valuable-mountain 'aestheticService:Mountain
 
    "Classifies an elevation model into three levels of provision of beautiful mountains"
