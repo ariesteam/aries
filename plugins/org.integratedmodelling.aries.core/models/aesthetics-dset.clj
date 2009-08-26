@@ -12,7 +12,7 @@
 
 ;; obvious, for testing
 (defmodel altitude-in-meters 'geophysics:Altitude
-	(measurement 'geophysics:Altitude "m"))
+	(measurement 'geophysics:Altitude "ft"))
 
 (defmodel valuable-mountain 'aestheticService:Mountain
 
