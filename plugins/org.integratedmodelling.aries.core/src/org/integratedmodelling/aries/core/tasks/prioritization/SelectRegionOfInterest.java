@@ -33,7 +33,7 @@ public class SelectRegionOfInterest implements ITask {
 
 		// TODO could randomize a region for testing.
 		chosen = 
-			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), KING_COUNTY_SMALL);
+			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), KING_COUNTY_PORTION);
 	}
 
 }

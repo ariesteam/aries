@@ -18,9 +18,6 @@
    		[2000 2750]  'aestheticService:SmallMountain 
    		[2750 :>]    'aestheticService:LargeMountain
    		))
-   		
-;(defmodel altitude 'geophysics:Altitude
-;	(measurement 'geophysics:Altitude "m"))
    		    		 
 (defmodel view-data 'aestheticService:SensoryEnjoyment
 
