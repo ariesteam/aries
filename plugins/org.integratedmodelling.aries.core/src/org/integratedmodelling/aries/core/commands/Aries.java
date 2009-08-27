@@ -57,7 +57,7 @@ public class Aries implements ICommandHandler {
 		
 		if (cmd.equals("model")) {
 			
-			IConcept c = KnowledgeManager.get().requireConcept(getParameter(command, 1, "concept"));
+			String c = getParameter(command, 1, "concept");
 			Model model = ModelManager.get().requireModel(c);
 			IQueryResult r = model.observe(kbox, session, where);
 					
