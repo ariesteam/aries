@@ -28,7 +28,7 @@ public class SetEvidence implements ITask {
 		
 		for (Object state : stateMap.keySet()) {
 			inference.setEvidence(state.toString(), stateMap.get(state).toString());
-		}	
+		}
 	}
 	
 	public Network getInference() {

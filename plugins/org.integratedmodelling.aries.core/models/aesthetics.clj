@@ -1,7 +1,11 @@
 (ns aries.models
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification ranking
-  			 									 noisymax gssm flow)))
+  			 									 noisymax gssm flow bayesian)))
+
+;; ----------------------------------------------------------------------------------------------
+;; provision model
+;; ----------------------------------------------------------------------------------------------
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 		 (classification (ranking 'nlcd:NLCDNumeric)
@@ -15,24 +19,31 @@
    		[:< 2000]    'aestheticService:NoMountain
    		[2000 2750]  'aestheticService:SmallMountain 
    		[2750 :>]    'aestheticService:LargeMountain))
-   		
-(defmodel aesthetic-sensory-enjoyment 'aestheticService:SensoryEnjoyment
-
- 	 "4 levels of provision of aesthetic enjoyment"
-    (classification 'aestheticService:SensoryEnjoyment
- 	 	 0 'aestheticService:NoSensoryEnjoyment 
- 	 	 1 'aestheticService:LowSensoryEnjoyment 
- 	 	 2 'aestheticService:ModerateSensoryEnjoyment 
- 	 	 3 'aestheticService:HighSensoryEnjoyment))
-   		    		 
-(defmodel aesthetic-enjoyment-provision 'aestheticService:SensoryEnjoymentProvision
+   		   		    		 
+(defmodel view-source 'aestheticService:SensoryEnjoymentProvision
 	
 		"This one will harmonize the context, then retrieve and run the BN with the given
 		evidence, and produce a new observation of stochastic values for all its nodes."
-	  (bnmodel 'aestheticService:SensoryEnjoymentProvision "bn/aestheticService_SensoryEnjoyment.xsdl") 	 	
+	  (bayesian 'aestheticService:SensoryEnjoymentProvision)
+	  	:import "bn/aestheticService_SensoryEnjoyment.xsdl"
+	  	:keep ('aestheticService:SensoryEnjoyment)
 	 	 	:context
   	 	 (valuable-mountain
   	 	  valuable-waterbodies))
+
+;; ----------------------------------------------------------------------------------------------
+;; TODO use model
+;; ----------------------------------------------------------------------------------------------
+
+
+;; ----------------------------------------------------------------------------------------------
+;; TODO sink model
+;; ----------------------------------------------------------------------------------------------
+
+
+;; ----------------------------------------------------------------------------------------------
+;; IMPLEMENT ME flow model
+;; ----------------------------------------------------------------------------------------------
  	 								
 (defmodel raycast-view-flow
 	
@@ -44,14 +55,18 @@
 			:context 
 				((measurement 'geophysics:Altitude "m")
 				 (measurement 'geophysics:GroundElevation "m")))
- 	 								
+ 	 					
+;; ----------------------------------------------------------------------------------------------
+;; top-level service model
+;; ----------------------------------------------------------------------------------------------
+			
 (defmodel aesthetic-views 'aestheticService:ViewService
 	
 		"Hypothetical for now. The GSSM connecting view provision to use of views, using
 		 raycasting to model the flows, influenced by athmospheric pollution."
 		 
 		(gssm 'aestheticService:ViewService 
-					:source     aesthetic-enjoyment-provision
+					:source     view-source
 					:use        real-estate-use
 		 			:transport  raycast-view-flow
 		 			:sink       aesthetic-visual-blight))
