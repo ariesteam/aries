@@ -7,13 +7,13 @@
 ;; provision model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel valuable-waterbodies 'aestheticService:WaterBody
+(defmodel viewable-waterbodies 'aestheticService:WaterBody
 		 (classification (ranking 'nlcd:NLCDNumeric)
 	 			23   'aestheticService:Lake
 	 			32   'aestheticService:Ocean
 	 			:otherwise 'aestheticService:NoWater))
 
-(defmodel valuable-mountain 'aestheticService:Mountain
+(defmodel viewable-mountains 'aestheticService:Mountain
    "Classifies an elevation model into three levels of provision of beautiful mountains"
    (classification  (measurement 'geophysics:Altitude "m")
    		[:< 2000]    'aestheticService:NoMountain
@@ -28,8 +28,8 @@
 	  	:import "bn/aestheticService_SensoryEnjoyment.xsdl"
 	  	:keep ('aestheticService:SensoryEnjoyment)
 	 	 	:context
-  	 	 (valuable-mountain
-  	 	  valuable-waterbodies))
+  	 	 (viewable-mountains
+  	 	  viewable-waterbodies))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; TODO use model
