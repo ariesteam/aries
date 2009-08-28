@@ -1,6 +1,6 @@
 (ns aries.models
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification ranking identification)))
+  (:refer modelling :only (defmodel measurement classification ranking identification bayesian)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 
@@ -22,6 +22,14 @@
    		[2000 2750]  'aestheticService:SmallMountain 
    		[2750 :>]    'aestheticService:LargeMountain
    		))
+   		    		 
+(defmodel view-source 'aestheticService:SensoryEnjoyment
+	
+		"Testing BN integration"
+		(bayesian 'aestheticService:SensoryEnjoyment)
+			:import  "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/aestheticService_SensoryEnjoyment.xdsl"
+		  :keep    ('aestheticService:SensoryEnjoyment)
+			:context (valuable-mountain))
    		    		 
 (defmodel view-data 'aestheticService:SensoryEnjoyment
 
