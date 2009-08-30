@@ -8,9 +8,7 @@
   (:refer-clojure)
   (:use [misc.utils      :only (maphash count-distinct)]
 	[gssm.flow-model :only (simulate-service-flows)]
-	[gssm.analyzer   :only (*source-threshold*
-				*sink-threshold*
-				*use-threshold*
+	[gssm.analyzer   :only (
 				theoretical-source
 				theoretical-sink
 				theoretical-use
@@ -34,8 +32,13 @@
 				actual-inflow
 				actual-sink
 				actual-use
-				actual-outflow
-				carriers-encountered)]))
+				actual-outflow)]))
+
+(defn j-make-gssm
+	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 
+	within the gssm macro. We need a compiled proxy because the Java classes aren't visible at runtime."
+	[]
+	(new org.integratedmodelling.aries.core.models.GSSMModel))
 
 (defn get-data-for-observable
 	"Returns a harmonized observation, which contains as dependencies all the data available 
@@ -63,15 +66,27 @@
 	[data scaling-parameters]
 	nil)
 	
-;; TODO wrap in a binding form to bind the parameters when G tells us to what.
+;; TODO bind the flow parameters before call to simulate-service-flows.
 (defn get-gssm-proxy
 	"Create a Java object to handle a GSSM run."
 	[]
 	(proxy [org.integratedmodelling.aries.core.gssm.GSSMProxy] []
-		(runGSSM [source-obs use-obs sink-obs flow-obs] 
-			(simulate-service-flows source-obs use-obs sink-obs flow-obs))))
+		(runGSSM [source-obs use-obs sink-obs flow-obs flow-params] 
+			(simulate-service-flows 
+				(corescience/get-observable-class source-obs) source-obs 
+				(corescience/get-observable-class use-obs)    use-obs 
+				(corescience/get-observable-class sink-obs)   sink-obs 
+				(corescience/get-observable-class flow-obs)   flow-obs))))
 			
-;; a static object should suffice, this is thread-safe to the point of boredom
+;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.GSSMTransformer/setGSSMProxy (get-gssm-proxy))
 
+(defmacro gssm
+	"Create a gssm model. The observable must be a service. This one admits specification of dependencies
+	and flow parameters using :source, :sink, :use, :flow clauses, plus all GSSM flow parameters."
+	[observable]
+	`(let [model# 
+ 	        	(modelling/j-make-gssm)] 
+ 	   (.setObservable model# (if (seq? ~observable) (tl/listp ~observable) ~observable))
+ 	   model#))
 			

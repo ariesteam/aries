@@ -1,7 +1,9 @@
 (ns aries.models
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification ranking
-  			 									 noisymax gssm flow bayesian)))
+  (:use 
+  	[modelling :only (defmodel measurement classification ranking
+  			 							noisymax gssm flow bayesian)]
+  	[aries     :only  (gssm)]))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; provision model
@@ -65,9 +67,9 @@
 		"Hypothetical for now. The GSSM connecting view provision to use of views, using
 		 raycasting to model the flows, influenced by athmospheric pollution."
 		 
-		(gssm 'aestheticService:ViewService 
+		(gssm 'aestheticService:ViewService)
 					:source     view-source
 					:use        real-estate-use
 		 			:transport  raycast-view-flow
-		 			:sink       aesthetic-visual-blight))
+		 			:sink       aesthetic-visual-blight)
 		 			
