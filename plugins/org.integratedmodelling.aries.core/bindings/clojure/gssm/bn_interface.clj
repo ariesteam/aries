@@ -18,13 +18,19 @@
 (ns gssm.bn-interface
   (:refer-clojure)
   (:use [gssm.discretizer :only (undiscretize-value)]))
+;;	[aries            :only (set-evidence
+;;				 run-inference
+;;				 get-marginals-table)]))
 
 (defn expected-value
-  [concept-name distribution]
+  [concept-name distribution features]
   (reduce + (map (fn [[state prob]]
 		   (if (Double/isNaN prob)
-		     (throw (Exception. (str "NaN encountered in " concept-name
-					     "/" state ": " (seq distribution))))
+		     (do
+		       (println (str "ERROR: NaN encountered in " concept-name ":" state ".\n"
+				     "       Evidence: " features "\n"
+				     "       Results: " (seq distribution)))
+		       0.0)
 		     (* (undiscretize-value concept-name state) prob)))
 		 distribution)))
 
@@ -34,4 +40,4 @@
   [concept-name inference-engine features]
   (let [inference-results (aries/run-inference (aries/set-evidence inference-engine features))
 	distribution      (aries/get-marginals-table inference-results concept-name)]
-    (expected-value concept-name distribution)))
+    (expected-value concept-name distribution features)))

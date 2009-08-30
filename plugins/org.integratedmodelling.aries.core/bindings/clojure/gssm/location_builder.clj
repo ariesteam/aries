@@ -21,8 +21,10 @@
 	[misc.matrix-ops   :only (get-neighbors)]
 	[gssm.discretizer  :only (discretize-value)]
 	[gssm.bn-interface :only (run-bayes-net)]))
+;;	[aries             :only (make-bn-inference)]
+;;	[corescience       :only (map-dependent-states)]))
 
-(defstruct location :id :neighbors :source :sink :use :carrier-cache :flow-features)
+(defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
 
 (defn extract-features-discretized
   "Returns a map of feature names to the discretized values at i j."
@@ -42,12 +44,10 @@
   [source-concept source-observation
    sink-concept   sink-observation
    use-concept    use-observation
-   flow-concept   flow-observation
-   rows           cols]
+   flow-observation rows cols]
   (let [source-concept-name     (.getLocalName source-concept)
 	sink-concept-name       (.getLocalName sink-concept)
 	use-concept-name        (.getLocalName use-concept)
-	flow-concept-name       (.getLocalName flow-concept)
 	source-inference-engine (aries/make-bn-inference source-concept)
 	sink-inference-engine   (aries/make-bn-inference sink-concept)
 	use-inference-engine    (aries/make-bn-inference use-concept)
@@ -78,6 +78,6 @@
 		   :use           (delay (run-bayes-net use-concept-name
 							use-inference-engine
 							use-features))
-		   :carrier-cache (atom ())
-		   :flow-features flow-features)))
+		   :flow-features flow-features
+		   :carrier-cache (atom ()))))
 	     (fn [loc] [(:id loc) loc]))))

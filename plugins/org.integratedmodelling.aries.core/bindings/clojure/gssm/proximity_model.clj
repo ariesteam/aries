@@ -17,11 +17,11 @@
 
 (ns gssm.proximity-model
   (:refer-clojure)
-  (:use [misc.utils     :only (seq2map)]
-	[gssm.model-api :only (distribute-flow!
+  (:use [gssm.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
+	[gssm.params    :only (*decay-rate* *trans-threshold*)]))
 
 (defn expand-box
   "Returns a new list of points which completely bounds the
@@ -55,68 +55,63 @@
 
 (defn nearest-neighbors
   "Selects all elements from the frontier which are within 2 manhattan
-   steps of loc-id."
-  [loc-id frontier]
-  (filter (fn [[l c]]
-	    (<= (manhattan-distance loc-id (:id l)) 2))
-	  frontier))
+   steps of location."
+  [location frontier]
+  (let [loc-id (:id location)]
+    (filter (fn [[_ route]]
+	      (<= (manhattan-distance loc-id (:id (peek route))) 2))
+	    frontier)))
 
-(defn construct-optimal-carrier
-  [location frontier decay-rate]
-  (let [potential-parents (nearest-neighbors (:id location) frontier)]
-    (if (seq potential-parents)
-      (let [[c outflow] (reduce (fn [[c1 outflow1] [c2 outflow2]]
-				  (if (> outflow1 outflow2)
-				    [c1 outflow1]
-				    [c2 outflow2]))
-				(map (fn [[l c]]
-				       [c (* (:weight c) (- 1.0 (force (:sink l))))])
-				     potential-parents))]
-	(struct service-carrier
-		(* outflow decay-rate)
-		(conj (:route c) location))))))
+(defn select-optimal-path
+  [location frontier]
+  (let [frontier-options (nearest-neighbors location frontier)]
+    (when (seq frontier-options)
+      (let [[outflow route] (reduce (fn [[w1 r1 :as prev] [w2 r2]]
+				      (let [outflow (* w2 (- 1.0 (force (:sink (peek r2)))))]
+					(if (> outflow w1)
+					  [outflow r2]
+					  prev)))
+				    [0.0 nil]
+				    frontier-options)]
+	[(* outflow *decay-rate*) (conj route location)]))))
 
 (defn distribute-gaussian!
-  [{:keys [decay-rate trans-threshold]}
-   location-map rows cols source-location root-carrier]
-  (loop [frontier (list [source-location root-carrier])]
+  [location-map rows cols source-location source-weight]
+  (loop [frontier (list [source-weight [source-location]])]
     (when (seq frontier)
-      (doseq [[loc carrier] frontier]
-	  (if (or (sink-loc? loc) (use-loc? loc))
-	    (swap! (:carrier-cache loc) conj carrier)))
+      (doseq [[weight route] frontier]
+	(let [loc (peek route)]
+	  (when (or (sink-loc? loc) (use-loc? loc))
+	    (swap! (:carrier-cache loc) conj (struct service-carrier weight route)))))
       (recur
-       (let [new-frontier-locs (map location-map
-				    (expand-box (map (comp :id first) frontier)
-						rows cols))]
-	 (filter #(and (val %) (> (:weight (val %)) trans-threshold))
-		 (seq2map new-frontier-locs
-			  #(vector % (construct-optimal-carrier
-				      % frontier decay-rate)))))))))
+       (let [frontier-ids  (map (comp :id peek second) frontier)
+	     bounding-ids  (expand-box frontier-ids rows cols)
+	     bounding-locs (map location-map bounding-ids)]
+	 (filter #(and % (> (first %) *trans-threshold*))
+		 (map #(select-optimal-path % frontier) bounding-locs)))))))
 
 (defmethod distribute-flow! "Proximity"
-  [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
+  [_ location-map rows cols]
   (println "Local Proximity Model begins...")
   (distribute-load-over-processors
-   (fn [_ source-loc]
-     (distribute-gaussian! flow-params
-			   location-map
+   (fn [_ source-location]
+     (distribute-gaussian! location-map
 			   rows
 			   cols
-			   source-loc
-			   (struct service-carrier (force (:source source-loc)) [source-loc])))
+			   source-location
+			   (force (:source source-location))))
    (filter source-loc? (vals location-map))))
 
 (defmethod distribute-flow! "Proximity_Sequential"
-  [_ {:keys [trans-threshold] :as flow-params} location-map rows cols]
+  [_ location-map rows cols]
   (println "Local Proximity Model begins...")
   (let [sources (vec (filter source-loc? (vals location-map)))
 	num-sources (count sources)]
     (dotimes [i num-sources]
-	(let [source-loc (sources i)]
-	  (println "Projection" i "/" num-sources)
-	  (distribute-gaussian! flow-params
-				location-map
+	(let [source-location (sources i)]
+	  (println "Projection" (inc i) "/" num-sources)
+	  (distribute-gaussian! location-map
 				rows
 				cols
-				source-loc
-				(struct service-carrier (force (:source source-loc)) [source-loc]))))))
+				source-location
+				(force (:source source-location)))))))

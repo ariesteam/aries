@@ -17,13 +17,12 @@
 
 (ns gssm.water-model
   (:refer-clojure)
-  (:use [misc.utils     :only (seq2map
-			       memoize-by-first-arg
-			       depth-first-tree-search)]
+  (:use [misc.utils     :only (memoize-by-first-arg depth-first-tree-search)]
 	[gssm.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
+	[gssm.params    :only (*trans-threshold*)]))
 
 (defn most-downhill-neighbors
   [location location-map]
@@ -40,33 +39,28 @@
   "Depth-first search with successors = downhill neighbors.
    Stop when no successors.  No decay-rate, but branching-factor is
    possible, so check for weight below trans-threshold."
-  [trans-threshold location-map source-location root-carrier]
+  [location-map source-location source-weight]
   (depth-first-tree-search
-   (list [source-location root-carrier])
-   (fn [[loc carrier]]
-     (let [downhill-neighbors (most-downhill-neighbors loc location-map)
+   (list [source-weight [source-location]])
+   (fn [[weight route]]
+     (let [downhill-neighbors (most-downhill-neighbors (peek route) location-map)
 	   downhill-weight    (if (seq downhill-neighbors)
-			        (/ (:weight carrier)
-				   (count downhill-neighbors))
+			        (/ weight (count downhill-neighbors))
 				0.0)]
-       (when (> downhill-weight trans-threshold)
-	 (map #(vector % (struct service-carrier 
-				 downhill-weight
-				 (conj (:route carrier) %)))
+       (when (> downhill-weight *trans-threshold*)
+	 (map #(vector downhill-weight (conj route %))
 	      downhill-neighbors))))
-   (fn [[loc carrier]]
-     (if (or (sink-loc? loc) (use-loc? loc))
-       (swap! (:carrier-cache loc) conj carrier))
-     false)))
+   (fn [[weight route]]
+     (let [loc (peek route)]
+       (when (or (sink-loc? loc) (use-loc? loc))
+	 (swap! (:carrier-cache loc) conj (struct service-carrier weight route)))
+       false))))
 
 (defmethod distribute-flow! "Water"
-  [_ {trans-threshold :trans-threshold} location-map _ _]
+  [_ location-map _ _]
   (distribute-load-over-processors
    (fn [_ source-location]
-     (distribute-downhill! trans-threshold
-			   location-map
+     (distribute-downhill! location-map
 			   source-location
-			   (struct service-carrier
-				   (force (:source source-location))
-				   [source-location])))
+			   (force (:source source-location))))
    (filter source-loc? (vals location-map))))

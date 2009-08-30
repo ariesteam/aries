@@ -169,19 +169,21 @@
 
 (defn count-distinct
   "Returns a map of {distinct-val -> num-instances, ...} for all the
-   distinct values in a sequence.  If n is given, only count-distinct
-   for sequences where distinct-vals <= n.  For sequences with more
-   distinct-vals than n, simply return a map of {'*' ->
-   num-distinct}."
+   distinct values in a sequence.  If n is given, only count the first
+   n distinct values and append {... -> num-distinct - n} to the map
+   to indicate that more values were not examined."
   ([vals]
      (seq2map
       (distinct vals)
       (fn [val] [val (count (filter #(= % val) vals))])))
   ([vals n]
-     (let [num-distinct (count (distinct vals))]
-       (if (<= num-distinct n)
-	 (count-distinct vals)
-	 {"*" num-distinct}))))
+     (let [d-vals       (distinct vals)
+	   num-distinct (count d-vals)]
+       (assoc
+	   (seq2map
+	    (take n d-vals)
+	    (fn [val] [val (count (filter #(= % val) vals))]))
+	 "..." (- d-vals n)))))
 
 (defn memoize-by-first-arg
   [function]

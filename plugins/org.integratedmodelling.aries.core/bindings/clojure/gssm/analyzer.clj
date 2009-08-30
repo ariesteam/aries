@@ -17,28 +17,32 @@
 
 (ns gssm.analyzer
   (:refer-clojure)
-  (:use [misc.utils :only (seq2map
-			   seq2redundant-map
-			   add-anyway
-			   memoize-by-first-arg)]))
-
-(def *source-threshold* 0.0)
-
-(def *sink-threshold* 0.0)
-
-(def *use-threshold* 0.0)
+  (:use [misc.utils  :only (seq2map
+			    seq2redundant-map
+			    add-anyway)]
+	[gssm.params :only (*source-threshold*
+			    *sink-threshold*
+			    *use-threshold*
+			    *decay-rate*
+			    *trans-threshold*
+			    *sink-type*
+			    *use-type*
+			    *benefit-type*)]))
 
 (defn source-loc?
   [loc]
   (> (force (:source loc)) *source-threshold*))
+(def source-loc? (memoize source-loc?))
 
 (defn sink-loc?
   [loc]
   (> (force (:sink loc)) *sink-threshold*))
+(def sink-loc? (memoize sink-loc?))
 
 (defn use-loc?
   [loc]
   (> (force (:use loc)) *use-threshold*))
+(def use-loc? (memoize use-loc?))
 
 (defn theoretical-source
   "Returns a map of {location-id -> source-value}.
@@ -52,9 +56,9 @@
    If sink-type is absolute, the sink-value will simply be the result
    of the sink BN.  If it is relative, the sink-value will be the sink
    BN result * the total theoretical source-value."
-  [locations {sink-type :sink-type}]
+  [locations]
   (seq2map (filter sink-loc? locations)
-	   (if (= sink-type :absolute)
+	   (if (= *sink-type* :absolute)
 	     #(vector (:id %) (force (:sink %)))
 	     (let [total-theoretical-source (reduce + (map (comp force :source) (filter source-loc? locations)))]
 	       #(vector (:id %) (* (force (:sink %)) total-theoretical-source))))))
@@ -64,9 +68,9 @@
    If use-type is absolute, the use-value will simply be the result of
    the use BN.  If it is relative, the use-value will be the use BN
    result * the total theoretical source-value."
-  [locations {use-type :use-type}]
+  [locations]
   (seq2map (filter use-loc? locations)
-	   (if (= use-type :absolute)
+	   (if (= *use-type* :absolute)
 	     #(vector (:id %) (force (:use %)))
 	     (let [total-theoretical-source (reduce + (map (comp force :source) (filter source-loc? locations)))]
 	       #(vector (:id %) (* (force (:use %)) total-theoretical-source))))))
@@ -89,7 +93,7 @@
   (apply merge-with +
 	 (for [carrier @(:carrier-cache location)]
 	   (let [weight (:weight carrier)]
-	     (zipmap (map :id (reverse (:route carrier)))
+	     (zipmap (map :id (rseq (:route carrier)))
 		     (map #(* weight %) decay-factors))))))
 
 (defn possible-flow
@@ -109,8 +113,8 @@
    This final map now contains an entry for every location, which is
    part of any carrier's route, whose value represents the total
    amount of service flow through that location."
-  [locations {decay-rate :decay-rate}]
-  (let [decay-factors (iterate #(/ % decay-rate) 1.0)]
+  [locations]
+  (let [decay-factors (iterate #(/ % *decay-rate*) 1.0)]
     (apply merge-with +
 	   (for [location (filter use-loc? locations)]
 	     (possible-local-flow location decay-factors)))))
@@ -143,6 +147,27 @@
 	 (for [location (filter use-loc? locations)]
 	   (possible-local-source location))))
 
+(comment
+
+  (defn- cumulative-provision
+    [weight route]
+    (val (reduce (fn [[step total] location]
+		   [(inc step)
+		    (if (use-loc? location)
+		      (+ total (* weight (Math/pow *decay-rate* step)))
+		      total)])
+		 [0 0.0]
+		 route)))
+
+  (defn possible-source
+    [carriers]
+    (seq2redundant-map carriers
+		       (fn [{:keys [weight route]}]
+			 [(:id (first route))
+			  (cumulative-provision weight route)])
+		       add-anyway))
+)
+
 (defn- possible-local-inflow
   "Returns the total asset amount flowing into the location.  We
    compute the local-inflow by simply summing the weights of all
@@ -150,7 +175,7 @@
    for sink and use locations."
   [location]
   (double (reduce + (map :weight @(:carrier-cache location)))))
-(def possible-local-inflow (memoize-by-first-arg possible-local-inflow))
+(def possible-local-inflow (memoize possible-local-inflow))
 
 (defn possible-inflow
   "Returns a map of {location-id -> asset-encountered}.
@@ -167,11 +192,11 @@
         possible-sink = sink * possible-inflow
    2) If sink-type = :absolute
         possible-sink = min(sink, possible-inflow)"
-  [location sink-type]
-  (if (= sink-type :relative)
+  [location]
+  (if (= *sink-type* :relative)
     (*   (force (:sink location)) (possible-local-inflow location))
     (min (force (:sink location)) (possible-local-inflow location))))
-(def possible-local-sink (memoize-by-first-arg possible-local-sink))
+(def possible-local-sink (memoize possible-local-sink))
 
 (defn possible-sink
   "Returns a map of {location-id -> asset-sunk}.
@@ -181,9 +206,9 @@
         possible-sink = sink * possible-inflow
    2) If sink-type = :absolute
         possible-sink = min(sink, possible-inflow)"
-  [locations {sink-type :sink-type}]
+  [locations]
   (seq2map (filter sink-loc? locations)
-	   #(vector (:id %) (possible-local-sink % sink-type))))
+	   #(vector (:id %) (possible-local-sink %))))
 
 (defn- possible-local-use
   "We compute the amount of the asset flow used as follows:
@@ -191,13 +216,13 @@
         possible-use = use * (possible-inflow - possible-sink)
    2) If use-type = :absolute
         possible-use = min(use, (possible-inflow - possible-sink))"
-  [location use-type sink-type]
-  (if (= use-type :relative)
+  [location]
+  (if (= *use-type* :relative)
     (*   (force (:use location)) (- (possible-local-inflow location)
-				    (possible-local-sink location sink-type)))
+				    (possible-local-sink location)))
     (min (force (:use location)) (- (possible-local-inflow location)
-				    (possible-local-sink location sink-type)))))
-(def possible-local-use (memoize-by-first-arg possible-local-use))
+				    (possible-local-sink location)))))
+(def possible-local-use (memoize possible-local-use))
 
 (defn possible-use
   "Returns a map of {location-id -> asset-used}.
@@ -207,20 +232,20 @@
         possible-use = use * (possible-inflow - possible-sink)
    2) If use-type = :absolute
         possible-use = min(use, (possible-inflow - possible-sink))"
-  [locations {use-type :use-type sink-type :sink-type}]
+  [locations]
   (seq2map (filter use-loc? locations)
-	   #(vector (:id %) (possible-local-use % use-type sink-type))))
+	   #(vector (:id %) (possible-local-use %))))
 
 (defn- possible-local-outflow
   "Returns the total asset amount flowing out of the location.
    We compute the local-outflow by subtracting the sink and
    use (if :benefit-type = :rival) values from the inflow.  Outflow is
    only mappable for sink and use locations."
-  [location sink-type use-type benefit-type]
+  [location]
   (- (possible-local-inflow location)
-     (possible-local-sink location sink-type)
-     (if (= benefit-type :rival)
-       (possible-local-use location use-type sink-type)
+     (possible-local-sink location)
+     (if (= *benefit-type* :rival)
+       (possible-local-use location)
        0.0)))
 
 (defn possible-outflow
@@ -228,9 +253,9 @@
    We compute the outflow distribution by assigning to each location
    its inflow minus the sink and use (if :benefit-type = :rival)
    values.  Outflow is only mappable for sink and use locations."
-  [locations {:keys [use-type sink-type benefit-type]}]
+  [locations]
   (seq2map (filter #(or (sink-loc? %) (use-loc? %)) locations)
-	   #(vector (:id %) (possible-local-outflow % sink-type use-type benefit-type))))
+	   #(vector (:id %) (possible-local-outflow %))))
 
 (defn inaccessible-source
   "Returns a map of {location-id -> inaccessible-source}.
@@ -247,29 +272,31 @@
    Inaccessible-sink is the amount of the theoretical-sink which
    cannot be utilized by each location either due to propagation decay
    of the asset or lack of flow pathways to sink locations."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [t p] (max 0.0 (- t p)))
-	      (theoretical-sink locations flow-params)
-	      (possible-sink locations flow-params)))
+	      (theoretical-sink locations)
+	      (possible-sink locations)))
 
 (defn inaccessible-use
   "Returns a map of {location-id -> inaccessible-use}.
    Inaccessible-use is the amount of the theoretical-use which cannot
    be utilized by each location either due to propagation decay of the
    asset or lack of flow pathways to use locations."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [t p] (max 0.0 (- t p)))
-	      (theoretical-use locations flow-params)
-	      (possible-use locations flow-params)))
+	      (theoretical-use locations)
+	      (possible-use locations)))
 
 (declare actual-local-inflow actual-local-outflow)
 
 (defn rerun-actual-route
-  [carrier {:keys [decay-rate trans-threshold sink-type use-type benefit-type] :as flow-params}]
+  "Reruns a carrier's route and returns a vector of the weights along
+   it with the effects of sinks and rival uses accounted for."
+  [carrier]
   (loop [path           (:route carrier)
 	 acc            []
 	 carrier-weight (/ (:weight carrier)
-			   (Math/pow decay-rate (dec (count path))))]
+			   (Math/pow *decay-rate* (dec (count path))))]
     (if (empty? (rest path))
       (conj acc carrier-weight)
       (if (== carrier-weight 0.0)
@@ -278,20 +305,20 @@
 	       (conj acc carrier-weight)
 	       (let [loc (first path)
 		     amount-propagated (if (and (not (sink-loc? loc))
-						(or (= benefit-type :non-rival)
+						(or (= *benefit-type* :non-rival)
 						    (not (use-loc? loc))))
-					 (* carrier-weight decay-rate)
-					 (if (or (and (= sink-type :absolute) (sink-loc? loc))
-						 (and (= use-type :absolute) (= benefit-type :rival) (use-loc? loc)))
-					   (let [total-encountered    (actual-local-inflow loc flow-params)
+					 (* carrier-weight *decay-rate*)
+					 (if (or (and (= *sink-type* :absolute) (sink-loc? loc))
+						 (and (= *use-type* :absolute) (= *benefit-type* :rival) (use-loc? loc)))
+					   (let [total-encountered    (actual-local-inflow loc)
 						 contributing-percent (/ carrier-weight total-encountered)]
-					     (* (actual-local-outflow loc flow-params) contributing-percent decay-rate))
+					     (* (actual-local-outflow loc) contributing-percent *decay-rate*))
 					   (* carrier-weight
 					      (- 1.0 (force (:sink loc)))
-					      (if (= benefit-type :rival) ; use-type must be :relative
+					      (if (= *benefit-type* :rival) ; use-type must be :relative
 						(- 1.0 (force (:use loc)))
 						1.0)
-					      decay-rate)))]
+					      *decay-rate*)))]
 		 (comment
 		   amount-propagated (if (> (force (:sink loc)) 0.0)
 				       (if (= sink-type :absolute)
@@ -311,10 +338,10 @@
 					   XXX OPTION SIMPLE)
 					 XXX OPTION SIMPLE))
 		   )
-		 (if (< amount-propagated trans-threshold)
+		 (if (< amount-propagated *trans-threshold*)
 		   0.0
 		   amount-propagated)))))))
-(def rerun-actual-route (memoize-by-first-arg rerun-actual-route))
+(def rerun-actual-route (memoize rerun-actual-route))
 
 (defn- actual-local-flow
   "Returns a map of {location-id -> flow-density}.
@@ -330,11 +357,11 @@
    This final map now contains an entry for every location, which is
    part of any carrier's route, whose value represents the total
    amount of asset flow through that location."
-  [location flow-params]
+  [location]
   (apply merge-with +
 	 (for [carrier @(:carrier-cache location)]
 	   (zipmap (map :id (:route carrier))
-		   (rerun-actual-route carrier flow-params)))))
+		   (rerun-actual-route carrier)))))
 
 (defn actual-flow
   "Returns a map of {location-id -> flow-density}.
@@ -353,10 +380,10 @@
    This final map now contains an entry for every location, which is
    part of any carrier's route, whose value represents the total
    amount of service flow through that location."
-  [locations flow-params]
+  [locations]
   (apply merge-with +
 	 (for [location (filter use-loc? locations)]
-	   (actual-local-flow location flow-params))))
+	   (actual-local-flow location))))
 
 (defn- actual-local-source
   "Returns a map of {location-id -> asset-provided}.
@@ -364,11 +391,11 @@
    to this one by assigning to each one the sum of all undecayed
    carrier weights in this location's carrier-cache whose routes begin
    at the source location."
-  [location flow-params]
+  [location]
   (seq2redundant-map @(:carrier-cache location)
 		     (fn [carrier]
 		       [((comp :id first :route) carrier)
-			(double (peek (rerun-actual-route carrier flow-params)))])
+			(double (peek (rerun-actual-route carrier)))])
 		     add-anyway))
 
 (defn actual-source
@@ -381,31 +408,31 @@
    FIXME: This function double-counts in situations of rival use.  It
           also reports inflow attributed to each source point, not the
           actual use, which may be less."
-  [locations flow-params]
+  [locations]
   (apply merge-with +
 	 (for [location (filter use-loc? locations)]
-	   (actual-local-source location flow-params))))
+	   (actual-local-source location))))
 
 (defn- actual-local-inflow
   "Returns the total asset amount flowing into the location.  We
    compute the local-inflow by simply summing the weights of all
    carriers in this location's carrier-cache.  Inflow is only mappable
    for sink and use locations."
-  [location flow-params]
+  [location]
   (double
    (reduce +
 	   (for [c @(:carrier-cache location)]
-	     (peek (rerun-actual-route c flow-params))))))
-(def actual-local-inflow (memoize-by-first-arg actual-local-inflow))
+	     (peek (rerun-actual-route c))))))
+(def actual-local-inflow (memoize actual-local-inflow))
 
 (defn actual-inflow
   "Returns a map of {location-id -> asset-encountered}.
    We compute the inflow distribution by assigning to each location
    the sum of the carrier weights in its carrier-cache.  Inflow is
    only mappable for sink and use locations."
-  [locations flow-params]
+  [locations]
   (seq2map (filter #(or (sink-loc? %) (use-loc? %)) locations)
-	   #(vector (:id %) (actual-local-inflow % flow-params))))
+	   #(vector (:id %) (actual-local-inflow %))))
 
 (defn- actual-local-sink
   "We compute the amount of the asset flow sunk as follows:
@@ -413,11 +440,11 @@
         actual-sink = sink * actual-inflow
    2) If sink-type = :absolute
         actual-sink = min(sink, actual-inflow)"
-  [location {:keys [sink-type] :as flow-params}]
-  (if (= sink-type :relative)
-    (*   (force (:sink location)) (actual-local-inflow location flow-params))
-    (min (force (:sink location)) (actual-local-inflow location flow-params))))
-(def actual-local-sink (memoize-by-first-arg actual-local-sink))
+  [location]
+  (if (= *sink-type* :relative)
+    (*   (force (:sink location)) (actual-local-inflow location))
+    (min (force (:sink location)) (actual-local-inflow location))))
+(def actual-local-sink (memoize actual-local-sink))
 
 (defn actual-sink
   "Returns a map of {location-id -> asset-sunk}.
@@ -427,9 +454,9 @@
         actual-sink = sink * actual-inflow
    2) If sink-type = :absolute
         actual-sink = min(sink, actual-inflow)"
-  [locations flow-params]
+  [locations]
   (seq2map (filter sink-loc? locations)
-	   #(vector (:id %) (actual-local-sink % flow-params))))
+	   #(vector (:id %) (actual-local-sink %))))
 
 (defn- actual-local-use
   "We compute the amount of the asset flow used as follows:
@@ -437,13 +464,13 @@
         actual-use = use * (actual-inflow - actual-sink)
    2) If use-type = :absolute
         actual-use = min(use, (actual-inflow - actual-sink))"
-  [location {:keys [use-type] :as flow-params}]
-  (if (= use-type :relative)
-    (*   (force (:use location)) (- (actual-local-inflow location flow-params)
-				    (actual-local-sink location flow-params)))
-    (min (force (:use location)) (- (actual-local-inflow location flow-params)
-				    (actual-local-sink location flow-params)))))
-(def actual-local-use (memoize-by-first-arg actual-local-use))
+  [location]
+  (if (= *use-type* :relative)
+    (*   (force (:use location)) (- (actual-local-inflow location)
+				    (actual-local-sink location)))
+    (min (force (:use location)) (- (actual-local-inflow location)
+				    (actual-local-sink location)))))
+(def actual-local-use (memoize actual-local-use))
 
 (defn actual-use
   "Returns a map of {location-id -> asset-used}.
@@ -453,87 +480,82 @@
         actual-use = use * (actual-inflow - actual-sink)
    2) If use-type = :absolute
         actual-use = min(use, (actual-inflow - actual-sink))"
-  [locations flow-params]
+  [locations]
   (seq2map (filter use-loc? locations)
-	   #(vector (:id %) (actual-local-use % flow-params))))
+	   #(vector (:id %) (actual-local-use %))))
 
 (defn- actual-local-outflow
   "Returns the total asset amount flowing out of the location.  We
    compute the local-outflow by subtracting the sink and
    use (if :benefit-type = :rival) values from the inflow.  Outflow is
    only mappable for sink and use locations."
-  [location {:keys [benefit-type] :as flow-params}]
-  (- (actual-local-inflow location flow-params)
-     (actual-local-sink location flow-params)
-     (if (= benefit-type :rival)
-       (actual-local-use location flow-params)
+  [location]
+  (- (actual-local-inflow location)
+     (actual-local-sink location)
+     (if (= *benefit-type* :rival)
+       (actual-local-use location)
        0.0)))
-(def actual-local-outflow (memoize-by-first-arg actual-local-outflow))
+(def actual-local-outflow (memoize actual-local-outflow))
 
 (defn actual-outflow
   "Returns a map of {location-id -> asset-uncaptured}.
    We compute the outflow distribution by assigning to each location
    its inflow minus the sink and use (if :benefit-type = :rival)
    values.  Outflow is only mappable for sink and use locations."
-  [locations flow-params]
+  [locations]
   (seq2map (filter #(or (sink-loc? %) (use-loc? %)) locations)
-	   #(vector (:id %) (actual-local-outflow % flow-params))))
+	   #(vector (:id %) (actual-local-outflow %))))
 
 (defn blocked-flow
   "Returns a map of {location-id -> blocked-flow}.
    Blocked-flow is the amount of the possible-flow which cannot be
    realized due to upstream sinks or uses."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [p a] (max 0.0 (- p a)))
-	      (possible-flow locations flow-params)
-	      (actual-flow locations flow-params)))
+	      (possible-flow locations)
+	      (actual-flow locations)))
 
 (defn blocked-source
   "Returns a map of {location-id -> blocked-source}.
    Blocked-source is the amount of the possible-source which cannot be
    used by any location due to upstream sinks or uses."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [p a] (max 0.0 (- p a)))
 	      (possible-source locations)
-	      (actual-source locations flow-params)))
+	      (actual-source locations)))
 
 (defn blocked-inflow
   "Returns a map of {location-id -> blocked-inflow}.
    Blocked-inflow is the amount of the possible-inflow which cannot be
    realized due to upstream sinks or uses."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [p a] (max 0.0 (- p a)))
 	      (possible-inflow locations)
-	      (actual-inflow locations flow-params)))
+	      (actual-inflow locations)))
 
 (defn blocked-sink
   "Returns a map of {location-id -> blocked-sink}.
    Blocked-sink is the amount of the possible-sink which cannot be
    realized due to upstream sinks or uses."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [p a] (max 0.0 (- p a)))
-	      (possible-sink locations flow-params)
-	      (actual-sink locations flow-params)))
+	      (possible-sink locations)
+	      (actual-sink locations)))
 
 (defn blocked-use
   "Returns a map of {location-id -> blocked-use}.
    Blocked-use is the amount of the possible-use which cannot be
    realized due to upstream sinks or uses."
-  [locations flow-params]
+  [locations]
   (merge-with (fn [p a] (max 0.0 (- p a)))
-	      (possible-use locations flow-params)
-	      (actual-use locations flow-params)))
+	      (possible-use locations)
+	      (actual-use locations)))
 
 (defn blocked-outflow
   "Returns a map of {location-id -> blocked-outflow}.
    Blocked-outflow is the amount of the possible-outflow which cannot be
    realized due to upstream sinks or uses."
-  [locations flow-params]
-  (merge-with (fn [p a] (max 0.0 (- p a)))
-	      (possible-outflow locations flow-params)
-	      (actual-outflow locations flow-params)))
-
-(defn carriers-encountered
   [locations]
-  (seq2map (filter #(or (sink-loc? %) (use-loc? %)) locations)
-	   #(vector (:id %) (double (count @(:carrier-cache %))))))
+  (merge-with (fn [p a] (max 0.0 (- p a)))
+	      (possible-outflow locations)
+	      (actual-outflow locations)))

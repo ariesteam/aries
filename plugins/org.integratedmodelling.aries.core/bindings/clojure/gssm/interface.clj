@@ -18,12 +18,18 @@
 (ns gssm.interface
   (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
-  (:use [misc.utils      :only (maphash count-distinct)]
+  (:use
+;;      [tl              :only (get-session)]
+;;	[geospace        :only (build-coverage
+;;				get-spatial-extent
+;;				grid-extent?
+;;				grid-rows
+;;				grid-cols)]
+;;	[corescience     :only (map-dependent-states)]
+	[misc.utils      :only (maphash count-distinct)]
+	[gssm.params     :only (set-global-params!)]
 	[gssm.flow-model :only (simulate-service-flows)]
-	[gssm.analyzer   :only (*source-threshold*
-				*sink-threshold*
-				*use-threshold*
-				theoretical-source
+	[gssm.analyzer   :only (theoretical-source
 				theoretical-sink
 				theoretical-use
 				inaccessible-source
@@ -46,8 +52,7 @@
 				actual-inflow
 				actual-sink
 				actual-use
-				actual-outflow
-				carriers-encountered)]))
+				actual-outflow)]))
 
 (defn select-menu-option
   "Prompts the user with a menu of choices and returns the label
@@ -107,10 +112,11 @@
   (let [fmt-str (str
 		 "%nLocation %s%n"
 		 "--------------------%n"
-		 "Neighbors: %s%n"
-		 "Source:    %.2f%n"
-		 "Sink:      %.2f%n"
-		 "Use:       %.2f%n"
+		 "Neighbors:     %s%n"
+		 "Source:        %.2f%n"
+		 "Sink:          %.2f%n"
+		 "Use:           %.2f%n"
+		 "Flow Features: %s%n"
 		 "Carriers Encountered: %d%n")]
     (printf fmt-str
 	    (:id location)
@@ -118,6 +124,7 @@
 	    (force (:source location))
 	    (force (:sink location))
 	    (force (:use location))
+	    (:flow-features location)
 	    (count @(:carrier-cache location)))))
 
 (defn gssm-autopilot
@@ -129,43 +136,42 @@
    sink-concept   sink-observation
    use-concept    use-observation
    flow-concept   flow-observation
-   {:keys [source-threshold sink-threshold use-threshold] :as flow-params}]
-  (binding [*source-threshold* source-threshold
-	    *sink-threshold*   sink-threshold
-	    *use-threshold*    use-threshold]
-    (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
-							   sink-concept   sink-observation
-							   use-concept    use-observation
-							   flow-concept   flow-observation
-							   flow-params)
-	  locations (vals location-map)]
-      (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
-		  (list
-		   (theoretical-source   locations)
-		   (theoretical-sink     locations flow-params)
-		   (theoretical-use      locations flow-params)
-		   (inaccessible-source  locations)
-		   (inaccessible-sink    locations flow-params)
-		   (inaccessible-use     locations flow-params)
-		   (possible-flow        locations flow-params)
-		   (possible-source      locations)
-		   (possible-inflow      locations)
-		   (possible-sink        locations flow-params)
-		   (possible-use         locations flow-params)
-		   (possible-outflow     locations flow-params)
-		   (blocked-flow         locations flow-params)
-		   (blocked-source       locations flow-params)
-		   (blocked-inflow       locations flow-params)
-		   (blocked-sink         locations flow-params)
-		   (blocked-use          locations flow-params)
-		   (blocked-outflow      locations flow-params)
-		   (actual-flow          locations flow-params)
-		   (actual-source        locations flow-params)
-		   (actual-inflow        locations flow-params)
-		   (actual-sink          locations flow-params)
-		   (actual-use           locations flow-params)
-		   (actual-outflow       locations flow-params)
-		   (carriers-encountered locations)))))))
+   flow-params]
+  (assert (geospace/grid-extent? source-observation))
+  (set-global-params! flow-params)
+  (let [rows      (geospace/grid-rows    source-observation)
+	cols      (geospace/grid-columns source-observation)
+	locations (simulate-service-flows source-concept source-observation
+					  sink-concept   sink-observation
+					  use-concept    use-observation
+					  flow-concept   flow-observation
+					  rows           cols)]
+    (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
+		(list
+		 (theoretical-source  locations)
+		 (theoretical-sink    locations)
+		 (theoretical-use     locations)
+		 (inaccessible-source locations)
+		 (inaccessible-sink   locations)
+		 (inaccessible-use    locations)
+		 (possible-flow       locations)
+		 (possible-source     locations)
+		 (possible-inflow     locations)
+		 (possible-sink       locations)
+		 (possible-use        locations)
+		 (possible-outflow    locations)
+		 (blocked-flow        locations)
+		 (blocked-source      locations)
+		 (blocked-inflow      locations)
+		 (blocked-sink        locations)
+		 (blocked-use         locations)
+		 (blocked-outflow     locations)
+		 (actual-flow         locations)
+		 (actual-source       locations)
+		 (actual-inflow       locations)
+		 (actual-sink         locations)
+		 (actual-use          locations)
+		 (actual-outflow      locations))))))
 
 (defn gssm-interface
   "Takes the source, sink, use, and flow concepts along with
@@ -176,44 +182,44 @@
    sink-concept   sink-observation
    use-concept    use-observation
    flow-concept   flow-observation
-   {:keys [source-threshold sink-threshold use-threshold] :as flow-params}]
-  (binding [*source-threshold* source-threshold
-	    *sink-threshold*   sink-threshold
-	    *use-threshold*    use-threshold
-	    *out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
+   flow-params]
+  (assert (geospace/grid-extent? source-observation))
+  (set-global-params! flow-params)
+  (binding [*out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
 	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream  (tl/get-session))))]
-    (let [[location-map rows cols] (simulate-service-flows source-concept source-observation
-							   sink-concept   sink-observation
-							   use-concept    use-observation
-							   flow-concept   flow-observation
-							   flow-params)
-	  locations (vals location-map)
+    (let [rows      (geospace/grid-rows          source-observation)
+	  cols      (geospace/grid-columns       source-observation)
+	  extent    (geospace/get-spatial-extent source-observation)
+	  locations (simulate-service-flows source-concept source-observation
+					    sink-concept   sink-observation
+					    use-concept    use-observation
+					    flow-concept   flow-observation
+					    rows           cols)
 	  menu (array-map
 		"View Theoretical Source"   #(theoretical-source       locations)
-		"View Theoretical Sink"     #(theoretical-sink         locations flow-params)
-		"View Theoretical Use"      #(theoretical-use          locations flow-params)
+		"View Theoretical Sink"     #(theoretical-sink         locations)
+		"View Theoretical Use"      #(theoretical-use          locations)
 		"View Inacessible Source"   #(inaccessible-source      locations)
-		"View Inacessible Sink"     #(inaccessible-sink        locations flow-params)
-		"View Inacessible Use"      #(inaccessible-use         locations flow-params)
-		"View Possible Flow"        #(possible-flow            locations flow-params)
+		"View Inacessible Sink"     #(inaccessible-sink        locations)
+		"View Inacessible Use"      #(inaccessible-use         locations)
+		"View Possible Flow"        #(possible-flow            locations)
 		"View Possible Source"      #(possible-source          locations)
 		"View Possible Inflow"      #(possible-inflow          locations)
-		"View Possible Sink"        #(possible-sink            locations flow-params)
-		"View Possible Use"         #(possible-use             locations flow-params)
-		"View Possible Outflow"     #(possible-outflow         locations flow-params)
-		"View Blocked Flow"         #(blocked-flow             locations flow-params)
-		"View Blocked Source"       #(blocked-source           locations flow-params)
-		"View Blocked Inflow"       #(blocked-inflow           locations flow-params)
-		"View Blocked Sink"         #(blocked-sink             locations flow-params)
-		"View Blocked Use"          #(blocked-use              locations flow-params)
-		"View Blocked Outflow"      #(blocked-outflow          locations flow-params)
-		"View Actual Flow"          #(actual-flow              locations flow-params)
-		"View Actual Source"        #(actual-source            locations flow-params)
-		"View Actual Inflow"        #(actual-inflow            locations flow-params)
-		"View Actual Sink"          #(actual-sink              locations flow-params)
-		"View Actual Use"           #(actual-use               locations flow-params)
-		"View Actual Outflow"       #(actual-outflow           locations flow-params)
-		"View Carriers Encountered" #(carriers-encountered locations)
+		"View Possible Sink"        #(possible-sink            locations)
+		"View Possible Use"         #(possible-use             locations)
+		"View Possible Outflow"     #(possible-outflow         locations)
+		"View Blocked Flow"         #(blocked-flow             locations)
+		"View Blocked Source"       #(blocked-source           locations)
+		"View Blocked Inflow"       #(blocked-inflow           locations)
+		"View Blocked Sink"         #(blocked-sink             locations)
+		"View Blocked Use"          #(blocked-use              locations)
+		"View Blocked Outflow"      #(blocked-outflow          locations)
+		"View Actual Flow"          #(actual-flow              locations)
+		"View Actual Source"        #(actual-source            locations)
+		"View Actual Inflow"        #(actual-inflow            locations)
+		"View Actual Sink"          #(actual-sink              locations)
+		"View Actual Use"           #(actual-use               locations)
+		"View Actual Outflow"       #(actual-outflow           locations)
 		"View Location Properties"  #(view-location-properties (select-location locations rows cols))
 		"View Feature Map"          #(select-map-by-feature    source-observation
 								       sink-observation
@@ -234,10 +240,7 @@
 	  (when (fn? action)
 	    (let [coord-map (apply action)]
 	      (when (map? coord-map)
-		(.show
-		 (geospace/build-coverage
-		  (geospace/get-spatial-extent source-observation)
-		  coord-map))
+		(.show (geospace/build-coverage extent coord-map))
 		(newline)
-		(println "Distinct values: " (count-distinct (vals coord-map) 10)))
+		(println "Distinct values: " (count-distinct (vals coord-map) 12)))
 	      (recur (select-menu-option prompts num-prompts)))))))))

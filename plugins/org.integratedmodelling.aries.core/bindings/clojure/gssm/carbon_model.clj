@@ -17,12 +17,12 @@
 
 (ns gssm.carbon-model
   (:refer-clojure)
-  (:use [misc.utils     :only (seq2map maphash)]
+  (:use [misc.utils     :only (seq2map)]
 	[gssm.model-api :only (distribute-flow! service-carrier)]
 	[gssm.analyzer  :only (source-loc? use-loc?)]))
 
 (defmethod distribute-flow! "Carbon"
-  [_ _ location-map _ _]
+  [_ location-map _ _]
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative :use
    values."
@@ -38,46 +38,13 @@
 	    consumer-units       (seq2map use-locations
 					  #(vector % (* (force (:use %)) production-consumption-ratio)))]
 	(doseq [p (keys producer-percentages)]
-	    (doseq [c (keys consumer-units)]
-		(swap! (:carrier-cache c) conj
-		       (struct service-carrier
-			       (* (producer-percentages p) (consumer-units c))
-			       [p c]))))))))
+	  (doseq [c (keys consumer-units)]
+	    (swap! (:carrier-cache c) conj
+		   (struct service-carrier
+			   (* (producer-percentages p) (consumer-units c))
+			   [p c]))))))))
 
-(defmethod distribute-flow! "Carbon-Uneven"
-  [_ _ location-map _ _]
-  (let [locations        (vals location-map)
-	source-locations (filter source-loc? locations)
-	use-locations    (filter use-loc? locations)]
-    (loop [producer-map (seq2map source-locations #(vector % (force (:source %))))
-	   consumer-map (seq2map use-locations #(vector % (force (:use %))))]
-      (when (seq producer-map)
-	(if (seq consumer-map)
-	  (let [num-producers     (count producer-map)
-		num-consumers     (count consumer-map)
-		min-extra-credits (apply min (vals producer-map))
-		min-unmet-demand  (apply min (vals consumer-map))
-		[credits-allocable max-allocable-increment]
-		(if (< (* num-producers min-extra-credits)
-		       (* num-consumers min-unmet-demand))
-		  [min-extra-credits (/ min-extra-credits num-consumers)]
-		  [min-unmet-demand  (/ min-unmet-demand  num-producers)])]
-	    (doseq [p (keys producer-map)]
-		(doseq [c (keys consumer-map)]
-		    (swap! (:carrier-cache c) conj
-			   (struct service-carrier
-				   max-allocable-increment
-				   [p c]))))
-	    (recur (filter (fn [[k v]] (> v 0.0))
-			   (maphash identity #(- % credits-allocable)) producer-map)
-		   (filter (fn [[k v]] (> v 0.0))
-			   (maphash identity #(- % credits-allocable)) consumer-map)))
-	  (let [consumers     use-locations
-		num-consumers (count consumers)]
-	    (doseq [p (keys producer-map)]
-		(let [max-allocable-increment (/ (producer-map p) num-consumers)]
-		  (doseq [c consumers]
-		      (swap! (:carrier-cache c) conj
-			     (struct service-carrier
-				     max-allocable-increment
-				     [p c])))))))))))
+;;	(for [p (keys producer-percentages) c (keys consumer-units)]
+;;	  (struct service-carrier
+;;		  (* (producer-percentages p) (consumer-units c))
+;;		  [p c]))))))

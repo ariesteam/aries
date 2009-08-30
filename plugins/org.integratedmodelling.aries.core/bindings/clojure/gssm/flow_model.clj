@@ -29,26 +29,23 @@
   "Creates a network of interconnected locations, and starts a
    service-carrier propagating in every location whose source value is
    greater than 0.  These carriers propagate child carriers through
-   the network which all update properties of the locations.  When the
-   simulation completes, a vector containing the location network and
-   its dimensions is returned."
+   the network which collect information about the routes traveled and
+   the service weight transmitted along the route.  When the
+   simulation completes, a sequence of the locations in the network is
+   returned."
   [source-concept source-observation
    sink-concept   sink-observation
    use-concept    use-observation
    flow-concept   flow-observation
-   flow-params]
-  (assert (geospace/grid-extent? source-observation))
-  (let [rows (geospace/grid-rows    source-observation)
-	cols (geospace/grid-columns source-observation)
-	location-map (make-location-map source-concept source-observation
+   rows           cols]
+  (let [location-map (make-location-map source-concept source-observation
 					sink-concept   sink-observation
 					use-concept    use-observation
-					flow-concept   flow-observation
-					rows           cols)]
-    (distribute-flow! flow-concept
-		      flow-params
+					flow-observation rows cols)
+	locations    (vals location-map)]
+    (distribute-flow! (.getLocalName flow-concept)
 		      location-map
 		      rows
 		      cols)
-    (cache-all-actual-routes! (vals location-map) flow-params)
-    [location-map rows cols]))
+    (cache-all-actual-routes! locations)
+    locations))

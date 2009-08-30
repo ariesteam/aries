@@ -21,19 +21,18 @@
 (defmulti
   #^{:doc "Service-specific flow distribution functions."}
   distribute-flow!
-  (fn [flow-concept flow-params location-map rows cols]
-    (.getLocalName flow-concept)))
+  (fn [flow-concept-name location-map rows cols] flow-concept-name))
 
 (defmethod distribute-flow! :default
-  [flow-concept _ _ _ _]
-  (throw (Exception. (str "Flow type '" (.getLocalName flow-concept) "' is unrecognized."))))
+  [flow-concept-name _ _ _]
+  (throw (Exception. (str "Flow type '" flow-concept-name "' is unrecognized."))))
 
 (defstruct service-carrier :weight :route)
 
 (defn distribute-load-over-processors
   [action-fn arg-seq]
   (let [num-processors (.availableProcessors (Runtime/getRuntime))
-	agents (map agent (replicate (* 2 num-processors) nil))]
+	agents (map agent (replicate (+ 2 num-processors) ()))]
     (println "Sending Tasks to" (count agents) "Agents...")
     (dorun (map #(send %1 action-fn %2) (cycle agents) arg-seq))
     (println "Waiting for Agents to Finish...")

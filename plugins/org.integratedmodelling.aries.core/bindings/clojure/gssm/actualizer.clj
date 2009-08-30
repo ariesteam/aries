@@ -17,29 +17,30 @@
 
 (ns gssm.actualizer
   (:refer-clojure)
-  (:use [gssm.analyzer :only (rerun-actual-route sink-loc? use-loc?)]))
+  (:use [gssm.analyzer :only (rerun-actual-route sink-loc? use-loc?)]
+	[gssm.params   :only (*sink-type* *use-type* *benefit-type*)]))
 
 (defn- upstream-dependent-carriers
   [carrier dependency?]
   ;;(println "Finding upstream carriers for:" (:id (peek (:route carrier))))
   (some #(and (dependency? %) @(:carrier-cache %))
-	(rest (reverse (:route carrier)))))
+	(rest (rseq (:route carrier)))))
 
 (defn- order-carriers-by-dependence
   "This should be a topological sort."
-  [carriers {:keys [sink-type use-type benefit-type] :as flow-params}]
-  (if (and (= sink-type :relative)
-	   (or (= use-type :relative)
-	       (= benefit-type :non-rival)))
+  [carriers]
+  (if (and (= *sink-type* :relative)
+	   (or (= *use-type* :relative)
+	       (= *benefit-type* :non-rival)))
     carriers ; carriers do not need to be sorted as they are all independent
-    (let [dependency? (if (= sink-type :absolute)
-			(if (= use-type :absolute)
-			  (if (= benefit-type :rival)
+    (let [dependency? (if (= *sink-type* :absolute)
+			(if (= *use-type* :absolute)
+			  (if (= *benefit-type* :rival)
 			    #(or (sink-loc? %) (use-loc? %))
 			    sink-loc?)
 			  sink-loc?)
-			(if (= use-type :absolute)
-			  (if (= benefit-type :rival)
+			(if (= *use-type* :absolute)
+			  (if (= *benefit-type* :rival)
 			    use-loc?
 			    (constantly false))
 			  (constantly false)))]
@@ -78,14 +79,13 @@
 		       (concat successors open-list))))))))))
 
 (defn cache-all-actual-routes!
-  [locations flow-params]
+  [locations]
   (println "Computing actual routes from possible routes...")
-  (let [carriers (apply concat (map (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations)))
-	distinct-carriers (distinct carriers)]
+  (let [carriers (apply concat (map (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations)))]
     (println "Total carriers:" (count carriers))
-    (println "Distinct carriers:" (count distinct-carriers))
+    (println "Distinct carriers:" (count (distinct carriers)))
     (println "Ordering carriers by dependence...")
-    (let [sorted-carriers (order-carriers-by-dependence carriers flow-params)]
+    (let [sorted-carriers (order-carriers-by-dependence carriers)]
       (println "Rerunning routes by dependence order...")
       (doseq [c sorted-carriers]
-	(rerun-actual-route c flow-params)))))
+	(rerun-actual-route c)))))

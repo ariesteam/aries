@@ -20,7 +20,8 @@
   (:use [gssm.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]))
+	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
+	[gssm.params    :only (*decay-rate* *trans-threshold*)]))
 
 (defn find-viewpath
   "Returns the sequence of all points [i j] intersected by the line
@@ -81,53 +82,56 @@
 (defn elevation-interference?
   [provider beneficiary path steps]
   (let [source-elev (get-valid-elevation provider)
-	rise     (- (get-valid-elevation beneficiary) source-elev)
-	m        (/ rise steps)
-	f        (fn [x] (+ (* m x) source-elev))]
-    (loop [step 0
-	   untraversed-locs path]
+	rise        (- (get-valid-elevation beneficiary) source-elev)
+	m           (/ rise steps)
+	f           (fn [x] (+ (* m x) source-elev))]
+    (loop [step 1
+	   untraversed-locs (rest path)]
       (when (< step steps)
 	(let [current-loc (first untraversed-locs)]
-	  (if (> (get-valid-elevation current-loc) (f step))
+	  (if (>= (get-valid-elevation current-loc) (f step))
 	    true
 	    (recur (inc step)
 		   (rest untraversed-locs))))))))
-;;    (some (fn [[loc step]] (> (get-valid-elevation loc) (f step)))
-;;	  (map vector path (range (inc steps))))))
+;;    (some (fn [[loc step]] (>= (get-valid-elevation loc) (f step)))
+;;	  (map vector (rest path) (range steps)))
 
 (defn update-sinks!
-  [source-val decay-rate path steps]
+  [source-val path steps]
   (loop [step 0
 	 traversed-locs []
 	 untraversed-locs path]
     (when (< step steps)
       (let [current-loc  (first untraversed-locs)
 	    current-path (conj traversed-locs current-loc)]
-	(if (and (sink-loc? current-loc)
-		 (not (use-loc? current-loc)))
+	(when (sink-loc? current-loc)
 	  (swap! (:carrier-cache current-loc) conj
 		 (struct service-carrier
-			 (* source-val (Math/pow decay-rate step))
+			 (/ (* source-val (Math/pow *decay-rate* step))
+			    (* step step))
 			 current-path)))
 	(recur (inc step)
 	       current-path
 	       (rest untraversed-locs))))))
 
 (defn distribute-raycast!
-  [provider beneficiary decay-rate trans-threshold location-map]
+  [provider beneficiary location-map]
   (let [source-val (force (:source provider))
 	path       (map location-map (find-viewpath provider beneficiary))
 	steps      (dec (count path))
-	asset-propagated (* source-val (Math/pow decay-rate steps))]
-    (when (> steps 0)
-      (if (and (> asset-propagated trans-threshold)
+	asset-propagated (if (pos? steps)
+			   (/ (* source-val (Math/pow *decay-rate* steps))
+			      (* steps steps))
+			   source-val)]
+    (when (pos? steps)
+      (if (and (> asset-propagated *trans-threshold*)
 	       (not (elevation-interference? provider beneficiary path steps)))
-	(update-sinks! source-val decay-rate path steps)))
+	(update-sinks! source-val path steps)))
     (swap! (:carrier-cache beneficiary) conj
 	   (struct service-carrier asset-propagated (vec path)))))
 
 (defmethod distribute-flow! "LineOfSight"
-  [_ {:keys [decay-rate trans-threshold]} location-map _ _]
+  [_ location-map _ _]
   (println "Global LineOfSight Model begins...")
   (let [locations     (vals location-map)
         providers     (filter source-loc? locations)
@@ -135,5 +139,5 @@
     (println "Num Providers:" (count providers))
     (println "Num Beneficiaries:" (count beneficiaries))
     (distribute-load-over-processors
-     (fn [_ [p b]] (distribute-raycast! p b decay-rate trans-threshold location-map))
+     (fn [_ [p b]] (distribute-raycast! p b location-map))
      (for [p providers b beneficiaries] [p b]))))
