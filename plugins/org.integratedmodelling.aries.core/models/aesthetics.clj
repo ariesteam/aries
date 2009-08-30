@@ -23,7 +23,7 @@
 (defmodel view-source 'aestheticService:SensoryEnjoymentProvision
 	
 		"This one will harmonize the context, then retrieve and run the BN with the given
-		evidence, and produce a new observation of stochastic values for all its nodes."
+		evidence, and produce a new observation with distributions for the requested nodes."
 	  (bayesian 'aestheticService:SensoryEnjoymentProvision)
 	  	:import "bn/aestheticService_SensoryEnjoyment.xsdl"
 	  	:keep ('aestheticService:SensoryEnjoyment)

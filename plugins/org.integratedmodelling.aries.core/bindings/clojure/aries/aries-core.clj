@@ -4,7 +4,38 @@
 ;; 
 ;; --------------------------------------------------------------------------------------
 
-(ns aries)
+(ns aries
+  (:refer-clojure)
+  (:use [misc.utils      :only (maphash count-distinct)]
+	[gssm.flow-model :only (simulate-service-flows)]
+	[gssm.analyzer   :only (*source-threshold*
+				*sink-threshold*
+				*use-threshold*
+				theoretical-source
+				theoretical-sink
+				theoretical-use
+				inaccessible-source
+				inaccessible-sink
+				inaccessible-use
+				possible-flow
+				possible-source
+				possible-inflow
+				possible-sink
+				possible-use
+				possible-outflow
+				blocked-flow
+				blocked-source
+				blocked-inflow
+				blocked-sink
+				blocked-use
+				blocked-outflow
+				actual-flow
+				actual-source
+				actual-inflow
+				actual-sink
+				actual-use
+				actual-outflow
+				carriers-encountered)]))
 
 (defn get-data-for-observable
 	"Returns a harmonized observation, which contains as dependencies all the data available 
@@ -31,3 +62,16 @@
 	""
 	[data scaling-parameters]
 	nil)
+	
+;; TODO wrap in a binding form to bind the parameters when G tells us to what.
+(defn get-gssm-proxy
+	"Create a Java object to handle a GSSM run."
+	[]
+	(proxy [org.integratedmodelling.aries.core.gssm.GSSMProxy] []
+		(runGSSM [source-obs use-obs sink-obs flow-obs] 
+			(simulate-service-flows source-obs use-obs sink-obs flow-obs))))
+			
+;; a static object should suffice, this is thread-safe to the point of boredom
+(org.integratedmodelling.aries.core.implementations.observations.GSSMTransformer/setGSSMProxy (get-gssm-proxy))
+
+			
