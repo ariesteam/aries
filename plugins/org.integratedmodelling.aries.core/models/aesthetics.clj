@@ -49,14 +49,15 @@
  	 								
 (defmodel raycast-view-flow
 	
-		"Hypothetical for now. Will map to the raycast flow model in the gssm package. The model/flow 
-		 proxy produces only the harmonized data; the actual computation is integrated with gssm, and 
-		 the observable class from this will select the raycasting submodel in it."
+		"Only the data that feedthe raycast flow model in the gssm package. The actual computation 
+		 is integrated with gssm, and the observable class from this will select the raycasting 
+		 submodel in it."
 		
-		(flow 'aestheticService:LineOfSight)
+		(identification 'aestheticService:LineOfSight)
 			:context 
-				((measurement 'geophysics:Altitude "m")
-				 (measurement 'geophysics:GroundElevation "m")))
+				((measurement 'geophysics:Altitude "m")))
+;; --- this is what is should be - LIDAR data
+;;				 (measurement 'geophysics:GroundElevation "m")))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service model

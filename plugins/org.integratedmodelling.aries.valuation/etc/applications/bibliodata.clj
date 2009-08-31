@@ -17,6 +17,7 @@
 							:title    #(.get % "bibtex:hasTitle")																										
 							:authors  #(.get % "bibtex:hasAuthor")																										
 							:abstract #(.get % "bibtex:hasAbstract")}
+							
  (modelling/object 'bibtex:Article
 	"Costanza et al., Nature, 1997."
 	"The value of the world's ecosystem services and natural capital."
