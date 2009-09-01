@@ -14,6 +14,11 @@
 (defmodel altitude-in-meters 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))
 
+(defmodel altitude-transformed 'geophysics:Altitude
+	(measurement 'geophysics:Altitude "mm")
+		:state (+ self 5)
+	)
+
 (defmodel valuable-mountain 'aestheticService:Mountain
 
    "Classifies an elevation model into three levels of provision of beautiful mountains"
