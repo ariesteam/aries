@@ -14,7 +14,6 @@
 (defmodel altitude-in-meters 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))
 
-
 (defmodel valuable-mountain 'aestheticService:Mountain
 
    "Classifies an elevation model into three levels of provision of beautiful mountains"
@@ -31,7 +30,7 @@
 (defmodel altitude-transformed 'representation:Length
 		(measurement 'representation:Length "mm") 
 			:context (valuable-mountain :as mountain)
-			:state   (+ mountain 5))
+			:state   (+ 2 5))
 
    		    		 
 (defmodel view-source 'aestheticService:SensoryEnjoyment
