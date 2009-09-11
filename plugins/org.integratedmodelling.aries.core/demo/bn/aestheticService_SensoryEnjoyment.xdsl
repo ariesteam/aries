@@ -9,17 +9,21 @@
 		</cpt>
 		<cpt id="WaterBody">
 			<state id="Ocean" />
-			<state id="Lake" />
-			<state id="NoWater" />
-			<probabilities>0.15 0.05 0.8</probabilities>
+			<state id="NoOcean" />
+			<probabilities>0.15 0.85</probabilities>
 		</cpt>
-		<cpt id="SensoryEnjoyment">
-			<state id="HighSensoryEnjoyment" />
-			<state id="ModerateSensoryEnjoyment" />
-			<state id="LowSensoryEnjoyment" />
-			<state id="NoSensoryEnjoyment" />
-			<parents>Mountain WaterBody</parents>
-			<probabilities>0.82 0.12 0.05000000000000001 0.01 0.7 0.21 0.08000000000000002 0.01 0.3999999999999999 0.3 0.2 0.1 0.76 0.14 0.08 0.02 0.6 0.25 0.13 0.02 0.2 0.3 0.3 0.2 0.7 0.1 0.1 0.1 0.5 0.2 0.2 0.1 0 0 0 1</probabilities>
+		<cpt id="Lake">
+			<state id="Lake" />
+			<state id="NoLake" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<cpt id="ViewSourceValue">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="None" />
+			<parents>Mountain WaterBody Lake</parents>
+			<probabilities>0.82 0.12 0.05000000000000001 0.01 0.82 0.12 0.05000000000000001 0.01 0.7 0.21 0.08 0.01 0.4 0.3 0.2000000000000001 0.1 0.76 0.14 0.08 0.02 0.76 0.14 0.08 0.02 0.6 0.25 0.13 0.02 0.2 0.3 0.3 0.2 0.7000000000000001 0.1 0.1 0.1 0.7000000000000001 0.1 0.1 0.1 0.5 0.2 0.2 0.1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -29,11 +33,11 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="7" />
-				<position>398 270 527 300</position>
+				<position>489 289 618 319</position>
 				<barchart active="true" width="217" height="76" />
 			</node>
-			<node id="SensoryEnjoyment">
-				<name>SensoryEnjoyment</name>
+			<node id="ViewSourceValue">
+				<name>ViewSourceValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="7" />
@@ -45,8 +49,16 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>99 265 222 299</position>
+				<position>77 285 200 319</position>
 				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="Lake">
+				<name>Lake</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>306 291 348 317</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>
 	</extensions>

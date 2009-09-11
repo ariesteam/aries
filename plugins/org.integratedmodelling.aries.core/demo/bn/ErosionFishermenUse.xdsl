@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="PopulationDensity">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<probabilities>0.05 0.2 0.2 0.2 0.35</probabilities>
+		</cpt>
+		<cpt id="Rivers">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<cpt id="Lakes">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="CoastalWetlands">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<cpt id="Coast">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<deterministic id="FishingSites">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Rivers Coast Lakes</parents>
+			<resultingstates>Yes Yes Yes Yes Yes Yes Yes No</resultingstates>
+		</deterministic>
+		<cpt id="PublicAccess">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="SalmonSpawningGrounds">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<deterministic id="HabitatFeatures">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>CoastalWetlands SalmonSpawningGrounds</parents>
+			<resultingstates>Yes Yes Yes No</resultingstates>
+		</deterministic>
+		<cpt id="Fishermen">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="None" />
+			<parents>FishingSites PublicAccess HabitatFeatures PopulationDensity</parents>
+			<probabilities>0.3 0.6000000000000001 0.1 0.4 0.5 0.1 0.5 0.4 0.1 0.5 0.4 0.1 0.4 0.5 0.1 0.2 0.65 0.15 0.3 0.55 0.15 0.4 0.45 0.15 0.4 0.45 0.15 0.3 0.55 0.15 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network4" faultnameformat="nodestate">
+			<node id="Fishermen">
+				<name>Fishermen</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>357 64 430 93</position>
+				<comment>Assumes larger impacts at low to medium popultion density (at high population density, less direct dependence on ecosystems to provide fish, at very low population density, less human use).</comment>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>216 192 333 231</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="CoastalWetlands">
+				<name>CoastalWetlands</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>700 304 759 340</position>
+				<comment>Inclusive of nearshore habitat for salmon</comment>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Lakes">
+				<name>Lakes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>277 309 323 337</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Coast">
+				<name>Coast</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>558 308 606 338</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Rivers">
+				<name>Rivers</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>417 308 465 338</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="PublicAccess">
+				<name>PublicAccess</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>81 173 135 206</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="FishingSites">
+				<name>FishingSites</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>394 166 483 212</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HabitatFeatures">
+				<name>HabitatFeatures</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>564 172 660 207</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="SalmonSpawningGrounds">
+				<name>SalmonSpawningGrounds</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>830 280 965 364</position>
+				<comment>Inclusive of all riverine habitat for salmon: spawning areas, side channel wetlands, freshwater-saltwater transition zone.</comment>
+				<barchart active="true" width="169" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

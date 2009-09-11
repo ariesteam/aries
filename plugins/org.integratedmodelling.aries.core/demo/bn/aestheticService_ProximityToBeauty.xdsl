@@ -6,7 +6,7 @@
 			<state id="Large" />
 			<state id="Small" />
 			<state id="VerySmall" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+			<probabilities>0.1 0.2 0.3 0.4</probabilities>
 		</cpt>
 		<cpt id="WaterQuality">
 			<state id="MeetsStandards" />
@@ -23,17 +23,17 @@
 		<cpt id="FormalProtection">
 			<state id="Protected" />
 			<state id="NotProtected" />
-			<probabilities>0.25 0.75</probabilities>
+			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="ResourceQuality">
 			<state id="High" />
-			<state id="Medium" />
+			<state id="Moderate" />
 			<state id="Low" />
 			<parents>WaterQuality Crime FormalProtection Area</parents>
-			<probabilities>0.85 0.05 0.1 0.75 0.15 0.1 0.6 0.3 0.1 0.5 0.4 0.1 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 1 0 0 0.9 0.1 0 0.8 0.2 0 0.7 0.2 0.1 0.2 0.2 0.6 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.65 0.2 0.15 0.55 0.25 0.2 0.4 0.3 0.3 0.3 0.35 0.35 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0.8 0.1 0.1 0.7 0.2 0.1 0.6 0.2 0.2 0.5 0.3 0.2 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.45 0.3 0.25 0.35 0.35 0.3 0.2 0.4 0.4 0.1 0.45 0.45 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0.6 0.2 0.2 0.5 0.25 0.25 0.4 0.3 0.3 0.3 0.35 0.35 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.05 0.05 0.9 0.85 0.05 0.1 0.75 0.15 0.1 0.6 0.3 0.1 0.5 0.4 0.1 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 1 0 0 0.9 0.1 0 0.8 0.2 0 0.7 0.2 0.1 0.2 0.2 0.6 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9</probabilities>
+			<probabilities>0.85 0.075 0.075 0.75 0.15 0.1 0.6 0.3 0.1 0.5 0.4 0.1 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 1 0 0 0.9 0.1 0 0.8 0.2 0 0.7 0.2 0.1 0.2 0.2 0.6 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.65 0.2 0.15 0.55 0.25 0.2 0.4 0.3 0.3 0.3 0.35 0.35 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0.8 0.1 0.1 0.7 0.2 0.1 0.6 0.2 0.2 0.5 0.3 0.2 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.45 0.3 0.25 0.35 0.35 0.3 0.2 0.4 0.4 0.1 0.45 0.45 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0.6 0.2 0.2 0.5 0.25 0.25 0.4 0.3 0.3 0.3 0.35 0.35 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.05 0.05 0.9 0.8 0.1 0.1 0.7 0.15 0.15 0.55 0.325 0.125 0.45 0.425 0.125 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0.95 0.05 0 0.85 0.15 0 0.75 0.2 0.05 0.65 0.225 0.125 0.15 0.225 0.625 0.1 0.2 0.7 0.05 0.15 0.8 0.025 0.075 0.9</probabilities>
 			<property id="ResourceCharacteristics">ResourceCharacteristics=WaterQuality+Crime+FormalProtection</property>
 		</cpt>
-		<cpt id="Farm">
+		<cpt id="Farmland">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.2 0.8</probabilities>
@@ -46,14 +46,14 @@
 		<cpt id="Cemetery">
 			<state id="Yes" />
 			<state id="No" />
-			<probabilities>0.01 0.99</probabilities>
+			<probabilities>0.005 0.995</probabilities>
 		</cpt>
 		<cpt id="GolfCourse">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.01 0.99</probabilities>
 		</cpt>
-		<cpt id="LakeFront">
+		<cpt id="Lakefront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
@@ -68,12 +68,12 @@
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
-		<cpt id="Forest">
+		<cpt id="Forests">
 			<state id="Yes" />
 			<state id="No" />
-			<probabilities>0.5 0.5</probabilities>
+			<probabilities>0.4 0.6</probabilities>
 		</cpt>
-		<cpt id="RiverFront">
+		<cpt id="Riverfront">
 			<state id="Yes" />
 			<state id="No" />
 			<probabilities>0.025 0.975</probabilities>
@@ -88,12 +88,12 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="None" />
-			<parents>Farm Park Cemetery GolfCourse Beach LakeFront RiverFront EmergentWetland Forest WoodyWetland</parents>
+			<parents>Farmland Park Cemetery GolfCourse Beach Lakefront Riverfront EmergentWetland Forests WoodyWetland</parents>
 			<strengths>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</strengths>
 			<parameters>0.09999999999999998 0.2999999999999999 0.6 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.2 0.5 0.3 0 0 0 0 1 0.3 0.4 0.3 0 0 0 0 1 0.7 0.2 0.1 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.6 0.2 0.2 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0.4 0.3 0.3 0 0 0 0 1 0 0 0 1</parameters>
 			<property id="ResourceType">ResourceType=ManagedOpenSpace+NaturalEcosystems</property>
 		</noisymax>
-		<cpt id="ProximityToBeauty">
+		<cpt id="ProximitySourceValue">
 			<state id="High" />
 			<state id="Moderate" />
 			<state id="Low" />
@@ -105,8 +105,8 @@
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network3" faultnameformat="nodestate">
-			<node id="ProximityToBeauty">
-				<name>ProximityToBeauty</name>
+			<node id="ProximitySourceValue">
+				<name>ProximitySourceValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -127,6 +127,7 @@
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>479 194 600 235</position>
+				<comment>These priors are suitable for regional scale analysis, including areas well outside cities.  For a strictly urban or suburban application, priors should reflect less open space and more developed land.</comment>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="ResourceQuality">
@@ -143,7 +144,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>158 254 233 300</position>
+				<position>89 303 164 349</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="Crime">
@@ -151,7 +152,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>265 272 310 300</position>
+				<position>146 423 191 451</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="FormalProtection">
@@ -159,7 +160,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>338 275 444 315</position>
+				<position>283 449 389 489</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Beach">
@@ -167,7 +168,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>693 276 746 310</position>
+				<position>877 275 930 309</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="EmergentWetland">
@@ -175,23 +176,23 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>702 237 805 270</position>
+				<position>848 208 951 241</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="Forest">
-				<name>Forest</name>
+			<node id="Forests">
+				<name>Forests</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>692 160 744 192</position>
+				<position>763 60 815 92</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="Farm">
-				<name>Farm</name>
+			<node id="Farmland">
+				<name>Farmland</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>431 372 479 402</position>
+				<position>465 454 513 484</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Park">
@@ -199,7 +200,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>488 375 529 400</position>
+				<position>420 340 461 365</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Cemetery">
@@ -207,7 +208,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>534 368 595 406</position>
+				<position>590 422 651 460</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="GolfCourse">
@@ -215,23 +216,23 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>601 366 669 408</position>
+				<position>715 422 783 464</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="LakeFront">
-				<name>LakeFront</name>
+			<node id="Lakefront">
+				<name>Lakefront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>681 390 742 428</position>
+				<position>866 427 927 465</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="RiverFront">
-				<name>RiverFront</name>
+			<node id="Riverfront">
+				<name>Riverfront</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>686 323 748 361</position>
+				<position>859 344 921 382</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="WoodyWetland">
@@ -239,7 +240,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>695 194 794 230</position>
+				<position>850 138 949 174</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>

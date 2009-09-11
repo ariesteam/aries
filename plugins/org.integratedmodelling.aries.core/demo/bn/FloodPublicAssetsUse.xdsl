@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Floodplains">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="PublicAssetLocations">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="PublicAssetOwnersAndUsersInFloodHazardZones">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="None" />
+			<parents>Floodplains PublicAssetLocations</parents>
+			<probabilities>0.3 0.6 0.1 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network1" faultnameformat="nodestate">
+			<node id="PublicAssetOwnersAndUsersInFloodHazardZones">
+				<name>PublicAssetOwnersAndUsersInFloodHazardZones</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>435 153 639 197</position>
+				<comment>Some (very small) probability of damage to assets outside the flood zone to account for very large flooding that exceeds the 100-year flood (or inadequately mapped flood zones).\n</comment>
+				<barchart active="true" />
+			</node>
+			<node id="Floodplains">
+				<name>Floodplains</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>354 264 422 306</position>
+				<barchart active="true" />
+			</node>
+			<node id="PublicAssetLocations">
+				<name>PublicAssetLocations</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>560 267 688 304</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<textbox>
+				<caption>e.g., transportation corridors: I-5 &amp; rail corridors.\n\nBeneficiaries here are residents and businesses all up and down the west coast.  Look at road capacities and what backup happens for a given loss of a transportation network (e.g., bridge collapse, road flood).</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>561 332 760 472</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

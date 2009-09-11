@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="MonthlyPrecipitation">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2000000000000001</probabilities>
+		</cpt>
+		<cpt id="MonthlyTemperature">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<probabilities>0.85 0.05 0.1</probabilities>
+		</cpt>
+		<cpt id="SnowPresence">
+			<state id="LowlandAndHighland" />
+			<state id="RainDominatedAndSnowDominated" />
+			<state id="PeakRainOnSnow" />
+			<probabilities>0.55 0.3 0.15</probabilities>
+		</cpt>
+		<cpt id="MonthlySnowmelt">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="None" />
+			<parents>MonthlyTemperature SnowPresence MonthlyPrecipitation</parents>
+			<probabilities>0.1 0.8 0.1 0 0.05 0.475 0.475 0 0 0.4 0.4 0.2 0 0.1 0.45 0.45 0 0 0.15 0.85 0.5 0.5 0 0 0.25 0.5 0.25 0 0.1 0.5 0.2 0.2 0 0.2 0.4 0.4 0 0 0.3 0.7 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.25 0.4 0.25 0.1 0 0.1 0.4 0.5 0.05 0.4 0.5 0.05 0.05 0.3 0.55 0.1 0 0.25 0.35 0.4 0 0 0.3 0.7 0 0 0.05 0.95 0.3 0.4 0.2 0.1 0.15 0.35 0.3 0.2 0.05 0.3 0.4 0.25 0 0.1 0.3 0.6 0 0 0.15 0.85 0.75 0.1 0.1 0.05 0.4 0.4 0.15 0.05 0.3 0.3 0.3 0.1 0.1 0.375 0.375 0.15 0 0.05 0.3 0.65 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="FloodSourceValue">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<parents>MonthlyPrecipitation MonthlySnowmelt</parents>
+			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.75 0.2 0.05 0 0 0.65 0.25 0.1 0 0 0.75 0.25 0 0 0 0.25 0.5 0.25 0 0 0.1 0.45 0.45 0 0 0.05 0.4 0.4 0.15 0 0.65 0.3 0.05 0 0 0.15 0.55 0.3 0 0 0 0.3 0.4 0.3 0 0 0.05 0.45 0.45 0.05 0.3 0.4 0.3 0 0 0.1 0.375 0.375 0.15 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.35 0.6 0.1 0.35 0.35 0.2 0 0.1 0.2 0.4 0.2 0.1 0 0 0.05 0.15 0.8 0 0 0 0.1 0.9</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network1" faultnameformat="nodestate">
+			<node id="FloodSourceValue">
+				<name>FloodSourceValue</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>388 69 472 121</position>
+				<comment>Equivalent to potential runoff</comment>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="MonthlyPrecipitation">
+				<name>MonthlyPrecipitation</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>155 284 291 321</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="SnowPresence">
+				<name>SnowPresence</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>557 302 682 340</position>
+				<barchart active="true" width="301" height="72" />
+			</node>
+			<node id="MonthlySnowmelt">
+				<name>MonthlySnowmelt</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>437 203 571 236</position>
+				<barchart active="true" width="128" height="90" />
+			</node>
+			<node id="MonthlyTemperature">
+				<name>MonthlyTemperature</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>316 305 445 343</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<textbox>
+				<caption>See Wanielista et al. 1997 Water Quality and Quality Control.  New York: Wiley, as cited in Dodds et al. 2008.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>521 52 839 80</position>
+			</textbox>
+			<textbox>
+				<caption>Dave&apos;s comments:\nFiner time scales would be better, could account for Pineapple Express -&gt; heavy, warm rain.  Using real data, compare 2008 vs. 2009 &amp; 2007 in Chehalis -&gt; applications of real conditions on Chehalis\n          To simulate a single storm, use single-storm data; figure out what else needs to change to run it at fine time scales.\nTides: how much water is at the mouth of rivers? -&gt; problem with needing to model how we back water up; also river elevation (these should both go into flow models - GJ: YES)\n\nSoils/slope stability: logging + downpours = landslides -&gt; reduces water holding, potential to block off/dam river (SLOPE STABILITY) -&gt; feedbacks between soil regulation and flood modeling.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>19 378 931 476</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

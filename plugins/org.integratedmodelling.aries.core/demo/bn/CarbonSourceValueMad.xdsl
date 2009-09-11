@@ -17,22 +17,11 @@
 			<state id="VeryLow" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
-		<cpt id="CommercialForestryPractices">
-			<state id="None" />
-			<state id="EvenAge" />
-			<state id="UnevenAge" />
-			<state id="Other" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
-		</cpt>
-		<cpt id="SuccessionalStage">
-			<state id="OldGrowth" />
-			<state id="Late" />
-			<state id="Mid" />
-			<state id="Pole" />
-			<state id="Early" />
-			<state id="None" />
-			<parents>CommercialForestryPractices</parents>
-			<probabilities>0.1 0.15 0.15 0.15 0.05 0.4 0 0.05 0.25 0.2 0.1 0.4 0 0.05 0.2 0.25 0.1 0.4 0 0.03 0.19 0.19 0.19 0.4</probabilities>
+		<cpt id="PopulationDensity">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
 		</cpt>
 		<cpt id="FireFrequency">
 			<state id="Frequent" />
@@ -45,25 +34,22 @@
 			<state id="Grassland" />
 			<state id="Savanna" />
 			<state id="Forest" />
-			<parents>ActualEvapotranspiration FireFrequency CommercialForestryPractices</parents>
-			<probabilities>0.01 0.19 0.8 0.25 0.35 0.4 0.15 0.4 0.45 0.25 0.35 0.4 0.01 0.09 0.9 0.1 0.3 0.6 0.05 0.35 0.6 0.1 0.3 0.6 0.001 0.01 0.989 0.01 0.19 0.8 0.01 0.09 0.9 0.01 0.09 0.9 0.2 0.4 0.4 0.3 0.4 0.3 0.2 0.4 0.4 0.3 0.4 0.3 0.1 0.3 0.6 0.15 0.35 0.5 0.05 0.35 0.6 0.15 0.35 0.5 0.01 0.09 0.9 0.1 0.2 0.7 0.05 0.2 0.75 0.1 0.2 0.7 0.35 0.5 0.15 0.45 0.5 0.05 0.4 0.5 0.1 0.45 0.5 0.05 0.3 0.5 0.2 0.45 0.45 0.1 0.4 0.45 0.15 0.45 0.45 0.1 0.25 0.5 0.25 0.35 0.5 0.15 0.3 0.5 0.2 0.35 0.5 0.15 0.55 0.4 0.05 0.7 0.29 0.01 0.7 0.29 0.01 0.7 0.29 0.01 0.5 0.4 0.1 0.6 0.35 0.05 0.6 0.35 0.05 0.6 0.35 0.05 0.4 0.45 0.15 0.5 0.4 0.1 0.5 0.4 0.1 0.5 0.4 0.1 0.85 0.14 0.01 0.9 0.09 0.01 0.9 0.09 0.01 0.9 0.09 0.01 0.8 0.18 0.02 0.84 0.15 0.01 0.84 0.15 0.01 0.84 0.15 0.01 0.65 0.3 0.05 0.78 0.2 0.02 0.78 0.2 0.02 0.78 0.2 0.02</probabilities>
+			<parents>ActualEvapotranspiration FireFrequency</parents>
+			<probabilities>0.02 0.18 0.8 0.01 0.09 0.9 0.001 0.008999999999999999 0.99 0.2 0.4 0.4 0.1 0.3 0.6 0.01 0.09 0.9 0.35 0.5 0.15 0.3 0.5 0.2 0.25 0.5 0.25 0.55 0.4 0.05 0.5 0.4 0.1 0.4 0.45 0.15 0.85 0.14 0.01 0.8 0.18 0.02 0.65 0.3 0.05</probabilities>
 		</cpt>
 		<cpt id="VegetationCover">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
 			<state id="VeryLow" />
-			<parents>VegetationType</parents>
-			<probabilities>0 0 0 0.5 0.5 0 0.1 0.4 0.4 0.1 0.8 0.2 0 0 0</probabilities>
-		</cpt>
-		<cpt id="HardwoodSoftwoodRatio">
-			<state id="VeryHard" />
-			<state id="Hard" />
+			<state id="Low" />
 			<state id="Moderate" />
-			<state id="Soft" />
-			<state id="VerySoft" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<state id="High" />
+			<state id="VeryHigh" />
+			<parents>VegetationType</parents>
+			<probabilities>0.5 0.5 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="DegradationStatus">
+			<state id="Degraded" />
+			<state id="NotDegraded" />
+			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHigh" />
@@ -72,8 +58,8 @@
 			<state id="Low" />
 			<state id="VeryLow" />
 			<state id="None" />
-			<parents>SuccessionalStage HardwoodSoftwoodRatio VegetationCover</parents>
-			<probabilities>0.96 0.04 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.85 0.15 0 0 0 0 0.82 0.18 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.01 0.85 0.14 0 0 0 0 0.85 0.15 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.05 0.85 0.1 0 0 0 0.02 0.88 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.1 0.8 0.1 0 0 0 0.05 0.85 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.1 0.8 0.1 0 0 0 0.05 0.85 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.45 0.45 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.2 0.45 0.35 0 0 0 0.05 0.45 0.4 0.1 0 0 0 0.2 0.55 0.25 0 0 0.45 0.45 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.2 0.45 0.35 0 0 0 0.05 0.45 0.4 0.1 0 0 0 0.2 0.55 0.25 0 0 0.45 0.45 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.2 0.45 0.35 0 0 0 0.05 0.45 0.4 0.1 0 0 0 0.2 0.55 0.25 0 0.05 0.45 0.45 0.05 0 0 0 0.4 0.4 0.2 0 0 0 0.25 0.5 0.25 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.25 0.5 0.25 0 0.05 0.45 0.45 0.05 0 0 0 0.4 0.4 0.2 0 0 0 0.25 0.5 0.25 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.25 0.5 0.25 0 0 0.05 0.4 0.4 0.15 0 0 0 0.35 0.45 0.2 0 0 0 0.15 0.6 0.25 0 0 0 0.1 0.65 0.25 0 0 0 0 0.45 0.55 0 0 0.05 0.4 0.4 0.15 0 0 0 0.35 0.45 0.2 0 0 0 0.15 0.6 0.25 0 0 0 0.1 0.65 0.25 0 0 0 0 0.45 0.55 0 0 0.05 0.4 0.4 0.15 0 0 0 0.35 0.45 0.2 0 0 0 0.15 0.6 0.25 0 0 0 0.1 0.65 0.25 0 0 0 0 0.45 0.55 0 0 0.1 0.4 0.4 0.1 0 0 0 0.4 0.45 0.15 0 0 0 0.2 0.6 0.2 0 0 0 0.15 0.65 0.2 0 0 0 0 0.5 0.5 0 0 0.1 0.4 0.4 0.1 0 0 0 0.4 0.45 0.15 0 0 0 0.2 0.6 0.2 0 0 0 0.15 0.65 0.2 0 0 0 0 0.5 0.5 0 0 0 0.05 0.45 0.5 0 0 0 0 0.45 0.55 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0.05 0.45 0.5 0 0 0 0 0.45 0.55 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0.05 0.45 0.5 0 0 0 0 0.45 0.55 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.45 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.35 0.65 0 0 0 0 0.2 0.8 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.45 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.35 0.65 0 0 0 0 0.2 0.8 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
+			<parents>VegetationCover DegradationStatus</parents>
+			<probabilities>0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="SoilCNRatio">
@@ -106,15 +92,15 @@
 			<state id="Low" />
 			<state id="VeryLow" />
 			<state id="None" />
-			<parents>SummerHighWinterLow VegetationDensity</parents>
-			<probabilities>0.05 0.2 0.4 0.25 0.1 0 0 0.25 0.4 0.25 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.05 0.6 0.35 0 0 0 0 0.15 0.85 0 0 0 0 0 0 1 0.2 0.3 0.3 0.15 0.05 0 0.1 0.4 0.3 0.15 0.05 0 0 0.05 0.45 0.3 0.2 0 0 0 0.1 0.55 0.35 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.5 0.3 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0 0.15 0.5 0.15 0.2 0 0 0 0.2 0.5 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0 0 1 0.7 0.15 0.1 0.05 0 0 0.6 0.2 0.15 0.05 0 0 0.1 0.3 0.3 0.2 0.1 0 0 0.05 0.3 0.4 0.25 0 0 0 0.1 0.4 0.5 0 0 0 0 0 0 1 0.8 0.15 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.35 0.35 0.2 0 0 0 0.2 0.35 0.45 0 0 0 0 0 0 1</probabilities>
+			<parents>PopulationDensity SummerHighWinterLow VegetationDensity</parents>
+			<probabilities>0 0.15 0.4 0.35 0.1 0 0 0.15 0.4 0.25 0.2 0 0 0 0.3 0.45 0.25 0 0 0 0 0.6 0.4 0 0 0 0 0.05 0.95 0 0 0 0 0 0 1 0.1 0.35 0.35 0.15 0.05 0 0 0.3 0.4 0.25 0.05 0 0 0 0.4 0.4 0.2 0 0 0 0 0.65 0.35 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0.4 0.35 0.2 0.05 0 0 0.3 0.35 0.25 0.1 0 0 0 0.05 0.55 0.2 0.2 0 0 0 0.1 0.6 0.3 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.6 0.2 0.15 0.05 0 0 0.5 0.2 0.2 0.1 0 0 0 0.35 0.35 0.2 0.1 0 0 0 0.25 0.5 0.25 0 0 0 0 0.45 0.55 0 0 0 0 0 0 1 0.7 0.15 0.15 0 0 0 0.6 0.175 0.175 0.05 0 0 0.2 0.35 0.35 0.1 0 0 0 0 0.3 0.4 0.3 0 0 0 0.1 0.25 0.65 0 0 0 0 0 0 1 0 0.25 0.4 0.25 0.1 0 0 0.2 0.4 0.3 0.1 0 0 0 0.35 0.425 0.225 0 0 0 0 0.575 0.425 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0.15 0.325 0.325 0.15 0.05 0 0.05 0.425 0.325 0.15 0.05 0 0 0 0.475 0.325 0.2 0 0 0 0.05 0.575 0.375 0 0 0 0 0.15 0.85 0 0 0 0 0 0 1 0.45 0.325 0.175 0.05 0 0 0.35 0.4 0.2 0.05 0 0 0 0.1 0.5 0.2 0.2 0 0 0 0.15 0.55 0.3 0 0 0 0 0.275 0.725 0 0 0 0 0 0 1 0.65 0.15 0.125 0.075 0 0 0.5 0.2 0.2 0.1 0 0 0.05 0.25 0.35 0.25 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.425 0.525 0 0 0 0 0 0 1 0.75 0.2 0.05 0 0 0 0.65 0.2 0.15 0 0 0 0.25 0.3 0.35 0.1 0 0 0 0.05 0.375 0.375 0.2 0 0 0 0.15 0.4 0.45 0 0 0 0 0 0 1 0.05 0.2 0.4 0.25 0.1 0 0 0.25 0.4 0.25 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.05 0.6 0.35 0 0 0 0 0.15 0.85 0 0 0 0 0 0 1 0.2 0.3 0.3 0.15 0.05 0 0.1 0.4 0.3 0.15 0.05 0 0 0.05 0.45 0.3 0.2 0 0 0 0.1 0.55 0.35 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.5 0.3 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0 0.15 0.5 0.15 0.2 0 0 0 0.2 0.5 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0 0 1 0.7 0.15 0.1 0.05 0 0 0.6 0.2 0.15 0.05 0 0 0.1 0.3 0.3 0.2 0.1 0 0 0.05 0.3 0.4 0.25 0 0 0 0.1 0.4 0.5 0 0 0 0 0 0 1 0.8 0.15 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.35 0.35 0.2 0 0 0 0.2 0.35 0.45 0 0 0 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="Slope">
 			<state id="Level" />
 			<state id="GentlyUntulating" />
 			<state id="RollingHilly" />
 			<state id="SteeplyDissectedMountainous" />
-			<probabilities>0.3 0.3 0.2 0.2</probabilities>
+			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="SoilpH">
 			<state id="High" />
@@ -147,7 +133,7 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="None" />
-			<probabilities>0.2 0.2 0.3 0.3</probabilities>
+			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="StoredCarbonRelease">
 			<state id="VeryHigh" />
@@ -156,8 +142,8 @@
 			<state id="Low" />
 			<state id="VeryLow" />
 			<state id="None" />
-			<parents>VegetationAndSoilCarbonStorage FireFrequency DeforestationRisk</parents>
-			<probabilities>0.8 0.15 0.05 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.2 0.2 0.2 0.1 0.6 0.3 0.05 0.05 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0.1 0.1 0.2 0.3 0.2 0.1 0.6 0.25 0.1 0.05 0 0 0.55 0.25 0.15 0.05 0 0 0.5 0.25 0.15 0.1 0 0 0.45 0.25 0.2 0.1 0 0 0.5 0.25 0.15 0.1 0 0 0.45 0.25 0.25 0.05 0 0 0.1 0.25 0.3 0.25 0.1 0 0 0.1 0.3 0.3 0.2 0.1 0.4 0.3 0.2 0.1 0 0 0.1 0.25 0.3 0.25 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.05 0.25 0.4 0.25 0.05 0.4 0.4 0.15 0.05 0 0 0.35 0.35 0.25 0.05 0 0 0.3 0.3 0.2 0.15 0.05 0 0.25 0.25 0.25 0.2 0.05 0 0.3 0.35 0.3 0.05 0 0 0.25 0.3 0.25 0.2 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.3 0.3 0.1 0.1 0.3 0.3 0.3 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.25 0.25 0.2 0 0.1 0.25 0.3 0.25 0.1 0.2 0.3 0.3 0.2 0 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.3 0.3 0.15 0.15 0 0.05 0.25 0.25 0.25 0.15 0.05 0.15 0.3 0.3 0.15 0.1 0 0.05 0.2 0.25 0.25 0.2 0.05 0 0.1 0.25 0.3 0.25 0.1 0 0 0.2 0.3 0.25 0.25 0.1 0.3 0.3 0.15 0.15 0 0 0.1 0.25 0.3 0.25 0.1 0 0 0.1 0.2 0.3 0.4 0 0 0 0.15 0.25 0.6 0.05 0.2 0.25 0.25 0.2 0.05 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.25 0.3 0.25 0.1 0 0 0.05 0.25 0.3 0.4 0 0.15 0.3 0.3 0.15 0.1 0 0.05 0.2 0.25 0.25 0.25 0 0 0.05 0.25 0.3 0.4 0 0 0 0.3 0.3 0.4 0 0.1 0.25 0.3 0.25 0.1 0 0 0.05 0.25 0.3 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.2 0.7 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.02 0.98 0 0 0 0 0.02 0.98 0 0 0 0 0.05 0.95 0 0 0 0 0.02 0.98 0 0 0 0 0.02 0.98 0 0 0 0 0.01 0.99</probabilities>
+			<parents>VegetationAndSoilCarbonStorage DeforestationRisk</parents>
+			<probabilities>0.8 0.15 0.05 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.6 0.25 0.1 0.05 0 0 0.55 0.25 0.15 0.05 0 0 0.5 0.25 0.15 0.1 0 0 0.45 0.25 0.2 0.1 0 0 0.4 0.4 0.15 0.05 0 0 0.35 0.35 0.25 0.05 0 0 0.3 0.3 0.2 0.15 0.05 0 0.25 0.25 0.25 0.2 0.05 0 0.2 0.3 0.3 0.2 0 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.3 0.3 0.15 0.15 0 0.05 0.25 0.25 0.25 0.15 0.05 0.05 0.2 0.25 0.25 0.2 0.05 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.25 0.3 0.25 0.1 0 0 0.05 0.25 0.3 0.4 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
@@ -199,8 +185,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>728 117 877 142</position>
-				<comment>Agricultural practices are also an influence there, but it&apos;s unlikely we could get a spatial dataset of this (e.g., no-till versus regular plowing)</comment>
+				<position>728 116 877 141</position>
+				<comment>Agricultural practices are also an influence there, but it&apos;s unlikely we could get a spatial dataset of this (e.g., no-till versus regular plowing).\n\nAssume deforestation from population growth and agricultural expansion is more important than fire in Madagascar, where fire may be used as a tool for forest clearing but wildfire is less common (uncertain assumption - check with CI).</comment>
 				<barchart width="128" height="126" />
 			</node>
 			<node id="VegetationAndSoilCarbonSequestration">
@@ -225,7 +211,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>381 240 497 273</position>
+				<position>380 232 496 265</position>
 				<barchart width="128" height="126" />
 			</node>
 			<node id="SoilOxygenConditions">
@@ -241,7 +227,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>145 511 300 542</position>
+				<position>157 380 312 411</position>
 				<barchart width="128" height="108" />
 			</node>
 			<node id="VegetationType">
@@ -249,7 +235,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>33 435 144 462</position>
+				<position>388 439 499 466</position>
 				<barchart width="128" height="72" />
 			</node>
 			<node id="VegetationCover">
@@ -257,32 +243,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>223 366 330 396</position>
-				<barchart width="128" height="108" />
-			</node>
-			<node id="HardwoodSoftwoodRatio">
-				<name>HardwoodSoftwoodRatio</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>668 361 826 389</position>
-				<barchart width="128" height="108" />
-			</node>
-			<node id="CommercialForestryPractices">
-				<name>CommercialForestryPractices</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>2 325 174 356</position>
-				<comment>Type your annotation here</comment>
-				<barchart width="128" height="90" />
-			</node>
-			<node id="SuccessionalStage">
-				<name>SuccessionalStage</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>290 309 415 339</position>
+				<position>644 336 753 366</position>
 				<barchart width="128" height="108" />
 			</node>
 			<node id="Slope">
@@ -299,7 +260,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>591 411 727 446</position>
+				<position>667 508 803 543</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart width="128" height="108" />
 			</node>
@@ -308,7 +269,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>686 287 808 316</position>
+				<position>666 280 788 309</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart width="128" height="126" />
 			</node>
@@ -326,7 +287,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>370 434 460 465</position>
+				<position>398 336 488 367</position>
 				<barchart width="128" height="90" />
 			</node>
 			<node id="DeforestationRisk">
@@ -334,7 +295,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>794 204 910 231</position>
+				<position>657 193 773 220</position>
 				<comment>A function of agricultural/economic factors (likely difficult to find/nonexistent spatially) and population growth.  We have population growth data, but not at the appropriate scale for Puget Sound (national data).</comment>
 				<barchart width="128" height="90" />
 			</node>
@@ -343,7 +304,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>543 501 630 533</position>
+				<position>676 406 763 438</position>
 				<barchart width="128" height="90" />
 			</node>
 			<node id="SequestrationRate">
@@ -352,7 +313,6 @@
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>849 436 964 467</position>
-				<comment>Type your annotation here</comment>
 				<barchart width="128" height="126" />
 			</node>
 			<node id="SoilpH">
@@ -363,6 +323,20 @@
 				<position>89 202 147 225</position>
 				<comment>See how the modeling looks if we add pH.</comment>
 				<barchart width="128" height="72" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>213 105 333 139</position>
+			</node>
+			<node id="DegradationStatus">
+				<name>DegradationStatus</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>775 338 892 372</position>
 			</node>
 		</genie>
 	</extensions>
