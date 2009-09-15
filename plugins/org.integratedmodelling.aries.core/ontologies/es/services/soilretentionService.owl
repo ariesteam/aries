@@ -1,45 +1,52 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns="http://www.integratedmodelling.org/ks/es/soilretentionService.owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.integratedmodelling.org/ks/es/soilretentionService.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/es/soilretentionService.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="DesirableSedimentMovement">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The movement of sediment to places where it is desirable.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Transformation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Forests">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="NonErodedSystems"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil loss can reduce the fertility of forests, as well as change numerous ecosystem processes in forest ecosystems.</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:ID="SoilLoss">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The corresponding loss of soil during erosion processes can reduce soil fertility and soil stability.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredEndurant"/>
   </owl:Class>
+  <owl:Class rdf:ID="Food">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >When soil is retained, crop damage and loss of fisheries are avoided.  This makes food more abundant and harvests more predictable.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Mangroves">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CoastalEcosystems"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dense mangrove vegetation naturally causes some sediment to become deposited, removing suspended sediment that could damage seagrass and coral reefs.  WHAT ABOUT DEPOSITION OF EXCESS SEDIMENT - TAKE IT IT'S A PROBLEM - CHECK WITH CI...</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:ID="FreshwaterLakesAndStreams">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Excess sediment clouds the water, altering the freshwater food chain.  Accumulation of excess sediment on stream and lake bottoms can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="NonSedimentedSystems"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Fishermen"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
         </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="ConsumersOfFishAndAgGoods"/>
@@ -47,129 +54,81 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
+      <owl:Class rdf:ID="NonSedimentedSystems"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CoastalEcosystems">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excess sediment clouds the water, altering the coastal aquatic food chain.  Accumulation of excess sediment can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#ConsumersOfFishAndAgGoods"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="Fishermen"/>
+          <owl:Class rdf:about="#Fishermen"/>
         </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="FloodplainAgAreas">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Regular sediment pulses maintains soil fertility for floodplain agriculture.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="PlacesWhereSedimentIsGood"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Farmers"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HydroReservoirs">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Siltation of hydroelectric reservoirs reduces their storage capacity and useful lifetime.  Excess sediment can be dredged, but this is a costly process and is not always feasible.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#NonSedimentedSystems"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="HydroUtilitiesAndConsumers"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="CoralReefs">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="CoastalEcosystems"/>
-    </rdfs:subClassOf>
+  <owl:Class rdf:ID="DesirableSedimentMovement">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Coral reef sedimentation can alter coral communities, affecting the fish and other organisms that depend on healthy corals.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Food">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >When soil is retained, crop damage and loss of fisheries are avoided.  This makes food more abundant and harvests more predictable.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="AgLands">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil loss can reduce the fertility of agricultural lands.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#NonErodedSystems"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Farmers"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SteepSlopes">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#NonErodedSystems"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil loss on steep slopes can contribute to further instability.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#ConsumersOfFishAndAgGoods">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Consumers of fish and floodplain agriculture products suffer when these resources are damaged by excess sedimentation, increasing the scarcity and price of these basic food resources.  Poor populations are particularly vulnerable.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="PortsAndNavigationChannels">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#NonSedimentedSystems"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="InfrastructureAndUtilityUsers"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Excess sedimentation can increase costs for navigation, as ports and channels must be dredged.</rdfs:comment>
+    >The movement of sediment to places where it is desirable.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Transformation"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilRetentionService">
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#PlacesWhereSedimentIsGood"/>
+          <owl:Class rdf:about="#NonSedimentedSystems"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The retention of soils by forests or other vegetation, preventing them from washing into streams and adding sediment in undesirable locations.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="ExcessSedimentation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SoilLoss"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="PlacesWhereSedimentIsGood"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Food"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="Transportation"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -184,47 +143,37 @@
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#NonErodedSystems"/>
+          <owl:Class rdf:ID="NonErodedSystems"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#NonSedimentedSystems"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
+        <owl:someValuesFrom rdf:resource="#Food"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="ExcessSedimentation"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilLoss"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The retention of soils by forests or other vegetation, preventing them from washing into streams and adding sediment in undesirable locations.</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#NonErodedSystems">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil loss is a major cause of reduced soil productivity worldwide. The effects of soil loss are wide ranging, influencing slope stability and functional preservation of infrastructure such as dams and hydroelectric plants.</rdfs:comment>
+  <owl:Class rdf:ID="FloodplainFarmland">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="SoilRetention"/>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Farmers"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PlacesWhereSedimentIsGood"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Regular sediment pulses maintains soil fertility for floodplain agriculture.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#NonSedimentedSystems">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Terrestrial and aquatic systems that do not receive excess sediment.  Excess sediment can be economically and environmentally damaging to these systems.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -233,167 +182,108 @@
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Farmers">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Farmers depend on soil retention to reduce crop damage and siltation of irrigation canals.  In Madagascar, this includes many poor rice farmers.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#ExcessSedimentation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredEndurant"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Excess sedimentation beyond "normal" baseline rates for that system.  Sediment is an endurant because it builds up over time.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Energy">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Hydroelectric power supplies will be more secure when reservoir life is maximized by avoiding reservoir siltation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-  </owl:Class>
-  <owl:Class rdf:about="#PlacesWhereSedimentIsGood">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom rdf:resource="#DesirableSedimentMovement"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
-          <owl:Class rdf:ID="SedimentProvisioning"/>
+          <owl:Class rdf:ID="SoilRetention"/>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Sediment is desirable where it is provided at rates consistent with natural sediment cycles.</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="AgriculturalFieldsAndCanals">
+  <owl:Class rdf:ID="HydroReservoirs">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Siltation of hydroelectric reservoirs reduces their storage capacity and useful lifetime.  Excess sediment can be dredged, but this is a costly process and is not always feasible.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HydroelectricUtilitiesAndConsumers"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#NonSedimentedSystems"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FarmlandAndCanals">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Floodplain agriculture relies on some input of new sediment to maintain soil fertility.  Beyond this "normal" sediment input, excess sediment can damage crops.  Canals important for water delivery may become overly sedimented, requiring additional labor to remove sediment.</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#NonSedimentedSystems"/>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#ConsumersOfFishAndAgGoods"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Farmers"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Farmers"/>
+        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#NonSedimentedSystems"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ConsumersOfFishAndAgGoods">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Consumers of fish and floodplain agriculture products suffer when these resources are damaged by excess sedimentation, increasing the scarcity and price of these basic food resources.  Poor populations are particularly vulnerable.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Transportation">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Avoidance of siltation of ports, and navigation channels is important to waterborne transportation.</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#NonSedimentedSystems">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom>
-          <owl:Class rdf:about="#SoilRetention"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:about="#SoilRetentionInPlace"/>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+  <owl:Class rdf:ID="CoralReefs">
+    <rdfs:subClassOf rdf:resource="#CoastalEcosystems"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Terrestrial and aquatic systems that do not receive excess sediment.  Excess sediment can be economically and environmentally damaging to these systems.</rdfs:comment>
+    >Coral reef sedimentation can alter coral communities, affecting the fish and other organisms that depend on healthy corals.</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#SoilRetentionInPlace">
+  <owl:Class rdf:ID="SteepSlopes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#NonErodedSystems"/>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Use of forests and other vegetation to reduce the erosive capacity of wind and water to hold soil in place.  Unless hydrologic are severe or the system is altered, soil retention capacity is generally maintained by an ecosystem over time.</rdfs:comment>
+    >Soil loss on steep slopes can contribute to further instability.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SedimentProvisioning">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Fishermen"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Farmers"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Farmers"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#InfrastructureAndUtilityUsers"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#HydroUtilitiesAndConsumers"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#HydroUtilitiesAndConsumers">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Hydroelectric utilities depend on soil retention to maximize the life and power generation capacity of hydroelectric dams.  Consumers of hydro power likewise depend on soil retention.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#CoastalEcosystems">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Excess sediment clouds the water, altering the coastal aquatic food chain.  Accumulation of excess sediment can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#NonSedimentedSystems"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Fishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#InfrastructureAndUtilityUsers">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Stormwater systems, culverts, navigation systems etc. can get clogged with sediment, requiring dredging, replacement, or increased maintenance.</rdfs:comment>
+    >Provisioning of sediment is desirable to some locations (i.e., agricultural floodplains, river delta systems).</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#SoilRetention">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Slowing of the erosive capacity of wind and water by a SoilRetainingEcosystem, and holding of the soil resource in place.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -402,16 +292,50 @@
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Slowing of the erosive capacity of wind and water by a SoilRetainingEcosystem, and holding of the soil resource in place.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
   </owl:Class>
   <owl:Class rdf:about="#Fishermen">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Fishermen depend on soil retention to maintain water clarity so turbidity does not damage populations of fish species valuable for commercial, subsistence, or recreational use.  In Madagascar, fish are a critical protein source for many.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
-  <owl:Class rdf:about="#SedimentProvisioning">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
+  <owl:Class rdf:about="#ExcessSedimentation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excess sedimentation beyond "normal" baseline rates for that system.  Sediment is an endurant because it builds up over time.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredEndurant"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PublicWaterSuppliersAndUsers">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Users of public water supplies depend on sediment-free water to reduce the cost of water treatment and ensure higher quality water supplies.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Farmers">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Farmers depend on soil retention to reduce crop damage and siltation of irrigation canals.  In Madagascar, this includes many poor rice farmers.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Energy">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hydroelectric power supplies will be more secure when reservoir life is maximized by avoiding reservoir siltation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SoilRetentionInPlace">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#HydroelectricUtilitiesAndConsumers"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="OtherInfrastructureUsers"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Farmers"/>
@@ -430,45 +354,118 @@
         <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Provisioning of sediment is desirable to some locations (i.e., agricultural floodplains, river delta systems).</rdfs:comment>
+    >Use of forests and other vegetation to reduce the erosive capacity of wind and water to hold soil in place.  Unless hydrologic are severe or the system is altered, soil retention capacity is generally maintained by an ecosystem over time.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#NonErodedSystems">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        <owl:allValuesFrom rdf:resource="#SoilRetentionInPlace"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+        <owl:allValuesFrom rdf:resource="#SoilRetention"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soil loss is a major cause of reduced soil productivity worldwide. The effects of soil loss are wide ranging, influencing slope stability and functional preservation of infrastructure such as dams and hydroelectric plants.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DeltaicAreas">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Fishermen"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PlacesWhereSedimentIsGood"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The natural flow of sediment from river systems is needed to maintain delta building processes.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#HydroelectricUtilitiesAndConsumers">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hydroelectric utilities depend on soil retention to maximize the life and power generation capacity of hydroelectric dams.  Consumers of hydro power likewise depend on soil retention.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#OtherInfrastructureUsers">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stormwater systems, culverts, navigation systems etc. can get clogged with sediment, requiring dredging, replacement, or increased maintenance.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PlacesWhereSedimentIsGood">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sediment is desirable where it is provided at rates consistent with natural sediment cycles.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        <owl:allValuesFrom rdf:resource="#SedimentProvisioning"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#DesirableSedimentMovement"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Forests">
+    <rdfs:subClassOf rdf:resource="#NonErodedSystems"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soil loss can reduce the fertility of forests, as well as change numerous ecosystem processes in forest ecosystems.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PortsAndNavigationChannels">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#OtherInfrastructureUsers"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#NonSedimentedSystems"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Excess sedimentation can increase costs for navigation, as ports and channels must be dredged.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#SoilRetainingEcosystem">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ecosystem that retains soil in situ, usually through a combination of a vegetative canopy that intercepts rainfall and root networks that hold soil in place.</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="Mangroves">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Dense mangrove vegetation naturally causes some sediment to become deposited, removing suspended sediment that could damage seagrass and coral reefs.  WHAT ABOUT DEPOSITION OF EXCESS SEDIMENT - TAKE IT IT'S A PROBLEM - CHECK WITH CI...</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#CoastalEcosystems"/>
-  </owl:Class>
-  <owl:Class rdf:ID="DeltaicAreas">
-    <rdfs:subClassOf rdf:resource="#PlacesWhereSedimentIsGood"/>
+  <owl:Class rdf:ID="Farmland">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Fishermen"/>
+        <owl:someValuesFrom rdf:resource="#Farmers"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#ConsumersOfFishAndAgGoods"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#NonErodedSystems"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The natural flow of sediment from river systems is needed to maintain delta building processes.</rdfs:comment>
+    >Soil loss can reduce the fertility of agricultural lands.</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#isBeneficialFor">
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Identifies the beneficiary for each benefit.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
   </owl:ObjectProperty>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4, Build 130)  http://protege.stanford.edu -->
+<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
