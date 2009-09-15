@@ -7,7 +7,7 @@
 			<state id="NoMountain" />
 			<probabilities>0.05 0.1 0.85</probabilities>
 		</cpt>
-		<cpt id="WaterBody">
+		<cpt id="Ocean">
 			<state id="Ocean" />
 			<state id="NoOcean" />
 			<probabilities>0.15 0.85</probabilities>
@@ -22,7 +22,7 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="None" />
-			<parents>Mountain WaterBody Lake</parents>
+			<parents>Mountain Ocean Lake</parents>
 			<probabilities>0.82 0.12 0.05000000000000001 0.01 0.82 0.12 0.05000000000000001 0.01 0.7 0.21 0.08 0.01 0.4 0.3 0.2000000000000001 0.1 0.76 0.14 0.08 0.02 0.76 0.14 0.08 0.02 0.6 0.25 0.13 0.02 0.2 0.3 0.3 0.2 0.7000000000000001 0.1 0.1 0.1 0.7000000000000001 0.1 0.1 0.1 0.5 0.2 0.2 0.1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -44,8 +44,8 @@
 				<position>268 142 380 172</position>
 				<barchart active="true" width="128" height="95" />
 			</node>
-			<node id="WaterBody">
-				<name>WaterBody</name>
+			<node id="Ocean">
+				<name>Ocean</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="HousingValues">
+		<cpt id="HousingValue">
 			<state id="VeryHigh" />
 			<state id="High" />
 			<state id="Moderate" />
@@ -17,7 +17,7 @@
 		<cpt id="ViewUse">
 			<state id="Yes" />
 			<state id="No" />
-			<parents>HousingValues PresenceOfHousing</parents>
+			<parents>HousingValue PresenceOfHousing</parents>
 			<probabilities>0.8 0.2 0 1 0.8 0.2 0 1 0.6 0.4 0 1 0.4 0.6 0 1 0.25 0.75 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -31,8 +31,8 @@
 				<position>342 258 478 288</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="HousingValues">
-				<name>HousingValues</name>
+			<node id="HousingValue">
+				<name>HousingValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
