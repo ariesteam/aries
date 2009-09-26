@@ -35,6 +35,10 @@
 		<parameter id="url" value="aries/aries.owl"/>
 		<parameter id="concept-space" value="aries" />
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="conservation">
+		<parameter id="url" value="policy/conservation.owl"/>
+		<parameter id="concept-space" value="conservation" />
+	</extension>
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="eserv">
 		<parameter id="url" value="es/eserv.owl"/>
 		<parameter id="concept-space" value="eserv" />

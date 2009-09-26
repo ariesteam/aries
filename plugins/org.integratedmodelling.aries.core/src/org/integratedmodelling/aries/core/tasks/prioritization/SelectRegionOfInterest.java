@@ -22,6 +22,8 @@ public class SelectRegionOfInterest implements ITask {
 	static public final String UPPER_EASTERN_USA = "POLYGON((-78.046875 48.515625,-106.875 48.515625,-106.875 31.640625,-78.75 31.640625,-78.75 31.640625,-78.046875 48.515625))";
 	static public final String KING_COUNTY_PORTION = "POLYGON((-123.842070 47.723772,-121.619678 47.723772,-121.619678 47.028239,-121.619678 47.723772,-123.842070 47.723772))";
 	static public final String KING_COUNTY_SMALL = "POLYGON((-122.2 47.6,-122.1 47.6,-122.1 47.5,-122.1 47.5,-122.2 47.6))";
+	static public final String WA = "POLYGON((-125 50.4, -125 46.6, -117.5 46.6, -117.5 50.4, -125 50.4))";
+    
 	ShapeValue chosen = null;
 	
 	public ShapeValue getRegionOfInterest() {
@@ -33,7 +35,7 @@ public class SelectRegionOfInterest implements ITask {
 
 		// TODO could randomize a region for testing.
 		chosen = 
-			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), KING_COUNTY_PORTION);
+			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), WA);
 	}
 
 }
