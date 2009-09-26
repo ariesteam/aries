@@ -37,19 +37,19 @@
 			:state   (+ 2 5))
 
    		    		 
-(defmodel view-source 'aestheticService:SensoryEnjoyment
+(defmodel view-source 'aestheticService:ViewSourceValue
 	
 		"Testing BN integration"
-		(bayesian 'aestheticService:SensoryEnjoyment)
+		(bayesian 'aestheticService:ViewSourceValue)
 			:import  "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/aestheticService_SensoryEnjoyment.xdsl"
-		  :keep    ('aestheticService:SensoryEnjoyment)
+		  :keep    ('aestheticService:ViewSourceValue)
 			:context (valuable-mountain) :as mountain)
    		    		 
-(defmodel view-data 'aestheticService:SensoryEnjoyment
+(defmodel view-data 'aestheticService:ViewSourceValue
 
  	 "Just the dataset for further processing. This is a test model that merely collects, transforms and
  	  harmonizes data."
- 	 (identification 'aestheticService:SensoryEnjoyment)
+ 	 (identification 'aestheticService:ViewSourceValue)
  	 	 :context
   	 	 (valuable-mountain    :as mountain 
  ; 	 	  valuable-waterbodies :as water))

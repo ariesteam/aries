@@ -16,7 +16,7 @@
 		     :use-type         :relative
 		     :benefit-type     :non-rival}]
     (aries.demo/run-gssm-demo
-     'aestheticService:SensoryEnjoyment
+     'aestheticService:ViewSourceValue
      'aestheticService:AestheticViewshedUse
      'aestheticService:ViewSink
      'aestheticService:LineOfSight flow-params resolution)))
