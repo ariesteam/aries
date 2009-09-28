@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<plugin id="org.integratedmodelling.aries.admin" version="0.8.0" class="org.integratedmodelling.aries.admin.ARIESAdminPlugin">
+
+	<requires>
+		<import plugin-id="org.integratedmodelling.thinklab.core"/>
+		<import plugin-id="org.integratedmodelling.thinklab.modelling"/>
+		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
+		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
+		<import plugin-id="org.integratedmodelling.aries.core"/>
+	</requires>
+
+	<runtime>
+		<library id="core" path="classes/" type="code">
+			<export prefix="*"/>
+		</library>
+		
+		<library type="resources" path="etc/" id="etc" />
+		<library type="resources" path="data/" id="data" />
+		<library type="resources" path="config/" id="config" />
+	</runtime>
+	
+	<!-- create kboxes if necessary; must have pg installed  -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="import-geodata">
+		<parameter id="id" value="aries.initdb"/>
+		<parameter id="declaration">
+			<parameter id="language" value="clojure"/>
+			<parameter id="script" value="applications/load-data.clj"/>
+		</parameter>
+	</extension>
+	
+</plugin>
