@@ -22,7 +22,7 @@
 	
 	<!-- create kboxes if necessary; must have pg installed  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="import-geodata">
-		<parameter id="id" value="import-geodata"/>
+		<parameter id="id" value="aries.initdb"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
 			<parameter id="script" value="applications/import_geodata.clj"/>

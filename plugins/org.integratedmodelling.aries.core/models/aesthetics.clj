@@ -39,9 +39,31 @@
 
 
 ;; ----------------------------------------------------------------------------------------------
-;; TODO sink model
+;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
+;(defmodel view-clearcuts 'aestheticService:Clearcuts 
+;	(classification ))
+
+; use NLCD layers to extract transportation infrastructure
+(defmodel view-commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
+	(classification (ranking 'nlcd:NLCDNumeric)
+			23         'aestheticService:TransportationInfrastructurePresent
+			:otherwise 'aestheticService:TransportationInfrastructureAbsent))
+
+; classify a highway (vector) file - if ranks 0 or below, no highway, otherwise highway
+(defmodel view-highways 'aestheticService:Highways 
+	(classification (ranking 'habitat:Highway) 
+			[:< 0 :inclusive]  'aestheticService:HighwaysAbsent
+			:otherwise         'aestheticService:HighwaysPresent))
+
+(defmodel view-sink 'aestheticService:ViewSink
+
+	(bayesian 'aestheticService:ViewSink)
+	  	:import "bn/aestheticService_ViewSink.xsdl"
+	  	:keep ('aestheticService:ViewSink)
+	 	 	:context
+  	 	 ((comment view-clearcuts) view-commercial-transportation view-highways))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; IMPLEMENT ME flow model
@@ -49,7 +71,7 @@
  	 								
 (defmodel raycast-view-flow
 	
-		"Only the data that feedthe raycast flow model in the gssm package. The actual computation 
+		"Only the data that feed the raycast flow model in the gssm package. The actual computation 
 		 is integrated with gssm, and the observable class from this will select the raycasting 
 		 submodel in it."
 		
@@ -68,7 +90,7 @@
 		"Hypothetical for now. The GSSM connecting view provision to use of views, using
 		 raycasting to model the flows, influenced by athmospheric pollution."
 		 
-		(gssm 'aestheticService:ViewService)
+		(gssm 'aestheticService:AestheticView)
 					:source     view-source
 					:use        real-estate-use
 		 			:transport  raycast-view-flow

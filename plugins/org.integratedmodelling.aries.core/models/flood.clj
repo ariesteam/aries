@@ -10,22 +10,24 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel monthly-precipitation 'floodService:MonthlyPrecipitation
-		 (classification (measurement 'ecology:Rainfall "mm")
-        [:< ] 'floodService:LowMonthlyPrecipitation
-        []    'floodService:MediumMonthlyPrecipitation
-        [ :>] 'floodService:HighMonthlyPrecipitation))
+		 (classification (measurement 'habitat:Precipitation "in")
+        [:< 3]  'floodService:VeryLowPrecipitation
+        [3 6]   'floodService:LowPrecipitation
+        [6 12]  'floodService:ModeratePrecipitation
+        [12 24] 'floodService:HighPrecipitation
+        [24 :>] 'floodService:VeryHighPrecipitation))
         
-(defmodel monthly-precipitation 'floodService:MonthlyTemperature
-		 (classification (measurement 'ecology:MonthlyTemperature "mm")
-        [:< ] 'floodService:LowMonthlyPrecipitation
-        []    'floodService:MediumMonthlyPrecipitation
-        [ :>] 'floodService:HighMonthlyPrecipitation))
+(defmodel monthly-temperature 'floodService:MonthlyTemperature
+		 (classification (measurement 'habitat:AtmosphericTemperature "celsius")
+        [:< -4] 'floodService:LowTemperature
+        [-4 4]  'floodService:ModerateTemperature
+        [4 :>]  'floodService:HighTemperature))
         
-(defmodel monthly-precipitation 'floodService:SnowPresence
-		 (classification (measurement 'ecology:Snowfall "mm")
-        [:exclusive 0 :>] 'floodService:LowMonthlyPrecipitation
-        []                'floodService:MediumMonthlyPrecipitation
-        :otherwise        'floodService:HighMonthlyPrecipitation))        
+(defmodel snow-presence 'floodService:SnowPresence
+		 (classification (ranking 'habitat:SnowPresence)
+        [:exclusive 0 :>] 'floodService:LowlandAndHighland
+        []                'floodService:RainDominatedAndSnowDominated
+        :otherwise        'floodService:PeakRainOnSnow))        
         
 (defmodel flood-source-adhoc 'floodService:FloodSourceValue
 	
@@ -34,8 +36,8 @@
 		
 	  (bayesian 'floodService:FloodSourceValue)
 	  	:import   "bn/FloodSourceValueAdHoc.xsdl"
-	  	:keep     ('floodService:FloodSourceValue)
-	 	 	:context  (monthly-precipitation monthly-temperature snow-presence))
+	  	:keep     ('floodService:FloodSourceValue 'floodService:MonthlySnowmelt)
+	 	 	:context  (monthly-precipitation monthly-temperature (comment snow-presence)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -84,30 +86,9 @@
 ;; IMPLEMENT ME flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
-(defmodel flood-flow
-	
-		"Only the data that feedthe raycast flow model in the gssm package. The actual computation 
-		 is integrated with gssm, and the observable class from this will select the raycasting 
-		 submodel in it."
-		
-		(identification 'aestheticService:LineOfSight)
-			:context 
-				((measurement 'geophysics:Altitude "m")))
-;; --- this is what is should be - LIDAR data
-;;				 (measurement 'geophysics:GroundElevation "m")))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 			
-(defmodel aesthetic-views 'aestheticService:ViewService
-	
-		"Hypothetical for now. The GSSM connecting view provision to use of views, using
-		 raycasting to model the flows, influenced by athmospheric pollution."
-		 
-		(gssm 'aestheticService:ViewService)
-					:source     view-source
-					:use        real-estate-use
-		 			:transport  raycast-view-flow
-		 			:sink       aesthetic-visual-blight)
 		 			

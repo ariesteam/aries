@@ -115,45 +115,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#Aesthetic -->
-
-    <owl:Class rdf:about="#Aesthetic">
-        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="#ProximityToBeauty"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                        <owl:allValuesFrom rdf:resource="#ViewSourceValue"/>
-                    </owl:Restriction>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#OpenSpace"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Sensory enjoyment of functioning ecological systems (Farber et al. 2006).</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#AestheticEnjoyment -->
 
     <owl:Class rdf:about="#AestheticEnjoyment">
@@ -178,6 +139,45 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Through their existence (assuming they are not degraded), ecosystems contribute to aesthetic value.  Different cultures or groups may have varying aesthetic preferences, leading to different types of value held for natural ecosystems.  Environmental changes can also lead to an area having more or less aesthetic value (i.e., loss of value through development of open space, harvesting of timber, negative changes to air quality, water quality, or odors; gains in value through creation of protected areas, forest succession).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#AestheticView -->
+
+    <owl:Class rdf:about="#AestheticView">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#ProximityToBeauty"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                        <owl:allValuesFrom rdf:resource="#ViewSourceValue"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#OpenSpace"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Sensory enjoyment of functioning ecological systems (Farber et al. 2006).</rdfs:comment>
     </owl:Class>
     
 
@@ -224,6 +224,23 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsAbsent -->
+
+    <owl:Class rdf:about="#ClearcutsAbsent">
+        <rdfs:subClassOf rdf:resource="#Clearcuts"/>
+        <owl:disjointWith rdf:resource="#ClearcutsPresent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsPresent -->
+
+    <owl:Class rdf:about="#ClearcutsPresent">
+        <rdfs:subClassOf rdf:resource="#Clearcuts"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#CommercialIndustrialTransportation -->
 
     <owl:Class rdf:about="#CommercialIndustrialTransportation">
@@ -255,13 +272,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -312,10 +329,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#FullObstruction -->
+
+    <owl:Class rdf:about="#FullObstruction">
+        <rdfs:subClassOf rdf:resource="#Obstructions"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#GolfCourse -->
 
     <owl:Class rdf:about="#GolfCourse">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighBlight -->
+
+    <owl:Class rdf:about="#HighBlight">
+        <rdfs:subClassOf rdf:resource="#VisualBlight"/>
     </owl:Class>
     
 
@@ -332,6 +365,23 @@
 
     <owl:Class rdf:about="#Highways">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighwaysAbsent -->
+
+    <owl:Class rdf:about="#HighwaysAbsent">
+        <rdfs:subClassOf rdf:resource="#Highways"/>
+        <owl:disjointWith rdf:resource="#HighwaysPresent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighwaysPresent -->
+
+    <owl:Class rdf:about="#HighwaysPresent">
+        <rdfs:subClassOf rdf:resource="#Highways"/>
     </owl:Class>
     
 
@@ -398,10 +448,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LowBlight -->
+
+    <owl:Class rdf:about="#LowBlight">
+        <rdfs:subClassOf rdf:resource="#VisualBlight"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LowViewValue -->
 
     <owl:Class rdf:about="#LowViewValue">
         <rdfs:subClassOf rdf:resource="#ViewSourceValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ModerateBlight -->
+
+    <owl:Class rdf:about="#ModerateBlight">
+        <rdfs:subClassOf rdf:resource="#VisualBlight"/>
     </owl:Class>
     
 
@@ -422,10 +488,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#NoBlight -->
+
+    <owl:Class rdf:about="#NoBlight">
+        <rdfs:subClassOf rdf:resource="#VisualBlight"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#NoMountain -->
 
     <owl:Class rdf:about="#NoMountain">
         <rdfs:subClassOf rdf:resource="#Mountain"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#NoObstruction -->
+
+    <owl:Class rdf:about="#NoObstruction">
+        <rdfs:subClassOf rdf:resource="#Obstructions"/>
     </owl:Class>
     
 
@@ -476,6 +558,14 @@
 
     <owl:Class rdf:about="#Park">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#PartialObstruction -->
+
+    <owl:Class rdf:about="#PartialObstruction">
+        <rdfs:subClassOf rdf:resource="#Obstructions"/>
     </owl:Class>
     
 
@@ -542,6 +632,23 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#TransportationInfrastructureAbsent -->
+
+    <owl:Class rdf:about="#TransportationInfrastructureAbsent">
+        <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
+        <owl:disjointWith rdf:resource="#TransportationInfrastructurePresent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#TransportationInfrastructurePresent -->
+
+    <owl:Class rdf:about="#TransportationInfrastructurePresent">
+        <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#UrbanProximity -->
 
     <owl:Class rdf:about="#UrbanProximity">
@@ -560,20 +667,37 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ViewSinkAbsent -->
+
+    <owl:Class rdf:about="#ViewSinkAbsent">
+        <rdfs:subClassOf rdf:resource="#ViewSink"/>
+        <owl:disjointWith rdf:resource="#ViewSinkPresent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ViewSinkPresent -->
+
+    <owl:Class rdf:about="#ViewSinkPresent">
+        <rdfs:subClassOf rdf:resource="#ViewSink"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ViewSourceValue -->
 
     <owl:Class rdf:about="#ViewSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="#ExistenceOfAestheticQuality"/>
+                <owl:onProperty rdf:resource="#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="#ExistenceOfAestheticQuality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -584,12 +708,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The enjoyment of scenic views, adjacent open space, fresh air, clean water, easily accessible recreational opportunities, etc. associated with high aesthetic value.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#VisualBlight -->
+
+    <owl:Class rdf:about="#VisualBlight">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
 
@@ -733,6 +865,23 @@
             <rdf:Description rdf:about="#LowViewValue"/>
             <rdf:Description rdf:about="#ModerateViewValue"/>
             <rdf:Description rdf:about="#NoViewValue"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighBlight"/>
+            <rdf:Description rdf:about="#LowBlight"/>
+            <rdf:Description rdf:about="#ModerateBlight"/>
+            <rdf:Description rdf:about="#NoBlight"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#FullObstruction"/>
+            <rdf:Description rdf:about="#NoObstruction"/>
+            <rdf:Description rdf:about="#PartialObstruction"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

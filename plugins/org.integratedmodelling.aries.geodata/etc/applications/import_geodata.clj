@@ -1,6 +1,6 @@
 (modelling/with-kbox 
 	
-	(modelling/kbox geodata "postgres://postgres:rnbh304@localhost:5432/geodata" 
+	(modelling/kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/aries" 
 				:protocol "pg" 
 				:schema "postgis"
 				:metadata (
@@ -26,6 +26,7 @@
 	 	:pop 2
 
 	 ;; puget sound aesthetic values
+	 (import (tl/get-plugin-resource 'aries.geodata "common.xml"))
 	 (import (tl/get-plugin-resource 'aries.geodata "pugetsound_aesthetics.xml"))
-	 
+	 (import (tl/get-plugin-resource 'aries.geodata "pugetsound_carbon.xml"))
 )	

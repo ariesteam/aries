@@ -63,10 +63,10 @@
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="SoilCNRatio">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighCNRatio" />
+			<state id="HighCNRatio" />
+			<state id="LowCNRatio" />
+			<state id="VeryLowCNRatio" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 			<property id="SoilInfluence">SoilInfluence=((ObservedSoilTexture/MaxSoilTexture)/2)+((ObservedSoilDepth/MaxSoilDepth)/2)</property>
 		</cpt>
@@ -97,15 +97,15 @@
 		</cpt>
 		<cpt id="Slope">
 			<state id="Level" />
-			<state id="GentlyUntulating" />
-			<state id="RollingHilly" />
+			<state id="GentlyUndulating" />
+			<state id="RollingHill" />
 			<state id="SteeplyDissectedMountainous" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="SoilpH">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
+			<state id="HighPh" />
+			<state id="ModeratePh" />
+			<state id="LowPh" />
 			<probabilities>0.3333333333333334 0.3333333333333334 0.3333333333333333</probabilities>
 		</cpt>
 		<cpt id="SoilCarbonStorage">
@@ -170,7 +170,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
 			<node id="CarbonSourceValue">
 				<name>CarbonSourceValue</name>
 				<interior color="e5f6f7" />

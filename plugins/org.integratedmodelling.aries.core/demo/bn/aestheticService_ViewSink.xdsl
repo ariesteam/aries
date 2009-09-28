@@ -2,44 +2,44 @@
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Highways">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="HighwaysPresent" />
+			<state id="HighwaysAbsent" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
 		<cpt id="CommercialIndustrialTransportation">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="TransportationInfrastructurePresent" />
+			<state id="TransportationInfrastructureAbsent" />
 			<probabilities>0.15 0.85</probabilities>
 		</cpt>
 		<cpt id="Clearcuts">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="ClearcutsPresent" />
+			<state id="ClearcutsAbsent" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
 		<cpt id="Obstructions">
-			<state id="Full" />
-			<state id="Partial" />
-			<state id="None" />
+			<state id="FullObstruction" />
+			<state id="PartialObstruction" />
+			<state id="NoObstruction" />
 			<probabilities>0.025 0.05 0.925</probabilities>
 		</cpt>
 		<noisymax id="VisualBlight">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
+			<state id="HighBlight" />
+			<state id="ModerateBlight" />
+			<state id="LowBlight" />
+			<state id="NoBlight" />
 			<parents>Highways CommercialIndustrialTransportation Clearcuts</parents>
 			<strengths>0 1 0 1 0 1</strengths>
 			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
 		</noisymax>
 		<cpt id="ViewSink">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="ViewSinkPresent" />
+			<state id="ViewSinkAbsent" />
 			<parents>Obstructions VisualBlight</parents>
 			<probabilities>1 0 1 0 1 0 1 0 0.9 0.1 0.67 0.33 0.33 0.67 0.2 0.8 0.75 0.25 0.5 0.5 0.25 0.75 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network2" faultnameformat="nodestate">
 			<node id="ViewSink">
 				<name>ViewSink</name>
 				<interior color="e5f6f7" />
@@ -53,7 +53,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>657 279 725 305</position>
+				<position>652 279 720 305</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="CommercialIndustrialTransportation">
@@ -61,23 +61,23 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>385 278 607 307</position>
-				<barchart active="true" width="128" height="64" />
+				<position>365 278 587 307</position>
+				<barchart active="true" width="234" height="64" />
 			</node>
 			<node id="Highways">
 				<name>Highways</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>248 280 322 307</position>
-				<barchart active="true" width="128" height="64" />
+				<position>224 280 298 307</position>
+				<barchart active="true" width="175" height="64" />
 			</node>
 			<node id="Obstructions">
 				<name>Obstructions</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>266 180 360 211</position>
+				<position>238 179 332 210</position>
 				<comment>e.g., trees, buildings, topography/elevation</comment>
 				<barchart active="true" width="128" height="72" />
 			</node>
