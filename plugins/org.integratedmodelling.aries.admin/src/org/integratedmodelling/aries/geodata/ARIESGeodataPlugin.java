@@ -1,15 +1,15 @@
-package org.integratedmodelling.aries.admin;
+package org.integratedmodelling.aries.geodata;
 
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
 
-public class ARIESAdminPlugin extends ThinklabPlugin {
+public class ARIESGeodataPlugin extends ThinklabPlugin {
 
-	public static final String ID = "org.integratedmodelling.aries.admin";
+	public static final String ID = "org.integratedmodelling.aries.geodata";
 	
-	public static ARIESAdminPlugin get() {
-		return (ARIESAdminPlugin) getPlugin(ID);
+	public static ARIESGeodataPlugin get() {
+		return (ARIESGeodataPlugin) getPlugin(ID);
 	}
 	
 	@Override

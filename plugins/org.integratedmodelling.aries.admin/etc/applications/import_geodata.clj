@@ -1,6 +1,6 @@
 (modelling/with-kbox 
 	
-	(modelling/kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/aries" 
+	(modelling/kbox geodata "postgres://postgres:rnbh304@localhost:5432/geodata" 
 				:protocol "pg" 
 				:schema "postgis"
 				:metadata (
@@ -9,7 +9,7 @@
 	        :region       thinklab-core:Text
 	        :centroid     geospace:Point
 	        :boundingbox  geospace:Polygon)
-				:sql.use.pooling "true" 
+				:sql.use.pooling "false" 
 				:sql.log.queries "true")
 				
 	  ;; rebuild the db from scratch every time this is run
@@ -20,13 +20,12 @@
 		}
 	
 	 ;; admin data
-	 ;(import (tl/get-plugin-resource 'aries.geodata "world_adm0.shp")) 
+	 (import (tl/get-plugin-resource 'aries.geodata "world_adm0.shp")) 
 	 
 	 	;; BUG - FIXME - needs modifiers or will gobble up the next instruction
-	 	;:pop 2
+	 	:pop 2
 
 	 ;; puget sound aesthetic values
-	 (import (tl/get-plugin-resource 'aries.geodata "common.xml")) :pop 2
-	 (import (tl/get-plugin-resource 'aries.geodata "pugetsound_aesthetics.xml")) :pop 2
-	 ; (import (tl/get-plugin-resource 'aries.geodata "pugetsound_carbon.xml"))
+	 (import (tl/get-plugin-resource 'aries.geodata "pugetsound_aesthetics.xml"))
+	 
 )	
