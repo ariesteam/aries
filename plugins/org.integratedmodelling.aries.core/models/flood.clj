@@ -43,33 +43,44 @@
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel floodplains 'floodService:Floodplains
+	"Presence of a floodplain in given context"
+	(classification (ranking 'floodService:Floodplains)
+			0 'floodService:NotInFloodplain
+			1 'floodService:InFloodplain))
+
+(defmodel presence-of-housing 'floodService:PresenceOfHousing
+	(classification (ranking 'floodService:PresenceOfHousing)
+		0 'floodService:HousingNotPresent
+		1 'floodService:HousingPresent))
+
 (defmodel flood-use-farmers 'floodService:FloodFarmersUse
 		""
 	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "bn/FloodSink.xsdl"
+	  	:import   "bn/FloodFarmersUse.xsdl"
 	  	:keep     ('floodService:FloodFarmersUse)
-	 	 	:context  ())
+	 	 	:context  (floodplains))
 	 	 	
 (defmodel flood-use-private 'floodService:FloodPrivateAssetsUse
 		""
-	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "bn/FloodSink.xsdl"
-	  	:keep     ('floodService:FloodFarmersUse)
-	 	 	:context  ())	 	 	
+	  (bayesian 'floodService:FloodPrivateAssetsUse)
+	  	:import   "bn/FloodPrivateAssetsUse.xsdl"
+	  	:keep     ('floodService:FloodPrivateAssetsUse)
+	 	 	:context  (floodplains))	 	 	
 
 (defmodel flood-use-public 'floodService:FloodPublicAssetsUse
 		""
-	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "bn/FloodSink.xsdl"
-	  	:keep     ('floodService:FloodFarmersUse)
-	 	 	:context  ())
+	  (bayesian 'floodService:FloodPublicAssetsUse)
+	  	:import   "bn/FloodFarmersUse.xsdl"
+	  	:keep     ('floodService:PublicAssetsOwnersAndUsersInFloodHazardZones)
+	 	 	:context  (floodplains public-asset-locations))
 	 	 	
 (defmodel flood-use-residents 'floodService:FloodResidentUse
 		""
-	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "bn/FloodSink.xsdl"
-	  	:keep     ('floodService:FloodFarmersUse)
-	 	 	:context  ())
+	  (bayesian 'floodService:FloodResidentUse)
+	  	:import   "bn/FloodResidentUse.xsdl"
+	  	:keep     ('floodService:ResidentsInFloodHabitat)
+	 	 	:context  (floodplains presence-of-housing))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; TODO sink model
