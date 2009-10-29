@@ -48,11 +48,11 @@
 	(classification (ranking 'floodService:Floodplains)
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
-
+			
 (defmodel presence-of-housing 'floodService:PresenceOfHousing
 	(classification (ranking 'floodService:PresenceOfHousing)
-		0 'floodService:HousingNotPresent
-		1 'floodService:HousingPresent))
+		"RESIDENTIAL" 'floodService:HousingNotPresent
+		:otherwise    'floodService:HousingPresent))
 
 (defmodel flood-use-farmers 'floodService:FloodFarmersUse
 		""

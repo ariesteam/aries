@@ -18,6 +18,10 @@
 (defmodel conservation 'conservation:ProtectedStatus
 	(ranking 'conservation:ProtectedStatus))
 	
+;; test
+(defmodel zio 'floodService:PresenceOfHousing
+	(ranking 'floodService:PresenceOfHousing))
+	
 (defmodel valuable-mountain 'aestheticService:Mountain
 
    "Classifies an elevation model into three levels of provision of beautiful mountains"

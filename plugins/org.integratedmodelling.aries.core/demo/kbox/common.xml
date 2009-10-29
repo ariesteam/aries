@@ -6,6 +6,7 @@
 	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
 	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
+	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
@@ -55,6 +56,55 @@
 				<geospace:hasLonLowerBound>-179.99999963965692</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>83.7299995730599</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>179.9995396992789</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- floodplains in Chehalis watershed, used as a 1/0 coverage -->
+	<measurement:Ranking id="chehalis_floodplain">
+	
+		<observation:hasObservable>
+			<floodService:Floodplains />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4267</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.85062453730272</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.75110953315713</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>48.99989805456198</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- reclass of landuse from property data, used as a 1/0 coverage -->
+	<measurement:Ranking id="chehalis_housing">
+	
+		<observation:hasObservable>
+			<floodService:PresenceOfHousing />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetparcelsgraysharbor</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>landuse2</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32049</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>46.76130246271684</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.35321685504611</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.566193166765984</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-123.14820240601887</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
