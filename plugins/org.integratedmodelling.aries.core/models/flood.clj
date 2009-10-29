@@ -51,8 +51,8 @@
 			
 (defmodel presence-of-housing 'floodService:PresenceOfHousing
 	(classification (ranking 'floodService:PresenceOfHousing)
-		"RESIDENTIAL" 'floodService:HousingNotPresent
-		:otherwise    'floodService:HousingPresent))
+		"RESIDENTIAL" 'floodService:HousingPresent
+		:otherwise    'floodService:HousingNotPresent))
 
 (defmodel flood-use-farmers 'floodService:FloodFarmersUse
 		""
