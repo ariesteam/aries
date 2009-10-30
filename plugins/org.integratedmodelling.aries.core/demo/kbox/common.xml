@@ -9,6 +9,7 @@
 	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
+	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
 	<!-- Altitude data from WCS service at ICEDS (90m SRTM DEM) -->
@@ -36,7 +37,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<!-- protected status from national WDPA database, used as a 1/0 coverage -->
+	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">
 	
 		<observation:hasObservable>
@@ -60,7 +61,8 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- floodplains in Chehalis watershed, used as a 1/0 coverage -->
+	<!-- floodplains in Chehalis watershed from shape coverage, 
+		seen as a presence/absence ranking -->
 	<measurement:Ranking id="chehalis_floodplain">
 	
 		<observation:hasObservable>
@@ -109,5 +111,29 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
+	
+	<!-- NLCD categories for Puget region -->
+	<measurement:Ranking id="puget_nlcd">
+		<observation:hasObservable>
+			<nlcd:NLCDNumeric />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasCoverageId>ncld:NCLDKing</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 	
 </kbox>
