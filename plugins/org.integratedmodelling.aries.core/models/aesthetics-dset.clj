@@ -1,6 +1,6 @@
 (ns aries.models
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification ranking identification bayesian)))
+  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
 (defmodel valuable-waterbodies 'aestheticService:WaterBody
 
@@ -20,7 +20,7 @@
 	
 ;; test
 (defmodel zio 'floodService:PresenceOfHousing
-	(ranking 'floodService:PresenceOfHousing))
+	(categorization 'floodService:PresenceOfHousing))
 	
 (defmodel valuable-mountain 'aestheticService:Mountain
 

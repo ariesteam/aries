@@ -84,10 +84,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- reclass of landuse from property data, used as a 1/0 coverage -->
-	<measurement:Ranking id="chehalis_housing">
+	<!-- landuse category from property data, used as a 1/0 coverage -->
+	<observation:Categorization id="chehalis_housing">
 	
 		<observation:hasObservable>
+			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
 			<floodService:PresenceOfHousing />
 		</observation:hasObservable>
 
@@ -107,6 +108,6 @@
 				<geospace:hasLonUpperBound>-123.14820240601887</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</observation:Categorization>
 	
 </kbox>
