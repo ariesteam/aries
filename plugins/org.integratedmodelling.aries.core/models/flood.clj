@@ -36,13 +36,15 @@
 		:otherwise    'floodService:HousingNotPresent))
 		
 (defmodel public-asset 'floodService:PublicAsset
-	"Public assets are defined as presence of highways or railways"
-	(ranking 'floodService:PublicAsset)
-		:state  '(if (or (eq highway 1) (eq railway 1)) 1 0)
+	"Public assets are defined as presence of highways, railways or both."
+	(classification 'floodService:PublicAsset)
+		:state   (if (> (+ highway railway) 0) 
+								(tl/conc 'floodService:PublicAssetPresent) 
+								(tl/conc 'floodService:PublicAssetNotPresent))
 		:context (
 			(ranking 'infrastructure:Highway) :as highway
 			(ranking 'infrastructure:Railway) :as railway))
-			
+						
 (defmodel farmland 'floodService:Farmland
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
@@ -66,7 +68,7 @@
 	 	 	:context  (farmland floodplains))
 
 ;; Public assets in floodplains
-(defmodel flood-residents-use 'floodService:FloodPublicAssetsUse
+(defmodel flood-public-use 'floodService:FloodPublicAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPublicAssetsUse)
 	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodPublicAssetsUse.xdsl"
