@@ -17,7 +17,6 @@ public class GSSMModel extends DefaultStatefulAbstractModel {
 
 	String source = null;
 	String algorithm = null;
-	ArrayList<IConcept> keepers = new ArrayList<IConcept>();
 	
 	@Override
 	public void applyClause(String keyword, Object argument)
@@ -69,23 +68,8 @@ public class GSSMModel extends DefaultStatefulAbstractModel {
 
 		ArrayList<Object> arr = new ArrayList<Object>();
 		
-		arr.add("modeltypes:BayesianTransformer");
-		
-		if (!isMediating())
-			arr.add(Polylist.list(CoreScience.HAS_OBSERVABLE, this.observableSpecs));
-				
-		if (source != null)
-			arr.add(Polylist.list(BayesianTransformer.HAS_NETWORK_SOURCE, source));
+		arr.add("aries:SPANModel");
 
-		if (algorithm != null)
-			arr.add(Polylist.list(BayesianTransformer.HAS_BAYESIAN_ALGORITHM, algorithm));
-
-		for (int i = 0; i < keepers.size(); i++) {
-			arr.add(Polylist.list(
-						BayesianTransformer.RETAINS_STATES, 
-						keepers.get(i).toString()));
-		}
-		
 		return Polylist.PolylistFromArrayList(arr);
 	}
 

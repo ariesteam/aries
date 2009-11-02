@@ -24,8 +24,8 @@ import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.Polylist;
 
 /**
- * Support for the modelling/bayesian form.
- * 
+ * Support for running the Clojure SPAN models and making lazy observation proxies to its
+ * results.  
  * @author Ferdinando
  */
 @InstanceImplementation(concept="aries:GSSMTransformer")
