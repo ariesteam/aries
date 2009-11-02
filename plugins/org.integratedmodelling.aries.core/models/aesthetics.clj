@@ -10,17 +10,22 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel viewable-waterbodies 'aestheticService:WaterBody
-		 (classification (ranking 'nlcd:NLCDNumeric)
-	 			23   'aestheticService:Lake
-	 			32   'aestheticService:Ocean
-	 			:otherwise 'aestheticService:NoWater))
+	"Public assets are defined as presence of highways, railways or both."
+	(classification 'aestheticService:WaterBody)
+		:state   (if (> (+ lake ocean) 0) 
+								(tl/conc 'aestheticService:WaterbodyPresent) 
+								(tl/conc 'aestheticService:WaterbodyNotPresent))
+		:context (
+			(ranking 'geofeatures:Lake)  :as lake
+			(ranking 'geofeatures:Ocean) :as ocean))
 
-(defmodel viewable-mountains 'aestheticService:Mountain
+(defmodel valuable-mountain 'aestheticService:Mountain
    "Classifies an elevation model into three levels of provision of beautiful mountains"
-   (classification  (measurement 'geophysics:Altitude "m")
-   		[:< 2000]    'aestheticService:NoMountain
-   		[2000 2750]  'aestheticService:SmallMountain 
-   		[2750 :>]    'aestheticService:LargeMountain))
+   (classification (measurement 'geophysics:Altitude "m")
+   		[2000 2750]  'aestheticService:SmallMountain  ; 
+   		[2750 8850]  'aestheticService:LargeMountain  ; no higher than Mount everest!
+   		:otherwise   'aestheticService:NoMountain     ; will catch artifacts too
+   		))
    		   		    		 
 (defmodel view-source 'aestheticService:SensoryEnjoymentProvision
 	
@@ -51,11 +56,11 @@
 			23         'aestheticService:TransportationInfrastructurePresent
 			:otherwise 'aestheticService:TransportationInfrastructureAbsent))
 
-; classify a highway (vector) file - if ranks 0 or below, no highway, otherwise highway
+; presence/absence of highways
 (defmodel view-highways 'aestheticService:Highways 
-	(classification (ranking 'habitat:Highway) 
-			[:< 0 :inclusive]  'aestheticService:HighwaysAbsent
-			:otherwise         'aestheticService:HighwaysPresent))
+	(classification (ranking 'infrastructure:Highway)
+			0          'aestheticService:HighwaysAbsent
+			:otherwise 'aestheticService:HighwaysPresent))
 
 (defmodel view-sink 'aestheticService:ViewSink
 

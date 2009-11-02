@@ -6,18 +6,18 @@
 ;; source models
 ;; ----------------------------------------------------------------------------------------------
 
-;(defmodel flood-related-land-use 'floodService:LandUseLandCover
-;	"Just a reclass of the NLCD land use layer"
-;	(classification (ranking 'nlcd:NLCDNumeric)
-;		82	               'floodService:Agriculture
-;		{11 90 95}	       'floodService:WetlandsOpenWater
-;		21	               'floodService:DevelopedOpenSpace
-;		[41 43 :inclusive] 'floodService:Forest
-;		{71 81}	           'floodService:GrassPasture
-;		22	               'floodService:DevelopedLowIntensity
-;		23	               'floodService:DevelopedMediumIntensity
-;		24	               'floodService:DevelopedHighIntensity
-;		:otherwise         'floodService:IrrelevantLandUse))
+(defmodel flood-related-land-use 'floodService:LandUseLandCover
+	"Just a reclass of the NLCD land use layer"
+	(classification (ranking 'nlcd:NLCDNumeric)
+		82	               'floodService:Agriculture
+		#{11 90 95 12}	   'floodService:WetlandsOpenWater
+		21	               'floodService:DevelopedOpenSpace
+		#{41 42 43}        'floodService:Forest
+		#{71 81 52}	       'floodService:GrassPasture
+		#{22	31}          'floodService:DevelopedLowIntensity
+		23	               'floodService:DevelopedMediumIntensity
+		24	               'floodService:DevelopedHighIntensity
+		:otherwise         'floodService:NonFloodControllingHabitat))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

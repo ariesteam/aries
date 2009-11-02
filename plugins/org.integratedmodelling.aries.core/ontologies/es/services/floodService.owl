@@ -7,8 +7,8 @@
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY floodService "http://www.integratedmodelling.org/ks/es/floodService.owl#" >
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
@@ -18,17 +18,17 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/floodService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/floodService.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:floodService="http://www.integratedmodelling.org/ks/es/floodService.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
     <owl:Ontology rdf:about="">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
@@ -347,12 +347,10 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#A -->
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#Agriculture -->
 
-    <owl:Class rdf:about="#A">
-        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Greatest infiltration capacity; generally sand, loamy sand, or sandy loam, with &quot;low runoff potential and high infiltration rates even when thoroughly wetted.  They consist chiefly of deep, well to excessively drained sand or gravel and have a high rate of water transmission (greater than 0.30 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    <owl:Class rdf:about="#Agriculture">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
     </owl:Class>
     
 
@@ -381,8 +379,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="#FloodResidentsUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -393,24 +391,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="#FloodResidentsUse"/>
+                <owl:onProperty rdf:resource="#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a Flood Controlling Ecosystem.</rdfs:comment>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a FloodControllingEcosystem.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#B -->
-
-    <owl:Class rdf:about="#B">
-        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Generally silt loam or loam, with &quot;moderate infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr ).&quot; (USDA-NRCS)</rdfs:comment>
     </owl:Class>
     
 
@@ -441,16 +429,6 @@
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Bridges constrict a stream and can enable formation of debris dams under certain flow conditions.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#C -->
-
-    <owl:Class rdf:about="#C">
-        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Generally sandy clay loams, with &quot;low infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
     </owl:Class>
     
 
@@ -614,16 +592,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#D -->
-
-    <owl:Class rdf:about="#D">
-        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Least infiltration capacity, including clay loams, silty clay loams, sandy clay, silty clay, or clay, with &quot;high runoff potential.  They have very low infiltration rates when thoroughly wetted and consist chiefly of clay soils with a high swelling potential, soils with a permanent high water table, soils with a claypan or clay layer at or near the surface, and shallow soils over nearly impervious material.  These soils have a very low rate of water transmission (0-0.05 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#DamStorage -->
 
     <owl:Class rdf:about="#DamStorage">
@@ -660,6 +628,38 @@
         <rdfs:subClassOf rdf:resource="#FloodStorage"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Storage of flood waters in detention basins.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#DevelopedHighIntensity -->
+
+    <owl:Class rdf:about="#DevelopedHighIntensity">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#DevelopedLowIntensity -->
+
+    <owl:Class rdf:about="#DevelopedLowIntensity">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#DevelopedMediumIntensity -->
+
+    <owl:Class rdf:about="#DevelopedMediumIntensity">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#DevelopedOpenSpace -->
+
+    <owl:Class rdf:about="#DevelopedOpenSpace">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
     </owl:Class>
     
 
@@ -780,26 +780,26 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#is-provided-through"/>
-                <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#is-provided-through"/>
-                <owl:someValuesFrom rdf:resource="#WindWaveEnergyReduction"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#FloodplainConveyance"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="#is-provided-through"/>
+                <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="#matters-in-event-of"/>
                 <owl:someValuesFrom rdf:resource="#CoastFlood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is-provided-through"/>
+                <owl:someValuesFrom rdf:resource="#VegetationInfiltrationAndInterception"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -811,7 +811,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#is-provided-through"/>
-                <owl:someValuesFrom rdf:resource="#VegetationInfiltrationAndInterception"/>
+                <owl:someValuesFrom rdf:resource="#WindWaveEnergyReduction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -840,6 +840,7 @@
                 <owl:allValuesFrom rdf:resource="#FloodControlCapacity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="#SimplifiedFloodControllingHabitat"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >An ecosystem possessing the emergent property to control flooding.  Alternatively, human-generated land cover change can intensify the effects of flooding.  Can be considered a cover type providing an &#39;anti-ecosystem service&#39; for flood control</rdfs:comment>
     </owl:Class>
@@ -890,13 +891,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#RiverFlood"/>
+                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
+                <owl:someValuesFrom rdf:resource="#RiverFlood"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1081,12 +1082,28 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#Forest -->
+
+    <owl:Class rdf:about="#Forest">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#FrozenSoil -->
 
     <owl:Class rdf:about="#FrozenSoil">
         <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Infiltration will not occur on frozen soils.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#GrassPasture -->
+
+    <owl:Class rdf:about="#GrassPasture">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
     </owl:Class>
     
 
@@ -1552,6 +1569,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#NonFloodControllingHabitat -->
+
+    <owl:Class rdf:about="#NonFloodControllingHabitat">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#NotInFloodplain -->
 
     <owl:Class rdf:about="#NotInFloodplain">
@@ -1862,6 +1887,16 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SimplifiedFloodControllingHabitat -->
+
+    <owl:Class rdf:about="#SimplifiedFloodControllingHabitat">
+        <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
+        <rdfs:comment
+            >A simpler classification to map directly to NLCD for the initial models</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SnowPresence -->
 
     <owl:Class rdf:about="#SnowPresence">
@@ -1893,6 +1928,46 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SoilGroupA -->
+
+    <owl:Class rdf:about="#SoilGroupA">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Greatest infiltration capacity; generally sand, loamy sand, or sandy loam, with &quot;low runoff potential and high infiltration rates even when thoroughly wetted.  They consist chiefly of deep, well to excessively drained sand or gravel and have a high rate of water transmission (greater than 0.30 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SoilGroupB -->
+
+    <owl:Class rdf:about="#SoilGroupB">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Generally silt loam or loam, with &quot;moderate infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr ).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SoilGroupC -->
+
+    <owl:Class rdf:about="#SoilGroupC">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Generally sandy clay loams, with &quot;low infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SoilGroupD -->
+
+    <owl:Class rdf:about="#SoilGroupD">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Least infiltration capacity, including clay loams, silty clay loams, sandy clay, silty clay, or clay, with &quot;high runoff potential.  They have very low infiltration rates when thoroughly wetted and consist chiefly of clay soils with a high swelling potential, soils with a permanent high water table, soils with a claypan or clay layer at or near the surface, and shallow soils over nearly impervious material.  These soils have a very low rate of water transmission (0-0.05 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#SoilInfiltration -->
 
     <owl:Class rdf:about="#SoilInfiltration">
@@ -1900,13 +1975,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilSaturation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
+                <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1918,7 +1987,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
+                <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilSaturation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2121,13 +2196,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="#VegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#VegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2216,6 +2291,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#WetlandsOpenWater -->
+
+    <owl:Class rdf:about="#WetlandsOpenWater">
+        <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#WindWaveEnergyReduction -->
 
     <owl:Class rdf:about="#WindWaveEnergyReduction">
@@ -2229,13 +2312,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#CoastalEcosystemWidth"/>
+                <owl:someValuesFrom rdf:resource="#VegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#VegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#CoastalEcosystemWidth"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2277,16 +2360,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighFloodSource"/>
-            <rdf:Description rdf:about="#LowFloodSource"/>
-            <rdf:Description rdf:about="#ModerateFloodSource"/>
-            <rdf:Description rdf:about="#VeryHighFloodSource"/>
-            <rdf:Description rdf:about="#VeryLowFloodSource"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighTemperature"/>
             <rdf:Description rdf:about="#LowTemperature"/>
             <rdf:Description rdf:about="#ModerateTemperature"/>
@@ -2301,9 +2374,19 @@
             <rdf:Description rdf:about="#NoSnowmelt"/>
         </owl:members>
     </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighFloodSource"/>
+            <rdf:Description rdf:about="#LowFloodSource"/>
+            <rdf:Description rdf:about="#ModerateFloodSource"/>
+            <rdf:Description rdf:about="#VeryHighFloodSource"/>
+            <rdf:Description rdf:about="#VeryLowFloodSource"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 
