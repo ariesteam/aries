@@ -23,6 +23,7 @@ public class SelectRegionOfInterest implements ITask {
 	static public final String KING_COUNTY_PORTION = "EPSG:4326 POLYGON((-123.842070 47.723772,-121.619678 47.723772,-121.619678 47.028239,-121.619678 47.723772,-123.842070 47.723772))";
 	static public final String KING_COUNTY_SMALL = "EPSG:4326 POLYGON((-122.2 47.6,-122.1 47.6,-122.1 47.5,-122.1 47.5,-122.2 47.6))";
 	static public final String WA = "EPSG:4326 POLYGON((-125 50.4, -125 46.6, -117.5 46.6, -117.5 50.4, -125 50.4))";
+	static public final String CHEHALIS = "EPSG:4326 POLYGON((-123.48 47.07, -123.48 46.93, -123.25 46.93, -123.25 47.07, -123.48 47.07))";
     
 	ShapeValue chosen = null;
 	
@@ -35,7 +36,7 @@ public class SelectRegionOfInterest implements ITask {
 
 		// TODO could randomize a region for testing.
 		chosen = 
-			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), WA);
+			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), CHEHALIS);
 
 		System.out.println("chosen region has area = " + chosen.getArea() + " m2");
 	}
