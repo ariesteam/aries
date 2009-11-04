@@ -2,25 +2,25 @@
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Floodplains">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="InFloodplain" />
+			<state id="NotInFloodplain" />
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
-		<cpt id="PublicAssetLocations">
-			<state id="Yes" />
-			<state id="No" />
+		<cpt id="PublicAsset">
+			<state id="PublicAssetPresent" />
+			<state id="PublicAssetNotPresent" />
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="PublicAssetOwnersAndUsersInFloodHazardZones">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="None" />
-			<parents>Floodplains PublicAssetLocations</parents>
+			<state id="PublicOwnersInHighHazard" />
+			<state id="PublicOwnerInModerateHazard" />
+			<state id="PublicOwnersInLowHazard" />
+			<parents>Floodplains PublicAsset</parents>
 			<probabilities>0.3 0.6 0.1 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
 			<node id="PublicAssetOwnersAndUsersInFloodHazardZones">
 				<name>PublicAssetOwnersAndUsersInFloodHazardZones</name>
 				<interior color="e5f6f7" />
@@ -38,8 +38,8 @@
 				<position>354 264 422 306</position>
 				<barchart active="true" />
 			</node>
-			<node id="PublicAssetLocations">
-				<name>PublicAssetLocations</name>
+			<node id="PublicAsset">
+				<name>PublicAsset</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
