@@ -56,7 +56,7 @@ public class Aries implements ICommandHandler {
 			session.createObject(RasterGrid.createRasterGrid(rtask.getRegionOfInterest(), 128));
 		
 		if (cmd.equals("model")) {
-			
+		
 			String c = getParameter(command, 1, "concept");
 			Model model = ModelManager.get().requireModel(c);
 			IQueryResult r = model.observe(kbox, session, where);

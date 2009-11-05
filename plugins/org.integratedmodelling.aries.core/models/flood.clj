@@ -46,6 +46,7 @@
 			(ranking 'infrastructure:Railway) :as railway))
 						
 (defmodel farmland 'floodService:Farmland
+
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
