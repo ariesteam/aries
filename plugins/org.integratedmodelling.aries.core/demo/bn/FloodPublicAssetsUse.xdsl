@@ -13,7 +13,7 @@
 		</cpt>
 		<cpt id="PublicAssetOwnersAndUsersInFloodHazardZones">
 			<state id="PublicOwnersInHighHazard" />
-			<state id="PublicOwnerInModerateHazard" />
+			<state id="PublicOwnersInModerateHazard" />
 			<state id="PublicOwnersInLowHazard" />
 			<parents>Floodplains PublicAsset</parents>
 			<probabilities>0.3 0.6 0.1 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
@@ -26,25 +26,25 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>435 153 639 197</position>
+				<position>552 153 756 197</position>
 				<comment>Some (very small) probability of damage to assets outside the flood zone to account for very large flooding that exceeds the 100-year flood (or inadequately mapped flood zones).\n</comment>
-				<barchart active="true" />
+				<barchart active="true" width="362" height="72" />
 			</node>
 			<node id="Floodplains">
 				<name>Floodplains</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>354 264 422 306</position>
-				<barchart active="true" />
+				<position>374 264 442 306</position>
+				<barchart active="true" width="169" height="64" />
 			</node>
 			<node id="PublicAsset">
 				<name>PublicAsset</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>560 267 688 304</position>
-				<barchart active="true" width="128" height="64" />
+				<position>618 267 746 304</position>
+				<barchart active="true" width="245" height="64" />
 			</node>
 			<textbox>
 				<caption>e.g., transportation corridors: I-5 &amp; rail corridors.\n\nBeneficiaries here are residents and businesses all up and down the west coast.  Look at road capacities and what backup happens for a given loss of a transportation network (e.g., bridge collapse, road flood).</caption>
