@@ -1,9 +1,7 @@
-(ns aries.models
+(ns aries/models/carbon
 	(:refer-clojure)
-  (:use 
-  	[modelling :only (defmodel measurement classification ranking
-  			 							noisymax gssm flow bayesian)]
-  	[aries     :only  (gssm)]))
+  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
+
 
 ;; ----------------------------------------------------------------------------------------------
 ;; source model

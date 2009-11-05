@@ -1,4 +1,4 @@
-(ns aries.models
+(ns aries/flood
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
@@ -6,7 +6,7 @@
 ;; source models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel flood-related-land-use 'floodService:LandUseLandCover
+(defmodel land-use 'floodService:LandUseLandCover
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	               'floodService:Agriculture
@@ -20,6 +20,44 @@
 		:otherwise         'floodService:NonFloodControllingHabitat))
 
 ;; ----------------------------------------------------------------------------------------------
+;; sink model
+;; ----------------------------------------------------------------------------------------------
+
+(defmodel slope 'floodService:Slope
+		(classification (ranking 'geophysics:DegreeSlope "°")
+			 [:< 1.15] 	  'floodService:Level
+			 [1.15 4.57] 	'floodService:GentlyUndulating
+			 [4.57 16.70] 'floodService:RollingHilly
+			 [16.70 :>] 	'floodService:SteeplyDissectedMountainous))
+			 
+(defmodel levees 'floodService:Levees
+	"Presence of a floodplain in given context"
+	(classification (ranking 'infrastructure:Levee)
+			0 'floodService:LeveesNotPresent
+			1 'floodService:LeveesPresent))
+
+(defmodel bridges 'floodService:Bridges
+	"Presence of a floodplain in given context"
+	(classification (ranking 'infrastructure:Bridge)
+			0 'floodService:BridgesNotPresent
+			1 'floodService:BridgesPresent))
+
+(defmodel soil-group 'floodService:HydrologicSoilsGroup
+	"Presence of a floodplain in given context"
+	(classification (categorization 'floodService:HydrologicSoilsGroup)
+			"A" 'floodService:SoilGroupA
+			"B" 'floodService:SoilGroupB
+			"C" 'floodService:SoilGroupC
+			"D" 'floodService:SoilGroupD))
+
+(defmodel vegetation-type 'floodService:VegetationType
+	"Just a reclass of the NLCD land use layer"
+	(classification (ranking 'nlcd:NLCDNumeric)
+		#{90 95}	         'floodService:WetlandVegetation
+		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
+		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
+
+;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
@@ -29,7 +67,13 @@
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
 			
-(defmodel presence-of-housing 'floodService:PresenceOfHousing
+(defmodel structures 'floodService:Structures
+	"Assume that any privately owned land in floodplain has vulnerable structures. TODO make more specific when we know more"
+	(classification (ranking 'lulc:PrivatelyOwnedLand)
+			0 'floodService:StructuresNotPresent
+			1 'floodService:StructuresPresent))
+			
+(defmodel housing 'floodService:PresenceOfHousing
 	"Classifies land use from property data. TODO must reconceptualize the attribute"
 	(classification (categorization 'floodService:PresenceOfHousing)
 		"RESIDENTIAL" 'floodService:HousingPresent
@@ -46,22 +90,21 @@
 			(ranking 'infrastructure:Railway) :as railway))
 						
 (defmodel farmland 'floodService:Farmland
-
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
 		:otherwise 'floodService:FarmlandNotPresent))
 
 ;; Resident users in floodplains
-(defmodel flood-residents-use 'floodService:FloodResidentsUse
+(defmodel residents-use 'floodService:FloodResidentsUse
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodResidentsUse)
 	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodResidentsUse.xdsl"
 	  	:keep     ('floodService:ResidentsInFloodHazardZones)
-	 	 	:context  (presence-of-housing floodplains))
+	 	 	:context  (housing floodplains))
 
 ;; Farmer users in floodplains
-(defmodel flood-farmers-use 'floodService:FloodFarmersUse
+(defmodel farmers-use 'floodService:FloodFarmersUse
 		"Interface to Flood farmers use bayesian network"
 	  (bayesian 'floodService:FloodFarmersUse)
 	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodFarmersUse.xdsl"
@@ -69,10 +112,18 @@
 	 	 	:context  (farmland floodplains))
 
 ;; Public assets in floodplains
-(defmodel flood-public-use 'floodService:FloodPublicAssetsUse
+(defmodel public-use 'floodService:FloodPublicAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPublicAssetsUse)
 	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (public-asset floodplains))
+	 	 	
+;; Private assets in floodplains
+(defmodel private-use 'floodService:FloodPrivateAssetsUse
+  	"Interface to Flood public asset use bayesian network"
+	  (bayesian 'floodService:FloodPrivateAssetsUse)
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodPublicAssetsUse.xdsl"
+	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
+	 	 	:context  (structures floodplains))
 	 	 	

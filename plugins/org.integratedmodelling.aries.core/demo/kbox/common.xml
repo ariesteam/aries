@@ -187,4 +187,29 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+	<!-- Slope in degrees for Puget Sound -->
+	<measurement:Ranking id="PugetSlope">
+		<observation:hasObservable>
+			<geophysics:DegreeSlope />
+		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:Slope_Combined</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>12620</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11257</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5094045.61</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>345136.427</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5431785.61</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>723766.427</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 </kbox>

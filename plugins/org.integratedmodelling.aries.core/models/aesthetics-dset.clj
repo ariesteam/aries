@@ -1,4 +1,4 @@
-(ns aries.models
+(ns aries/models/aesthetics
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
