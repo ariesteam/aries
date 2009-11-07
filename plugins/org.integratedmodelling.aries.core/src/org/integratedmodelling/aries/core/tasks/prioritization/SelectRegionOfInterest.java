@@ -37,8 +37,6 @@ public class SelectRegionOfInterest implements ITask {
 		// TODO could randomize a region for testing.
 		chosen = 
 			(ShapeValue) KnowledgeManager.get().validateLiteral(Geospace.get().Polygon(), CHEHALIS);
-
-		System.out.println("chosen region has area = " + chosen.getArea() + " m2");
 	}
 
 }

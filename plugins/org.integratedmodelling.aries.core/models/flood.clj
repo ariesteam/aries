@@ -55,7 +55,8 @@
 	(classification (ranking 'nlcd:NLCDNumeric)
 		#{90 95}	         'floodService:WetlandVegetation
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
-		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
+		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation
+		:otherwise         'floodService:NonFloodControllingVegetation))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
