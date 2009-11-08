@@ -27,36 +27,46 @@
 		(classification (ranking 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	  'floodService:Level
 			 [1.15 4.57] 	'floodService:GentlyUndulating
-			 [4.57 16.70] 'floodService:RollingHilly
-			 [16.70 :>] 	'floodService:SteeplyDissectedMountainous))
+			 [4.57 16.70] 'floodService:RollingToHilly
+			 [16.70 :>] 	'floodService:SteeplyDissectedToMountainous))
 			 
 (defmodel levees 'floodService:Levees
-	"Presence of a floodplain in given context"
+	"Presence of a levee in given context"
 	(classification (ranking 'infrastructure:Levee)
 			0 'floodService:LeveesNotPresent
 			1 'floodService:LeveesPresent))
 
 (defmodel bridges 'floodService:Bridges
-	"Presence of a floodplain in given context"
+	"Presence of a bridge in given context"
 	(classification (ranking 'infrastructure:Bridge)
 			0 'floodService:BridgesNotPresent
 			1 'floodService:BridgesPresent))
 
 (defmodel soil-group 'floodService:HydrologicSoilsGroup
-	"Presence of a floodplain in given context"
+	"Relevant soil group"
 	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			"A" 'floodService:SoilGroupA
-			"B" 'floodService:SoilGroupB
-			"C" 'floodService:SoilGroupC
-			"D" 'floodService:SoilGroupD))
+			"A"        'floodService:SoilGroupA
+			"B"        'floodService:SoilGroupB
+			"C"        'floodService:SoilGroupC
+			"D"        'floodService:SoilGroupD))
 
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		#{90 95}	         'floodService:WetlandVegetation
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
-		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation
-		:otherwise         'floodService:NonFloodControllingVegetation))
+		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
+
+;; Flood sink probability
+(defmodel sink 'floodService:FloodSink
+		"Interface to Flood resident use bayesian network"
+	  (bayesian 'floodService:FloodSink)
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodSink.xdsl"
+	  	:keep     (
+	  			'floodService:FloodSink 
+	  			'floodService:GreenInfrastructureStorage
+	  			'floodService:GrayInfrastructureStorage)
+	 	 	:context  (soil-group vegetation-type slope))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

@@ -113,6 +113,32 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 	
+		<!-- landuse category from property data, used as a 1/0 coverage -->
+	<observation:Categorization id="chehalis_soilgroup">
+	
+		<observation:hasObservable>
+			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
+			<floodService:HydrologicSoilsGroup />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugethydrologicsoilsgroup</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>hydgrpdcd</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>5077470.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.96875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806557.9375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
 	<!-- NLCD categories for Puget region -->
 	<measurement:Ranking id="puget_nlcd">
 		<observation:hasObservable>
@@ -138,8 +164,8 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-		<!-- highways in Chehalis watershed from shape coverage, 
-		seen as a presence/absence ranking -->
+	<!-- highways in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
 	<measurement:Ranking id="puget_highways">
 	
 		<observation:hasObservable>
@@ -162,7 +188,6 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
 		
 	<!-- railways in Chehalis watershed from shape coverage, seen as a presence/absence ranking -->
 	<measurement:Ranking id="puget_railways">
@@ -212,4 +237,56 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+	
+	<!-- bridges in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_bridges">
+	
+		<observation:hasObservable>
+			<infrastructure:Bridge />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetbridges</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>88246.4453125</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>648284.375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1344600.875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2513722.0</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
+	<!-- levees in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_levees">
+	
+		<observation:hasObservable>
+			<infrastructure:Levee />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>397939.875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>925800.75</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>894250.8125</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1430108.875</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
 </kbox>

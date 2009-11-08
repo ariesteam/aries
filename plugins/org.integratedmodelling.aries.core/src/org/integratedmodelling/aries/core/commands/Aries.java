@@ -58,6 +58,11 @@ public class Aries implements ICommandHandler {
 		if (cmd.equals("model")) {
 		
 			String c = getParameter(command, 1, "concept");
+
+			// make it a bit easier, and force models to be in the aries namespace
+			if (!c.contains(":") && !c.startsWith("aries/"))
+				c = "aries/" + c;
+			
 			Model model = ModelManager.get().requireModel(c);
 			IQueryResult r = model.observe(kbox, session, where);
 					
