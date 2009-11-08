@@ -16,8 +16,17 @@
 		#{71 81 52}	       'floodService:GrassPasture
 		#{22	31}          'floodService:DevelopedLowIntensity
 		23	               'floodService:DevelopedMediumIntensity
-		24	               'floodService:DevelopedHighIntensity
-		:otherwise         'floodService:NonFloodControllingHabitat))
+		24	               'floodService:DevelopedHighIntensity))
+
+;(defmodel land-use 'floodService:Precipitation
+;	"Reclass rainfall for now. Should be all precipitation. NOTE: this is annual by default? 
+;	 Simply precipitation should be abstract or we should use temporal extents too"
+;	(classification (measurement 'habitat:Rainfall "mm")
+;		[:< 3] 	  'floodService:VeryLowPrecipitation
+;		[3 6] 	  'floodService:LowPrecipitation
+;		[6 12] 	  'floodService:ModeratePrecipitation
+;		[12 24] 	'floodService:HighPrecipitation
+;		[24 :>] 	'floodService:VeryHighPrecipitation))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
