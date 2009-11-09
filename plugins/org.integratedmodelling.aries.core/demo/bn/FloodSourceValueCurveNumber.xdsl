@@ -2,11 +2,11 @@
 <smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Precipitation">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighPrecipitation" />
+			<state id="HighPrecipitation" />
+			<state id="ModeratePrecipitation" />
+			<state id="LowPrecipitation" />
+			<state id="VeryLowPrecipitation" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
 		<cpt id="LandUseLandCover">
@@ -18,8 +18,7 @@
 			<state id="DevelopedLowIntensity" />
 			<state id="DevelopedMediumIntensity" />
 			<state id="DevelopedHighIntensity" />
-			<state id="NonFloodControllingHabitat" />
-			<probabilities>0.15 0.15 0.025 0.3 0.15 0.1 0.075 0.05 0</probabilities>
+			<probabilities>0.15 0.15 0.025 0.3 0.15 0.1 0.075 0.05</probabilities>
 		</cpt>
 		<cpt id="HydrologicSoilsGroup">
 			<state id="SoilGroupA" />
@@ -32,7 +31,7 @@
 			<state id="State0" />
 			<state id="State1" />
 			<parents>LandUseLandCover HydrologicSoilsGroup</parents>
-			<resultingstates>State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1</resultingstates>
+			<resultingstates>State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1 State1</resultingstates>
 		</deterministic>
 		<deterministic id="MaximumRetention">
 			<state id="State0" />
@@ -41,17 +40,17 @@
 			<resultingstates>State1 State1</resultingstates>
 		</deterministic>
 		<deterministic id="Runoff">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighRunoff" />
+			<state id="HighRunoff" />
+			<state id="ModerateRunoff" />
+			<state id="LowRunoff" />
+			<state id="VeryLowRunoff" />
 			<parents>Precipitation MaximumRetention</parents>
-			<resultingstates>High High High High VeryLow VeryLow VeryLow VeryLow VeryLow VeryLow</resultingstates>
+			<resultingstates>HighRunoff HighRunoff HighRunoff HighRunoff VeryLowRunoff VeryLowRunoff VeryLowRunoff VeryLowRunoff VeryLowRunoff VeryLowRunoff</resultingstates>
 		</deterministic>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network4" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network4" faultnameformat="nodestate">
 			<textbox>
 				<caption>See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm</caption>
 				<font color="000000" name="Arial" size="8" />
@@ -96,7 +95,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>347 355 500 394</position>
+				<position>346 366 499 405</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="MaximumRetention">

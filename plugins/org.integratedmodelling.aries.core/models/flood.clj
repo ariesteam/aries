@@ -3,6 +3,27 @@
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
 ;; ----------------------------------------------------------------------------------------------
+;; common models
+;; ----------------------------------------------------------------------------------------------
+
+(defmodel soil-group 'floodService:HydrologicSoilsGroup
+	"Relevant soil group"
+	(classification (categorization 'floodService:HydrologicSoilsGroup)
+			"A"        'floodService:SoilGroupA
+			"B"        'floodService:SoilGroupB
+			"C"        'floodService:SoilGroupC
+			"D"        'floodService:SoilGroupD))
+
+(defmodel precipitation 'floodService:Precipitation
+	"FIXME this is total monthly precipitation I believe."
+	(classification (measurement 'habitat:Precipitation "in")
+		[:< 3] 	  'floodService:VeryLowPrecipitation
+		[3 6] 	  'floodService:LowPrecipitation
+		[6 12] 	  'floodService:ModeratePrecipitation
+		[12 24] 	'floodService:HighPrecipitation
+		[24 :>] 	'floodService:VeryHighPrecipitation))
+		
+;; ----------------------------------------------------------------------------------------------
 ;; source models
 ;; ----------------------------------------------------------------------------------------------
 
@@ -18,15 +39,14 @@
 		23	               'floodService:DevelopedMediumIntensity
 		24	               'floodService:DevelopedHighIntensity))
 
-;(defmodel land-use 'floodService:Precipitation
-;	"Reclass rainfall for now. Should be all precipitation. NOTE: this is annual by default? 
-;	 Simply precipitation should be abstract or we should use temporal extents too"
-;	(classification (measurement 'habitat:Rainfall "mm")
-;		[:< 3] 	  'floodService:VeryLowPrecipitation
-;		[3 6] 	  'floodService:LowPrecipitation
-;		[6 12] 	  'floodService:ModeratePrecipitation
-;		[12 24] 	'floodService:HighPrecipitation
-;		[24 :>] 	'floodService:VeryHighPrecipitation))
+;; Flood source probability (runoff levels), SCS curve number method
+;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
+(defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
+		"Interface to Flood resident use bayesian network"
+	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodSourceValueCurveNumber.xdsl"
+	  	:keep     ('floodService:Runoff)
+	 	 	:context  (land-use soil-group precipitation))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -50,14 +70,6 @@
 	(classification (ranking 'infrastructure:Bridge)
 			0 'floodService:BridgesNotPresent
 			1 'floodService:BridgesPresent))
-
-(defmodel soil-group 'floodService:HydrologicSoilsGroup
-	"Relevant soil group"
-	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			"A"        'floodService:SoilGroupA
-			"B"        'floodService:SoilGroupB
-			"C"        'floodService:SoilGroupC
-			"D"        'floodService:SoilGroupD))
 
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"

@@ -10,6 +10,7 @@
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
+	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
@@ -288,5 +289,36 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+		
+	<!-- January total precipitation in WA. TODO: I think it's monthly totals in Jan - this
+	     should obviously be specified using time extents both in querying and storing.  -->
+	<measurement:Measurement id="puget_precipitation_january">
+	
+		<observation:hasObservable>
+			<habitat:Precipitation />
+		</observation:hasObservable>
+		
+		<measurement:unit>in</measurement:unit>
+		
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.5477447509766</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.762580871582</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+			<!-- TODO add time span -->
+		</observation:hasObservationExtent>
+	</measurement:Measurement>	
 		
 </kbox>
