@@ -79,6 +79,10 @@
 		<parameter id="url" value="es/services/aestheticService.owl"/>
 		<parameter id="concept-space" value="aestheticService"/>
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="puget">
+		<parameter id="url" value="es/services/local/puget.owl"/>
+		<parameter id="concept-space" value="puget"/>
+	</extension>
 	
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">

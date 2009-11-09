@@ -38,18 +38,40 @@
 		#{22	31}          'floodService:DevelopedLowIntensity
 		23	               'floodService:DevelopedMediumIntensity
 		24	               'floodService:DevelopedHighIntensity))
+		
+;; surface temperature - again, should be monthly and matched by temporal extents.
+(defmodel monthly-temperature 'floodService:MonthlyTemperature
+		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
+			 [4 :>] 	'floodService:HighTemperature
+			 [-1 4] 	'floodService:ModerateTemperature
+			 [:< -4] 	'floodService:LowTemperature))
+			 
+;; snow presence - only the puget-specific statement for now
+(defmodel snow-presence 'floodService:SnowPresence
+		(classification (categorization 'puget:SnowPrecipitationCategory)
+			#{"LL" "HL"} 'floodService:LowlandAndHighland
+			#{"RD" "SD"} 'floodService:RainDominatedAndSnowDominated
+			"RS"         'floodService:PeakRainOnSnow))
 
 ;; Flood source probability (runoff levels), SCS curve number method
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
 (defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
-		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodSourceValueCurveNumber.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSourceValueCurveNumber.xdsl"
 	  	:keep     ('floodService:Runoff)
 	 	 	:context  (land-use soil-group precipitation))
 
+;; Flood source probability, ad hoc method
+(defmodel source 'floodService:FloodSource
+	  (bayesian 'floodService:FloodSource)
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSourceValueAdHoc.xdsl"
+	  	:keep     ('floodService:FloodSourceValue)
+	 	 	:context  (precipitation monthly-temperature snow-presence))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
+;; TODO still missing mean days of precipitation (data are weird), dam storage (point layer) and
+;; DetentionBasinStorage (point layer) as evidence the sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
@@ -78,16 +100,36 @@
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
 		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
 
+(defmodel successional-stage 'floodService:SuccessionalStage
+	 (classification (ranking 'ecology:SuccessionalStage)
+	 		#{5 6}      'floodService:OldGrowth
+	 		4           'floodService:LateSuccession
+	 		3           'floodService:MidSuccession
+	 		2           'floodService:EarlySuccession
+	 		1           'floodService:PoleSuccession
+	 		:otherwise  'floodService:NoSuccession))
+	 		
+(defmodel imperviousness 'floodService:ImperviousSurfaceCover
+	 (classification (ranking 'habitat:PercentImperviousness)
+	 	   [80 100 :inclusive]   'floodService:VeryHighlyImpervious
+	 	   [50 79]   'floodService:HighlyImpervious
+	 	   [20 49]   'floodService:ModeratelyHighlyImpervious
+	 	   [10 19]   'floodService:ModeratelyLowImpervious
+	 	   [5 9]     'floodService:LowImpervious
+	 	   [0 5]    'floodService:VeryLowImpervious))
+	 	   
 ;; Flood sink probability
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodSink)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodSink.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSink.xdsl"
 	  	:keep     (
 	  			'floodService:FloodSink 
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
-	 	 	:context  (soil-group vegetation-type slope))
+	 	 	:context  (
+	 	 			soil-group vegetation-type slope monthly-temperature 
+	 	 			successional-stage imperviousness))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -106,11 +148,14 @@
 			1 'floodService:StructuresPresent))
 			
 (defmodel housing 'floodService:PresenceOfHousing
-	"Classifies land use from property data. TODO must reconceptualize the attribute"
-	(classification (categorization 'floodService:PresenceOfHousing)
+	"Classifies land use from property data."
+	; specific to Puget region, will not be used if data unavailable
+	(classification (categorization 'puget:ParcelUseCategory)
 		"RESIDENTIAL" 'floodService:HousingPresent
-		:otherwise    'floodService:HousingNotPresent))
-		
+		:otherwise    'floodService:HousingNotPresent)
+	;; TODO add generalized fall-back definitions using NCLD and/or other global lu/lc data
+	)
+	
 (defmodel public-asset 'floodService:PublicAsset
 	"Public assets are defined as presence of highways, railways or both."
 	(classification 'floodService:PublicAsset)
@@ -120,7 +165,8 @@
 		:context (
 			(ranking 'infrastructure:Highway) :as highway
 			(ranking 'infrastructure:Railway) :as railway))
-						
+
+;; 
 (defmodel farmland 'floodService:Farmland
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
@@ -131,7 +177,7 @@
 (defmodel residents-use 'floodService:FloodResidentsUse
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodResidentsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodResidentsUse.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodResidentsUse.xdsl"
 	  	:keep     ('floodService:ResidentsInFloodHazardZones)
 	 	 	:context  (housing floodplains))
 
@@ -139,7 +185,7 @@
 (defmodel farmers-use 'floodService:FloodFarmersUse
 		"Interface to Flood farmers use bayesian network"
 	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodFarmersUse.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodFarmersUse.xdsl"
 	  	:keep     ('floodService:FarmersInFloodHazardZones)
 	 	 	:context  (farmland floodplains))
 
@@ -147,7 +193,7 @@
 (defmodel public-use 'floodService:FloodPublicAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPublicAssetsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodPublicAssetsUse.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (public-asset floodplains))
 	 	 	
@@ -155,7 +201,7 @@
 (defmodel private-use 'floodService:FloodPrivateAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPrivateAssetsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/demo/bn/FloodPublicAssetsUse.xdsl"
+	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (structures floodplains))
 	 	 	

@@ -6,9 +6,12 @@
 	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
 	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
-	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
+	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
+	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
+	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
+	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
 	<!-- Altitude data from WCS service at ICEDS (90m SRTM DEM) -->
@@ -36,8 +39,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<!-- protected status from national WDPA database, used as a 1/0 coverage 
-		 for presence/absence of a national protected area -->
+	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">
 	
 		<observation:hasObservable>
@@ -61,4 +63,261 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- floodplains in Chehalis watershed from shape coverage, 
+		seen as a presence/absence ranking -->
+	<measurement:Ranking id="chehalis_floodplain">
+	
+		<observation:hasObservable>
+			<floodService:Floodplains />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.85062453730272</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.75110953315713</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>48.99989805456198</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- landuse category from property data, used as a 1/0 coverage -->
+	<observation:Categorization id="chehalis_housing">
+	
+		<observation:hasObservable>
+			<puget:ParcelUseCategory />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetparcelsgraysharbor</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>landuse2</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32049</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>543740.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>1048695.875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>825691.1875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1337075.875</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
+		<!-- landuse category from property data, used as a 1/0 coverage -->
+	<observation:Categorization id="chehalis_soilgroup">
+	
+		<observation:hasObservable>
+			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
+			<floodService:HydrologicSoilsGroup />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugethydrologicsoilsgroup</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>hydgrpdcd</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>5077470.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.96875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806557.9375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
+	<!-- NLCD categories for Puget region -->
+	<measurement:Ranking id="puget_nlcd">
+		<observation:hasObservable>
+			<nlcd:NLCDNumeric />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:NCLDKing</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- highways in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_highways">
+	
+		<observation:hasObservable>
+			<infrastructure:Highway />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugethighways</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>87414.6015625</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>637163.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1353168.875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2514549.75</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
+	<!-- railways in Chehalis watershed from shape coverage, seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_railways">
+	
+		<observation:hasObservable>
+			<infrastructure:Railway />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetrail</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>86930.984375</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>786330.6875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1350041.125</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2512613.25</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- Slope in degrees for Puget Sound -->
+	<measurement:Ranking id="PugetSlope">
+		<observation:hasObservable>
+			<geophysics:DegreeSlope />
+		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:Slope_Combined</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>12620</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11257</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5094045.61</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>345136.427</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5431785.61</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>723766.427</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	
+	<!-- bridges in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_bridges">
+	
+		<observation:hasObservable>
+			<infrastructure:Bridge />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetbridges</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>88246.4453125</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>648284.375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1344600.875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2513722.0</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
+	<!-- levees in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_levees">
+	
+		<observation:hasObservable>
+			<infrastructure:Levee />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>397939.875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>925800.75</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>894250.8125</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1430108.875</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
+	<!-- January total precipitation in WA. TODO: I think it's monthly totals in Jan - this
+	     should obviously be specified using time extents both in querying and storing.  -->
+	<measurement:Measurement id="puget_precipitation_january">
+	
+		<observation:hasObservable>
+			<habitat:Precipitation />
+		</observation:hasObservable>
+		
+		<measurement:unit>in</measurement:unit>
+		
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.5477447509766</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.762580871582</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+			<!-- TODO add time span -->
+		</observation:hasObservationExtent>
+	</measurement:Measurement>	
+		
 </kbox>

@@ -11,6 +11,8 @@
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
+	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
+	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
@@ -92,8 +94,7 @@
 	<observation:Categorization id="chehalis_housing">
 	
 		<observation:hasObservable>
-			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
-			<floodService:PresenceOfHousing />
+			<puget:ParcelUseCategory />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
@@ -114,8 +115,33 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 	
-		<!-- landuse category from property data, used as a 1/0 coverage -->
-	<observation:Categorization id="chehalis_soilgroup">
+	<!-- status of rain on snow precipitation in WA -->
+	<observation:Categorization id="puget_rain_on_snow">
+	
+		<observation:hasObservable>
+			<puget:SnowPrecipitationCategory />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetrainonsnow</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>precip_sno</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>84480.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>605611.25</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1356334.875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2551495.75</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
+	<!-- landuse category from property data, used as a 1/0 coverage -->
+	<observation:Categorization id="puget_soilgroup">
 	
 		<observation:hasObservable>
 			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
@@ -321,4 +347,76 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>	
 		
+	<!-- TODO make this temporal as appropriate -->
+	<measurement:Ranking id="global_temperature_january">
+		<observation:hasObservable>
+			<geophysics:GroundSurfaceTemperature />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2155</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>854</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>		
+		
+	<!-- Numeric ranking of successional stage -->
+	<measurement:Ranking id="puget_successional_stage">
+		<observation:hasObservable>
+			<ecology:SuccessionalStage />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SuccessionalStage</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>12029</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>16010</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5035612.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>365037.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435887.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>665787.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26710</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>		
+	
+	<!--  -->
+	<measurement:Ranking id="puget_impervious_surfaces">
+		<observation:hasObservable>
+			<habitat:PercentImperviousness />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:impervious</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>33757</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>37544</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>4441450.408428492</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>184671.999278421</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5567800.408428492</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1197411.999278421</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
 </kbox>

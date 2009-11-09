@@ -54,11 +54,11 @@
 		</cpt>
 		<cpt id="SuccessionalStage">
 			<state id="OldGrowth" />
-			<state id="Late" />
-			<state id="Mid" />
-			<state id="Early" />
-			<state id="Pole" />
-			<state id="None" />
+			<state id="LateSuccession" />
+			<state id="MidSuccession" />
+			<state id="EarlySuccession" />
+			<state id="PoleSuccession" />
+			<state id="NoSuccession" />
 			<probabilities>0.025 0.05 0.225 0.2 0.1 0.4</probabilities>
 		</cpt>
 		<cpt id="VegetationInfiltrationAndInterception">
@@ -86,18 +86,18 @@
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="ImperviousSurfaceCover">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="ModeratelyHigh" />
-			<state id="ModeratelyLow" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighlyImpervious" />
+			<state id="HighlyImpervious" />
+			<state id="ModeratelyHighlyImpervious" />
+			<state id="ModeratelyLowImpervious" />
+			<state id="LowImpervious" />
+			<state id="VeryLowImpervious" />
 			<probabilities>0.025 0.075 0.1 0.2 0.3 0.3</probabilities>
 		</cpt>
 		<cpt id="MonthlyTemperature">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
+			<state id="HighTemperature" />
+			<state id="ModerateTemperature" />
+			<state id="LowTemperature" />
 			<probabilities>0.7 0.05 0.25</probabilities>
 		</cpt>
 		<cpt id="FrozenSoil">
@@ -159,7 +159,7 @@
 		</deterministic>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="FloodSink">
 				<name>FloodSink</name>
 				<interior color="e5f6f7" />
@@ -228,7 +228,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>521 437 633 471</position>
+				<position>558 437 670 471</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetationType">
@@ -244,8 +244,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>371 429 494 460</position>
-				<barchart active="true" width="128" height="126" />
+				<position>391 429 514 460</position>
+				<barchart active="true" width="169" height="126" />
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
