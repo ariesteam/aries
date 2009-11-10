@@ -25,14 +25,14 @@
    		[2000 2750]  'aestheticService:SmallMountain  ; 
    		[2750 8850]  'aestheticService:LargeMountain  ; no higher than Mount everest!
    		:otherwise   'aestheticService:NoMountain     ; will catch artifacts too
-   		))
+))
    		   		    		 
 (defmodel view-source 'aestheticService:SensoryEnjoymentProvision
 	
 		"This one will harmonize the context, then retrieve and run the BN with the given
 		evidence, and produce a new observation with distributions for the requested nodes."
 	  (bayesian 'aestheticService:SensoryEnjoymentProvision)
-	  	:import "bn/aestheticService_SensoryEnjoyment.xsdl"
+	  	:import "bn/SensoryEnjoyment.xsdl"
 	  	:keep ('aestheticService:SensoryEnjoyment)
 	 	 	:context
   	 	 (viewable-mountains
@@ -65,7 +65,7 @@
 (defmodel view-sink 'aestheticService:ViewSink
 
 	(bayesian 'aestheticService:ViewSink)
-	  	:import "bn/aestheticService_ViewSink.xsdl"
+	  	:import "bn/ViewSink.xsdl"
 	  	:keep ('aestheticService:ViewSink)
 	 	 	:context
   	 	 ((comment view-clearcuts) view-commercial-transportation view-highways))
@@ -74,15 +74,15 @@
 ;; IMPLEMENT ME flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
-(defmodel raycast-view-flow
-	
-		"Only the data that feed the raycast flow model in the gssm package. The actual computation 
-		 is integrated with gssm, and the observable class from this will select the raycasting 
-		 submodel in it."
-		
-		(identification 'aestheticService:LineOfSight)
-			:context 
-				((measurement 'geophysics:Altitude "m")))
+;(defmodel raycast-view-flow
+;	
+;		"Only the data that feed the raycast flow model in the gssm package. The actual computation 
+;		 is integrated with gssm, and the observable class from this will select the raycasting 
+;		 submodel in it."
+;		
+;		(identification 'aestheticService:LineOfSight)
+;			:context 
+;				((measurement 'geophysics:Altitude "m")))
 ;; --- this is what is should be - LIDAR data
 ;;				 (measurement 'geophysics:GroundElevation "m")))
  	 					
@@ -90,14 +90,14 @@
 ;; top-level service model
 ;; ----------------------------------------------------------------------------------------------
 			
-(defmodel aesthetic-views 'aestheticService:ViewService
-	
-		"Hypothetical for now. The GSSM connecting view provision to use of views, using
-		 raycasting to model the flows, influenced by athmospheric pollution."
-		 
-		(gssm 'aestheticService:AestheticView)
-					:source     view-source
-					:use        real-estate-use
-		 			:transport  raycast-view-flow
-		 			:sink       aesthetic-visual-blight)
+;(defmodel aesthetic-views 'aestheticService:ViewService
+;	
+;		"Hypothetical for now. The GSSM connecting view provision to use of views, using
+;		 raycasting to model the flows, influenced by athmospheric pollution."
+;		 
+;		(gssm 'aestheticService:AestheticView)
+;					:source     view-source
+;					:use        real-estate-use
+;		 			:transport  raycast-view-flow
+;		 			:sink       aesthetic-visual-blight)
 		 			
