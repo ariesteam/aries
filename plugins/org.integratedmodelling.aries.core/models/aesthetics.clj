@@ -25,7 +25,8 @@
    		[2750 8850]  'aestheticService:LargeMountain  ; no higher than mount Everest!
    		:otherwise   'aestheticService:NoMountain     ; will catch artifacts too
 ))
-   		   		    		 
+
+;; TODO enjoyment is actually a use process, the value should be beauty or something similar		    		 
 (defmodel source 'aestheticService:AestheticEnjoymentProvision
 	
 		"This one will harmonize the context, then retrieve and run the BN with the given
@@ -36,7 +37,7 @@
 	 	 	:context (mountain lake ocean))
 
 ;; ----------------------------------------------------------------------------------------------
-;; TODO use model
+;; use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel housing 'aestheticService:PresenceOfHousing
@@ -58,6 +59,14 @@
 		[200000 400000]  'aestheticService:ModerateHousingValue
 		[400000 1000000] 'aestheticService:HighHousingValue
 		[1000000 :>]     'aestheticService:VeryHighHousingValue))
+
+;; bayesian model
+(defmodel view-users 'aestheticService:ViewUse
+	"Property owners who can afford to pay for the view"
+	(bayesian 'aestheticService:ViewUse)
+	  	:import "aries.core::ViewUse.xdsl"
+	  	:keep ('aestheticService:ViewUse)
+	 	 	:context (property-value housing))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model

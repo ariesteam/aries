@@ -2,16 +2,16 @@
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="HousingValue">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighHousingValue" />
+			<state id="HighHousingValue" />
+			<state id="ModerateHousingValue" />
+			<state id="LowHousingValue" />
+			<state id="VeryLowHousingValue" />
 			<probabilities>0.01 0.09 0.35 0.4 0.15</probabilities>
 		</cpt>
 		<cpt id="PresenceOfHousing">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="HousingPresent" />
+			<state id="HousingNotPresent" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="ViewUse">
@@ -22,7 +22,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network2" faultnameformat="nodestate">
 			<node id="PresenceOfHousing">
 				<name>PresenceOfHousing</name>
 				<interior color="e5f6f7" />
@@ -36,8 +36,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>712 281 812 310</position>
-				<barchart active="true" width="128" height="108" />
+				<position>791 281 891 310</position>
+				<barchart active="true" width="287" height="108" />
 			</node>
 			<node id="ViewUse">
 				<name>ViewUse</name>
