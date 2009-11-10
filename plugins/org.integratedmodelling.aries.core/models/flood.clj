@@ -57,14 +57,14 @@
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
 (defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
 	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSourceValueCurveNumber.xdsl"
+	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
 	  	:keep     ('floodService:Runoff)
 	 	 	:context  (land-use soil-group precipitation))
 
 ;; Flood source probability, ad hoc method
 (defmodel source 'floodService:FloodSource
 	  (bayesian 'floodService:FloodSource)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSourceValueAdHoc.xdsl"
+	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
 	  	:keep     ('floodService:FloodSourceValue)
 	 	 	:context  (precipitation monthly-temperature snow-presence))
 
@@ -122,7 +122,7 @@
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodSink)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodSink.xdsl"
+	  	:import   "aries.core::FloodSink.xdsl"
 	  	:keep     (
 	  			'floodService:FloodSink 
 	  			'floodService:GreenInfrastructureStorage
@@ -150,7 +150,7 @@
 (defmodel housing 'floodService:PresenceOfHousing
 	"Classifies land use from property data."
 	; specific to Puget region, will not be used if data unavailable
-	(classification (categorization 'puget:ParcelUseCategory)
+	(classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
 		"RESIDENTIAL" 'floodService:HousingPresent
 		:otherwise    'floodService:HousingNotPresent)
 	;; TODO add generalized fall-back definitions using NCLD and/or other global lu/lc data
@@ -177,7 +177,7 @@
 (defmodel residents-use 'floodService:FloodResidentsUse
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodResidentsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodResidentsUse.xdsl"
+	  	:import   "aries.core::FloodResidentsUse.xdsl"
 	  	:keep     ('floodService:ResidentsInFloodHazardZones)
 	 	 	:context  (housing floodplains))
 
@@ -185,7 +185,7 @@
 (defmodel farmers-use 'floodService:FloodFarmersUse
 		"Interface to Flood farmers use bayesian network"
 	  (bayesian 'floodService:FloodFarmersUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodFarmersUse.xdsl"
+	  	:import   "aries.core::FloodFarmersUse.xdsl"
 	  	:keep     ('floodService:FarmersInFloodHazardZones)
 	 	 	:context  (farmland floodplains))
 
@@ -193,7 +193,7 @@
 (defmodel public-use 'floodService:FloodPublicAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPublicAssetsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodPublicAssetsUse.xdsl"
+	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (public-asset floodplains))
 	 	 	
@@ -201,7 +201,7 @@
 (defmodel private-use 'floodService:FloodPrivateAssetsUse
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'floodService:FloodPrivateAssetsUse)
-	  	:import   "../aries/plugins/org.integratedmodelling.aries.core/bn/FloodPublicAssetsUse.xdsl"
+	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (structures floodplains))
 	 	 	

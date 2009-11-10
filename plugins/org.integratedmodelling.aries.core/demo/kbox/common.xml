@@ -2,6 +2,7 @@
 <kbox
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
+	xmlns:geofeatures="http://www.integratedmodelling.org/ks/geospace/geofeatures.owl#"
 	xmlns:geophysics="http://www.integratedmodelling.org/ks/geospace/geophysics.owl#"
 	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
 	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
@@ -12,6 +13,7 @@
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
+	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
@@ -94,7 +96,7 @@
 	<observation:Categorization id="chehalis_housing">
 	
 		<observation:hasObservable>
-			<puget:ParcelUseCategory />
+			<puget:ParcelUseCategoryGraysHarbor />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
@@ -419,4 +421,134 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- lakes in Puget sound from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:Ranking id="puget_lakes">
+	
+		<observation:hasObservable>
+			<geofeatures:Lake />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetlake</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>102131.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>618565.375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1367281.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2591186.75</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- clearcuts in Puget sound from shape coverage, 
+		 seen as a presence/absence ranking -->	
+	<measurement:Ranking id="puget_clearcuts">
+		<observation:hasObservable>
+			<geofeatures:Clearcut />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetclearcuts</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>92706.28125</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>478794.375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1383059.75</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>478794.375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- ocean in Puget sound from shape coverage, 
+		 seen as a presence/absence ranking. This one comes from a complicated attribute so
+		 we remap the value directly in the observation. -->
+	<measurement:RankingSetRemapper
+		measurement:hasDefaultValue="0" measurement:hasMapping="1:1" id="puget_ocean">
+	
+		<observation:hasObservable>
+			<geofeatures:Ocean />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetocean</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>water_cd</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2855</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>92233.4296875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>620108.1875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1350701.875</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2514300.75</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:RankingSetRemapper>
+	
+	
+	<!-- TODO this should be an economic value measurement with date and currency, not a 
+	     dumb ranking -->
+	<measurement:Ranking id="king_property_value">
+	
+		<observation:hasObservable>
+			<economics:AppraisedPropertyValue />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetparcelsking</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>totapprval</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>30932.6796875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>1218256.875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>287704.25</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- thanks WA counties for doing it differently, all of you -->
+	<observation:Categorization id="king_presence_of_housing">
+
+		<observation:hasObservable>
+			<puget:ParcelUseCategoryKing />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetparcelsking</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>proptype</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>30932.6796875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>1218256.875</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>287704.25</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
 </kbox>

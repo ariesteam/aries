@@ -14,7 +14,7 @@
 		<import plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true" />
 		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
 		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
-		<import plugin-id="org.integratedmodelling.thinklab.rules"/>
+		<import plugin-id="org.integratedmodelling.thinklab.currency"/>
 		<import plugin-id="org.integratedmodelling.thinklab.riskwiz" reverse-lookup="true" />
 	</requires>
 
@@ -27,6 +27,7 @@
 		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
 		<library type="resources" path="models/" id="models" />
 		<library type="resources" path="config/" id="config" />
+		<library type="resources" path="bn/" id="bn" />
 		
 	</runtime>
 	
@@ -93,7 +94,7 @@
 		<parameter id="resource" value="aries/offline-tasks.clj"/>
 		<parameter id="resource" value="gssm/interface.clj"/>
 		<parameter id="resource" value="aries/demo/aries-demo.clj"/>
-		<parameter id="resource" value="aesthetics-dset.clj" />
+		<parameter id="resource" value="aesthetics.clj" />
 		<parameter id="resource" value="flood.clj" />
 	</extension> 
 	

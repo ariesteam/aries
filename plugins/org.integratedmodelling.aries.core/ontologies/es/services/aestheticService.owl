@@ -9,21 +9,24 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY geofeatures "http://www.integratedmodelling.org/geospace/geofeatures.owl#" >
     <!ENTITY aestheticService "http://www.integratedmodelling.org/ks/es/aestheticService.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/aestheticService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/aestheticService.owl"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/aestheticService.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:geofeatures="http://www.integratedmodelling.org/geospace/geofeatures.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
     <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     </owl:Ontology>
     
@@ -115,12 +118,40 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/geospace/geofeatures.owl#Lake -->
+
+    <owl:Class rdf:about="&geofeatures;Lake"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/geospace/geofeatures.owl#Ocean -->
+
+    <owl:Class rdf:about="&geofeatures;Ocean"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#AestheticEnjoyment -->
 
     <owl:Class rdf:about="#AestheticEnjoyment">
         <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The &quot;quality of life&quot; benefits associated with living in an area with high perceived scenic or other environmental quality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#AestheticEnjoymentProvision -->
+
+    <owl:Class rdf:about="#AestheticEnjoymentProvision">
+        <rdfs:subClassOf rdf:resource="&eserv;Existence"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:allValuesFrom rdf:resource="#AestheticQualityProducingEcosystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Certain views, ecosystems, or types of land use are considered to have high aesthetic value.  This may be subjective and differ among different cultures, although some preferences may be common among many cultures.</rdfs:comment>
     </owl:Class>
     
 
@@ -148,6 +179,18 @@
     <owl:Class rdf:about="#AestheticView">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#OpenSpace"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="#ProximityToBeauty"/>
@@ -160,20 +203,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#OpenSpace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -224,9 +255,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsAbsent -->
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsNotPresent -->
 
-    <owl:Class rdf:about="#ClearcutsAbsent">
+    <owl:Class rdf:about="#ClearcutsNotPresent">
         <rdfs:subClassOf rdf:resource="#Clearcuts"/>
         <owl:disjointWith rdf:resource="#ClearcutsPresent"/>
     </owl:Class>
@@ -272,33 +303,17 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The enjoyment of natural amenities is typically a passive process (i.e., enjoying views, fresh air, outdoor recreation).</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ExistenceOfAestheticQuality -->
-
-    <owl:Class rdf:about="#ExistenceOfAestheticQuality">
-        <rdfs:subClassOf rdf:resource="&eserv;Existence"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
-                <owl:allValuesFrom rdf:resource="#AestheticQualityProducingEcosystem"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Certain views, ecosystems, or types of land use are considered to have high aesthetic value.  This may be subjective and differ among different cultures, although some preferences may be common among many cultures.</rdfs:comment>
     </owl:Class>
     
 
@@ -345,10 +360,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighAestheticEnjoyment -->
+
+    <owl:Class rdf:about="#HighAestheticEnjoyment">
+        <rdfs:subClassOf rdf:resource="#AestheticEnjoyment"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighBlight -->
 
     <owl:Class rdf:about="#HighBlight">
         <rdfs:subClassOf rdf:resource="#VisualBlight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HighHousingValue -->
+
+    <owl:Class rdf:about="#HighHousingValue">
+        <rdfs:subClassOf rdf:resource="#HousingValue"/>
     </owl:Class>
     
 
@@ -406,10 +437,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HousingNotPresent -->
+
+    <owl:Class rdf:about="#HousingNotPresent">
+        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HousingPresent -->
+
+    <owl:Class rdf:about="#HousingPresent">
+        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HousingValue -->
 
     <owl:Class rdf:about="#HousingValue">
-        <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
     </owl:Class>
     
 
@@ -417,6 +464,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#Lake -->
 
     <owl:Class rdf:about="#Lake">
+        <rdfs:subClassOf rdf:resource="&geofeatures;Lake"/>
         <rdfs:subClassOf rdf:resource="#WaterBody"/>
     </owl:Class>
     
@@ -426,6 +474,22 @@
 
     <owl:Class rdf:about="#LakeFront">
         <rdfs:subClassOf rdf:resource="#ScenicViews"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LakeNotPresent -->
+
+    <owl:Class rdf:about="#LakeNotPresent">
+        <rdfs:subClassOf rdf:resource="#Lake"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LakePresent -->
+
+    <owl:Class rdf:about="#LakePresent">
+        <rdfs:subClassOf rdf:resource="#Lake"/>
     </owl:Class>
     
 
@@ -448,10 +512,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LowAestheticEnjoyment -->
+
+    <owl:Class rdf:about="#LowAestheticEnjoyment">
+        <rdfs:subClassOf rdf:resource="#AestheticEnjoyment"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LowBlight -->
 
     <owl:Class rdf:about="#LowBlight">
         <rdfs:subClassOf rdf:resource="#VisualBlight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LowHousingValue -->
+
+    <owl:Class rdf:about="#LowHousingValue">
+        <rdfs:subClassOf rdf:resource="#HousingValue"/>
     </owl:Class>
     
 
@@ -464,10 +544,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ModerateAestheticEnjoyment -->
+
+    <owl:Class rdf:about="#ModerateAestheticEnjoyment">
+        <rdfs:subClassOf rdf:resource="#AestheticEnjoyment"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ModerateBlight -->
 
     <owl:Class rdf:about="#ModerateBlight">
         <rdfs:subClassOf rdf:resource="#VisualBlight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ModerateHousingValue -->
+
+    <owl:Class rdf:about="#ModerateHousingValue">
+        <rdfs:subClassOf rdf:resource="#HousingValue"/>
     </owl:Class>
     
 
@@ -484,6 +580,14 @@
 
     <owl:Class rdf:about="#Mountain">
         <rdfs:subClassOf rdf:resource="#ScenicViews"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#NoAestheticEnjoyment -->
+
+    <owl:Class rdf:about="#NoAestheticEnjoyment">
+        <rdfs:subClassOf rdf:resource="#AestheticEnjoyment"/>
     </owl:Class>
     
 
@@ -539,7 +643,24 @@
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#Ocean -->
 
     <owl:Class rdf:about="#Ocean">
+        <rdfs:subClassOf rdf:resource="&geofeatures;Ocean"/>
         <rdfs:subClassOf rdf:resource="#WaterBody"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#OceanNotPresent -->
+
+    <owl:Class rdf:about="#OceanNotPresent">
+        <rdfs:subClassOf rdf:resource="#Ocean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#OceanPresent -->
+
+    <owl:Class rdf:about="#OceanPresent">
+        <rdfs:subClassOf rdf:resource="#Ocean"/>
     </owl:Class>
     
 
@@ -665,6 +786,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#VeryHighHousingValue -->
+
+    <owl:Class rdf:about="#VeryHighHousingValue">
+        <rdfs:subClassOf rdf:resource="#HousingValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#VeryLowHousingValue -->
+
+    <owl:Class rdf:about="#VeryLowHousingValue">
+        <rdfs:subClassOf rdf:resource="#HousingValue"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ViewSink -->
 
     <owl:Class rdf:about="#ViewSink">
@@ -698,8 +835,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="#ExistenceOfAestheticQuality"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -710,8 +847,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoymentProvision"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -782,12 +919,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource -->
-
-    <owl:Class rdf:about="&eserv;EcosystemGeneratedResource"/>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer -->
 
     <owl:Class rdf:about="&eserv;EcosystemProducer"/>
@@ -853,10 +984,36 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighViewValue"/>
-            <rdf:Description rdf:about="#LowViewValue"/>
-            <rdf:Description rdf:about="#ModerateViewValue"/>
-            <rdf:Description rdf:about="#NoViewValue"/>
+            <rdf:Description rdf:about="#HighHousingValue"/>
+            <rdf:Description rdf:about="#LowHousingValue"/>
+            <rdf:Description rdf:about="#ModerateHousingValue"/>
+            <rdf:Description rdf:about="#VeryHighHousingValue"/>
+            <rdf:Description rdf:about="#VeryLowHousingValue"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighAestheticEnjoyment"/>
+            <rdf:Description rdf:about="#LowAestheticEnjoyment"/>
+            <rdf:Description rdf:about="#ModerateAestheticEnjoyment"/>
+            <rdf:Description rdf:about="#NoAestheticEnjoyment"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#LargeMountain"/>
+            <rdf:Description rdf:about="#NoMountain"/>
+            <rdf:Description rdf:about="#SmallMountain"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Lake"/>
+            <rdf:Description rdf:about="#NoWater"/>
+            <rdf:Description rdf:about="#Ocean"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -879,22 +1036,15 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Lake"/>
-            <rdf:Description rdf:about="#NoWater"/>
-            <rdf:Description rdf:about="#Ocean"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#LargeMountain"/>
-            <rdf:Description rdf:about="#NoMountain"/>
-            <rdf:Description rdf:about="#SmallMountain"/>
+            <rdf:Description rdf:about="#HighViewValue"/>
+            <rdf:Description rdf:about="#LowViewValue"/>
+            <rdf:Description rdf:about="#ModerateViewValue"/>
+            <rdf:Description rdf:about="#NoViewValue"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
 
