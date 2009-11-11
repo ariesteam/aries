@@ -26,14 +26,14 @@
    		:otherwise   'aestheticService:NoMountain     ; will catch artifacts too
 ))
 
-;; TODO enjoyment is actually a use process, the value should be beauty or something similar		    		 
+;; source bayesian model	    		 
 (defmodel source 'aestheticService:AestheticEnjoymentProvision
 	
 		"This one will harmonize the context, then retrieve and run the BN with the given
 		evidence, and produce a new observation with distributions for the requested nodes."
 	  (bayesian 'aestheticService:AestheticEnjoymentProvision)
-	  	:import "aries.core::AestheticEnjoyment.xdsl"
-	  	:keep ('aestheticService:AestheticEnjoyment)
+	  	:import "aries.core::ViewSource.xdsl"
+	  	:keep ('aestheticService:NaturalBeauty)
 	 	 	:context (mountain lake ocean))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@
 	"Property owners who can afford to pay for the view"
 	(bayesian 'aestheticService:ViewUse)
 	  	:import "aries.core::ViewUse.xdsl"
-	  	:keep ('aestheticService:ViewUse)
+	  	:keep ('aestheticService:HomeownersEnjoyment)
 	 	 	:context (property-value housing))
 
 ;; ----------------------------------------------------------------------------------------------

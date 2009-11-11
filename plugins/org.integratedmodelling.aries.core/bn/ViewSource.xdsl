@@ -17,17 +17,17 @@
 			<state id="LakeNotPresent" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
-		<cpt id="AestheticEnjoyment">
-			<state id="HighAestheticEnjoyment" />
-			<state id="ModerateAestheticEnjoyment" />
-			<state id="LowAestheticEnjoyment" />
-			<state id="NoAestheticEnjoyment" />
+		<cpt id="NaturalBeauty">
+			<state id="HighNaturalBeauty" />
+			<state id="ModerateNaturalBeauty" />
+			<state id="LowNaturalBeauty" />
+			<state id="NoNaturalBeauty" />
 			<parents>Mountain Ocean Lake</parents>
 			<probabilities>0.82 0.12 0.05000000000000001 0.01 0.82 0.12 0.05000000000000001 0.01 0.7 0.21 0.08 0.01 0.4 0.3 0.2000000000000001 0.1 0.76 0.14 0.08 0.02 0.76 0.14 0.08 0.02 0.6 0.25 0.13 0.02 0.2 0.3 0.3 0.2 0.7000000000000001 0.1 0.1 0.1 0.7000000000000001 0.1 0.1 0.1 0.5 0.2 0.2 0.1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
 			<node id="Mountain">
 				<name>Mountain</name>
 				<interior color="e5f6f7" />
@@ -36,8 +36,8 @@
 				<position>502 280 631 310</position>
 				<barchart active="true" width="217" height="76" />
 			</node>
-			<node id="AestheticEnjoyment">
-				<name>AestheticEnjoyment</name>
+			<node id="NaturalBeauty">
+				<name>NaturalBeauty</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="7" />

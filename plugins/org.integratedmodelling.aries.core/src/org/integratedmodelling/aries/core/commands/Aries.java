@@ -1,10 +1,12 @@
 package org.integratedmodelling.aries.core.commands;
 
+import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.datastructures.demo.ARIESDemoKbox;
 import org.integratedmodelling.aries.core.tasks.prioritization.SelectRegionOfInterest;
 import org.integratedmodelling.corescience.contextualization.Compiler;
 import org.integratedmodelling.corescience.interfaces.observation.IObservation;
 import org.integratedmodelling.geospace.implementations.observations.RasterGrid;
+import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.Model;
 import org.integratedmodelling.modelling.ModelManager;
 import org.integratedmodelling.thinklab.command.Command;
@@ -50,11 +52,23 @@ public class Aries implements ICommandHandler {
 
 		SelectRegionOfInterest rtask = new SelectRegionOfInterest();
 		rtask.run(session);
-		IInstance where = 
-			session.createObject(RasterGrid.createRasterGrid(rtask.getRegionOfInterest(), 128));
 		
-		if (cmd.equals("model")) {
+		if (cmd.equals("list")) {
+			
+			String c = getParameter(command, 1, "{locations}");
+			
+			if (c.equals("locations")) {
+				for (String s : ARIESCorePlugin.get().getLocations().keySet()) {
+					session.getOutputStream().println("\t" + s);
+				}
+			}
+			
+		} else if (cmd.equals("model")) {
 		
+			/*
+			 * syntax is aries model <model> [location [resolution]]
+			 */
+			
 			String c = getParameter(command, 1, "concept");
 
 			// make it a bit easier, and force models to be in the aries namespace
@@ -62,6 +76,24 @@ public class Aries implements ICommandHandler {
 				c = "aries/" + c;
 			
 			Model model = ModelManager.get().requireModel(c);
+			
+			// see if we have a location, or use default
+			ShapeValue roi = null;
+			if (!command.getArgumentAsString("p2").equals("_")) {
+				roi = ARIESCorePlugin.get().requireLocation(command.getArgumentAsString("p2"));
+			} else {
+				roi = rtask.getRegionOfInterest();
+			}
+			
+			int res = 128;
+			if (!command.getArgumentAsString("p3").equals("_")) {
+				res = Integer.parseInt(command.getArgumentAsString("p3"));
+			}
+			
+			IInstance where = 
+				session.createObject(RasterGrid.createRasterGrid(roi, res));
+
+			
 			IQueryResult r = model.observe(kbox, session, where);
 					
 			if (session.getOutputStream() != null) {
