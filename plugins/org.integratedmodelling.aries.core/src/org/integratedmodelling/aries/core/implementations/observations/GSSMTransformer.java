@@ -98,7 +98,7 @@ public class GSSMTransformer
 	}
 
 	@Override
-	public IContextualizedState createContextualizedStorage(int size)
+	public IContextualizedState createContextualizedStorage(IObservation observation, int size)
 			throws ThinklabException {
 		// we contextualize this as an identification, so no storage is needed. 
 		return null;

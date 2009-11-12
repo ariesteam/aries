@@ -61,7 +61,7 @@
 		[1000000 :>]     'aestheticService:VeryHighHousingValue))
 
 ;; bayesian model
-(defmodel view-users 'aestheticService:ViewUse
+(defmodel homeowners 'aestheticService:ViewUse
 	"Property owners who can afford to pay for the view"
 	(bayesian 'aestheticService:ViewUse)
 	  	:import "aries.core::ViewUse.xdsl"
@@ -127,4 +127,9 @@
 ;					:use        real-estate-use
 ;		 			:transport  raycast-view-flow
 ;		 			:sink       aesthetic-visual-blight)
+
+;; for testing
+
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"))
 		 			

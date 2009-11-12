@@ -9,6 +9,7 @@ import org.integratedmodelling.geospace.implementations.observations.RasterGrid;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.Model;
 import org.integratedmodelling.modelling.ModelManager;
+import org.integratedmodelling.modelling.visualization.NetCDFArchive;
 import org.integratedmodelling.thinklab.command.Command;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
@@ -31,7 +32,11 @@ import org.integratedmodelling.utils.Polylist;
 		optionalArgumentTypes="thinklab-core:Text,thinklab-core:Text,thinklab-core:Text,thinklab-core:Text,thinklab-core:Text,thinklab-core:Text",
 		optionalArgumentDescriptions="p1,p2,p3,p4,p5,p6",
 		optionalArgumentDefaultValues="_,_,_,_,_,_",
-		optionArgumentLabels="p1,p2,p3,p4,p5,p6"
+		optionArgumentLabels="p1,p2,p3,p4,p5,p6",
+		optionNames="o",
+		optionDescriptions="output file (when appropriate)",
+		optionLongNames="output",
+		optionTypes="thinklab-core:Text"
 )
 public class Aries implements ICommandHandler {
 
@@ -52,6 +57,8 @@ public class Aries implements ICommandHandler {
 
 		SelectRegionOfInterest rtask = new SelectRegionOfInterest();
 		rtask.run(session);
+		
+		String outfile = command.hasOption("output") ? command.getOptionAsString("output") : null;
 		
 		if (cmd.equals("list")) {
 			
@@ -108,6 +115,13 @@ public class Aries implements ICommandHandler {
 					
 					IInstance result = 
 						Compiler.contextualize((IObservation)obs.getImplementation(), session);	
+					
+					if (outfile != null) {
+						NetCDFArchive out = new NetCDFArchive();
+						out.setObservation(result);
+						out.write(outfile);
+						ARIESCorePlugin.get().logger().info("result of " + c + " model written to " + outfile);
+					}
 					
 					ret = new ObjectReferenceValue(result);
 				}
