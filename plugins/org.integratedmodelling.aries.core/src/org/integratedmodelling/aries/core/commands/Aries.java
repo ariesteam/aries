@@ -1,10 +1,13 @@
 package org.integratedmodelling.aries.core.commands;
 
+import java.util.Collection;
+
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.datastructures.demo.ARIESDemoKbox;
 import org.integratedmodelling.aries.core.tasks.prioritization.SelectRegionOfInterest;
 import org.integratedmodelling.corescience.contextualization.Compiler;
 import org.integratedmodelling.corescience.interfaces.observation.IObservation;
+import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.implementations.observations.RasterGrid;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.Model;
@@ -60,17 +63,7 @@ public class Aries implements ICommandHandler {
 		
 		String outfile = command.hasOption("output") ? command.getOptionAsString("output") : null;
 		
-		if (cmd.equals("list")) {
-			
-			String c = getParameter(command, 1, "{locations}");
-			
-			if (c.equals("locations")) {
-				for (String s : ARIESCorePlugin.get().getLocations().keySet()) {
-					session.getOutputStream().println("\t" + s);
-				}
-			}
-			
-		} else if (cmd.equals("model")) {
+		if (cmd.equals("model")) {
 		
 			/*
 			 * syntax is aries model <model> [location [resolution]]
@@ -87,7 +80,12 @@ public class Aries implements ICommandHandler {
 			// see if we have a location, or use default
 			ShapeValue roi = null;
 			if (!command.getArgumentAsString("p2").equals("_")) {
-				roi = ARIESCorePlugin.get().requireLocation(command.getArgumentAsString("p2"));
+				Collection<ShapeValue> sh = 
+					Geospace.get().lookupFeature(command.getArgumentAsString("p2"), true);
+				if (sh.size() <= 0) {
+					
+				}
+				
 			} else {
 				roi = rtask.getRegionOfInterest();
 			}
@@ -100,7 +98,6 @@ public class Aries implements ICommandHandler {
 			IInstance where = 
 				session.createObject(RasterGrid.createRasterGrid(roi, res));
 
-			
 			IQueryResult r = model.observe(kbox, session, where);
 					
 			if (session.getOutputStream() != null) {
