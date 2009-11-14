@@ -11,27 +11,30 @@
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY floodService "http://www.integratedmodelling.org/ks/es/floodService.owl#" >
-    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/floodService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/floodService.owl"
-     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:floodService="http://www.integratedmodelling.org/ks/es/floodService.owl#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl"/>
     </owl:Ontology>
     
 
@@ -364,6 +367,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#AssetsAtRisk -->
 
     <owl:Class rdf:about="#AssetsAtRisk">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
     </owl:Class>
     
@@ -385,14 +389,14 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="#FloodReduction"/>
+                <owl:onProperty rdf:resource="#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="#FloodReduction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -432,6 +436,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#Bridges -->
 
     <owl:Class rdf:about="#Bridges">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Bridges constrict a stream and can enable formation of debris dams under certain flow conditions.</rdfs:comment>
@@ -746,6 +751,7 @@
 
     <owl:Class rdf:about="#FarmersInFloodHazardZones">
         <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Have crops growing in a flood zone, potentially at risk of destruction or damage from a flood.</rdfs:comment>
     </owl:Class>
@@ -818,8 +824,26 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="#matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is-provided-through"/>
+                <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="#is-provided-through"/>
                 <owl:someValuesFrom rdf:resource="#WindWaveEnergyReduction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is-provided-through"/>
+                <owl:someValuesFrom rdf:resource="#VegetationInfiltrationAndInterception"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -832,24 +856,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#FloodplainConveyance"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#is-provided-through"/>
-                <owl:someValuesFrom rdf:resource="#VegetationInfiltrationAndInterception"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#is-provided-through"/>
-                <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -910,7 +916,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
                 <owl:someValuesFrom rdf:resource="#RiverFlood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:allValuesFrom rdf:resource="#SafetyAndSecurity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -930,18 +948,6 @@
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#CoastFlood"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:allValuesFrom rdf:resource="#SafetyAndSecurity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1011,6 +1017,7 @@
     <owl:Class rdf:about="#FloodSink">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
         <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The sum of green and gray infrastructure influences, e.g., all rainwater and floodwater detained and infiltrated.</rdfs:comment>
     </owl:Class>
@@ -1037,6 +1044,7 @@
 
     <owl:Class rdf:about="#FloodSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1066,13 +1074,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#FloodplainWidth"/>
+                <owl:someValuesFrom rdf:resource="#InstreamDebris"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#InstreamDebris"/>
+                <owl:someValuesFrom rdf:resource="#FloodplainWidth"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1493,6 +1501,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#Levees -->
 
     <owl:Class rdf:about="#Levees">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Levees disconnect floodplains from rivers and coastal zones, and can provide flood control, though they disturb natural hydrologic processes.</rdfs:comment>
@@ -1760,6 +1769,7 @@
 
     <owl:Class rdf:about="#MonthlyPrecipitation">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1768,6 +1778,7 @@
 
     <owl:Class rdf:about="#MonthlySnowmelt">
         <rdfs:subClassOf rdf:resource="&habitat;Snowmelt"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1916,6 +1927,7 @@
 
     <owl:Class rdf:about="#PresenceOfHousing">
         <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Housing at risk of damage due to flood waters.</rdfs:comment>
     </owl:Class>
@@ -1926,6 +1938,7 @@
 
     <owl:Class rdf:about="#PrivateAsset">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
     
 
@@ -1942,6 +1955,7 @@
 
     <owl:Class rdf:about="#PrivateAssetOwnersAndUsersInFloodHazardZones">
         <rdfs:subClassOf rdf:resource="#EconomicAssetOwners"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Privately owned infrastructure (i.e., factories, businesses, residences) located in flood zones.  When these are damaged, individuals or firms (or their insurance carrier) must pay for their repair or replacement.</rdfs:comment>
     </owl:Class>
@@ -1984,6 +1998,7 @@
 
     <owl:Class rdf:about="#PublicAsset">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
     
 
@@ -2000,6 +2015,7 @@
 
     <owl:Class rdf:about="#PublicAssetOwnersAndUsersInFloodHazardZones">
         <rdfs:subClassOf rdf:resource="#EconomicAssetOwners"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Publicly owned infrastructure (i.e., roads, utilities) located in flood zones.  When these are damaged, the government (i.e., taxpayers) must pay for their repair or replacement.</rdfs:comment>
     </owl:Class>
@@ -2114,6 +2130,7 @@
 
     <owl:Class rdf:about="#ResidentsInFloodHazardZones">
         <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >People living in a flood zone, potentially at risk in the event of a flood.</rdfs:comment>
     </owl:Class>
@@ -2135,13 +2152,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#VegetationHeight"/>
+                <owl:someValuesFrom rdf:resource="#CoastalEcosystemWidth"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#CoastalEcosystemWidth"/>
+                <owl:someValuesFrom rdf:resource="#VegetationHeight"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2332,6 +2349,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilSaturation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2339,12 +2362,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#HydrologicSoilsGroup"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilSaturation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2360,6 +2377,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#DepthToBedrock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#HydrologicSoilsGroup"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2367,12 +2390,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#Rainfall"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#DepthToBedrock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2393,6 +2410,7 @@
 
     <owl:Class rdf:about="#Structures">
         <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Structures, excluding or including housing, at risk of flood damage.</rdfs:comment>
     </owl:Class>
@@ -2565,12 +2583,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2578,6 +2590,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#VegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2790,6 +2808,24 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;BooleanRanking"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
+
+    <owl:Class rdf:about="&thinklab-core;OrderedRangeMapping"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;OrdinalRanking"/>
+    
+
+
     <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place -->
 
     <owl:Class rdf:about="&DOLCE-Lite;dependent-place"/>
@@ -2813,30 +2849,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighGrayStorage"/>
-            <rdf:Description rdf:about="#LowGrayStorage"/>
-            <rdf:Description rdf:about="#ModerateGrayStorage"/>
-            <rdf:Description rdf:about="#VeryHighGrayStorage"/>
-            <rdf:Description rdf:about="#VeryLowGrayStorage"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighPrecipitation"/>
-            <rdf:Description rdf:about="#LowPrecipitation"/>
-            <rdf:Description rdf:about="#ModeratePrecipitation"/>
-            <rdf:Description rdf:about="#VeryHighPrecipitation"/>
-            <rdf:Description rdf:about="#VeryLowPrecipitation"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSnowmelt"/>
-            <rdf:Description rdf:about="#LowSnowmelt"/>
-            <rdf:Description rdf:about="#ModerateSnowmelt"/>
-            <rdf:Description rdf:about="#NoSnowmelt"/>
+            <rdf:Description rdf:about="#PublicOwnersInHighHazard"/>
+            <rdf:Description rdf:about="#PublicOwnersInLowHazard"/>
+            <rdf:Description rdf:about="#PublicOwnersInModerateHazard"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2852,47 +2867,22 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighGreenStorage"/>
-            <rdf:Description rdf:about="#LowGreenStorage"/>
-            <rdf:Description rdf:about="#ModerateGreenStorage"/>
-            <rdf:Description rdf:about="#VeryHighGreenStorage"/>
-            <rdf:Description rdf:about="#VeryLowGreenStorage"/>
+            <rdf:Description rdf:about="#HighPrecipitation"/>
+            <rdf:Description rdf:about="#LowPrecipitation"/>
+            <rdf:Description rdf:about="#ModeratePrecipitation"/>
+            <rdf:Description rdf:about="#VeryHighPrecipitation"/>
+            <rdf:Description rdf:about="#VeryLowPrecipitation"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighRunoff"/>
-            <rdf:Description rdf:about="#LowRunoff"/>
-            <rdf:Description rdf:about="#ModerateRunoff"/>
-            <rdf:Description rdf:about="#VeryHighRunoff"/>
-            <rdf:Description rdf:about="#VeryLowRunoff"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSink"/>
-            <rdf:Description rdf:about="#LowSink"/>
-            <rdf:Description rdf:about="#MediumSink"/>
-            <rdf:Description rdf:about="#VeryHighSink"/>
-            <rdf:Description rdf:about="#VeryLowSink"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#PublicOwnersInHighHazard"/>
-            <rdf:Description rdf:about="#PublicOwnersInLowHazard"/>
-            <rdf:Description rdf:about="#PublicOwnersInModerateHazard"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighTemperature"/>
-            <rdf:Description rdf:about="#LowTemperature"/>
-            <rdf:Description rdf:about="#ModerateTemperature"/>
+            <rdf:Description rdf:about="#HighlyImpervious"/>
+            <rdf:Description rdf:about="#LowImpervious"/>
+            <rdf:Description rdf:about="#ModeratelyHighlyImpervious"/>
+            <rdf:Description rdf:about="#ModeratelyLowImpervious"/>
+            <rdf:Description rdf:about="#VeryHighlyImpervious"/>
+            <rdf:Description rdf:about="#VeryLowImpervious"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2909,17 +2899,63 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighlyImpervious"/>
-            <rdf:Description rdf:about="#LowImpervious"/>
-            <rdf:Description rdf:about="#ModeratelyHighlyImpervious"/>
-            <rdf:Description rdf:about="#ModeratelyLowImpervious"/>
-            <rdf:Description rdf:about="#VeryHighlyImpervious"/>
-            <rdf:Description rdf:about="#VeryLowImpervious"/>
+            <rdf:Description rdf:about="#HighTemperature"/>
+            <rdf:Description rdf:about="#LowTemperature"/>
+            <rdf:Description rdf:about="#ModerateTemperature"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighRunoff"/>
+            <rdf:Description rdf:about="#LowRunoff"/>
+            <rdf:Description rdf:about="#ModerateRunoff"/>
+            <rdf:Description rdf:about="#VeryHighRunoff"/>
+            <rdf:Description rdf:about="#VeryLowRunoff"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighGrayStorage"/>
+            <rdf:Description rdf:about="#LowGrayStorage"/>
+            <rdf:Description rdf:about="#ModerateGrayStorage"/>
+            <rdf:Description rdf:about="#VeryHighGrayStorage"/>
+            <rdf:Description rdf:about="#VeryLowGrayStorage"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighGreenStorage"/>
+            <rdf:Description rdf:about="#LowGreenStorage"/>
+            <rdf:Description rdf:about="#ModerateGreenStorage"/>
+            <rdf:Description rdf:about="#VeryHighGreenStorage"/>
+            <rdf:Description rdf:about="#VeryLowGreenStorage"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighSnowmelt"/>
+            <rdf:Description rdf:about="#LowSnowmelt"/>
+            <rdf:Description rdf:about="#ModerateSnowmelt"/>
+            <rdf:Description rdf:about="#NoSnowmelt"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighSink"/>
+            <rdf:Description rdf:about="#LowSink"/>
+            <rdf:Description rdf:about="#MediumSink"/>
+            <rdf:Description rdf:about="#VeryHighSink"/>
+            <rdf:Description rdf:about="#VeryLowSink"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1042) http://owlapi.sourceforge.net -->
 
