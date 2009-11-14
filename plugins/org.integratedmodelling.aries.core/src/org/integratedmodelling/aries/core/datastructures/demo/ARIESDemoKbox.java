@@ -43,6 +43,7 @@ import java.util.Properties;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.exceptions.ARIESException;
+import org.integratedmodelling.aries.core.exceptions.ARIESRuntimeException;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.opal.OPALValidator;
 import org.integratedmodelling.thinklab.constraint.Constraint;
@@ -73,11 +74,11 @@ public class ARIESDemoKbox implements IKBox {
 
 	File dataDir = null;
 	Properties properties = new Properties();
+	boolean _initialized = false;
 	
 	ArrayList<Polylist> data = new ArrayList<Polylist>();
 	
-	public ARIESDemoKbox() throws ThinklabException {
-		
+	private void initialize() throws ThinklabException {
 		/*
 		 * find demo data dir; if nowhere, complain
 		 */
@@ -114,7 +115,10 @@ public class ARIESDemoKbox implements IKBox {
 		 * merge in plugin properties so we can use relative paths
 		 */
 		properties.putAll(ARIESCorePlugin.get().getProperties());
+		
+		_initialized = true;
 	}
+	
 	
 	public IKBoxCapabilities getKBoxCapabilities() {
 		// TODO Auto-generated method stub
@@ -177,6 +181,8 @@ public class ARIESDemoKbox implements IKBox {
 	 */
 	public IQueryResult query(IQuery q) throws ThinklabException {
 		
+		if (!_initialized)
+			initialize();
 		/*
 		 * check if we're asking for something that observes a benefit
 		 * if so, return all data we have for it
@@ -230,6 +236,12 @@ public class ARIESDemoKbox implements IKBox {
 
 	@Override
 	public long getObjectCount() {
+		if (!_initialized)
+			try {
+				initialize();
+			} catch (ThinklabException e) {
+				throw new ARIESRuntimeException(e);
+			} 
 		return data.size();
 	}
 

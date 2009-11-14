@@ -1,9 +1,11 @@
 package org.integratedmodelling.aries.core;
 
+import org.integratedmodelling.aries.core.datastructures.demo.ARIESDemoKbox;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.gazetteers.SimpleGazetteer;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
+import org.integratedmodelling.thinklab.kbox.KBoxManager;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
 
 public class ARIESCorePlugin extends ThinklabPlugin {
@@ -17,7 +19,11 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
+
 		Geospace.get().addGazetteer(new SimpleGazetteer(getProperties()));
+		KBoxManager.get().installKbox(
+				"kbox://www.integratedmodelling.org/aries/demo", 
+				new ARIESDemoKbox());
 	}
 
 	@Override

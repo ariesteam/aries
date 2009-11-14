@@ -130,6 +130,4 @@
 
 ;; for testing
 
-(defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))
 		 			
