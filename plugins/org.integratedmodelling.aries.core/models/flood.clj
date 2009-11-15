@@ -99,10 +99,22 @@
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
 		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
 
-; TODO vegetationCover
-
-; TODO vegetationHeight
-
+(defmodel vegetation-height 'floodService:VegetationHeight
+	(classification (measurement 'habitat:VegetationHeight "ft") 
+		[120 :>] 'floodService:VeryHighVegetationHeight
+		[80 120] 'floodService:HighVegetationHeight
+		[50 80]  'floodService:ModerateVegetationHeight
+		[20 50]  'floodService:LowVegetationHeight
+		[:< 20]  'floodService:VeryLowVegetationHeight))
+		
+(defmodel vegetation-cover 'floodService:VegetationCover
+	(classification (ranking 'habitat:PercentCanopyCover)
+		[80 :>] 'floodService:VeryHighVegetationCover
+		[60 80] 'floodService:HighVegetationCover
+		[40 60] 'floodService:ModerateVegetationCover
+		[20 40] 'floodService:LowVegetationCover
+		[0 20]  'floodService:VeryLowVegetationCover))
+		
 (defmodel successional-stage 'floodService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
 	 		#{5 6}      'floodService:OldGrowth
@@ -153,7 +165,7 @@
 	 	 	:context  (
 	 	 			soil-group vegetation-type slope monthly-temperature 
 	 	 			successional-stage imperviousness dam-storage mean-days-precipitation
-	 	 			detention-basin-storage))
+	 	 			detention-basin-storage vegetation-height vegetation-cover))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

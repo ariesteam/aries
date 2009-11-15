@@ -422,6 +422,57 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!--  -->
+	<measurement:Measurement id="puget_vegetation_height">
+		<measurement:unit>ft</measurement:unit>
+		<observation:hasObservable>
+			<habitat:VegetationHeight />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:vegHt</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2561</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>510</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>1557470.1133952795</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>3321194.1450003847</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1722488.5825707817</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>4148547.01785063</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem />
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+	
+	<!--  -->
+	<measurement:Ranking id="puget_canopy_cover">
+		<observation:hasObservable>
+			<habitat:PercentCanopyCover />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>canopy1_011007_Project_1</geospace:hasCoverageId>
+				<geospace:HasNodataValue>127</geospace:HasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>32069</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>25363</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>40.121768696724</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.24289</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.1137582</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.60911364887001</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	
 	<!-- lakes in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking -->
 	<measurement:Ranking id="puget_lakes">
