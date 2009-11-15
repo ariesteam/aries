@@ -55,6 +55,7 @@
 
 ;; Flood source probability (runoff levels), SCS curve number method
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
+;; TODO it's deterministic, remove the BN and program this one in
 (defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
 	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
 	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
@@ -70,8 +71,6 @@
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
-;; TODO still missing mean days of precipitation (data are weird), dam storage (point layer) and
-;; DetentionBasinStorage (point layer) as evidence the sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
@@ -100,6 +99,10 @@
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
 		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
 
+; TODO vegetationCover
+
+; TODO vegetationHeight
+
 (defmodel successional-stage 'floodService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
 	 		#{5 6}      'floodService:OldGrowth
@@ -118,6 +121,26 @@
 	 	   [5 9]     'floodService:LowImpervious
 	 	   [0 5]    'floodService:VeryLowImpervious))
 	 	   
+(defmodel dam-storage 'floodService:DamStorage
+	(classification (ranking 'floodService:DamStorage)
+			[5000 :>]		'floodService:VeryLargeDamStorage
+			[3126 5000]	'floodService:LargeDamStorage
+			[1600 3126]	'floodService:ModerateDamStorage
+			[400 1600]	'floodService:SmallDamStorage
+			[:< 1600]		'floodService:VerySmallDamStorage))
+			
+(defmodel mean-days-precipitation 'floodService:MeanDaysOfPrecipitation
+	(classification (ranking 'puget:DaysOfPrecipitationGridcode)
+		#{8 9}    'floodService:VeryHighDaysPrecipitation
+		#{6 7}    'floodService:HighDaysPrecipitation
+		#{4 5}    'floodService:LowDaysPrecipitation
+		#{1 2 3}  'floodService:VeryLowDaysPrecipitation))
+		
+(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+	(classification (ranking 'infrastructure:DetentionBasin)
+		0            'floodService:DetentionBasinStorageNotPresent
+		:otherwise   'floodService:DetentionBasinStoragePresent))
+		
 ;; Flood sink probability
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
@@ -129,7 +152,8 @@
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
 	 	 			soil-group vegetation-type slope monthly-temperature 
-	 	 			successional-stage imperviousness))
+	 	 			successional-stage imperviousness dam-storage mean-days-precipitation
+	 	 			detention-basin-storage))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

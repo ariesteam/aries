@@ -552,4 +552,90 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
+	
+	<!-- TODO check if it should be a measurement and the observable should be in a
+		more general ontology.
+		NOTE this is a point layer, which sucks.
+	 -->
+	<measurement:Ranking id="us_damstorage">
+	
+		<observation:hasObservable>
+			<floodService:DamStorage />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetdams</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>18.0172996520996</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-162.877822875977</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>68.0694046020508</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.0149993896484</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- presence/absence of detention basins.
+		NOTE this is a point layer, which sucks.
+	 -->
+	<measurement:Ranking id="puget_detention_basins_storage">
+	
+		<observation:hasObservable>
+			<infrastructure:DetentionBasin />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetdetentionbasins</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-31600.9375</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>1075246.25</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>68.0694046020508</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>627954.375</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- mean days of precipitation. One of those sucky puget-specific shapefiles.
+	     TODO this is actually non puget-specific so the concept should be in an ontology
+	     for whatever authority publishes this.
+	     TODO solve the time issue when things calm down.
+	 -->
+	<measurement:Ranking id="days_of_precipitation_code_january">
+	
+		<observation:hasObservable>
+			<puget:DaysOfPrecipitationGridcode />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:meandaysprecipjan</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>24.4630870819092</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.802490234375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.4254341125488</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.9145584106445</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
 </kbox>
