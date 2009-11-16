@@ -2,23 +2,23 @@
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="DamStorage">
-			<state id="VeryLarge" />
-			<state id="Large" />
-			<state id="Moderate" />
-			<state id="Small" />
-			<state id="VerySmall" />
+			<state id="VeryLargeDamStorage" />
+			<state id="LargeDamStorage" />
+			<state id="ModerateDamStorage" />
+			<state id="SmallDamStorage" />
+			<state id="VerySmallDamStorage" />
 			<probabilities>0.05 0.1 0.25 0.3 0.3</probabilities>
 		</cpt>
 		<cpt id="DetentionBasinStorage">
-			<state id="Present" />
-			<state id="Absent" />
+			<state id="DetentionBasinStoragePresent" />
+			<state id="DetentionBasinStorageNotPresent" />
 			<probabilities>0.02 0.98</probabilities>
 		</cpt>
 		<cpt id="MeanDaysOfPrecipitationPerMonth">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighDaysPrecipitation" />
+			<state id="HighDaysPrecipitation" />
+			<state id="LowDaysPrecipitation" />
+			<state id="VeryLowDaysPrecipitation" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<deterministic id="GrayInfrastructureStorage">
@@ -32,10 +32,10 @@
 			<property id="GrayInfrastructureInfluence">GrayInfrastructureInfluence=DamStorage+DetentionBasinStorage</property>
 		</deterministic>
 		<cpt id="VegetationHeight">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
+			<state id="HighVegetationHeight" />
+			<state id="ModerateVegetationHeight" />
+			<state id="LowVegetationHeight" />
+			<state id="VeryLowVegetationHeight" />
 			<probabilities>0.2 0.2 0.3 0.3</probabilities>
 		</cpt>
 		<cpt id="VegetationType">
@@ -45,11 +45,11 @@
 			<probabilities>0.05 0.45 0.5</probabilities>
 		</cpt>
 		<cpt id="VegetationCover">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighVegetationCover" />
+			<state id="HighVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="LowVegetationCover" />
+			<state id="VeryLowVegetationCover" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
 		<cpt id="SuccessionalStage">
@@ -336,7 +336,7 @@
 			<textbox>
 				<caption>Floodplain storage &amp; conveyance as stocks &amp; flows\n\nFloodplain cross section models - look into them - width &amp; depth of river (related to dredging)\n\nFloodplain infill?\n\n\n\n\n\n\n\n\nSeparate levees and bridges, plus natural constrictions.  Bridges also can create unstable debris dams.  GJ: Can look at probabilities of debris dams based on particular upstream conditions.\n\nNatural lakes, dams, water storage?  Comparable to flood conveyance but it&apos;s really storage.</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
-				<position>952 105 1323 385</position>
+				<position>1078 111 1447 391</position>
 			</textbox>
 		</genie>
 	</extensions>

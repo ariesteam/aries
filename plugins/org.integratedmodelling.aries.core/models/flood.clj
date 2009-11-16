@@ -100,9 +100,10 @@
 		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
 
 (defmodel vegetation-height 'floodService:VegetationHeight
-	(classification (measurement 'habitat:VegetationHeight "ft") 
-		[120 :>] 'floodService:VeryHighVegetationHeight
-		[80 120] 'floodService:HighVegetationHeight
+	(classification (measurement 'habitat:VegetationHeight "ft")
+;   CHECK -- BN only has high, moderate, low, very low 
+;		[120 :>] 'floodService:VeryHighVegetationHeight
+		[80 :>] 'floodService:HighVegetationHeight
 		[50 80]  'floodService:ModerateVegetationHeight
 		[20 50]  'floodService:LowVegetationHeight
 		[:< 20]  'floodService:VeryLowVegetationHeight))
@@ -165,7 +166,7 @@
 	 	 	:context  (
 	 	 			soil-group vegetation-type slope monthly-temperature 
 	 	 			successional-stage imperviousness dam-storage mean-days-precipitation
-	 	 			detention-basin-storage vegetation-height vegetation-cover))
+	 	 			detention-basin-storage (comment vegetation-height) vegetation-cover))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

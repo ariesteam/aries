@@ -422,7 +422,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!--  -->
+	<!-- projection isn't right -->
 	<measurement:Measurement id="puget_vegetation_height">
 		<measurement:unit>ft</measurement:unit>
 		<observation:hasObservable>
@@ -439,10 +439,10 @@
 				<geospace:hasXRangeMax>2561</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>510</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>1557470.1133952795</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>3321194.1450003847</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1722488.5825707817</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>4148547.01785063</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem />
+				<geospace:hasLonLowerBound>474717.8400000001</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>525015.5700000001</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1264479.6600000001</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32149</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
@@ -455,8 +455,8 @@
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>canopy1_011007_Project_1</geospace:hasCoverageId>
-				<geospace:HasNodataValue>127</geospace:HasNodataValue>
+				<geospace:hasCoverageId>puget:canopy1_011007_Project_1</geospace:hasCoverageId>
+				<geospace:hasNodataValue>127</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
