@@ -53,7 +53,7 @@
 (defmodel property-value 'aestheticService:HousingValue
 	;; TODO we need this to become an actual valuation with currency and date, so we can 
 	;; turn any values into these dollars
-	(classification (ranking 'economics:AppraisedPropertyValue)
+	(classification (ranking  'economics:AppraisedPropertyValue)
 		[:< 100000]      'aestheticService:VeryLowHousingValue
 		[100000 200000]  'aestheticService:LowHousingValue
 		[200000 400000]  'aestheticService:ModerateHousingValue

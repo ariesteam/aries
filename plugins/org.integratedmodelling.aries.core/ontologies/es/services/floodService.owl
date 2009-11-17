@@ -774,30 +774,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#FarmersInHighFloodHazard -->
-
-    <owl:Class rdf:about="#FarmersInHighFloodHazard">
-        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#FarmersInLowFloodHazard -->
-
-    <owl:Class rdf:about="#FarmersInLowFloodHazard">
-        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#FarmersInModerateFloodHazard -->
-
-    <owl:Class rdf:about="#FarmersInModerateFloodHazard">
-        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#Farmland -->
 
     <owl:Class rdf:about="#Farmland">
@@ -1207,6 +1183,7 @@
 
     <owl:Class rdf:about="#GrayInfrastructureStorage">
         <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</rdfs:comment>
     </owl:Class>
@@ -1217,6 +1194,7 @@
 
     <owl:Class rdf:about="#GreenInfrastructureStorage">
         <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >The sum of storage of floodwater in soils, vegetation, and floodplains.</rdfs:comment>
     </owl:Class>
@@ -1251,6 +1229,14 @@
 
     <owl:Class rdf:about="#HighGreenStorage">
         <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#HighHazardFarmers -->
+
+    <owl:Class rdf:about="#HighHazardFarmers">
+        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
     </owl:Class>
     
 
@@ -1637,6 +1623,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#LowHazardFarmers -->
+
+    <owl:Class rdf:about="#LowHazardFarmers">
+        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#LowHazardPrivateOwners -->
 
     <owl:Class rdf:about="#LowHazardPrivateOwners">
@@ -1841,6 +1835,14 @@
 
     <owl:Class rdf:about="#ModerateGreenStorage">
         <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/floodService.owl#ModerateHazardFarmers -->
+
+    <owl:Class rdf:about="#ModerateHazardFarmers">
+        <rdfs:subClassOf rdf:resource="#FarmersInFloodHazardZones"/>
     </owl:Class>
     
 

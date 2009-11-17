@@ -241,4 +241,18 @@
 	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
 	 	 	:context  (structures floodplains))
+
+;; ---------------------------------------------------------------------------------------------------	 	 	
+;; overall models 
+;; ---------------------------------------------------------------------------------------------------	 	 	
+
+;; all data, for testing and storage
+(defmodel data 'floodService:FloodPreventionService 
+	(identification 'floodService:FloodPreventionService)
+		:context (
+			source :as source
+			farmers-use :as farmers
+			public-use  :as public
+			residents-use :as residents
+			sink :as sink))
 	 	 	

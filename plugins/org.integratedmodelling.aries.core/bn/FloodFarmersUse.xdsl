@@ -12,15 +12,15 @@
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="FarmersInFloodHazardZones">
-			<state id="FarmersInHighFloodHazard" />
-			<state id="FarmersInModerateFloodHazard" />
-			<state id="FarmersInLowFloodHazard" />
+			<state id="HighHazardFarmers" />
+			<state id="ModerateHazardFarmers" />
+			<state id="LowHazardFarmers" />
 			<parents>Floodplains Farmland</parents>
 			<probabilities>0.15 0.5 0.35 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="FarmersInFloodHazardZones">
 				<name>FarmersInFloodHazardZones</name>
 				<interior color="e5f6f7" />

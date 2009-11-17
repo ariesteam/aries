@@ -12,15 +12,15 @@
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="PublicAssetOwnersAndUsersInFloodHazardZones">
-			<state id="PublicOwnersInHighHazard" />
-			<state id="PublicOwnersInModerateHazard" />
-			<state id="PublicOwnersInLowHazard" />
+			<state id="HighHazardPublicOwners" />
+			<state id="ModerateHazardPublicOwners" />
+			<state id="LowHazardPublicOwners" />
 			<parents>Floodplains PublicAsset</parents>
 			<probabilities>0.3 0.6 0.1 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="PublicAssetOwnersAndUsersInFloodHazardZones">
 				<name>PublicAssetOwnersAndUsersInFloodHazardZones</name>
 				<interior color="e5f6f7" />
