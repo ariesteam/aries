@@ -128,6 +128,15 @@
 ;		 			:transport  raycast-view-flow
 ;		 			:sink       aesthetic-visual-blight)
 
-;; for testing
+;; ---------------------------------------------------------------------------------------------------	 	 	
+;; overall models 
+;; ---------------------------------------------------------------------------------------------------	 	 	
 
+;; all data, for testing and storage
+(defmodel data 'aestheticService:AestheticEnjoyment 
+	(identification 'aestheticService:AestheticEnjoyment)
+		:context (
+			source :as source
+			homeowners :as use
+			sink :as sink))
 		 			
