@@ -84,6 +84,10 @@
 		<parameter id="url" value="es/services/local/puget.owl"/>
 		<parameter id="concept-space" value="puget"/>
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="wildfireService">
+		<parameter id="url" value="es/services/wildfireService.owl"/>
+		<parameter id="concept-space" value="wildfireService"/>
+	</extension>
 	
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">

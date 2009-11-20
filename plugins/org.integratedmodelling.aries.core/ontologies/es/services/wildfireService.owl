@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 
-<!DOCTYPE Ontology [
+<!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
@@ -12,290 +12,339 @@
 ]>
 
 
-<Ontology xmlns="http://www.w3.org/2006/12/owl2-xml#"
-     xml:base="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
+     xml:base="http://www.integratedmodelling.org/ks/es/wildfireService.owl"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:wildfireService="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     URI="http://www.integratedmodelling.org/ks/es/wildfireService.owl">
-    <Import
-        >http://www.integratedmodelling.org/ks/es/eserv.owl</Import>
-    <Import
-        >http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl</Import>
-    <Import
-        >http://www.integratedmodelling.org/ks/es/eserv.owl</Import>
-    <Import
-        >http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl</Import>
-    <SubClassOf>
-        <Class URI="&wildfireService;AbsentBurnableStructure"/>
-        <Class URI="&wildfireService;BurnableStructure"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;AbsentBurnableStructure"/>
-        <Class URI="&wildfireService;PresentBurnableStructure"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;AbsentBurnableStructure"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
-        <Class URI="&wildfireService;BurnableVegetation"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
-        <Class URI="&wildfireService;PresentBurnableVegetation"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;AbsentHousing"/>
-        <Class URI="&wildfireService;PresenceOfHousing"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;AbsentHousing"/>
-        <Class URI="&wildfireService;PresentHousing"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;AbsentHousing"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;AbsentMatureGorse"/>
-        <Class URI="&wildfireService;MatureGorse"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;AbsentMatureGorse"/>
-        <Class URI="&wildfireService;PresentMatureGorse"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;AbsentMatureGorse"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;BurnableStructure"/>
-        <Class URI="&thinklab-core;BooleanRanking"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;BurnableStructure"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;BurnableStructure"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;BurnableVegetation"/>
-        <Class URI="&thinklab-core;BooleanRanking"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;BurnableVegetation"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;BurnableVegetation"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;HighStructureValue"/>
-        <Class URI="&wildfireService;StructureValue"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;HighStructureValue"/>
-        <Class URI="&wildfireService;LowStructureValue"/>
-        <Class URI="&wildfireService;ModerateStructureValue"/>
-        <Class URI="&wildfireService;VeryHighStructureValue"/>
-        <Class URI="&wildfireService;VeryLowStructureValue"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;HighStructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;HighWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;HighWildfireDamage"/>
-        <Class URI="&wildfireService;LowWildfireDamage"/>
-        <Class URI="&wildfireService;MediumWildfireDamage"/>
-        <Class URI="&wildfireService;NoWildfireDamage"/>
-        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
-        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;HighWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;HighWildfirePotential"/>
-        <Class URI="&wildfireService;WildfirePotential"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class URI="&wildfireService;HighWildfirePotential"/>
-        <Class URI="&wildfireService;LowWildfirePotential"/>
-        <Class URI="&wildfireService;MediumWildfirePotential"/>
-    </DisjointClasses>
-    <Declaration>
-        <Class URI="&wildfireService;HighWildfirePotential"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;LowStructureValue"/>
-        <Class URI="&wildfireService;StructureValue"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;LowStructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;LowWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;LowWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;LowWildfirePotential"/>
-        <Class URI="&wildfireService;WildfirePotential"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;LowWildfirePotential"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;MatureGorse"/>
-        <Class URI="&thinklab-core;BooleanRanking"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;MatureGorse"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;MatureGorse"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;MediumWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;MediumWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;MediumWildfirePotential"/>
-        <Class URI="&wildfireService;WildfirePotential"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;MediumWildfirePotential"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;ModerateStructureValue"/>
-        <Class URI="&wildfireService;StructureValue"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;ModerateStructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;NoWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;NoWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresenceOfHousing"/>
-        <Class URI="&thinklab-core;BooleanRanking"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresenceOfHousing"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;PresenceOfHousing"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresentBurnableStructure"/>
-        <Class URI="&wildfireService;BurnableStructure"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;PresentBurnableStructure"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresentBurnableVegetation"/>
-        <Class URI="&wildfireService;BurnableVegetation"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;PresentBurnableVegetation"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresentHousing"/>
-        <Class URI="&wildfireService;PresenceOfHousing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;PresentHousing"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;PresentMatureGorse"/>
-        <Class URI="&wildfireService;MatureGorse"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;PresentMatureGorse"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;StructureValue"/>
-        <Class URI="&thinklab-core;OrderedRangeMapping"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;StructureValue"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;StructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;VeryHighStructureValue"/>
-        <Class URI="&wildfireService;StructureValue"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;VeryHighStructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;VeryLowStructureValue"/>
-        <Class URI="&wildfireService;StructureValue"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;VeryLowStructureValue"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;WildfireDamage"/>
-        <Class URI="&thinklab-core;OrderedRangeMapping"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class URI="&wildfireService;WildfireDamage"/>
-        <Class URI="&owl;Thing"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;WildfireDamage"/>
-    </Declaration>
-    <SubClassOf>
-        <Class URI="&wildfireService;WildfirePotential"/>
-        <Class URI="&thinklab-core;OrdinalRanking"/>
-    </SubClassOf>
-    <Declaration>
-        <Class URI="&wildfireService;WildfirePotential"/>
-    </Declaration>
-</Ontology>
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#AbsentBurnableStructure -->
+
+    <owl:Class rdf:about="#AbsentBurnableStructure">
+        <rdfs:subClassOf rdf:resource="#BurnableStructure"/>
+        <owl:disjointWith rdf:resource="#PresentBurnableStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#AbsentBurnableVegetation -->
+
+    <owl:Class rdf:about="#AbsentBurnableVegetation">
+        <rdfs:subClassOf rdf:resource="#BurnableVegetation"/>
+        <owl:disjointWith rdf:resource="#PresentBurnableVegetation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#AbsentHousing -->
+
+    <owl:Class rdf:about="#AbsentHousing">
+        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
+        <owl:disjointWith rdf:resource="#PresentHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#AbsentMatureGorse -->
+
+    <owl:Class rdf:about="#AbsentMatureGorse">
+        <rdfs:subClassOf rdf:resource="#MatureGorse"/>
+        <owl:disjointWith rdf:resource="#PresentMatureGorse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#BurnableStructure -->
+
+    <owl:Class rdf:about="#BurnableStructure">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#BurnableVegetation -->
+
+    <owl:Class rdf:about="#BurnableVegetation">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#HighStructureValue -->
+
+    <owl:Class rdf:about="#HighStructureValue">
+        <rdfs:subClassOf rdf:resource="#StructureValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#HighWildfireDamage -->
+
+    <owl:Class rdf:about="#HighWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#HighWildfirePotential -->
+
+    <owl:Class rdf:about="#HighWildfirePotential">
+        <rdfs:subClassOf rdf:resource="#WildfirePotential"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#LowStructureValue -->
+
+    <owl:Class rdf:about="#LowStructureValue">
+        <rdfs:subClassOf rdf:resource="#StructureValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#LowWildfireDamage -->
+
+    <owl:Class rdf:about="#LowWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#LowWildfirePotential -->
+
+    <owl:Class rdf:about="#LowWildfirePotential">
+        <rdfs:subClassOf rdf:resource="#WildfirePotential"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#MatureGorse -->
+
+    <owl:Class rdf:about="#MatureGorse">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#MediumWildfireDamage -->
+
+    <owl:Class rdf:about="#MediumWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#MediumWildfirePotential -->
+
+    <owl:Class rdf:about="#MediumWildfirePotential">
+        <rdfs:subClassOf rdf:resource="#WildfirePotential"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#ModerateStructureValue -->
+
+    <owl:Class rdf:about="#ModerateStructureValue">
+        <rdfs:subClassOf rdf:resource="#StructureValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#NoWildfireDamage -->
+
+    <owl:Class rdf:about="#NoWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresenceOfHousing -->
+
+    <owl:Class rdf:about="#PresenceOfHousing">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresentBurnableStructure -->
+
+    <owl:Class rdf:about="#PresentBurnableStructure">
+        <rdfs:subClassOf rdf:resource="#BurnableStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresentBurnableVegetation -->
+
+    <owl:Class rdf:about="#PresentBurnableVegetation">
+        <rdfs:subClassOf rdf:resource="#BurnableVegetation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresentHousing -->
+
+    <owl:Class rdf:about="#PresentHousing">
+        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresentMatureGorse -->
+
+    <owl:Class rdf:about="#PresentMatureGorse">
+        <rdfs:subClassOf rdf:resource="#MatureGorse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#StructureValue -->
+
+    <owl:Class rdf:about="#StructureValue">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#VeryHighStructureValue -->
+
+    <owl:Class rdf:about="#VeryHighStructureValue">
+        <rdfs:subClassOf rdf:resource="#StructureValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#VeryHighWildfireDamage -->
+
+    <owl:Class rdf:about="#VeryHighWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#VeryLowStructureValue -->
+
+    <owl:Class rdf:about="#VeryLowStructureValue">
+        <rdfs:subClassOf rdf:resource="#StructureValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#VeryLowWildfireDamage -->
+
+    <owl:Class rdf:about="#VeryLowWildfireDamage">
+        <rdfs:subClassOf rdf:resource="#WildfireDamage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#WildfireDamage -->
+
+    <owl:Class rdf:about="#WildfireDamage">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#WildfirePotential -->
+
+    <owl:Class rdf:about="#WildfirePotential">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;BooleanRanking"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
+
+    <owl:Class rdf:about="&thinklab-core;OrderedRangeMapping"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;OrdinalRanking"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighStructureValue"/>
+            <rdf:Description rdf:about="#LowStructureValue"/>
+            <rdf:Description rdf:about="#ModerateStructureValue"/>
+            <rdf:Description rdf:about="#VeryHighStructureValue"/>
+            <rdf:Description rdf:about="#VeryLowStructureValue"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighWildfirePotential"/>
+            <rdf:Description rdf:about="#LowWildfirePotential"/>
+            <rdf:Description rdf:about="#MediumWildfirePotential"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighWildfireDamage"/>
+            <rdf:Description rdf:about="#LowWildfireDamage"/>
+            <rdf:Description rdf:about="#MediumWildfireDamage"/>
+            <rdf:Description rdf:about="#NoWildfireDamage"/>
+            <rdf:Description rdf:about="#VeryHighWildfireDamage"/>
+            <rdf:Description rdf:about="#VeryLowWildfireDamage"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
 
