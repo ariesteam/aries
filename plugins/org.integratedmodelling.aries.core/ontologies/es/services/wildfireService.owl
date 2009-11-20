@@ -4,7 +4,7 @@
 <!DOCTYPE Ontology [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY  "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY wildfireService "http://www.integratedmodelling.org/ks/es/wildfireService.owl#" >
@@ -14,14 +14,13 @@
 
 <Ontology xmlns="http://www.w3.org/2006/12/owl2-xml#"
      xml:base="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:wildfireService="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:="http://www.w3.org/2006/12/owl2-xml#"
      URI="http://www.integratedmodelling.org/ks/es/wildfireService.owl">
     <Import
         >http://www.integratedmodelling.org/ks/es/eserv.owl</Import>
@@ -46,6 +45,10 @@
         <Class URI="&wildfireService;AbsentBurnableVegetation"/>
         <Class URI="&wildfireService;BurnableVegetation"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
+        <Class URI="&wildfireService;PresentBurnableVegetation"/>
+    </DisjointClasses>
     <Declaration>
         <Class URI="&wildfireService;AbsentBurnableVegetation"/>
     </Declaration>
@@ -53,6 +56,10 @@
         <Class URI="&wildfireService;AbsentHousing"/>
         <Class URI="&wildfireService;PresenceOfHousing"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class URI="&wildfireService;AbsentHousing"/>
+        <Class URI="&wildfireService;PresentHousing"/>
+    </DisjointClasses>
     <Declaration>
         <Class URI="&wildfireService;AbsentHousing"/>
     </Declaration>
@@ -60,6 +67,10 @@
         <Class URI="&wildfireService;AbsentMatureGorse"/>
         <Class URI="&wildfireService;MatureGorse"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class URI="&wildfireService;AbsentMatureGorse"/>
+        <Class URI="&wildfireService;PresentMatureGorse"/>
+    </DisjointClasses>
     <Declaration>
         <Class URI="&wildfireService;AbsentMatureGorse"/>
     </Declaration>
@@ -103,6 +114,14 @@
         <Class URI="&wildfireService;HighWildfireDamage"/>
         <Class URI="&wildfireService;WildfireDamage"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class URI="&wildfireService;HighWildfireDamage"/>
+        <Class URI="&wildfireService;LowWildfireDamage"/>
+        <Class URI="&wildfireService;MediumWildfireDamage"/>
+        <Class URI="&wildfireService;NoWildfireDamage"/>
+        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
+        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
+    </DisjointClasses>
     <Declaration>
         <Class URI="&wildfireService;HighWildfireDamage"/>
     </Declaration>
@@ -110,6 +129,11 @@
         <Class URI="&wildfireService;HighWildfirePotential"/>
         <Class URI="&wildfireService;WildfirePotential"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class URI="&wildfireService;HighWildfirePotential"/>
+        <Class URI="&wildfireService;LowWildfirePotential"/>
+        <Class URI="&wildfireService;MediumWildfirePotential"/>
+    </DisjointClasses>
     <Declaration>
         <Class URI="&wildfireService;HighWildfirePotential"/>
     </Declaration>
@@ -134,6 +158,10 @@
     <Declaration>
         <Class URI="&wildfireService;LowWildfirePotential"/>
     </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;MatureGorse"/>
+        <Class URI="&thinklab-core;BooleanRanking"/>
+    </SubClassOf>
     <SubClassOf>
         <Class URI="&wildfireService;MatureGorse"/>
         <Class URI="&owl;Thing"/>
@@ -169,6 +197,10 @@
     <Declaration>
         <Class URI="&wildfireService;NoWildfireDamage"/>
     </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresenceOfHousing"/>
+        <Class URI="&thinklab-core;BooleanRanking"/>
+    </SubClassOf>
     <SubClassOf>
         <Class URI="&wildfireService;PresenceOfHousing"/>
         <Class URI="&owl;Thing"/>
@@ -206,6 +238,10 @@
     </Declaration>
     <SubClassOf>
         <Class URI="&wildfireService;StructureValue"/>
+        <Class URI="&thinklab-core;OrderedRangeMapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class URI="&wildfireService;StructureValue"/>
         <Class URI="&owl;Thing"/>
     </SubClassOf>
     <Declaration>
@@ -241,11 +277,19 @@
     </Declaration>
     <SubClassOf>
         <Class URI="&wildfireService;WildfireDamage"/>
+        <Class URI="&thinklab-core;OrderedRangeMapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class URI="&wildfireService;WildfireDamage"/>
         <Class URI="&owl;Thing"/>
     </SubClassOf>
     <Declaration>
         <Class URI="&wildfireService;WildfireDamage"/>
     </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;WildfirePotential"/>
+        <Class URI="&thinklab-core;OrdinalRanking"/>
+    </SubClassOf>
     <Declaration>
         <Class URI="&wildfireService;WildfirePotential"/>
     </Declaration>
@@ -253,5 +297,5 @@
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 
