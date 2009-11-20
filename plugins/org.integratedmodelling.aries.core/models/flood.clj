@@ -251,8 +251,5 @@
 	(identification 'floodService:FloodPreventionService)
 		:context (
 			source :as source
-			farmers-use :as farmers
-			public-use  :as public
-			residents-use :as residents
 			sink :as sink))
 	 	 	
