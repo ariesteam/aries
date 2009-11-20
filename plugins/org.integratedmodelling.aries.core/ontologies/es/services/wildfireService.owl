@@ -14,13 +14,13 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/wildfireService.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:wildfireService="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl"/>
@@ -53,15 +53,6 @@
     <owl:Class rdf:about="#AbsentBurnableVegetation">
         <rdfs:subClassOf rdf:resource="#BurnableVegetation"/>
         <owl:disjointWith rdf:resource="#PresentBurnableVegetation"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#AbsentHousing -->
-
-    <owl:Class rdf:about="#AbsentHousing">
-        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
-        <owl:disjointWith rdf:resource="#PresentHousing"/>
     </owl:Class>
     
 
@@ -174,6 +165,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#NoStructures -->
+
+    <owl:Class rdf:about="#NoStructures">
+        <rdfs:subClassOf rdf:resource="#PresenceOfStructures"/>
+        <owl:disjointWith rdf:resource="#YesStructures"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#NoWildfireDamage -->
 
     <owl:Class rdf:about="#NoWildfireDamage">
@@ -182,9 +182,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresenceOfHousing -->
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresenceOfStructures -->
 
-    <owl:Class rdf:about="#PresenceOfHousing">
+    <owl:Class rdf:about="#PresenceOfStructures">
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
@@ -203,14 +203,6 @@
 
     <owl:Class rdf:about="#PresentBurnableVegetation">
         <rdfs:subClassOf rdf:resource="#BurnableVegetation"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#PresentHousing -->
-
-    <owl:Class rdf:about="#PresentHousing">
-        <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
     </owl:Class>
     
 
@@ -277,6 +269,15 @@
 
     <owl:Class rdf:about="#WildfirePotential">
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/wildfireService.owl#YesStructures -->
+
+    <owl:Class rdf:about="#YesStructures">
+        <rdfs:subClassOf rdf:resource="#PresenceOfStructures"/>
     </owl:Class>
     
 
@@ -316,6 +317,17 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighWildfireDamage"/>
+            <rdf:Description rdf:about="#LowWildfireDamage"/>
+            <rdf:Description rdf:about="#MediumWildfireDamage"/>
+            <rdf:Description rdf:about="#NoWildfireDamage"/>
+            <rdf:Description rdf:about="#VeryHighWildfireDamage"/>
+            <rdf:Description rdf:about="#VeryLowWildfireDamage"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighStructureValue"/>
             <rdf:Description rdf:about="#LowStructureValue"/>
             <rdf:Description rdf:about="#ModerateStructureValue"/>
@@ -331,20 +343,9 @@
             <rdf:Description rdf:about="#MediumWildfirePotential"/>
         </owl:members>
     </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighWildfireDamage"/>
-            <rdf:Description rdf:about="#LowWildfireDamage"/>
-            <rdf:Description rdf:about="#MediumWildfireDamage"/>
-            <rdf:Description rdf:about="#NoWildfireDamage"/>
-            <rdf:Description rdf:about="#VeryHighWildfireDamage"/>
-            <rdf:Description rdf:about="#VeryLowWildfireDamage"/>
-        </owl:members>
-    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 
