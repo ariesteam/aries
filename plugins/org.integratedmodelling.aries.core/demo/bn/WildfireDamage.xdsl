@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="PresenceOfHousing">
-			<state id="Yes" />
-			<state id="No" />
+		<cpt id="PresenceOfStructures">
+			<state id="PresentStructures" />
+			<state id="AbsentStructures" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="StructureValue">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighStructureValue" />
+			<state id="HighStructureValue" />
+			<state id="ModerateStructureValue" />
+			<state id="LowStructureValue" />
+			<state id="VeryLowStructureValue" />
 			<probabilities>0.01 0.09 0.35 0.4 0.15</probabilities>
 		</cpt>
 		<cpt id="WildfireDamage">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
-			<state id="None" />
-			<parents>PresenceOfHousing StructureValue</parents>
+			<state id="VeryHighWildfireDamage" />
+			<state id="HighWildfireDamage" />
+			<state id="ModerateWildfireDamage" />
+			<state id="LowWildfireDamage" />
+			<state id="VeryLowWildfireDamage" />
+			<state id="NoWildfireDamage" />
+			<parents>PresenceOfStructures StructureValue</parents>
 			<probabilities>0.01 0.09 0.35 0.4 0.15 0 0.01 0.09 0.35 0.4 0.15 0 0.01 0.09 0.35 0.4 0.15 0 0.01 0.09 0.35 0.4 0.15 0 0.01 0.09 0.35 0.4 0.15 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -32,15 +32,15 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>447 354 545 383</position>
-				<barchart active="true" width="211" height="132" />
+				<position>1081 464 1179 493</position>
+				<barchart active="true" width="482" height="132" />
 			</node>
-			<node id="PresenceOfHousing">
-				<name>PresenceOfHousing</name>
+			<node id="PresenceOfStructures">
+				<name>PresenceOfStructures</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>922 337 1043 368</position>
+				<position>457 470 578 501</position>
 				<barchart active="true" width="279" height="66" />
 			</node>
 			<node id="WildfireDamage">
@@ -48,8 +48,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>675 118 773 147</position>
-				<barchart active="true" width="211" height="132" />
+				<position>805 118 903 147</position>
+				<barchart active="true" width="471" height="154" />
 			</node>
 		</genie>
 	</extensions>

@@ -2,8 +2,8 @@
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="MatureGorse">
-			<state id="PresentBurnableGorse" />
-			<state id="AbsentBurnableGorse" />
+			<state id="PresentMatureGorse" />
+			<state id="AbsentMatureGorse" />
 			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="BurnableVegetation">
@@ -16,18 +16,18 @@
 			<state id="AbsentBurnableStructure" />
 			<probabilities>0.1 0.9</probabilities>
 		</cpt>
-		<cpt id="WildfireSourceHazard">
-			<state id="HighWildfireHazard" />
-			<state id="MediumWildfireHazard" />
-			<state id="NoWildfireHazard" />
+		<cpt id="WildfirePotential">
+			<state id="HighWildfirePotential" />
+			<state id="MediumWildfirePotential" />
+			<state id="NoWildfirePotential" />
 			<parents>MatureGorse BurnableVegetation BurnableStructure</parents>
 			<probabilities>1 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
-			<node id="WildfireSourceHazard">
-				<name>WildfireSourceHazard</name>
+			<node id="WildfirePotential">
+				<name>WildfirePotential</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

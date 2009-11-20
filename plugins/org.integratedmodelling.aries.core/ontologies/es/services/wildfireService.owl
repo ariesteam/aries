@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY wildfireService "http://www.integratedmodelling.org/ks/es/wildfireService.owl#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2006/12/owl2-xml#"
+     xml:base="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wildfireService="http://www.integratedmodelling.org/ks/es/wildfireService.owl#"
+     URI="http://www.integratedmodelling.org/ks/es/wildfireService.owl">
+    <Import
+        >http://www.integratedmodelling.org/ks/es/eserv.owl</Import>
+    <Import
+        >http://www.integratedmodelling.org/ks/es/eserv.owl</Import>
+    <SubClassOf>
+        <Class URI="&wildfireService;AbsentBurnableStructure"/>
+        <Class URI="&wildfireService;BurnableStructure"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;AbsentBurnableStructure"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
+        <Class URI="&wildfireService;BurnableVegetation"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;AbsentBurnableVegetation"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;AbsentHousing"/>
+        <Class URI="&wildfireService;PresenceOfHousing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;AbsentHousing"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;AbsentMatureGorse"/>
+        <Class URI="&wildfireService;MatureGorse"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;AbsentMatureGorse"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;BurnableStructure"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;BurnableStructure"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;BurnableVegetation"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;BurnableVegetation"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;HighStructureValue"/>
+        <Class URI="&wildfireService;StructureValue"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;HighStructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;HighWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;HighWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;HighWildfirePotential"/>
+        <Class URI="&wildfireService;WildfirePotential"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;HighWildfirePotential"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;LowStructureValue"/>
+        <Class URI="&wildfireService;StructureValue"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;LowStructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;LowWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;LowWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;LowWildfirePotential"/>
+        <Class URI="&wildfireService;WildfirePotential"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;LowWildfirePotential"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;MatureGorse"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;MatureGorse"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;MediumWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;MediumWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;MediumWildfirePotential"/>
+        <Class URI="&wildfireService;WildfirePotential"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;MediumWildfirePotential"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;ModerateStructureValue"/>
+        <Class URI="&wildfireService;StructureValue"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;ModerateStructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;NoWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;NoWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresenceOfHousing"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;PresenceOfHousing"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresentBurnableStructure"/>
+        <Class URI="&wildfireService;BurnableStructure"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;PresentBurnableStructure"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresentBurnableVegetation"/>
+        <Class URI="&wildfireService;BurnableVegetation"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;PresentBurnableVegetation"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresentHousing"/>
+        <Class URI="&wildfireService;PresenceOfHousing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;PresentHousing"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;PresentMatureGorse"/>
+        <Class URI="&wildfireService;MatureGorse"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;PresentMatureGorse"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;StructureValue"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;StructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;VeryHighStructureValue"/>
+        <Class URI="&wildfireService;StructureValue"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;VeryHighStructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;VeryHighWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;VeryLowStructureValue"/>
+        <Class URI="&wildfireService;StructureValue"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;VeryLowStructureValue"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;VeryLowWildfireDamage"/>
+    </Declaration>
+    <SubClassOf>
+        <Class URI="&wildfireService;WildfireDamage"/>
+        <Class URI="&owl;Thing"/>
+    </SubClassOf>
+    <Declaration>
+        <Class URI="&wildfireService;WildfireDamage"/>
+    </Declaration>
+    <Declaration>
+        <Class URI="&wildfireService;WildfirePotential"/>
+    </Declaration>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
