@@ -19,42 +19,43 @@
   (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
   (:use
-;;      [tl              :only (get-session)]
-;;	[geospace        :only (build-coverage
-;;				get-spatial-extent
-;;				grid-extent?
-;;				grid-rows
-;;				grid-cols)]
-;;	[corescience     :only (map-dependent-states)]
-	[misc.utils      :only (maphash count-distinct)]
-	[gssm.params     :only (set-global-params!)]
-	[gssm.flow-model :only (simulate-service-flows)]
-	[gssm.analyzer   :only (theoretical-source
-				theoretical-sink
-				theoretical-use
-				inaccessible-source
-				inaccessible-sink
-				inaccessible-use
-				possible-flow
-				possible-source
-				possible-inflow
-				possible-sink
-				possible-use
-				possible-outflow
-				blocked-flow
-				blocked-source
-				blocked-inflow
-				blocked-sink
-				blocked-use
-				blocked-outflow
-				actual-flow
-				actual-source
-				actual-inflow
-				actual-sink
-				actual-use
-				actual-outflow)]))
+;;      [tl                    :only (get-session)]
+;;	[geospace              :only (build-coverage
+;;				      get-spatial-extent
+;;				      grid-extent?
+;;				      grid-rows
+;;				      grid-columns)]
+;;	[corescience           :only (map-dependent-states)]
+	[misc.utils            :only (maphash count-distinct)]
+	[gssm.params           :only (set-global-params!)]
+	[gssm.flow-model       :only (simulate-service-flows)]
+	[gssm.location-builder :only (unpack-datasource)]
+	[gssm.analyzer         :only (theoretical-source
+				      theoretical-sink
+				      theoretical-use
+				      inaccessible-source
+				      inaccessible-sink
+				      inaccessible-use
+				      possible-flow
+				      possible-source
+				      possible-inflow
+				      possible-sink
+				      possible-use
+				      possible-outflow
+				      blocked-flow
+				      blocked-source
+				      blocked-inflow
+				      blocked-sink
+				      blocked-use
+				      blocked-outflow
+				      actual-flow
+				      actual-source
+				      actual-inflow
+				      actual-sink
+				      actual-use
+				      actual-outflow)]))
 
-(defn select-menu-option
+(defn- select-menu-option
   "Prompts the user with a menu of choices and returns the label
    corresponding to their selection."
   [prompts num-prompts]
@@ -70,8 +71,8 @@
 	(do (println "Invalid selection. Please choose a number from the menu.")
 	    (recur))))))
 
-(defn select-location
-  "Prompts for coords and returns the cooresponding location object."
+(defn- select-location
+  "Prompts for coords and returns the corresponding location object."
   [locations rows cols]
   (loop []
     (printf "%nInput location coords%n")
@@ -83,31 +84,35 @@
 	(do (printf "No location at %s. Enter another selection.%n" coords)
 	    (recur))))))
 
-(defn coord-map-to-matrix
-  "Renders a map of {[i j] -> value} into a 2D matrix."
+(defn- coord-map-to-matrix
+  "Renders a map of {[i j] -> value} into a 2D matrix, where value is
+   either a double or a probability distribution."
   [rows cols coord-map]
-  (let [matrix (make-array Double/TYPE rows cols)]
+  (let [matrix (make-array (class (val (first coord-map))) rows cols)]
     (doseq [[i j :as key] (keys coord-map)]
-	(aset-double matrix i j (coord-map key)))
+	(aset matrix i j (coord-map key)))
     matrix))
 
-(defn select-map-by-feature
+(defn- select-map-by-feature
+  "Prompts for a concept available in the union of the source, sink,
+   use, and flow observations, and returns a map of {[i j] -> value}
+   for the one selected, where value is either a double or a
+   probability distribution."
   [source-observation sink-observation use-observation flow-observation rows cols]
-  (let [feature-states (maphash (memfn getLocalName) identity
+  (let [feature-states (maphash (memfn getLocalName) #(unpack-datasource % rows cols)
 				(merge (corescience/map-dependent-states source-observation)
 				       (corescience/map-dependent-states sink-observation)
 				       (corescience/map-dependent-states use-observation)
-				       (if flow-observation
-					 (corescience/map-dependent-states flow-observation))))
+				       (corescience/map-dependent-states flow-observation)))
 	feature-names  (vec (keys feature-states))
 	num-features   (count feature-names)
 	feature-name   (select-menu-option feature-names num-features)]
     (zipmap (for [i (range rows) j (range cols)] [i j])
 	    (feature-states feature-name))))
 
-(defn view-location-properties
+(defn- view-location-properties
   "Prints a summary of the post-simulation properties of the
-  location."
+   location."
   [location]
   (let [fmt-str (str
 		 "%nLocation %s%n"
@@ -121,12 +126,23 @@
     (printf fmt-str
 	    (:id location)
 	    (:neighbors location)
-	    (force (:source location))
-	    (force (:sink location))
-	    (force (:use location))
+	    (:source location)
+	    (:sink location)
+	    (:use location)
 	    (:flow-features location)
 	    (count @(:carrier-cache location)))))
 
+(defn- observation-spaces-match?
+  "Verifies that all observations have a grid extent and the same rows
+   and cols."
+  [& observations]
+  (and (every? geospace/grid-extent? observations)
+       (let [rows (map geospace/grid-rows observations)
+	     cols (map geospace/grid-columns observations)]
+         (not (or (some #(not= % (first rows)) (rest rows))
+		  (some #(not= % (first cols)) (rest cols)))))))
+
+;; FIXME set-global-params! now uses some different parameters (make sure these are reflected in the calling file(s))
 (defn gssm-autopilot
   "Takes the source, sink, use, and flow concepts along with
    observations of their dependent features, calculates the gssm
@@ -137,7 +153,7 @@
    use-concept    use-observation
    flow-concept   flow-observation
    flow-params]
-  (assert (geospace/grid-extent? source-observation))
+  (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
   (set-global-params! flow-params)
   (let [rows      (geospace/grid-rows    source-observation)
 	cols      (geospace/grid-columns source-observation)
@@ -183,7 +199,7 @@
    use-concept    use-observation
    flow-concept   flow-observation
    flow-params]
-  (assert (geospace/grid-extent? source-observation))
+  (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
   (set-global-params! flow-params)
   (binding [*out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
 	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream  (tl/get-session))))]
@@ -230,7 +246,7 @@
 		"Quit"                      nil)
 	  prompts (vec (keys menu))
 	  num-prompts (count prompts)]
-      (println "Rows x Cols: " rows " x " cols)
+      (println "Rows x Cols:" rows "x" cols)
       (println "Source-Concept-Name:" (.getLocalName source-concept))
       (println "Sink-Concept-Name:  " (.getLocalName sink-concept))
       (println "Use-Concept-Name:   " (.getLocalName use-concept))
@@ -240,7 +256,8 @@
 	  (when (fn? action)
 	    (let [coord-map (apply action)]
 	      (when (map? coord-map)
-		(.show (geospace/build-coverage extent coord-map))
+		(if (instance? java.lang.Double (val (first coord-map)))
+		  (.show (geospace/build-coverage extent coord-map)))
 		(newline)
-		(println "Distinct values: " (count-distinct (vals coord-map) 12)))
+		(println "Distinct values:" (count-distinct (vals coord-map) 12)))
 	      (recur (select-menu-option prompts num-prompts)))))))))

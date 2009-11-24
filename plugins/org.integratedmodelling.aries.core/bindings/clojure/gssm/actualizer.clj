@@ -22,7 +22,6 @@
 
 (defn- upstream-dependent-carriers
   [carrier dependency?]
-  ;;(println "Finding upstream carriers for:" (:id (peek (:route carrier))))
   (some #(and (dependency? %) @(:carrier-cache %))
 	(rest (rseq (:route carrier)))))
 
@@ -44,46 +43,29 @@
 			    use-loc?
 			    (constantly false))
 			  (constantly false)))]
-      ;;(println "Building a set of unordered carriers...")
       (loop [unordered   (set carriers)
 	     ordered     []
 	     open-list   (list (first carriers))]
-	;;(println "Unordered set size:" (count unordered))
-	;;(println "Ordered list size: " (count ordered))
-	;;(println "Open list size:    " (count open-list))
 	(if (empty? open-list)
-	  (do
-	    ;;(println "OPEN LIST is empty. Tree completed.")
-	    (if (empty? unordered)
-	      (do
-		;;(println "All trees completed.")
-		ordered)
-	      (do
-		;;(println "Beginning new tree.")
-		(recur unordered
-		       ordered
-		       (list (first unordered))))))
-	  (do
-	    ;;(println "Beginning tree descent.")
-	    ;;(println "Continue? ")(read)
-	    (let [c          (first open-list)
-		  successors (filter unordered (upstream-dependent-carriers c dependency?))]
-	      ;;(println "Num successors:" (count successors))
-	      ;;(println "Continue? ")(read)
-	      (if (nil? successors)
-		(recur (disj unordered c)
-		       (conj ordered c)
-		       (rest open-list))
-		(recur unordered
-		       ordered
-		       (concat successors open-list))))))))))
+	  (if (empty? unordered)
+	    ordered
+	    (recur unordered
+		   ordered
+		   (list (first unordered))))
+	  (let [c          (first open-list)
+		successors (filter unordered (upstream-dependent-carriers c dependency?))]
+	    (if (nil? successors)
+	      (recur (disj unordered c)
+		     (conj ordered c)
+		     (rest open-list))
+	      (recur unordered
+		     ordered
+		     (concat successors open-list)))))))))
 
 (defn cache-all-actual-routes!
   [locations]
   (println "Computing actual routes from possible routes...")
-  (let [carriers (apply concat (map (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations)))]
-    (println "Total carriers:" (count carriers))
-    (println "Distinct carriers:" (count (distinct carriers)))
+  (let [carriers (mapcat (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations))]
     (println "Ordering carriers by dependence...")
     (let [sorted-carriers (order-carriers-by-dependence carriers)]
       (println "Rerunning routes by dependence order...")

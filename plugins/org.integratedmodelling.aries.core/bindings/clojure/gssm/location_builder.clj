@@ -18,66 +18,50 @@
 (ns gssm.location-builder
   (:refer-clojure)
   (:use [misc.utils        :only (maphash seq2map)]
-	[misc.matrix-ops   :only (get-neighbors)]
-	[gssm.discretizer  :only (discretize-value)]
-	[gssm.bn-interface :only (run-bayes-net)]))
-;;	[aries             :only (make-bn-inference)]
-;;	[corescience       :only (map-dependent-states)]))
+	[misc.matrix-ops   :only (get-neighbors)]))
+;;	[corescience       :only (map-dependent-states)]
+;;      [modelling         :only (probabilistic? get-possible-states get-probabilities get-data)]))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
 
-(defn extract-features-discretized
-  "Returns a map of feature names to the discretized values at i j."
-  [observation-states idx]
-  (seq2map observation-states
-	   (fn [[feature-name values]]
-	     [feature-name (discretize-value feature-name (nth values idx))])))
+(defn unpack-datasource
+  "Returns a vector (of length rows * cols) of the values in ds,
+   either doubles or probability distributions."
+  [ds rows cols]
+  (vec (if (modelling/probabilistic? ds)
+	 (let [prob-dist (apply create-struct (modelling/get-possible-states ds))]
+	   (for [idx (range (* rows cols))]
+	     (apply struct prob-dist (modelling/get-probabilities ds idx))))
+	 (modelling/get-data ds))))
 
-(defn extract-features
-  "Returns a map of feature names to the values at i j."
-  [observation-states idx]
-  (maphash identity #(nth % idx) observation-states))
+(defn- extract-values-by-concept
+  "Returns a vector of the concept's values in the observation,
+   which are doubles or probability distributions."
+  [obs conc rows cols]
+  (unpack-datasource ((corescience/map-dependent-states obs) conc) rows cols))
+
+(defn- extract-all-values
+  "Returns a map of concepts to vectors of doubles or probability
+   distributions."
+  [obs rows cols]
+  (maphash identity #(unpack-datasource % rows cols) (corescience/map-dependent-states obs)))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
-   observations."
-  [source-concept source-observation
-   sink-concept   sink-observation
-   use-concept    use-observation
-   flow-observation rows cols]
-  (let [source-concept-name     (.getLocalName source-concept)
-	sink-concept-name       (.getLocalName sink-concept)
-	use-concept-name        (.getLocalName use-concept)
-	source-inference-engine (aries/make-bn-inference source-concept)
-	sink-inference-engine   (aries/make-bn-inference sink-concept)
-	use-inference-engine    (aries/make-bn-inference use-concept)
-	source-feature-map      (maphash (memfn getLocalName) identity
-					 (corescience/map-dependent-states source-observation))
-	sink-feature-map        (maphash (memfn getLocalName) identity
-					 (corescience/map-dependent-states sink-observation))
-	use-feature-map         (maphash (memfn getLocalName) identity
-					 (corescience/map-dependent-states use-observation))
-	flow-feature-map        (when flow-observation
-				  (maphash (memfn getLocalName) identity
-					   (corescience/map-dependent-states flow-observation)))]
+   observation set."
+  [source-conc source-obs sink-conc sink-obs use-conc use-obs flow-obs rows cols]
+  (let [source-vec   (extract-values-by-concept source-obs source-conc rows cols)
+	sink-vec     (extract-values-by-concept sink-obs   sink-conc   rows cols)
+	use-vec      (extract-values-by-concept use-obs    use-conc    rows cols)
+	flow-vec-map (extract-all-values flow-obs rows cols)]
     (seq2map (for [i (range rows) j (range cols)]
-	       (let [feature-idx     (+ (* i cols) j)
-		     source-features (extract-features-discretized source-feature-map feature-idx)
-		     sink-features   (extract-features-discretized sink-feature-map   feature-idx)
-		     use-features    (extract-features-discretized use-feature-map    feature-idx)
-		     flow-features   (extract-features             flow-feature-map   feature-idx)]
+	       (let [idx (+ (* i cols) j)]
 		 (struct-map location
 		   :id            [i j]
 		   :neighbors     (get-neighbors [i j] rows cols)
-		   :source        (delay (run-bayes-net source-concept-name
-							source-inference-engine
-							source-features))
-		   :sink          (delay (run-bayes-net sink-concept-name
-							sink-inference-engine
-							sink-features))
-		   :use           (delay (run-bayes-net use-concept-name
-							use-inference-engine
-							use-features))
-		   :flow-features flow-features
+		   :source        (source-vec idx)
+		   :sink          (sink-vec   idx)
+		   :use           (use-vec    idx)
+		   :flow-features (maphash identity #(% idx) flow-vec-map)
 		   :carrier-cache (atom ()))))
 	     (fn [loc] [(:id loc) loc]))))

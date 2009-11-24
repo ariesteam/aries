@@ -18,7 +18,8 @@
 (ns gssm.carbon-model
   (:refer-clojure)
   (:use [misc.utils     :only (seq2map)]
-	[gssm.model-api :only (distribute-flow! service-carrier)]
+	[misc.stats     :only (rv-zero? rv-add rv-mult rv-div scalar-rv-mult rv-scalar-div scalar-rv-div)]
+	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[gssm.analyzer  :only (source-loc? use-loc?)]))
 
 (defmethod distribute-flow! "Carbon"
@@ -26,25 +27,31 @@
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative :use
    values."
-  (let [locations         (vals location-map)
-	source-locations  (filter source-loc? locations)
-	use-locations     (filter use-loc? locations)
-	total-production  (reduce + (map (comp force :source) source-locations))
-	total-consumption (reduce + (map (comp force :use)    use-locations))]
-    (when (> total-consumption 0.0)
-      (let [production-consumption-ratio (/ total-production total-consumption)
-	    producer-percentages (seq2map source-locations
-					  #(vector % (/ (force (:source %)) total-production)))
-	    consumer-units       (seq2map use-locations
-					  #(vector % (* (force (:use %)) production-consumption-ratio)))]
-	(doseq [p (keys producer-percentages)]
-	  (doseq [c (keys consumer-units)]
-	    (swap! (:carrier-cache c) conj
-		   (struct service-carrier
-			   (* (producer-percentages p) (consumer-units c))
-			   [p c]))))))))
-
-;;	(for [p (keys producer-percentages) c (keys consumer-units)]
-;;	  (struct service-carrier
-;;		  (* (producer-percentages p) (consumer-units c))
-;;		  [p c]))))))
+  (let [locations                 (vals location-map)
+	{s :source u :use}        (select-keys (first locations) [:source :use])
+	[add-sources div-sources] (if (map? s) [rv-add rv-div]   [+ /])
+	[add-uses zero-use?]      (if (map? u) [rv-add rv-zero?] [+ zero?])
+	[div-source-by-use mult-use-by-ratio mult-percent-by-use]
+	(if (map? s)
+	  (if (map? u) [rv-div        rv-mult rv-mult]        [rv-scalar-div scalar-rv-mult rv-mult])
+	  (if (map? u) [scalar-rv-div rv-mult scalar-rv-mult] [/             *              *]))
+	source-locations          (filter source-loc? locations)
+	use-locations             (filter use-loc?    locations)
+	total-production          (reduce add-sources (map :source source-locations))
+	total-consumption         (reduce add-uses    (map :use    use-locations))]
+    (when-not (zero-use? total-consumption)
+      (let [production-consumption-ratio (div-source-by-use total-production total-consumption)
+	    producer-percentages         (seq2map source-locations
+						  #(vector % (div-sources (:source %) total-production)))
+	    consumer-units               (seq2map use-locations
+						  #(vector % (mult-use-by-ratio (:use %) production-consumption-ratio)))
+	    action-fn                    (fn [_ c]
+					   ;;(reset! (:carrier-cache c) ; FIXME upgrade clojure!
+					   (swap! (:carrier-cache c) (constantly
+								      (for [p source-locations]
+									(struct service-carrier
+										(mult-percent-by-use
+										 (producer-percentages p)
+										 (consumer-units c))
+										[p c])))))]
+	(distribute-load-over-processors action-fn use-locations)))))

@@ -18,12 +18,15 @@
 (ns gssm.params
   (:refer-clojure))
 
+;; FIXME do we ever want both absolute and relative, sources, sinks, or uses?
+;; FIXME *source-type* should exist now since it can also be absolute or relative
 (def *source-threshold* 0.0)
 
 (def *sink-threshold* 0.0)
 
 (def *use-threshold* 0.0)
 
+;; FIXME decay-rate is a function, not a float
 (def *decay-rate* 0.0)
 
 (def *trans-threshold* 0.0)

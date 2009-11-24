@@ -29,20 +29,10 @@
 			    *use-type*
 			    *benefit-type*)]))
 
-(defn source-loc?
-  [loc]
-  (> (force (:source loc)) *source-threshold*))
-(def source-loc? (memoize source-loc?))
-
-(defn sink-loc?
-  [loc]
-  (> (force (:sink loc)) *sink-threshold*))
-(def sink-loc? (memoize sink-loc?))
-
-(defn use-loc?
-  [loc]
-  (> (force (:use loc)) *use-threshold*))
-(def use-loc? (memoize use-loc?))
+;; FIXME overload these for probabilities and doubles
+(def source-loc? (memoize (fn [loc] (> (:source loc) *source-threshold*))))
+(def sink-loc?   (memoize (fn [loc] (> (:sink   loc) *sink-threshold*))))
+(def use-loc?    (memoize (fn [loc] (> (:use    loc) *use-threshold*))))
 
 (defn theoretical-source
   "Returns a map of {location-id -> source-value}.

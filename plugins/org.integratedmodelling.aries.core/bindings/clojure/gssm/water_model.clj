@@ -18,20 +18,21 @@
 (ns gssm.water-model
   (:refer-clojure)
   (:use [misc.utils     :only (memoize-by-first-arg depth-first-tree-search)]
-	[gssm.model-api :only (distribute-flow!
-			       service-carrier
-			       distribute-load-over-processors)]
+	[misc.stats     :only (rv-scalar-div rv-from-scalar rv-gt rv-scalar-gt scalar-rv-gt rv-min rv-eq)]
+	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[gssm.params    :only (*trans-threshold*)]))
 
-(defn most-downhill-neighbors
-  [location location-map]
+(def #^{:private true} elev-concept (tl/conc 'geophysics:Altitude))
+
+(defn- most-downhill-neighbors
+  [location location-map min-fn eq-fn]
   (let [neighbors      (map location-map (:neighbors location))
-	neighbor-elevs (map #((:flow-features %) "Elevation") neighbors)
-	local-elev     ((:flow-features location) "Elevation")
-	min-elev       (apply min local-elev neighbor-elevs)]
-    (filter identity
-	    (map (fn [n elev] (if (== elev min-elev) n))
+	neighbor-elevs (map #((:flow-features %) elev-concept) neighbors)
+	local-elev     ((:flow-features location) elev-concept)
+	min-elev       (reduce min-fn local-elev neighbor-elevs)]
+    (remove nil?
+	    (map (fn [n elev] (if (eq-fn elev min-elev) n))
 		 neighbors neighbor-elevs))))
 (def most-downhill-neighbors (memoize-by-first-arg most-downhill-neighbors))
 
@@ -39,15 +40,15 @@
   "Depth-first search with successors = downhill neighbors.
    Stop when no successors.  No decay-rate, but branching-factor is
    possible, so check for weight below trans-threshold."
-  [location-map source-location source-weight]
+  [location-map source-location div-fn zero-val gt-fn min-fn eq-fn]
   (depth-first-tree-search
-   (list [source-weight [source-location]])
+   (list [(:source source-location) [source-location]])
    (fn [[weight route]]
-     (let [downhill-neighbors (most-downhill-neighbors (peek route) location-map)
+     (let [downhill-neighbors (most-downhill-neighbors (peek route) location-map min-fn eq-fn)
 	   downhill-weight    (if (seq downhill-neighbors)
-			        (/ weight (count downhill-neighbors))
-				0.0)]
-       (when (> downhill-weight *trans-threshold*)
+				(div-fn weight (count downhill-neighbors))
+				zero-val)]
+       (when (gt-fn downhill-weight *trans-threshold*)
 	 (map #(vector downhill-weight (conj route %))
 	      downhill-neighbors))))
    (fn [[weight route]]
@@ -56,11 +57,18 @@
 	 (swap! (:carrier-cache loc) conj (struct service-carrier weight route)))
        false))))
 
+;; FIXME the use of rv-from-scalar assumes that the first key in s is
+;; the zero value of the distribution.
 (defmethod distribute-flow! "Water"
   [_ location-map _ _]
-  (distribute-load-over-processors
-   (fn [_ source-location]
-     (distribute-downhill! location-map
-			   source-location
-			   (force (:source source-location))))
-   (filter source-loc? (vals location-map))))
+  (let [first-loc         (val (first location-map))
+	s                 (:source first-loc)
+	[div-fn zero-val] (if (map? s) [rv-scalar-div (rv-from-scalar s (first (keys s)))] [/ 0.0])
+	gt-fn             (if (map? s)
+			    (if (map? *trans-threshold*) rv-gt rv-scalar-gt)
+			    (if (map? *trans-threshold*) scalar-rv-gt >))
+	[min-fn eq-fn]    (if (map? ((:flow-features first-loc) elev-concept)) [rv-min rv-eq] [min ==])]
+    (distribute-load-over-processors
+     (fn [_ source-location]
+       (distribute-downhill! location-map source-location div-fn zero-val gt-fn min-fn eq-fn))
+     (filter source-loc? (vals location-map)))))
