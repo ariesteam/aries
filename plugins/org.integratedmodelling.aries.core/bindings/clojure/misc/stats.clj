@@ -61,6 +61,12 @@
   X)
 
 ;; FIXME finish stub
+(defn scalar-rv-sub
+  "Returns the distribution of the random variable Y with its range values subtracted from x."
+  [x Y]
+  (maphash #(- x %) identity Y))
+
+;; FIXME finish stub
 (defn rv-mult
   "Returns the distribution of the product of two random variables X and Y."
   [X Y]

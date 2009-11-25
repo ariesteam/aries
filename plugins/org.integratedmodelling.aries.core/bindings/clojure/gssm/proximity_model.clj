@@ -17,9 +17,8 @@
 
 (ns gssm.proximity-model
   (:refer-clojure)
-  (:use [gssm.model-api :only (distribute-flow!
-			       service-carrier
-			       distribute-load-over-processors)]
+  (:use [misc.stats :only (rv-from-scalar scalar-rv-sub rv-mult rv-scalar-mult scalar-rv-mult rv-gt rv-scalar-gt scalar-rv-gt)]
+	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[gssm.params    :only (*decay-rate* *trans-threshold*)]))
 
@@ -63,20 +62,20 @@
 	    frontier)))
 
 (defn select-optimal-path
-  [location frontier]
+  [location frontier sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn]
   (let [frontier-options (nearest-neighbors location frontier)]
     (when (seq frontier-options)
       (let [[outflow route] (reduce (fn [[w1 r1 :as prev] [w2 r2]]
-				      (let [outflow (* w2 (- 1.0 (force (:sink (peek r2)))))]
-					(if (> outflow w1)
+				      (let [outflow (sink-mult-fn w2 (sub-fn 1.0 (:sink (peek r2))))]
+					(if (gt-fn outflow w1)
 					  [outflow r2]
 					  prev)))
-				    [0.0 nil]
+				    [zero-val []]
 				    frontier-options)]
-	[(* outflow *decay-rate*) (conj route location)]))))
+	[(decay-mult-fn outflow *decay-rate*) (conj route location)]))))
 
 (defn distribute-gaussian!
-  [location-map rows cols source-location source-weight]
+  [location-map rows cols source-location source-weight gt-trans-fn sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn]
   (loop [frontier (list [source-weight [source-location]])]
     (when (seq frontier)
       (doseq [[weight route] frontier]
@@ -87,31 +86,38 @@
        (let [frontier-ids  (map (comp :id peek second) frontier)
 	     bounding-ids  (expand-box frontier-ids rows cols)
 	     bounding-locs (map location-map bounding-ids)]
-	 (filter #(and % (> (first %) *trans-threshold*))
-		 (map #(select-optimal-path % frontier) bounding-locs)))))))
+	 (filter #(and % (gt-trans-fn (first %) *trans-threshold*))
+		 (map #(select-optimal-path % frontier sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn) bounding-locs)))))))
 
+;; FIXME rv-from-scalar assumes the first key in :source is the zero
+;; value.
 (defmethod distribute-flow! "Proximity"
   [_ location-map rows cols]
   (println "Local Proximity Model begins...")
-  (distribute-load-over-processors
-   (fn [_ source-location]
-     (distribute-gaussian! location-map
-			   rows
-			   cols
-			   source-location
-			   (force (:source source-location))))
-   (filter source-loc? (vals location-map))))
-
-(defmethod distribute-flow! "Proximity_Sequential"
-  [_ location-map rows cols]
-  (println "Local Proximity Model begins...")
-  (let [sources (vec (filter source-loc? (vals location-map)))
-	num-sources (count sources)]
-    (dotimes [i num-sources]
-	(let [source-location (sources i)]
-	  (println "Projection" (inc i) "/" num-sources)
-	  (distribute-gaussian! location-map
-				rows
-				cols
-				source-location
-				(force (:source source-location)))))))
+  (let [first-loc     (val (first location-map))
+	zero-val      (if (map? (:source first-loc)) (rv-from-scalar (:source first-loc) (first (keys (:source first-loc)))))
+	sub-fn        (if (map? (:sink first-loc)) scalar-rv-sub -)
+	sink-mult-fn  (if (map? (:source first-loc))
+			(if (map? (:sink first-loc)) rv-mult rv-scalar-mult)
+			(if (map? (:sink first-loc)) scalar-rv-mult *))
+	decay-mult-fn (if (map? (:source first-loc))
+			(if (map? *decay-rate*) rv-mult rv-scalar-mult)
+			(if (map? *decay-rate*) scalar-rv-mult *))
+	gt-trans-fn   (if (map? (:source first-loc))
+			(if (map? *trans-threshold*) rv-gt rv-scalar-gt)
+			(if (map? *trans-threshold*) scalar-rv-gt >))
+	gt-fn         (if (map? (:source first-loc)) rv-gt >)]
+    (distribute-load-over-processors
+     (fn [_ source-location]
+       (distribute-gaussian! location-map
+			     rows
+			     cols
+			     source-location
+			     (:source source-location)
+			     gt-trans-fn
+			     sink-mult-fn
+			     decay-mult-fn
+			     zero-val
+			     sub-fn
+			     gt-fn))
+     (filter source-loc? (vals location-map)))))
