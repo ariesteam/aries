@@ -6,33 +6,7 @@
 
 (ns aries
   (:refer-clojure)
-  (:use [misc.utils      :only (maphash count-distinct)]
-	[gssm.flow-model :only (simulate-service-flows)]
-	[gssm.analyzer   :only (
-				theoretical-source
-				theoretical-sink
-				theoretical-use
-				inaccessible-source
-				inaccessible-sink
-				inaccessible-use
-				possible-flow
-				possible-source
-				possible-inflow
-				possible-sink
-				possible-use
-				possible-outflow
-				blocked-flow
-				blocked-source
-				blocked-inflow
-				blocked-sink
-				blocked-use
-				blocked-outflow
-				actual-flow
-				actual-source
-				actual-inflow
-				actual-sink
-				actual-use
-				actual-outflow)]))
+  (:use [span.flow-model :only (simulate-service-flows)]))
 
 (defn j-make-gssm
 	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 

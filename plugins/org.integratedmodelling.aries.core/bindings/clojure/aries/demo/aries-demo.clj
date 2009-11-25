@@ -5,7 +5,9 @@
 ;; @date Nov 13, 2008 
 ;; -----------------------------------------------------------------------------------------------
 
-(ns aries.demo)
+(ns aries.demo
+  (:refer-clojure)
+  (:use [span.interface :only (span-interface span-autopilot)]))
 
 ;(tl/load-bindings 'corescience)
 ;(tl/load-bindings 'geospace)
@@ -76,7 +78,7 @@
 			  flow-data (get-demo-data-for-observable benf-flow
 							study-region
 							max-resolution)]
-	  (gssm.interface/gssm-interface
+	  (span-interface
 	  		 benf-source source-data
 	  		 benf-sink   sink-data
 	  		 benf-use    use-data
@@ -106,7 +108,7 @@
 							study-region
 							max-resolution)]
 	  (org.integratedmodelling.aries.core.datastructures.demo.FlowObservationBuilder/buildObservation
-	  	(gssm.interface/gssm-autopilot
+	  	(span-autopilot
 	  		 benf-source source-data
 	  		 benf-sink   sink-data
 	  		 benf-use    use-data
