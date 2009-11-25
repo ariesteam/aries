@@ -1,5 +1,6 @@
 package org.integratedmodelling.aries.administration;
 
+import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
@@ -14,8 +15,7 @@ public class ARIESAdministrationPlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
-		// TODO Auto-generated method stub
-
+		Geospace.get().loadGazetteers(PLUGIN_ID);
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
 
-		Geospace.get().addGazetteer(new SimpleGazetteer(getProperties()));
+		Geospace.get().addGazetteer("aries-inline", new SimpleGazetteer(getProperties()));
 		KBoxManager.get().installKbox(
 				"kbox://www.integratedmodelling.org/aries/demo", 
 				new ARIESDemoKbox());
@@ -29,7 +29,6 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	@Override
 	protected void unload() throws ThinklabException {
 		// TODO Auto-generated method stub
-
 	}
 	
 }
