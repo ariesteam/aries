@@ -1,26 +1,26 @@
 ;;; Copyright 2009 Gary Johnson
 ;;;
-;;; This file is part of CLJ-GSSM.
+;;; This file is part of CLJ-SPAN.
 ;;;
-;;; CLJ-GSSM is free software: you can redistribute it and/or modify
+;;; CLJ-SPAN is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published
 ;;; by the Free Software Foundation, either version 3 of the License,
 ;;; or (at your option) any later version.
 ;;;
-;;; CLJ-GSSM is distributed in the hope that it will be useful, but
+;;; CLJ-SPAN is distributed in the hope that it will be useful, but
 ;;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;;; General Public License for more details.
 ;;;
 ;;; You should have received a copy of the GNU General Public License
-;;; along with CLJ-GSSM.  If not, see <http://www.gnu.org/licenses/>.
+;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns gssm.carbon-model
+(ns span.carbon-model
   (:refer-clojure)
   (:use [misc.utils     :only (seq2map)]
 	[misc.stats     :only (rv-zero? rv-add rv-mult rv-div scalar-rv-mult rv-scalar-div scalar-rv-div)]
-	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? use-loc?)]))
+	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
+	[span.analyzer  :only (source-loc? use-loc?)]))
 
 (defmethod distribute-flow! "Carbon"
   [_ location-map _ _]

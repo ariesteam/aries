@@ -1,21 +1,21 @@
 ;;; Copyright 2009 Gary Johnson
 ;;;
-;;; This file is part of CLJ-GSSM.
+;;; This file is part of CLJ-SPAN.
 ;;;
-;;; CLJ-GSSM is free software: you can redistribute it and/or modify
+;;; CLJ-SPAN is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published
 ;;; by the Free Software Foundation, either version 3 of the License,
 ;;; or (at your option) any later version.
 ;;;
-;;; CLJ-GSSM is distributed in the hope that it will be useful, but
+;;; CLJ-SPAN is distributed in the hope that it will be useful, but
 ;;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;;; General Public License for more details.
 ;;;
 ;;; You should have received a copy of the GNU General Public License
-;;; along with CLJ-GSSM.  If not, see <http://www.gnu.org/licenses/>.
+;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns gssm.interface
+(ns span.interface
   (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
   (:use
@@ -27,10 +27,10 @@
 ;;				      grid-columns)]
 ;;	[corescience           :only (map-dependent-states)]
 	[misc.utils            :only (maphash count-distinct)]
-	[gssm.params           :only (set-global-params!)]
-	[gssm.flow-model       :only (simulate-service-flows)]
-	[gssm.location-builder :only (unpack-datasource)]
-	[gssm.analyzer         :only (theoretical-source
+	[span.params           :only (set-global-params!)]
+	[span.flow-model       :only (simulate-service-flows)]
+	[span.location-builder :only (unpack-datasource)]
+	[span.analyzer         :only (theoretical-source
 				      theoretical-sink
 				      theoretical-use
 				      inaccessible-source
@@ -143,9 +143,9 @@
 		  (some #(not= % (first cols)) (rest cols)))))))
 
 ;; FIXME set-global-params! now uses some different parameters (make sure these are reflected in the calling file(s))
-(defn gssm-autopilot
+(defn span-autopilot
   "Takes the source, sink, use, and flow concepts along with
-   observations of their dependent features, calculates the gssm
+   observations of their dependent features, calculates the span
    flows, and returns a list of matrices representing the flow
    analysis results."
   [source-concept source-observation
@@ -189,9 +189,9 @@
 		 (actual-use          locations)
 		 (actual-outflow      locations))))))
 
-(defn gssm-interface
+(defn span-interface
   "Takes the source, sink, use, and flow concepts along with
-   observations of their dependent features, calculates the gssm
+   observations of their dependent features, calculates the span
    flows, and provides a simple menu-based interface to view the
    results."
   [source-concept source-observation

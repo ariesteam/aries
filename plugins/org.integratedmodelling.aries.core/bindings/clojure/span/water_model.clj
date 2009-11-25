@@ -1,27 +1,27 @@
 ;;; Copyright 2009 Gary Johnson
 ;;;
-;;; This file is part of CLJ-GSSM.
+;;; This file is part of CLJ-SPAN.
 ;;;
-;;; CLJ-GSSM is free software: you can redistribute it and/or modify
+;;; CLJ-SPAN is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published
 ;;; by the Free Software Foundation, either version 3 of the License,
 ;;; or (at your option) any later version.
 ;;;
-;;; CLJ-GSSM is distributed in the hope that it will be useful, but
+;;; CLJ-SPAN is distributed in the hope that it will be useful, but
 ;;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;;; General Public License for more details.
 ;;;
 ;;; You should have received a copy of the GNU General Public License
-;;; along with CLJ-GSSM.  If not, see <http://www.gnu.org/licenses/>.
+;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns gssm.water-model
+(ns span.water-model
   (:refer-clojure)
   (:use [misc.utils     :only (memoize-by-first-arg depth-first-tree-search)]
 	[misc.stats     :only (rv-scalar-div rv-from-scalar rv-gt rv-scalar-gt scalar-rv-gt rv-min rv-eq)]
-	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
-	[gssm.params    :only (*trans-threshold*)]))
+	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
+	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
+	[span.params    :only (*trans-threshold*)]))
 
 (def #^{:private true} elev-concept (tl/conc 'geophysics:Altitude))
 

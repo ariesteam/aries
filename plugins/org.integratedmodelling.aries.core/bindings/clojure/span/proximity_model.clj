@@ -1,26 +1,26 @@
 ;;; Copyright 2009 Gary Johnson
 ;;;
-;;; This file is part of CLJ-GSSM.
+;;; This file is part of CLJ-SPAN.
 ;;;
-;;; CLJ-GSSM is free software: you can redistribute it and/or modify
+;;; CLJ-SPAN is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published
 ;;; by the Free Software Foundation, either version 3 of the License,
 ;;; or (at your option) any later version.
 ;;;
-;;; CLJ-GSSM is distributed in the hope that it will be useful, but
+;;; CLJ-SPAN is distributed in the hope that it will be useful, but
 ;;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;;; General Public License for more details.
 ;;;
 ;;; You should have received a copy of the GNU General Public License
-;;; along with CLJ-GSSM.  If not, see <http://www.gnu.org/licenses/>.
+;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns gssm.proximity-model
+(ns span.proximity-model
   (:refer-clojure)
   (:use [misc.stats :only (rv-from-scalar scalar-rv-sub rv-mult rv-scalar-mult scalar-rv-mult rv-gt rv-scalar-gt scalar-rv-gt)]
-	[gssm.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
-	[gssm.analyzer  :only (source-loc? sink-loc? use-loc?)]
-	[gssm.params    :only (*decay-rate* *trans-threshold*)]))
+	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
+	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
+	[span.params    :only (*decay-rate* *trans-threshold*)]))
 
 (defn expand-box
   "Returns a new list of points which completely bounds the
