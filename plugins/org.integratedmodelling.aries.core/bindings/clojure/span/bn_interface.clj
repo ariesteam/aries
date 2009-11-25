@@ -18,9 +18,7 @@
 (ns span.bn-interface
   (:refer-clojure)
   (:use [span.discretizer :only (undiscretize-value)]))
-;;	[aries            :only (set-evidence
-;;				 run-inference
-;;				 get-marginals-table)]))
+(refer 'aries :only '(set-evidence run-inference get-marginals-table))
 
 (defn expected-value
   [concept-name distribution features]
@@ -38,6 +36,6 @@
   "Returns the undiscretized expected marginal value of concept-name,
    given the input features."
   [concept-name inference-engine features]
-  (let [inference-results (aries/run-inference (aries/set-evidence inference-engine features))
-	distribution      (aries/get-marginals-table inference-results concept-name)]
+  (let [inference-results (run-inference (set-evidence inference-engine features))
+	distribution      (get-marginals-table inference-results concept-name)]
     (expected-value concept-name distribution features)))

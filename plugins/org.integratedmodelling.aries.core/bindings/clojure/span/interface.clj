@@ -18,15 +18,7 @@
 (ns span.interface
   (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
-  (:use
-;;      [tl                    :only (get-session)]
-;;	[geospace              :only (build-coverage
-;;				      get-spatial-extent
-;;				      grid-extent?
-;;				      grid-rows
-;;				      grid-columns)]
-;;	[corescience           :only (map-dependent-states)]
-	[misc.utils            :only (maphash count-distinct)]
+  (:use	[misc.utils            :only (maphash count-distinct)]
 	[span.params           :only (set-global-params!)]
 	[span.flow-model       :only (simulate-service-flows)]
 	[span.location-builder :only (unpack-datasource)]
@@ -54,6 +46,13 @@
 				      actual-sink
 				      actual-use
 				      actual-outflow)]))
+(refer 'tl          :only '(get-session))
+(refer 'corescience :only '(map-dependent-states))
+(refer 'geospace    :only '(build-coverage
+			    get-spatial-extent
+			    grid-extent?
+			    grid-rows
+			    grid-columns))
 
 (defn- select-menu-option
   "Prompts the user with a menu of choices and returns the label
@@ -100,10 +99,10 @@
    probability distribution."
   [source-observation sink-observation use-observation flow-observation rows cols]
   (let [feature-states (maphash (memfn getLocalName) #(unpack-datasource % rows cols)
-				(merge (corescience/map-dependent-states source-observation)
-				       (corescience/map-dependent-states sink-observation)
-				       (corescience/map-dependent-states use-observation)
-				       (corescience/map-dependent-states flow-observation)))
+				(merge (map-dependent-states source-observation)
+				       (map-dependent-states sink-observation)
+				       (map-dependent-states use-observation)
+				       (map-dependent-states flow-observation)))
 	feature-names  (vec (keys feature-states))
 	num-features   (count feature-names)
 	feature-name   (select-menu-option feature-names num-features)]
@@ -136,9 +135,9 @@
   "Verifies that all observations have a grid extent and the same rows
    and cols."
   [& observations]
-  (and (every? geospace/grid-extent? observations)
-       (let [rows (map geospace/grid-rows observations)
-	     cols (map geospace/grid-columns observations)]
+  (and (every? grid-extent? observations)
+       (let [rows (map grid-rows observations)
+	     cols (map grid-columns observations)]
          (not (or (some #(not= % (first rows)) (rest rows))
 		  (some #(not= % (first cols)) (rest cols)))))))
 
@@ -155,8 +154,8 @@
    flow-params]
   (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
   (set-global-params! flow-params)
-  (let [rows      (geospace/grid-rows    source-observation)
-	cols      (geospace/grid-columns source-observation)
+  (let [rows      (grid-rows    source-observation)
+	cols      (grid-columns source-observation)
 	locations (simulate-service-flows source-concept source-observation
 					  sink-concept   sink-observation
 					  use-concept    use-observation
@@ -201,11 +200,11 @@
    flow-params]
   (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
   (set-global-params! flow-params)
-  (binding [*out* (OutputStreamWriter. (.getOutputStream (tl/get-session)))
-	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream  (tl/get-session))))]
-    (let [rows      (geospace/grid-rows          source-observation)
-	  cols      (geospace/grid-columns       source-observation)
-	  extent    (geospace/get-spatial-extent source-observation)
+  (binding [*out* (OutputStreamWriter. (.getOutputStream (get-session)))
+	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream (get-session))))]
+    (let [rows      (grid-rows          source-observation)
+	  cols      (grid-columns       source-observation)
+	  extent    (get-spatial-extent source-observation)
 	  locations (simulate-service-flows source-concept source-observation
 					    sink-concept   sink-observation
 					    use-concept    use-observation
@@ -257,7 +256,7 @@
 	    (let [coord-map (apply action)]
 	      (when (map? coord-map)
 		(if (instance? java.lang.Double (val (first coord-map)))
-		  (.show (geospace/build-coverage extent coord-map)))
+		  (.show (build-coverage extent coord-map)))
 		(newline)
 		(println "Distinct values:" (count-distinct (vals coord-map) 12)))
 	      (recur (select-menu-option prompts num-prompts)))))))))

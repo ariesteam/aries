@@ -19,8 +19,8 @@
   (:refer-clojure)
   (:use [misc.utils        :only (maphash seq2map)]
 	[misc.matrix-ops   :only (get-neighbors)]))
-;;	[corescience       :only (map-dependent-states)]
-;;      [modelling         :only (probabilistic? get-possible-states get-probabilities get-data)]))
+(refer 'corescience :only '(map-dependent-states))
+(refer 'modelling   :only '(probabilistic? get-possible-states get-probabilities get-data))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
 
@@ -28,23 +28,23 @@
   "Returns a vector (of length rows * cols) of the values in ds,
    either doubles or probability distributions."
   [ds rows cols]
-  (vec (if (modelling/probabilistic? ds)
-	 (let [prob-dist (apply create-struct (modelling/get-possible-states ds))]
+  (vec (if (probabilistic? ds)
+	 (let [prob-dist (apply create-struct (get-possible-states ds))]
 	   (for [idx (range (* rows cols))]
-	     (apply struct prob-dist (modelling/get-probabilities ds idx))))
-	 (modelling/get-data ds))))
+	     (apply struct prob-dist (get-probabilities ds idx))))
+	 (get-data ds))))
 
 (defn- extract-values-by-concept
   "Returns a vector of the concept's values in the observation,
    which are doubles or probability distributions."
   [obs conc rows cols]
-  (unpack-datasource ((corescience/map-dependent-states obs) conc) rows cols))
+  (unpack-datasource ((map-dependent-states obs) conc) rows cols))
 
 (defn- extract-all-values
   "Returns a map of concepts to vectors of doubles or probability
    distributions."
   [obs rows cols]
-  (maphash identity #(unpack-datasource % rows cols) (corescience/map-dependent-states obs)))
+  (maphash identity #(unpack-datasource % rows cols) (map-dependent-states obs)))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the

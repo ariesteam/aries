@@ -7,6 +7,8 @@
 (ns aries
   (:refer-clojure)
   (:use [span.flow-model :only (simulate-service-flows)]))
+(refer 'tl          :only '(listp))
+(refer 'corescience :only '(get-observable-class))
 
 (defn j-make-gssm
 	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 
@@ -47,10 +49,10 @@
 	(proxy [org.integratedmodelling.aries.core.gssm.GSSMProxy] []
 		(runGSSM [source-obs use-obs sink-obs flow-obs flow-params] 
 			(simulate-service-flows 
-				(corescience/get-observable-class source-obs) source-obs 
-				(corescience/get-observable-class use-obs)    use-obs 
-				(corescience/get-observable-class sink-obs)   sink-obs 
-				(corescience/get-observable-class flow-obs)   flow-obs))))
+				(get-observable-class source-obs) source-obs 
+				(get-observable-class use-obs)    use-obs 
+				(get-observable-class sink-obs)   sink-obs 
+				(get-observable-class flow-obs)   flow-obs))))
 			
 ;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.GSSMTransformer/setGSSMProxy (get-gssm-proxy))
@@ -60,7 +62,7 @@
 	and flow parameters using :source, :sink, :use, :flow clauses, plus all GSSM flow parameters."
 	[observable]
 	`(let [model# 
- 	        	(modelling/j-make-gssm)] 
- 	   (.setObservable model# (if (seq? ~observable) (tl/listp ~observable) ~observable))
+ 	        	(modelling/j-make-gssm)]  ;; FIXME there is no modelling/j-make-gssm
+ 	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
  	   model#))
 			

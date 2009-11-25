@@ -23,8 +23,9 @@
 			       distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*decay-rate* *trans-threshold*)]))
+(refer 'tl :only '(conc))
 
-(def #^{:private true} elev-concept (tl/conc 'geophysics:Altitude))
+(def #^{:private true} elev-concept (conc 'geophysics:Altitude))
 
 (defn find-viewpath
   "Returns the sequence of all points [i j] intersected by the line
