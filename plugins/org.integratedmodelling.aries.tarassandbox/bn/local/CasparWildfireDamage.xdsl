@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="HistoricalHouses">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="HistoricalOutbuildings">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="HistoricalStructures">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>HistoricalHouses HistoricalOutbuildings</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="NonHistoricalHouses">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="NonHistoricalOutbuildings">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="NonHistoricalStructures">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>NonHistoricalHouses NonHistoricalOutbuildings</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Structures">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>HistoricalStructures NonHistoricalStructures</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="FullTijmeResidents">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="PartTimeResidents">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Residents">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>FullTijmeResidents PartTimeResidents</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="ValueAtWildfireRisk">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Structures Residents</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network3" faultnameformat="nodestate">
+			<node id="Structures">
+				<name>Structures</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>418 150 503 203</position>
+				<barchart active="true" width="128" height="66" />
+			</node>
+			<node id="Residents">
+				<name>Residents</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>933 186 1018 239</position>
+				<barchart active="true" width="128" height="66" />
+			</node>
+			<node id="FullTijmeResidents">
+				<name>FullTijmeResidents</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>939 301 1082 390</position>
+				<barchart active="true" width="220" height="66" />
+			</node>
+			<node id="PartTimeResidents">
+				<name>PartTimeResidents</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1246 285 1391 375</position>
+				<barchart active="true" width="201" height="66" />
+			</node>
+			<node id="HistoricalHouses">
+				<name>HistoricalHouses</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>88 422 244 465</position>
+				<barchart active="true" width="167" height="66" />
+			</node>
+			<node id="HistoricalOutbuildings">
+				<name>HistoricalOutbuildings</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>289 522 388 583</position>
+				<barchart active="true" width="221" height="66" />
+			</node>
+			<node id="HistoricalStructures">
+				<name>HistoricalStructures</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>266 254 429 294</position>
+				<barchart active="true" width="188" height="66" />
+			</node>
+			<node id="NonHistoricalHouses">
+				<name>NonHistoricalHouses</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>493 454 649 497</position>
+				<barchart active="true" width="177" height="66" />
+			</node>
+			<node id="NonHistoricalOutbuildings">
+				<name>NonHistoricalOutbuildings</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>740 535 839 596</position>
+				<barchart active="true" width="240" height="66" />
+			</node>
+			<node id="NonHistoricalStructures">
+				<name>NonHistoricalStructures</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>607 338 770 378</position>
+				<barchart active="true" width="213" height="66" />
+			</node>
+			<node id="ValueAtWildfireRisk">
+				<name>ValueAtWildfireRisk</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>668 58 817 151</position>
+				<barchart active="true" width="222" height="66" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
