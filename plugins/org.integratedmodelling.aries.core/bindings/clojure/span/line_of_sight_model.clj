@@ -17,7 +17,9 @@
 
 (ns span.line-of-sight-model
   (:refer-clojure)
-  (:use [misc.stats     :only (rv-scalar-div rv-add rv-gt rv-scalar-gt scalar-rv-gt rv-scalar-mult rv-sub rv-from-scalar rv-lt)]
+  (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract
+			       rv-scalar-multiply rv-scalar-divide
+			       rv-scale rv-lt)]
 	[span.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
@@ -80,21 +82,21 @@
 
 ;; FIXME what is this NODATA value evilness doing in my code?!
 (defn get-valid-elevation
-  [location gt-fn nodata-threshold zero-val]
-  (let [elev ((:flow-features location) elev-concept)]
-    (if (gt-fn elev nodata-threshold) zero-val elev)))
+  [location]
+  (rv-zero-above-scalar (get-in location [:flow-features elev-concept]) 55535.0))
+(def get-valid-elevation (memoize get-valid-elevation))
 
 (defn elevation-interference?
-  [provider beneficiary path steps mult-fn elev-div-fn sub-fn add-fn gt-fn nodata-threshold zero-val elev-ge-fn]
-  (let [source-elev (get-valid-elevation provider gt-fn nodata-threshold zero-val)
-	rise        (sub-fn (get-valid-elevation beneficiary gt-fn nodata-threshold zero-val) source-elev)
-	m           (elev-div-fn rise steps)
-	f           (fn [x] (add-fn (mult-fn m x) source-elev))]
+  [provider beneficiary path steps]
+  (let [source-elev (get-valid-elevation provider)
+	rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
+	m           (rv-scalar-divide rise steps)
+	f           (fn [x] (rv-add (rv-scalar-multiply m x) source-elev))]
     (loop [step 1
 	   untraversed-locs (rest path)]
       (when (< step steps)
 	(let [current-loc (first untraversed-locs)]
-	  (if (elev-ge-fn (get-valid-elevation current-loc gt-fn nodata-threshold zero-val) (f step))
+	  (if (> (get-valid-elevation current-loc) (f step))
 	    true
 	    (recur (inc step)
 		   (rest untraversed-locs))))))))
@@ -102,7 +104,7 @@
 ;;	  (map vector (rest path) (range steps)))
 
 (defn update-sinks!
-  [source-val path steps source-div-fn]
+  [source-val path steps]
   (loop [step 0
 	 traversed-locs []
 	 untraversed-locs path]
@@ -112,51 +114,66 @@
 	(when (sink-loc? current-loc)
 	  (swap! (:carrier-cache current-loc) conj
 		 (struct service-carrier
-			 (source-div-fn source-val (* step step))
+			 (rv-scalar-divide source-val (* step step))
 			 current-path)))
 	(recur (inc step)
 	       current-path
 	       (rest untraversed-locs))))))
 
 ;; FIXME re-examine the use of *decay-rate* in this function
-(defn distribute-raycast!
-  [provider beneficiary location-map mult-fn source-div-fn elev-div-fn sub-fn add-fn gt-trans-fn gt-fn nodata-threshold zero-val elev-ge-fn]
+(defn distribute-raycast!-old
+  [provider beneficiary location-map]
   (let [source-val       (:source provider)
-	path             (map location-map (find-viewpath provider beneficiary))
+	path             (vec (map location-map (find-viewpath provider beneficiary)))
 	steps            (dec (count path))
-	asset-propagated (if (zero? steps) source-val (source-div-fn source-val (* steps steps)))]
-    (when (pos? steps)
-      (if (and (gt-trans-fn asset-propagated *trans-threshold*)
-	       (not (elevation-interference? provider beneficiary path steps mult-fn elev-div-fn sub-fn add-fn gt-fn nodata-threshold zero-val elev-ge-fn)))
-	(update-sinks! source-val path steps source-div-fn)))
+	asset-propagated (if (zero? steps) source-val (rv-scalar-divide source-val (* steps steps)))]
+    (when (and (pos? steps)
+	       (> (mean asset-propagated) *trans-threshold*)
+	       (not (elevation-interference? provider beneficiary path steps)))
+      (update-sinks! source-val path steps))
     (swap! (:carrier-cache beneficiary) conj
-	   (struct service-carrier asset-propagated (vec path)))))
+	   (struct service-carrier asset-propagated path))))
 
-;; FIXME the use of rv-from-scalar assumes that the first key in
-;; first-elev is the zero value of the distribution.
+(defn distribute-raycast!
+  [provider beneficiary location-map]
+  (if (= provider beneficiary)
+    (swap! (:carrier-cache provider) conj
+	   (struct service-carrier (:source provider) (vec provider)))
+    (let [path        (map location-map (find-viewpath provider beneficiary))
+	  steps       (dec (count path))
+	  source-elev (get-valid-elevation provider)
+	  rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
+	  m           (rv-scalar-divide rise steps)]
+      (loop [step        1
+	     current     (second path)
+	     explored    (vec (take 2 path))
+	     frontier    (nnext path)
+	     elev-bounds (next (iterate #(rv-add m %) source-elev))
+	     weight      (:source provider)
+	     delayed-ops [(fn [] (if (sink-loc? provider)
+				   (swap! (:carrier-cache provider) conj
+					  (struct service-carrier weight (vec provider)))))]]
+	(when (> (mean weight) *trans-threshold*)
+	  (if (== step steps)
+	    (do
+	      (dorun (map apply delayed-ops))
+	      (swap! (:carrier-cache current) conj
+		     (struct service-carrier (rv-scalar-divide weight (* step step)) explored)))
+	    (recur (inc step)
+		   (first frontier)
+		   (conj explored (first frontier))
+		   (next frontier)
+		   (next elev-bounds)
+		   (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
+		   (if (sink-loc? current)
+		     (conj delayed-ops
+			   (fn [] (swap! (:carrier-cache current) conj
+					 (struct service-carrier (rv-scalar-divide weight (* step step)) explored))))
+		     delayed-ops))))))))
+
 (defmethod distribute-flow! "LineOfSight"
   [_ location-map _ _]
-  (println "Global LineOfSight Model begins...")
-  (let [locations                         (vals location-map)
-        providers                         (filter source-loc? locations)
-        beneficiaries                     (filter use-loc? locations)
-	first-loc                         (first locations)
-	first-source                      (:source first-loc)
-	first-elev                        ((:flow-features first-loc) elev-concept)
-	[source-div-fn add-fn]            (if (map? first-source) [rv-scalar-div rv-add] [/ +])
-	gt-trans-fn                       (if (map? first-source)
-					    (if (map? *trans-threshold*) rv-gt rv-scalar-gt)
-					    (if (map? *trans-threshold*) scalar-rv-gt >))
-	[mult-fn sub-fn elev-div-fn gt-fn nodata-threshold zero-val elev-ge-fn] (if (map? first-elev)
-										  [rv-scalar-mult rv-sub rv-scalar-div rv-gt
-										   (rv-from-scalar first-elev 55535.0)
-										   (rv-from-scalar first-elev (first (keys first-elev)))
-										   (complement rv-lt)]
-										  [* - / > 55535.0 0.0])]
-    (println "Num Providers:" (count providers))
-    (println "Num Beneficiaries:" (count beneficiaries))
+  (let [locations (vals location-map)]
     (distribute-load-over-processors
-     (fn [_ [p b]] (distribute-raycast! p b location-map
-					mult-fn source-div-fn elev-div-fn sub-fn add-fn
-					gt-trans-fn gt-fn nodata-threshold zero-val elev-ge-fn))
-     (for [p providers b beneficiaries] [p b]))))
+     (fn [_ [p b]] (distribute-raycast! p b location-map))
+     (for [p (filter source-loc? locations) b (filter use-loc? locations)] [p b]))))

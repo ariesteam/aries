@@ -26,9 +26,6 @@
 
 (def *use-threshold* 0.0)
 
-;; FIXME decay-rate is a function, not a float
-(def *decay-rate* 0.0)
-
 (def *trans-threshold* 0.0)
 
 (def *sink-type* nil)
@@ -42,7 +39,6 @@
   (alter-var-root #'*source-threshold* (constantly (flow-params :source-threshold)))
   (alter-var-root #'*sink-threshold*   (constantly (flow-params :sink-threshold)))
   (alter-var-root #'*use-threshold*    (constantly (flow-params :use-threshold)))
-  (alter-var-root #'*decay-rate*       (constantly (flow-params :decay-rate)))
   (alter-var-root #'*trans-threshold*  (constantly (flow-params :trans-threshold)))
   (alter-var-root #'*sink-type*        (constantly (flow-params :sink-type)))
   (alter-var-root #'*use-type*         (constantly (flow-params :use-type)))

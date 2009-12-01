@@ -18,50 +18,64 @@
 (ns span.location-builder
   (:refer-clojure)
   (:use [misc.utils        :only (maphash seq2map)]
+	[misc.stats        :only (successive-sums)]
 	[misc.matrix-ops   :only (get-neighbors)]))
 (refer 'corescience :only '(map-dependent-states))
-(refer 'modelling   :only '(probabilistic? get-possible-states get-probabilities get-data))
+(refer 'modelling   :only '(probabilistic? get-dist-breakpoints get-possible-states get-probabilities get-data))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
 
 (defn unpack-datasource
-  "Returns a vector (of length rows * cols) of the values in ds,
-   either doubles or probability distributions."
-  [ds rows cols]
-  (vec (if (probabilistic? ds)
-	 (let [prob-dist (apply create-struct (get-possible-states ds))]
-	   (for [idx (range (* rows cols))]
-	     (apply struct prob-dist (get-probabilities ds idx))))
-	 (get-data ds))))
+  "Returns a seq of length n of the values in ds,
+   represented as probability distributions."
+  [ds n]
+  (if (probabilistic? ds)
+    (try ; ranged continuous distributions
+     (let [bounds                (get-dist-breakpoints ds)
+	   unbounded-from-below? (= Double/NEGATIVE_INFINITY (first bounds))
+	   prob-dist             (apply create-struct (if unbounded-from-below? (rest bounds) bounds))]
+       (if unbounded-from-below?
+	 (for [idx (range n)]
+	   (apply struct prob-dist (successive-sums (get-probabilities ds idx))))
+	 (for [idx (range n)]
+	   (apply struct prob-dist (successive-sums 0 (get-probabilities ds idx))))))
+     (catch Exception e ; discrete distributions
+       (let [states    (get-possible-states ds)
+	     prob-dist (apply create-struct states)]
+	 (for [idx (range n)]
+	   (apply struct prob-dist (get-probabilities ds idx))))))
+    (map #(array-map % 1.0) (get-data ds)))) ; deterministic values
 
 (defn- extract-values-by-concept
-  "Returns a vector of the concept's values in the observation,
+  "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
-  [obs conc rows cols]
-  (unpack-datasource ((map-dependent-states obs) conc) rows cols))
+  [obs conc n]
+  (unpack-datasource ((map-dependent-states obs) conc) n))
 
 (defn- extract-all-values
   "Returns a map of concepts to vectors of doubles or probability
    distributions."
-  [obs rows cols]
-  (maphash identity #(unpack-datasource % rows cols) (map-dependent-states obs)))
+  [obs n]
+  (maphash identity #(vec (unpack-datasource % n)) (map-dependent-states obs)))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
    observation set."
   [source-conc source-obs sink-conc sink-obs use-conc use-obs flow-obs rows cols]
-  (let [source-vec   (extract-values-by-concept source-obs source-conc rows cols)
-	sink-vec     (extract-values-by-concept sink-obs   sink-conc   rows cols)
-	use-vec      (extract-values-by-concept use-obs    use-conc    rows cols)
-	flow-vec-map (extract-all-values flow-obs rows cols)]
-    (seq2map (for [i (range rows) j (range cols)]
-	       (let [idx (+ (* i cols) j)]
-		 (struct-map location
-		   :id            [i j]
-		   :neighbors     (get-neighbors [i j] rows cols)
-		   :source        (source-vec idx)
-		   :sink          (sink-vec   idx)
-		   :use           (use-vec    idx)
-		   :flow-features (maphash identity #(% idx) flow-vec-map)
-		   :carrier-cache (atom ()))))
-	     (fn [loc] [(:id loc) loc]))))
+  (let [n             (* rows cols)
+	flow-vals-map (extract-all-values flow-obs n)]
+    (seq2map
+     (map (fn [[i j] source sink use]
+	    (struct-map location
+	      :id            [i j]
+	      :neighbors     (vec (get-neighbors [i j] rows cols))
+	      :source        source
+	      :sink          sink
+	      :use           use
+	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)
+	      :carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory
+	  (for [i (range rows) j (range cols)] [i j])
+	  (extract-values-by-concept source-obs source-conc n)
+	  (extract-values-by-concept sink-obs   sink-conc   n)
+	  (extract-values-by-concept use-obs    use-conc    n))
+     (fn [loc] [(:id loc) loc]))))

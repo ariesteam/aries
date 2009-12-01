@@ -15,5 +15,12 @@
                           (+ tm (. usage getMax))))))]
     (step (filter #(= (. % getType) MemoryType/HEAP) pools) 0 0 0)))
 
-(defn dump-memory-usage []
-  (println (apply format "used: %.2fMB, reserved: %.2fMB, max: %.2fMB" (memory-usage))))
+(defn dump-memory-usage [mem-usage]
+  (println (apply format "used: %.2fMB, reserved: %.2fMB, max: %.2fMB" mem-usage)))
+
+(defmacro check-mem [form]
+  `(let [mem-before# (memory-usage)
+	 result#     ~form
+	 mem-after#  (memory-usage)]
+     (dump-memory-usage (map - mem-after# mem-before#))
+     result#))

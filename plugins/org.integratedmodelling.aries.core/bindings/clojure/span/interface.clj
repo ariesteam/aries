@@ -117,9 +117,9 @@
 		 "%nLocation %s%n"
 		 "--------------------%n"
 		 "Neighbors:     %s%n"
-		 "Source:        %.2f%n"
-		 "Sink:          %.2f%n"
-		 "Use:           %.2f%n"
+		 "Source:        %s%n"
+		 "Sink:          %s%n"
+		 "Use:           %s%n"
 		 "Flow Features: %s%n"
 		 "Carriers Encountered: %d%n")]
     (printf fmt-str
