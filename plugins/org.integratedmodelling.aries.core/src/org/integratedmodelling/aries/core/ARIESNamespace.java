@@ -17,6 +17,11 @@ public class ARIESNamespace {
 	public static final String PORTFOLIO_TYPE = "aries:Portfolio";
 	public static final String BENEFIT_OBSERVATION_TYPE = "aries:BenefitObservation";
 	public static final String CASE_STUDY_TYPE = "aries:CaseStudy";
+
+	public static final String BENEFIT_SOURCE_TYPE = "eserv:SourceType";
+	public static final String BENEFIT_USE_TYPE = "eserv:UseType";
+	public static final String BENEFIT_SINK_TYPE = "eserv:Sink";
+	public static final String BENEFIT_FLOW_TYPE = "eserv:Flow";
 	
 	// relationships
 	public static final String HAS_BENEFIT = "eserv:producesBenefit";
