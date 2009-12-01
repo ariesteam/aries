@@ -48,6 +48,16 @@
   [X zero-val]
   (== (X zero-val) 1.0))
 
+(defn rv-zero-above-scalar
+  "Returns true if P(X=zero-val)=1.0 for the random variable X."
+  [X zero-val]
+  (== (X zero-val) 1.0))
+
+(defn rv-zero-below-scalar
+  "Returns true if P(X=zero-val)=1.0 for the random variable X."
+  [X zero-val]
+  (== (X zero-val) 1.0))
+
 ;; FIXME finish stub
 (defn rv-add
   "Returns the distribution of the sum of two random variables X and Y."
@@ -55,45 +65,45 @@
   X)
 
 ;; FIXME finish stub
-(defn rv-sub
+(defn rv-subtract
   "Returns the distribution of the difference of two random variables X and Y."
   [X Y]
   X)
 
 ;; FIXME finish stub
-(defn scalar-rv-sub
+(defn scalar-rv-subtract
   "Returns the distribution of the random variable Y with its range values subtracted from x."
   [x Y]
   (maphash #(- x %) identity Y))
 
 ;; FIXME finish stub
-(defn rv-mult
+(defn rv-multiply
   "Returns the distribution of the product of two random variables X and Y."
   [X Y]
   X)
 
 ;; FIXME finish stub
-(defn rv-div
+(defn rv-divide
   "Returns the distribution of the quotient of two random variables X and Y."
   [X Y]
   X)
 
-(defn rv-scalar-mult
+(defn rv-scalar-multiply
   "Returns the distribution of the random variable X with its range values multiplied by y."
   [X y]
   (maphash #(* % y) identity X))
 
-(defn scalar-rv-mult
+(defn scalar-rv-multiply
   "Returns the distribution of the random variable Y with its range values multiplied by x."
   [x Y]
   (maphash #(* x %) identity Y))
 
-(defn rv-scalar-div
+(defn rv-scalar-divide
   "Returns the distribution of the random variable X with its range values divided by y."
   [X y]
   (maphash #(/ % y) identity X))
 
-(defn scalar-rv-div
+(defn scalar-rv-divide
   "Returns the distribution of the random variable Y with its range values replaced by x/y."
   [x Y]
   (maphash #(/ x %) identity Y))

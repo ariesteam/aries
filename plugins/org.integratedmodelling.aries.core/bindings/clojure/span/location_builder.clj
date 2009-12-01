@@ -35,15 +35,12 @@
 	   unbounded-from-below? (= Double/NEGATIVE_INFINITY (first bounds))
 	   prob-dist             (apply create-struct (if unbounded-from-below? (rest bounds) bounds))]
        (if unbounded-from-below?
-	 (for [idx (range n)]
-	   (apply struct prob-dist (successive-sums (get-probabilities ds idx))))
-	 (for [idx (range n)]
-	   (apply struct prob-dist (successive-sums 0 (get-probabilities ds idx))))))
+	 (map (fn [idx] (apply struct prob-dist (successive-sums (get-probabilities ds idx)))) (range n))
+	 (map (fn [idx] (apply struct prob-dist (successive-sums 0 (get-probabilities ds idx)))) (range n))))
      (catch Exception e ; discrete distributions
        (let [states    (get-possible-states ds)
 	     prob-dist (apply create-struct states)]
-	 (for [idx (range n)]
-	   (apply struct prob-dist (get-probabilities ds idx))))))
+	 (map (fn [idx] (apply struct prob-dist (get-probabilities ds idx))) (range n)))))
     (map #(array-map % 1.0) (get-data ds)))) ; deterministic values
 
 (defn- extract-values-by-concept

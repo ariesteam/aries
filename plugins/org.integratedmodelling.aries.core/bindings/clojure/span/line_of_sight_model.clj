@@ -19,7 +19,7 @@
   (:refer-clojure)
   (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract
 			       rv-scalar-multiply rv-scalar-divide
-			       rv-scale rv-lt)]
+			       rv-scale rv-lt mean)]
 	[span.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
@@ -147,8 +147,8 @@
       (loop [step        1
 	     current     (second path)
 	     explored    (vec (take 2 path))
-	     frontier    (nnext path)
-	     elev-bounds (next (iterate #(rv-add m %) source-elev))
+	     frontier    (drop 2 path)
+	     elev-bounds (rest (iterate #(rv-add m %) source-elev))
 	     weight      (:source provider)
 	     delayed-ops [(fn [] (if (sink-loc? provider)
 				   (swap! (:carrier-cache provider) conj
@@ -162,8 +162,8 @@
 	    (recur (inc step)
 		   (first frontier)
 		   (conj explored (first frontier))
-		   (next frontier)
-		   (next elev-bounds)
+		   (rest frontier)
+		   (rest elev-bounds)
 		   (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
 		   (if (sink-loc? current)
 		     (conj delayed-ops

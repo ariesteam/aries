@@ -17,7 +17,7 @@
 
 (ns span.proximity-model
   (:refer-clojure)
-  (:use [misc.stats :only (rv-from-scalar scalar-rv-sub rv-mult rv-scalar-mult scalar-rv-mult rv-gt rv-scalar-gt scalar-rv-gt)]
+  (:use [misc.stats :only (rv-from-scalar scalar-rv-subtract rv-multiply rv-scalar-multiply scalar-rv-multiply rv-gt rv-scalar-gt scalar-rv-gt)]
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*decay-rate* *trans-threshold*)]))
@@ -96,13 +96,13 @@
   (println "Local Proximity Model begins...")
   (let [first-loc     (val (first location-map))
 	zero-val      (if (map? (:source first-loc)) (rv-from-scalar (:source first-loc) (first (keys (:source first-loc)))))
-	sub-fn        (if (map? (:sink first-loc)) scalar-rv-sub -)
+	sub-fn        (if (map? (:sink first-loc)) scalar-rv-subtract -)
 	sink-mult-fn  (if (map? (:source first-loc))
-			(if (map? (:sink first-loc)) rv-mult rv-scalar-mult)
-			(if (map? (:sink first-loc)) scalar-rv-mult *))
+			(if (map? (:sink first-loc)) rv-multiply rv-scalar-multiply)
+			(if (map? (:sink first-loc)) scalar-rv-multiply *))
 	decay-mult-fn (if (map? (:source first-loc))
-			(if (map? *decay-rate*) rv-mult rv-scalar-mult)
-			(if (map? *decay-rate*) scalar-rv-mult *))
+			(if (map? *decay-rate*) rv-multiply rv-scalar-multiply)
+			(if (map? *decay-rate*) scalar-rv-multiply *))
 	gt-trans-fn   (if (map? (:source first-loc))
 			(if (map? *trans-threshold*) rv-gt rv-scalar-gt)
 			(if (map? *trans-threshold*) scalar-rv-gt >))

@@ -28,6 +28,8 @@
 
 (def *trans-threshold* 0.0)
 
+(def *decay-rate* 0.0)
+
 (def *sink-type* nil)
 
 (def *use-type* nil)

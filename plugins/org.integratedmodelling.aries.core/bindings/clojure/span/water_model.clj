@@ -18,7 +18,7 @@
 (ns span.water-model
   (:refer-clojure)
   (:use [misc.utils     :only (memoize-by-first-arg depth-first-tree-search)]
-	[misc.stats     :only (rv-min rv= rv-lt rv-scale rv-scalar-divide rv-zero-below-scalar mean)]
+	[misc.stats     :only (rv-min rv-eq rv-lt rv-scale rv-scalar-divide rv-zero-below-scalar mean)]
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*trans-threshold*)]))
@@ -26,14 +26,14 @@
 
 (def #^{:private true} elev-concept (conc 'geophysics:Altitude))
 
-(defn- most-downhill-neighbors-old
+(defn- most-downhill-neighbors
   [location location-map]
   (let [neighbors      (map location-map (:neighbors location))
 	neighbor-elevs (map #((:flow-features %) elev-concept) neighbors)
 	local-elev     ((:flow-features location) elev-concept)
 	min-elev       (reduce rv-min local-elev neighbor-elevs)]
     (remove nil?
-	    (map (fn [n elev] (if (rv= elev min-elev) n))
+	    (map (fn [n elev] (if (rv-eq elev min-elev) n))
 		 neighbors neighbor-elevs))))
 (def most-downhill-neighbors (memoize-by-first-arg most-downhill-neighbors))
 
@@ -61,7 +61,7 @@
 	neighbor-elevs    (vec (map #(get-in % [:flow-features elev-concept]) neighbors))
 	neighbors-lower?  (vec (map #(rv-lt % local-elev) neighbor-elevs))
 	local-lowest?     (reduce (fn [a b] (* (- 1 a) (- 1 b))) neighbors-lower?)
-        neighbors-lowest? (loop [i   (dec (count neighbors-elevs))
+        neighbors-lowest? (loop [i   (dec (count neighbor-elevs))
 				 j   0
 				 i<j neighbors-lower?]
 			    (if (== i 0)
