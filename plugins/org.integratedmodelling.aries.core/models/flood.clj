@@ -44,7 +44,7 @@
 		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
 			 [4 :>] 	'floodService:HighTemperature
 			 [-1 4] 	'floodService:ModerateTemperature
-			 [:< -4] 	'floodService:LowTemperature))
+			 [:< -1] 	'floodService:LowTemperature))
 			 
 ;; snow presence - only the puget-specific statement for now
 (defmodel snow-presence 'floodService:SnowPresence
@@ -128,10 +128,10 @@
 (defmodel imperviousness 'floodService:ImperviousSurfaceCover
 	 (classification (ranking 'habitat:PercentImperviousness)
 	 	   [80 100 :inclusive]   'floodService:VeryHighlyImpervious
-	 	   [50 79]   'floodService:HighlyImpervious
-	 	   [20 49]   'floodService:ModeratelyHighlyImpervious
-	 	   [10 19]   'floodService:ModeratelyLowImpervious
-	 	   [5 9]     'floodService:LowImpervious
+	 	   [50 80]   'floodService:HighlyImpervious
+	 	   [20 50]   'floodService:ModeratelyHighlyImpervious
+	 	   [10 20]   'floodService:ModeratelyLowImpervious
+	 	   [5 10]     'floodService:LowImpervious
 	 	   [0 5]    'floodService:VeryLowImpervious))
 	 	   
 (defmodel dam-storage 'floodService:DamStorage
@@ -140,7 +140,7 @@
 			[3126 5000]	'floodService:LargeDamStorage
 			[1600 3126]	'floodService:ModerateDamStorage
 			[400 1600]	'floodService:SmallDamStorage
-			[:< 1600]		'floodService:VerySmallDamStorage))
+			[:< 400]		'floodService:VerySmallDamStorage))
 			
 (defmodel mean-days-precipitation 'floodService:MeanDaysOfPrecipitation
 	(classification (ranking 'puget:DaysOfPrecipitationGridcode)
