@@ -62,7 +62,7 @@
 (def transition-probabilities (memoize-by-first-arg transition-probabilities))
 
 (defn- deterministic-successors
-  [[weight route]]
+  [[weight route] location-map]
   (when-let [downhill-neighbors (most-downhill-neighbors (peek route) location-map)]
     (let [downhill-weight (rv-scalar-divide weight (count downhill-neighbors))]
       (if (> (rv-mean downhill-weight) *trans-threshold*)
@@ -70,7 +70,7 @@
 	  (map #(vector zeroed-downhill-weight (conj route %)) downhill-neighbors))))))
 
 (defn- probabilistic-successors
-  [[weight route]]
+  [[weight route] location-map]
   (let [current-loc (peek route)
 	neighbors   (map location-map (:neighbors current-loc))
 	trans-probs (transition-probabilities current-loc neighbors)]
@@ -85,14 +85,16 @@
    Stop when no successors.  No decay-rate, but branching-factor is
    possible, so check for weight below trans-threshold."
   [location-map source-location]
-  (depth-first-tree-search
-   (list [(:source source-location) [source-location]])
-   deterministic-successors
-   (fn [[weight route]]
-     (let [current-loc (peek route)]
-       (when (or (sink-loc? current-loc) (use-loc? current-loc))
-	 (swap! (:carrier-cache current-loc) conj (struct service-carrier weight route)))
-       false))))
+  (let [goal? (fn [[weight route]]
+		(let [current-loc (peek route)]
+		  (when (or (sink-loc? current-loc) (use-loc? current-loc))
+		    (swap! (:carrier-cache current-loc) conj (struct service-carrier weight route)))
+		  false))]
+    (loop [open-list (list [(:source source-location) [source-location]])]
+      (when-first [this-node open-list]
+	(if (goal? this-node)
+	  this-node
+	  (recur (concat (deterministic-successors this-node location-map) (rest open-list))))))))
 
 (defmethod distribute-flow! "Water"
   [_ location-map _ _]

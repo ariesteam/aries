@@ -23,6 +23,10 @@
   [vals]
   (/ (reduce + vals) (count vals)))
 
+(defn rv-mean
+  [vals]
+  (/ (reduce + vals) (count vals)))
+
 (defn variance
   [vals]
   (let [mu (mean vals)]
