@@ -42,6 +42,7 @@
   (alter-var-root #'*sink-threshold*   (constantly (flow-params :sink-threshold)))
   (alter-var-root #'*use-threshold*    (constantly (flow-params :use-threshold)))
   (alter-var-root #'*trans-threshold*  (constantly (flow-params :trans-threshold)))
+  (alter-var-root #'*decay-rate*       (constantly (flow-params :decay-rate)))
   (alter-var-root #'*sink-type*        (constantly (flow-params :sink-type)))
   (alter-var-root #'*use-type*         (constantly (flow-params :use-type)))
   (alter-var-root #'*benefit-type*     (constantly (flow-params :benefit-type))))

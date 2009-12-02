@@ -18,13 +18,12 @@
 (ns span.line-of-sight-model
   (:refer-clojure)
   (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract
-			       rv-scalar-multiply rv-scalar-divide
-			       rv-scale rv-lt mean)]
+			       rv-scalar-divide rv-scale rv-lt rv-mean)]
 	[span.model-api :only (distribute-flow!
 			       service-carrier
 			       distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
-	[span.params    :only (*decay-rate* *trans-threshold*)]))
+	[span.params    :only (*trans-threshold*)]))
 (refer 'tl :only '(conc))
 
 (def #^{:private true} elev-concept (conc 'geophysics:Altitude))
@@ -86,54 +85,6 @@
   (rv-zero-above-scalar (get-in location [:flow-features elev-concept]) 55535.0))
 (def get-valid-elevation (memoize get-valid-elevation))
 
-(defn elevation-interference?
-  [provider beneficiary path steps]
-  (let [source-elev (get-valid-elevation provider)
-	rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
-	m           (rv-scalar-divide rise steps)
-	f           (fn [x] (rv-add (rv-scalar-multiply m x) source-elev))]
-    (loop [step 1
-	   untraversed-locs (rest path)]
-      (when (< step steps)
-	(let [current-loc (first untraversed-locs)]
-	  (if (> (get-valid-elevation current-loc) (f step))
-	    true
-	    (recur (inc step)
-		   (rest untraversed-locs))))))))
-;;    (some (fn [[loc step]] (>= (get-valid-elevation loc gt-fn nodata-threshold zero-val) (f step)))
-;;	  (map vector (rest path) (range steps)))
-
-(defn update-sinks!
-  [source-val path steps]
-  (loop [step 0
-	 traversed-locs []
-	 untraversed-locs path]
-    (when (< step steps)
-      (let [current-loc  (first untraversed-locs)
-	    current-path (conj traversed-locs current-loc)]
-	(when (sink-loc? current-loc)
-	  (swap! (:carrier-cache current-loc) conj
-		 (struct service-carrier
-			 (rv-scalar-divide source-val (* step step))
-			 current-path)))
-	(recur (inc step)
-	       current-path
-	       (rest untraversed-locs))))))
-
-;; FIXME re-examine the use of *decay-rate* in this function
-(defn distribute-raycast!-old
-  [provider beneficiary location-map]
-  (let [source-val       (:source provider)
-	path             (vec (map location-map (find-viewpath provider beneficiary)))
-	steps            (dec (count path))
-	asset-propagated (if (zero? steps) source-val (rv-scalar-divide source-val (* steps steps)))]
-    (when (and (pos? steps)
-	       (> (mean asset-propagated) *trans-threshold*)
-	       (not (elevation-interference? provider beneficiary path steps)))
-      (update-sinks! source-val path steps))
-    (swap! (:carrier-cache beneficiary) conj
-	   (struct service-carrier asset-propagated path))))
-
 (defn distribute-raycast!
   [provider beneficiary location-map]
   (if (= provider beneficiary)
@@ -141,35 +92,40 @@
 	   (struct service-carrier (:source provider) (vec provider)))
     (let [path        (map location-map (find-viewpath provider beneficiary))
 	  steps       (dec (count path))
-	  source-elev (get-valid-elevation provider)
-	  rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
-	  m           (rv-scalar-divide rise steps)]
-      (loop [step        1
-	     current     (second path)
-	     explored    (vec (take 2 path))
-	     frontier    (drop 2 path)
-	     elev-bounds (rest (iterate #(rv-add m %) source-elev))
-	     weight      (:source provider)
-	     delayed-ops [(fn [] (if (sink-loc? provider)
-				   (swap! (:carrier-cache provider) conj
-					  (struct service-carrier weight (vec provider)))))]]
-	(when (> (mean weight) *trans-threshold*)
-	  (if (== step steps)
-	    (do
-	      (dorun (map apply delayed-ops))
-	      (swap! (:carrier-cache current) conj
-		     (struct service-carrier (rv-scalar-divide weight (* step step)) explored)))
-	    (recur (inc step)
-		   (first frontier)
-		   (conj explored (first frontier))
-		   (rest frontier)
-		   (rest elev-bounds)
-		   (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
-		   (if (sink-loc? current)
-		     (conj delayed-ops
-			   (fn [] (swap! (:carrier-cache current) conj
-					 (struct service-carrier (rv-scalar-divide weight (* step step)) explored))))
-		     delayed-ops))))))))
+	  source-val  (:source provider)]
+      (when (or (== steps 1)
+		(> (rv-mean (rv-scalar-divide source-val (Math/pow (dec steps) 2))) *trans-threshold*))
+	(let [source-elev (get-valid-elevation provider)
+	      rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
+	      m           (rv-scalar-divide rise steps)]
+	  (loop [step        1
+		 current     (second path)
+		 explored    (vec (take 2 path))
+		 frontier    (drop 2 path)
+		 elev-bounds (rest (iterate #(rv-add m %) source-elev))
+		 weight      source-val
+		 delayed-ops (if (sink-loc? provider)
+			       [(fn [] (swap! (:carrier-cache provider) conj
+					      (struct service-carrier weight (vec provider))))]
+			       [])]
+	    (let [decayed-weight (rv-scalar-divide weight (* step step))]
+	      (if (== step steps)
+		(do
+		  (dorun (map apply delayed-ops))
+		  (swap! (:carrier-cache current) conj
+			 (struct service-carrier decayed-weight explored)))
+		(when (> (rv-mean decayed-weight) *trans-threshold*)
+		  (recur (inc step)
+			 (first frontier)
+			 (conj explored (first frontier))
+			 (rest frontier)
+			 (rest elev-bounds)
+			 (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
+			 (if (sink-loc? current)
+			   (conj delayed-ops
+				 (fn [] (swap! (:carrier-cache current) conj
+					       (struct service-carrier decayed-weight explored))))
+			   delayed-ops)))))))))))
 
 (defmethod distribute-flow! "LineOfSight"
   [_ location-map _ _]

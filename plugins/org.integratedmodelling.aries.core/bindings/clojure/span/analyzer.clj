@@ -17,7 +17,8 @@
 
 (ns span.analyzer
   (:refer-clojure)
-  (:use [misc.utils  :only (seq2map
+  (:use [misc.stats  :only (rv-mean)]
+	[misc.utils  :only (seq2map
 			    seq2redundant-map
 			    add-anyway)]
 	[span.params :only (*source-threshold*
@@ -30,9 +31,9 @@
 			    *benefit-type*)]))
 
 ;; FIXME overload these for probabilities and doubles
-(def source-loc? (memoize (fn [loc] (> (:source loc) *source-threshold*))))
-(def sink-loc?   (memoize (fn [loc] (> (:sink   loc) *sink-threshold*))))
-(def use-loc?    (memoize (fn [loc] (> (:use    loc) *use-threshold*))))
+(def source-loc? (memoize (fn [loc] (> (rv-mean (:source loc)) *source-threshold*))))
+(def sink-loc?   (memoize (fn [loc] (> (rv-mean (:sink   loc)) *sink-threshold*))))
+(def use-loc?    (memoize (fn [loc] (> (rv-mean (:use    loc)) *use-threshold*))))
 
 (defn theoretical-source
   "Returns a map of {location-id -> source-value}.
