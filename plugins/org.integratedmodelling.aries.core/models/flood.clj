@@ -43,8 +43,8 @@
 (defmodel monthly-temperature 'floodService:MonthlyTemperature
 		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
 			 [4 :>] 	'floodService:HighTemperature
-			 [-1 4] 	'floodService:ModerateTemperature
-			 [:< -1] 	'floodService:LowTemperature))
+			 [-4 4] 	'floodService:ModerateTemperature
+			 [:< -4] 	'floodService:LowTemperature))
 			 
 ;; snow presence - only the puget-specific statement for now
 (defmodel snow-presence 'floodService:SnowPresence
