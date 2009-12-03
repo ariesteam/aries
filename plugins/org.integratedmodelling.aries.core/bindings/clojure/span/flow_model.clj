@@ -33,16 +33,16 @@
    the service weight transmitted along the route.  When the
    simulation completes, a sequence of the locations in the network is
    returned."
-  [source-concept source-obs
-   sink-concept   sink-obs
-   use-concept    use-obs
-   flow-concept   flow-obs
-   rows           cols]
+  [source-concept    source-obs
+   sink-concept      sink-obs
+   use-concept       use-obs
+   flow-concept-name flow-obs
+   rows              cols]
   (let [location-map (make-location-map source-concept source-obs
 					sink-concept   sink-obs
 					use-concept    use-obs
 					flow-obs rows cols)
 	locations    (vals location-map)]
-    (distribute-flow! (.getLocalName flow-concept) location-map rows cols)
-    (cache-all-actual-routes! locations)
+    (distribute-flow! flow-concept-name location-map rows cols)
+    (cache-all-actual-routes! locations flow-concept-name)
     locations))

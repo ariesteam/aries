@@ -63,11 +63,11 @@
 		     (concat successors open-list)))))))))
 
 (defn cache-all-actual-routes!
-  [locations]
+  [locations flow-concept-name]
   (println "Computing actual routes from possible routes...")
   (let [carriers (mapcat (comp deref :carrier-cache) (filter #(or (sink-loc? %) (use-loc? %)) locations))]
     (println "Ordering carriers by dependence...")
     (let [sorted-carriers (order-carriers-by-dependence carriers)]
       (println "Rerunning routes by dependence order...")
       (doseq [c sorted-carriers]
-	(rerun-actual-route c)))))
+	(rerun-actual-route c flow-concept-name)))))

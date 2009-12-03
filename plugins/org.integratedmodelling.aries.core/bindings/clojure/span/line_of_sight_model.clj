@@ -17,9 +17,10 @@
 
 (ns span.line-of-sight-model
   (:refer-clojure)
-  (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract
-			       rv-scalar-divide rv-scale rv-lt rv-mean)]
+  (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract rv-scale
+			       rv-scalar-divide rv-scalar-multiply rv-lt rv-mean)]
 	[span.model-api :only (distribute-flow!
+			       decay undecay
 			       service-carrier
 			       distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
@@ -85,8 +86,13 @@
   (rv-zero-above-scalar (get-in location [:flow-features elev-concept]) 55535.0))
 (def get-valid-elevation (memoize get-valid-elevation))
 
-;; FIXME convert step to distance metric based on map resolution
-(defn- decay [weight step] (rv-scalar-divide weight (* step step)))
+;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
+(defmethod decay "LineOfSight"
+  [_ weight step] (rv-scalar-divide weight (* step step)))
+
+;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
+(defmethod undecay "LineOfSight"
+  [_ weight step] (rv-scalar-multiply weight (* step step)))
 
 (defn- distribute-raycast!
   [provider beneficiary location-map]

@@ -17,9 +17,9 @@
 
 (ns span.proximity-model
   (:refer-clojure)
-  (:use [misc.stats      :only (scalar-rv-subtract rv-multiply rv-scalar-divide rv-mean)]
+  (:use [misc.stats      :only (scalar-rv-subtract rv-multiply rv-scalar-multiply rv-scalar-divide rv-mean)]
 	[misc.matrix-ops :only (get-neighbors)]
-	[span.model-api  :only (distribute-flow! service-carrier distribute-load-over-processors)]
+	[span.model-api  :only (distribute-flow! decay undecay service-carrier distribute-load-over-processors)]
 	[span.analyzer   :only (source-loc? sink-loc? use-loc?)]
 	[span.params     :only (*trans-threshold*)]))
 
@@ -50,7 +50,12 @@
        (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
-(defn- decay [weight step] (rv-scalar-divide weight (* step step)))
+(defmethod decay "Proximity"
+  [_ weight step] (rv-scalar-divide weight (* step step)))
+
+;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
+(defmethod undecay "Proximity"
+  [_ weight step] (rv-scalar-multiply weight (* step step)))
 
 (defn- make-frontier-element
   [location-map location-id decayed-weight [sunk-weight route delayed-ops]]

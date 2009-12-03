@@ -141,7 +141,6 @@
          (not (or (some #(not= % (first rows)) (rest rows))
 		  (some #(not= % (first cols)) (rest cols)))))))
 
-;; FIXME set-global-params! now uses some different parameters (make sure these are reflected in the calling file(s))
 (defn span-autopilot
   "Takes the source, sink, use, and flow concepts along with
    observations of their dependent features, calculates the span
@@ -154,13 +153,14 @@
    flow-params]
   (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
   (set-global-params! flow-params)
-  (let [rows      (grid-rows    source-observation)
-	cols      (grid-columns source-observation)
-	locations (simulate-service-flows source-concept source-observation
-					  sink-concept   sink-observation
-					  use-concept    use-observation
-					  flow-concept   flow-observation
-					  rows           cols)]
+  (let [rows              (grid-rows    source-observation)
+	cols              (grid-columns source-observation)
+	flow-concept-name (.getLocalName flow-concept)
+	locations         (simulate-service-flows source-concept    source-observation
+						  sink-concept      sink-observation
+						  use-concept       use-observation
+						  flow-concept-name flow-observation
+						  rows              cols)]
     (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
 		(list
 		 (theoretical-source  locations)
@@ -169,24 +169,24 @@
 		 (inaccessible-source locations)
 		 (inaccessible-sink   locations)
 		 (inaccessible-use    locations)
-		 (possible-flow       locations)
+		 (possible-flow       locations flow-concept-name)
 		 (possible-source     locations)
 		 (possible-inflow     locations)
 		 (possible-sink       locations)
 		 (possible-use        locations)
 		 (possible-outflow    locations)
-		 (blocked-flow        locations)
-		 (blocked-source      locations)
-		 (blocked-inflow      locations)
-		 (blocked-sink        locations)
-		 (blocked-use         locations)
-		 (blocked-outflow     locations)
-		 (actual-flow         locations)
-		 (actual-source       locations)
-		 (actual-inflow       locations)
-		 (actual-sink         locations)
-		 (actual-use          locations)
-		 (actual-outflow      locations))))))
+		 (blocked-flow        locations flow-concept-name)
+		 (blocked-source      locations flow-concept-name)
+		 (blocked-inflow      locations flow-concept-name)
+		 (blocked-sink        locations flow-concept-name)
+		 (blocked-use         locations flow-concept-name)
+		 (blocked-outflow     locations flow-concept-name)
+		 (actual-flow         locations flow-concept-name)
+		 (actual-source       locations flow-concept-name)
+		 (actual-inflow       locations flow-concept-name)
+		 (actual-sink         locations flow-concept-name)
+		 (actual-use          locations flow-concept-name)
+		 (actual-outflow      locations flow-concept-name))))))
 
 (defn span-interface
   "Takes the source, sink, use, and flow concepts along with
@@ -202,14 +202,15 @@
   (set-global-params! flow-params)
   (binding [*out* (OutputStreamWriter. (.getOutputStream (get-session)))
 	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream (get-session))))]
-    (let [rows      (grid-rows          source-observation)
-	  cols      (grid-columns       source-observation)
-	  extent    (get-spatial-extent source-observation)
-	  locations (simulate-service-flows source-concept source-observation
-					    sink-concept   sink-observation
-					    use-concept    use-observation
-					    flow-concept   flow-observation
-					    rows           cols)
+    (let [rows              (grid-rows          source-observation)
+	  cols              (grid-columns       source-observation)
+	  extent            (get-spatial-extent source-observation)
+	  flow-concept-name (.getLocalName flow-concept)
+	  locations         (simulate-service-flows source-concept    source-observation
+						    sink-concept      sink-observation
+						    use-concept       use-observation
+						    flow-concept-name flow-observation
+						    rows              cols)
 	  menu (array-map
 		"View Theoretical Source"   #(theoretical-source       locations)
 		"View Theoretical Sink"     #(theoretical-sink         locations)
@@ -217,24 +218,24 @@
 		"View Inacessible Source"   #(inaccessible-source      locations)
 		"View Inacessible Sink"     #(inaccessible-sink        locations)
 		"View Inacessible Use"      #(inaccessible-use         locations)
-		"View Possible Flow"        #(possible-flow            locations)
+		"View Possible Flow"        #(possible-flow            locations flow-concept-name)
 		"View Possible Source"      #(possible-source          locations)
 		"View Possible Inflow"      #(possible-inflow          locations)
 		"View Possible Sink"        #(possible-sink            locations)
 		"View Possible Use"         #(possible-use             locations)
 		"View Possible Outflow"     #(possible-outflow         locations)
-		"View Blocked Flow"         #(blocked-flow             locations)
-		"View Blocked Source"       #(blocked-source           locations)
-		"View Blocked Inflow"       #(blocked-inflow           locations)
-		"View Blocked Sink"         #(blocked-sink             locations)
-		"View Blocked Use"          #(blocked-use              locations)
-		"View Blocked Outflow"      #(blocked-outflow          locations)
-		"View Actual Flow"          #(actual-flow              locations)
-		"View Actual Source"        #(actual-source            locations)
-		"View Actual Inflow"        #(actual-inflow            locations)
-		"View Actual Sink"          #(actual-sink              locations)
-		"View Actual Use"           #(actual-use               locations)
-		"View Actual Outflow"       #(actual-outflow           locations)
+		"View Blocked Flow"         #(blocked-flow             locations flow-concept-name)
+		"View Blocked Source"       #(blocked-source           locations flow-concept-name)
+		"View Blocked Inflow"       #(blocked-inflow           locations flow-concept-name)
+		"View Blocked Sink"         #(blocked-sink             locations flow-concept-name)
+		"View Blocked Use"          #(blocked-use              locations flow-concept-name)
+		"View Blocked Outflow"      #(blocked-outflow          locations flow-concept-name)
+		"View Actual Flow"          #(actual-flow              locations flow-concept-name)
+		"View Actual Source"        #(actual-source            locations flow-concept-name)
+		"View Actual Inflow"        #(actual-inflow            locations flow-concept-name)
+		"View Actual Sink"          #(actual-sink              locations flow-concept-name)
+		"View Actual Use"           #(actual-use               locations flow-concept-name)
+		"View Actual Outflow"       #(actual-outflow           locations flow-concept-name)
 		"View Location Properties"  #(view-location-properties (select-location locations rows cols))
 		"View Feature Map"          #(select-map-by-feature    source-observation
 								       sink-observation
@@ -249,7 +250,7 @@
       (println "Source-Concept-Name:" (.getLocalName source-concept))
       (println "Sink-Concept-Name:  " (.getLocalName sink-concept))
       (println "Use-Concept-Name:   " (.getLocalName use-concept))
-      (println "Flow-Concept-Name:  " (.getLocalName flow-concept))
+      (println "Flow-Concept-Name:  " flow-concept-name)
       (loop [choice (select-menu-option prompts num-prompts)]
 	(let [action (menu choice)]
 	  (when (fn? action)

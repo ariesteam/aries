@@ -25,7 +25,21 @@
 
 (defmethod distribute-flow! :default
   [flow-concept-name _ _ _]
-  (throw (Exception. (str "Flow type '" flow-concept-name "' is unrecognized."))))
+  (throw (Exception. (str "distribute-flow! is undefined for flow type: " flow-concept-name))))
+
+(defmulti
+  #^{:doc "Service-specific decay functions."}
+  decay
+  (fn [flow-concept-name weight steps] flow-concept-name))
+
+(defmethod decay :default [_ weight _] weight)
+
+(defmulti
+  #^{:doc "Service-specific inverse decay functions."}
+  undecay
+  (fn [flow-concept-name weight steps] flow-concept-name))
+
+(defmethod undecay :default [_ weight _] weight)
 
 (defstruct service-carrier :weight :route)
 
