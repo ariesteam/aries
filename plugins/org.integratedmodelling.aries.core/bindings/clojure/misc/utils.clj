@@ -155,6 +155,11 @@
 
 (defn between [val low high] (and (>= val low) (< val high)))
 
+(defn manhattan-distance-2
+  "Returns the manhattan distance between two 2-dimensional points."
+  [[i1 j1] [i2 j2]]
+  (+ (Math/abs (- i1 i2)) (Math/abs (- j1 j2))))
+
 (defn manhattan-distance
   "Returns the manhattan distance between two n-dimensional points."
   [pointA pointB]

@@ -47,6 +47,8 @@
   [X x]
   (seq2map X (fn [[v p]] (vector v (if (= v x) 1.0 0.0)))))
 
+(def rv-zero {0.0 1.0})
+
 (defn rv-zero?
   "Returns true if P(X=zero-val)=1.0 for the random variable X."
   [X zero-val]

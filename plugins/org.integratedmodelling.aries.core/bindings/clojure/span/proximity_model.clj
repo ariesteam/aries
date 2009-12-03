@@ -17,12 +17,13 @@
 
 (ns span.proximity-model
   (:refer-clojure)
-  (:use [misc.stats :only (rv-from-scalar scalar-rv-subtract rv-multiply rv-scalar-multiply scalar-rv-multiply rv-gt rv-scalar-gt scalar-rv-gt)]
-	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
-	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
-	[span.params    :only (*decay-rate* *trans-threshold*)]))
+  (:use [misc.stats      :only (scalar-rv-subtract rv-multiply rv-scalar-divide rv-mean)]
+	[misc.matrix-ops :only (get-neighbors)]
+	[span.model-api  :only (distribute-flow! service-carrier distribute-load-over-processors)]
+	[span.analyzer   :only (source-loc? sink-loc? use-loc?)]
+	[span.params     :only (*trans-threshold*)]))
 
-(defn expand-box
+(defn- expand-box
   "Returns a new list of points which completely bounds the
    rectangular region defined by points and remains within the bounds
    [0-rows],[0-cols]."
@@ -48,76 +49,43 @@
        (when (and (<  right cols) (<  top rows)) (list [top right]))
        (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
 
-(defn manhattan-distance
-  [[i1 j1] [i2 j2]]
-  (+ (Math/abs (- i1 i2)) (Math/abs (- j1 j2))))
+;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
+(defn- decay [weight step] (rv-scalar-divide weight (* step step)))
 
-(defn nearest-neighbors
-  "Selects all elements from the frontier which are within 2 manhattan
-   steps of location."
-  [location frontier]
-  (let [loc-id (:id location)]
-    (filter (fn [[_ route]]
-	      (<= (manhattan-distance loc-id (:id (peek route))) 2))
-	    frontier)))
+(defn- make-frontier-element
+  [location-map location-id decayed-weight [sunk-weight route delayed-ops]]
+  (let [location      (location-map location-id)
+	sunk-weight   (if (sink-loc? location)
+			(rv-multiply sunk-weight (scalar-rv-subtract 1.0 (:sink location)))
+			sunk-weight)
+	new-route     (conj route location)
+	delayed-ops   (cond (use-loc? location)  (do (doseq [op delayed-ops] (op))
+						     (swap! (:carrier-cache location) conj
+							    (struct service-carrier decayed-weight new-route))
+						     [])
+			    (sink-loc? location) (conj delayed-ops
+						       #(swap! (:carrier-cache location) conj
+							       (struct service-carrier decayed-weight new-route)))
+			    :otherwise           delayed-ops)]
+    [location-id [sunk-weight new-route delayed-ops]]))
 
-(defn select-optimal-path
-  [location frontier sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn]
-  (let [frontier-options (nearest-neighbors location frontier)]
-    (when (seq frontier-options)
-      (let [[outflow route] (reduce (fn [[w1 r1 :as prev] [w2 r2]]
-				      (let [outflow (sink-mult-fn w2 (sub-fn 1.0 (:sink (peek r2))))]
-					(if (gt-fn outflow w1)
-					  [outflow r2]
-					  prev)))
-				    [zero-val []]
-				    frontier-options)]
-	[(decay-mult-fn outflow *decay-rate*) (conj route location)]))))
-
-(defn distribute-gaussian!
-  [location-map rows cols source-location source-weight gt-trans-fn sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn]
-  (loop [frontier (list [source-weight [source-location]])]
+(defn- distribute-gaussian!
+  [location-map rows cols source-location source-weight]
+  (loop [decayed-sources (map #(decay source-weight %) (iterate inc 1))
+	 frontier        (into {} (make-frontier-element location-map (:id source-location) source-weight [source-weight [] []]))]
     (when (seq frontier)
-      (doseq [[weight route] frontier]
-	(let [loc (peek route)]
-	  (when (or (sink-loc? loc) (use-loc? loc))
-	    (swap! (:carrier-cache loc) conj (struct service-carrier weight route)))))
-      (recur
-       (let [frontier-ids  (map (comp :id peek second) frontier)
-	     bounding-ids  (expand-box frontier-ids rows cols)
-	     bounding-locs (map location-map bounding-ids)]
-	 (filter #(and % (gt-trans-fn (first %) *trans-threshold*))
-		 (map #(select-optimal-path % frontier sink-mult-fn decay-mult-fn zero-val sub-fn gt-fn) bounding-locs)))))))
+      (let [decayed-weight (first decayed-sources)]
+	(if (> (rv-mean decayed-weight) *trans-threshold*)
+	  (recur (rest decayed-sources)
+		 (into {}
+		       (remove nil?
+			       (for [boundary-id (expand-box (keys frontier) rows cols)]
+				 (when-let [frontier-options (remove nil? (map frontier (get-neighbors boundary-id rows cols)))]
+				   (make-frontier-element location-map boundary-id decayed-weight
+							  (apply max-key (fn [[s r d]] (rv-mean s)) frontier-options))))))))))))
 
-;; FIXME rv-from-scalar assumes the first key in :source is the zero
-;; value.
 (defmethod distribute-flow! "Proximity"
   [_ location-map rows cols]
-  (println "Local Proximity Model begins...")
-  (let [first-loc     (val (first location-map))
-	zero-val      (if (map? (:source first-loc)) (rv-from-scalar (:source first-loc) (first (keys (:source first-loc)))))
-	sub-fn        (if (map? (:sink first-loc)) scalar-rv-subtract -)
-	sink-mult-fn  (if (map? (:source first-loc))
-			(if (map? (:sink first-loc)) rv-multiply rv-scalar-multiply)
-			(if (map? (:sink first-loc)) scalar-rv-multiply *))
-	decay-mult-fn (if (map? (:source first-loc))
-			(if (map? *decay-rate*) rv-multiply rv-scalar-multiply)
-			(if (map? *decay-rate*) scalar-rv-multiply *))
-	gt-trans-fn   (if (map? (:source first-loc))
-			(if (map? *trans-threshold*) rv-gt rv-scalar-gt)
-			(if (map? *trans-threshold*) scalar-rv-gt >))
-	gt-fn         (if (map? (:source first-loc)) rv-gt >)]
-    (distribute-load-over-processors
-     (fn [_ source-location]
-       (distribute-gaussian! location-map
-			     rows
-			     cols
-			     source-location
-			     (:source source-location)
-			     gt-trans-fn
-			     sink-mult-fn
-			     decay-mult-fn
-			     zero-val
-			     sub-fn
-			     gt-fn))
-     (filter source-loc? (vals location-map)))))
+  (distribute-load-over-processors
+   (fn [_ source-location] (distribute-gaussian! location-map rows cols source-location (:source source-location)))
+   (filter source-loc? (vals location-map))))

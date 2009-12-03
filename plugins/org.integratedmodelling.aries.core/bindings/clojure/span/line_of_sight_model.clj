@@ -28,7 +28,7 @@
 
 (def #^{:private true} elev-concept (conc 'geophysics:Altitude))
 
-(defn find-viewpath
+(defn- find-viewpath
   "Returns the sequence of all points [i j] intersected by the line
    from provider to beneficiary.  Since this is calculated over a
    regular integer-indexed grid, diagonal lines will be approximated
@@ -80,12 +80,15 @@
 		       (for [j j-range i (get-i-range j)] [i j])))))
 
 ;; FIXME what is this NODATA value evilness doing in my code?!
-(defn get-valid-elevation
+(defn- get-valid-elevation
   [location]
   (rv-zero-above-scalar (get-in location [:flow-features elev-concept]) 55535.0))
 (def get-valid-elevation (memoize get-valid-elevation))
 
-(defn distribute-raycast!
+;; FIXME convert step to distance metric based on map resolution
+(defn- decay [weight step] (rv-scalar-divide weight (* step step)))
+
+(defn- distribute-raycast!
   [provider beneficiary location-map]
   (if (= provider beneficiary)
     (swap! (:carrier-cache provider) conj
@@ -105,13 +108,13 @@
 		 elev-bounds (rest (iterate #(rv-add m %) source-elev))
 		 weight      source-val
 		 delayed-ops (if (sink-loc? provider)
-			       [(fn [] (swap! (:carrier-cache provider) conj
-					      (struct service-carrier weight (vec provider))))]
+			       [#(swap! (:carrier-cache provider) conj
+					(struct service-carrier weight (vec provider)))]
 			       [])]
-	    (let [decayed-weight (rv-scalar-divide weight (* step step))]
+	    (let [decayed-weight (decay weight step)]
 	      (if (== step steps)
 		(do
-		  (dorun (map apply delayed-ops))
+		  (doseq [op delayed-ops] (op))
 		  (swap! (:carrier-cache current) conj
 			 (struct service-carrier decayed-weight explored)))
 		(when (> (rv-mean decayed-weight) *trans-threshold*)
@@ -123,8 +126,8 @@
 			 (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
 			 (if (sink-loc? current)
 			   (conj delayed-ops
-				 (fn [] (swap! (:carrier-cache current) conj
-					       (struct service-carrier decayed-weight explored))))
+				 #(swap! (:carrier-cache current) conj
+					 (struct service-carrier decayed-weight explored)))
 			   delayed-ops)))))))))))
 
 (defmethod distribute-flow! "LineOfSight"

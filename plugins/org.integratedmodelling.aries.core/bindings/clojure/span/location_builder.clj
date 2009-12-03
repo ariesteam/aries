@@ -32,7 +32,7 @@
   (if (probabilistic? ds)
     (try ; ranged continuous distributions
      (let [bounds                (get-dist-breakpoints ds)
-	   unbounded-from-below? (= Double/NEGATIVE_INFINITY (first bounds))
+	   unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
 	   prob-dist             (apply create-struct (if unbounded-from-below? (rest bounds) bounds))]
        (if unbounded-from-below?
 	 (map (fn [idx] (apply struct prob-dist (successive-sums (get-probabilities ds idx)))) (range n))
