@@ -66,7 +66,7 @@
 (defmodel source 'floodService:FloodSource
 	  (bayesian 'floodService:FloodSource
 			;; model for the main observable
-			;; TODO this should classify a measurement of runoff
+			;; TODO this should classify a measurement of runoff, not just the concept
 	  	(classification 'floodService:FloodSourceValue
 	  		[:< 200]    'floodService:VeryLowFloodSource
 	  		[200 600]   'floodService:LowFloodSource
