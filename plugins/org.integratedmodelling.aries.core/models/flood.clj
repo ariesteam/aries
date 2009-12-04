@@ -55,7 +55,7 @@
 
 ;; Flood source probability (runoff levels), SCS curve number method
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
-;; TODO it's deterministic, remove the BN and program this one in
+;; TODO it's deterministic, remove the BN and program this one in code
 (defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
 	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
 	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
@@ -64,9 +64,16 @@
 
 ;; Flood source probability, ad hoc method
 (defmodel source 'floodService:FloodSource
-	  (bayesian 'floodService:FloodSource)
+	  (bayesian 'floodService:FloodSource
+			;; model for the main observable
+			;; TODO this should classify a measurement of runoff
+	  	(classification 'floodService:FloodSourceValue
+	  		[:< 200]    'floodService:VeryLowFloodSource
+	  		[200 600]   'floodService:LowFloodSource
+	  		[600 1200]  'floodService:ModerateFloodSource
+	  		[1200 2400] 'floodService:HighFloodSource
+	  		[2400 :>]   'floodService:VeryHighFloodSource))
 	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
-	  	:keep     ('floodService:FloodSourceValue)
 	 	 	:context  (precipitation monthly-temperature snow-presence))
 
 ;; ----------------------------------------------------------------------------------------------
