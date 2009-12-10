@@ -16,12 +16,11 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.interface
-  (:refer-clojure)
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
   (:use	[misc.utils            :only (maphash count-distinct)]
 	[span.params           :only (set-global-params!)]
 	[span.flow-model       :only (simulate-service-flows)]
-	[span.location-builder :only (unpack-datasource)]
+	[span.randvars         :only (unpack-datasource)]
 	[span.analyzer         :only (theoretical-source
 				      theoretical-sink
 				      theoretical-use

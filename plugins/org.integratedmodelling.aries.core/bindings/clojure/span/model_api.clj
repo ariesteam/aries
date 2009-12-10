@@ -15,28 +15,24 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns span.model-api
-  (:refer-clojure))
+(ns span.model-api)
 
-(defmulti
-  #^{:doc "Service-specific flow distribution functions."}
-  distribute-flow!
+(defmulti distribute-flow!
+  ;;"Service-specific flow distribution functions."
   (fn [flow-concept-name location-map rows cols] flow-concept-name))
 
 (defmethod distribute-flow! :default
   [flow-concept-name _ _ _]
   (throw (Exception. (str "distribute-flow! is undefined for flow type: " flow-concept-name))))
 
-(defmulti
-  #^{:doc "Service-specific decay functions."}
-  decay
+(defmulti decay
+  ;;"Service-specific decay functions."
   (fn [flow-concept-name weight steps] flow-concept-name))
 
 (defmethod decay :default [_ weight _] weight)
 
-(defmulti
-  #^{:doc "Service-specific inverse decay functions."}
-  undecay
+(defmulti undecay
+  ;;"Service-specific inverse decay functions."
   (fn [flow-concept-name weight steps] flow-concept-name))
 
 (defmethod undecay :default [_ weight _] weight)

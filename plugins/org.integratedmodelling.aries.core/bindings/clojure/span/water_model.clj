@@ -16,9 +16,8 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.water-model
-  (:refer-clojure)
   (:use [misc.utils     :only (memoize-by-first-arg depth-first-tree-search)]
-	[misc.stats     :only (rv-lt rv-scale rv-scalar-divide rv-zero-below-scalar rv-mean)]
+	[span.randvars  :only (rv-lt rv-scale rv-scalar-divide rv-zero-below-scalar rv-mean)]
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*trans-threshold*)]))

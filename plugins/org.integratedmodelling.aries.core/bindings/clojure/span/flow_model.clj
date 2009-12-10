@@ -16,7 +16,6 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.flow-model
-  (:refer-clojure)
   (:use [span.location-builder :only (make-location-map)]
 	[span.model-api        :only (distribute-flow!)]
 	[span.actualizer       :only (cache-all-actual-routes!)])

@@ -16,9 +16,8 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.carbon-model
-  (:refer-clojure)
   (:use [misc.utils     :only (seq2map)]
-	[misc.stats     :only (rv-add rv-divide rv-multiply)]
+	[span.randvars  :only (rv-add rv-divide rv-multiply)]
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? use-loc?)]))
 

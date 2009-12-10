@@ -15,8 +15,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns span.discretizer
-  (:refer-clojure))
+(ns span.discretizer)
 
 (defn- get-range-name [range-boundaries range-names value]
   (cond (empty? range-boundaries) (first range-names)

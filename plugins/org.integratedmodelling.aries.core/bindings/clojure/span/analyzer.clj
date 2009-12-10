@@ -16,10 +16,9 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.analyzer
-  (:refer-clojure)
-  (:use [misc.stats     :only (rv-mean rv-zero scalar-rv-subtract
+  (:use [misc.utils     :only (seq2map memoize-by-first-arg)]
+	[span.randvars  :only (rv-mean rv-zero scalar-rv-subtract
 			       rv-add rv-subtract rv-multiply rv-divide)]
-	[misc.utils     :only (seq2map memoize-by-first-arg)]
 	[span.model-api :only (decay undecay)]
 	[span.params    :only (*source-threshold*
 			       *sink-threshold*

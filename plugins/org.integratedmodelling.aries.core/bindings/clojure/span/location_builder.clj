@@ -16,32 +16,12 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.location-builder
-  (:refer-clojure)
   (:use [misc.utils        :only (maphash seq2map)]
-	[misc.stats        :only (successive-sums)]
+	[span.randvars     :only (unpack-datasource)]
 	[misc.matrix-ops   :only (get-neighbors)]))
 (refer 'corescience :only '(map-dependent-states))
-(refer 'modelling   :only '(probabilistic? get-dist-breakpoints get-possible-states get-probabilities get-data))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
-
-(defn unpack-datasource
-  "Returns a seq of length n of the values in ds,
-   represented as probability distributions."
-  [ds n]
-  (if (probabilistic? ds)
-    (try ; ranged continuous distributions
-     (let [bounds                (get-dist-breakpoints ds)
-	   unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
-	   prob-dist             (apply create-struct (if unbounded-from-below? (rest bounds) bounds))]
-       (if unbounded-from-below?
-	 (map (fn [idx] (apply struct prob-dist (successive-sums (get-probabilities ds idx)))) (range n))
-	 (map (fn [idx] (apply struct prob-dist (successive-sums 0 (get-probabilities ds idx)))) (range n))))
-     (catch Exception e ; discrete distributions
-       (let [states    (get-possible-states ds)
-	     prob-dist (apply create-struct states)]
-	 (map (fn [idx] (apply struct prob-dist (get-probabilities ds idx))) (range n)))))
-    (map #(array-map % 1.0) (get-data ds)))) ; deterministic values
 
 (defn- extract-values-by-concept
   "Returns a seq of the concept's values in the observation,
@@ -70,7 +50,7 @@
 	      :sink          sink
 	      :use           use
 	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)
-	      :carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory
+	      :carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory (do vecs save memory?)
 	  (for [i (range rows) j (range cols)] [i j])
 	  (extract-values-by-concept source-obs source-conc n)
 	  (extract-values-by-concept sink-obs   sink-conc   n)

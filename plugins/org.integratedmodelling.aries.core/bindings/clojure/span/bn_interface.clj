@@ -16,7 +16,6 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.bn-interface
-  (:refer-clojure)
   (:use [span.discretizer :only (undiscretize-value)]))
 (refer 'aries :only '(set-evidence run-inference get-marginals-table))
 

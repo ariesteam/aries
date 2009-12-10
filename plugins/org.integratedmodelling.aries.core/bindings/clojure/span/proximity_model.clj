@@ -16,9 +16,8 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.proximity-model
-  (:refer-clojure)
-  (:use [misc.stats      :only (scalar-rv-subtract rv-multiply rv-scalar-multiply rv-scalar-divide rv-mean)]
-	[misc.matrix-ops :only (get-neighbors)]
+  (:use [misc.matrix-ops :only (get-neighbors)]
+	[span.randvars   :only (scalar-rv-subtract rv-multiply rv-scalar-multiply rv-scalar-divide rv-mean)]
 	[span.model-api  :only (distribute-flow! decay undecay service-carrier distribute-load-over-processors)]
 	[span.analyzer   :only (source-loc? sink-loc? use-loc?)]
 	[span.params     :only (*trans-threshold*)]))

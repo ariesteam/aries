@@ -7,8 +7,7 @@
 (defn save-view-model
   "Run the view model at the given resolution" 
   [resolution output-file]
-  (let [flow-params {:decay-rate       0.95
-		     :trans-threshold  1.0
+  (let [flow-params {:trans-threshold  1.0
 		     :source-threshold 0.05
 		     :sink-threshold   0.20
 		     :use-threshold    0.05
@@ -24,8 +23,7 @@
 (defn save-proximity-model
   "Run the proximity model at the given resolution"
   [resolution output-file]
-  (let [flow-params {:decay-rate       0.6
-		     :trans-threshold  1.0
+  (let [flow-params {:trans-threshold  1.0
 		     :source-threshold 0.0
 		     :sink-threshold   0.0
 		     :use-threshold    0.0

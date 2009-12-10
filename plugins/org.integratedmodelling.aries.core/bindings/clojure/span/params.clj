@@ -15,8 +15,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns span.params
-  (:refer-clojure))
+(ns span.params)
 
 ;; FIXME do we ever want both absolute and relative, sources, sinks, or uses?
 ;; FIXME *source-type* should exist now since it can also be absolute or relative
@@ -27,8 +26,6 @@
 (def *use-threshold* 0.0)
 
 (def *trans-threshold* 0.0)
-
-(def *decay-rate* 0.0)
 
 (def *sink-type* nil)
 
@@ -42,7 +39,7 @@
   (alter-var-root #'*sink-threshold*   (constantly (flow-params :sink-threshold)))
   (alter-var-root #'*use-threshold*    (constantly (flow-params :use-threshold)))
   (alter-var-root #'*trans-threshold*  (constantly (flow-params :trans-threshold)))
-  (alter-var-root #'*decay-rate*       (constantly (flow-params :decay-rate)))
   (alter-var-root #'*sink-type*        (constantly (flow-params :sink-type)))
   (alter-var-root #'*use-type*         (constantly (flow-params :use-type)))
-  (alter-var-root #'*benefit-type*     (constantly (flow-params :benefit-type))))
+  (alter-var-root #'*benefit-type*     (constantly (flow-params :benefit-type)))
+  (assert (and *sink-type* *use-type* *benefit-type*)))

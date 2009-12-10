@@ -16,7 +16,6 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.actualizer
-  (:refer-clojure)
   (:use [span.analyzer :only (rerun-actual-route sink-loc? use-loc?)]
 	[span.params   :only (*sink-type* *use-type* *benefit-type*)]))
 

@@ -16,8 +16,7 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.line-of-sight-model
-  (:refer-clojure)
-  (:use [misc.stats     :only (rv-zero-above-scalar rv-add rv-subtract rv-scale
+  (:use [span.randvars  :only (rv-zero-above-scalar rv-add rv-subtract rv-scale
 			       rv-scalar-divide rv-scalar-multiply rv-lt rv-mean)]
 	[span.model-api :only (distribute-flow!
 			       decay undecay
