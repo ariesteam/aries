@@ -6,13 +6,9 @@ import java.util.HashSet;
 import org.integratedmodelling.aries.core.gssm.GSSMProxy;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
-import org.integratedmodelling.corescience.interfaces.cmodel.IConceptualModel;
-import org.integratedmodelling.corescience.interfaces.cmodel.TransformingConceptualModel;
-import org.integratedmodelling.corescience.interfaces.context.IObservationContext;
-import org.integratedmodelling.corescience.interfaces.data.IContextualizedState;
-import org.integratedmodelling.corescience.interfaces.data.IDataSource;
-import org.integratedmodelling.corescience.interfaces.data.IStateAccessor;
-import org.integratedmodelling.corescience.interfaces.observation.IObservation;
+import org.integratedmodelling.corescience.interfaces.IObservation;
+import org.integratedmodelling.corescience.interfaces.IObservationContext;
+import org.integratedmodelling.corescience.interfaces.internal.TransformingObservation;
 import org.integratedmodelling.corescience.literals.GeneralClassifier;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
@@ -31,7 +27,7 @@ import org.integratedmodelling.utils.Polylist;
 @InstanceImplementation(concept="aries:GSSMTransformer")
 public class GSSMTransformer 
 	extends Observation 
-	implements IConceptualModel, TransformingConceptualModel {
+	implements TransformingObservation {
 	
 	// these are all specialized dependencies
 	public static final String SOURCE_OBS_PROPERTY = "aries:hasSourceObservation";
@@ -66,18 +62,6 @@ public class GSSMTransformer
 	IConcept cSpace = null;
 	
 	@Override
-	public IStateAccessor getStateAccessor(IConcept stateType,
-			IObservationContext context) {
-		// we contextualize as an identification, so no accessor is required.
-		return null;
-	}
-
-	@Override
-	public IConcept getStateType() {
-		return cSpace;
-	}
-
-	@Override
 	public void initialize(IInstance i) throws ThinklabException {
 		super.initialize(i);
 		
@@ -85,41 +69,24 @@ public class GSSMTransformer
 		 * recover all observations from the dependencies.
 		 */
 	}
-	
-	@Override
-	public void handshake(IDataSource<?> dataSource,
-			IObservationContext observationContext,
-			IObservationContext overallContext) throws ThinklabException {
-	}
 
 	@Override
-	public void validate(IObservation observation)
-			throws ThinklabValidationException {
-	}
-
-	@Override
-	public IContextualizedState createContextualizedStorage(IObservation observation, int size)
+	public IObservationContext getTransformedContext(IObservationContext context)
 			throws ThinklabException {
-		// we contextualize this as an identification, so no storage is needed. 
-		return null;
-	}
-
-	@Override
-	public Polylist getTransformedConceptualModel() {
-		// this should be OK, we just transform to an identification.
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public IConcept getTransformedObservationClass() {
-		return CoreScience.Observation();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public IInstance transformObservation(IInstance inst, ISession session)
-			throws ThinklabException {
-		
-
+	public IInstance transform(IInstance sourceObs, ISession session,
+			IObservationContext context) throws ThinklabException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

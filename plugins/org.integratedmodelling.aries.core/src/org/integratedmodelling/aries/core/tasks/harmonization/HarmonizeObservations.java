@@ -2,8 +2,8 @@ package org.integratedmodelling.aries.core.tasks.harmonization;
 
 import java.util.Map;
 
-import org.integratedmodelling.corescience.contextualization.Compiler;
-import org.integratedmodelling.corescience.interfaces.observation.IObservation;
+import org.integratedmodelling.corescience.compiler.Compiler;
+import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -82,10 +82,8 @@ public class HarmonizeObservations implements ITask {
 		 * initialize 
 		 */
 		IInstance obs = session.createObject(dset);
-
-		IObservation o = (IObservation) obs.getImplementation();
 		
-		result = Compiler.contextualize(o, session);		
+		result = new ObservationFactory().contextualize(obs, session);		
 	}
 
 }
