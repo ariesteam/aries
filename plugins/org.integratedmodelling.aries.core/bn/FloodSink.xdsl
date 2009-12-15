@@ -12,7 +12,7 @@
 		</cpt>
 		<cpt id="DetentionBasinStorage">
 			<state id="DetentionBasinStoragePresent" />
-			<state id="DetentionBasinStorageAbsent" />
+			<state id="DetentionBasinStorageNotPresent" />
 			<probabilities>0.02 0.98</probabilities>
 		</cpt>
 		<cpt id="MeanDaysOfPrecipitationPerMonth">
@@ -87,9 +87,9 @@
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="ImperviousSurfaceCover">
-			<state id="VeryHighImpervious" />
-			<state id="HighImpervious" />
-			<state id="ModeratelyHighImpervious" />
+			<state id="VeryHighlyImpervious" />
+			<state id="HighlyImpervious" />
+			<state id="ModeratelyHighlyImpervious" />
 			<state id="ModeratelyLowImpervious" />
 			<state id="LowImpervious" />
 			<state id="VeryLowImpervious" />
@@ -159,7 +159,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="FloodSink">
 				<name>FloodSink</name>
 				<interior color="e5f6f7" />
@@ -228,7 +228,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>521 437 633 471</position>
+				<position>526 441 638 475</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetationType">
@@ -244,7 +244,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>378 422 501 453</position>
+				<position>376 430 499 461</position>
 				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="Slope">
@@ -300,8 +300,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>956 254 1098 284</position>
-				<barchart active="true" width="145" height="64" />
+				<position>1105 254 1247 284</position>
+				<barchart active="true" width="442" height="64" />
 			</node>
 			<node id="FrozenSoil">
 				<name>FrozenSoil</name>

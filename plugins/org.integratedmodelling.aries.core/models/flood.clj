@@ -258,6 +258,5 @@
 	(identification 'floodService:FloodPreventionService)
 		:context (
 			source :as source
-			sink :as sink
-			residents-use :as residents))
+			sink :as sink))
 	 	 	
