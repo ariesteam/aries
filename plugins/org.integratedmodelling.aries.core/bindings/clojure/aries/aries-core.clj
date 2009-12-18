@@ -62,7 +62,7 @@
 	and flow parameters using :source, :sink, :use, :flow clauses, plus all GSSM flow parameters."
 	[observable]
 	`(let [model# 
- 	        	(modelling/j-make-gssm)]  ;; FIXME there is no modelling/j-make-gssm
+ 	        	(j-make-gssm)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
  	   model#))
 			

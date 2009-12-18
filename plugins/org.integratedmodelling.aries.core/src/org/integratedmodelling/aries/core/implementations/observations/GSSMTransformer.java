@@ -58,7 +58,6 @@ public class GSSMTransformer
 		new ArrayList<Pair<GeneralClassifier,IConcept>>();
 	
 	HashSet<IConcept> outputStates = new HashSet<IConcept>();
-	
 	IConcept cSpace = null;
 	
 	@Override
