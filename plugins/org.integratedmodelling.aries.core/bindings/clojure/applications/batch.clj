@@ -13,7 +13,8 @@
 		     :use-threshold    0.05
 		     :sink-type        :relative
 		     :use-type         :relative
-		     :benefit-type     :non-rival}]
+		     :benefit-type     :non-rival
+		     :rv-max-states    10}]
     (aries.demo/save-gssm-demo-data 
      'aestheticService:SensoryEnjoyment
      'aestheticService:AestheticViewshedUse
@@ -29,7 +30,8 @@
 		     :use-threshold    0.0
 		     :sink-type        :relative
 		     :use-type         :relative
-		     :benefit-type     :non-rival}]
+		     :benefit-type     :non-rival
+		     :rv-max-states    10}]
     (aries.demo/save-gssm-demo-data
      'aestheticService:ProximityToBeauty
      'aestheticService:AestheticProximityUse

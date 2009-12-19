@@ -65,7 +65,7 @@
   (when-let [downhill-neighbors (most-downhill-neighbors (peek route) location-map)]
     (let [downhill-weight (rv-scalar-divide weight (count downhill-neighbors))]
       (if (> (rv-mean downhill-weight) *trans-threshold*)
-	(let [zeroed-downhill-weight (rv-zero-below-scalar downhill-weight)]
+	(let [zeroed-downhill-weight (rv-zero-below-scalar downhill-weight *trans-threshold*)]
 	  (map #(vector zeroed-downhill-weight (conj route %)) downhill-neighbors))))))
 
 (defn- probabilistic-successors

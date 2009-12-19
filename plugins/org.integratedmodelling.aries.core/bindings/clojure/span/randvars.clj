@@ -16,13 +16,25 @@
 ;;; along with CLJ-SPAN.  If not, see <http://www.gnu.org/licenses/>.
 
 (ns span.randvars
-  (:use [misc.utils :only (seq2map maphash)]))
+  (:use [misc.utils  :only (maphash)]
+	[span.params :only (*rv-max-states*)]))
 (refer 'modelling   :only '(probabilistic?
 			    encodes-continuous-distribution?
 			    get-dist-breakpoints
 			    get-possible-states
 			    get-probabilities
 			    get-data))
+(comment
+(declare probabilistic?
+	 encodes-continuous-distribution?
+	 get-dist-breakpoints
+	 get-possible-states
+	 get-probabilities
+	 get-data)
+)
+
+(def #^{:private true} cont-type {:type ::continuous-distribution})
+(def #^{:private true} disc-type {:type ::discrete-distribution})
 
 (defn- successive-sums
   ([nums]      (successive-sums (first nums) (rest nums)))
@@ -37,339 +49,298 @@
 (defn unpack-datasource
   "Returns a seq of length n of the values in ds,
    represented as probability distributions.  All values and
-   probabilities are represented as integers."
+   probabilities are represented as integers * 100 (except true
+   discrete values)."
   [ds n]
   (let [to-ints (partial map #(int (* 100 %)))]
     (if (probabilistic? ds)
       (if (encodes-continuous-distribution? ds)
-	;; sampled continuous distribution
-	(let [type-info             {:type :continuous-distribution}
-	      bounds                (get-dist-breakpoints ds)
+	;; sampled continuous distributions (FIXME: How is missing information represented?)
+	(let [bounds                (get-dist-breakpoints ds)
 	      unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
 	      unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))
-	      prob-dist             (apply create-struct (to-ints 
+	      prob-dist             (apply create-struct (to-ints
 							  (if unbounded-from-below?
 							    (if unbounded-from-above?
 							      (rest (butlast bounds))
 							      (rest bounds))
 							    (if unbounded-from-above?
 							      (butlast bounds)
-							      bounds))))]
-	  (if unbounded-from-below?
-	    (if unbounded-from-above?
-	      (map (fn [idx] (with-meta
-			       (apply struct prob-dist (successive-sums (to-ints (butlast (get-probabilities ds idx)))))
-			       type-info))
-		   (range n))
-	      (map (fn [idx] (with-meta
-			       (apply struct prob-dist (successive-sums (to-ints (get-probabilities ds idx))))
-			       type-info))
-		   (range n)))
-	    (if unbounded-from-above?
-	      (map (fn [idx] (with-meta
-			       (apply struct prob-dist (successive-sums 0 (to-ints (butlast (get-probabilities ds idx)))))
-			       type-info))
-		   (range n))
-	      (map (fn [idx] (with-meta
-			       (apply struct prob-dist (successive-sums 0 (to-ints (get-probabilities ds idx))))
-			       type-info))
-		   (range n)))))
-	;; discrete distribution
-	(let [type-info {:type :discrete-distribution}
-	      states    (get-possible-states ds)
-	      prob-dist (apply create-struct states)]
-	  (map (fn [idx] (with-meta
-			   (apply struct prob-dist (get-probabilities ds idx))
-			   type-info))
-	       (range n))))
-      ;; deterministic values
-      (let [type-info {:type :discrete-distribution}]
-	(map #(with-meta (array-map % 100) type-info) (to-ints (get-data ds)))))))
+							      bounds))))
+	      get-cdf-vals          (if unbounded-from-below?
+				      (if unbounded-from-above?
+					#(successive-sums (to-ints (butlast (get-probabilities ds %))))
+					#(successive-sums (to-ints (get-probabilities ds %))))
+				      (if unbounded-from-above?
+					#(successive-sums 0 (to-ints (butlast (get-probabilities ds %))))
+					#(successive-sums 0 (to-ints (get-probabilities ds %)))))]
+	  (for [idx (range n)]
+	    (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type)))
+	;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
+	(let [prob-dist (apply create-struct (get-possible-states ds))]
+	  (for [idx (range n)]
+	    (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
+      ;; deterministic values (FIXME: NaNs become 0s)
+      (for [value (to-ints (get-data ds))]
+	(with-meta (array-map value 100) disc-type)))))
 
-;; FIXME why is this causing a class cast exception?
-;; FIXME change to type?
+;; FIXME: upgrade clojure and change to type
+(defmulti rv-resample
+  ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
+  (fn [X] (:type (meta X))))
+
+(defmethod rv-resample ::discrete-distribution
+  [X]
+  (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+    (with-meta
+      (into {}
+	    (map #(vector (/ (apply + (keys %))
+			     partition-size)
+			  (apply + (vals %)))
+		 (partition partition-size partition-size [] (sort X))))
+      (meta X))))
+
+(defmethod rv-resample ::continuous-distribution
+  [X]
+  (let [step-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+    (with-meta (into {} (take-nth step-size (sort X))) (meta X))))
+
+;; FIXME change to type upgrade clojure!
 (defmulti rv-mean
   ;;"Returns the mean value of a random variable X."
   (fn [X] (:type (meta X))))
 
-(defmethod rv-mean :discrete-distribution
+(defmethod rv-mean ::discrete-distribution
   [X]
-  (let [sum-of-squares (reduce + (map (partial apply *) X))]
-    (if (zero? sum-of-squares) 0 (/ sum-of-squares 100))))
+  (/ (reduce + (map (partial apply *) X)) 10000.0))
 
-;; FIXME implement stub
-(defmethod rv-mean :continuous-distribution
+;; This returns the average of the upper and lower bounds for the mean
+(defmethod rv-mean ::continuous-distribution
   [X]
-  0)
+  (let [X*     (sort X)
+        states (keys X*)
+	probs  (successive-differences (vals X*))
+	upper  (reduce + (map * states probs))
+	lower  (reduce + (map * states (rest probs)))]
+    (/ (+ upper lower) 20000.0)))
 
-(def rv-zero {0 100})
+(def rv-zero (with-meta (array-map 0 100) disc-type))
 
-(comment
-      rv-add
-      rv-subtract
-      rv-multiply
-      rv-divide
+;;; testing functions below here
 
-      rv-scalar-divide
-      rv-scalar-multiply
-      scalar-rv-subtract
+(defn rv-convolute-1
+  [f X Y]
+  (apply merge-with + (for [[v1 p1] X [v2 p2] Y] {(f v1 v2) (/ (* p1 p2) 100)})))
 
-      rv-zero-above-scalar
-      rv-zero-below-scalar
-
-      rv-scale
-      rv-lt
-)
-(defn rv-from-scalar
-  "Returns a new distribution with the same vals as X with probability 1.0 on x."
-  [X x]
-  (seq2map X (fn [[v p]] (vector v (if (= v x) 1.0 0.0)))))
-
-(defn rv-zero-above-scalar
-  "Returns true if P(X=zero-val)=1.0 for the random variable X."
-  [X zero-val]
-  (== (X zero-val) 1.0))
-
-(defn rv-zero-below-scalar
-  "Returns true if P(X=zero-val)=1.0 for the random variable X."
-  [X zero-val]
-  (== (X zero-val) 1.0))
-
-;; FIXME finish stub
-(defn rv-add
-  "Returns the distribution of the sum of two random variables X and Y."
-  [X Y]
-  X)
-
-;; FIXME finish stub
-(defn rv-subtract
-  "Returns the distribution of the difference of two random variables X and Y."
-  [X Y]
-  X)
-
-;; FIXME finish stub
-(defn scalar-rv-subtract
-  "Returns the distribution of the random variable Y with its range values subtracted from x."
-  [x Y]
-  (maphash #(- x %) identity Y))
-
-;; FIXME finish stub
-(defn rv-multiply
-  "Returns the distribution of the product of two random variables X and Y."
-  [X Y]
-  X)
-
-;; FIXME finish stub
-(defn rv-divide
-  "Returns the distribution of the quotient of two random variables X and Y."
-  [X Y]
-  X)
-
-(defn rv-scalar-multiply
-  "Returns the distribution of the random variable X with its range values multiplied by y."
-  [X y]
-  (maphash #(* % y) identity X))
-
-(defn scalar-rv-multiply
-  "Returns the distribution of the random variable Y with its range values multiplied by x."
-  [x Y]
-  (maphash #(* x %) identity Y))
-
-(defn rv-scalar-divide
-  "Returns the distribution of the random variable X with its range values divided by y."
-  [X y]
-  (maphash #(/ % y) identity X))
-
-(defn scalar-rv-divide
-  "Returns the distribution of the random variable Y with its range values replaced by x/y."
-  [x Y]
-  (maphash #(/ x %) identity Y))
-
-;; FIXME finish stub
-(defn rv-gt
-  ""
-  [X Y]
-  true)
-
-;; FIXME finish stub
-(defn rv-scalar-gt
-  ""
-  [X y]
-  true)
-
-;; FIXME finish stub
-(defn scalar-rv-gt
-  ""
-  [x Y]
-  true)
-
-;; FIXME finish stub
-(defn rv-min
-  ""
-  [X Y]
-  X)
-
-;; FIXME finish stub
-(defn rv-eq
-  ""
-  [X Y]
-  true)
-
-;; FIXME finish stub
-(defn rv-lt
-  ""
-  [X Y]
-  true)
-
-;; Here's the test:
-;; 1) Vary data structures
-;; 2) Vary floating point vs. integer representation
-
-;; vector as p-list
-(defn rv-plus1
-  [X Y]
-  (let [eps 0.001
-	convolution (sort (for [[v1 p1] (partition 2 X) [v2 p2] (partition 2 Y)] [(+ v1 v2) (* p1 p2)]))
-	all-unique  (reduce (fn [res [v2 p2 :as n]]
-			      (let [[v1 p1] (peek res)]
-				(if (< v2 (+ v1 eps))
-				  (conj (pop res) [v2 (+ p1 p2)])
-				  (conj res n))))
-			    [(first convolution)]
-			    (rest convolution))]
-    (vec (concat all-unique))))
-
-;; array-map
-(defn rv-plus2
-  [X Y]
-  (let [eps 0.001
-	convolution (sort (for [[v1 p1] X [v2 p2] Y] [(+ v1 v2) (* p1 p2)]))
-	all-unique  (reduce (fn [res [v2 p2]]
-			      (let [[v1 p1] (last res)]
-				(if (< v2 (+ v1 eps))
-				  (assoc (dissoc res v1) v2 (+ p1 p2))
-				  (assoc res v2 p2))))
+(defn rv-convolute-2
+  [f X Y]
+  (let [convolution (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (/ (* p1 p2) 100)])
+	all-unique  (reduce (fn [amap [v2 p2]]
+			      (if-let [p1 (amap v2)]
+				(assoc amap v2 (+ p1 p2))
+				(assoc amap v2 p2)))
 			    (apply array-map (first convolution))
 			    (rest convolution))]
     all-unique))
 
-(defstruct mydist :vals :probs)
-;; struct of vectors
-(defn rv-plus3
-  [{Xvals :vals Xprobs :probs} {Yvals :vals Yprobs :probs}]
-  (let [eps         0.001
-	convolution (sort (for [i (range (count Xvals)) j (range (count Yvals))]
-			    [(+ (Xvals i) (Yvals j)) (* (Xprobs i) (Yprobs j))]))]
-    (loop [input (rest convolution)
-	   vals  [(first  (first convolution))]
-	   probs [(second (first convolution))]]
-      (if (empty? input)
-	(struct mydist vals probs)
-	(let [v1      (peek vals)
-	      p1      (peek probs)
-	      [v2 p2] (first input)]
-	  (if (< v2 (+ v1 eps))
-	    (recur (rest input) (conj (pop vals) v2) (conj (pop probs) (+ p1 p2)))
-	    (recur (rest input) (conj vals v2) (conj probs p2))))))))
-
-(defn rv-plus3_1
-  [{Xvals :vals Xprobs :probs} {Yvals :vals Yprobs :probs}]
-  (let [eps  0.001
-	lenX (count Xvals)
-	lenY (count Yvals)
-        [XYvals XYprobs] (loop [i 0, j 0, XYvals [], XYprobs []]
-			   (if (== i lenX)
-			     [XYvals XYprobs]
-			     (if (== j lenY)
-			       (recur (inc i) 0 XYvals XYprobs)
-			       (recur i (inc j) (conj XYvals (+ (Xvals i) (Yvals j))) (conj XYprobs (* (Xprobs i) (Yprobs j)))))))
-	convolution (sort (map vec (partition 2 (interleave XYvals XYprobs))))]
-    (loop [input (rest convolution)
-	   vals  [(first  (first convolution))]
-	   probs [(second (first convolution))]]
-      (if (empty? input)
-	(struct mydist vals probs)
-	(let [v1      (peek vals)
-	      p1      (peek probs)
-	      [v2 p2] (first input)]
-	  (if (< v2 (+ v1 eps))
-	    (recur (rest input) (conj (pop vals) v2) (conj (pop probs) (+ p1 p2)))
-	    (recur (rest input) (conj vals v2) (conj probs p2))))))))
-
-(defn rv-plus3_2
-  [{Xvals :vals Xprobs :probs} {Yvals :vals Yprobs :probs}]
-  (let [eps  0.001
-	lenX (count Xvals)
-	lenY (count Yvals)
-        convolution (loop [i 0, j 0, XYsum (sorted-map)]
-		      (if (== i lenX)
-			XYsum
-			(if (== j lenY)
-			  (recur (inc i) 0 XYsum)
-			  (recur i (inc j) (let [v (+ (Xvals  i) (Yvals  j))
-						 p (* (Xprobs i) (Yprobs j))]
-					     (if-let [old-p (XYsum v)]
-					       (assoc XYsum v (+ old-p p))
-					       (assoc XYsum v p)))))))]
-    (struct mydist (keys convolution) (vals convolution))))
-
-;; sorted map with doubles
-(defn rv-plus5
-  [X Y]
-  (let [eps 0.001
-	convolution (sort (for [[v1 p1] X [v2 p2] Y] [(+ v1 v2) (* p1 p2)]))
-	all-unique  (reduce (fn [smap [v2 p2 :as n]]
-			      (let [[v1 p1] (first (rseq smap))]
-				(if (< v2 (+ v1 eps))
-				  (assoc (dissoc smap v1) v2 (+ p1 p2))
-				  (assoc smap v2 p2))))
-			    (apply sorted-map (first convolution))
+(comment
+(defn rv-convolute-3
+  [f X Y]
+  (let [convolution (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (/ (* p1 p2) 100)])
+	all-unique  (reduce (fn [amap [v2 p2]]
+			      (if-let [p1 (amap v2)]
+				(assoc! amap v2 (+ p1 p2))
+				(assoc! amap v2 p2)))
+			    (transient (apply array-map (first convolution)))
 			    (rest convolution))]
-    all-unique))
+    (persistent! all-unique)))
+)
 
-;; sorted map with integers
-(defn rv-plus5_1
-  [X Y]
-  (apply merge-with + (sorted-map) (for [[v1 p1] X [v2 p2] Y] {(+ v1 v2) (* p1 p2)})))
+(defn rv-convolute-4
+  [f X Y]
+  (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (/ (* p1 p2) 100)]))
+	all-unique  (reduce (fn [acc [v2 p2 :as n]]
+			      (let [[v1 p1] (peek acc)]
+				(if (== v1 v2)
+				  (conj (pop acc) [v2 (+ p1 p2)])
+				  (conj acc n))))
+			    (vector (first convolution))
+			    (rest convolution))]
+    (into {} all-unique)))
 
-;; sorted map with integers
-(defn rv-plus5_2
-  [X Y]
-  (loop [X* X, Y* Y, XYsum (sorted-map)]
+(comment
+(defn rv-convolute-5
+  [f X Y]
+  (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (/ (* p1 p2) 100)]))
+	all-unique  (reduce (fn [acc [v2 p2 :as n]]
+			      (let [last-idx (dec (count acc))
+				    [v1 p1]  (acc last-idx)]
+				(if (== v1 v2)
+				  (assoc! acc last-idx [v2 (+ p1 p2)])
+				  (conj!  acc n))))
+			    (transient (vector (first convolution)))
+			    (rest convolution))]
+    (into {} (persistent! all-unique))))
+)
+
+(defn rv-convolute-6
+  [f X Y]
+  (loop [X* X, Y* Y, fXY {}]
     (if (empty? X*)
-      XYsum
+      fXY
       (if (empty? Y*)
-	(recur (rest X*) Y XYsum)
+	(recur (rest X*) Y fXY)
 	(recur X* (rest Y*) (let [[v1 p1] (first X*)
 				  [v2 p2] (first Y*)
-				  v       (+ v1 v2)
-				  p       (* p1 p2)]
-			      (if-let [old-p (XYsum v)]
-				(assoc XYsum v (+ old-p p))
-				(assoc XYsum v p))))))))
+				  v       (f v1 v2)
+				  p       (/ (* p1 p2) 100)]
+;;			      (update-in fXY [v] #(+ p (or % 0)))))))))
+			      (if-let [old-p (fXY v)]
+				(assoc fXY v (+ old-p p))
+				(assoc fXY v p))))))))
 
-(defn rv-continuous?
-  [X]
-  (some #(> % 1.0) (successive-sums (vals (rseq X)))))
+(comment
+(defn rv-convolute-7
+  [f X Y]
+  (loop [X* X, Y* Y, fXY (transient {})]
+    (if (empty? X*)
+      (persistent! fXY)
+      (if (empty? Y*)
+	(recur (rest X*) Y fXY)
+	(recur X* (rest Y*) (let [[v1 p1] (first X*)
+				  [v2 p2] (first Y*)
+				  v       (f v1 v2)
+				  p       (/ (* p1 p2) 100)]
+			      (if-let [old-p (fXY v)]
+				(assoc! fXY v (+ old-p p))
+				(assoc! fXY v p))))))))
+)
 
-;; FIXME this will behave badly if rv contains negative values
-(defn rv-scale
-  [rv scale-factor]
-  (let [values   (vec (keys rv))
-	probs    (vec (map #(* % scale-factor) (if (rv-continuous? rv)
-						 (successive-differences (vals rv))
-						 (vals rv))))
-	zero-pos (loop [i 0, max (count values)] (when (< i max) (if (== (values i) 0.0) i (recur (inc i) max))))
-	probs2   (if zero-pos
-		   (assoc probs zero-pos (+ (probs zero-pos) (- 1.0 scale-factor)))
-		   (cons (- 1.0 scale-factor) probs))]
-    (loop [values (if zero-pos values (cons 0.0 values))
-	   probs  (if (rv-continuous? rv)
-		    (successive-sums probs2)
-		    probs2)
-	   result (sorted-map)]
-      (if (empty? values)
-	result
-	(recur (rest values)
-	       (rest probs)
-	       (assoc result (first values) (first probs)))))))
+;;; finish testing functions
+
+;; FIXME upgrade clojure and change to type
+(defn- rv-convolute
+  "Returns the distribution of f of two random variables X and Y."
+  [f X Y]
+  (with-meta
+    (rv-convolute-6 f X Y)
+    (if (or (= (meta X) cont-type)
+	    (= (meta Y) cont-type))
+      cont-type
+      disc-type)))
+
+(defn rv-add
+  [X Y]
+  (rv-resample (rv-convolute + X Y)))
+
+(defn rv-subtract
+  [X Y]
+  (rv-resample (rv-convolute - X Y)))
+
+(defn rv-multiply
+  [X Y]
+  (rv-resample (rv-convolute #(/ (* %1 %2) 100) X Y)))
+
+(defn rv-divide
+  [X Y]
+  (rv-resample (rv-convolute #(* (/ %1 %2) 100) X Y)))
+
+(defn rv-lt
+  [X Y]
+  (/ (get (rv-convolute < X Y) true) 100.0))
+
+(defn rv-gt
+  [X Y]
+  (/ (get (rv-convolute > X Y) true) 100.0))
+
+(defn- rv-map
+  "Returns the distribution of the random variable X with f applied to its range values."
+  [f X]
+  (with-meta (maphash f identity X) (meta X)))
+
+(defn scalar-rv-add
+  [x Y]
+  (let [x* (int (* 100 x))]
+    (rv-map #(+ x* %) Y)))
+
+(defn scalar-rv-subtract
+  [x Y]
+  (let [x* (int (* 100 x))]
+    (rv-map #(- x* %) Y)))
+
+(defn scalar-rv-multiply
+  [x Y]
+  (let [x* (int x)]
+    (rv-map #(* x* %) Y)))
+
+(defn scalar-rv-divide
+  [x Y]
+  (let [x* (int (* 10000 x))]
+    (rv-map #(/ x* %) Y)))
+
+(defn rv-scalar-add
+  [X y]
+  (let [y* (int (* 100 y))]
+    (rv-map #(+ % y*) X)))
+
+(defn rv-scalar-subtract
+  [X y]
+  (let [y* (int (* 100 y))]
+    (rv-map #(- % y*) X)))
+
+(defn rv-scalar-multiply
+  [X y]
+  (let [y* (int y)]
+    (rv-map #(* % y*) X)))
+
+(defn rv-scalar-divide
+  [X y]
+  (let [y* (int y)]
+    (rv-map #(/ % y*) X)))
+
+(defn rv-zero-above-scalar
+  "Sets all values greater than y in the random variable X to 0."
+  [X y]
+  (rv-convolute #(if (> %2 %1) 0 %2) {(int (* y 100)) 100} X))
+
+(defn rv-zero-below-scalar
+  "Sets all values less than y in the random variable X to 0."
+  [X y]
+  (rv-convolute #(if (< %2 %1) 0 %2) {(int (* y 100)) 100} X))
+
+(defmulti rv-scale
+  ;;""
+  (fn [rv scale-factor] (:type (meta rv))))
+
+(defmethod rv-scale ::continuous-distribution
+  [rv-unsorted scale-factor-double]
+  (let [rv           (sort rv-unsorted)
+	values       (vec (keys rv))
+	scale-factor (int (* 100 scale-factor-double))
+	probs        (vec (map #(/ (* scale-factor %) 100) (successive-differences (vals rv))))
+	zero-pos     (loop [i 0, max (count values)] (when (< i max) (if (zero? (values i)) i (recur (inc i) max))))
+	pos-pos      (loop [i 0, max (count values)] (when (< i max) (if (pos?  (values i)) i (recur (inc i) max))))
+	values2      (if zero-pos values (concat (take pos-pos values) [0] (drop pos-pos values)))
+	probs2       (successive-sums (if zero-pos
+					(assoc probs zero-pos (+ (probs zero-pos) (- 100 scale-factor)))
+					(concat (take pos-pos probs) [(- 100 scale-factor)] (drop pos-pos probs))))]
+    (with-meta (zipmap values2 probs2) cont-type)))
+
+(defmethod rv-scale ::discrete-distribution
+  [rv scale-factor-double]
+  (let [values       (vec (keys rv))
+	scale-factor (int (* 100 scale-factor-double))
+	probs        (vec (map #(/ (* scale-factor %) 100) (vals rv)))
+	zero-pos     (loop [i 0, max (count values)] (when (< i max) (if (zero? (values i)) i (recur (inc i) max))))
+	values2      (if zero-pos values (cons 0 values))
+	probs2       (if zero-pos
+		       (assoc probs zero-pos (+ (probs zero-pos) (- 100 scale-factor)))
+		       (cons (- 100 scale-factor) probs))]
+    (with-meta (zipmap values2 probs2) disc-type)))
+
+(defmulti  make-rv (fn [states type] type))
+(defmethod make-rv :double [states _] (into {} (take states (repeatedly #(vector (rand 100.0) (rand 1.0))))))
+(defmethod make-rv :int    [states _] (into {} (take states (repeatedly #(vector (rand-int 10000) (rand-int 100))))))
+
+;; Example profiling code (use 'misc.memtest)
+;; (count (check-mem (time (doall (for [i (range 10000)] (rv-plus5_1 (make-rv 10 :int) (make-rv 10 :int)))))))

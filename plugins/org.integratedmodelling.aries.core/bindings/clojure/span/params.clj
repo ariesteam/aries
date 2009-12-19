@@ -33,6 +33,8 @@
 
 (def *benefit-type* nil)
 
+(def *rv-max-states* 10)
+
 (defn set-global-params!
   [flow-params]
   (alter-var-root #'*source-threshold* (constantly (flow-params :source-threshold)))
@@ -42,4 +44,5 @@
   (alter-var-root #'*sink-type*        (constantly (flow-params :sink-type)))
   (alter-var-root #'*use-type*         (constantly (flow-params :use-type)))
   (alter-var-root #'*benefit-type*     (constantly (flow-params :benefit-type)))
+  (alter-var-root #'*rv-max-states*    (constantly (flow-params :rv-max-states)))
   (assert (and *sink-type* *use-type* *benefit-type*)))

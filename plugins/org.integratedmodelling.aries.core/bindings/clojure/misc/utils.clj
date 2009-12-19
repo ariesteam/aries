@@ -78,6 +78,12 @@
 	(recur (rest keyvals)
 	       (doto out-map (.put (keyfn key) (valfn val))))))))
 
+(defn key-by-val
+  "Returns the key from a map m whose corresponding value field is a
+   sequence containing v."
+  [m v]
+  (some #(and (some #{v} (val %)) (key %)) m))
+
 (defn linearize
   "Transforms a 2D matrix into a 1D vector."
   [matrix]
