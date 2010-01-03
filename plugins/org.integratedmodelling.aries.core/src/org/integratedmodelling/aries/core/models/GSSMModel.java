@@ -2,9 +2,7 @@ package org.integratedmodelling.aries.core.models;
 
 import java.util.ArrayList;
 
-import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
-import org.integratedmodelling.modelling.implementations.observations.BayesianTransformer;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
@@ -18,20 +16,33 @@ public class GSSMModel extends DefaultStatefulAbstractModel {
 	String source = null;
 	String algorithm = null;
 	
+	IConcept sourceObservable = null;
+	IConcept sinkObservable = null;
+	IConcept useObservable = null;
+	IConcept flowObservable = null;
+	
+
 	@Override
 	public void applyClause(String keyword, Object argument)
 			throws ThinklabException {
 		
 		if (keyword.equals(":source")) {
+			addDependentModel((IModel) argument);
+			sourceObservable = ((IModel)argument).getObservable();
 		} else if (keyword.equals(":sink")) {
+			addDependentModel((IModel) argument);
+			sinkObservable = ((IModel)argument).getObservable();
 		} else if (keyword.equals(":use")) {
+			addDependentModel((IModel) argument);
+			useObservable = ((IModel)argument).getObservable();
 		} else if (keyword.equals(":flow")) {
+			addDependentModel((IModel) argument);
+			flowObservable = ((IModel)argument).getObservable();
 		} else if (keyword.equals(":use-threshold")) {
 		} else if (keyword.equals(":sink-threshold")) {
 		} else if (keyword.equals(":source-threshold")) {
 		} else if (keyword.equals(":decay-rate")) {
 		} else super.applyClause(keyword, argument);
-			
 	}
 
 	@Override
@@ -59,8 +70,9 @@ public class GSSMModel extends DefaultStatefulAbstractModel {
 		ret.copy(this);
 
 		// TODO the rest
-		
-		return ret;
+		ret.algorithm = this.algorithm;
+		ret.source = this.source;
+		return ret; 
 	}
 
 	@Override

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<plugin id="org.integratedmodelling.aries.marine" version="0.8.0" class="org.integratedmodelling.aries.marine.ARIESMarinePlugin">
+
+	<requires>
+		<import plugin-id="org.integratedmodelling.thinklab.core"/>
+		<import plugin-id="org.integratedmodelling.thinklab.modelling"/>
+		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
+		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
+		<import plugin-id="org.integratedmodelling.aries.core"/>
+	</requires>
+
+	<runtime>
+		<library id="core" path="classes/" type="code">
+			<export prefix="*"/>
+		</library>
+		
+		<library type="resources" path="ontologies/" id="ontologies" />
+<!--	<library type="resources" path="bindings/clojure/" id="clojure-bindings" /> -->
+		<library type="resources" path="models/" id="models" /> 
+		<library type="resources" path="data/" id="data" />
+		<library type="resources" path="config/" id="config" />
+	</runtime>
+
+</plugin>

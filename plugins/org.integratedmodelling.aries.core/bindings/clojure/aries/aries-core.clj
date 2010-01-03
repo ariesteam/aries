@@ -57,7 +57,7 @@
 ;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.GSSMTransformer/setGSSMProxy (get-gssm-proxy))
 
-(defmacro gssm
+(defmacro span
 	"Create a gssm model. The observable must be a service. This one admits specification of dependencies
 	and flow parameters using :source, :sink, :use, :flow clauses, plus all GSSM flow parameters."
 	[observable]

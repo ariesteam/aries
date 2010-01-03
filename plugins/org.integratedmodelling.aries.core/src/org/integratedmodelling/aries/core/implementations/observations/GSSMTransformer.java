@@ -2,22 +2,23 @@ package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 
+import org.integratedmodelling.aries.core.ARIESCorePlugin;
+import org.integratedmodelling.aries.core.ARIESNamespace;
 import org.integratedmodelling.aries.core.gssm.GSSMProxy;
-import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
 import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.corescience.interfaces.internal.TransformingObservation;
 import org.integratedmodelling.corescience.literals.GeneralClassifier;
+import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.annotations.InstanceImplementation;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 import org.integratedmodelling.utils.Pair;
-import org.integratedmodelling.utils.Polylist;
 
 /**
  * Support for running the Clojure SPAN models and making lazy observation proxies to its
@@ -67,6 +68,16 @@ public class GSSMTransformer
 		/*
 		 * recover all observations from the dependencies.
 		 */
+		for (IObservation o : getDependencies()) {
+			if (o.getObservable().is(ARIESNamespace.BENEFIT_SOURCE_TYPE))
+				source = o;
+			else if (o.getObservable().is(ARIESNamespace.BENEFIT_USE_TYPE))
+				use = o;
+			else if (o.getObservable().is(ARIESNamespace.BENEFIT_SINK_TYPE))
+				sink = o;
+			else if (o.getObservable().is(ARIESNamespace.BENEFIT_FLOW_TYPE))
+				flow = o;
+		}
 	}
 
 	@Override
@@ -85,7 +96,12 @@ public class GSSMTransformer
 	@Override
 	public IInstance transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
-		// TODO Auto-generated method stub
+		
+		Map<?,?> locs = 
+			gssm.runGSSM(source.getObservationInstance(), use.getObservationInstance(), 
+				sink.getObservationInstance(), flow.getObservationInstance());
+		
 		return null;
+		
 	}
 }
