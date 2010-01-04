@@ -1,4 +1,3 @@
-
 ;; ---------------------------------------------------------------------------------------------------
 ;; test runs; should eventually contain functions to test run all ARIES models at the command line
 ;; ---------------------------------------------------------------------------------------------------
@@ -6,7 +5,7 @@
 ;; run the view model
 (defn run-view-model
   "Run the view model at the given resolution"
-  [resolution]
+  [location resolution]
   (let [flow-params {:trans-threshold  1.0
 		     :source-threshold 0.05
 		     :sink-threshold   0.20
@@ -15,15 +14,16 @@
 		     :use-type         :relative
 		     :benefit-type     :non-rival
 		     :rv-max-states    10}]
-    (aries.demo/run-gssm-demo
+    (aries.demo/run-span-interactive
+     "aries/view/data" 
      'aestheticService:ViewSourceValue
      'aestheticService:AestheticViewshedUse
      'aestheticService:ViewSink
-     'aestheticService:LineOfSight flow-params resolution)))
+     'aestheticService:LineOfSight flow-params location resolution)))
 
 (defn run-proximity-model
   "Run the proximity model at the given resolution" 
-  [resolution]
+  [location resolution]
   (let [flow-params {:trans-threshold  1.0
 		     :source-threshold 0.0
 		     :sink-threshold   0.0
@@ -32,13 +32,14 @@
 		     :use-type         :relative
 		     :benefit-type     :non-rival
 		     :rv-max-states    10}]
-    (aries.demo/run-gssm-demo
+    (aries.demo/run-span-interactive
+	   ""
      'aestheticService:ProximityToBeauty
      'aestheticService:AestheticProximityUse
      'aestheticService:ProximitySink
-     'aestheticService:Proximity flow-params resolution)))
+     'aestheticService:Proximity flow-params location resolution)))
 
-(run-view-model 128)
+(run-view-model 'chehalis 128)
 ;;(run-proximity-model 256)
 
 ;(aries.demo/make-dataset 'aestheticService:ProximityToBeauty "proximity_data" 512)

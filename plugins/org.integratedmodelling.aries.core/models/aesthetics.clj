@@ -12,6 +12,7 @@
 				0          'aestheticService:LakeNotPresent
 				:otherwise 'aestheticService:LakePresent))
 
+;; TODO doesn't work
 (defmodel ocean 'aestheticService:Ocean
 		"Just being a lake. We may want to reclass lake area instead"
 		(classification (ranking 'geofeatures:Ocean)
@@ -34,7 +35,7 @@
 	  (bayesian 'aestheticService:AestheticEnjoymentProvision)
 	  	:import "aries.core::ViewSource.xdsl"
 	  	:keep ('aestheticService:NaturalBeauty)
-	 	 	:context (mountain lake ocean))
+	 	 	:context (mountain lake))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -72,6 +73,7 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
+;; TODO errors
 (defmodel clearcut 'aestheticService:Clearcuts 
 	(classification (ranking 'geofeatures:Clearcut)
 			0          'aestheticService:ClearcutsNotPresent
@@ -95,7 +97,7 @@
 	  	:import "aries.core::ViewSink.xdsl"
 	  	:keep ('aestheticService:ViewSink)
 	 	 	:context
-  	 	 (commercial-transportation highway clearcut))
+  	 	 (commercial-transportation highway))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; IMPLEMENT ME flow model

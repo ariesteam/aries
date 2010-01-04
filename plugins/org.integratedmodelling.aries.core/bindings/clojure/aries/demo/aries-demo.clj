@@ -84,6 +84,29 @@
 	  		 benf-use    use-data
 	  		 benf-flow   flow-data
 				 flow-params)))
+				
+				
+(defn run-span-interactive
+	"Run GSSM interactive interface on the harmonized demo dataset for the passed benefit (pass a 
+	concept, a symbol or a string). The second parameter is an int specifying the desired grid 
+	resolution on the longest dimension."
+	[model-id benefit-source benefit-use benefit-sink benefit-flow flow-params location max-resolution]
+	(let [benf-source  (tl/conc benefit-source)
+	      benf-use     (tl/conc benefit-use)
+	      benf-sink    (tl/conc benefit-sink)
+	      benf-flow    (tl/conc benefit-flow)
+	      data-obs     (modelling/run model-id location max-resolution)
+	      states       (corescience/get-state-map data-obs)
+	      source-data  (.get states benf-source)
+				use-data     (.get states benf-use) 
+	      sink-data    (.get states benf-sink)
+			  flow-data    (.get states benf-flow)]
+	  (span-interface
+	  		 benf-source source-data
+	  		 benf-sink   sink-data
+	  		 benf-use    use-data
+	  		 benf-flow   flow-data
+				 flow-params)))
 				 
 (defn save-gssm-demo-data
 	"Run GSSM on the harmonized demo dataset for the passed benefit (pass a 
