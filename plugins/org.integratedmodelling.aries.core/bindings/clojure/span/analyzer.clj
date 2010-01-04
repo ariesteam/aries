@@ -113,7 +113,7 @@
   (reduce rv-add rv-zero (map :weight @(:carrier-cache location))))
 (def possible-local-inflow (memoize possible-local-inflow))
 
-(defn possible-inflow
+(defn- possible-inflow
   "Returns a map of {location-id -> asset-encountered}.
    We compute the inflow distribution by assigning to each location
    the sum of the carrier weights in its carrier-cache.  Inflow is
@@ -184,7 +184,7 @@
       (rv-subtract inflow-remaining (possible-local-use location))
       inflow-remaining)))
 
-(defn possible-outflow
+(defn- possible-outflow
   "Returns a map of {location-id -> asset-uncaptured}.
    We compute the outflow distribution by assigning to each location
    its inflow minus the sink and use (if :benefit-type = :rival)
@@ -321,7 +321,7 @@
   (reduce rv-add rv-zero (map #(peek (rerun-actual-route % flow-concept-name)) @(:carrier-cache location))))
 (def actual-local-inflow (memoize-by-first-arg actual-local-inflow))
 
-(defn actual-inflow
+(defn- actual-inflow
   "Returns a map of {location-id -> asset-encountered}.
    We compute the inflow distribution by assigning to each location
    the sum of the carrier weights in its carrier-cache.  Inflow is
@@ -393,7 +393,7 @@
       inflow-remaining)))
 (def actual-local-outflow (memoize-by-first-arg actual-local-outflow))
 
-(defn actual-outflow
+(defn- actual-outflow
   "Returns a map of {location-id -> asset-uncaptured}.
    We compute the outflow distribution by assigning to each location
    its inflow minus the sink and use (if :benefit-type = :rival)
@@ -420,7 +420,7 @@
 	      (possible-source locations)
 	      (actual-source locations flow-concept-name)))
 
-(defn blocked-inflow
+(defn- blocked-inflow
   "Returns a map of {location-id -> blocked-inflow}.
    Blocked-inflow is the amount of the possible-inflow which cannot be
    realized due to upstream sinks or uses."
@@ -447,7 +447,7 @@
 	      (possible-use locations)
 	      (actual-use locations flow-concept-name)))
 
-(defn blocked-outflow
+(defn- blocked-outflow
   "Returns a map of {location-id -> blocked-outflow}.
    Blocked-outflow is the amount of the possible-outflow which cannot be
    realized due to upstream sinks or uses."
