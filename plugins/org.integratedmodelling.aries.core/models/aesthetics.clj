@@ -103,6 +103,9 @@
 ;; IMPLEMENT ME flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m")) 	 								
+ 	 								
 ;(defmodel raycast-view-flow
 ;	
 ;		"Only the data that feed the raycast flow model in the gssm package. The actual computation 
@@ -124,7 +127,7 @@
 ;		"Hypothetical for now. The GSSM connecting view provision to use of views, using
 ;		 raycasting to model the flows, influenced by athmospheric pollution."
 ;		 
-;		(gssm 'aestheticService:AestheticView)
+;		(span 'aestheticService:AestheticView)
 ;					:source     view-source
 ;					:use        real-estate-use
 ;		 			:transport  raycast-view-flow
@@ -140,5 +143,6 @@
 		:context (
 			source :as source
 			homeowners :as use
-			sink :as sink))
+			sink :as sink
+			altitude :as altitude))
 		 			

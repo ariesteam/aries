@@ -96,11 +96,10 @@
 	      benf-sink    (tl/conc benefit-sink)
 	      benf-flow    (tl/conc benefit-flow)
 	      data-obs     (modelling/run model-id location max-resolution)
-	      states       (corescience/get-state-map data-obs)
-	      source-data  (.get states benf-source)
-				use-data     (.get states benf-use) 
-	      sink-data    (.get states benf-sink)
-			  flow-data    (.get states benf-flow)]
+	      source-data  (corescience/find-observation data-obs benf-source)
+				use-data     (corescience/find-observation data-obs benf-use) 
+	      sink-data    (corescience/find-observation data-obs benf-sink)
+			  flow-data    (corescience/find-observation data-obs benf-flow)]
 	  (span-interface
 	  		 benf-source source-data
 	  		 benf-sink   sink-data
