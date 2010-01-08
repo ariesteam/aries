@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Ports">
+			<state id="PrimaryInternational" />
+			<state id="SecondaryInternational" />
+			<state id="PrimaryDomestic" />
+			<state id="SecondaryDomestic" />
+			<state id="Anchorage" />
+			<state id="NoPort" />
+			<probabilities>0.001 0.002 0.002 0.005 0.005 0.985</probabilities>
+		</cpt>
+		<cpt id="OtherInfrastructure">
+			<state id="OtherInfrastructurePresent" />
+			<state id="OtherInfrastructureAbsent" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="CoastalVillages">
+			<state id="CoastalVillagesPresent" />
+			<state id="CoastalVillagesAbsent" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="PopulationDensity">
+			<state id="VeryHighPopulationDensity" />
+			<state id="HighPopulationDensity" />
+			<state id="ModeratePopulationDensity" />
+			<state id="LowPopulationDensity" />
+			<state id="VeryLowPopulationDensity" />
+			<probabilities>0.01 0.09 0.15 0.2 0.55</probabilities>
+		</cpt>
+		<cpt id="EconomicValueAtRisk">
+			<state id="HighEconomicValueAtRisk" />
+			<state id="ModerateEconomicValueAtRisk" />
+			<state id="LowEconomicValueAtRisk" />
+			<state id="NoEconomicValueAtRisk" />
+			<probabilities>0.05 0.3 0.55 0.1</probabilities>
+		</cpt>
+		<cpt id="LivesAtRisk">
+			<state id="HighLivesAtRisk" />
+			<state id="ModerateLivesAtRisk" />
+			<state id="LowLivesAtRisk" />
+			<state id="NoLivesAtRisk" />
+			<probabilities>0.05 0.3 0.55 0.1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network3" faultnameformat="nodestate">
+			<node id="Ports">
+				<name>Ports</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>345 290 388 316</position>
+				<barchart active="true" width="235" height="126" />
+			</node>
+			<node id="OtherInfrastructure">
+				<name>OtherInfrastructure</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>419 444 522 508</position>
+				<barchart active="true" width="270" height="64" />
+			</node>
+			<node id="CoastalVillages">
+				<name>CoastalVillages</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>112 437 198 490</position>
+				<barchart active="true" width="220" height="64" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>736 435 831 494</position>
+				<barchart active="true" width="289" height="108" />
+			</node>
+			<node id="EconomicValueAtRisk">
+				<name>EconomicValueAtRisk</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>607 59 673 100</position>
+				<barchart active="true" width="245" height="90" />
+			</node>
+			<node id="LivesAtRisk">
+				<name>LivesAtRisk</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>320 54 389 97</position>
+				<barchart active="true" width="210" height="90" />
+			</node>
+			<textbox>
+				<caption>don&apos;t provide BNs unless probabilites are there - just give layers if that describes the user...</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>237 385 678 399</position>
+			</textbox>
+			<textbox>
+				<caption>Just use these top two as use.</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>400 138 571 152</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="PopulationDensity">
+			<state id="VeryHighPopulationDensity" />
+			<state id="HighPopulationDensity" />
+			<state id="ModeratePopulationDensity" />
+			<state id="LowPopulationDensity" />
+			<state id="VeryLowPopulationDensity" />
+			<probabilities>0.01 0.09 0.15 0.2 0.55</probabilities>
+		</cpt>
+		<cpt id="Poverty">
+			<state id="HighPoverty" />
+			<state id="ModeratePoverty" />
+			<state id="LowPoverty" />
+			<probabilities>0.725 0.25 0.025</probabilities>
+		</cpt>
+		<cpt id="DistanceToCoast">
+			<state id="VeryCoastalProximate" />
+			<state id="SomewhatCoastalProximate" />
+			<state id="NotCoastalProximate" />
+			<probabilities>0.01 0.02 0.97</probabilities>
+		</cpt>
+		<cpt id="SubsistenceUse">
+			<state id="HighSubsistenceUse" />
+			<state id="ModerateSubsistenceUse" />
+			<state id="LowSubsistenceUse" />
+			<state id="NoSubsistenceUse" />
+			<parents>DistanceToCoast Poverty PopulationDensity</parents>
+			<probabilities>0.2 0.2 0.5 0.1 0.2 0.2 0.5 0.1 0.3 0.3 0.3 0.1 0.4 0.4 0.1 0.1 0.55 0.35 0.05 0.05 0.1 0.1 0.5 0.3 0.1 0.1 0.5 0.3 0.2 0.25 0.25 0.3 0.25 0.25 0.25 0.25 0.3 0.3 0.3 0.1 0.05 0.1 0.25 0.6 0.05 0.1 0.25 0.6 0.1 0.1 0.3 0.5 0.1 0.15 0.35 0.4 0.1 0.2 0.4 0.3 0.05 0.1 0.5 0.35 0.05 0.1 0.5 0.35 0.1 0.3 0.3 0.3 0.15 0.3 0.3 0.25 0.25 0.25 0.25 0.25 0 0.05 0.45 0.5 0 0.05 0.45 0.5 0.1 0.2 0.25 0.45 0.15 0.25 0.25 0.35 0.2 0.3 0.3 0.2 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.1 0.3 0.6 0 0.15 0.35 0.5 0 0.2 0.4 0.4 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network4" faultnameformat="nodestate">
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>634 306 762 340</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="Poverty">
+				<name>Poverty</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>497 313 556 340</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="DistanceToCoast">
+				<name>DistanceToCoast</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>284 295 377 353</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="SubsistenceUse">
+				<name>SubsistenceUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>455 135 594 171</position>
+				<barchart active="true" width="128" height="90" />
+			</node>
+			<textbox>
+				<caption>GARY: Should coastal distant folks all be NoSubsistenceUse?  What about the trade issue -&gt; we could eventually represent local trade networks if we knew with some confidence that local trade is going on.</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>46 126 381 182</position>
+			</textbox>
+			<textbox>
+				<caption>This is for A. hololepidiosus for subsistence use - would want a different BN for commercial use.\n\nUse distance decay function for fishermen - as they move out from the coast\n\nCheck SPAN paper on location properties -&gt; need a &quot;useful&quot; and &quot;useless&quot; BN - define the size of the user.</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>11 430 596 500</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
