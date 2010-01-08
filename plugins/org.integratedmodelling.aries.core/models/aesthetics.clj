@@ -103,7 +103,7 @@
 ;; ----------------------------------------------------------------------------------------------
  	 								
 (defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m")) 	 								
+  (measurement 'geophysics:Altitude "m"))	 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
@@ -120,5 +120,13 @@
 			
 ;; the real enchilada
 (defmodel view 'aestheticService:AestheticView
-  (span 'aestheticService:LineOfSight)
+  (span 'aestheticService:LineOfSight 
+  		:trans-threshold  1.0
+		  :source-threshold 0.05
+		  :sink-threshold   0.20
+		  :use-threshold    0.05
+		  :sink-type        :relative
+		  :use-type         :relative
+		  :benefit-type     :non-rival
+		  :rv-max-states    10)
   :context (source homeowners sink altitude))

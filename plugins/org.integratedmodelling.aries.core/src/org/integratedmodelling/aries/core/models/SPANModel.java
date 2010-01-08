@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.core.models;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
@@ -17,30 +18,8 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 	IConcept sinkObservable = null;
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
+	private Map<?, ?> flowParams;
 	
-	@Override
-	public void applyClause(String keyword, Object argument)
-			throws ThinklabException {
-		
-		if (keyword.equals(":source-model")) {
-			addDependentModel((IModel) argument);
-			sourceObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":sink-model")) {
-			addDependentModel((IModel) argument);
-			sinkObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":use-model")) {
-			addDependentModel((IModel) argument);
-			useObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":flow-model")) {
-			addDependentModel((IModel) argument);
-			flowObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":use-threshold")) {
-		} else if (keyword.equals(":sink-threshold")) {
-		} else if (keyword.equals(":source-threshold")) {
-		} else if (keyword.equals(":decay-rate")) {
-		} else super.applyClause(keyword, argument);
-	}
-
 	@Override
 	protected void validateMediatedModel(IModel model)
 			throws ThinklabValidationException {
@@ -68,6 +47,13 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		return ret; 
 	}
 
+	/*
+	 * these come from the specs, must go straight to the SPAN proxy.
+	 */
+	public void setFlowParams(Map<?,?> flowParams) {
+		this.flowParams = flowParams;
+	}
+	
 	@Override
 	public Polylist buildDefinition(IKBox kbox, ISession session) throws ThinklabException {
 

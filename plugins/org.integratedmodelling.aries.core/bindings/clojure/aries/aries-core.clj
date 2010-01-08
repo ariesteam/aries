@@ -55,12 +55,14 @@
 (org.integratedmodelling.aries.core.implementations.observations.SPANTransformer/setSPANProxy (get-span-proxy))
 
 (defmacro span
-	"Create a SPAN model. The observable must be a service. This one admits specification of dependencies
-	and flow parameters using :source-model, :sink-model, :use-model, :flow-model clauses, plus all 
-	GSSM flow parameters."
-	[observable]
-	`(let [model# 
- 	        	(j-make-span)] 
+	"Create a SPAN model. The observable must be a flow concept. This one admits specification of all 
+	SPAN flow parameters inside the span form. The context models will be mapped to the source, use, 
+	and sink observables; any other dependents whose observable is not a source, sink or use type will
+	be dependencies for the flow model."
+	[observable & params]
+	`(let [model# (j-make-span)
+				 params# (tl/assoc-map params)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
+ 	   (.setFlowParams model# params#)
  	   model#))
 			
