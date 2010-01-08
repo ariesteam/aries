@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.ARIESNamespace;
-import org.integratedmodelling.aries.core.gssm.GSSMProxy;
+import org.integratedmodelling.aries.core.span.SPANProxy;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
 import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
@@ -26,7 +26,7 @@ import org.integratedmodelling.utils.Pair;
  * @author Ferdinando
  */
 @InstanceImplementation(concept="aries:GSSMTransformer")
-public class GSSMTransformer 
+public class SPANTransformer 
 	extends Observation 
 	implements TransformingObservation {
 	
@@ -36,7 +36,7 @@ public class GSSMTransformer
 	public static final String USE_OBS_PROPERTY    = "aries:hasUseObservation";
 	public static final String FLOW_OBS_PROPERTY   = "aries:hasFlowObservation";
 	
-	private static GSSMProxy gssm = null;
+	private static SPANProxy gssm = null;
 	
 	private IObservation source = null;
 	private IObservation sink = null;
@@ -51,7 +51,7 @@ public class GSSMTransformer
 	/*
 	 * called by the Clojure side to give us a bridge to the gssm system
 	 */
-	public static void setGSSMProxy(GSSMProxy proxy) {
+	public static void setSPANProxy(SPANProxy proxy) {
 		gssm = proxy;
 	}
 	
@@ -96,10 +96,18 @@ public class GSSMTransformer
 	@Override
 	public IInstance transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
+
+// TODO run the proxy		
+//		Map<?,?> locs = 
+//			gssm.runSPAN();
 		
-		Map<?,?> locs = 
-			gssm.runGSSM(source.getObservationInstance(), use.getObservationInstance(), 
-				sink.getObservationInstance(), flow.getObservationInstance());
+		/*
+		 * run the proxy, obtain a map of closures 
+		 */
+		
+		/*
+		 * create dependencies by passing the closures
+		 */
 		
 		return null;
 		

@@ -1,6 +1,7 @@
 (ns aries/view
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; provision model
@@ -100,39 +101,12 @@
   	 	 (commercial-transportation highway))
 
 ;; ----------------------------------------------------------------------------------------------
-;; IMPLEMENT ME flow model
+;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m")) 	 								
- 	 								
-;(defmodel raycast-view-flow
-;	
-;		"Only the data that feed the raycast flow model in the gssm package. The actual computation 
-;		 is integrated with gssm, and the observable class from this will select the raycasting 
-;		 submodel in it."
-;		
-;		(identification 'aestheticService:LineOfSight)
-;			:context 
-;				((measurement 'geophysics:Altitude "m")))
-;; --- this is what is should be - LIDAR data
-;;				 (measurement 'geophysics:GroundElevation "m")))
- 	 					
-;; ----------------------------------------------------------------------------------------------
-;; top-level service model
-;; ----------------------------------------------------------------------------------------------
-			
-;(defmodel aesthetic-views 'aestheticService:ViewService
-;	
-;		"Hypothetical for now. The GSSM connecting view provision to use of views, using
-;		 raycasting to model the flows, influenced by athmospheric pollution."
-;		 
-;		(span 'aestheticService:AestheticView)
-;					:source     view-source
-;					:use        real-estate-use
-;		 			:transport  raycast-view-flow
-;		 			:sink       aesthetic-visual-blight)
-
+ 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
@@ -145,4 +119,9 @@
 			homeowners :as use
 			sink :as sink
 			altitude :as altitude))
+			
+;; the real enchilada
+(defmodel view 'aestheticService:AestheticView
+	(span 'aestheticService:LineOfSight)
+		:context (source homeowners sink altitude))
 		 			

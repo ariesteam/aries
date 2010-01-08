@@ -11,31 +11,27 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
-public class GSSMModel extends DefaultStatefulAbstractModel {
+public class SPANModel extends DefaultStatefulAbstractModel {
 
-	String source = null;
-	String algorithm = null;
-	
 	IConcept sourceObservable = null;
 	IConcept sinkObservable = null;
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
 	
-
 	@Override
 	public void applyClause(String keyword, Object argument)
 			throws ThinklabException {
 		
-		if (keyword.equals(":source")) {
+		if (keyword.equals(":source-model")) {
 			addDependentModel((IModel) argument);
 			sourceObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":sink")) {
+		} else if (keyword.equals(":sink-model")) {
 			addDependentModel((IModel) argument);
 			sinkObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":use")) {
+		} else if (keyword.equals(":use-model")) {
 			addDependentModel((IModel) argument);
 			useObservable = ((IModel)argument).getObservable();
-		} else if (keyword.equals(":flow")) {
+		} else if (keyword.equals(":flow-model")) {
 			addDependentModel((IModel) argument);
 			flowObservable = ((IModel)argument).getObservable();
 		} else if (keyword.equals(":use-threshold")) {
@@ -66,12 +62,9 @@ public class GSSMModel extends DefaultStatefulAbstractModel {
 	@Override
 	public IModel getConfigurableClone() {
 		
-		GSSMModel ret = new GSSMModel();
+		SPANModel ret = new SPANModel();
 		ret.copy(this);
 
-		// TODO the rest
-		ret.algorithm = this.algorithm;
-		ret.source = this.source;
 		return ret; 
 	}
 

@@ -22,15 +22,15 @@
      'geophysics:Altitude flow-params location resolution)))
 
 (defn diocan
-	[location max-resolution]
-	(let [data-obs     (modelling/run "aries/view/data" location max-resolution)
-	      source-data  (corescience/find-observation data-obs 'aestheticService:NaturalBeauty)
-				use-data     (corescience/find-observation data-obs 'aestheticService:HomeownersEnjoyment) 
-	      sink-data    (corescience/find-observation data-obs 'aestheticService:ViewSink)
-			  flow-data    (corescience/find-observation data-obs 'geophysics:Altitude)]
-		(println source-data " " use-data " " sink-data " " flow-data)))
+	[model-id location max-resolution]
+	(let [data-obs  (modelling/run model-id location max-resolution)]
+		(println (geospace/grid-rows data-obs) "X" (geospace/grid-columns data-obs) "\n"
+						 (corescience/find-state data-obs 'aestheticService:NaturalBeauty) "\n" 
+						 (corescience/find-state data-obs 'aestheticService:HomeownersEnjoyment) "\n" 
+						 (corescience/find-state data-obs 'aestheticService:ViewSink) "\n" 
+						 (corescience/find-state data-obs 'geophysics:Altitude))))
 
-(diocan 'chehalis 128)
+(diocan "aries/view/data" 'chehalis 128)
 
 ;(defn run-proximity-model
 ;  "Run the proximity model at the given resolution" 

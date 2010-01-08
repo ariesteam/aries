@@ -6,15 +6,16 @@
 
 (ns aries
   (:refer-clojure)
+  (:use [span.interface :only (span-as-map)])
   (:use [span.flow-model :only (simulate-service-flows)]))
 (refer 'tl          :only '(listp))
 (refer 'corescience :only '(get-observable-class))
 
-(defn j-make-gssm
+(defn j-make-span
 	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 
 	within the gssm macro. We need a compiled proxy because the Java classes aren't visible at runtime."
 	[]
-	(new org.integratedmodelling.aries.core.models.GSSMModel))
+	(new org.integratedmodelling.aries.core.models.SPANModel))
 
 (defn get-data-for-observable
 	"Returns a harmonized observation, which contains as dependencies all the data available 
@@ -43,26 +44,23 @@
 	nil)
 	
 ;; TODO bind the flow parameters before call to simulate-service-flows.
-(defn get-gssm-proxy
-	"Create a Java object to handle a GSSM run."
+(defn get-span-proxy
+	"Create a Java object to handle a SPAN run."
 	[]
-	(proxy [org.integratedmodelling.aries.core.gssm.GSSMProxy] []
-		(runGSSM [source-obs use-obs sink-obs flow-obs flow-params] 
-			(simulate-service-flows 
-				(get-observable-class source-obs) source-obs 
-				(get-observable-class use-obs)    use-obs 
-				(get-observable-class sink-obs)   sink-obs 
-				(get-observable-class flow-obs)   flow-obs))))
+	(proxy [org.integratedmodelling.aries.core.span.SPANProxy] []
+		(runSPAN [observation source-concept use-concept sink-concept flow-concept flow-params] 
+			(span-as-map observation source-concept use-concept sink-concept flow-concept flow-params))))
 			
 ;; a static object will suffice, this is thread-safe to the point of boredom
-(org.integratedmodelling.aries.core.implementations.observations.GSSMTransformer/setGSSMProxy (get-gssm-proxy))
+(org.integratedmodelling.aries.core.implementations.observations.SPANTransformer/setSPANProxy (get-span-proxy))
 
 (defmacro span
-	"Create a gssm model. The observable must be a service. This one admits specification of dependencies
-	and flow parameters using :source, :sink, :use, :flow clauses, plus all GSSM flow parameters."
+	"Create a SPAN model. The observable must be a service. This one admits specification of dependencies
+	and flow parameters using :source-model, :sink-model, :use-model, :flow-model clauses, plus all 
+	GSSM flow parameters."
 	[observable]
 	`(let [model# 
- 	        	(j-make-gssm)] 
+ 	        	(j-make-span)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
  	   model#))
 			
