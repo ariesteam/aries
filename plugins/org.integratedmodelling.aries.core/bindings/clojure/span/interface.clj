@@ -40,7 +40,10 @@
 				      actual-sink
 				      actual-use)]))
 (refer 'tl          :only '(get-session))
-(refer 'corescience :only '(map-dependent-states))
+(refer 'corescience :only '(find-state
+			    find-observation
+			    map-dependent-states
+			    get-observable-class))
 (refer 'geospace    :only '(build-coverage
 			    get-spatial-extent
 			    grid-extent?
@@ -90,12 +93,14 @@
    use, and flow observations, and returns a map of {[i j] -> value}
    for the one selected, where value is either a double or a
    probability distribution."
-  [source-observation sink-observation use-observation flow-observation rows cols]
-  (let [feature-states (maphash (memfn getLocalName) #(unpack-datasource % rows cols)
-				(merge (map-dependent-states source-observation)
-				       (map-dependent-states sink-observation)
-				       (map-dependent-states use-observation)
-				       (map-dependent-states flow-observation)))
+  [observation source-concept sink-concept use-concept flow-concept rows cols]
+  (let [n              (* rows cols)
+	feature-states (maphash (memfn getLocalName) #(unpack-datasource % n)
+				(merge {source-concept (find-state observation source-concept)
+					sink-concept   (find-state observation sink-concept)
+					use-concept    (find-state observation use-concept)}
+				       (when flow-concept
+					 (map-dependent-states (find-observation observation flow-concept)))))
 	feature-names  (vec (keys feature-states))
 	num-features   (count feature-names)
 	feature-name   (select-menu-option feature-names num-features)]
@@ -134,26 +139,23 @@
          (not (or (some #(not= % (first rows)) (rest rows))
 		  (some #(not= % (first cols)) (rest cols)))))))
 
-(defn span-as-map
+(defn span-driver
   "Takes the source, sink, use, and flow concepts along with
    observations of their dependent features, calculates the span
    flows, and returns a map of keywords to closures, which when
    invoked, return coord-maps representing the flow analysis results."
-  [source-concept source-observation
-   sink-concept   sink-observation
-   use-concept    use-observation
-   flow-concept   flow-observation
-   flow-params]
-  (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
+  [observation source-concept use-concept sink-concept flow-concept flow-params]
   (set-global-params! flow-params)
-  (let [rows              (grid-rows    source-observation)
-	cols              (grid-columns source-observation)
-	flow-concept-name (.getLocalName flow-concept)
-	locations         (simulate-service-flows source-concept    source-observation
-						  sink-concept      sink-observation
-						  use-concept       use-observation
-						  flow-concept-name flow-observation
-						  rows              cols)]
+  (let [rows              (grid-rows    observation)
+	cols              (grid-columns observation)
+	flow-concept-name (.getLocalName (get-observable-class observation))
+	locations         (simulate-service-flows observation
+						  source-concept
+						  sink-concept
+						  use-concept
+						  flow-concept
+						  flow-concept-name
+						  rows cols)]
     {:theoretical-source  #(theoretical-source  locations)
      :theoretical-sink    #(theoretical-sink    locations)
      :theoretical-use     #(theoretical-use     locations)
@@ -178,21 +180,18 @@
    observations of their dependent features, calculates the span
    flows, and returns a list of matrices representing the flow
    analysis results."
-  [source-concept source-observation
-   sink-concept   sink-observation
-   use-concept    use-observation
-   flow-concept   flow-observation
-   flow-params]
-  (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
+  [observation source-concept use-concept sink-concept flow-concept flow-params]
   (set-global-params! flow-params)
-  (let [rows              (grid-rows    source-observation)
-	cols              (grid-columns source-observation)
-	flow-concept-name (.getLocalName flow-concept)
-	locations         (simulate-service-flows source-concept    source-observation
-						  sink-concept      sink-observation
-						  use-concept       use-observation
-						  flow-concept-name flow-observation
-						  rows              cols)]
+  (let [rows              (grid-rows    observation)
+	cols              (grid-columns observation)
+	flow-concept-name (.getLocalName (get-observable-class observation))
+	locations         (simulate-service-flows observation
+						  source-concept
+						  sink-concept
+						  use-concept
+						  flow-concept
+						  flow-concept-name
+						  rows cols)]
     (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
 		(list
 		 (theoretical-source  locations)
@@ -219,24 +218,21 @@
    observations of their dependent features, calculates the span
    flows, and provides a simple menu-based interface to view the
    results."
-  [source-concept source-observation
-   sink-concept   sink-observation
-   use-concept    use-observation
-   flow-concept   flow-observation
-   flow-params]
-  (assert (observation-spaces-match? source-observation sink-observation use-observation flow-observation))
+  [observation source-concept use-concept sink-concept flow-concept flow-params]
   (set-global-params! flow-params)
   (binding [*out* (OutputStreamWriter. (.getOutputStream (get-session)))
 	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream (get-session))))]
-    (let [rows              (grid-rows          source-observation)
-	  cols              (grid-columns       source-observation)
-	  extent            (get-spatial-extent source-observation)
-	  flow-concept-name (.getLocalName flow-concept)
-	  locations         (simulate-service-flows source-concept    source-observation
-						    sink-concept      sink-observation
-						    use-concept       use-observation
-						    flow-concept-name flow-observation
-						    rows              cols)
+    (let [rows              (grid-rows          observation)
+	  cols              (grid-columns       observation)
+	  extent            (get-spatial-extent observation)
+	  flow-concept-name (.getLocalName (get-observable-class observation))
+	  locations         (simulate-service-flows observation
+						    source-concept
+						    sink-concept
+						    use-concept
+						    flow-concept
+						    flow-concept-name
+						    rows cols)
 	  menu (array-map
 		"View Theoretical Source"  #(theoretical-source       locations)
 		"View Theoretical Sink"    #(theoretical-sink         locations)
@@ -257,10 +253,11 @@
 		"View Actual Sink"         #(actual-sink              locations flow-concept-name)
 		"View Actual Use"          #(actual-use               locations flow-concept-name)
 		"View Location Properties" #(view-location-properties (select-location locations rows cols))
-		"View Feature Map"         #(select-map-by-feature    source-observation
-								      sink-observation
-								      use-observation
-								      flow-observation
+		"View Feature Map"         #(select-map-by-feature    observation
+								      source-concept
+								      sink-concept
+								      use-concept
+								      flow-concept
 								      rows
 								      cols)
 		"Quit"                     nil)

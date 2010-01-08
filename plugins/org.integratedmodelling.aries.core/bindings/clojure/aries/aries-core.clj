@@ -6,7 +6,7 @@
 
 (ns aries
   (:refer-clojure)
-  (:use [span.interface :only (span-as-map)])
+  (:use [span.interface :only (span-driver)])
   (:use [span.flow-model :only (simulate-service-flows)]))
 (refer 'tl          :only '(listp))
 (refer 'corescience :only '(get-observable-class))
@@ -49,7 +49,7 @@
 	[]
 	(proxy [org.integratedmodelling.aries.core.span.SPANProxy] []
 		(runSPAN [observation source-concept use-concept sink-concept flow-concept flow-params] 
-			(span-as-map observation source-concept use-concept sink-concept flow-concept flow-params))))
+			(span-driver observation source-concept use-concept sink-concept flow-concept flow-params))))
 			
 ;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.SPANTransformer/setSPANProxy (get-span-proxy))

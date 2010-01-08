@@ -19,7 +19,9 @@
   (:use [misc.utils        :only (maphash seq2map)]
 	[span.randvars     :only (unpack-datasource)]
 	[misc.matrix-ops   :only (get-neighbors)]))
-(refer 'corescience :only '(map-dependent-states))
+(refer 'corescience :only '(find-state
+			    find-observation
+			    map-dependent-states))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
 
@@ -27,20 +29,21 @@
   "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
   [obs conc n]
-  (unpack-datasource ((map-dependent-states obs) conc) n))
+  (unpack-datasource (find-state obs conc) n))
 
 (defn- extract-all-values
   "Returns a map of concepts to vectors of doubles or probability
    distributions."
-  [obs n]
-  (maphash identity #(vec (unpack-datasource % n)) (map-dependent-states obs)))
+  [obs conc n]
+  (when conc
+    (maphash identity #(vec (unpack-datasource % n)) (map-dependent-states (find-observation obs conc)))))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
    observation set."
-  [source-conc source-obs sink-conc sink-obs use-conc use-obs flow-obs rows cols]
+  [observation source-conc sink-conc use-conc flow-conc rows cols]
   (let [n             (* rows cols)
-	flow-vals-map (extract-all-values flow-obs n)]
+	flow-vals-map (extract-all-values observation flow-conc n)]
     (seq2map
      (map (fn [[i j] source sink use]
 	    (struct-map location
@@ -52,7 +55,7 @@
 	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)
 	      :carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory (do vecs save memory?)
 	  (for [i (range rows) j (range cols)] [i j])
-	  (extract-values-by-concept source-obs source-conc n)
-	  (extract-values-by-concept sink-obs   sink-conc   n)
-	  (extract-values-by-concept use-obs    use-conc    n))
+	  (extract-values-by-concept observation source-conc n)
+	  (extract-values-by-concept observation sink-conc   n)
+	  (extract-values-by-concept observation use-conc    n))
      (fn [loc] [(:id loc) loc]))))
