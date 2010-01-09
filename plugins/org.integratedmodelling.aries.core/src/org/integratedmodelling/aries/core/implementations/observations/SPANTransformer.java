@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
-import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.aries.core.ARIESNamespace;
 import org.integratedmodelling.aries.core.span.SPANProxy;
+import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
 import org.integratedmodelling.corescience.interfaces.IObservation;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
@@ -25,28 +25,22 @@ import org.integratedmodelling.utils.Pair;
  * results.  
  * @author Ferdinando
  */
-@InstanceImplementation(concept="aries:GSSMTransformer")
+@InstanceImplementation(concept="aries:SPANTransformer")
 public class SPANTransformer 
 	extends Observation 
 	implements TransformingObservation {
 	
-	// these are all specialized dependencies
-	public static final String SOURCE_OBS_PROPERTY = "aries:hasSourceObservation";
-	public static final String SINK_OBS_PROPERTY   = "aries:hasSinkObservation";
-	public static final String USE_OBS_PROPERTY    = "aries:hasUseObservation";
-	public static final String FLOW_OBS_PROPERTY   = "aries:hasFlowObservation";
-	
 	private static SPANProxy gssm = null;
 	
+	// these are taken from the dependencies after analyzing the observables
 	private IObservation source = null;
 	private IObservation sink = null;
 	private IObservation use = null;
 	private IObservation flow = null;
+
 	
-	private double sink_threshold = 0.0;
-	private double use_threshold = 0.0;
-	private double source_threshold = 0.0;
-	private double decay_rate = 0.0;
+	// this is set at instance creation through reflection
+	Map<?,?> flowParams;
 	
 	/*
 	 * called by the Clojure side to give us a bridge to the gssm system
@@ -75,7 +69,11 @@ public class SPANTransformer
 				use = o;
 			else if (o.getObservable().is(ARIESNamespace.BENEFIT_SINK_TYPE))
 				sink = o;
-			else if (o.getObservable().is(ARIESNamespace.BENEFIT_FLOW_TYPE))
+			else 
+				/*
+				 * TODO we should accommodate more than one "other" dependency,
+				 * and merge them all into a single observation.
+				 */
 				flow = o;
 		}
 	}
@@ -83,31 +81,35 @@ public class SPANTransformer
 	@Override
 	public IObservationContext getTransformedContext(IObservationContext context)
 			throws ThinklabException {
-		// TODO Auto-generated method stub
-		return null;
+		return context;
 	}
 
 	@Override
 	public IConcept getTransformedObservationClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return CoreScience.Observation();
 	}
 
 	@Override
 	public IInstance transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
 
-// TODO run the proxy		
-//		Map<?,?> locs = 
-//			gssm.runSPAN();
-		
 		/*
 		 * run the proxy, obtain a map of closures 
 		 */
-		
+		Map<?,?> closures = 
+			gssm.runSPAN(
+				ObservationFactory.getObservation(sourceObs), 
+				source == null ? null : source.getObservableClass(), 
+				use == null ? null : use.getObservableClass(),
+				sink == null ? null : sink.getObservableClass(), 
+				flow == null ? null : flow.getObservableClass(), 
+				flowParams);
 		/*
 		 * create dependencies by passing the closures
 		 */
+		for (Object k : closures.keySet()) {
+			
+		}
 		
 		return null;
 		

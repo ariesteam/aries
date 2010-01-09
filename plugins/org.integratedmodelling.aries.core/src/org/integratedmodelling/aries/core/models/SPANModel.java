@@ -43,7 +43,8 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		
 		SPANModel ret = new SPANModel();
 		ret.copy(this);
-
+		ret.flowParams = flowParams;
+		
 		return ret; 
 	}
 
@@ -59,7 +60,9 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 
 		ArrayList<Object> arr = new ArrayList<Object>();
 		
-		arr.add("aries:SPANModel");
+		arr.add("aries:SPANTransformer");
+		// set into instance implementation through reflection
+		arr.add(Polylist.list(":flowParams", flowParams));
 
 		return Polylist.PolylistFromArrayList(arr);
 	}

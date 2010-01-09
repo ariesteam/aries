@@ -61,7 +61,7 @@
 	be dependencies for the flow model."
 	[observable & params]
 	`(let [model# (j-make-span)
-				 params# (tl/assoc-map params)] 
+				 params# (tl/assoc-map '~params)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
  	   (.setFlowParams model# params#)
  	   model#))
