@@ -29,7 +29,7 @@
   "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
   [obs conc n]
-  (unpack-datasource (find-state obs conc) n))
+  (do (println obs) (println conc) (unpack-datasource (find-state obs conc) n)))
 
 (defn- extract-all-values
   "Returns a map of concepts to vectors of doubles or probability

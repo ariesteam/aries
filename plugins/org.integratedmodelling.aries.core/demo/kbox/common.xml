@@ -18,7 +18,7 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 	
-	<!-- Altitude data from WCS service at ICEDS (90m SRTM DEM) -->
+	<!-- Altitude data from WCS service at ICEDS (90m SRTM DEM) 
 	<measurement:Measurement id="Altitude">
 		<observation:hasObservable>
 			<geophysics:Altitude />
@@ -43,8 +43,33 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 	
+	<measurement:Measurement id="Altitude">
+		<observation:hasObservable>
+			<geophysics:Altitude />
+		</observation:hasObservable>
+		<measurement:unit>m</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:elevation</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>12622</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11258</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>45.963</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.118</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.038</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-119.94</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>		
+		
 	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">
 	

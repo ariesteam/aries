@@ -152,7 +152,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#AestheticEnjoymentProvision -->
 
     <owl:Class rdf:about="#AestheticEnjoymentProvision">
-        <rdfs:subClassOf rdf:resource="&eserv;SourceType"/>
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProducer"/>
@@ -190,19 +190,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
                 <owl:someValuesFrom rdf:resource="#OpenSpace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#ScenicViews"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -215,6 +209,12 @@
                     </owl:Restriction>
                 </owl:unionOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Sensory enjoyment of functioning ecological systems (Farber et al. 2006).</rdfs:comment>
@@ -619,6 +619,7 @@
 
     <owl:Class rdf:about="#NaturalBeauty">
         <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&eserv;SourceType"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -880,18 +881,6 @@
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="#AestheticEnjoymentProvision"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="#isBeneficialFor"/>
                 <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
             </owl:Restriction>
@@ -900,6 +889,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#isBeneficialFor"/>
                 <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoymentProvision"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1062,6 +1063,16 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighHousingValue"/>
+            <rdf:Description rdf:about="#LowHousingValue"/>
+            <rdf:Description rdf:about="#ModerateHousingValue"/>
+            <rdf:Description rdf:about="#VeryHighHousingValue"/>
+            <rdf:Description rdf:about="#VeryLowHousingValue"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighViewValue"/>
             <rdf:Description rdf:about="#LowViewValue"/>
             <rdf:Description rdf:about="#ModerateViewValue"/>
@@ -1071,35 +1082,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#FullObstruction"/>
-            <rdf:Description rdf:about="#NoObstruction"/>
-            <rdf:Description rdf:about="#PartialObstruction"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#LargeMountain"/>
-            <rdf:Description rdf:about="#NoMountain"/>
-            <rdf:Description rdf:about="#SmallMountain"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Lake"/>
-            <rdf:Description rdf:about="#NoWater"/>
-            <rdf:Description rdf:about="#Ocean"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighHousingValue"/>
-            <rdf:Description rdf:about="#LowHousingValue"/>
-            <rdf:Description rdf:about="#ModerateHousingValue"/>
-            <rdf:Description rdf:about="#VeryHighHousingValue"/>
-            <rdf:Description rdf:about="#VeryLowHousingValue"/>
+            <rdf:Description rdf:about="#HighBlight"/>
+            <rdf:Description rdf:about="#LowBlight"/>
+            <rdf:Description rdf:about="#ModerateBlight"/>
+            <rdf:Description rdf:about="#NoBlight"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1114,10 +1100,25 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBlight"/>
-            <rdf:Description rdf:about="#LowBlight"/>
-            <rdf:Description rdf:about="#ModerateBlight"/>
-            <rdf:Description rdf:about="#NoBlight"/>
+            <rdf:Description rdf:about="#Lake"/>
+            <rdf:Description rdf:about="#NoWater"/>
+            <rdf:Description rdf:about="#Ocean"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#LargeMountain"/>
+            <rdf:Description rdf:about="#NoMountain"/>
+            <rdf:Description rdf:about="#SmallMountain"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#FullObstruction"/>
+            <rdf:Description rdf:about="#NoObstruction"/>
+            <rdf:Description rdf:about="#PartialObstruction"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

@@ -32,14 +32,12 @@ public class SPANTransformer
 	
 	private static SPANProxy gssm = null;
 	
-	// these are taken from the dependencies after analyzing the observables
-	private IObservation source = null;
-	private IObservation sink = null;
-	private IObservation use = null;
-	private IObservation flow = null;
-
-	
-	// this is set at instance creation through reflection
+	// the following 5 fields are set at instance creation through reflection, as 
+	// directed by SPANModel
+	IConcept sourceConcept = null;
+	IConcept sinkConcept = null;
+	IConcept useConcept = null;
+	IConcept flowConcept = null;
 	Map<?,?> flowParams;
 	
 	/*
@@ -56,29 +54,6 @@ public class SPANTransformer
 	IConcept cSpace = null;
 	
 	@Override
-	public void initialize(IInstance i) throws ThinklabException {
-		super.initialize(i);
-		
-		/*
-		 * recover all observations from the dependencies.
-		 */
-		for (IObservation o : getDependencies()) {
-			if (o.getObservable().is(ARIESNamespace.BENEFIT_SOURCE_TYPE))
-				source = o;
-			else if (o.getObservable().is(ARIESNamespace.BENEFIT_USE_TYPE))
-				use = o;
-			else if (o.getObservable().is(ARIESNamespace.BENEFIT_SINK_TYPE))
-				sink = o;
-			else 
-				/*
-				 * TODO we should accommodate more than one "other" dependency,
-				 * and merge them all into a single observation.
-				 */
-				flow = o;
-		}
-	}
-
-	@Override
 	public IObservationContext getTransformedContext(IObservationContext context)
 			throws ThinklabException {
 		return context;
@@ -93,16 +68,18 @@ public class SPANTransformer
 	public IInstance transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
 
+		System.out.println("eccomi");
+		
 		/*
 		 * run the proxy, obtain a map of closures 
 		 */
 		Map<?,?> closures = 
 			gssm.runSPAN(
 				ObservationFactory.getObservation(sourceObs), 
-				source == null ? null : source.getObservableClass(), 
-				use == null ? null : use.getObservableClass(),
-				sink == null ? null : sink.getObservableClass(), 
-				flow == null ? null : flow.getObservableClass(), 
+				sourceConcept, 
+				useConcept,
+				sinkConcept, 
+				flowConcept, 
 				flowParams);
 		/*
 		 * create dependencies by passing the closures

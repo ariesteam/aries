@@ -121,6 +121,10 @@
 ;; the real enchilada
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
+  	    'aestheticService:NaturalBeauty
+  	    'aestheticService:ViewUse
+      	'aestheticService:ViewSink
+  	    'geophysics:Altitude
   		:trans-threshold  1.0
 		  :source-threshold 0.05
 		  :sink-threshold   0.20
