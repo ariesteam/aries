@@ -122,7 +122,7 @@
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
   	    'aestheticService:NaturalBeauty
-  	    'aestheticService:ViewUse
+  	    'aestheticService:HomeownersEnjoyment
       	'aestheticService:ViewSink
   	    'geophysics:Altitude
   		:trans-threshold  1.0

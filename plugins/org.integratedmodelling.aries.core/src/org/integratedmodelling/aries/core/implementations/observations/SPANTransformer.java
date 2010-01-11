@@ -82,7 +82,7 @@ public class SPANTransformer
 				flowConcept, 
 				flowParams);
 		/*
-		 * create dependencies by passing the closures
+		 * create dependencies by making datasources from closures
 		 */
 		for (Object k : closures.keySet()) {
 			

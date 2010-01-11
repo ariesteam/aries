@@ -254,10 +254,31 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-(defmodel data 'floodService:FloodPreventionService 
-	(identification 'floodService:FloodPreventionService)
+(defmodel data-farmers 'floodService:AvoidedDamageToFarms 
+	(identification 'floodService:AvoidedDamageToFarms)
 		:context (
 			source :as source
 			sink :as sink
 			farmers-use :as use))
+
+(defmodel data-public 'floodService:AvoidedDamageToPublicAssets 
+	(identification 'floodService:AvoidedDamageToPublicAssets)
+		:context (
+			source :as source
+			sink :as sink
+			public-use :as use))
+
+(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
+	(identification 'floodService:AvoidedDamageToPrivateAssets)
+		:context (
+			source :as source
+			sink :as sink
+			private-use :as use))
+
+(defmodel data-residents 'floodService:AvoidedDamageToResidents 
+	(identification 'floodService:AvoidedDamageToResidents)
+		:context (
+			source :as source
+			sink :as sink
+			residents-use :as use))
 	 	 	
