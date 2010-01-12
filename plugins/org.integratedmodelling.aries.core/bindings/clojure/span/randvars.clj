@@ -97,15 +97,26 @@
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
   (fn [X] (:type (meta X))))
 
+(defn- my-partition
+  [size coll]
+  (loop [unparted coll
+	 parted   []]
+    (if (empty? unparted)
+      parted
+      (recur (drop size unparted)
+	     (conj parted (take size unparted))))))
+
 (defmethod rv-resample ::discrete-distribution
   [X]
   (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
     (with-meta
       (into {}
 	    (map #(vector (/ (apply + (keys %))
-			     partition-size)
+			     ;;partition-size)
+			     (count %))
 			  (apply + (vals %)))
-		 (partition partition-size partition-size [] (sort X))))
+		 ;;(partition partition-size partition-size [] (sort X))))
+		 (my-partition partition-size (sort X))))
       (meta X))))
 
 (defmethod rv-resample ::continuous-distribution
