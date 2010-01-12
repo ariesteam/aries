@@ -32,7 +32,12 @@
 (defmodel source 'aestheticService:AestheticEnjoymentProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision)
+  (bayesian 'aestheticService:AestheticEnjoymentProvision
+  	(classification 'aestheticService:NaturalBeauty
+  		[0 25]   'aestheticService:NoNaturalBeauty 
+  		[25 50]  'aestheticService:LowNaturalBeauty 
+  		[50 75]  'aestheticService:ModerateNaturalBeauty 
+  		[75 100] 'aestheticService:HighNaturalBeauty))
   :import "aries.core::ViewSource.xdsl"
   :keep ('aestheticService:NaturalBeauty)
   :context (mountain lake))

@@ -19,7 +19,7 @@
 		evidence, and produce a new observation with distributions for the requested nodes."
 		
 	  (bayesian 'carbonService:CarbonSourceValue)
-	  	:import   "bn/CarbonSourceValue.xsdl"
+	  	:import   "aries.core::CarbonSourceValue.xsdl"
 	  	:keep     ('carbonService:CarbonSourceValue)
 	 	 	:context  (soil-ph))
 
