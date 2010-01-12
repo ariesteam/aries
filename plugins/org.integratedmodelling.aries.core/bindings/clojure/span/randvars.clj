@@ -19,6 +19,7 @@
   (:use [misc.utils  :only (maphash)]
 	[span.params :only (*rv-max-states*)]))
 (refer 'modelling   :only '(probabilistic?
+			    binary?
 			    encodes-continuous-distribution?
 			    get-dist-breakpoints
 			    get-possible-states
@@ -26,6 +27,7 @@
 			    get-data))
 (comment
 (declare probabilistic?
+	 binary?
 	 encodes-continuous-distribution?
 	 get-dist-breakpoints
 	 get-possible-states
@@ -56,7 +58,7 @@
   (println "PROBABILISTIC?" (probabilistic? ds))
   (println "ENCODES?      " (encodes-continuous-distribution? ds))
   (let [to-ints (partial map #(int (* 100 %)))]
-    (if (probabilistic? ds)
+    (if (and (probabilistic? ds) (not (binary? ds)))
       (if (encodes-continuous-distribution? ds)
 	;; sampled continuous distributions (FIXME: How is missing information represented?)
 	(let [bounds                (get-dist-breakpoints ds)
@@ -81,14 +83,14 @@
 					  #(successive-sums 0 (to-ints (butlast (get-probabilities ds %))))
 					  #(successive-sums 0 (to-ints (get-probabilities ds %)))))]
 	    (for [idx (range n)]
-	      (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type)))
+	      (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type))))
 	;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
 	(let [prob-dist (apply create-struct (get-possible-states ds))]
 	  (for [idx (range n)]
-	    (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
+	    (with-meta (apply struct prob-dist (to-ints (get-probabilities ds idx))) disc-type))))
       ;; deterministic values (FIXME: NaNs become 0s)
       (for [value (to-ints (get-data ds))]
-	(with-meta (array-map value 100) disc-type))))))
+	(with-meta (array-map value 100) disc-type)))))
 
 ;; FIXME: upgrade clojure and change to type
 (defmulti rv-resample

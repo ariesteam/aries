@@ -68,6 +68,8 @@
   [observation source-conc sink-conc use-conc flow-conc rows cols]
   (let [n             (* rows cols)
 	flow-vals-map (extract-all-values observation flow-conc n)]
+    (println "Rows x Cols:" n)
+    (println "Flow-vals-map length:" (count flow-vals-map))
     (seq2map
      (map (fn [[i j] source sink use]
 	    (struct-map location
