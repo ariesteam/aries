@@ -30,7 +30,7 @@ public class SPANTransformer
 	extends Observation 
 	implements TransformingObservation {
 	
-	private static SPANProxy gssm = null;
+	private static SPANProxy span = null;
 	
 	// the following 5 fields are set at instance creation through reflection, as 
 	// directed by SPANModel
@@ -41,10 +41,10 @@ public class SPANTransformer
 	Map<?,?> flowParams;
 	
 	/*
-	 * called by the Clojure side to give us a bridge to the gssm system
+	 * called by the Clojure side to give us a bridge to the SPAN system
 	 */
 	public static void setSPANProxy(SPANProxy proxy) {
-		gssm = proxy;
+		span = proxy;
 	}
 	
 	ArrayList<Pair<GeneralClassifier, IConcept>> classifiers = 
@@ -74,7 +74,7 @@ public class SPANTransformer
 		 * run the proxy, obtain a map of closures 
 		 */
 		Map<?,?> closures = 
-			gssm.runSPAN(
+			span.runSPAN(
 				ObservationFactory.getObservation(sourceObs), 
 				sourceConcept, 
 				useConcept,
