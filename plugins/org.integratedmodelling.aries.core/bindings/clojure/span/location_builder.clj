@@ -21,22 +21,46 @@
 	[misc.matrix-ops   :only (get-neighbors)]))
 (refer 'corescience :only '(find-state
 			    find-observation
-			    map-dependent-states))
+			    get-state-map))
 
 (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
+
+(defn- extract-values-by-concept-clean
+  "Returns a seq of the concept's values in the observation,
+   which are doubles or probability distributions."
+  [obs conc n]
+  (unpack-datasource (find-state obs conc) n))
 
 (defn- extract-values-by-concept
   "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
   [obs conc n]
-  (do (println obs) (println conc) (unpack-datasource (find-state obs conc) n)))
+  (println "EXTRACT-VALUES-BY-CONCEPT...")
+  (println "OBS:  " obs)
+  (println "CONC: " conc)
+  (println "STATE:" (find-state obs conc))
+  (unpack-datasource (find-state obs conc) n))
+
+(defn- extract-all-values-clean
+  "Returns a map of concepts to vectors of doubles or probability
+   distributions."
+  [obs conc n]
+  (when conc
+    (maphash identity #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc)))))
 
 (defn- extract-all-values
   "Returns a map of concepts to vectors of doubles or probability
    distributions."
   [obs conc n]
-  (when conc
-    (maphash identity #(vec (unpack-datasource % n)) (map-dependent-states (find-observation obs conc)))))
+  (let [subobs (find-observation obs conc)
+	states (get-state-map subobs)]
+    (println "EXTRACT-ALL-VALUES...")
+    (println "OBS:   " obs)
+    (println "CONC:  " conc)
+    (println "SUBOBS:" subobs)
+    (println "STATES:" states)
+    (when conc
+      (maphash identity #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc))))))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the

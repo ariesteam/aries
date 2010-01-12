@@ -42,7 +42,7 @@
 (refer 'tl          :only '(get-session))
 (refer 'corescience :only '(find-state
 			    find-observation
-			    map-dependent-states
+			    get-state-map
 			    get-observable-class))
 (refer 'geospace    :only '(build-coverage
 			    get-spatial-extent
@@ -100,7 +100,7 @@
 					sink-concept   (find-state observation sink-concept)
 					use-concept    (find-state observation use-concept)}
 				       (when flow-concept
-					 (map-dependent-states (find-observation observation flow-concept)))))
+					 (get-state-map (find-observation observation flow-concept)))))
 	feature-names  (vec (keys feature-states))
 	num-features   (count feature-names)
 	feature-name   (select-menu-option feature-names num-features)]

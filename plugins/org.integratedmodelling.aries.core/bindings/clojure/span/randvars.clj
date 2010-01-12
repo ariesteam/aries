@@ -52,37 +52,41 @@
    probabilities are represented as integers * 100 (except true
    discrete values)."
   [ds n]
+  (println "DS:" ds)
   (let [to-ints (partial map #(int (* 100 %)))]
     (if (probabilistic? ds)
       (if (encodes-continuous-distribution? ds)
 	;; sampled continuous distributions (FIXME: How is missing information represented?)
 	(let [bounds                (get-dist-breakpoints ds)
 	      unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
-	      unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))
-	      prob-dist             (apply create-struct (to-ints
-							  (if unbounded-from-below?
-							    (if unbounded-from-above?
-							      (rest (butlast bounds))
-							      (rest bounds))
-							    (if unbounded-from-above?
-							      (butlast bounds)
-							      bounds))))
-	      get-cdf-vals          (if unbounded-from-below?
-				      (if unbounded-from-above?
-					#(successive-sums (to-ints (butlast (get-probabilities ds %))))
-					#(successive-sums (to-ints (get-probabilities ds %))))
-				      (if unbounded-from-above?
-					#(successive-sums 0 (to-ints (butlast (get-probabilities ds %))))
-					#(successive-sums 0 (to-ints (get-probabilities ds %)))))]
-	  (for [idx (range n)]
-	    (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type)))
+	      unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
+	  (println "BREAKPOINTS:    " bounds)
+	  (println "UNBOUNDED-BELOW?" unbounded-from-below?)
+	  (println "UNBOUNDED-ABOVE?" unbounded-from-above?)
+	  (let [prob-dist             (apply create-struct (to-ints
+							    (if unbounded-from-below?
+							      (if unbounded-from-above?
+								(rest (butlast bounds))
+								(rest bounds))
+							      (if unbounded-from-above?
+								(butlast bounds)
+								bounds))))
+		get-cdf-vals          (if unbounded-from-below?
+					(if unbounded-from-above?
+					  #(successive-sums (to-ints (butlast (get-probabilities ds %))))
+					  #(successive-sums (to-ints (get-probabilities ds %))))
+					(if unbounded-from-above?
+					  #(successive-sums 0 (to-ints (butlast (get-probabilities ds %))))
+					  #(successive-sums 0 (to-ints (get-probabilities ds %)))))]
+	    (for [idx (range n)]
+	      (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type)))
 	;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
 	(let [prob-dist (apply create-struct (get-possible-states ds))]
 	  (for [idx (range n)]
 	    (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
       ;; deterministic values (FIXME: NaNs become 0s)
       (for [value (to-ints (get-data ds))]
-	(with-meta (array-map value 100) disc-type)))))
+	(with-meta (array-map value 100) disc-type))))))
 
 ;; FIXME: upgrade clojure and change to type
 (defmulti rv-resample
