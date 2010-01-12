@@ -52,7 +52,9 @@
    probabilities are represented as integers * 100 (except true
    discrete values)."
   [ds n]
-  (println "DS:" ds)
+  (println "DS:           " ds)
+  (println "PROBABILISTIC?" (probabilistic? ds))
+  (println "ENCODES?      " (encodes-continuous-distribution? ds))
   (let [to-ints (partial map #(int (* 100 %)))]
     (if (probabilistic? ds)
       (if (encodes-continuous-distribution? ds)
