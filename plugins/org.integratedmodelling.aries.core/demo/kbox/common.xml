@@ -399,6 +399,75 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>		
 		
+	<measurement:Ranking id="global_soil_ph">
+		<observation:hasObservable>
+			<habitat:SoilPh />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:soil_ph2</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>719</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>359</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>			
+		
+	<measurement:Ranking id="global_soil_CN_ratio">
+		<observation:hasObservable>
+			<habitat:SoilCNRatio />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:SoilCNRatioFinal</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>4319</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1685</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-56.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>84</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>			
+	
+	<measurement:Ranking id="US_summer_high_winter_low">
+		<observation:hasObservable>
+			<habitat:SummerHighWinterLow />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SummerHiWinterLoUS</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>7024</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3104</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>		
+		
 	<!-- Numeric ranking of successional stage -->
 	<measurement:Ranking id="puget_successional_stage">
 		<observation:hasObservable>

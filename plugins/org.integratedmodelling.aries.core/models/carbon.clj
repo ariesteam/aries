@@ -1,4 +1,4 @@
-(ns aries/models/carbon
+(ns aries/carbon
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
@@ -6,11 +6,6 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel soil-ph 'carbonService:Soilph
-		 (classification (ranking 'carbonService:Soilph)
-        1      'carbonService:HighPh
-        2      'carbonService:LowPh
-        {3 4}  'carbonService:ModeratePh))
     
 (defmodel slope 'carbonService:Slope
 		(classification (ranking 'geophysics:DegreeSlope "°")
@@ -35,17 +30,49 @@
 		[40 60] 'carbonService:ModerateVegetationCover
 		[20 40] 'carbonService:LowVegetationCover
 		[0 20]  'carbonService:VeryLowVegetationCover))
-		
-(defmodel carbon-source 'carbonService:CarbonSourceValue
+
+(defmodel soil-ph 'carbonService:Soilph
+		 (classification (ranking 'habitat:SoilPh)
+        1       'carbonService:HighPh
+        2       'carbonService:LowPh
+        #{3 4}  'carbonService:ModeratePh))
+
+(defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
+		 (classification (ranking 'habitat:SummerHighWinterLow)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL))
+
+; use NLCD layers to infer anoxic vs. oxic
+(defmodel oxygen 'carbonService:SoilOxygenConditions 
+ (classification (ranking 'nlcd:NLCDNumeric)
+		  #{90 95}   'carbonService:Anoxic
+		  :otherwise 'carbonService:Oxic))
+
+; use NLCD layers to infer vegetation type
+(defmodel vegetation-type 'carbonService:VegetationType 
+  (classification (ranking 'nlcd:NLCDNumeric)
+		  71   'carbonService:GrasslandType
+		  [41 43 :inclusive] 'carbonService:ForestType))
+		  
+;; missing: HardwoodSoftwood, FireFrequency, CommercialForestyPractices (later), evapotraspiration
+;; then add sumhiwinlo for the 3 scenarios
+
+;; Bayesian source model		
+(defmodel source 'carbonService:CarbonSourceValue
 	  (bayesian 'carbonService:CarbonSourceValue)
-	  	:import   "aries.core::CarbonSourceValue.xsdl"
+	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationAndSoilCarbonStorage)
-	 	 	:context  (soil-ph slope successional-stage vegetation-cover))
+	 	 	:context  (soil-ph slope successional-stage vegetation-cover summer-high-winter-low
+	 	 	           vegetation-type))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
+;; missing - simple, just greenhouse_gas_emissions + the BN (useful?)
 ;; ----------------------------------------------------------------------------------------------
 ;; flow model data needs
 ;; ----------------------------------------------------------------------------------------------
