@@ -13,7 +13,6 @@
 		  0          'aestheticService:LakeNotPresent
 		  :otherwise 'aestheticService:LakePresent))
 
-;; TODO doesn't work
 (defmodel ocean 'aestheticService:Ocean
   "Just being a lake. We may want to reclass lake area instead"
   (classification (ranking 'geofeatures:Ocean)
@@ -40,7 +39,7 @@
   		[75 100] 'aestheticService:HighNaturalBeauty))
   :import "aries.core::ViewSource.xdsl"
   :keep ('aestheticService:NaturalBeauty)
-  :context (mountain lake))
+  :context (mountain lake ocean))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
