@@ -171,7 +171,7 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group vegetation-type slope monthly-temperature 
+	 	 			soil-group vegetation-type slope monthly-temperature levees bridges
 	 	 			successional-stage imperviousness dam-storage mean-days-precipitation
 	 	 			detention-basin-storage (comment vegetation-height) vegetation-cover))
 
