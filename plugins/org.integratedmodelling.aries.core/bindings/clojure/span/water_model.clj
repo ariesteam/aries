@@ -21,9 +21,8 @@
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*trans-threshold*)]))
-(refer 'tl :only '(conc))
 
-(def #^{:private true} elev-concept (conc 'geophysics:Altitude))
+(def #^{:private true} elev-concept "Altitude")
 
 (defn- most-downhill-neighbors
   [location location-map]

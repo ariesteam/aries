@@ -42,14 +42,14 @@
   (unpack-datasource (find-state obs conc) n))
 
 (defn- extract-all-values-clean
-  "Returns a map of concepts to vectors of doubles or probability
+  "Returns a map of concept-names to vectors of doubles or probability
    distributions."
   [obs conc n]
   (when conc
-    (maphash identity #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc)))))
+    (maphash (memfn getLocalName) #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc)))))
 
 (defn- extract-all-values
-  "Returns a map of concepts to vectors of doubles or probability
+  "Returns a map of concept-names to vectors of doubles or probability
    distributions."
   [obs conc n]
   (let [subobs (find-observation obs conc)
@@ -60,7 +60,7 @@
     (println "SUBOBS:" subobs)
     (println "STATES:" states)
     (when conc
-      (maphash identity #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc))))))
+      (maphash (memfn getLocalName) #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc))))))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
@@ -78,8 +78,8 @@
 	      :source        source
 	      :sink          sink
 	      :use           use
-	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)
-	      :carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory (do vecs save memory?)
+	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)))
+	      ;;:carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory (do vecs save memory?)
 	  (for [i (range rows) j (range cols)] [i j])
 	  (extract-values-by-concept observation source-conc n)
 	  (extract-values-by-concept observation sink-conc   n)

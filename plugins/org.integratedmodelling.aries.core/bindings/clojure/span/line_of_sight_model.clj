@@ -20,13 +20,11 @@
 			       rv-scalar-divide rv-scalar-multiply rv-lt rv-mean)]
 	[span.model-api :only (distribute-flow!
 			       decay undecay
-			       service-carrier
-			       distribute-load-over-processors)]
+			       service-carrier)]
 	[span.analyzer  :only (source-loc? sink-loc? use-loc?)]
 	[span.params    :only (*trans-threshold*)]))
-(refer 'tl :only '(conc))
 
-(def #^{:private true} elev-concept (conc 'geophysics:Altitude))
+(def #^{:private true} elev-concept "Altitude")
 
 (defn- find-viewpath
   "Returns the sequence of all points [i j] intersected by the line
@@ -94,7 +92,8 @@
   [_ weight step] (rv-scalar-multiply weight (* step step)))
 
 (defn- distribute-raycast!
-  [provider beneficiary location-map]
+  [location-map [provider beneficiary]]
+  ;;(println "Distribute-raycast called!")
   (if (= provider beneficiary)
     (swap! (:carrier-cache provider) conj
 	   (struct service-carrier (:source provider) (vec provider)))
@@ -138,6 +137,8 @@
 (defmethod distribute-flow! "LineOfSight"
   [_ location-map _ _]
   (let [locations (vals location-map)]
-    (distribute-load-over-processors
-     (fn [_ [p b]] (distribute-raycast! p b location-map))
-     (for [p (filter source-loc? locations) b (filter use-loc? locations)] [p b]))))
+    (dorun
+     (take 100
+	   (pmap
+	    (partial distribute-raycast! location-map)
+	    (for [p (filter source-loc? locations) b (filter use-loc? locations)] [p b]))))))

@@ -139,6 +139,12 @@
          (not (or (some #(not= % (first rows)) (rest rows))
 		  (some #(not= % (first cols)) (rest cols)))))))
 
+(defn- store-params
+  [flow-params]
+  (with-open [foo (java.io.FileWriter. "/tmp/span-flow-params.txt")]
+    (binding [*out* foo]
+      (prn flow-params))))
+
 (defn span-driver
   "Takes the source, sink, use, and flow concepts along with
    observations of their dependent features, calculates the span
@@ -146,6 +152,7 @@
    invoked, return coord-maps representing the flow analysis results."
   [observation source-concept use-concept sink-concept flow-concept flow-params]
   (set-global-params! flow-params)
+  ;;(store-params flow-params)
   (let [rows              (grid-rows    observation)
 	cols              (grid-columns observation)
 	flow-concept-name (.getLocalName (get-observable-class observation))
