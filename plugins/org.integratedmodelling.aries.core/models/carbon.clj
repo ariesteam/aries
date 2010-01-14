@@ -21,8 +21,10 @@
 	 		3           'carbonService:MidSuccession
 	 		2           'carbonService:EarlySuccession
 	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))    
-
+	 		:otherwise  'carbonService:NoSuccession))
+	 		    
+;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
+;; TODO check with Ken
 (defmodel vegetation-cover 'carbonService:VegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
 		[80 :>] 'carbonService:VeryHighVegetationCover
@@ -62,10 +64,17 @@
 
 ;; Bayesian source model		
 (defmodel source 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue)
+	  (bayesian 'carbonService:CarbonSourceValue
+	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighStorage
+	  				[9 12]    'carbonService:HighStorage
+	  				[6 9]     'carbonService:ModerateStorage
+	  				[3 6]     'carbonService:LowStorage
+	  				[0.01 3]  'carbonService:VeryLowStorage
+	  				[:< 0.01] 'carbonService:NoStorage))
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationAndSoilCarbonStorage)
-	 	 	:context  (soil-ph slope successional-stage vegetation-cover summer-high-winter-low
+	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low
 	 	 	           vegetation-type))
 
 ;; ----------------------------------------------------------------------------------------------
