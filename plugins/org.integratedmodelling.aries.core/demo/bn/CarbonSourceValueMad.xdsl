@@ -170,173 +170,175 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="CarbonSourceValue">
 				<name>CarbonSourceValue</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>943 103 1063 153</position>
+				<position>905 177 1025 227</position>
 				<comment>ClimateStability = VegetationAndSoilCarbonSequestration - StoredCarbonRelease \n\n(Ideally - in reality it is unlikely that we&apos;ll get actual numbers for stored carbon release.  As such the probability table is included, with higher weights given to high and very high instances of sequestration and/or carbon release, as these are likely to be the most important places for maintaining terrestrial carbon sequestration and storage.)\n\n</comment>
-				<barchart width="128" height="126" />
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="StoredCarbonRelease">
 				<name>StoredCarbonRelease</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>728 116 877 141</position>
+				<position>702 60 851 85</position>
 				<comment>Agricultural practices are also an influence there, but it&apos;s unlikely we could get a spatial dataset of this (e.g., no-till versus regular plowing).\n\nAssume deforestation from population growth and agricultural expansion is more important than fire in Madagascar, where fire may be used as a tool for forest clearing but wildfire is less common (uncertain assumption - check with CI).</comment>
-				<barchart width="128" height="126" />
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>837 287 1169 313</position>
+				<position>680 410 1012 436</position>
 				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
-				<barchart width="128" height="126" />
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="VegetationCarbonStorage">
 				<name>VegetationCarbonStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>361 106 517 139</position>
-				<barchart width="128" height="126" />
+				<position>444 364 600 397</position>
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="SoilCarbonStorage">
 				<name>SoilCarbonStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>380 232 496 265</position>
-				<barchart width="128" height="126" />
+				<position>298 372 414 405</position>
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="SoilOxygenConditions">
 				<name>SoilOxygenConditions</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>53 273 188 303</position>
-				<barchart width="128" height="64" />
+				<position>119 508 254 538</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="ActualEvapotranspiration">
 				<name>ActualEvapotranspiration</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>157 380 312 411</position>
-				<barchart width="128" height="108" />
+				<position>657 1196 812 1227</position>
+				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>388 439 499 466</position>
-				<barchart width="128" height="72" />
+				<position>596 1038 707 1065</position>
+				<barchart active="true" width="128" height="72" />
 			</node>
 			<node id="VegetationCover">
 				<name>VegetationCover</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>644 336 753 366</position>
-				<barchart width="128" height="108" />
+				<position>604 796 713 826</position>
+				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>90 108 135 136</position>
+				<position>146 226 191 254</position>
 				<comment>+ aspect (more C on N-NE facing slope)</comment>
-				<barchart width="128" height="90" />
+				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="SummerHighWinterLow">
 				<name>SummerHighWinterLow</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>667 508 803 543</position>
+				<position>483 645 619 680</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
-				<barchart width="128" height="108" />
+				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetationDensity">
 				<name>VegetationDensity</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>666 280 788 309</position>
+				<position>584 495 706 524</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart width="128" height="126" />
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="VegetationAndSoilCarbonStorage">
 				<name>VegetationAndSoilCarbonStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>534 97 673 147</position>
+				<position>486 171 625 221</position>
 				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
-				<barchart width="128" height="126" />
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="FireFrequency">
 				<name>FireFrequency</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>398 336 488 367</position>
-				<barchart width="128" height="90" />
+				<position>508 1184 598 1215</position>
+				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="DeforestationRisk">
 				<name>DeforestationRisk</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>657 193 773 220</position>
+				<position>718 207 834 234</position>
 				<comment>A function of agricultural/economic factors (likely difficult to find/nonexistent spatially) and population growth.  We have population growth data, but not at the appropriate scale for Puget Sound (national data).</comment>
-				<barchart width="128" height="90" />
+				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="SoilCNRatio">
 				<name>SoilCNRatio</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>676 406 763 438</position>
-				<barchart width="128" height="90" />
+				<position>416 547 503 579</position>
+				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="SequestrationRate">
 				<name>SequestrationRate</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>849 436 964 467</position>
-				<barchart width="128" height="126" />
+				<position>675 625 790 656</position>
+				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="SoilpH">
 				<name>SoilpH</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>89 202 147 225</position>
+				<position>83 378 141 401</position>
 				<comment>See how the modeling looks if we add pH.</comment>
-				<barchart width="128" height="72" />
+				<barchart active="true" width="128" height="72" />
 			</node>
 			<node id="PopulationDensity">
 				<name>PopulationDensity</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>213 105 333 139</position>
+				<position>321 194 441 228</position>
+				<barchart active="true" width="128" height="72" />
 			</node>
 			<node id="DegradationStatus">
 				<name>DegradationStatus</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>775 338 892 372</position>
+				<position>830 554 947 588</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>
 	</extensions>

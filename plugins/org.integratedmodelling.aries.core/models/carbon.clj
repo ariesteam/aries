@@ -6,7 +6,6 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-    
 (defmodel slope 'carbonService:Slope
 		(classification (ranking 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	  'carbonService:Level
@@ -59,9 +58,28 @@
 		  71   'carbonService:GrasslandType
 		  [41 43 :inclusive] 'carbonService:ForestType))
 		  
-;; missing: HardwoodSoftwood, FireFrequency, CommercialForestyPractices (later), evapotraspiration
-;; then add sumhiwinlo for the 3 scenarios
+(defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
+		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
+        [80 100] 'carbonService:VeryLowHardness
+        [60 80]  'carbonService:LowHardness
+        [40 60]  'carbonService:ModerateHardness
+        [20 40]  'carbonService:HighHardness
+        [0 20]   'carbonService:VeryHighHardness))
 
+(defmodel evapotranspiration 'carbonService:ActualEvapotranspiration
+		 (classification (measurement 'habitat:Evapotranspiration "mm/year")
+				[:< 12] 'carbonService:VeryLowEvapotranspiration
+				[12 32] 'carbonService:LowEvapotranspiration
+				[32 58] 'carbonService:ModerateEvapotranspiration
+				[58 92] 'carbonService:HighEvapotranspiration
+				[92 :>] 'carbonService:VeryHighEvapotranspiration))
+				
+(defmodel fire-frequency 'carbonService:FireFrequency
+		 (classification (ranking 'habitat:FireFrequency)	
+		 			[:< 0.25]  'carbonService:LowFireFrequency
+		 			[0.25 0.9] 'carbonService:ModerateFireFrequency
+		 			[0.9 :>]   'carbonService:HighFireFrequency))
+			
 ;; Bayesian source model		
 (defmodel source 'carbonService:CarbonSourceValue
 	  (bayesian 'carbonService:CarbonSourceValue
@@ -71,25 +89,163 @@
 	  				[6 9]     'carbonService:ModerateStorage
 	  				[3 6]     'carbonService:LowStorage
 	  				[0.01 3]  'carbonService:VeryLowStorage
-	  				[:< 0.01] 'carbonService:NoStorage))
+	  				[:< 0.01] 'carbonService:NoStorage)
+	  		(classification 'carbonService:VegetationCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighVegetationStorage
+	  				[9 12]    'carbonService:HighVegetationStorage
+	  				[6 9]     'carbonService:ModerateVegetationStorage
+	  				[3 6]     'carbonService:LowVegetationStorage
+	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
+	  				[:< 0.01] 'carbonService:NoVegetationStorage)
+	  		(classification 'carbonService:SoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighSoilStorage
+	  				[9 12]    'carbonService:HighSoilStorage
+	  				[6 9]     'carbonService:ModerateSoilStorage
+	  				[3 6]     'carbonService:LowSoilStorage
+	  				[0.01 3]  'carbonService:VeryLowSoilStorage
+	  				[:< 0.01] 'carbonService:NoSoilStorage))
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
-	  	:keep     ('carbonService:VegetationAndSoilCarbonStorage)
-	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low
-	 	 	           vegetation-type))
+	  	:keep     ('carbonService:VegetationCarbonStorage
+	  						 'carbonService:StoredCarbonRelease
+	  						 'carbonService:SoilCarbonStorage)
+	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))
 
+;; missing: CommercialForestyPractices (later - based on clearcuts which is not available in chehalis)
+;; then add sumhiwinlo for the 3 scenarios
+
+;; ----------------------------------------------------------------------------------------------
+;; modified source dependencies to account for different scenarios
+;; ----------------------------------------------------------------------------------------------
+
+;; old growth has been incentivized, so what was late succession is now old growth
+(defmodel successional-stage-incentivized 'carbonService:SuccessionalStage
+	 (classification (ranking 'ecology:SuccessionalStage)
+	 		#{5 6 4}    'carbonService:OldGrowth
+	 		3           'carbonService:MidSuccession
+	 		2           'carbonService:EarlySuccession
+	 		1           'carbonService:PoleSuccession
+	 		:otherwise  'carbonService:NoSuccession))
+	 		
+(defmodel summer-high-winter-low-hadley-a2 'carbonService:SummerHighWinterLow
+		 (classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL))
+        
+(defmodel summer-high-winter-low-hadley-b2 'carbonService:SummerHighWinterLow
+		 (classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL))
+
+;; Bayesian source model		
+(defmodel source-hadley-a2 'carbonService:CarbonSourceValue
+	  (bayesian 'carbonService:CarbonSourceValue
+	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighStorage
+	  				[9 12]    'carbonService:HighStorage
+	  				[6 9]     'carbonService:ModerateStorage
+	  				[3 6]     'carbonService:LowStorage
+	  				[0.01 3]  'carbonService:VeryLowStorage
+	  				[:< 0.01] 'carbonService:NoStorage)
+	  		(classification 'carbonService:VegetationCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighVegetationStorage
+	  				[9 12]    'carbonService:HighVegetationStorage
+	  				[6 9]     'carbonService:ModerateVegetationStorage
+	  				[3 6]     'carbonService:LowVegetationStorage
+	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
+	  				[:< 0.01] 'carbonService:NoVegetationStorage)
+	  		(classification 'carbonService:SoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighSoilStorage
+	  				[9 12]    'carbonService:HighSoilStorage
+	  				[6 9]     'carbonService:ModerateSoilStorage
+	  				[3 6]     'carbonService:LowSoilStorage
+	  				[0.01 3]  'carbonService:VeryLowSoilStorage
+	  				[:< 0.01] 'carbonService:NoSoilStorage))
+	  	:import   "aries.core::CarbonSourceValue.xdsl"
+	  	:keep     ('carbonService:VegetationCarbonStorage
+	  						 'carbonService:StoredCarbonRelease
+	  						 'carbonService:SoilCarbonStorage)
+	 	 	:context  (soil-ph slope successional-stage-incentivized  
+	 	 						 summer-high-winter-low-hadley-a2 fire-frequency
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))
+
+;; Bayesian source model		
+(defmodel source-hadley-b2 'carbonService:CarbonSourceValue
+	  (bayesian 'carbonService:CarbonSourceValue
+	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighStorage
+	  				[9 12]    'carbonService:HighStorage
+	  				[6 9]     'carbonService:ModerateStorage
+	  				[3 6]     'carbonService:LowStorage
+	  				[0.01 3]  'carbonService:VeryLowStorage
+	  				[:< 0.01] 'carbonService:NoStorage)
+	  		(classification 'carbonService:VegetationCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighVegetationStorage
+	  				[9 12]    'carbonService:HighVegetationStorage
+	  				[6 9]     'carbonService:ModerateVegetationStorage
+	  				[3 6]     'carbonService:LowVegetationStorage
+	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
+	  				[:< 0.01] 'carbonService:NoVegetationStorage)
+	  		(classification 'carbonService:SoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighSoilStorage
+	  				[9 12]    'carbonService:HighSoilStorage
+	  				[6 9]     'carbonService:ModerateSoilStorage
+	  				[3 6]     'carbonService:LowSoilStorage
+	  				[0.01 3]  'carbonService:VeryLowSoilStorage
+	  				[:< 0.01] 'carbonService:NoSoilStorage))
+	  	:import   "aries.core::CarbonSourceValue.xdsl"
+	  	:keep     ('carbonService:VegetationCarbonStorage
+	  						 'carbonService:StoredCarbonRelease
+	  						 'carbonService:SoilCarbonStorage)
+	 	 	:context  (soil-ph slope successional-stage-incentivized  
+	 	 						 summer-high-winter-low-hadley-b2 fire-frequency
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))	 	 	           
+	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
-;; missing - simple, just greenhouse_gas_emissions + the BN (useful?)
-;; ----------------------------------------------------------------------------------------------
-;; flow model data needs
-;; ----------------------------------------------------------------------------------------------
- 	 								
+(defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
+			;; TODO make this a measurement
+		 (classification (ranking 'carbonService:GreenhouseGasEmissions)
+		 	 [250000 :>]     'carbonService:VeryHighEmitter
+		 	 [100000 250000] 'carbonService:HighEmitter
+		 	 [25000 100000]  'carbonService:ModerateEmitter
+		 	 [1000 25000]    'carbonService:LowEmitter
+		 	 [100 1000]      'carbonService:VeryLowEmitter
+		 	 [:< 100]        'carbonService:NoEmitter))
+		 	 
+(defmodel use-emitters 'carbonService:CarbonUse
+	  (bayesian 'carbonService:CarbonUse
+	  		(classification 'carbonService:CarbonEmitterUse
+	  				0          'carbonService:EmitterUseAbsent
+	  			  :otherwise 'carbonService:EmitterUsePresent))
+	  	:import  "aries.core::CarbonUse.xdsl"
+	  	:keep    ('carbonService:CarbonEmitterUse)
+	  	:context (greenhouse-gas-emitter))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
+;; data for emission trading
+(defmodel data-emitters 'carbonService:EmissionTrading 
+	(identification 'carbonService:EmissionTrading)
+		:context (source use-emitters))
 
+;; Hadley A2 scenario
+(defmodel data-emitters-hadley-a2 'carbonService:EmissionHadleyA2Scenario 
+	(identification 'carbonService:EmissionTrading)
+		:context (source-hadley-a2 use-emitters))
+
+;; Hadley B2 scenario
+(defmodel data-emitters-hadley-b2 'carbonService:EmissionHadleyB2Scenario 
+	(identification 'carbonService:EmissionTrading)
+		:context (source-hadley-b2 use-emitters))
 		 			

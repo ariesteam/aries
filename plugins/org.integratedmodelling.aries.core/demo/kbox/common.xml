@@ -445,6 +445,125 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>			
 	
+	<measurement:Ranking id="SumHiWintLowHadleyA2">
+		<observation:hasObservable>
+			<carbonService:SummerHighWinterLowHadleyA2 />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SumHiWintLowHadleyA2</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14998</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7930</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>13.9</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-177.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>80.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-52.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="SumHiWintLowHadleyB2">
+		<observation:hasObservable>
+			<carbonService:SummerHighWinterLowHadleyB2 />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>SumHiWintLowHadleyB2</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14998</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7930</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>13.9</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-177.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>80.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-52.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	
+	<measurement:Ranking id="puget_fire_frequency">
+		<observation:hasObservable>
+			<habitat:FireFrequency />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:FireFrequency</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>453</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>205</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>45.4801765978</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.78165</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0504411</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.933967157</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
+		carbon models) when I figure out how to express that. -->
+	<measurement:Ranking id="greenhouse_gas_emissions">
+		<observation:hasObservable>
+			<carbonService:GreenhouseGasEmissions />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:TotnoCEM_Final</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>619</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>289</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>22.059390176999997</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-137.257054</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>57.3100689</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-62.03137878700001</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Measurement id="global_evapotranspiration">
+		<observation:hasObservable>
+			<habitat:Evapotranspiration />
+		</observation:hasObservable>
+		<measurement:unit>mm/year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:evapotrans</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>719</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>359</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+	
 	<measurement:Ranking id="US_summer_high_winter_low">
 		<observation:hasObservable>
 			<habitat:SummerHighWinterLow />
@@ -464,6 +583,29 @@
 				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>		
+	
+	<measurement:Ranking id="puget_hardwood_softwood_ratio">
+		<observation:hasObservable>
+			<habitat:HardwoodSoftwoodRatio />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:HardwoodSoftwood</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14514</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>16010</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5035612.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>365037.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435887.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>727912.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26710</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>		
