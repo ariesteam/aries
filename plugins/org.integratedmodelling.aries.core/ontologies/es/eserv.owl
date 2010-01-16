@@ -13,12 +13,12 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/eserv.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
     <owl:Ontology rdf:about=""/>
     
 
@@ -136,6 +136,70 @@
 
     <owl:Class rdf:about="#AbsoluteUse">
         <rdfs:subClassOf rdf:resource="#UseType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow -->
+
+    <owl:Class rdf:about="#ActualFlow">
+        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink -->
+
+    <owl:Class rdf:about="#ActualSink">
+        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource -->
+
+    <owl:Class rdf:about="#ActualSource">
+        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse -->
+
+    <owl:Class rdf:about="#ActualUse">
+        <rdfs:subClassOf rdf:resource="#UseTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow -->
+
+    <owl:Class rdf:about="#BlockedFlow">
+        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink -->
+
+    <owl:Class rdf:about="#BlockedSink">
+        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource -->
+
+    <owl:Class rdf:about="#BlockedSource">
+        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse -->
+
+    <owl:Class rdf:about="#BlockedUse">
+        <rdfs:subClassOf rdf:resource="#UseTrait"/>
     </owl:Class>
     
 
@@ -294,6 +358,14 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowTrait -->
+
+    <owl:Class rdf:about="#FlowTrait">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer -->
 
     <owl:Class rdf:about="#HumanConsumer">
@@ -308,6 +380,30 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     <owl:Class rdf:about="#HumanPolicyTarget">
         <rdfs:comment rdf:datatype="&xsd;string"
             >The target of an ecosystem service. Could be a human activity, need, or a specific target such as a community. It could also be abstract, e.g. global human wellbeing. Link point to the policy ontologies.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink -->
+
+    <owl:Class rdf:about="#InaccessibleSink">
+        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource -->
+
+    <owl:Class rdf:about="#InaccessibleSource">
+        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse -->
+
+    <owl:Class rdf:about="#InaccessibleUse">
+        <rdfs:subClassOf rdf:resource="#UseTrait"/>
     </owl:Class>
     
 
@@ -339,6 +435,38 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
         <owl:disjointWith rdf:resource="#Transformation"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Provision of a service through performance of activities by the subject, not involving production of matter or energy that is directly used by the human endpoint.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow -->
+
+    <owl:Class rdf:about="#PossibleFlow">
+        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSink -->
+
+    <owl:Class rdf:about="#PossibleSink">
+        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource -->
+
+    <owl:Class rdf:about="#PossibleSource">
+        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse -->
+
+    <owl:Class rdf:about="#PossibleUse">
+        <rdfs:subClassOf rdf:resource="#UseTrait"/>
     </owl:Class>
     
 
@@ -407,10 +535,50 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SinkTrait -->
+
+    <owl:Class rdf:about="#SinkTrait">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SourceTrait -->
+
+    <owl:Class rdf:about="#SourceTrait">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType -->
 
     <owl:Class rdf:about="#SourceType">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink -->
+
+    <owl:Class rdf:about="#TheoreticalSink">
+        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource -->
+
+    <owl:Class rdf:about="#TheoreticalSource">
+        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse -->
+
+    <owl:Class rdf:about="#TheoreticalUse">
+        <rdfs:subClassOf rdf:resource="#UseTrait"/>
     </owl:Class>
     
 
@@ -464,6 +632,14 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait -->
+
+    <owl:Class rdf:about="#UseTrait">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseType -->
 
     <owl:Class rdf:about="#UseType">
@@ -479,5 +655,5 @@ If provision and usage can be observed and are larger than zero, the Benefit is 
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.962) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1042) http://owlapi.sourceforge.net -->
 

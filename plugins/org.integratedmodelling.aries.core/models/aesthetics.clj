@@ -32,13 +32,13 @@
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticEnjoymentProvision
-  	(classification 'aestheticService:NaturalBeauty
+  	(classification 'aestheticService:TheoreticalNaturalBeauty
   		[0 25]   'aestheticService:NoNaturalBeauty 
   		[25 50]  'aestheticService:LowNaturalBeauty 
   		[50 75]  'aestheticService:ModerateNaturalBeauty 
   		[75 100] 'aestheticService:HighNaturalBeauty))
   :import "aries.core::ViewSource.xdsl"
-  :keep ('aestheticService:NaturalBeauty)
+  :keep ('aestheticService:TheoreticalNaturalBeauty)
   :context (mountain lake ocean))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -125,16 +125,17 @@
 ;; the real enchilada
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
-  	    'aestheticService:NaturalBeauty
+  	    'aestheticService:TheoreticalNaturalBeauty
   	    'aestheticService:HomeownersEnjoyment
       	'aestheticService:ViewSink
+      	'aestheticService:ViewFlow
   	    'geophysics:Altitude
-  		:trans-threshold  1.0
-		  :source-threshold 0.05
-		  :sink-threshold   0.20
-		  :use-threshold    0.05
-		  :sink-type        :relative
-		  :use-type         :relative
-		  :benefit-type     :non-rival
-		  :rv-max-states    10)
+  	:source-threshold 50,
+   	:sink-threshold   0.5,
+   	:use-threshold    0.5,
+   	:trans-threshold  1.0,
+   	:sink-type        :relative,
+   	:use-type         :relative,
+   	:benefit-type     :non-rival,
+   	:rv-max-states    10)
   :context (source homeowners sink altitude))

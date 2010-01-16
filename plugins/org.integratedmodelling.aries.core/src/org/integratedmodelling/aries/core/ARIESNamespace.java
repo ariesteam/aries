@@ -22,10 +22,15 @@ public class ARIESNamespace {
 	public static final String BENEFIT_USE_TYPE = "eserv:UseType";
 	public static final String BENEFIT_SINK_TYPE = "eserv:Sink";
 	public static final String BENEFIT_FLOW_TYPE = "eserv:Flow";
-	
+
+	public static final String SOURCE_TRAIT = "eserv:SourceTrait";
+	public static final String USE_TRAIT = "eserv:UseTrait";
+	public static final String FLOW_TRAIT = "eserv:FlowTrait";
+	public static final String SINK_TRAIT = "eserv:SinkTrait";
+
 	// relationships
 	public static final String HAS_BENEFIT = "eserv:producesBenefit";
 	public static final String HAS_PROVISION = "eserv:hasProvision";
 	public static final String HAS_USAGE = "eserv:hasUsage";
-
+	
 }

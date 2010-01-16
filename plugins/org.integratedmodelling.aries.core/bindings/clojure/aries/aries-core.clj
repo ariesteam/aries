@@ -43,7 +43,6 @@
 	[data scaling-parameters]
 	nil)
 	
-;; TODO bind the flow parameters before call to simulate-service-flows.
 (defn get-span-proxy
 	"Create a Java object to handle a SPAN run."
 	[]
@@ -59,11 +58,11 @@
 	SPAN flow parameters inside the span form. The context models will be mapped to the source, use, 
 	and sink observables; any other dependents whose observable is not a source, sink or use type will
 	be dependencies for the flow model."
-	[observable source-obs use-obs sink-obs flow-obs & params]
+	[observable source-obs use-obs sink-obs flow-obs flow-data-obs & params]
 	`(let [model# (j-make-span)
 				 params# (tl/assoc-map '~params)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
- 	   (.setFlowObservables model# (tl/conc ~source-obs) (tl/conc ~use-obs) (tl/conc ~sink-obs) (tl/conc ~flow-obs))
+ 	   (.setFlowObservables model# (tl/conc ~source-obs) (tl/conc ~use-obs) (tl/conc ~sink-obs) (tl/conc ~flow-obs) (tl/conc ~flow-data-obs))
  	   (.setFlowParams model# params#)
  	   model#))
 			

@@ -19,6 +19,7 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 	IConcept sinkObservable = null;
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
+	IConcept flowDataObservable = null;
 	private Map<?, ?> flowParams;
 	
 	@Override
@@ -39,11 +40,12 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		return null;
 	}
 
-	public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow) {
+	public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, IConcept flowData) {
 		this.sourceObservable = source;
 		this.useObservable = use;
 		this.sinkObservable = sink;
 		this.flowObservable = flow;
+		this.flowDataObservable = flowData;
 	}
 	
 	@Override
@@ -56,6 +58,7 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		ret.useObservable = useObservable;
 		ret.sinkObservable = sinkObservable;
 		ret.flowObservable = flowObservable;
+		ret.flowDataObservable = flowDataObservable;
 		
 		return ret; 
 	}
@@ -84,6 +87,7 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		arr.add(Polylist.list(":useConcept",    useObservable));
 		arr.add(Polylist.list(":sinkConcept",   sinkObservable));
 		arr.add(Polylist.list(":flowConcept",   flowObservable));
+		arr.add(Polylist.list(":flowDataConcept",   flowDataObservable));
 
 		return Polylist.PolylistFromArrayList(arr);
 	}
