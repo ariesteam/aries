@@ -21,7 +21,7 @@ public class ARIESNamespace {
 	public static final String BENEFIT_SOURCE_TYPE = "eserv:SourceType";
 	public static final String BENEFIT_USE_TYPE = "eserv:UseType";
 	public static final String BENEFIT_SINK_TYPE = "eserv:Sink";
-	public static final String BENEFIT_FLOW_TYPE = "eserv:Flow";
+	public static final String BENEFIT_FLOW_TYPE = "eserv:FlowType";
 
 	public static final String SOURCE_TRAIT = "eserv:SourceTrait";
 	public static final String USE_TRAIT = "eserv:UseTrait";

@@ -22,7 +22,7 @@ public class ARIESVisualizer extends FileBasedDataset {
 		else if (observable.is(ARIESNamespace.BENEFIT_SINK_TYPE)) 
 			return YELLOW;
 		else if (observable.is(ARIESNamespace.BENEFIT_FLOW_TYPE)) 
-			return RAINBOW;
+			return GREY;
 		
 		return super.getColorForConcept(observable);
 	}
