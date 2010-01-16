@@ -85,23 +85,22 @@
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
 (defmethod decay "LineOfSight"
-  [_ weight step] (rv-scalar-divide weight (* step step)))
+  [_ weight step] (rv-scalar-divide weight (/ (* step step) 10)))
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
 (defmethod undecay "LineOfSight"
-  [_ weight step] (rv-scalar-multiply weight (* step step)))
+  [_ weight step] (rv-scalar-multiply weight (/ (* step step) 10)))
 
 (defn- distribute-raycast!
-  [location-map [provider beneficiary]]
-  ;;(println "Distribute-raycast called!")
+  [flow-conc-name location-map [provider beneficiary]]
   (if (= provider beneficiary)
     (swap! (:carrier-cache provider) conj
-	   (struct service-carrier (:source provider) (vec provider)))
+	   (struct service-carrier (:source provider) [provider]))
     (let [path        (map location-map (find-viewpath provider beneficiary))
 	  steps       (dec (count path))
 	  source-val  (:source provider)]
       (when (or (== steps 1)
-		(> (rv-mean (rv-scalar-divide source-val (Math/pow (dec steps) 2))) *trans-threshold*))
+		(> (rv-mean (decay flow-conc-name source-val (dec steps))) *trans-threshold*))
 	(let [source-elev (get-valid-elevation provider)
 	      rise        (rv-subtract (get-valid-elevation beneficiary) source-elev)
 	      m           (rv-scalar-divide rise steps)]
@@ -113,9 +112,9 @@
 		 weight      source-val
 		 delayed-ops (if (sink-loc? provider)
 			       [#(swap! (:carrier-cache provider) conj
-					(struct service-carrier weight (vec provider)))]
+					(struct service-carrier weight [provider]))]
 			       [])]
-	    (let [decayed-weight (decay weight step)]
+	    (let [decayed-weight (decay flow-conc-name weight step)]
 	      (if (== step steps)
 		(do
 		  (doseq [op delayed-ops] (op))
@@ -134,11 +133,94 @@
 					 (struct service-carrier decayed-weight explored)))
 			   delayed-ops)))))))))))
 
-(defmethod distribute-flow! "LineOfSight"
-  [_ location-map _ _]
+(defn- distribute-raycast-debug!
+  [flow-conc-name location-map [provider beneficiary]]
+  (println "Distribute-raycast called!\nWaiting...")
+  (Thread/sleep 1000)
+  (println "Resuming")
+  (if (= provider beneficiary)
+    (do
+      (println "In Situ Usage")
+      (swap! (:carrier-cache provider) conj
+	     (struct service-carrier (:source provider) [provider])))
+    (let [path        (map location-map (find-viewpath provider beneficiary))
+	  steps       (dec (count path))
+	  source-val  (:source provider)]
+      (println "Path Length:     " steps)
+      (println "Source-val:      " source-val)
+      (println "Trans-threshold: " *trans-threshold*)
+      (println "Steps-1 Squared: " (Math/pow (dec steps) 2))
+      (println "RV-Scalar-Divide:" (decay flow-conc-name source-val (dec steps)))
+      (println "RV-Mean:         " (rv-mean (decay flow-conc-name source-val (dec steps))))
+      (if (or (== steps 1)
+	      (> (rv-mean (decay flow-conc-name source-val (dec steps))) *trans-threshold*))
+	(do
+	  (println "Foo")
+	  (let [source-elev (get-valid-elevation provider)
+		use-elev    (get-valid-elevation beneficiary)]
+	    (println "Source-elev:" source-elev)
+	    (println "Use-elev:"    use-elev)
+	    (let [rise (rv-subtract use-elev source-elev)]
+	      (println "Rise:" rise)
+	      (let [m (rv-scalar-divide rise steps)]
+		(println "M:" m)
+		(loop [step        1
+		       current     (second path)
+		       explored    (vec (take 2 path))
+		       frontier    (drop 2 path)
+		       elev-bounds (rest (iterate #(rv-add m %) source-elev))
+		       weight      source-val
+		       delayed-ops (if (sink-loc? provider)
+				     [#(swap! (:carrier-cache provider) conj
+					      (struct service-carrier weight [provider]))]
+				     [])]
+		  (println step ":" current (count explored) (count frontier) (first elev-bounds) weight (count delayed-ops))
+		  (Thread/sleep 500)
+		  (let [decayed-weight (decay flow-conc-name weight step)]
+		    (println "Decayed-weight:" decayed-weight)
+		    (if (== step steps)
+		      (do
+			(println "Final Step!")
+			(doseq [op delayed-ops] (op))
+			(swap! (:carrier-cache current) conj
+			       (struct service-carrier decayed-weight explored)))
+		      (when (> (rv-mean decayed-weight) *trans-threshold*)
+			(println "Recurring...")
+			(println "Weight:      " weight)
+			(println "Elev-bound:  " (first elev-bounds))
+			(println "Elev-current:" (get-valid-elevation current))
+			(println "RV-LT:       " (rv-lt (get-valid-elevation current) (first elev-bounds)))
+			(println "RV-Scale:    " (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds))))
+			(recur (inc step)
+			       (first frontier)
+			       (conj explored (first frontier))
+			       (rest frontier)
+			       (rest elev-bounds)
+			       (rv-scale weight (rv-lt (get-valid-elevation current) (first elev-bounds)))
+			       (if (sink-loc? current)
+				 (conj delayed-ops
+				       #(swap! (:carrier-cache current) conj
+					       (struct service-carrier decayed-weight explored)))
+				 delayed-ops))))))))))
+	(println "Distribute raycast completed!")))))
+
+(defmethod distribute-flow! "LineOfSight_silent"
+  [flow-conc-name location-map _ _]
   (let [locations (vals location-map)]
     (dorun
-     (take 100
-	   (pmap
-	    (partial distribute-raycast! location-map)
-	    (for [p (filter source-loc? locations) b (filter use-loc? locations)] [p b]))))))
+     (pmap
+      (partial distribute-raycast! flow-conc-name location-map)
+      (for [p (filter source-loc? locations) b (filter use-loc? locations)] [p b])))))
+
+(defmethod distribute-flow! "LineOfSight"
+  [flow-conc-name location-map _ _]
+  (let [locations (vals location-map)
+	sources   (filter source-loc? locations)
+	sinks     (filter sink-loc?   locations)
+	uses      (filter use-loc?    locations)
+	pbs       (for [p sources b uses] [p b])]
+    (println "Num Sources:" (count sources))
+    (println "Num Sinks:"   (count sinks))
+    (println "Num Uses:"    (count uses))
+    (println "Num Pairs:"   (count pbs))
+    (dorun (pmap (partial distribute-raycast! flow-conc-name location-map) pbs))))

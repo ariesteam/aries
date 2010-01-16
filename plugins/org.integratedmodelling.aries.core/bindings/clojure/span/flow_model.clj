@@ -80,4 +80,9 @@
 	locations    (vals location-map)]
     (distribute-flow! flow-conc-name location-map rows cols)
     (cache-all-actual-routes! locations flow-conc-name)
-    [(count locations) (count (filter #(empty? @(:carrier-cache %)) locations)) (last locations)]))
+    (println "Locs:        " (count locations))
+    (println "Empty Caches:" (count (filter #(empty? @(:carrier-cache %)) locations)))
+    (println "First Loc:   " (first locations))
+    (println "Five Atoms:  " (map (comp :carrier-cache) (take 5 locations)))
+    (println "Same Atoms?  " (count (distinct (map :carrier-cache locations))))
+    (println "Same Atoms?  " (some #(= (:carrier-cache (first locations)) %) (map :carrier-cache (rest locations))))))

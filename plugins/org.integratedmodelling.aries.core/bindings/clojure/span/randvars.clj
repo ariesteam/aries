@@ -26,14 +26,13 @@
 			    get-probabilities
 			    get-data))
 (comment
-(declare probabilistic?
-	 binary?
-	 encodes-continuous-distribution?
-	 get-dist-breakpoints
-	 get-possible-states
-	 get-probabilities
-	 get-data)
-)
+  (declare probabilistic?
+	   binary?
+	   encodes-continuous-distribution?
+	   get-dist-breakpoints
+	   get-possible-states
+	   get-probabilities
+	   get-data))
 
 (def #^{:private true} cont-type {:type ::continuous-distribution})
 (def #^{:private true} disc-type {:type ::discrete-distribution})
@@ -97,32 +96,32 @@
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
   (fn [X] (:type (meta X))))
 
+;; FIXME: upgrade clojure and change to (lazy-seq (cons ...))
+(comment (defn- my-partition [size coll] coll))
 (defn- my-partition
   [size coll]
-  (loop [unparted coll
-	 parted   []]
-    (if (empty? unparted)
-      parted
-      (recur (drop size unparted)
-	     (conj parted (take size unparted))))))
+  (when (seq coll)
+    (lazy-cons (take size coll) (my-partition size (drop size coll)))))
 
 (defmethod rv-resample ::discrete-distribution
   [X]
-  (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-    (with-meta
-      (into {}
-	    (map #(vector (/ (apply + (keys %))
-			     ;;partition-size)
-			     (count %))
-			  (apply + (vals %)))
-		 ;;(partition partition-size partition-size [] (sort X))))
-		 (my-partition partition-size (sort X))))
-      (meta X))))
+  (if-not (> (count X) *rv-max-states*)
+    X
+    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+      (with-meta
+	(into {}
+	      (map #(vector (/ (apply + (keys %)) (count %))
+			    (apply + (vals %)))
+		   ;;(partition partition-size partition-size [] (sort X))))
+		   (my-partition partition-size (sort X))))
+	(meta X)))))
 
 (defmethod rv-resample ::continuous-distribution
   [X]
-  (let [step-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-    (with-meta (into {} (take-nth step-size (sort X))) (meta X))))
+  (if-not (> (count X) *rv-max-states*)
+    X
+    (let [step-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+      (with-meta (into {} (take-nth step-size (sort X))) (meta X)))))
 
 ;; FIXME change to type upgrade clojure!
 (defmulti rv-mean
@@ -266,11 +265,11 @@
 
 (defn rv-lt
   [X Y]
-  (/ (get (rv-convolute < X Y) true) 100.0))
+  (/ (get (rv-convolute < X Y) true 0.0) 100.0))
 
 (defn rv-gt
   [X Y]
-  (/ (get (rv-convolute > X Y) true) 100.0))
+  (/ (get (rv-convolute > X Y) true 0.0) 100.0))
 
 (defn- rv-map
   "Returns the distribution of the random variable X with f applied to its range values."
@@ -289,7 +288,7 @@
 
 (defn scalar-rv-multiply
   [x Y]
-  (let [x* (int x)]
+  (let [x* (rationalize x)]
     (rv-map #(* x* %) Y)))
 
 (defn scalar-rv-divide
@@ -309,12 +308,12 @@
 
 (defn rv-scalar-multiply
   [X y]
-  (let [y* (int y)]
+  (let [y* (rationalize y)]
     (rv-map #(* % y*) X)))
 
 (defn rv-scalar-divide
   [X y]
-  (let [y* (int y)]
+  (let [y* (rationalize y)]
     (rv-map #(/ % y*) X)))
 
 (defn rv-zero-above-scalar
