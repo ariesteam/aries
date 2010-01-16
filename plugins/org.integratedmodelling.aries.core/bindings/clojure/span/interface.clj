@@ -145,16 +145,91 @@
     (binding [*out* foo]
       (prn flow-params))))
 
+(defmulti provide-results (fn [result-type flow-concept-name locations rows cols] result-type))
+
+(defmethod provide-results :closure-map
+  [_ flow-concept-name locations _ _]
+  {:theoretical-source  #(theoretical-source  locations)
+   :theoretical-sink    #(theoretical-sink    locations)
+   :theoretical-use     #(theoretical-use     locations)
+   :inaccessible-source #(inaccessible-source locations)
+   :inaccessible-sink   #(inaccessible-sink   locations)
+   :inaccessible-use    #(inaccessible-use    locations)
+   :possible-flow       #(possible-flow       locations flow-concept-name)
+   :possible-source     #(possible-source     locations)
+   :possible-sink       #(possible-sink       locations)
+   :possible-use        #(possible-use        locations)
+   :blocked-flow        #(blocked-flow        locations flow-concept-name)
+   :blocked-source      #(blocked-source      locations flow-concept-name)
+   :blocked-sink        #(blocked-sink        locations flow-concept-name)
+   :blocked-use         #(blocked-use         locations flow-concept-name)
+   :actual-flow         #(actual-flow         locations flow-concept-name)
+   :actual-source       #(actual-source       locations flow-concept-name)
+   :actual-sink         #(actual-sink         locations flow-concept-name)
+   :actual-use          #(actual-use          locations flow-concept-name)})
+
+(defmethod provide-results :matrix-list
+  [_ flow-concept-name locations rows cols]
+  (map (partial coord-map-to-matrix rows cols)
+       (list
+	(theoretical-source  locations)
+	(theoretical-sink    locations)
+	(theoretical-use     locations)
+	(inaccessible-source locations)
+	(inaccessible-sink   locations)
+	(inaccessible-use    locations)
+	(possible-flow       locations flow-concept-name)
+	(possible-source     locations)
+	(possible-sink       locations)
+	(possible-use        locations)
+	(blocked-flow        locations flow-concept-name)
+	(blocked-source      locations flow-concept-name)
+	(blocked-sink        locations flow-concept-name)
+	(blocked-use         locations flow-concept-name)
+	(actual-flow         locations flow-concept-name)
+	(actual-source       locations flow-concept-name)
+	(actual-sink         locations flow-concept-name)
+	(actual-use          locations flow-concept-name))))
+
+(defmethod provide-results :raw-locations
+  [_ _ locations _ _]
+  locations)
+
 (defn span-driver
-  "Takes the source, sink, use, and flow concepts along with
-   observations of their dependent features, calculates the span
-   flows, and returns a map of keywords to closures, which when
-   invoked, return coord-maps representing the flow analysis results."
+  "Takes the source, sink, use, and flow concepts along with the
+   flow-params map and an observation containing the concepts'
+   dependent features, calculates the SPAN flows, and returns the
+   results using one of the following result-types:
+   :closure-map :matrix-list :raw-locations"
+  ([observation source-concept use-concept sink-concept flow-concept flow-params]
+     (span-driver observation source-concept use-concept sink-concept flow-concept flow-params :closure-map))
+  ([observation source-concept use-concept sink-concept flow-concept flow-params result-type]
+     (set-global-params! flow-params)
+     ;;(store-params flow-params)
+     (let [rows              (grid-rows    observation)
+	   cols              (grid-columns observation)
+	   flow-concept-name (.getLocalName (get-observable-class observation))
+	   locations         (simulate-service-flows observation
+						     source-concept
+						     sink-concept
+						     use-concept
+						     flow-concept
+						     flow-concept-name
+						     rows cols)]
+       (provide-results result-type flow-concept-name locations rows cols))))
+
+;; FIXME: enable printing to the thinklab shell
+(defn span-cli-menu
+  "Takes the source, sink, use, and flow concepts along with the
+   flow-params map and an observation containing the concepts'
+   dependent features, calculates the SPAN flows, and presents the
+   results in a simple menu interface."
   [observation source-concept use-concept sink-concept flow-concept flow-params]
   (set-global-params! flow-params)
   ;;(store-params flow-params)
-  (let [rows              (grid-rows    observation)
-	cols              (grid-columns observation)
+  (let [rows              (grid-rows          observation)
+	cols              (grid-columns       observation)
+	extent            (get-spatial-extent observation)
 	flow-concept-name (.getLocalName (get-observable-class observation))
 	locations         (simulate-service-flows observation
 						  source-concept
@@ -162,114 +237,39 @@
 						  use-concept
 						  flow-concept
 						  flow-concept-name
-						  rows cols)]
-    {:theoretical-source  #(theoretical-source  locations)
-     :theoretical-sink    #(theoretical-sink    locations)
-     :theoretical-use     #(theoretical-use     locations)
-     :inaccessible-source #(inaccessible-source locations)
-     :inaccessible-sink   #(inaccessible-sink   locations)
-     :inaccessible-use    #(inaccessible-use    locations)
-     :possible-flow       #(possible-flow       locations flow-concept-name)
-     :possible-source     #(possible-source     locations)
-     :possible-sink       #(possible-sink       locations)
-     :possible-use        #(possible-use        locations)
-     :blocked-flow        #(blocked-flow        locations flow-concept-name)
-     :blocked-source      #(blocked-source      locations flow-concept-name)
-     :blocked-sink        #(blocked-sink        locations flow-concept-name)
-     :blocked-use         #(blocked-use         locations flow-concept-name)
-     :actual-flow         #(actual-flow         locations flow-concept-name)
-     :actual-source       #(actual-source       locations flow-concept-name)
-     :actual-sink         #(actual-sink         locations flow-concept-name)
-     :actual-use          #(actual-use          locations flow-concept-name)}))
-
-(defn span-autopilot
-  "Takes the source, sink, use, and flow concepts along with
-   observations of their dependent features, calculates the span
-   flows, and returns a list of matrices representing the flow
-   analysis results."
-  [observation source-concept use-concept sink-concept flow-concept flow-params]
-  (set-global-params! flow-params)
-  (let [rows              (grid-rows    observation)
-	cols              (grid-columns observation)
-	flow-concept-name (.getLocalName (get-observable-class observation))
-	locations         (simulate-service-flows observation
-						  source-concept
-						  sink-concept
-						  use-concept
-						  flow-concept
-						  flow-concept-name
-						  rows cols)]
-    (doall (map (fn [coord-map] (coord-map-to-matrix rows cols coord-map))
-		(list
-		 (theoretical-source  locations)
-		 (theoretical-sink    locations)
-		 (theoretical-use     locations)
-		 (inaccessible-source locations)
-		 (inaccessible-sink   locations)
-		 (inaccessible-use    locations)
-		 (possible-flow       locations flow-concept-name)
-		 (possible-source     locations)
-		 (possible-sink       locations)
-		 (possible-use        locations)
-		 (blocked-flow        locations flow-concept-name)
-		 (blocked-source      locations flow-concept-name)
-		 (blocked-sink        locations flow-concept-name)
-		 (blocked-use         locations flow-concept-name)
-		 (actual-flow         locations flow-concept-name)
-		 (actual-source       locations flow-concept-name)
-		 (actual-sink         locations flow-concept-name)
-		 (actual-use          locations flow-concept-name))))))
-
-(defn span-interface
-  "Takes the source, sink, use, and flow concepts along with
-   observations of their dependent features, calculates the span
-   flows, and provides a simple menu-based interface to view the
-   results."
-  [observation source-concept use-concept sink-concept flow-concept flow-params]
-  (set-global-params! flow-params)
-  (binding [*out* (OutputStreamWriter. (.getOutputStream (get-session)))
-	    *in*  (PushbackReader. (InputStreamReader. (.getInputStream (get-session))))]
-    (let [rows              (grid-rows          observation)
-	  cols              (grid-columns       observation)
-	  extent            (get-spatial-extent observation)
-	  flow-concept-name (.getLocalName (get-observable-class observation))
-	  locations         (simulate-service-flows observation
-						    source-concept
-						    sink-concept
-						    use-concept
-						    flow-concept
-						    flow-concept-name
-						    rows cols)
-	  menu (array-map
-		"View Theoretical Source"  #(theoretical-source       locations)
-		"View Theoretical Sink"    #(theoretical-sink         locations)
-		"View Theoretical Use"     #(theoretical-use          locations)
-		"View Inaccessible Source" #(inaccessible-source      locations)
-		"View Inaccessible Sink"   #(inaccessible-sink        locations)
-		"View Inaccessible Use"    #(inaccessible-use         locations)
-		"View Possible Flow"       #(possible-flow            locations flow-concept-name)
-		"View Possible Source"     #(possible-source          locations)
-		"View Possible Sink"       #(possible-sink            locations)
-		"View Possible Use"        #(possible-use             locations)
-		"View Blocked Flow"        #(blocked-flow             locations flow-concept-name)
-		"View Blocked Source"      #(blocked-source           locations flow-concept-name)
-		"View Blocked Sink"        #(blocked-sink             locations flow-concept-name)
-		"View Blocked Use"         #(blocked-use              locations flow-concept-name)
-		"View Actual Flow"         #(actual-flow              locations flow-concept-name)
-		"View Actual Source"       #(actual-source            locations flow-concept-name)
-		"View Actual Sink"         #(actual-sink              locations flow-concept-name)
-		"View Actual Use"          #(actual-use               locations flow-concept-name)
-		"View Location Properties" #(view-location-properties (select-location locations rows cols))
-		"View Feature Map"         #(select-map-by-feature    observation
-								      source-concept
-								      sink-concept
-								      use-concept
-								      flow-concept
-								      rows
-								      cols)
-		"Quit"                     nil)
-	  prompts (vec (keys menu))
-	  num-prompts (count prompts)]
+						  rows cols)
+	menu (array-map
+	      "View Theoretical Source"  #(theoretical-source       locations)
+	      "View Theoretical Sink"    #(theoretical-sink         locations)
+	      "View Theoretical Use"     #(theoretical-use          locations)
+	      "View Inaccessible Source" #(inaccessible-source      locations)
+	      "View Inaccessible Sink"   #(inaccessible-sink        locations)
+	      "View Inaccessible Use"    #(inaccessible-use         locations)
+	      "View Possible Flow"       #(possible-flow            locations flow-concept-name)
+	      "View Possible Source"     #(possible-source          locations)
+	      "View Possible Sink"       #(possible-sink            locations)
+	      "View Possible Use"        #(possible-use             locations)
+	      "View Blocked Flow"        #(blocked-flow             locations flow-concept-name)
+	      "View Blocked Source"      #(blocked-source           locations flow-concept-name)
+	      "View Blocked Sink"        #(blocked-sink             locations flow-concept-name)
+	      "View Blocked Use"         #(blocked-use              locations flow-concept-name)
+	      "View Actual Flow"         #(actual-flow              locations flow-concept-name)
+	      "View Actual Source"       #(actual-source            locations flow-concept-name)
+	      "View Actual Sink"         #(actual-sink              locations flow-concept-name)
+	      "View Actual Use"          #(actual-use               locations flow-concept-name)
+	      "View Location Properties" #(view-location-properties (select-location locations rows cols))
+	      "View Feature Map"         #(select-map-by-feature    observation
+								    source-concept
+								    sink-concept
+								    use-concept
+								    flow-concept
+								    rows
+								    cols)
+	      "Quit"                     nil)
+	prompts     (vec (keys menu))
+	num-prompts (count prompts)]
+    (binding [*out* (OutputStreamWriter. (.getOutputStream (get-session)))
+	      *in*  (PushbackReader. (InputStreamReader. (.getInputStream (get-session))))]
       (println "Rows x Cols:" rows "x" cols)
       (println "Source-Concept-Name:" (.getLocalName source-concept))
       (println "Sink-Concept-Name:  " (.getLocalName sink-concept))

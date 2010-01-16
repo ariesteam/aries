@@ -7,7 +7,7 @@
 
 (ns aries.demo
   (:refer-clojure)
-  (:use [span.interface :only (span-interface span-autopilot)]))
+  (:use [span.interface :only (span-cli-menu span-driver)]))
 
 ;(tl/load-bindings 'corescience)
 ;(tl/load-bindings 'geospace)
@@ -78,7 +78,7 @@
 			  flow-data (get-demo-data-for-observable benf-flow
 							study-region
 							max-resolution)]
-	  (span-interface
+	  (span-cli-menu
 	  		 benf-source source-data
 	  		 benf-sink   sink-data
 	  		 benf-use    use-data
@@ -100,7 +100,7 @@
 				use-data     (corescience/find-observation data-obs benf-use) 
 	      sink-data    (corescience/find-observation data-obs benf-sink)
 			  flow-data    (corescience/find-observation data-obs benf-flow)]
-	  (span-interface
+	  (span-cli-menu
 	  		 benf-source source-data
 	  		 benf-sink   sink-data
 	  		 benf-use    use-data
@@ -130,14 +130,14 @@
 							study-region
 							max-resolution)]
 	  (org.integratedmodelling.aries.core.datastructures.demo.FlowObservationBuilder/buildObservation
-	  	(span-autopilot
-	  		 benf-source source-data
-	  		 benf-sink   sink-data
-	  		 benf-use    use-data
-	  		 benf-flow   flow-data
-				 flow-params)
-				source-data
-				use-data
-				sink-data
-				flow-data
-				output-file)))
+	   (span-driver
+	    benf-source source-data
+	    benf-sink   sink-data
+	    benf-use    use-data
+	    benf-flow   flow-data
+	    flow-params :matrix-list)
+	   source-data
+	   use-data
+	   sink-data
+	   flow-data
+	   output-file)))
