@@ -2,17 +2,20 @@ package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.integratedmodelling.aries.core.ARIESNamespace;
+import org.integratedmodelling.aries.core.implementations.datasources.SPANDistributionState;
 import org.integratedmodelling.aries.core.span.SPANProxy;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
+import org.integratedmodelling.corescience.interfaces.IExtent;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.corescience.interfaces.IState;
 import org.integratedmodelling.corescience.interfaces.internal.TransformingObservation;
 import org.integratedmodelling.corescience.literals.GeneralClassifier;
+import org.integratedmodelling.geospace.Geospace;
+import org.integratedmodelling.geospace.extents.GridExtent;
 import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -20,6 +23,7 @@ import org.integratedmodelling.thinklab.exception.ThinklabInternalErrorException
 import org.integratedmodelling.thinklab.exception.ThinklabMalformedSemanticTypeException;
 import org.integratedmodelling.thinklab.exception.ThinklabNoKMException;
 import org.integratedmodelling.thinklab.exception.ThinklabResourceNotFoundException;
+import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.annotations.InstanceImplementation;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
@@ -29,7 +33,6 @@ import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.Polylist;
 
 import clojure.lang.IFn;
-import clojure.lang.LazyCons;
 
 /**
  * Support for running the Clojure SPAN models and making lazy observation proxies to its
@@ -129,8 +132,20 @@ public class SPANTransformer
 			IObservationContext context) throws ThinklabException {
 		
 		/*
+		 * TODO find out rows and cols from context and ensure all extents are
+		 * OK.
+		 */
+		IExtent extent = context.getExtent(Geospace.get().SpaceObservable());
+		
+		if ( extent == null || !(extent instanceof GridExtent) || 
+				!(extent.getTotalGranularity() == context.getMultiplicity()))
+			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
+
+		int rows = ((GridExtent)extent).getYCells();
+		int cols = ((GridExtent)extent).getXCells();
+		
+		/*
 		 * run the proxy, obtain a map of closures 
-		 * 
 		 */
 		Map<?,?> closures = 
 			span.runSPAN(
@@ -148,14 +163,6 @@ public class SPANTransformer
 		ArrayList<Pair<IConcept, IState>> states = 
 			new ArrayList<Pair<IConcept,IState>>();
 		
-// matrix version - add :matrix-list to the span-driver call in the SPAN proxy		
-//		LazyCons matrices = (LazyCons) closures;
-//		
-//		for (Iterator<?> it = matrices.iterator(); it.hasNext(); ) {
-//			Object res = it.next();
-//			System.out.println("result is " + res);
-//		}
-		
 		for (Object k : closures.keySet()) {
 			
 			IConcept observable = defineObservable(k.toString().substring(1));
@@ -164,16 +171,11 @@ public class SPANTransformer
 				
 				Object closure = closures.get(k);
 				IFn clojure = (IFn) closure;
-			
-				try {
-					
-					// let's run it for now, we can make it lazy later
-					Map<?,?> putaMadre = (Map<?, ?>) clojure.invoke();
-					System.out.println("computed " + observable + " -> " + putaMadre);
+				IState state = 
+					new SPANDistributionState(observable, rows, cols, clojure);
 				
-				} catch (Exception e) {
-					throw new ThinklabInternalErrorException(e);
-				}
+				states.add(new Pair<IConcept, IState>(observable, state));
+				
 			} else {
 				System.out.println("No observable defined for " + k + ": skipping");
 			}
@@ -195,7 +197,8 @@ public class SPANTransformer
 		}
 		
 		/*
-		 * add all dependents
+		 * add all dependents - for now these have means and stds in them, not 
+		 * distributions, so a ranking is appropriate.
 		 */
 		for (Pair<IConcept, IState> st : states) {
 			
