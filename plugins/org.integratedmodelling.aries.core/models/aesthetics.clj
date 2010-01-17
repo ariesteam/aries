@@ -128,7 +128,7 @@
   	    'aestheticService:TheoreticalNaturalBeauty
   	    'aestheticService:HomeownersEnjoyment
       	'aestheticService:ViewSink
-      	'aestheticService:ViewFlow
+      	'aestheticService:View
   	    'geophysics:Altitude
   	:source-threshold 50,
    	:sink-threshold   0.5,

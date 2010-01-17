@@ -121,6 +121,25 @@ public class SPANTransformer
 						break;
 					}
 				}
+				if (ret == null) {
+					// this is a bit complicated: scan the children of the first parent
+					// that is in the same concept space
+					IConcept parent = null;
+					for (IConcept ch : source.getParents()) {
+						if (ch.getConceptSpace().equals(source.getConceptSpace())) {
+							parent = ch;
+							break;
+						}
+					}
+					if (parent != null) {
+						for (IConcept ch : parent.getChildren()) {
+							if (ch.is(concept)) {
+								ret = ch;
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 		

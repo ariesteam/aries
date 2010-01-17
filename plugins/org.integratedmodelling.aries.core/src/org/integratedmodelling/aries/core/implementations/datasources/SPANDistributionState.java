@@ -26,6 +26,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 		this.closure  = clojure;
 		this.rows = rows;
 		this.cols = cols;
+
 		setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 		
 		// TODO make it lazy by computing values only when getDataAsDoubles is called
@@ -67,7 +68,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 				 * set mean and std in proper location. If std == 0 it was
 				 * a deterministic source.
 				 */
-				data[(y*rows) + x] = mean;
+				data[(x*cols) + y] = mean;
 				if (Double.compare(std, 0.0) != 0) {
 					// TODO set uncertainty
 				}
