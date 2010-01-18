@@ -15,6 +15,10 @@ import clojure.lang.IFn;
 public class SPANDistributionState extends MemDoubleContextualizedDatasource
 		implements IState {
 
+	// how many times the stdev should encompass the data range before we declare
+	// complete uncertainty.
+	// TODO this should encompass the POTENTIAL data range, not the actual.
+	private static final double STD_UNCERTAINTY_MULTIPLIER = 2.5;
 	private IFn closure = null;
 	private int rows;
 	private int cols;
@@ -35,14 +39,18 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 		try {
 			
 			Map<?,?> map = (Map<?, ?>) closure.invoke();
-			
-			System.out.println("rows " + rows + " - cols " + cols + " tot " + rows*cols);
+
 			/*
 			 * we get a different distribution than the one we originally set in,
 			 * so we store mean and standard deviation for now. Later we can get
 			 * the whole thing and use it for more.
 			 */
 			if (map != null) {
+				
+				double mmax = 0.0; double mmin = 0.0;
+				double smax = 0.0; double smin = 0.0;
+				boolean first = true;
+				double[] uncertainty = null;
 				
 				for (Map.Entry<?,?> e : map.entrySet()) {
 				
@@ -68,11 +76,40 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 					 * set mean and std in proper location. If std == 0 it was
 					 * a deterministic source.
 					 */
+					if (first) {
+						first = false;
+						mmax = mmin = mean;
+					} else {
+						if (mean > mmax) mmax = mean;
+						if (mean < mmin) mmin = mean;
+					}
+					
 					data[(x*cols) + y] = mean;
 					if (Double.compare(std, 0.0) != 0) {
-						// TODO set uncertainty
+						if (uncertainty == null) {
+							uncertainty = new double[this.rows*this.cols];
+							smax = smin = std;
+						} else {
+							if (std > smax) smax = std;
+							if (std < smin) smin = std;
+						}
+						uncertainty[(x*cols) + y] = std;
 					}
 				}
+				
+				/*
+				 * normalize uncertainty and insert it
+				 */
+				if (uncertainty != null) {
+					double range = (mmax - mmin) * STD_UNCERTAINTY_MULTIPLIER; 
+					for (int i = 0; i < uncertainty.length; i++) {
+						uncertainty[i] = uncertainty[i]/range;
+						if (uncertainty[i] > 1.0)
+							uncertainty[i] = 1.0;
+					}
+					setMetadata(Metadata.UNCERTAINTY, uncertainty);
+				}
+				
 			}
 			
 		} catch (Exception e) {
