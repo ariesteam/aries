@@ -85,11 +85,11 @@
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
 (defmethod decay "LineOfSight"
-  [_ weight step] (rv-scalar-divide weight (/ (* step step) 10)))
+  [_ weight step] (rv-scalar-divide weight (/ (* step step) 100)))
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
 (defmethod undecay "LineOfSight"
-  [_ weight step] (rv-scalar-multiply weight (/ (* step step) 10)))
+  [_ weight step] (rv-scalar-multiply weight (/ (* step step) 100)))
 
 (defn- distribute-raycast!
   [flow-conc-name location-map [provider beneficiary]]
