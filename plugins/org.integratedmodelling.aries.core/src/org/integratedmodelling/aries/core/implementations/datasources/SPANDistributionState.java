@@ -11,8 +11,6 @@ import org.integratedmodelling.thinklab.exception.ThinklabRuntimeException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
 import clojure.lang.IFn;
-import clojure.lang.LazilyPersistentVector;
-import clojure.lang.Ratio;
 
 public class SPANDistributionState extends MemDoubleContextualizedDatasource
 		implements IState {
@@ -44,33 +42,36 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 			 * so we store mean and standard deviation for now. Later we can get
 			 * the whole thing and use it for more.
 			 */
-			for (Map.Entry<?,?> e : map.entrySet()) {
+			if (map != null) {
 				
-				// LazilyPersistentVector
-				Iterable<?> location = (Iterable<?>) e.getKey();
-				// PersistentHashMap
-				Map<?,?> distribu = (Map<?, ?>) e.getValue();
+				for (Map.Entry<?,?> e : map.entrySet()) {
 				
-				Iterator<?> it = location.iterator();
-				int x = ((Number)(it.next())).intValue();
-				int y = ((Number)(it.next())).intValue();
+					// LazilyPersistentVector
+					Iterable<?> location = (Iterable<?>) e.getKey();
+					// PersistentHashMap
+					Map<?,?> distribu = (Map<?, ?>) e.getValue();
+				
+					Iterator<?> it = location.iterator();
+					int x = ((Number)(it.next())).intValue();
+					int y = ((Number)(it.next())).intValue();
 	
-				double mean = 0.0; double std = 0.0;
-				for (Entry<?, ?> en : distribu.entrySet()) {
-					double v = ((Number)en.getKey()).doubleValue();
-					double p = ((Number)en.getValue()).doubleValue()/100.0;
-					mean += v*p;
-					std  += v*v*p;
-				}
-				std -= mean*mean; std = Math.sqrt(std);
+					double mean = 0.0; double std = 0.0;
+					for (Entry<?, ?> en : distribu.entrySet()) {
+						double v = ((Number)en.getKey()).doubleValue();
+						double p = ((Number)en.getValue()).doubleValue()/100.0;
+						mean += v*p;
+						std  += v*v*p;
+					}
+					std -= mean*mean; std = Math.sqrt(std);
 				
-				/*
-				 * set mean and std in proper location. If std == 0 it was
-				 * a deterministic source.
-				 */
-				data[(x*cols) + y] = mean;
-				if (Double.compare(std, 0.0) != 0) {
-					// TODO set uncertainty
+					/*
+					 * set mean and std in proper location. If std == 0 it was
+					 * a deterministic source.
+					 */
+					data[(x*cols) + y] = mean;
+					if (Double.compare(std, 0.0) != 0) {
+						// TODO set uncertainty
+					}
 				}
 			}
 			

@@ -99,7 +99,7 @@
   "Whatever is ugly enough to absorb our enjoyment"
   (bayesian 'aestheticService:ViewSink)
   :import "aries.core::ViewSink.xdsl"
-  :keep ('aestheticService:ViewSink)
+  :keep ('aestheticService:TotalVisualBlight)
   :context (commercial-transportation highway))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@
   (span 'aestheticService:LineOfSight 
   	    'aestheticService:TheoreticalNaturalBeauty
   	    'aestheticService:HomeownersEnjoyment
-      	'aestheticService:ViewSink
+      	'aestheticService:TotalVisualBlight
       	'aestheticService:View
   	    'geophysics:Altitude
   	:source-threshold 50,
