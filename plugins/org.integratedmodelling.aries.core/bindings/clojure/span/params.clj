@@ -19,13 +19,15 @@
 
 ;; FIXME do we ever want both absolute and relative, sources, sinks, or uses?
 ;; FIXME *source-type* should exist now since it can also be absolute or relative
-(def *source-threshold* 0.0)
+(def *rv-max-states* 10)
 
-(def *sink-threshold* 0.0)
+(def *source-threshold* 0)
 
-(def *use-threshold* 0.0)
+(def *sink-threshold* 0)
 
-(def *trans-threshold* 0.0)
+(def *use-threshold* 0)
+
+(def *trans-threshold* 0)
 
 (def *sink-type* nil)
 
@@ -33,16 +35,14 @@
 
 (def *benefit-type* nil)
 
-(def *rv-max-states* 10)
-
 (defn set-global-params!
   [flow-params]
-  (alter-var-root #'*source-threshold* (constantly (flow-params :source-threshold)))
-  (alter-var-root #'*sink-threshold*   (constantly (flow-params :sink-threshold)))
-  (alter-var-root #'*use-threshold*    (constantly (flow-params :use-threshold)))
-  (alter-var-root #'*trans-threshold*  (constantly (flow-params :trans-threshold)))
+  (and (flow-params :rv-max-states)    (alter-var-root #'*rv-max-states*    (constantly (flow-params :rv-max-states))))
+  (and (flow-params :source-threshold) (alter-var-root #'*source-threshold* (constantly (flow-params :source-threshold))))
+  (and (flow-params :sink-threshold)   (alter-var-root #'*sink-threshold*   (constantly (flow-params :sink-threshold))))
+  (and (flow-params :use-threshold)    (alter-var-root #'*use-threshold*    (constantly (flow-params :use-threshold))))
+  (and (flow-params :trans-threshold)  (alter-var-root #'*trans-threshold*  (constantly (flow-params :trans-threshold))))
   (alter-var-root #'*sink-type*        (constantly (flow-params :sink-type)))
   (alter-var-root #'*use-type*         (constantly (flow-params :use-type)))
   (alter-var-root #'*benefit-type*     (constantly (flow-params :benefit-type)))
-  (alter-var-root #'*rv-max-states*    (constantly (flow-params :rv-max-states)))
   (assert (and *sink-type* *use-type* *benefit-type*)))

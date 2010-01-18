@@ -80,5 +80,5 @@
 	locations    (vals location-map)]
     (distribute-flow! flow-conc-name location-map rows cols)
     (cache-all-actual-routes! locations flow-conc-name)
-    (println "Locs:        " (count locations))
-    (println "Empty Caches:" (count (filter #(empty? @(:carrier-cache %)) locations)))))
+    (println "Locs:         " (count locations))
+    (println "Filled Caches:" (count (filter #(not (empty? @(:carrier-cache %))) locations)))))
