@@ -18,11 +18,15 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 	// how many times the stdev should encompass the data range before we declare
 	// complete uncertainty.
 	// TODO this should encompass the POTENTIAL data range, not the actual.
-	private static final double STD_UNCERTAINTY_MULTIPLIER = 2.5;
+	private static final double STD_UNCERTAINTY_MULTIPLIER = 1.6;
 	private IFn closure = null;
 	private int rows;
 	private int cols;
 
+	// for serializer only
+	public SPANDistributionState() {
+	}
+	
 	public SPANDistributionState(IConcept type, int rows, int cols, IFn clojure) {
 		super(type, rows*cols);
 		this.closure  = clojure;
@@ -66,7 +70,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 					double mean = 0.0; double std = 0.0;
 					for (Entry<?, ?> en : distribu.entrySet()) {
 						double v = ((Number)en.getKey()).doubleValue();
-						double p = ((Number)en.getValue()).doubleValue()/100.0;
+						double p = ((Number)en.getValue()).doubleValue();
 						mean += v*p;
 						std  += v*v*p;
 					}
