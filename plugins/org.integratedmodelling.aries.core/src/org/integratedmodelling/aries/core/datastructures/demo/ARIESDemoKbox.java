@@ -79,17 +79,19 @@ public class ARIESDemoKbox implements IKBox {
 	ArrayList<Polylist> data = new ArrayList<Polylist>();
 	
 	private void initialize() throws ThinklabException {
+		
 		/*
 		 * find demo data dir; if nowhere, complain
 		 */
 		dataDir = 
-			new File(ARIESCorePlugin.get().getLoadDirectory() + "/demo/kbox");
+			new File(ARIESCorePlugin.get().getLoadDirectory() + "/data");
 		
 		if (!dataDir.exists() || !dataDir.isDirectory() || !dataDir.canRead())
 			throw new ARIESException(
-					"aries: demo data directory " +
+					"aries: data directory " +
 					dataDir +
 					" is not readable");
+		
 		/*
 		 * Read in all XML files found in demo kbox directory
 		 */

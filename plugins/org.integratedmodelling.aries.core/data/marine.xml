@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kbox
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
+	xmlns:geofeatures="http://www.integratedmodelling.org/ks/geospace/geofeatures.owl#"
+	xmlns:geophysics="http://www.integratedmodelling.org/ks/geospace/geophysics.owl#"
+	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
+	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
+	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
+	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
+	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
+	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
+	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
+	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
+	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
+	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
+	xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
+	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
+	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
+
+	<measurement:Ranking id="marine_seagrass">
+		<observation:hasObservable>
+			<coastalProtection:SeagrassDensity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:seagrass</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-43.551</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-175.428</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>61.029</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>178.617</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<observation:Categorization id="marine_coral">
+		<observation:hasObservable>
+			<coastalProtection:CoralBleaching />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:coral</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>bleaching</geospace:hasValueAttribute>
+				<geospace:hasValueDefault>None</geospace:hasValueDefault>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-34.3</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.492</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.983</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
+	<measurement:Ranking id="BathSlope">
+		<observation:hasObservable>
+			<habitat:BathymetricSlope />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>BathSlope</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>21598</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+</kbox>
