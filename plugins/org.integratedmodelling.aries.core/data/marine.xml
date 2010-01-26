@@ -14,6 +14,7 @@
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
 	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
+	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
@@ -85,4 +86,76 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+	<measurement:Ranking id="gdcyc">
+		<observation:hasObservable>
+			<habitat:TropicalStormProbability />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcyc</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="gdcycgdp">
+		<observation:hasObservable>
+			<policytarget:AssetsAtRiskStorm />
+		</observation:hasObservable>
+		<rdfs:comment>Deciles of economic assets at risk due to tropical storms</rdfs:comment>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcycgdp</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3427</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>84.989</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="gdcycmrt">
+		<observation:hasObservable>
+			<policytarget:LivesAtRiskStorm />
+		</observation:hasObservable>
+		<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcycmrt</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
 </kbox>

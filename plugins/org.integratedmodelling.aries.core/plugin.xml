@@ -40,6 +40,10 @@
 		<parameter id="url" value="policy/conservation.owl"/>
 		<parameter id="concept-space" value="conservation" />
 	</extension>
+		<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="policytarget">
+		<parameter id="url" value="policy/policytarget.owl"/>
+		<parameter id="concept-space" value="policytarget" />
+	</extension>
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="eserv">
 		<parameter id="url" value="es/eserv.owl"/>
 		<parameter id="concept-space" value="eserv" />
@@ -52,18 +56,10 @@
 		<parameter id="url" value="es/services/carbonService.owl"/>
 		<parameter id="concept-space" value="carbonService"/>
 	</extension>
-<!--	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="carbonEcology">
-		<parameter id="url" value="es/services/carbonEcology.owl"/>
-		<parameter id="concept-space" value="carbonEcology"/>
-	</extension> -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="floodService">
 		<parameter id="url" value="es/services/floodService.owl"/>
 		<parameter id="concept-space" value="floodService"/>
 	</extension>
-<!--	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="floodEcology">
-		<parameter id="url" value="es/services/floodEcology.owl"/>
-		<parameter id="concept-space" value="floodEcology"/>
-	</extension> -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="soilretentionService">
 		<parameter id="url" value="es/services/soilretentionService.owl"/>
 		<parameter id="concept-space" value="soilretentionService"/>

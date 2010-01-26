@@ -61,6 +61,12 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RivalBenefit -->
+
+    <owl:Class rdf:about="&eserv;RivalBenefit"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BathymetricSlope -->
 
     <owl:Class rdf:about="#BathymetricSlope">
@@ -75,6 +81,14 @@
 
     <owl:Class rdf:about="#CoastalFloodSink">
         <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalStormProtection -->
+
+    <owl:Class rdf:about="#CoastalStormProtection">
+        <rdfs:subClassOf rdf:resource="&eserv;RivalBenefit"/>
     </owl:Class>
     
 
@@ -99,6 +113,8 @@
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CycloneDependentLivesAtRisk -->
 
     <owl:Class rdf:about="#CycloneDependentLivesAtRisk">
+        <rdfs:label
+            >Lives at risk for tropical storms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -107,6 +123,8 @@
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CycloneSensitiveEconomicValue -->
 
     <owl:Class rdf:about="#CycloneSensitiveEconomicValue">
+        <rdfs:label
+            >Assets at risk for tropical storms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -124,6 +142,22 @@
 
     <owl:Class rdf:about="#HighCoastalFloodProtection">
         <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToAssets -->
+
+    <owl:Class rdf:about="#HighRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToLife -->
+
+    <owl:Class rdf:about="#HighRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
@@ -148,6 +182,22 @@
 
     <owl:Class rdf:about="#LowCoastalFloodProtection">
         <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToAssets -->
+
+    <owl:Class rdf:about="#LowRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToLife -->
+
+    <owl:Class rdf:about="#LowRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
@@ -184,6 +234,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToAssets -->
+
+    <owl:Class rdf:about="#ModerateRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToLife -->
+
+    <owl:Class rdf:about="#ModerateRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSeagrassDensity -->
 
     <owl:Class rdf:about="#ModerateSeagrassDensity">
@@ -212,6 +278,22 @@
 
     <owl:Class rdf:about="#NoCoastalFloodProtection">
         <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToAssets -->
+
+    <owl:Class rdf:about="#NoRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToLife -->
+
+    <owl:Class rdf:about="#NoRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
@@ -297,9 +379,36 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighRiskToLife"/>
+            <rdf:Description rdf:about="#LowRiskToLife"/>
+            <rdf:Description rdf:about="#ModerateRiskToLife"/>
+            <rdf:Description rdf:about="#NoRiskToLife"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighSeagrassDensity"/>
+            <rdf:Description rdf:about="#LowSeagrassDensity"/>
+            <rdf:Description rdf:about="#ModerateSeagrassDensity"/>
+            <rdf:Description rdf:about="#NoSeagrassDensity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighBleaching"/>
             <rdf:Description rdf:about="#ModerateBleaching"/>
             <rdf:Description rdf:about="#NoBleaching"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#LowCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#ModerateCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#NoCoastalFloodProtection"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -315,19 +424,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighCoastalFloodProtection"/>
-            <rdf:Description rdf:about="#LowCoastalFloodProtection"/>
-            <rdf:Description rdf:about="#ModerateCoastalFloodProtection"/>
-            <rdf:Description rdf:about="#NoCoastalFloodProtection"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSeagrassDensity"/>
-            <rdf:Description rdf:about="#LowSeagrassDensity"/>
-            <rdf:Description rdf:about="#ModerateSeagrassDensity"/>
-            <rdf:Description rdf:about="#NoSeagrassDensity"/>
+            <rdf:Description rdf:about="#HighRiskToAssets"/>
+            <rdf:Description rdf:about="#LowRiskToAssets"/>
+            <rdf:Description rdf:about="#ModerateRiskToAssets"/>
+            <rdf:Description rdf:about="#NoRiskToAssets"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

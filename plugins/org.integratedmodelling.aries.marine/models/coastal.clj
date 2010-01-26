@@ -8,6 +8,10 @@
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
+;; --------------------------------------------------------------------------------------
+;; sink (coastal protection) model
+;; --------------------------------------------------------------------------------------
+
 ;; TODO almost all coral polygons in existing data do not report bleaching; I 
 ;; don't know what text should be in the categories to define other states, so
 ;; only HighBleaching is reported here if the field isn't empty.
@@ -42,3 +46,38 @@
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
 	 	 	:context  (bleaching seagrass slope))
+
+;; --------------------------------------------------------------------------------------
+;; use models
+;; --------------------------------------------------------------------------------------
+
+(defmodel risk-to-life 'coastalProtection:CycloneDependentLivesAtRisk
+	(classification (ranking 'policytarget:LivesAtRiskStorm)
+		[8 :>]   'coastalProtection:HighRiskToLife
+		[5 8]    'coastalProtection:ModerateRiskToLife
+		[1 5]    'coastalProtection:LowRiskToLife
+		[:< 1]   'coastalProtection:NoRiskToLife))
+
+(defmodel risk-to-assets 'coastalProtection:CycloneSensitiveEconomicValue
+	(classification (ranking 'policytarget:AssetsAtRiskStorm)
+		[8 :>]   'coastalProtection:HighRiskToAssets
+		[5 8]    'coastalProtection:ModerateRiskToAssets
+		[1 5]    'coastalProtection:LowRiskToAssets
+		[:< 1]   'coastalProtection:NoRiskToAssets))
+		
+;; --------------------------------------------------------------------------------------
+;; source models
+;; --------------------------------------------------------------------------------------
+
+(defmodel storm-probability 'coastalProtection:TropicalStormProbability
+	(ranking 'habitat:TropicalStormProbability))
+
+;; --------------------------------------------------------------------------------------
+;; all together now
+;; --------------------------------------------------------------------------------------
+
+(defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
+	(identification 'coastalProtection:CoastalStormProtection)
+		:context (coastal-flood-sink risk-to-life risk-to-assets storm-probability))
+
+	 	 	
