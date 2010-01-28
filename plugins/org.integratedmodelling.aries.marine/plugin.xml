@@ -14,7 +14,6 @@
 		<library id="core" path="classes/" type="code">
 			<export prefix="*"/>
 		</library>
-		
 		<library type="resources" path="ontologies/" id="ontologies" />
 		<library type="resources" path="models/" id="models" /> 
 		<library type="resources" path="data/" id="data" />
@@ -27,9 +26,15 @@
 		<parameter id="concept-space" value="coastalProtection"/>
 	</extension>
 	
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="fisheries">
+		<parameter id="url" value="fisheries.owl"/>
+		<parameter id="concept-space" value="fisheries"/>
+	</extension>
+	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
 		<parameter id="language" value="clojure"/>
 		<parameter id="classpath" value="bindings/clojure/"/>
 		<parameter id="resource" value="coastal.clj" />
+		<parameter id="resource" value="fisheries.clj" />
 	</extension> 
 </plugin>

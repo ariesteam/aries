@@ -16,9 +16,9 @@
 			<probabilities>0.725 0.25 0.025</probabilities>
 		</cpt>
 		<cpt id="DistanceToCoast">
-			<state id="VeryCoastalProximate" />
-			<state id="SomewhatCoastalProximate" />
-			<state id="NotCoastalProximate" />
+			<state id="HighCoastalProximity" />
+			<state id="ModerateCoastalProximity" />
+			<state id="LowCoastalProximity" />
 			<probabilities>0.01 0.02 0.97</probabilities>
 		</cpt>
 		<cpt id="SubsistenceUse">
@@ -31,21 +31,21 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network4" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network4" faultnameformat="nodestate">
 			<node id="PopulationDensity">
 				<name>PopulationDensity</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>634 306 762 340</position>
-				<barchart active="true" width="128" height="108" />
+				<position>695 303 823 337</position>
+				<barchart active="true" width="226" height="108" />
 			</node>
 			<node id="Poverty">
 				<name>Poverty</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>497 313 556 340</position>
+				<position>526 289 585 316</position>
 				<barchart active="true" width="128" height="72" />
 			</node>
 			<node id="DistanceToCoast">
@@ -53,16 +53,16 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>284 295 377 353</position>
-				<barchart active="true" width="128" height="64" />
+				<position>281 274 374 332</position>
+				<barchart active="true" width="251" height="72" />
 			</node>
 			<node id="SubsistenceUse">
 				<name>SubsistenceUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>455 135 594 171</position>
-				<barchart active="true" width="128" height="90" />
+				<position>477 136 616 172</position>
+				<barchart active="true" width="247" height="90" />
 			</node>
 			<textbox>
 				<caption>GARY: Should coastal distant folks all be NoSubsistenceUse?  What about the trade issue -&gt; we could eventually represent local trade networks if we knew with some confidence that local trade is going on.</caption>

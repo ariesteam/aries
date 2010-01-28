@@ -8,6 +8,7 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY policytarget "http://www.integratedmodelling.org/ks/policy/policytarget.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
 ]>
 
 
@@ -15,11 +16,14 @@
      xml:base="http://www.integratedmodelling.org/ks/policy/policytarget.owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
-    <owl:Ontology rdf:about=""/>
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl"/>
+    </owl:Ontology>
     
 
 
@@ -34,6 +38,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#AgricultureRelatedTarget -->
+
+    <owl:Class rdf:about="#AgricultureRelatedTarget">
+        <rdfs:subClassOf rdf:resource="#EnvironmentRelatedTarget"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#AssetsAtRiskStorm -->
 
     <owl:Class rdf:about="#AssetsAtRiskStorm">
@@ -42,10 +54,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#EconomyRelatedTarget -->
+
+    <owl:Class rdf:about="#EconomyRelatedTarget">
+        <rdfs:subClassOf rdf:resource="#PolicyTarget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#EnvironmentRelatedTarget -->
+
+    <owl:Class rdf:about="#EnvironmentRelatedTarget">
+        <rdfs:subClassOf rdf:resource="#PolicyTarget"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#LivesAtRisk -->
 
     <owl:Class rdf:about="#LivesAtRisk">
-        <rdfs:subClassOf rdf:resource="#PolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="#SocietyRelatedTarget"/>
     </owl:Class>
     
 
@@ -58,6 +86,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#NitrogenFromFertilizerAndManure -->
+
+    <owl:Class rdf:about="#NitrogenFromFertilizerAndManure">
+        <rdfs:subClassOf rdf:resource="#AgricultureRelatedTarget"/>
+        <rdfs:subClassOf rdf:resource="&representation;Weight"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#PolicyTarget -->
 
     <owl:Class rdf:about="#PolicyTarget">
@@ -66,11 +103,49 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#PopulationDensity -->
+
+    <owl:Class rdf:about="#PopulationDensity">
+        <rdfs:subClassOf rdf:resource="#SocietyRelatedTarget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#Poverty -->
+
+    <owl:Class rdf:about="#Poverty">
+        <rdfs:subClassOf rdf:resource="#SocietyRelatedTarget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#PovertyPercentage -->
+
+    <owl:Class rdf:about="#PovertyPercentage">
+        <rdfs:subClassOf rdf:resource="#Poverty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#SocietyRelatedTarget -->
+
+    <owl:Class rdf:about="#SocietyRelatedTarget">
+        <rdfs:subClassOf rdf:resource="#PolicyTarget"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/policy/policytarget.owl#ValuableAsset -->
 
     <owl:Class rdf:about="#ValuableAsset">
-        <rdfs:subClassOf rdf:resource="#PolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="#EconomyRelatedTarget"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/science/representation.owl#Weight -->
+
+    <owl:Class rdf:about="&representation;Weight"/>
     
 
 
