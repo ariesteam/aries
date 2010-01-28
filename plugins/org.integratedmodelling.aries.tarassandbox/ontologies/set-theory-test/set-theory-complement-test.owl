@@ -1,0 +1,672 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY set-theory "http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#" >
+    <!ENTITY set-theory-test "http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-complement-test.owl#"
+     xml:base="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-complement-test.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:set-theory-test="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:set-theory="http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&set-theory;abstract"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#XSetTheoryRelation -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;XSetTheoryRelation">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <set-theory:abstract></set-theory:abstract>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#doesXIntersect -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;doesXIntersect">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasXMember"/>
+            <rdf:Description rdf:about="&set-theory;isXMemberOf"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMemberXSubset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasMemberXSubset">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;isMemberXSubsetOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+            <rdf:Description rdf:about="&set-theory;hasXSubset"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasSetOfMemberXSubsets"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMutualXSubset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasMutualXSubset">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;isMutualXSubsetOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMutualXSuperset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasMutualXSuperset">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasNotXMember -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasNotXMember">
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;isNotXMemberOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;notXIntersect"/>
+            <rdf:Description rdf:about="&set-theory;hasXMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXSubsetOf"/>
+            <rdf:Description rdf:about="&set-theory;hasNotXMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasSetOfAllMemberXSubsets -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasSetOfAllMemberXSubsets">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;hasSetOfMemberXSubsets"/>
+        <owl:inverseOf rdf:resource="&set-theory;isSetOfAllMemberXSubsetsOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasSetOfAllXSubsets -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasSetOfAllXSubsets">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;hasSetOfXSubsets"/>
+        <owl:inverseOf rdf:resource="&set-theory;isSetOfAllXSubsetsOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasSetOfMemberXSubsets -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasSetOfMemberXSubsets">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasSetOfXSubsets -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasSetOfXSubsets">
+        <rdfs:range rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXComplement -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXComplement">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;notXIntersect"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXIntersection -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXIntersection">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;hasMutualXSubset"/>
+        <owl:inverseOf rdf:resource="&set-theory;isXIntersectionOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXMember -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXMember">
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;isXMemberOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasXSubset"/>
+            <rdf:Description rdf:about="&set-theory;hasXMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetMember -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXSetMember">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasXSetSubset"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetSubset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXSetSubset">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:range rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;isXSetSubsetOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isSetOfAllXSubsetsOf"/>
+            <rdf:Description rdf:about="&set-theory;hasSetOfXSubsets"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isSetOfAllMemberXSubsetsOf"/>
+            <rdf:Description rdf:about="&set-theory;hasSetOfMemberXSubsets"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetSuperset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXSetSuperset">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:equivalentProperty rdf:resource="&set-theory;isXSetSubsetOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSubset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXSubset">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasXComplement"/>
+            <rdf:Description rdf:about="&set-theory;notXIntersect"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;hasSetOfXSubsets"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isMutualXSupersetOf"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXIntersectionOf"/>
+            <rdf:Description rdf:about="&set-theory;hasMutualXSubset"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXUnionOf"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetSubset"/>
+            <rdf:Description rdf:about="&set-theory;hasXUnion"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSuperset -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXSuperset">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:equivalentProperty rdf:resource="&set-theory;isXSubsetOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXUnion -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXUnion">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;hasMutualXSuperset"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isMemberXSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isMemberXSubsetOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isMutualXSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isMutualXSubsetOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isMutualXSupersetOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isMutualXSupersetOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasMutualXSuperset"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isNotXMemberOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isNotXMemberOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isSetOfAllMemberXSubsetsOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isSetOfAllMemberXSubsetsOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;isSetOfMemberXSubsetsOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isSetOfAllXSubsetsOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isSetOfAllXSubsetsOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;isSetOfXSubsetsOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isSetOfMemberXSubsetsOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isSetOfMemberXSubsetsOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasSetOfMemberXSubsets"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isSetOfXComplementsOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isSetOfXComplementsOf">
+        <rdfs:domain rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isSetOfXSubsetsOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isSetOfXSubsetsOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasSetOfXSubsets"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXIntersectionOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXIntersectionOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;isMutualXSubsetOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXMemberOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXMemberOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXSetMemberOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXSetMemberOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasXSetMember"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXSetSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXSetSubsetOf">
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXSubsetOf">
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasXSubset"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXUnionOf"/>
+            <rdf:Description rdf:about="&set-theory;hasMutualXSuperset"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXIntersectionOf"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetSubset"/>
+            <rdf:Description rdf:about="&set-theory;hasXIntersection"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isMutualXSubsetOf"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Axiom"/>
+        <rdfs:comment
+            >is this axiom redundant?</rdfs:comment>
+        <owl:subject rdf:resource="&set-theory;isXSubsetOf"/>
+        <owl:predicate rdf:resource="&owl;propertyChainAxiom"/>
+        <owl:object rdf:parseType="Collection">
+            <rdf:Description rdf:about="&set-theory;isXIntersectionOf"/>
+            <rdf:Description rdf:about="&set-theory;hasXSetSubset"/>
+            <rdf:Description rdf:about="&set-theory;hasXIntersection"/>
+        </owl:object>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXUnionOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXUnionOf">
+        <rdfs:range rdf:resource="&set-theory;SetOfXSets"/>
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <owl:inverseOf rdf:resource="&set-theory;hasXUnion"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;isMutualXSupersetOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#notXIntersect -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;notXIntersect">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&set-theory;XSet"/>
+        <rdfs:domain rdf:resource="&set-theory;XSet"/>
+        <rdfs:subPropertyOf rdf:resource="&set-theory;XSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#CompletelyPClass -->
+
+    <owl:Class rdf:about="&set-theory-test;CompletelyPClass">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&set-theory-test;PClass"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&set-theory;isNotXMemberOf"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="&set-theory-test;PSet"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#NotPClass -->
+
+    <owl:Class rdf:about="&set-theory-test;NotPClass">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&set-theory-test;NotPSet"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XSetTheoryClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#PClass -->
+
+    <owl:Class rdf:about="&set-theory-test;PClass">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&set-theory-test;PSet"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XSetTheoryClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#SetOfXSets -->
+
+    <owl:Class rdf:about="&set-theory;SetOfXSets"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#XSet -->
+
+    <owl:Class rdf:about="&set-theory;XSet"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#XSetTheoryClass -->
+
+    <owl:Class rdf:about="&set-theory;XSetTheoryClass"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#CompletelyNotPThing -->
+
+    <set-theory-test:NotPClass rdf:about="&set-theory-test;CompletelyNotPThing">
+        <rdf:type rdf:resource="&owl;Thing"/>
+    </set-theory-test:NotPClass>
+    <owl:NegativePropertyAssertion>
+        <owl:sourceIndividual rdf:resource="&set-theory-test;CompletelyNotPThing"/>
+        <owl:targetIndividual rdf:resource="&set-theory-test;NotPSet"/>
+        <owl:assertionProperty rdf:resource="&set-theory;isNotXMemberOf"/>
+    </owl:NegativePropertyAssertion>
+    <owl:NegativePropertyAssertion>
+        <owl:sourceIndividual rdf:resource="&set-theory-test;CompletelyNotPThing"/>
+        <owl:targetIndividual rdf:resource="&set-theory-test;PSet"/>
+        <owl:assertionProperty rdf:resource="&set-theory;isXMemberOf"/>
+    </owl:NegativePropertyAssertion>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#CompletelyPSet -->
+
+    <set-theory:XSet rdf:about="&set-theory-test;CompletelyPSet">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <set-theory:hasXMember rdf:resource="&set-theory;CompletelyPThing"/>
+    </set-theory:XSet>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#MoreOrLessPThing -->
+
+    <owl:Thing rdf:about="&set-theory-test;MoreOrLessPThing">
+        <set-theory:isXMemberOf rdf:resource="&set-theory-test;NotPSet"/>
+        <set-theory:isXMemberOf rdf:resource="&set-theory-test;PSet"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#NotCompletelyPSet -->
+
+    <owl:Thing rdf:about="&set-theory-test;NotCompletelyPSet">
+        <set-theory:hasXComplement rdf:resource="&set-theory-test;CompletelyPSet"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#NotPSet -->
+
+    <owl:Thing rdf:about="&set-theory-test;NotPSet">
+        <set-theory:hasXComplement rdf:resource="&set-theory-test;PSet"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test.owl#PSet -->
+
+    <owl:Thing rdf:about="&set-theory-test;PSet"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#CompletelyPThing -->
+
+    <owl:Thing rdf:about="&set-theory;CompletelyPThing">
+        <rdf:type rdf:resource="&set-theory-test;PClass"/>
+        <set-theory:isXMemberOf rdf:resource="&set-theory-test;PSet"/>
+    </owl:Thing>
+    <owl:NegativePropertyAssertion>
+        <owl:targetIndividual rdf:resource="&set-theory-test;PSet"/>
+        <owl:sourceIndividual rdf:resource="&set-theory;CompletelyPThing"/>
+        <owl:assertionProperty rdf:resource="&set-theory;isNotXMemberOf"/>
+    </owl:NegativePropertyAssertion>
+    <owl:NegativePropertyAssertion>
+        <owl:targetIndividual rdf:resource="&set-theory-test;NotPSet"/>
+        <owl:sourceIndividual rdf:resource="&set-theory;CompletelyPThing"/>
+        <owl:assertionProperty rdf:resource="&set-theory;isXMemberOf"/>
+    </owl:NegativePropertyAssertion>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#emptyXSet -->
+
+    <owl:Thing rdf:about="&set-theory;emptyXSet">
+        <rdf:type rdf:resource="&set-theory;XSet"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#topXSet -->
+
+    <owl:Thing rdf:about="&set-theory;topXSet"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
