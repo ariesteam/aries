@@ -91,6 +91,20 @@ hasXComplement</rdfs:seeAlso>
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#equalsXSet -->
+
+    <owl:ObjectProperty rdf:about="#equalsXSet">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSubset"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSuperset"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMutualXSubset -->
 
     <owl:ObjectProperty rdf:about="#hasMutualXSubset">
@@ -279,12 +293,12 @@ hasXComplement</rdfs:seeAlso>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#hasXComplement"/>
-            <rdf:Description rdf:about="#doesNotXIntersect"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="#isMutualXSupersetOf"/>
             <rdf:Description rdf:about="#hasXSetMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXComplement"/>
+            <rdf:Description rdf:about="#doesNotXIntersect"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="#isXUnionOf"/>
@@ -439,17 +453,17 @@ hasXComplement</rdfs:seeAlso>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <owl:inverseOf rdf:resource="#hasXSubset"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXUnionOf"/>
-            <rdf:Description rdf:about="#hasMutualXSuperset"/>
+            <rdf:Description rdf:about="#isXIntersectionOf"/>
+            <rdf:Description rdf:about="#hasXSetSubset"/>
+            <rdf:Description rdf:about="#hasXIntersection"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="#isMutualXSubsetOf"/>
             <rdf:Description rdf:about="#hasXSetMember"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXIntersectionOf"/>
-            <rdf:Description rdf:about="#hasXSetSubset"/>
-            <rdf:Description rdf:about="#hasXIntersection"/>
+            <rdf:Description rdf:about="#isXUnionOf"/>
+            <rdf:Description rdf:about="#hasMutualXSuperset"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     <rdf:Description>
@@ -598,14 +612,14 @@ hasXComplement</rdfs:seeAlso>
         <rdfs:subClassOf rdf:resource="#XSetTheoryClass"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXUnion"/>
+                <owl:onProperty rdf:resource="#hasXIntersection"/>
                 <owl:onClass rdf:resource="#XSet"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXIntersection"/>
+                <owl:onProperty rdf:resource="#hasXUnion"/>
                 <owl:onClass rdf:resource="#XSet"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
@@ -619,6 +633,14 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;Axiom"/>
         <rdfs:comment xml:lang="en"
+            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
+        <owl:subject rdf:resource="#SetOfXSets"/>
+        <owl:object rdf:resource="#XSetTheoryClass"/>
+        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Axiom"/>
+        <rdfs:comment xml:lang="en"
             >Further restrictions may be placed on sets, or sets of sets, but the resulting concepts must be closed under intersection.</rdfs:comment>
         <owl:subject rdf:resource="#SetOfXSets"/>
         <owl:predicate rdf:resource="&rdfs;subClassOf"/>
@@ -629,14 +651,6 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </owl:object>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment xml:lang="en"
-            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
-        <owl:subject rdf:resource="#SetOfXSets"/>
-        <owl:object rdf:resource="#XSetTheoryClass"/>
-        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;Axiom"/>
@@ -669,11 +683,11 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
         <rdfs:subClassOf rdf:resource="#XSetTheoryClass"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXSuperset"/>
+                <owl:onProperty rdf:resource="#hasXSubset"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="#TOP-XSET"/>
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -688,11 +702,11 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXSubset"/>
+                <owl:onProperty rdf:resource="#hasXSuperset"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                            <rdf:Description rdf:about="#TOP-XSET"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -762,6 +776,14 @@ A pair of membership functions determine the set consituents and those of its co
     <rdf:Description>
         <rdf:type rdf:resource="&owl;Axiom"/>
         <rdfs:comment xml:lang="en"
+            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
+        <owl:object rdf:resource="#XSetTheoryClass"/>
+        <owl:subject rdf:resource="#XThing"/>
+        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Axiom"/>
+        <rdfs:comment xml:lang="en"
             >In this set theory, there is a largest set, which contains the domain of discourse and whose complement is the empty set.</rdfs:comment>
         <owl:subject rdf:resource="#XThing"/>
         <owl:predicate rdf:resource="&owl;equivalentClass"/>
@@ -795,14 +817,6 @@ A pair of membership functions determine the set consituents and those of its co
                 </owl:intersectionOf>
             </owl:Class>
         </owl:object>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment xml:lang="en"
-            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
-        <owl:object rdf:resource="#XSetTheoryClass"/>
-        <owl:subject rdf:resource="#XThing"/>
-        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
     </rdf:Description>
     
 
