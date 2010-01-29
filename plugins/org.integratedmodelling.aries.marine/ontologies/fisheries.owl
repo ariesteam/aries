@@ -548,6 +548,7 @@
 
     <owl:Class rdf:about="#SubsistenceUse">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="#SubsistenceFishing"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -610,50 +611,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighCoastalProximity"/>
-            <rdf:Description rdf:about="#LowCoastalProximity"/>
-            <rdf:Description rdf:about="#ModerateCoastalProximity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBleaching"/>
-            <rdf:Description rdf:about="#ModerateBleaching"/>
-            <rdf:Description rdf:about="#NoBleaching"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighPopulationDensity"/>
-            <rdf:Description rdf:about="#LowPopulationDensity"/>
-            <rdf:Description rdf:about="#ModeratePopulationDensity"/>
-            <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
-            <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityEstuary"/>
-            <rdf:Description rdf:about="#LowQualityEstuary"/>
-            <rdf:Description rdf:about="#ModerateQualityEstuary"/>
-            <rdf:Description rdf:about="#NoQualityEstuary"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
-            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
-            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
-            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighReefArea"/>
             <rdf:Description rdf:about="#LowReefArea"/>
             <rdf:Description rdf:about="#ModerateReefArea"/>
@@ -671,10 +628,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
-            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
-            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
-            <rdf:Description rdf:about="#NoQualityAHHabitat"/>
+            <rdf:Description rdf:about="#HighQualityEstuary"/>
+            <rdf:Description rdf:about="#LowQualityEstuary"/>
+            <rdf:Description rdf:about="#ModerateQualityEstuary"/>
+            <rdf:Description rdf:about="#NoQualityEstuary"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -689,10 +646,54 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighBleaching"/>
+            <rdf:Description rdf:about="#ModerateBleaching"/>
+            <rdf:Description rdf:about="#NoBleaching"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighSubsistenceUse"/>
             <rdf:Description rdf:about="#LowSubsistenceUse"/>
             <rdf:Description rdf:about="#ModerateSubsistenceUse"/>
             <rdf:Description rdf:about="#NoSubsistenceUse"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
+            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
+            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
+            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighCoastalProximity"/>
+            <rdf:Description rdf:about="#LowCoastalProximity"/>
+            <rdf:Description rdf:about="#ModerateCoastalProximity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighPopulationDensity"/>
+            <rdf:Description rdf:about="#LowPopulationDensity"/>
+            <rdf:Description rdf:about="#ModeratePopulationDensity"/>
+            <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
+            <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
+            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
+            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
+            <rdf:Description rdf:about="#NoQualityAHHabitat"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

@@ -17,7 +17,7 @@
 			<state id="HighMangroveWidth" />
 			<state id="ModerateMangroveWidth" />
 			<state id="LowMangroveWidth" />
-			<state id="NoMangroves" />
+			<state id="NoMangroveWidth" />
 			<probabilities>0.02 0.02 0.04 0.92</probabilities>
 		</cpt>
 		<cpt id="MangroveProtection">
@@ -49,7 +49,7 @@
 			<parents>SeagrassSeasonality SeagrassDensity</parents>
 			<probabilities>0.8 0.2 0 0 0.6 0.3 0.1 0 0.1 0.45 0.45 0 0 0 0 1 0.15 0.4 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 0 1 0 0.05 0.25 0.7 0 0 0.15 0.85 0 0 0.05 0.95 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="CoralHealth">
+		<cpt id="CoralBleaching">
 			<state id="NoBleaching" />
 			<state id="ModerateBleaching" />
 			<state id="HighBleaching" />
@@ -60,7 +60,7 @@
 			<state id="ModerateReefProtection" />
 			<state id="LowReefProtection" />
 			<state id="NoReefProtection" />
-			<parents>CoralHealth</parents>
+			<parents>CoralBleaching</parents>
 			<probabilities>0.6 0.2 0.2 0 0.2 0.4 0.4 0 0 0.2 0.4 0.4</probabilities>
 		</cpt>
 		<cpt id="EcosystemProtection">
@@ -185,8 +185,8 @@
 				<position>904 315 980 344</position>
 				<barchart active="true" width="195" height="144" />
 			</node>
-			<node id="CoralHealth">
-				<name>CoralHealth</name>
+			<node id="CoralBleaching">
+				<name>CoralBleaching</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -216,8 +216,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>32 449 129 485</position>
-				<barchart active="true" width="128" height="90" />
+				<position>36 449 133 485</position>
+				<barchart active="true" width="137" height="90" />
 			</node>
 			<node id="SeagrassSeasonality">
 				<name>SeagrassSeasonality</name>

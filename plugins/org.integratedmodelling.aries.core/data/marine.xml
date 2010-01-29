@@ -21,6 +21,32 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
+	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the lenght, not the width -->
+	<measurement:Ranking id="marine_mangroves">
+		<observation:hasObservable>
+			<coastalProtection:MangroveWidth />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:mangroves</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>shape_len</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-38.909</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-175.337</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.35</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.903</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+
 	<measurement:Ranking id="marine_seagrass">
 		<observation:hasObservable>
 			<coastalProtection:SeagrassDensity />

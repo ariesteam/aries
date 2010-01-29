@@ -12,6 +12,18 @@
 ;; sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------
 
+;; FIXME the data are not really about mangrove width;
+;; FIXME this must be a measurement and the table below is apparently for degrees
+;; FIXME the boundaries are taken from Ken's table for a Laborde 1927 projection,and
+;; multiplied by 10 to give it diversity - not sure it's meant to be degrees as this one
+;; is. The range for mangroves in mg is 0.06-1.47
+(defmodel mangrove-width 'coastalProtection:MangroveWidth
+	(classification (ranking 'coastalProtection:MangroveWidth)
+		[0.177 :>]     'coastalProtection:HighMangroveWidth
+		[0.085 0.177] 'coastalProtection:ModerateMangroveWidth
+		[:< 0.085]        'coastalProtection:LowMangroveWidth
+		nil             'coastalProtection:NoMangroveWidth))
+
 ;; TODO almost all coral polygons in existing data do not report bleaching; I 
 ;; don't know what text should be in the categories to define other states, so
 ;; only HighBleaching is reported here if the field isn't empty.
@@ -45,7 +57,7 @@
 	  (bayesian 'coastalProtection:CoastalFloodSink)
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
-	 	 	:context  (bleaching seagrass slope))
+	 	 	:context  (bleaching seagrass slope mangrove-width))
 
 ;; --------------------------------------------------------------------------------------
 ;; use models
