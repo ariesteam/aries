@@ -45,6 +45,7 @@ test  - runs some tests
 	<target name="-build-plugins">
 		<mkdir dir="${build.home}/plugins" />
 		<ant dir="plugins/org.integratedmodelling.aries.core" target="${target}" />
+		<ant dir="plugins/org.integratedmodelling.aries.marine" target="${target}" />
 <!--		<ant dir="plugins/org.integratedmodelling.aries.valuation" target="${target}" />
 		<ant dir="plugins/org.integratedmodelling.aries.webapp" target="${target}" /> -->
 	</target>
