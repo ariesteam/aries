@@ -9,7 +9,7 @@ import java.net.URL;
 import org.integratedmodelling.aries.valuation.ARIESValuationPlugin;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.utils.Escape;
-import org.integratedmodelling.utils.XMLDocument;
+import org.integratedmodelling.utils.xml.XMLDocument;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
