@@ -61,20 +61,21 @@
 	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
 	  	:keep     ('floodService:Runoff)
 	 	 	:context  (land-use soil-group precipitation))
-
-;; Flood source probability, ad hoc method
-(defmodel source 'floodService:FloodSource
-	  (bayesian 'floodService:FloodSource
-			;; model for the main observable
-			;; TODO this should classify a measurement of runoff, not just the concept
-	  	(classification 'floodService:FloodSourceValue
+	 	 	
+(defmodel flood-source-value 'floodService:FloodSourceValue
+	(classification 'floodService:FloodSourceValue
 	  		[:< 200]    'floodService:VeryLowFloodSource
 	  		[200 600]   'floodService:LowFloodSource
 	  		[600 1200]  'floodService:ModerateFloodSource
 	  		[1200 2400] 'floodService:HighFloodSource
 	  		[2400 :>]   'floodService:VeryHighFloodSource))
+
+;; Flood source probability, ad hoc method
+(defmodel source 'floodService:FloodSource
+	  (bayesian 'floodService:FloodSource)
 	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
-	 	 	:context  (precipitation monthly-temperature snow-presence))
+	 	 	:context  (precipitation monthly-temperature snow-presence)
+	 	 	:observed (flood-source-value))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model

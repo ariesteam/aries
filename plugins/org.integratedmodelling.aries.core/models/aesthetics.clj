@@ -27,19 +27,22 @@
 		  :otherwise   'aestheticService:NoMountain ; will catch artifacts too
 		  ))
 
-;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticEnjoymentProvision
-  "This one will harmonize the context, then retrieve and run the BN with the given
-   evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision
-  	(classification 'aestheticService:TheoreticalNaturalBeauty
+(defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
+	(classification 'aestheticService:TheoreticalNaturalBeauty
   		[0 25]   'aestheticService:NoNaturalBeauty 
   		[25 50]  'aestheticService:LowNaturalBeauty 
   		[50 75]  'aestheticService:ModerateNaturalBeauty 
   		[75 100] 'aestheticService:HighNaturalBeauty))
+
+;; source bayesian model	    		 
+(defmodel source 'aestheticService:AestheticEnjoymentProvision
+  "This one will harmonize the context, then retrieve and run the BN with the given
+   evidence, and produce a new observation with distributions for the requested nodes."
+  (bayesian 'aestheticService:AestheticEnjoymentProvision)
   :import "aries.core::ViewSource.xdsl"
   :keep ('aestheticService:TheoreticalNaturalBeauty)
-  :context (mountain lake ocean))
+  :context (mountain lake ocean)
+  :observed (theoretical-beauty))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model

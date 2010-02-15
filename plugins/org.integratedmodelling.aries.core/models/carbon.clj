@@ -2,6 +2,36 @@
 	(:refer-clojure)
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
 
+;; output and training
+(defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
+	(classification 'carbonService:VegetationAndSoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighStorage
+	  				[9 12]    'carbonService:HighStorage
+	  				[6 9]     'carbonService:ModerateStorage
+	  				[3 6]     'carbonService:LowStorage
+	  				[0.01 3]  'carbonService:VeryLowStorage
+	  				[:< 0.01] 'carbonService:NoStorage))
+
+;; output and training
+(defmodel veg-storage 'carbonService:VegetationCarbonStorage
+	(classification 'carbonService:VegetationCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighVegetationStorage
+	  				[9 12]    'carbonService:HighVegetationStorage
+	  				[6 9]     'carbonService:ModerateVegetationStorage
+	  				[3 6]     'carbonService:LowVegetationStorage
+	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
+	  				[:< 0.01] 'carbonService:NoVegetationStorage)) 				
+
+;; output and training	  				
+(defmodel soil-storage 'carbonService:SoilCarbonStorage
+		(classification 'carbonService:SoilCarbonStorage
+	  				[12 :>]   'carbonService:VeryHighSoilStorage
+	  				[9 12]    'carbonService:HighSoilStorage
+	  				[6 9]     'carbonService:ModerateSoilStorage
+	  				[3 6]     'carbonService:LowSoilStorage
+	  				[0.01 3]  'carbonService:VeryLowSoilStorage
+	  				[:< 0.01] 'carbonService:NoSoilStorage))	  			
+	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
@@ -82,37 +112,16 @@
 			
 ;; Bayesian source model		
 (defmodel source 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue
-	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighStorage
-	  				[9 12]    'carbonService:HighStorage
-	  				[6 9]     'carbonService:ModerateStorage
-	  				[3 6]     'carbonService:LowStorage
-	  				[0.01 3]  'carbonService:VeryLowStorage
-	  				[:< 0.01] 'carbonService:NoStorage)
-	  		(classification 'carbonService:VegetationCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighVegetationStorage
-	  				[9 12]    'carbonService:HighVegetationStorage
-	  				[6 9]     'carbonService:ModerateVegetationStorage
-	  				[3 6]     'carbonService:LowVegetationStorage
-	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
-	  				[:< 0.01] 'carbonService:NoVegetationStorage)
-	  		(classification 'carbonService:SoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighSoilStorage
-	  				[9 12]    'carbonService:HighSoilStorage
-	  				[6 9]     'carbonService:ModerateSoilStorage
-	  				[3 6]     'carbonService:LowSoilStorage
-	  				[0.01 3]  'carbonService:VeryLowSoilStorage
-	  				[:< 0.01] 'carbonService:NoSoilStorage))
+	  (bayesian 'carbonService:CarbonSourceValue)
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
-	  						 'carbonService:SoilCarbonStorage)
+	   						 'carbonService:SoilCarbonStorage)
+	    :observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
 	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))
 
 ;; missing: CommercialForestyPractices (later - based on clearcuts which is not available in chehalis)
-;; then add sumhiwinlo for the 3 scenarios
 
 ;; ----------------------------------------------------------------------------------------------
 ;; modified source dependencies to account for different scenarios
@@ -145,67 +154,27 @@
 
 ;; Bayesian source model		
 (defmodel source-hadley-a2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue
-	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighStorage
-	  				[9 12]    'carbonService:HighStorage
-	  				[6 9]     'carbonService:ModerateStorage
-	  				[3 6]     'carbonService:LowStorage
-	  				[0.01 3]  'carbonService:VeryLowStorage
-	  				[:< 0.01] 'carbonService:NoStorage)
-	  		(classification 'carbonService:VegetationCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighVegetationStorage
-	  				[9 12]    'carbonService:HighVegetationStorage
-	  				[6 9]     'carbonService:ModerateVegetationStorage
-	  				[3 6]     'carbonService:LowVegetationStorage
-	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
-	  				[:< 0.01] 'carbonService:NoVegetationStorage)
-	  		(classification 'carbonService:SoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighSoilStorage
-	  				[9 12]    'carbonService:HighSoilStorage
-	  				[6 9]     'carbonService:ModerateSoilStorage
-	  				[3 6]     'carbonService:LowSoilStorage
-	  				[0.01 3]  'carbonService:VeryLowSoilStorage
-	  				[:< 0.01] 'carbonService:NoSoilStorage))
+	  (bayesian 'carbonService:CarbonSourceValue)
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
 	  						 'carbonService:SoilCarbonStorage)
+			:observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-a2 fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))
-
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))	
+	  				
 ;; Bayesian source model		
 (defmodel source-hadley-b2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue
-	  		(classification 'carbonService:VegetationAndSoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighStorage
-	  				[9 12]    'carbonService:HighStorage
-	  				[6 9]     'carbonService:ModerateStorage
-	  				[3 6]     'carbonService:LowStorage
-	  				[0.01 3]  'carbonService:VeryLowStorage
-	  				[:< 0.01] 'carbonService:NoStorage)
-	  		(classification 'carbonService:VegetationCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighVegetationStorage
-	  				[9 12]    'carbonService:HighVegetationStorage
-	  				[6 9]     'carbonService:ModerateVegetationStorage
-	  				[3 6]     'carbonService:LowVegetationStorage
-	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
-	  				[:< 0.01] 'carbonService:NoVegetationStorage)
-	  		(classification 'carbonService:SoilCarbonStorage
-	  				[12 :>]   'carbonService:VeryHighSoilStorage
-	  				[9 12]    'carbonService:HighSoilStorage
-	  				[6 9]     'carbonService:ModerateSoilStorage
-	  				[3 6]     'carbonService:LowSoilStorage
-	  				[0.01 3]  'carbonService:VeryLowSoilStorage
-	  				[:< 0.01] 'carbonService:NoSoilStorage))
+	  (bayesian 'carbonService:CarbonSourceValue)
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
 	  						 'carbonService:SoilCarbonStorage)
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-b2 fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))	 	 	           
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)
+	 	 	:observed (veg-soil-storage soil-storage veg-storage))	 	 	           
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

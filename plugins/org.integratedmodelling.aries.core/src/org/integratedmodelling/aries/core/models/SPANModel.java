@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.integratedmodelling.corescience.CoreScience;
-import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
+import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
@@ -13,8 +13,14 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
-public class SPANModel extends DefaultStatefulAbstractModel {
+public class SPANModel extends DefaultAbstractModel {
 
+	IConcept sourceObservableId = null;
+	IConcept sinkObservableId = null;
+	IConcept useObservableId = null;
+	IConcept flowObservableId = null;
+	IConcept flowDataObservableId = null;
+	
 	IConcept sourceObservable = null;
 	IConcept sinkObservable = null;
 	IConcept useObservable = null;
@@ -25,13 +31,6 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 	@Override
 	protected void validateMediatedModel(IModel model)
 			throws ThinklabValidationException {
-	}
-
-	@Override
-	protected Object validateState(Object state)
-			throws ThinklabValidationException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -82,6 +81,7 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 		
 		// set flow parameters directly into instance implementation (SPANTransformer) 
 		// using reflection. Non-serializable, but who cares.
+		// TODO/FIXME - these should be dependent obs eventually
 		arr.add(Polylist.list(":flowParams", flowParams));
 		arr.add(Polylist.list(":sourceConcept", sourceObservable));
 		arr.add(Polylist.list(":useConcept",    useObservable));
@@ -96,6 +96,15 @@ public class SPANModel extends DefaultStatefulAbstractModel {
 	public Polylist conceptualize() throws ThinklabException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	protected void validateSemantics(ISession session) throws ThinklabException {
+		
+		// TODO take the concept IDs and annotate them as usual. NOTE: the 
+		// concepts themselves should actually be observables of dependents, so
+		// the whole thing needs attention.
+		
 	}
 
 }
