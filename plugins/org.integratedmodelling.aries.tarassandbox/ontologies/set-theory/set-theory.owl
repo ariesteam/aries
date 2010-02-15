@@ -8,7 +8,6 @@
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY set-theory "http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#" >
 ]>
 
@@ -17,7 +16,6 @@
      xml:base="http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -52,111 +50,21 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#doesNotXIntersect -->
-
-    <owl:ObjectProperty rdf:about="#doesNotXIntersect">
-        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITIES"
-            >hasXMember
-hasNotXMember
-hasXComplement</rdfs:seeAlso>
-        <rdfs:comment>:XSet -&gt; XSet</rdfs:comment>
-        <dc:creator>Tara Athan</dc:creator>
-        <dc:date>2010/01/25</dc:date>
-        <rdfs:comment xml:lang="en"
-            >is a &quot;hasXSetTheoryRelation&quot; that establishes a connection between hasNotXMember and hasXMember</rdfs:comment>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#doesXIntersect -->
-
-    <owl:ObjectProperty rdf:about="#doesXIntersect">
-        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-        <dc:date>2010/01/25</dc:date>
-        <dc:creator>Tara Athan</dc:creator>
-        <rdfs:comment xml:lang="en"
-            >relates a set with any other set having a common member.</rdfs:comment>
-        <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#hasXMember"/>
-            <rdf:Description rdf:about="#isXMemberOf"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#equalsXSet -->
 
     <owl:ObjectProperty rdf:about="#equalsXSet">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment
+            >equivalence relation for sets
+
+necessary and sufficient conditions are that the membership of both sets are the same and the complement-membership of both sets are also the same.</rdfs:comment>
         <rdfs:domain rdf:resource="#XSet"/>
         <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSubset"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSuperset"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMutualXSubset -->
-
-    <owl:ObjectProperty rdf:about="#hasMutualXSubset">
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY"
-            >hasMutualXSubset</rdfs:seeAlso>
-        <dc:date>2010/01/25</dc:date>
-        <dc:creator>Tara Athan</dc:creator>
-        <rdfs:comment xml:lang="en"
-            >relates a sets of sets to any common lower bound in the subset partial ordering.</rdfs:comment>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:inverseOf rdf:resource="#isMutualXSubsetOf"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasMutualXSuperset -->
-
-    <owl:ObjectProperty rdf:about="#hasMutualXSuperset">
-        <dc:date>2010/01/25</dc:date>
-        <dc:creator>Tara Athan</dc:creator>
-        <rdfs:comment xml:lang="en"
-            >relates a sets of sets to any upper bound in the subset partial ordering.</rdfs:comment>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasNotXMember -->
-
-    <owl:ObjectProperty rdf:about="#hasNotXMember">
-        <rdfs:comment xml:lang="en"
-            >Example: let membership correspond to &quot;light&quot; and not-membership to &quot;dark&quot;. Something that is speckled may be considered both light and dark. Something that is transparent may be considered neither light nor dark.</rdfs:comment>
-        <dc:creator>Tara Athan</dc:creator>
-        <dc:date>2010/01/25</dc:date>
-        <rdfs:comment xml:lang="en"
-            >a relation that has an opposite character to membership.</rdfs:comment>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:range rdf:resource="#XThing"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:inverseOf rdf:resource="#isNotXMemberOf"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#doesNotXIntersect"/>
-            <rdf:Description rdf:about="#hasXMember"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXSubsetOf"/>
-            <rdf:Description rdf:about="#hasNotXMember"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -168,11 +76,123 @@ hasXComplement</rdfs:seeAlso>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <dc:date>2010/01/25</dc:date>
         <dc:creator>Tara Athan</dc:creator>
-        <dc:date xml:lang="en"
-            >relates a set with the unique largest set it doesNotIntersect.</dc:date>
+        <rdfs:comment xml:lang="en"
+            >a symmetric relation that interchanges the roles of membership and complement-membership.</rdfs:comment>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#doesNotXIntersect"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXCoverSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXDisjointSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXComplementMember -->
+
+    <owl:ObjectProperty rdf:about="#hasXComplementMember">
+        <dc:date>2010/01/25</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >Example: let membership correspond to &quot;light&quot; and complement-membership to &quot;dark&quot;. Something that is speckled may be considered both light and dark. Something that is transparent may be considered neither light nor dark.</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >a relation that has an opposite character to membership. A definition of a set in this theory requires definition of both its membership and complement-membership, as one can not be inferred from the other.</rdfs:comment>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:range rdf:resource="#XThing"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <owl:inverseOf rdf:resource="#isXComplementMemberOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#isXInnerSubsetOf"/>
+            <rdf:Description rdf:about="#hasXComplementMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXInnerDisjointSet"/>
+            <rdf:Description rdf:about="#hasXMember"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXCoverSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXCoverSet">
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+        <rdfs:comment xml:lang="en"
+            >a symmetric relation
+
+necessary and sufficients conditions are that all members of each set are complement-members of the other set.</rdfs:comment>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXInnerCoverSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXOuterCoverSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXDisjointSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXDisjointSet">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/01/25</dc:date>
+        <rdfs:comment xml:lang="en"
+            >a symmetric relation.
+
+necessary and sufficient conditions are that complement-members of each set are members of the other set.</rdfs:comment>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXInnerDisjointSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXOuterDisjointSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXInnerCoverSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXInnerCoverSet">
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment
+            >a super-property of the cover relation and inverse of the outer cover relation
+
+necessary and sufficient conditions are that all members of the second set are complement-members of the first set.</rdfs:comment>
+        <owl:inverseOf rdf:resource="#hasXOuterCoverSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXInnerCoverSet"/>
+            <rdf:Description rdf:about="#hasXSuperset"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXInnerDisjointSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXInnerDisjointSet">
+        <dc:date>2010/02/07</dc:date>
+        <rdfs:comment
+            >a super-property of the disjoint relation between sets and the inverse of the outer disjoint relation.
+
+necessary and sufficient conditions are that all complement-members of the first set are members of the second set.</rdfs:comment>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXInnerDisjointSet"/>
+            <rdf:Description rdf:about="#hasXSubset"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXInnerSubset -->
+
+    <owl:ObjectProperty rdf:about="#hasXInnerSubset">
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+        <rdfs:comment xml:lang="en"
+            >necessary and sufficient conditions are that every complement-member of the first set is a complement member of the second set.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
     </owl:ObjectProperty>
     
 
@@ -181,14 +201,7 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#hasXIntersection">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <dc:date>2010/01/25</dc:date>
-        <dc:creator>Tara Athan</dc:creator>
-        <rdfs:comment xml:lang="en"
-            >relates a set of sets to its greatest lower bound in the subset partial ordering.</rdfs:comment>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasMutualXSubset"/>
-        <owl:inverseOf rdf:resource="#isXIntersectionOf"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXMutualSubset"/>
     </owl:ObjectProperty>
     
 
@@ -201,15 +214,88 @@ hasXComplement</rdfs:seeAlso>
         <rdfs:comment xml:lang="en"
             >because of its use in several property chains, this is a complex property and thus cannot be used in number restrictions. This it is not possible to define the concept of a set with, say, two members.</rdfs:comment>
         <rdfs:comment xml:lang="en"
-            >the generic constituent property of simple sets in this set theory. For clarity, the generic constituent propery of sets of sets is given a different URI.</rdfs:comment>
+            >one of two generic constituent properties of first-order sets (sets of things) in this set theory.
+
+to fully-define a set, both its members and complement-members must be defined.</rdfs:comment>
         <rdfs:domain rdf:resource="#XSet"/>
         <rdfs:range rdf:resource="#XThing"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <owl:inverseOf rdf:resource="#isXMemberOf"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#hasXSubset"/>
+            <rdf:Description rdf:about="#hasXOuterSubset"/>
             <rdf:Description rdf:about="#hasXMember"/>
         </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXMutualSubset -->
+
+    <owl:ObjectProperty rdf:about="#hasXMutualSubset">
+        <rdfs:domain rdf:resource="#SetOfXSets"/>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXMutualSuperset -->
+
+    <owl:ObjectProperty rdf:about="#hasXMutualSuperset">
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXOuterCoverSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXOuterCoverSet">
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >a super-property of the cover relation and inverse of the inner cover relation
+
+necessary and sufficient conditions are that all members of the first set are complement-members of the second set.</rdfs:comment>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:range rdf:resource="#XSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXOuterCoverSet"/>
+            <rdf:Description rdf:about="#hasXSuperset"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXOuterDisjointSet -->
+
+    <owl:ObjectProperty rdf:about="#hasXOuterDisjointSet">
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+        <rdfs:comment xml:lang="en"
+            >a super-property of the disjoint relation between sets and the inverse of the outer disjoint relation.
+
+necessary and sufficient conditions are that all complement-members of the first set are members of the second set.</rdfs:comment>
+        <rdfs:domain rdf:resource="#XSet"/>
+        <rdfs:range rdf:resource="#XSet"/>
+        <owl:inverseOf rdf:resource="#hasXInnerDisjointSet"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#hasXOuterDisjointSet"/>
+            <rdf:Description rdf:about="#hasXSubset"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXOuterSubset -->
+
+    <owl:ObjectProperty rdf:about="#hasXOuterSubset">
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date xml:lang="en"
+            >necessary and sufficient conditions are that every member of the second set is a member of the first set.</dc:date>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
     </owl:ObjectProperty>
     
 
@@ -217,50 +303,9 @@ hasXComplement</rdfs:seeAlso>
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetMember -->
 
     <owl:ObjectProperty rdf:about="#hasXSetMember">
-        <rdfs:comment
-            >the generic constituent property of sets of sets.</rdfs:comment>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
         <rdfs:domain rdf:resource="#SetOfXSets"/>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#hasXSetSubset"/>
-            <rdf:Description rdf:about="#hasXSetMember"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetSubset -->
-
-    <owl:ObjectProperty rdf:about="#hasXSetSubset">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:comment
-            >partial ordering (&gt;=) of sets of sets.</rdfs:comment>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:inverseOf rdf:resource="#isXSetSubsetOf"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXSetSuperset -->
-
-    <owl:ObjectProperty rdf:about="#hasXSetSuperset">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <rdfs:comment
-            >partial order (&lt;=) of sets of sets.</rdfs:comment>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <owl:inverseOf rdf:resource="#hasXSetSubset"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-        <owl:equivalentProperty rdf:resource="#isXSetSubsetOf"/>
     </owl:ObjectProperty>
     
 
@@ -272,7 +317,7 @@ hasXComplement</rdfs:seeAlso>
         <dc:date>2010/01/25</dc:date>
         <dc:creator>Tara Athan</dc:creator>
         <rdfs:comment xml:lang="en"
-            >These relations demonstrate set theory with 4 categories of membership. Two membership relations are defined: &#39;membership&#39; and &#39;not-membership&#39;. However, because DL does not allow negation of complex roles, not-membership is not (necessarily) the same as the negation of membership. It is possible for something to be both or neither a member and a not-member of a given set.</rdfs:comment>
+            >These relations demonstrate set theory with 4 categories of membership. Two membership relations are defined: &#39;membership&#39; and &#39;complement-membership&#39;. However, because DL does not allow negation of complex roles, complement-membership is not (necessarily) the same as the negation of membership. It is possible for something to be both or neither a member and a complement-member of a given set.</rdfs:comment>
         <rdfs:comment xml:lang="en"
             >subsumes all Object properties in this ontology</rdfs:comment>
         <rdfs:domain rdf:resource="#XSetTheoryClass"/>
@@ -285,29 +330,24 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#hasXSubset">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <owl:priorVersion
-            >partial order (&gt;=) of sets.</owl:priorVersion>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
+        <dc:date>2010/01/25</dc:date>
+        <rdfs:comment xml:lang="en"
+            >One of two partial orders (&gt;=) of sets of things in this set theory.
+Transitive and reflexive.
+
+necessary and sufficient conditions are that every member of the second set is a member of the first set, and every complement-member of the first set is a complement member of the second set.</rdfs:comment>
+        <dc:creator>Tara Athan</dc:creator>
         <rdfs:domain rdf:resource="#XSet"/>
         <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXInnerSubset"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXOuterSubset"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isMutualXSupersetOf"/>
-            <rdf:Description rdf:about="#hasXSetMember"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#hasXComplement"/>
-            <rdf:Description rdf:about="#doesNotXIntersect"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXUnionOf"/>
-            <rdf:Description rdf:about="#hasXSetSubset"/>
+            <rdf:Description rdf:about="#isXMutualSupersetOf"/>
             <rdf:Description rdf:about="#hasXUnion"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXIntersectionOf"/>
-            <rdf:Description rdf:about="#hasMutualXSubset"/>
+            <rdf:Description rdf:about="#isXMutualSupersetOf"/>
+            <rdf:Description rdf:about="#hasXSetMember"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -317,15 +357,23 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#hasXSuperset">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <owl:priorVersion
-            >partial ordering (&lt;=) of sets.</owl:priorVersion>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
+        <dc:date>2010/01/25</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <owl:priorVersion xml:lang="en"
+            >superset is the inverse of the subset relation</owl:priorVersion>
         <rdfs:domain rdf:resource="#XSet"/>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <owl:inverseOf rdf:resource="#hasXSubset"/>
         <owl:equivalentProperty rdf:resource="#isXSubsetOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#isXMutualSubsetOf"/>
+            <rdf:Description rdf:about="#hasXSetMember"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="#isXMutualSubsetOf"/>
+            <rdf:Description rdf:about="#hasXIntersection"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -334,52 +382,35 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#hasXUnion">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <dc:creator>Tara Athan</dc:creator>
-        <dc:date>2010/01/25</dc:date>
-        <rdfs:comment xml:lang="en"
-            >relates a set of sets to its least upper bound in the subset partial ordering.</rdfs:comment>
         <rdfs:domain rdf:resource="#SetOfXSets"/>
         <rdfs:range rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasMutualXSuperset"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXMutualSuperset"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isMutualXSubsetOf -->
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXComplementMemberOf -->
 
-    <owl:ObjectProperty rdf:about="#isMutualXSubsetOf">
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isMutualXSupersetOf -->
-
-    <owl:ObjectProperty rdf:about="#isMutualXSupersetOf">
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY"
-            >hasMutualXSupersetOf</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <owl:inverseOf rdf:resource="#hasMutualXSuperset"/>
-        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isNotXMemberOf -->
-
-    <owl:ObjectProperty rdf:about="#isNotXMemberOf">
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasNotXMember</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
+    <owl:ObjectProperty rdf:about="#isXComplementMemberOf">
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/01/25</dc:date>
+        <rdfs:seeAlso xml:lang="en"
+            >inverse of the complement membership relation</rdfs:seeAlso>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:domain rdf:resource="#XThing"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXInnerSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="#isXInnerSubsetOf">
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+        <dc:date xml:lang="en"
+            >inverse of the inner subset property</dc:date>
+        <owl:inverseOf rdf:resource="#hasXInnerSubset"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
     </owl:ObjectProperty>
     
@@ -389,13 +420,7 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#isXIntersectionOf">
         <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY"
-            >hasXIntersection</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <rdfs:subPropertyOf rdf:resource="#isMutualXSubsetOf"/>
+        <rdfs:subPropertyOf rdf:resource="#isXMutualSubsetOf"/>
     </owl:ObjectProperty>
     
 
@@ -403,9 +428,10 @@ hasXComplement</rdfs:seeAlso>
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXMemberOf -->
 
     <owl:ObjectProperty rdf:about="#isXMemberOf">
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasXMember</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
+        <dc:date>2010/01/25</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >inverse of the membership relation</rdfs:comment>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:domain rdf:resource="#XThing"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
@@ -413,29 +439,32 @@ hasXComplement</rdfs:seeAlso>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXSetMemberOf -->
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXMutualSubsetOf -->
 
-    <owl:ObjectProperty rdf:about="#isXSetMemberOf">
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasXSetMember</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#XSet"/>
-        <owl:inverseOf rdf:resource="#hasXSetMember"/>
+    <owl:ObjectProperty rdf:about="#isXMutualSubsetOf">
+        <owl:inverseOf rdf:resource="#hasXMutualSubset"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXSetSubsetOf -->
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXMutualSupersetOf -->
 
-    <owl:ObjectProperty rdf:about="#isXSetSubsetOf">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasXSetSubsetOf</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:domain rdf:resource="#SetOfXSets"/>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
+    <owl:ObjectProperty rdf:about="#isXMutualSupersetOf">
+        <owl:inverseOf rdf:resource="#hasXMutualSuperset"/>
+        <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXOuterSubsetOf -->
+
+    <owl:ObjectProperty rdf:about="#isXOuterSubsetOf">
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >inverse of the outer subset relation</rdfs:comment>
+        <owl:inverseOf rdf:resource="#hasXOuterSubset"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
     </owl:ObjectProperty>
     
@@ -445,39 +474,15 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#isXSubsetOf">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasXSubset</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
+        <rdfs:comment
+            >inverse of the subset relation</rdfs:comment>
+        <dc:date>2010/01/25</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
         <rdfs:domain rdf:resource="#XSet"/>
         <rdfs:range rdf:resource="#XSet"/>
         <rdfs:subPropertyOf rdf:resource="#hasXSetTheoryRelation"/>
         <owl:inverseOf rdf:resource="#hasXSubset"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXIntersectionOf"/>
-            <rdf:Description rdf:about="#hasXSetSubset"/>
-            <rdf:Description rdf:about="#hasXIntersection"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isMutualXSubsetOf"/>
-            <rdf:Description rdf:about="#hasXSetMember"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXUnionOf"/>
-            <rdf:Description rdf:about="#hasMutualXSuperset"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment
-            >is this axiom redundant?</rdfs:comment>
-        <owl:subject rdf:resource="#isXSubsetOf"/>
-        <owl:predicate rdf:resource="&owl;propertyChainAxiom"/>
-        <owl:object rdf:parseType="Collection">
-            <rdf:Description rdf:about="#isXIntersectionOf"/>
-            <rdf:Description rdf:about="#hasXSetSubset"/>
-            <rdf:Description rdf:about="#hasXIntersection"/>
-        </owl:object>
-    </rdf:Description>
     
 
 
@@ -485,13 +490,8 @@ hasXComplement</rdfs:seeAlso>
 
     <owl:ObjectProperty rdf:about="#isXUnionOf">
         <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
-        <rdfs:seeAlso rdf:datatype="&xsd;ENTITY">hasXUnionOf</rdfs:seeAlso>
-        <dc:date xml:lang="en">2010/01/25</dc:date>
-        <dc:creator xml:lang="en">Tara Athan</dc:creator>
-        <rdfs:range rdf:resource="#SetOfXSets"/>
-        <rdfs:domain rdf:resource="#XSet"/>
         <owl:inverseOf rdf:resource="#hasXUnion"/>
-        <rdfs:subPropertyOf rdf:resource="#isMutualXSupersetOf"/>
+        <rdfs:subPropertyOf rdf:resource="#isXMutualSupersetOf"/>
     </owl:ObjectProperty>
     
 
@@ -510,7 +510,6 @@ hasXComplement</rdfs:seeAlso>
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#EmptySetOfXSets -->
 
     <owl:Class rdf:about="#EmptySetOfXSets">
-        <owl:equivalentClass rdf:resource="#EmptyXSet"/>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:oneOf rdf:parseType="Collection">
@@ -519,16 +518,6 @@ hasXComplement</rdfs:seeAlso>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#SetOfXSets"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:complementOf>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="#hasXSetMember"/>
-                        <owl:someValuesFrom rdf:resource="#XSet"/>
-                    </owl:Restriction>
-                </owl:complementOf>
-            </owl:Class>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#NonEmptySetOfXSets"/>
         <owl:disjointWith rdf:resource="#NonEmptyXSet"/>
         <owl:disjointWith rdf:resource="#XThing"/>
@@ -568,15 +557,57 @@ hasXComplement</rdfs:seeAlso>
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#GenericComplementThing -->
+
+    <owl:Class rdf:about="#GenericComplementThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#XThing"/>
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >defines the complement membership class of GENERIC-XSET</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#GenericThing -->
+
+    <owl:Class rdf:about="#GenericThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#XThing"/>
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+        <rdfs:comment xml:lang="en"
+            >defines the membership class of the set GENERIC-XSET</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#NonEmptySetOfXSets -->
 
     <owl:Class rdf:about="#NonEmptySetOfXSets">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXSetMember"/>
-                <owl:someValuesFrom rdf:resource="#XSet"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#SetOfXSets"/>
     </owl:Class>
     
@@ -585,15 +616,9 @@ hasXComplement</rdfs:seeAlso>
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#NonEmptyXSet -->
 
     <owl:Class rdf:about="#NonEmptyXSet">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXMember"/>
-                <owl:someValuesFrom rdf:resource="#XThing"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#XSet"/>
         <rdfs:comment xml:lang="en"
-            >has one or more generic constituents that are sets.</rdfs:comment>
+            >A set of things from the domain of discourse that has one or more members OR has one or more complement members</rdfs:comment>
     </owl:Class>
     
 
@@ -610,20 +635,6 @@ hasXComplement</rdfs:seeAlso>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#XSetTheoryClass"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXIntersection"/>
-                <owl:onClass rdf:resource="#XSet"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXUnion"/>
-                <owl:onClass rdf:resource="#XSet"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <dc:date>2010/01/25</dc:date>
         <dc:creator>Tara Athan</dc:creator>
         <rdfs:comment xml:lang="en"
@@ -637,34 +648,6 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
         <owl:subject rdf:resource="#SetOfXSets"/>
         <owl:object rdf:resource="#XSetTheoryClass"/>
         <owl:predicate rdf:resource="&rdfs;subClassOf"/>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment xml:lang="en"
-            >Further restrictions may be placed on sets, or sets of sets, but the resulting concepts must be closed under intersection.</rdfs:comment>
-        <owl:subject rdf:resource="#SetOfXSets"/>
-        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
-        <owl:object>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXIntersection"/>
-                <owl:onClass rdf:resource="#XSet"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:object>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment xml:lang="en"
-            >Further restrictions may be placed on sets, or sets of sets, but the resulting concepts must be closed under union.</rdfs:comment>
-        <owl:subject rdf:resource="#SetOfXSets"/>
-        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
-        <owl:object>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXUnion"/>
-                <owl:onClass rdf:resource="#XSet"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:object>
     </rdf:Description>
     
 
@@ -683,6 +666,13 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
         <rdfs:subClassOf rdf:resource="#XSetTheoryClass"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXComplement"/>
+                <owl:onClass rdf:resource="#XSet"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="#hasXSubset"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -691,13 +681,6 @@ A set of sets may be empty, or have one or more member sets.</rdfs:comment>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#hasXComplement"/>
-                <owl:onClass rdf:resource="#XSet"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -743,7 +726,7 @@ A pair of membership functions determine the set consituents and those of its co
                     <owl:Class>
                         <owl:complementOf>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="#isNotXMemberOf"/>
+                                <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:oneOf rdf:parseType="Collection">
@@ -776,14 +759,6 @@ A pair of membership functions determine the set consituents and those of its co
     <rdf:Description>
         <rdf:type rdf:resource="&owl;Axiom"/>
         <rdfs:comment xml:lang="en"
-            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
-        <owl:object rdf:resource="#XSetTheoryClass"/>
-        <owl:subject rdf:resource="#XThing"/>
-        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;Axiom"/>
-        <rdfs:comment xml:lang="en"
             >In this set theory, there is a largest set, which contains the domain of discourse and whose complement is the empty set.</rdfs:comment>
         <owl:subject rdf:resource="#XThing"/>
         <owl:predicate rdf:resource="&owl;equivalentClass"/>
@@ -793,7 +768,7 @@ A pair of membership functions determine the set consituents and those of its co
                     <owl:Class>
                         <owl:complementOf>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="#isNotXMemberOf"/>
+                                <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:oneOf rdf:parseType="Collection">
@@ -818,6 +793,14 @@ A pair of membership functions determine the set consituents and those of its co
             </owl:Class>
         </owl:object>
     </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Axiom"/>
+        <rdfs:comment xml:lang="en"
+            >extends the abstract class which subsumes all classes in this set theory.</rdfs:comment>
+        <owl:object rdf:resource="#XSetTheoryClass"/>
+        <owl:subject rdf:resource="#XThing"/>
+        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
+    </rdf:Description>
     
 
 
@@ -840,7 +823,10 @@ A pair of membership functions determine the set consituents and those of its co
 
     <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#EMPTY-SOXSET -->
 
-    <owl:Thing rdf:about="#EMPTY-SOXSET"/>
+    <owl:Thing rdf:about="#EMPTY-SOXSET">
+        <dc:date>2010/02/07</dc:date>
+        <dc:creator>Tara Athan</dc:creator>
+    </owl:Thing>
     
 
 
@@ -848,9 +834,29 @@ A pair of membership functions determine the set consituents and those of its co
 
     <owl:Thing rdf:about="#EMPTY-XSET">
         <rdf:type rdf:resource="#XSet"/>
+        <dc:date>2010/01/25</dc:date>
         <dc:creator>Tara Athan</dc:creator>
-        <dc:creator>2010/01/25</dc:creator>
     </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#GENERIC-XSET -->
+
+    <XSet rdf:about="#GENERIC-XSET">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+    </XSet>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#TOP-SOXSET -->
+
+    <SetOfXSets rdf:about="#TOP-SOXSET">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <dc:creator>Tara Athan</dc:creator>
+        <dc:date>2010/02/07</dc:date>
+    </SetOfXSets>
     
 
 
@@ -859,7 +865,7 @@ A pair of membership functions determine the set consituents and those of its co
     <owl:Thing rdf:about="#TOP-XSET">
         <rdf:type rdf:resource="#XSet"/>
         <dc:creator>Tara Athan</dc:creator>
-        <dc:creator>2010/01/25</dc:creator>
+        <dc:date>2010/01/25</dc:date>
         <hasXComplement rdf:resource="#EMPTY-XSET"/>
     </owl:Thing>
     
@@ -873,6 +879,105 @@ A pair of membership functions determine the set consituents and those of its co
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXOuterCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXOuterSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
+        <owl:someValuesFrom>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXOuterCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:someValuesFrom>
+    </owl:Restriction>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
@@ -881,6 +986,425 @@ A pair of membership functions determine the set consituents and those of its co
             <rdf:Description rdf:about="#XThing"/>
         </owl:members>
     </rdf:Description>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXDisjointSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerDisjointSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXOuterDisjointSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#equalsXSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#TOP-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#TOP-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSuperset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#TOP-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#XSet"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXComplementMember"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#isXMemberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
+        <owl:someValuesFrom>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXOuterCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:someValuesFrom>
+    </owl:Restriction>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerDisjointSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#XSet"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXMember"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#equalsXSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSuperset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#EMPTY-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;Axiom"/>
+        <rdfs:comment
+            >sufficient conditions for the outer subset property: if every member of set A is a member of set B then A is an outer subset B.</rdfs:comment>
+        <owl:predicate rdf:resource="&rdfs;subClassOf"/>
+        <owl:subject>
+            <owl:Class>
+                <rdfs:subClassOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#isXOuterSubsetOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </rdfs:subClassOf>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#XSet"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasXMember"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="#isXMemberOf"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:subject>
+        <owl:object>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isXOuterSubsetOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:object>
+    </rdf:Description>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXMutualSuperset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#SetOfXSets"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSetMember"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasXSuperset"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#equalsXSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSuperset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXComplement"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXDisjointSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXMutualSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#SetOfXSets"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXSetMember"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasXSubset"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXInnerSubset"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#GENERIC-XSET"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#XSet"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasXComplementMember"/>
+                <owl:allValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#isXComplementMemberOf"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#GENERIC-XSET"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
 </rdf:RDF>
 
 
