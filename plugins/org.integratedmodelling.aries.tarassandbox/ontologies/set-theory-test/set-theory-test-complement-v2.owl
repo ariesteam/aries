@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY set-theory "http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#" >
+    <!ENTITY set-theory-test-subset "http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#"
+     xml:base="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl"
+     xmlns:set-theory-test-subset="http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:set-theory="http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXComplement -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXComplement"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXCoverSet -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXCoverSet"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#hasXInnerCoverSet -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;hasXInnerCoverSet"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXComplementMemberOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXComplementMemberOf"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#isXMemberOf -->
+
+    <owl:ObjectProperty rdf:about="&set-theory;isXMemberOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#AComplementThing -->
+
+    <owl:Class rdf:about="#AComplementThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXComplementMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETA"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#AThing -->
+
+    <owl:Class rdf:about="#AThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETA"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#BComplementThing -->
+
+    <owl:Class rdf:about="#BComplementThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXComplementMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETB"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#BThing -->
+
+    <owl:Class rdf:about="#BThing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETB"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&set-theory;XThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#XSet -->
+
+    <owl:Class rdf:about="&set-theory;XSet"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory.owl#XThing -->
+
+    <owl:Class rdf:about="&set-theory;XThing"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#ACOMPLEMENTTHING1 -->
+
+    <owl:Thing rdf:about="#ACOMPLEMENTTHING1">
+        <rdf:type rdf:resource="#AComplementThing"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#ATHING1 -->
+
+    <AThing rdf:about="#ATHING1">
+        <rdf:type rdf:resource="&owl;Thing"/>
+    </AThing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#BCOMPLEMENTTHING1 -->
+
+    <BComplementThing rdf:about="#BCOMPLEMENTTHING1">
+        <rdf:type rdf:resource="&owl;Thing"/>
+    </BComplementThing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#BTHING1 -->
+
+    <BThing rdf:about="#BTHING1">
+        <rdf:type rdf:resource="&owl;Thing"/>
+    </BThing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#XSETA -->
+
+    <owl:Thing rdf:about="#XSETA">
+        <rdf:type rdf:resource="&set-theory;XSet"/>
+        <set-theory:hasXCoverSet rdf:resource="#XSETB"/>
+        <set-theory:hasXComplement rdf:resource="#XSETB"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/tarassandbox/set-theory-test-subset.owl#XSETB -->
+
+    <set-theory:XSet rdf:about="#XSETB">
+        <rdf:type rdf:resource="&owl;Thing"/>
+    </set-theory:XSet>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Restriction>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETA"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:onProperty rdf:resource="&set-theory;isXComplementMemberOf"/>
+        <owl:someValuesFrom>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;hasXInnerCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETA"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:someValuesFrom>
+    </owl:Restriction>
+    <owl:Restriction>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;isXMemberOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETB"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:onProperty rdf:resource="&set-theory;isXComplementMemberOf"/>
+        <owl:someValuesFrom>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&set-theory;hasXInnerCoverSet"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#XSETB"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:someValuesFrom>
+    </owl:Restriction>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
