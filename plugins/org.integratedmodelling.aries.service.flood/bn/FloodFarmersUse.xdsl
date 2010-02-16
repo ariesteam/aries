@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Floodplains">
+			<state id="InFloodplain" />
+			<state id="NotInFloodplain" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="Farmland">
+			<state id="FarmlandPresent" />
+			<state id="FarmlandNotPresent" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="FarmersInFloodHazardZones">
+			<state id="HighHazardFarmers" />
+			<state id="ModerateHazardFarmers" />
+			<state id="LowHazardFarmers" />
+			<parents>Floodplains Farmland</parents>
+			<probabilities>0.15 0.5 0.35 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+			<node id="FarmersInFloodHazardZones">
+				<name>FarmersInFloodHazardZones</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>288 155 417 196</position>
+				<comment>Some (very small) probability of damage to assets outside the flood zone to account for very large flooding that exceeds the 100-year flood (or inadequately mapped flood zones).\n\nLower probability of flood damage to crops than structures since floods at certain times of year do not pose threats to crops, while floods at any time of year can damage property or lead to loss of life.</comment>
+				<barchart active="true" width="303" height="72" />
+			</node>
+			<node id="Farmland">
+				<name>Farmland</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>174 261 260 304</position>
+				<barchart active="true" width="203" height="64" />
+			</node>
+			<node id="Floodplains">
+				<name>Floodplains</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>452 263 520 305</position>
+				<barchart active="true" width="237" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

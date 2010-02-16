@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Dams">
+			<state id="Present" />
+			<state id="Absent" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="PopulationDensity">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<probabilities>0.05 0.2 0.2 0.2 0.35</probabilities>
+		</cpt>
+		<cpt id="HydroelectricUtilitiesAndCustomers">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="None" />
+			<parents>Dams PopulationDensity</parents>
+			<probabilities>0.65 0.3 0.05 0.55 0.4 0.05 0.45 0.5 0.05 0.35 0.6 0.05 0.25 0.7 0.05 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network3" faultnameformat="nodestate">
+			<node id="HydroelectricUtilitiesAndCustomers">
+				<name>HydroelectricUtilitiesAndCustomers</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>258 124 461 156</position>
+				<comment>Assumes that dams near more populated areas will have a bigger impact on a larger population (not necessarily the case; will likely vary by region of interest).</comment>
+				<barchart active="true" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>403 246 520 285</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="Dams">
+				<name>Dams</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>232 233 277 261</position>
+				<barchart active="true" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

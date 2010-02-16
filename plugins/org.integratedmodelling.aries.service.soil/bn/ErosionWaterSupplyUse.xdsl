@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="PublicWaterSupplyIntakes">
+			<state id="Present" />
+			<state id="Absent" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="PublicWaterSupplyServiceAreas">
+			<state id="InsideServiceArea" />
+			<state id="OutsideServiceArea" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="PopulationDensity">
+			<state id="VeryHigh" />
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="Low" />
+			<state id="VeryLow" />
+			<probabilities>0.05 0.2 0.2 0.2 0.35</probabilities>
+		</cpt>
+		<cpt id="PublicWaterSuppliersAndUsers">
+			<state id="High" />
+			<state id="Moderate" />
+			<state id="None" />
+			<parents>PublicWaterSupplyIntakes PublicWaterSupplyServiceAreas PopulationDensity</parents>
+			<probabilities>0.9 0.1 0 0.7 0.3 0 0.5 0.5 0 0.3 0.7 0 0.1 0.9 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+			<node id="PublicWaterSuppliersAndUsers">
+				<name>PublicWaterSuppliersAndUsers</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>386 114 561 152</position>
+				<barchart active="true" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>585 272 702 311</position>
+				<barchart active="true" />
+			</node>
+			<node id="PublicWaterSupplyIntakes">
+				<name>PublicWaterSupplyIntakes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>201 272 354 305</position>
+				<barchart active="true" width="155" height="64" />
+			</node>
+			<node id="PublicWaterSupplyServiceAreas">
+				<name>PublicWaterSupplyServiceAreas</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>369 272 572 308</position>
+				<barchart active="true" width="187" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

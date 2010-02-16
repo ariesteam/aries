@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="HousingValue">
+			<state id="VeryHighHousingValue" />
+			<state id="HighHousingValue" />
+			<state id="ModerateHousingValue" />
+			<state id="LowHousingValue" />
+			<state id="VeryLowHousingValue" />
+			<probabilities>0.01 0.09 0.35 0.4 0.15</probabilities>
+		</cpt>
+		<cpt id="PresenceOfHousing">
+			<state id="HousingPresent" />
+			<state id="HousingNotPresent" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="HomeownersEnjoyment">
+			<state id="HomeownersEnjoymentPresent" />
+			<state id="HomeownersEnjoymentNotPresent" />
+			<parents>HousingValue PresenceOfHousing</parents>
+			<probabilities>0.8 0.2 0 1 0.8 0.2 0 1 0.6 0.4 0 1 0.4 0.6 0 1 0.25 0.75 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network2" faultnameformat="nodestate">
+			<node id="PresenceOfHousing">
+				<name>PresenceOfHousing</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>342 258 478 288</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HousingValue">
+				<name>HousingValue</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>791 281 891 310</position>
+				<barchart active="true" width="287" height="108" />
+			</node>
+			<node id="HomeownersEnjoyment">
+				<name>HomeownersEnjoyment</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>521 121 658 154</position>
+				<barchart active="true" width="312" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

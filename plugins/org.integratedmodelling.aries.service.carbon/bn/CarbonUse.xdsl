@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="GreenhouseGasEmitters">
+			<state id="VeryHighEmitter" />
+			<state id="HighEmitter" />
+			<state id="ModerateEmitter" />
+			<state id="LowEmitter" />
+			<state id="VeryLowEmitter" />
+			<state id="NoEmitter" />
+			<probabilities>0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
+		</cpt>
+		<cpt id="CarbonEmitterUse">
+			<state id="EmitterUsePresent" />
+			<state id="EmitterUseAbsent" />
+			<parents>GreenhouseGasEmitters</parents>
+			<probabilities>1 0 0.8 0.2 0.6 0.4 0.4 0.6 0.2 0.8 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network2" faultnameformat="nodestate">
+			<node id="CarbonEmitterUse">
+				<name>CarbonEmitterUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>492 121 628 154</position>
+				<comment>Uptake capacity units are the same as for C seq/stor provision model outputs.</comment>
+			</node>
+			<node id="GreenhouseGasEmitters">
+				<name>GreenhouseGasEmitters</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>475 260 645 288</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>

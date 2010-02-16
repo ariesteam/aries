@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Floodplains">
+			<state id="InFloodplain" />
+			<state id="NotInFloodplain" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="PresenceOfHousing">
+			<state id="HousingPresent" />
+			<state id="HousingNotPresent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="ResidentsInFloodHazardZones">
+			<state id="HighHazardResident" />
+			<state id="ModerateHazardResident" />
+			<state id="LowHazardResident" />
+			<parents>Floodplains PresenceOfHousing</parents>
+			<probabilities>0.3 0.6 0.1 0 0 1 0.005 0.01 0.985 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+			<node id="ResidentsInFloodHazardZones">
+				<name>ResidentsInFloodHazardZones</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>496 153 602 206</position>
+				<comment>Some (very small) probability of damage to assets outside the flood zone to account for very large flooding that exceeds the 100-year flood (or inadequately mapped flood zones).\n</comment>
+				<barchart active="true" width="430" height="72" />
+			</node>
+			<node id="Floodplains">
+				<name>Floodplains</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>302 316 370 358</position>
+				<barchart active="true" width="206" height="64" />
+			</node>
+			<node id="PresenceOfHousing">
+				<name>PresenceOfHousing</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>655 314 756 356</position>
+				<barchart active="true" width="212" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
