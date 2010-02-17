@@ -78,20 +78,20 @@ public class SPANTransformer
 	public IConcept getTransformedObservationClass() {
 		return CoreScience.Observation();
 	}
-	
+
 	/**
-	 * Return the observable concept in the flow's concept space that matches the 
-	 * keyword: e.g. if we get actual-source, we look for a child of the source 
-	 * concept that is subsumed by the corresponding trait (eserv:ActualSource) and
-	 * return it. If there's no such concept, we return null, meaning that this concept
-	 * makes no sense for this model and therefore a state should not be created
-	 * for it.
+	 * Return the observable concept in the flow's concept space that matches
+	 * the keyword: e.g. if we get actual-source, we look for a child of the
+	 * source concept that is subsumed by the corresponding trait
+	 * (eserv:ActualSource) and return it. If there's no such concept, we return
+	 * null, meaning that this concept makes no sense for this model and
+	 * therefore a state should not be created for it.
 	 * 
 	 * @param keyword
 	 * @return
-	 * @throws ThinklabNoKMException 
-	 * @throws ThinklabResourceNotFoundException 
-	 * @throws ThinklabMalformedSemanticTypeException 
+	 * @throws ThinklabNoKMException
+	 * @throws ThinklabResourceNotFoundException
+	 * @throws ThinklabMalformedSemanticTypeException
 	 */
 	public IConcept defineObservable(String keyword) throws ThinklabException {
 
@@ -99,50 +99,55 @@ public class SPANTransformer
 		IConcept concept = KnowledgeManager.get().requireConcept(cn);
 		IConcept source = null;
 		IConcept ret = null;
-		
-		if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
-			source = sourceConcept;
-		} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
-			source = useConcept;
-		} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
-			source = sinkConcept;
-		} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
-			source = flowConcept;
-		}
-		
-		if (source != null) {
-			
-			if (source.is(concept)) {
-				ret = source;
-			} else {
-				for (IConcept ch : source.getChildren()) {
-					if (ch.is(concept)) {
-						ret = ch;
-						break;
-					}
-				}
-				if (ret == null) {
-					// this is a bit complicated: scan the children of the first parent
-					// that is in the same concept space
-					IConcept parent = null;
-					for (IConcept ch : source.getParents()) {
-						if (ch.getConceptSpace().equals(source.getConceptSpace())) {
-							parent = ch;
+
+		synchronized (concept) {
+
+			if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
+				source = sourceConcept;
+			} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
+				source = useConcept;
+			} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
+				source = sinkConcept;
+			} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
+				source = flowConcept;
+			}
+
+			if (source != null) {
+
+				if (source.is(concept)) {
+					ret = source;
+				} else {
+					for (IConcept ch : source.getChildren()) {
+						if (ch.is(concept)) {
+							ret = ch;
 							break;
 						}
 					}
-					if (parent != null) {
-						for (IConcept ch : parent.getChildren()) {
-							if (ch.is(concept)) {
-								ret = ch;
+					if (ret == null) {
+						// this is a bit complicated: scan the children of the
+						// first parent
+						// that is in the same concept space
+						IConcept parent = null;
+						for (IConcept ch : source.getParents()) {
+							if (ch.getConceptSpace().equals(
+									source.getConceptSpace())) {
+								parent = ch;
 								break;
+							}
+						}
+						if (parent != null) {
+							for (IConcept ch : parent.getChildren()) {
+								if (ch.is(concept)) {
+									ret = ch;
+									break;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		
+
 		return ret;
 	}
 
