@@ -100,47 +100,44 @@ public class SPANTransformer
 		IConcept source = null;
 		IConcept ret = null;
 
-		synchronized (concept) {
+		if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
+			source = sourceConcept;
+		} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
+			source = useConcept;
+		} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
+			source = sinkConcept;
+		} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
+			source = flowConcept;
+		}
 
-			if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
-				source = sourceConcept;
-			} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
-				source = useConcept;
-			} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
-				source = sinkConcept;
-			} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
-				source = flowConcept;
-			}
+		if (source != null) {
 
-			if (source != null) {
-
-				if (source.is(concept)) {
-					ret = source;
-				} else {
-					for (IConcept ch : source.getChildren()) {
-						if (ch.is(concept)) {
-							ret = ch;
+			if (source.is(concept)) {
+				ret = source;
+			} else {
+				for (IConcept ch : source.getChildren()) {
+					if (ch.is(concept)) {
+						ret = ch;
+						break;
+					}
+				}
+				if (ret == null) {
+					// this is a bit complicated: scan the children of the
+					// first parent
+					// that is in the same concept space
+					IConcept parent = null;
+					for (IConcept ch : source.getParents()) {
+						if (ch.getConceptSpace().equals(
+								source.getConceptSpace())) {
+							parent = ch;
 							break;
 						}
 					}
-					if (ret == null) {
-						// this is a bit complicated: scan the children of the
-						// first parent
-						// that is in the same concept space
-						IConcept parent = null;
-						for (IConcept ch : source.getParents()) {
-							if (ch.getConceptSpace().equals(
-									source.getConceptSpace())) {
-								parent = ch;
+					if (parent != null) {
+						for (IConcept ch : parent.getChildren()) {
+							if (ch.is(concept)) {
+								ret = ch;
 								break;
-							}
-						}
-						if (parent != null) {
-							for (IConcept ch : parent.getChildren()) {
-								if (ch.is(concept)) {
-									ret = ch;
-									break;
-								}
 							}
 						}
 					}
