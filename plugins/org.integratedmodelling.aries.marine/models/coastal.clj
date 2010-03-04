@@ -48,8 +48,8 @@
 	(classification (ranking 'habitat:BathymetricSlope)
 		[4000000 :>]      'coastalProtection:HighSlope
 		[2000000 4000000] 'coastalProtection:ModerateSlope
-		[600000 4000000]  'coastalProtection:LowSlope
-		[:< 2000000]      'coastalProtection:VeryLowSlope))
+		[200000 2000000]  'coastalProtection:LowSlope
+		[:< 200000]      'coastalProtection:VeryLowSlope))
 			
 ;; flood protection
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
