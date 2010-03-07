@@ -84,35 +84,11 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#Slope"/>
+          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
         </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
         </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilSalinity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilTexture"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -128,7 +104,31 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="RootTurnoverAndDensity"/>
+          <owl:Class rdf:ID="SoilSalinity"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="SoilOxygenConditions"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="SoilTexture"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Slope"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
@@ -138,7 +138,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilOxygenConditions"/>
+          <owl:Class rdf:ID="RootTurnoverAndDensity"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
@@ -419,7 +419,6 @@
       <owl:Class rdf:about="#SummerHighWinterLow"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType"/>
   <owl:Class rdf:ID="CoastalDwellers">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Coastal dwellers are at risk of sea level rise and increased coastal storms</rdfs:comment>
@@ -477,15 +476,15 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EventRelatedQuality"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="VarianceOceanTemp">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#OceanQuality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="Managed">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Areas where fire is used by humans to manage the system.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VarianceOceanTemp">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OceanQuality"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LowVegetationStorage">
     <rdfs:subClassOf>
@@ -676,8 +675,10 @@
   </owl:Class>
   <owl:Class rdf:about="#VegetationAndSoilCarbonStorage">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="EmissionHadleyB2Scenario">
     <rdfs:subClassOf>
@@ -822,7 +823,6 @@
       <owl:Class rdf:about="#RainfallClassification12"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseType"/>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
   <owl:Class rdf:ID="HighSoilStorage">
     <rdfs:subClassOf>
@@ -1022,7 +1022,7 @@
   <owl:Class rdf:ID="VegetativeCStorage">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Elevation"/>
+        <owl:someValuesFrom rdf:resource="#Slope"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -1037,7 +1037,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="GrowingSeason"/>
+          <owl:Class rdf:about="#VegetationType"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
@@ -1052,7 +1052,15 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
+        <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The storage of carbon in vegetation.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Elevation"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -1064,15 +1072,16 @@
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The storage of carbon in vegetation.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationType"/>
+          <owl:Class rdf:ID="GrowingSeason"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CStorage"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -1083,17 +1092,8 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#CStorage"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilTexture"/>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Slope"/>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -1229,6 +1229,7 @@
   <owl:Class rdf:ID="SoilpH">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
   </owl:Class>
+  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Use"/>
   <owl:Class rdf:ID="OldGrowth">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SuccessionalStage"/>
@@ -1285,8 +1286,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="CarbonUse">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Use"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UseType"/>
   </owl:Class>
   <owl:Class rdf:about="#HabitabilityOfLand">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1402,6 +1403,11 @@
   <owl:Class rdf:ID="Level">
     <rdfs:subClassOf rdf:resource="#Slope"/>
   </owl:Class>
+  <owl:Class rdf:ID="SoilCarbon">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Carbon stored in the soil.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BiosphereCarbon"/>
+  </owl:Class>
   <owl:Class rdf:ID="AtmosphereCarbon">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Atmospheric carbon, primarily as CO2.  Atmospheric CO2 concentrations are currently around 380 ppm; 450 ppm is currently recognized as a potentially dangerous threshold for climate change effects.</rdfs:comment>
@@ -1414,11 +1420,6 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialStock"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilCarbon">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Carbon stored in the soil.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#BiosphereCarbon"/>
   </owl:Class>
   <owl:Class rdf:ID="HighEvapotranspiration">
     <rdfs:subClassOf rdf:resource="#ActualEvapotranspiration"/>
@@ -1467,7 +1468,7 @@
     <rdfs:subClassOf rdf:resource="#StoredCarbonRelease"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UseType"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Use"/>
   </owl:Class>
   <owl:Class rdf:about="#VegetationCarbonStorage">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
@@ -1962,35 +1963,10 @@
   <owl:Class rdf:ID="SoilCSequestration">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilDepth"/>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#GrowingSeason"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#SoilOxygenConditions"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#SoilTexture"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#CSequestration"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The addition of carbon to the soil through the interaction between biotic and abiotic components of the soil ecosystem.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -2007,10 +1983,35 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SoilDepth"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#RootTurnoverAndDensity"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#CSequestration"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#GrowingSeason"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#SoilOxygenConditions"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The addition of carbon to the soil through the interaction between biotic and abiotic components of the soil ecosystem.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatMatrix">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -2251,42 +2252,12 @@
   </owl:FunctionalProperty>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighVegetationStorage"/>
-      <owl:Class rdf:about="#LowVegetationStorage"/>
-      <owl:Class rdf:about="#ModerateVegetationStorage"/>
-      <owl:Class rdf:about="#NoVegetationStorage"/>
-      <owl:Class rdf:about="#VeryHighVegetationStorage"/>
-      <owl:Class rdf:about="#VeryLowVegetationStorage"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:Thing rdf:ID="__deleted__">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-  </owl:Thing>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighFireFrequency"/>
-      <owl:Class rdf:about="#LowFireFrequency"/>
-      <owl:Class rdf:about="#ModerateFireFrequency"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighVegetationCover"/>
-      <owl:Class rdf:about="#LowVegetationCover"/>
-      <owl:Class rdf:about="#ModerateVegetationCover"/>
-      <owl:Class rdf:about="#VeryHighVegetationCover"/>
-      <owl:Class rdf:about="#VeryLowVegetationCover"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighSoilStorage"/>
-      <owl:Class rdf:about="#LowSoilStorage"/>
-      <owl:Class rdf:about="#ModerateSoilStorage"/>
-      <owl:Class rdf:about="#NoSoilStorage"/>
-      <owl:Class rdf:about="#VeryHighSoilStorage"/>
-      <owl:Class rdf:about="#VeryLowSoilStorage"/>
+      <owl:Class rdf:about="#EarlySuccession"/>
+      <owl:Class rdf:about="#LateSuccession"/>
+      <owl:Class rdf:about="#MidSuccession"/>
+      <owl:Class rdf:about="#NoSuccession"/>
+      <owl:Class rdf:about="#OldGrowth"/>
+      <owl:Class rdf:about="#PoleSuccession"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -2299,25 +2270,10 @@
       <owl:Class rdf:about="#VeryLowSequestration"/>
     </owl:members>
   </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighRelease"/>
-      <owl:Class rdf:about="#LowRelease"/>
-      <owl:Class rdf:about="#ModerateRelease"/>
-      <owl:Class rdf:about="#NoRelease"/>
-      <owl:Class rdf:about="#VeryHighRelease"/>
-      <owl:Class rdf:about="#VeryLowRelease"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighHardness"/>
-      <owl:Class rdf:about="#LowHardness"/>
-      <owl:Class rdf:about="#ModerateHardness"/>
-      <owl:Class rdf:about="#VeryHighHardness"/>
-      <owl:Class rdf:about="#VeryLowHardness"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
+  <owl:Thing rdf:ID="__deleted__">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:Thing>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#HighCarbonUptake"/>
@@ -2339,31 +2295,6 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighPh"/>
-      <owl:Class rdf:about="#LowPh"/>
-      <owl:Class rdf:about="#ModeratePh"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighStorage"/>
-      <owl:Class rdf:about="#LowStorage"/>
-      <owl:Class rdf:about="#ModerateStorage"/>
-      <owl:Class rdf:about="#NoStorage"/>
-      <owl:Class rdf:about="#VeryHighStorage"/>
-      <owl:Class rdf:about="#VeryLowStorage"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#GentlyUndulating"/>
-      <owl:Class rdf:about="#Level"/>
-      <owl:Class rdf:about="#RollingToHilly"/>
-      <owl:Class rdf:about="#SteeplyDissectedToMountainous"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#HighCNRatio"/>
       <owl:Class rdf:about="#LowCNRatio"/>
       <owl:Class rdf:about="#VeryHighCNRatio"/>
@@ -2381,12 +2312,26 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#EarlySuccession"/>
-      <owl:Class rdf:about="#LateSuccession"/>
-      <owl:Class rdf:about="#MidSuccession"/>
-      <owl:Class rdf:about="#NoSuccession"/>
-      <owl:Class rdf:about="#OldGrowth"/>
-      <owl:Class rdf:about="#PoleSuccession"/>
+      <owl:Class rdf:about="#HighVegetationCover"/>
+      <owl:Class rdf:about="#LowVegetationCover"/>
+      <owl:Class rdf:about="#ModerateVegetationCover"/>
+      <owl:Class rdf:about="#VeryHighVegetationCover"/>
+      <owl:Class rdf:about="#VeryLowVegetationCover"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighPh"/>
+      <owl:Class rdf:about="#LowPh"/>
+      <owl:Class rdf:about="#ModeratePh"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#GentlyUndulating"/>
+      <owl:Class rdf:about="#Level"/>
+      <owl:Class rdf:about="#RollingToHilly"/>
+      <owl:Class rdf:about="#SteeplyDissectedToMountainous"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -2397,6 +2342,62 @@
       <owl:Class rdf:about="#NoEmitter"/>
       <owl:Class rdf:about="#VeryHighEmitter"/>
       <owl:Class rdf:about="#VeryLowEmitter"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighVegetationStorage"/>
+      <owl:Class rdf:about="#LowVegetationStorage"/>
+      <owl:Class rdf:about="#ModerateVegetationStorage"/>
+      <owl:Class rdf:about="#NoVegetationStorage"/>
+      <owl:Class rdf:about="#VeryHighVegetationStorage"/>
+      <owl:Class rdf:about="#VeryLowVegetationStorage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighSoilStorage"/>
+      <owl:Class rdf:about="#LowSoilStorage"/>
+      <owl:Class rdf:about="#ModerateSoilStorage"/>
+      <owl:Class rdf:about="#NoSoilStorage"/>
+      <owl:Class rdf:about="#VeryHighSoilStorage"/>
+      <owl:Class rdf:about="#VeryLowSoilStorage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighRelease"/>
+      <owl:Class rdf:about="#LowRelease"/>
+      <owl:Class rdf:about="#ModerateRelease"/>
+      <owl:Class rdf:about="#NoRelease"/>
+      <owl:Class rdf:about="#VeryHighRelease"/>
+      <owl:Class rdf:about="#VeryLowRelease"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighFireFrequency"/>
+      <owl:Class rdf:about="#LowFireFrequency"/>
+      <owl:Class rdf:about="#ModerateFireFrequency"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighHardness"/>
+      <owl:Class rdf:about="#LowHardness"/>
+      <owl:Class rdf:about="#ModerateHardness"/>
+      <owl:Class rdf:about="#VeryHighHardness"/>
+      <owl:Class rdf:about="#VeryLowHardness"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighStorage"/>
+      <owl:Class rdf:about="#LowStorage"/>
+      <owl:Class rdf:about="#ModerateStorage"/>
+      <owl:Class rdf:about="#NoStorage"/>
+      <owl:Class rdf:about="#VeryHighStorage"/>
+      <owl:Class rdf:about="#VeryLowStorage"/>
     </owl:members>
   </owl:AllDisjointClasses>
 </rdf:RDF>

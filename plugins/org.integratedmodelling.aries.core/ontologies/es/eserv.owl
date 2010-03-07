@@ -1,667 +1,366 @@
 <?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
-]>
-
-
-<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xml:base="http://www.integratedmodelling.org/ks/es/eserv.owl"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
-    <owl:Ontology rdf:about=""/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus -->
-
-    <owl:ObjectProperty rdf:about="#ecologicalFocus">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Links an ecosystem service to the ecological factor or entity that defines it.</rdfs:comment>
-        <rdfs:range rdf:resource="#EcologicalPolicyTarget"/>
-        <rdfs:domain rdf:resource="#EcosystemService"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer -->
-
-    <owl:ObjectProperty rdf:about="#hasConsumer">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="#HumanConsumer"/>
-        <rdfs:domain rdf:resource="#UsageProcess"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer -->
-
-    <owl:ObjectProperty rdf:about="#hasProducer">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="#EcosystemProducer"/>
-        <rdfs:domain rdf:resource="#ProvisionProcess"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision -->
-
-    <owl:ObjectProperty rdf:about="#hasProvision">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Links to the quantifiable observable of the provision process.</rdfs:comment>
-        <rdfs:domain rdf:resource="#EcosystemBenefit"/>
-        <rdfs:range rdf:resource="#ProvisionProcess"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage -->
-
-    <owl:ObjectProperty rdf:about="#hasUsage">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Links to the quantifiable observable of the usage process</rdfs:comment>
-        <rdfs:domain rdf:resource="#EcosystemBenefit"/>
-        <rdfs:range rdf:resource="#UsageProcess"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus -->
-
-    <owl:ObjectProperty rdf:about="#humanFocus">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Links an ecosystem service to its human target: a community, activity, or supporting resource that the service impacts.</rdfs:comment>
-        <rdfs:domain rdf:resource="#EcosystemService"/>
-        <rdfs:range rdf:resource="#HumanPolicyTarget"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit -->
-
-    <owl:ObjectProperty rdf:about="#producesBenefit">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Links the ecosystem service definition to the components of its provision, each of which generates benefits that make the service valuable.</rdfs:comment>
-        <rdfs:range rdf:resource="#EcosystemBenefit"/>
-        <rdfs:domain rdf:resource="#EcosystemService"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink -->
-
-    <owl:Class rdf:about="#AbsoluteSink">
-        <rdfs:subClassOf rdf:resource="#Sink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse -->
-
-    <owl:Class rdf:about="#AbsoluteUse">
-        <rdfs:subClassOf rdf:resource="#UseType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow -->
-
-    <owl:Class rdf:about="#ActualFlow">
-        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink -->
-
-    <owl:Class rdf:about="#ActualSink">
-        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource -->
-
-    <owl:Class rdf:about="#ActualSource">
-        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse -->
-
-    <owl:Class rdf:about="#ActualUse">
-        <rdfs:subClassOf rdf:resource="#UseTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow -->
-
-    <owl:Class rdf:about="#BlockedFlow">
-        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink -->
-
-    <owl:Class rdf:about="#BlockedSink">
-        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource -->
-
-    <owl:Class rdf:about="#BlockedSource">
-        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse -->
-
-    <owl:Class rdf:about="#BlockedUse">
-        <rdfs:subClassOf rdf:resource="#UseTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation -->
-
-    <owl:Class rdf:about="#ConservativeExploitation">
-        <rdfs:subClassOf rdf:resource="#Exploitation"/>
-        <owl:disjointWith rdf:resource="#DestructiveExploitation"/>
-        <owl:disjointWith rdf:resource="#TransformationalExploitation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage that comes in contact with the resource but preserves both its identity and context.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation -->
-
-    <owl:Class rdf:about="#Contemplation">
-        <rdfs:subClassOf rdf:resource="#UsageProcess"/>
-        <owl:disjointWith rdf:resource="#Exploitation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage based only on sensory relationship with resource, not requiring transformative contact with it and leaving the resource unmodified.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget -->
-
-    <owl:Class rdf:about="#ContingentPolicyTarget">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#DestructiveExploitation -->
-
-    <owl:Class rdf:about="#DestructiveExploitation">
-        <rdfs:subClassOf rdf:resource="#Exploitation"/>
-        <owl:disjointWith rdf:resource="#TransformationalExploitation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Destructive exploitation that depletes the resource completely, leaving nothing behind.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcologicalPolicyTarget -->
-
-    <owl:Class rdf:about="#EcologicalPolicyTarget">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The source of an ecosystem service as conceptualized by a policy maker</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit -->
-
-    <owl:Class rdf:about="#EcosystemBenefit">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >An ecosystem service groups together one or more  instances of Benefit provided by nature and valuable to humans. The benefits are what ESV values. 
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.integratedmodelling.org/ks/es/eserv.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="UndesiredEndurant">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="EcosystemPreventableUndesirable"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An endurant (non-ephemeral) whose negative effect is mitigated or eliminated by an ecosystem service. E.g. a pollutant load that is absorbed by a wetland.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FlowRelatedSourceTrait">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SourceTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Exploitation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="UsageProcess"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage requiring contact with resource and possible transformation or destruction</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ServiceRelatedSourceTrait">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SourceTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FlowRelatedSinkTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SourceTrait">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemResource">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="EcologicalPolicyTarget"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TransformationalExploitation">
+    <rdfs:subClassOf rdf:resource="#Exploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage that transforms the resource, either into the same resource with different attributes or contexts (including time/space: moving, recycling with a time lag) or into something different.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FlowRelatedSinkTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="InaccessibleUse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="UseTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Use">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AbsoluteUse">
+    <rdfs:subClassOf rdf:resource="#Use"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Production">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ProvisionProcess"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Transformation"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Provision of a service by produced matter or energy for the perusal of the human consumer.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleSource">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:about="#FlowRelatedSinkTrait">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SinkTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#EcosystemPreventableUndesirable">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#EcologicalPolicyTarget"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemService">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="producesBenefit"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A specific ESAV-related policy issue being investigated. It is required to link to a human and an ecosystem policy "endpoint".  The existence of the ESAV case is related to the existence of one or more Benefits provided by the natural environment to humans.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="NegativeSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ServiceRelatedSinkTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#UseTrait">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemBenefit">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An ecosystem service groups together one or more  instances of Benefit provided by nature and valuable to humans. The benefits are what ESV values. 
 
 The  existence of both producer and user at the (temporal, spatial) scale of the component denotes the potential for ES provision, and as such is already amenable to valuation. 
 
 If provision and usage can be observed and are larger than zero, the Benefit is provided. In order for the Benefit to be provided, both processes of provision and usage must be co-located in all locational extents defined for the Benefit. The definition of co-location depends on the focal scales of the two processes and is expressed in the observations of provision and usage according to the Core Science ontologies.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource -->
-
-    <owl:Class rdf:about="#EcosystemGeneratedResource">
-        <rdfs:subClassOf rdf:resource="#EcosystemResource"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemPreventableUndesirable -->
-
-    <owl:Class rdf:about="#EcosystemPreventableUndesirable">
-        <rdfs:subClassOf rdf:resource="#EcologicalPolicyTarget"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer -->
-
-    <owl:Class rdf:about="#EcosystemProducer">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The natural source of a Benefit that is provided or has the potential of being provided to a HumanConsumer.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemResource -->
-
-    <owl:Class rdf:about="#EcosystemResource">
-        <rdfs:subClassOf rdf:resource="#EcologicalPolicyTarget"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService -->
-
-    <owl:Class rdf:about="#EcosystemService">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#producesBenefit"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A specific ESAV-related policy issue being investigated. It is required to link to a human and an ecosystem policy &quot;endpoint&quot;.  The existence of the ESAV case is related to the existence of one or more Benefits provided by the natural environment to humans.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource -->
-
-    <owl:Class rdf:about="#EcosystemSupportedResource">
-        <rdfs:subClassOf rdf:resource="#EcosystemResource"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A resource not generated directly by ecosystem processes but that could not be generated without ecosystem service.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Existence -->
-
-    <owl:Class rdf:about="#Existence">
-        <rdfs:subClassOf rdf:resource="#ProvisionProcess"/>
-        <owl:disjointWith rdf:resource="#Performance"/>
-        <owl:disjointWith rdf:resource="#Production"/>
-        <owl:disjointWith rdf:resource="#Transformation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Provision of a service through mere existence of a subject, such as in contemplative services.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Exploitation -->
-
-    <owl:Class rdf:about="#Exploitation">
-        <rdfs:subClassOf rdf:resource="#UsageProcess"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage requiring contact with resource and possible transformation or destruction</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Flow -->
-
-    <owl:Class rdf:about="#Flow">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowTrait -->
-
-    <owl:Class rdf:about="#FlowTrait">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowType -->
-
-    <owl:Class rdf:about="#FlowType">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer -->
-
-    <owl:Class rdf:about="#HumanConsumer">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The human beneficiary of a specific Benefit produced by an EcosystemService. Should be concrete and identifiable or quantifiable from data	.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget -->
-
-    <owl:Class rdf:about="#HumanPolicyTarget">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The target of an ecosystem service. Could be a human activity, need, or a specific target such as a community. It could also be abstract, e.g. global human wellbeing. Link point to the policy ontologies.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink -->
-
-    <owl:Class rdf:about="#InaccessibleSink">
-        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource -->
-
-    <owl:Class rdf:about="#InaccessibleSource">
-        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse -->
-
-    <owl:Class rdf:about="#InaccessibleUse">
-        <rdfs:subClassOf rdf:resource="#UseTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#NonRenewableTransformation -->
-
-    <owl:Class rdf:about="#NonRenewableTransformation">
-        <rdfs:subClassOf rdf:resource="#TransformationalExploitation"/>
-        <owl:disjointWith rdf:resource="#RenewableTransformation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage that does not preserve the identity of the resource but turns into something else that is relevant to the conceptual context of analysis.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit -->
-
-    <owl:Class rdf:about="#NonRivalBenefit">
-        <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Performance -->
-
-    <owl:Class rdf:about="#Performance">
-        <rdfs:subClassOf rdf:resource="#ProvisionProcess"/>
-        <owl:disjointWith rdf:resource="#Production"/>
-        <owl:disjointWith rdf:resource="#Transformation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Provision of a service through performance of activities by the subject, not involving production of matter or energy that is directly used by the human endpoint.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow -->
-
-    <owl:Class rdf:about="#PossibleFlow">
-        <rdfs:subClassOf rdf:resource="#FlowTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSink -->
-
-    <owl:Class rdf:about="#PossibleSink">
-        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource -->
-
-    <owl:Class rdf:about="#PossibleSource">
-        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse -->
-
-    <owl:Class rdf:about="#PossibleUse">
-        <rdfs:subClassOf rdf:resource="#UseTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Production -->
-
-    <owl:Class rdf:about="#Production">
-        <rdfs:subClassOf rdf:resource="#ProvisionProcess"/>
-        <owl:disjointWith rdf:resource="#Transformation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Provision of a service by produced matter or energy for the perusal of the human consumer.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ProvisionProcess -->
-
-    <owl:Class rdf:about="#ProvisionProcess">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The quantifiable process by which an EcosystemProducer provides the Benefit   to the HumanConsumer. Its quantification (an observation of which an instance of Provision is the observable) captures the supply side of the value function.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink -->
-
-    <owl:Class rdf:about="#RelativeSink">
-        <rdfs:subClassOf rdf:resource="#Sink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeUse -->
-
-    <owl:Class rdf:about="#RelativeUse">
-        <rdfs:subClassOf rdf:resource="#UseType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RenewableTransformation -->
-
-    <owl:Class rdf:about="#RenewableTransformation">
-        <rdfs:subClassOf rdf:resource="#TransformationalExploitation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage that preserves the identity of the resource after usage.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#RivalBenefit -->
-
-    <owl:Class rdf:about="#RivalBenefit">
-        <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Sink -->
-
-    <owl:Class rdf:about="#Sink">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-        <rdfs:comment
-            >Whatever diminishes a benefit by capturing it along its flow path.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SinkTrait -->
-
-    <owl:Class rdf:about="#SinkTrait">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SourceTrait -->
-
-    <owl:Class rdf:about="#SourceTrait">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType -->
-
-    <owl:Class rdf:about="#SourceType">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink -->
-
-    <owl:Class rdf:about="#TheoreticalSink">
-        <rdfs:subClassOf rdf:resource="#SinkTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource -->
-
-    <owl:Class rdf:about="#TheoreticalSource">
-        <rdfs:subClassOf rdf:resource="#SourceTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse -->
-
-    <owl:Class rdf:about="#TheoreticalUse">
-        <rdfs:subClassOf rdf:resource="#UseTrait"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Transformation -->
-
-    <owl:Class rdf:about="#Transformation">
-        <rdfs:subClassOf rdf:resource="#ProvisionProcess"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Provision of a service by transforming matter or energy in ways that make its result useful to the human endpoint.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TransformationalExploitation -->
-
-    <owl:Class rdf:about="#TransformationalExploitation">
-        <rdfs:subClassOf rdf:resource="#Exploitation"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Usage that transforms the resource, either into the same resource with different attributes or contexts (including time/space: moving, recycling with a time lag) or into something different.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredEndurant -->
-
-    <owl:Class rdf:about="#UndesiredEndurant">
-        <rdfs:subClassOf rdf:resource="#EcosystemPreventableUndesirable"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >An endurant (non-ephemeral) whose negative effect is mitigated or eliminated by an ecosystem service. E.g. a pollutant load that is absorbed by a wetland.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant -->
-
-    <owl:Class rdf:about="#UndesiredPerdurant">
-        <rdfs:subClassOf rdf:resource="#EcosystemPreventableUndesirable"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A perdurant (ephemeral) whose negative effects are mitigated or avoided by an ecosystem service. E.g. a flood mitigated by the buffering effect of a wetland system.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UsageProcess -->
-
-    <owl:Class rdf:about="#UsageProcess">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The quantifiable process by which the HumanConsumer enjoys the Benefit.  Its quantification (an observation of which an instance of Usage is the observable) captures the supply side of the value function. TODO this should probably be a functional relationship between Benefit and Consumer, whose quantification becomes a dependency in the observation ontology.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait -->
-
-    <owl:Class rdf:about="#UseTrait">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseType -->
-
-    <owl:Class rdf:about="#UseType">
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#Thing -->
-
-    <owl:Class rdf:about="&owl;Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RivalBenefit">
+    <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
+  </owl:Class>
+  <owl:Class rdf:about="#UsageProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The quantifiable process by which the HumanConsumer enjoys the Benefit.  Its quantification (an observation of which an instance of Usage is the observable) captures the supply side of the value function. TODO this should probably be a functional relationship between Benefit and Consumer, whose quantification becomes a dependency in the observation ontology.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="InaccessibleSource">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualSource">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NegativeSource">
+    <rdfs:subClassOf rdf:resource="#ServiceRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="UndesiredPerdurant">
+    <rdfs:subClassOf rdf:resource="#EcosystemPreventableUndesirable"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A perdurant (ephemeral) whose negative effects are mitigated or avoided by an ecosystem service. E.g. a flood mitigated by the buffering effect of a wetland system.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedUse">
+    <rdfs:subClassOf rdf:resource="#UseTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RelativeSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Sink"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ContingentPolicyTarget">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NonRivalBenefit">
+    <rdfs:subClassOf rdf:resource="#EcosystemBenefit"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FlowTrait">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Sink">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment>Whatever diminishes a benefit by capturing it along its flow path.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Performance">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProvisionProcess"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Production"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Transformation"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Provision of a service through performance of activities by the subject, not involving production of matter or energy that is directly used by the human endpoint.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="HumanConsumer">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The human beneficiary of a specific Benefit produced by an EcosystemService. Should be concrete and identifiable or quantifiable from data	.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Contemplation">
+    <rdfs:subClassOf rdf:resource="#UsageProcess"/>
+    <owl:disjointWith rdf:resource="#Exploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage based only on sensory relationship with resource, not requiring transformative contact with it and leaving the resource unmodified.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TheoreticalSource">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TheoreticalUse">
+    <rdfs:subClassOf rdf:resource="#UseTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleUse">
+    <rdfs:subClassOf rdf:resource="#UseTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ConservativeExploitation">
+    <rdfs:subClassOf rdf:resource="#Exploitation"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="DestructiveExploitation"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#TransformationalExploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage that comes in contact with the resource but preserves both its identity and context.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedSource">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Source">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemGeneratedResource">
+    <rdfs:subClassOf rdf:resource="#EcosystemResource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FlowType">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ServiceRelatedSinkTrait">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SinkTrait"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TheoreticalSink">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSinkTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NonRenewableTransformation">
+    <rdfs:subClassOf rdf:resource="#TransformationalExploitation"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="RenewableTransformation"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage that does not preserve the identity of the resource but turns into something else that is relevant to the conceptual context of analysis.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Existence">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProvisionProcess"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Performance"/>
+    <owl:disjointWith rdf:resource="#Production"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Transformation"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Provision of a service through mere existence of a subject, such as in contemplative services.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PositiveSink">
+    <rdfs:subClassOf rdf:resource="#ServiceRelatedSinkTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PositiveSource">
+    <rdfs:subClassOf rdf:resource="#ServiceRelatedSourceTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HumanPolicyTarget">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The target of an ecosystem service. Could be a human activity, need, or a specific target such as a community. It could also be abstract, e.g. global human wellbeing. Link point to the policy ontologies.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Flow">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleSink">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSinkTrait"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DestructiveExploitation">
+    <rdfs:subClassOf rdf:resource="#Exploitation"/>
+    <owl:disjointWith rdf:resource="#TransformationalExploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Destructive exploitation that depletes the resource completely, leaving nothing behind.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#SinkTrait">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RelativeUse">
+    <rdfs:subClassOf rdf:resource="#Use"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Transformation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ProvisionProcess"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Provision of a service by transforming matter or energy in ways that make its result useful to the human endpoint.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="AbsoluteSink">
+    <rdfs:subClassOf rdf:resource="#Sink"/>
+  </owl:Class>
+  <owl:Class rdf:about="#RenewableTransformation">
+    <rdfs:subClassOf rdf:resource="#TransformationalExploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usage that preserves the identity of the resource after usage.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#EcologicalPolicyTarget">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The source of an ecosystem service as conceptualized by a policy maker</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleFlow">
+    <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedFlow">
+    <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualUse">
+    <rdfs:subClassOf rdf:resource="#UseTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemSupportedResource">
+    <rdfs:subClassOf rdf:resource="#EcosystemResource"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A resource not generated directly by ecosystem processes but that could not be generated without ecosystem service.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="InaccessibleSink">
+    <rdfs:subClassOf rdf:resource="#FlowRelatedSinkTrait"/>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemProducer">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The natural source of a Benefit that is provided or has the potential of being provided to a HumanConsumer.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualFlow">
+    <rdfs:subClassOf rdf:resource="#FlowTrait"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ProvisionProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The quantifiable process by which an EcosystemProducer provides the Benefit   to the HumanConsumer. Its quantification (an observation of which an instance of Provision is the observable) captures the supply side of the value function.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="humanFocus">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Links an ecosystem service to its human target: a community, activity, or supporting resource that the service impacts.</rdfs:comment>
+    <rdfs:domain rdf:resource="#EcosystemService"/>
+    <rdfs:range rdf:resource="#HumanPolicyTarget"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasProducer">
+    <rdfs:range rdf:resource="#EcosystemProducer"/>
+    <rdfs:domain rdf:resource="#ProvisionProcess"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasConsumer">
+    <rdfs:range rdf:resource="#HumanConsumer"/>
+    <rdfs:domain rdf:resource="#UsageProcess"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasProvision">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Links to the quantifiable observable of the provision process.</rdfs:comment>
+    <rdfs:domain rdf:resource="#EcosystemBenefit"/>
+    <rdfs:range rdf:resource="#ProvisionProcess"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#producesBenefit">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Links the ecosystem service definition to the components of its provision, each of which generates benefits that make the service valuable.</rdfs:comment>
+    <rdfs:range rdf:resource="#EcosystemBenefit"/>
+    <rdfs:domain rdf:resource="#EcosystemService"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasUsage">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Links to the quantifiable observable of the usage process</rdfs:comment>
+    <rdfs:domain rdf:resource="#EcosystemBenefit"/>
+    <rdfs:range rdf:resource="#UsageProcess"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="ecologicalFocus">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Links an ecosystem service to the ecological factor or entity that defines it.</rdfs:comment>
+    <rdfs:range rdf:resource="#EcologicalPolicyTarget"/>
+    <rdfs:domain rdf:resource="#EcosystemService"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
 </rdf:RDF>
 
-
-
-<!-- Generated by the OWL API (version 2.2.1.1042) http://owlapi.sourceforge.net -->
-
+<!-- Created with TopBraid Composer -->
