@@ -1,6 +1,6 @@
 (ns aries/carbon
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian)))
 
 ;; output and training
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
@@ -217,4 +217,17 @@
 (defmodel data-emitters-hadley-b2 'carbonService:EmissionHadleyB2Scenario 
 	(identification 'carbonService:EmissionTrading)
 		:context (source-hadley-b2 use-emitters))
+		
+;; ----------------------------------------------------------------------------------------------
+;; scenarios
+;; ----------------------------------------------------------------------------------------------
+
+(defscenario ipcc-hadley-a2 'carbonService:EmissionTrading
+
+		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL)) 
 		 			
