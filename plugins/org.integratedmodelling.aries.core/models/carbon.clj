@@ -222,9 +222,18 @@
 ;; scenarios
 ;; ----------------------------------------------------------------------------------------------
 
-(defscenario ipcc-hadley-a2 'carbonService:EmissionTrading
-
+(defscenario ipcc-hadley-a2 'carbonService:CarbonSourceValue
+	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario." 
 		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL)) 
+
+(defscenario ipcc-hadley-b2 'carbonService:CarbonSourceValue
+	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario." 
+		(classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
         [:< 24]       'carbonService:VeryLowSOL
         [24 30]       'carbonService:LowSOL
         [30 35]       'carbonService:ModerateSOL
