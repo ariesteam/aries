@@ -222,8 +222,26 @@
 ;; scenarios
 ;; ----------------------------------------------------------------------------------------------
 
+(defscenario ipcc-hadley-a1 'carbonService:CarbonSourceValue
+	  "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 represents a future world of very rapid economic growth, global population that peaks in mid-century and declines thereafter, and rapid introduction of new and more efficient technologies." 
+		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL)) 
+
+(defscenario ipcc-hadley-b1 'carbonService:CarbonSourceValue
+	  "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 world is a convergent world with the same global population as in the A1 storyline but with rapid changes in economic structures toward a service and information economy, with reductions in material intensity, and the introduction of clean and resource-efficient technologies." 
+		(classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL))  
+        
 (defscenario ipcc-hadley-a2 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario." 
+	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2 represents a very heterogeneous world with continuously increasing global population and regionally oriented economic growth that is more fragmented and slower than in other storylines." 
 		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
         [:< 24]       'carbonService:VeryLowSOL
         [24 30]       'carbonService:LowSOL
@@ -232,7 +250,7 @@
         [40 :>]       'carbonService:VeryHighSOL)) 
 
 (defscenario ipcc-hadley-b2 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario." 
+	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario. B2 is a world in which the emphasis is on local solutions to economic, social, and environmental sustainability, with continuously increasing population (lower than A2) and intermediate economic development. " 
 		(classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
         [:< 24]       'carbonService:VeryLowSOL
         [24 30]       'carbonService:LowSOL
