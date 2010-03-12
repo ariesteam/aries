@@ -54,73 +54,6 @@
     nums
     (cons (first nums) (map - (rest nums) nums))))
 
-(defn- average-prob-dists
-  [prob-dists]
-  (rv-scalar-divide (reduce rv-add prob-dists) (count prob-dists)))
-
-(defn- downsample-prob-dists
-  "Takes a seq of prob-dists representing a linearized form of a rows
-   x cols matrix of locations and generates a new seq of prob-dists by
-   aggregating the values in the matrix according to the global
-   *downscaling-factor* along each axis."
-  [prob-dists rows cols]
-  (if (== *downscaling-factor* 1)
-    prob-dists
-    (let [prob-dists-2D (vec (map vec (partition cols prob-dists)))
-	  scaled-rows   (int (/ rows *downscaling-factor*))
-	  scaled-cols   (int (/ cols *downscaling-factor*))
-	  offset-range  (range *downscaling-factor*)]
-      (for [scaled-i (range scaled-rows) scaled-j (range scaled-cols)]
-	(let [i (* scaled-i *downscaling-factor*)
-	      j (* scaled-j *downscaling-factor*)]
-	  (average-prob-dists (for [i-offset offset-range j-offset offset-range]
-				(get-in prob-dists-2D [(+ i i-offset) (+ j j-offset)]))))))))
-
-(defn unpack-datasource
-  "Returns a seq of length n of the values in ds,
-   represented as probability distributions.  All values and
-   probabilities are represented as rationals."
-  [ds rows cols n]
-  (println "DS:           " ds)
-  (println "PROBABILISTIC?" (probabilistic? ds))
-  (println "ENCODES?      " (encodes-continuous-distribution? ds))
-  (let [to-rationals (partial map #(if (Double/isNaN %) 0 (rationalize %)))]
-    (if (and (probabilistic? ds) (not (binary? ds)))
-      (if (encodes-continuous-distribution? ds)
-	;; sampled continuous distributions (FIXME: How is missing information represented?)
-	(let [bounds                (get-dist-breakpoints ds)
-	      unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
-	      unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
-	  (println "BREAKPOINTS:    " bounds)
-	  (println "UNBOUNDED-BELOW?" unbounded-from-below?)
-	  (println "UNBOUNDED-ABOVE?" unbounded-from-above?)
-	  (let [prob-dist             (apply create-struct (to-rationals
-							    (if unbounded-from-below?
-							      (if unbounded-from-above?
-								(rest (butlast bounds))
-								(rest bounds))
-							      (if unbounded-from-above?
-								(butlast bounds)
-								bounds))))
-		get-cdf-vals          (if unbounded-from-below?
-					(if unbounded-from-above?
-					  #(successive-sums (to-rationals (butlast (get-probabilities ds %))))
-					  #(successive-sums (to-rationals (get-probabilities ds %))))
-					(if unbounded-from-above?
-					  #(successive-sums 0 (to-rationals (butlast (get-probabilities ds %))))
-					  #(successive-sums 0 (to-rationals (get-probabilities ds %)))))
-		extracted-prob-dists  (for [idx (range n)]
-					(with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type))]
-	    (downsample-prob-dists extracted-prob-dists rows cols)))
-	;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
-	(let [prob-dist (apply create-struct (get-possible-states ds))
-	      extracted-prob-dists (for [idx (range n)]
-				     (with-meta (apply struct prob-dist (to-rationals (get-probabilities ds idx))) disc-type))]
-	  (downsample-prob-dists extracted-prob-dists rows cols)))
-      ;; binary distributions and deterministic values (FIXME: NaNs become 0s)
-      (downsample-prob-dists (for [value (to-rationals (get-data ds))]
-			       (with-meta (array-map value 1) disc-type)) rows cols))))
-
 ;; FIXME: upgrade clojure and change to type
 (defmulti rv-resample
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
@@ -384,6 +317,73 @@
 		       (assoc probs zero-pos (+ (probs zero-pos) (- 1 scale-factor)))
 		       (cons (- 1 scale-factor) probs))]
     (with-meta (zipmap values2 probs2) disc-type)))
+
+(defn- average-prob-dists
+  [prob-dists]
+  (rv-scalar-divide (reduce rv-add prob-dists) (count prob-dists)))
+
+(defn- downsample-prob-dists
+  "Takes a seq of prob-dists representing a linearized form of a rows
+   x cols matrix of locations and generates a new seq of prob-dists by
+   aggregating the values in the matrix according to the global
+   *downscaling-factor* along each axis."
+  [prob-dists rows cols]
+  (if (== *downscaling-factor* 1)
+    prob-dists
+    (let [prob-dists-2D (vec (map vec (partition cols prob-dists)))
+	  scaled-rows   (int (/ rows *downscaling-factor*))
+	  scaled-cols   (int (/ cols *downscaling-factor*))
+	  offset-range  (range *downscaling-factor*)]
+      (for [scaled-i (range scaled-rows) scaled-j (range scaled-cols)]
+	(let [i (* scaled-i *downscaling-factor*)
+	      j (* scaled-j *downscaling-factor*)]
+	  (average-prob-dists (for [i-offset offset-range j-offset offset-range]
+				(get-in prob-dists-2D [(+ i i-offset) (+ j j-offset)]))))))))
+
+(defn unpack-datasource
+  "Returns a seq of length n of the values in ds,
+   represented as probability distributions.  All values and
+   probabilities are represented as rationals."
+  [ds rows cols n]
+  (println "DS:           " ds)
+  (println "PROBABILISTIC?" (probabilistic? ds))
+  (println "ENCODES?      " (encodes-continuous-distribution? ds))
+  (let [to-rationals (partial map #(if (Double/isNaN %) 0 (rationalize %)))]
+    (if (and (probabilistic? ds) (not (binary? ds)))
+      (if (encodes-continuous-distribution? ds)
+	;; sampled continuous distributions (FIXME: How is missing information represented?)
+	(let [bounds                (get-dist-breakpoints ds)
+	      unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
+	      unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
+	  (println "BREAKPOINTS:    " bounds)
+	  (println "UNBOUNDED-BELOW?" unbounded-from-below?)
+	  (println "UNBOUNDED-ABOVE?" unbounded-from-above?)
+	  (let [prob-dist             (apply create-struct (to-rationals
+							    (if unbounded-from-below?
+							      (if unbounded-from-above?
+								(rest (butlast bounds))
+								(rest bounds))
+							      (if unbounded-from-above?
+								(butlast bounds)
+								bounds))))
+		get-cdf-vals          (if unbounded-from-below?
+					(if unbounded-from-above?
+					  #(successive-sums (to-rationals (butlast (get-probabilities ds %))))
+					  #(successive-sums (to-rationals (get-probabilities ds %))))
+					(if unbounded-from-above?
+					  #(successive-sums 0 (to-rationals (butlast (get-probabilities ds %))))
+					  #(successive-sums 0 (to-rationals (get-probabilities ds %)))))
+		extracted-prob-dists  (for [idx (range n)]
+					(with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type))]
+	    (downsample-prob-dists extracted-prob-dists rows cols)))
+	;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
+	(let [prob-dist (apply create-struct (get-possible-states ds))
+	      extracted-prob-dists (for [idx (range n)]
+				     (with-meta (apply struct prob-dist (to-rationals (get-probabilities ds idx))) disc-type))]
+	  (downsample-prob-dists extracted-prob-dists rows cols)))
+      ;; binary distributions and deterministic values (FIXME: NaNs become 0s)
+      (downsample-prob-dists (for [value (to-rationals (get-data ds))]
+			       (with-meta (array-map value 1) disc-type)) rows cols))))
 
 ;; Example profiling code
 ;;(use 'misc.memtest)
