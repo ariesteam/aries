@@ -18,8 +18,7 @@
 (ns span.location-builder
   (:use [misc.utils        :only (maphash seq2map)]
 	[misc.matrix-ops   :only (get-neighbors)]
-	[span.randvars     :only (unpack-datasource)]
-	[span.params       :only (*downscaling-factor*)]))
+	[span.randvars     :only (unpack-datasource)]))
 (refer 'corescience :only '(find-state
 			    find-observation
 			    get-state-map))
@@ -66,10 +65,8 @@
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
    observation set."
-  [observation source-conc sink-conc use-conc flow-conc rows cols]
-  (let [scaled-rows   (int (/ rows *downscaling-factor*))
-	scaled-cols   (int (/ cols *downscaling-factor*))
-	n             (* rows cols)
+  [observation source-conc sink-conc use-conc flow-conc rows cols scaled-rows scaled-cols]
+  (let [n             (* rows cols)
 	flow-vals-map (extract-all-values observation flow-conc rows cols n)]
     (println "Rows x Cols:" rows "x" cols)
     (println "Scaled-Rows x Scaled-Cols:" scaled-rows "x" scaled-cols)

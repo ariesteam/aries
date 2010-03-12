@@ -18,7 +18,7 @@
 (ns span.interface
   (:import (java.io OutputStreamWriter InputStreamReader PushbackReader))
   (:use	[misc.utils            :only (maphash count-distinct)]
-	[span.params           :only (set-global-params!)]
+	[span.params           :only (set-global-params! *downscaling-factor*)]
 	[span.flow-model       :only (simulate-service-flows)]
 	[span.randvars         :only (unpack-datasource)]
 	[span.analyzer         :only (theoretical-source
@@ -145,51 +145,68 @@
     (binding [*out* foo]
       (prn flow-params))))
 
+(defn- upsample-results
+  [result-map rows cols]
+  (if (== *downscaling-factor* 1)
+    result-map
+    (let [offset-range  (range *downscaling-factor*)
+	  row-remainder (rem  rows *downscaling-factor*)
+	  col-remainder (rem  cols *downscaling-factor*)]
+      (merge (into {} (mapcat (fn [[[i j] val]]
+				(let [i-base (* i *downscaling-factor*)
+				      j-base (* j *downscaling-factor*)]
+				  (for [i-offset offset-range j-offset offset-range
+					:let [idx [(+ i-base i-offset) (+ j-base j-offset)]]]
+				    [idx val])))
+			      result-map))
+	     (into {} (for [i (range rows) j (range cols (+ cols col-remainder))] [[i j] nil]))
+	     (into {} (for [i (range rows (+ rows row-remainder)) j (range cols)] [[i j] nil]))))))
+
 (defmulti provide-results (fn [result-type flow-concept-name locations rows cols] result-type))
 
 (defmethod provide-results :closure-map
-  [_ flow-concept-name locations _ _]
-  {:theoretical-source  #(theoretical-source  locations)
-   :theoretical-sink    #(theoretical-sink    locations)
-   :theoretical-use     #(theoretical-use     locations)
-   :inaccessible-source #(inaccessible-source locations)
-   :inaccessible-sink   #(inaccessible-sink   locations)
-   :inaccessible-use    #(inaccessible-use    locations)
-   :possible-flow       #(possible-flow       locations flow-concept-name)
-   :possible-source     #(possible-source     locations)
-   :possible-sink       #(possible-sink       locations)
-   :possible-use        #(possible-use        locations)
-   :blocked-flow        #(blocked-flow        locations flow-concept-name)
-   :blocked-source      #(blocked-source      locations flow-concept-name)
-   :blocked-sink        #(blocked-sink        locations flow-concept-name)
-   :blocked-use         #(blocked-use         locations flow-concept-name)
-   :actual-flow         #(actual-flow         locations flow-concept-name)
-   :actual-source       #(actual-source       locations flow-concept-name)
-   :actual-sink         #(actual-sink         locations flow-concept-name)
-   :actual-use          #(actual-use          locations flow-concept-name)})
+  [_ flow-concept-name locations rows cols]
+  {:theoretical-source  #(upsample-results (theoretical-source  locations)                   rows cols)
+   :theoretical-sink    #(upsample-results (theoretical-sink    locations)                   rows cols)
+   :theoretical-use     #(upsample-results (theoretical-use     locations)                   rows cols)
+   :inaccessible-source #(upsample-results (inaccessible-source locations)                   rows cols)
+   :inaccessible-sink   #(upsample-results (inaccessible-sink   locations)                   rows cols)
+   :inaccessible-use    #(upsample-results (inaccessible-use    locations)                   rows cols)
+   :possible-flow       #(upsample-results (possible-flow       locations flow-concept-name) rows cols)
+   :possible-source     #(upsample-results (possible-source     locations)                   rows cols)
+   :possible-sink       #(upsample-results (possible-sink       locations)                   rows cols)
+   :possible-use        #(upsample-results (possible-use        locations)                   rows cols)
+   :blocked-flow        #(upsample-results (blocked-flow        locations flow-concept-name) rows cols)
+   :blocked-source      #(upsample-results (blocked-source      locations flow-concept-name) rows cols)
+   :blocked-sink        #(upsample-results (blocked-sink        locations flow-concept-name) rows cols)
+   :blocked-use         #(upsample-results (blocked-use         locations flow-concept-name) rows cols)
+   :actual-flow         #(upsample-results (actual-flow         locations flow-concept-name) rows cols)
+   :actual-source       #(upsample-results (actual-source       locations flow-concept-name) rows cols)
+   :actual-sink         #(upsample-results (actual-sink         locations flow-concept-name) rows cols)
+   :actual-use          #(upsample-results (actual-use          locations flow-concept-name) rows cols)})
 
 (defmethod provide-results :matrix-list
   [_ flow-concept-name locations rows cols]
   (map (partial coord-map-to-matrix rows cols)
        (list
-	(theoretical-source  locations)
-	(theoretical-sink    locations)
-	(theoretical-use     locations)
-	(inaccessible-source locations)
-	(inaccessible-sink   locations)
-	(inaccessible-use    locations)
-	(possible-flow       locations flow-concept-name)
-	(possible-source     locations)
-	(possible-sink       locations)
-	(possible-use        locations)
-	(blocked-flow        locations flow-concept-name)
-	(blocked-source      locations flow-concept-name)
-	(blocked-sink        locations flow-concept-name)
-	(blocked-use         locations flow-concept-name)
-	(actual-flow         locations flow-concept-name)
-	(actual-source       locations flow-concept-name)
-	(actual-sink         locations flow-concept-name)
-	(actual-use          locations flow-concept-name))))
+	(upsample-results (theoretical-source  locations)                   rows cols)
+	(upsample-results (theoretical-sink    locations)                   rows cols)
+	(upsample-results (theoretical-use     locations)                   rows cols)
+	(upsample-results (inaccessible-source locations)                   rows cols)
+	(upsample-results (inaccessible-sink   locations)                   rows cols)
+	(upsample-results (inaccessible-use    locations)                   rows cols)
+	(upsample-results (possible-flow       locations flow-concept-name) rows cols)
+	(upsample-results (possible-source     locations)                   rows cols)
+	(upsample-results (possible-sink       locations)                   rows cols)
+	(upsample-results (possible-use        locations)                   rows cols)
+	(upsample-results (blocked-flow        locations flow-concept-name) rows cols)
+	(upsample-results (blocked-source      locations flow-concept-name) rows cols)
+	(upsample-results (blocked-sink        locations flow-concept-name) rows cols)
+	(upsample-results (blocked-use         locations flow-concept-name) rows cols)
+	(upsample-results (actual-flow         locations flow-concept-name) rows cols)
+	(upsample-results (actual-source       locations flow-concept-name) rows cols)
+	(upsample-results (actual-sink         locations flow-concept-name) rows cols)
+	(upsample-results (actual-use          locations flow-concept-name) rows cols))))
 
 (defmethod provide-results :raw-locations
   [_ _ locations _ _]

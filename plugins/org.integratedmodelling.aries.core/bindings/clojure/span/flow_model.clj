@@ -58,17 +58,22 @@
    simulation completes, a sequence of the locations in the network is
    returned."
   [observation source-conc sink-conc use-conc flow-conc flow-conc-name rows cols]
-  (let [lm (make-location-map observation
+  (let [scaled-rows (int (/ rows *downscaling-factor*))
+	scaled-cols (int (/ cols *downscaling-factor*))
+	lm (make-location-map observation
 			      source-conc
 			      sink-conc
 			      use-conc
 			      flow-conc
-			      rows cols)
+			      rows
+			      cols
+			      scaled-rows
+			      scaled-cols)
 	location-map (add-atoms-to lm)
 	locations    (vals location-map)]
     ;;(store-data rows cols flow-conc-name lm)
     ;;(throw (Exception. "Exiting early."))
-    (distribute-flow! flow-conc-name location-map rows cols)
+    (distribute-flow! flow-conc-name location-map scaled-rows scaled-cols)
     (cache-all-actual-routes! locations flow-conc-name)
     locations))
 
