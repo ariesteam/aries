@@ -6,6 +6,9 @@
 ;; common models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel flow-direction 'geophysics:FlowDirection
+	(ranking 'geophysics:FlowDirection)) 
+
 (defmodel soil-group 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
 	(classification (categorization 'floodService:HydrologicSoilsGroup)
