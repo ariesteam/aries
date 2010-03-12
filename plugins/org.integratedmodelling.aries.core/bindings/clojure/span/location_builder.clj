@@ -17,8 +17,9 @@
 
 (ns span.location-builder
   (:use [misc.utils        :only (maphash seq2map)]
+	[misc.matrix-ops   :only (get-neighbors)]
 	[span.randvars     :only (unpack-datasource)]
-	[misc.matrix-ops   :only (get-neighbors)]))
+	[span.params       :only (*downscaling-factor*)]))
 (refer 'corescience :only '(find-state
 			    find-observation
 			    get-state-map))
@@ -28,30 +29,30 @@
 (defn- extract-values-by-concept-clean
   "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
-  [obs conc n]
-  (unpack-datasource (find-state obs conc) n))
+  [obs conc rows cols n]
+  (unpack-datasource (find-state obs conc) rows cols n))
 
 (defn- extract-values-by-concept
   "Returns a seq of the concept's values in the observation,
    which are doubles or probability distributions."
-  [obs conc n]
+  [obs conc rows cols n]
   (println "EXTRACT-VALUES-BY-CONCEPT...")
   (println "OBS:  " obs)
   (println "CONC: " conc)
   (println "STATE:" (find-state obs conc))
-  (unpack-datasource (find-state obs conc) n))
+  (unpack-datasource (find-state obs conc) rows cols n))
 
 (defn- extract-all-values-clean
   "Returns a map of concept-names to vectors of doubles or probability
    distributions."
-  [obs conc n]
+  [obs conc rows cols n]
   (when conc
-    (maphash (memfn getLocalName) #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc)))))
+    (maphash (memfn getLocalName) #(vec (unpack-datasource % rows cols n)) (get-state-map (find-observation obs conc)))))
 
 (defn- extract-all-values
   "Returns a map of concept-names to vectors of doubles or probability
    distributions."
-  [obs conc n]
+  [obs conc rows cols n]
   (let [subobs (find-observation obs conc)
 	states (get-state-map subobs)]
     (println "EXTRACT-ALL-VALUES...")
@@ -60,28 +61,31 @@
     (println "SUBOBS:" subobs)
     (println "STATES:" states)
     (when conc
-      (maphash (memfn getLocalName) #(vec (unpack-datasource % n)) (get-state-map (find-observation obs conc))))))
+      (maphash (memfn getLocalName) #(vec (unpack-datasource % rows cols n)) (get-state-map (find-observation obs conc))))))
 
 (defn make-location-map
   "Returns a map of ids to location objects, one per location in the
    observation set."
   [observation source-conc sink-conc use-conc flow-conc rows cols]
-  (let [n             (* rows cols)
-	flow-vals-map (extract-all-values observation flow-conc n)]
-    (println "Rows x Cols:" n)
+  (let [scaled-rows   (int (/ rows *downscaling-factor*))
+	scaled-cols   (int (/ cols *downscaling-factor*))
+	n             (* rows cols)
+	flow-vals-map (extract-all-values observation flow-conc rows cols n)]
+    (println "Rows x Cols:" rows "x" cols)
+    (println "Scaled-Rows x Scaled-Cols:" scaled-rows "x" scaled-cols)
     (println "Flow-vals-map length:" (count flow-vals-map))
     (seq2map
      (map (fn [[i j] source sink use]
 	    (struct-map location
 	      :id            [i j]
-	      :neighbors     (vec (get-neighbors [i j] rows cols))
+	      :neighbors     (vec (get-neighbors [i j] scaled-rows scaled-cols))
 	      :source        source
 	      :sink          sink
 	      :use           use
-	      :flow-features (maphash identity #(% (+ (* i cols) j)) flow-vals-map)))
+	      :flow-features (maphash identity #(% (+ (* i scaled-cols) j)) flow-vals-map)))
 	      ;;:carrier-cache (atom ()))) ;; FIXME make carrier-cache into a [] to save memory (do vecs save memory?)
-	  (for [i (range rows) j (range cols)] [i j])
-	  (extract-values-by-concept observation source-conc n)
-	  (extract-values-by-concept observation sink-conc   n)
-	  (extract-values-by-concept observation use-conc    n))
+	  (for [i (range scaled-rows) j (range scaled-cols)] [i j])
+	  (extract-values-by-concept observation source-conc rows cols n)
+	  (extract-values-by-concept observation sink-conc   rows cols n)
+	  (extract-values-by-concept observation use-conc    rows cols n))
      (fn [loc] [(:id loc) loc]))))
