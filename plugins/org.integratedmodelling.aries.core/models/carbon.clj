@@ -5,6 +5,7 @@
 ;; output and training
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
+						:units "tons C/ha.yr" 
 	  				[12 :>]   'carbonService:VeryHighStorage
 	  				[9 12]    'carbonService:HighStorage
 	  				[6 9]     'carbonService:ModerateStorage
@@ -15,6 +16,7 @@
 ;; output and training
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
+						:units "tons C/ha.yr" 
 	  				[12 :>]   'carbonService:VeryHighVegetationStorage
 	  				[9 12]    'carbonService:HighVegetationStorage
 	  				[6 9]     'carbonService:ModerateVegetationStorage
@@ -25,6 +27,7 @@
 ;; output and training	  				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
+						:units    "tons C/ha.yr" 
 	  				[12 :>]   'carbonService:VeryHighSoilStorage
 	  				[9 12]    'carbonService:HighSoilStorage
 	  				[6 9]     'carbonService:ModerateSoilStorage
@@ -37,11 +40,11 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'carbonService:Slope
-		(classification (ranking 'geophysics:DegreeSlope "°")
+		(classification (ranking 'geophysics:DegreeSlope :units "degrees")
 			 [:< 1.15] 	  'carbonService:Level
 			 [1.15 4.57] 	'carbonService:GentlyUndulating
 			 [4.57 16.70] 'carbonService:RollingToHilly
-			 [16.70 :>] 	'carbonService:SteeplyDissectedToMountainous))    
+			 [16.70 :>] 	'carbonService:SteeplyDissectedToMountainous))
     
 (defmodel successional-stage 'carbonService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
@@ -55,7 +58,7 @@
 ;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
 ;; TODO check with Ken
 (defmodel vegetation-cover 'carbonService:VegetationCover
-	(classification (ranking 'habitat:PercentCanopyCover)
+	(classification (ranking 'habitat:PercentCanopyCover :units "%" )
 		[80 :>] 'carbonService:VeryHighVegetationCover
 		[60 80] 'carbonService:HighVegetationCover
 		[40 60] 'carbonService:ModerateVegetationCover
