@@ -18,7 +18,7 @@
 (ns span.flow-model
   (:use [misc.utils            :only (maphash)]
 	[span.location-builder :only (make-location-map)]
-	[span.params           :only (set-global-params!)]
+	[span.params           :only (set-global-params! *downscaling-factor*)]
 	[span.model-api        :only (distribute-flow!)]
 	[span.actualizer       :only (cache-all-actual-routes!)])
   (:require span.water-model

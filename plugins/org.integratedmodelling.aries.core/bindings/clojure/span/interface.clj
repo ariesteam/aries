@@ -155,9 +155,9 @@
       (merge (into {} (mapcat (fn [[[i j] val]]
 				(let [i-base (* i *downscaling-factor*)
 				      j-base (* j *downscaling-factor*)]
-				  (for [i-offset offset-range j-offset offset-range
-					:let [idx [(+ i-base i-offset) (+ j-base j-offset)]]]
-				    [idx val])))
+				  (for [i-offset offset-range j-offset offset-range]
+				    (let [idx [(+ i-base i-offset) (+ j-base j-offset)]]
+				      [idx val]))))
 			      result-map))
 	     (into {} (for [i (range rows) j (range cols (+ cols col-remainder))] [[i j] nil]))
 	     (into {} (for [i (range rows (+ rows row-remainder)) j (range cols)] [[i j] nil]))))))
