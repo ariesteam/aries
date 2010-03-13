@@ -40,6 +40,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 	}
 
 	private void computeValues(IFn clojure) {
+		
 		try {
 			
 			Map<?,?> map = (Map<?, ?>) closure.invoke();
@@ -63,12 +64,19 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 					// PersistentHashMap
 					Map<?,?> distribu = (Map<?, ?>) e.getValue();
 				
+					if (distribu == null || location == null)
+						continue;
+					
 					Iterator<?> it = location.iterator();
 					int x = ((Number)(it.next())).intValue();
 					int y = ((Number)(it.next())).intValue();
 	
 					double mean = 0.0; double std = 0.0;
 					for (Entry<?, ?> en : distribu.entrySet()) {
+						
+						if (en.getValue() == null || en.getKey() == null)
+							continue;
+						
 						double v = ((Number)en.getKey()).doubleValue();
 						double p = ((Number)en.getValue()).doubleValue();
 						mean += v*p;

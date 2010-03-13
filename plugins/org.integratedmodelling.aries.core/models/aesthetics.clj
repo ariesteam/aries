@@ -140,5 +140,6 @@
    	:sink-type        :relative,
    	:use-type         :relative,
    	:benefit-type     :non-rival,
+   	:downscaling-factor 3,
    	:rv-max-states    10)
   :context (source homeowners sink altitude))
