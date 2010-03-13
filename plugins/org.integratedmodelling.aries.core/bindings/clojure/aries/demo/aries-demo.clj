@@ -95,7 +95,7 @@
 	      benf-use     (tl/conc benefit-use)
 	      benf-sink    (tl/conc benefit-sink)
 	      benf-flow    (tl/conc benefit-flow)
-	      data-obs     (modelling/run model-id location max-resolution)
+	      data-obs     (modelling/run-at-location model-id location max-resolution)
 	      source-data  (corescience/find-observation data-obs benf-source)
 				use-data     (corescience/find-observation data-obs benf-use) 
 	      sink-data    (corescience/find-observation data-obs benf-sink)
