@@ -1,11 +1,15 @@
 (ns aries/flood
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; common models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"))	
+	
 (defmodel flow-direction 'geophysics:FlowDirection
 	(ranking 'geophysics:FlowDirection)) 
 
@@ -286,4 +290,23 @@
 			source :as source
 			sink :as sink
 			residents-use :as use))
+
+;; flow model	for farmers		
+(defmodel flood-regulation-farmers 'floodService:AvoidedDamageToFarms
+  (span 'floodService:FarmlandFlooding 
+  	    'floodService:FloodSourceValue
+  	    'floodService:FarmersInFloodHazardZones
+      	'floodService:FloodSink
+      	'floodService:WaterMovement
+  	    'geophysics:Altitude
+  	:source-threshold 10,
+   	:sink-threshold   0.1,
+   	:use-threshold    0.3,
+   	:trans-threshold  1.0,
+   	:sink-type        :relative,
+   	:use-type         :relative,
+   	:benefit-type     :non-rival,
+   	:downscaling-factor 3,
+   	:rv-max-states    10)
+  :context (source farmers-use sink altitude))
 	 	 	

@@ -94,7 +94,7 @@
 	  this-node
 	  (recur (concat (deterministic-successors this-node location-map) (rest open-list))))))))
 
-(defmethod distribute-flow! "Water"
+(defmethod distribute-flow! "WaterMovement"
   [_ location-map _ _]
   (distribute-load-over-processors
    (fn [_ source-location] (distribute-downhill! location-map source-location))

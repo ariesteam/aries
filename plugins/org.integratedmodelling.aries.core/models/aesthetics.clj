@@ -133,9 +133,9 @@
       	'aestheticService:TotalVisualBlight
       	'aestheticService:View
   	    'geophysics:Altitude
-  	:source-threshold 50,
-   	:sink-threshold   0.5,
-   	:use-threshold    0.5,
+  	:source-threshold 10,
+   	:sink-threshold   0.1,
+   	:use-threshold    0.3,
    	:trans-threshold  1.0,
    	:sink-type        :relative,
    	:use-type         :relative,
