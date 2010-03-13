@@ -47,12 +47,12 @@ public class SPANTransformer
 	
 	// the following 5 fields are set at instance creation through reflection, as 
 	// directed by SPANModel
-	IConcept sourceConcept = null;
-	IConcept sinkConcept = null;
-	IConcept useConcept = null;
-	IConcept flowConcept = null;
-	IConcept flowDataConcept = null;
-	Map<?,?> flowParams;
+	public IConcept sourceConcept = null;
+	public IConcept sinkConcept = null;
+	public IConcept useConcept = null;
+	public IConcept flowConcept = null;
+	public IConcept flowDataConcept = null;
+	public Map<?,?> flowParams;
 	
 	/*
 	 * called by the Clojure side to give us a bridge to the SPAN system

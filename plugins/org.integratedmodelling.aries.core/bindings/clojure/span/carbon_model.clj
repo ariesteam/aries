@@ -21,7 +21,7 @@
 	[span.model-api :only (distribute-flow! service-carrier distribute-load-over-processors)]
 	[span.analyzer  :only (source-loc? use-loc?)]))
 
-(defmethod distribute-flow! "Carbon"
+(defmethod distribute-flow! "CO2Removed"
   [_ location-map _ _]
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative :use

@@ -1,6 +1,7 @@
 (ns aries/carbon
 	(:refer-clojure)
-  (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian))
+  (:refer aries :only (span)))
 
 ;; output and training
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
@@ -221,6 +222,26 @@
 	(identification 'carbonService:EmissionTrading)
 		:context (source-hadley-b2 use-emitters))
 		
+;;
+
+;; flow model for emitters
+(defmodel emitter-flow 'carbonService:ClimateStability
+  (span 'carbonService:CO2Removed 
+  	    'carbonService:VegetationAndSoilCarbonStorage
+  	    'carbonService:CarbonEmitterUse
+      	nil
+      	nil
+  	    nil
+  	:source-threshold 1,
+   	:sink-threshold   0.5,
+   	:use-threshold    0.5,
+   	:trans-threshold  1.0,
+   	:sink-type        :relative,
+   	:use-type         :relative,
+   	:benefit-type     :rival,
+   	:rv-max-states    10)
+  :context (source use-emitters))		
+		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios
 ;; ----------------------------------------------------------------------------------------------
@@ -260,4 +281,6 @@
         [30 35]       'carbonService:ModerateSOL
         [35 40]       'carbonService:HighSOL
         [40 :>]       'carbonService:VeryHighSOL)) 
+		 			
+		 			
 		 			
