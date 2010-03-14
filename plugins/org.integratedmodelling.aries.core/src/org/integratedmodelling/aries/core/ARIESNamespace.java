@@ -25,6 +25,8 @@ public class ARIESNamespace {
 	public static final String BENEFIT_OBSERVATION_TYPE = "aries:BenefitObservation";
 	public static final String CASE_STUDY_TYPE = "aries:CaseStudy";
 
+	public static final String SERVICE_OBSERVABLE = "eserv:ServiceObservable";
+	// which subsumes...
 	public static final String BENEFIT_SOURCE_TYPE = "eserv:Source";
 	public static final String BENEFIT_USE_TYPE = "eserv:Use";
 	public static final String BENEFIT_SINK_TYPE = "eserv:Sink";
@@ -40,7 +42,15 @@ public class ARIESNamespace {
 	public static final String HAS_PROVISION = "eserv:hasProvision";
 	public static final String HAS_USAGE = "eserv:hasUsage";
 	
+	// dry flow-related traits
+	public static final String THEORETICAL = "eserv:Theoretical";
+	public static final String BLOCKED = "eserv:Blocked";
+	public static final String ACTUAL = "eserv:Actual";
+	public static final String POSSIBLE = "eserv:Possible";
+	public static final String INACCESSIBLE = "eserv:Inaccessible";
+	
 	private static HashSet<IConcept> mainTraits = null;
+	private static HashSet<IConcept> mainServiceTypes = null;
 	
 	private static IConcept classifyTrait(IConcept c, IConcept deflt) throws ThinklabException {
 		
@@ -108,10 +118,18 @@ public class ARIESNamespace {
 		
 		if (mainTraits == null) {
 			mainTraits = new HashSet<IConcept>();
-			mainTraits.add(KnowledgeManager.get().requireConcept("eserv:SourceTrait"));
-			mainTraits.add(KnowledgeManager.get().requireConcept("eserv:FlowTrait"));
-			mainTraits.add(KnowledgeManager.get().requireConcept("eserv:UseTrait"));
-			mainTraits.add(KnowledgeManager.get().requireConcept("eserv:SinkTrait"));
+			mainTraits.add(KnowledgeManager.get().requireConcept(SOURCE_TRAIT));
+			mainTraits.add(KnowledgeManager.get().requireConcept(FLOW_TRAIT));
+			mainTraits.add(KnowledgeManager.get().requireConcept(USE_TRAIT));
+			mainTraits.add(KnowledgeManager.get().requireConcept(SINK_TRAIT));
+		}
+		
+		if (mainServiceTypes == null) {
+			mainServiceTypes = new HashSet<IConcept>();
+			mainServiceTypes.add(KnowledgeManager.get().requireConcept(BENEFIT_SOURCE_TYPE));
+			mainServiceTypes.add(KnowledgeManager.get().requireConcept(BENEFIT_SINK_TYPE));
+			mainServiceTypes.add(KnowledgeManager.get().requireConcept(BENEFIT_USE_TYPE));
+			mainServiceTypes.add(KnowledgeManager.get().requireConcept(BENEFIT_FLOW_TYPE));
 		}
 		
 		IConcept theorSource = KnowledgeManager.get().requireConcept("eserv:TheoreticalSource");
@@ -137,14 +155,16 @@ public class ARIESNamespace {
 		}
 		
 		/*
-		 * determine the "main" parent that is a service concept but not a trait
+		 * determine the "main" parent that is a service concept but not a trait and not an 
+		 * abstract general concept (may be self, so this last check is required).
 		 */
 		for (IConcept cc : c.getParents()) {
-			if (cc.is(mainparent) && !cc.is("eserv:FlowRelatedTrait")) {
+			if (cc.is(mainparent) && !cc.is("eserv:FlowRelatedTrait") && !mainServiceTypes.contains(cc)) {
 				main = cc; 
 				break;
 			}
 		}
+		
  		
 		return new Pair<IConcept, IConcept>(main, trai);
 	}
