@@ -13,6 +13,8 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
+import clojure.lang.Keyword;
+
 public class SPANModel extends DefaultAbstractModel {
 
 	IConcept sourceObservableId = null;
@@ -27,6 +29,8 @@ public class SPANModel extends DefaultAbstractModel {
 	IConcept flowObservable = null;
 	IConcept flowDataObservable = null;
 	private Map<?, ?> flowParams;
+	
+	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
 	
 	@Override
 	protected void validateMediatedModel(IModel model)

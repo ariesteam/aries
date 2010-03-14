@@ -182,18 +182,13 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="ViewFlow">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
-    </rdfs:subClassOf>
     <rdfs:comment>The flow of aesthetic enjoyment from beauty to appreciating user, mediated by line of sight.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="LineOfSight">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LineOfSight">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Flow of aesthetic view, carried by light across line of sight.</rdfs:comment>
   </owl:Class>
@@ -264,6 +259,7 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >High quality views are a source of aesthetic value.</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowType"/>
   <owl:Class rdf:ID="NoMountain">
     <rdfs:subClassOf rdf:resource="#Mountain"/>
   </owl:Class>
@@ -589,6 +585,7 @@
   <owl:Class rdf:ID="HighViewValue">
     <rdfs:subClassOf rdf:resource="#ViewSourceValue"/>
   </owl:Class>
+  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
   <owl:Class rdf:about="#Clearcuts">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl#Clearcut"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
@@ -629,10 +626,10 @@
   </owl:ObjectProperty>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighBlight"/>
-      <owl:Class rdf:about="#LowBlight"/>
-      <owl:Class rdf:about="#ModerateBlight"/>
-      <owl:Class rdf:about="#NoBlight"/>
+      <owl:Class rdf:about="#HighViewValue"/>
+      <owl:Class rdf:about="#LowViewValue"/>
+      <owl:Class rdf:about="#ModerateViewValue"/>
+      <owl:Class rdf:about="#NoViewValue"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -641,21 +638,6 @@
       <owl:Class rdf:about="#LowNaturalBeauty"/>
       <owl:Class rdf:about="#ModerateNaturalBeauty"/>
       <owl:Class rdf:about="#NoNaturalBeauty"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#Lake"/>
-      <owl:Class rdf:about="#NoWater"/>
-      <owl:Class rdf:about="#Ocean"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighViewValue"/>
-      <owl:Class rdf:about="#LowViewValue"/>
-      <owl:Class rdf:about="#ModerateViewValue"/>
-      <owl:Class rdf:about="#NoViewValue"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -669,18 +651,45 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#LargeMountain"/>
-      <owl:Class rdf:about="#NoMountain"/>
-      <owl:Class rdf:about="#SmallMountain"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#FullObstruction"/>
       <owl:Class rdf:about="#NoObstruction"/>
       <owl:Class rdf:about="#PartialObstruction"/>
     </owl:members>
   </owl:AllDisjointClasses>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSourceTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
+  </rdf:Description>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#Lake"/>
+      <owl:Class rdf:about="#NoWater"/>
+      <owl:Class rdf:about="#Ocean"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighBlight"/>
+      <owl:Class rdf:about="#LowBlight"/>
+      <owl:Class rdf:about="#ModerateBlight"/>
+      <owl:Class rdf:about="#NoBlight"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSinkTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
+  </rdf:Description>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#LargeMountain"/>
+      <owl:Class rdf:about="#NoMountain"/>
+      <owl:Class rdf:about="#SmallMountain"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
+  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->
