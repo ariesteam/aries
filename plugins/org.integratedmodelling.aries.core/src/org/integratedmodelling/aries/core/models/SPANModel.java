@@ -18,6 +18,8 @@ import clojure.lang.Keyword;
 
 public class SPANModel extends DefaultAbstractModel {
 
+	public final static String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
+	
 	IConcept sourceObservableId = null;
 	IConcept sinkObservableId = null;
 	IConcept useObservableId = null;
@@ -29,7 +31,7 @@ public class SPANModel extends DefaultAbstractModel {
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
 	IConcept flowDataObservable = null;
-	private Map<?, ?> flowParams;
+	private Map<Object, Object> flowParams;
 	
 	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
 	
@@ -70,9 +72,7 @@ public class SPANModel extends DefaultAbstractModel {
 	/*
 	 * these come from the specs, must go straight to the SPAN proxy.
 	 */
-	public void setFlowParams(Map<?,?> flowParams) {
-		
-		// TODO if someone has overridden the downsampling factor, put it in
+	public void setFlowParams(Map<Object,Object> flowParams) {
 		this.flowParams = flowParams;
 	}
 	
@@ -80,6 +80,17 @@ public class SPANModel extends DefaultAbstractModel {
 	public Polylist buildDefinition(IKBox kbox, ISession session) throws ThinklabException {
 
 		ArrayList<Object> arr = new ArrayList<Object>();
+		
+		// TODO if someone has overridden the downsampling factor for this model, put it in
+		// fucking FIXME - the stupid thing still has null name even if we set it everywhere.
+//		String pmod = DOWNSCALE_PROPERTY_PREFIX + this.name.replaceAll("\\/", "-");
+//		
+//		String ns = ARIESCorePlugin.get().getProperties().getProperty(pmod);
+//		if (ns != null) {
+//			Integer nds = Integer.parseInt(ns);
+//			flowParams.put(downscalingFactor, nds);
+//		}
+		
 		
 		arr.add("aries:SPANTransformer");
 		arr.add(Polylist.list(

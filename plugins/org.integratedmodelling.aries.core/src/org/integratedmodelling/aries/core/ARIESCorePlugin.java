@@ -3,14 +3,13 @@ package org.integratedmodelling.aries.core;
 import org.integratedmodelling.aries.core.datastructures.demo.ARIESDemoKbox;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.gazetteers.SimpleGazetteer;
-import org.integratedmodelling.modelling.ModellingPlugin;
 import org.integratedmodelling.modelling.visualization.VisualizationFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
-import org.integratedmodelling.thinklab.exception.ThinklabNoKMException;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.thinklab.kbox.KBoxManager;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
+import org.integratedmodelling.thinklab.transformations.TransformationFactory;
 
 public class ARIESCorePlugin extends ThinklabPlugin {
 	
@@ -35,6 +34,7 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 				"kbox://www.integratedmodelling.org/aries/demo", 
 				new ARIESDemoKbox());
 		VisualizationFactory.get().loadColormapDefinitions(getProperties());
+		TransformationFactory.get().loadTransformationMappings(getProperties());
 	}
 
 	@Override

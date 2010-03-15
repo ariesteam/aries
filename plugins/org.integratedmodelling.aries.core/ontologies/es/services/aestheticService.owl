@@ -12,9 +12,9 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/es/aestheticService.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl"/>
   </owl:Ontology>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink"/>
   <owl:Class rdf:ID="LakeNotPresent">
@@ -33,27 +33,27 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AestheticQualityProducingEcosystem">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Through their existence (assuming they are not degraded), ecosystems contribute to aesthetic value.  Different cultures or groups may have varying aesthetic preferences, leading to different types of value held for natural ecosystems.  Environmental changes can also lead to an area having more or less aesthetic value (i.e., loss of value through development of open space, harvesting of timber, negative changes to air quality, water quality, or odors; gains in value through creation of protected areas, forest succession).</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Through their existence (assuming they are not degraded), ecosystems contribute to aesthetic value.  Different cultures or groups may have varying aesthetic preferences, leading to different types of value held for natural ecosystems.  Environmental changes can also lead to an area having more or less aesthetic value (i.e., loss of value through development of open space, harvesting of timber, negative changes to air quality, water quality, or odors; gains in value through creation of protected areas, forest succession).</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="InvisibleNaturalBeauty">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="NaturalBeauty"/>
-    </rdfs:subClassOf>
+    <rdfs:comment>The portion of natural beauty that remains inaccessible to the beneficiaries because of blockage or degradation of view.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
     </rdfs:subClassOf>
-    <rdfs:comment>The portion of natural beauty that remains inaccessible to the beneficiaries because of blockage or degradation of view.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="NaturalBeauty"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FormalProtection">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas under active protection regime</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Areas under active protection regime</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Mountain">
     <rdfs:subClassOf>
@@ -67,60 +67,60 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AestheticView">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sensory enjoyment of functioning ecological systems (Farber et al. 2006).</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#ScenicViews"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="OpenSpace"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="AestheticEnjoyment"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:ID="ProximityToBeauty"/>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-            </owl:onProperty>
             <owl:allValuesFrom>
               <owl:Class rdf:ID="ViewSourceValue"/>
             </owl:allValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="AestheticEnjoyment"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="OpenSpace"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#ScenicViews"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Sensory enjoyment of functioning ecological systems (Farber et al. 2006).</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#NaturalBeauty">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSource"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowHousingValue">
     <rdfs:subClassOf>
@@ -128,11 +128,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ProximitySink">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Whatever reduces accessibility along a Proximity flow path.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Whatever reduces accessibility along a Proximity flow path.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="WaterQuality">
     <rdfs:subClassOf>
@@ -144,18 +144,18 @@
   </owl:Class>
   <owl:Class rdf:ID="Ocean">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Ocean"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="WaterBody"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Ocean"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="CommercialIndustrialTransportation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="HighwaysPresent">
     <rdfs:subClassOf>
@@ -174,29 +174,29 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Clearcut"/>
   <owl:Class rdf:ID="ViewSinkAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="TotalVisualBlight"/>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="ViewSinkPresent"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TotalVisualBlight"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ViewFlow">
-    <rdfs:comment>The flow of aesthetic enjoyment from beauty to appreciating user, mediated by line of sight.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
     </rdfs:subClassOf>
+    <rdfs:comment>The flow of aesthetic enjoyment from beauty to appreciating user, mediated by line of sight.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="LineOfSight">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Flow of aesthetic view, carried by light across line of sight.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
   </owl:Class>
   <owl:Class rdf:ID="Obstructions">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="HighNaturalBeauty">
     <rdfs:subClassOf>
@@ -205,35 +205,35 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
   <owl:Class rdf:about="#AestheticEnjoyment">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The "quality of life" benefits associated with living in an area with high perceived scenic or other environmental quality.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Existence"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The "quality of life" benefits associated with living in an area with high perceived scenic or other environmental quality.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   <owl:Class rdf:about="#TheoreticalNaturalBeauty">
-    <rdfs:subClassOf rdf:resource="#NaturalBeauty"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:comment>The total amount of natural beauty generated by the ecosystems, without regard to its actual availability to the beneficiaries.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="#NaturalBeauty"/>
   </owl:Class>
   <owl:Class rdf:ID="ClearcutsNotPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Clearcuts"/>
-    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="ClearcutsPresent"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Clearcuts"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LostBenefitshed">
-    <rdfs:label>Blocked View Beneficiaries</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ViewBenefitshed"/>
-    </rdfs:subClassOf>
+    <rdfs:comment>Potential homeowners that cannot access the view due to obstructions or visual blight</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
     </rdfs:subClassOf>
-    <rdfs:comment>Potential homeowners that cannot access the view due to obstructions or visual blight</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ViewBenefitshed"/>
+    </rdfs:subClassOf>
+    <rdfs:label>Blocked View Beneficiaries</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="ModerateBlight">
     <rdfs:subClassOf>
@@ -244,20 +244,20 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:about="#HomeownersEnjoyment">
-    <rdfs:label>Potential View Beneficiaries</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ViewBenefitshed"/>
-    </rdfs:subClassOf>
+    <rdfs:comment>The total beneficiaries of aesthetic views, regardless of visual blight and obstructions.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
-    <rdfs:comment>The total beneficiaries of aesthetic views, regardless of visual blight and obstructions.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ViewBenefitshed"/>
+    </rdfs:subClassOf>
+    <rdfs:label>Potential View Beneficiaries</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#ScenicViews">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >High quality views are a source of aesthetic value.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowType"/>
   <owl:Class rdf:ID="NoMountain">
@@ -286,13 +286,13 @@
     <rdfs:subClassOf rdf:resource="#Ocean"/>
   </owl:Class>
   <owl:Class rdf:about="#Lake">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Lake"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#WaterBody"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Lake"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LowViewValue">
     <rdfs:subClassOf>
@@ -310,8 +310,8 @@
     <rdfs:subClassOf rdf:resource="#TheoreticalNaturalBeauty"/>
   </owl:Class>
   <owl:Class rdf:about="#VisualBlight">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="Beach">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
@@ -321,30 +321,30 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
   <owl:Class rdf:ID="ActualBenefitshed">
-    <rdfs:label>Actual View Beneficiaries</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ViewBenefitshed"/>
-    </rdfs:subClassOf>
+    <rdfs:comment>The portion of homeowners that are actually reached by the view benefit.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
     </rdfs:subClassOf>
-    <rdfs:comment>The portion of homeowners that are actually reached by the view benefit.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ViewBenefitshed"/>
+    </rdfs:subClassOf>
+    <rdfs:label>Actual View Beneficiaries</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="Area">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Silly name for any space whose size is an asset</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="HomeownersNearOpenSpace">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Homes that are immediately adjacent to or located near open space are often valued as places to live.  This is often included in the purchase price of housing.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
   <owl:Class rdf:ID="InaccessibleVisualBlight">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ViewSink"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink"/>
   </owl:Class>
   <owl:Class rdf:ID="OceanNotPresent">
     <rdfs:subClassOf rdf:resource="#Ocean"/>
@@ -361,53 +361,53 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
   <owl:Class rdf:about="#PresenceOfHousing">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Existence"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Existence"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
   <owl:Class rdf:about="#ViewSourceValue">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The enjoyment of scenic views, adjacent open space, fresh air, clean water, easily accessible recreational opportunities, etc. associated with high aesthetic value.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="EnjoymentOfNaturalAmenities"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="HomeownersWithViews"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        </owl:onProperty>
         <owl:allValuesFrom>
           <owl:Class rdf:ID="AestheticEnjoymentProvision"/>
         </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The enjoyment of scenic views, adjacent open space, fresh air, clean water, easily accessible recreational opportunities, etc. associated with high aesthetic value.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HomeownersWithViews"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="EnjoymentOfNaturalAmenities"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
   </owl:Class>
   <owl:Class rdf:ID="LowBlight">
     <rdfs:subClassOf rdf:resource="#VisualBlight"/>
@@ -420,13 +420,16 @@
     <rdfs:subClassOf rdf:resource="#TheoreticalNaturalBeauty"/>
   </owl:Class>
   <owl:Class rdf:about="#Highways">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="View">
-    <rdfs:label>Total Potential Viewshed</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
+    </rdfs:subClassOf>
     <rdfs:comment>The view value that would exist for the beneficiaries if visual blight was not blocking it.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
+    <rdfs:label>Total Potential Viewshed</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="GolfCourse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -454,9 +457,9 @@
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
   </owl:Class>
   <owl:Class rdf:ID="Proximity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Flow of proximal accessibility, represented as a path of travel from resource to user .</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
   </owl:Class>
   <owl:Class rdf:ID="HousingPresent">
     <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
@@ -476,22 +479,22 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ActualView">
-    <rdfs:label>Actual Viewshed</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
     <rdfs:comment>The actual view value once visual blight is factored in.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
+    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
+    <rdfs:label>Actual Viewshed</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#ViewSink">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSink"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Whatever detracts from an aesthetic view by being visible along the sight line.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSink"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink"/>
   </owl:Class>
   <owl:Class rdf:about="#OpenSpace">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Proximity to open space, either parks or natural ecosystems, is often perceived as a source of aesthetic value.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="WoodyWetland">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
@@ -500,40 +503,40 @@
     <rdfs:subClassOf rdf:resource="#Obstructions"/>
   </owl:Class>
   <owl:Class rdf:ID="RelevantVisualBlight">
-    <rdfs:subClassOf rdf:resource="#ViewSink"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
+    <rdfs:subClassOf rdf:resource="#ViewSink"/>
   </owl:Class>
   <owl:Class rdf:ID="VisibleNaturalBeauty">
-    <rdfs:subClassOf rdf:resource="#NaturalBeauty"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
     <rdfs:comment>The amount of natural beauty that reaches the beneficiaries, not blocked or degraded by obstructions and visual blight.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
+    <rdfs:subClassOf rdf:resource="#NaturalBeauty"/>
   </owl:Class>
   <owl:Class rdf:ID="ResourceQuality">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="BlockedView">
-    <rdfs:label>Lost Viewshed</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
     <rdfs:comment>The portion of the total possible view value that is decreased or blocked by visual blight.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
+    <rdfs:subClassOf rdf:resource="#ViewFlow"/>
+    <rdfs:label>Lost Viewshed</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#AestheticEnjoymentProvision">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-        </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#AestheticQualityProducingEcosystem"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Certain views, ecosystems, or types of land use are considered to have high aesthetic value.  This may be subjective and differ among different cultures, although some preferences may be common among many cultures.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#AestheticQualityProducingEcosystem"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:about="#HomeownersWithViews">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >People living in places with high quality views value them highly, even if they are not immediately adjacent to open space.  This is often included in the purchase price of housing.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
   <owl:Class rdf:ID="LakeFront">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
@@ -548,29 +551,29 @@
     <rdfs:subClassOf rdf:resource="#WaterBody"/>
   </owl:Class>
   <owl:Class rdf:about="#EnjoymentOfNaturalAmenities">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The enjoyment of natural amenities is typically a passive process (i.e., enjoying views, fresh air, outdoor recreation).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HomeownersNearOpenSpace"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
   </owl:Class>
   <owl:Class rdf:ID="TransportationInfrastructureAbsent">
-    <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
     <owl:disjointWith rdf:resource="#TransportationInfrastructurePresent"/>
+    <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
   </owl:Class>
   <owl:Class rdf:about="#ProximityToBeauty">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
@@ -585,15 +588,14 @@
   <owl:Class rdf:ID="HighViewValue">
     <rdfs:subClassOf rdf:resource="#ViewSourceValue"/>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
   <owl:Class rdf:about="#Clearcuts">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl#Clearcut"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/geospace/geofeatures.owl#Clearcut"/>
   </owl:Class>
   <owl:Class rdf:ID="HighwaysAbsent">
-    <rdfs:subClassOf rdf:resource="#Highways"/>
     <owl:disjointWith rdf:resource="#HighwaysPresent"/>
+    <rdfs:subClassOf rdf:resource="#Highways"/>
   </owl:Class>
   <owl:Class rdf:ID="Crime">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
@@ -601,29 +603,29 @@
   <owl:Class rdf:ID="RiverFront">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
   </owl:Class>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isBeneficialFor">
+    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Identifies the beneficiary for each benefit.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#HighViewValue"/>
@@ -634,10 +636,17 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighNaturalBeauty"/>
-      <owl:Class rdf:about="#LowNaturalBeauty"/>
-      <owl:Class rdf:about="#ModerateNaturalBeauty"/>
-      <owl:Class rdf:about="#NoNaturalBeauty"/>
+      <owl:Class rdf:about="#FullObstruction"/>
+      <owl:Class rdf:about="#NoObstruction"/>
+      <owl:Class rdf:about="#PartialObstruction"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighBlight"/>
+      <owl:Class rdf:about="#LowBlight"/>
+      <owl:Class rdf:about="#ModerateBlight"/>
+      <owl:Class rdf:about="#NoBlight"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -651,14 +660,11 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#FullObstruction"/>
-      <owl:Class rdf:about="#NoObstruction"/>
-      <owl:Class rdf:about="#PartialObstruction"/>
+      <owl:Class rdf:about="#LargeMountain"/>
+      <owl:Class rdf:about="#NoMountain"/>
+      <owl:Class rdf:about="#SmallMountain"/>
     </owl:members>
   </owl:AllDisjointClasses>
-  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSourceTrait">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
-  </rdf:Description>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#Lake"/>
@@ -666,30 +672,26 @@
       <owl:Class rdf:about="#Ocean"/>
     </owl:members>
   </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighBlight"/>
-      <owl:Class rdf:about="#LowBlight"/>
-      <owl:Class rdf:about="#ModerateBlight"/>
-      <owl:Class rdf:about="#NoBlight"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
+  <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSourceTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSinkTrait">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </rdf:Description>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#LargeMountain"/>
-      <owl:Class rdf:about="#NoMountain"/>
-      <owl:Class rdf:about="#SmallMountain"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
   <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowTrait">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </rdf:Description>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighNaturalBeauty"/>
+      <owl:Class rdf:about="#LowNaturalBeauty"/>
+      <owl:Class rdf:about="#ModerateNaturalBeauty"/>
+      <owl:Class rdf:about="#NoNaturalBeauty"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->

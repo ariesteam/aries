@@ -10,6 +10,12 @@ import org.integratedmodelling.thinklab.interfaces.commands.ICommandHandler;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.literals.IValue;
 
+/**
+ * TODO
+ * testing only, remove
+ * @author Ferdinando
+ *
+ */
 @ThinklabCommand(
 		name="classify",
 		argumentNames="concept",
@@ -22,7 +28,7 @@ public class ClassifyCommand implements ICommandHandler {
 			throws ThinklabException {
 
 		IConcept c = KnowledgeManager.get().requireConcept(command.getArgumentAsString("concept"));
-		System.out.println(ARIESNamespace.classifyObservable(c));
+		session.getOutputStream().println(ARIESNamespace.classifyObservable(c));
 		
 		return null;
 	}

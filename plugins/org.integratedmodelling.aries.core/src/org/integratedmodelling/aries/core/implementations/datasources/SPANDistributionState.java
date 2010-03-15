@@ -9,6 +9,8 @@ import org.integratedmodelling.corescience.interfaces.IState;
 import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.thinklab.exception.ThinklabRuntimeException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+import org.integratedmodelling.thinklab.transformations.ITransformation;
+import org.integratedmodelling.thinklab.transformations.TransformationFactory;
 
 import clojure.lang.IFn;
 
@@ -45,6 +47,9 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 			
 			Map<?,?> map = (Map<?, ?>) closure.invoke();
 
+			ITransformation transformation = 
+				TransformationFactory.get().getTransformation(getType());
+			
 			/*
 			 * we get a different distribution than the one we originally set in,
 			 * so we store mean and standard deviation for now. Later we can get
@@ -96,7 +101,11 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 						if (mean < mmin) mmin = mean;
 					}
 					
-					data[(x*cols) + y] = mean;
+					data[(x*cols) + y] = 
+						transformation == null ? 
+							mean :
+							transformation.transform(new Double(mean), null);
+					
 					if (Double.compare(std, 0.0) != 0) {
 						if (uncertainty == null) {
 							uncertainty = new double[this.rows*this.cols];
