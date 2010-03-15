@@ -3,6 +3,7 @@ package org.integratedmodelling.aries.core.models;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
@@ -70,6 +71,8 @@ public class SPANModel extends DefaultAbstractModel {
 	 * these come from the specs, must go straight to the SPAN proxy.
 	 */
 	public void setFlowParams(Map<?,?> flowParams) {
+		
+		// TODO if someone has overridden the downsampling factor, put it in
 		this.flowParams = flowParams;
 	}
 	
