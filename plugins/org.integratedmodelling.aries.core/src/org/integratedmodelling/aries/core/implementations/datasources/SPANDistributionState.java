@@ -127,6 +127,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 						uncertainty[i] = uncertainty[i]/range;
 						if (uncertainty[i] > 1.0)
 							uncertainty[i] = 1.0;
+						uncertainty[i] = 1 - uncertainty[i];
 					}
 					setMetadata(Metadata.UNCERTAINTY, uncertainty);
 				}
