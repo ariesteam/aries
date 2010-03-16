@@ -16,9 +16,9 @@
 			<export prefix="*"/>
 		</library>
 		
-<!--		<library type="resources" path="ontologies/" id="ontologies" />
+		<library type="resources" path="ontologies/" id="ontologies" />
 		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
-		<library type="resources" path="models/" id="models" /> -->
+		<library type="resources" path="models/" id="models" />
 		<library type="resources" path="etc/" id="etc" />
 		<library type="resources" path="data/" id="data" />
 		<library type="resources" path="config/" id="config" />
@@ -33,5 +33,18 @@
 			<parameter id="script" value="applications/bibliodata2.clj"/>
 		</parameter>
 	</extension>
+	
+	<!-- ontologies -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="esvaluation">
+		<parameter id="url" value="esvaluation.owl"/>
+		<parameter id="concept-space" value="esvaluation"/>
+	</extension>
+	
+	<!-- bindings  -->
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
+		<parameter id="language" value="clojure"/>
+		<parameter id="resource" value="valuation.clj"/>
+		<parameter id="resource" value="calculator.clj"/>
+	</extension> 
 	
 </plugin>

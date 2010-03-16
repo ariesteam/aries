@@ -34,7 +34,7 @@ public class SPANModel extends DefaultAbstractModel {
 	private Map<Object, Object> flowParams;
 	
 	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
-	
+
 	@Override
 	protected void validateMediatedModel(IModel model)
 			throws ThinklabValidationException {

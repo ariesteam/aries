@@ -1,0 +1,323 @@
+<ESValuatorConfiguration>
+
+	<!-- this is all very silly but it's the fastest way to reuse this stuff -->
+	<concept-mappings>
+		<ecosystem-service id="gasreg" concept="esclass:GasRegulation" />
+		<ecosystem-service id="clireg" concept="esclass:ClimateRegulation"/>
+		<ecosystem-service id="dispre" concept="esclass:DisturbancePrevention"/>
+		<ecosystem-service id="watreg" concept="esclass:WaterRegulation"/>
+		<ecosystem-service id="watsup" concept="esclass:WaterSupply"/>
+		<ecosystem-service id="soiret" concept="esclass:SoilRetention"/>
+		<ecosystem-service id="soifor" concept="esclass:SoilFormation"/>
+		<ecosystem-service id="nutreg" concept="esclass:NutrientRegulation"/>
+		<ecosystem-service id="wastre" concept="esclass:WasteTreatment"/>
+		<ecosystem-service id="pol"    concept="esclass:Pollination"/>
+		<ecosystem-service id="biocon" concept="esclass:BiologicalControl"/>
+		<ecosystem-service id="reffun" concept="esclass:RefugiumFunction"/>
+		<ecosystem-service id="nurfun" concept="esclass:NurseryFunction"/>
+		<ecosystem-service id="foopro" concept="esclass:FoodProduction"/>
+		<ecosystem-service id="rawmat" concept="esclass:RawMaterials"/>
+		<ecosystem-service id="genres" concept="esclass:GeneticResources"/>
+		<ecosystem-service id="medres" concept="esclass:MedicalResources"/>
+		<ecosystem-service id="ornres" concept="esclass:OrnamentalResources"/>
+		<ecosystem-service id="aesinf" concept="esclass:AestheticInformation"/>
+		<ecosystem-service id="rec"    concept="esclass:Recreation"/>
+		<ecosystem-service id="culinf" concept="esclass:CulturalArtistic"/>
+		<ecosystem-service id="spiinf" concept="esclass:SpiritualHistoric"/>
+		<ecosystem-service id="sciedu" concept="esclass:ScienceEducation"/>
+		<ecosystem-service id="navser" concept="esclass:NavigationalServices"/>
+		<land-cover id="for"    concept="esclass:Forest" />		
+		<land-cover id="grashr" concept="esclass:GrasslandsShrublands"/>		
+		<land-cover id="agrpas" concept="esclass:AgriculturePasture"/>		
+		<land-cover id="urb"    concept="esclass:Urban"/>		
+		<land-cover id="lakres" concept="esclass:LakesRiversPondsReservoirs"/>		
+		<land-cover id="wet"    concept="esclass:Wetlands"/>		
+		<land-cover id="coa"    concept="esclass:Coastal"/>		
+		<land-cover id="roc"    concept="esclass:Rock"/>		
+		<land-cover id="des"    concept="esclass:Desert"/>
+		<land-cover id="tun"    concept="esclass:Tundra"/>	
+	</concept-mappings>
+	<ecosystem-services>
+		<!--  IDs are defined from the concept using the first three letter of the first word and the first three
+			  of the last, if existing, all in lowercase. -->
+		<ecosystem-service id="gasreg" label="Gas Regulation" class="Regulation Functions" description=""/>
+		<ecosystem-service id="clireg" label="Climate regulation" class="Regulation Functions" description=""/>
+		<ecosystem-service id="dispre" label="Disturbance Prevention" class="Regulation Functions" description=""/>
+		<ecosystem-service id="watreg" label="Water Regulation" class="Regulation Functions" description=""/>
+		<ecosystem-service id="watsup" label="Water Supply" class="Regulation Functions" description=""/>
+		<ecosystem-service id="soiret" label="Soil Retention" class="Regulation Functions" description=""/>
+		<ecosystem-service id="soifor" label="Soil Formation" class="Regulation Functions" description=""/>
+		<ecosystem-service id="nutreg" label="Nutrient Regulation" class="Regulation Functions" description=""/>
+		<ecosystem-service id="wastre" label="Waste treatment" class="Regulation Functions" description=""/>
+		<ecosystem-service id="pol"    label="Pollination" class="Regulation Functions" description=""/>
+		<ecosystem-service id="biocon" label="Biological Control" class="Regulation Functions" description=""/>
+		<ecosystem-service id="reffun" label="Refugium function" class="Habitat Functions" description=""/>
+		<ecosystem-service id="nurfun" label="Nursery function" class="Habitat Functions" description=""/>
+		<ecosystem-service id="foopro" label="Food Production" class="Production Functions" description=""/>
+		<ecosystem-service id="rawmat" label="Raw Materials" class="Production Functions" description=""/>
+		<ecosystem-service id="genres" label="Genetic resources" class="Production Functions" description=""/>
+		<ecosystem-service id="medres" label="Medical resources" class="Production Functions" description=""/>
+		<ecosystem-service id="ornres" label="Ornamental resources" class="Production Functions" description=""/>
+		<ecosystem-service id="aesinf" label="Aesthetic Information" class="Information Functions" description=""/>
+		<ecosystem-service id="rec"    label="Recreation" class="Information Functions" description=""/>
+		<ecosystem-service id="culinf" label="Cultural and artistic Information" class="Information Functions" description=""/>
+		<ecosystem-service id="spiinf" label="Spiritual and Historic Information" class="Information Functions" description=""/>
+		<ecosystem-service id="sciedu" label="Science and Education" class="Information Functions" description=""/>
+		<ecosystem-service id="navser" label="Navigational services" class="Information Functions"  description=""/>
+	</ecosystem-services>
+	<land-covers>
+		<!-- same ID generation process as for ecosystem services -->
+		<land-cover id="for" label="Forest" description=""/>		
+		<land-cover id="grashr" label="Grasslands and Shrublands" description=""/>		
+		<land-cover id="agrpas" label="Agriculture and Pasture" description=""/>		
+		<land-cover id="urb" label="Urban" description=""/>		
+		<land-cover id="lakres" label="Lakes, Rivers, Ponds, Reservoirs" description=""/>		
+		<land-cover id="wet" label="Wetlands" description=""/>		
+		<land-cover id="coa" label="Coastal" description=""/>		
+		<land-cover id="roc" label="Rock" description=""/>		
+		<land-cover id="des" label="Desert" description=""/>
+		<land-cover id="tun" label="Tundra" description=""/>
+	</land-covers>
+	<values>
+	    <!-- calculated-{min|max}-value expresses the tabulated value from the literature. If present, 
+	    	 min-value and max-value override those values in calculation. -->
+		<value service-id="gasreg" calculated-min-value="7" calculated-max-value="265" min-value="100" max-value="" unit="USD@2004/ac" />
+		<value service-id="clireg" calculated-min-value="88" calculated-max-value="223" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="dispre" calculated-min-value="2" calculated-max-value="7240" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="watreg" calculated-min-value="2" calculated-max-value="5445" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="watsup" calculated-min-value="3" calculated-max-value="7600" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="soiret" calculated-min-value="29" calculated-max-value="245" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="soifor" calculated-min-value="1" calculated-max-value="10" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="nutreg" calculated-min-value="87" calculated-max-value="21100" min-value="10000" max-value="" unit="USD@2004/ac" />
+		<value service-id="wastre" calculated-min-value="58" calculated-max-value="6696" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="pol"    calculated-min-value="14" calculated-max-value="25" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="biocon" calculated-min-value="2" calculated-max-value="78" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="reffun" calculated-min-value="3" calculated-max-value="1523" min-value="500" max-value="" unit="USD@2004/ac" />
+		<value service-id="nurfun" calculated-min-value="142" calculated-max-value="195" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="foopro" calculated-min-value="6" calculated-max-value="2761" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="rawmat" calculated-min-value="6" calculated-max-value="1014" min-value="100" max-value="" unit="USD@2004/ac" />
+		<value service-id="genres" calculated-min-value="6" calculated-max-value="" min-value="" max-value="20" unit="USD@2004/ac" />
+		<value service-id="medres" calculated-min-value="" calculated-max-value="" min-value="0" max-value="0" unit="USD@2004/ac" />
+		<value service-id="ornres" calculated-min-value="3" calculated-max-value="" min-value="" max-value="20" unit="USD@2004/ac" />
+		<value service-id="aesinf" calculated-min-value="7" calculated-max-value="145" min-value="" max-value="" unit="USD@2004/ac" />
+		<value service-id="rec"    calculated-min-value="2" calculated-max-value="1760" min-value="100" max-value="" unit="USD@2004/ac" />
+		<value service-id="culinf" calculated-min-value="2" calculated-max-value="6000" min-value="1000" max-value="" unit="USD@2004/ac" />
+		<value service-id="spiinf" calculated-min-value="" calculated-max-value="" min-value="0" max-value="0" unit="USD@2004/ac" />
+		<value service-id="sciedu" calculated-min-value="1" calculated-max-value="" min-value="" max-value="2" unit="USD@2004/ac" />
+		<value service-id="navser" calculated-min-value="" calculated-max-value="" min-value="10" max-value="20" unit="USD@2004/ac" />
+	</values>
+	<coefficients>
+	  <!--  if a coefficient is not listed here, it is assumed that the land cover type expresses the full value
+	        of the service (coefficient = 1.0). -->
+	  <coefficient service-id="gasreg" cover-id="grashr" value="0.75"/>
+	  <coefficient service-id="gasreg" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="gasreg" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="gasreg" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="gasreg" cover-id="coa" value="0.10"/>
+	  <coefficient service-id="gasreg" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="gasreg" cover-id="des" value="0.00"/>
+	  <coefficient service-id="gasreg" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="clireg" cover-id="grashr" value="0.60"/>
+	  <coefficient service-id="clireg" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="clireg" cover-id="urb" value="0.02"/>
+	  <coefficient service-id="clireg" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="clireg" cover-id="coa" value="0.20"/>
+	  <coefficient service-id="clireg" cover-id="roc" value="0.10"/>
+	  <coefficient service-id="clireg" cover-id="des" value="0.00"/>
+	  <coefficient service-id="clireg" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="dispre" cover-id="grashr" value="0.90"/>
+	  <coefficient service-id="dispre" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="dispre" cover-id="urb" value="0.0"/>
+	  <coefficient service-id="dispre" cover-id="lakres" value="0.0"/>
+	  <coefficient service-id="dispre" cover-id="roc" value="0.0"/>
+	  <coefficient service-id="dispre" cover-id="des" value="0.0"/>
+	  <coefficient service-id="dispre" cover-id="tun" value="0.0"/>
+
+	  <coefficient service-id="watreg" cover-id="grashr" value="0.80"/>
+	  <coefficient service-id="watreg" cover-id="agrpas" value="0.65"/>
+	  <coefficient service-id="watreg" cover-id="urb" value="0.02"/>
+	  <coefficient service-id="watreg" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="watreg" cover-id="coa" value="0.20"/>
+	  <coefficient service-id="watreg" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="watreg" cover-id="des" value="0.00"/>
+	  <coefficient service-id="watreg" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="watsup" cover-id="grashr" value="0.80"/>
+	  <coefficient service-id="watsup" cover-id="agrpas" value="0.53"/>
+	  <coefficient service-id="watsup" cover-id="urb" value="0.14"/>
+	  <coefficient service-id="watsup" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="watsup" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="watsup" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="watsup" cover-id="des" value="0.00"/>
+	  <coefficient service-id="watsup" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="soiret" cover-id="grashr" value="0.90"/>
+	  <coefficient service-id="soiret" cover-id="agrpas" value="0.50"/>
+	  <coefficient service-id="soiret" cover-id="urb" value="0.16"/>
+	  <coefficient service-id="soiret" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="soiret" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="soiret" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="soiret" cover-id="des" value="0.00"/>
+	  <coefficient service-id="soiret" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="soifor" cover-id="agrpas" value="0.60"/>
+	  <coefficient service-id="soifor" cover-id="urb" value="0.02"/>
+	  <coefficient service-id="soifor" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="soifor" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="soifor" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="soifor" cover-id="des" value="0.00"/>
+	  <coefficient service-id="soifor" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="nutreg" cover-id="grashr" value="0.75"/>
+	  <coefficient service-id="nutreg" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="nutreg" cover-id="urb" value="0.04"/>
+	  <coefficient service-id="nutreg" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="nutreg" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="nutreg" cover-id="roc" value="0.30"/>
+	  <coefficient service-id="nutreg" cover-id="des" value="0.00"/>
+	  <coefficient service-id="nutreg" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="wastre" cover-id="grashr" value="0.90"/>
+	  <coefficient service-id="wastre" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="wastre" cover-id="urb" value="0.18"/>
+	  <coefficient service-id="wastre" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="wastre" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="wastre" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="wastre" cover-id="des" value="0.00"/>
+	  <coefficient service-id="wastre" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="pol" cover-id="grashr" value="0.75"/>
+	  <coefficient service-id="pol" cover-id="agrpas" value="0.25"/>
+	  <coefficient service-id="pol" cover-id="urb" value="0.30"/>
+	  <coefficient service-id="pol" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="pol" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="pol" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="pol" cover-id="des" value="0.00"/>
+	  <coefficient service-id="pol" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="biocon" cover-id="grashr" value="0.60"/>
+	  <coefficient service-id="biocon" cover-id="agrpas" value="0.35"/>
+	  <coefficient service-id="biocon" cover-id="urb" value="0.18"/>
+	  <coefficient service-id="biocon" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="biocon" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="biocon" cover-id="roc" value="0.50"/>
+	  <coefficient service-id="biocon" cover-id="des" value="0.00"/>
+	  <coefficient service-id="biocon" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="reffun" cover-id="grashr" value="0.65"/>
+	  <coefficient service-id="reffun" cover-id="agrpas" value="0.30"/>
+	  <coefficient service-id="reffun" cover-id="urb" value="0.16"/>
+	  <coefficient service-id="reffun" cover-id="lakres" value="0.25"/>
+	  <coefficient service-id="reffun" cover-id="coa" value="0.50"/>
+	  <coefficient service-id="reffun" cover-id="des" value="0.00"/>
+	  <coefficient service-id="reffun" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="nurfun" cover-id="grashr" value="0.55"/>
+	  <coefficient service-id="nurfun" cover-id="agrpas" value="0.30"/>
+	  <coefficient service-id="nurfun" cover-id="urb" value="0.18"/>
+	  <coefficient service-id="nurfun" cover-id="lakres" value="0.05"/>
+	  <coefficient service-id="nurfun" cover-id="coa" value="0.70"/>
+	  <coefficient service-id="nurfun" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="nurfun" cover-id="des" value="0.00"/>
+	  <coefficient service-id="nurfun" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="foopro" cover-id="for" value="0.30"/>
+	  <coefficient service-id="foopro" cover-id="grashr" value="0.35"/>
+	  <coefficient service-id="foopro" cover-id="agrpas" value="0.65"/>
+	  <coefficient service-id="foopro" cover-id="urb" value="0.02"/>
+	  <coefficient service-id="foopro" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="foopro" cover-id="wet" value="0.50"/>
+	  <coefficient service-id="foopro" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="foopro" cover-id="des" value="0.00"/>
+	  <coefficient service-id="foopro" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="rawmat" cover-id="grashr" value="0.25"/>
+	  <coefficient service-id="rawmat" cover-id="agrpas" value="0.75"/>
+	  <coefficient service-id="rawmat" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="rawmat" cover-id="lakres" value="0.75"/>
+	  <coefficient service-id="rawmat" cover-id="wet" value="0.50"/>
+	  <coefficient service-id="rawmat" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="rawmat" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="rawmat" cover-id="des" value="0.00"/>
+	  <coefficient service-id="rawmat" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="genres" cover-id="grashr" value="0.25"/>
+	  <coefficient service-id="genres" cover-id="agrpas" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="wet" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="des" value="0.00"/>
+	  <coefficient service-id="genres" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="medres" cover-id="grashr" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="agrpas" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="wet" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="des" value="0.00"/>
+	  <coefficient service-id="medres" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="ornres" cover-id="grashr" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="agrpas" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="wet" value="0.10"/>
+	  <coefficient service-id="ornres" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="des" value="0.00"/>
+	  <coefficient service-id="ornres" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="aesinf" cover-id="agrpas" value="0.50"/>
+	  <coefficient service-id="aesinf" cover-id="urb" value="0.36"/>
+	  <coefficient service-id="aesinf" cover-id="lakres" value="0.50"/>
+	  <coefficient service-id="aesinf" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="aesinf" cover-id="des" value="0.00"/>
+	  <coefficient service-id="aesinf" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="rec" cover-id="agrpas" value="0.00"/>
+	  <coefficient service-id="rec" cover-id="urb" value="0.44"/>
+	  <coefficient service-id="rec" cover-id="lakres" value="0.10"/>
+	  <coefficient service-id="rec" cover-id="wet" value="0.30"/>
+	  <coefficient service-id="rec" cover-id="des" value="0.00"/>
+	  <coefficient service-id="rec" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="culinf" cover-id="agrpas" value="0.20"/>
+	  <coefficient service-id="culinf" cover-id="urb" value="0.60"/>
+	  <coefficient service-id="culinf" cover-id="lakres" value="0.10"/>
+	  <coefficient service-id="culinf" cover-id="wet" value="0.60"/>
+	  <coefficient service-id="culinf" cover-id="des" value="0.00"/>
+	  <coefficient service-id="culinf" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="spiinf" cover-id="grashr" value="0.50"/>
+	  <coefficient service-id="spiinf" cover-id="agrpas" value="0.50"/>
+	  <coefficient service-id="spiinf" cover-id="urb" value="0.54"/>
+	  <coefficient service-id="spiinf" cover-id="lakres" value="0.25"/>
+	  <coefficient service-id="spiinf" cover-id="wet" value="0.50"/>
+	  <coefficient service-id="spiinf" cover-id="coa" value="0.00"/>
+	  <coefficient service-id="spiinf" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="spiinf" cover-id="des" value="0.00"/>
+	  <coefficient service-id="spiinf" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="sciedu" cover-id="grashr" value="0.65"/>
+	  <coefficient service-id="sciedu" cover-id="agrpas" value="0.75"/>
+	  <coefficient service-id="sciedu" cover-id="urb" value="0.60"/>
+	  <coefficient service-id="sciedu" cover-id="coa" value="0.50"/>
+	  <coefficient service-id="sciedu" cover-id="des" value="0.00"/>
+	  <coefficient service-id="sciedu" cover-id="tun" value="0.00"/>
+
+	  <coefficient service-id="navser" cover-id="grashr" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="agrpas" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="urb" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="lakres" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="wet" value="0.10"/>
+	  <coefficient service-id="navser" cover-id="roc" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="des" value="0.00"/>
+	  <coefficient service-id="navser" cover-id="tun" value="0.00"/>
+
+	</coefficients>
+</ESValuatorConfiguration>
