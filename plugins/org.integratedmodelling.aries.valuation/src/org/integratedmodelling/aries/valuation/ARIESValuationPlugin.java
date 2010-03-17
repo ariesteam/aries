@@ -1,9 +1,10 @@
 package org.integratedmodelling.aries.valuation;
 
+import org.integratedmodelling.modelling.visualization.VisualizationFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
-import org.integratedmodelling.thinklab.Thinklab;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
+import org.integratedmodelling.thinklab.transformations.TransformationFactory;
 
 public class ARIESValuationPlugin extends ThinklabPlugin {
 
@@ -11,6 +12,8 @@ public class ARIESValuationPlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
+		VisualizationFactory.get().loadColormapDefinitions(getProperties());
+		TransformationFactory.get().loadTransformationMappings(getProperties());
 	}
 
 	@Override

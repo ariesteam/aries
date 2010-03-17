@@ -97,6 +97,7 @@ public class ESVCalculatorTransformer
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size); 
 			state.setMetadata(Metadata.UNITS, "USD@2004/year");
+			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
 			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
 			states.add(new Pair<IConcept, IState>(observable, state));	
@@ -127,7 +128,6 @@ public class ESVCalculatorTransformer
 				double[] mins = (double[]) cs.getSecond().getMetadata(Metadata.RANGE_MIN);
 				double[] maxs = (double[]) cs.getSecond().getMetadata(Metadata.RANGE_MAX);
 			
-				
 				if (landcover != null) {
 					
 					/*
