@@ -13,6 +13,7 @@ import org.integratedmodelling.aries.valuation.ARIESValuationPlugin;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabRuntimeException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+import org.integratedmodelling.thinklab.literals.BooleanValue;
 import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.xml.XMLDocument;
 import org.w3c.dom.Node;
@@ -161,9 +162,16 @@ public class ESCalculatorFactory {
 						IConcept concept = 
 							KnowledgeManager.get().requireConcept(
 									XMLDocument.getAttributeValue(nn, "concept"));
-						String id = XMLDocument.getAttributeValue(nn, "id");
+						String id     = XMLDocument.getAttributeValue(nn, "id");
+						String active = XMLDocument.getAttributeValue(nn, "active");
 
-						sortedEcosystemServiceConcepts.add(concept);
+						boolean isActive = true;
+						if (active != null)
+							isActive = BooleanValue.parseBoolean(active); 
+						
+						if (isActive)
+							sortedEcosystemServiceConcepts.add(concept);
+						
 						esMappings.put(id,concept);
 						
 					} else if  (nn.getNodeName().equals("land-cover")) {

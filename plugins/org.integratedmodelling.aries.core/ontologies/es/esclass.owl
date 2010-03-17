@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:currency="http://www.integratedmodelling.org/ks/currency/currency.owl#"
     xmlns:esclass="http://www.integratedmodelling.org/ks/es/esclass.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
@@ -10,9 +12,11 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/es/esclass.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
-    <rdfs:comment xml:lang="en">This ontology expands on the types of benefit, defining subclasses of benefit that may be useful to bridge to existing classification schemata for ecosystem services. The classes in the benefit ontology are all defined through restrictions, and are meant for reasoner-mediated classification of stated benefits. As such, there is no need to use the benefit ontology when defining services. </rdfs:comment>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/currency/currency.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/economics/economics.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <rdfs:comment xml:lang="en">This ontology expands on the types of benefit, defining subclasses of benefit that may be useful to bridge to existing classification schemata for ecosystem services. The classes in the benefit ontology are all defined through restrictions, and are meant for reasoner-mediated classification of stated benefits. As such, there is no need to use the benefit ontology when defining services. </rdfs:comment>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="ESClassification">
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
@@ -160,6 +164,7 @@
     <rdfs:subClassOf rdf:resource="#HistoricalESLandcover"/>
   </owl:Class>
   <owl:Class rdf:about="#HistoricalESTypology">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/economics/economics.owl#EconomicValue"/>
     <rdfs:subClassOf rdf:resource="#ESTypology"/>
   </owl:Class>
   <owl:Class rdf:ID="Pollination">

@@ -26,6 +26,7 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.Polylist;
+import org.integratedmodelling.utils.Triple;
 
 /**
  * Support for running the Clojure SPAN models and making lazy observation proxies to its
@@ -60,6 +61,7 @@ public class ESVCalculatorTransformer
 	public IConcept getTransformedObservationClass() {
 		return CoreScience.Observation();
 	}
+	
 	@Override
 	public IInstance transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
@@ -83,6 +85,8 @@ public class ESVCalculatorTransformer
 		// conversion factor for the silly dollars/acre stuff
 		double cellAcres = ((GridExtent)extent).getCellAreaMeters() * SQUARE_METERS_TO_ACRES;
 		
+		System.out.println("Trattasi di " + cellAcres/SQUARE_METERS_TO_ACRES + " m2, " + cellAcres + " acri");
+		
 		/*
 		 * create states from closures where the concept space of the observable
 		 * contains an observable for the result type.
@@ -93,14 +97,16 @@ public class ESVCalculatorTransformer
 		 * TODO the observable should be the VALUE OF, not the concept - again we need to
 		 * use individuals for observables
 		 */
+		ArrayList<Triple<Double,Double,Double>> totals = new ArrayList<Triple<Double,Double,Double>>();
 		for (IConcept observable : ESCalculatorFactory.get().getAllESConcepts()) {
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size); 
-			state.setMetadata(Metadata.UNITS, "USD@2004/year");
+			state.setMetadata(Metadata.UNITS, "USD@2004/acre.year");
 			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
 			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
 			states.add(new Pair<IConcept, IState>(observable, state));	
+			totals.add(new Triple<Double, Double, Double>(0.0,0.0,0.0));
 		} 	
 		
 		/*
@@ -118,6 +124,7 @@ public class ESVCalculatorTransformer
 			double tmin  = 0.0;
 			double tmax  = 0.0;
 			
+			int stt = 0;
 			for (Pair<IConcept, IState> cs : states) {
 				
 				/*
@@ -139,16 +146,24 @@ public class ESVCalculatorTransformer
 					double mean = vres.getFirst() + (vres.getSecond()- vres.getFirst())/2; 
 					
 					/*
-					 * add mean, min and max to ds and source
+					 * add mean, min and max to ds and source, memorized as values per acre, not
+					 * per pixel.
 					 */
-					mins[i] = vres.getFirst();
-					maxs[i] = vres.getSecond();
+					mins[i] = vres.getFirst()/SQUARE_METERS_TO_ACRES;
+					maxs[i] = vres.getSecond()/SQUARE_METERS_TO_ACRES;
 				
-					cs.getSecond().addValue(new Double(mean));
+					cs.getSecond().addValue(new Double(mean)/SQUARE_METERS_TO_ACRES);
 
 					tmin  += mins[i]; 
 					tmax  += maxs[i]; 
-					tmean += mean;
+					tmean += mean/SQUARE_METERS_TO_ACRES;
+				
+					// total ACTUAL values per pixel cumulated
+					Triple<Double,Double,Double> tt = totals.get(stt);
+					tt.setFirst(tt.getFirst() + vres.getFirst());
+					tt.setSecond(tt.getSecond() + vres.getSecond());
+					tt.setThird(tt.getThird() + mean);
+					totals.set(stt, tt);
 					
 				} else {
 					
@@ -157,7 +172,19 @@ public class ESVCalculatorTransformer
 					cs.getSecond().addValue(Double.NaN);
 					
 				}
+				stt ++;
 			}
+		}
+		
+		/*
+		 * set aggregate totals in metadata for display
+		 */
+		int stt = 0;
+		for (Pair<IConcept, IState> cs : states) {
+			cs.getSecond().setMetadata(Metadata.AGGREGATED_MIN, totals.get(stt).getFirst());
+			cs.getSecond().setMetadata(Metadata.AGGREGATED_MAX, totals.get(stt).getSecond());
+			cs.getSecond().setMetadata(Metadata.AGGREGATED_TOTAL, totals.get(stt).getThird());
+			stt++;
 		}
 		
 		/*
