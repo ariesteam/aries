@@ -101,7 +101,7 @@ public class ESVCalculatorTransformer
 		for (IConcept observable : ESCalculatorFactory.get().getAllESConcepts()) {
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size); 
-			state.setMetadata(Metadata.UNITS, "USD@2004/acre.year");
+			state.setMetadata(Metadata.UNITS, "$@2004/ac.yr");
 			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
 			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
