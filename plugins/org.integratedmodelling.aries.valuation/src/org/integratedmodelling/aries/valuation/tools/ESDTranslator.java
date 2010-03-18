@@ -13,8 +13,6 @@ import org.integratedmodelling.utils.xml.XMLDocument;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.sun.msv.datatype.xsd.WhiteSpaceProcessor;
-
 public class ESDTranslator {
 
 	/*
