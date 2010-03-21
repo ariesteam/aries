@@ -48,6 +48,7 @@ test  - runs some tests
 		<ant dir="plugins/org.integratedmodelling.aries.marine" target="${target}" />
 		<ant dir="plugins/org.integratedmodelling.aries.valuation" target="${target}" />
 		<ant dir="plugins/org.integratedmodelling.aries.aries" target="${target}" />
+		<ant dir="plugins/org.integratedmodelling.aries.administration" target="${target}" />
 	</target>
 
 	<target name="build" depends="-init" description="Builds entire project">
