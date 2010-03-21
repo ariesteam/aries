@@ -30,9 +30,9 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	protected void load(KnowledgeManager km) throws ThinklabException {
 
 		Geospace.get().addGazetteer("aries-inline", new SimpleGazetteer(getProperties()));
-		KBoxManager.get().installKbox(
-				"kbox://www.integratedmodelling.org/aries/demo", 
-				new ARIESDemoKbox());
+//		KBoxManager.get().installKbox(
+//				"kbox://www.integratedmodelling.org/aries/demo", 
+//				new ARIESDemoKbox());
 		VisualizationFactory.get().loadColormapDefinitions(getProperties());
 		TransformationFactory.get().loadTransformationMappings(getProperties());
 	}

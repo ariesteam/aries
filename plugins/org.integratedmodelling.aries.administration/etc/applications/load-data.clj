@@ -6,23 +6,19 @@
 				:metadata (
 	        :centroid     geospace:Point
 	        :boundingbox  geospace:Polygon)
-				:sql.log.queries "true")
+				:sql.log.queries "true"
+				:kbox.parameter.srid "4326")
 				
 	  ;; rebuild the db from scratch every time this is run
 		:storage-policy :recreate-always
+
+		;; put the kbox definition in the load area of the core plugin so it will be loaded at startup
+		:persist org.integratedmodelling.aries.core
+		
 		:metadata-generator {
 			:centroid    #(geospace/get-centroid %)
 			:boundingbox #(geospace/get-bounding-box %)
 		}
-	
-	 ;; admin data
-	 ;(import (tl/get-plugin-resource 'aries.administration "world_adm0.shp")) 
-	 
-	 	;; BUG - FIXME - needs modifiers or will gobble up the next instruction
-	 	;:pop 2
-
-	 ;; puget sound aesthetic values
-	 (import (tl/get-plugin-resource 'aries.administration "common.xml")) :pop 2
-	 (import (tl/get-plugin-resource 'aries.administration "pugetsound_aesthetics.xml")) :pop 2
-	 ; (import (tl/get-plugin-resource 'aries.administration "pugetsound_carbon.xml"))
-)	
+		
+		(import (tl/get-plugin-resource 'aries.administration "common.xml")) :pop 2
+	)
