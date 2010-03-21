@@ -1,6 +1,6 @@
 (modelling/with-kbox 
 	
-	(modelling/kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/aries" 
+	(modelling/kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/ariesdata" 
 				:protocol "pg" 
 				:schema "postgis"
 				:metadata (
@@ -12,8 +12,8 @@
 	  ;; rebuild the db from scratch every time this is run
 		:storage-policy :recreate-always
 
-		;; put the kbox definition in the load area of the core plugin so it will be loaded at startup
-		:persist org.integratedmodelling.aries.core
+		;; put the kbox definition in the load area of the main plugin so it will be loaded at startup
+		:persist org.integratedmodelling.aries.aries
 		
 		:metadata-generator {
 			:centroid    #(geospace/get-centroid %)
@@ -21,4 +21,5 @@
 		}
 		
 		(import (tl/get-plugin-resource 'aries.administration "common.xml")) :pop 2
+		(import (tl/get-plugin-resource 'aries.administration "marine.xml")) :pop 2
 	)
