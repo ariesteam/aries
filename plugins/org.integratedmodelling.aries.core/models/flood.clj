@@ -89,8 +89,8 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
-		#^ {:units-description "degrees"} 
-		(classification (ranking 'geophysics:DegreeSlope "°")
+		(classification (ranking 'geophysics:DegreeSlope)
+			 :units       "degrees" 
 			 [:< 1.15] 	  'floodService:Level
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly

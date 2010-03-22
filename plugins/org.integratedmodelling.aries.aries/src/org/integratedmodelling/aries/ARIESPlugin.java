@@ -1,5 +1,6 @@
 package org.integratedmodelling.aries;
 
+import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
@@ -15,10 +16,12 @@ public class ARIESPlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
+		Geospace.get().loadGazetteersFromDirectory(getScratchPath());
 	}
 
 	@Override
 	protected void unload() throws ThinklabException {
 	}
+
 
 }
