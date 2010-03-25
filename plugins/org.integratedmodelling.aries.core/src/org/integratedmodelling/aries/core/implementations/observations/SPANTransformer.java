@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.corescience.interfaces.IState;
 import org.integratedmodelling.corescience.interfaces.internal.TransformingObservation;
 import org.integratedmodelling.corescience.literals.GeneralClassifier;
+import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.extents.GridExtent;
 import org.integratedmodelling.modelling.ObservationFactory;
@@ -148,7 +150,7 @@ public class SPANTransformer
 	}
 
 	@Override
-	public IInstance transform(IInstance sourceObs, ISession session,
+	public Polylist transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
 		
 		/*
@@ -193,6 +195,7 @@ public class SPANTransformer
 				IFn clojure = (IFn) closure;
 				IState state = 
 					new SPANDistributionState(observable, rows, cols, clojure);
+				state.setMetadata(Metadata.DEFINING_MODEL, this);
 				
 				states.add(new Pair<IConcept, IState>(observable, state));
 				
@@ -233,7 +236,7 @@ public class SPANTransformer
 			rdef = ObservationFactory.addDependency(rdef, ddef);
 		}
 		
-		return session.createObject(rdef);
+		return rdef;
 		
 	}
 }

@@ -106,7 +106,7 @@ public class ESCalculatorFactory {
 		double max = getGlobalMaximumESValue(esid);
 		double con = getESConversionCoefficient(esid, lcid);
 		
-		return new Pair<Double, Double>(min*con, max*con);
+		return new Pair<Double, Double>(min*con*cellAcres, max*con*cellAcres);
 	}
 	
 	public IConcept getConceptForESID(String esid) {

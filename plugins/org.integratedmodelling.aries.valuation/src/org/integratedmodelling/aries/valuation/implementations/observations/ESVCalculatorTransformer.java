@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.valuation.implementations.observations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import org.integratedmodelling.aries.valuation.calculator.ESCalculatorFactory;
@@ -63,7 +64,7 @@ public class ESVCalculatorTransformer
 	}
 	
 	@Override
-	public IInstance transform(IInstance sourceObs, ISession session,
+	public Polylist transform(IInstance sourceObs, ISession session,
 			IObservationContext context) throws ThinklabException {
 		
 		IConcept landUseConcept = KnowledgeManager.get().requireConcept(LAND_USE_DEPENDENCY);
@@ -78,8 +79,8 @@ public class ESVCalculatorTransformer
 				!(extent.getTotalGranularity() == context.getMultiplicity()))
 			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
 
-		int rows = ((GridExtent)extent).getYCells();
-		int cols = ((GridExtent)extent).getXCells();
+//		int rows = ((GridExtent)extent).getYCells();
+//		int cols = ((GridExtent)extent).getXCells();
 		int size = extent.getTotalGranularity();
 		
 		// conversion factor for the silly dollars/acre stuff
@@ -105,6 +106,8 @@ public class ESVCalculatorTransformer
 			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
 			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
+			state.setMetadata(Metadata.DEFINING_MODEL, this);
+
 			states.add(new Pair<IConcept, IState>(observable, state));	
 			totals.add(new Triple<Double, Double, Double>(0.0,0.0,0.0));
 		} 	
@@ -219,7 +222,7 @@ public class ESVCalculatorTransformer
 			rdef = ObservationFactory.addDependency(rdef, ddef);
 		}
 		
-		return session.createObject(rdef);
+		return rdef;
 		
 	}
 }
