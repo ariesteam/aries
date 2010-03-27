@@ -64,10 +64,10 @@
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
 ;; TODO it's deterministic, remove the BN and program this one in code
 (defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
-	  (bayesian 'floodService:FloodSourceCurveNumberMethod)
+	  (bayesian 'floodService:FloodSourceCurveNumberMethod 
 	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
 	  	:keep     ('floodService:Runoff)
-	 	 	:context  (land-use soil-group precipitation))
+	 	 	:context  (land-use soil-group precipitation)))
 	 	 	
 (defmodel flood-source-value 'floodService:FloodSourceValue
 	(classification 'floodService:FloodSourceValue
@@ -79,10 +79,10 @@
 
 ;; Flood source probability, ad hoc method
 (defmodel source 'floodService:FloodSource
-	  (bayesian 'floodService:FloodSource)
+	  (bayesian 'floodService:FloodSource 
 	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
 	 	 	:context  (precipitation monthly-temperature snow-presence)
-	 	 	:observed (flood-source-value))
+	 	 	:observed (flood-source-value)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -173,7 +173,7 @@
 ;; Flood sink probability
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
-	  (bayesian 'floodService:FloodSink)
+	  (bayesian 'floodService:FloodSink 
 	  	:import   "aries.core::FloodSink.xdsl"
 	  	:keep     (
 	  			'floodService:FloodSink 
@@ -183,7 +183,7 @@
 	 	 			soil-group vegetation-type slope monthly-temperature levees bridges
 	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			(comment mean-days-precipitation vegetation-height)
-	 	 			vegetation-cover))
+	 	 			vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -212,13 +212,13 @@
 	
 (defmodel public-asset 'floodService:PublicAsset
 	"Public assets are defined as presence of highways, railways or both."
-	(classification 'floodService:PublicAsset)
+	(classification 'floodService:PublicAsset 
 		:state   (if (> (+ highway railway) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
 								(tl/conc 'floodService:PublicAssetNotPresent))
 		:context (
 			(ranking 'infrastructure:Highway) :as highway
-			(ranking 'infrastructure:Railway) :as railway))
+			(ranking 'infrastructure:Railway) :as railway)))
 
 ;; 
 (defmodel farmland 'floodService:Farmland
@@ -230,34 +230,34 @@
 ;; Resident users in floodplains
 (defmodel residents-use 'floodService:FloodResidentsUse
 		"Interface to Flood resident use bayesian network"
-	  (bayesian 'floodService:FloodResidentsUse)
+	  (bayesian 'floodService:FloodResidentsUse 
 	  	:import   "aries.core::FloodResidentsUse.xdsl"
 	  	:keep     ('floodService:ResidentsInFloodHazardZones)
-	 	 	:context  (housing floodplains))
+	 	 	:context  (housing floodplains)))
 
 ;; Farmer users in floodplains
 (defmodel farmers-use 'floodService:FloodFarmersUse
 		"Interface to Flood farmers use bayesian network"
-	  (bayesian 'floodService:FloodFarmersUse)
+	  (bayesian 'floodService:FloodFarmersUse 
 	  	:import   "aries.core::FloodFarmersUse.xdsl"
 	  	:keep     ('floodService:FarmersInFloodHazardZones)
-	 	 	:context  (farmland floodplains))
+	 	 	:context  (farmland floodplains)))
 
 ;; Public assets in floodplains
 (defmodel public-use 'floodService:FloodPublicAssetsUse
   	"Interface to Flood public asset use bayesian network"
-	  (bayesian 'floodService:FloodPublicAssetsUse)
+	  (bayesian 'floodService:FloodPublicAssetsUse 
 	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
-	 	 	:context  (public-asset floodplains))
+	 	 	:context  (public-asset floodplains)))
 	 	 	
 ;; Private assets in floodplains
 (defmodel private-use 'floodService:FloodPrivateAssetsUse
   	"Interface to Flood public asset use bayesian network"
-	  (bayesian 'floodService:FloodPrivateAssetsUse)
+	  (bayesian 'floodService:FloodPrivateAssetsUse 
 	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
 	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
-	 	 	:context  (structures floodplains))
+	 	 	:context  (structures floodplains)))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
@@ -265,32 +265,32 @@
 
 ;; all data, for testing and storage
 (defmodel data-farmers 'floodService:AvoidedDamageToFarms 
-	(identification 'floodService:AvoidedDamageToFarms)
+	(identification 'floodService:AvoidedDamageToFarms 
 		:context (
 			source :as source
 			sink :as sink
-			farmers-use :as use))
+			farmers-use :as use)))
 
 (defmodel data-public 'floodService:AvoidedDamageToPublicAssets 
-	(identification 'floodService:AvoidedDamageToPublicAssets)
+	(identification 'floodService:AvoidedDamageToPublicAssets 
 		:context (
 			source :as source
 			sink :as sink
-			public-use :as use))
+			public-use :as use)))
 
 (defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
-	(identification 'floodService:AvoidedDamageToPrivateAssets)
+	(identification 'floodService:AvoidedDamageToPrivateAssets 
 		:context (
 			source :as source
 			sink :as sink
-			private-use :as use))
+			private-use :as use)))
 
 (defmodel data-residents 'floodService:AvoidedDamageToResidents 
-	(identification 'floodService:AvoidedDamageToResidents)
+	(identification 'floodService:AvoidedDamageToResidents 
 		:context (
 			source :as source
 			sink :as sink
-			residents-use :as use))
+			residents-use :as use)))
 
 ;; flow model	for farmers		
 (defmodel flood-regulation-farmers 'floodService:AvoidedDamageToFarms
@@ -308,6 +308,6 @@
    	:use-type         :relative,
    	:benefit-type     :non-rival,
    	:downscaling-factor 3,
-   	:rv-max-states    10)
-  :context (source farmers-use sink altitude))
+   	:rv-max-states    10 
+    :context (source farmers-use sink altitude)))
 	 	 	

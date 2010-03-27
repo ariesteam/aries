@@ -59,7 +59,7 @@
 ;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
 ;; TODO check with Ken
 (defmodel vegetation-cover 'carbonService:VegetationCover
-	(classification (ranking 'habitat:PercentCanopyCover :units "%" )
+	(classification (ranking 'habitat:PercentCanopyCover :units "%")
 		[80 :>] 'carbonService:VeryHighVegetationCover
 		[60 80] 'carbonService:HighVegetationCover
 		[40 60] 'carbonService:ModerateVegetationCover
@@ -116,14 +116,14 @@
 			
 ;; Bayesian source model		
 (defmodel source 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue)
+	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)))
 
 ;; missing: CommercialForestyPractices (later - based on clearcuts which is not available in chehalis)
 
@@ -158,7 +158,7 @@
 
 ;; Bayesian source model		
 (defmodel source-hadley-a2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue)
+	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
@@ -166,11 +166,11 @@
 			:observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-a2 fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration))	
+	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)))
 	  				
 ;; Bayesian source model		
 (defmodel source-hadley-b2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue)
+	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
@@ -178,7 +178,7 @@
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-b2 fire-frequency
 	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)
-	 	 	:observed (veg-soil-storage soil-storage veg-storage))	 	 	           
+	 	 	:observed (veg-soil-storage soil-storage veg-storage)))	 	 	           
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -198,10 +198,10 @@
 	  (bayesian 'carbonService:CarbonUse
 	  		(classification 'carbonService:CarbonEmitterUse
 	  				0          'carbonService:EmitterUseAbsent
-	  			  :otherwise 'carbonService:EmitterUsePresent))
+	  			  :otherwise 'carbonService:EmitterUsePresent) 
 	  	:import  "aries.core::CarbonUse.xdsl"
 	  	:keep    ('carbonService:CarbonEmitterUse)
-	  	:context (greenhouse-gas-emitter))
+	  	:context (greenhouse-gas-emitter)))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
@@ -209,18 +209,18 @@
 
 ;; data for emission trading
 (defmodel data-emitters 'carbonService:EmissionTrading 
-	(identification 'carbonService:EmissionTrading)
-		:context (source use-emitters))
+	(identification 'carbonService:EmissionTrading 
+		:context (source use-emitters)))
 
 ;; Hadley A2 scenario
 (defmodel data-emitters-hadley-a2 'carbonService:EmissionHadleyA2Scenario 
-	(identification 'carbonService:EmissionTrading)
-		:context (source-hadley-a2 use-emitters))
+	(identification 'carbonService:EmissionTrading 
+		:context (source-hadley-a2 use-emitters)))
 
 ;; Hadley B2 scenario
 (defmodel data-emitters-hadley-b2 'carbonService:EmissionHadleyB2Scenario 
-	(identification 'carbonService:EmissionTrading)
-		:context (source-hadley-b2 use-emitters))
+	(identification 'carbonService:EmissionTrading 
+		:context (source-hadley-b2 use-emitters)))
 		
 ;;
 
@@ -239,8 +239,8 @@
    	:sink-type        :relative,
    	:use-type         :relative,
    	:benefit-type     :rival,
-   	:rv-max-states    10)
-  :context (source use-emitters))		
+   	:rv-max-states    10 
+    :context (source use-emitters)))		
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios
@@ -282,5 +282,5 @@
         [35 40]       'carbonService:HighSOL
         [40 :>]       'carbonService:VeryHighSOL)) 
 		 			
-		 			
+
 		 			

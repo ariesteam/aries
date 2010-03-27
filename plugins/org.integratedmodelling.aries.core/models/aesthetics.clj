@@ -13,6 +13,7 @@
 		  0          'aestheticService:LakeNotPresent
 		  :otherwise 'aestheticService:LakePresent))
 
+
 (defmodel ocean 'aestheticService:Ocean
   "Just being a lake. We may want to reclass lake area instead"
   (classification (ranking 'geofeatures:Ocean)
@@ -38,11 +39,12 @@
 (defmodel source 'aestheticService:AestheticEnjoymentProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision)
-  :import "aries.core::ViewSource.xdsl"
-  :keep ('aestheticService:TheoreticalNaturalBeauty)
-  :context (mountain lake ocean)
-  :observed (theoretical-beauty))
+  (bayesian 'aestheticService:AestheticEnjoymentProvision 
+    :import   "aries.core::ViewSource.xdsl"
+    :keep     ('aestheticService:TheoreticalNaturalBeauty)
+    :context  (mountain lake ocean)
+    :observed (theoretical-beauty)))
+
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -71,10 +73,10 @@
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ViewUse
   "Property owners who can afford to pay for the view"
-  (bayesian 'aestheticService:ViewUse)
-  :import "aries.core::ViewUse.xdsl"
-  :keep ('aestheticService:HomeownersEnjoyment)
-  :context (property-value housing))
+  (bayesian 'aestheticService:ViewUse 
+    :import  "aries.core::ViewUse.xdsl"
+    :keep    ('aestheticService:HomeownersEnjoyment)
+    :context (property-value housing)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -100,10 +102,10 @@
 
 (defmodel sink 'aestheticService:ViewSink
   "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink)
-  :import "aries.core::ViewSink.xdsl"
-  :keep ('aestheticService:TotalVisualBlight)
-  :context (commercial-transportation highway))
+  (bayesian 'aestheticService:ViewSink 
+    :import  "aries.core::ViewSink.xdsl"
+    :keep    ('aestheticService:TotalVisualBlight)
+    :context (commercial-transportation highway)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
@@ -141,5 +143,5 @@
    	:use-type         :relative,
    	:benefit-type     :non-rival,
    	:downscaling-factor 3,
-   	:rv-max-states    10)
-  :context (source homeowners sink altitude))
+   	:rv-max-states    10, 
+    :context (source homeowners sink altitude)))

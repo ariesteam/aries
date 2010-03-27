@@ -38,10 +38,10 @@
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   	"Interface to subsistence use bayesian network"
-	  (bayesian 'fisheries:SubsistenceFishing)
+	  (bayesian 'fisheries:SubsistenceFishing 
 	  	:import   "aries.marine::FisheriesSubsistenceUse.xdsl"
 	  	:keep     ('fisheries:SubsistenceUse)
-	 	 	:context  (poverty population-density coastal-proximity))
+	 	 	:context  (poverty population-density coastal-proximity)))
 	 	 	
 ;; --------------------------------------------------------------------------------------
 ;; source models
@@ -87,16 +87,16 @@
 		
 (defmodel fish-habitat-quality 'fisheries:FishHabitat
   	"Interface to subsistence use bayesian network"
-	  (bayesian 'fisheries:FishHabitat)
+	  (bayesian 'fisheries:FishHabitat 
 	  	:import   "aries.marine::FisheriesA_hololepidotus.xdsl"
 	  	:keep     ('fisheries:ReefQuality 'fisheries:EstuaryQuality)
-	 	 	:context  (bleaching-fisheries reef-area estuary-area nitrogen))		
+	 	 	:context  (bleaching-fisheries reef-area estuary-area nitrogen)))		
 		
 ;; --------------------------------------------------------------------------------------
 ;; all together now
 ;; --------------------------------------------------------------------------------------
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
-	(identification 'fisheries:SubsistenceFishProvision)
-		:context (meagre-habitat fish-habitat-quality subsistence-fishing))
+	(identification 'fisheries:SubsistenceFishProvision 
+		:context (meagre-habitat fish-habitat-quality subsistence-fishing)))
 	 	 	

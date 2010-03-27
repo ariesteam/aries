@@ -20,8 +20,8 @@
 		
 (defmodel esvalue 'esvaluation:HistoricESValue 
 	"The stupid ES value calculator, Costanza/DeGroot/Wilson-style"
-	(es-calculator 'esvaluation:HistoricESValue)
-		:context (land-use)) 
+	(es-calculator 'esvaluation:HistoricESValue 
+		:context (land-use)) )
 		
 		
   

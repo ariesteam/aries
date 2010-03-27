@@ -1,9 +1,9 @@
 package org.integratedmodelling.aries.core.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-import org.integratedmodelling.aries.core.ARIESCorePlugin;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
@@ -15,6 +15,7 @@ import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
 import clojure.lang.Keyword;
+import clojure.lang.PersistentArrayMap;
 
 public class SPANModel extends DefaultAbstractModel {
 
@@ -31,7 +32,7 @@ public class SPANModel extends DefaultAbstractModel {
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
 	IConcept flowDataObservable = null;
-	private Map<Object, Object> flowParams;
+	private PersistentArrayMap flowParams = new PersistentArrayMap(new Object[]{});
 	
 	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
 
@@ -69,13 +70,30 @@ public class SPANModel extends DefaultAbstractModel {
 		return ret; 
 	}
 
-	/*
-	 * these come from the specs, must go straight to the SPAN proxy.
-	 */
-	public void setFlowParams(Map<Object,Object> flowParams) {
-		this.flowParams = flowParams;
+	@Override
+	public void applyClause(String keyword, Object argument)
+			throws ThinklabException {
+		
+		// TODO map these to dependent observations and reconstruct the map in the obs when the proxy is
+		// called.
+		if (keyword.equals(":source-threshold") ||
+			keyword.equals(":sink-threshold") ||
+			keyword.equals(":use-threshold") ||
+			keyword.equals(":trans-threshold") ||
+			keyword.equals(":sink-type") ||
+			keyword.equals(":use-type") ||
+			keyword.equals(":benefit-type") ||
+			keyword.equals(":downscaling-factor") ||
+			keyword.equals(":rv-max-states")) {
+			
+			// these must be sent back to Clojure, and a normal Map won't do - what a pain
+			flowParams = (PersistentArrayMap) flowParams.assoc(Keyword.intern(null, keyword.substring(1)), argument);
+			
+		} else {
+			super.applyClause(keyword, argument);
+		}
 	}
-	
+
 	@Override
 	public Polylist buildDefinition(IKBox kbox, ISession session) throws ThinklabException {
 
@@ -90,8 +108,7 @@ public class SPANModel extends DefaultAbstractModel {
 //			Integer nds = Integer.parseInt(ns);
 //			flowParams.put(downscalingFactor, nds);
 //		}
-		
-		
+			
 		arr.add("aries:SPANTransformer");
 		arr.add(Polylist.list(
 				CoreScience.HAS_OBSERVABLE,

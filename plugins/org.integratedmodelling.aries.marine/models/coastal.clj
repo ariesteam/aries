@@ -54,10 +54,10 @@
 ;; flood protection
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
   	"Interface to Flood public asset use bayesian network"
-	  (bayesian 'coastalProtection:CoastalFloodSink)
+	  (bayesian 'coastalProtection:CoastalFloodSink 
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
-	 	 	:context  (bleaching seagrass slope mangrove-width))
+	 	 	:context  (bleaching seagrass slope mangrove-width)))
 
 ;; --------------------------------------------------------------------------------------
 ;; use models
@@ -89,7 +89,7 @@
 ;; --------------------------------------------------------------------------------------
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
-	(identification 'coastalProtection:CoastalStormProtection)
-		:context (coastal-flood-sink risk-to-life risk-to-assets storm-probability))
+	(identification 'coastalProtection:CoastalStormProtection 
+		:context (coastal-flood-sink risk-to-life risk-to-assets storm-probability)))
 
 	 	 	

@@ -10,6 +10,7 @@
   (:use [span.flow-model :only (simulate-service-flows)]))
 (refer 'tl          :only '(listp))
 (refer 'corescience :only '(get-observable-class))
+(refer 'modelling :only '(transform-model))
 
 (defn j-make-span
 	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 
@@ -58,11 +59,13 @@
 	SPAN flow parameters inside the span form. The context models will be mapped to the source, use, 
 	and sink observables; any other dependents whose observable is not a source, sink or use type will
 	be dependencies for the flow model."
-	[observable source-obs use-obs sink-obs flow-obs flow-data-obs & params]
-	`(let [model# (j-make-span)
-				 params# (tl/assoc-map '~params)] 
+	[observable source-obs use-obs sink-obs flow-obs flow-data-obs & body]
+	`(let [model# (j-make-span)] 
  	   (.setObservable model# (if (seq? ~observable) (listp ~observable) ~observable))
  	   (.setFlowObservables model# (tl/conc ~source-obs) (tl/conc ~use-obs) (tl/conc ~sink-obs) (tl/conc ~flow-obs) (tl/conc ~flow-data-obs))
- 	   (.setFlowParams model# params#)
+ 	   (if (not (nil? '~body)) 
+				(doseq [classifier# (partition 2 '~body)]
+		 	   	(if  (keyword? (first classifier#)) 
+		 	   		  (transform-model model# classifier#))))
  	   model#))
 			
