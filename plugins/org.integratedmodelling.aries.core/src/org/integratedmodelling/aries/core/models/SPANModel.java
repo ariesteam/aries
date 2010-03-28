@@ -1,8 +1,6 @@
 package org.integratedmodelling.aries.core.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.modelling.DefaultAbstractModel;

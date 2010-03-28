@@ -1,7 +1,6 @@
 package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -236,7 +235,6 @@ public class SPANTransformer
 			rdef = ObservationFactory.addDependency(rdef, ddef);
 		}
 		
-		return rdef;
-		
+		return rdef;		
 	}
 }

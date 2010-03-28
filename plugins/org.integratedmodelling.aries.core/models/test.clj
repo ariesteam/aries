@@ -20,6 +20,11 @@
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))
 
+(defmodel altitest 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"
+    :as    altitude 
+    :state #(+ 100000000 (:altitude %))
+   ))
 		 		
 ;; -------------------------------------------------------------------------
 ;; agents
@@ -41,9 +46,11 @@
     [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
      
   ;; these are supposed to be rules                                                          
-  :death    ()
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
   :movement ()
-  :observe  ()
   
   ;; this is used to transform the representation of the context if we get
   ;; something that doesn't fit it.

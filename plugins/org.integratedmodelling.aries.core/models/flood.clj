@@ -213,7 +213,7 @@
 (defmodel public-asset 'floodService:PublicAsset
 	"Public assets are defined as presence of highways, railways or both."
 	(classification 'floodService:PublicAsset 
-		:state   (if (> (+ highway railway) 0) 
+		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
 								(tl/conc 'floodService:PublicAssetNotPresent))
 		:context (
