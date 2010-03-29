@@ -106,7 +106,7 @@ public class ESVCalculatorTransformer
 			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
 			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
-			state.setMetadata(Metadata.DEFINING_MODEL, this);
+			// FIXME state.setMetadata(Metadata.DEFINING_MODEL, this);
 
 			states.add(new Pair<IConcept, IState>(observable, state));	
 			totals.add(new Triple<Double, Double, Double>(0.0,0.0,0.0));

@@ -1,6 +1,6 @@
 (ns aries/flood
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer modelling :only (defmodel defagent defscenario measurement classification categorization ranking identification bayesian))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -100,13 +100,15 @@
 	"Presence of a levee in given context"
 	(classification (ranking 'infrastructure:Levee)
 			0 'floodService:LeveesNotPresent
-			1 'floodService:LeveesPresent))
+			1 'floodService:LeveesPresent
+    :agent "aries/flood/levee"))
 
 (defmodel bridges 'floodService:Bridges
 	"Presence of a bridge in given context"
 	(classification (ranking 'infrastructure:Bridge)
 			0 'floodService:BridgesNotPresent
-			1 'floodService:BridgesPresent))
+			1 'floodService:BridgesPresent
+   :agent "aries/flood/bridge"))
 
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
@@ -225,7 +227,9 @@
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandNotPresent))
+		:otherwise 'floodService:FarmlandNotPresent
+    :agent     "aries/flood/farm"
+    :editable  true))
 
 ;; Resident users in floodplains
 (defmodel residents-use 'floodService:FloodResidentsUse
@@ -310,4 +314,77 @@
    	:downscaling-factor 3,
    	:rv-max-states    10 
     :context (source farmers-use sink altitude)))
+
+;; -------------------------------------------------------------------------
+;; agents
+;; -------------------------------------------------------------------------
+
+(defagent farm 'floodService:Farmland 
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (ranking 'geophysics:DegreeSlope)
+    :units       "degrees" 
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
+
+(defagent levee 'floodService:Levees
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (ranking 'geophysics:DegreeSlope)
+    :units       "degrees" 
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
+
+(defagent bridge 'floodService:Bridges 
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (ranking 'geophysics:DegreeSlope)
+    :units       "degrees" 
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
 	 	 	
