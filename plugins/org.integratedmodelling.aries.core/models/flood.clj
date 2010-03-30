@@ -101,14 +101,16 @@
 	(classification (ranking 'infrastructure:Levee)
 			0 'floodService:LeveesNotPresent
 			1 'floodService:LeveesPresent
-    :agent "aries/flood/levee"))
+;    :agent "aries/flood/levee"
+))
 
 (defmodel bridges 'floodService:Bridges
 	"Presence of a bridge in given context"
 	(classification (ranking 'infrastructure:Bridge)
 			0 'floodService:BridgesNotPresent
 			1 'floodService:BridgesPresent
-   :agent "aries/flood/bridge"))
+;   :agent "aries/flood/bridge"
+))
 
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
@@ -228,7 +230,7 @@
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
 		:otherwise 'floodService:FarmlandNotPresent
-    :agent     "aries/flood/farm"
+;    :agent     "aries/flood/farm"
     :editable  true))
 
 ;; Resident users in floodplains
@@ -316,7 +318,7 @@
     :context (source farmers-use sink altitude)))
 
 ;; -------------------------------------------------------------------------
-;; agents
+;; agents -- only for testing and not used right now
 ;; -------------------------------------------------------------------------
 
 (defagent farm 'floodService:Farmland 
