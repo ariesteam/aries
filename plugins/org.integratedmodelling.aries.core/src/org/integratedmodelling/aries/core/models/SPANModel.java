@@ -3,6 +3,7 @@ package org.integratedmodelling.aries.core.models;
 import java.util.ArrayList;
 
 import org.integratedmodelling.corescience.CoreScience;
+import org.integratedmodelling.corescience.ObservationFactory;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -18,6 +19,15 @@ import clojure.lang.PersistentArrayMap;
 public class SPANModel extends DefaultAbstractModel {
 
 	public final static String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
+
+	/**
+	 * these are reclassified in the context of the main observable, so that the
+	 * corresponding parameters can be communicated to users appropriately.
+	 */
+	private static final String SOURCE_THRESHOLD_CONCEPT = "eserv:SourceThreshold";
+	private static final String SINK_THRESHOLD_CONCEPT = "eserv:SinkThreshold";
+	private static final String USE_THRESHOLD_CONCEPT = "eserv:UseThreshold";
+	private static final String TRANSITION_THRESHOLD_CONCEPT = "eserv:TransitionThreshold";
 	
 	IConcept sourceObservableId = null;
 	IConcept sinkObservableId = null;
@@ -31,6 +41,11 @@ public class SPANModel extends DefaultAbstractModel {
 	IConcept flowObservable = null;
 	IConcept flowDataObservable = null;
 	private PersistentArrayMap flowParams = new PersistentArrayMap(new Object[]{});
+	
+	/*
+	 * this is the actual way to pass parameters
+	 */
+	ArrayList<Polylist> parameters = new ArrayList<Polylist>();
 	
 	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
 
@@ -67,13 +82,56 @@ public class SPANModel extends DefaultAbstractModel {
 		
 		return ret; 
 	}
+	
+	/**
+	 * Return the specialized type of the general passed parameter, or null if it 
+	 * does not apply to this model.
+	 * 
+	 * @param concept
+	 * @return
+	 */
+	public String  getParameterType(String concept) {
+		
+		/**
+		 * TODO implement
+		 */
+		
+		return concept;
+	}
 
 	@Override
 	public void applyClause(String keyword, Object argument)
 			throws ThinklabException {
 		
-		// TODO map these to dependent observations and reconstruct the map in the obs when the proxy is
-		// called.
+		if (keyword.equals(":source-threshold")) {
+			String c = getParameterType(SOURCE_THRESHOLD_CONCEPT);
+			if (c != null)
+				parameters.add(
+					ObservationFactory.createRanking(c, ((Number)argument).doubleValue()));
+		}
+	
+		if (keyword.equals(":sink-threshold")) {
+			String c = getParameterType(SINK_THRESHOLD_CONCEPT);
+			if (c != null)
+				parameters.add(
+					ObservationFactory.createRanking(SINK_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
+		}
+		
+		if (keyword.equals(":use-threshold")) {
+			String c = getParameterType(USE_THRESHOLD_CONCEPT);
+			if (c != null)
+				parameters.add(
+					ObservationFactory.createRanking(USE_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
+		}
+		
+		if (keyword.equals(":trans-threshold")) {
+			String c = getParameterType(TRANSITION_THRESHOLD_CONCEPT);
+			if (c != null)
+				parameters.add(
+					ObservationFactory.createRanking(TRANSITION_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
+		}
+				
+		// TODO remove the four thresholds when the above work properly.
 		if (keyword.equals(":source-threshold") ||
 			keyword.equals(":sink-threshold") ||
 			keyword.equals(":use-threshold") ||
@@ -85,7 +143,9 @@ public class SPANModel extends DefaultAbstractModel {
 			keyword.equals(":rv-max-states")) {
 			
 			// these must be sent back to Clojure, and a normal Map won't do - what a pain
-			flowParams = (PersistentArrayMap) flowParams.assoc(Keyword.intern(null, keyword.substring(1)), argument);
+			flowParams = 
+				(PersistentArrayMap) 
+					flowParams.assoc(Keyword.intern(null, keyword.substring(1)), argument);
 			
 		} else {
 			super.applyClause(keyword, argument);
