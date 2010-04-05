@@ -11,7 +11,7 @@
 (defmodel altitude-ft 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))
 
-(defmodel conservation 'conservation:ProtectedStatus
+(defmodel conservation-status 'conservation:ProtectedStatus
 	(ranking 'conservation:ProtectedStatus))
 	
 (defmodel zio 'floodService:PresenceOfHousing
@@ -20,11 +20,28 @@
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))
 
-(defmodel altitest 'geophysics:Altitude
+;; test clojure expressions for state computation
+(defmodel cljtest 'geophysics:Altitude 
   (measurement 'geophysics:Altitude "m"
     :as    altitude 
     :state #(+ 100000000 (:altitude %))
-   ))
+   )) 
+
+;; test structural variability
+;; status of mountains always protected, otherwise lookup in PA data
+(defmodel structest 'conservation:ProtectedStatus
+
+;  "Computes the altitude over the observation context, then uses it to select the model of protection status
+;   used. If altitude is higher than 1500m, protected status is true. Otherwise, we look up data to figure it
+;   out. This could be used e.g. to substitute mere protected status to build a scenario." 
+
+ [(measurement 'geophysics:Altitude "m") :as altitude] 
+
+ (ranking 'conservation:ProtectedStatus :value 1) 
+    :when #(> (:altitude %) 1500)
+
+  (ranking 'conservation:ProtectedStatus) 
+)
 		 		
 ;; -------------------------------------------------------------------------
 ;; agents
@@ -50,8 +67,7 @@
        #(let [ state (.getState % 'geophysics:Altitude) ]
             (if (> state 4000)  
                 (.die %)))
-  :movement ()
-  
+
   ;; this is used to transform the representation of the context if we get
   ;; something that doesn't fit it.
   :resolves (:space "20 cm" :time "1 s"))	

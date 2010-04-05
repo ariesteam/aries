@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.datasources.MemDoubleContextualizedDatasource;
 import org.integratedmodelling.corescience.interfaces.IState;
 import org.integratedmodelling.corescience.metadata.Metadata;
@@ -29,8 +30,8 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 	public SPANDistributionState() {
 	}
 	
-	public SPANDistributionState(IConcept type, int rows, int cols, IFn clojure) {
-		super(type, rows*cols);
+	public SPANDistributionState(IConcept type, int rows, int cols, IFn clojure, ObservationContext context) {
+		super(type, rows*cols, context);
 		this.closure  = clojure;
 		this.rows = rows;
 		this.cols = cols;

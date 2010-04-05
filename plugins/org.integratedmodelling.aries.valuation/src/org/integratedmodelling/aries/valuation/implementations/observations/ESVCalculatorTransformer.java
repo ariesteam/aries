@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import org.integratedmodelling.aries.valuation.calculator.ESCalculatorFactory;
 import org.integratedmodelling.corescience.CoreScience;
+import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.datasources.MemDoubleContextualizedDatasource;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
 import org.integratedmodelling.corescience.interfaces.IExtent;
@@ -101,7 +102,8 @@ public class ESVCalculatorTransformer
 		ArrayList<Triple<Double,Double,Double>> totals = new ArrayList<Triple<Double,Double,Double>>();
 		for (IConcept observable : ESCalculatorFactory.get().getAllESConcepts()) {
 			
-			IState state = new MemDoubleContextualizedDatasource(observable, size); 
+			IState state = new MemDoubleContextualizedDatasource(observable, size, 
+					(ObservationContext)context); 
 			state.setMetadata(Metadata.UNITS, "$@2004/ac.yr");
 			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.setMetadata(Metadata.RANGE_MIN, new double[size]);

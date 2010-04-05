@@ -8,6 +8,7 @@ import org.integratedmodelling.aries.core.ARIESNamespace;
 import org.integratedmodelling.aries.core.implementations.datasources.SPANDistributionState;
 import org.integratedmodelling.aries.core.span.SPANProxy;
 import org.integratedmodelling.corescience.CoreScience;
+import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
 import org.integratedmodelling.corescience.interfaces.IExtent;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
@@ -193,7 +194,8 @@ public class SPANTransformer
 				Object closure = closures.get(k);
 				IFn clojure = (IFn) closure;
 				IState state = 
-					new SPANDistributionState(observable, rows, cols, clojure);
+					new SPANDistributionState(observable, rows, cols, clojure, 
+							(ObservationContext) context);
 				state.setMetadata(Metadata.DEFINING_MODEL, this);
 				
 				states.add(new Pair<IConcept, IState>(observable, state));
