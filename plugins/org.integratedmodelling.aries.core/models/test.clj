@@ -8,39 +8,42 @@
 	(:refer-clojure)
   (:refer modelling :only (defmodel defagent defscenario measurement classification categorization ranking identification bayesian)))
 
-(defmodel altitude-ft 'geophysics:Altitude
+(defmodel altitude-mm 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))
 
 (defmodel conservation-status 'conservation:ProtectedStatus
 	(ranking 'conservation:ProtectedStatus))
 	
-(defmodel zio 'floodService:PresenceOfHousing
+(defmodel categories 'floodService:PresenceOfHousing
 	(categorization 'floodService:PresenceOfHousing))
 	
-(defmodel altitude 'geophysics:Altitude
+(defmodel altitude-m 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))
 
-;; test clojure expressions for state computation
-(defmodel cljtest 'geophysics:Altitude 
+(defmodel altitude-ft 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "ft"))
+
+(defmodel altitude-dyn 'geophysics:Altitude 
+
+ "Test dynamic state computation. When the observation is mediating another
+  model (in this case, implicitly, whatever compatible observation of altitude was seen), the 
+  id of the model that contains the expression is bound to its value post-mediation, which
+  is then redefined by the result of the state computation. 
+  If the :as clause is not given, the state will be available as the local name of the observed
+  concept (in this case, Altitude)."
+
   (measurement 'geophysics:Altitude "m"
     :as    altitude 
     :state #(+ 100000000 (:altitude %))
    )) 
 
 ;; test structural variability
-;; status of mountains always protected, otherwise lookup in PA data
-(defmodel structest 'conservation:ProtectedStatus
+(defmodel structest 'conservation:ProtectedStatus 
 
-;  "Computes the altitude over the observation context, then uses it to select the model of protection status
-;   used. If altitude is higher than 1500m, protected status is true. Otherwise, we look up data to figure it
-;   out. This could be used e.g. to substitute mere protected status to build a scenario." 
-
- [(measurement 'geophysics:Altitude "m") :as altitude] 
-
- (ranking 'conservation:ProtectedStatus :value 1) 
-    :when #(> (:altitude %) 1500)
-
-  (ranking 'conservation:ProtectedStatus) 
+ [(measurement 'geophysics:Altitude "m" :as altitude)] 
+ 
+	(measurement 'geophysics:Altitude "ft" :when #(> (:altitude %) 500))
+  (measurement 'geophysics:Altitude "m") 
 )
 		 		
 ;; -------------------------------------------------------------------------
