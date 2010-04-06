@@ -207,11 +207,18 @@
 			
 (defmodel housing 'floodService:PresenceOfHousing
 	"Classifies land use from property data."
-	; specific to Puget region, will not be used if data unavailable
+	; following sources are specific to Puget region, will not be used if data unavailable
 	(classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
 		"RESIDENTIAL" 'floodService:HousingPresent
 		:otherwise    'floodService:HousingNotPresent)
-	;; TODO add generalized fall-back definitions using NCLD and/or other global lu/lc data
+  (classification (categorization 'puget:ParcelUseCategoryKing)
+		  #{"R" "K"}  'floodService:HousingPresent
+		  :otherwise  'floodService:HousingNotPresent)
+  ;; fall-back: if no data in the ones above, use NLCD high-intensity development category
+	;; TODO check if that's ok
+	(classification (ranking 'nlcd:NLCDNumeric)
+		24	       'floodService:HousingPresent
+		:otherwise 'floodService:HousingNotPresent)
 	)
 	
 (defmodel public-asset 'floodService:PublicAsset

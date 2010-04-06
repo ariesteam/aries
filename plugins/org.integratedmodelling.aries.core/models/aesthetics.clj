@@ -45,7 +45,6 @@
     :context  (mountain lake ocean)
     :observed (theoretical-beauty)))
 
-
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
@@ -56,9 +55,9 @@
   (classification (categorization 'puget:ParcelUseCategoryKing)
 		  #{"R" "K"}  'aestheticService:HousingPresent
 		  :otherwise  'aestheticService:HousingNotPresent)
-  ;; TODO add Grays Harbor (see flood.clj)
-  ;; TODO add generalized fall-back definitions using NCLD and/or other global lu/lc data
-  )
+  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
+		"RESIDENTIAL" 'aestheticService:HousingPresent
+		:otherwise    'aestheticService:HousingNotPresent))
 	
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
