@@ -23,7 +23,7 @@
 (defmodel mountain 'aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
-		  [2000 2750]  'aestheticService:SmallMountain ; 
+		  [1000 2750]  'aestheticService:SmallMountain ; 
 		  [2750 8850]  'aestheticService:LargeMountain ; no higher than mount Everest!
 		  :otherwise   'aestheticService:NoMountain ; will catch artifacts too
 		  ))
