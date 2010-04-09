@@ -157,7 +157,7 @@ public class ESVCalculatorTransformer
 					mins[i] = vres.getFirst()/SQUARE_METERS_TO_ACRES;
 					maxs[i] = vres.getSecond()/SQUARE_METERS_TO_ACRES;
 				
-					cs.getSecond().addValue(new Double(mean)/SQUARE_METERS_TO_ACRES);
+					cs.getSecond().addValue(i, new Double(mean)/SQUARE_METERS_TO_ACRES);
 
 					tmin  += mins[i]; 
 					tmax  += maxs[i]; 
@@ -174,7 +174,7 @@ public class ESVCalculatorTransformer
 					
 					mins[i] = Double.NaN;
 					maxs[i] = Double.NaN;
-					cs.getSecond().addValue(Double.NaN);
+					cs.getSecond().addValue(i, Double.NaN);
 					
 				}
 				stt ++;
