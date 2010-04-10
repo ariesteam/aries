@@ -40,10 +40,10 @@
 ;; test structural variability
 (defmodel structest 'conservation:ProtectedStatus 
 
- [(measurement 'geophysics:Altitude "m" :as altitude)] 
+ [(ranking 'nlcd:NLCDNumeric :as landuse)] 
  
-	(measurement 'geophysics:Altitude "ft" :when #(> (:altitude %) 500))
-  (measurement 'geophysics:Altitude "m") 
+	(measurement 'geophysics:Altitude "ft" :when #(contains? #{41 42 43}  (:landuse %)))
+  (measurement 'geophysics:Altitude "m")
 )
 
 ;; -------------------------------------------------------------------------
@@ -67,9 +67,7 @@
      
   ;; these are supposed to be rules                                                          
   :update    
-       #(let [ state (.getState % 'geophysics:Altitude) ]
-            (if (> state 4000)  
-                (.die %)))
+       #(if (> (:altitude %) 4000) (.die %))
 
   ;; this is used to transform the representation of the context if we get
   ;; something that doesn't fit it.
