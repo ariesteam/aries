@@ -10,7 +10,7 @@
 
 (defmodel mature-gorse 'wildfireService:MatureGorse
   (probability 'wildfireService:MatureGorse 'wildfireService:AbsentMatureGorse 'wildfireService:PresentMatureGorse 
-  :state (condp = gorse-presence
+  :state #(condp = (:gorse-presence %)
                 -1 [0.5 0.5] ; (discretize-distribution states (make-binomial n p))
                  0 [1.0 0.0]
                  1 [0.0 1.0])
