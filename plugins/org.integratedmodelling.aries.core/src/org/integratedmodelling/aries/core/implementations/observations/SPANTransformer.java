@@ -196,7 +196,7 @@ public class SPANTransformer
 				IState state = 
 					new SPANDistributionState(observable, rows, cols, clojure, 
 							(ObservationContext) context);
-				state.setMetadata(Metadata.DEFINING_MODEL, this);
+				state.getMetadata().put(Metadata.DEFINING_MODEL, this);
 				
 				states.add(new Pair<IConcept, IState>(observable, state));
 				

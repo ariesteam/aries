@@ -104,10 +104,10 @@ public class ESVCalculatorTransformer
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size, 
 					(ObservationContext)context); 
-			state.setMetadata(Metadata.UNITS, "$@2004/ac.yr");
-			state.setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
-			state.setMetadata(Metadata.RANGE_MIN, new double[size]);
-			state.setMetadata(Metadata.RANGE_MAX, new double[size]);
+			state.getMetadata().put(Metadata.UNITS, "$@2004/ac.yr");
+			state.getMetadata().put(Metadata.CONTINUOUS, Boolean.TRUE);
+			state.getMetadata().put(Metadata.RANGE_MIN, new double[size]);
+			state.getMetadata().put(Metadata.RANGE_MAX, new double[size]);
 			// FIXME state.setMetadata(Metadata.DEFINING_MODEL, this);
 
 			states.add(new Pair<IConcept, IState>(observable, state));	
@@ -137,8 +137,8 @@ public class ESVCalculatorTransformer
 				 */
 				IConcept landcover = (IConcept) state.getValue(i, null);
 
-				double[] mins = (double[]) cs.getSecond().getMetadata(Metadata.RANGE_MIN);
-				double[] maxs = (double[]) cs.getSecond().getMetadata(Metadata.RANGE_MAX);
+				double[] mins = (double[]) cs.getSecond().getMetadata().get(Metadata.RANGE_MIN);
+				double[] maxs = (double[]) cs.getSecond().getMetadata().get(Metadata.RANGE_MAX);
 			
 				if (landcover != null) {
 					
@@ -186,9 +186,9 @@ public class ESVCalculatorTransformer
 		 */
 		int stt = 0;
 		for (Pair<IConcept, IState> cs : states) {
-			cs.getSecond().setMetadata(Metadata.AGGREGATED_MIN, totals.get(stt).getFirst());
-			cs.getSecond().setMetadata(Metadata.AGGREGATED_MAX, totals.get(stt).getSecond());
-			cs.getSecond().setMetadata(Metadata.AGGREGATED_TOTAL, totals.get(stt).getThird());
+			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_MIN, totals.get(stt).getFirst());
+			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_MAX, totals.get(stt).getSecond());
+			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_TOTAL, totals.get(stt).getThird());
 			stt++;
 		}
 		

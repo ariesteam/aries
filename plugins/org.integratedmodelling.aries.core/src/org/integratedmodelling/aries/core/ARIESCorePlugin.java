@@ -1,6 +1,5 @@
 package org.integratedmodelling.aries.core;
 
-import org.integratedmodelling.aries.core.datastructures.demo.ARIESDemoKbox;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.gazetteers.SimpleGazetteer;
 import org.integratedmodelling.modelling.visualization.VisualizationFactory;

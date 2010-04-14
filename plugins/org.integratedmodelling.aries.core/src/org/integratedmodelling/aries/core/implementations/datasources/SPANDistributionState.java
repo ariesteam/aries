@@ -36,7 +36,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 		this.rows = rows;
 		this.cols = cols;
 
-		setMetadata(Metadata.CONTINUOUS, Boolean.TRUE);
+		metadata.put(Metadata.CONTINUOUS, Boolean.TRUE);
 		
 		// TODO make it lazy by computing values only when getDataAsDoubles is called
 		computeValues(clojure);
@@ -130,7 +130,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 							uncertainty[i] = 1.0;
 						uncertainty[i] = 1 - uncertainty[i];
 					}
-					setMetadata(Metadata.UNCERTAINTY, uncertainty);
+					getMetadata().put(Metadata.UNCERTAINTY, uncertainty);
 				}
 				
 			}

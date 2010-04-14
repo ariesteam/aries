@@ -41,8 +41,10 @@
 (defmodel structest 'conservation:ProtectedStatus 
 
  [(ranking 'nlcd:NLCDNumeric :as landuse)] 
- 
-	(measurement 'geophysics:Altitude "ft" :when #(contains? #{41 42 43}  (:landuse %)))
+
+	(measurement 'geophysics:Altitude "ft" 
+     :when #(contains? #{41 42 43}  (:landuse %)))
+
   (measurement 'geophysics:Altitude "m")
 )
 
