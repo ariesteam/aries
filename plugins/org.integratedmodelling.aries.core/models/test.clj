@@ -43,9 +43,9 @@
  [(ranking 'nlcd:NLCDNumeric :as landuse)] 
 
 	(measurement 'geophysics:Altitude "ft" 
-     :when #(contains? #{41 42 43}  (:landuse %)))
+     :when #(contains? #{41.0 42.0 43.0} (:landuse %)))
 
-  (measurement 'geophysics:Altitude "m")
+  (measurement 'geophysics:Altitude "m" :value 150.0)
 )
 
 ;; -------------------------------------------------------------------------
