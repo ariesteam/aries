@@ -45,8 +45,16 @@
 	(measurement 'geophysics:Altitude "ft" 
      :when #(contains? #{41.0 42.0 43.0} (:landuse %)))
 
-  (measurement 'geophysics:Altitude "m" :value 150.0)
+  ;; you can just say :value 40.0 (or any compatible object) or use a distribution from
+  ;; corescience/ssj.clj
+  (measurement 'geophysics:Altitude "m" :value (corescience/gaussian 150.0 3.75))
 )
+
+(defscenario eroded 'geophysics:Altitude 
+  "Altitude is eroded by 5 m. Try it anywhere altitude is needed."
+  (measurement 'geophysics:Altitude "m"
+    :as    altitude 
+    :state #(- (:altitude %) 5.0))) 
 
 ;; -------------------------------------------------------------------------
 ;; agents
