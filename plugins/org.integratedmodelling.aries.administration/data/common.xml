@@ -137,10 +137,9 @@
 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetfloodplain
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
+				<geospace:hasFilter>zone = 'A'</geospace:hasFilter>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
