@@ -13,9 +13,8 @@
 		  0          'aestheticService:LakeNotPresent
 		  :otherwise 'aestheticService:LakePresent))
 
-
 (defmodel ocean 'aestheticService:Ocean
-  "Just being a lake. We may want to reclass lake area instead"
+  "Just being there."
   (classification (ranking 'geofeatures:Ocean)
 		  0          'aestheticService:OceanNotPresent
 		  :otherwise 'aestheticService:OceanPresent))

@@ -51,10 +51,10 @@
 )
 
 (defscenario eroded 'geophysics:Altitude 
-  "Altitude is eroded by 5 m. Try it anywhere altitude is needed."
+  "Altitude is eroded by 100 m. Try it anywhere altitude is needed."
   (measurement 'geophysics:Altitude "m"
     :as    altitude 
-    :state #(- (:altitude %) 5.0))) 
+    :state #(- (:altitude %) 100.0))) 
 
 ;; -------------------------------------------------------------------------
 ;; agents
@@ -76,8 +76,7 @@
     [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
      
   ;; these are supposed to be rules                                                          
-  :update    
-       #(if (> (:altitude %) 4000) (.die %))
+  :update #(if (> (:altitude %) 4000) (.die %))
 
   ;; this is used to transform the representation of the context if we get
   ;; something that doesn't fit it.

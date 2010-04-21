@@ -47,6 +47,25 @@ public class SPANModel extends DefaultAbstractModel {
 	 */
 	ArrayList<Polylist> parameters = new ArrayList<Polylist>();
 	
+	
+	
+	@Override
+	protected void copy(DefaultAbstractModel model) {
+		super.copy(model);
+		sourceObservableId = ((SPANModel)model).sourceObservableId;
+		sinkObservableId = ((SPANModel)model).sinkObservableId;
+		useObservableId = ((SPANModel)model).useObservableId;
+		flowObservableId = ((SPANModel)model).flowObservableId;
+		flowDataObservableId = ((SPANModel)model).flowDataObservableId;
+		sourceObservable = ((SPANModel)model).sourceObservable;
+		sinkObservable = ((SPANModel)model).sinkObservable;
+		useObservable = ((SPANModel)model).useObservable;
+		flowObservable = ((SPANModel)model).flowObservable;
+		flowDataObservable = ((SPANModel)model).flowDataObservable;
+		flowParams = ((SPANModel)model).flowParams;
+		parameters = ((SPANModel)model).parameters;
+	}
+
 	static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
 
 	@Override
@@ -73,13 +92,6 @@ public class SPANModel extends DefaultAbstractModel {
 		
 		SPANModel ret = new SPANModel();
 		ret.copy(this);
-		ret.flowParams = flowParams;
-		ret.sourceObservable = sourceObservable;
-		ret.useObservable = useObservable;
-		ret.sinkObservable = sinkObservable;
-		ret.flowObservable = flowObservable;
-		ret.flowDataObservable = flowDataObservable;
-		
 		return ret; 
 	}
 	
