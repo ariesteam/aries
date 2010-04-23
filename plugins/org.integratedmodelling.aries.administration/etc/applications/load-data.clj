@@ -20,6 +20,6 @@
 			:boundingbox #(geospace/get-bounding-box %)
 		}
 		
-		(import (tl/get-plugin-resource 'aries.administration "common.xml")) :pop 2
-		(import (tl/get-plugin-resource 'aries.administration "marine.xml")) :pop 2
+		(import (tl/get-plugin-resource 'aries.administration "common.xml"))
+		(import (tl/get-plugin-resource 'aries.administration "marine.xml"))
 	)
