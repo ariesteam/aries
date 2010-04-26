@@ -21,75 +21,52 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
-	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the lenght, not the width -->
-	<measurement:Ranking id="marine_mangroves">
+	
+	<measurement:Ranking id="A_hololepidotus">
 		<observation:hasObservable>
-			<coastalProtection:MangroveWidth />
+			<fisheries:ArgyrosomusHololepidotusHabitat />
 		</observation:hasObservable>
 		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>marine:mangroves</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>shape_len</geospace:hasValueAttribute>
-				<!-- the shapefile wrongly states that the attribute is a String -->
-				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
-			</geospace:WFSDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasCoverageId>marine:A_hololepidotus</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-38.909</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-175.337</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.35</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.903</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-
-	<measurement:Ranking id="marine_seagrass">
-		<observation:hasObservable>
-			<coastalProtection:SeagrassDensity />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>marine:seagrass</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-43.551</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-175.428</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>61.029</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>178.617</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<observation:Categorization id="marine_coral">
-		<observation:hasObservable>
-			<coastalProtection:CoralBleaching />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>marine:coral</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>bleaching</geospace:hasValueAttribute>
-				<geospace:hasValueDefault>None</geospace:hasValueDefault>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-34.3</geospace:hasLatLowerBound>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.492</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.983</geospace:hasLonUpperBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</observation:Categorization>
+	</measurement:Ranking>
+
+		<measurement:Ranking id="gdcycgdp">
+		<observation:hasObservable>
+			<policytarget:AssetsAtRiskStorm />
+		</observation:hasObservable>
+		<rdfs:comment>Deciles of economic assets at risk due to tropical storms</rdfs:comment>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcycgdp</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3427</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>84.989</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 	
 	<measurement:Ranking id="BathSlope">
 		<observation:hasObservable>
@@ -114,121 +91,30 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="gdcyc">
+	<observation:Categorization id="marine_coral">
 		<observation:hasObservable>
-			<habitat:TropicalStormProbability />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:gdcyc</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="gdcycgdp">
-		<observation:hasObservable>
-			<policytarget:AssetsAtRiskStorm />
-		</observation:hasObservable>
-		<rdfs:comment>Deciles of economic assets at risk due to tropical storms</rdfs:comment>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:gdcycgdp</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>3427</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-58.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>84.989</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="gdcycmrt">
-		<observation:hasObservable>
-			<policytarget:LivesAtRiskStorm />
-		</observation:hasObservable>
-		<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:gdcycmrt</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="A_hololepidotus">
-		<observation:hasObservable>
-			<fisheries:ArgyrosomusHololepidotusHabitat />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasCoverageId>marine:A_hololepidotus</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<observation:Categorization id="mg_estuaryarea">
-		<observation:hasObservable>
-			<fisheries:EstuaryArea />
+			<coastalProtection:CoralBleaching />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:estuaryarea</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>estuary</geospace:hasValueAttribute>
+				<geospace:hasCoverageId>marine:coral</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>bleaching</geospace:hasValueAttribute>
+				<geospace:hasValueDefault>None</geospace:hasValueDefault>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-25.607</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>43.235</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>-11.956</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>50.489</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>-34.3</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.492</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.983</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-
+	
+	
 	<!-- FIXME this is a measurement in degrees^2, jscience may have trouble with it -->
 	<measurement:Ranking id="marine_coralarea">
 		<observation:hasObservable>
@@ -253,25 +139,95 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="lspop2006">
+		<measurement:Ranking id="marine_coastbuf">
 		<observation:hasObservable>
-			<policytarget:PopulationDensity />
+			<fisheries:DistanceToCoast />
 		</observation:hasObservable>
 		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:coastbuf</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-53.941</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.04</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.673</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.04</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+		<observation:Categorization id="mg_estuaryarea">
+		<observation:hasObservable>
+			<fisheries:EstuaryArea />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:estuaryarea</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>estuary</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-25.607</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>43.235</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-11.956</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>50.489</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
+	
+	<measurement:Ranking id="gdcycmrt">
+		<observation:hasObservable>
+			<policytarget:LivesAtRiskStorm />
+		</observation:hasObservable>
+		<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
+		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasCoverageId>global:lspop2006</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcycmrt</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-89.99999999999994</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.99999999999932</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.99999999999858</geospace:hasLonUpperBound>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the lenght, not the width -->
+	<measurement:Ranking id="marine_mangroves">
+		<observation:hasObservable>
+			<coastalProtection:MangroveWidth />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:mangroves</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>shape_len</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-38.909</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-175.337</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.35</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.903</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
@@ -298,8 +254,30 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+	<measurement:Ranking id="lspop2006">
+		<observation:hasObservable>
+			<policytarget:PopulationDensity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasCoverageId>global:lspop2006</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-89.99999999999994</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.99999999999932</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.99999999999858</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 	
-	<measurement:Ranking id="poverty_pct_1">
+		<measurement:Ranking id="poverty_pct_1">
 		<observation:hasObservable>
 			<policytarget:PovertyPercentage />
 		</observation:hasObservable>
@@ -321,25 +299,50 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="marine_coastbuf">
+
+	<measurement:Ranking id="marine_seagrass">
 		<observation:hasObservable>
-			<fisheries:DistanceToCoast />
+			<coastalProtection:SeagrassDensity />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>marine:coastbuf</geospace:hasCoverageId>
+				<geospace:hasCoverageId>marine:seagrass</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-53.941</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.04</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.673</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.04</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>-43.551</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-175.428</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>61.029</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>178.617</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+	<measurement:Ranking id="gdcyc">
+		<observation:hasObservable>
+			<habitat:TropicalStormProbability />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:gdcyc</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8631</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3428</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-58.015</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
 	
 </kbox>

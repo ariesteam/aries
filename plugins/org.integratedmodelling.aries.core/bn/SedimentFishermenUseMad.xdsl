@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="PopulationDensity">
+			<state id="VeryHighPopulationDensity" />
+			<state id="HighPopulationDensity" />
+			<state id="ModeratePopulationDensity" />
+			<state id="LowPopulationDensity" />
+			<state id="VeryLowPopulationDensity" />
+			<probabilities>0.05 0.2 0.2 0.2 0.35</probabilities>
+		</cpt>
+		<cpt id="Mangroves">
+			<state id="MangrovesPresent" />
+			<state id="MangrovesAbsent" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<cpt id="Lakes">
+			<state id="LakesPresent" />
+			<state id="LakesAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="CoastalWetlands">
+			<state id="CoastalWetlandsPresent" />
+			<state id="CoastalWetlandsAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="Reefs">
+			<state id="ReefPresent" />
+			<state id="ReefAbsent" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<cpt id="Coastline">
+			<state id="CoastlinePresent" />
+			<state id="CoastlineAbsent" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Rivers">
+			<state id="RiversPresent" />
+			<state id="RiversAbsent" />
+			<probabilities>0.025 0.975</probabilities>
+		</cpt>
+		<deterministic id="FishingSites">
+			<state id="FishingSitesPresent" />
+			<state id="FishingSitesAbsent" />
+			<parents>Lakes Coastline Rivers</parents>
+			<resultingstates>FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesAbsent</resultingstates>
+		</deterministic>
+		<deterministic id="HabitatAtRiskOfSedimentation">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>Mangroves CoastalWetlands Reefs</parents>
+			<resultingstates>Yes Yes Yes Yes Yes Yes Yes No</resultingstates>
+		</deterministic>
+		<cpt id="FishermenUse">
+			<state id="HighFishermenUse" />
+			<state id="ModerateFishermenUse" />
+			<state id="NoFishermenUse" />
+			<parents>FishingSites HabitatAtRiskOfSedimentation PopulationDensity</parents>
+			<probabilities>0.3 0.6000000000000001 0.1 0.4 0.5 0.1 0.5 0.4 0.1 0.5 0.4 0.1 0.4 0.5 0.1 0.2 0.65 0.15 0.3 0.55 0.15 0.4 0.45 0.15 0.4 0.45 0.15 0.3 0.55 0.15 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network4" faultnameformat="nodestate">
+			<node id="FishermenUse">
+				<name>FishermenUse</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>324 60 397 89</position>
+				<comment>Assumes larger impacts at low to medium popultion density (at high population density, less direct dependence on ecosystems to provide fish, at very low population density, less human use).</comment>
+				<barchart active="true" width="160" height="72" />
+			</node>
+			<node id="PopulationDensity">
+				<name>PopulationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>87 197 204 236</position>
+				<barchart active="true" width="180" height="108" />
+			</node>
+			<node id="CoastalWetlands">
+				<name>CoastalWetlands</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>735 338 794 374</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Lakes">
+				<name>Lakes</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>446 344 492 372</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Mangroves">
+				<name>Mangroves</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>583 336 651 378</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Reefs">
+				<name>Reefs</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>887 341 933 369</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Coastline">
+				<name>Coastline</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>149 343 212 378</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Rivers">
+				<name>Rivers</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>301 344 349 374</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="FishingSites">
+				<name>FishingSites</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>314 171 403 217</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HabitatAtRiskOfSedimentation">
+				<name>HabitatAtRiskOfSedimentation</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>492 176 588 211</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

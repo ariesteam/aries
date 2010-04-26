@@ -1,778 +1,2265 @@
 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns="http://www.integratedmodelling.org/ks/es/soilretentionEcology#"
-    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xml:base="http://www.integratedmodelling.org/ks/es/soilretentionEcology">
-  <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
-  </owl:Ontology>
-  <owl:Class rdf:ID="Gullying">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An accelerating process, where erosion generates gullies that grow in size and carry away increasing amounts of soil.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="SoilErosionProcesses"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HydrologicMaturity">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Successional stage beyond which more or less full hydrologic services are provided.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="VegetationCover"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="CanopyLayering"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="RootDensity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RainfallRunoffErosivityIndex">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Precipitation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="IncreasedStormRainfall">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Larger storms with more precipitation will increase the intensity of flood events.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Amount"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="leadsToMore"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ClimateChange"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HabitatAtRiskOfSedimentation">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="LandUseLandCover"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="EarlySuccessionalPlantation">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Plantation"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantation dominated by young trees.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilOrganicMatter">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Content and types of organic versus inorganic matter in the soil.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Rivers">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Farmland">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilStructure">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil horizons - their number and depth, and the relative water movement within and between these horizons is an important criteria for erosion resistance.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Temperature">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilParentMaterial">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The bedrock material whose breakdown helps generate soil.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilErosionForces">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The breakup and removal of soil particles from the soil matrix, usually due to the forces of wind or water.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="AccumulatedSnowfall">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Under certain conditions (i.e., rain on snow), accumulated snow can quickly melt, producing flooding that can potentially lead to large amounts of erosion.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Precipitation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="LowerWatershed">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="WatershedPosition"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilRetainingEcosystem">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem that retains soil in situ, usually through a combination of a vegetative canopy that intercepts rainfall and root networks that hold soil in place.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="SoilRetentionCapacity"/>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="VegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="EarlySuccessionalForest">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="DiverseForest"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Multispecies forest dominated by young trees.  The recent legacy of disturbance, combined with less well developed canopy layers, vegetative cover, and root densities, are likely to lead to relatively lower soil retention.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="LateSuccessionalPlantation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantation dominated by older trees.  Often harvested before spending too long in this successional state.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Plantation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="UpperWatershed">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#WatershedPosition"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >These could/ought to be somewhat defined by slope.  Also bedrock.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="RisingWaterTables">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Rising water tables can wash away soils.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SoilErosionProcesses"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#DiverseForest">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="SoilRetainingHabitat"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An upland area with tree cover greater than 5 m tall on average with canopy cover greater than 25% (adapted from MRLC 2006).  Multispecies forests provide a mix of ecosystem services, including soil retention.  A more diverse species mix is likely to lead to greater overall rainfall interception, canopy cover, and root density.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="MidSuccessionalPlantation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantation dominated by middle aged trees.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Plantation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Construction">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="leadsToLess"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationCover"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RootDensity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CanopyLayering"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Construction sites include areas of exposed soil that are highly susceptible to erosion.  Over the long term, increasing impervious area can  lead to alteration of stream geomorphic equilibrium, leading to downcutting, bank erosion, and downstream movement of sediment.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="LateSuccessionalForest">
-    <rdfs:subClassOf rdf:resource="#DiverseForest"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Multispecies forest dominated by older trees.  May include mixed age classes as local disturbance creates openings for young trees.  Multilayer canopy and high vegetative cover and root densities are likely to provide maximum soil retention.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SlopeStability">
-    <rdfs:subClassOf>
-      <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope">
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Slope influences the speed of surface flow, hence the erosive power of water.</rdfs:comment>
-      </rdf:Description>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Mature">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem capable of delivering a more or less full flow hydrologic benefits.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#HydrologicMaturity"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Dams">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Grazing">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Grazing can alter plant species composition and soil properties, and at high levels can increase susceptibility of erosion.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationCover"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RootDensity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Bridges">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:ID="FishingSites">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Wind">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#SoilErosionForces"/>
-  </owl:Class>
-  <owl:Class rdf:ID="PopulationDensity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HumanPopulation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SnowPresence">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:about="#WatershedPosition">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This breakdown is commonly though not always used in describing rivers.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Plantation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantations, being less structurally diverse, are likely to have less soil retention capacity.  Additionally, some species like Eucalyptus are allelopathic, preventing development of a diverse understory that can better provide soil retention.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SoilRetainingHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilCompaction">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Compaced soils may have slower erosion but also prevent infiltration of water, increasing the erosive potential from flowing water.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="MidSuccessionalForest">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Multispecies forest dominated by middle aged trees.   Multilayer canopy and relatively high vegetative cover and root densities are likely to provide relatively high soil retention services.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#DiverseForest"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilRetainingHabitat">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem that retains soil in situ, usually through a combination of a vegetative canopy that intercepts rainfall and root networks that hold soil in place.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:about="#SoilRetentionCapacity"/>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#LandUseLandCover"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilErodibility">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilOrganicMatter"/>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-        <owl:someValuesFrom rdf:resource="#SoilStructure"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#SoilCompaction"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilDepthToBedrock"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil erodibility may be due to several factors, including texture, compaction, root density, and vegetative cover.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-        <owl:someValuesFrom rdf:resource="#SoilParentMaterial"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilTexture"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="IncreasedForestDroughtDiseaseRisk">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Forests may be subject to greater drought and disease, reducing their ability to provide various ecosystem services.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ClimateChange"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SlopeSteepnessAndLengthFactor">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Precipitation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Generally liquid precipitation, capable of generating erosive energy.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Landsliding">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SoilErosionProcesses"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The abrupt collapse of soils along a slope.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="PublicWaterSupplyIntakes">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:about="#LandUseLandCover">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Shrubland">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions (MRLC 2006).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Deforestation">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CanopyLayering"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationCover"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RootDensity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Removal of trees from a region, generally as raw materials or to clear the land for other uses.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="NotInFloodplain">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Upland areas that are not susceptible to inundation by flood waters.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Floodplain"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Coastline">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilRetentionCapacity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="matters-in-event-of"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Precipitation"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#matters-in-event-of"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Wind"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The ability of a SoilRetainingEcosystem to provide the service of soil retention.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Plowing">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mechanically tilling the soil removes existing vegetation and exposes soil to greater erosion.  Frequency of plowing and when it occurs in relation to rainy periods are important determinants of how much erosion will occur.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationCover"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CanopyLayering"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RootDensity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilErodibilityFactor">
-    <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonSpawningGrounds">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ConservationPractice">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ManagementStructure"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Scour">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SoilErosionProcesses"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Scour can occur along rivers and streams, often due to changes in the river's flow regime and catchment land cover types (i.e., forest vs. impervious surface cover).</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Immature">
-    <rdfs:subClassOf rdf:resource="#HydrologicMaturity"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem incapable of delivering a full flow of hydrologic services.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Floodplain">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The surface next to a stream channel that is inundated during a given flood return period (adapted from Graf 1988).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SuccessionalStage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="FloodplainWidth">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="IncreasedFirePotential">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >More frequent fires will reduce the hydrologic maturity of watersheds, leaving them less able to absorb rainfall.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#HydrologicMaturity"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ClimateChange"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilLoss">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Total soil loss</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="StreamGradient">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="GradualErosion">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SoilErosionProcesses"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The slow, gradual process of wind or water driven erosion, not taking place through gullying, landslides, rising water tables, or scour.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="CommercialForestryPractices">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ManagementStructure"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Runoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="FloodplainVegetationCover">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="PublicWaterSupplyServiceArea">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="NavigationInfrastructure">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:about="#RootDensity">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soils allowing greater root density would generally be expected to hold soil in place more strongly.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CoverManagement">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ManagementStructure"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Snowmelt">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="PlantSuccession">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The gradual natural process of species turnover and community change, generally following disturbance.  Depending on the biome, disturbance type and intensity, this may include natural regrowth of trees.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationCover"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CanopyLayering"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#RootDensity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#CommunityMatrixInteraction"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MiddleWatershed">
-    <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Lakes">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="TropicalStormProbability">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Mangroves">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#VegetationCover">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Percent vegetative cover.   Different vegetation types also have different rooting depths, root densities, and transpiration rates, affecting their ability to aid in infiltration of water and/or slowing the erosive energy of water or wind.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Seasonality">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Distribution of rainfall throughout the year (i.e., are there rainy and dry seasons, or is it more evenly distributed?).  Notably in Madagascar, eastern Madagascar recieves monsoon rainfall from November to April.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Precipitation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilErosionProcesses">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil erosion can occur as a result of one or several processes acting together</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HydrologicSoilsGroup">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Water">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#SoilErosionForces"/>
-  </owl:Class>
-  <owl:Class rdf:ID="InFloodplain">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Area next to a stream that is inundated by water from a flood.  An X year floodplain has a (1/X)% chance each year of being equaled or exceeded.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Floodplain"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Afforestation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Replanting of trees by humans, with the goal of increasing forest cover.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#VegetationCover"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#RootDensity"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Reefs">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#CanopyLayering">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Multi-layer vegetative canopies provide greater interception of rainfall and reduce the energy of falling water that does reach the soil.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="PublicAccess">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Accessibility"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Deposition">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Grassland">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Areas dominated by grammanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing (MRLC 2006).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CoastalWetlands">
-    <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilDepthToBedrock">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The depth of soils before hitting bedrock.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Levees">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
-  </owl:Class>
-  <owl:Class rdf:about="#ClimateChange">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#DirectedInteraction"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilTexture">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil particle size can potentially affect rates of erosion, e.g., sands being more erodible than other soil textures, all else being equal.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Amount">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Total average amount of yearly rainfall.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Precipitation"/>
-  </owl:Class>
-  <owl:ObjectProperty rdf:about="#matters-in-event-of">
-    <rdfs:domain rdf:resource="#SoilErodibility"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#leadsToMore">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Climate change leads to more of this certain condition</rdfs:comment>
-    <rdfs:domain rdf:resource="#IncreasedStormRainfall"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#leadsToLess">
-    <rdfs:domain rdf:resource="#IncreasedStormRainfall"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Climate change leads to less of this certain condition</rdfs:comment>
-  </owl:ObjectProperty>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY soilretentionEcology "http://www.integratedmodelling.org/ks/es/soilretentionEcology#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/soilretentionEcology#"
+     xml:base="http://www.integratedmodelling.org/ks/es/soilretentionEcology"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:soilretentionEcology="http://www.integratedmodelling.org/ks/es/soilretentionEcology#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#leadsToLess -->
+
+    <owl:ObjectProperty rdf:about="#leadsToLess">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Climate change leads to less of this certain condition</rdfs:comment>
+        <rdfs:domain rdf:resource="#IncreasedStormRainfall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#leadsToMore -->
+
+    <owl:ObjectProperty rdf:about="#leadsToMore">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Climate change leads to more of this certain condition</rdfs:comment>
+        <rdfs:domain rdf:resource="#IncreasedStormRainfall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of -->
+
+    <owl:ObjectProperty rdf:about="#matters-in-event-of">
+        <rdfs:domain rdf:resource="#SoilErodibility"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent -->
+
+    <owl:ObjectProperty rdf:about="&DOLCE-Lite;generic-dependent"/>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on -->
+
+    <owl:ObjectProperty rdf:about="&DOLCE-Lite;generically-dependent-on"/>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality -->
+
+    <owl:ObjectProperty rdf:about="&DOLCE-Lite;has-quality"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#CommunityMatrixInteraction -->
+
+    <owl:Class rdf:about="&ecology;CommunityMatrixInteraction"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#DirectedInteraction -->
+
+    <owl:Class rdf:about="&ecology;DirectedInteraction"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow -->
+
+    <owl:Class rdf:about="&ecology;MaterialFlow"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Accessibility -->
+
+    <owl:Class rdf:about="&habitat;Accessibility"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AtmosphericTemperature -->
+
+    <owl:Class rdf:about="&habitat;AtmosphericTemperature"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality -->
+
+    <owl:Class rdf:about="&habitat;ClimateQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality -->
+
+    <owl:Class rdf:about="&habitat;EcosystemQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat -->
+
+    <owl:Class rdf:about="&habitat;Habitat"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HumanPopulation -->
+
+    <owl:Class rdf:about="&habitat;HumanPopulation"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ManagementStructure -->
+
+    <owl:Class rdf:about="&habitat;ManagementStructure"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope -->
+
+    <owl:Class rdf:about="&habitat;Slope">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Slope influences the speed of surface flow, hence the erosive power of water.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SnowPresence -->
+
+    <owl:Class rdf:about="&habitat;SnowPresence"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality -->
+
+    <owl:Class rdf:about="&habitat;SocioEconomicQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality -->
+
+    <owl:Class rdf:about="&habitat;SoilQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink -->
+
+    <owl:Class rdf:about="&eserv;AbsoluteSink"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer -->
+
+    <owl:Class rdf:about="&eserv;EcosystemProducer"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer -->
+
+    <owl:Class rdf:about="&eserv;HumanConsumer"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AccessibleToPublic -->
+
+    <owl:Class rdf:about="#AccessibleToPublic">
+        <rdfs:subClassOf rdf:resource="#PublicAccess"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AccumulatedSnowfall -->
+
+    <owl:Class rdf:about="#AccumulatedSnowfall">
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Under certain conditions (i.e., rain on snow), accumulated snow can quickly melt, producing flooding that can potentially lead to large amounts of erosion.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Afforestation -->
+
+    <owl:Class rdf:about="#Afforestation">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Replanting of trees by humans, with the goal of increasing forest cover.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Amount -->
+
+    <owl:Class rdf:about="#Amount">
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Total average amount of yearly rainfall.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#BridgeAbsent -->
+
+    <owl:Class rdf:about="#BridgeAbsent">
+        <rdfs:subClassOf rdf:resource="#Bridges"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#BridgePresent -->
+
+    <owl:Class rdf:about="#BridgePresent">
+        <rdfs:subClassOf rdf:resource="#Bridges"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Bridges -->
+
+    <owl:Class rdf:about="#Bridges">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CanopyLayering -->
+
+    <owl:Class rdf:about="#CanopyLayering">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Multi-layer vegetative canopies provide greater interception of rainfall and reduce the energy of falling water that does reach the soil.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ClimateChange -->
+
+    <owl:Class rdf:about="#ClimateChange">
+        <rdfs:subClassOf rdf:resource="&ecology;DirectedInteraction"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoarseSoilTexture -->
+
+    <owl:Class rdf:about="#CoarseSoilTexture">
+        <rdfs:subClassOf rdf:resource="#SoilTexture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastalWetlands -->
+
+    <owl:Class rdf:about="#CoastalWetlands">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastalWetlandsAbsent -->
+
+    <owl:Class rdf:about="#CoastalWetlandsAbsent">
+        <rdfs:subClassOf rdf:resource="#CoastalWetlands"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastalWetlandsPresent -->
+
+    <owl:Class rdf:about="#CoastalWetlandsPresent">
+        <rdfs:subClassOf rdf:resource="#CoastalWetlands"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Coastline -->
+
+    <owl:Class rdf:about="#Coastline">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastlineAbsent -->
+
+    <owl:Class rdf:about="#CoastlineAbsent">
+        <rdfs:subClassOf rdf:resource="#Coastline"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastlinePresent -->
+
+    <owl:Class rdf:about="#CoastlinePresent">
+        <rdfs:subClassOf rdf:resource="#Coastline"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CommercialForestryPractices -->
+
+    <owl:Class rdf:about="#CommercialForestryPractices">
+        <rdfs:subClassOf rdf:resource="&habitat;ManagementStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ConservationPractice -->
+
+    <owl:Class rdf:about="#ConservationPractice">
+        <rdfs:subClassOf rdf:resource="&habitat;ManagementStructure"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Construction -->
+
+    <owl:Class rdf:about="#Construction">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Construction sites include areas of exposed soil that are highly susceptible to erosion.  Over the long term, increasing impervious area can  lead to alteration of stream geomorphic equilibrium, leading to downcutting, bank erosion, and downstream movement of sediment.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoverManagement -->
+
+    <owl:Class rdf:about="#CoverManagement">
+        <rdfs:subClassOf rdf:resource="&habitat;ManagementStructure"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CropsBarrenDeveloped -->
+
+    <owl:Class rdf:about="#CropsBarrenDeveloped">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#DamAbsent -->
+
+    <owl:Class rdf:about="#DamAbsent">
+        <rdfs:subClassOf rdf:resource="#Dams"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#DamPresent -->
+
+    <owl:Class rdf:about="#DamPresent">
+        <rdfs:subClassOf rdf:resource="#Dams"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Dams -->
+
+    <owl:Class rdf:about="#Dams">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Deforestation -->
+
+    <owl:Class rdf:about="#Deforestation">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Removal of trees from a region, generally as raw materials or to clear the land for other uses.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Deposition -->
+
+    <owl:Class rdf:about="#Deposition">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#DiverseForest -->
+
+    <owl:Class rdf:about="#DiverseForest">
+        <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An upland area with tree cover greater than 5 m tall on average with canopy cover greater than 25% (adapted from MRLC 2006).  Multispecies forests provide a mix of ecosystem services, including soil retention.  A more diverse species mix is likely to lead to greater overall rainfall interception, canopy cover, and root density.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#EarlySuccession -->
+
+    <owl:Class rdf:about="#EarlySuccession">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#EarlySuccessionalForest -->
+
+    <owl:Class rdf:about="#EarlySuccessionalForest">
+        <rdfs:subClassOf rdf:resource="#DiverseForest"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Multispecies forest dominated by young trees.  The recent legacy of disturbance, combined with less well developed canopy layers, vegetative cover, and root densities, are likely to lead to relatively lower soil retention.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#EarlySuccessionalPlantation -->
+
+    <owl:Class rdf:about="#EarlySuccessionalPlantation">
+        <rdfs:subClassOf rdf:resource="#Plantation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Plantation dominated by young trees.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Farmland -->
+
+    <owl:Class rdf:about="#Farmland">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FineSoilTexture -->
+
+    <owl:Class rdf:about="#FineSoilTexture">
+        <rdfs:subClassOf rdf:resource="#SoilTexture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FishermenUse -->
+
+    <owl:Class rdf:about="#FishermenUse">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FishingSites -->
+
+    <owl:Class rdf:about="#FishingSites">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FishingSitesAbsent -->
+
+    <owl:Class rdf:about="#FishingSitesAbsent">
+        <rdfs:subClassOf rdf:resource="#FishingSites"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FishingSitesPresent -->
+
+    <owl:Class rdf:about="#FishingSitesPresent">
+        <rdfs:subClassOf rdf:resource="#FishingSites"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Floodplain -->
+
+    <owl:Class rdf:about="#Floodplain">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatio-temporal-region"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The surface next to a stream channel that is inundated during a given flood return period (adapted from Graf 1988).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FloodplainVegetationCover -->
+
+    <owl:Class rdf:about="#FloodplainVegetationCover">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#FloodplainWidth -->
+
+    <owl:Class rdf:about="#FloodplainWidth">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ForestGrasslandWetland -->
+
+    <owl:Class rdf:about="#ForestGrasslandWetland">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#GentlyUndulating -->
+
+    <owl:Class rdf:about="#GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#GradualErosion -->
+
+    <owl:Class rdf:about="#GradualErosion">
+        <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The slow, gradual process of wind or water driven erosion, not taking place through gullying, landslides, rising water tables, or scour.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Grassland -->
+
+    <owl:Class rdf:about="#Grassland">
+        <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Areas dominated by grammanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing (MRLC 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Grazing -->
+
+    <owl:Class rdf:about="#Grazing">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Grazing can alter plant species composition and soil properties, and at high levels can increase susceptibility of erosion.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Gullying -->
+
+    <owl:Class rdf:about="#Gullying">
+        <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An accelerating process, where erosion generates gullies that grow in size and carry away increasing amounts of soil.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HabitatAtRiskOfSedimentation -->
+
+    <owl:Class rdf:about="#HabitatAtRiskOfSedimentation">
+        <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighFishermenUse -->
+
+    <owl:Class rdf:about="#HighFishermenUse">
+        <rdfs:subClassOf rdf:resource="#FishermenUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighFloodplainVegetationCover -->
+
+    <owl:Class rdf:about="#HighFloodplainVegetationCover">
+        <rdfs:subClassOf rdf:resource="#FloodplainVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighPopulationDensity -->
+
+    <owl:Class rdf:about="#HighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighPrecipitation -->
+
+    <owl:Class rdf:about="#HighPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighRunoff -->
+
+    <owl:Class rdf:about="#HighRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSedimentSink -->
+
+    <owl:Class rdf:about="#HighSedimentSink">
+        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSedimentSource -->
+
+    <owl:Class rdf:about="#HighSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSlopeStability -->
+
+    <owl:Class rdf:about="#HighSlopeStability">
+        <rdfs:subClassOf rdf:resource="#SlopeStability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSnowmelt -->
+
+    <owl:Class rdf:about="#HighSnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSnowpack -->
+
+    <owl:Class rdf:about="#HighSnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSoilErodibility -->
+
+    <owl:Class rdf:about="#HighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighStreamGradient -->
+
+    <owl:Class rdf:about="#HighStreamGradient">
+        <rdfs:subClassOf rdf:resource="#StreamGradient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighTemperature -->
+
+    <owl:Class rdf:about="#HighTemperature">
+        <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighVegetationCover -->
+
+    <owl:Class rdf:about="#HighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighVegetativeMaturity -->
+
+    <owl:Class rdf:about="#HighVegetativeMaturity">
+        <rdfs:subClassOf rdf:resource="#VegetativeMaturity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydrologicSoilsGroup -->
+
+    <owl:Class rdf:about="#HydrologicSoilsGroup">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#InFloodplain -->
+
+    <owl:Class rdf:about="#InFloodplain">
+        <rdfs:subClassOf rdf:resource="#Floodplain"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Area next to a stream that is inundated by water from a flood.  An X year floodplain has a (1/X)% chance each year of being equaled or exceeded.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#IncreasedFirePotential -->
+
+    <owl:Class rdf:about="#IncreasedFirePotential">
+        <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >More frequent fires will reduce the hydrologic maturity of watersheds, leaving them less able to absorb rainfall.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#IncreasedForestDroughtDiseaseRisk -->
+
+    <owl:Class rdf:about="#IncreasedForestDroughtDiseaseRisk">
+        <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Forests may be subject to greater drought and disease, reducing their ability to provide various ecosystem services.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#IncreasedStormRainfall -->
+
+    <owl:Class rdf:about="#IncreasedStormRainfall">
+        <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#Amount"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Larger storms with more precipitation will increase the intensity of flood events.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Lakes -->
+
+    <owl:Class rdf:about="#Lakes">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LakesAbsent -->
+
+    <owl:Class rdf:about="#LakesAbsent">
+        <rdfs:subClassOf rdf:resource="#Lakes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LakesPresent -->
+
+    <owl:Class rdf:about="#LakesPresent">
+        <rdfs:subClassOf rdf:resource="#Lakes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LandUseLandCover -->
+
+    <owl:Class rdf:about="#LandUseLandCover">
+        <rdfs:subClassOf rdf:resource="&habitat;Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Landsliding -->
+
+    <owl:Class rdf:about="#Landsliding">
+        <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The abrupt collapse of soils along a slope.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LateSuccession -->
+
+    <owl:Class rdf:about="#LateSuccession">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LateSuccessionalForest -->
+
+    <owl:Class rdf:about="#LateSuccessionalForest">
+        <rdfs:subClassOf rdf:resource="#DiverseForest"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Multispecies forest dominated by older trees.  May include mixed age classes as local disturbance creates openings for young trees.  Multilayer canopy and high vegetative cover and root densities are likely to provide maximum soil retention.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LateSuccessionalPlantation -->
+
+    <owl:Class rdf:about="#LateSuccessionalPlantation">
+        <rdfs:subClassOf rdf:resource="#Plantation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Plantation dominated by older trees.  Often harvested before spending too long in this successional state.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LeveeAbsent -->
+
+    <owl:Class rdf:about="#LeveeAbsent">
+        <rdfs:subClassOf rdf:resource="#Levees"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LeveePresent -->
+
+    <owl:Class rdf:about="#LeveePresent">
+        <rdfs:subClassOf rdf:resource="#Levees"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Levees -->
+
+    <owl:Class rdf:about="#Levees">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Level -->
+
+    <owl:Class rdf:about="#Level">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowFloodplainVegetationCover -->
+
+    <owl:Class rdf:about="#LowFloodplainVegetationCover">
+        <rdfs:subClassOf rdf:resource="#FloodplainVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPopulationDensity -->
+
+    <owl:Class rdf:about="#LowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPrecipitation -->
+
+    <owl:Class rdf:about="#LowPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowRunoff -->
+
+    <owl:Class rdf:about="#LowRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSedimentSink -->
+
+    <owl:Class rdf:about="#LowSedimentSink">
+        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSedimentSource -->
+
+    <owl:Class rdf:about="#LowSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSlopeStability -->
+
+    <owl:Class rdf:about="#LowSlopeStability">
+        <rdfs:subClassOf rdf:resource="#SlopeStability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSnowmelt -->
+
+    <owl:Class rdf:about="#LowSnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSnowpack -->
+
+    <owl:Class rdf:about="#LowSnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSoilErodibility -->
+
+    <owl:Class rdf:about="#LowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowStreamGradient -->
+
+    <owl:Class rdf:about="#LowStreamGradient">
+        <rdfs:subClassOf rdf:resource="#StreamGradient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowTemperature -->
+
+    <owl:Class rdf:about="#LowTemperature">
+        <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowVegetationCover -->
+
+    <owl:Class rdf:about="#LowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowVegetativeMaturity -->
+
+    <owl:Class rdf:about="#LowVegetativeMaturity">
+        <rdfs:subClassOf rdf:resource="#VegetativeMaturity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowerWatershed -->
+
+    <owl:Class rdf:about="#LowerWatershed">
+        <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Mangroves -->
+
+    <owl:Class rdf:about="#Mangroves">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MangrovesAbsent -->
+
+    <owl:Class rdf:about="#MangrovesAbsent">
+        <rdfs:subClassOf rdf:resource="#Mangroves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MangrovesPresent -->
+
+    <owl:Class rdf:about="#MangrovesPresent">
+        <rdfs:subClassOf rdf:resource="#Mangroves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MediumSoilTexture -->
+
+    <owl:Class rdf:about="#MediumSoilTexture">
+        <rdfs:subClassOf rdf:resource="#SoilTexture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MidSuccession -->
+
+    <owl:Class rdf:about="#MidSuccession">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MidSuccessionalForest -->
+
+    <owl:Class rdf:about="#MidSuccessionalForest">
+        <rdfs:subClassOf rdf:resource="#DiverseForest"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Multispecies forest dominated by middle aged trees.   Multilayer canopy and relatively high vegetative cover and root densities are likely to provide relatively high soil retention services.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MidSuccessionalPlantation -->
+
+    <owl:Class rdf:about="#MidSuccessionalPlantation">
+        <rdfs:subClassOf rdf:resource="#Plantation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Plantation dominated by middle aged trees.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MiddleWatershed -->
+
+    <owl:Class rdf:about="#MiddleWatershed">
+        <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateFishermanUse -->
+
+    <owl:Class rdf:about="#ModerateFishermanUse">
+        <rdfs:subClassOf rdf:resource="#FishermenUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateFloodplainVegetationCover -->
+
+    <owl:Class rdf:about="#ModerateFloodplainVegetationCover">
+        <rdfs:subClassOf rdf:resource="#FloodplainVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModeratePopulationDensity -->
+
+    <owl:Class rdf:about="#ModeratePopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModeratePrecipitation -->
+
+    <owl:Class rdf:about="#ModeratePrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateRunoff -->
+
+    <owl:Class rdf:about="#ModerateRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSedimentSink -->
+
+    <owl:Class rdf:about="#ModerateSedimentSink">
+        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSedimentSource -->
+
+    <owl:Class rdf:about="#ModerateSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSlopeStability -->
+
+    <owl:Class rdf:about="#ModerateSlopeStability">
+        <rdfs:subClassOf rdf:resource="#SlopeStability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSnowmelt -->
+
+    <owl:Class rdf:about="#ModerateSnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSnowpack -->
+
+    <owl:Class rdf:about="#ModerateSnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSoilErodibility -->
+
+    <owl:Class rdf:about="#ModerateSoilErodibility">
+        <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateStreamGradient -->
+
+    <owl:Class rdf:about="#ModerateStreamGradient">
+        <rdfs:subClassOf rdf:resource="#StreamGradient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateTemperature -->
+
+    <owl:Class rdf:about="#ModerateTemperature">
+        <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateVegetationCover -->
+
+    <owl:Class rdf:about="#ModerateVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateVegetativeMaturity -->
+
+    <owl:Class rdf:about="#ModerateVegetativeMaturity">
+        <rdfs:subClassOf rdf:resource="#VegetativeMaturity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MonthlyPrecipitation -->
+
+    <owl:Class rdf:about="#MonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MonthlySnowmelt -->
+
+    <owl:Class rdf:about="#MonthlySnowmelt">
+        <rdfs:subClassOf rdf:resource="#Snowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MonthlySnowpack -->
+
+    <owl:Class rdf:about="#MonthlySnowpack">
+        <rdfs:subClassOf rdf:resource="&habitat;SnowPresence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MonthlyTemperature -->
+
+    <owl:Class rdf:about="#MonthlyTemperature">
+        <rdfs:subClassOf rdf:resource="&habitat;AtmosphericTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NarrowFloodplain -->
+
+    <owl:Class rdf:about="#NarrowFloodplain">
+        <rdfs:subClassOf rdf:resource="#FloodplainWidth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NavigationInfrastructure -->
+
+    <owl:Class rdf:about="#NavigationInfrastructure">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NavigationInfrastructureAbsent -->
+
+    <owl:Class rdf:about="#NavigationInfrastructureAbsent">
+        <rdfs:subClassOf rdf:resource="#NavigationInfrastructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NavigationInfrastructurePresent -->
+
+    <owl:Class rdf:about="#NavigationInfrastructurePresent">
+        <rdfs:subClassOf rdf:resource="#NavigationInfrastructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoFishermanUse -->
+
+    <owl:Class rdf:about="#NoFishermanUse">
+        <rdfs:subClassOf rdf:resource="#FishermenUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSedimentSink -->
+
+    <owl:Class rdf:about="#NoSedimentSink">
+        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSedimentSource -->
+
+    <owl:Class rdf:about="#NoSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSnowmelt -->
+
+    <owl:Class rdf:about="#NoSnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSnowpack -->
+
+    <owl:Class rdf:about="#NoSnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSuccession -->
+
+    <owl:Class rdf:about="#NoSuccession">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoVegetativeMaturity -->
+
+    <owl:Class rdf:about="#NoVegetativeMaturity">
+        <rdfs:subClassOf rdf:resource="#VegetativeMaturity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NotAccessibleToPublic -->
+
+    <owl:Class rdf:about="#NotAccessibleToPublic">
+        <rdfs:subClassOf rdf:resource="#PublicAccess"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NotInFloodplain -->
+
+    <owl:Class rdf:about="#NotInFloodplain">
+        <rdfs:subClassOf rdf:resource="#Floodplain"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Upland areas that are not susceptible to inundation by flood waters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#OldGrowth -->
+
+    <owl:Class rdf:about="#OldGrowth">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PercentVegetationCover -->
+
+    <owl:Class rdf:about="#PercentVegetationCover">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Percent vegetative cover.   Different vegetation types also have different rooting depths, root densities, and transpiration rates, affecting their ability to aid in infiltration of water and/or slowing the erosive energy of water or wind.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PlantSuccession -->
+
+    <owl:Class rdf:about="#PlantSuccession">
+        <rdfs:subClassOf rdf:resource="&ecology;CommunityMatrixInteraction"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The gradual natural process of species turnover and community change, generally following disturbance.  Depending on the biome, disturbance type and intensity, this may include natural regrowth of trees.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Plantation -->
+
+    <owl:Class rdf:about="#Plantation">
+        <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Plantations, being less structurally diverse, are likely to have less soil retention capacity.  Additionally, some species like Eucalyptus are allelopathic, preventing development of a diverse understory that can better provide soil retention.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Plowing -->
+
+    <owl:Class rdf:about="#Plowing">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Mechanically tilling the soil removes existing vegetation and exposes soil to greater erosion.  Frequency of plowing and when it occurs in relation to rainy periods are important determinants of how much erosion will occur.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PoleSuccession -->
+
+    <owl:Class rdf:about="#PoleSuccession">
+        <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PopulationDensity -->
+
+    <owl:Class rdf:about="#PopulationDensity">
+        <rdfs:subClassOf rdf:resource="&habitat;HumanPopulation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Precipitation -->
+
+    <owl:Class rdf:about="#Precipitation">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Generally liquid precipitation, capable of generating erosive energy.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PublicAccess -->
+
+    <owl:Class rdf:about="#PublicAccess">
+        <rdfs:subClassOf rdf:resource="&habitat;Accessibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PublicWaterSupplyIntakes -->
+
+    <owl:Class rdf:about="#PublicWaterSupplyIntakes">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#PublicWaterSupplyServiceArea -->
+
+    <owl:Class rdf:about="#PublicWaterSupplyServiceArea">
+        <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RainfallRunoffErosivityIndex -->
+
+    <owl:Class rdf:about="#RainfallRunoffErosivityIndex">
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ReefAbsent -->
+
+    <owl:Class rdf:about="#ReefAbsent">
+        <rdfs:subClassOf rdf:resource="#Reefs"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ReefPresent -->
+
+    <owl:Class rdf:about="#ReefPresent">
+        <rdfs:subClassOf rdf:resource="#Reefs"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Reefs -->
+
+    <owl:Class rdf:about="#Reefs">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RisingWaterTables -->
+
+    <owl:Class rdf:about="#RisingWaterTables">
+        <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Rising water tables can wash away soils.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Rivers -->
+
+    <owl:Class rdf:about="#Rivers">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RiversAbsent -->
+
+    <owl:Class rdf:about="#RiversAbsent">
+        <rdfs:subClassOf rdf:resource="#Rivers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RiversPresent -->
+
+    <owl:Class rdf:about="#RiversPresent">
+        <rdfs:subClassOf rdf:resource="#Rivers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RollingToHilly -->
+
+    <owl:Class rdf:about="#RollingToHilly">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#RootDensity -->
+
+    <owl:Class rdf:about="#RootDensity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Soils allowing greater root density would generally be expected to hold soil in place more strongly.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Runoff -->
+
+    <owl:Class rdf:about="#Runoff">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SalmonSpawningGrounds -->
+
+    <owl:Class rdf:about="#SalmonSpawningGrounds">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SalmonSpawningGroundsAbsent -->
+
+    <owl:Class rdf:about="#SalmonSpawningGroundsAbsent">
+        <rdfs:subClassOf rdf:resource="#SalmonSpawningGrounds"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SalmonSpawningGroundsPresent -->
+
+    <owl:Class rdf:about="#SalmonSpawningGroundsPresent">
+        <rdfs:subClassOf rdf:resource="#SalmonSpawningGrounds"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Scour -->
+
+    <owl:Class rdf:about="#Scour">
+        <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Scour can occur along rivers and streams, often due to changes in the river&#39;s flow regime and catchment land cover types (i.e., forest vs. impervious surface cover).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Seasonality -->
+
+    <owl:Class rdf:about="#Seasonality">
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Distribution of rainfall throughout the year (i.e., are there rainy and dry seasons, or is it more evenly distributed?).  Notably in Madagascar, eastern Madagascar recieves monsoon rainfall from November to April.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SedimentSink -->
+
+    <owl:Class rdf:about="#SedimentSink">
+        <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SedimentSourceValue -->
+
+    <owl:Class rdf:about="#SedimentSourceValue">
+        <rdfs:subClassOf rdf:resource="#Source"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Shrubland -->
+
+    <owl:Class rdf:about="#Shrubland">
+        <rdfs:subClassOf rdf:resource="#SoilRetainingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions (MRLC 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ShrublandPasture -->
+
+    <owl:Class rdf:about="#ShrublandPasture">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Slope -->
+
+    <owl:Class rdf:about="#Slope">
+        <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SlopeStability -->
+
+    <owl:Class rdf:about="#SlopeStability">
+        <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SlopeSteepnessAndLengthFactor -->
+
+    <owl:Class rdf:about="#SlopeSteepnessAndLengthFactor">
+        <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SnowPresence -->
+
+    <owl:Class rdf:about="#SnowPresence">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Snowmelt -->
+
+    <owl:Class rdf:about="#Snowmelt">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilCompaction -->
+
+    <owl:Class rdf:about="#SoilCompaction">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Compaced soils may have slower erosion but also prevent infiltration of water, increasing the erosive potential from flowing water.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilDepthToBedrock -->
+
+    <owl:Class rdf:about="#SoilDepthToBedrock">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The depth of soils before hitting bedrock.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilErodibility -->
+
+    <owl:Class rdf:about="#SoilErodibility">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilCompaction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilStructure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilParentMaterial"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilOrganicMatter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilDepthToBedrock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Soil erodibility may be due to several factors, including texture, compaction, root density, and vegetative cover.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilErodibilityFactor -->
+
+    <owl:Class rdf:about="#SoilErodibilityFactor">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >For use in (Revised) Universal Soil Loss Equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilErosionForces -->
+
+    <owl:Class rdf:about="#SoilErosionForces">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The breakup and removal of soil particles from the soil matrix, usually due to the forces of wind or water.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilErosionProcesses -->
+
+    <owl:Class rdf:about="#SoilErosionProcesses">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Soil erosion can occur as a result of one or several processes acting together</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilGroupA -->
+
+    <owl:Class rdf:about="#SoilGroupA">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilGroupB -->
+
+    <owl:Class rdf:about="#SoilGroupB">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilGroupC -->
+
+    <owl:Class rdf:about="#SoilGroupC">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilGroupD -->
+
+    <owl:Class rdf:about="#SoilGroupD">
+        <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilLoss -->
+
+    <owl:Class rdf:about="#SoilLoss">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Total soil loss</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilOrganicMatter -->
+
+    <owl:Class rdf:about="#SoilOrganicMatter">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Content and types of organic versus inorganic matter in the soil.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilParentMaterial -->
+
+    <owl:Class rdf:about="#SoilParentMaterial">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The bedrock material whose breakdown helps generate soil.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilRetainingEcosystem -->
+
+    <owl:Class rdf:about="#SoilRetainingEcosystem">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:allValuesFrom rdf:resource="#SoilRetentionCapacity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An ecosystem that retains soil in situ, usually through a combination of a vegetative canopy that intercepts rainfall and root networks that hold soil in place.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilRetainingHabitat -->
+
+    <owl:Class rdf:about="#SoilRetainingHabitat">
+        <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:allValuesFrom rdf:resource="#SoilRetentionCapacity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An ecosystem that retains soil in situ, usually through a combination of a vegetative canopy that intercepts rainfall and root networks that hold soil in place.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilRetentionCapacity -->
+
+    <owl:Class rdf:about="#SoilRetentionCapacity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="#Precipitation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="#Wind"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >The ability of a SoilRetainingEcosystem to provide the service of soil retention.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilStructure -->
+
+    <owl:Class rdf:about="#SoilStructure">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Soil horizons - their number and depth, and the relative water movement within and between these horizons is an important criteria for erosion resistance.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SoilTexture -->
+
+    <owl:Class rdf:about="#SoilTexture">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Soil particle size can potentially affect rates of erosion, e.g., sands being more erodible than other soil textures, all else being equal.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Source -->
+
+    <owl:Class rdf:about="#Source"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SteeplyDissectedToMountainous -->
+
+    <owl:Class rdf:about="#SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#StreamGradient -->
+
+    <owl:Class rdf:about="#StreamGradient">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SuccessionalStage -->
+
+    <owl:Class rdf:about="#SuccessionalStage">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Temperature -->
+
+    <owl:Class rdf:about="#Temperature">
+        <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#TropicalStormProbability -->
+
+    <owl:Class rdf:about="#TropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#UpperWatershed -->
+
+    <owl:Class rdf:about="#UpperWatershed">
+        <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >These could/ought to be somewhat defined by slope.  Also bedrock.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VegetationType -->
+
+    <owl:Class rdf:about="#VegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VegetativeMaturity -->
+
+    <owl:Class rdf:about="#VegetativeMaturity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Vegetation composition  beyond which more or less full hydrologic services are provided.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighFloodplainVetgetationCover -->
+
+    <owl:Class rdf:about="#VeryHighFloodplainVetgetationCover">
+        <rdfs:subClassOf rdf:resource="#FloodplainVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighPopulationDensity -->
+
+    <owl:Class rdf:about="#VeryHighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighPrecipitation -->
+
+    <owl:Class rdf:about="#VeryHighPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighRunoff -->
+
+    <owl:Class rdf:about="#VeryHighRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighSoilErodibility -->
+
+    <owl:Class rdf:about="#VeryHighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighVegetationCover -->
+
+    <owl:Class rdf:about="#VeryHighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowFloodplainVegetationCover -->
+
+    <owl:Class rdf:about="#VeryLowFloodplainVegetationCover">
+        <rdfs:subClassOf rdf:resource="#FloodplainVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowPopulationDensity -->
+
+    <owl:Class rdf:about="#VeryLowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowPrecipitation -->
+
+    <owl:Class rdf:about="#VeryLowPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowRunoff -->
+
+    <owl:Class rdf:about="#VeryLowRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowSoilErodibility -->
+
+    <owl:Class rdf:about="#VeryLowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="#SoilErodibility"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowVegetationCover -->
+
+    <owl:Class rdf:about="#VeryLowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryNarrowFloodplain -->
+
+    <owl:Class rdf:about="#VeryNarrowFloodplain">
+        <rdfs:subClassOf rdf:resource="#FloodplainWidth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryWideFloodplain -->
+
+    <owl:Class rdf:about="#VeryWideFloodplain">
+        <rdfs:subClassOf rdf:resource="#FloodplainWidth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Water -->
+
+    <owl:Class rdf:about="#Water">
+        <rdfs:subClassOf rdf:resource="#SoilErosionForces"/>
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#WatershedPosition -->
+
+    <owl:Class rdf:about="#WatershedPosition">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatio-temporal-region"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This breakdown is commonly though not always used in describing rivers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#WideFloodplain -->
+
+    <owl:Class rdf:about="#WideFloodplain">
+        <rdfs:subClassOf rdf:resource="#FloodplainWidth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Wind -->
+
+    <owl:Class rdf:about="#Wind">
+        <rdfs:subClassOf rdf:resource="#SoilErosionForces"/>
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
+
+    <owl:Class rdf:about="&thinklab-core;OrderedRangeMapping"/>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place -->
+
+    <owl:Class rdf:about="&DOLCE-Lite;dependent-place"/>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region -->
+
+    <owl:Class rdf:about="&DOLCE-Lite;spatio-temporal-region"/>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+

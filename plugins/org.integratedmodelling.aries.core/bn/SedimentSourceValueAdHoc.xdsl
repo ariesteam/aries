@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SnowPresence">
-			<state id="LowlandAndHighland" />
-			<state id="RainDominatedAndSnowDominated" />
-			<state id="PeakRainOnSnow" />
-			<probabilities>0.55 0.3 0.15</probabilities>
+		<cpt id="MonthlySnowpack">
+			<state id="HighSnowpack" />
+			<state id="ModerateSnowpack" />
+			<state id="LowSnowpack" />
+			<state id="NoSnowpack" />
+			<probabilities>0.55 0.3 0.15 0</probabilities>
 		</cpt>
 		<cpt id="MonthlyPrecipitation">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighPrecipitation" />
+			<state id="HighPrecipitation" />
+			<state id="ModeratePrecipitation" />
+			<state id="LowPrecipitation" />
+			<state id="VeryLowPrecipitation" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2000000000000001</probabilities>
 		</cpt>
 		<cpt id="MonthlyTemperature">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
+			<state id="HighTemperature" />
+			<state id="ModerateTemperature" />
+			<state id="LowTemperature" />
 			<probabilities>0.85 0.05 0.1</probabilities>
 		</cpt>
 		<cpt id="MonthlySnowmelt">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
-			<parents>MonthlyTemperature SnowPresence MonthlyPrecipitation</parents>
-			<probabilities>0.1 0.8 0.1 0 0.05 0.475 0.475 0 0 0.4 0.4 0.2 0 0.1 0.45 0.45 0 0 0.15 0.85 0.5 0.5 0 0 0.25 0.5 0.25 0 0.1 0.5 0.2 0.2 0 0.2 0.4 0.4 0 0 0.3 0.7 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.25 0.4 0.25 0.1 0 0.1 0.4 0.5 0.05 0.4 0.5 0.05 0.05 0.3 0.55 0.1 0 0.25 0.35 0.4 0 0 0.3 0.7 0 0 0.05 0.95 0.3 0.4 0.2 0.1 0.15 0.35 0.3 0.2 0.05 0.3 0.4 0.25 0 0.1 0.3 0.6 0 0 0.15 0.85 0.75 0.1 0.1 0.05 0.4 0.4 0.15 0.05 0.3 0.3 0.3 0.1 0.1 0.375 0.375 0.15 0 0.05 0.3 0.65 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+			<state id="HighSnowmelt" />
+			<state id="ModerateSnowmelt" />
+			<state id="LowSnowmelt" />
+			<state id="NoSnowmelt" />
+			<parents>MonthlyTemperature MonthlySnowpack MonthlyPrecipitation</parents>
+			<probabilities>0.1 0.8 0.1 0 0.05 0.475 0.475 0 0 0.4 0.4 0.2 0 0.1 0.45 0.45 0 0 0.15 0.85 0.5 0.5 0 0 0.25 0.5 0.25 0 0.1 0.5 0.2 0.2 0 0.2 0.4 0.4 0 0 0.3 0.7 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.25 0.4 0.25 0.1 0 0.1 0.4 0.5 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.05 0.4 0.5 0.05 0.05 0.3 0.55 0.1 0 0.25 0.35 0.4 0 0 0.3 0.7 0 0 0.05 0.95 0.3 0.4000000000000001 0.2000000000000001 0.1 0.15 0.35 0.3 0.2 0.05 0.3 0.4 0.25 0 0.1 0.3 0.6 0 0 0.15 0.85 0.75 0.1 0.1 0.05 0.4 0.4 0.15 0.05 0.3 0.3 0.3 0.1 0.1 0.375 0.375 0.15 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="Runoff">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighRunoff" />
+			<state id="HighRunoff" />
+			<state id="ModerateRunoff" />
+			<state id="LowRunoff" />
+			<state id="VeryLowRunoff" />
 			<parents>MonthlyPrecipitation MonthlySnowmelt</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.75 0.2 0.05 0 0 0.65 0.25 0.1 0 0 0.75 0.25 0 0 0 0.25 0.5 0.25 0 0 0.1 0.45 0.45 0 0 0.05 0.4 0.4 0.15 0 0.65 0.3 0.05 0 0 0.15 0.55 0.3 0 0 0 0.3 0.4 0.3 0 0 0.05 0.45 0.45 0.05 0.3 0.4 0.3 0 0 0.1 0.375 0.375 0.15 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.35 0.6 0.1 0.35 0.35 0.2 0 0.1 0.2 0.4 0.2 0.1 0 0 0.05 0.15 0.8 0 0 0 0.1 0.9</probabilities>
 		</cpt>
-		<cpt id="VegetationCover">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+		<cpt id="PercentVegetationCover">
+			<state id="VeryHighVegetationCover" />
+			<state id="HighVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="LowVegetationCover" />
+			<state id="VeryLowVegetationCover" />
 			<probabilities>0.1 0.225 0.225 0.225 0.225</probabilities>
 		</cpt>
 		<cpt id="VegetationType">
@@ -54,126 +55,126 @@
 		</cpt>
 		<cpt id="SuccessionalStage">
 			<state id="OldGrowth" />
-			<state id="Late" />
-			<state id="Mid" />
-			<state id="Pole" />
-			<state id="Early" />
-			<state id="None" />
+			<state id="LateSuccession" />
+			<state id="MidSuccession" />
+			<state id="PoleSuccession" />
+			<state id="EarlySuccession" />
+			<state id="NoSuccession" />
 			<probabilities>0 0.15 0.15 0.15 0.15 0.4</probabilities>
 		</cpt>
-		<cpt id="HydrologicMaturity">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
-			<parents>VegetationType VegetationCover SuccessionalStage</parents>
+		<cpt id="VegetativeMaturity">
+			<state id="HighVegetativeMaturity" />
+			<state id="ModerateVegetativeMaturity" />
+			<state id="LowVegetativeMaturity" />
+			<state id="NoVegetativeMaturity" />
+			<parents>VegetationType PercentVegetationCover SuccessionalStage</parents>
 			<probabilities>1 0 0 0 0.95 0.05 0 0 0.75 0.2 0.05 0 0.15 0.4 0.45 0 0 0.2 0.8 0 0.3333333 0.3333333 0.3333333 0 1 0 0 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.1 0.4 0.5 0 0 0.15 0.85 0 0.3333333 0.3333333 0.3333333 0 1 0 0 0 0.85 0.15 0 0 0.55 0.35 0.1 0 0.05 0.35 0.6 0 0 0.1 0.9 0 0.3333333 0.3333333 0.3333333 0 1 0 0 0 0.8 0.15 0.05 0 0.45 0.45 0.1 0 0 0.3 0.7 0 0 0.05 0.95 0 0.3333333 0.3333333 0.3333333 0 1 0 0 0 0.75 0.15 0.1 0 0.4 0.3 0.3 0 0 0.25 0.75 0 0 0.05 0.95 0 0.3333333 0.3333333 0.3333333 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.15 0.425 0.425 0 0.15 0.425 0.425 0 0.15 0.425 0.425 0 0.15 0.425 0.425 0 0.15 0.425 0.425 0 0.15 0.425 0.425 0 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.3 0.65 0 0.05 0.3 0.65 0 0.05 0.3 0.65 0 0.05 0.3 0.65 0 0.05 0.3 0.65 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.2 0.75 0 0.05 0.1 0.85 0 0.05 0.1 0.85 0 0.05 0.1 0.85 0 0.05 0.1 0.85 0 0.05 0.1 0.85 0 0.05 0.1 0.85 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0.05 0.95 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="Copy_of_SlopeStability">
-			<state id="HighInstability" />
-			<state id="ModerateInstability" />
-			<state id="LowInstability" />
+			<state id="HighSlopeStability" />
+			<state id="ModerateSlopeStability" />
+			<state id="LowSlopeStability" />
 			<probabilities>0.3 0.2 0.5</probabilities>
 		</cpt>
-		<cpt id="Copy_of_Slope">
+		<cpt id="Slope">
 			<state id="SteeplyDissectedToMountainous" />
 			<state id="RollingToHilly" />
 			<state id="GentlyUndulating" />
 			<state id="Level" />
 			<probabilities>0.05 0.125 0.225 0.6</probabilities>
 		</cpt>
-		<cpt id="Copy_of_SoilTexture">
-			<state id="Coarse" />
-			<state id="Medium" />
-			<state id="Fine" />
+		<cpt id="SoilTexture">
+			<state id="CoarseSoilTexture" />
+			<state id="MediumSoilTexture" />
+			<state id="FineSoilTexture" />
 			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
 		</cpt>
 		<cpt id="Copy_of_HydrologicSoilsGroup">
-			<state id="A" />
-			<state id="B" />
-			<state id="C" />
-			<state id="D" />
+			<state id="SoilGroupA" />
+			<state id="SoilGroupB" />
+			<state id="SoilGroupC" />
+			<state id="SoilGroupD" />
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="SoilErodibility">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Medium" />
-			<state id="Low" />
-			<state id="VeryLow" />
-			<parents>Copy_of_SlopeStability Copy_of_Slope Copy_of_SoilTexture Copy_of_HydrologicSoilsGroup</parents>
+			<state id="VeryHighSoilErodibility" />
+			<state id="HighSoilErodibility" />
+			<state id="MediumSoilErodibility" />
+			<state id="LowSoilErodibility" />
+			<state id="VeryLowSoilErodibility" />
+			<parents>Copy_of_SlopeStability Slope SoilTexture Copy_of_HydrologicSoilsGroup</parents>
 			<probabilities>0.55 0.4 0.05 0 0 0.5 0.4 0.1 0 0 0.45 0.35 0.15 0.05 0 0.4 0.35 0.2 0.05 0 0.5 0.4 0.1 0 0 0.45 0.4 0.15 0 0 0.4 0.35 0.15 0.1 0 0.35 0.35 0.2 0.1 0 0.45 0.4 0.1 0.05 0 0.4 0.4 0.15 0.05 0 0.35 0.4 0.2 0.05 0 0.3 0.4 0.2 0.1 0 0.45 0.45 0.1 0 0 0.4 0.45 0.1 0.05 0 0.35 0.4 0.15 0.1 0 0.3 0.4 0.2 0.1 0 0.4 0.45 0.1 0.05 0 0.35 0.45 0.15 0.05 0 0.3 0.4 0.2 0.1 0 0.25 0.4 0.2 0.15 0 0.35 0.45 0.1 0.1 0 0.3 0.45 0.15 0.1 0 0.25 0.45 0.2 0.1 0 0.2 0.45 0.2 0.15 0 0.3 0.5 0.15 0.05 0 0.3 0.45 0.15 0.1 0 0.25 0.4 0.15 0.15 0.05 0.25 0.35 0.2 0.15 0.05 0.25 0.5 0.2 0.05 0 0.25 0.45 0.2 0.1 0 0.2 0.4 0.25 0.1 0.05 0.2 0.35 0.25 0.15 0.05 0.2 0.5 0.15 0.15 0 0.2 0.45 0.2 0.15 0 0.15 0.45 0.2 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.2 0.5 0.2 0.05 0.05 0.2 0.45 0.2 0.1 0.05 0.15 0.4 0.2 0.15 0.1 0.1 0.4 0.2 0.2 0.1 0.15 0.5 0.2 0.1 0.05 0.15 0.45 0.2 0.15 0.05 0.1 0.4 0.25 0.15 0.1 0.1 0.35 0.25 0.2 0.1 0.1 0.5 0.175 0.175 0.05 0.1 0.45 0.2 0.2 0.05 0.05 0.45 0.2 0.2 0.1 0.05 0.4 0.25 0.2 0.1 0.35 0.45 0.1 0.1 0 0.3 0.45 0.15 0.1 0 0.25 0.4 0.2 0.15 0 0.2 0.4 0.2 0.15 0.05 0.3 0.45 0.15 0.1 0 0.25 0.45 0.15 0.1 0.05 0.2 0.4 0.2 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.25 0.45 0.2 0.1 0 0.2 0.45 0.2 0.1 0.05 0.15 0.45 0.25 0.1 0.05 0.1 0.45 0.2 0.2 0.05 0.25 0.5 0.15 0.1 0 0.25 0.45 0.15 0.1 0.05 0.2 0.4 0.2 0.15 0.05 0.15 0.4 0.2 0.2 0.05 0.25 0.45 0.15 0.1 0.05 0.2 0.45 0.15 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.1 0.4 0.225 0.225 0.05 0.2 0.45 0.2 0.1 0.05 0.15 0.45 0.2 0.15 0.05 0.15 0.4 0.2 0.2 0.05 0.1 0.4 0.25 0.2 0.05 0.2 0.4 0.175 0.175 0.05 0.2 0.35 0.2 0.2 0.05 0.15 0.3 0.25 0.25 0.05 0.15 0.25 0.275 0.275 0.05 0.15 0.4 0.2 0.2 0.05 0.15 0.35 0.225 0.225 0.05 0.1 0.3 0.275 0.275 0.05 0.05 0.3 0.3 0.3 0.05 0.1 0.4 0.225 0.225 0.05 0.1 0.35 0.25 0.25 0.05 0.05 0.35 0.275 0.275 0.05 0.05 0.3 0.3 0.3 0.05 0.05 0.4 0.225 0.225 0.1 0.05 0.35 0.25 0.25 0.1 0 0.3 0.3 0.3 0.1 0 0.25 0.35 0.3 0.1 0.05 0.35 0.25 0.25 0.1 0 0.35 0.275 0.275 0.1 0 0.25 0.4 0.25 0.1 0 0.2 0.4 0.3 0.1 0 0.35 0.275 0.275 0.1 0 0.3 0.3 0.3 0.1 0 0.25 0.4 0.25 0.1 0 0.2 0.4 0.3 0.1 0 0.1 0.15 0.7 0.05 0 0.1 0.15 0.65 0.1 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.65 0.1 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.5 0.25 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.5 0.25 0 0.1 0.15 0.45 0.3 0 0.05 0.1 0.6 0.25 0 0.05 0.1 0.55 0.3 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.55 0.3 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.4 0.45 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.4 0.45 0 0.05 0.1 0.35 0.5 0 0 0.05 0.4 0.55 0 0 0.05 0.35 0.6 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.35 0.6 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.2 0.75 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.2 0.75 0 0 0.05 0.15 0.8 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9</probabilities>
 		</cpt>
-		<cpt id="ErosionSourceValue">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
-			<parents>Runoff SoilErodibility HydrologicMaturity</parents>
+		<cpt id="SedimentSourceValue">
+			<state id="HighSedimentSource" />
+			<state id="ModerateSedimentSource" />
+			<state id="LowSedimentSource" />
+			<state id="NoSedimentSource" />
+			<parents>Runoff SoilErodibility VegetativeMaturity</parents>
 			<probabilities>0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.3 0.25 0.25 0.2 0.5 0.25 0.15 0.1 0.75 0.2 0.05 0 0.95 0.05 0 0 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.4 0.4 0.2 0 0.5 0.4 0.1 0 0.05 0.15 0.3 0.5 0.1 0.2 0.3 0.4 0.15 0.25 0.3 0.3 0.2 0.3 0.3 0.2 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.2 0.3 0.3 0.2 0.4000000000000001 0.3 0.2000000000000001 0.1 0.65 0.25 0.1 0 0.85 0.15 0 0 0.1 0.35 0.35 0.2 0.2 0.35 0.35 0.1 0.3 0.4 0.3 0 0.4 0.4 0.2 0 0 0.1 0.4 0.5 0 0.2 0.4 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0.1 0.3 0.3 0.3 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.15 0.3 0.3 0.25 0.3 0.3 0.25 0.15 0.55 0.25 0.2 0 0.75 0.15 0.1 0 0.05 0.3 0.4 0.25 0.15 0.35 0.35 0.15 0.2 0.4 0.4 0 0.3 0.4 0.3 0 0 0.05 0.4 0.55 0 0.15 0.4 0.45 0.05 0.2 0.35 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.1 0.2 0.35 0.35 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.5 0.4 0.1 0 0 0.25 0.35 0.4 0.1 0.3 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.3 0.3 0.2 0 0.05 0.3 0.65 0 0.1 0.3 0.6 0.05 0.15 0.3 0.5 0.05 0.2 0.3 0.45 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0.1 0.25 0.65 0 0.2 0.3 0.5 0.05 0.2 0.3 0.45 0.3 0.3 0.3 0.1 0 0.1 0.2 0.7 0 0.15 0.2 0.65 0.05 0.15 0.25 0.55 0.05 0.2 0.3 0.45 0 0 0.1 0.9 0 0 0.2 0.8 0 0.05 0.25 0.7 0 0.1 0.25 0.65 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
-			<node id="ErosionSourceValue">
-				<name>ErosionSourceValue</name>
-				<interior color="e5f6f7" />
+			<node id="SedimentSourceValue">
+				<name>SedimentSourceValue</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>420 34 554 67</position>
-				<barchart active="true" width="128" height="90" />
+				<position>470 35 604 68</position>
+				<barchart active="true" width="247" height="90" />
 			</node>
 			<node id="Runoff">
 				<name>Runoff</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>463 163 512 193</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
-			<node id="HydrologicMaturity">
-				<name>HydrologicMaturity</name>
-				<interior color="e5f6f7" />
+			<node id="VegetativeMaturity">
+				<name>VegetativeMaturity</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>591 162 715 201</position>
-				<barchart active="true" width="128" height="90" />
+				<position>631 162 755 201</position>
+				<barchart active="true" width="208" height="90" />
 			</node>
-			<node id="VegetationCover">
-				<name>VegetationCover</name>
-				<interior color="e5f6f7" />
+			<node id="PercentVegetationCover">
+				<name>PercentVegetationCover</name>
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>595 288 706 322</position>
-				<barchart active="true" width="128" height="108" />
+				<position>647 288 758 322</position>
+				<barchart active="true" width="232" height="108" />
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>853 166 958 196</position>
+				<position>947 133 1052 163</position>
 				<barchart active="true" width="243" height="72" />
 			</node>
 			<node id="SuccessionalStage">
 				<name>SuccessionalStage</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>842 285 957 320</position>
+				<position>882 275 997 310</position>
 				<barchart active="true" width="128" height="126" />
 			</node>
 			<node id="MonthlyPrecipitation">
 				<name>MonthlyPrecipitation</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>278 391 414 428</position>
-				<barchart active="true" width="128" height="108" />
+				<position>227 391 363 428</position>
+				<barchart active="true" width="229" height="108" />
 			</node>
-			<node id="SnowPresence">
-				<name>SnowPresence</name>
-				<interior color="e5f6f7" />
+			<node id="MonthlySnowpack">
+				<name>MonthlySnowpack</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>627 395 752 433</position>
@@ -181,7 +182,7 @@
 			</node>
 			<node id="MonthlySnowmelt">
 				<name>MonthlySnowmelt</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>424 299 558 332</position>
@@ -189,7 +190,7 @@
 			</node>
 			<node id="MonthlyTemperature">
 				<name>MonthlyTemperature</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>427 402 556 440</position>
@@ -197,7 +198,7 @@
 			</node>
 			<node id="SoilErodibility">
 				<name>SoilErodibility</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>266 157 355 194</position>
@@ -205,23 +206,23 @@
 			</node>
 			<node id="Copy_of_SlopeStability">
 				<name>SlopeStability</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>269 274 350 312</position>
 				<barchart active="true" width="168" height="72" />
 			</node>
-			<node id="Copy_of_Slope">
+			<node id="Slope">
 				<name>Slope</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>70 178 121 211</position>
 				<barchart active="true" width="174" height="90" />
 			</node>
-			<node id="Copy_of_SoilTexture">
+			<node id="SoilTexture">
 				<name>SoilTexture</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>56 388 124 424</position>
@@ -229,7 +230,7 @@
 			</node>
 			<node id="Copy_of_HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>7 292 134 331</position>
@@ -240,6 +241,11 @@
 				<caption>Soil regulation source value: Ad hoc probabilistic model for Puget Sound</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>14 30 412 44</position>
+			</textbox>
+			<textbox>
+				<caption>Nodes in orange have been corrected in the ontologies; nodes in green have corresponding data in xml file.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>5 503 521 517</position>
 			</textbox>
 		</genie>
 	</extensions>

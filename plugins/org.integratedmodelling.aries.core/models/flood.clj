@@ -128,7 +128,7 @@
 		[20 50]  'floodService:LowVegetationHeight
 		[:< 20]  'floodService:VeryLowVegetationHeight))
 		
-(defmodel vegetation-cover 'floodService:VegetationCover
+(defmodel vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
 		[80 :>] 'floodService:VeryHighVegetationCover
 		[60 80] 'floodService:HighVegetationCover
@@ -162,8 +162,8 @@
 			[400 1600]	'floodService:SmallDamStorage
 			[:< 400]		'floodService:VerySmallDamStorage))
 			
-(defmodel mean-days-precipitation 'floodService:MeanDaysOfPrecipitation
-	(classification (ranking 'puget:DaysOfPrecipitationGridcode)
+(defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
+	(classification (ranking 'floodService:MeanDaysPrecipitationPerMonth)
 		#{8 9}    'floodService:VeryHighDaysPrecipitation
 		#{6 7}    'floodService:HighDaysPrecipitation
 		#{4 5}    'floodService:LowDaysPrecipitation
@@ -187,7 +187,7 @@
 	 	 			soil-group vegetation-type slope monthly-temperature levees bridges
 	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			(comment mean-days-precipitation vegetation-height)
-	 	 			vegetation-cover)))
+	 	 			percent-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

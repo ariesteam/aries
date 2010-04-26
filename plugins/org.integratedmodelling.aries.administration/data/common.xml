@@ -215,7 +215,7 @@
 	</observation:Categorization>
 
 	<!-- landuse category from property data, used as a 1/0 coverage -->
-	<observation:Categorization id="puget_soilgroup">
+	<observation:Categorization id="puget_group">
 
 		<observation:hasObservable>
 			<!--
@@ -245,6 +245,33 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
+	
+	<!-- global soil data -->
+	<measurement:Ranking id="hsg">
+		<observation:hasObservable>
+			<floodService:HydrologicSoilsGroup />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>hsg</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>40316</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>15733</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-56.4527115561111</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>179.95833500111112</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>84.03835942277777</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>539.9404767061111</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 	<!-- NLCD categories for Puget region -->
 	<measurement:Ranking id="puget_nlcd">
@@ -347,6 +374,34 @@
 				<geospace:hasLonUpperBound>723766.427</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910
 				</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<!--  Slope in degrees for Madagascar -->
+	<measurement:Ranking id="mad_slope">
+		<observation:hasObservable>
+			<geophysics:DegreeSlope />
+		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mad_slope</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>11423</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>17426</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-25.912917</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>42.08958366666667</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-11.389583666666667</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>51.610417</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -472,6 +527,32 @@
 				</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326
 				</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="global_temperature_december">
+		<observation:hasObservable>
+			<geophysics:GroundSurfaceTemperature />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>tmp_dec</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

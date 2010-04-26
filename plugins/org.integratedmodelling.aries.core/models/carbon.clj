@@ -58,7 +58,7 @@
 	 		    
 ;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
 ;; TODO check with Ken
-(defmodel vegetation-cover 'carbonService:VegetationCover
+(defmodel vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover :units "%")
 		[80 :>] 'carbonService:VeryHighVegetationCover
 		[60 80] 'carbonService:HighVegetationCover
@@ -85,12 +85,6 @@
  (classification (ranking 'nlcd:NLCDNumeric)
 		  #{90 95}   'carbonService:Anoxic
 		  :otherwise 'carbonService:Oxic))
-
-; use NLCD layers to infer vegetation type
-(defmodel vegetation-type 'carbonService:VegetationType 
-  (classification (ranking 'nlcd:NLCDNumeric)
-		  71   'carbonService:GrasslandType
-		  [41 43 :inclusive] 'carbonService:ForestType))
 		  
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
 		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
@@ -99,14 +93,6 @@
         [40 60]  'carbonService:ModerateHardness
         [20 40]  'carbonService:HighHardness
         [0 20]   'carbonService:VeryHighHardness))
-
-(defmodel evapotranspiration 'carbonService:ActualEvapotranspiration
-		 (classification (measurement 'habitat:Evapotranspiration "mm/year")
-				[:< 12] 'carbonService:VeryLowEvapotranspiration
-				[12 32] 'carbonService:LowEvapotranspiration
-				[32 58] 'carbonService:ModerateEvapotranspiration
-				[58 92] 'carbonService:HighEvapotranspiration
-				[92 :>] 'carbonService:VeryHighEvapotranspiration))
 				
 (defmodel fire-frequency 'carbonService:FireFrequency
 		 (classification (ranking 'habitat:FireFrequency)	
@@ -114,8 +100,9 @@
 		 			[0.25 0.9] 'carbonService:ModerateFireFrequency
 		 			[0.9 :>]   'carbonService:HighFireFrequency))
 			
-;; Bayesian source model		
-(defmodel source 'carbonService:CarbonSourceValue
+;; Bayesian source model
+;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
+(defmodel source 'carbonService:CarbonSourceValue   
 	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
 	  	:keep     ('carbonService:VegetationCarbonStorage
@@ -123,9 +110,8 @@
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)))
+	 	 	            hardwood-softwood-ratio)))  
 
-;; missing: CommercialForestyPractices (later - based on clearcuts which is not available in chehalis)
 
 ;; ----------------------------------------------------------------------------------------------
 ;; modified source dependencies to account for different scenarios
@@ -166,7 +152,7 @@
 			:observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-a2 fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)))
+	 	 	            hardwood-softwood-ratio )))
 	  				
 ;; Bayesian source model		
 (defmodel source-hadley-b2 'carbonService:CarbonSourceValue
@@ -177,7 +163,7 @@
 	  						 'carbonService:SoilCarbonStorage)
 	 	 	:context  (soil-ph slope successional-stage-incentivized  
 	 	 						 summer-high-winter-low-hadley-b2 fire-frequency
-	 	 	           vegetation-type hardwood-softwood-ratio evapotranspiration)
+	 	 	            hardwood-softwood-ratio )
 	 	 	:observed (veg-soil-storage soil-storage veg-storage)))	 	 	           
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
@@ -208,8 +194,8 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;; data for emission trading
-(defmodel data-emitters 'carbonService:EmissionTrading 
-	(identification 'carbonService:EmissionTrading 
+(defmodel data-emitters 'carbonService:Baseline 
+	(identification 'carbonService:Baseline 
 		:context (source use-emitters)))
 
 ;; Hadley A2 scenario
