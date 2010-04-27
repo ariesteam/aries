@@ -128,7 +128,7 @@
 		[20 50]  'floodService:LowVegetationHeight
 		[:< 20]  'floodService:VeryLowVegetationHeight))
 		
-(defmodel vegetation-cover 'floodService:PercentVegetationCover
+(defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
 		[80 :>] 'floodService:VeryHighVegetationCover
 		[60 80] 'floodService:HighVegetationCover

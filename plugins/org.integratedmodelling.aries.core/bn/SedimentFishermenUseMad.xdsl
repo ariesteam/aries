@@ -45,11 +45,16 @@
 			<parents>Lakes Coastline Rivers</parents>
 			<resultingstates>FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesPresent FishingSitesAbsent</resultingstates>
 		</deterministic>
+		<cpt id="Seagrass">
+			<state id="SeagrassPresent" />
+			<state id="SeagrassAbsent" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
 		<deterministic id="HabitatAtRiskOfSedimentation">
-			<state id="Yes" />
-			<state id="No" />
-			<parents>Mangroves CoastalWetlands Reefs</parents>
-			<resultingstates>Yes Yes Yes Yes Yes Yes Yes No</resultingstates>
+			<state id="HabitatAtRiskPresent" />
+			<state id="HabitatAtRiskAbsent" />
+			<parents>Mangroves CoastalWetlands Reefs Seagrass</parents>
+			<resultingstates>HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskAbsent</resultingstates>
 		</deterministic>
 		<cpt id="FishermenUse">
 			<state id="HighFishermenUse" />
@@ -131,8 +136,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>314 171 403 217</position>
-				<barchart active="true" width="128" height="64" />
+				<position>301 171 390 217</position>
+				<barchart active="true" width="153" height="64" />
 			</node>
 			<node id="HabitatAtRiskOfSedimentation">
 				<name>HabitatAtRiskOfSedimentation</name>
@@ -141,6 +146,14 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>492 176 588 211</position>
 				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Seagrass">
+				<name>Seagrass</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1043 336 1104 374</position>
+				<barchart active="true" width="169" height="64" />
 			</node>
 		</genie>
 	</extensions>

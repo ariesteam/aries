@@ -314,7 +314,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#CoastalWetlands -->
 
     <owl:Class rdf:about="#CoastalWetlands">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -338,7 +338,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Coastline -->
 
     <owl:Class rdf:about="#Coastline">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -384,7 +384,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -396,7 +396,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -454,6 +454,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -461,12 +467,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#RootDensity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -524,7 +524,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Farmland -->
 
     <owl:Class rdf:about="#Farmland">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -638,13 +638,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -669,9 +669,33 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HabitatAtRiskAbsent -->
+
+    <owl:Class rdf:about="#HabitatAtRiskAbsent">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HabitatAtRiskOfSedimentation -->
 
     <owl:Class rdf:about="#HabitatAtRiskOfSedimentation">
+        <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HabitatAtRiskPresent -->
+
+    <owl:Class rdf:about="#HabitatAtRiskPresent">
+        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HabitatTypes -->
+
+    <owl:Class rdf:about="#HabitatTypes">
         <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
     </owl:Class>
     
@@ -866,7 +890,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Lakes -->
 
     <owl:Class rdf:about="#Lakes">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -1088,7 +1112,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Mangroves -->
 
     <owl:Class rdf:about="#Mangroves">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -1436,6 +1460,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
                 <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1443,12 +1473,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToMore"/>
                 <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1480,13 +1504,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1574,7 +1598,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Reefs -->
 
     <owl:Class rdf:about="#Reefs">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -1592,7 +1616,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Rivers -->
 
     <owl:Class rdf:about="#Rivers">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -1642,7 +1666,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SalmonSpawningGrounds -->
 
     <owl:Class rdf:about="#SalmonSpawningGrounds">
-        <rdfs:subClassOf rdf:resource="#HabitatAtRiskOfSedimentation"/>
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
     </owl:Class>
     
 
@@ -1669,6 +1693,30 @@
         <rdfs:subClassOf rdf:resource="#SoilErosionProcesses"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Scour can occur along rivers and streams, often due to changes in the river&#39;s flow regime and catchment land cover types (i.e., forest vs. impervious surface cover).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#Seagrass -->
+
+    <owl:Class rdf:about="#Seagrass">
+        <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SeagrassAbsent -->
+
+    <owl:Class rdf:about="#SeagrassAbsent">
+        <rdfs:subClassOf rdf:resource="#Seagrass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SeagrassPresent -->
+
+    <owl:Class rdf:about="#SeagrassPresent">
+        <rdfs:subClassOf rdf:resource="#Seagrass"/>
     </owl:Class>
     
 
@@ -1792,13 +1840,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilStructure"/>
+                <owl:someValuesFrom rdf:resource="#SoilDepthToBedrock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilStructure"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1821,8 +1869,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilDepthToBedrock"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1960,8 +2008,8 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="#Precipitation"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1972,8 +2020,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
+                <owl:onProperty rdf:resource="#matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="#Precipitation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2073,13 +2121,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

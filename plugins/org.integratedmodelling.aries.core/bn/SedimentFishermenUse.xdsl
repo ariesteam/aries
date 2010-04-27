@@ -46,10 +46,10 @@
 			<probabilities>0.01 0.99</probabilities>
 		</cpt>
 		<deterministic id="HabitatAtRiskOfSedimentation">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="HabitatAtRiskPresent" />
+			<state id="HabitatAtRiskAbsent" />
 			<parents>CoastalWetlands SalmonSpawningGrounds</parents>
-			<resultingstates>Yes Yes Yes No</resultingstates>
+			<resultingstates>HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskPresent HabitatAtRiskAbsent</resultingstates>
 		</deterministic>
 		<cpt id="FishermenUse">
 			<state id="HighFishermenUse" />
