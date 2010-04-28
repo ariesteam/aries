@@ -73,7 +73,7 @@
   "Property owners who can afford to pay for the view"
   (bayesian 'aestheticService:ViewUse 
     :import  "aries.core::ViewUse.xdsl"
-    :keep    ('aestheticService:HomeownersEnjoyment)
+    :keep    ('aestheticService:HomeownerViewUse)
     :context (property-value housing)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
   	    'aestheticService:TheoreticalNaturalBeauty
-  	    'aestheticService:HomeownersEnjoyment
+  	    'aestheticService:HomeownerViewUse
       	'aestheticService:TotalVisualBlight
       	'aestheticService:View
   	    'geophysics:Altitude

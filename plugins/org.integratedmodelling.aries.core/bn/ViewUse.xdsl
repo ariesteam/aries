@@ -14,15 +14,15 @@
 			<state id="HousingNotPresent" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
-		<cpt id="HomeownersEnjoyment">
-			<state id="HomeownersEnjoymentPresent" />
-			<state id="HomeownersEnjoymentNotPresent" />
+		<cpt id="HomeownerViewUse">
+			<state id="HomeownerViewUsePresent" />
+			<state id="HomeownerViewUseNotPresent" />
 			<parents>HousingValue PresenceOfHousing</parents>
 			<probabilities>0.8 0.2 0 1 0.8 0.2 0 1 0.6 0.4 0 1 0.4 0.6 0 1 0.25 0.75 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
 			<node id="PresenceOfHousing">
 				<name>PresenceOfHousing</name>
 				<interior color="e5f6f7" />
@@ -39,8 +39,8 @@
 				<position>791 281 891 310</position>
 				<barchart active="true" width="287" height="108" />
 			</node>
-			<node id="HomeownersEnjoyment">
-				<name>HomeownersEnjoyment</name>
+			<node id="HomeownerViewUse">
+				<name>HomeownerViewUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

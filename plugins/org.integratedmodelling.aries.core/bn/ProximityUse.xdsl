@@ -8,27 +8,27 @@
 			<probabilities>0.1 0.3 0.6</probabilities>
 		</cpt>
 		<cpt id="HousingValue">
-			<state id="VeryHigh" />
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="VeryLow" />
+			<state id="VeryHighHousingValue" />
+			<state id="HighHousingValue" />
+			<state id="ModerateHousingValue" />
+			<state id="LowHousingValue" />
+			<state id="VeryLowHousingValue" />
 			<probabilities>0.01 0.09 0.35 0.4 0.15</probabilities>
 		</cpt>
 		<cpt id="PresenceOfHousing">
-			<state id="Yes" />
-			<state id="No" />
+			<state id="HousingPresent" />
+			<state id="HousingNotPresent" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
-		<cpt id="AestheticProximityUse">
-			<state id="Yes" />
-			<state id="No" />
+		<cpt id="HomeownerProximityUse">
+			<state id="HomeownerProximityUsePresent" />
+			<state id="HomeownerProximityUseNotPresent" />
 			<parents>PresenceOfHousing UrbanProximity HousingValue</parents>
 			<probabilities>0.9 0.1 0.9 0.1 0.8 0.2 0.7 0.3 0.6 0.4 0.7 0.3 0.7 0.3 0.6 0.4 0.5 0.5 0.4 0.6 0.5 0.5 0.5 0.5 0.4 0.6 0.3 0.7 0.2 0.8 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3259.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
 			<node id="UrbanProximity">
 				<name>UrbanProximity</name>
 				<interior color="e5f6f7" />
@@ -53,8 +53,8 @@
 				<position>636 180 757 211</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="AestheticProximityUse">
-				<name>AestheticProximityUse</name>
+			<node id="HomeownerProximityUse">
+				<name>HomeownerProximityUse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
