@@ -1619,7 +1619,210 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-	
+
+<!-- NEW WFS2OPAL from 4/27/10, needs to be organized and double checked. -->
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<kbox xmlns:ns0="http://www.integratedmodelling.org/ks/geospace/geospace.owl"
+		ns0:geospace=""
+		xmlns:ns1="http://www.integratedmodelling.org/ks/science/measurement.owl"
+		ns1:measurement=""
+		xmlns:ns2="http://www.integratedmodelling.org/ks/science/observation.owl"
+		ns2:observation="">
+		<measurement:Ranking id="mg_mgfloodplain">
+			<observation:hasObservable>
+				<observation:GenericObservable />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:mgfloodplain</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-34.688</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		<measurement:Classification id="mg_mgfloodplain">
+			<observation:hasObservable>
+				<floodService:Floodplains />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:mgfloodplain</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-34.688</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Measurement id="mg_disttocoast">
+			<observation:hasObservable>
+				<fisheries:DistanceToCoast />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:disttocoast</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-348490.07247449365
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-347328.71373174875
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>2021333.4203605766
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>1242623.5988219227
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Measurement>
+		<measurement:Ranking id="mg_mgdeforestation">
+			<observation:hasObservable>
+				<carbonService:DeforestationRisk />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:mgdeforestation</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-25.465</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>40.272</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>-0.214</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>50.035</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		<measurement:Classification id="mg_mglulc">
+			<observation:hasObservable>
+				<observation:GenericObservable />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>natbd500</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-81.08509300346486
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-6.701190793362912
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>32.43162264220882
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>96.38474213762674
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:29700
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Classification id="mg_paths">
+			<observation:hasObservable>
+				<fisheries:Paths />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:paths</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>42655.480440575746
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>41318.29564322572
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1579160.178312065
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>860975.2647306218
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Classification id="mg_mgrivers">
+			<observation:hasObservable>
+				<soilretentionEcology:Rivers />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-34.687</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Ranking id="global_globalsoiltexture">
+			<observation:hasObservable>
+				<soilretentionEcology:SoilTexture />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:globalsoiltexture
+					</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-55.953</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.042</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.487</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>179.944</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+	</kbox>
 
 	
 </kbox>

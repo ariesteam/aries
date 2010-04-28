@@ -616,6 +616,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#Paths -->
+
+    <owl:Class rdf:about="#Paths">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#PopulationDensity -->
 
     <owl:Class rdf:about="#PopulationDensity">
@@ -734,19 +743,19 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
-            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
-            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
-            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
+            <rdf:Description rdf:about="#HighReefArea"/>
+            <rdf:Description rdf:about="#LowReefArea"/>
+            <rdf:Description rdf:about="#ModerateReefArea"/>
+            <rdf:Description rdf:about="#NoReefArea"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
-            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
-            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
-            <rdf:Description rdf:about="#NoAHHabitat"/>
+            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
+            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
+            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
+            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -770,37 +779,18 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#LargeEstuary"/>
-            <rdf:Description rdf:about="#NoEstuary"/>
-            <rdf:Description rdf:about="#SmallEstuary"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighPopulationDensity"/>
-            <rdf:Description rdf:about="#LowPopulationDensity"/>
-            <rdf:Description rdf:about="#ModeratePopulationDensity"/>
-            <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
-            <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighReefArea"/>
-            <rdf:Description rdf:about="#LowReefArea"/>
-            <rdf:Description rdf:about="#ModerateReefArea"/>
-            <rdf:Description rdf:about="#NoReefArea"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighQualityReef"/>
             <rdf:Description rdf:about="#LowQualityReef"/>
             <rdf:Description rdf:about="#ModerateQualityReef"/>
             <rdf:Description rdf:about="#NoQualityReef"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#LargeEstuary"/>
+            <rdf:Description rdf:about="#NoEstuary"/>
+            <rdf:Description rdf:about="#SmallEstuary"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -817,6 +807,25 @@
             <rdf:Description rdf:about="#HighCoastalProximity"/>
             <rdf:Description rdf:about="#LowCoastalProximity"/>
             <rdf:Description rdf:about="#ModerateCoastalProximity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
+            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
+            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
+            <rdf:Description rdf:about="#NoAHHabitat"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighPopulationDensity"/>
+            <rdf:Description rdf:about="#LowPopulationDensity"/>
+            <rdf:Description rdf:about="#ModeratePopulationDensity"/>
+            <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
+            <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
