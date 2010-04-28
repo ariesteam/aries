@@ -1824,5 +1824,177 @@
 		</measurement:Ranking>
 	</kbox>
 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<kbox xmlns:ns0="http://www.integratedmodelling.org/ks/geospace/geospace.owl"
+		ns0:geospace=""
+		xmlns:ns1="http://www.integratedmodelling.org/ks/science/measurement.owl"
+		ns1:measurement=""
+		xmlns:ns2="http://www.integratedmodelling.org/ks/science/observation.owl"
+		ns2:observation="">
+		<measurement:Measurement id="puget_pugetreservoirs">
+			<observation:hasObservable>
+				<soilretentionEcology:Reservoirs />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetreservoirs
+					</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>45.670997355311954
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-123.932003711378
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>49.01399658496675
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>-120.98400439562957
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4269
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Measurement>
+		<measurement:Classification id="puget_pugetformalprotection">
+			<observation:hasObservable>
+				<aestheticService:FormalProtection />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetformalprotection
+					</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-551303.1220662754
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>615871.2439393924
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>778663.8395426599
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2705138.7912269174
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2926
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Classification id="puget_pugetriverfront">
+			<observation:hasObservable>
+				<aestheticService:RiverFront />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetriverfront
+					</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>45.539</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-124.708</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>49.015</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>-116.916</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+		<measurement:Ranking id="puget_pugetwaterquality">
+			<observation:hasObservable>
+				<aestheticService:WaterQuality />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetwaterquality
+					</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>quality</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>54692.530961369725
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>545336.7573808122
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1380301.6967513857
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2599982.619737681
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2927
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		
+		<measurement:Ranking id="puget_pugetlakefront">
+			<observation:hasObservable>
+				<aestheticService:LakeFront />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetlakefront
+					</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>76129.6295966863
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>550339.3848230975
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1395057.6838687493
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2655014.7856741175
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2927
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		<measurement:Measurement id="puget_pugetstreamgradient">
+			<observation:hasObservable>
+				<soilretentionEcology:StreamGradient />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetstreamgradient
+					</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>365248.72194511886
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>605426.9170494202
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1364757.9515611473
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>1630021.7425694633
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:26910
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Measurement>
+	</kbox>
+
+	
 	
 </kbox>
