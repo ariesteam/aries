@@ -5,6 +5,7 @@ import java.util.HashSet;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IKnowledge;
 import org.integratedmodelling.utils.Pair;
 
 public class ARIESNamespace {
@@ -48,7 +49,7 @@ public class ARIESNamespace {
 	public static final String ACTUAL = "eserv:Actual";
 	public static final String POSSIBLE = "eserv:Possible";
 	public static final String INACCESSIBLE = "eserv:Inaccessible";
-	
+		
 	private static HashSet<IConcept> mainTraits = null;
 	private static HashSet<IConcept> mainServiceTypes = null;
 	

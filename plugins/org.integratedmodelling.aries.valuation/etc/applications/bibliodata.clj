@@ -7,7 +7,7 @@
 	        :title            thinklab-core:Text
 	        :authors          thinklab-core:Text
 	        :abstract         thinklab-core:Text)
-				:sql.use.pooling "false" 
+				:sql.use.pooling "true" 
 				:sql.log.queries "true")
 				
 	  ;; rebuild the db from scratch every time this is run

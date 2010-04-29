@@ -194,9 +194,9 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;; data for emission trading
-(defmodel data-emitters 'carbonService:Baseline 
-	(identification 'carbonService:Baseline 
-		:context (source use-emitters)))
+;(defmodel data-emitters 'carbonService:Baseline 
+;	(identification 'carbonService:Baseline 
+;		:context (source use-emitters)))
 
 ;; Hadley A2 scenario
 (defmodel data-emitters-hadley-a2 'carbonService:EmissionHadleyA2Scenario 

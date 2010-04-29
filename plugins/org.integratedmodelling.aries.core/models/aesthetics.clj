@@ -133,13 +133,15 @@
       	'aestheticService:TotalVisualBlight
       	'aestheticService:View
   	    'geophysics:Altitude
-  	:source-threshold 50,
-   	:sink-threshold   0.3,
-   	:use-threshold    0.1,
-   	:trans-threshold  1.0,
-   	:sink-type        :relative,
-   	:use-type         :relative,
-   	:benefit-type     :non-rival,
-   	:downscaling-factor 3,
-   	:rv-max-states    10, 
-    :context (source homeowners sink altitude)))
+   	:sink-type        :relative
+   	:use-type         :relative
+   	:benefit-type     :non-rival
+   	:downscaling-factor 3
+   	:rv-max-states    10 
+    :context
+         (source homeowners sink altitude
+          (ranking 'eserv:SourceThreshold :value 50)
+          (ranking 'eserv:SinkThreshold :value 0.3)
+          (ranking 'eserv:UseThreshold :value 0.1)
+          (ranking 'eserv:TransitionThreshold :value 1.0))
+))

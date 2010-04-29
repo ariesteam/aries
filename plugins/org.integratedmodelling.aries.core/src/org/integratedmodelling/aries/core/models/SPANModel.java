@@ -3,8 +3,8 @@ package org.integratedmodelling.aries.core.models;
 import java.util.ArrayList;
 
 import org.integratedmodelling.corescience.CoreScience;
-import org.integratedmodelling.corescience.ObservationFactory;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
+import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
@@ -28,6 +28,7 @@ public class SPANModel extends DefaultAbstractModel {
 	private static final String SINK_THRESHOLD_CONCEPT = "eserv:SinkThreshold";
 	private static final String USE_THRESHOLD_CONCEPT = "eserv:UseThreshold";
 	private static final String TRANSITION_THRESHOLD_CONCEPT = "eserv:TransitionThreshold";
+	private static final String DECAY_RATE_CONCEPT = "eserv:DecayRate";
 	
 	IConcept sourceObservableId = null;
 	IConcept sinkObservableId = null;
@@ -46,8 +47,6 @@ public class SPANModel extends DefaultAbstractModel {
 	 * this is the actual way to pass parameters
 	 */
 	ArrayList<Polylist> parameters = new ArrayList<Polylist>();
-	
-	
 	
 	@Override
 	protected void copy(DefaultAbstractModel model) {
@@ -94,61 +93,12 @@ public class SPANModel extends DefaultAbstractModel {
 		ret.copy(this);
 		return ret; 
 	}
-	
-	/**
-	 * Return the specialized type of the general passed parameter, or null if it 
-	 * does not apply to this model.
-	 * 
-	 * @param concept
-	 * @return
-	 */
-	public String  getParameterType(String concept) {
-		
-		/**
-		 * TODO implement
-		 */
-		
-		return concept;
-	}
 
 	@Override
 	public void applyClause(String keyword, Object argument)
 			throws ThinklabException {
-		
-		if (keyword.equals(":source-threshold")) {
-			String c = getParameterType(SOURCE_THRESHOLD_CONCEPT);
-			if (c != null)
-				parameters.add(
-					ObservationFactory.createRanking(c, ((Number)argument).doubleValue()));
-		}
-	
-		if (keyword.equals(":sink-threshold")) {
-			String c = getParameterType(SINK_THRESHOLD_CONCEPT);
-			if (c != null)
-				parameters.add(
-					ObservationFactory.createRanking(SINK_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
-		}
-		
-		if (keyword.equals(":use-threshold")) {
-			String c = getParameterType(USE_THRESHOLD_CONCEPT);
-			if (c != null)
-				parameters.add(
-					ObservationFactory.createRanking(USE_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
-		}
-		
-		if (keyword.equals(":trans-threshold")) {
-			String c = getParameterType(TRANSITION_THRESHOLD_CONCEPT);
-			if (c != null)
-				parameters.add(
-					ObservationFactory.createRanking(TRANSITION_THRESHOLD_CONCEPT, ((Number)argument).doubleValue()));			
-		}
-				
-		// TODO remove the four thresholds when the above work properly.
-		if (keyword.equals(":source-threshold") ||
-			keyword.equals(":sink-threshold") ||
-			keyword.equals(":use-threshold") ||
-			keyword.equals(":trans-threshold") ||
-			keyword.equals(":sink-type") ||
+
+		if (keyword.equals(":sink-type") ||
 			keyword.equals(":use-type") ||
 			keyword.equals(":benefit-type") ||
 			keyword.equals(":downscaling-factor") ||
@@ -184,10 +134,35 @@ public class SPANModel extends DefaultAbstractModel {
 				CoreScience.HAS_OBSERVABLE,
 				Polylist.list(getObservable())));
 		
+		PersistentArrayMap fp = (PersistentArrayMap) PersistentArrayMap.create(flowParams);
+		
+		for (IModel m : dependents) {
+			if (m.getObservable().is(TRANSITION_THRESHOLD_CONCEPT)) {
+				Object st = ((DefaultStatefulAbstractModel)m).getState();
+				fp = (PersistentArrayMap) fp.assoc(
+						Keyword.intern(null, "trans-threshold"), st);
+			} else if (m.getObservable().is(SINK_THRESHOLD_CONCEPT)) {
+				Object st = ((DefaultStatefulAbstractModel)m).getState();
+				fp = (PersistentArrayMap) fp.assoc(
+						Keyword.intern(null, "sink-threshold"), st);
+			} else if (m.getObservable().is(USE_THRESHOLD_CONCEPT)) {
+				Object st = ((DefaultStatefulAbstractModel)m).getState();
+				fp = (PersistentArrayMap) fp.assoc(
+						Keyword.intern(null, "use-threshold"), st);
+			} else if (m.getObservable().is(SOURCE_THRESHOLD_CONCEPT)) {
+				Object st = ((DefaultStatefulAbstractModel)m).getState();
+				fp = (PersistentArrayMap) fp.assoc(
+						Keyword.intern(null, "source-threshold"), st);
+			} else if (m.getObservable().is(DECAY_RATE_CONCEPT)) {
+				Object st = ((DefaultStatefulAbstractModel)m).getState();
+				fp = (PersistentArrayMap) fp.assoc(
+						Keyword.intern(null, "decay-rate"), st);				
+			}
+		}
+		
 		// set flow parameters directly into instance implementation (SPANTransformer) 
 		// using reflection. Non-serializable, but who cares.
-		// TODO/FIXME - these should be dependent obs eventually
-		arr.add(Polylist.list(":flowParams", flowParams));
+		arr.add(Polylist.list(":flowParams",    fp));
 		arr.add(Polylist.list(":sourceConcept", sourceObservable));
 		arr.add(Polylist.list(":useConcept",    useObservable));
 		arr.add(Polylist.list(":sinkConcept",   sinkObservable));
