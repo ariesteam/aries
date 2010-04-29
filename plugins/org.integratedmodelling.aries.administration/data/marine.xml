@@ -20,14 +20,14 @@
 	xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
-
-	
+			
 	<measurement:Ranking id="A_hololepidotus">
 		<observation:hasObservable>
 			<fisheries:ArgyrosomusHololepidotusHabitat />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>marine:A_hololepidotus</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -43,8 +43,8 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-		<measurement:Ranking id="gdcycgdp">
+	
+	<measurement:Ranking id="gdcycgdp">
 		<observation:hasObservable>
 			<policytarget:AssetsAtRiskStorm />
 		</observation:hasObservable>
@@ -113,8 +113,7 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-	
-	
+		
 	<!-- FIXME this is a measurement in degrees^2, jscience may have trouble with it -->
 	<measurement:Ranking id="marine_coralarea">
 		<observation:hasObservable>
@@ -139,7 +138,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-		<measurement:Ranking id="marine_coastbuf">
+	<measurement:Ranking id="marine_coastbuf">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
 		</observation:hasObservable>
@@ -160,7 +159,36 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-		<observation:Categorization id="mg_estuaryarea">
+		<measurement:Measurement id="mg_disttocoast">
+			<observation:hasObservable>
+				<fisheries:DistanceToCoast />
+			</observation:hasObservable>
+			<measurement:unit>km</measurement:unit>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:disttocoast</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-348490.07247449365
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-347328.71373174875
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>2021333.4203605766
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>1242623.5988219227
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+	</measurement:Measurement>
+	
+	<observation:Categorization id="mg_estuaryarea">
 		<observation:hasObservable>
 			<fisheries:EstuaryArea />
 		</observation:hasObservable>
@@ -181,7 +209,82 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-	
+		
+	<measurement:Ranking id="L_argentimaculatus">
+		<observation:hasObservable>
+			<observation:GenericQuantifiable />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_argentimaculatus</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="L_borbonicus">
+		<observation:hasObservable>
+			<observation:GenericQuantifiable />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_borbonicus</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="L_mahensa">
+		<observation:hasObservable>
+			<observation:GenericQuantifiable />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_mahensa</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
+				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+		
 	<measurement:Ranking id="gdcycmrt">
 		<observation:hasObservable>
 			<policytarget:LivesAtRiskStorm />
@@ -205,8 +308,8 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the lenght, not the width -->
+	
+	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the length, not the width -->
 	<measurement:Ranking id="marine_mangroves">
 		<observation:hasObservable>
 			<coastalProtection:MangroveWidth />
@@ -230,7 +333,7 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
+		
 	<!--  FIXME this is actually a measurement in kg/ha.yr -->
 	<measurement:Ranking id="NfertPlusManure">
 		<observation:hasObservable>
@@ -239,6 +342,7 @@
 		<!-- <measurement:unit>kg/(ha·yr)</measurement:unit>  -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:NfertPlusManure</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -254,13 +358,41 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
+	
+	<measurement:Classification id="mg_paths">
+			<observation:hasObservable>
+				<fisheries:Paths />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:paths</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>42655.480440575746
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>41318.29564322572
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1579160.178312065
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>860975.2647306218
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
+	
 	<measurement:Ranking id="lspop2006">
 		<observation:hasObservable>
 			<policytarget:PopulationDensity />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:lspop2006</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -276,13 +408,14 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-		<measurement:Ranking id="poverty_pct_1">
+		
+	<measurement:Ranking id="poverty_pct_1">
 		<observation:hasObservable>
 			<policytarget:PovertyPercentage />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>poverty_pct_1</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -299,7 +432,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-
 	<measurement:Ranking id="marine_seagrass">
 		<observation:hasObservable>
 			<coastalProtection:SeagrassDensity />
@@ -343,6 +475,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	
+
+
 </kbox>

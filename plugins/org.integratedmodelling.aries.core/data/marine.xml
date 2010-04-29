@@ -138,7 +138,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-			<measurement:Ranking id="marine_coastbuf">
+	<measurement:Ranking id="marine_coastbuf">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
 		</observation:hasObservable>
@@ -158,6 +158,35 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+		<measurement:Measurement id="mg_disttocoast">
+			<observation:hasObservable>
+				<fisheries:DistanceToCoast />
+			</observation:hasObservable>
+			<measurement:unit>km</measurement:unit>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:disttocoast</geospace:hasCoverageId>
+					<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-348490.07247449365
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-347328.71373174875
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>2021333.4203605766
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>1242623.5988219227
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+	</measurement:Measurement>
 	
 	<observation:Categorization id="mg_estuaryarea">
 		<observation:hasObservable>
@@ -329,6 +358,33 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+	<measurement:Classification id="mg_paths">
+			<observation:hasObservable>
+				<fisheries:Paths />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mg:paths</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>42655.480440575746
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>41318.29564322572
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1579160.178312065
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>860975.2647306218
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Classification>
 	
 	<measurement:Ranking id="lspop2006">
 		<observation:hasObservable>
