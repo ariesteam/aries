@@ -225,14 +225,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#OpenSpacePotentialValue"/>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:allValuesFrom rdf:resource="#AestheticEnjoyment"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#OpenSpacePotentialValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -327,9 +327,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsNotPresent -->
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#ClearcutsAbsent -->
 
-    <owl:Class rdf:about="#ClearcutsNotPresent">
+    <owl:Class rdf:about="#ClearcutsAbsent">
         <rdfs:subClassOf rdf:resource="#Clearcuts"/>
         <owl:disjointWith rdf:resource="#ClearcutsPresent"/>
     </owl:Class>
@@ -661,9 +661,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HousingNotPresent -->
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#HousingAbsent -->
 
-    <owl:Class rdf:about="#HousingNotPresent">
+    <owl:Class rdf:about="#HousingAbsent">
         <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
     </owl:Class>
     
@@ -715,6 +715,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LakeAbsent -->
+
+    <owl:Class rdf:about="#LakeAbsent">
+        <rdfs:subClassOf rdf:resource="#Lake"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LakeFront -->
 
     <owl:Class rdf:about="#LakeFront">
@@ -735,14 +743,6 @@
 
     <owl:Class rdf:about="#LakeFrontPresent">
         <rdfs:subClassOf rdf:resource="#LakeFront"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#LakeNotPresent -->
-
-    <owl:Class rdf:about="#LakeNotPresent">
-        <rdfs:subClassOf rdf:resource="#Lake"/>
     </owl:Class>
     
 
@@ -1038,9 +1038,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#OceanNotPresent -->
+    <!-- http://www.integratedmodelling.org/ks/es/aestheticService.owl#OceanAbsent -->
 
-    <owl:Class rdf:about="#OceanNotPresent">
+    <owl:Class rdf:about="#OceanAbsent">
         <rdfs:subClassOf rdf:resource="#Ocean"/>
     </owl:Class>
     
@@ -1416,14 +1416,8 @@
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="#AestheticEnjoymentProvision"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1434,8 +1428,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="#AestheticEnjoymentProvision"/>
+                <owl:onProperty rdf:resource="#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="#HomeownersWithViews"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="#EnjoymentOfNaturalAmenities"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1737,9 +1737,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#Lake"/>
-            <rdf:Description rdf:about="#NoWater"/>
-            <rdf:Description rdf:about="#Ocean"/>
+            <rdf:Description rdf:about="#HighBlight"/>
+            <rdf:Description rdf:about="#LowBlight"/>
+            <rdf:Description rdf:about="#ModerateBlight"/>
+            <rdf:Description rdf:about="#NoBlight"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1754,18 +1755,17 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBlight"/>
-            <rdf:Description rdf:about="#LowBlight"/>
-            <rdf:Description rdf:about="#ModerateBlight"/>
-            <rdf:Description rdf:about="#NoBlight"/>
+            <rdf:Description rdf:about="#FullObstruction"/>
+            <rdf:Description rdf:about="#NoObstruction"/>
+            <rdf:Description rdf:about="#PartialObstruction"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#FullObstruction"/>
-            <rdf:Description rdf:about="#NoObstruction"/>
-            <rdf:Description rdf:about="#PartialObstruction"/>
+            <rdf:Description rdf:about="#Lake"/>
+            <rdf:Description rdf:about="#NoWater"/>
+            <rdf:Description rdf:about="#Ocean"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>

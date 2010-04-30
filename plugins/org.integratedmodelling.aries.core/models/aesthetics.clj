@@ -10,13 +10,13 @@
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (ranking 'geofeatures:Lake)
-		  0          'aestheticService:LakeNotPresent
+		  0          'aestheticService:LakeAbsent
 		  :otherwise 'aestheticService:LakePresent))
 
 (defmodel ocean 'aestheticService:Ocean
   "Just being there."
   (classification (ranking 'geofeatures:Ocean)
-		  0          'aestheticService:OceanNotPresent
+		  0          'aestheticService:OceanAbsent
 		  :otherwise 'aestheticService:OceanPresent))
 
 (defmodel mountain 'aestheticService:Mountain
@@ -53,10 +53,10 @@
   ;; specific to Puget region, will not be used if data unavailable
   (classification (categorization 'puget:ParcelUseCategoryKing)
 		  #{"R" "K"}  'aestheticService:HousingPresent
-		  :otherwise  'aestheticService:HousingNotPresent)
+		  :otherwise  'aestheticService:HousingAbsent)
   (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
 		"RESIDENTIAL" 'aestheticService:HousingPresent
-		:otherwise    'aestheticService:HousingNotPresent))
+		:otherwise    'aestheticService:HousingAbsent))
 	
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -83,7 +83,7 @@
 ;; TODO errors
 (defmodel clearcut 'aestheticService:Clearcuts 
   (classification (ranking 'geofeatures:Clearcut)
-		  0          'aestheticService:ClearcutsNotPresent
+		  0          'aestheticService:ClearcutsAbsent
 		  :otherwise 'aestheticService:ClearcutsPresent))
 
 ; use NLCD layers to extract transportation infrastructure

@@ -11,12 +11,12 @@
 		</cpt>
 		<cpt id="PresenceOfHousing">
 			<state id="HousingPresent" />
-			<state id="HousingNotPresent" />
+			<state id="HousingAbsent" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="HomeownerViewUse">
 			<state id="HomeownerViewUsePresent" />
-			<state id="HomeownerViewUseNotPresent" />
+			<state id="HomeownerViewUseAbsent" />
 			<parents>HousingValue PresenceOfHousing</parents>
 			<probabilities>0.8 0.2 0 1 0.8 0.2 0 1 0.6 0.4 0 1 0.4 0.6 0 1 0.25 0.75 0 1</probabilities>
 		</cpt>
@@ -28,7 +28,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>342 258 478 288</position>
+				<position>345 258 481 288</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="HousingValue">
