@@ -51,11 +51,12 @@
 		</observation:hasObservationExtent>
 	</measurement:Classification>
 
-	<!-- Puget population density -->
+	<!-- Puget population density: measured in people per square kilometer-->
 	<measurement:Measurement id="puget_pugetpopulationdensity">
 		<observation:hasObservable>
 			<aestheticService:UrbanProximity />
 		</observation:hasObservable>
+		<measurement:unit>people/km2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
