@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Mountain">
+			<state id="LargeMountain" />
+			<state id="SmallMountain" />
+			<state id="NoMountain" />
+			<probabilities>0.0056 0.2964 0.698</probabilities>
+		</cpt>
+		<cpt id="OpenSpace">
+			<state id="AgriculturalLand" />
+			<state id="ForestedLand" />
+			<state id="OtherOpenLand" />
+			<state id="NotOpenLand" />
+			<probabilities>0.105 0.728 0.103 0.064</probabilities>
+		</cpt>
+		<cpt id="Lake">
+			<state id="LakePresent" />
+			<state id="LakeAbsent" />
+			<probabilities>0.04 0.96</probabilities>
+		</cpt>
+		<cpt id="RiverStream">
+			<state id="RiverStreamPresent" />
+			<state id="RiverStreamAbsent" />
+			<probabilities>0.04 0.96</probabilities>
+		</cpt>
+		<cpt id="WaterView">
+			<state id="HighQualityWaterView" />
+			<state id="LowQualityWaterView" />
+			<state id="NoWaterView" />
+			<parents>Lake RiverStream</parents>
+			<probabilities>1 0 0 0.8 0.2 0 0.6 0.4 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="TheoreticalNaturalBeauty">
+			<state id="HighNaturalBeauty" />
+			<state id="ModerateNaturalBeauty" />
+			<state id="LowNaturalBeauty" />
+			<state id="NoNaturalBeauty" />
+			<parents>OpenSpace Mountain WaterView</parents>
+			<probabilities>0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.3 0.5 0.2 0 0.5 0.4 0.1 0 0.4 0.3 0.3 0 0.2 0.5 0.3 0 0.5 0.3 0.2 0 0.76 0.14 0.08 0.02 0 0.3 0.5 0.2 1 0 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.6 0.4 0 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0.7 0.2 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.6 0.3 0.1 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.1 0.2 0.7 0 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.4 0.6 0 0 0.6 0.4 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 1 0 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+			<node id="Mountain">
+				<name>Mountain</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>631 284 760 314</position>
+				<barchart active="true" width="217" height="76" />
+			</node>
+			<node id="TheoreticalNaturalBeauty">
+				<name>TheoreticalNaturalBeauty</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>272 98 384 128</position>
+				<barchart active="true" width="128" height="95" />
+			</node>
+			<node id="OpenSpace">
+				<name>Open Space</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>102 298 225 332</position>
+				<barchart active="true" width="207" height="90" />
+			</node>
+			<node id="Lake">
+				<name>Lake</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>581 498 623 524</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="WaterView">
+				<name>WaterView</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>408 317 454 345</position>
+				<barchart active="true" width="270" height="82" />
+			</node>
+			<node id="RiverStream">
+				<name>RiverStream</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>183 499 254 543</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
