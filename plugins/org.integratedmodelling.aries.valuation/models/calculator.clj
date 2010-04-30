@@ -4,8 +4,8 @@
   (:refer aries.valuation :only (es-calculator)))
   
 (defmodel land-use 'esclass:HistoricalESLandcover
-	"Just a reclass of the NLCD land use layer. Not really that good, but given what we use it for,
-	 who cares."
+	"Just a reclass of common land use typologies. Not really that good, but given what we use it for,
+	 who cares. Should work across all the US and Europe if the data are available."
 	(classification (ranking 'nlcd:NLCDNumeric)
 		#{81 82}	                       'esclass:AgriculturePasture
 		#{41 42 43}                      'esclass:Forest
@@ -16,7 +16,17 @@
 		21	                             'esclass:Coastal
 		31	                             'esclass:Rock
 		#{12 73 74}	                     'esclass:Desert
-		#{51 52}	                       'esclass:Tundra))
+		#{51 52}	                       'esclass:Tundra)
+	(classification (ranking 'corine:CORINENumeric)
+		[1 9 :inclusive]	               'esclass:Urban
+		[12 22 :inclusive]	             'esclass:AgriculturePasture
+		#{23 24 25}                      'esclass:Forest
+		#{2}	                           'esclass:GrasslandsShrublands
+		#{40 41}	                       'esclass:LakesRiversPondsReservoirs
+		[35 39 :inclusive]               'esclass:Wetlands
+		42	                             'esclass:Coastal
+		31	                             'esclass:Rock
+		#{30 31 32 33 34}	               'esclass:Tundra))
 		
 (defmodel esvalue 'esvaluation:HistoricESValue 
 	"The stupid ES value calculator, Costanza/DeGroot/Wilson-style"

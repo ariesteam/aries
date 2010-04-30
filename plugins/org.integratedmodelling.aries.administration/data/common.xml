@@ -9,6 +9,8 @@
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
 	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
+	xmlns:soilretentionEcology="http://www.integratedmodelling.org/ks/es/services/soilRetentionEcology.owl#"
+	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
@@ -45,8 +47,9 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement> -->
+	</measurement:Measurement>
 	
+    
 	<measurement:Measurement id="Altitude">
 		<observation:hasObservable>
 			<geophysics:Altitude />
@@ -70,7 +73,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>		
+	</measurement:Measurement>		 -->
 	
 	<!-- TODO this should be an economic value measurement with date and currency, not a 
 	     dumb ranking -->
@@ -160,8 +163,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>8634</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>10362</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>45.017870620002014</geospace:hasLatLowerBound>
@@ -185,8 +186,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>13988</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>14016</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-377992.25</geospace:hasLatLowerBound>
@@ -212,8 +211,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -239,8 +236,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -343,8 +338,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>11423</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>17426</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-25.912917</geospace:hasLatLowerBound>
@@ -442,8 +435,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>9466</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>7992</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>45.85076076530745</geospace:hasLatLowerBound>
@@ -468,8 +459,6 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>8813</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>8632</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-34.694244333148134</geospace:hasLatLowerBound>
@@ -481,33 +470,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-
-	<!-- floodplains in Chehalis watershed from shape coverage, 
-		seen as a presence/absence ranking -->
-	<measurement:Ranking id="chehalis_floodplain">
-	
-		<observation:hasObservable>
-			<floodService:Floodplains />
-		</observation:hasObservable>
-
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>45.85062453730272</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.75110953315713</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>48.99989805456198</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Classification id="mg_mgfloodplain">
+	<measurement:Ranking id="mg_mgfloodplain">
 			<observation:hasObservable>
 				<floodService:Floodplains />
 			</observation:hasObservable>
@@ -528,64 +491,8 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Classification>
-	
-	<measurement:Ranking id="hydrosheds">
-		<observation:hasObservable>
-			<geophysics:FlowDirection />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>-32768</geospace:hasNodataValue>
-				<geospace:hasCoverageId>global:hydrosheds</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>11998</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>11998</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>40.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-125.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-115.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-<!-- Ferd has previously used "conservation:ProtectedStatus" to define protected land; may be inappropriate 
-to use multiple concepts for the same thing, but I will for now since I can't find the "conservation" 
-ontology -->
-	
-	<measurement:Classification id="puget_pugetformalprotection">
-			<observation:hasObservable>
-				<aestheticService:FormalProtection />
-			</observation:hasObservable>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetformalprotection
-					</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-551303.1220662754
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>615871.2439393924
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>778663.8395426599
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>2705138.7912269174
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:2926
-					</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:Classification>
-	
+		</measurement:Ranking>
+		
 	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
 		carbon models) when I figure out how to express that. -->
 	<measurement:Ranking id="greenhouse_gas_emissions">
@@ -699,8 +606,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
@@ -724,8 +629,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>40316</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>15733</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-56.4527115561111</geospace:hasLatLowerBound>
@@ -859,8 +762,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-59.166</geospace:hasLatLowerBound>
@@ -885,8 +786,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
@@ -990,8 +889,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>9953</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>9559</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-41.5</geospace:hasLatLowerBound>
@@ -1040,8 +937,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-89.99999999999994</geospace:hasLatLowerBound>
@@ -1096,8 +991,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>792</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>571</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>46.1378103</geospace:hasLatLowerBound>
@@ -1132,6 +1025,44 @@ ontology -->
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
+	<!-- Ferd has previously used "conservation:ProtectedStatus" to define protected land; may be inappropriate 
+	to use multiple concepts for the same thing, but I will for now since I can't find the "conservation" 
+	ontology
+	
+	Note from Ferd: Ctrl-Shift-R in Eclipse will find anything! I reverted to conservation:ProtectedStatus so
+	it's not specific of aesthetics (we can reclass in the model). We should ensure that this is not the same info
+	in the WDPA databases, of which I only added one but it's easy to add the others. Also UNEP-WCMC can give us
+	KBA data.
+	
+	-->
+	<measurement:Ranking id="puget_pugetformalprotection">
+			<observation:hasObservable>
+				<conservation:ProtectedStatus />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+					</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetformalprotection
+					</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>-551303.1220662754
+					</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>615871.2439393924
+					</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>778663.8395426599
+					</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2705138.7912269174
+					</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2926
+					</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
 	
 	<!-- railways in Chehalis watershed from shape coverage, seen as a presence/absence ranking -->
 	<measurement:Ranking id="puget_railways">
@@ -1171,8 +1102,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -1276,8 +1205,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>275</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-55.5</geospace:hasLatLowerBound>
@@ -1301,8 +1228,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>55235</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>57142</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>4968598.457353599</geospace:hasLatLowerBound>
@@ -1328,8 +1253,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -1379,8 +1302,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>4318</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>1684</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-56.49999999999994</geospace:hasLatLowerBound>
@@ -1429,8 +1350,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -1456,8 +1375,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -1481,8 +1398,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>29719</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>54068</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>7135327.75</geospace:hasLatLowerBound>
@@ -1531,8 +1446,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
@@ -1707,8 +1620,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>42542</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>16543</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-60.001944101171546</geospace:hasLatLowerBound>
@@ -1735,8 +1646,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>16577</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>16616</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-202195.3</geospace:hasLatLowerBound>
@@ -1763,8 +1672,6 @@ ontology -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
 				<geospace:hasXRangeMax>40319</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>20159</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>-90.00000000000003</geospace:hasLatLowerBound>
@@ -1886,7 +1793,7 @@ ontology -->
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 	
-<!-- Need to get the correct ontologic concept for LULC from Ferd since this is not NLCD -->
+	<!-- Need to get the correct ontologic concept for LULC from Ferd since this is not NLCD -->
 
 		<measurement:Classification id="mg_mglulc">
 			<observation:hasObservable>
@@ -1894,24 +1801,18 @@ ontology -->
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>natbd500</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-81.08509300346486
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-6.701190793362912
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>32.43162264220882
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>96.38474213762674
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:29700
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>-81.08509300346486</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-6.701190793362912</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>32.43162264220882</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>96.38474213762674</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Classification>
