@@ -13,6 +13,7 @@
 	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
+	xmlns:mglulc="http://www.integratedmodelling.org/ks/lulc/mglulc.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
 	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
@@ -594,9 +595,13 @@
 	
 <!-- HSG was slow to rasterize as a vector file (above) so I inserted the raster layer below.  It seems like this should read in the clojure models, but let's make sure. -->
 	
-		<measurement:Ranking id="HSG">
+	<!-- TODO insert this instead of the above once the mapping is understood - the
+	above is a categorization to A,B,C,D; this one is a raster with integers - how to
+	translate? When understood, models need to be changed to reflect the mapping AND
+	we should discuss using the global file as well. -->
+	<!--  <measurement:Ranking id="HSG">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<floodService:HydrologicSoilsGroup />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -615,7 +620,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> 
 	
 	<measurement:Ranking id="hsg">
 		<observation:hasObservable>
@@ -638,7 +643,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
 <!-- lakes in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking -->
@@ -1064,7 +1069,10 @@
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
 	
-	<!-- railways in Chehalis watershed from shape coverage, seen as a presence/absence ranking -->
+	<!-- railways in Chehalis watershed from shape coverage, seen as a presence/absence ranking 
+	
+	TODO the railway coverage doesn't seem to be anywhere
+	
 	<measurement:Ranking id="puget_railways">
 	
 		<observation:hasObservable>
@@ -1086,7 +1094,7 @@
 				<geospace:hasLonUpperBound>2512613.25</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
 <!--  For use in USLE/RUSLE -->
 
@@ -1113,37 +1121,34 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Measurement id="puget_pugetreservoirs">
+	<!--  fv TODO: turned into a presence-absence ranking temporarily. What's in
+		the sto_differ attribute? Most shapes have a 0 so it can't be an area. and
+		acre-feet is not a unit anyway. Brian? Ken?
+	 -->
+	<measurement:Ranking id="puget_pugetreservoirs">
 			<observation:hasObservable>
 				<soilretentionEcology:Reservoirs />
 			</observation:hasObservable>
-			<measurement:unit>acre-feet</measurement:unit>
+			<!-- <measurement:unit>acre-feet</measurement:unit>  -->
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetreservoirs
-					</geospace:hasCoverageId>
-					<geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetreservoirs</geospace:hasCoverageId>
+					<!--  <geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>  -->
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>45.670997355311954
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-123.932003711378
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>49.01399658496675
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>-120.98400439562957
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4269
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>45.670997355311954</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-123.932003711378</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>49.01399658496675</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>-120.98400439562957</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Ranking>
 
-	<measurement:Classification id="puget_pugetriverfront">
+	<measurement:Ranking id="puget_pugetriverfront">
 			<observation:hasObservable>
 				<aestheticService:RiverFront />
 			</observation:hasObservable>
@@ -1165,9 +1170,9 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Classification>
+		</measurement:Ranking>
 
-	<measurement:Classification id="mg_mgrivers">
+	<measurement:Ranking id="mg_mgrivers">
 			<observation:hasObservable>
 				<soilretentionEcology:Rivers />
 			</observation:hasObservable>
@@ -1188,15 +1193,15 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Classification>
+		</measurement:Ranking>
 
 <!--Note that these data are yearly while input data (snowmelt/precip) are monthly.  A poor way to resolve this would be to divide the values below by 12.  A monthly runoff dataset would be far preferable.  -->
 
-	<measurement:Ranking id="avgannrunoff">
+	<measurement:Measurement id="avgannrunoff">
 		<observation:hasObservable>
 			<soilretentionEcology:Runoff />
 		</observation:hasObservable>
-		<measurement:unit>mm/yr</measurement:unit>
+		<measurement:unit>mm/year</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1214,7 +1219,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<measurement:Ranking id="slpstab83_Projec">
 		<observation:hasObservable>
@@ -1363,7 +1368,7 @@
 	
 <!-- For use in USLE/RUSLE -->
 	
-		<measurement:Ranking id="annual_loss1980">
+	<measurement:Ranking id="annual_loss1980">
 		<observation:hasObservable>
 			<soilretentionEcology:SoilLoss />
 		</observation:hasObservable>
@@ -1411,6 +1416,9 @@
 	
 <!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	
+	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
+		observable instance. Using the same observable will just pick one of the two
+		SoilPh measurements in a model without a way to discriminate. -->
 	<measurement:Ranking id="global_soil_ph">
 		<observation:hasObservable>
 			<habitat:SoilPh />
@@ -1434,6 +1442,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>	
 	
+	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
+		observable instance. Using the same observable will just pick one of the two
+		SoilPh measurements in a model without a way to discriminate. -->
 	<measurement:Ranking id="soil_ph1">
 		<observation:hasObservable>
 			<habitat:SoilPh />
@@ -1457,7 +1468,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="global_globalsoiltexture">
+	<observation:Categorization id="global_globalsoiltexture">
 			<observation:hasObservable>
 				<soilretentionEcology:SoilTexture />
 			</observation:hasObservable>
@@ -1480,9 +1491,9 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</observation:Categorization>
 	
-	<measurement:Measurement id="puget_pugetstreamgradient">
+	<measurement:Ranking id="puget_pugetstreamgradient">
 			<observation:hasObservable>
 				<soilretentionEcology:StreamGradient />
 			</observation:hasObservable>
@@ -1510,7 +1521,7 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Ranking>
 	
 	<!-- Numeric ranking of successional stage -->
 	<measurement:Ranking id="puget_successional_stage">
@@ -1589,7 +1600,7 @@
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>SumHiWintLowHadleyB2</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:SumHiWintLowHadleyB2</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1607,7 +1618,7 @@
 
 <!-- Units in kg C/m2; multiply by 10 to get tonnes C/ha, then divide by 1000 to get correct pixel values.  Values over 30,000 are null values -->
 
-<measurement:Ranking id="npp_modis1km">
+	<measurement:Ranking id="npp_modis1km">
 		<observation:hasObservable>
 			<carbonService:VegetationAndSoilCarbonSequestration />
 		</observation:hasObservable>
@@ -1659,7 +1670,7 @@
 	
 <!-- Global vegetation carbon storage layer, below, is in tonnes C/ha, and does NOT need to be divided by 2, like the US biomass data do -->
 	
-		<measurement:Ranking id="c_1km_recl">
+	<measurement:Ranking id="c_1km_recl">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
@@ -1793,11 +1804,9 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 	
-	<!-- Need to get the correct ontologic concept for LULC from Ferd since this is not NLCD -->
-
-		<measurement:Classification id="mg_mglulc">
+	<measurement:Ranking id="mg_mglulc">
 			<observation:hasObservable>
-				<observation:GenericObservable />
+				<mglulc:MGLULCNumeric />
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
@@ -1815,6 +1824,6 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Classification>
+		</measurement:Ranking>
 		
 </kbox>
