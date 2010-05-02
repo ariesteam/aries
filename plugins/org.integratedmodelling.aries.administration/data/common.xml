@@ -520,6 +520,55 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!--  Mean monthly temperature -->
+	<measurement:Ranking id="tmp_jan">
+		<observation:hasObservable>
+			<geophysics:GroundSurfaceTemperature />
+		</observation:hasObservable>
+		<measurement:unit>° C</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.166</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.618</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.052</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="tmp_dec">
+		<observation:hasObservable>
+			<geophysics:GroundSurfaceTemperature />
+		</observation:hasObservable>
+		<measurement:unit>° C</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
 	<measurement:Ranking id="puget_hardwood_softwood_ratio">
 		<observation:hasObservable>
 			<habitat:HardwoodSoftwoodRatio />
@@ -753,56 +802,6 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-<!--  Mean monthly temperature -->
-	<measurement:Ranking id="tmp_jan">
-		<observation:hasObservable>
-			<floodService:MonthlyTemperature />
-		</observation:hasObservable>
-		<measurement:unit>° C</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-59.166</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.618</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.052</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<measurement:Ranking id="tmp_dec">
-		<observation:hasObservable>
-			<floodService:MonthlyTemperature />
-		</observation:hasObservable>
-		<measurement:unit>° C</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
 
 <!-- NLCD categories for Puget region -->
 	<measurement:Ranking id="puget_nlcd">
@@ -1274,7 +1273,7 @@
 	<observation:Categorization id="puget_rain_on_snow">
 	
 		<observation:hasObservable>
-			<floodService:SnowPresence />
+			<puget:SnowPrecipitationCategory />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
