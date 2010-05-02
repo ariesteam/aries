@@ -45,18 +45,19 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!-- Puget population density: measured in people per square kilometer-->
-	<measurement:Ranking id="puget_pugetpopulationdensity">
+	<!-- Puget population density: measured in people per square kilometer
+	FIXME made it a measurement of unitless/km2, should become a count when 
+	implemented.
+	-->
+	<measurement:Measurement id="puget_pugetpopulationdensity">
 		<observation:hasObservable>
 			<policytarget:PopulationDensity />
 		</observation:hasObservable>
-		<measurement:unit>people/km2</measurement:unit>
+		<measurement:unit>/km^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetpopulationdensity
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetpopulationdensity</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -69,7 +70,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 	<!-- Puget parks -->
 	<measurement:Ranking id="puget_pugetparks">
@@ -151,31 +152,25 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
 	<measurement:Ranking id="puget_meandaysprecipjan">
 		<observation:hasObservable>
 			<floodService:MeanDaysPrecipitationPerMonth />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:meandaysprecipjan
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:meandaysprecipjan</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>24.46261554638897
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.80199999999999
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.42511478755149
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.91499999999999
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4609
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>24.46261554638897</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.80199999999999</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.42511478755149</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.91499999999999</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
