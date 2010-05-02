@@ -209,33 +209,10 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-		
-	<measurement:Ranking id="L_argentimaculatus">
-		<observation:hasObservable>
-			<observation:GenericQuantifiable />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>marine:L_argentimaculatus</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
 
 	<measurement:Ranking id="L_borbonicus">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<fisheries:LethrinusBorbonicusHabitat />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -258,7 +235,7 @@
 
 	<measurement:Ranking id="L_mahensa">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<fisheries:LethrinusMahsenaHabitat />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -298,6 +275,29 @@
 				<geospace:hasLonLowerBound>-179.998</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>85.016</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>179.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+		<measurement:Ranking id="L_argentimaculatus">
+		<observation:hasObservable>
+			<fisheries:LutjanusArgentimaculatusHabitat />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_argentimaculatus</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
@@ -353,32 +353,26 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Classification id="mg_paths">
+	<measurement:Ranking id="mg_paths">
 			<observation:hasObservable>
 				<fisheries:Paths />
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>mg:paths</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>42655.480440575746
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>41318.29564322572
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1579160.178312065
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>860975.2647306218
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:96618
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>42655.480440575746</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>41318.29564322572</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1579160.178312065</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>860975.2647306218</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:96618</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Classification>
+		</measurement:Ranking>
 	
 	<measurement:Ranking id="lspop2006">
 		<observation:hasObservable>

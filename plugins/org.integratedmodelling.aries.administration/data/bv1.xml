@@ -10,6 +10,7 @@
 	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
 	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
 	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
+	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
 	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
 	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
@@ -17,44 +18,37 @@
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
 	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
+	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
-	<!-- INSERT NEW ANNOTATIONS HERE -->
-
 	<!-- Puget beaches -->
-	<measurement:Classification id="puget_pugetbeaches">
+	<measurement:Ranking id="puget_pugetbeaches">
 		<observation:hasObservable>
 			<aestheticService:Beach />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:pugetbeaches</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>341432.39480104897
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>602542.4124029671
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1366881.9205084355
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1233292.2512319256
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>341432.39480104897</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>602542.4124029671</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1366881.9205084355</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1233292.2512319256</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Classification>
+	</measurement:Ranking>
 
 	<!-- Puget population density: measured in people per square kilometer-->
-	<measurement:Measurement id="puget_pugetpopulationdensity">
+	<measurement:Ranking id="puget_pugetpopulationdensity">
 		<observation:hasObservable>
-			<aestheticService:UrbanProximity />
+			<policytarget:PopulationDensity />
 		</observation:hasObservable>
 		<measurement:unit>people/km2</measurement:unit>
 		<observation:hasDataSource>
@@ -68,22 +62,17 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>54007.72199547973
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>508412.22498618934
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1385120.9910318155
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2612573.0955876815
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>54007.72199547973</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>508412.22498618934</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1385120.9910318155</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2612573.0955876815</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Ranking>
 
 	<!-- Puget parks -->
-	<measurement:Classification id="puget_pugetparks">
+	<measurement:Ranking id="puget_pugetparks">
 		<observation:hasObservable>
 			<aestheticService:Park />
 		</observation:hasObservable>
@@ -108,10 +97,10 @@
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Classification>
+	</measurement:Ranking>
 
 	<!-- Potential Crime -->
-	<measurement:Classification id="puget_pugetcities">
+	<measurement:Ranking id="puget_pugetcities">
 		<observation:hasObservable>
 			<aestheticService:CrimePotential />
 		</observation:hasObservable>
@@ -125,19 +114,14 @@
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>64837.072613952645
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>616557.6098079457
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1370631.5128883347
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2576704.1850025496
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>64837.072613952645</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>616557.6098079457</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1370631.5128883347</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2576704.1850025496</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Classification>
+	</measurement:Ranking>
 
 	<!-- mean days of precipitation -->
 	<measurement:Ranking id="puget_meandaysprecipdec">
