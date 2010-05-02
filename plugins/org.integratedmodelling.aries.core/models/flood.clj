@@ -30,8 +30,9 @@
 		[12 24] 	'floodService:HighPrecipitation
 		[24 :>] 	'floodService:VeryHighPrecipitation))
 		
+
 ;; ----------------------------------------------------------------------------------------------
-;; source models
+;; ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel land-use 'floodService:LandUseLandCover
@@ -59,15 +60,6 @@
 			#{"LL" "HL"} 'floodService:LowlandAndHighland
 			#{"RD" "SD"} 'floodService:RainDominatedAndSnowDominated
 			"RS"         'floodService:PeakRainOnSnow))
-
-;; Flood source probability (runoff levels), SCS curve number method
-;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
-;; TODO it's deterministic, remove the BN and program this one in code
-(defmodel source-cn 'floodService:FloodSourceCurveNumberMethod
-	  (bayesian 'floodService:FloodSourceCurveNumberMethod 
-	  	:import   "aries.core::FloodSourceValueCurveNumber.xdsl"
-	  	:keep     ('floodService:Runoff)
-	 	 	:context  (land-use soil-group precipitation)))
 	 	 	
 (defmodel flood-source-value 'floodService:FloodSourceValue
 	(classification 'floodService:FloodSourceValue
@@ -83,6 +75,29 @@
 	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
 	 	 	:context  (precipitation monthly-temperature snow-presence)
 	 	 	:observed (flood-source-value)))
+
+;; ----------------------------------------------------------------------------------------------
+;; CN source model
+;; ----------------------------------------------------------------------------------------------
+
+;; Flood source probability (runoff levels), SCS curve number method
+;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
+(defmodel source-cn 'floodService:FloodSource
+	  (measurement 'floodService:Runoff "in" 
+	 	 	:context  (land-use :as landuse 
+                 soil-group :as soilgroup
+                 (ranking 'habitat:PercentImperviousness) :as imperv
+                 precipitation :as precipitation)
+      :state #(let [
+                    ctable 
+                       {(tl/conc 'floodService:Agriculture) [64 75 82 85],
+                        (tl/conc 'floodService:Forest) [64 75 82 85],
+                        (tl/conc 'floodService:GrassPasture) [64 75 82 85],
+                        (tl/conc 'floodService:DevelopedOpenSpace) [64 75 82 85],
+                        (tl/conc 'floodService:Agriculture) [64 75 82 85]}
+                       ]
+                )
+))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model

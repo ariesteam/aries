@@ -525,11 +525,12 @@
 		<observation:hasObservable>
 			<geophysics:GroundSurfaceTemperature />
 		</observation:hasObservable>
-		<measurement:unit>° C</measurement:unit>
+		<measurement:unit>C</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -549,11 +550,12 @@
 		<observation:hasObservable>
 			<geophysics:GroundSurfaceTemperature />
 		</observation:hasObservable>
-		<measurement:unit>° C</measurement:unit>
+		<measurement:unit>C</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -832,7 +834,9 @@
 		 seen as a presence/absence ranking. This one comes from a complicated attribute so
 		 we remap the value directly in the observation. -->
 	<measurement:RankingSetRemapper
-		measurement:hasDefaultValue="0" measurement:hasMapping="1:1" id="puget_ocean">
+		measurement:hasDefaultValue="0" 
+		measurement:hasMapping="1:1" 
+		id="puget_ocean">
 	
 		<observation:hasObservable>
 			<geofeatures:Ocean />
