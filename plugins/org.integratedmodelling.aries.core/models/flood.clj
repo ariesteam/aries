@@ -251,7 +251,7 @@
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandNotPresent
+		:otherwise 'floodService:FarmlandAbsent
 ;    :agent     "aries/flood/farm"
     :editable  true))
 

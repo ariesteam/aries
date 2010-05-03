@@ -47,33 +47,55 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel housing 'aestheticService:PresenceOfHousing
-  "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-		  #{"R" "K"}  'aestheticService:HousingPresent
-		  :otherwise  'aestheticService:HousingAbsent)
-  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-		"RESIDENTIAL" 'aestheticService:HousingPresent
-		:otherwise    'aestheticService:HousingAbsent))
-	
-(defmodel property-value 'aestheticService:HousingValue
-  ;; TODO we need this to become an actual valuation with currency and date, so we can 
-  ;; turn any values into these dollars
-  (classification (ranking  'economics:AppraisedPropertyValue)
-		  [:< 100000]      'aestheticService:VeryLowHousingValue
-		  [100000 200000]  'aestheticService:LowHousingValue
-		  [200000 400000]  'aestheticService:ModerateHousingValue
-		  [400000 1000000] 'aestheticService:HighHousingValue
-		  [1000000 :>]     'aestheticService:VeryHighHousingValue))
+;;STILL NEED DEFMODELS FOR hydro reservoirs + all components of fisheries BNs
+;; In the long run, could take 2 paths: 1) ditch fisheries BNs & use source/use models for actual fisheries; 2) use BNs as generalized fisheries impact model.
 
-;; bayesian model
-(defmodel homeowners 'aestheticService:ViewUse
-  "Property owners who can afford to pay for the view"
-  (bayesian 'aestheticService:ViewUse 
-    :import  "aries.core::ViewUse.xdsl"
-    :keep    ('aestheticService:HomeownerViewUse)
-    :context (property-value housing)))
+(defmodel floodplains 'floodService:Floodplain
+	(classification (ranking 'floodService:Floodplains)
+			0 'floodService:NotInFloodplain
+			1 'floodService:InFloodplain))
+	
+(defmodel farmland 'floodService:Farmland
+	"Just a reclass of the NLCD land use layer"
+	(classification (ranking 'nlcd:NLCDNumeric)
+		82	       'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent
+;    :agent     "aries/flood/farm"
+    :editable  true))
+
+;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity 
+;;(in reality dam heigh & flow are important factors but we don't have flow data.
+;; NEED TO do wfs2opal for reservoirs, use "normal_sto" as the attribute of interest.
+(defmodel hydroelectric-use 'soilretentionEcology:HydroelectricUse
+	(classification (ranking 'soilretentionEcology:HydroelectricUse)
+    [0]             'soilretentionEcology:NoHydroelectricUse
+		[:< 500000]    'soilretentionEcology:ModerateHydroelectricUse
+		[500000 :>]    'soilretentionEcology:HighHydroelectricUse))
+
+;; Farmer users in floodplains, i.e., where sedimentation is desirable or undesirable, depending on conditions
+(defmodel farmers-use 'soilretentionEcology:DepositionProneFarmers 
+	  (bayesian 'soilretentionEcology:DepositionProneFarmers 
+	  	:import   "aries.core::SedimentDepositionProneFarmersUse.xdsl"
+	  	:keep     ('soilretentionEcology:DepositionProneFarmers)
+	 	 	:context  (farmland floodplains)))
+
+;;Get Gary's input on what to do with "erosion prone farmers" since erosion source value goes into the BN.
+
+;; Fishermen use model: lots of work to do on this one.  Define the model
+;; with all possible nodes included and let it choose which to use based
+;; on the BN???  Or do 2 of these statements, 1 each for Mg & Puget?
+;; What about intermediate variables & deterministic nodes?
+(defmodel fishermen-use 'soilretentionEcology:FishermenUse 
+	  (bayesian 'soilretentionEcology:FishermenUse  
+	  	:import   "aries.core::SedimentFishermenUse.xdsl"
+	  	:keep     ('soilretentionEcology:FishermenUse)
+	 	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density fishing-sites habitat-at-risk-of-sedimentation)))
+
+defmodel fishermen-use 'soilretentionEcology:FishermenUse 
+	  (bayesian 'soilretentionEcology:FishermenUse  
+	  	:import   "aries.core::SedimentFishermenUseMg.xdsl"
+	  	:keep     ('soilretentionEcology:FishermenUse)
+	 	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density fishing-sites habitat-at-risk-of-sedimentation)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -99,26 +121,27 @@
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
     [80 100]   'soilretentionEcology:VeryHighStreamGradient))
 
-;; Need to add floodplain width to geoserver & xml.  Need to figure out what the units are, and fix them in the discretization.
+;; Need to add floodplain width to geoserver & xml.  These units are in decimal degrees - correspond to
+;; breakpoints of roughly 375, 820, and 1320 m.
 (defmodel floodplain-width 'soilretentionEcology:FloodplainWidth 
   (classification (measurement 'soilretentionEcology:FloodplainWidth "INSERT UNITS HERE")
-    [0 20]  'soilretentionEcology:VeryNarrowFloodplain
-    [20 40]  'soilretentionEcology:NarrowFloodplain
-    [40 60] 'soilretentionEcology:WideFloodplain
-    [80 100]   'soilretentionEcology:VeryWideFloodplain))
+    [0 0.0034]  'soilretentionEcology:VeryNarrowFloodplain
+    [0.0034 0.0074]  'soilretentionEcology:NarrowFloodplain
+    [0.0074 0.0119] 'soilretentionEcology:WideFloodplain
+    [0.0119 :>]   'soilretentionEcology:VeryWideFloodplain))
 
 (defmodel levees 'soilretentionEcology:Levees 
   (classification (ranking 'soilretentionEcology:Levees)
 		  0          'soilretentionEcology:LeveeAbsent
 		  :otherwise 'soilretentionEcology:LeveePresent))
 
+;; STRONGLY consider removing bridges - discuss with Brian - they don't actually narrow the floodplain...
 (defmodel bridges 'soilretentionEcology:Bridges 
   (classification (ranking 'soilretentionEcology:Bridges)
 		  0          'soilretentionEcology:BridgeAbsent
 		  :otherwise 'soilretentionEcology:BridgePresent))
 
 (defmodel sink 'soilretentionEcology:SedimentSink
-  "Whatever is absorptive enough to absorb our water"
   (bayesian 'soilretentionEcology:SedimentSink 
     :import  "aries.core::SedimentSink.xdsl"
     :keep    ('soilretentionEcology:SedimentSink)

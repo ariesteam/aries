@@ -2,21 +2,21 @@
 <smile version="1.0" id="Network6" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="Farmland">
-			<state id="Farmland" />
-			<state id="NotFarmland" />
+			<state id="FarmlandPresent" />
+			<state id="FarmlandAbsent" />
 			<probabilities>0.25 0.75</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValue">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="Low" />
-			<state id="None" />
+			<state id="HighSedimentSource" />
+			<state id="ModerateSedimentSource" />
+			<state id="LowSedimentSource" />
+			<state id="NoSedimentSource" />
 			<probabilities>0.1 0.15 0.15 0.6</probabilities>
 		</cpt>
 		<cpt id="FarmersErosionProne">
-			<state id="High" />
-			<state id="Moderate" />
-			<state id="None" />
+			<state id="HighErosionFarmerUse" />
+			<state id="ModerateErosionFarmerUse" />
+			<state id="NoErosionFarmerUse" />
 			<parents>SedimentSourceValue Farmland</parents>
 			<probabilities>0.45 0.45 0.1 0 0 1 0.25 0.5 0.25 0 0 1 0.1 0.45 0.45 0 0 1 0 0 1 0 0 1</probabilities>
 		</cpt>
@@ -36,8 +36,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>575 291 689 328</position>
-				<barchart active="true" width="128" height="64" />
+				<position>530 291 644 328</position>
+				<barchart active="true" width="218" height="90" />
 			</node>
 			<node id="FarmersErosionProne">
 				<name>FarmersErosionProne</name>
