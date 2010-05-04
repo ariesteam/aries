@@ -10,11 +10,11 @@
 (defmodel lake 'recreationService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (ranking 'geofeatures:Lake)
-		  0          'aestheticService:LakeAbsent
-		  :otherwise 'aestheticService:LakePresent))
+		  0          'recreationService:LakeAbsent
+		  :otherwise 'recreationService:LakePresent))
 
 (defmodel river-stream 'recreationService:RiverStream
-  "Just being there."
+  "Presence of a river or stream."
   (classification (ranking 'geofeatures:RiverStream)
 		  0          'recreationService:RiverStreamAbsent
 		  :otherwise 'recreationService:RiverStreamPresent))
@@ -23,18 +23,16 @@
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
 		  [457 914]  'recreationService:SmallMountain ; 
-		  [914 1676]  'recreationService:LargeMountain ; no higher than the Adirondacks!
-		  :otherwise   'recreationService:NoMountain ; will catch artifacts too
-		  ))
+		  [914 1676] 'recreationService:LargeMountain ; no higher than the Adirondacks!
+		  :otherwise 'recreationService:NoMountain)) ; will catch artifacts too		  
 		  
 (defmodel open-space 'recreationService:OpenSpace
-  "Classifies an area as open space"
+  "Classifies an area as open space according to NLCD 2001 data"
   (classification (ranking 'nlcd:NLCDNumeric)
-      #{81 82} 'recreationService:AgriculturalLand
-      #{41 42 43} 'recreationService:ForestedLand
+      #{81 82}       'recreationService:AgriculturalLand
+      #{41 42 43}    'recreationService:ForestedLand
       #{31 90 95 52} 'recreationService:OtherOpenLand
-      :otherwise 'recreationService:NotOpenLand
-      )) 
+      :otherwise     'recreationService:NotOpenLand))
 
 (defmodel theoretical-beauty 'recreationService:TheoreticalNaturalBeauty
 	(classification 'recreationService:TheoreticalNaturalBeauty
@@ -56,63 +54,97 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
+;; ViewPosition, TravelTime, PublicAccess, HikingDistance, HikingSlope
 
-(defmodel housing 'aestheticService:PresenceOfHousing
-  "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-		  #{"R" "K"}  'aestheticService:HousingPresent
-		  :otherwise  'aestheticService:HousingAbsent)
-  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-		"RESIDENTIAL" 'aestheticService:HousingPresent
-		:otherwise    'aestheticService:HousingAbsent))
+(defmodel view-position 'recreationService:ViewPosition
+  "Location of a view point, a function of elevation."
+  (classification (measurement 'geophysics:Altitude "m")
+		  [0 457]   'recreationService:LowViewPosition
+		  [457 914] 'recreationService:MediumViewPosition
+		  [914 :>]  'recreationService:HighViewPosition))
+		  
+(defmodel travel-time 'recreationService:TravelTime
+	"Unclear at time of programming how this is to be used / defined"
+	(classification (measurement 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX)
+			[0 XXX] 'recreationService:LowTravelCost
+			[XXX YYY] 'recreationService:MediumTravelCost
+			[YYY ZZZ] 'recreationService:LongTravelCost))
+			
+(defmodel public-access 'recreationService:PublicAccess
+	"describes access constraints to a particular parcel"
+	) 
 	
-(defmodel property-value 'aestheticService:HousingValue
-  ;; TODO we need this to become an actual valuation with currency and date, so we can 
-  ;; turn any values into these dollars
-  (classification (ranking  'economics:AppraisedPropertyValue)
-		  [:< 100000]      'aestheticService:VeryLowHousingValue
-		  [100000 200000]  'aestheticService:LowHousingValue
-		  [200000 400000]  'aestheticService:ModerateHousingValue
-		  [400000 1000000] 'aestheticService:HighHousingValue
-		  [1000000 :>]     'aestheticService:VeryHighHousingValue))
+(defmodel hiking-distance 'recreationService:HikingDistance
+	"Refers to trail distance between the starting point and the view point"
+	(classification (measurement 'geophysics:Length "mi")
+			[:< 3.2]	   'recreationService:ShortDistance
+			[3.2 8.05]   'recreationService:MediumDistance
+			[8.05 :>]		 'recreationService:LongDistance))
+	
+(defmodel hiking-slope 'recreationService:HikingSlope
+	"describes the steepness of the hiking trail"
+	(classification (ranking 'geophysics:DegreeSlope :units "degrees")
+			[:< 10] 'recreationService:LowSlope
+			[10 45] 'recreationService:ModerateSlope
+			[45 :>]	'recreationService:SteepSlope))
+			
+(defmodel viewer-enjoyment 'recreationService:ViewerEnjoyment
+	(classification 'recreationService:ViewerEnjoyment
+  		[0 33]  'recreationService:LowViewerEnjoyment 
+  		[33 67]  'recreationService:ModerateViewerEnjoyment 
+  		[67 100] 'recreationService:HighViewerEnjoyment))
 
 ;; bayesian model
-(defmodel homeowners 'aestheticService:ViewUse
-  "Property owners who can afford to pay for the view"
-  (bayesian 'aestheticService:ViewUse 
-    :import  "aries.core::ViewUse.xdsl"
-    :keep    ('aestheticService:HomeownerViewUse)
-    :context (property-value housing)))
+(defmodel user 'recreationService:ViewerEnjoyment
+  "Views afforded to recreational users"
+  (bayesian 'recreationService:ViewerEnjoyment
+    :import   "aries.core::RecreationViewUse.xdsl"
+    :keep     ('recreationService:ViewerEnjoyment)
+    :context  (view-position travel-time public-access hiking-distance hiking-slope)
+    :observed (viewer-enjoyment)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
+;;development, clearcuts, roads, energy infrastructure
+(defmodel development 'recreationService:Development
+	"Development as defined by the NLCD 2001"
+	(classification (ranking 'nlcd:NLCDNumeric)
+			22 	'recreationService:LowIntensityDevelopment
+			23  'recreationService:MediumIntensityDevelopment
+			24  'recreationService:HighIntensityDevelopment)) 
 
-;; TODO errors
-(defmodel clearcut 'aestheticService:Clearcuts 
+(defmodel clearcuts 'recreationService:Clearcuts
+	"Presence of clearcuts" 
   (classification (ranking 'geofeatures:Clearcut)
-		  0          'aestheticService:ClearcutsAbsent
-		  :otherwise 'aestheticService:ClearcutsPresent))
+		  0          'recreationService:ClearcutsAbsent
+		  :otherwise 'recreationService:ClearcutsPresent))
 
-; use NLCD layers to extract transportation infrastructure
-(defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (ranking 'nlcd:NLCDNumeric)
-		  23         'aestheticService:TransportationInfrastructurePresent
-		  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
+(defmodel roads 'recreationService:Roads
+  (classification (ranking 'recreationService:Roads)
+		  0          'recreationService:RoadsAbsent
+		  :otherwise 'recreationService:RoadsPresent))
 
-; presence/absence of highways
-(defmodel highway 'aestheticService:Highways 
-  (classification (ranking 'infrastructure:Highway)
-		  0          'aestheticService:HighwaysAbsent
-		  :otherwise 'aestheticService:HighwaysPresent))
+(defmodel energy-infrastructure 'recreationService:EnergyInfrastructure
+	"Presence of energy infrastructure"
+	(classification (ranking 'recreationService:EnergyInfrastructure)
+			0						'recreationService:EnergyInfrastructureAbsent
+			:otherwise	'recreationService:EnergyInfrastructurePresent)) 
 
-(defmodel sink 'aestheticService:ViewSink
+(defmodel visual-blight 'recreationService:VisualBlight
+	(classification 'recreationService:VisualBlight
+  		[0 10]   'recreationService:NoVisualBlight
+  		[10 50]  'recreationService:LowVisualBlight
+  		[50 90]  'recreationService:ModerateVisualBlight
+  		[67 100] 'recreationService:HighVisualBlight))
+  		
+(defmodel sink 'recreationService:RecreationViewSink
   "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
-    :import  "aries.core::ViewSink.xdsl"
-    :keep    ('aestheticService:TotalVisualBlight)
-    :context (commercial-transportation highway)))
+  (bayesian 'recreationService:ViewSink 
+    :import  "aries.core::RecreationViewSink.xdsl"
+    :keep    ('recreationService:VisualBlight)
+    :context (development clearcuts roads energy-infrastructure)
+    :observed (visual-blight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
