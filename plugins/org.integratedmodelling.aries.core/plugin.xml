@@ -88,6 +88,10 @@
 		<parameter id="url" value="es/services/wildfireService.owl"/>
 		<parameter id="concept-space" value="wildfireService"/>
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="recreationService">
+		<parameter id="url" value="es/services/recreationService.owl"/>
+		<parameter id="concept-space" value="recreationService"/>
+	</extension>
 	
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
@@ -102,6 +106,7 @@
 		<parameter id="resource" value="flood.clj" />
 		<parameter id="resource" value="carbon.clj" />
 		<parameter id="resource" value="test.clj" />
+		<parameter id="resource" value="recreation_viewsheds.clj" />
 	</extension> 
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="test">
