@@ -64,22 +64,25 @@
 		  [914 :>]  'recreationService:HighViewPosition))
 		  
 (defmodel travel-time 'recreationService:TravelTime
-	"Unclear at time of programming how this is to be used / defined"
-	(classification (measurement 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX)
-			[0 XXX] 'recreationService:LowTravelCost
-			[XXX YYY] 'recreationService:MediumTravelCost
-			[YYY ZZZ] 'recreationService:LongTravelCost))
+	"Travel time to hiking resources"
+	(classification (ranking 'recreationService:TravelTime)
+			1  'recreationService:ShortTravelTime
+			2  'recreationService:ModerateTravelTime
+			3  'recreationService:LongTravelTime))
 			
 (defmodel public-access 'recreationService:PublicAccess
 	"describes access constraints to a particular parcel"
-	) 
+	(classification (ranking 'recreationService:PublicAccess)
+		  0   'recreationService:PublicLand
+		  1		'recreationService:PrivateLandWithAcess
+		  2		'recreationService:NoPublicAccess)) 
 	
 (defmodel hiking-distance 'recreationService:HikingDistance
 	"Refers to trail distance between the starting point and the view point"
-	(classification (measurement 'geophysics:Length "mi")
-			[:< 3.2]	   'recreationService:ShortDistance
-			[3.2 8.05]   'recreationService:MediumDistance
-			[8.05 :>]		 'recreationService:LongDistance))
+	(classification (ranking recreationService:HikingDistance)
+			1   'recreationService:ShortHikingDistance
+			2   'recreationService:MediumHikingDistance
+			3   'recreationService:LongHikingDistance))
 	
 (defmodel hiking-slope 'recreationService:HikingSlope
 	"describes the steepness of the hiking trail"
@@ -143,7 +146,7 @@
   (bayesian 'recreationService:ViewSink 
     :import  "aries.core::RecreationViewSink.xdsl"
     :keep    ('recreationService:VisualBlight)
-    :context (development clearcuts roads energy-infrastructure)
+    :context (development roads energy-infrastructure)
     :observed (visual-blight)))
 
 ;; ----------------------------------------------------------------------------------------------
