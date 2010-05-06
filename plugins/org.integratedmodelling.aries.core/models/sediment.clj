@@ -34,6 +34,23 @@
       "Medium"    'soilretentionEcology:MediumSoilTexture
       "Fine"      'soilretentionEcology:FineSoilTexture)) 
 
+;;First discretization is for Puget Sound, second is for DR & Mg (based on global data)
+(defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
+     (classification (ranking 'soilretentionEcology:SoilErodibility)
+       [:< 0.15]    'soilretentionEcology:VeryLowSoilErodibility
+       [0.15 0.2]   'soilretentionEcology:LowSoilErodibility
+       [0.2 0.25]   'soilretentionEcology:ModerateSoilErodibility
+       [0.25 0.3]   'soilretentionEcology:HighSoilErodibility
+       [0.3 :>]     'soilretentionEcology:VeryHighSoilErodibility))
+
+;;(defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
+;;     (classification (ranking 'soilretentionEcology:SoilErodibility)
+;;       [:< 0.02]       'soilretentionEcology:VeryLowSoilErodibility
+;;       [0.02 0.275]    'soilretentionEcology:LowSoilErodibility
+;;       [0.275 0.325]   'soilretentionEcology:ModerateSoilErodibility
+;;       [0.325 0.375]   'soilretentionEcology:HighSoilErodibility
+;;      [0.375 :>]      'soilretentionEcology:VeryHighSoilErodibility))
+
 (defmodel precipitation 'floodService:Precipitation
 	"FIXME this is total monthly precipitation I believe."
 	(classification (measurement 'habitat:Precipitation "in")
@@ -50,13 +67,12 @@
 			 [-4 4] 	'floodService:ModerateTemperature
 			 [:< -4] 	'floodService:LowTemperature))
 
-;;GARY: is my notation right below for 0 & 0-50?
 (defmodel monthly-snowmelt 'soilretentionEcology:MonthlySnowmelt
 	(classification (measurement 'soilretentionEcology:MonthlySnowmelt "mm/month")
-		[0] 	    'soilretentionEcology:NoSnowmelt
-		[0 50] 	  'soilretentionEcology:LowSnowmelt
-		[50 100] 	'soilretentionEcology:ModerateSnowmelt
-		[100 :>] 	'soilretentionEcology:HighSnowmelt))
+		0 	                  'soilretentionEcology:NoSnowmelt
+		[:exclusive 0 50] 	  'soilretentionEcology:LowSnowmelt
+		[50 100] 	            'soilretentionEcology:ModerateSnowmelt
+		[100 :>]            	'soilretentionEcology:HighSnowmelt))
 
 ;;This is annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
@@ -68,13 +84,16 @@
 		[1200 2400] 	'soilretentionEcology:HighRunoff
 		[2400 :>] 	  'soilretentionEcology:VeryHighRunoff))
 
+;;DOUBLE CHECK flood model to make sure braces are used correctly and not parenthesis
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
-		#(21 22 23 24 31 82) 'soilretentionEcology:CropsBarrenDeveloped
+		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped
 		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
-		#(52 81)             'soilretentionEcology:ShrublandPasture))
+		#{52 81}             'soilretentionEcology:ShrublandPasture))
+;;NEED TO GET GLOBAL LULC TO UNDERLIE THIS
 
+;;Some null values greater than 100 - comment these out.
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
 		[80 :>] 'floodService:VeryHighVegetationCover
@@ -84,7 +103,7 @@
 		[0 20]  'floodService:VeryLowVegetationCover))
 
 (defmodel successional-stage 'floodService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
+	 (classification (ranking 'ecology:SuccessionalStage)  
 	 		#{5 6}      'floodService:OldGrowth
 	 		4           'floodService:LateSuccession
 	 		3           'floodService:MidSuccession
@@ -98,10 +117,10 @@
 ;;Discretization below is for Puget Sound; discretization will look different for DR & Mg
 (defmodel sediment-source-value 'soilretentionEcology:SedimentSourceValue
 	(classification 'soilretentionEcology:SedimentSourceValue
-  		[0]             'soilretentionEcology:NoSedimentSource
-  		[0 30000]       'soilretentionEcology:LowSedimentSource 
-  		[30000 100000]  'soilretentionEcology:ModerateSedimentSource
-  		[100000 :>]     'soilretentionEcology:HighSedimentSource))
+  		0                          'soilretentionEcology:NoSedimentSource
+  		[:exclusive 0 30000]       'soilretentionEcology:LowSedimentSource 
+  		[30000 100000]             'soilretentionEcology:ModerateSedimentSource
+  		[100000 :>]                'soilretentionEcology:HighSedimentSource))
 
 ;; source bayesian model for Puget Sound   
 ;; I'm unclear about what to replace "AestheticEnjoymentProvision" and "theoretical-beauty" with since 
@@ -120,17 +139,17 @@
 
 (defmodel storm-probability 'coastalProtection:TropicalStormProbability
 	(ranking 'habitat:TropicalStormProbability
-      [0]     'habitat:NoTropicalStormProbability
+      0     'habitat:NoTropicalStormProbability
       [1 5]   'habitat:ModerateTropicalStormProbability
       [6 10]  'habitat:HighTropicalStormProbability))
 
 ;;Discretization of top node for DR & Mg (could revisit values - see what Lee & Nathlay come up with)
 (defmodel sediment-source-value 'soilretentionEcology:SedimentSourceValue
 	(classification 'soilretentionEcology:SedimentSourceValue
-      [0]        'soilretentionEcology:NoSedimentSource
-  		[0 15]     'soilretentionEcology:LowSedimentSource 
-  		[15 40]    'soilretentionEcology:ModerateSedimentSource
-  		[40 :>]    'soilretentionEcology:HighSedimentSource))
+      0                     'soilretentionEcology:NoSedimentSource
+  		[:exclusive 0 15]     'soilretentionEcology:LowSedimentSource 
+  		[15 40]               'soilretentionEcology:ModerateSedimentSource
+  		[40 :>]               'soilretentionEcology:HighSedimentSource))
 
 ;; source bayesian model for DR & Mg
 ;; I'm unclear about what to replace "AestheticEnjoymentProvision" and "theoretical-beauty" with since 
@@ -177,9 +196,20 @@
 ;; NEED TO do wfs2opal for reservoirs, use "normal_sto" as the attribute of interest.
 (defmodel hydroelectric-use 'soilretentionEcology:HydroelectricUse
 	(classification (ranking 'soilretentionEcology:HydroelectricUse)
-    [0]             'soilretentionEcology:NoHydroelectricUse
-		[:< 500000]    'soilretentionEcology:ModerateHydroelectricUse
-		[500000 :>]    'soilretentionEcology:HighHydroelectricUse))
+    0                        'soilretentionEcology:NoHydroelectricUse
+		[:exclusive 0 500000]    'soilretentionEcology:ModerateHydroelectricUse
+		[500000 :>]              'soilretentionEcology:HighHydroelectricUse))
+
+;;Have rasterized the dam point layer for Mg but it's not yet in Geoserver.  Gary: problems with using
+;; a raster point file for reservoirs?
+
+;;Reservoirs layer for DR: no values, so it's presence/absence only.  Need to set below so it's like below
+;;without creating errors.  Get rid of []'s
+(defmodel hydroelectric-use 'soilretentionEcology:HydroelectricUse
+	(classification (ranking 'soilretentionEcology:HydroelectricUse)
+    [0]           'soilretentionEcology:NoHydroelectricUse
+		[1]           'soilretentionEcology:ModerateHydroelectricUse
+		[NULL (?)]    'soilretentionEcology:HighHydroelectricUse))
 
 ;; Farmer users in floodplains, i.e., where sedimentation is desirable or undesirable, depending on conditions
 (defmodel farmers-use 'soilretentionEcology:DepositionProneFarmers 
