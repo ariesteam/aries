@@ -140,8 +140,8 @@
    	:rv-max-states    10 
     :context
          (source homeowners sink altitude
-          (ranking 'eserv:SourceThreshold :value 50)
-          (ranking 'eserv:SinkThreshold :value 0.3)
-          (ranking 'eserv:UseThreshold :value 0.1)
+          (ranking 'eserv:SourceThreshold :value 50 :min 0 :max 100)
+          (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
+          (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)
           (ranking 'eserv:TransitionThreshold :value 1.0))
 ))

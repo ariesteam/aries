@@ -22,6 +22,8 @@
 		
 		(import (tl/get-plugin-resource 'aries.administration "ark.xml"))
 		(import (tl/get-plugin-resource 'aries.administration "common.xml"))
+		(import (tl/get-plugin-resource 'aries.administration "ipcc.xml"))
+		(import (tl/get-plugin-resource 'aries.administration "nlcd2001.xml"))
 		(import (tl/get-plugin-resource 'aries.administration "marine.xml"))
 		(import (tl/get-plugin-resource 'aries.administration "bv1.xml"))
 	)

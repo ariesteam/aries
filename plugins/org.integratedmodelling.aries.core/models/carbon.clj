@@ -3,10 +3,10 @@
   (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian))
   (:refer aries :only (span)))
 
-;; output and training
+;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "tons C/ha.yr" 
+						:units "t/ha*year" 
 	  				[12 :>]   'carbonService:VeryHighStorage
 	  				[9 12]    'carbonService:HighStorage
 	  				[6 9]     'carbonService:ModerateStorage
@@ -14,10 +14,10 @@
 	  				[0.01 3]  'carbonService:VeryLowStorage
 	  				[:< 0.01] 'carbonService:NoStorage))
 
-;; output and training
+;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units "tons C/ha.yr" 
+						:units "t/ha*yr" 
 	  				[12 :>]   'carbonService:VeryHighVegetationStorage
 	  				[9 12]    'carbonService:HighVegetationStorage
 	  				[6 9]     'carbonService:ModerateVegetationStorage
@@ -25,10 +25,10 @@
 	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
 	  				[:< 0.01] 'carbonService:NoVegetationStorage)) 				
 
-;; output and training	  				
+;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "tons C/ha.yr" 
+						:units    "t/ha*year" 
 	  				[12 :>]   'carbonService:VeryHighSoilStorage
 	  				[9 12]    'carbonService:HighSoilStorage
 	  				[6 9]     'carbonService:ModerateSoilStorage
@@ -105,66 +105,15 @@
 (defmodel source 'carbonService:CarbonSourceValue   
 	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"
-	  	:keep     ('carbonService:VegetationCarbonStorage
+	  	:keep     ('carbonService:NetCarbonUptake
+                 'carbonService:VegetationAndSoilCarbonSequestration
+                 'carbonService:VegetationAndSoilCarbonStorage
+                 'carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
 	 	 	            hardwood-softwood-ratio)))  
-
-
-;; ----------------------------------------------------------------------------------------------
-;; modified source dependencies to account for different scenarios
-;; ----------------------------------------------------------------------------------------------
-
-;; old growth has been incentivized, so what was late succession is now old growth
-(defmodel successional-stage-incentivized 'carbonService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6 4}    'carbonService:OldGrowth
-	 		3           'carbonService:MidSuccession
-	 		2           'carbonService:EarlySuccession
-	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))
-	 		
-(defmodel summer-high-winter-low-hadley-a2 'carbonService:SummerHighWinterLow
-		 (classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL))
-        
-(defmodel summer-high-winter-low-hadley-b2 'carbonService:SummerHighWinterLow
-		 (classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL))
-
-;; Bayesian source model		
-(defmodel source-hadley-a2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue 
-	  	:import   "aries.core::CarbonSourceValue.xdsl"
-	  	:keep     ('carbonService:VegetationCarbonStorage
-	  						 'carbonService:StoredCarbonRelease
-	  						 'carbonService:SoilCarbonStorage)
-			:observed (veg-soil-storage soil-storage veg-storage)
-	 	 	:context  (soil-ph slope successional-stage-incentivized  
-	 	 						 summer-high-winter-low-hadley-a2 fire-frequency
-	 	 	            hardwood-softwood-ratio )))
-	  				
-;; Bayesian source model		
-(defmodel source-hadley-b2 'carbonService:CarbonSourceValue
-	  (bayesian 'carbonService:CarbonSourceValue 
-	  	:import   "aries.core::CarbonSourceValue.xdsl"
-	  	:keep     ('carbonService:VegetationCarbonStorage
-	  						 'carbonService:StoredCarbonRelease
-	  						 'carbonService:SoilCarbonStorage)
-	 	 	:context  (soil-ph slope successional-stage-incentivized  
-	 	 						 summer-high-winter-low-hadley-b2 fire-frequency
-	 	 	            hardwood-softwood-ratio )
-	 	 	:observed (veg-soil-storage soil-storage veg-storage)))	 	 	           
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -193,23 +142,6 @@
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
-;; data for emission trading
-;(defmodel data-emitters 'carbonService:Baseline 
-;	(identification 'carbonService:Baseline 
-;		:context (source use-emitters)))
-
-;; Hadley A2 scenario
-(defmodel data-emitters-hadley-a2 'carbonService:EmissionHadleyA2Scenario 
-	(identification 'carbonService:EmissionTrading 
-		:context (source-hadley-a2 use-emitters)))
-
-;; Hadley B2 scenario
-(defmodel data-emitters-hadley-b2 'carbonService:EmissionHadleyB2Scenario 
-	(identification 'carbonService:EmissionTrading 
-		:context (source-hadley-b2 use-emitters)))
-		
-;;
-
 ;; flow model for emitters
 (defmodel emitter-flow 'carbonService:ClimateStability
   (span 'carbonService:CO2Removed 
@@ -229,44 +161,51 @@
     :context (source use-emitters)))		
 		
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios
+;; scenarios (evolving)
+;; observations that are specifically tagged for a scenario will be picked up automatically
+;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-(defscenario ipcc-hadley-a1 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 represents a future world of very rapid economic growth, global population that peaks in mid-century and declines thereafter, and rapid introduction of new and more efficient technologies." 
-		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL)) 
+(defscenario ipcc-hadley-a2-incentivized 'carbonService:IPCCHadleyA2Incentivized
+  "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 
+  represents a future world of very rapid economic growth, global population that peaks 
+  in mid-century and declines thereafter, and rapid introduction of new and more efficient 
+  technologies." 
+  ;; old growth has been incentivized, so what was late succession is now old growth
+  (classification (ranking 'ecology:SuccessionalStage)
+	 		#{5 6 4}    'carbonService:OldGrowth
+	 		3           'carbonService:MidSuccession
+	 		2           'carbonService:EarlySuccession
+	 		1           'carbonService:PoleSuccession
+	 		:otherwise  'carbonService:NoSuccession)) 
 
-(defscenario ipcc-hadley-b1 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 world is a convergent world with the same global population as in the A1 storyline but with rapid changes in economic structures toward a service and information economy, with reductions in material intensity, and the introduction of clean and resource-efficient technologies." 
-		(classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL))  
-        
-(defscenario ipcc-hadley-a2 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2 represents a very heterogeneous world with continuously increasing global population and regionally oriented economic growth that is more fragmented and slower than in other storylines." 
-		(classification (ranking 'carbonService:SummerHighWinterLowHadleyA2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL)) 
+(defscenario ipcc-hadley-b2-incentivized 'carbonService:IPCCHadleyB2Incentivized
+  "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 
+  world is a convergent world with the same global population as in the A1 storyline but 
+  with rapid changes in economic structures toward a service and information economy, with 
+  reductions in material intensity, and the introduction of clean and resource-efficient 
+  technologies." 
+  ;; old growth has been incentivized, so what was late succession is now old growth
+  (classification (ranking 'ecology:SuccessionalStage)
+      #{5 6 4}    'carbonService:OldGrowth
+	 		3           'carbonService:MidSuccession
+	 		2           'carbonService:EarlySuccession
+	 		1           'carbonService:PoleSuccession
+	 		:otherwise  'carbonService:NoSuccession))  
+       
+(defscenario ipcc-hadley-a2 'carbonService:IPCCHadleyA2
+	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2
+     represents a very heterogeneous world with continuously increasing global population 
+     and regionally oriented economic growth that is more fragmented and slower than in
+     other storylines." 
+) 
 
-(defscenario ipcc-hadley-b2 'carbonService:CarbonSourceValue
-	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario. B2 is a world in which the emphasis is on local solutions to economic, social, and environmental sustainability, with continuously increasing population (lower than A2) and intermediate economic development. " 
-		(classification (ranking 'carbonService:SummerHighWinterLowHadleyB2)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL)) 
+(defscenario ipcc-hadley-b2 'carbonService:IPCCHadleyB2
+	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario. B2 
+     is a world in which the emphasis is on local solutions to economic, social, and 
+     environmental sustainability, with continuously increasing population (lower than A2)
+     and intermediate economic development. " 
+) 
 		 			
 
 		 			

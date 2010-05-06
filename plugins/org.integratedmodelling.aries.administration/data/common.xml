@@ -21,62 +21,6 @@
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
-	
-	
-	
-		<!-- Altitude data from WCS service at ICEDS (90m SRTM DEM) 
-	<measurement:Measurement id="Altitude">
-		<observation:hasObservable>
-			<geophysics:Altitude />
-		</observation:hasObservable>
-		<measurement:unit>m</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://iceds.ge.ucl.ac.uk/cgi-bin/icedswcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>srtm</geospace:hasCoverageId>
-				<geospace:hasImageFormat>geotiff_int16</geospace:hasImageFormat>
-				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>432000</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>140399</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-56.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>61.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-	
-    
-	<measurement:Measurement id="Altitude">
-		<observation:hasObservable>
-			<geophysics:Altitude />
-		</observation:hasObservable>
-		<measurement:unit>m</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:elevation</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>12622</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>11258</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>45.963</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-125.118</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.038</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-119.94</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>		 -->
-	
 	<!-- TODO this should be an economic value measurement with date and currency, not a 
 	     dumb ranking -->
 	<measurement:Ranking id="king_property_value">
@@ -448,6 +392,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- ??? fv - not in Geoserver anymore?
 	<measurement:Ranking id="RiparianVeg3">
 		<observation:hasObservable>
 			<soilretentionEcology:FloodplainVegetationCover />
@@ -470,7 +415,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking>  
 
 	<measurement:Ranking id="mg_mgfloodplain">
 			<observation:hasObservable>
@@ -493,7 +438,7 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Ranking> -->
 		
 	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
 		carbon models) when I figure out how to express that. -->
@@ -805,30 +750,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- NLCD categories for Puget region -->
-	<measurement:Ranking id="puget_nlcd">
-		<observation:hasObservable>
-			<nlcd:NLCDNumeric />
-		</observation:hasObservable>
-
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:NCLDKing</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
 	
 <!-- ocean in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking. This one comes from a complicated attribute so
@@ -886,6 +807,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<!-- FIXME fv this layer was just removed from geoserver. Should this
+		become global:TreeCover? 
+		
 	<measurement:Ranking id="AfricaTreeCover">
 		<observation:hasObservable>
 			<habitat:PercentCanopyCover />
@@ -907,7 +831,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking>  -->
 	
 <!--  -->
 	<measurement:Ranking id="puget_impervious_surfaces">
@@ -1497,6 +1421,7 @@
 			</observation:hasObservationExtent>
 	</observation:Categorization>
 	
+	<!-- fv another one that seems to have gone away 
 	<measurement:Ranking id="puget_pugetstreamgradient">
 			<observation:hasObservable>
 				<soilretentionEcology:StreamGradient />
@@ -1525,7 +1450,7 @@
 					</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking>  -->
 	
 	<!-- Numeric ranking of successional stage -->
 	<measurement:Ranking id="puget_successional_stage">
@@ -1573,60 +1498,13 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>	
-	
-	<measurement:Ranking id="SumHiWintLowHadleyA2">
-		<observation:hasObservable>
-			<carbonService:SummerHighWinterLowHadleyA2 />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SumHiWintLowHadleyA2</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>14998</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7930</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>13.9</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-177.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>80.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-52.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="SumHiWintLowHadleyB2">
-		<observation:hasObservable>
-			<carbonService:SummerHighWinterLowHadleyB2 />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SumHiWintLowHadleyB2</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>14998</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7930</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>13.9</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-177.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>80.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-52.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
 <!-- Units in kg C/m2; multiply by 10 to get tonnes C/ha, then divide by 1000 to get correct pixel values.  Values over 30,000 are null values -->
 
 	<measurement:Ranking id="npp_modis1km">
 		<observation:hasObservable>
 			<carbonService:VegetationAndSoilCarbonSequestration />
 		</observation:hasObservable>
-		<measurement:unit>kg C/m2</measurement:unit>
+		<measurement:unit>kg/m^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1652,7 +1530,7 @@
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<measurement:unit>tonnes biomass/ha</measurement:unit>
+		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1678,7 +1556,7 @@
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<measurement:unit>tonnes C/ha</measurement:unit>
+		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1751,9 +1629,6 @@
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
-
-
-
 
 <!--  ITEMS BELOW HAVE NOT BEEN ALPHABETIZED BY ONTOLOGIC CONCEPT.  THEY MAY NEED TO BE RE-TAGGED IN GEOSERVER. -->
 
