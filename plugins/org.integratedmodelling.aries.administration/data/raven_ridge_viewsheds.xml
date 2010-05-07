@@ -140,7 +140,7 @@
 	<!-- hiking slope -->
 	<measurement:Ranking id="slope_24">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<recreationService:HikingSlope />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -163,7 +163,7 @@
 	<!-- hiking distance -->
 	<measurement:Ranking id="hike_dist">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<recreationService:HikingDistance />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -186,7 +186,7 @@
 	<!-- land accessibility: public, private, private with public access-->
 	<measurement:Ranking id="RR_access">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<recreationService:PublicAccess />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -209,7 +209,7 @@
 	<!-- travel cost -->
 	<measurement:Ranking id="RR_travelcost">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<recreationService:TravelTime />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -232,7 +232,7 @@
 	<!-- viewpoint elevation -->
 	<measurement:Ranking id="view_elev">
 		<observation:hasObservable>
-			<observation:GenericQuantifiable />
+			<recreationService:ViewPosition />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
