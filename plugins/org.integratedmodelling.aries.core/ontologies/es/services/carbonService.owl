@@ -531,6 +531,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#BlowdownFrequency -->
+
+    <owl:Class rdf:about="#BlowdownFrequency">
+        <rdfs:subClassOf rdf:resource="&habitat;EventRelatedQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#CO2Removed -->
 
     <owl:Class rdf:about="#CO2Removed">
@@ -555,6 +563,12 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
                 <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
             </owl:Restriction>
@@ -563,12 +577,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#VegetationType"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -610,14 +618,8 @@
         <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#UndergoesProcess"/>
-                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#UndergoesProcess"/>
-                <owl:someValuesFrom rdf:resource="#Decomposition"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="#CStorage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -634,8 +636,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="#CStorage"/>
+                <owl:onProperty rdf:resource="#UndergoesProcess"/>
+                <owl:someValuesFrom rdf:resource="#Decomposition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#UndergoesProcess"/>
+                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -709,18 +717,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#Methanogenesis"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#SedimentTrappingAndRelease"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
                 <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -728,6 +724,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
                 <owl:someValuesFrom rdf:resource="#Respiration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="#Methanogenesis"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="#SedimentTrappingAndRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -743,12 +751,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -756,6 +758,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:someValuesFrom rdf:resource="#Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -768,12 +782,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
                 <owl:allValuesFrom rdf:resource="#UnstableClimate"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -815,19 +823,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#Health"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:allValuesFrom rdf:resource="#UnstableClimate"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
+                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -839,13 +835,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="#SafetyAndSecurity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:someValuesFrom rdf:resource="#FoodFiberWater"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="#HabitabilityOfLand"/>
+                <owl:someValuesFrom rdf:resource="#Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="#UnstableClimate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -890,13 +898,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:allValuesFrom rdf:resource="#AllPeopleEverywhere"/>
+                <owl:someValuesFrom rdf:resource="#ParticularlyVulnerableGroups"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="#ParticularlyVulnerableGroups"/>
+                <owl:allValuesFrom rdf:resource="#AllPeopleEverywhere"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -909,6 +917,12 @@
 
     <owl:Class rdf:about="#ClimateStability">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="#CUptake"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
@@ -925,12 +939,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
                 <owl:someValuesFrom rdf:resource="#CStorage"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="#CUptake"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1432,6 +1440,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighBlowdownFrequency -->
+
+    <owl:Class rdf:about="#HighBlowdownFrequency">
+        <rdfs:subClassOf rdf:resource="#BlowdownFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighCNRatio -->
 
     <owl:Class rdf:about="#HighCNRatio">
@@ -1488,10 +1504,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighInsectFrequency -->
+
+    <owl:Class rdf:about="#HighInsectFrequency">
+        <rdfs:subClassOf rdf:resource="#InsectFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="#HighMeanAnnualPrecipitation">
         <rdfs:subClassOf rdf:resource="#MeanAnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighNaturalDisturbanceFrequency -->
+
+    <owl:Class rdf:about="#HighNaturalDisturbanceFrequency">
+        <rdfs:subClassOf rdf:resource="#NaturalDisturbanceFrequency"/>
     </owl:Class>
     
 
@@ -1564,6 +1596,22 @@
 
     <owl:Class rdf:about="#HighSoilStorage">
         <rdfs:subClassOf rdf:resource="#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighStandCondition -->
+
+    <owl:Class rdf:about="#HighStandCondition">
+        <rdfs:subClassOf rdf:resource="#StandCondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#HighStandSizeDensity -->
+
+    <owl:Class rdf:about="#HighStandSizeDensity">
+        <rdfs:subClassOf rdf:resource="#StandSizeDensity"/>
     </owl:Class>
     
 
@@ -1656,14 +1704,14 @@
         <rdfs:subClassOf rdf:resource="#ClimateChange"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="#Decomposition"/>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#RainfallAmount"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#RainfallAmount"/>
+                <owl:onProperty rdf:resource="#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="#Decomposition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1704,6 +1752,14 @@
         <rdfs:subClassOf rdf:resource="#ClimateChange"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Melting permafrost may release methane stored in permafrost thaw lakes, leading to increased methane release (Walter et al. 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#InsectFrequency -->
+
+    <owl:Class rdf:about="#InsectFrequency">
+        <rdfs:subClassOf rdf:resource="&habitat;EventRelatedQuality"/>
     </owl:Class>
     
 
@@ -1805,17 +1861,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#FossilFuelBurning"/>
+                <owl:someValuesFrom rdf:resource="#GeologicSequestration"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#GeologicSequestration"/>
+                <owl:someValuesFrom rdf:resource="#FossilFuelBurning"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Carbon deposits in the earth&#39;s crust, including fossil fuels (i.e., coal, oil, natural gas, tar sands).  Also includes carbon being naturally moved into the crust by geologic processes (i.e., along naturally subsiding river deltas).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowBlowdownFrequency -->
+
+    <owl:Class rdf:about="#LowBlowdownFrequency">
+        <rdfs:subClassOf rdf:resource="#BlowdownFrequency"/>
     </owl:Class>
     
 
@@ -1876,10 +1940,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowInsectFrequency -->
+
+    <owl:Class rdf:about="#LowInsectFrequency">
+        <rdfs:subClassOf rdf:resource="#InsectFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="#LowMeanAnnualPrecipitation">
         <rdfs:subClassOf rdf:resource="#MeanAnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowNaturalDisturbanceFrequency -->
+
+    <owl:Class rdf:about="#LowNaturalDisturbanceFrequency">
+        <rdfs:subClassOf rdf:resource="#NaturalDisturbanceFrequency"/>
     </owl:Class>
     
 
@@ -1952,6 +2032,22 @@
 
     <owl:Class rdf:about="#LowSoilStorage">
         <rdfs:subClassOf rdf:resource="#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowStandCondition -->
+
+    <owl:Class rdf:about="#LowStandCondition">
+        <rdfs:subClassOf rdf:resource="#StandCondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#LowStandSizeDensity -->
+
+    <owl:Class rdf:about="#LowStandSizeDensity">
+        <rdfs:subClassOf rdf:resource="#StandSizeDensity"/>
     </owl:Class>
     
 
@@ -2070,6 +2166,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateBlowdownFrequency -->
+
+    <owl:Class rdf:about="#ModerateBlowdownFrequency">
+        <rdfs:subClassOf rdf:resource="#BlowdownFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateCarbonUptake -->
 
     <owl:Class rdf:about="#ModerateCarbonUptake">
@@ -2118,10 +2222,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateInsectFrequency -->
+
+    <owl:Class rdf:about="#ModerateInsectFrequency">
+        <rdfs:subClassOf rdf:resource="#InsectFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="#ModerateMeanAnnualPrecipitation">
         <rdfs:subClassOf rdf:resource="#MeanAnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateNaturalDisturbanceFrequency -->
+
+    <owl:Class rdf:about="#ModerateNaturalDisturbanceFrequency">
+        <rdfs:subClassOf rdf:resource="#NaturalDisturbanceFrequency"/>
     </owl:Class>
     
 
@@ -2190,6 +2310,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateStandCondition -->
+
+    <owl:Class rdf:about="#ModerateStandCondition">
+        <rdfs:subClassOf rdf:resource="#StandCondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateStandSizeDensity -->
+
+    <owl:Class rdf:about="#ModerateStandSizeDensity">
+        <rdfs:subClassOf rdf:resource="#StandSizeDensity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#ModerateStorage -->
 
     <owl:Class rdf:about="#ModerateStorage">
@@ -2236,6 +2372,14 @@
         <rdfs:subClassOf rdf:resource="&habitat;FireRegime"/>
         <rdfs:comment rdf:datatype="&xsd;string"
             >Areas where fires burn on a &quot;natural&quot; basis (these may not exist any more).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#NaturalDisturbanceFrequency -->
+
+    <owl:Class rdf:about="#NaturalDisturbanceFrequency">
+        <rdfs:subClassOf rdf:resource="&habitat;EventRelatedQuality"/>
     </owl:Class>
     
 
@@ -2312,6 +2456,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#NoStandCondition -->
+
+    <owl:Class rdf:about="#NoStandCondition">
+        <rdfs:subClassOf rdf:resource="#StandCondition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#NoStandSizeDensity -->
+
+    <owl:Class rdf:about="#NoStandSizeDensity">
+        <rdfs:subClassOf rdf:resource="#StandSizeDensity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#NoStorage -->
 
     <owl:Class rdf:about="#NoStorage">
@@ -2368,25 +2528,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#Respiration"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
                 <owl:someValuesFrom rdf:resource="#Methanogenesis"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
+                <owl:someValuesFrom rdf:resource="#Respiration"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
                 <owl:someValuesFrom rdf:resource="#SedimentTrappingAndRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2430,13 +2590,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SurfaceRoughness"/>
+                <owl:someValuesFrom rdf:resource="#OceanpH"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#OceanpH"/>
+                <owl:someValuesFrom rdf:resource="#SurfaceRoughness"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2877,7 +3037,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilOxygenConditions"/>
+                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2889,7 +3049,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+                <owl:someValuesFrom rdf:resource="#SoilOxygenConditions"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3030,19 +3190,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#Precipitation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#SoilDepth"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#VegetationType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3054,19 +3208,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilOxygenConditions"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#Precipitation"/>
+                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilOxygenConditions"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#VegetationType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3081,20 +3241,14 @@
         <rdfs:subClassOf rdf:resource="#CStorage"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#AgriculturalPractices"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#Slope"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#SoilTexture"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilDepth"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3112,7 +3266,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilSalinity"/>
+                <owl:someValuesFrom rdf:resource="#SoilDepth"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3123,8 +3277,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#AgriculturalPractices"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#Slope"/>
+                <owl:someValuesFrom rdf:resource="#SoilSalinity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3250,6 +3410,22 @@
         <rdfs:subClassOf rdf:resource="#SoilpH"/>
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#StandCondition -->
+
+    <owl:Class rdf:about="#StandCondition">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#StandSizeDensity -->
+
+    <owl:Class rdf:about="#StandSizeDensity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -3421,18 +3597,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#Precipitation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#VegetationType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3446,6 +3610,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#SuccessionalStage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#Precipitation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3461,31 +3637,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#SuccessionalStage"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#VegetationType"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#Slope"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#Elevation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3497,7 +3655,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilTexture"/>
+                <owl:someValuesFrom rdf:resource="#GrowingSeason"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3515,7 +3673,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#Slope"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="#Precipitation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#Elevation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#VegetationType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3531,13 +3707,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#Respiration"/>
+                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
-                <owl:someValuesFrom rdf:resource="#Photosynthesis"/>
+                <owl:someValuesFrom rdf:resource="#Respiration"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -3682,6 +3858,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowBlowdownFrequency -->
+
+    <owl:Class rdf:about="#VeryLowBlowdownFrequency">
+        <rdfs:subClassOf rdf:resource="#BlowdownFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowCNRatio -->
 
     <owl:Class rdf:about="#VeryLowCNRatio">
@@ -3714,6 +3898,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowFireFrequency -->
+
+    <owl:Class rdf:about="#VeryLowFireFrequency">
+        <rdfs:subClassOf rdf:resource="#FireFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowHardness -->
 
     <owl:Class rdf:about="#VeryLowHardness">
@@ -3722,10 +3914,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowInsectFrequency -->
+
+    <owl:Class rdf:about="#VeryLowInsectFrequency">
+        <rdfs:subClassOf rdf:resource="#InsectFrequency"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="#VeryLowMeanAnnualPrecipitation">
         <rdfs:subClassOf rdf:resource="#MeanAnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/carbonService.owl#VeryLowNaturalDisturbanceFrequency -->
+
+    <owl:Class rdf:about="#VeryLowNaturalDisturbanceFrequency">
+        <rdfs:subClassOf rdf:resource="#NaturalDisturbanceFrequency"/>
     </owl:Class>
     
 
@@ -4031,21 +4239,62 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighCNRatio"/>
-            <rdf:Description rdf:about="#LowCNRatio"/>
-            <rdf:Description rdf:about="#VeryHighCNRatio"/>
-            <rdf:Description rdf:about="#VeryLowCNRatio"/>
+            <rdf:Description rdf:about="#HighEmitter"/>
+            <rdf:Description rdf:about="#LowEmitter"/>
+            <rdf:Description rdf:about="#ModerateEmitter"/>
+            <rdf:Description rdf:about="#NoEmitter"/>
+            <rdf:Description rdf:about="#VeryHighEmitter"/>
+            <rdf:Description rdf:about="#VeryLowEmitter"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighRelease"/>
-            <rdf:Description rdf:about="#LowRelease"/>
-            <rdf:Description rdf:about="#ModerateRelease"/>
-            <rdf:Description rdf:about="#NoRelease"/>
-            <rdf:Description rdf:about="#VeryHighRelease"/>
-            <rdf:Description rdf:about="#VeryLowRelease"/>
+            <rdf:Description rdf:about="#HighCarbonUptake"/>
+            <rdf:Description rdf:about="#LowCarbonUptake"/>
+            <rdf:Description rdf:about="#ModerateCarbonUptake"/>
+            <rdf:Description rdf:about="#NoCarbonUptake"/>
+            <rdf:Description rdf:about="#VeryHighCarbonUptake"/>
+            <rdf:Description rdf:about="#VeryLowCarbonUptake"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighSOL"/>
+            <rdf:Description rdf:about="#LowSOL"/>
+            <rdf:Description rdf:about="#ModerateSOL"/>
+            <rdf:Description rdf:about="#VeryHighSOL"/>
+            <rdf:Description rdf:about="#VeryLowSOL"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighSequestration"/>
+            <rdf:Description rdf:about="#LowSequestration"/>
+            <rdf:Description rdf:about="#ModerateSequestration"/>
+            <rdf:Description rdf:about="#NoSequestration"/>
+            <rdf:Description rdf:about="#VeryHighSequestration"/>
+            <rdf:Description rdf:about="#VeryLowSequestration"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#GentlyUndulating"/>
+            <rdf:Description rdf:about="#Level"/>
+            <rdf:Description rdf:about="#RollingToHilly"/>
+            <rdf:Description rdf:about="#SteeplyDissectedToMountainous"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighCNRatio"/>
+            <rdf:Description rdf:about="#LowCNRatio"/>
+            <rdf:Description rdf:about="#VeryHighCNRatio"/>
+            <rdf:Description rdf:about="#VeryLowCNRatio"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -4067,31 +4316,53 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#EarlySuccession"/>
-            <rdf:Description rdf:about="#LateSuccession"/>
-            <rdf:Description rdf:about="#MidSuccession"/>
-            <rdf:Description rdf:about="#NoSuccession"/>
-            <rdf:Description rdf:about="#OldGrowth"/>
-            <rdf:Description rdf:about="#PoleSuccession"/>
+            <rdf:Description rdf:about="#HighVegetationStorage"/>
+            <rdf:Description rdf:about="#LowVegetationStorage"/>
+            <rdf:Description rdf:about="#ModerateVegetationStorage"/>
+            <rdf:Description rdf:about="#NoVegetationStorage"/>
+            <rdf:Description rdf:about="#VeryHighVegetationStorage"/>
+            <rdf:Description rdf:about="#VeryLowVegetationStorage"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#GentlyUndulating"/>
-            <rdf:Description rdf:about="#Level"/>
-            <rdf:Description rdf:about="#RollingToHilly"/>
-            <rdf:Description rdf:about="#SteeplyDissectedToMountainous"/>
+            <rdf:Description rdf:about="#HighEvapotranspiration"/>
+            <rdf:Description rdf:about="#LowEvapotranspiration"/>
+            <rdf:Description rdf:about="#ModerateEvapotranspiration"/>
+            <rdf:Description rdf:about="#VeryHighEvapotranspiration"/>
+            <rdf:Description rdf:about="#VeryLowEvapotranspiration"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSOL"/>
-            <rdf:Description rdf:about="#LowSOL"/>
-            <rdf:Description rdf:about="#ModerateSOL"/>
-            <rdf:Description rdf:about="#VeryHighSOL"/>
-            <rdf:Description rdf:about="#VeryLowSOL"/>
+            <rdf:Description rdf:about="#HighHardness"/>
+            <rdf:Description rdf:about="#LowHardness"/>
+            <rdf:Description rdf:about="#ModerateHardness"/>
+            <rdf:Description rdf:about="#VeryHighHardness"/>
+            <rdf:Description rdf:about="#VeryLowHardness"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighRelease"/>
+            <rdf:Description rdf:about="#LowRelease"/>
+            <rdf:Description rdf:about="#ModerateRelease"/>
+            <rdf:Description rdf:about="#NoRelease"/>
+            <rdf:Description rdf:about="#VeryHighRelease"/>
+            <rdf:Description rdf:about="#VeryLowRelease"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighVegetationCover"/>
+            <rdf:Description rdf:about="#LowVegetationCover"/>
+            <rdf:Description rdf:about="#ModerateVegetationCover"/>
+            <rdf:Description rdf:about="#VeryHighVegetationCover"/>
+            <rdf:Description rdf:about="#VeryLowVegetationCover"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -4108,49 +4379,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighVegetationStorage"/>
-            <rdf:Description rdf:about="#LowVegetationStorage"/>
-            <rdf:Description rdf:about="#ModerateVegetationStorage"/>
-            <rdf:Description rdf:about="#NoVegetationStorage"/>
-            <rdf:Description rdf:about="#VeryHighVegetationStorage"/>
-            <rdf:Description rdf:about="#VeryLowVegetationStorage"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighVegetationCover"/>
-            <rdf:Description rdf:about="#LowVegetationCover"/>
-            <rdf:Description rdf:about="#ModerateVegetationCover"/>
-            <rdf:Description rdf:about="#VeryHighVegetationCover"/>
-            <rdf:Description rdf:about="#VeryLowVegetationCover"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighCarbonUptake"/>
-            <rdf:Description rdf:about="#LowCarbonUptake"/>
-            <rdf:Description rdf:about="#ModerateCarbonUptake"/>
-            <rdf:Description rdf:about="#NoCarbonUptake"/>
-            <rdf:Description rdf:about="#VeryHighCarbonUptake"/>
-            <rdf:Description rdf:about="#VeryLowCarbonUptake"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighEmitter"/>
-            <rdf:Description rdf:about="#LowEmitter"/>
-            <rdf:Description rdf:about="#ModerateEmitter"/>
-            <rdf:Description rdf:about="#NoEmitter"/>
-            <rdf:Description rdf:about="#VeryHighEmitter"/>
-            <rdf:Description rdf:about="#VeryLowEmitter"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighSoilStorage"/>
             <rdf:Description rdf:about="#LowSoilStorage"/>
             <rdf:Description rdf:about="#ModerateSoilStorage"/>
@@ -4162,32 +4390,12 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSequestration"/>
-            <rdf:Description rdf:about="#LowSequestration"/>
-            <rdf:Description rdf:about="#ModerateSequestration"/>
-            <rdf:Description rdf:about="#NoSequestration"/>
-            <rdf:Description rdf:about="#VeryHighSequestration"/>
-            <rdf:Description rdf:about="#VeryLowSequestration"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighHardness"/>
-            <rdf:Description rdf:about="#LowHardness"/>
-            <rdf:Description rdf:about="#ModerateHardness"/>
-            <rdf:Description rdf:about="#VeryHighHardness"/>
-            <rdf:Description rdf:about="#VeryLowHardness"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighEvapotranspiration"/>
-            <rdf:Description rdf:about="#LowEvapotranspiration"/>
-            <rdf:Description rdf:about="#ModerateEvapotranspiration"/>
-            <rdf:Description rdf:about="#VeryHighEvapotranspiration"/>
-            <rdf:Description rdf:about="#VeryLowEvapotranspiration"/>
+            <rdf:Description rdf:about="#EarlySuccession"/>
+            <rdf:Description rdf:about="#LateSuccession"/>
+            <rdf:Description rdf:about="#MidSuccession"/>
+            <rdf:Description rdf:about="#NoSuccession"/>
+            <rdf:Description rdf:about="#OldGrowth"/>
+            <rdf:Description rdf:about="#PoleSuccession"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
