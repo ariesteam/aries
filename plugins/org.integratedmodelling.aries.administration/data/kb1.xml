@@ -23,4 +23,29 @@
 
 	<!-- INSERT NEW ANNOTATIONS HERE -->
 
+<measurement:Ranking id="global_globalfloodplains">
+	<observation:hasObservable>
+		<floodService:Floodplains />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+			</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:globalfloodplains
+			</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-25.607</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-84.928</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>23.331</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>50.484</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326
+			</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
+
 </kbox>
