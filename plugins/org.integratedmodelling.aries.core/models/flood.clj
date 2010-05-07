@@ -136,8 +136,7 @@
 
 (defmodel vegetation-height 'floodService:VegetationHeight
 	(classification (measurement 'habitat:VegetationHeight "ft")
-;   CHECK -- BN only has high, moderate, low, very low 
-;		[120 :>] 'floodService:VeryHighVegetationHeight
+		[120 :>] 'floodService:VeryHighVegetationHeight
 		[80 :>] 'floodService:HighVegetationHeight
 		[50 80]  'floodService:ModerateVegetationHeight
 		[20 50]  'floodService:LowVegetationHeight
@@ -145,7 +144,7 @@
 		
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
-		[80 :>] 'floodService:VeryHighVegetationCover
+		[80 100] 'floodService:VeryHighVegetationCover
 		[60 80] 'floodService:HighVegetationCover
 		[40 60] 'floodService:ModerateVegetationCover
 		[20 40] 'floodService:LowVegetationCover
