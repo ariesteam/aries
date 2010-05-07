@@ -26,4 +26,5 @@
 		(import (tl/get-plugin-resource 'aries.administration "nlcd2001.xml"))
 		(import (tl/get-plugin-resource 'aries.administration "marine.xml"))
 		(import (tl/get-plugin-resource 'aries.administration "bv1.xml"))
+		(import (tl/get-plugin-resource 'aries.administration "raven_ridge_viewsheds.xml")) 
 	)
