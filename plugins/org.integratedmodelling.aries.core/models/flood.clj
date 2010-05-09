@@ -13,13 +13,13 @@
 (defmodel flow-direction 'geophysics:FlowDirection
 	(ranking 'geophysics:FlowDirection)) 
 
-(defmodel soil-group 'floodService:HydrologicSoilsGroup
+(defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
 	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			"A"        'floodService:SoilGroupA
-			"B"        'floodService:SoilGroupB
-			"C"        'floodService:SoilGroupC
-			"D"        'floodService:SoilGroupD))
+			1        'floodService:SoilGroupA
+			0        'floodService:SoilGroupB
+			3        'floodService:SoilGroupC
+			2        'floodService:SoilGroupD))
 
 (defmodel precipitation 'floodService:Precipitation
 	"FIXME this is total monthly precipitation I believe."
@@ -85,7 +85,7 @@
 (defmodel source-cn 'floodService:FloodSource
 	  (measurement 'floodService:Runoff "in" 
 	 	 	:context  (land-use :as landuse 
-                 soil-group :as soilgroup
+                 soil-group-puget :as soilgroup
                  (ranking 'habitat:PercentImperviousness) :as imperv
                  precipitation :as precipitation)
       :state #(let [
@@ -198,7 +198,7 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group vegetation-type slope monthly-temperature levees bridges
+	 	 			soil-group-puget vegetation-type slope monthly-temperature levees bridges
 	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			(comment mean-days-precipitation vegetation-height)
 	 	 			percent-vegetation-cover)))

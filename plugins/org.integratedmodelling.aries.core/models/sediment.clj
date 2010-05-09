@@ -6,13 +6,21 @@
 ;; provision model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel soil-group 'floodService:HydrologicSoilsGroup
+(defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
 	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			"A"        'floodService:SoilGroupA
-			"B"        'floodService:SoilGroupB
-			"C"        'floodService:SoilGroupC
-			"D"        'floodService:SoilGroupD))
+			1       'floodService:SoilGroupA
+			0       'floodService:SoilGroupB
+			3       'floodService:SoilGroupC
+			2       'floodService:SoilGroupD))
+
+(defmodel soil-group-global 'floodService:HydrologicSoilsGroup
+	"Relevant soil group"
+	(classification (categorization 'floodService:HydrologicSoilsGroup)
+			1       'floodService:SoilGroupA
+			2       'floodService:SoilGroupB
+			3       'floodService:SoilGroupC
+			4       'floodService:SoilGroupD))
 
 (defmodel slope 'floodService:Slope
 		(classification (ranking 'geophysics:DegreeSlope)
@@ -55,7 +63,7 @@
 ;;Monthly precipitation for Puget Sound.
 (defmodel precipitation-puget 'floodService:Precipitation
 	"FIXME this is total monthly precipitation."
-	(classification (measurement 'habitat:Precipitation "in")
+	(classification (measurement 'habitat:Precipitation "in/month")
 		[:< 3] 	  'floodService:VeryLowPrecipitation
 		[3 6] 	  'floodService:LowPrecipitation
 		[6 12] 	  'floodService:ModeratePrecipitation
@@ -65,7 +73,7 @@
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-global 'floodService:Precipitation
 	"FIXME this is annual precipitation."
-	(classification (measurement 'habitat:Precipitation "mm")
+	(classification (measurement 'habitat:Precipitation "mm/yr")
     [:< 600] 	    'floodService:VeryLowPrecipitation
 		[600 1200] 	  'floodService:LowPrecipitation
 		[1200 1800]   'floodService:ModeratePrecipitation
@@ -112,31 +120,29 @@
 		#{52 81}             'soilretentionEcology:ShrublandPasture
 		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped))
 
-;;Vegetation type, global.  These concepts don't yet exist in the glc2000 ontology.
+;;Vegetation type, global.  Referenced in the ontology similarly to NLCDNumeric.
 (defmodel vegetation-type-global 'soilretentionEcology:VegetationType
-  (classification (ranking 'glc2000:GLCNumeric)
+  (classification (ranking 'glc:GLCNumeric)
 		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
 		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
     #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)) 
 
-;;These concepts don't yet exist in the mglulc ontology.
-;;Vegetation type, Mg
+;;Vegetation type, Mg.  Referenced in the ontology similarly to NLCDNumeric.
 (defmodel vegetation-type-mg 'soilretentionEcology:VegetationType
-  (classification (ranking 'mglulc:MgLULCNumeric)
-    #{1 2 4 5 6 10 14} 'soilretentionEcology:ForestWetland
-    #{3 7}             'soilretentionEcology:DegradedForest
-		#{8 9}             'soilretentionEcology:Savanna
-    #{16 17}           'soilretentionEcology:CroplandDeveloped)) 
+  (classification (ranking 'mglulc:MGLULCNumeric)
+    #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
+    #{3 7 23}                                  'soilretentionEcology:DegradedForest
+		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} 'soilretentionEcology:Savanna
+    #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)) 
 
-;;NEED TO GET CORRECT NUMBERS FROM LEE & NATHALY...
-;;Vegetation type, DR.  These concepts don't yet exist in the drlulc ontology.
+;;Vegetation type, DR.  Referenced in the ontology similarly to NLCDNumeric.
 (defmodel vegetation-type-dr 'soilretentionEcology:VegetationType
-  (classification (ranking 'drlulc:DRLULCNumeric)
-    #{1 2 4 6 8 9} 'soilretentionEcology:ForestAndShrubland
-    #{62 63}                     'soilretentionEcology:WaterWetlandsMangroves
-		#{} 'soilretentionEcology:ShadeCoffeeCocoa
-    #{}             'soilretentionEcology:IntensiveCroplandAndPasture
-    #{}             'soilretentionEcology:UrbanAndRoads))
+  (classification (ranking 'domlulc:DOMULCNumeric)
+    #{1 2 4 6 8 9 11 18 35} 'soilretentionEcology:ForestAndShrubland
+    #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
+		#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
+    #{23 36 38 40 59}       'soilretentionEcology:IntensiveCroplandAndPasture
+    #{42}                   'soilretentionEcology:UrbanAndRoads))
 
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
@@ -177,7 +183,7 @@
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValue
     :observed (sediment-source-value-puget) 
-    :context  (soil-group slope soil-texture slope-stability  soil-erodibility-puget precipitation-puget  
+    :context  (soil-group-puget slope soil-texture slope-stability  soil-erodibility-puget precipitation-puget  
               monthly-snowmelt monthly-temperature runoff vegetation-type-puget percent-vegetation-cover 
               successional-stage)))
 
@@ -187,17 +193,16 @@
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValue
     :observed (sediment-source-value-global) 
-    :context  (soil-group slope soil-texture soil-erodibility-global precipitation-global  
+    :context  (soil-group-global slope soil-texture soil-erodibility-global precipitation-global  
               storm-probability runoff vegetation-type-mg percent-vegetation-cover)))
 
 ;; source bayesian model for Dominican Republic
-;; make sure to properly rename the .xdsl file   	 
 (defmodel source-dr 'soilretentionEcology:SedimentSourceValue
   (bayesian 'soilretentionEcology:SedimentSourceValue 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValue
     :observed (sediment-source-value-global) 
-    :context  (soil-group slope soil-texture soil-erodibility-global precipitation-global  
+    :context  (soil-group-global slope soil-texture soil-erodibility-global precipitation-global  
               storm-probability runoff vegetation-type-dr percent-vegetation-cover)))
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
@@ -206,23 +211,34 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Still need defmodels for all components of fisheries BNs.  In the long run, could take 2 paths:
-;; 1) ditch fisheries BNs & use source/use models for actual fisheries
-;; 2) use BNs as generalized fisheries impact model.
-
 (defmodel floodplains 'floodService:Floodplain
 	(classification (ranking 'floodService:Floodplains)
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
 
-;; Not sure what the "agent" statement below is saying.  Still need defmodels for farmland in Mg & DR.
-(defmodel farmland 'floodService:Farmland
+(defmodel farmland-puget 'floodService:Farmland
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		82	       'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent
-;    :agent     "aries/flood/farm"
-    :editable  true))
+		:otherwise 'floodService:FarmlandAbsent))
+
+(defmodel farmland-global 'floodService:Farmland
+	"Just a reclass of the GLC2000 land use layer"
+	(classification (ranking 'glc:GLCNumeric)
+		{16 17 18} 'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent))
+
+(defmodel farmland-mg 'floodService:Farmland
+	"Just a reclass of the mg land use layer"
+	(classification (ranking 'mglulc:MGLULCNumeric)
+		{11 12 13} 'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent))
+
+(defmodel farmland-dr 'floodService:Farmland
+	"Just a reclass of the DR land use layer"
+	(classification (ranking 'domlulc:DOMULCNumeric)
+		{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
+		:otherwise                'floodService:FarmlandAbsent))
 
 ;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity -
 ;;in reality dam heigh & flow are important factors but we don't have flow data.
@@ -241,29 +257,60 @@
     0           'soilretentionEcology:HydroelectricUseAbsence
 		1           'soilretentionEcology:HydroelectricUsePresent))
 
-;; Gary: do we need an undiscretization defmodel before this, for the "observed"?
-;; Farmer users in floodplains, i.e., where sedimentation is desirable or undesirable, depending on conditions
-(defmodel farmers-use 'soilretentionEcology:DepositionProneFarmers 
-	  (bayesian 'soilretentionEcology:DepositionProneFarmers 
-	  	:import   "aries.core::SedimentDepositionProneFarmersUse.xdsl"
-	  	:keep     ('soilretentionEcology:DepositionProneFarmers)
-	 	 	:context  (farmland floodplains)))
+;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+(defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
+  [(ranking 'nlcd:NLCDNumeric :as farmlandpresent)
+   (ranking 'floodService:Floodplains :as floodplains)]
+  (ranking 'soilretentionEcology:DepositionProneFarmers
+       :state #(if (and (= (:floodplains %) 1)
+                        (= (:fsrmlandpresent %) 82))
+                    1
+                    0))) 
 
-;;Get Gary's input on what to do with "erosion prone farmers" since erosion source value goes into the BN.
+(defmodel farmers-deposition-use-mg 'soilretentionEcology:DepositionProneFarmers 
+  [(ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
+   (ranking 'floodService:Floodplains :as floodplains)]
+  (ranking 'soilretentionEcology:DepositionProneFarmers
+       :state #(if (and (= (:floodplains %) 1)
+                        (= (:fsrmlandpresent %) {11 12 13}))
+                    1
+                    0))) 
 
-;; Fishermen use model: lots of work still to do on this one.  What about deterministic nodes?
-;; Need an undiscretization defmodel before this, for the "observed"?
-(defmodel fishermen-use-puget 'soilretentionEcology:FishermenUse 
-	  (bayesian 'soilretentionEcology:FishermenUse  
-	  	:import   "aries.core::SedimentFishermenUse.xdsl"
-	  	:keep     ('soilretentionEcology:FishermenUse)
-	 	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
+(defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
+  [(ranking 'domlulc:DOMULCNumeric :as farmlandpresent)
+   (ranking 'floodService:Floodplains :as floodplains)]
+  (ranking 'soilretentionEcology:DepositionProneFarmers
+       :state #(if (and (= (:floodplains %) 1)
+                        (= (:fsrmlandpresent %) {23 36 38 40 41 45 53 59))
+                    1
+                    0))) 
 
-defmodel fishermen-use-mg 'soilretentionEcology:FishermenUse 
-	  (bayesian 'soilretentionEcology:FishermenUse  
-	  	:import   "aries.core::SedimentFishermenUseMg.xdsl"
-	  	:keep     ('soilretentionEcology:FishermenUse)
-	 	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density)))
+;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
+;; Gary: does this look right?
+(defmodel farmers-erosion-use-puget 'soilretentionEcology:ErosionProneFarmers 
+  [(ranking 'nlcd:NLCDNumeric :as farmlandpresent)
+   (ranking 'soilretentionEcology:SedimentSourceValue :as sediment-source-value-puget)]
+  (ranking 'soilretentionEcology:ErosionProneFarmers
+       :state #(if (and (= (:floodplains %) 1)  ;;WHAT should this state be?
+                        (= (:fsrmlandpresent %) 82))
+                    1
+                    0))) 
+
+;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
+;; Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
+;; 1) ditch fisheries BNs & use source/use models for actual fisheries
+;; 2) use BNs as generalized fisheries impact model.
+;;(defmodel fishermen-use-puget 'soilretentionEcology:FishermenUse 
+	;;  (bayesian 'soilretentionEcology:FishermenUse  
+	 ;; 	:import   "aries.core::SedimentFishermenUse.xdsl"
+	 ;; 	:keep     ('soilretentionEcology:FishermenUse)
+	 ;;	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
+
+;;defmodel fishermen-use-mg 'soilretentionEcology:FishermenUse 
+	;;  (bayesian 'soilretentionEcology:FishermenUse  
+	 ;; 	:import   "aries.core::SedimentFishermenUseMg.xdsl"
+	 ;; 	:keep     ('soilretentionEcology:FishermenUse)
+	 ;;	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -325,21 +372,21 @@ defmodel fishermen-use-mg 'soilretentionEcology:FishermenUse
        0                      'soilretentionEcology:NoSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
-(defmodel sink-mg 'soilretentionEcology:SedimentSink
+(defmodel sediment-sink-mg 'soilretentionEcology:SedimentSink
   (bayesian 'soilretentionEcology:SedimentSink 
     :import  "aries.core::SedimentSinkMg.xdsl"
     :keep    ('soilretentionEcology:SedimentSink)
     :observed (sediment-sink-global) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 
-(defmodel sink-us 'soilretentionEcology:SedimentSink
+(defmodel sediment-sink-us 'soilretentionEcology:SedimentSink
   (bayesian 'soilretentionEcology:SedimentSink    
     :import  "aries.core::SedimentSink.xdsl"
     :keep    ('soilretentionEcology:SedimentSink)
     :observed (sediment-sink-western-US) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width levees)))
 
-(defmodel sink-dr 'soilretentionEcology:SedimentSink
+(defmodel sediment-sink-dr 'soilretentionEcology:SedimentSink
   (bayesian 'soilretentionEcology:SedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
     :keep    ('soilretentionEcology:SedimentSink)
@@ -349,40 +396,42 @@ defmodel fishermen-use-mg 'soilretentionEcology:FishermenUse
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
+
+;;Everything below needs to be updated correctly for sediment.
  	 								
-(defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))	 								
+;;(defmodel altitude 'geophysics:Altitude
+  ;;(measurement 'geophysics:Altitude "m"))	 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-(defmodel data 'aestheticService:AestheticEnjoyment 
-	(identification 'aestheticService:AestheticEnjoyment)
-		:context (
-			source :as source
-			homeowners :as use
-			sink :as sink
-			altitude :as altitude))
+ ;;(defmodel data 'aestheticService:AestheticEnjoyment 
+	;;(identification 'aestheticService:AestheticEnjoyment)
+		;;  :context (
+		;;	source :as source
+		;;	homeowners :as use
+		;;	sink :as sink
+		;;	altitude :as altitude))
 			
 ;; the real enchilada
-(defmodel view 'aestheticService:AestheticView
-  (span 'aestheticService:LineOfSight 
-  	    'aestheticService:TheoreticalNaturalBeauty
-  	    'aestheticService:HomeownerViewUse
-      	'aestheticService:TotalVisualBlight
-      	'aestheticService:View
-  	    'geophysics:Altitude
-   	:sink-type        :relative
-   	:use-type         :relative
-   	:benefit-type     :non-rival
-   	:downscaling-factor 3
-   	:rv-max-states    10 
-    :context
-         (source homeowners sink altitude
-          (ranking 'eserv:SourceThreshold :value 50)
-          (ranking 'eserv:SinkThreshold :value 0.3)
-          (ranking 'eserv:UseThreshold :value 0.1)
-          (ranking 'eserv:TransitionThreshold :value 1.0))
-))
+;;(defmodel view 'aestheticService:AestheticView
+ ;; (span 'aestheticService:LineOfSight 
+  	;;    'aestheticService:TheoreticalNaturalBeauty
+  	;;    'aestheticService:HomeownerViewUse
+    ;;  	'aestheticService:TotalVisualBlight
+    ;;  	'aestheticService:View
+  	;;    'geophysics:Altitude
+  ;; 	:sink-type        :relative
+  ;; 	:use-type         :relative
+  ;; 	:benefit-type     :non-rival
+  ;; 	:downscaling-factor 3
+  ;; 	:rv-max-states    10 
+  ;;  :context
+    ;;     (source homeowners sink altitude
+    ;;     (ranking 'eserv:SourceThreshold :value 50)
+    ;;     (ranking 'eserv:SinkThreshold :value 0.3)
+    ;;     (ranking 'eserv:UseThreshold :value 0.1)
+    ;;     (ranking 'eserv:TransitionThreshold :value 1.0))
+;;))

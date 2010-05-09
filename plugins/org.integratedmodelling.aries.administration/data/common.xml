@@ -392,7 +392,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- ??? fv - not in Geoserver anymore?
+<!-- ??? fv - not in Geoserver anymore?  KB: NO - they were replaced by better layers.
 	<measurement:Ranking id="RiparianVeg3">
 		<observation:hasObservable>
 			<soilretentionEcology:FloodplainVegetationCover />
@@ -564,11 +564,10 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-<!-- landuse category from property data, used as a 1/0 coverage -->
+<!--  This has to be commented out for now if we're going to try to run a useful global verision.
 <observation:Categorization id="puget_soilgroup">
 	
 		<observation:hasObservable>
-			<!--  TODO this should represent the concept of landuse expressed in that attribute of property data -->
 			<floodService:HydrologicSoilsGroup />
 		</observation:hasObservable>
 
@@ -588,21 +587,24 @@
 				<geospace:hasLonUpperBound>806557.9375</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</observation:Categorization>
+	</observation:Categorization> -->
 	
 <!-- HSG was slow to rasterize as a vector file (above) so I inserted the raster layer below.  It seems like this should read in the clojure models, but let's make sure. -->
 	
-	<!-- TODO insert this instead of the above once the mapping is understood - the
+	<!-- FV: TODO insert this instead of the above once the mapping is understood - the
 	above is a categorization to A,B,C,D; this one is a raster with integers - how to
 	translate? When understood, models need to be changed to reflect the mapping AND
 	we should discuss using the global file as well. -->
-	<!--  <measurement:Ranking id="HSG">
+	<!-- KB: I'm hoping the discretization provided in sediment.clj will do the job (changes were made to
+	flood.clj too).  Let me know if it doesn't. -->
+	 <measurement:Ranking id="HSG">
 		<observation:hasObservable>
 			<floodService:HydrologicSoilsGroup />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasNodataValue>4</geospace:hasNodataValue>
 				<geospace:hasCoverageId>puget:HSG</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -626,6 +628,7 @@
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasNodataValue>127</geospace:hasNodataValue>
 				<geospace:hasCoverageId>global:hsg</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -640,7 +643,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking> 
 
 <!-- lakes in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking -->
@@ -1420,37 +1423,6 @@
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 	</observation:Categorization>
-	
-	<!-- fv another one that seems to have gone away 
-	<measurement:Ranking id="puget_pugetstreamgradient">
-			<observation:hasObservable>
-				<soilretentionEcology:StreamGradient />
-			</observation:hasObservable>
-			<measurement:unit>°</measurement:unit>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetstreamgradient
-					</geospace:hasCoverageId>
-					<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>365248.72194511886
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>605426.9170494202
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1364757.9515611473
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>1630021.7425694633
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:26910
-					</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-	</measurement:Ranking>  -->
 	
 	<!-- Numeric ranking of successional stage -->
 	<measurement:Ranking id="puget_successional_stage">

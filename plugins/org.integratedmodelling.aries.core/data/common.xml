@@ -455,33 +455,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="RiparianVeg3">
-		<observation:hasObservable>
-			<soilretentionEcology:FloodplainVegetationCover />
-		</observation:hasObservable>
-		<measurement:unit>%</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:RiparianVeg3</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMin>0</geospace:hasXRangeMin>
-				<geospace:hasYRangeMin>0</geospace:hasYRangeMin>
-				<geospace:hasXRangeMax>8813</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>8632</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-34.694244333148134</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-16.875340548424848</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.25575566397386</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>56.58299278197015</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-
 	<!-- floodplains in Chehalis watershed from shape coverage, 
 		seen as a presence/absence ranking -->
 	<measurement:Ranking id="chehalis_floodplain">
@@ -506,29 +479,6 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	<measurement:Classification id="mg_mgfloodplain">
-			<observation:hasObservable>
-				<floodService:Floodplains />
-			</observation:hasObservable>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:mgfloodplain</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-34.688</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4326
-					</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:Classification>
 	
 	<measurement:Ranking id="hydrosheds">
 		<observation:hasObservable>
@@ -1568,36 +1518,6 @@ ontology -->
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	<measurement:Measurement id="puget_pugetstreamgradient">
-			<observation:hasObservable>
-				<soilretentionEcology:StreamGradient />
-			</observation:hasObservable>
-			<measurement:unit>°</measurement:unit>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetstreamgradient
-					</geospace:hasCoverageId>
-					<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>365248.72194511886
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>605426.9170494202
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1364757.9515611473
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>1630021.7425694633
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:26910
-					</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-	</measurement:Measurement>
 	
 	<!-- Numeric ranking of successional stage -->
 	<measurement:Ranking id="puget_successional_stage">
