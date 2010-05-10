@@ -269,6 +269,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualRunoff -->
+
+    <owl:Class rdf:about="#AnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualSnowmelt -->
 
     <owl:Class rdf:about="#AnnualSnowmelt">
@@ -759,6 +767,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualRunoff -->
+
+    <owl:Class rdf:about="#HighAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualSnowmelt -->
 
     <owl:Class rdf:about="#HighAnnualSnowmelt">
@@ -823,18 +839,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighPopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighMonthlySnowpack -->
 
-    <owl:Class rdf:about="#HighPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#HighMonthlySnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighRunoff -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighPopulationDensity -->
 
-    <owl:Class rdf:about="#HighRunoff">
-        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    <owl:Class rdf:about="#HighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -863,14 +879,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSnowpack -->
-
-    <owl:Class rdf:about="#HighSnowpack">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSoilErodibility -->
 
     <owl:Class rdf:about="#HighSoilErodibility">
@@ -891,6 +899,14 @@
 
     <owl:Class rdf:about="#HighTemperature">
         <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighTropicalStormProbability -->
+
+    <owl:Class rdf:about="#HighTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
@@ -1119,6 +1135,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualRunoff -->
+
+    <owl:Class rdf:about="#LowAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualSnowmelt -->
 
     <owl:Class rdf:about="#LowAnnualSnowmelt">
@@ -1151,18 +1175,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowMonthlySnowpack -->
 
-    <owl:Class rdf:about="#LowPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#LowMonthlySnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowRunoff -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPopulationDensity -->
 
-    <owl:Class rdf:about="#LowRunoff">
-        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    <owl:Class rdf:about="#LowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -1187,14 +1211,6 @@
 
     <owl:Class rdf:about="#LowSlopeStability">
         <rdfs:subClassOf rdf:resource="#SlopeStability"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSnowpack -->
-
-    <owl:Class rdf:about="#LowSnowpack">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
     </owl:Class>
     
 
@@ -1323,6 +1339,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualRunoff -->
+
+    <owl:Class rdf:about="#ModerateAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualSnowmelt -->
 
     <owl:Class rdf:about="#ModerateAnnualSnowmelt">
@@ -1387,18 +1411,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModeratePopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateMonthlySnowpack -->
 
-    <owl:Class rdf:about="#ModeratePopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#ModerateMonthlySnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateRunoff -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModeratePopulationDensity -->
 
-    <owl:Class rdf:about="#ModerateRunoff">
-        <rdfs:subClassOf rdf:resource="#Runoff"/>
+    <owl:Class rdf:about="#ModeratePopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -1427,14 +1451,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSnowpack -->
-
-    <owl:Class rdf:about="#ModerateSnowpack">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSoilErodibility -->
 
     <owl:Class rdf:about="#ModerateSoilErodibility">
@@ -1455,6 +1471,14 @@
 
     <owl:Class rdf:about="#ModerateTemperature">
         <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateTropicalStormProbability -->
+
+    <owl:Class rdf:about="#ModerateTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
@@ -1587,6 +1611,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoMonthlySnowpack -->
+
+    <owl:Class rdf:about="#NoMonthlySnowpack">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSedimentSink -->
 
     <owl:Class rdf:about="#NoSedimentSink">
@@ -1603,18 +1635,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSnowpack -->
-
-    <owl:Class rdf:about="#NoSnowpack">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSuccession -->
 
     <owl:Class rdf:about="#NoSuccession">
         <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoTropicalStormProbability -->
+
+    <owl:Class rdf:about="#NoTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
@@ -2385,6 +2417,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighAnnualRunoff -->
+
+    <owl:Class rdf:about="#VeryHighAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighFloodplainVetgetationCover -->
 
     <owl:Class rdf:about="#VeryHighFloodplainVetgetationCover">
@@ -2405,14 +2445,6 @@
 
     <owl:Class rdf:about="#VeryHighPopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighRunoff -->
-
-    <owl:Class rdf:about="#VeryHighRunoff">
-        <rdfs:subClassOf rdf:resource="#Runoff"/>
     </owl:Class>
     
 
@@ -2441,6 +2473,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowAnnualRunoff -->
+
+    <owl:Class rdf:about="#VeryLowAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowFloodplainVegetationCover -->
 
     <owl:Class rdf:about="#VeryLowFloodplainVegetationCover">
@@ -2461,14 +2501,6 @@
 
     <owl:Class rdf:about="#VeryLowPopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowRunoff -->
-
-    <owl:Class rdf:about="#VeryLowRunoff">
-        <rdfs:subClassOf rdf:resource="#Runoff"/>
     </owl:Class>
     
 

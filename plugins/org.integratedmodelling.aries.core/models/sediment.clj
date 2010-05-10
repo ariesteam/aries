@@ -20,7 +20,7 @@
 			4       'soilretentionEcology:SoilGroupD))
 
 (defmodel slope 'soilretentionEcology:Slope
-		(classification (measurement 'geophysics:DegreeSlope :units "°")
+		(classification (measurement 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
