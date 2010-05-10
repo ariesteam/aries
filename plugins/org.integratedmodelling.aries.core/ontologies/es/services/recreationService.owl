@@ -289,14 +289,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighElevationView -->
-
-    <owl:Class rdf:about="#HighElevationView">
-        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighIntensityDevelopment -->
 
     <owl:Class rdf:about="#HighIntensityDevelopment">
@@ -309,6 +301,14 @@
 
     <owl:Class rdf:about="#HighQualityWaterView">
         <rdfs:subClassOf rdf:resource="#WaterView"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighViewPosition -->
+
+    <owl:Class rdf:about="#HighViewPosition">
+        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
     </owl:Class>
     
 
@@ -399,14 +399,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowElevationView -->
-
-    <owl:Class rdf:about="#LowElevationView">
-        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowIntensityDevelopment -->
 
     <owl:Class rdf:about="#LowIntensityDevelopment">
@@ -431,10 +423,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewPosition -->
+
+    <owl:Class rdf:about="#LowViewPosition">
+        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewerEnjoyment -->
 
     <owl:Class rdf:about="#LowViewerEnjoyment">
         <rdfs:subClassOf rdf:resource="#ViewerEnjoyment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumIntensityDevelopment -->
+
+    <owl:Class rdf:about="#MediumIntensityDevelopment">
+        <rdfs:subClassOf rdf:resource="#Development"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumViewPosition -->
+
+    <owl:Class rdf:about="#MediumViewPosition">
+        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
     </owl:Class>
     
 
@@ -455,26 +471,10 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateElevationView -->
-
-    <owl:Class rdf:about="#ModerateElevationView">
-        <rdfs:subClassOf rdf:resource="#ViewPosition"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateHikingDistance -->
 
     <owl:Class rdf:about="#ModerateHikingDistance">
         <rdfs:subClassOf rdf:resource="#HikingDistance"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateIntensityDevelopment -->
-
-    <owl:Class rdf:about="#ModerateIntensityDevelopment">
-        <rdfs:subClassOf rdf:resource="#Development"/>
     </owl:Class>
     
 
@@ -605,38 +605,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="#NatureWatching"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="#NonrenewableHuntingFishingGathering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="#Recreationists"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="#ProductionOfPlantsOrAnimals"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
                 <owl:someValuesFrom rdf:resource="#ScenicLandscapes"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="#NaturalFeatures"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -647,8 +617,38 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="#ProductionOfPlantsOrAnimals"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="#NonrenewableHuntingFishingGathering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
                 <owl:someValuesFrom rdf:resource="#RenewableHuntingFishingGathering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="#NaturalFeatures"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="#Recreationists"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="#NatureWatching"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -724,19 +724,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#UniqueLandscapeFeatures"/>
+                <owl:someValuesFrom rdf:resource="#PlantsOrAnimalsForRecreationalHarvest"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:someValuesFrom rdf:resource="#OutdoorRecreation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="#PlantsOrAnimalsForRecreationalHarvest"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -749,6 +743,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
                 <owl:someValuesFrom rdf:resource="#Recreation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="#UniqueLandscapeFeatures"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
