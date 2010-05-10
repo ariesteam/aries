@@ -261,6 +261,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualPrecipitation -->
+
+    <owl:Class rdf:about="#AnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualSnowmelt -->
 
     <owl:Class rdf:about="#AnnualSnowmelt">
@@ -464,6 +472,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -471,12 +485,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -680,13 +688,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -743,6 +751,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualPrecipitation -->
+
+    <owl:Class rdf:about="#HighAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#AnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualSnowmelt -->
 
     <owl:Class rdf:about="#HighAnnualSnowmelt">
@@ -783,10 +799,26 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighHydroelectricUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighHydroelectricUseLevel -->
 
-    <owl:Class rdf:about="#HighHydroelectricUse">
-        <rdfs:subClassOf rdf:resource="#HydroelectricUse"/>
+    <owl:Class rdf:about="#HighHydroelectricUseLevel">
+        <rdfs:subClassOf rdf:resource="#HydroelectricUseLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighMonthlyPrecipitation -->
+
+    <owl:Class rdf:about="#HighMonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighMonthlySnowmelt -->
+
+    <owl:Class rdf:about="#HighMonthlySnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -795,14 +827,6 @@
 
     <owl:Class rdf:about="#HighPopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighPrecipitation -->
-
-    <owl:Class rdf:about="#HighPrecipitation">
-        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
     </owl:Class>
     
 
@@ -835,14 +859,6 @@
 
     <owl:Class rdf:about="#HighSlopeStability">
         <rdfs:subClassOf rdf:resource="#SlopeStability"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSnowmelt -->
-
-    <owl:Class rdf:about="#HighSnowmelt">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -895,10 +911,34 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydroelectricUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydroelectricUseAbsent -->
 
-    <owl:Class rdf:about="#HydroelectricUse">
+    <owl:Class rdf:about="#HydroelectricUseAbsent">
+        <rdfs:subClassOf rdf:resource="#HydroelectricUsePresence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydroelectricUseLevel -->
+
+    <owl:Class rdf:about="#HydroelectricUseLevel">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydroelectricUsePresence -->
+
+    <owl:Class rdf:about="#HydroelectricUsePresence">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HydroelectricUsePresent -->
+
+    <owl:Class rdf:about="#HydroelectricUsePresent">
+        <rdfs:subClassOf rdf:resource="#HydroelectricUsePresence"/>
     </owl:Class>
     
 
@@ -1071,6 +1111,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualPrecipitation -->
+
+    <owl:Class rdf:about="#LowAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#AnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualSnowmelt -->
 
     <owl:Class rdf:about="#LowAnnualSnowmelt">
@@ -1087,18 +1135,26 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowMonthlyPrecipitation -->
 
-    <owl:Class rdf:about="#LowPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#LowMonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPrecipitation -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowMonthlySnowmelt -->
 
-    <owl:Class rdf:about="#LowPrecipitation">
-        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    <owl:Class rdf:about="#LowMonthlySnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowPopulationDensity -->
+
+    <owl:Class rdf:about="#LowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -1131,14 +1187,6 @@
 
     <owl:Class rdf:about="#LowSlopeStability">
         <rdfs:subClassOf rdf:resource="#SlopeStability"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSnowmelt -->
-
-    <owl:Class rdf:about="#LowSnowmelt">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -1267,6 +1315,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualPrecipitation -->
+
+    <owl:Class rdf:about="#ModerateAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#AnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualSnowmelt -->
 
     <owl:Class rdf:about="#ModerateAnnualSnowmelt">
@@ -1307,10 +1363,26 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateHydroelectricUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateHydroelectricUseLevel -->
 
-    <owl:Class rdf:about="#ModerateHydroelectricUse">
-        <rdfs:subClassOf rdf:resource="#HydroelectricUse"/>
+    <owl:Class rdf:about="#ModerateHydroelectricUseLevel">
+        <rdfs:subClassOf rdf:resource="#HydroelectricUseLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateMonthlyPrecipitation -->
+
+    <owl:Class rdf:about="#ModerateMonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateMonthlySnowmelt -->
+
+    <owl:Class rdf:about="#ModerateMonthlySnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -1319,14 +1391,6 @@
 
     <owl:Class rdf:about="#ModeratePopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModeratePrecipitation -->
-
-    <owl:Class rdf:about="#ModeratePrecipitation">
-        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
     </owl:Class>
     
 
@@ -1359,14 +1423,6 @@
 
     <owl:Class rdf:about="#ModerateSlopeStability">
         <rdfs:subClassOf rdf:resource="#SlopeStability"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSnowmelt -->
-
-    <owl:Class rdf:about="#ModerateSnowmelt">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -1422,7 +1478,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#MonthlyPrecipitation -->
 
     <owl:Class rdf:about="#MonthlyPrecipitation">
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+        <rdfs:subClassOf rdf:resource="#Precipitation"/>
     </owl:Class>
     
 
@@ -1515,10 +1571,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoHydroelectricUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoHydroelectricUseLevel -->
 
-    <owl:Class rdf:about="#NoHydroelectricUse">
-        <rdfs:subClassOf rdf:resource="#HydroelectricUse"/>
+    <owl:Class rdf:about="#NoHydroelectricUseLevel">
+        <rdfs:subClassOf rdf:resource="#HydroelectricUseLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoMonthlySnowmelt -->
+
+    <owl:Class rdf:about="#NoMonthlySnowmelt">
+        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -1535,14 +1599,6 @@
 
     <owl:Class rdf:about="#NoSedimentSource">
         <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSnowmelt -->
-
-    <owl:Class rdf:about="#NoSnowmelt">
-        <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
     </owl:Class>
     
 
@@ -1614,7 +1670,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1626,7 +1682,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="#RootDensity"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -1652,6 +1708,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1659,12 +1721,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="#RootDensity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string"
@@ -2012,14 +2068,20 @@
         <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="#SoilParentMaterial"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="#SoilParentMaterial"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="#SoilCompaction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2038,12 +2100,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="#SoilTexture"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#SoilCompaction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2300,13 +2356,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
+                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="#PercentVegetationCover"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2321,6 +2377,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighAnnualPrecipitation -->
+
+    <owl:Class rdf:about="#VeryHighAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#AnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighFloodplainVetgetationCover -->
 
     <owl:Class rdf:about="#VeryHighFloodplainVetgetationCover">
@@ -2329,18 +2393,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighPopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighMonthlyPrecipitation -->
 
-    <owl:Class rdf:about="#VeryHighPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#VeryHighMonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighPrecipitation -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryHighPopulationDensity -->
 
-    <owl:Class rdf:about="#VeryHighPrecipitation">
-        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    <owl:Class rdf:about="#VeryHighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -2369,6 +2433,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowAnnualPrecipitation -->
+
+    <owl:Class rdf:about="#VeryLowAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="#AnnualPrecipitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowFloodplainVegetationCover -->
 
     <owl:Class rdf:about="#VeryLowFloodplainVegetationCover">
@@ -2377,18 +2449,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowPopulationDensity -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowMonthlyPrecipitation -->
 
-    <owl:Class rdf:about="#VeryLowPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="#VeryLowMonthlyPrecipitation">
+        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowPrecipitation -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#VeryLowPopulationDensity -->
 
-    <owl:Class rdf:about="#VeryLowPrecipitation">
-        <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+    <owl:Class rdf:about="#VeryLowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
     </owl:Class>
     
 
@@ -2472,12 +2544,6 @@
     <!-- http://www.integratedmodelling.org/ks/science/representation.owl#Length -->
 
     <owl:Class rdf:about="&representation;Length"/>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
-
-    <owl:Class rdf:about="&thinklab-core;OrderedRangeMapping"/>
     
 
 

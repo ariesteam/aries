@@ -104,8 +104,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
-		(classification (ranking 'geophysics:DegreeSlope)
-			 :units       "degrees" 
+		(classification (measurement 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	  'floodService:Level
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly
@@ -155,8 +154,8 @@
 	 		#{5 6}      'floodService:OldGrowth
 	 		4           'floodService:LateSuccession
 	 		3           'floodService:MidSuccession
-	 		2           'floodService:EarlySuccession
-	 		1           'floodService:PoleSuccession
+	 		2           'floodService:PoleSuccession
+	 		1           'floodService:EarlySuccession
 	 		:otherwise  'floodService:NoSuccession))
 	 		
 (defmodel imperviousness 'floodService:ImperviousSurfaceCover
@@ -347,8 +346,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
-    :units       "degrees" 
+  (classification (measurement 'geophysics:DegreeSlope "°")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -370,8 +368,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
-    :units       "degrees" 
+  (classification (measurement 'geophysics:DegreeSlope "°")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -393,8 +390,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
-    :units       "degrees" 
+  (classification (measurement 'geophysics:DegreeSlope "°")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating

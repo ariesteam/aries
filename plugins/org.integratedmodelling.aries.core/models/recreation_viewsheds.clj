@@ -86,7 +86,7 @@
 	
 (defmodel hiking-slope 'recreationService:HikingSlope
 	"describes the steepness of the hiking trail"
-	(classification (ranking 'geophysics:DegreeSlope :units "degrees")
+	(classification (measurement 'geophysics:DegreeSlope :units "°")
 			[:< 10] 'recreationService:LowSlope
 			[10 45] 'recreationService:ModerateSlope
 			[45 :>]	'recreationService:SteepSlope))

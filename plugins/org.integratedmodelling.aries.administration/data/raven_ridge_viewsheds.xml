@@ -111,10 +111,11 @@
 	</measurement:Ranking>
 	
 	<!-- hiking slope  -->
-	<measurement:Ranking id="slope_24">
+	<measurement:Measurement id="slope_24">
 		<observation:hasObservable>
 			<recreationService:HikingSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -132,7 +133,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<!-- hiking distance  -->
 	<measurement:Ranking id="hike_dist">

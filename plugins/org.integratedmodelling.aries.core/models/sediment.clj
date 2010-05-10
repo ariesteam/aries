@@ -6,29 +6,25 @@
 ;; provision model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
+(defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			1       'floodService:SoilGroupA
-			0       'floodService:SoilGroupB
-			3       'floodService:SoilGroupC
-			2       'floodService:SoilGroupD))
+	(classification (categorization 'soilretentionEcology:HydrologicSoilsGroup)
+			1       'soilretentionEcology:SoilGroupA
+			0       'soilretentionEcology:SoilGroupB
+			3       'soilretentionEcology:SoilGroupC
+			2       'soilretentionEcology:SoilGroupD)
+	(classification (categorization 'soilretentionEcology:HydrologicSoilsGroup)
+			1       'soilretentionEcology:SoilGroupA
+			2       'soilretentionEcology:SoilGroupB
+			3       'soilretentionEcology:SoilGroupC
+			4       'soilretentionEcology:SoilGroupD))
 
-(defmodel soil-group-global 'floodService:HydrologicSoilsGroup
-	"Relevant soil group"
-	(classification (categorization 'floodService:HydrologicSoilsGroup)
-			1       'floodService:SoilGroupA
-			2       'floodService:SoilGroupB
-			3       'floodService:SoilGroupC
-			4       'floodService:SoilGroupD))
-
-(defmodel slope 'floodService:Slope
-		(classification (ranking 'geophysics:DegreeSlope)
-			 :units       "degrees" 
-			 [:< 1.15] 	  'floodService:Level
-			 [1.15 4.57] 	'floodService:GentlyUndulating
-			 [4.57 16.70] 'floodService:RollingToHilly
-			 [16.70 :>] 	'floodService:SteeplyDissectedToMountainous))
+(defmodel slope 'soilretentionEcology:Slope
+		(classification (measurement 'geophysics:DegreeSlope :units "°")
+			 [:< 1.15] 	  'soilretentionEcology:Level
+			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
+			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
+			 [16.70 :>] 	'soilretentionEcology:SteeplyDissectedToMountainous))
 
 (defmodel slope-stability 'soilretentionEcology:SlopeStability
     (classification (ranking 'soilretentionEcology:SlopeStability)	 		
@@ -61,105 +57,96 @@
       [0.375 :>]      'soilretentionEcology:VeryHighSoilErodibility))
 
 ;;Monthly precipitation for Puget Sound.
-(defmodel precipitation-puget 'floodService:Precipitation
+(defmodel precipitation-puget 'soilretentionEcology:MonthlyPrecipitation
 	"FIXME this is total monthly precipitation."
-	(classification (measurement 'habitat:Precipitation "in/month")
-		[:< 3] 	  'floodService:VeryLowPrecipitation
-		[3 6] 	  'floodService:LowPrecipitation
-		[6 12] 	  'floodService:ModeratePrecipitation
-		[12 24] 	'floodService:HighPrecipitation
-		[24 :>] 	'floodService:VeryHighPrecipitation))
+	(classification (measurement 'soilretentionEcology:MonthlyPrecipitation "in")
+		[:< 3] 	  'soilretentionEcology:VeryLowMonthlyPrecipitation
+		[3 6] 	  'soilretentionEcology:LowMonthlyPrecipitation
+		[6 12] 	  'soilretentionEcology:ModerateMonthlyPrecipitation
+		[12 24] 	'soilretentionEcology:HighMonthlyPrecipitation
+		[24 :>] 	'soilretentionEcology:VeryHighMonthlyPrecipitation))
 
 ;;Annual precipitation for Mg & DR
-(defmodel precipitation-global 'floodService:Precipitation
+(defmodel precipitation-global 'soilretentionEcology:AnnualPrecipitation
 	"FIXME this is annual precipitation."
-	(classification (measurement 'habitat:Precipitation "mm/year")
-    [:< 600] 	    'floodService:VeryLowPrecipitation
-		[600 1200] 	  'floodService:LowPrecipitation
-		[1200 1800]   'floodService:ModeratePrecipitation
-		[1800 2200] 	'floodService:HighPrecipitation
-		[2200 :>] 	  'floodService:VeryHighPrecipitation))
+	(classification (measurement 'soilretentionEcology:AnnualPrecipitation "mm")
+    [:< 600] 	    'soilretentionEcology:VeryLowAnnualPrecipitation
+		[600 1200] 	  'soilretentionEcology:LowAnnualPrecipitation
+		[1200 1800]   'soilretentionEcology:ModerateAnnualPrecipitation
+		[1800 2200] 	'soilretentionEcology:HighAnnualPrecipitation
+		[2200 :>] 	  'soilretentionEcology:VeryHighAnnualPrecipitation))
 
 ;; Surface temperature - again, should be monthly and matched by temporal extents.  For Puget Sound only.
-(defmodel monthly-temperature 'floodService:MonthlyTemperature
+(defmodel monthly-temperature 'soilretentionEcology:MonthlyTemperature
 		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
-			 [4 :>] 	'floodService:HighTemperature
-			 [-4 4] 	'floodService:ModerateTemperature
-			 [:< -4] 	'floodService:LowTemperature))
+			 [4 :>] 	'soilretentionEcology:HighTemperature
+			 [-4 4] 	'soilretentionEcology:ModerateTemperature
+			 [:< -4] 	'soilretentionEcology:LowTemperature))
 
 ;;Snowmelt, use only in Puget Sound
 (defmodel monthly-snowmelt 'soilretentionEcology:MonthlySnowmelt
-	(classification (measurement 'soilretentionEcology:MonthlySnowmelt "mm/month")
-		0 	                  'soilretentionEcology:NoSnowmelt
-		[:exclusive 0 50] 	  'soilretentionEcology:LowSnowmelt
-		[50 100] 	            'soilretentionEcology:ModerateSnowmelt
-		[100 :>]            	'soilretentionEcology:HighSnowmelt))
+	(classification (measurement 'soilretentionEcology:MonthlySnowmelt "mm")
+		0 	                  'soilretentionEcology:NoMonthlySnowmelt
+		[:exclusive 0 50] 	  'soilretentionEcology:LowMonthlySnowmelt
+		[50 100] 	            'soilretentionEcology:ModerateMonthlySnowmelt
+		[100 :>]            	'soilretentionEcology:HighMonthlySnowmelt))
 
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability 'soilretentionEcology:TropicalStormProbability
-	(ranking 'habitat:TropicalStormProbability
-      0     'habitat:NoTropicalStormProbability
-      [1 5]   'habitat:ModerateTropicalStormProbability
-      [6 10]  'habitat:HighTropicalStormProbability))
+ (classification (ranking 'habitat:TropicalStormProbability)
+        0     'soilretentionEcology:NoTropicalStormProbability
+      [1 5]   'soilretentionEcology:ModerateTropicalStormProbability
+      [6 10]  'soilretentionEcology:HighTropicalStormProbability)) 
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
-(defmodel runoff 'soilretentionEcology:Runoff
-	(classification (measurement 'soilretentionEcology:Runoff "mm/year")
-		[0 200] 	    'soilretentionEcology:VeryLowRunoff
-		[200 600] 	  'soilretentionEcology:LowRunoff
-		[600 1200]  	'soilretentionEcology:ModerateRunoff
-		[1200 2400] 	'soilretentionEcology:HighRunoff
-		[2400 :>] 	  'soilretentionEcology:VeryHighRunoff))
+(defmodel runoff 'soilretentionEcology:AnnualRunoff
+	(classification (measurement 'soilretentionEcology:AnnualRunoff "mm")
+		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
+		[200 600] 	  'soilretentionEcology:LowAnnualRunoff
+		[600 1200]  	'soilretentionEcology:ModerateAnnualRunoff
+		[1200 2400] 	'soilretentionEcology:HighAnnualRunoff
+		[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
-;;Vegetation type, Puget Sound
-(defmodel vegetation-type-puget 'soilretentionEcology:VegetationType
+;;Vegetation type
+(defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
 		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
 		#{52 81}             'soilretentionEcology:ShrublandPasture
-		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped))
-
-;;Vegetation type, global.  Referenced in the ontology similarly to NLCDNumeric.
-(defmodel vegetation-type-global 'soilretentionEcology:VegetationType
+		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped)
   (classification (ranking 'glc:GLCNumeric)
 		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
 		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
-    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)) 
-
-;;Vegetation type, Mg.  Referenced in the ontology similarly to NLCDNumeric.
-(defmodel vegetation-type-mg 'soilretentionEcology:VegetationType
+    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)
   (classification (ranking 'mglulc:MGLULCNumeric)
     #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
     #{3 7 23}                                  'soilretentionEcology:DegradedForest
 		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} 'soilretentionEcology:Savanna
-    #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)) 
-
-;;Vegetation type, DR.  Referenced in the ontology similarly to NLCDNumeric.
-(defmodel vegetation-type-dr 'soilretentionEcology:VegetationType
+    #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)
   (classification (ranking 'domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} 'soilretentionEcology:ForestAndShrubland
     #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
-		#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
+	 	#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
     #{23 36 38 40 59}       'soilretentionEcology:IntensiveCroplandAndPasture
     #{42}                   'soilretentionEcology:UrbanAndRoads))
 
-(defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
+(defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
-		[80 100] 'floodService:VeryHighVegetationCover
-		[60 80] 'floodService:HighVegetationCover
-		[40 60] 'floodService:ModerateVegetationCover
-		[20 40] 'floodService:LowVegetationCover
-		[0 20]  'floodService:VeryLowVegetationCover))
+		[80 100] 'soilretentionEcology:VeryHighVegetationCover
+		[60 80]  'soilretentionEcology:HighVegetationCover
+		[40 60]  'soilretentionEcology:ModerateVegetationCover
+		[20 40]  'soilretentionEcology:LowVegetationCover
+		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
 
-(defmodel successional-stage 'floodService:SuccessionalStage
+(defmodel successional-stage 'soilretentionEcology:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)  
-	 		#{5 6}      'floodService:OldGrowth
-	 		4           'floodService:LateSuccession
-	 		3           'floodService:MidSuccession
-	 		2           'floodService:EarlySuccession
-	 		1           'floodService:PoleSuccession
-	 		:otherwise  'floodService:NoSuccession))
+	 		#{5 6}      'soilretentionEcology:OldGrowth
+	 		4           'soilretentionEcology:LateSuccession
+	 		3           'soilretentionEcology:MidSuccession
+      2           'soilretentionEcology:PoleSuccession
+	 		1           'soilretentionEcology:EarlySuccession
+	 		:otherwise  'soilretentionEcology:NoSuccession))
 
 ;;Discretization below for Puget Sound.
 (defmodel sediment-source-value-puget 'soilretentionEcology:SedimentSourceValue
@@ -211,67 +198,45 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel floodplains 'floodService:Floodplains
-	(classification (ranking 'floodService:Floodplains)
-			0 'floodService:NotInFloodplain
-			1 'floodService:InFloodplain))
+(defmodel floodplains 'soilretentionEcology:Floodplains
+	(classification (ranking 'soilretentionEcology:Floodplains)
+			0 'soilretentionEcology:NotInFloodplain
+			1 'soilretentionEcology:InFloodplain))
 
-(defmodel farmland-puget 'floodService:Farmland
-	"Just a reclass of the NLCD land use layer"
+(defmodel farmland 'soilretentionEcology:Farmland
+	"Just a reclass of the regionally appropriate LULC layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
-		82	       'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent))
-
-(defmodel farmland-global 'floodService:Farmland
-	"Just a reclass of the GLC2000 land use layer"
-	(classification (ranking 'glc:GLCNumeric)
-		#{16 17 18} 'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent))
-
-(defmodel farmland-mg 'floodService:Farmland
-	"Just a reclass of the mg land use layer"
-	(classification (ranking 'mglulc:MGLULCNumeric)
-		#{11 12 13} 'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent))
-
-(defmodel farmland-dr 'floodService:Farmland
-	"Just a reclass of the DR land use layer"
-	(classification (ranking 'domlulc:DOMLULCNumeric)
-		#{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
-		:otherwise                'floodService:FarmlandAbsent))
-
-(defmodel farmland 'floodService:Farmland
-	"Just a reclass of the NLCD land use layer"
-	(classification (ranking 'nlcd:NLCDNumeric)
-		82	       'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent)
+		82	       'soilretentionEcology:Farmland
+		:otherwise 'soilretentionEcology:Farmland)
   (classification (ranking 'corine:CORINENumeric)
-		[12 22 :inclusive]	 'floodService:FarmlandPresent
-		:otherwise           'floodService:FarmlandAbsent)
+		[12 22 :inclusive]	 'soilretentionEcology:Farmland
+		:otherwise           'soilretentionEcology:Farmland)
   (classification (ranking 'mglulc:MGLULCNumeric)
-		#{11 12 13} 'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent)
+		#{11 12 13} 'soilretentionEcology:Farmland
+		:otherwise 'soilretentionEcology:Farmland)
   (classification (ranking 'domlulc:DOMLULCNumeric)
-		#{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
-		:otherwise                'floodService:FarmlandAbsent)
+		#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
+		:otherwise                'soilretentionEcology:Farmland)
 	(classification (ranking 'glc:GLCNumeric)
-		#{16 17 18} 'floodService:FarmlandPresent
-		:otherwise 'floodService:FarmlandAbsent))
+		#{16 17 18} 'soilretentionEcology:Farmland
+		:otherwise 'soilretentionEcology:Farmland))
 
-;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity -
-;;in reality dam heigh & flow are important factors but we don't have flow data.
-;; NEED TO do wfs2opal for reservoirs, use "normal_sto" as the attribute of interest.
-(defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUse
-	(classification (ranking 'soilretentionEcology:HydroelectricUse)
-    0                        'soilretentionEcology:NoHydroelectricUse
-		[:exclusive 0 500000]    'soilretentionEcology:ModerateHydroelectricUse
-		[500000 :>]              'soilretentionEcology:HighHydroelectricUse))
-
-;;Have rasterized the dam point layer for Mg but it's not yet in Geoserver.
+;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
+;;hyroelectric generation capacity - in reality dam heigh & flow are important factors but 
+;;we don't have flow data.
+(defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUseLevel
+	(classification (measurement 'soilretentionEcology:HydroelectricUseLevel "acre-feet")
+    0                        'soilretentionEcology:NoHydroelectricUseLevel
+		[:exclusive 0 500000]    'soilretentionEcology:ModerateHydroelectricUseLevel
+		[500000 :>]              'soilretentionEcology:HighHydroelectricUseLevel)
+	(classification (measurement 'soilretentionEcology:HydroelectricUseLevel "m^3")
+    0                          'soilretentionEcology:NoHydroelectricUseLevel
+		[:exclusive 0 15000000]    'soilretentionEcology:ModerateHydroelectricUseLevel
+		[15000000 :>]              'soilretentionEcology:HighHydroelectricUseLevel))
 
 ;;Reservoirs layer for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresence
-	(classification (ranking 'soilretentionEcology:HydroelectricUse)
+	(classification (ranking 'soilretentionEcology:HydroelectricUsePresence)
     0           'soilretentionEcology:HydroelectricUseAbsence
 		1           'soilretentionEcology:HydroelectricUsePresent))
 
@@ -284,7 +249,7 @@
                     0)
       :context (
           (ranking 'lulc:NLCDNumeric :as farmlandpresent)
-          (ranking 'floodService:Floodplains :as floodplains)))) 
+          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
 (defmodel farmers-deposition-use-mg 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
@@ -294,7 +259,7 @@
                     0)
       :context (
           (ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
-          (ranking 'floodService:Floodplains :as floodplains)))) 
+          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
 (defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
@@ -304,7 +269,7 @@
                     0)
       :context (
           (ranking 'domlulc:DOMLULCNumeric :as farmlandpresent)
-          (ranking 'floodService:Floodplains :as floodplains)))) 
+          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
 ;; Gary: does this look right?
@@ -322,7 +287,7 @@
 ;; 1) ditch fisheries BNs & use source/use models for actual fisheries
 ;; 2) use BNs as generalized fisheries impact model.
 ;;(defmodel fishermen-use-puget 'soilretentionEcology:FishermenUse 
-	;;  (bayesian 'soilretentionEcology:FishermenUse  
+	  ;;(bayesian 'soilretentionEcology:FishermenUse  
 	 ;; 	:import   "aries.core::SedimentFishermenUse.xdsl"
 	 ;; 	:keep     ('soilretentionEcology:FishermenUse)
 	 ;;	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
@@ -347,16 +312,16 @@
 (defmodel stream-gradient 'soilretentionEcology:StreamGradient 
   (classification (measurement 'soilretentionEcology:StreamGradient "°")
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
-    [1.15 2.86] 'soilretentionEcology:ModerateStreamGradient
-    [2.86 :>]   'soilretentionEcology:HighStreamGradient))
+    [1.15 2.86]  'soilretentionEcology:ModerateStreamGradient
+    [2.86 :>]    'soilretentionEcology:HighStreamGradient))
 
 (defmodel floodplain-vegetation-cover 'soilretentionEcology:FloodplainVegetationCover 
   (classification (measurement 'soilretentionEcology:FloodplainVegetationCover "%")
-    [0 20]  'soilretentionEcology:VeryLowFloodplainVegetationCover
+    [0 20]   'soilretentionEcology:VeryLowFloodplainVegetationCover
     [20 40]  'soilretentionEcology:LowFloodplainVegetationCover
-    [40 60] 'soilretentionEcology:ModerateVegetationCover
+    [40 60]  'soilretentionEcology:ModerateVegetationCover
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
-    [80 100]   'soilretentionEcology:VeryHighFloodplainVegetationCover))
+    [80 100] 'soilretentionEcology:VeryHighFloodplainVegetationCover))
 
 ;; Need to add floodplain width to geoserver & xml.  These units are in decimal degrees - these 
 ;; correspond roughly tp breakpoints of 375, 820, and 1320 m.

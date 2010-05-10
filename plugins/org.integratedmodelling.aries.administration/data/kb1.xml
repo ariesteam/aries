@@ -190,6 +190,29 @@
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
+<measurement:Ranking id="global_globalfloodplains">
+	<observation:hasObservable>
+		<soilretentionEcology:Floodplains />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:globalfloodplains
+			</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-25.607</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-84.928</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>23.331</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>50.484</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326
+			</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
 	<measurement:Ranking id="landcover_glc2000">
 		<observation:hasObservable>
 			<glc:GLCNumeric />
@@ -220,25 +243,18 @@
 		<measurement:unit>acre-feet</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugethydroreservoirs
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugethydroreservoirs</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>normal_sto</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>45.95599729013428
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-123.60800381860865
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.01399658496675
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-120.98400441810807
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.95599729013428</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-123.60800381860865</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.01399658496675</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.98400441810807</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
@@ -266,6 +282,34 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+	<measurement:Ranking id="dominicanRepublic_drreservoirs">
+		<observation:hasObservable>
+			<soilretentionEcology:HydroelectricUsePresence />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>dominicanRepublic:drreservoirs
+				</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>2020640.9572350862
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>227878.15057489474
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2177923.4146837196
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>377651.0166063338
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32619
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 	<measurement:Measurement id="PRECIPA7100">
 		<observation:hasObservable>
@@ -434,9 +478,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-		<measurement:Measurement id="AnnualPrecip">
+	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
-			<soilretentionEcology:Precipitation />
+			<soilretentionEcology:AnnualPrecipitation />
 		</observation:hasObservable>
 		<measurement:unit>in</measurement:unit>
 		<observation:hasDataSource>
@@ -460,7 +504,7 @@
 	
 	<measurement:Measurement id="bio_12">
 		<observation:hasObservable>
-			<soilretentionEcology:Precipitation />
+			<soilretentionEcology:AnnualPrecipitation />
 		</observation:hasObservable>
 		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
@@ -563,9 +607,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Ranking id="DR_slope">
+	<measurement:Measurement id="DR_slope">
 		<observation:hasObservable>
-			<habitat:Slope />
+			<geophysics:DegreeSlope />
 		</observation:hasObservable>
 		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
@@ -585,7 +629,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 	<measurement:Ranking id="puget_pugeterosionmetrics">
 		<observation:hasObservable>
