@@ -261,8 +261,8 @@
 ;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity -
 ;;in reality dam heigh & flow are important factors but we don't have flow data.
 ;; NEED TO do wfs2opal for reservoirs, use "normal_sto" as the attribute of interest.
-(defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUseLevel
-	(classification (ranking 'soilretentionEcology:HydroelectricUseLevel)
+(defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUse
+	(classification (ranking 'soilretentionEcology:HydroelectricUse)
     0                        'soilretentionEcology:NoHydroelectricUse
 		[:exclusive 0 500000]    'soilretentionEcology:ModerateHydroelectricUse
 		[500000 :>]              'soilretentionEcology:HighHydroelectricUse))
