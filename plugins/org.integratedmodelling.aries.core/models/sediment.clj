@@ -73,7 +73,7 @@
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-global 'floodService:Precipitation
 	"FIXME this is annual precipitation."
-	(classification (measurement 'habitat:Precipitation "mm/yr")
+	(classification (measurement 'habitat:Precipitation "mm/year")
     [:< 600] 	    'floodService:VeryLowPrecipitation
 		[600 1200] 	  'floodService:LowPrecipitation
 		[1200 1800]   'floodService:ModeratePrecipitation
@@ -96,7 +96,7 @@
 		[100 :>]            	'soilretentionEcology:HighSnowmelt))
 
 ;;Tropical storm probability, use only in DR & Mg
-(defmodel storm-probability 'coastalProtection:TropicalStormProbability
+(defmodel storm-probability 'soilretentionEcology:TropicalStormProbability
 	(ranking 'habitat:TropicalStormProbability
       0     'habitat:NoTropicalStormProbability
       [1 5]   'habitat:ModerateTropicalStormProbability
@@ -105,7 +105,7 @@
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
 (defmodel runoff 'soilretentionEcology:Runoff
-	(classification (measurement 'soilretentionEcology:Runoff "mm/yr")
+	(classification (measurement 'soilretentionEcology:Runoff "mm/year")
 		[0 200] 	    'soilretentionEcology:VeryLowRunoff
 		[200 600] 	  'soilretentionEcology:LowRunoff
 		[600 1200]  	'soilretentionEcology:ModerateRunoff
@@ -137,7 +137,7 @@
 
 ;;Vegetation type, DR.  Referenced in the ontology similarly to NLCDNumeric.
 (defmodel vegetation-type-dr 'soilretentionEcology:VegetationType
-  (classification (ranking 'domlulc:DOMULCNumeric)
+  (classification (ranking 'domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} 'soilretentionEcology:ForestAndShrubland
     #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
 		#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
@@ -163,7 +163,7 @@
 
 ;;Discretization below for Puget Sound.
 (defmodel sediment-source-value-puget 'soilretentionEcology:SedimentSourceValue
-	(classification (measurement 'soilretentionEcology:SedimentSourceValue "kg/ha-yr")
+	(classification (measurement 'soilretentionEcology:SedimentSourceValue "kg/ha*yr")
   		0                          'soilretentionEcology:NoSedimentSource
   		[:exclusive 0 30000]       'soilretentionEcology:LowSedimentSource 
   		[30000 100000]             'soilretentionEcology:ModerateSedimentSource
@@ -171,7 +171,7 @@
 
 ;;Discretization below for DR & Mg.  Data are from 1980, so not temporally consistent.
 (defmodel sediment-source-value-global 'soilretentionEcology:SedimentSourceValue
-	(classification (measurement 'soilretentionEcology:SedimentSourceValue "tons/ha-yr")
+	(classification (measurement 'soilretentionEcology:SedimentSourceValue "t/ha*yr")
       0                     'soilretentionEcology:NoSedimentSource
   		[:exclusive 0 15]     'soilretentionEcology:LowSedimentSource 
   		[15 40]               'soilretentionEcology:ModerateSedimentSource
@@ -181,7 +181,7 @@
 (defmodel source-puget 'soilretentionEcology:SedimentSourceValue
   (bayesian 'soilretentionEcology:SedimentSourceValue 
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValue
+    :keep     ('soilretentionEcology:SedimentSourceValue ) 
     :observed (sediment-source-value-puget) 
     :context  (soil-group-puget slope soil-texture slope-stability  soil-erodibility-puget precipitation-puget  
               monthly-snowmelt monthly-temperature runoff vegetation-type-puget percent-vegetation-cover 
@@ -191,19 +191,19 @@
 (defmodel source-mg 'soilretentionEcology:SedimentSourceValue
   (bayesian 'soilretentionEcology:SedimentSourceValue 
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValue
+    :keep     ('soilretentionEcology:SedimentSourceValue)
     :observed (sediment-source-value-global) 
     :context  (soil-group-global slope soil-texture soil-erodibility-global precipitation-global  
-              storm-probability runoff vegetation-type-mg percent-vegetation-cover)))
+              storm-probability runoff vegetation-type-mg percent-vegetation-cover))) 
 
 ;; source bayesian model for Dominican Republic
 (defmodel source-dr 'soilretentionEcology:SedimentSourceValue
   (bayesian 'soilretentionEcology:SedimentSourceValue 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValue
+    :keep     ('soilretentionEcology:SedimentSourceValue)
     :observed (sediment-source-value-global) 
     :context  (soil-group-global slope soil-texture soil-erodibility-global precipitation-global  
-              storm-probability runoff vegetation-type-dr percent-vegetation-cover)))
+              storm-probability runoff vegetation-type-dr percent-vegetation-cover))) 
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
@@ -211,7 +211,7 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel floodplains 'floodService:Floodplain
+(defmodel floodplains 'floodService:Floodplains
 	(classification (ranking 'floodService:Floodplains)
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
@@ -225,19 +225,19 @@
 (defmodel farmland-global 'floodService:Farmland
 	"Just a reclass of the GLC2000 land use layer"
 	(classification (ranking 'glc:GLCNumeric)
-		{16 17 18} 'floodService:FarmlandPresent
+		#{16 17 18} 'floodService:FarmlandPresent
 		:otherwise 'floodService:FarmlandAbsent))
 
 (defmodel farmland-mg 'floodService:Farmland
 	"Just a reclass of the mg land use layer"
 	(classification (ranking 'mglulc:MGLULCNumeric)
-		{11 12 13} 'floodService:FarmlandPresent
+		#{11 12 13} 'floodService:FarmlandPresent
 		:otherwise 'floodService:FarmlandAbsent))
 
 (defmodel farmland-dr 'floodService:Farmland
 	"Just a reclass of the DR land use layer"
-	(classification (ranking 'domlulc:DOMULCNumeric)
-		{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
+	(classification (ranking 'domlulc:DOMLULCNumeric)
+		#{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
 		:otherwise                'floodService:FarmlandAbsent))
 
 ;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity -
@@ -259,31 +259,34 @@
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
-  [(ranking 'nlcd:NLCDNumeric :as farmlandpresent)
-   (ranking 'floodService:Floodplains :as floodplains)]
   (ranking 'soilretentionEcology:DepositionProneFarmers
-       :state #(if (and (= (:floodplains %) 1)
-                        (= (:fsrmlandpresent %) 82))
+       :state #(if (and (= (:floodplains %) 1.0)
+                        (= (:farmlandpresent %) 82.0))
                     1
-                    0))) 
+                    0)
+      :context (
+          (ranking 'lulc:NLCDNumeric :as farmlandpresent)
+          (ranking 'floodService:Floodplains :as floodplains)))) 
 
 (defmodel farmers-deposition-use-mg 'soilretentionEcology:DepositionProneFarmers 
-  [(ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
-   (ranking 'floodService:Floodplains :as floodplains)]
   (ranking 'soilretentionEcology:DepositionProneFarmers
-       :state #(if (and (= (:floodplains %) 1)
-                        (= (:fsrmlandpresent %) {11 12 13}))
+       :state #(if (and (= (:floodplains %) 1.0)
+                        (contains? #{11.0 12.0 13.0} (:farmlandpresent %)))
                     1
-                    0))) 
+                    0)
+      :context (
+          (ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
+          (ranking 'floodService:Floodplains :as floodplains)))) 
 
 (defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
-  [(ranking 'domlulc:DOMULCNumeric :as farmlandpresent)
-   (ranking 'floodService:Floodplains :as floodplains)]
   (ranking 'soilretentionEcology:DepositionProneFarmers
-       :state #(if (and (= (:floodplains %) 1)
-                        (= (:fsrmlandpresent %) {23 36 38 40 41 45 53 59))
+       :state #(if (and (= (:floodplains %) 1.0)
+                        (contains? #{23.0 36.0 38.0 40.0 41.0 45.0 53.0 59.0} (:farmlandpresent %)))
                     1
-                    0))) 
+                    0)
+      :context (
+          (ranking 'domlulc:DOMLULCNumeric :as farmlandpresent)
+          (ranking 'floodService:Floodplains :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
 ;; Gary: does this look right?
@@ -291,8 +294,8 @@
   [(ranking 'nlcd:NLCDNumeric :as farmlandpresent)
    (ranking 'soilretentionEcology:SedimentSourceValue :as sediment-source-value-puget)]
   (ranking 'soilretentionEcology:ErosionProneFarmers
-       :state #(if (and (= (:floodplains %) 1)  ;;WHAT should this state be?
-                        (= (:fsrmlandpresent %) 82))
+       :state #(if (and (= (:floodplains %) 1.0)  ;;WHAT should this state be?
+                        (= (:farmlandpresent %) 82.0))
                     1
                     0))) 
 
@@ -353,9 +356,9 @@
 
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the global dataset.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
-(defmodel sediment-sink-global 'soilretentionEcology:SedimentSink
-  "tons/ha-yr"  
+(defmodel sediment-sink-global 'soilretentionEcology:SedimentSink 
   (classification  'soilretentionEcology:SedimentSink
+       :units "t/ha*year" 
        [10 15]              'soilretentionEcology:HighSedimentSink
        [5 10]               'soilretentionEcology:ModerateSedimentSink
        [:exclusive 0 5]     'soilretentionEcology:LowSedimentSink
@@ -364,8 +367,8 @@
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the western U.S. dataset.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-western-US 'soilretentionEcology:SedimentSink
-  "kg/ha-yr"
-  (classification 'soilretentionEcology:SedimentSink)
+  (classification 'soilretentionEcology:SedimentSink 
+       :units   "kg/ha*year"
        [20000 30000]          'soilretentionEcology:HighSedimentSink
        [10000 20000]          'soilretentionEcology:ModerateSedimentSink
        [:exclusive 0 10000]   'soilretentionEcology:LowSedimentSink
