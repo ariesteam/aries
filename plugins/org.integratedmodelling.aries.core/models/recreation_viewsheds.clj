@@ -58,7 +58,7 @@
 
 (defmodel view-position 'recreationService:ViewPosition
   "Location of a view point, a function of elevation."
-  (classification (measurement 'geophysics:Altitude "m")
+  (classification (ranking 'recreationService:ViewPosition)
 		  [0 457]   'recreationService:LowViewPosition
 		  [457 914] 'recreationService:MediumViewPosition
 		  [914 :>]  'recreationService:HighViewPosition))
@@ -86,7 +86,7 @@
 	
 (defmodel hiking-slope 'recreationService:HikingSlope
 	"describes the steepness of the hiking trail"
-	(classification (measurement 'geophysics:DegreeSlope :units "°")
+	(classification (ranking 'recreationService:HikingSlope)
 			[:< 10] 'recreationService:LowSlope
 			[10 45] 'recreationService:ModerateSlope
 			[45 :>]	'recreationService:SteepSlope))
