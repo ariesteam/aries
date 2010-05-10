@@ -137,10 +137,10 @@
 
 (defmodel visual-blight 'aestheticService:VisualBlight
 	(classification 'aestheticService:VisualBlight
-  		[0 10]   'aestheticService:NoVisualBlight
-  		[10 50]  'aestheticService:LowVisualBlight
-  		[50 90]  'aestheticService:ModerateVisualBlight
-  		[67 100] 'aestheticService:HighVisualBlight))
+  		[0 10]   'aestheticService:NoBlight
+  		[10 50]  'aestheticService:LowBlight
+  		[50 90]  'aestheticService:ModerateBlight
+  		[67 100] 'aestheticService:HighBlight))
   		
 (defmodel sink 'aestheticService:ViewSink
   "Whatever is ugly enough to absorb our enjoyment"
