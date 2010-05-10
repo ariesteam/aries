@@ -240,6 +240,24 @@
 		#{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
 		:otherwise                'floodService:FarmlandAbsent))
 
+(defmodel farmland 'floodService:Farmland
+	"Just a reclass of the NLCD land use layer"
+	(classification (ranking 'nlcd:NLCDNumeric)
+		82	       'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent)
+  (classification (ranking 'corine:CORINENumeric)
+		[12 22 :inclusive]	 'floodService:FarmlandPresent
+		:otherwise           'floodService:FarmlandAbsent)
+  (classification (ranking 'mglulc:MGLULCNumeric)
+		#{11 12 13} 'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent)
+  (classification (ranking 'domlulc:DOMLULCNumeric)
+		#{23 36 38 40 41 45 53 59}	'floodService:FarmlandPresent
+		:otherwise                'floodService:FarmlandAbsent)
+	(classification (ranking 'glc:GLCNumeric)
+		#{16 17 18} 'floodService:FarmlandPresent
+		:otherwise 'floodService:FarmlandAbsent))
+
 ;;Use normal dam storage (ac-ft) as a proxy for hyroelectric generation capacity -
 ;;in reality dam heigh & flow are important factors but we don't have flow data.
 ;; NEED TO do wfs2opal for reservoirs, use "normal_sto" as the attribute of interest.
