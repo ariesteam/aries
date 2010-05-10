@@ -113,9 +113,10 @@
 (defmodel development 'recreationService:Development
 	"Development as defined by the NLCD 2001"
 	(classification (ranking 'nlcd:NLCDNumeric)
-			22 	'recreationService:LowIntensityDevelopment
-			23  'recreationService:MediumIntensityDevelopment
-			24  'recreationService:HighIntensityDevelopment)) 
+			22 					'recreationService:LowIntensityDevelopment
+			23  				'recreationService:MediumIntensityDevelopment
+			24  				'recreationService:HighIntensityDevelopment
+			:otherwise 	'recreationService:NotDeveloped)) 
 
 (defmodel clearcuts 'aestheticService:Clearcuts
 	"Presence of clearcuts" 
