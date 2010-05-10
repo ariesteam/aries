@@ -74,7 +74,7 @@
 	"describes access constraints to a particular parcel"
 	(classification (ranking 'recreationService:PublicAccess)
 		  0   'recreationService:PublicLand
-		  1		'recreationService:PrivateLandWithAcess
+		  1		'recreationService:PrivateLandWithAccess
 		  2		'recreationService:NoPublicAccess)) 
 	
 (defmodel hiking-distance 'recreationService:HikingDistance
