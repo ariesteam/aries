@@ -544,15 +544,14 @@
 	translate? When understood, models need to be changed to reflect the mapping AND
 	we should discuss using the global file as well. -->
 	<!-- KB: I'm hoping the discretization provided in sediment.clj will do the job (changes were made to
-	flood.clj too).  Let me know if it doesn't. -->
-	 <measurement:Ranking id="HSG">
+	flood.clj too).  Let me know if it doesn't. -->	
+	<measurement:Ranking id="HSG">
 		<observation:hasObservable>
 			<floodService:HydrologicSoilsGroup />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>4</geospace:hasNodataValue>
 				<geospace:hasCoverageId>puget:HSG</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -567,7 +566,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> 
+	</measurement:Ranking>
 	
 	<measurement:Ranking id="hsg">
 		<observation:hasObservable>
@@ -751,28 +750,28 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 			
-	<!--  <measurement:Ranking id="AfricaTreeCover">
-		<observation:hasObservable>
-			<habitat:PercentCanopyCover />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:AfricaTreeCover</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>9953</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>9559</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-41.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-26.375</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>38.174999996812986</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>56.583333330014995</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>  -->
+<measurement:Ranking id="AfricaTreeCover">
+	<observation:hasObservable>
+		<habitat:PercentCanopyCover />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:AfricaTreeCover</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>9953</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>9559</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-41.5</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-26.375</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>38.175</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>56.583</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 	
 <!--  -->
 	<measurement:Ranking id="puget_impervious_surfaces">
@@ -825,13 +824,10 @@
 	
 <!-- January mean monthly total precipitation in WA. TODO: This should obviously be specified using time extents both in querying and storing.  -->
 	<measurement:Measurement id="puget_precipitation_january">
-	
 		<observation:hasObservable>
 			<habitat:Precipitation />
 		</observation:hasObservable>
-		
 		<measurement:unit>in</measurement:unit>
-		
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -853,10 +849,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>	
 	
-	<measurement:Ranking id="DecPrecip">
+	<measurement:Measurement id="DecPrecip">
 		<observation:hasObservable>
 			<habitat:Precipitation />
 		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -867,14 +864,14 @@
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>792</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>571</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>46.1378103</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.762578</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.0028103</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-120.792578</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>46.138</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.003</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.793</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">

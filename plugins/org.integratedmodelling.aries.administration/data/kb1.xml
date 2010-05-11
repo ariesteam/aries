@@ -232,12 +232,12 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
+
 	<measurement:Measurement id="FloodplainWidth">
 		<observation:hasObservable>
 			<soilretentionEcology:FloodplainWidth />
 		</observation:hasObservable>
-		<measurement:unit>decimal degrees</measurement:unit>
+		<measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -437,6 +437,56 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+	<measurement:Measurement id="puget_precipitation_january">
+		<observation:hasObservable>
+			<soilretentionEcology:MonthlyPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.5477447509766</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.762580871582</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+			<!-- TODO add time span -->
+		</observation:hasObservationExtent>
+	</measurement:Measurement>	
+
+	<measurement:Measurement id="DecPrecip">
+		<observation:hasObservable>
+			<soilretentionEcology:MonthlyPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:DecPrecip</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>792</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>571</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>46.138</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.003</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.793</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 	<measurement:Ranking id="AsiaPacificTreeCover">
 		<observation:hasObservable>
