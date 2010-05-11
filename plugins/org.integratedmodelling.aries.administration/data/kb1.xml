@@ -167,7 +167,7 @@
 
 	<measurement:Ranking id="dominicanRepublic_coffee_farms">
 		<observation:hasObservable>
-			<floodService:Farmland />
+			<soilretentionEcology:Farmland />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -324,16 +324,16 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Measurement id="puget_pugethydroreservoirs">
+	<measurement:Measurement id="puget_hydroreservoirs2">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUseLevel />
 		</observation:hasObservable>
-		<measurement:unit>acre-feet</measurement:unit>
+		<measurement:unit>m^3</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugethydroreservoirs</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>normal_sto</geospace:hasValueAttribute>
+				<geospace:hasCoverageId>puget:hydroreservoirs2</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>normal_s_1</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -347,29 +347,29 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Measurement id="HydroDams">
-		<observation:hasObservable>
-			<soilretentionEcology:HydroelectricUseLevel />
-		</observation:hasObservable>
-		<measurement:unit>m^3</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:HydroDams</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>7079</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7099</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-34.222</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-13.205</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>36.788</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>57.605</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
+<measurement:Measurement id="HydroDams">
+	<observation:hasObservable>
+		<soilretentionEcology:HydroelectricUseLevel />
+	</observation:hasObservable>
+	<measurement:unit>m^3</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:HydroDams</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>7079</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>7099</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-34.222</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-13.205</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>36.788</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>57.605</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<measurement:Ranking id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>

@@ -167,13 +167,15 @@
 	 	   [5 10]     'floodService:LowImpervious
 	 	   [0 5]    'floodService:VeryLowImpervious))
 	 	   
+;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
+;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
 (defmodel dam-storage 'floodService:DamStorage
 	(classification (ranking 'floodService:DamStorage)
-			[5000 :>]		'floodService:VeryLargeDamStorage
-			[3126 5000]	'floodService:LargeDamStorage
-			[1600 3126]	'floodService:ModerateDamStorage
-			[400 1600]	'floodService:SmallDamStorage
-			[:< 400]		'floodService:VerySmallDamStorage))
+			[6000000 :>]		  'floodService:VeryLargeDamStorage
+			[3750000 6000000]	'floodService:LargeDamStorage
+			[1750000 3750000]	'floodService:ModerateDamStorage
+			[500000 1750000]	'floodService:SmallDamStorage
+			[:< 400]		      'floodService:VerySmallDamStorage))
 			
 (defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
 	(classification (ranking 'floodService:MeanDaysPrecipitationPerMonth)

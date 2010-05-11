@@ -40,7 +40,7 @@
        [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
        [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
        [0.3 0.375]   'soilretentionEcology:HighSoilErodibility
-       [0.375 :>]     'soilretentionEcology:VeryHighSoilErodibility)
+       [0.375 :>]     'soilretentionEcology:VeryHighSoilErodibility))
 
 ;;Monthly precipitation for Puget Sound.
 (defmodel precipitation-monthly 'soilretentionEcology:MonthlyPrecipitation
@@ -86,6 +86,7 @@
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
+;;Or could strongly consider just running it on an annual time step, as that's what the data support.
 (defmodel runoff 'soilretentionEcology:AnnualRunoff
 	(classification (measurement 'soilretentionEcology:AnnualRunoff "mm")
 		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
@@ -135,11 +136,10 @@
 	 		:otherwise  'soilretentionEcology:NoSuccession))
 
 ;;Sediment source value
-;;GET WESTERN US SHAPEFILE INTO GEOSERVER/XML...
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnual
-  [(ranking 'foobar:InWesternUs :as in-western-us?)]
+  [(categorization 'geofeatures:Country :as country)]
  (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "kg/ha")
-      :when #(== 1 (:in-western-us? %)) 
+      :when #(= (:country %) "United States") 
   		0                          'soilretentionEcology:NoAnnualSedimentSource
   		[:exclusive 0 30000]       'soilretentionEcology:LowAnnualSedimentSource 
   		[30000 100000]             'soilretentionEcology:ModerateAnnualSedimentSource
@@ -200,31 +200,27 @@
   (classification (ranking 'mglulc:MGLULCNumeric)
 		#{11 12 13} 'soilretentionEcology:Farmland
 		:otherwise 'soilretentionEcology:Farmland)
-  (classification (ranking 'domlulc:DOMLULCNumeric)
-		#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
-		:otherwise                'soilretentionEcology:Farmland)
+  (classification (ranking 'soilretentionEcology:Farmland)
+    1          'soilretentionEcology:FarmlandPresent
+    0          'soilretentionEcology:FarmlandAbsent) 
+;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
+;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
+;;(classification (ranking 'domlulc:DOMLULCNumeric)
+		;;#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
+		;;:otherwise                'soilretentionEcology:Farmland)
 	(classification (ranking 'glc:GLCNumeric)
 		#{16 17 18} 'soilretentionEcology:Farmland
 		:otherwise 'soilretentionEcology:Farmland))
 
 ;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
-;;hyroelectric generation capacity - in reality dam heigh & flow are important factors but 
+;;hyroelectric generation capacity (use) - in reality dam height & flow are important factors but 
 ;;we don't have flow data.
 (defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUseLevel
-	(classification (measurement 'soilretentionEcology:HydroelectricUseLevel "acre-feet")
-    0                        'soilretentionEcology:NoHydroelectricUseLevel
-		[:exclusive 0 500000]    'soilretentionEcology:ModerateHydroelectricUseLevel
-		[500000 :>]              'soilretentionEcology:HighHydroelectricUseLevel)
-	(classification (measurement 'soilretentionEcology:HydroelectricUseLevel "m^3")
-    0                          'soilretentionEcology:NoHydroelectricUseLevel
-		[:exclusive 0 15000000]    'soilretentionEcology:ModerateHydroelectricUseLevel
-		[15000000 :>]              'soilretentionEcology:HighHydroelectricUseLevel))
+  (measurement 'soilretentionEcology:HydroelectricUseLevel "m^3"))
 
-;;Reservoirs layer for DR: presence/absence only.
+;;Reservoirs use for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresence
-	(classification (ranking 'soilretentionEcology:HydroelectricUsePresence)
-    0           'soilretentionEcology:HydroelectricUseAbsence
-		1           'soilretentionEcology:HydroelectricUsePresent))
+	(ranking 'soilretentionEcology:HydroelectricUsePresence))
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
@@ -233,7 +229,7 @@
                         (= (:farmlandpresent %) 82.0))
                     1
                     0)
-      :context (
+       :context (
           (ranking 'lulc:NLCDNumeric :as farmlandpresent)
           (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
@@ -243,33 +239,59 @@
                         (contains? #{11.0 12.0 13.0} (:farmlandpresent %)))
                     1
                     0)
-      :context (
+       :context (
           (ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
           (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
 (defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
        :state #(if (and (= (:floodplains %) 1.0)
-                        (contains? #{23.0 36.0 38.0 40.0 41.0 45.0 53.0 59.0} (:farmlandpresent %)))
+                        (= (:farmlandpresent %) 1.0))
                     1
                     0)
-      :context (
-          (ranking 'domlulc:DOMLULCNumeric :as farmlandpresent)
+       :context (
+          (ranking 'soilretentionEcology:Farmland :as farmlandpresent)
           (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
-;; Gary: does this look right?
-;;(defmodel farmers-erosion-use-puget 'soilretentionEcology:ErosionProneFarmers 
-  ;;[(ranking 'nlcd:NLCDNumeric :as farmlandpresent)
-   ;;(ranking 'soilretentionEcology:SedimentSourceValue :as sediment-source-value-puget)]
-   ;;(ranking 'soilretentionEcology:ErosionProneFarmers
-     ;;  :state #(if (and (= (:floodplains %) 1.0)  ;;WHAT should this state be?
-       ;;                 (= (:farmlandpresent %) 82.0))
-       ;;             1
-       ;;             0))) 
+(defmodel farmers-erosion-use-puget 'soilretentionEcology:ErosionProneFarmers
+  (ranking 'soilretentionEcology:ErosionProneFarmers
+       :state #(if (= (:farmlandpresent %) 82.0)
+                  (cond (= (:sediment-source-value-annual %) 'soilretentionEcology:ModerateAnnualSedimentSource)
+                        1
+                        (= (:sediment-source-value-annual %) 'soilretentionEcology:HighAnnualSedimentSource)
+                        2
+                        :otherwise
+                        0)
+                  0)
+       :context ((ranking 'lulc:NLCDNumeric :as farmlandpresent))))
+
+(defmodel farmers-erosion-use-mg 'soilretentionEcology:ErosionProneFarmers
+  (ranking 'soilretentionEcology:ErosionProneFarmers
+       :state #(if (= (:farmlandpresent %) 11 12 13)
+                  (cond (= (:sediment-source-value-annual %) 'soilretentionEcology:ModerateAnnualSedimentSource)
+                        1
+                        (= (:sediment-source-value-annual %) 'soilretentionEcology:HighAnnualSedimentSource)
+                        2
+                        :otherwise
+                        0)
+                  0)
+       :context ((ranking 'mglulc:MGLULCNumeric :as farmlandpresent))))
+
+(defmodel farmers-erosion-use-dr 'soilretentionEcology:ErosionProneFarmers
+  (ranking 'soilretentionEcology:ErosionProneFarmers
+       :state #(if (= (:farmlandpresent %) 1.0)
+                  (cond (= (:sediment-source-value-annual %) 'soilretentionEcology:ModerateAnnualSedimentSource)
+                        1
+                        (= (:sediment-source-value-annual %) 'soilretentionEcology:HighAnnualSedimentSource)
+                        2
+                        :otherwise
+                        0)
+                  0)
+       :context ((ranking 'soilretentionEcology:Farmland :as farmlandpresent))))
 
 ;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
-;; Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
+;;Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
 ;; 1) ditch fisheries BNs & use source/use models for actual fisheries
 ;; 2) use BNs as generalized fisheries impact model.
 ;;(defmodel fishermen-use-puget 'soilretentionEcology:FishermenUse 
@@ -288,8 +310,6 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
-;; Make reservoir storage a new xml entity, with presence/absence, rename "reservoir storage" in the flood model, BNs, ontologies, xml...
-;; Gary says OK to use rasterized point file for dams/reservoirs
 (defmodel reservoirs 'soilretentionEcology:Reservoirs 
   (classification (ranking 'soilretentionEcology:Reservoirs)
 		  0          'soilretentionEcology:ReservoirAbsent
@@ -309,8 +329,6 @@
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
     [80 100] 'soilretentionEcology:VeryHighFloodplainVegetationCover))
 
-;; Need to add floodplain width to geoserver & xml.  These units are in decimal degrees - these 
-;; correspond roughly tp breakpoints of 375, 820, and 1320 m.
 (defmodel floodplain-width 'soilretentionEcology:FloodplainWidth 
   (classification (measurement 'soilretentionEcology:FloodplainWidth "m")
     [0 350]     'soilretentionEcology:VeryNarrowFloodplain
@@ -326,9 +344,9 @@
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual 'soilretentionEcology:AnnualSedimentSink 
-  [(ranking 'foobar:InWesternUs :as in-western-us?)]
+  [(categorization 'geofeatures:Country :as country)]
   (classification (measurement 'soilretentionEcology:AnnualSedimentSink "kg/ha")
-      :when #(== 1 (:in-western-us? %)) 
+      :when #(= (:country %) "United States") 
        [20000 30000]          'soilretentionEcology:HighAnnualSedimentSink
        [10000 20000]          'soilretentionEcology:ModerateAnnualSedimentSink
        [:exclusive 0 10000]   'soilretentionEcology:LowAnnualSedimentSink

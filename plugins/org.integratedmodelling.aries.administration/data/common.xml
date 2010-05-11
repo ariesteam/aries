@@ -193,35 +193,30 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-<!-- TODO check if it should be a measurement and the observable should be in a
-		more general ontology.
-		NOTE this is a point layer, which sucks.
-	 -->
-	<measurement:Ranking id="us_damstorage">
-	
+<!-- This is actually in m^3, so should be a measurement, but it's giving the message 
+"measurements can only be of physical properties: floodService:DamStorage", so leaving as ranking for now -->
+	<measurement:Ranking id="puget_reservoirs2">
 		<observation:hasObservable>
 			<floodService:DamStorage />
 		</observation:hasObservable>
-
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetdams</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>
-				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+				<geospace:hasCoverageId>puget:reservoirs2</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>sto_diff_1</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>45.670997355311954</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-123.932003711378</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.01399658496675</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.98400439562957</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>18.0172996520996</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-162.877822875977</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>68.0694046020508</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.0149993896484</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
+	
 	<measurement:Ranking id="mg_mgdeforestation">
 			<observation:hasObservable>
 				<carbonService:DeforestationRisk />
@@ -980,31 +975,25 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!--  fv TODO: turned into a presence-absence ranking temporarily. What's in
-		the sto_differ attribute? Most shapes have a 0 so it can't be an area. and
-		acre-feet is not a unit anyway. Brian? Ken?
-	 -->
-	<measurement:Ranking id="puget_pugetreservoirs">
-			<observation:hasObservable>
-				<soilretentionEcology:Reservoirs />
-			</observation:hasObservable>
-			<!-- <measurement:unit>acre-feet</measurement:unit>  -->
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetreservoirs</geospace:hasCoverageId>
-					<!--  <geospace:hasValueAttribute>sto_differ</geospace:hasValueAttribute>  -->
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>45.670997355311954</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-123.932003711378</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>49.01399658496675</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>-120.98400439562957</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
+	<measurement:Ranking id="puget_reservoirs2">
+		<observation:hasObservable>
+			<soilretentionEcology:Reservoirs />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:reservoirs2</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>45.670997355311954</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-123.932003711378</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.01399658496675</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.98400439562957</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
 	<measurement:Ranking id="puget_pugetriverfront">
