@@ -104,7 +104,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
-		(classification (measurement 'geophysics:DegreeSlope "°")
+		(classification (ranking 'geophysics:DegreeSlope)
 			 [:< 1.15] 	  'floodService:Level
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly
@@ -346,7 +346,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "°")
+  (classification (ranking 'geophysics:DegreeSlope)
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -368,7 +368,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "°")
+  (classification (ranking 'geophysics:DegreeSlope)
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -390,7 +390,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "°")
+  (classification (ranking 'geophysics:DegreeSlope)
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating

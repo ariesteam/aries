@@ -277,6 +277,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualSedimentSink -->
+
+    <owl:Class rdf:about="#AnnualSedimentSink">
+        <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#AnnualSnowmelt -->
 
     <owl:Class rdf:about="#AnnualSnowmelt">
@@ -775,6 +783,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualSedimentSink -->
+
+    <owl:Class rdf:about="#HighAnnualSedimentSink">
+        <rdfs:subClassOf rdf:resource="#AnnualSedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualSedimentSource -->
+
+    <owl:Class rdf:about="#HighAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValueAnnual"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighAnnualSnowmelt -->
 
     <owl:Class rdf:about="#HighAnnualSnowmelt">
@@ -851,22 +875,6 @@
 
     <owl:Class rdf:about="#HighPopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSedimentSink -->
-
-    <owl:Class rdf:about="#HighSedimentSink">
-        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#HighSedimentSource -->
-
-    <owl:Class rdf:about="#HighSedimentSource">
-        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
     </owl:Class>
     
 
@@ -1143,6 +1151,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualSedimentSource -->
+
+    <owl:Class rdf:about="#LowAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValueAnnual"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowAnnualSnowmelt -->
 
     <owl:Class rdf:about="#LowAnnualSnowmelt">
@@ -1194,15 +1210,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSedimentSink -->
 
     <owl:Class rdf:about="#LowSedimentSink">
-        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#LowSedimentSource -->
-
-    <owl:Class rdf:about="#LowSedimentSource">
-        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
+        <rdfs:subClassOf rdf:resource="#AnnualSedimentSink"/>
     </owl:Class>
     
 
@@ -1347,6 +1355,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualSedimentSink -->
+
+    <owl:Class rdf:about="#ModerateAnnualSedimentSink">
+        <rdfs:subClassOf rdf:resource="#AnnualSedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualSedimentSource -->
+
+    <owl:Class rdf:about="#ModerateAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValueAnnual"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateAnnualSnowmelt -->
 
     <owl:Class rdf:about="#ModerateAnnualSnowmelt">
@@ -1423,22 +1447,6 @@
 
     <owl:Class rdf:about="#ModeratePopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSedimentSink -->
-
-    <owl:Class rdf:about="#ModerateSedimentSink">
-        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#ModerateSedimentSource -->
-
-    <owl:Class rdf:about="#ModerateSedimentSource">
-        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
     </owl:Class>
     
 
@@ -1563,6 +1571,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoAnnualSedimentSink -->
+
+    <owl:Class rdf:about="#NoAnnualSedimentSink">
+        <rdfs:subClassOf rdf:resource="#AnnualSedimentSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoAnnualSedimentSource -->
+
+    <owl:Class rdf:about="#NoAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="#SedimentSourceValueAnnual"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoAnnualSnowmelt -->
 
     <owl:Class rdf:about="#NoAnnualSnowmelt">
@@ -1615,22 +1639,6 @@
 
     <owl:Class rdf:about="#NoMonthlySnowpack">
         <rdfs:subClassOf rdf:resource="#MonthlySnowpack"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSedimentSink -->
-
-    <owl:Class rdf:about="#NoSedimentSink">
-        <rdfs:subClassOf rdf:resource="#SedimentSink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#NoSedimentSource -->
-
-    <owl:Class rdf:about="#NoSedimentSource">
-        <rdfs:subClassOf rdf:resource="#SedimentSourceValue"/>
     </owl:Class>
     
 
@@ -1998,17 +2006,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SedimentSink -->
+    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SedimentSourceValueAnnual -->
 
-    <owl:Class rdf:about="#SedimentSink">
-        <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilretentionEcology#SedimentSourceValue -->
-
-    <owl:Class rdf:about="#SedimentSourceValue">
+    <owl:Class rdf:about="#SedimentSourceValueAnnual">
         <rdfs:subClassOf rdf:resource="#Source"/>
     </owl:Class>
     

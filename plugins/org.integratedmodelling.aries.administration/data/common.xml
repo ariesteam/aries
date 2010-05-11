@@ -228,8 +228,7 @@
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>mg:mgdeforestation</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
@@ -251,7 +250,6 @@
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -275,7 +273,6 @@
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -372,7 +369,6 @@
 		<observation:hasObservable>
 			<soilretentionEcology:FloodplainVegetationCover />
 		</observation:hasObservable>
-		<measurement:unit>%</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -391,54 +387,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-<!-- ??? fv - not in Geoserver anymore?  KB: NO - they were replaced by better layers.
-	<measurement:Ranking id="RiparianVeg3">
-		<observation:hasObservable>
-			<soilretentionEcology:FloodplainVegetationCover />
-		</observation:hasObservable>
-		<measurement:unit>%</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:RiparianVeg3</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8813</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>8632</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-34.694244333148134</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-16.875340548424848</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.25575566397386</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>56.58299278197015</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>  
-
-	<measurement:Ranking id="mg_mgfloodplain">
-			<observation:hasObservable>
-				<floodService:Floodplains />
-			</observation:hasObservable>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:mgfloodplain</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-34.688</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4326
-					</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:Ranking> -->
 		
 	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
 		carbon models) when I figure out how to express that. -->
@@ -564,7 +512,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-<!--  This has to be commented out for now if we're going to try to run a useful global verision.
+<!--  This has to be commented out for now if we're going to try to run a useful global verision: it's been replaced by a rasterized puget HSG layer.
 <observation:Categorization id="puget_soilgroup">
 	
 		<observation:hasObservable>
@@ -676,24 +624,17 @@
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetlakefront
-					</geospace:hasCoverageId>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetlakefront</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>76129.6295966863
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>550339.3848230975
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1395057.6838687493
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>2655014.7856741175
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:2927
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>76129.6295966863</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>550339.3848230975</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1395057.6838687493</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2655014.7856741175</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
@@ -809,10 +750,7 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	<!-- FIXME fv this layer was just removed from geoserver. Should this
-		become global:TreeCover? 
-		
+			
 	<measurement:Ranking id="AfricaTreeCover">
 		<observation:hasObservable>
 			<habitat:PercentCanopyCover />
@@ -978,24 +916,17 @@
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetformalprotection
-					</geospace:hasCoverageId>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetformalprotection</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-551303.1220662754
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>615871.2439393924
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>778663.8395426599
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>2705138.7912269174
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:2926
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>-551303.1220662754</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>615871.2439393924</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>778663.8395426599</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2705138.7912269174</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
@@ -1299,10 +1230,11 @@
 	
 <!-- For use in USLE/RUSLE -->
 	
-	<measurement:Ranking id="annual_loss1980">
+	<measurement:Measurement id="annual_loss1980">
 		<observation:hasObservable>
-			<soilretentionEcology:SoilLoss />
+			<soilretentionEcology:SedimentSourceValueAnnual />
 		</observation:hasObservable>
+		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1320,7 +1252,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<measurement:Ranking id="wetlands">
 		<observation:hasObservable>
@@ -1405,10 +1337,8 @@
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>global:globalsoiltexture
-					</geospace:hasCoverageId>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:globalsoiltexture</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
@@ -1579,25 +1509,18 @@
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetwaterquality
-					</geospace:hasCoverageId>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetwaterquality</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>quality</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
 				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>54692.530961369725
-					</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>545336.7573808122
-					</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1380301.6967513857
-					</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>2599982.619737681
-					</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:2927
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasLatLowerBound>54692.530961369725</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>545336.7573808122</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1380301.6967513857</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2599982.619737681</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
