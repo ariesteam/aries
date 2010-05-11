@@ -118,12 +118,6 @@
 			24  				'recreationService:HighIntensityDevelopment
 			:otherwise 	'recreationService:NotDeveloped)) 
 
-(defmodel clearcuts 'aestheticService:Clearcuts
-	"Presence of clearcuts" 
-  (classification (ranking 'geofeatures:Clearcut)
-		  0          'aestheticService:ClearcutsAbsent
-		  :otherwise 'aestheticService:ClearcutsPresent))
-
 (defmodel roads 'recreationService:Roads
   (classification (ranking 'recreationService:Roads)
 		  0          'recreationService:RoadsAbsent
