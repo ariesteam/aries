@@ -8,7 +8,7 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (categorization 'soilretentionEcology:HydrologicSoilsGroup)
+	(classification (ranking 'soilretentionEcology:HydrologicSoilsGroup)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC

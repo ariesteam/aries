@@ -1,4 +1,4 @@
-(ns aries.sediment
+(ns aries.sedimentDR
   (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
   (:refer aries :only (span)))
 
@@ -8,7 +8,7 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (categorization 'soilretentionEcology:HydrologicSoilsGroup)
+	(classification (ranking 'soilretentionEcology:HydrologicSoilsGroup)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC
