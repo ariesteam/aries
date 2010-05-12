@@ -1,18 +1,7 @@
-(ns aries.carbon
+(ns aries.carbonJen
 	(:refer-clojure)
   (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian))
   (:refer aries :only (span)))
-
-;; output and training TODO make it classify the appropriate measurement - buggy for now
-(defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
-	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "t/ha*year" 
-	  				[680 :>]   'carbonService:VeryHighStorage
-	  				[440 680]  'carbonService:HighStorage
-	  				[200 440]  'carbonService:ModerateStorage
-	  				[50 200]   'carbonService:LowStorage
-	  				[0 50]     'carbonService:VeryLowStorage
-	  				0          'carbonService:NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 ;; Jen leaves out the catgory Very Low from her discretization
@@ -55,20 +44,6 @@
 		 			[0.05 0.25] 'carbonService:LowFireFrequency
 		 			[:< 0.05]   'carbonService:VeryLowFireFrequency))
 		 			
-(defmodel blowdown-frequency 'carbonService:BlowdownFrequency
-			(classification (ranking 'carbonService:BlowdownFrequency)
-					[0.9 :>]    'carbonService:HighBlowdownFrequency
-					[0.25 0.9]	'carbonService:ModerateBlowdownFrequency
-					[0.05 0.25]	'carbonService:LowBlowdownFrequency
-					[:< 0.05]		'carbonService:VeryLowBlowdownFrequency))
-					
-(defmodel insect-frequency 'carbonService:InsectFrequency
-			(classification (ranking 'carbonService:InsectFrequency)
-					[0.9 :>]		'carbonService:HighInsectFrequency
-					[0.25 0.9]	'carbonService:ModerateInsectFrequency
-					[0.05 0.25]	'carbonService:LowInsectFrequency
-					[:< 0.05]		'carbonService:VeryLowInsectFrequency))
-					
 (defmodel stand-condition 'carbonService:StandCondition
 			(classification (ranking 'carbonService:StandCondition)
 					#{4 5 6}			'carbonService:HighStandCondition
@@ -101,8 +76,8 @@
                  'carbonService:VegetationCarbonStorage
 	  						 'carbonService:SoilCarbonStorage)
 	    :observed (soil-storage veg-storage)
-	 	 	:context  (veg-soil-storage veg-storage soil-storage summer-high-winter-low fire-frequency blowdown-frequency 
-	 	 							insect-frequency stand-condition stand-size-density soil-CN-ratio)))  
+	 	 	:context  (veg-storage soil-storage summer-high-winter-low fire-frequency 
+	 	 							stand-condition stand-size-density soil-CN-ratio)))  
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

@@ -1,4 +1,4 @@
-(ns aries.carbon
+(ns aries.carbonSam
 	(:refer-clojure)
   (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian))
   (:refer aries :only (span)))
