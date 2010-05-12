@@ -30,24 +30,31 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:pugetbeaches</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>341432.39480104897</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>602542.4124029671</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1366881.9205084355</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1233292.2512319256</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>341432.39480104897
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>602542.4124029671
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1366881.9205084355
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1233292.2512319256
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!-- Puget population density: measured in people per square kilometer
-	FIXME made it a measurement of unitless/km2, should become a count when 
-	implemented.
+	<!--
+		Puget population density: measured in people per square kilometer
+		FIXME made it a measurement of unitless/km2, should become a count
+		when implemented.
 	-->
 	<measurement:Measurement id="puget_pugetpopulationdensity">
 		<observation:hasObservable>
@@ -56,18 +63,25 @@
 		<measurement:unit>/km^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetpopulationdensity</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetpopulationdensity
+				</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>54007.72199547973</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>508412.22498618934</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1385120.9910318155</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2612573.0955876815</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>54007.72199547973
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>508412.22498618934
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1385120.9910318155
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2612573.0955876815
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
@@ -79,17 +93,23 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:pugetparks</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-238866.43825608978</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>639892.1412067211</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>762810.3312307579</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1586270.971328112</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-238866.43825608978
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>639892.1412067211
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>762810.3312307579
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1586270.971328112
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2926
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -101,18 +121,24 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:pugetcities</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>place_nm</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>64837.072613952645</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>616557.6098079457</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1370631.5128883347</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2576704.1850025496</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>64837.072613952645
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>616557.6098079457
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1370631.5128883347
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2576704.1850025496
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -124,42 +150,105 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:meandaysprecipdec</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:meandaysprecipdec
+				</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>24.46261554638897</geospace:hasLatLowerBound>
+				<geospace:hasLatLowerBound>24.46261554638897
+				</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>-124.783</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.4271147643242</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.91499999999999</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatUpperBound>49.4271147643242
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.91499999999999
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4609
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
+
 	<measurement:Ranking id="puget_meandaysprecipjan">
 		<observation:hasObservable>
 			<floodService:MeanDaysPrecipitationPerMonth />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:meandaysprecipjan</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:meandaysprecipjan
+				</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>24.46261554638897</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.80199999999999</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.42511478755149</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.91499999999999</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>24.46261554638897
+				</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.80199999999999
+				</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.42511478755149
+				</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.91499999999999
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4609
+				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<!-- LYE BROOK WILDERNESS MODEL DATA -->
+	<measurement:Ranking id="vermont_lye_brook_stands_wgs84_v2">
+		<observation:hasObservable>
+			<carbonService:StandCondition />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:lye_brook_stands_wgs84_v2</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>stand_cond</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:String</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>43.053</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-73.096</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.166</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-72.94</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+
+	<measurement:Ranking id="vermont_lyebrookstands_wgs84">
+		<observation:hasObservable>
+			<carbonService:StandDensity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:lyebrookstands_wgs84
+				</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>size_densi</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>43.053</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-73.096</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.166</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-72.94</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 </kbox>
