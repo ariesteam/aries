@@ -392,30 +392,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Measurement id="PRECIPA7100">
-		<observation:hasObservable>
-			<carbonService:MeanAnnualPrecipitation />
-		</observation:hasObservable>
-		<measurement:unit>in</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:PRECIPA7100</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>1566</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>2544</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>25228.527</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>424788.844</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>279828.527</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>581588.844</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-
 	<measurement:Ranking id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
@@ -713,29 +689,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-<measurement:Measurement id="vermont_vt_soilcarbon">
-	<observation:hasObservable>
-		<carbonService:SoilCarbonStorage />
-	</observation:hasObservable>
-	<measurement:unit>g/m^2</measurement:unit>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>vermont:vt_soilcarbon</geospace:hasCoverageId>
-			<geospace:hasValueAttribute>wt_avg_rv</geospace:hasValueAttribute>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>24779.428113313774</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>422354.0733692106</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>280085.1865430563</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>554628.3863183097</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:Measurement>
-
 	<measurement:Ranking id="puget_pugeterosionmetrics">
 		<observation:hasObservable>
 			<soilretentionEcology:SoilErodibility />
@@ -870,30 +823,6 @@
 				<geospace:hasLonLowerBound>-1477305.0</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>1542945.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-816945.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:42303</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-
-	<measurement:Measurement id="biomass2carb">
-		<observation:hasObservable>
-			<carbonService:VegetationCarbonStorage />
-		</observation:hasObservable>
-		<measurement:unit>t/ha</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:biomass2carb</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>23604</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>29016</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2139684.504</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1552933.652</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3010224.504</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2261113.652</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:42303</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
