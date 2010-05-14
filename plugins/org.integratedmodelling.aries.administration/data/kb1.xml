@@ -600,6 +600,27 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+	<measurement:Ranking id="puget_wastreams">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:wastreams</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>5075200.34065661</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>363225.0352501266</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5432321.261653562</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>681899.3096981852</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 	
 	<measurement:Ranking id="mg_mgrivers">
 	<observation:hasObservable>
