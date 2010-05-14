@@ -102,10 +102,6 @@
 		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
 		#{52 81}             'soilretentionEcology:ShrublandPasture
 		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped)
-  (classification (ranking 'glc:GLCNumeric)
-		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
-		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
-    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)
   (classification (ranking 'mglulc:MGLULCNumeric)
     #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
     #{3 7 23}                                  'soilretentionEcology:DegradedForest
@@ -116,7 +112,11 @@
     #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
 	 	#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
     #{23 36 38 40 59}       'soilretentionEcology:IntensiveCroplandAndPasture
-    #{42}                   'soilretentionEcology:UrbanAndRoads))
+    #{42}                   'soilretentionEcology:UrbanAndRoads)
+  (classification (ranking 'glc:GLCNumeric)
+		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
+		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
+    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped))
 
 (defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
