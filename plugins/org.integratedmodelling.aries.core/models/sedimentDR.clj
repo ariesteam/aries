@@ -212,11 +212,15 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
+;; FIXME the general concepts in the measurement are not soilerosion-specific and 
+;; should be from geofeatures or some other ontology
 (defmodel reservoirs 'soilretentionEcology:Reservoirs 
   (classification (ranking 'soilretentionEcology:Reservoirs)
 		  0          'soilretentionEcology:ReservoirAbsent
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 
+;; FIXME the general concepts in the measurement are not soilerosion-specific and 
+;; should be from habitat or some other ontology
 (defmodel stream-gradient 'soilretentionEcology:StreamGradient 
   (classification (ranking 'soilretentionEcology:StreamGradient)
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
@@ -231,6 +235,8 @@
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
     [80 100] 'soilretentionEcology:VeryHighFloodplainVegetationCover))
 
+;; FIXME the general concepts in the measurement are not soilerosion-specific and 
+;; should be from geofeatures or some other ontology
 (defmodel floodplain-width 'soilretentionEcology:FloodplainWidth 
   (classification (measurement 'soilretentionEcology:FloodplainWidth "m")
     [0 350]     'soilretentionEcology:VeryNarrowFloodplain
@@ -238,8 +244,9 @@
     [800 1300]  'soilretentionEcology:WideFloodplain
     [1300 :>]   'soilretentionEcology:VeryWideFloodplain))
 
+;; FV fixed to infrastructure:Levee, must be said that we don't seem to have those in DR
 (defmodel levees 'soilretentionEcology:Levees 
-  (classification (ranking 'soilretentionEcology:Levees)
+  (classification (ranking 'infrastructure:Levee)
 		  0          'soilretentionEcology:LeveeAbsent
 		  :otherwise 'soilretentionEcology:LeveePresent))
 
@@ -253,6 +260,7 @@
        0                    'soilretentionEcology:NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
+;; FIXME again, the keep node has the same concept as the BN as a whole
 (defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSink
   (bayesian 'soilretentionEcology:AnnualSedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
