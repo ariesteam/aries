@@ -644,30 +644,27 @@
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- 
-	FIXME geoserver reports actual boundaries that make no sense - see below. The projection is
-	probably wrong in Geoserver.
-	
-	<measurement:Ranking id="dominicanRepublic_drrivers">
-		<observation:hasObservable>
-			<geofeatures:River />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:drrivers</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>0.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-28.587390430038795</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>0.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-28.587390430038795</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>  -->
+<measurement:Ranking id="dominicanRepublic_drrivers">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>dominicanRepublic:drrivers</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>17.54</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-72.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>19.931</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-68.324</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
 
 	<measurement:Ranking id="Africa_dams3">
 		<observation:hasObservable>
