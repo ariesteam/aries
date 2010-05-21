@@ -114,12 +114,14 @@
   		[40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
 
 ;; source bayesian model for Dominican Republic
+;; FIXME soil-erodibility depends on Slope, it should not be used as evidence but only for
+;; training.
 (defmodel source-dr 'soilretentionEcology:SedimentSourceValueAnnual
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
     :observed (sediment-source-value-annual) 
-    :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
+    :context  (soil-group slope soil-texture (comment soil-erodibility) precipitation-annual  
                storm-probability runoff vegetation-type percent-vegetation-cover))) 
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
