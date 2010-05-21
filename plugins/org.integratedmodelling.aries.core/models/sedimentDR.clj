@@ -57,7 +57,7 @@
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
 ;;Or could strongly consider just running it on an annual time step, as that's what the data support.
 (defmodel runoff 'soilretentionEcology:AnnualRunoff
-	(classification (measurement 'soilretentionEcology:AnnualRunoff "mm")
+	(classification (measurement 'soilretentionEcology:Runoff "mm/year")
 		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
 		[200 600] 	  'soilretentionEcology:LowAnnualRunoff
 		[600 1200]  	'soilretentionEcology:ModerateAnnualRunoff
