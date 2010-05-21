@@ -32,11 +32,11 @@
 			<probabilities>0.005 0.185 0.43 0.38</probabilities>
 		</cpt>
 		<cpt id="HydrologicSoilsGroup">
-			<state id="SoilsGroupA" />
-			<state id="SoilsGroupB" />
-			<state id="SoilsGroupC" />
-			<state id="SoilsGroupD" />
-			<probabilities>0 0 0 1</probabilities>
+			<state id="SoilGroupA" />
+			<state id="SoilGroupB" />
+			<state id="SoilGroupC" />
+			<state id="SoilGroupD" />
+			<probabilities>0.01 0.01 0.01 0.97</probabilities>
 		</cpt>
 		<cpt id="VegetationType">
 			<state id="WaterWetlandsMangroves" />
@@ -57,7 +57,7 @@
 			<state id="FineSoilTexture" />
 			<state id="MediumSoilTexture" />
 			<state id="CoarseSoilTexture" />
-			<probabilities>1 0 0</probabilities>
+			<probabilities>0.98 0.01 0.01</probabilities>
 		</cpt>
 		<cpt id="SoilErodibility">
 			<state id="VeryHighSoilErodibility" />
@@ -94,7 +94,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationType">
 				<name>VegetationType</name>
 				<interior color="e5f6f7" />

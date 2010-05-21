@@ -29,7 +29,7 @@
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
-     (classification (ranking 'soilretentionEcology:SoilErodibility)
+     (classification (ranking 'soilretentionEcology:SoilErodibilityFactor)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
        [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
        [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
@@ -65,6 +65,11 @@
 		[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
 ;;Vegetation type
+;; FIXME these are inconsistent, only the DOM ones classify to classes used in the BN, but
+;; if those are not found, the other classes will give GENIE errors in DR. Some of the classes
+;; appear non-disjoint (e.g. ForestGrassWetland and ForestAndShrubland). Whatever the region,
+;; this should only return a consistent definition of VegetationType that matches the ontology, and
+;; all BNs should be prepared to handle all classes.
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
@@ -97,7 +102,12 @@
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnual
-	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
+;; FIXME (fv) - this doesn't get queried so the observation is incomplete - the commented
+;; form is the right one, the one below is a temporary fix
+;; FIXME the same concept appears as a node of the BN (in keep), as the overall concept
+;; for the BN, and as the concept of the model.
+;	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
+	(classification 'soilretentionEcology:SedimentSourceValueAnnual
       0                     'soilretentionEcology:NoAnnualSedimentSource
   		[:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
   		[15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
@@ -110,7 +120,7 @@
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
-              storm-probability runoff vegetation-type percent-vegetation-cover))) 
+               storm-probability runoff vegetation-type percent-vegetation-cover))) 
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
