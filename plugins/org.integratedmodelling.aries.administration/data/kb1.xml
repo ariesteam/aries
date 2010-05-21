@@ -97,7 +97,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Categorization id="global_nationalboundaries">
+	<observation:Categorization id="global_nationalboundaries">
 		<observation:hasObservable>
 			<geofeatures:Country />
 		</observation:hasObservable>
@@ -117,7 +117,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Categorization>
+	</observation:Categorization>
 
 	<measurement:Ranking id="DR_slope">
 		<observation:hasObservable>
@@ -127,6 +127,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>dominicanRepublic:DR_slope</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -144,7 +145,7 @@
 
 	<measurement:Ranking id="DR_lulc">
 		<observation:hasObservable>
-			<domlulc:DOMULCNumeric />
+			<domlulc:DOMLULCNumeric />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -643,6 +644,10 @@
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
+<!-- 
+	FIXME geoserver reports actual boundaries that make no sense - see below. The projection is
+	probably wrong in Geoserver.
+	
 	<measurement:Ranking id="dominicanRepublic_drrivers">
 		<observation:hasObservable>
 			<geofeatures:River />
@@ -662,7 +667,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking>  -->
 
 	<measurement:Ranking id="Africa_dams3">
 		<observation:hasObservable>
