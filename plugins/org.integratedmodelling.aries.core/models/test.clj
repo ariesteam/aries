@@ -23,9 +23,9 @@
 (defmodel altitude-ft 'geophysics:Altitude
   (measurement 'geophysics:Altitude "ft"))
 
-(defmodel altitude-dyn 'geophysics:Altitude 
+(defmodel altitude-computed 'geophysics:Altitude 
 
- "Test dynamic state computation. When the observation is mediating another
+ "Test state computation. When the observation is mediating another
   model (in this case, implicitly, whatever compatible observation of altitude was seen), the 
   id of the model that contains the expression is bound to its value post-mediation, which
   is then redefined by the result of the state computation. 
@@ -35,6 +35,15 @@
   (measurement 'geophysics:Altitude "m"
     :as    altitude 
     :state #(+ 100000000 (:altitude %))
+   )) 
+
+(defmodel test-dynamic 'geophysics:Altitude 
+
+  (measurement 'geophysics:Altitude "m"
+    :value  50
+    :update #(do  
+                (print "time is " (:time %) ", altitude was " (:altitude %))
+                (+ (:altitude %) 1.0)) 
    )) 
 
 ;; test structural variability

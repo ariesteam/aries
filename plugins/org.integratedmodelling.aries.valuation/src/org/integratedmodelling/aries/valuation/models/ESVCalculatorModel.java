@@ -1,10 +1,9 @@
 package org.integratedmodelling.aries.valuation.models;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.Collection;
 
-import org.integratedmodelling.aries.core.models.SPANModel;
 import org.integratedmodelling.corescience.CoreScience;
+import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -28,7 +27,7 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 	}
 	
 	@Override
-	public Polylist buildDefinition(IKBox kbox, ISession session) throws ThinklabException {
+	public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents) throws ThinklabException {
 
 		return Polylist.list(
 			"esvaluation:ESVCalculator",

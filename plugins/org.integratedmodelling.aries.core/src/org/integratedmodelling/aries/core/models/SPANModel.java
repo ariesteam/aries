@@ -1,8 +1,10 @@
 package org.integratedmodelling.aries.core.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.integratedmodelling.corescience.CoreScience;
+import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
@@ -115,7 +117,7 @@ public class SPANModel extends DefaultAbstractModel {
 	}
 
 	@Override
-	public Polylist buildDefinition(IKBox kbox, ISession session) throws ThinklabException {
+	public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents) throws ThinklabException {
 
 		ArrayList<Object> arr = new ArrayList<Object>();
 		
