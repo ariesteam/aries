@@ -37,14 +37,38 @@
     :state #(+ 100000000 (:altitude %))
    )) 
 
+;; simple test of dynamic updating
 (defmodel test-dynamic 'geophysics:Altitude 
-
   (measurement 'geophysics:Altitude "m"
-    :value  50
+    :value  (corescience/gaussian 150.0 3.75)
     :update #(do  
                 (println "time is " (:time %) ", altitude was " (:altitude %))
                 (+ (:altitude %) 1.0)) 
    )) 
+
+(defn cnil [a] (if (tl/is? a (tl/conc 'floodService:FarmlandPresent)) 0 1)) 
+
+;; cellular automaton contagion model - farmland only survives to next generation if surrounded by farmland
+;; on three sides, meaning it will erode at the edges at each update until all farmland patches are square.
+(defmodel land-use-change 'floodService:Farmland
+	(classification (ranking 'nlcd:NLCDNumeric)
+			82	       'floodService:FarmlandPresent
+			:otherwise 'floodService:FarmlandAbsent
+			:as lulc
+    	:update  
+    		#(let [sum (+ (cnil (:lulc#n %)) (cnil (:lulc#s %)) (cnil (:lulc#e %)) (cnil (:lulc#w %)))]
+    			    (if (< sum 3) (tl/conc 'floodService:FarmlandAbsent) (tl/conc 'floodService:FarmlandPresent)))
+))
+
+;; simple test of ODE integration
+(defmodel test-ode 'geophysics:Altitude 
+  (measurement 'geophysics:Altitude "m"
+    :value  50
+    :rate #(do  
+              (println "time is " (:time %) ", altitude was " (:altitude %) ", tstep " (:time#now %))
+              (* (:altitude %) 0.03)) 
+)) 
+
 
 ;; test structural variability
 (defmodel structest 'conservation:ProtectedStatus 
