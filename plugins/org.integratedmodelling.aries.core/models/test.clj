@@ -42,7 +42,7 @@
   (measurement 'geophysics:Altitude "m"
     :value  50
     :update #(do  
-                (print "time is " (:time %) ", altitude was " (:altitude %))
+                (println "time is " (:time %) ", altitude was " (:altitude %))
                 (+ (:altitude %) 1.0)) 
    )) 
 
