@@ -21,6 +21,7 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
 	xmlns:soilretentionEcology="http://www.integratedmodelling.org/ks/es/services/soilretentionEcology.owl#"
+	xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/services/waterSupplyService.owl#"
 	xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
 	xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#">
@@ -96,6 +97,52 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Ranking id="buffalo">
+			<observation:hasObservable>
+				<waterSupplyService:BuffaloPopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:buffalo</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3469</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-89.9</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.65</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		
+		<measurement:Ranking id="cattle">
+			<observation:hasObservable>
+				<waterSupplyService:CattlePopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:cattle</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3469</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-89.9</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.65</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
 	
 	<observation:Categorization id="global_nationalboundaries">
 		<observation:hasObservable>
@@ -325,6 +372,29 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+		<measurement:Ranking id="goats">
+			<observation:hasObservable>
+				<waterSupplyService:GoatsPopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>	
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:goats</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3469</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-89.9</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.65</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+
 	<measurement:Measurement id="puget_hydroreservoirs2">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUseLevel />
@@ -390,6 +460,30 @@
 				<geospace:hasLonUpperBound>377651.0166063338</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Ranking id="Industry">
+		<observation:hasObservable>
+			<waterSupplyService:IndustrialWaterUse />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:Industry</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>15</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>19.345</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-96.955</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>19.515</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-96.505</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
@@ -464,6 +558,29 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Ranking id="Non_Rival_Use">
+		<observation:hasObservable>
+			<waterSupplyService:NonRivalUse />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:Non_Rival_Use</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>22</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>6</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>19.322</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-97.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>19.402</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-96.76</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 	<measurement:Ranking id="AsiaPacificTreeCover">
 		<observation:hasObservable>
@@ -580,6 +697,76 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+		<measurement:Ranking id="pigs">
+			<observation:hasObservable>
+				<waterSupplyService:PigsPopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:pigs</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3469</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-89.9</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.65</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		
+		<measurement:Ranking id="poultry">
+			<observation:hasObservable>
+				<waterSupplyService:PoultryPopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:poultry</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3469</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-89.9</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>83.65</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
+		
+	<measurement:Measurement id="Proximity_SurfaceWater1">
+		<observation:hasObservable>
+			<waterSupplyService:ProximityToSurfaceWater />
+		</observation:hasObservable>
+		<measurement:unit>m</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:Proximity_SurfaceWater1</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>3465</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1555</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>2118784.041</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>681448.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2165494.041</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>785458.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Ranking id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
 			<soilretentionEcology:Reservoirs />
@@ -665,6 +852,27 @@
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
+	<measurement:Ranking id="mexico_lastreams">
+			<observation:hasObservable>
+				<geofeatures:River />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mexico:lastreams</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>2117436.3283869727</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>681048.4948232571</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>2166833.2994848895</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>786120.9303294052</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 
 	<measurement:Ranking id="Africa_dams3">
 		<observation:hasObservable>
@@ -711,6 +919,29 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Ranking id="sheep">
+			<observation:hasObservable>
+				<waterSupplyService:SheepPopulation />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WCSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>global:sheep</geospace:hasCoverageId>
+				</geospace:WCSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:RasterGrid>
+					<geospace:hasXRangeMax>7198</geospace:hasXRangeMax>
+					<geospace:hasYRangeMax>3598</geospace:hasYRangeMax>
+					<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				</geospace:RasterGrid>
+			</observation:hasObservationExtent>
+		</measurement:Ranking>
 
 	<measurement:Ranking id="puget_pugeterosionmetrics">
 		<observation:hasObservable>

@@ -287,27 +287,28 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- presence/absence of detention basins.  NOTE this is a point layer, which sucks. -->
-	<measurement:Ranking id="puget_detention_basins_storage">
-	
+	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer -->
+
+	<measurement:Ranking id="DetentionBasins">
 		<observation:hasObservable>
 			<infrastructure:DetentionBasin />
 		</observation:hasObservable>
-
 		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetdetentionbasins</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
+			<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:DetentionBasins</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-31750.937</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>1075096.36</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>628249.063</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1481896.36</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>-31600.9375</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1075246.25</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>68.0694046020508</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>627954.375</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
