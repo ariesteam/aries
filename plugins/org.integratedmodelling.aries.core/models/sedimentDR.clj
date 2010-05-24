@@ -29,7 +29,7 @@
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
-     (classification (ranking 'soilretentionEcology:SoilErodibilityFactor)
+     (classification (ranking 'soilretentionEcology:SoilErodibility)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
        [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
        [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
@@ -65,11 +65,6 @@
 		[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
 ;;Vegetation type
-;; FIXME these are inconsistent, only the DOM ones classify to classes used in the BN, but
-;; if those are not found, the other classes will give GENIE errors in DR. Some of the classes
-;; appear non-disjoint (e.g. ForestGrassWetland and ForestAndShrubland). Whatever the region,
-;; this should only return a consistent definition of VegetationType that matches the ontology, and
-;; all BNs should be prepared to handle all classes.
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (ranking 'nlcd:NLCDNumeric)
@@ -102,27 +97,20 @@
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnual
-;; FIXME (fv) - this doesn't get queried so the observation is incomplete - the commented
-;; form is the right one, the one below is a temporary fix
-;; FIXME the same concept appears as a node of the BN (in keep), as the overall concept
-;; for the BN, and as the concept of the model.
-;	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
-	(classification 'soilretentionEcology:SedimentSourceValueAnnual
+	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
       0                     'soilretentionEcology:NoAnnualSedimentSource
   		[:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
   		[15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
   		[40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
 
 ;; source bayesian model for Dominican Republic
-;; FIXME soil-erodibility depends on Slope, it should not be used as evidence but only for
-;; training.
 (defmodel source-dr 'soilretentionEcology:SedimentSourceValueAnnual
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
     :observed (sediment-source-value-annual) 
-    :context  (soil-group slope soil-texture (comment soil-erodibility) precipitation-annual  
-               storm-probability runoff vegetation-type percent-vegetation-cover))) 
+    :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
+              storm-probability runoff vegetation-type percent-vegetation-cover))) 
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
@@ -212,15 +200,11 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
-;; FIXME the general concepts in the measurement are not soilerosion-specific and 
-;; should be from geofeatures or some other ontology
 (defmodel reservoirs 'soilretentionEcology:Reservoirs 
   (classification (ranking 'soilretentionEcology:Reservoirs)
 		  0          'soilretentionEcology:ReservoirAbsent
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 
-;; FIXME the general concepts in the measurement are not soilerosion-specific and 
-;; should be from habitat or some other ontology
 (defmodel stream-gradient 'soilretentionEcology:StreamGradient 
   (classification (ranking 'soilretentionEcology:StreamGradient)
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
@@ -235,8 +219,6 @@
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
     [80 100] 'soilretentionEcology:VeryHighFloodplainVegetationCover))
 
-;; FIXME the general concepts in the measurement are not soilerosion-specific and 
-;; should be from geofeatures or some other ontology
 (defmodel floodplain-width 'soilretentionEcology:FloodplainWidth 
   (classification (measurement 'soilretentionEcology:FloodplainWidth "m")
     [0 350]     'soilretentionEcology:VeryNarrowFloodplain
@@ -244,9 +226,8 @@
     [800 1300]  'soilretentionEcology:WideFloodplain
     [1300 :>]   'soilretentionEcology:VeryWideFloodplain))
 
-;; FV fixed to infrastructure:Levee, must be said that we don't seem to have those in DR
 (defmodel levees 'soilretentionEcology:Levees 
-  (classification (ranking 'infrastructure:Levee)
+  (classification (ranking 'soilretentionEcology:Levees)
 		  0          'soilretentionEcology:LeveeAbsent
 		  :otherwise 'soilretentionEcology:LeveePresent))
 
@@ -260,7 +241,6 @@
        0                    'soilretentionEcology:NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
-;; FIXME again, the keep node has the same concept as the BN as a whole
 (defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSink
   (bayesian 'soilretentionEcology:AnnualSedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
@@ -310,3 +290,4 @@
     ;;     (ranking 'eserv:UseThreshold :value 0.1)
     ;;     (ranking 'eserv:TransitionThreshold :value 1.0))
 ;;))
+
