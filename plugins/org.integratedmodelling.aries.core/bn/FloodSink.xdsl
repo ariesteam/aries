@@ -80,7 +80,7 @@
 			<state id="Level" />
 			<probabilities>0.05 0.125 0.225 0.6</probabilities>
 		</cpt>
-		<cpt id="HydrologicSoilGroup">
+		<cpt id="HydrologicSoilsGroup">
 			<state id="SoilGroupA" />
 			<state id="SoilGroupB" />
 			<state id="SoilGroupC" />
@@ -88,9 +88,9 @@
 			<probabilities>0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="ImperviousSurfaceCover">
-			<state id="VeryHighlyImpervious" />
-			<state id="HighlyImpervious" />
-			<state id="ModeratelyHighlyImpervious" />
+			<state id="VeryHighImpervious" />
+			<state id="HighImpervious" />
+			<state id="ModeratelyHighImpervious" />
 			<state id="ModeratelyLowImpervious" />
 			<state id="LowImpervious" />
 			<state id="VeryLowImpervious" />
@@ -114,7 +114,7 @@
 			<state id="Moderate" />
 			<state id="Low" />
 			<state id="VeryLow" />
-			<parents>FrozenSoil Slope HydrologicSoilGroup ImperviousSurfaceCover</parents>
+			<parents>FrozenSoil Slope HydrologicSoilsGroup ImperviousSurfaceCover</parents>
 			<probabilities>0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0 0.25 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0.05 0.2 0.75 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0 0.25 0.75 0 0 0 0 1 0 0 0.05 0.15 0.8 0 0 0.025 0.225 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.25 0.65 0 0 0.15 0.2 0.65 0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.05 0.15 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0.1 0.25 0.65 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0.05 0.125 0.125 0.7 0.05 0.125 0.225 0.25 0.35 0.65 0.15 0.15 0.05 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0.9 0.075 0.025 0 0 0 0.025 0.125 0.15 0.7 0.025 0.125 0.25 0.25 0.35 0.6 0.2 0.15 0.05 0 0.75 0.2 0.05 0 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0 0 0.1 0.3 0.6 0 0.05 0.375 0.375 0.2 0 0.15 0.325 0.325 0.2 0 0.25 0.45 0.3 0 0.15 0.425 0.425 0 0 0.35 0.4 0.25 0 0 0 0 0 0.25 0.75 0 0 0.25 0.4 0.35 0 0.05 0.3 0.4 0.25 0 0.15 0.425 0.425 0 0.05 0.425 0.425 0.1 0 0.15 0.325 0.325 0.2 0 0.05 0.05 0.1 0.1 0.7 0.1 0.1 0.2 0.25 0.35 0.7 0.15 0.1 0.05 0 0.85 0.1 0.05 0 0 0.9 0.1 0 0 0 0.95 0.05 0 0 0 0.025 0.025 0.125 0.125 0.7 0.075 0.075 0.25 0.25 0.35 0.65 0.175 0.125 0.05 0 0.8 0.15 0.05 0 0 0.85 0.15 0 0 0 0.9 0.1 0 0 0 0 0 0.15 0.25 0.6 0 0.1 0.35 0.35 0.2 0 0.2 0.3 0.3 0.2 0 0.3 0.4 0.3 0 0.2 0.4 0.4 0 0 0.4 0.4 0.2 0 0 0 0 0.05 0.2 0.75 0 0 0.3 0.4 0.3 0 0.1 0.25 0.4 0.25 0 0.2 0.4 0.4 0 0.1 0.4 0.4 0.1 0 0.2 0.3 0.3 0.2 0</probabilities>
 			<property id="SoilInfiltration">SoilInfiltration=1-((ObservedSlope/MaxSlope)/3)-((ObservedHSG/HSGD)/3)-((ObservedImperviousCover/100)/3)</property>
 		</cpt>
@@ -256,8 +256,8 @@
 				<position>65 356 110 384</position>
 				<barchart active="true" width="154" height="90" />
 			</node>
-			<node id="HydrologicSoilGroup">
-				<name>HydrologicSoilGroup</name>
+			<node id="HydrologicSoilsGroup">
+				<name>HydrologicSoilsGroup</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

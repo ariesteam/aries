@@ -160,9 +160,9 @@
 	 		
 (defmodel imperviousness 'floodService:ImperviousSurfaceCover
 	 (classification (ranking 'habitat:PercentImperviousness)
-	 	   [80 100 :inclusive]   'floodService:VeryHighlyImpervious
-	 	   [50 80]   'floodService:HighlyImpervious
-	 	   [20 50]   'floodService:ModeratelyHighlyImpervious
+	 	   [80 100 :inclusive]   'floodService:VeryHighImpervious
+	 	   [50 80]   'floodService:HighImpervious
+	 	   [20 50]   'floodService:ModeratelyHighImpervious
 	 	   [10 20]   'floodService:ModeratelyLowImpervious
 	 	   [5 10]     'floodService:LowImpervious
 	 	   [0 5]    'floodService:VeryLowImpervious))

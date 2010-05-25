@@ -9,6 +9,7 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY waterSupplyService "http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
@@ -19,6 +20,7 @@
      xml:base="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
      xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
      xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -47,6 +49,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow -->
+
+    <owl:Class rdf:about="&ecology;MaterialFlow"/>
     
 
 
@@ -104,6 +112,12 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope -->
+
+    <owl:Class rdf:about="&habitat;Slope"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SnowPresence -->
 
     <owl:Class rdf:about="&habitat;SnowPresence"/>
@@ -131,6 +145,12 @@
     <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality -->
 
     <owl:Class rdf:about="&habitat;SoilQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType -->
+
+    <owl:Class rdf:about="&habitat;VegetationType"/>
     
 
 
@@ -295,6 +315,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#CloudForest -->
+
+    <owl:Class rdf:about="#CloudForest">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#CoarseSoilTexture -->
 
     <owl:Class rdf:about="#CoarseSoilTexture">
@@ -335,6 +363,46 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#DamAbsent -->
+
+    <owl:Class rdf:about="#DamAbsent">
+        <rdfs:subClassOf rdf:resource="#Dams"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#DamPresent -->
+
+    <owl:Class rdf:about="#DamPresent">
+        <rdfs:subClassOf rdf:resource="#Dams"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Dams -->
+
+    <owl:Class rdf:about="#Dams">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#DevelopedCultivated -->
+
+    <owl:Class rdf:about="#DevelopedCultivated">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#DryForest -->
+
+    <owl:Class rdf:about="#DryForest">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Evaporation -->
 
     <owl:Class rdf:about="#Evaporation">
@@ -360,6 +428,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#GentlyUndulating -->
+
+    <owl:Class rdf:about="#GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#GoatsPopulation -->
 
     <owl:Class rdf:about="#GoatsPopulation">
@@ -380,6 +456,14 @@
 
     <owl:Class rdf:about="#GoatsWaterUse">
         <rdfs:subClassOf rdf:resource="#LivestockWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#GrasslandShrubland -->
+
+    <owl:Class rdf:about="#GrasslandShrubland">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
     </owl:Class>
     
 
@@ -588,6 +672,14 @@
 
     <owl:Class rdf:about="#HighHouseholdWU">
         <rdfs:subClassOf rdf:resource="#TotalResidentialWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#HighImpervious -->
+
+    <owl:Class rdf:about="#HighImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
     </owl:Class>
     
 
@@ -816,6 +908,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#HighVegetationCover -->
+
+    <owl:Class rdf:about="#HighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#HydrologicSoilsGroup -->
 
     <owl:Class rdf:about="#HydrologicSoilsGroup">
@@ -827,7 +927,15 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#HydropowerUse -->
 
     <owl:Class rdf:about="#HydropowerUse">
-        <rdfs:subClassOf rdf:resource="#NonRivalUse"/>
+        <rdfs:subClassOf rdf:resource="#NonRivaWaterUseClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ImperviousSurfaceCover -->
+
+    <owl:Class rdf:about="#ImperviousSurfaceCover">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -835,7 +943,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialGroundwaterUse -->
 
     <owl:Class rdf:about="#IndustrialGroundwaterUse">
-        <rdfs:subClassOf rdf:resource="#IndustrialWaterUse"/>
+        <rdfs:subClassOf rdf:resource="#IndustrialWaterUseClass"/>
     </owl:Class>
     
 
@@ -853,14 +961,14 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialSurfaceWaterUse -->
 
     <owl:Class rdf:about="#IndustrialSurfaceWaterUse">
-        <rdfs:subClassOf rdf:resource="#IndustrialWaterUse"/>
+        <rdfs:subClassOf rdf:resource="#IndustrialWaterUseClass"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialWaterUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialWaterUseClass -->
 
-    <owl:Class rdf:about="#IndustrialWaterUse">
+    <owl:Class rdf:about="#IndustrialWaterUseClass">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
     </owl:Class>
     
@@ -918,6 +1026,14 @@
 
     <owl:Class rdf:about="#LandCover">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Level -->
+
+    <owl:Class rdf:about="#Level">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
     </owl:Class>
     
 
@@ -1146,6 +1262,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#LowImpervious -->
+
+    <owl:Class rdf:about="#LowImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#LowInfiltrationCapacity -->
 
     <owl:Class rdf:about="#LowInfiltrationCapacity">
@@ -1366,6 +1490,14 @@
 
     <owl:Class rdf:about="#LowTotalLivestockWaterUse">
         <rdfs:subClassOf rdf:resource="#TotalLivestockWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#LowVegetationCover -->
+
+    <owl:Class rdf:about="#LowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
     </owl:Class>
     
 
@@ -1778,6 +1910,30 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ModerateVegetationCover -->
+
+    <owl:Class rdf:about="#ModerateVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ModeratelyHighImpervious -->
+
+    <owl:Class rdf:about="#ModeratelyHighImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ModeratelyLowImpervious -->
+
+    <owl:Class rdf:about="#ModeratelyLowImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#MonthlyPrecipitation -->
 
     <owl:Class rdf:about="#MonthlyPrecipitation">
@@ -1850,6 +2006,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NoIndustrialWaterUse -->
+
+    <owl:Class rdf:about="#NoIndustrialWaterUse">
+        <rdfs:subClassOf rdf:resource="#IndustrialWaterUseClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NoInfiltrationCapacity -->
 
     <owl:Class rdf:about="#NoInfiltrationCapacity">
@@ -1906,6 +2070,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NoRivalWaterUse -->
+
+    <owl:Class rdf:about="#NoRivalWaterUse">
+        <rdfs:subClassOf rdf:resource="#NonRivaWaterUseClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NoSnowpack -->
 
     <owl:Class rdf:about="#NoSnowpack">
@@ -1938,9 +2110,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NonRivalUse -->
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#NonRivaWaterUseClass -->
 
-    <owl:Class rdf:about="#NonRivalUse">
+    <owl:Class rdf:about="#NonRivaWaterUseClass">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
     </owl:Class>
     
@@ -1958,6 +2130,14 @@
 
     <owl:Class rdf:about="#PerCapitaResidentialWaterUse">
         <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PercentVegetationCover -->
+
+    <owl:Class rdf:about="#PercentVegetationCover">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -2029,7 +2209,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#RaftingUse -->
 
     <owl:Class rdf:about="#RaftingUse">
-        <rdfs:subClassOf rdf:resource="#NonRivalUse"/>
+        <rdfs:subClassOf rdf:resource="#NonRivaWaterUseClass"/>
     </owl:Class>
     
 
@@ -2038,6 +2218,14 @@
 
     <owl:Class rdf:about="#RainWater">
         <rdfs:subClassOf rdf:resource="#ResidentialWaterSourceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Rainforest -->
+
+    <owl:Class rdf:about="#Rainforest">
+        <rdfs:subClassOf rdf:resource="#VegetationType"/>
     </owl:Class>
     
 
@@ -2078,6 +2266,14 @@
 
     <owl:Class rdf:about="#ResidentialWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#RollingToHilly -->
+
+    <owl:Class rdf:about="#RollingToHilly">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
     </owl:Class>
     
 
@@ -2123,6 +2319,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Slope -->
+
+    <owl:Class rdf:about="#Slope">
+        <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Snowpack -->
 
     <owl:Class rdf:about="#Snowpack">
@@ -2163,6 +2367,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SoilInfiltration -->
+
+    <owl:Class rdf:about="#SoilInfiltration">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SoilTexture -->
 
     <owl:Class rdf:about="#SoilTexture">
@@ -2191,6 +2403,14 @@
 
     <owl:Class rdf:about="#Springs">
         <rdfs:subClassOf rdf:resource="&habitat;RunningWater"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SteeplyDissectedToMountainous -->
+
+    <owl:Class rdf:about="#SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="#Slope"/>
     </owl:Class>
     
 
@@ -2275,6 +2495,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VegetationInfiltrationAndInterception -->
+
+    <owl:Class rdf:about="#VegetationInfiltrationAndInterception">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VegetationType -->
+
+    <owl:Class rdf:about="#VegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryHighAnnualPrecipitation -->
 
     <owl:Class rdf:about="#VeryHighAnnualPrecipitation">
@@ -2303,6 +2539,14 @@
 
     <owl:Class rdf:about="#VeryHighCroplandWaterUse">
         <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryHighImpervious -->
+
+    <owl:Class rdf:about="#VeryHighImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
     </owl:Class>
     
 
@@ -2339,6 +2583,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryHighSurfaceWaterSink -->
+
+    <owl:Class rdf:about="#VeryHighSurfaceWaterSink">
+        <rdfs:subClassOf rdf:resource="#SurfaceWaterSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryHighVegetationCover -->
+
+    <owl:Class rdf:about="#VeryHighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryLowAnnualPrecipitation -->
 
     <owl:Class rdf:about="#VeryLowAnnualPrecipitation">
@@ -2371,6 +2631,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryLowImpervious -->
+
+    <owl:Class rdf:about="#VeryLowImpervious">
+        <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryLowIrrigationNeeds -->
 
     <owl:Class rdf:about="#VeryLowIrrigationNeeds">
@@ -2399,6 +2667,14 @@
 
     <owl:Class rdf:about="#VeryLowPopulationDensity">
         <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#VeryLowVegetationCover -->
+
+    <owl:Class rdf:about="#VeryLowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#PercentVegetationCover"/>
     </owl:Class>
     
 
