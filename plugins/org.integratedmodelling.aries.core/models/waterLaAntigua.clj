@@ -8,15 +8,9 @@
 
 ;;Runoff would be preferable to precipitation, but it's at a very coarse spatial resolution
 ;; (i.e., <3 full pixels for the La Antigua watershed.  Use precip for now, with the goal of 
-;; incorporating a better runoff model.
-(defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitation
-	"FIXME this is annual precipitation."
-	(classification (measurement 'soilretentionEcology:AnnualPrecipitation "mm")
-    [:< 600] 	    'soilretentionEcology:VeryLowAnnualPrecipitation
-		[600 1200] 	  'soilretentionEcology:LowAnnualPrecipitation
-		[1200 1800]   'soilretentionEcology:ModerateAnnualPrecipitation
-		[1800 2200] 	'soilretentionEcology:HighAnnualPrecipitation
-		[2200 :>] 	  'soilretentionEcology:VeryHighAnnualPrecipitation))
+;; incorporating a better runoff model (plus sink models that actually capture infiltration & ET).
+(defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
+  (measurement 'waterSupplyService:AnnualPrecipitation "mm")) 
 
 ;;Incorporate runoff data in the future once we've done a better job with the hydro modeling.
 ;;(defmodel runoff 'soilretentionEcology:AnnualRunoff
@@ -27,108 +21,87 @@
 		;;[1200 2400] 	'soilretentionEcology:HighAnnualRunoff
 		;;[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
-;;Water supply source value
-(defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnual
-	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
-      0                     'soilretentionEcology:NoAnnualSedimentSource
-  		[:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
-  		[15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
-  		[40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
-
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel floodplains 'soilretentionEcology:Floodplains
-	(classification (ranking 'soilretentionEcology:Floodplains)
-			0 'soilretentionEcology:NotInFloodplain
-			1 'soilretentionEcology:InFloodplain))
+;;This is all we have to model industrial use right now: presence/absence of an industrial
+;;user and whether they use ground or surface water. (ROWAN: is this correct?)
+(defmodel industrial-users 'waterSupplyService:IndustrialWaterUse
+  (classification (ranking 'waterSupplyService:IndustrialWaterUse)
+     #{0 1} 'waterSupplyService:IndustrialSurfaceWaterUse
+     #{2 3} 'waterSupplyService:IndustrialGroundwaterUse))
 
-(defmodel farmland 'soilretentionEcology:Farmland
-	"Just a reclass of the regionally appropriate LULC layer"
-	(classification (ranking 'nlcd:NLCDNumeric)
-		82	       'soilretentionEcology:Farmland
-		:otherwise 'soilretentionEcology:Farmland)
-  (classification (ranking 'corine:CORINENumeric)
-		[12 22 :inclusive]	 'soilretentionEcology:Farmland
-		:otherwise           'soilretentionEcology:Farmland)
-  (classification (ranking 'mglulc:MGLULCNumeric)
-		#{11 12 13} 'soilretentionEcology:Farmland
-		:otherwise 'soilretentionEcology:Farmland)
-  (classification (ranking 'soilretentionEcology:Farmland)
-    1          'soilretentionEcology:FarmlandPresent
-    0          'soilretentionEcology:FarmlandAbsent) 
-;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
-;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
-;;(classification (ranking 'domlulc:DOMLULCNumeric)
-		;;#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
-		;;:otherwise                'soilretentionEcology:Farmland)
-	(classification (ranking 'glc:GLCNumeric)
-		#{16 17 18} 'soilretentionEcology:Farmland
-		:otherwise 'soilretentionEcology:Farmland))
+;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
+;;user. It's a little strange to lump hydro and rafting together, but we'll
+;;do it for now (ROWAN: is this correct?)
+(defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse
+  (classification (ranking 'waterSupplyService:NonRivalWaterUse)
+     0 'waterSupplyService:RaftingUse
+     1 'waterSupplyService:HydropowerUse))
 
-;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
-;;hyroelectric generation capacity (use) - in reality dam height & flow are important factors but 
-;;we don't have flow data.
-(defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUseLevel
-  (measurement 'soilretentionEcology:HydroelectricUseLevel "m^3"))
+;; the ranking model should really be a count with spatial ctx (data are persons/30 arc-second pixel)
+(defmodel population-density 'waterSupplyService:PopulationDensity
+	(classification (ranking 'policytarget:PopulationDensity)
+		[10000 :>]    'waterSupplyService:VeryHighPopulationDensity
+		[4000 10000]  'waterSupplyService:HighPopulationDensity
+		[1500 4000]   'waterSupplyService:ModeratePopulationDensity
+		[400 1500]    'waterSupplyService:LowPopulationDensity
+		[:< 400]      'waterSupplyService:VeryLowPopulationDensity))
 
-;;Reservoirs use for DR: presence/absence only.
-(defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresence
-	(ranking 'soilretentionEcology:HydroelectricUsePresence))
+;;Check with Rowan on top node discretization for residential water use: how confident are you 
+;; that you can apply these values (from Alberta) to Veracruz?
 
-;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
-  (ranking 'soilretentionEcology:DepositionProneFarmers
-       :state #(if (and (= (:floodplains %) 1.0)
-                        (= (:farmlandpresent %) 1.0))
-                    1
-                    0)
-       :context (
-          (ranking 'soilretentionEcology:Farmland :as farmlandpresent)
-          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
 
-;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel farmers-erosion-use-dr 'soilretentionEcology:ErosionProneFarmers
-  (ranking 'soilretentionEcology:ErosionProneFarmers
-       :state #(if (= (:farmlandpresent %) 1.0)
-                  (cond (= (:sediment-source-value-annual %) 'soilretentionEcology:ModerateAnnualSedimentSource)
-                        1
-                        (= (:sediment-source-value-annual %) 'soilretentionEcology:HighAnnualSedimentSource)
-                        2
-                        :otherwise
-                        0)
-                  0)
-       :context ((ranking 'soilretentionEcology:Farmland :as farmlandpresent))))
+(defmodel cattle-population 'waterSupplyService:CattlePopulation
+	(classification (ranking 'waterSupplyService:CattlePopulation)
+		[100 :>]    'waterSupplyService:HighCattlePopulation
+		[35 100]    'waterSupplyService:ModerateCattlePopulation
+		[:< 35]     'waterSupplyService:LowCattlePopulation))
 
-;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
-;;Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
-;; 1) ditch fisheries BNs & use source/use models for actual fisheries
-;; 2) use BNs as generalized fisheries impact model.
-;;(defmodel fishermen-use-puget 'soilretentionEcology:FishermenUse 
-	  ;;(bayesian 'soilretentionEcology:FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUse.xdsl"
-	 ;; 	:keep     ('soilretentionEcology:FishermenUse)
-	 ;;	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
+(defmodel sheep-population 'waterSupplyService:SheepPopulation
+	(classification (ranking 'waterSupplyService:SheepPopulation)
+		[25 :>]    'waterSupplyService:HighSheepPopulation
+		[8 25]    'waterSupplyService:ModerateSheepPopulation
+		[:< 8]     'waterSupplyService:LowSheepPopulation))
 
-;;defmodel fishermen-use-mg 'soilretentionEcology:FishermenUse 
-	;;  (bayesian 'soilretentionEcology:FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUseMg.xdsl"
-	 ;; 	:keep     ('soilretentionEcology:FishermenUse)
-	 ;;	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density)))
+(defmodel pigs-population 'waterSupplyService:PigsPopulation
+	(classification (ranking 'waterSupplyService:PigsPopulation)
+		[40 :>]    'waterSupplyService:HighPigsPopulation
+		[15 40]    'waterSupplyService:ModeratePigsPopulation
+		[:< 15]     'waterSupplyService:LowPigsPopulation))
+
+(defmodel goats-population 'waterSupplyService:GoatsPopulation
+	(classification (ranking 'waterSupplyService:GoatsPopulation)
+		[20 :>]    'waterSupplyService:HighGoatsPopulation
+		[5 20]    'waterSupplyService:ModerateGoatsPopulation
+		[:< 5]     'waterSupplyService:LowGoatsPopulation))
+
+(defmodel goats-population 'waterSupplyService:GoatsPopulation
+	(classification (ranking 'waterSupplyService:GoatsPopulation)
+		[20 :>]    'waterSupplyService:HighGoatsPopulation
+		[5 20]    'waterSupplyService:ModerateGoatsPopulation
+		[:< 5]     'waterSupplyService:LowGoatsPopulation))
+
+(defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWater
+	(classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
+		[500 :>]     'waterSupplyService:SurfaceWaterNotProximate
+		[250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
+		[:< 250]     'waterSupplyService:SurfaceWaterProximate))
+
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;At this point we're naively saying there are no sinks for suface water.  This model should
-;;be defined and implemented in the future.
+;;be defined and implemented in the future to incorporate infiltration, evapotranspiration, etc.
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Everything below needs to be updated correctly for sediment.
+;;Everything below needs to be updated correctly for water.
  	 								
 ;;(defmodel altitude 'geophysics:Altitude
   ;;(measurement 'geophysics:Altitude "m"))	 								
