@@ -65,7 +65,8 @@
   (measurement 'geophysics:Altitude "m"
     :value  50
     :rate #(do  
-              (println "time is " (:time %) ", altitude was " (:altitude %) ", tstep " (:time#now %))
+              (println (:time %) ": altitude was " (:altitude %) 
+                       " at " (:time#now %) " = tstep " (:time#index %))
               (* (:altitude %) 0.03)) 
 )) 
 
