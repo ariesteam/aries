@@ -46,6 +46,19 @@
                 (+ (:altitude %) 1.0)) 
    )) 
 
+
+;; simple test of ODE integration. This should grow exponentially.
+(defmodel test-ode 'representation:GenericQuantifiable
+  (ranking 'representation:GenericQuantifiable
+    :value  50
+    :as     self
+    :rate #(do  
+              (println (:time %) ": value was " (:self %) 
+                       " at " (:time#now %) " = tstep " (:time#index %))
+              (* (:self %) 0.03)) 
+)) 
+
+
 (defn cnil [a] (if (tl/is? a (tl/conc 'floodService:FarmlandPresent)) 0 1)) 
 
 ;; cellular automaton contagion model - farmland only survives to next generation if surrounded by farmland
@@ -59,16 +72,6 @@
     		#(let [sum (+ (cnil (:lulc#n %)) (cnil (:lulc#s %)) (cnil (:lulc#e %)) (cnil (:lulc#w %)))]
     			    (if (< sum 3) (tl/conc 'floodService:FarmlandAbsent) (tl/conc 'floodService:FarmlandPresent)))
 ))
-
-;; simple test of ODE integration
-(defmodel test-ode 'geophysics:Altitude 
-  (measurement 'geophysics:Altitude "m"
-    :value  50
-    :rate #(do  
-              (println (:time %) ": altitude was " (:altitude %) 
-                       " at " (:time#now %) " = tstep " (:time#index %))
-              (* (:altitude %) 0.03)) 
-)) 
 
 
 ;; test structural variability
