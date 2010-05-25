@@ -73,6 +73,54 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+		<measurement:Measurement id="AnnualPrecip">
+		<observation:hasObservable>
+			<waterSupplyService:AnnualPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:AnnualPrecip</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>559</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>245</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>45.548</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.006</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.909</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+	
+	<measurement:Measurement id="bio_12">
+		<observation:hasObservable>
+			<waterSupplyService:AnnualPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:bio_12</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>17998</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
@@ -561,7 +609,7 @@
 	
 	<measurement:Ranking id="Non_Rival_Use">
 		<observation:hasObservable>
-			<waterSupplyService:NonRivalUse />
+			<waterSupplyService:NonRivalWaterUse />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
