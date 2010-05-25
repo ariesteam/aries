@@ -38,12 +38,13 @@
    )) 
 
 ;; simple test of dynamic updating
-(defmodel test-dynamic 'geophysics:Altitude 
-  (measurement 'geophysics:Altitude "m"
+(defmodel test-dynamic 'representation:GenericQuantifiable 
+  (measurement 'representation:GenericQuantifiable "m"
     :value  (corescience/gaussian 150.0 3.75)
+    :as     self
     :update #(do  
-                (println "time is " (:time %) ", altitude was " (:altitude %))
-                (+ (:altitude %) 1.0)) 
+                (println "time is " (:time %) ", value was " (:self %))
+                (+ (:self %) 1.0)) 
    )) 
 
 
