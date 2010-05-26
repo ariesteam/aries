@@ -55,7 +55,9 @@
   (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
     :context ((ranking 'waterSupplyService:PopulationDensity :as population-density))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
-    :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
+;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
+
+;;MUST MAKE THIS DETERMINISTIC FOR NOW.
 
 ;;Residential surface water use: currently only looking at surface water use.  
 
@@ -92,6 +94,7 @@
 		[5 20]    'waterSupplyService:ModerateGoatsPopulation
 		[:< 5]     'waterSupplyService:LowGoatsPopulation))
 
+;;Ask Ferd WTF up with the stack trace
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWater
 	(classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
 		[500 :>]     'waterSupplyService:SurfaceWaterNotProximate

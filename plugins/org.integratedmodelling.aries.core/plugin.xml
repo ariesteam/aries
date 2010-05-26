@@ -92,7 +92,12 @@
 		<parameter id="url" value="es/services/recreationService.owl"/>
 		<parameter id="concept-space" value="recreationService"/>
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="waterSupplyService">
+		<parameter id="url" value="es/services/waterSupplyService.owl"/>
+		<parameter id="concept-space" value="waterSupplyService"/>
+	</extension>
 	
+
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
 		<parameter id="language" value="clojure"/>
