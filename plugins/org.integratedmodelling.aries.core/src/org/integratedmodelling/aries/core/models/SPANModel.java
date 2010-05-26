@@ -72,6 +72,7 @@ public class SPANModel extends DefaultAbstractModel {
 	@Override
 	protected void validateMediatedModel(IModel model)
 			throws ThinklabValidationException {
+		super.validateMediatedModel(model);
 	}
 
 	@Override
