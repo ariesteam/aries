@@ -238,6 +238,29 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<measurement:Ranking id="la_slope">
+		<observation:hasObservable>
+			<geophysics:DegreeSlope />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:la_slope</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>5999</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>5999</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>15.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-100.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>20.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-95.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 	<measurement:Ranking id="DR_lulc">
 		<observation:hasObservable>
 			<domlulc:DOMLULCNumeric />
@@ -745,6 +768,29 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<measurement:Ranking id="imperviousGlobal">
+		<observation:hasObservable>
+			<habitat:PercentImperviousness />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:imperviousGlobal</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>16798</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-64.996</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.004</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>75.004</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 		<measurement:Ranking id="pigs">
 			<observation:hasObservable>
 				<waterSupplyService:PigsPopulation />
@@ -1152,5 +1198,28 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<!-- CHECK WITH FERD ON THE ONTOLOGIC CLASSIFICATION HERE... -->
+	<measurement:Categorization id="mexico_lalulc">
+		<observation:hasObservable>
+			<waterSupplyService:VegetationType />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>2099767.0934606227</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>673608.6731989896</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2187949.8171524717</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>817055.4370278353</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Categorization>
 
 </kbox>

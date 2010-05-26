@@ -225,13 +225,12 @@
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
+       :context ((ranking 'lulc:NLCDNumeric :as farmlandpresent)
+                 (ranking 'soilretentionEcology:Floodplains :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
                         (= (:farmlandpresent %) 82.0))
                     1
-                    0)
-       :context (
-          (ranking 'lulc:NLCDNumeric :as farmlandpresent)
-          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
+                    0))) 
 
 (defmodel farmers-deposition-use-mg 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers

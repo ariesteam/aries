@@ -31,27 +31,30 @@
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
 (defmodel industrial-users 'waterSupplyService:IndustrialWaterUse
   (measurement 'waterSupplyService:IndustrialWaterUse "m^3" ;;This is an annual value.
+    :context ((ranking 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))
     :state #(cond (== (:industrial-water-use %) 0) 50000   ;;Paper factory, using surface water
                   (== (:industrial-water-use %) 1) 100000  ;;Bottled water plant, using surface water
                   (== (:industrial-water-use %) 2)     0   ;;Nestle plant, using groundwater
                   (== (:industrial-water-use %) 3)     0   ;;Coca-Cola plant, using groundwater
-                  :otherwise                           0)
-    :context ((ranking 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))))
+                  :otherwise                           0)))
 
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
-;;do it for now (ROWAN: is this correct?)
+;;do it for now.
 (defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse
   (ranking 'waterSupplyService:NonRivalWaterUse
+    :context ((ranking 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
-                  :otherwise                        0)
-    :context ((ranking 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))))
+                  :otherwise                        0)))
 
 ;;The ranking model should really be a count with spatial ctx (data are persons/30 arc-second pixel)
 ;;The first example is for a probability distribution function (discrete values of the probability states)
 ;;The second example, used, is for a cumulative distribution function (ranges)
 ;;Neither of these are enabled yet, so we're just using a deterministic function for now.
+;;Residential surface water use: currently only looking at surface water use (80% of the total, per Rowan's BN. 
+;;Top node discretization for water use is from Alberta: worth asking about better local sources.
+;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
 (defmodel residential-surface-water-use 'waterSupplyService:ResidentialSurfaceWaterUse
   (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
     :context ((ranking 'waterSupplyService:PopulationDensity :as population-density))
@@ -59,42 +62,19 @@
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
 
-;;Residential surface water use: currently only looking at surface water use.  
+(defmodel livestock-water-use 'waterSupplyService:LivestockWaterUse
+  (measurement 'waterSupplyService:LivestockWaterUse "mm"  ;;This is an annual value
+    :context ((measurement 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
+              (measurement 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
+              (measurement 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
+              (measurement 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
+    :state    #(/ (+ (* (:sheep-population  %) 2.745)
+                     (* (:goats-population  %) 2.745)
+                     (* (:cattle-population %) 11.032)
+                     (* (:pigs-population   %) 26.444))
+                  1000)))
 
-;;Top node discretization for water use is from Alberta: worth asking about better local sources.
-;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
-
-(defmodel cattle-population 'waterSupplyService:CattlePopulation
-	(classification (ranking 'waterSupplyService:CattlePopulation)
-		[100 :>]    'waterSupplyService:HighCattlePopulation
-		[35 100]    'waterSupplyService:ModerateCattlePopulation
-		[:< 35]     'waterSupplyService:LowCattlePopulation))
-
-(defmodel sheep-population 'waterSupplyService:SheepPopulation
-	(classification (ranking 'waterSupplyService:SheepPopulation)
-		[25 :>]    'waterSupplyService:HighSheepPopulation
-		[8 25]    'waterSupplyService:ModerateSheepPopulation
-		[:< 8]     'waterSupplyService:LowSheepPopulation))
-
-(defmodel pigs-population 'waterSupplyService:PigsPopulation
-	(classification (ranking 'waterSupplyService:PigsPopulation)
-		[40 :>]    'waterSupplyService:HighPigsPopulation
-		[15 40]    'waterSupplyService:ModeratePigsPopulation
-		[:< 15]     'waterSupplyService:LowPigsPopulation))
-
-(defmodel goats-population 'waterSupplyService:GoatsPopulation
-	(classification (ranking 'waterSupplyService:GoatsPopulation)
-		[20 :>]    'waterSupplyService:HighGoatsPopulation
-		[5 20]    'waterSupplyService:ModerateGoatsPopulation
-		[:< 5]     'waterSupplyService:LowGoatsPopulation))
-
-(defmodel goats-population 'waterSupplyService:GoatsPopulation
-	(classification (ranking 'waterSupplyService:GoatsPopulation)
-		[20 :>]    'waterSupplyService:HighGoatsPopulation
-		[5 20]    'waterSupplyService:ModerateGoatsPopulation
-		[:< 5]     'waterSupplyService:LowGoatsPopulation))
-
-;;Ask Ferd WTF up with the stack trace
+;;FIX DOUBLED ONTOLOGY CONCEPT BELOW (add "Class" to end of 1st line's ProximityToSurfaceWater)
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWater
 	(classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
 		[500 :>]     'waterSupplyService:SurfaceWaterNotProximate
@@ -111,13 +91,13 @@
 
 (defmodel slope 'waterSupplyService:Slope
 		(classification (ranking 'geophysics:DegreeSlope)
-			 [:< 1.15] 	  'waterSupplyService:Level
-			 [1.15 4.57] 	'waterSupplyService:GentlyUndulating
-			 [4.57 16.70] 'waterSupplyService:RollingToHilly
-			 [16.70 :>] 	'waterSupplyService:SteeplyDissectedToMountainous))
+			 [:< 1.15] 	            'waterSupplyService:Level
+			 [1.15 4.57] 	          'waterSupplyService:GentlyUndulating
+			 [4.57 16.70]           'waterSupplyService:RollingToHilly
+			 [16.70 90 :inclusive] 	'waterSupplyService:SteeplyDissectedToMountainous))
 
+;;FIX BELOW
 (defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
-	"Relevant soil group"
 	(classification (ranking 'waterSupplyService:HydrologicSoilsGroup)
 			1       'waterSupplyService:SoilGroupA
 			2       'waterSupplyService:SoilGroupB
@@ -133,13 +113,15 @@
 	 	   [5 10]                'waterSupplyService:LowImpervious
 	 	   [0 5]                 'waterSupplyService:VeryLowImpervious))
 
-;;NOT NLCD - replace as appropriate.
+;;FIX BELOW
 (defmodel vegetation-type 'waterSupplyService:VegetationType
-	"Just a reclass of the NLCD land use layer"
-	(classification (ranking 'nlcd:NLCDNumeric)
-		#{90 95}	         'floodService:WetlandVegetation
-		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
-		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
+	"Just a reclass of the Veracruz land use layer"
+	(classification (categorization 'waterSupplyService:VegetationType)
+		"Bosque mesofilo de montana"	                                               'waterSupplyService:CloudForest
+		#{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} 'waterSupplyService:DevelopedCultivated
+		#{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} 'waterSupplyService:DryForest
+    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} 'waterSupplyService:GrasslandShrubland
+    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
 		
 (defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentCanopyCover)
@@ -148,29 +130,27 @@
 		[40 60]  'waterSupplyService:ModerateVegetationCover
 		[20 40]  'waterSupplyService:LowVegetationCover
 		[0 20]   'waterSupplyService:VeryLowVegetationCover))
-	 	   
-;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
-;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
-(defmodel dam-storage 'floodService:DamStorage
-	(classification (ranking 'floodService:DamStorage)
-			[6000000 :>]		  'floodService:VeryLargeDamStorage
-			[3750000 6000000]	'floodService:LargeDamStorage
-			[1750000 3750000]	'floodService:ModerateDamStorage
-			[500000 1750000]	'floodService:SmallDamStorage
-			[:< 400]		      'floodService:VerySmallDamStorage))
-		
-;; Flood sink probability
-(defmodel sink 'waterSupplyService:WaterSupplySink
-	  (bayesian 'waterSupplyService:WaterSupplySink 
+
+(defmodel dam-presence 'waterSupplyService:Dams
+	(classification (ranking 'waterSupplyService:NonRivalWaterUseClass)
+			1		      'waterSupplyService:DamPresent
+     :otherwise 'waterSupplyService:DamAbsent))
+
+;;Need undiscretization/values (in units of water)
+(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSink
+  (classification 'waterSupplyService:SurfaceWaterSink "mm" 
+    []  'waterSupplyService:VeryHighSurfaceWaterSink
+    []  'waterSupplyService:HighSurfaceWaterSink
+    []  'waterSupplyService:ModerateSurfaceWaterSink
+    []  'waterSupplyService:LowSurfaceWaterSink
+    []  'waterSupplyService:NoSurfaceWaterSink)) 
+
+(defmodel sink 'waterSupplyService:SurfaceWaterSink
+	  (bayesian 'waterSupplyService:SurfaceWaterSink
 	  	:import   "aries.core::WaterSupplySink.xdsl"
-	  	:keep     (
-	  			'floodService:FloodSink 
-	  			'floodService:GreenInfrastructureStorage
-	  			'floodService:GrayInfrastructureStorage)
-	 	 	:context  (
-	 	 			soil-group vegetation-type slope imperviousness dam-storage 
-	 	 			(comment mean-days-precipitation vegetation-height)
-	 	 			percent-vegetation-cover)))
+	  	:keep     ('waterSupplyService:SurfaceWaterSink)
+	 	 	:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
+      :observed (sink-undiscretizer)))
 
 
 ;; ----------------------------------------------------------------------------------------------
