@@ -2185,6 +2185,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ProximityToSurfaceWater -->
 
     <owl:Class rdf:about="#ProximityToSurfaceWater">
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatial-location_q"/>
     </owl:Class>
     
@@ -2193,6 +2194,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ProximityToWaterExtraction -->
 
     <owl:Class rdf:about="#ProximityToWaterExtraction">
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatial-location_q"/>
     </owl:Class>
     
@@ -2201,6 +2203,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ProximityToWells -->
 
     <owl:Class rdf:about="#ProximityToWells">
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatial-location_q"/>
     </owl:Class>
     

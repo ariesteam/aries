@@ -31,10 +31,10 @@
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
 (defmodel industrial-users 'waterSupplyService:IndustrialWaterUse
   (measurement 'waterSupplyService:IndustrialWaterUse "m^3" ;;This is an annual value.
-    :state #(cond (== (:industrial-water-use %) 0) 10000  ;;Paper factory, using surface water
-                  (== (:industrial-water-use %) 1) 20000  ;;Bottled water plant, using surface water
-                  (== (:industrial-water-use %) 2)     0  ;;Nestle plant, using groundwater
-                  (== (:industrial-water-use %) 3)     0  ;;Coca-Cola plant, using groundwater
+    :state #(cond (== (:industrial-water-use %) 0) 50000   ;;Paper factory, using surface water
+                  (== (:industrial-water-use %) 1) 100000  ;;Bottled water plant, using surface water
+                  (== (:industrial-water-use %) 2)     0   ;;Nestle plant, using groundwater
+                  (== (:industrial-water-use %) 3)     0   ;;Coca-Cola plant, using groundwater
                   :otherwise                           0)
     :context ((ranking 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))))
 
@@ -51,13 +51,13 @@
 ;;The ranking model should really be a count with spatial ctx (data are persons/30 arc-second pixel)
 ;;The first example is for a probability distribution function (discrete values of the probability states)
 ;;The second example, used, is for a cumulative distribution function (ranges)
+;;Neither of these are enabled yet, so we're just using a deterministic function for now.
 (defmodel residential-surface-water-use 'waterSupplyService:ResidentialSurfaceWaterUse
   (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
     :context ((ranking 'waterSupplyService:PopulationDensity :as population-density))
+    :state   #(* 0.8 82.855 (:population-density %))))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
-
-;;MUST MAKE THIS DETERMINISTIC FOR NOW.
 
 ;;Residential surface water use: currently only looking at surface water use.  
 
