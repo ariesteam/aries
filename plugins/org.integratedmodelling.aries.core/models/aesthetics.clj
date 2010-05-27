@@ -1,6 +1,6 @@
 (ns aries/view
   (:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer modelling :only (defmodel measurement classification binary-coding numeric-coding categorization ranking identification bayesian))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -9,13 +9,13 @@
 
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
-  (classification (ranking 'geofeatures:Lake)
+  (classification (binary-coding 'geofeatures:Lake)
 		  0          'aestheticService:LakeAbsent
 		  :otherwise 'aestheticService:LakePresent))
 
 (defmodel ocean 'aestheticService:Ocean
   "Just being there."
-  (classification (ranking 'geofeatures:Ocean)
+  (classification (binary-coding 'geofeatures:Ocean)
 		  0          'aestheticService:OceanAbsent
 		  :otherwise 'aestheticService:OceanPresent))
 
@@ -82,19 +82,19 @@
 
 ;; TODO errors
 (defmodel clearcut 'aestheticService:Clearcuts 
-  (classification (ranking 'geofeatures:Clearcut)
+  (classification (binary-coding 'geofeatures:Clearcut)
 		  0          'aestheticService:ClearcutsAbsent
 		  :otherwise 'aestheticService:ClearcutsPresent))
 
 ; use NLCD layers to extract transportation infrastructure
 (defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (ranking 'nlcd:NLCDNumeric)
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
 		  23         'aestheticService:TransportationInfrastructurePresent
 		  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
 
 ; presence/absence of highways
 (defmodel highway 'aestheticService:Highways 
-  (classification (ranking 'infrastructure:Highway)
+  (classification (binary-coding 'infrastructure:Highway)
 		  0          'aestheticService:HighwaysAbsent
 		  :otherwise 'aestheticService:HighwaysPresent))
 

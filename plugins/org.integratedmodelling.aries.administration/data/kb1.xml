@@ -791,14 +791,28 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-		<measurement:Ranking id="pigs">
+	<!--  TODO fv - 
+		CHECK that units are appropriate, if so modify the
+		other livestock data too. Just added an expression to multiply value
+		by 1/25 (assuming it's per 25 sqkm cell as discussed) and made it
+		a unitless measurement per km square. 
+		
+		BTW I do think these concepts should be in an agriculture ontology and
+		they should be named something with "Density" in them. There are tons
+		of agricultural concepts in the ontologies from the SEAMLESS project,
+		we could discuss integrating those at some point.
+		
+		 -->
+		<measurement:Measurement id="pigs">
 			<observation:hasObservable>
 				<waterSupplyService:PigsPopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>global:pigs</geospace:hasCoverageId>
+					<geospace:hasTransformation>self * 0.04</geospace:hasTransformation>
 				</geospace:WCSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -812,7 +826,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Measurement>
 		
 		<measurement:Ranking id="poultry">
 			<observation:hasObservable>
@@ -1200,7 +1214,7 @@
 	</measurement:Ranking>
 
 <!-- CHECK WITH FERD ON THE ONTOLOGIC CLASSIFICATION HERE... -->
-	<measurement:Categorization id="mexico_lalulc">
+	<observation:Categorization id="mexico_lalulc">
 		<observation:hasObservable>
 			<waterSupplyService:VegetationType />
 		</observation:hasObservable>
@@ -1220,6 +1234,6 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Categorization>
+	</observation:Categorization>
 
 </kbox>
