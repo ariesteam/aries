@@ -1,5 +1,5 @@
 (ns aries.sedimentDR
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer modelling :only (defmodel measurement classification categorization ranking numeric-coding identification bayesian))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -8,7 +8,7 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (ranking 'soilretentionEcology:HydrologicSoilsGroup)
+	(classification (numeric-coding 'soilretentionEcology:HydrologicSoilsGroupCode)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC
@@ -31,10 +31,10 @@
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
      (classification (ranking 'soilretentionEcology:SoilErodibility)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
-       [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
-       [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
-       [0.3 0.375]   'soilretentionEcology:HighSoilErodibility
-       [0.375 :>]     'soilretentionEcology:VeryHighSoilErodibility))
+       [0.1 0.225] 'soilretentionEcology:LowSoilErodibility
+       [0.225 0.3] 'soilretentionEcology:ModerateSoilErodibility
+       [0.3 0.375] 'soilretentionEcology:HighSoilErodibility
+       [0.375 :>]  'soilretentionEcology:VeryHighSoilErodibility))
 
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitation
