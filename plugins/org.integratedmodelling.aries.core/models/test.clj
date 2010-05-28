@@ -3,7 +3,6 @@
 ;; test namespace
 ;; fv Nov 09
 ;; --------------------------------------------------------------------------------------------------
-
 (ns test
   (:refer-clojure :rename {count length})
   (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding count
