@@ -125,29 +125,28 @@
 ;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
 ;;processes.  Deterministic models could likely be used.
 
-(defmodel slope 'waterSupplyService:Slope
-		(classification (ranking 'geophysics:DegreeSlope)
+(defmodel slope 'waterSupplyService:SlopeClass
+		(classification (measurement 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	            'waterSupplyService:Level
 			 [1.15 4.57] 	          'waterSupplyService:GentlyUndulating
 			 [4.57 16.70]           'waterSupplyService:RollingToHilly
 			 [16.70 90 :inclusive] 	'waterSupplyService:SteeplyDissectedToMountainous))
 
-;;FIX BELOW
 (defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
-	(classification (ranking 'waterSupplyService:HydrologicSoilsGroup)
+	(classification (ranking 'habitat:HydrologicSoilsGroup)
 			1       'waterSupplyService:SoilGroupA
 			2       'waterSupplyService:SoilGroupB
 			3       'waterSupplyService:SoilGroupC
 			4       'waterSupplyService:SoilGroupD))
 
-(defmodel imperviousness 'waterSupplyService:ImperviousSurfaceCover
+(defmodel imperviousness 'waterSupplyService:PercentImperviousCover
 	 (classification (ranking 'habitat:PercentImperviousness)
-	 	   [80 100 :inclusive]   'waterSupplyService:VeryHighImpervious
-	 	   [50 80]               'waterSupplyService:HighImpervious
-	 	   [20 50]               'waterSupplyService:ModeratelyHighImpervious
-	 	   [10 20]               'waterSupplyService:ModeratelyLowImpervious
-	 	   [5 10]                'waterSupplyService:LowImpervious
-	 	   [0 5]                 'waterSupplyService:VeryLowImpervious))
+	 	   [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
+	 	   [50 80]               'waterSupplyService:HighImperviousCover
+	 	   [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
+	 	   [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
+	 	   [5 10]                'waterSupplyService:LowImperviousCover
+	 	   [0 5]                 'waterSupplyService:VeryLowImperviousCover))
 
 ;;FIX BELOW
 (defmodel vegetation-type 'waterSupplyService:VegetationType

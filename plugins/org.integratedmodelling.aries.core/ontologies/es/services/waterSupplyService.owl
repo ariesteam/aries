@@ -13,13 +13,13 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/source.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/modelling.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/measurement.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/measurement.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/modelling.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/science/source.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="ModerateProximityToWaterExtraction">
     <rdfs:subClassOf>
@@ -123,10 +123,10 @@
   </owl:Class>
   <owl:Class rdf:ID="Evaporation">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighSheepWaterUse">
@@ -186,9 +186,19 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HumanPopulation"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModeratelyHighImperviousCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PercentImperviousCover"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="NoGroundwaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="GroundwaterUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VeryLowImperviousCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PercentImperviousCover"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighCroplandWaterUse">
@@ -283,11 +293,6 @@
   <owl:Class rdf:about="#CattleWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockWaterUse"/>
   </owl:Class>
-  <owl:Class rdf:ID="VeryLowImpervious">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ImperviousSurfaceCover"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="HighCattlePopulation">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="CattlePopulation"/>
@@ -367,11 +372,6 @@
   <owl:Class rdf:ID="Barren">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
-  <owl:Class rdf:ID="VeryHighImpervious">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ImperviousSurfaceCover"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
   <owl:Class rdf:ID="LowSheepWaterNeeds">
     <rdfs:subClassOf>
@@ -426,8 +426,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Runoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
   </owl:Class>
   <owl:Class rdf:about="#PigsWaterNeeds">
     <rdfs:subClassOf>
@@ -489,8 +489,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="WaterUsePerIndustrialOutput">
-    <rdfs:comment>Water required to generate a single unit of the industrial commodity in question; multiply by IndustrialOutput to get total industrial water use for a given industrial user.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+    <rdfs:comment>Water required to generate a single unit of the industrial commodity in question; multiply by IndustrialOutput to get total industrial water use for a given industrial user.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="LowSurfaceWaterUse">
     <rdfs:subClassOf>
@@ -500,11 +500,6 @@
   <owl:Class rdf:ID="LowIrrigationNeeds">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#IrrigationWaterNeeds"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ModeratelyHighImpervious">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ImperviousSurfaceCover"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#AnnualRunoff">
@@ -526,6 +521,11 @@
   <owl:Class rdf:ID="ModerateSheepWaterNeeds">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SheepWaterNeeds"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HighImperviousCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PercentImperviousCover"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#ResidentialSurfaceWaterUse">
@@ -569,10 +569,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ProximityToSurfaceWater">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
   </owl:Class>
   <owl:Class rdf:ID="LowCroplandWaterUse">
     <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
@@ -655,8 +655,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#ProximityToWells">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
   </owl:Class>
   <owl:Class rdf:ID="NoSnowpack">
     <rdfs:subClassOf rdf:resource="#Snowpack"/>
@@ -703,11 +703,6 @@
   <owl:Class rdf:ID="SpringAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Springs"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ModeratelyLowImpervious">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ImperviousSurfaceCover"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighMonthlyPrecipitation">
@@ -854,6 +849,16 @@
       <owl:Class rdf:about="#AgriculturalSurfaceWaterUse"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="LowImperviousCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PercentImperviousCover"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ModeratelyLowImperviousCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PercentImperviousCover"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="VeryLowCropWaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#CroplandWaterUse"/>
@@ -876,11 +881,6 @@
   <owl:Class rdf:ID="SurfaceWaterNotProximate">
     <rdfs:subClassOf rdf:resource="#ProximityToSurfaceWater"/>
   </owl:Class>
-  <owl:Class rdf:ID="HighImpervious">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ImperviousSurfaceCover"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="ModeratePoultryPopulation">
     <rdfs:subClassOf rdf:resource="#PoultryPopulation"/>
   </owl:Class>
@@ -889,6 +889,9 @@
   </owl:Class>
   <owl:Class rdf:about="#LivestockWaterUseType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PercentImperviousCover">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="RollingToHilly">
     <rdfs:subClassOf>
@@ -939,8 +942,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Baseflow">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
   </owl:Class>
   <owl:Class rdf:about="#GroundwaterUse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse"/>
@@ -976,6 +979,9 @@
       <owl:Class rdf:about="#IrrigationWaterUse"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="VeryHighImperviousCover">
+    <rdfs:subClassOf rdf:resource="#PercentImperviousCover"/>
+  </owl:Class>
   <owl:Class rdf:ID="HighTemperature">
     <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
   </owl:Class>
@@ -986,8 +992,8 @@
     <rdfs:subClassOf rdf:resource="#AgriculturalWaterUse"/>
   </owl:Class>
   <owl:Class rdf:ID="IndustrialOutput">
-    <rdfs:comment>The quantity of a particular product generated by an industrial process in a given location.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+    <rdfs:comment>The quantity of a particular product generated by an industrial process in a given location.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="HighPigsWaterUse">
     <rdfs:subClassOf>
@@ -1128,9 +1134,6 @@
   <owl:Class rdf:ID="LowCattleWaterNeeds">
     <rdfs:subClassOf rdf:resource="#CattleWaterNeeds"/>
   </owl:Class>
-  <owl:Class rdf:about="#ImperviousSurfaceCover">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
   <owl:Class rdf:ID="DryForest">
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
@@ -1145,9 +1148,6 @@
   </owl:Class>
   <owl:Class rdf:ID="HighGroundwaterUse">
     <rdfs:subClassOf rdf:resource="#GroundwaterUse"/>
-  </owl:Class>
-  <owl:Class rdf:ID="LowImpervious">
-    <rdfs:subClassOf rdf:resource="#ImperviousSurfaceCover"/>
   </owl:Class>
   <owl:Class rdf:ID="DevelopedCultivated">
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
@@ -1247,8 +1247,8 @@
     <rdfs:subClassOf rdf:resource="#Snowpack"/>
   </owl:Class>
   <owl:Class rdf:about="#ProximityToWaterExtraction">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
   </owl:Class>
   <owl:Class rdf:ID="IrrigatedCroplandAbsent">
     <rdfs:subClassOf rdf:resource="#IrrigatedCropland"/>

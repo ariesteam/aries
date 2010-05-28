@@ -348,7 +348,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="mg_paths">
+	<measurement:BinaryCoding id="mg_paths">
 			<observation:hasObservable>
 				<fisheries:Paths />
 			</observation:hasObservable>
@@ -367,7 +367,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:96618</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:BinaryCoding>
 
 <!-- Global population density, persons/mi^2, derived from raw Landscan data, which was counts/pixel -->
 	<measurement:Count id="popDens2006">
@@ -417,7 +417,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="marine_seagrass">
+	<measurement:BinaryCoding id="marine_seagrass">
 		<observation:hasObservable>
 			<coastalProtection:SeagrassDensity />
 		</observation:hasObservable>
@@ -436,7 +436,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<measurement:Ranking id="gdcyc">
 		<observation:hasObservable>

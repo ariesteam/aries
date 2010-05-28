@@ -516,7 +516,7 @@
 <observation:Categorization id="puget_soilgroup">
 	
 		<observation:hasObservable>
-			<floodService:HydrologicSoilsGroup />
+			<habitat:HydrologicSoilsGroup />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
@@ -549,7 +549,7 @@
 	water supply, soil regulation-->
 	<measurement:Ranking id="HSG">
 		<observation:hasObservable>
-			<floodService:HydrologicSoilsGroup />
+			<habitat:HydrologicSoilsGroup />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -572,101 +572,7 @@
 	
 <measurement:Ranking id="hsg">
 	<observation:hasObservable>
-		<floodService:HydrologicSoilsGroup />
-	</observation:hasObservable>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasNodataValue>127</geospace:hasNodataValue>
-			<geospace:hasCoverageId>global:hsg</geospace:hasCoverageId>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>40316</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>15733</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>-56.453</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-179.872</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>84.038</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>180.11</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:Ranking>
-	
-	<measurement:NumericCoding id="HSG">
-		<observation:hasObservable>
-			<soilretentionEcology:HydrologicSoilsGroupCode />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:HSG</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:NumericCoding>
-
-<measurement:NumericCoding id="hsg">
-	<observation:hasObservable>
-		<soilretentionEcology:HydrologicSoilsGroupCode />
-	</observation:hasObservable>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasNodataValue>127</geospace:hasNodataValue>
-			<geospace:hasCoverageId>global:hsg</geospace:hasCoverageId>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>40316</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>15733</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>-56.453</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-179.872</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>84.038</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>180.11</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:NumericCoding>
-
-	<measurement:Ranking id="HSG">
-		<observation:hasObservable>
-			<waterSupplyService:HydrologicSoilsGroup />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:HSG</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-<measurement:Ranking id="hsg">
-	<observation:hasObservable>
-		<waterSupplyService:HydrologicSoilsGroup />
+		<habitat:HydrologicSoilsGroup />
 	</observation:hasObservable>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>

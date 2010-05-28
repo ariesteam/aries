@@ -158,14 +158,14 @@
 	 		1           'floodService:EarlySuccession
 	 		:otherwise  'floodService:NoSuccession))
 	 		
-(defmodel imperviousness 'floodService:ImperviousSurfaceCover
+(defmodel imperviousness 'floodService:PercentImperviousCover
 	 (classification (ranking 'habitat:PercentImperviousness)
-	 	   [80 100 :inclusive]   'floodService:VeryHighImpervious
-	 	   [50 80]   'floodService:HighImpervious
-	 	   [20 50]   'floodService:ModeratelyHighImpervious
-	 	   [10 20]   'floodService:ModeratelyLowImpervious
-	 	   [5 10]     'floodService:LowImpervious
-	 	   [0 5]    'floodService:VeryLowImpervious))
+	 	   [80 100 :inclusive]   'floodService:VeryHighImperviousCover
+	 	   [50 80]   'floodService:HighImperviousCover
+	 	   [20 50]   'floodService:ModeratelyHighImperviousCover
+	 	   [10 20]   'floodService:ModeratelyLowImperviousCover
+	 	   [5 10]     'floodService:LowImperviousCover
+	 	   [0 5]    'floodService:VeryLowImperviousCover))
 	 	   
 ;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
 ;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
