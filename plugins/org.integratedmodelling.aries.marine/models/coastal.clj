@@ -37,7 +37,7 @@
 ;; TODO only two classes represented from presence/absence; no idea how to 
 ;; model density based on existing data.
 (defmodel seagrass 'coastalProtection:SeagrassDensity
-	(classification (ranking 'coastalProtection:SeagrassDensity)
+	(classification (binary-coding 'coastalProtection:SeagrassDensity)
 		0 'coastalProtection:NoSeagrassDensity
 		1 'coastalProtection:HighSeagrassDensity))
 		
