@@ -25,8 +25,9 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NEED TO CONVERT THESE TO mm - HOW?
+;;NEED TO CONVERT THESE TO mm
 
+;;Industrial surface water use
 ;;This is all we have to model industrial use right now: presence/absence of an industrial
 ;;user and whether they use ground or surface water. 
 ;;Current extraction is unknown.  Values below are 100% guesses - need information from local plants.
@@ -40,6 +41,7 @@
                   (== (:industrial-water-use %) 3)     0   ;;Coca-Cola plant, using groundwater
                   :otherwise                           0)))
 
+;;Nonrival surface water use: Hydropower plus rafting
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
 ;;do it for now.
@@ -50,6 +52,7 @@
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
                   :otherwise                        0)))
 
+;;Residential surface water use
 ;;The ranking model should really be a count with spatial ctx (data are persons/30 arc-second pixel)
 ;;The first example is for a probability distribution function (discrete values of the probability states)
 ;;The second example, used, is for a cumulative distribution function (ranges)
@@ -64,9 +67,10 @@
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
 
+;;Agricultural surface water use. Step 1: Estimate total livestock water needs.
 ;;Livestock use below is from different sources for pigs and other livestock: it's unlikely
-;; that pigs should use more water per capita than cattle.
-(defmodel livestock-water-use 'waterSupplyService:LivestockWaterUse
+;; that pigs should use more water per capita than cattle (Rowan to check on this)
+(defmodel livestock-total-water-use 'waterSupplyService:LivestockWaterUse
   (measurement 'waterSupplyService:LivestockWaterUse "mm"  ;;This is an annual value
     :context ((enumeration 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
               (enumeration 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
@@ -78,12 +82,39 @@
                      (* (:pigs-population   %) 26.444))
                   1000)))
 
+;;Agricultural surface water use. Step 2: Consider proximity to surface water.
 ;;FIX DOUBLED ONTOLOGY CONCEPT BELOW (add "Class" to end of 1st line's ProximityToSurfaceWater)
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWater
-	(classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
-		[500 :>]     'waterSupplyService:SurfaceWaterNotProximate
-		[250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
-		[:< 250]     'waterSupplyService:SurfaceWaterProximate))
+  (classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
+    [500 :>]     'waterSupplyService:SurfaceWaterNotProximate
+    [250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
+    [:< 250]     'waterSupplyService:SurfaceWaterProximate))
+
+;;Agricultural surface water use. Step 3: Estimate livestock water derived from surface water.
+;;Bayesian model for livestock surface water use
+(defmodel livestock-surface-water-use 'waterSupplyService:LivestockSurfaceWaterUse
+  (bayesian 'waterSupplyService:LivestockSurfaceWaterUse "mm"  ;;This is an annual value
+    :import   "aries.core::SurfaceWaterUseLivestock.xdsl"
+    :keep     ('waterSupplyService:LivestockSurfaceWaterUse)
+    :observed (livestock-surface-water-use)
+    :context  (surface-water-proximity livestock-total-water-use))) 
+
+;;Agricultural surface water use. Step 4: Estimate crop irrigation water needs.
+;GARY: CHECK THIS
+(defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUse
+  (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
+     :context ((categorization 'waterSupplyService:IrrigatedCropland  :as irrigated-cropland))
+     :state   #(if (= (:irrigated-cropland %) "riego")) 
+              #(*  (:irrigated-cropland %) 2000)
+                  0)) 
+
+;;Agricultural surface water use. Step 5: Add crop irrigation and livestock surface water use.
+;;GARY: can "irrigation-water-use" be used both above and below?
+(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
+  (measurement 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
+      :context ((measurement 'waterSupplyService:IrrigationWaterUse "mm"       :as irrigation-water-use)
+                (measurement 'waterSupplyService:LivestockSurfaceWaterUse "mm" :as livestock-surface-water-use))
+      :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %)))) 
 
 
 ;; ----------------------------------------------------------------------------------------------
@@ -153,7 +184,7 @@
 
 (defmodel sink 'waterSupplyService:SurfaceWaterSink
 	  (bayesian 'waterSupplyService:SurfaceWaterSink
-	  	:import   "aries.core::WaterSupplySink.xdsl"
+	  	:import   "aries.core::SurfaceWaterSupplySink.xdsl"
 	  	:keep     ('waterSupplyService:SurfaceWaterSink)
 	 	 	:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
       :observed (sink-undiscretizer)))

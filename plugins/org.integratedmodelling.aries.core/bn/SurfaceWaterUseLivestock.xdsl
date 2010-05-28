@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="ProximityToSurfaceWater">
+			<state id="SurfaceWaterProximate" />
+			<state id="SurfaceWaterModeratelyProximate" />
+			<state id="SurfaceWaterNotProximate" />
+			<probabilities>0.5 0.5 0</probabilities>
+		</cpt>
+		<cpt id="TotalLivestockWaterUse">
+			<state id="HighTotalLivestockWaterUse" />
+			<state id="ModerateTotalLivestockWaterUse" />
+			<state id="LowTotalLivestockWaterUse" />
+			<probabilities>0.5 0.5 0</probabilities>
+		</cpt>
+		<cpt id="LivestockSurfaceWaterUse">
+			<state id="HighLivestockSurfaceWaterUse" />
+			<state id="ModerageLivestockSurfaceWaterUse" />
+			<state id="LowLivestockSurfaceWaterUse" />
+			<parents>ProximityToSurfaceWater TotalLivestockWaterUse</parents>
+			<probabilities>0.6 0.3 0.1 0.5 0.35 0.15 0.4 0.4 0.2 0.2 0.4 0.4 0.15 0.35 0.5 0.1 0.3 0.6 0.1 0.2 0.7 0.05 0.15 0.8 0 0.1 0.9</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="AgriculturalSurfaceWaterUse" faultnameformat="nodestate">
+			<node id="ProximityToSurfaceWater">
+				<name>ProximityToSurfaceWater</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>311 267 448 348</position>
+				<comment>SWProximate &lt; .25KM\nSWModeratlyProximate=.25km - .5km\nSWNotProximate &gt; .5KM</comment>
+				<barchart active="true" width="196" height="72" />
+			</node>
+			<node id="LivestockSurfaceWaterUse">
+				<name>LivestockSurfaceWaterUse</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>451 107 592 195</position>
+				<barchart active="true" width="178" height="90" />
+			</node>
+			<node id="TotalLivestockWaterUse">
+				<name>TotalLivestockWaterUse</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>632 278 736 343</position>
+				<comment>Sum of CattleWU+SheepWU+GoatsWU+PigsWU</comment>
+				<barchart active="true" width="128" height="72" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
