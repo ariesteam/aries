@@ -1,5 +1,6 @@
-(ns models.waterLaAntigua
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
+(ns core.models.waterLaAntigua
+  (:refer-clojure :rename {count length}) 
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -62,7 +63,7 @@
 ;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
 (defmodel residential-surface-water-use 'waterSupplyService:ResidentialSurfaceWaterUse
   (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
-    :context ((enumeration 'policytarget:PopulationDensity "/km^2" :as population-density))
+    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density))
     :state   #(* 0.8 82.855 (:population-density %))))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
@@ -72,10 +73,10 @@
 ;; that pigs should use more water per capita than cattle (Rowan to check on this)
 (defmodel livestock-total-water-use 'waterSupplyService:LivestockWaterUse
   (measurement 'waterSupplyService:LivestockWaterUse "mm"  ;;This is an annual value
-    :context ((enumeration 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
-              (enumeration 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
-              (enumeration 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
-              (enumeration 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
+    :context ((count 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
+              (count 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
+              (count 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
+              (count 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
     :state    #(/ (+ (* (:sheep-population  %) 2.745)
                      (* (:goats-population  %) 2.745)
                      (* (:cattle-population %) 11.032)

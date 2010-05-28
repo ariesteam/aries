@@ -4,10 +4,11 @@
 ;; fv Jan 10
 ;; --------------------------------------------------------------------------------------------------
 
-(ns aries/marine
-	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
-
+(ns marine.models.coastal
+	(:refer-clojure :rename {count length}) 
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer aries :only (span)))
+  
 ;; --------------------------------------------------------------------------------------
 ;; sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------

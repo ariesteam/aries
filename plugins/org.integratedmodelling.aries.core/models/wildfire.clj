@@ -5,8 +5,9 @@
 ;;; --------------------------------------------------------------------------------------------------
 
 (ns models.wildfire
-	(:refer modelling :only (defmodel probability classification ranking bayesian)))
-
+	(:refer-clojure :rename {count length}) 
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  
 (defmodel mature-gorse 'wildfireService:MatureGorse
   (probability 'wildfireService:MatureGorse 'wildfireService:AbsentMatureGorse 'wildfireService:PresentMatureGorse 
   :state #(condp = (:gorse-presence %)

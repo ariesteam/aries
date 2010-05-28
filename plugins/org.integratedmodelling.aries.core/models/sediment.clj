@@ -1,5 +1,6 @@
-(ns models.sediment
-  (:refer modelling :only (defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
+(ns core.models.sediment
+  (:refer-clojure :rename {count length}) 
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
