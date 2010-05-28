@@ -74,7 +74,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-		<measurement:Measurement id="AnnualPrecip">
+	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
 			<waterSupplyService:AnnualPrecipitation />
 		</observation:hasObservable>
@@ -263,7 +263,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="DR_lulc">
+	<measurement:NumericCoding id="DR_lulc">
 		<observation:hasObservable>
 			<domlulc:DOMLULCNumeric />
 		</observation:hasObservable>
@@ -284,9 +284,9 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
-	<measurement:Ranking id="dominicanRepublic_coffee_farms">
+	<measurement:BinaryCoding id="dominicanRepublic_coffee_farms">
 		<observation:hasObservable>
 			<soilretentionEcology:Farmland />
 		</observation:hasObservable>
@@ -305,7 +305,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<measurement:Ranking id="FloodplainVegMg">
 		<observation:hasObservable>
@@ -378,7 +378,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-<measurement:Ranking id="global_globalfloodplains">
+<measurement:BinaryCoding id="global_globalfloodplains">
 	<observation:hasObservable>
 		<floodService:Floodplains />
 	</observation:hasObservable>
@@ -398,9 +398,9 @@
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:BinaryCoding>
 
-<measurement:Ranking id="global_globalfloodplains">
+<measurement:BinaryCoding id="global_globalfloodplains">
 	<observation:hasObservable>
 		<soilretentionEcology:Floodplains />
 	</observation:hasObservable>
@@ -420,9 +420,9 @@
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:BinaryCoding>
 
-	<measurement:Ranking id="landcover_glc2000">
+	<measurement:NumericCoding id="landcover_glc2000">
 		<observation:hasObservable>
 			<glc:GLCNumeric />
 		</observation:hasObservable>
@@ -443,7 +443,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
 		<measurement:Count id="goats">
 			<observation:hasObservable>
@@ -516,7 +516,7 @@
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-	<measurement:Ranking id="dominicanRepublic_drreservoirs">
+	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUsePresence />
 		</observation:hasObservable>
@@ -535,9 +535,9 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 	
-	<measurement:Ranking id="Industry">
+	<measurement:NumericCoding id="Industry">
 		<observation:hasObservable>
 			<waterSupplyService:IndustrialWaterUseClass />
 		</observation:hasObservable>
@@ -559,9 +559,9 @@
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
-	<measurement:Ranking id="mg_mglulc">
+	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
 		</observation:hasObservable>
@@ -581,7 +581,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
 	<measurement:Measurement id="puget_precipitation_january">
 		<observation:hasObservable>
@@ -633,7 +633,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Ranking id="Non_Rival_Use">
+	<measurement:BinaryCoding id="Non_Rival_Use">
 		<observation:hasObservable>
 			<waterSupplyService:NonRivalWaterUseClass />
 		</observation:hasObservable>
@@ -654,7 +654,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<measurement:Ranking id="AsiaPacificTreeCover">
 		<observation:hasObservable>
@@ -874,11 +874,10 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Ranking id="dominicanRepublic_drreservoirs">
+	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
 			<soilretentionEcology:Reservoirs />
 		</observation:hasObservable>
-		<measurement:unit>%</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -894,94 +893,9 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
-	<measurement:Ranking id="puget_wastreams">
-		<observation:hasObservable>
-			<geofeatures:River />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:wastreams</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>5075200.34065661</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>363225.0352501266</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>5432321.261653562</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>681899.3096981852</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="mg_mgrivers">
-	<observation:hasObservable>
-		<geofeatures:River />
-	</observation:hasObservable>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>-34.687</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="dominicanRepublic_drrivers">
-	<observation:hasObservable>
-		<geofeatures:River />
-	</observation:hasObservable>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>dominicanRepublic:drrivers</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>17.54</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-72.0</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>19.931</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-68.324</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:Ranking>
-
-	<measurement:Ranking id="mexico_lastreams">
-			<observation:hasObservable>
-				<geofeatures:River />
-			</observation:hasObservable>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mexico:lastreams</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>2117436.3283869727</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>681048.4948232571</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>2166833.2994848895</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>786120.9303294052</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-
-	<measurement:Ranking id="Africa_dams3">
+	<measurement:BinaryCoding id="Africa_dams3">
 		<observation:hasObservable>
 			<soilretentionEcology:Reservoirs />
 		</observation:hasObservable>
@@ -1002,7 +916,91 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="puget_wastreams">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:wastreams</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>5075200.34065661</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>363225.0352501266</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5432321.261653562</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>681899.3096981852</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+	
+<measurement:BinaryCoding id="mg_mgrivers">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-34.687</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="dominicanRepublic_drrivers">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>dominicanRepublic:drrivers</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>17.54</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-72.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>19.931</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-68.324</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="mexico_lastreams">
+			<observation:hasObservable>
+				<geofeatures:River />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>mexico:lastreams</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>2117436.3283869727</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>681048.4948232571</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>2166833.2994848895</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>786120.9303294052</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
 
 	<measurement:Measurement id="puget_pugeterosionmetrics">
 		<observation:hasObservable>

@@ -25,7 +25,7 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NEED TO CONVERT THESE TO mm
+;;NEED TO CONVERT THESE TO mm (are in m^3/km^2)
 
 ;;Industrial surface water use
 ;;This is all we have to model industrial use right now: presence/absence of an industrial
@@ -34,7 +34,7 @@
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
 (defmodel industrial-users 'waterSupplyService:IndustrialWaterUse (CLASS???) 
   (measurement 'waterSupplyService:IndustrialWaterUse "m^3" ;;This is an annual value.
-    :context ((ranking 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))
+    :context ((numeric-coding 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))
     :state #(cond (== (:industrial-water-use %) 0) 50000   ;;Paper factory, using surface water
                   (== (:industrial-water-use %) 1) 100000  ;;Bottled water plant, using surface water
                   (== (:industrial-water-use %) 2)     0   ;;Nestle plant, using groundwater
@@ -47,7 +47,7 @@
 ;;do it for now.
 (defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse (CLASS???) 
   (ranking 'waterSupplyService:NonRivalWaterUse
-    :context ((ranking 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))
+    :context ((binary-coding 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
                   :otherwise                        0)))
@@ -106,7 +106,7 @@
      :context ((categorization 'waterSupplyService:IrrigatedCropland  :as irrigated-cropland))
      :state   #(if (= (:irrigated-cropland %) "riego")) 
               #(*  (:irrigated-cropland %) 2000)
-                  0)) 
+                  0))
 
 ;;Agricultural surface water use. Step 5: Add crop irrigation and livestock surface water use.
 ;;GARY: can "irrigation-water-use" be used both above and below?
@@ -114,7 +114,7 @@
   (measurement 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
       :context ((measurement 'waterSupplyService:IrrigationWaterUse "mm"       :as irrigation-water-use)
                 (measurement 'waterSupplyService:LivestockSurfaceWaterUse "mm" :as livestock-surface-water-use))
-      :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %)))) 
+      :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
 
 
 ;; ----------------------------------------------------------------------------------------------

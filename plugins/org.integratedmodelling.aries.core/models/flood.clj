@@ -210,7 +210,7 @@
 
 (defmodel floodplains 'floodService:Floodplains
 	"Presence of a floodplain in given context"
-	(classification (ranking 'floodService:Floodplains)
+	(classification (binary-coding 'floodService:Floodplains)
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
 			

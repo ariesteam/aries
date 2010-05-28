@@ -48,7 +48,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="corine2000">
+	<measurement:NumericCoding id="corine2000">
 		<observation:hasObservable>
 			<corine:CORINENumeric />
 		</observation:hasObservable>
@@ -70,7 +70,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:3035</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 	
 	<measurement:Measurement id="dem90m">
 		<observation:hasObservable>
@@ -102,7 +102,7 @@
 		floodplains in Chehalis watershed from shape coverage, seen as a
 		presence/absence ranking
 	-->
-	<measurement:Ranking id="chehalis_floodplain">
+	<measurement:BinaryCoding id="chehalis_floodplain">
 
 		<observation:hasObservable>
 			<floodService:Floodplains />
@@ -124,6 +124,6 @@
 				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 </kbox>
