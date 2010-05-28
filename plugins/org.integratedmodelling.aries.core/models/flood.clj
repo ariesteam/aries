@@ -15,11 +15,11 @@
 
 (defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (categorization 'floodService:HydrologicSoilsGroup)
+	(classification (categorization 'habitat:HydrologicSoilsGroup)
 			1        'floodService:SoilGroupA
-			0        'floodService:SoilGroupB
+			2        'floodService:SoilGroupB
 			3        'floodService:SoilGroupC
-			2        'floodService:SoilGroupD))
+			4        'floodService:SoilGroupD))
 
 (defmodel precipitation 'floodService:Precipitation
 	"FIXME this is total monthly precipitation I believe."

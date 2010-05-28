@@ -26,29 +26,27 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NEED TO CONVERT THESE TO mm (are in m^3/km^2)
-
 ;;Industrial surface water use
 ;;This is all we have to model industrial use right now: presence/absence of an industrial
 ;;user and whether they use ground or surface water. 
 ;;Current extraction is unknown.  Values below are 100% guesses - need information from local plants.
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
-(defmodel industrial-users 'waterSupplyService:IndustrialWaterUse (CLASS???) 
-  (measurement 'waterSupplyService:IndustrialWaterUse "m^3" ;;This is an annual value.
-    :context ((numeric-coding 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))
-    :state #(cond (== (:industrial-water-use %) 0) 50000   ;;Paper factory, using surface water
-                  (== (:industrial-water-use %) 1) 100000  ;;Bottled water plant, using surface water
-                  (== (:industrial-water-use %) 2)     0   ;;Nestle plant, using groundwater
-                  (== (:industrial-water-use %) 3)     0   ;;Coca-Cola plant, using groundwater
-                  :otherwise                           0)))
+(defmodel industrial-users 'waterSupplyService:IndustrialWaterUse
+  (measurement 'waterSupplyService:IndustrialWaterUse "mm" ;;This is an annual value.
+    :context ((numeric-coding 'waterSupplyService:IndustrialWaterUseCode :as industrial-water-use))
+    :state #(cond (== (:industrial-water-use %) 0) 50   ;;Paper factory, using surface water
+                  (== (:industrial-water-use %) 1) 100  ;;Bottled water plant, using surface water
+                  (== (:industrial-water-use %) 2)  0   ;;Nestle plant, using groundwater
+                  (== (:industrial-water-use %) 3)  0   ;;Coca-Cola plant, using groundwater
+                  :otherwise                        0)))
 
 ;;Nonrival surface water use: Hydropower plus rafting
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
 ;;do it for now.
-(defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse (CLASS???) 
+(defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse
   (ranking 'waterSupplyService:NonRivalWaterUse
-    :context ((binary-coding 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))
+    :context ((binary-coding 'waterSupplyService:NonRivalWaterUseCode :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
                   :otherwise                        0)))
@@ -62,9 +60,9 @@
 ;;Top node discretization for water use is from Alberta: worth asking about better local sources.
 ;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
 (defmodel residential-surface-water-use 'waterSupplyService:ResidentialSurfaceWaterUse
-  (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
+  (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "mm" ;;This is an annual value
     :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density))
-    :state   #(* 0.8 82.855 (:population-density %))))
+    :state   #(* 0.8 0.082855 (:population-density %))))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
 
@@ -77,15 +75,20 @@
               (count 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
               (count 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
               (count 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
-    :state    #(/ (+ (* (:sheep-population  %) 2.745)
-                     (* (:goats-population  %) 2.745)
-                     (* (:cattle-population %) 11.032)
-                     (* (:pigs-population   %) 26.444))
+    :state    #(/ (+ (* (:sheep-population  %) 0.002745)
+                     (* (:goats-population  %) 0.002745)
+                     (* (:cattle-population %) 0.011032)
+                     (* (:pigs-population   %) 0.026444))
                   1000)))
 
+(defmodel livestock-total-water-use-discretized 'waterSupplyService:LivestockWaterUseClass
+  (classification livestock-total-water-use 
+    [] 'waterSupplyService:
+    [] 'waterSupplyService:
+    [] 'waterSupplyService:)) 
+
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
-;;FIX DOUBLED ONTOLOGY CONCEPT BELOW (add "Class" to end of 1st line's ProximityToSurfaceWater)
-(defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWater
+(defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWaterClass
   (classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
     [500 :>]     'waterSupplyService:SurfaceWaterNotProximate
     [250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
@@ -93,28 +96,30 @@
 
 ;;Agricultural surface water use. Step 3: Estimate livestock water derived from surface water.
 ;;Bayesian model for livestock surface water use
-(defmodel livestock-surface-water-use 'waterSupplyService:LivestockSurfaceWaterUse
+
+(defmodel livestock-surface-water-use (DO THIS - undiscretizer - in mm)) 
+
+(defmodel livestock-SW-use 'waterSupplyService:LivestockSurfaceWaterUse
   (bayesian 'waterSupplyService:LivestockSurfaceWaterUse "mm"  ;;This is an annual value
     :import   "aries.core::SurfaceWaterUseLivestock.xdsl"
     :keep     ('waterSupplyService:LivestockSurfaceWaterUse)
     :observed (livestock-surface-water-use)
-    :context  (surface-water-proximity livestock-total-water-use))) 
+    :context  (surface-water-proximity livestock-total-water-use-discretized))) 
 
 ;;Agricultural surface water use. Step 4: Estimate crop irrigation water needs.
-;GARY: CHECK THIS
 (defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUse
   (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
-     :context ((categorization 'waterSupplyService:IrrigatedCropland  :as irrigated-cropland))
-     :state   #(if (= (:irrigated-cropland %) "riego")) 
-              #(*  (:irrigated-cropland %) 2000)
-                  0))
+     :context ((categorization 'veracruz-lulc:VeracruzLULCCategory  :as irrigated-cropland))
+     :state   #(if (= (:irrigated-cropland %) "riego")
+                  2000
+                  0)))
+
+Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.
 
 ;;Agricultural surface water use. Step 5: Add crop irrigation and livestock surface water use.
-;;GARY: can "irrigation-water-use" be used both above and below?
 (defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
   (measurement 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
-      :context ((measurement 'waterSupplyService:IrrigationWaterUse "mm"       :as irrigation-water-use)
-                (measurement 'waterSupplyService:LivestockSurfaceWaterUse "mm" :as livestock-surface-water-use))
+      :context (irrigation-water-use livestock-surface-water-use)
       :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
 
 
@@ -126,7 +131,7 @@
 ;;processes.  Deterministic models could likely be used.
 
 (defmodel slope 'waterSupplyService:SlopeClass
-		(classification (measurement 'geophysics:DegreeSlope "°")
+		(classification (measurement 'geophysics:DegreeSlope "\u00B0")
 			 [:< 1.15] 	            'waterSupplyService:Level
 			 [1.15 4.57] 	          'waterSupplyService:GentlyUndulating
 			 [4.57 16.70]           'waterSupplyService:RollingToHilly
@@ -139,7 +144,7 @@
 			3       'waterSupplyService:SoilGroupC
 			4       'waterSupplyService:SoilGroupD))
 
-(defmodel imperviousness 'waterSupplyService:PercentImperviousCover
+(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
 	 (classification (ranking 'habitat:PercentImperviousness)
 	 	   [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
 	 	   [50 80]               'waterSupplyService:HighImperviousCover
@@ -148,17 +153,16 @@
 	 	   [5 10]                'waterSupplyService:LowImperviousCover
 	 	   [0 5]                 'waterSupplyService:VeryLowImperviousCover))
 
-;;FIX BELOW
 (defmodel vegetation-type 'waterSupplyService:VegetationType
 	"Just a reclass of the Veracruz land use layer"
-	(classification (categorization 'waterSupplyService:VegetationType)
+	(classification (categorization 'veracruz-lulc:VeracruzLULCCategory)
 		"Bosque mesofilo de montana"	                                               'waterSupplyService:CloudForest
 		#{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} 'waterSupplyService:DevelopedCultivated
 		#{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} 'waterSupplyService:DryForest
     #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} 'waterSupplyService:GrasslandShrubland
     #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
 		
-(defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCover
+(defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
 	(classification (ranking 'habitat:PercentCanopyCover)
 		[80 100] 'waterSupplyService:VeryHighVegetationCover
 		[60 80]  'waterSupplyService:HighVegetationCover
@@ -166,7 +170,6 @@
 		[20 40]  'waterSupplyService:LowVegetationCover
 		[0 20]   'waterSupplyService:VeryLowVegetationCover))
 
-;;Does this need to be "binary-coding" in the xml too?
 (defmodel dam-presence 'waterSupplyService:Dams
 	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseClass)
 			1		      'waterSupplyService:DamPresent

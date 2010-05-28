@@ -24,6 +24,7 @@
 	xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/services/waterSupplyService.owl#"
 	xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
 	xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
+	xmlns:veracruz-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl#"
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#">
 
 	<measurement:Measurement id="AnnualPrecip">
@@ -1220,10 +1221,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- CHECK WITH FERD ON THE ONTOLOGIC CLASSIFICATION HERE... -->
 	<observation:Categorization id="mexico_lalulc">
 		<observation:hasObservable>
-			<waterSupplyService:VegetationType />
+			<veracruz-lulc:VeracruzLULCCategory />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
