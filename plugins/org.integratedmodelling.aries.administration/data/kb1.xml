@@ -146,10 +146,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Ranking id="buffalo">
+	<measurement:Enumeration id="buffalo">
 			<observation:hasObservable>
 				<waterSupplyService:BuffaloPopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -167,12 +168,13 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Enumeration>
 		
-		<measurement:Ranking id="cattle">
+		<measurement:Enumeration id="cattle">
 			<observation:hasObservable>
 				<waterSupplyService:CattlePopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -190,7 +192,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Enumeration>
 	
 	<observation:Categorization id="global_nationalboundaries">
 		<observation:hasObservable>
@@ -443,10 +445,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-		<measurement:Ranking id="goats">
+		<measurement:Enumeration id="goats">
 			<observation:hasObservable>
 				<waterSupplyService:GoatsPopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>	
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -464,7 +467,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Enumeration>
 
 	<measurement:Measurement id="puget_hydroreservoirs2">
 		<observation:hasObservable>
@@ -792,18 +795,14 @@
 	</measurement:Ranking>
 
 	<!--  TODO fv - 
-		CHECK that units are appropriate, if so modify the
-		other livestock data too. Just added an expression to multiply value
-		by 1/25 (assuming it's per 25 sqkm cell as discussed) and made it
-		a unitless measurement per km square. 
-		
+	KB: Native units are in livestock units/km, so no conversion should be necessary.
 		BTW I do think these concepts should be in an agriculture ontology and
 		they should be named something with "Density" in them. There are tons
 		of agricultural concepts in the ontologies from the SEAMLESS project,
 		we could discuss integrating those at some point.
 		
 		 -->
-		<measurement:Measurement id="pigs">
+		<measurement:Enumeration id="pigs">
 			<observation:hasObservable>
 				<waterSupplyService:PigsPopulation />
 			</observation:hasObservable>
@@ -812,7 +811,6 @@
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>global:pigs</geospace:hasCoverageId>
-					<geospace:hasTransformation>self * 0.04</geospace:hasTransformation>
 				</geospace:WCSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -826,12 +824,13 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Measurement>
+		</measurement:Enumeration>
 		
-		<measurement:Ranking id="poultry">
+		<measurement:Enumeration id="poultry">
 			<observation:hasObservable>
 				<waterSupplyService:PoultryPopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -849,7 +848,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Enumeration>
 		
 	<measurement:Measurement id="Proximity_SurfaceWater1">
 		<observation:hasObservable>
@@ -1028,10 +1027,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Ranking id="sheep">
+	<measurement:Enumeration id="sheep">
 			<observation:hasObservable>
 				<waterSupplyService:SheepPopulation />
 			</observation:hasObservable>
+			<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1049,7 +1049,7 @@
 					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Enumeration>
 
 	<measurement:Ranking id="puget_pugeterosionmetrics">
 		<observation:hasObservable>
@@ -1142,6 +1142,8 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb) converts it to tonnes C/ha -->
+
 	<measurement:Measurement id="NBCD_MZ04_FIA_ALD_biomass">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
@@ -1151,6 +1153,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>california:NBCD_MZ04_FIA_ALD_biomass</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1175,6 +1178,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:NBCD_MZ25_FIA_ALD_biomass</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

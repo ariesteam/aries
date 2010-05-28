@@ -25,11 +25,13 @@
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
+;;NEED TO CONVERT THESE TO mm - HOW?
+
 ;;This is all we have to model industrial use right now: presence/absence of an industrial
 ;;user and whether they use ground or surface water. 
 ;;Current extraction is unknown.  Values below are 100% guesses - need information from local plants.
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
-(defmodel industrial-users 'waterSupplyService:IndustrialWaterUse
+(defmodel industrial-users 'waterSupplyService:IndustrialWaterUse (CLASS???) 
   (measurement 'waterSupplyService:IndustrialWaterUse "m^3" ;;This is an annual value.
     :context ((ranking 'waterSupplyService:IndustrialWaterUseClass :as industrial-water-use))
     :state #(cond (== (:industrial-water-use %) 0) 50000   ;;Paper factory, using surface water
@@ -41,7 +43,7 @@
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
 ;;do it for now.
-(defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse
+(defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse (CLASS???) 
   (ranking 'waterSupplyService:NonRivalWaterUse
     :context ((ranking 'waterSupplyService:NonRivalWaterUseClass :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
@@ -57,17 +59,19 @@
 ;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
 (defmodel residential-surface-water-use 'waterSupplyService:ResidentialSurfaceWaterUse
   (measurement 'waterSupplyService:ResidentialSurfaceWaterUse "m^3" ;;This is an annual value
-    :context ((ranking 'waterSupplyService:PopulationDensity :as population-density))
+    :context ((enumeration 'policytarget:PopulationDensity "/km^2" :as population-density))
     :state   #(* 0.8 82.855 (:population-density %))))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
 ;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
 
+;;Livestock use below is from different sources for pigs and other livestock: it's unlikely
+;; that pigs should use more water per capita than cattle.
 (defmodel livestock-water-use 'waterSupplyService:LivestockWaterUse
   (measurement 'waterSupplyService:LivestockWaterUse "mm"  ;;This is an annual value
-    :context ((measurement 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
-              (measurement 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
-              (measurement 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
-              (measurement 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
+    :context ((enumeration 'waterSupplyService:CattlePopulation "/km^2" :as cattle-population)
+              (enumeration 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
+              (enumeration 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
+              (enumeration 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
     :state    #(/ (+ (* (:sheep-population  %) 2.745)
                      (* (:goats-population  %) 2.745)
                      (* (:cattle-population %) 11.032)
@@ -131,19 +135,21 @@
 		[20 40]  'waterSupplyService:LowVegetationCover
 		[0 20]   'waterSupplyService:VeryLowVegetationCover))
 
+;;Does this need to be "binary-coding" in the xml too?
 (defmodel dam-presence 'waterSupplyService:Dams
-	(classification (ranking 'waterSupplyService:NonRivalWaterUseClass)
+	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseClass)
 			1		      'waterSupplyService:DamPresent
      :otherwise 'waterSupplyService:DamAbsent))
 
-;;Need undiscretization/values (in units of water)
+;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
+;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSink
   (classification 'waterSupplyService:SurfaceWaterSink "mm" 
-    []  'waterSupplyService:VeryHighSurfaceWaterSink
-    []  'waterSupplyService:HighSurfaceWaterSink
-    []  'waterSupplyService:ModerateSurfaceWaterSink
-    []  'waterSupplyService:LowSurfaceWaterSink
-    []  'waterSupplyService:NoSurfaceWaterSink)) 
+    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+    [100 180]          'waterSupplyService:HighSurfaceWaterSink
+    [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
+    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
+    0                  'waterSupplyService:NoSurfaceWaterSink)) 
 
 (defmodel sink 'waterSupplyService:SurfaceWaterSink
 	  (bayesian 'waterSupplyService:SurfaceWaterSink

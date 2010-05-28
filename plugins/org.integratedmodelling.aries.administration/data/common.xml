@@ -891,31 +891,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="lspop2006">
-		<observation:hasObservable>
-			<soilretentionEcology:PopulationDensity />
-		</observation:hasObservable>
-		<measurement:unit>persons/km2</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:lspop2006</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-89.99999999999994</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.99999999999932</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>179.99999999999858</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	
 <!-- January mean monthly total precipitation in WA. TODO: This should obviously be specified using time extents both in querying and storing.  -->
 	<measurement:Measurement id="puget_precipitation_january">
 		<observation:hasObservable>
@@ -1512,7 +1487,7 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-<!-- These values are tonnes biomass/ha: need to divide by two (the standard rule of thumb) to get vegetation carbon storage -->
+<!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb) converts it to tonnes C/ha -->
 	
 	<measurement:Ranking id="NBCD_FIA_biomass">
 		<observation:hasObservable>
@@ -1523,6 +1498,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:NBCD_FIA_biomass</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

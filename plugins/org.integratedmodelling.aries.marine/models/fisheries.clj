@@ -25,16 +25,14 @@
 		[50 :>]   'fisheries:HighPoverty
 		[25 50]   'fisheries:ModeratePoverty
 		[:< 25]   'fisheries:LowPoverty))
-		
-;; the ranking model should really be a count with spatial ctx 
-;; (data are persons/30 arc-second pixel)
+	
 (defmodel population-density 'fisheries:PopulationDensity
-	(classification (ranking 'policytarget:PopulationDensity)
-		[25000 :>]    'fisheries:VeryHighPopulationDensity
-		[11000 25000] 'fisheries:HighPopulationDensity
-		[3900 11000]  'fisheries:ModeratePopulationDensity
-		[750 3900]    'fisheries:LowPopulationDensity
-		[:< 750]      'fisheries:VeryLowPopulationDensity))
+	(classification (enumeration 'policytarget:PopulationDensity "/km^2")
+		[2000 :>]    'fisheries:VeryHighPopulationDensity
+		[1000 2000]  'fisheries:HighPopulationDensity
+		[200 1000]   'fisheries:ModeratePopulationDensity
+		[50 200]     'fisheries:LowPopulationDensity
+		[:< 50]      'fisheries:VeryLowPopulationDensity))
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   	"Interface to subsistence use bayesian network"
