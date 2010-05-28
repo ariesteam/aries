@@ -5,9 +5,9 @@
 ;; --------------------------------------------------------------------------------------------------
 
 (ns test
-	(:refer-clojure)
-  (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding enumeration 
-  											   measurement classification categorization ranking identification bayesian)))
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding count
+			    measurement classification categorization ranking identification bayesian)))
 
 (defmodel altitude-mm 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))

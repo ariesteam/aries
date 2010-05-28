@@ -1,6 +1,6 @@
 (ns core.models.flood
 	(:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer modelling :only (defagent defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------

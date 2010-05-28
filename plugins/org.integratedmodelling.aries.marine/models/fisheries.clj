@@ -5,7 +5,7 @@
 ;; --------------------------------------------------------------------------------------------------
 
 (ns marine.models.fisheries
-	(:refer-clojure :rename {count length}) 
+  (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 ;; --------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@
 		[:< 25]   'fisheries:LowPoverty))
 	
 (defmodel population-density 'fisheries:PopulationDensity
-	(classification (enumeration 'policytarget:PopulationDensity "/km^2")
+	(classification (count 'policytarget:PopulationDensity "/km^2")
 		[2000 :>]    'fisheries:VeryHighPopulationDensity
 		[1000 2000]  'fisheries:HighPopulationDensity
 		[200 1000]   'fisheries:ModeratePopulationDensity
