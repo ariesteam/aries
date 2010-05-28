@@ -1,4 +1,4 @@
-(ns core.models.waterLaAntigua
+(ns core.models.water-la-antigua
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
