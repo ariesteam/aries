@@ -19,10 +19,29 @@
 	(categorization 'floodService:PresenceOfHousing))
 	
 (defmodel altitude-m 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))
-
+  (measurement 'geophysics:Altitude "m")
+  :as a1)
+  
 (defmodel altitude-ft 'geophysics:Altitude
   (measurement 'geophysics:Altitude "ft"))
+
+(defmodel slope 'geophysics:Slope
+  (measurement 'geophysics:DegreeSlope "\u00b0")
+  :as a2)
+
+(defmodel idall 'representation:GenericQuantifiable
+	(identification 'representation:GenericQuantifiable
+		:context(altitude-m slope))) 
+
+(defmodel idran 'representation:GenericQuantifiable
+	(ranking 'representation:GenericQuantifiable
+		:state #(+ (:a1 %) (:a2 %))
+		:context(altitude-m slope))) 
+
+(defmodel idfuc 'representation:GenericQuantifiable
+	(ranking 'representation:GenericQuantifiable
+		:state #(+ (:a1 %) (:a2 %))
+		:context (idall)))
 
 (defmodel lulc 'lulc:LandClassificationNumericMapping
   (numeric-coding 'nlcd:NLCDNumeric)
@@ -83,6 +102,8 @@
     		#(let [sum (tl/apply-not-nil + (:lulc#n %) (:lulc#s %) (:lulc#e %) (:lulc#w %))]
     			    (if (< sum 3) (tl/conc 'floodService:FarmlandAbsent) (tl/conc 'floodService:FarmlandPresent)))
 ))
+
+
 
 
 ;; test structural variability
