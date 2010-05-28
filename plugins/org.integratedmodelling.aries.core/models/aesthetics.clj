@@ -54,9 +54,11 @@
   (classification (categorization 'puget:ParcelUseCategoryKing)
 		  #{"R" "K"}  'aestheticService:HousingPresent
 		  :otherwise  'aestheticService:HousingAbsent)
-  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-		"RESIDENTIAL" 'aestheticService:HousingPresent
-		:otherwise    'aestheticService:HousingAbsent))
+;; TODO bring these back when the flow model runs at acceptable speeds.
+;;  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
+;;		"RESIDENTIAL" 'aestheticService:HousingPresent
+;;		:otherwise    'aestheticService:HousingAbsent)
+)
 	
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 

@@ -1,12 +1,13 @@
-(ns aries/escalculator
+(ns valuation.models.calculator
   (:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+  (:refer modelling :only (defmodel measurement classification categorization ranking 
+  												 numeric-coding binary-coding identification bayesian))
   (:refer aries.valuation :only (es-calculator)))
   
 (defmodel land-use 'esclass:HistoricalESLandcover
 	"Just a reclass of common land use typologies. Not really that good, but given what we use it for,
 	 who cares. Should work across all the US and Europe if the data are available."
-	(classification (ranking 'nlcd:NLCDNumeric)
+	(classification (numeric-coding 'nlcd:NLCDNumeric)
 		#{81 82}	                       'esclass:AgriculturePasture
 		#{41 42 43}                      'esclass:Forest
 		#{71 72}	                       'esclass:GrasslandsShrublands
@@ -17,7 +18,7 @@
 		31	                             'esclass:Rock
 		#{12 73 74}	                     'esclass:Desert
 		#{51 52}	                       'esclass:Tundra)
-	(classification (ranking 'corine:CORINENumeric)
+	(classification (numeric-coding 'corine:CORINENumeric)
 		[1 9 :inclusive]	               'esclass:Urban
 		[12 22 :inclusive]	             'esclass:AgriculturePasture
 		#{23 24 25}                      'esclass:Forest

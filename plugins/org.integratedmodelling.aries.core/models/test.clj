@@ -46,7 +46,7 @@
    )) 
 
 ;; simple test of dynamic updating
-(defmodel test-dynamic 'representation:GenericQuantifiable 
+(defmodel dynamic 'representation:GenericQuantifiable 
   (measurement 'representation:GenericQuantifiable "m"
     :value  (corescience/gaussian 150.0 3.75)
     :as     self
@@ -57,7 +57,7 @@
 
 
 ;; simple test of ODE integration. This should grow exponentially.
-(defmodel test-ode 'representation:GenericQuantifiable
+(defmodel ode 'representation:GenericQuantifiable
   (ranking 'representation:GenericQuantifiable
     :value  50
     :as     self
@@ -67,9 +67,11 @@
               (* (:self %) 0.03)) 
 )) 
 
-
-(defn cnil [a] (if (tl/is? a (tl/conc 'floodService:FarmlandPresent)) 0 1)) 
-
+(defmodel farmland 'floodService:Farmland
+	(classification (numeric-coding 'nlcd:NLCDNumeric)
+			82	       'floodService:FarmlandPresent
+			:otherwise 'floodService:FarmlandAbsent))
+			
 ;; cellular automaton contagion model - farmland only survives to next generation if surrounded by farmland
 ;; on three sides, meaning it will erode at the edges at each update until all farmland patches are square.
 (defmodel land-use-change 'floodService:Farmland
