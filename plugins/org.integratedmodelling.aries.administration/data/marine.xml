@@ -67,10 +67,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="BathSlope">
+	<measurement:Measurement id="BathSlope">
 		<observation:hasObservable>
 			<habitat:BathymetricSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -88,7 +89,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<observation:Categorization id="marine_coral">
 		<observation:hasObservable>

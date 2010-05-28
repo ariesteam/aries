@@ -216,10 +216,11 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
-	<measurement:Ranking id="DR_slope">
+	<measurement:Measurement id="DR_slope">
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -238,12 +239,13 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
-	<measurement:Ranking id="la_slope">
+	<measurement:Measurement id="la_slope">
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -261,7 +263,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 	<measurement:NumericCoding id="DR_lulc">
 		<observation:hasObservable>
@@ -1071,10 +1073,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="str_gradient">
+	<measurement:Measurement id="str_gradient">
 		<observation:hasObservable>
 			<soilretentionEcology:StreamGradient />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1092,12 +1095,13 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
-	<measurement:Ranking id="streamGradientMg">
+	<measurement:Measurement id="streamGradientMg">
 		<observation:hasObservable>
 			<soilretentionEcology:StreamGradient />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1115,12 +1119,13 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
-	<measurement:Ranking id="pugetStreamGradient">
+	<measurement:Measurement id="pugetStreamGradient">
 		<observation:hasObservable>
 			<soilretentionEcology:StreamGradient />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1138,7 +1143,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb) converts it to tonnes C/ha -->
 

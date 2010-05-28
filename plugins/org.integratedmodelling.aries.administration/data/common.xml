@@ -243,10 +243,11 @@
 		</measurement:Ranking>
 	
 <!-- Slope in degrees for Puget Sound & Madagascar -->
-	<measurement:Ranking id="PugetSlope">
+	<measurement:Measurement id="PugetSlope">
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -264,12 +265,13 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
-	<measurement:Ranking id="mad_slope">
+	<measurement:Measurement id="mad_slope">
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
+		<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -287,7 +289,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer -->
 
