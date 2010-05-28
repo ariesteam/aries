@@ -4,9 +4,8 @@
 ;;; ta Nov 20, 2009
 ;;; --------------------------------------------------------------------------------------------------
 
-(ns aries/wildfire
-	(:refer-clojure)
-  (:refer modelling :only (defmodel probability classification ranking bayesian)))
+(ns models.wildfire
+	(:refer modelling :only (defmodel probability classification ranking bayesian)))
 
 (defmodel mature-gorse 'wildfireService:MatureGorse
   (probability 'wildfireService:MatureGorse 'wildfireService:AbsentMatureGorse 'wildfireService:PresentMatureGorse 

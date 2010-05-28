@@ -1,7 +1,6 @@
-(ns aries.carbonJen
-	(:refer-clojure)
-  (:refer modelling :only (defmodel defscenario measurement classification categorization ranking identification bayesian))
-  (:refer aries :only (span)))
+(ns models.carbon-jen
+	(:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
+	(:refer aries :only (span)))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 ;; Jen leaves out the catgory Very Low from her discretization

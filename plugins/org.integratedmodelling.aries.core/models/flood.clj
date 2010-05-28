@@ -1,6 +1,7 @@
-(ns aries/flood
+(ns models.flood
 	(:refer-clojure)
-  (:refer modelling :only (defmodel defagent defscenario measurement classification categorization ranking identification bayesian))
+  (:refer modelling :only (defmodel defagent defscenario measurement classification categorization ranking identification bayesian binary-coding
+  		numeric-coding enumeration))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------

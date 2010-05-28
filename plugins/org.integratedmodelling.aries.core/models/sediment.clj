@@ -1,5 +1,5 @@
-(ns aries.sediment
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+(ns models.sediment
+  (:refer modelling :only (defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -8,21 +8,21 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (ranking 'soilretentionEcology:HydrologicSoilsGroup)
+	(classification (numeric-coding 'soilretentionEcology:HydrologicSoilsGroup)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC
 			4       'soilretentionEcology:SoilGroupD))
 
 (defmodel slope 'soilretentionEcology:Slope
-		(classification (ranking 'geophysics:DegreeSlope)
+		(classification (numeric-coding 'geophysics:DegreeSlope)
 			 [:< 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
 			 [16.70 :>] 	'soilretentionEcology:SteeplyDissectedToMountainous))
 
 (defmodel slope-stability 'soilretentionEcology:SlopeStability
-    (classification (ranking 'soilretentionEcology:SlopeStability)	 		
+    (classification (numeric-coding 'soilretentionEcology:SlopeStability)	 		
       1           'soilretentionEcology:HighSlopeStability
 	 		2           'soilretentionEcology:ModerateSlopeStability
 	 		3           'soilretentionEcology:LowSlopeStability)) 
@@ -35,7 +35,7 @@
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
-     (classification (ranking 'soilretentionEcology:SoilErodibility)
+     (classification (numeric-coding 'soilretentionEcology:SoilErodibility)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
        [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
        [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
@@ -64,7 +64,7 @@
 
 ;; Surface temperature - again, should be monthly and matched by temporal extents.  For Puget Sound only.
 (defmodel monthly-temperature 'soilretentionEcology:MonthlyTemperature
-		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
+		(classification (measurement 'geophysics:GroundSurfaceTemperature "C")
 			 [4 :>] 	'soilretentionEcology:HighTemperature
 			 [-4 4] 	'soilretentionEcology:ModerateTemperature
 			 [:< -4] 	'soilretentionEcology:LowTemperature))
@@ -79,7 +79,7 @@
 
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability 'soilretentionEcology:TropicalStormProbability
- (classification (ranking 'habitat:TropicalStormProbability)
+ (classification (numeric-coding 'habitat:TropicalStormProbability)
         0     'soilretentionEcology:NoTropicalStormProbability
       [1 5]   'soilretentionEcology:ModerateTropicalStormProbability
       [6 10]  'soilretentionEcology:HighTropicalStormProbability)) 
@@ -98,28 +98,28 @@
 ;;Vegetation type
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
-	(classification (ranking 'nlcd:NLCDNumeric)
+	(classification (numeric-coding 'nlcd:NLCDNumeric)
 		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
 		#{52 81}             'soilretentionEcology:ShrublandPasture
 		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped)
-  (classification (ranking 'mglulc:MGLULCNumeric)
+  (classification (numeric-coding 'mglulc:MGLULCNumeric)
     #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
     #{3 7 23}                                  'soilretentionEcology:DegradedForest
 		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} 'soilretentionEcology:Savanna
     #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)
-  (classification (ranking 'domlulc:DOMLULCNumeric)
+  (classification (numeric-coding 'domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} 'soilretentionEcology:ForestAndShrubland
     #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
 	 	#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
     #{23 36 38 40 59}       'soilretentionEcology:IntensiveCroplandAndPasture
     #{42}                   'soilretentionEcology:UrbanAndRoads)
-  (classification (ranking 'glc:GLCNumeric)
+  (classification (numeric-coding 'glc:GLCNumeric)
 		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
 		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
     #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped))
 
 (defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCover
-	(classification (ranking 'habitat:PercentCanopyCover)
+	(classification (numeric-coding 'habitat:PercentCanopyCover)
 		[80 100] 'soilretentionEcology:VeryHighVegetationCover
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
@@ -127,7 +127,7 @@
 		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
 
 (defmodel successional-stage 'soilretentionEcology:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)  
+	 (classification (numeric-coding 'ecology:SuccessionalStage)  
 	 		#{5 6}      'soilretentionEcology:OldGrowth
 	 		4           'soilretentionEcology:LateSuccession
 	 		3           'soilretentionEcology:MidSuccession
@@ -185,22 +185,22 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel floodplains 'soilretentionEcology:Floodplains
-	(classification (ranking 'soilretentionEcology:Floodplains)
+	(classification (binary-coding 'soilretentionEcology:Floodplains)
 			0 'soilretentionEcology:NotInFloodplain
 			1 'soilretentionEcology:InFloodplain))
 
 (defmodel farmland 'soilretentionEcology:Farmland
 	"Just a reclass of the regionally appropriate LULC layer"
-	(classification (ranking 'nlcd:NLCDNumeric)
+	(classification (numeric-coding 'nlcd:NLCDNumeric)
 		82	       'soilretentionEcology:Farmland
 		:otherwise 'soilretentionEcology:Farmland)
-  (classification (ranking 'corine:CORINENumeric)
+  (classification (numeric-coding 'corine:CORINENumeric)
 		[12 22 :inclusive]	 'soilretentionEcology:Farmland
 		:otherwise           'soilretentionEcology:Farmland)
-  (classification (ranking 'mglulc:MGLULCNumeric)
+  (classification (numeric-coding 'mglulc:MGLULCNumeric)
 		#{11 12 13} 'soilretentionEcology:Farmland
 		:otherwise 'soilretentionEcology:Farmland)
-  (classification (ranking 'soilretentionEcology:Farmland)
+  (classification (binary-coding 'soilretentionEcology:Farmland)
     1          'soilretentionEcology:FarmlandPresent
     0          'soilretentionEcology:FarmlandAbsent) 
 ;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
@@ -208,19 +208,23 @@
 ;;(classification (ranking 'domlulc:DOMLULCNumeric)
 		;;#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
 		;;:otherwise                'soilretentionEcology:Farmland)
-	(classification (ranking 'glc:GLCNumeric)
+	(classification (numeric-coding 'glc:GLCNumeric)
 		#{16 17 18} 'soilretentionEcology:Farmland
 		:otherwise 'soilretentionEcology:Farmland))
 
 ;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
 ;;hyroelectric generation capacity (use) - in reality dam height & flow are important factors but 
 ;;we don't have flow data.
+
+;; Need to insert different discretizations for the US and global models
 (defmodel hydroelectric-use-level 'soilretentionEcology:HydroelectricUseLevel
   (measurement 'soilretentionEcology:HydroelectricUseLevel "m^3"))
 
 ;;Reservoirs use for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresence
-	(ranking 'soilretentionEcology:HydroelectricUsePresence))
+	(classification (binary-coding 'soilretentionEcology:HydroelectricUsePresence)
+			0			'soilretentionEcology:HydroElectricUseAbsent
+			1			'soilretentionEcology:HydroElectricUsePresent)
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
@@ -310,7 +314,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel reservoirs 'soilretentionEcology:Reservoirs 
-  (classification (ranking 'soilretentionEcology:Reservoirs)
+  (classification (binary-coding 'soilretentionEcology:Reservoirs)
 		  0          'soilretentionEcology:ReservoirAbsent
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 

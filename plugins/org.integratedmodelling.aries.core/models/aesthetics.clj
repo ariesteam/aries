@@ -1,6 +1,5 @@
-(ns aries/view
-  (:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification binary-coding numeric-coding categorization ranking identification bayesian))
+(ns models.aesthetics
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
-(ns aries.waterLaAntigua
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian))
+(ns models.waterLaAntigua
+  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian enumeration))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
