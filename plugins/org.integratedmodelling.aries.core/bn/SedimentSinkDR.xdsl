@@ -13,18 +13,18 @@
 			<state id="LeveesAbsent" />
 			<probabilities>0.005 0.995</probabilities>
 		</cpt>
-		<cpt id="Reservoirs">
+		<cpt id="ReservoirsClass">
 			<state id="ReservoirPresent" />
 			<state id="ReservoirAbsent" />
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
-		<cpt id="StreamGradient">
+		<cpt id="StreamGradientClass">
 			<state id="HighStreamGradient" />
 			<state id="ModerateStreamGradient" />
 			<state id="LowStreamGradient" />
 			<probabilities>0.125 0.125 0.75</probabilities>
 		</cpt>
-		<cpt id="FloodplainVegetationCover">
+		<cpt id="FloodplainVegetationCoverClass">
 			<state id="VeryHighFloodplainVegetationCover" />
 			<state id="HighFloodplainVegetationCover" />
 			<state id="ModerateFloodplainVegetationCover" />
@@ -32,17 +32,17 @@
 			<state id="VeryLowFloodplainVegetationCover" />
 			<probabilities>0.005 0.05 0.05 0.05 0.845</probabilities>
 		</cpt>
-		<cpt id="AnnualSedimentSink">
+		<cpt id="AnnualSedimentSinkClass">
 			<state id="HighAnnualSedimentSink" />
 			<state id="ModerateAnnualSedimentSink" />
 			<state id="LowAnnualSedimentSink" />
 			<state id="NoAnnualSedimentSink" />
-			<parents>Reservoirs StreamGradient Levees FloodplainWidth FloodplainVegetationCover</parents>
+			<parents>ReservoirsClass StreamGradientClass Levees FloodplainWidth FloodplainVegetationCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network2" faultnameformat="nodestate">
 			<node id="Levees">
 				<name>Levees</name>
 				<interior color="e5f6f7" />
@@ -51,8 +51,8 @@
 				<position>770 267 822 299</position>
 				<barchart active="true" width="170" height="81" />
 			</node>
-			<node id="AnnualSedimentSink">
-				<name>AnnualSedimentSink</name>
+			<node id="AnnualSedimentSinkClass">
+				<name>AnnualSedimentSinkClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -60,8 +60,8 @@
 				<comment>Erosion an absolute sink</comment>
 				<barchart active="true" width="248" height="90" />
 			</node>
-			<node id="StreamGradient">
-				<name>StreamGradient</name>
+			<node id="StreamGradientClass">
+				<name>StreamGradientClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -69,16 +69,16 @@
 				<comment>A proxy for the velocity of streamflow.  Use underlying DEM to calculate the slope of the stream.</comment>
 				<barchart active="true" width="226" height="128" />
 			</node>
-			<node id="FloodplainVegetationCover">
-				<name>FloodplainVegetationCover</name>
+			<node id="FloodplainVegetationCoverClass">
+				<name>FloodplainVegetationCoverClass</name>
 				<interior color="ccffcc" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>198 286 351 322</position>
 				<barchart active="true" width="374" height="133" />
 			</node>
-			<node id="Reservoirs">
-				<name>Reservoirs</name>
+			<node id="ReservoirsClass">
+				<name>ReservoirsClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
