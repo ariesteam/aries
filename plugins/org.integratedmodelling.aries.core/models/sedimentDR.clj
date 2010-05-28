@@ -15,7 +15,7 @@
 			4       'soilretentionEcology:SoilGroupD))
 
 (defmodel slope 'soilretentionEcology:Slope
-		(classification (numeric-coding 'geophysics:DegreeSlope)
+		(classification (measurement 'geophysics:DegreeSlope "°")
 			 [:< 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
@@ -202,7 +202,7 @@
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 
 (defmodel stream-gradient 'soilretentionEcology:StreamGradient 
-  (classification (numeric-coding 'soilretentionEcology:StreamGradient)
+  (classification (measurement 'soilretentionEcology:StreamGradient "°")
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
     [1.15 2.86]  'soilretentionEcology:ModerateStreamGradient
     [2.86 :>]    'soilretentionEcology:HighStreamGradient))
