@@ -23,8 +23,8 @@
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 		
 		<!-- NLCD categories for Puget region. FIXME: DELETE as soon as the ones below are
-		working properly. -->
-        <measurement:Ranking id="puget_nlcd">
+		working properly. 
+        <measurement:NumericCoding id="puget_nlcd">
                 <observation:hasObservable>
                         <nlcd:NLCDNumeric />
                 </observation:hasObservable>
@@ -45,9 +45,9 @@
                                 <geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
                         </geospace:RasterGrid>
                 </observation:hasObservationExtent>
-        </measurement:Ranking>
-		
-	<measurement:Ranking id="nlcd_lc_01">
+        </measurement:NumericCoding> -->
+        
+	<measurement:NumericCoding id="nlcd_lc_ll_01">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -56,23 +56,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_01</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_01</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>26022</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31324</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2240655.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-2303835.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3180435.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-1523115.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>36404</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>28645</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>40.142</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.264</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.118</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.586</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_02">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_02">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -81,23 +81,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_02</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_02</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>28624</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>40587</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1240515.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-2364615.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2458185.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-1505835.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>40995</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>39540</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>31.396</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.131</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.763</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-112.309</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_03">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_03">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -106,23 +106,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_03</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_03</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>33376</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31023</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2171145.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-1742265.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3101895.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-740925.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>41430</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>27553</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>40.812</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-119.746</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>50.586</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-105.049</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_04">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_04">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -131,23 +131,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_04</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_04</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>31053</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>38617</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1416495.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-1651065.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2575065.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-719415.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>40737</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>35991</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>34.384</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-116.988</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>45.848</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-104.013</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_05">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_05">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -156,23 +156,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_05</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_05</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>30577</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>24010</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>974355.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-1749945.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1694715.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-832575.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>35265</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>24133</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.321</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-115.9</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.91</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-104.811</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_06">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_06">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -181,23 +181,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_06</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_06</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>39900</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>32519</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1959615.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-1030515.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2935245.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>166545.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>46648</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>27044</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>40.056</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-109.903</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.428</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-93.737</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_07">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_07">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -206,23 +206,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_07</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_07</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>23750</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>49332</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>678615.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-957915.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2158635.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-245355.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>31893</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>47675</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.735</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-107.657</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>42.392</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-98.52</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_08">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_08">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -231,23 +231,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_08</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_08</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>38111</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>28070</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2091555.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-28665.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2933715.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1114725.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>45259</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>24356</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>41.122</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-96.389</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.414</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-80.982</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_09">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_09">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -256,23 +256,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_09</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_09</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>32634</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>42071</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1162515.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-399435.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2424705.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>579645.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>41092</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>38013</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>33.359</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-101.054</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.811</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-88.674</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_10">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_10">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -281,23 +281,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_10</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>30991</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>42272</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>307875.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-511785.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1576095.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>418005.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>36709</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>40057</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>25.695</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-101.815</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.226</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-91.248</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_11">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_11">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -306,23 +306,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_11</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>35087</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>28189</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1408365.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>375795.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2254095.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1428465.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>42667</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>27374</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>34.666</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-91.811</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.199</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-78.512</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_12">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_12">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -331,23 +331,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_12</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>25236</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>31299</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>664125.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>308595.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1603155.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1065735.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>31061</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>31004</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.498</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-92.836</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.417</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-83.901</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_13">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_13">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -356,23 +356,23 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_13</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>33551</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>47656</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1586295.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1260255.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3016035.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2266845.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>55677</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>50925</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>34.616</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-81.752</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.126</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-65.887</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="nlcd_lc_14">
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="nlcd_lc_ll_14">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
 		</observation:hasObservable>
@@ -381,19 +381,19 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_14</geospace:hasCoverageId>
+				<geospace:hasCoverageId>nlcd_lc_ll_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>33144</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>52400</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>256035.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>847575.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1828095.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1841955.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:96703</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>46447</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>55000</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>23.756</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-87.694</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>39.08</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-74.753</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 </kbox>	

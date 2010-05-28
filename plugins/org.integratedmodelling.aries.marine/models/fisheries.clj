@@ -6,7 +6,7 @@
 
 (ns aries/marine
 	(:refer-clojure)
-  (:refer modelling :only (defmodel measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel measurement classification enumeration categorization ranking identification bayesian)))
 
 ;; --------------------------------------------------------------------------------------
 ;; use models

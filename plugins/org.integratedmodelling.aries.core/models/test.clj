@@ -4,9 +4,10 @@
 ;; fv Nov 09
 ;; --------------------------------------------------------------------------------------------------
 
-(ns aries/test
+(ns test
 	(:refer-clojure)
-  (:refer modelling :only (defmodel defagent defscenario measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding enumeration 
+  											   measurement classification categorization ranking identification bayesian)))
 
 (defmodel altitude-mm 'geophysics:Altitude
 	(measurement 'geophysics:Altitude "mm"))
@@ -22,6 +23,13 @@
 
 (defmodel altitude-ft 'geophysics:Altitude
   (measurement 'geophysics:Altitude "ft"))
+
+(defmodel lulc 'lulc:LandClassificationNumericMapping
+  (numeric-coding 'nlcd:NLCDNumeric)
+  (numeric-coding 'corine:CORINENumeric)
+  (numeric-coding 'mglulc:MGLULCNumeric)
+  (numeric-coding 'domlulc:DOMLULCNumeric)
+  (numeric-coding 'glc:GLCNumeric))
 
 (defmodel altitude-computed 'geophysics:Altitude 
 
