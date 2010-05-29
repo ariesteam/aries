@@ -15,22 +15,22 @@
 			3       'soilretentionEcology:SoilGroupC
 			4       'soilretentionEcology:SoilGroupD))
 
-(defmodel slope 'soilretentionEcology:Slope
+(defmodel slope 'soilretentionEcology:SlopeClass
 	(classification (measurement 'geophysics:DegreeSlope "\u00b0")
 			 [:< 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
 			 [16.70 :>] 	'soilretentionEcology:SteeplyDissectedToMountainous))
 
-(defmodel soil-texture 'soilretentionEcology:SoilTexture
-    (classification (categorization 'soilretentionEcology:SoilTextureCategorization)
+(defmodel soil-texture 'soilretentionEcology:SoilTextureClass
+    (classification (categorization 'habitat:SoilTexture)
       "Coarse"    'soilretentionEcology:CoarseSoilTexture
       "Medium"    'soilretentionEcology:MediumSoilTexture
       "Fine"      'soilretentionEcology:FineSoilTexture)) 
 
 ;;Soil erodibility factor from USLE (unitless).
-(defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
-     (classification (ranking 'soilretentionEcology:SoilErodibilityFactor)
+(defmodel soil-erodibility 'soilretentionEcology:SoilErodibilityClass
+     (classification (ranking 'habitat:SoilErodibility)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
        [0.1 0.225] 'soilretentionEcology:LowSoilErodibility
        [0.225 0.3] 'soilretentionEcology:ModerateSoilErodibility
@@ -40,7 +40,7 @@
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitationClass
 	"FIXME this is annual precipitation."
-	(classification (measurement 'soilretentionEcology:AnnualPrecipitation "mm")
+	(classification (measurement 'habitat:AnnualPrecipitation "mm")
     [:< 600] 	    'soilretentionEcology:VeryLowAnnualPrecipitation
 		[600 1200] 	  'soilretentionEcology:LowAnnualPrecipitation
 		[1200 1800]   'soilretentionEcology:ModerateAnnualPrecipitation
@@ -48,7 +48,7 @@
 		[2200 :>] 	  'soilretentionEcology:VeryHighAnnualPrecipitation))
 
 ;;Tropical storm probability, use only in DR & Mg
-(defmodel storm-probability 'soilretentionEcology:TropicalStormProbability
+(defmodel storm-probability 'soilretentionEcology:TropicalStormProbabilityClass
  (classification (ranking 'habitat:TropicalStormProbability)
         0     'soilretentionEcology:NoTropicalStormProbability
       [1 5]   'soilretentionEcology:ModerateTropicalStormProbability
@@ -58,7 +58,7 @@
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
 ;;Or could strongly consider just running it on an annual time step, as that's what the data support.
 (defmodel runoff 'soilretentionEcology:AnnualRunoffClass
-	(classification (measurement 'soilretentionEcology:AnnualRunoff "mm/year")
+	(classification (measurement 'habitat:AnnualRunoff "mm/year")
 		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
 		[200 600] 	  'soilretentionEcology:LowAnnualRunoff
 		[600 1200]  	'soilretentionEcology:ModerateAnnualRunoff
@@ -88,8 +88,8 @@
 		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
     #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped))
 
-(defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCover
-	(classification (numeric-coding 'habitat:PercentCanopyCover)
+(defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCoverClass
+	(classification (numeric-coding 'habitat:PercentVegetationCover)
 		[80 100] 'soilretentionEcology:VeryHighVegetationCover
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
@@ -120,7 +120,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel floodplains 'soilretentionEcology:FloodplainsClass
-	(classification (binary-coding 'soilretentionEcology:Floodplains)
+	(classification (binary-coding 'geofeatures:Floodplain)
 			0 'soilretentionEcology:NotInFloodplain
 			1 'soilretentionEcology:InFloodplain))
 
@@ -162,7 +162,7 @@
                     0)
        :context (
           (binary-coding 'soilretentionEcology:Farmland  :as farmlandpresent)
-          (binary-coding 'soilretentionEcology:Floodplains :as floodplains)))) 
+          (binary-coding 'geofeatures:Floodplain :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-erosion-use-dr 'soilretentionEcology:ErosionProneFarmers
@@ -198,18 +198,18 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel reservoirs 'soilretentionEcology:ReservoirsClass 
-  (classification (binary-coding 'soilretentionEcology:Reservoirs)
+  (classification (binary-coding 'geofeatures:Reservoir)
 		  0          'soilretentionEcology:ReservoirAbsent
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 
 (defmodel stream-gradient 'soilretentionEcology:StreamGradientClass 
-  (classification (measurement 'soilretentionEcology:StreamGradient "\u00B0")
+  (classification (measurement 'habitat:StreamGradient "\u00B0")
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
     [1.15 2.86]  'soilretentionEcology:ModerateStreamGradient
     [2.86 :>]    'soilretentionEcology:HighStreamGradient))
 
 (defmodel floodplain-vegetation-cover 'soilretentionEcology:FloodplainVegetationCoverClass 
-  (classification (numeric-coding 'soilretentionEcology:FloodplainVegetationCover)
+  (classification (numeric-coding 'habitat:PercentFloodplainVegetationCover)
     [0 20]   'soilretentionEcology:VeryLowFloodplainVegetationCover
     [20 40]  'soilretentionEcology:LowFloodplainVegetationCover
     [40 60]  'soilretentionEcology:ModerateVegetationCover

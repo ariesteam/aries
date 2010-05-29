@@ -9,34 +9,34 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (numeric-coding 'soilretentionEcology:HydrologicSoilsGroup)
+	(classification (numeric-coding 'habitat:HydrologicSoilsGroup)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC
 			4       'soilretentionEcology:SoilGroupD))
 
-(defmodel slope 'soilretentionEcology:Slope
-		(classification (numeric-coding 'geophysics:DegreeSlope)
+(defmodel slope 'soilretentionEcology:SlopeClass
+		(classification (measurement 'geophysics:DegreeSlope "\u00b0")
 			 [:< 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
 			 [16.70 :>] 	'soilretentionEcology:SteeplyDissectedToMountainous))
 
-(defmodel slope-stability 'soilretentionEcology:SlopeStability
-    (classification (numeric-coding 'soilretentionEcology:SlopeStability)	 		
+(defmodel slope-stability 'soilretentionEcology:SlopeStabilityClass
+    (classification (numeric-coding 'habitat:SlopeStability)	 		
       1           'soilretentionEcology:HighSlopeStability
 	 		2           'soilretentionEcology:ModerateSlopeStability
 	 		3           'soilretentionEcology:LowSlopeStability)) 
 
-(defmodel soil-texture 'soilretentionEcology:SoilTexture
-    (classification (categorization 'soilretentionEcology:SoilTexture)
+(defmodel soil-texture 'soilretentionEcology:SoilTextureClass
+    (classification (categorization 'habitat:SoilTexture)
       "Coarse"    'soilretentionEcology:CoarseSoilTexture
       "Medium"    'soilretentionEcology:MediumSoilTexture
       "Fine"      'soilretentionEcology:FineSoilTexture)) 
 
 ;;Soil erodibility factor from USLE (unitless).
-(defmodel soil-erodibility 'soilretentionEcology:SoilErodibility
-     (classification (numeric-coding 'soilretentionEcology:SoilErodibility)
+(defmodel soil-erodibility 'soilretentionEcology:SoilErodibilityClass
+     (classification (numeric-coding 'habitat:SoilErodibility)
        [:< 0.1]    'soilretentionEcology:VeryLowSoilErodibility
        [0.1 0.225]   'soilretentionEcology:LowSoilErodibility
        [0.225 0.3]   'soilretentionEcology:ModerateSoilErodibility
@@ -44,9 +44,9 @@
        [0.375 :>]     'soilretentionEcology:VeryHighSoilErodibility))
 
 ;;Monthly precipitation for Puget Sound.
-(defmodel precipitation-monthly 'soilretentionEcology:MonthlyPrecipitation
+(defmodel precipitation-monthly 'soilretentionEcology:MonthlyPrecipitationClass
 	"FIXME this is total monthly precipitation."
-	(classification (measurement 'soilretentionEcology:MonthlyPrecipitation "in")
+	(classification (measurement 'habitat:JanuaryPrecipitation "in")
 		[:< 3] 	  'soilretentionEcology:VeryLowMonthlyPrecipitation
 		[3 6] 	  'soilretentionEcology:LowMonthlyPrecipitation
 		[6 12] 	  'soilretentionEcology:ModerateMonthlyPrecipitation
@@ -54,9 +54,9 @@
 		[24 :>] 	'soilretentionEcology:VeryHighMonthlyPrecipitation))
 
 ;;Annual precipitation for Mg & DR
-(defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitation
+(defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitationClass
 	"FIXME this is annual precipitation."
-	(classification (measurement 'soilretentionEcology:AnnualPrecipitation "mm")
+	(classification (measurement 'habitat:AnnualPrecipitation "mm")
     [:< 600] 	    'soilretentionEcology:VeryLowAnnualPrecipitation
 		[600 1200] 	  'soilretentionEcology:LowAnnualPrecipitation
 		[1200 1800]   'soilretentionEcology:ModerateAnnualPrecipitation
@@ -64,22 +64,22 @@
 		[2200 :>] 	  'soilretentionEcology:VeryHighAnnualPrecipitation))
 
 ;; Surface temperature - again, should be monthly and matched by temporal extents.  For Puget Sound only.
-(defmodel monthly-temperature 'soilretentionEcology:MonthlyTemperature
-		(classification (measurement 'geophysics:GroundSurfaceTemperature "C")
+(defmodel monthly-temperature 'soilretentionEcology:MonthlyTemperatureClass
+		(classification (measurement 'geophysics:JanuaryMeanGroundSurfaceTemperature "C")
 			 [4 :>] 	'soilretentionEcology:HighTemperature
 			 [-4 4] 	'soilretentionEcology:ModerateTemperature
 			 [:< -4] 	'soilretentionEcology:LowTemperature))
 
 ;;Snowmelt, use only in Puget Sound
-(defmodel monthly-snowmelt 'soilretentionEcology:MonthlySnowmelt
-	(classification (measurement 'soilretentionEcology:MonthlySnowmelt "mm")
+(defmodel monthly-snowmelt 'soilretentionEcology:MonthlySnowmeltClass
+	(classification (measurement 'habitat:JanuarySnowmelt "mm")
 		0 	                  'soilretentionEcology:NoMonthlySnowmelt
 		[:exclusive 0 50] 	  'soilretentionEcology:LowMonthlySnowmelt
 		[50 100] 	            'soilretentionEcology:ModerateMonthlySnowmelt
 		[100 :>]            	'soilretentionEcology:HighMonthlySnowmelt))
 
 ;;Tropical storm probability, use only in DR & Mg
-(defmodel storm-probability 'soilretentionEcology:TropicalStormProbability
+(defmodel storm-probability 'soilretentionEcology:TropicalStormProbabilityClass
  (classification (numeric-coding 'habitat:TropicalStormProbability)
         0     'soilretentionEcology:NoTropicalStormProbability
       [1 5]   'soilretentionEcology:ModerateTropicalStormProbability
@@ -88,8 +88,8 @@
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
 ;;Or could strongly consider just running it on an annual time step, as that's what the data support.
-(defmodel runoff 'soilretentionEcology:AnnualRunoff
-	(classification (measurement 'soilretentionEcology:AnnualRunoff "mm")
+(defmodel runoff 'soilretentionEcology:AnnualRunoffClass
+	(classification (measurement 'habitat:AnnualRunoff "mm")
 		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
 		[200 600] 	  'soilretentionEcology:LowAnnualRunoff
 		[600 1200]  	'soilretentionEcology:ModerateAnnualRunoff
@@ -119,15 +119,15 @@
 		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
     #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped))
 
-(defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCover
-	(classification (numeric-coding 'habitat:PercentCanopyCover)
+(defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCoverClass
+	(classification (numeric-coding 'habitat:PercentVegetationCover)
 		[80 100] 'soilretentionEcology:VeryHighVegetationCover
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
 		[20 40]  'soilretentionEcology:LowVegetationCover
 		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
 
-(defmodel successional-stage 'soilretentionEcology:SuccessionalStage
+(defmodel successional-stage 'soilretentionEcology:SuccessionalStageClass
 	 (classification (numeric-coding 'ecology:SuccessionalStage)  
 	 		#{5 6}      'soilretentionEcology:OldGrowth
 	 		4           'soilretentionEcology:LateSuccession
@@ -137,7 +137,7 @@
 	 		:otherwise  'soilretentionEcology:NoSuccession))
 
 ;;Sediment source value
-(defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnual
+(defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
   [(categorization 'geofeatures:Country :as country)]
  (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "kg/ha")
       :when #(= (:country %) "United States") 
@@ -152,7 +152,7 @@
   		[40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound   	 
-(defmodel source-puget 'soilretentionEcology:SedimentSourceValueAnnual
+(defmodel source-puget 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual ) 
@@ -162,7 +162,7 @@
               successional-stage)))
 
 ;; source bayesian model for Madagascar   	 
-(defmodel source-mg 'soilretentionEcology:SedimentSourceValueAnnual
+(defmodel source-mg 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
@@ -171,7 +171,7 @@
               storm-probability runoff vegetation-type percent-vegetation-cover))) 
 
 ;; source bayesian model for Dominican Republic
-(defmodel source-dr 'soilretentionEcology:SedimentSourceValueAnnual
+(defmodel source-dr 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
@@ -186,7 +186,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel floodplains 'soilretentionEcology:Floodplains
-	(classification (binary-coding 'soilretentionEcology:Floodplains)
+	(classification (binary-coding 'geofeatures:Floodplain)
 			0 'soilretentionEcology:NotInFloodplain
 			1 'soilretentionEcology:InFloodplain))
 
@@ -231,7 +231,7 @@
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
        :context ((ranking 'lulc:NLCDNumeric :as farmlandpresent)
-                 (ranking 'soilretentionEcology:Floodplains :as floodplains))
+                 (ranking 'geofeatures:Floodplain :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
                         (= (:farmlandpresent %) 82.0))
                     1
@@ -245,7 +245,7 @@
                     0)
        :context (
           (ranking 'mglulc:MGLULCNumeric :as farmlandpresent)
-          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
+          (ranking 'geofeatures:Floodplain :as floodplains)))) 
 
 (defmodel farmers-deposition-use-dr 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
@@ -255,7 +255,7 @@
                     0)
        :context (
           (ranking 'soilretentionEcology:Farmland :as farmlandpresent)
-          (ranking 'soilretentionEcology:Floodplains :as floodplains)))) 
+          (ranking 'geofeatures:Floodplain :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-erosion-use-puget 'soilretentionEcology:ErosionProneFarmers
@@ -314,40 +314,40 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel reservoirs 'soilretentionEcology:Reservoirs 
-  (classification (binary-coding 'soilretentionEcology:Reservoirs)
+(defmodel reservoirs 'soilretentionEcology:ReservoirsClass 
+  (classification (binary-coding 'geofeatures:Reservoir)
 		  0          'soilretentionEcology:ReservoirAbsent
 		  :otherwise 'soilretentionEcology:ReservoirPresent))
 
-(defmodel stream-gradient 'soilretentionEcology:StreamGradient 
-  (classification (ranking 'soilretentionEcology:StreamGradient)
+(defmodel stream-gradient 'soilretentionEcology:StreamGradientClass 
+  (classification (measurement 'habitat:StreamGradient "\u00b0")
     [:<   1.15]  'soilretentionEcology:LowStreamGradient
     [1.15 2.86]  'soilretentionEcology:ModerateStreamGradient
     [2.86 :>]    'soilretentionEcology:HighStreamGradient))
 
-(defmodel floodplain-vegetation-cover 'soilretentionEcology:FloodplainVegetationCover 
-  (classification (ranking 'soilretentionEcology:FloodplainVegetationCover)
+(defmodel floodplain-vegetation-cover 'soilretentionEcology:FloodplainVegetationCoverClass 
+  (classification (ranking 'habitat:PercentFloodplainVegetationCover)
     [0 20]   'soilretentionEcology:VeryLowFloodplainVegetationCover
     [20 40]  'soilretentionEcology:LowFloodplainVegetationCover
     [40 60]  'soilretentionEcology:ModerateVegetationCover
     [60 80]  'soilretentionEcology:HighFloodplainVegetationCover
     [80 100] 'soilretentionEcology:VeryHighFloodplainVegetationCover))
 
-(defmodel floodplain-width 'soilretentionEcology:FloodplainWidth 
-  (classification (measurement 'soilretentionEcology:FloodplainWidth "m")
+(defmodel floodplain-width 'soilretentionEcology:FloodplainWidthClass 
+  (classification (measurement 'habitat:FloodplainWidth "m")
     [0 350]     'soilretentionEcology:VeryNarrowFloodplain
     [350 800]   'soilretentionEcology:NarrowFloodplain
     [800 1300]  'soilretentionEcology:WideFloodplain
     [1300 :>]   'soilretentionEcology:VeryWideFloodplain))
 
-(defmodel levees 'soilretentionEcology:Levees 
-  (classification (ranking 'soilretentionEcology:Levees)
+(defmodel levees 'soilretentionEcology:LeveesClass 
+  (classification (binary-coding 'infrastructure:Levee)
 		  0          'soilretentionEcology:LeveeAbsent
 		  :otherwise 'soilretentionEcology:LeveePresent))
 
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
-(defmodel sediment-sink-annual 'soilretentionEcology:AnnualSedimentSink 
+(defmodel sediment-sink-annual 'soilretentionEcology:AnnualSedimentSinkClass 
   [(categorization 'geofeatures:Country :as country)]
   (classification (measurement 'soilretentionEcology:AnnualSedimentSink "kg/ha")
       :when #(= (:country %) "United States") 
@@ -362,21 +362,21 @@
        0                    'soilretentionEcology:NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
-(defmodel sediment-sink-mg 'soilretentionEcology:AnnualSedimentSink
+(defmodel sediment-sink-mg 'soilretentionEcology:AnnualSedimentSinkClass
   (bayesian 'soilretentionEcology:AnnualSedimentSink 
     :import  "aries.core::SedimentSinkMg.xdsl"
     :keep    ('soilretentionEcology:AnnualSedimentSink)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 
-(defmodel sediment-sink-us 'soilretentionEcology:AnnualSedimentSink
+(defmodel sediment-sink-us 'soilretentionEcology:AnnualSedimentSinkClass
   (bayesian 'soilretentionEcology:AnnualSedimentSink    
     :import  "aries.core::SedimentSink.xdsl"
     :keep    ('soilretentionEcology:AnnualSedimentSink)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width levees)))
 
-(defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSink
+(defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSinkClass
   (bayesian 'soilretentionEcology:AnnualSedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
     :keep    ('soilretentionEcology:AnnualSedimentSink)

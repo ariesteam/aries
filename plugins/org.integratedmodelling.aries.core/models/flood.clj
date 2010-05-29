@@ -22,8 +22,7 @@
 			4        'floodService:SoilGroupD))
 
 (defmodel precipitation 'floodService:Precipitation
-	"FIXME this is total monthly precipitation I believe."
-	(classification (measurement 'habitat:Precipitation "in")
+	(classification (measurement 'habitat:JanuaryPrecipitation "in")
 		[:< 3] 	  'floodService:VeryLowPrecipitation
 		[3 6] 	  'floodService:LowPrecipitation
 		[6 12] 	  'floodService:ModeratePrecipitation
@@ -49,7 +48,7 @@
 		
 ;; surface temperature - again, should be monthly and matched by temporal extents.
 (defmodel monthly-temperature 'floodService:MonthlyTemperature
-		(classification (ranking 'geophysics:GroundSurfaceTemperature "C")
+		(classification (ranking 'geophysics:JanuaryMeanGroundSurfaceTemperature "C")
 			 [4 :>] 	'floodService:HighTemperature
 			 [-4 4] 	'floodService:ModerateTemperature
 			 [:< -4] 	'floodService:LowTemperature))
@@ -83,7 +82,7 @@
 ;; Flood source probability (runoff levels), SCS curve number method
 ;; See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm
 (defmodel source-cn 'floodService:FloodSource
-	  (measurement 'floodService:Runoff "in" 
+	  (measurement 'habitat:AnnualRunoff "mm" 
 	 	 	:context  (land-use :as landuse 
                  soil-group-puget :as soilgroup
                  (ranking 'habitat:PercentImperviousness) :as imperv
@@ -104,7 +103,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
-		(classification (ranking 'geophysics:DegreeSlope)
+		(classification (measurement 'geophysics:DegreeSlope "\u00b0")
 			 [:< 1.15] 	  'floodService:Level
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly
@@ -120,7 +119,7 @@
 
 (defmodel bridges 'floodService:Bridges
 	"Presence of a bridge in given context"
-	(classification (ranking 'infrastructure:Bridge)
+	(classification (binary-coding 'infrastructure:Bridge)
 			0 'floodService:BridgesNotPresent
 			1 'floodService:BridgesPresent
 ;   :agent "aries/flood/bridge"
@@ -142,7 +141,7 @@
 		[:< 20]  'floodService:VeryLowVegetationHeight))
 		
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
-	(classification (ranking 'habitat:PercentCanopyCover)
+	(classification (ranking 'habitat:PercentVegetationCover)
 		[80 100] 'floodService:VeryHighVegetationCover
 		[60 80] 'floodService:HighVegetationCover
 		[40 60] 'floodService:ModerateVegetationCover
@@ -178,14 +177,14 @@
 			[:< 400]		      'floodService:VerySmallDamStorage))
 			
 (defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
-	(classification (ranking 'floodService:MeanDaysPrecipitationPerMonth)
+	(classification (ranking 'habitat:JanuaryDaysOfPrecipitation)
 		#{8 9}    'floodService:VeryHighDaysPrecipitation
 		#{6 7}    'floodService:HighDaysPrecipitation
 		#{4 5}    'floodService:LowDaysPrecipitation
 		#{1 2 3}  'floodService:VeryLowDaysPrecipitation))
 		
 (defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-	(classification (ranking 'infrastructure:DetentionBasin)
+	(classification (binary-coding 'infrastructure:DetentionBasin)
 		0            'floodService:DetentionBasinStorageNotPresent
 		:otherwise   'floodService:DetentionBasinStoragePresent))
 		
@@ -210,7 +209,7 @@
 
 (defmodel floodplains 'floodService:Floodplains
 	"Presence of a floodplain in given context"
-	(classification (binary-coding 'floodService:Floodplains)
+	(classification (binary-coding 'geofeatures:Floodplain)
 			0 'floodService:NotInFloodplain
 			1 'floodService:InFloodplain))
 			
@@ -348,7 +347,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -370,7 +369,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating
@@ -392,7 +391,7 @@
   "Test only, don't worry."
   (measurement 'geophysics:Altitude "m" :as altitude)
   (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (ranking 'geophysics:DegreeSlope)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
     :as          slope
     [:< 1.15] 	 'floodService:Level
     [1.15 4.57]  'floodService:GentlyUndulating

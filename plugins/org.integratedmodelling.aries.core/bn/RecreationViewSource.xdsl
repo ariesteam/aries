@@ -7,7 +7,7 @@
 			<state id="NoMountain" />
 			<probabilities>0.0056 0.2964 0.698</probabilities>
 		</cpt>
-		<cpt id="OpenSpace">
+		<cpt id="OpenSpaceClass">
 			<state id="AgriculturalLand" />
 			<state id="ForestedLand" />
 			<state id="OtherOpenLand" />
@@ -36,12 +36,12 @@
 			<state id="ModerateNaturalBeauty" />
 			<state id="LowNaturalBeauty" />
 			<state id="NoNaturalBeauty" />
-			<parents>OpenSpace Mountain WaterView</parents>
+			<parents>OpenSpaceClass Mountain WaterView</parents>
 			<probabilities>0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.3 0.5 0.2 0 0.5 0.4 0.1 0 0.4 0.3 0.3 0 0.2 0.5 0.3 0 0.5 0.3 0.2 0 0.76 0.14 0.08 0.02 0 0.3 0.5 0.2 1 0 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.6 0.4 0 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0.7 0.2 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.6 0.3 0.1 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.1 0.2 0.7 0 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.4 0.6 0 0 0.6 0.4 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="Mountain">
 				<name>Mountain</name>
 				<interior color="ffcc99" />
@@ -58,8 +58,8 @@
 				<position>355 100 467 130</position>
 				<barchart active="true" width="128" height="95" />
 			</node>
-			<node id="OpenSpace">
-				<name>Open Space</name>
+			<node id="OpenSpaceClass">
+				<name>OpenSpaceClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

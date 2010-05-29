@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="TropicalStormProbability">
+		<cpt id="TropicalStormProbabilityClass">
 			<state id="HighTropicalStormProbability" />
 			<state id="ModerateTropicalStormProbability" />
 			<state id="NoTropicalStormProbability" />
@@ -21,10 +21,10 @@
 			<state id="ModerateAnnualRunoff" />
 			<state id="LowAnnualRunoff" />
 			<state id="VeryLowAnnualRunoff" />
-			<parents>AnnualPrecipitationClass TropicalStormProbability</parents>
+			<parents>AnnualPrecipitationClass TropicalStormProbabilityClass</parents>
 			<probabilities>1 0 0 0 0 0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0 0.8 0.2 0 0 0 0 1 0 0 0 0 0.2 0.8 0 0 0 0.75 0.25 0 0 0 0.5 0.5 0 0 0 0.25 0.75 0 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="Slope">
+		<cpt id="SlopeClass">
 			<state id="SteeplyDissectedToMountainous" />
 			<state id="RollingToHilly" />
 			<state id="GentlyUndulating" />
@@ -46,29 +46,29 @@
 			<state id="UrbanAndRoads" />
 			<probabilities>0.01 0.5 0.08 0.38 0.03</probabilities>
 		</cpt>
-		<cpt id="SuccessionalStage">
+		<cpt id="SuccessionalStageClass">
 			<state id="LateSuccession" />
 			<state id="MidSuccession" />
 			<state id="EarlySuccession" />
 			<state id="NoSuccession" />
 			<probabilities>0.03 0.2 0.2 0.57</probabilities>
 		</cpt>
-		<cpt id="SoilTexture">
+		<cpt id="SoilTextureClass">
 			<state id="FineSoilTexture" />
 			<state id="MediumSoilTexture" />
 			<state id="CoarseSoilTexture" />
 			<probabilities>0.98 0.01 0.01</probabilities>
 		</cpt>
-		<cpt id="SoilErodibility">
+		<cpt id="SoilErodibilityClass">
 			<state id="VeryHighSoilErodibility" />
 			<state id="HighSoilErodibility" />
 			<state id="MediumSoilErodibility" />
 			<state id="LowSoilErodibility" />
 			<state id="VeryLowSoilErodibility" />
-			<parents>Slope SoilTexture HydrologicSoilsGroup</parents>
+			<parents>SlopeClass SoilTextureClass HydrologicSoilsGroup</parents>
 			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0 0 0.75 0.25 0 0 0 0.5 0.5 0 0 0 0.25 0.75 0 0 0 0.3 0.7 0 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCover">
+		<cpt id="PercentVegetationCoverClass">
 			<state id="VeryHighVegetationCover" />
 			<state id="HighVegetationCover" />
 			<state id="ModerateVegetationCover" />
@@ -81,7 +81,7 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStage PercentVegetationCover VegetationType</parents>
+			<parents>SuccessionalStageClass PercentVegetationCoverClass VegetationType</parents>
 			<probabilities>1 0 0 0 0.975 0.025 0 0 0.9 0.1 0 0 0 0.025 0.975 0 0 0 0 1 1 0 0 0 0.9 0.1 0 0 0.9 0.1 0 0 0 0.1 0.9 0 0 0 0 1 1 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 0.2 0.8 0 0 0 0 1 1 0 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 1 1 0 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0 0 0.1 0.9 0 0 0 1 1 0 0 0 0.9 0.1 0 0 0.9 0.1 0 0 0 0.1 0.9 0 0 0 0 1 1 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 0.2 0.8 0 0 0 0 1 1 0 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0 0.3 0.7 0 0 0 0 1 1 0 0 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0 0 0.2 0.8 0 0 0 1 1 0 0 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0 0 0.1 0.9 0 0 0 1 1 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 0.2 0.8 0 0 0 0 1 1 0 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0 0.3 0.7 0 0 0 0 1 1 0 0 0 0.3 0.3 0.4 0 0.3 0.3 0.4 0 0 0.2 0.8 0 0 0 0 1 1 0 0 0 0.1 0.4 0.5 0 0.1 0.4 0.5 0 0 0.1 0.9 0 0 0 0 1 1 0 0 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 1 1 0 0 0 0.1 0.8 0.1 0 0.1 0.8 0.1 0 0 0.1 0.9 0 0 0 0 1 1 0 0 0 0.05 0.85 0.1 0 0.05 0.85 0.1 0 0 0.05 0.95 0 0 0 0 1 1 0 0 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.025 0.975 0 0 0 0 1 1 0 0 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 1 1 0 0 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 0.025 0.975 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValueAnnualClass">
@@ -89,23 +89,23 @@
 			<state id="ModerateAnnualSedimentSource" />
 			<state id="LowAnnualSedimentSource" />
 			<state id="NoAnnualSedimentSource" />
-			<parents>AnnualRunoffClass SoilErodibility VegetativeMaturity</parents>
+			<parents>AnnualRunoffClass SoilErodibilityClass VegetativeMaturity</parents>
 			<probabilities>0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 1 0 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 1 0 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.995 0.005 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.9 0.1 0 0 0.7 0.3 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.85 0.15 0 0 0.65 0.35 0 0 0.7 0.3 0 0 0.75 0.25 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.65 0.35 0 0 0.7 0.3 0 0 0.75 0.25 0 0 0.5 0.5 0 0 0.6 0.4 0 0 0.65 0.35 0 0 0.7 0.3 0 0 0.1 0.9 0 0 0.05 0.95 0 0 0.005 0.995 0 0 0 1 0 0 0.1 0.9 0 0 0.05 0.95 0 0 0.005 0.995 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationType">
 				<name>VegetationType</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>893 297 1003 330</position>
+				<position>1116 427 1226 460</position>
 				<comment>layer name: ydn_lulc\ncoordinate system; WGS_1984_UTM_Zone_19N\nProjection: Transverse_Mercator\n\n(farther below, box also reads..)\nGCS_WGS_1984\ndatum: D_WGS_1984\ncode: 32619</comment>
 				<barchart active="true" width="281" height="108" />
 			</node>
-			<node id="Slope">
-				<name>Slope</name>
+			<node id="SlopeClass">
+				<name>SlopeClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -122,12 +122,12 @@
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>9 31 394 59</position>
 			</textbox>
-			<node id="SoilErodibility">
-				<name>SoilErodibility</name>
+			<node id="SoilErodibilityClass">
+				<name>SoilErodibilityClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>224 127 313 164</position>
+				<position>247 180 336 217</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetativeMaturity">
@@ -135,20 +135,20 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>617 114 741 153</position>
+				<position>671 206 795 245</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
-			<node id="PercentVegetationCover">
-				<name>PercentVegetationCover</name>
+			<node id="PercentVegetationCoverClass">
+				<name>PercentVegetationCoverClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>707 249 818 283</position>
+				<position>772 424 883 458</position>
 				<comment>layer name: NorthAmericanTreeCover\ncoordinate system; GCS_WGS_1984\ndatum: D_WGS_1984\ncode:</comment>
 				<barchart active="true" width="222" height="108" />
 			</node>
-			<node id="SoilTexture">
-				<name>SoilTexture</name>
+			<node id="SoilTextureClass">
+				<name>SoilTextureClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -161,18 +161,18 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>503 302 639 339</position>
+				<position>542 422 678 459</position>
 				<comment>NO GIS LAYER\n\nvery low -- under 50 mm\nlow -- 50-70mm\nmoderate -- 70-100mm\nhigh 100-130mm\nvery high -- over 130mm</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="158" height="108" />
 			</node>
-			<node id="TropicalStormProbability">
-				<name>TropicalStormProbability</name>
+			<node id="TropicalStormProbabilityClass">
+				<name>TropicalStormProbabilityClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>328 285 462 322</position>
+				<position>342 419 476 456</position>
 				<comment>layer name: gdcyc.tif\ncoordinate system; GCS_WGS_1984\ndatum: D_WGS_1984\ncode:\n\ntwo colors in our region -- 5 (set as moderate) covered most and 7 (set as moderate to high) only crossed in a stripe</comment>
-				<barchart active="true" width="157" height="72" />
+				<barchart active="true" width="210" height="72" />
 			</node>
 			<node id="SedimentSourceValueAnnualClass">
 				<name>SedimentSourceValueAnnualClass</name>
@@ -196,7 +196,7 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>460 162 509 192</position>
+				<position>479 248 528 278</position>
 				<barchart active="true" width="154" height="108" />
 			</node>
 			<textbox>
@@ -204,12 +204,12 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>7 69 120 83</position>
 			</textbox>
-			<node id="SuccessionalStage">
-				<name>SuccessionalStage</name>
+			<node id="SuccessionalStageClass">
+				<name>SuccessionalStageClass</name>
 				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>872 172 987 207</position>
+				<position>1046 216 1161 251</position>
 				<comment>NO GIS LAYER</comment>
 				<barchart active="true" width="155" height="93" />
 			</node>

@@ -23,6 +23,33 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
+<!--Note that these data are yearly while input data (snowmelt/precip) are monthly.  A poor way to resolve this would be to divide the values below by 12.  A monthly runoff dataset would be far preferable.  -->
+
+	<measurement:Measurement id="avgannrunoff">
+		<observation:hasObservable>
+			<habitat:AnnualRunoff />
+		</observation:hasObservable>
+		<measurement:unit>mm/year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:avgannrunoff</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-32768</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>275</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-55.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<!-- TODO this should be an economic value measurement with date and currency, not a 
 	     dumb ranking -->
 	<measurement:Ranking id="king_property_value">
@@ -52,7 +79,7 @@
 	
 	<!-- bridges in Chehalis watershed from shape coverage, 
 		 seen as a presence/absence ranking -->
-	<measurement:Ranking id="puget_bridges">
+	<measurement:BinaryCoding id="puget_bridges">
 	
 		<observation:hasObservable>
 			<infrastructure:Bridge />
@@ -73,11 +100,11 @@
 				<geospace:hasLonUpperBound>2513722.0</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 	
 	<!-- clearcuts in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking -->	
-	<measurement:Ranking id="puget_clearcuts">
+	<measurement:BinaryCoding id="puget_clearcuts">
 		<observation:hasObservable>
 			<geofeatures:Clearcut />
 		</observation:hasObservable>
@@ -97,9 +124,9 @@
 				<geospace:hasLonUpperBound>2514300.75</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
-	<measurement:Ranking id="CoastalWetlands">
+	<measurement:BinaryCoding id="CoastalWetlands">
 		<observation:hasObservable>
 			<soilretentionEcology:CoastalWetlands />
 		</observation:hasObservable>
@@ -120,7 +147,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<measurement:Ranking id="NLCD92_Project">
 		<observation:hasObservable>
@@ -219,6 +246,55 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+	<measurement:Ranking id="tmp_dec">
+		<observation:hasObservable>
+			<geophysics:DecemberMeanGroundSurfaceTemperature />
+		</observation:hasObservable>
+		<measurement:unit>C</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+	<measurement:Measurement id="DecPrecip">
+		<observation:hasObservable>
+			<habitat:DecemberPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:DecPrecip</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>792</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>571</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>46.138</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.003</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.793</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+	
 	<measurement:Ranking id="mg_mgdeforestation">
 			<observation:hasObservable>
 				<carbonService:DeforestationRisk />
@@ -236,8 +312,7 @@
 					<geospace:hasLonLowerBound>40.272</geospace:hasLonLowerBound>
 					<geospace:hasLatUpperBound>-0.214</geospace:hasLatUpperBound>
 					<geospace:hasLonUpperBound>50.035</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4326
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
@@ -293,7 +368,7 @@
 	
 	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer -->
 
-	<measurement:Ranking id="DetentionBasins">
+	<measurement:BinaryCoding id="DetentionBasins">
 		<observation:hasObservable>
 			<infrastructure:DetentionBasin />
 		</observation:hasObservable>
@@ -314,7 +389,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 	
 	<measurement:Measurement id="global_evapotranspiration">
 		<observation:hasObservable>
@@ -362,31 +437,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-<!-- Floodplain vegetation cover; could be removed if ARIES could intelligently select out vegetation cover within floodplain zones -->
-
-	<measurement:Ranking id="FloodplainCanopy">
-		<observation:hasObservable>
-			<soilretentionEcology:FloodplainVegetationCover />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:FloodplainCanopy</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>9466</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7992</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>45.85076076530745</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.75135826799607</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>48.999947174753444</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.02149875778406</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
 		
 	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
 		carbon models) when I figure out how to express that. -->
@@ -408,57 +458,6 @@
 				<geospace:hasLonLowerBound>-137.257054</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>57.3100689</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-62.03137878700001</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<!--  Mean monthly temperature -->
-	<measurement:Ranking id="tmp_jan">
-		<observation:hasObservable>
-			<geophysics:GroundSurfaceTemperature />
-		</observation:hasObservable>
-		<measurement:unit>C</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-59.166</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.618</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.052</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<measurement:Ranking id="tmp_dec">
-		<observation:hasObservable>
-			<geophysics:GroundSurfaceTemperature />
-		</observation:hasObservable>
-		<measurement:unit>C</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-59.1665</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0005</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.6185</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.05150000000003</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
@@ -489,7 +488,7 @@
 	
 	<!-- highways in Chehalis watershed from shape coverage, 
 		 seen as a presence/absence ranking -->
-	<measurement:Ranking id="puget_highways">
+	<measurement:BinaryCoding id="puget_highways">
 	
 		<observation:hasObservable>
 			<infrastructure:Highway />
@@ -510,7 +509,7 @@
 				<geospace:hasLonUpperBound>2514549.75</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 	
 <!--  This has to be commented out for now if we're going to try to run a useful global verision: it's been replaced by a rasterized puget HSG layer.
 <observation:Categorization id="puget_soilgroup">
@@ -594,86 +593,14 @@
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- lakes in Puget sound from shape coverage, 
-		 seen as a presence/absence ranking -->
-	<measurement:Ranking id="puget_lakes">
-	
-		<observation:hasObservable>
-			<geofeatures:Lake />
-		</observation:hasObservable>
-
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetlake</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>102131.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>618565.375</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1367281.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2591186.75</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
-	<measurement:Ranking id="puget_pugetlakefront">
-			<observation:hasObservable>
-				<aestheticService:LakeFront />
-			</observation:hasObservable>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetlakefront</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>76129.6295966863</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>550339.3848230975</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1395057.6838687493</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>2655014.7856741175</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:Ranking>
-	
-	<!-- levees in Chehalis watershed from shape coverage, 
-		 seen as a presence/absence ranking -->
-	<measurement:Ranking id="puget_levees">
-	
-		<observation:hasObservable>
-			<infrastructure:Levee />
-		</observation:hasObservable>
-
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>397939.875</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>925800.75</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>894250.8125</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1430108.875</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
 	<!-- mean days of precipitation. One of those sucky puget-specific shapefiles.
 	     TODO this is actually non puget-specific so the concept should be in an ontology
 	     for whatever authority publishes this.
-	     TODO solve the time issue when things calm down.
-	 -->
+	     TODO solve the time issue when things calm down.-->
 	<measurement:Ranking id="days_of_precipitation_code_january">
 	
 		<observation:hasObservable>
-			<floodService:MeanDaysPrecipitationPerMonth />
+			<habitat:JanuaryDaysOfPrecipitation />
 		</observation:hasObservable>
 
 		<observation:hasDataSource>
@@ -695,6 +622,129 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<!--  Mean monthly temperature -->
+	<measurement:Ranking id="tmp_jan">
+		<observation:hasObservable>
+			<geophysics:JanuaryMeanGroundSurfaceTemperature />
+		</observation:hasObservable>
+		<measurement:unit>C</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2154</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>853</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-59.166</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.618</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.052</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+<!-- January mean monthly total precipitation in WA-->
+	<measurement:Measurement id="puget_precipitation_january">
+		<observation:hasObservable>
+			<habitat:JanuaryPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>in</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
+				<!-- the shapefile wrongly states that the attribute is a String -->
+				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>45.5477447509766</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.762580871582</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+			<!-- TODO add time span -->
+		</observation:hasObservationExtent>
+	</measurement:Measurement>	
+
+<!-- lakes in Puget sound from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:BinaryCoding id="puget_lakes">
+	
+		<observation:hasObservable>
+			<geofeatures:Lake />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetlake</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>102131.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>618565.375</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1367281.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2591186.75</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+	
+	<measurement:BinaryCoding id="puget_pugetlakefront">
+			<observation:hasObservable>
+				<aestheticService:LakeFront />
+			</observation:hasObservable>
+			<observation:hasDataSource>
+				<geospace:WFSDataSource>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetlakefront</geospace:hasCoverageId>
+				</geospace:WFSDataSource>
+			</observation:hasDataSource>
+			<observation:hasObservationExtent>
+				<geospace:ArealFeatureSet>
+					<geospace:hasLatLowerBound>76129.6295966863</geospace:hasLatLowerBound>
+					<geospace:hasLonLowerBound>550339.3848230975</geospace:hasLonLowerBound>
+					<geospace:hasLatUpperBound>1395057.6838687493</geospace:hasLatUpperBound>
+					<geospace:hasLonUpperBound>2655014.7856741175</geospace:hasLonUpperBound>
+					<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				</geospace:ArealFeatureSet>
+			</observation:hasObservationExtent>
+		</measurement:BinaryCoding>
+	
+	<!-- levees in Chehalis watershed from shape coverage, 
+		 seen as a presence/absence ranking -->
+	<measurement:BinaryCoding id="puget_levees">
+	
+		<observation:hasObservable>
+			<infrastructure:Levee />
+		</observation:hasObservable>
+
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>397939.875</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>925800.75</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>894250.8125</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1430108.875</geospace:hasLonUpperBound>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
 	
 <!-- ocean in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking. This one comes from a complicated attribute so
@@ -727,10 +777,35 @@
 		</observation:hasObservationExtent>
 	</measurement:RankingSetRemapper>
 
+<!-- Floodplain vegetation cover; could be removed if ARIES could intelligently select out vegetation cover within floodplain zones -->
+
+	<measurement:Ranking id="FloodplainCanopy">
+		<observation:hasObservable>
+			<habitat:PercentFloodplainVegetationCover />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:FloodplainCanopy</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>9466</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7992</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>45.85076076530745</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.75135826799607</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>48.999947174753444</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.02149875778406</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 <!--  -->
 	<measurement:Ranking id="puget_canopy_cover">
 		<observation:hasObservable>
-			<habitat:PercentCanopyCover />
+			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -754,7 +829,7 @@
 			
 <measurement:Ranking id="AfricaTreeCover">
 	<observation:hasObservable>
-		<habitat:PercentCanopyCover />
+		<habitat:PercentVegetationCover />
 	</observation:hasObservable>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
@@ -798,57 +873,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-<!-- January mean monthly total precipitation in WA. TODO: This should obviously be specified using time extents both in querying and storing.  -->
-	<measurement:Measurement id="puget_precipitation_january">
-		<observation:hasObservable>
-			<habitat:Precipitation />
-		</observation:hasObservable>
-		<measurement:unit>in</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
-				<!-- the shapefile wrongly states that the attribute is a String -->
-				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>45.5477447509766</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.762580871582</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-			<!-- TODO add time span -->
-		</observation:hasObservationExtent>
-	</measurement:Measurement>	
-	
-	<measurement:Measurement id="DecPrecip">
-		<observation:hasObservable>
-			<habitat:Precipitation />
-		</observation:hasObservable>
-		<measurement:unit>in</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:DecPrecip</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>792</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>571</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>46.138</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.003</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-120.793</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
 	
 	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">
@@ -959,7 +983,7 @@
 
 	<measurement:Ranking id="puget_reservoirs2">
 		<observation:hasObservable>
-			<soilretentionEcology:Reservoirs />
+			<geofeatures:Reservoir />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -978,16 +1002,14 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="puget_pugetriverfront">
+	<measurement:BinaryCoding id="puget_pugetriverfront">
 			<observation:hasObservable>
 				<aestheticService:RiverFront />
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetriverfront
-					</geospace:hasCoverageId>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+					<geospace:hasCoverageId>puget:pugetriverfront</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -996,20 +1018,18 @@
 					<geospace:hasLonLowerBound>-124.708</geospace:hasLonLowerBound>
 					<geospace:hasLatUpperBound>49.015</geospace:hasLatUpperBound>
 					<geospace:hasLonUpperBound>-116.916</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4326
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:BinaryCoding>
 
-	<measurement:Ranking id="mg_mgrivers">
+	<measurement:BinaryCoding id="mg_mgrivers">
 			<observation:hasObservable>
-				<soilretentionEcology:Rivers />
+				<geofeatures:River />
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
+					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
@@ -1019,42 +1039,14 @@
 					<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
 					<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
 					<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:4326
-					</geospace:hasCoordinateReferenceSystem>
+					<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
-
-<!--Note that these data are yearly while input data (snowmelt/precip) are monthly.  A poor way to resolve this would be to divide the values below by 12.  A monthly runoff dataset would be far preferable.  -->
-
-	<measurement:Measurement id="avgannrunoff">
-		<observation:hasObservable>
-			<soilretentionEcology:AnnualRunoff />
-		</observation:hasObservable>
-		<measurement:unit>mm/year</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:avgannrunoff</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-32768</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>275</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-55.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>83.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
+		</measurement:BinaryCoding>
 	
 	<measurement:Ranking id="slpstab83_Projec">
 		<observation:hasObservable>
-			<soilretentionEcology:SlopeStability />
+			<habitat:SlopeStability />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -1176,7 +1168,7 @@
 
 	<measurement:Ranking id="kfactor_30min">
 		<observation:hasObservable>
-			<soilretentionEcology:SoilErodibilityFactor />
+			<habitat:SoilErodibility />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -1223,7 +1215,8 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Ranking id="wetlands">
+<!-- Binary coding for wetlands in Mg; just use NLCD for U.S. -->
+	<measurement:BinaryCoding id="wetlands">
 		<observation:hasObservable>
 			<carbonService:SoilOxygenConditions/>
 		</observation:hasObservable>
@@ -1244,7 +1237,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32738</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 	
 <!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	
@@ -1302,7 +1295,7 @@
 	
 	<observation:Categorization id="global_globalsoiltexture">
 			<observation:hasObservable>
-				<soilretentionEcology:SoilTextureCategorization />
+				<habitat:SoilTexture />
 			</observation:hasObservable>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>

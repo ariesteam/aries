@@ -49,7 +49,7 @@
         [:< 38]       'carbonService:VeryLowSOL))
 
 (defmodel mean-annual-precip 'carbonService:MeanAnnualPrecipitation
-			(classification (ranking 'carbonService:MeanAnnualPrecipitation)
+			(classification (measurement 'habitat:AnnualPrecipitation "mm")
 					[70 :>]				'carbonService:VeryHighMeanAnnualPrecipitation
 					[60 70]				'carbonService:HighMeanAnnualPrecipitation
 					[50 60]				'carbonService:ModerateMeanAnnualPrecipitation

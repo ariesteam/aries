@@ -59,7 +59,7 @@
 ;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
 ;; TODO check with Ken
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
-	(classification (ranking 'habitat:PercentCanopyCover :units "%")
+	(classification (ranking 'habitat:PercentVegetationCover :units "%")
 		[80 :>] 'carbonService:VeryHighVegetationCover
 		[60 80] 'carbonService:HighVegetationCover
 		[40 60] 'carbonService:ModerateVegetationCover

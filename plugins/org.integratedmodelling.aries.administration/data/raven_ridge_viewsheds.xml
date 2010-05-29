@@ -23,119 +23,92 @@
 	xmlns:recreationService="http://www.integratedmodelling.org/ks/es/services/recreationService.owl#">
 
 	<!-- VT and NY bodies of water -->
-	<measurement:Ranking id="vt_ny_nhdwaterbody">
+	<measurement:BinaryCoding id="vt_ny_nhdwaterbody">
 		<observation:hasObservable>
 			<geofeatures:Lake />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:vt_ny_nhdwaterbody
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:vt_ny_nhdwaterbody</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>22561.995596086967
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>291973.7681410905
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>290453.2104549259
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>584468.6001250101
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32145
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>22561.995596086967</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>291973.7681410905</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>290453.2104549259</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>584468.6001250101</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<!-- VT and NY rivers and streams -->
-	<measurement:Ranking id="vt_ny_nhdflowline">
+	<measurement:BinaryCoding id="vt_ny_nhdflowline">
 		<observation:hasObservable>
-			<recreationService:RiverStream />
+			<geofeatures:River />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:vt_ny_nhdflowline
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:vt_ny_nhdflowline</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>4239.490681890846
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>282057.8702283442
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>287740.8899279
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>585102.6905476301
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32145
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>4239.490681890846</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>282057.8702283442</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>287740.8899279</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>585102.6905476301</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<!-- VT energy transmission lines -->
-	<measurement:Ranking id="vt_utility_lines">
+	<measurement:BinaryCoding id="vt_utility_lines">
 		<observation:hasObservable>
-			<recreationService:EnergyInfrastructure />
+			<infrastructure:EnergyInfrastructure />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:vt_utility_lines
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:vt_utility_lines</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-443.9106652097295
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>414344.5695535828
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>285399.2477500888
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>583186.8473425076
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32145
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-443.9106652097295</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>414344.5695535828</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>285399.2477500888</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>583186.8473425076</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<!-- VT roads -->
-	<measurement:Ranking id="vt_roads">
+	<measurement:BinaryCoding id="vt_roads">
 		<observation:hasObservable>
-			<recreationService:Roads />
+			<infrastructure:Road />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>vermont:vt_roads</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>24772.382167272128
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>422681.6904347708
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>280279.2514770178
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>584687.1924327603
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32145
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>24772.382167272128</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>422681.6904347708</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>280279.2514770178</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>584687.1924327603</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:BinaryCoding>
 
 	<!-- hiking slope -->
 	<measurement:Ranking id="Slope24_WGS84">
@@ -144,8 +117,7 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>Slope24_WGS84</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -157,8 +129,7 @@
 				<geospace:hasLonLowerBound>-74.561</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>45.501</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-71.263</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -170,8 +141,7 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>HikeDisWGS84</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -183,8 +153,7 @@
 				<geospace:hasLonLowerBound>-73.151</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>44.286</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-73.144</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -196,8 +165,7 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>accessWGS84</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -209,8 +177,7 @@
 				<geospace:hasLonLowerBound>-73.157</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>44.287</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-73.14</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -222,8 +189,7 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>TravCost_prj3</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -235,8 +201,7 @@
 				<geospace:hasLonLowerBound>-73.157</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>44.287</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-73.14</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -248,8 +213,7 @@
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>ViewElevWGS84</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -261,8 +225,7 @@
 				<geospace:hasLonLowerBound>-73.151</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>44.286</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-73.144</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

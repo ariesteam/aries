@@ -20,6 +20,22 @@
 			<parents>ProximityToSurfaceWater TotalLivestockWaterUse</parents>
 			<probabilities>0.6 0.3 0.1 0.5 0.35 0.15 0.4 0.4 0.2 0.2 0.4 0.4 0.15 0.35 0.5 0.1 0.3 0.6 0.1 0.2 0.7 0.05 0.15 0.8 0 0.1 0.9</probabilities>
 		</cpt>
+		<cpt id="IrrigationWaterUse">
+			<state id="VeryHighIrrigationUse" />
+			<state id="HighIrrigationUse" />
+			<state id="ModerateIrrigationUse" />
+			<state id="LowIrrigationUse" />
+			<state id="VeryLowIrrigationUse" />
+			<state id="NoIrrigationUse" />
+			<probabilities>0 0.65 0 0 0 0.35</probabilities>
+		</cpt>
+		<cpt id="AgriculturalSurfaceWaterUse">
+			<state id="HighAgriculturalSWU" />
+			<state id="ModerateAgriculturalSWU" />
+			<state id="LowAgriculturalSWU" />
+			<parents>IrrigationWaterUse LivestockSurfaceWaterUse</parents>
+			<probabilities>1 0 0 0.8 0.2 0 0.6 0.4 0 0.9 0.1 0 0.7 0.3 0 0.5 0.5 0 0.5 0.5 0 0.1 0.8 0.1 0 0.7 0.3 0.35 0.5 0.15 0 0.5 0.5 0 0.2 0.8 0 0.5 0.5 0 0.35 0.65 0 0.1 0.9 0 0.4 0.6 0 0.2 0.8 0 0 1</probabilities>
+		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="AgriculturalSurfaceWaterUse" faultnameformat="nodestate">
@@ -28,26 +44,44 @@
 				<interior color="ccffcc" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>311 267 448 348</position>
+				<position>153 363 290 444</position>
 				<comment>SWProximate &lt; .25KM\nSWModeratlyProximate=.25km - .5km\nSWNotProximate &gt; .5KM</comment>
-				<barchart active="true" width="196" height="72" />
+				<barchart active="true" width="355" height="72" />
 			</node>
 			<node id="LivestockSurfaceWaterUse">
 				<name>LivestockSurfaceWaterUse</name>
 				<interior color="ccffcc" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>451 107 592 195</position>
-				<barchart active="true" width="178" height="90" />
+				<position>337 203 478 291</position>
+				<barchart active="true" width="390" height="90" />
 			</node>
 			<node id="TotalLivestockWaterUse">
 				<name>TotalLivestockWaterUse</name>
 				<interior color="ccffcc" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>632 278 736 343</position>
+				<position>540 375 644 440</position>
 				<comment>Sum of CattleWU+SheepWU+GoatsWU+PigsWU</comment>
-				<barchart active="true" width="128" height="72" />
+				<barchart active="true" width="334" height="72" />
+			</node>
+			<node id="AgriculturalSurfaceWaterUse">
+				<name>AgriculturalSurfaceWaterUse</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>535 66 645 98</position>
+				<comment>Sum of LivstockSWU+IrrigationCropWU</comment>
+				<barchart active="true" width="251" height="72" />
+			</node>
+			<node id="IrrigationWaterUse">
+				<name>IrrigationWaterUse</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>858 216 940 266</position>
+				<comment>VeryHighIrrigationWU=720 \nHighIrrigationWU= 700\nModerateIrrigationWU=660\nLowIrrigationWU=620\nVeryLowIrrigation=580\n\nUnits=cubic meters per hecter\n\nSource:\nhttp://www.iwmi.cgiar.org/EWMA/files/papers/Chris_Perry.pdf</comment>
+				<barchart active="true" width="275" height="126" />
 			</node>
 		</genie>
 	</extensions>

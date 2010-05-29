@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="FloodplainWidth">
+		<cpt id="FloodplainWidthClass">
 			<state id="VeryWideFloodplain" />
 			<state id="WideFloodplain" />
 			<state id="NarrowFloodplain" />
 			<state id="VeryNarrowFloodplain" />
 			<probabilities>0.2 0.3 0.3 0.2</probabilities>
 		</cpt>
-		<cpt id="Levees">
+		<cpt id="LeveesClass">
 			<state id="LeveesPresent" />
 			<state id="LeveesAbsent" />
 			<probabilities>0.005 0.995</probabilities>
@@ -37,14 +37,14 @@
 			<state id="ModerateAnnualSedimentSink" />
 			<state id="LowAnnualSedimentSink" />
 			<state id="NoAnnualSedimentSink" />
-			<parents>ReservoirsClass StreamGradientClass Levees FloodplainWidth FloodplainVegetationCoverClass</parents>
+			<parents>ReservoirsClass StreamGradientClass LeveesClass FloodplainWidthClass FloodplainVegetationCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.3 0.65 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0 0.15 0.6 0.25 0 0.1 0.65 0.25 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35 0.3 0.3 0.2 0.2 0.25 0.25 0.25 0.25 0.2 0.25 0.25 0.3 0.15 0.2000000000000001 0.3 0.35 0.1 0.2 0.35 0.35</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network2" faultnameformat="nodestate">
-			<node id="Levees">
-				<name>Levees</name>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+			<node id="LeveesClass">
+				<name>LeveesClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -85,8 +85,8 @@
 				<position>842 141 887 169</position>
 				<barchart active="true" width="194" height="104" />
 			</node>
-			<node id="FloodplainWidth">
-				<name>FloodplainWidth</name>
+			<node id="FloodplainWidthClass">
+				<name>FloodplainWidthClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

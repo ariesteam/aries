@@ -9,13 +9,13 @@
 
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
-  (classification (ranking 'geofeatures:Lake)
+  (classification (binary-coding 'geofeatures:Lake)
 		  0          'aestheticService:LakeAbsent
 		  :otherwise 'aestheticService:LakePresent))
 
 (defmodel river-stream 'recreationService:RiverStream
   "Presence of a river or stream."
-  (classification (ranking 'recreationService:RiverStream)
+  (classification (binary-coding 'geofeatures:River)
 		  0          'recreationService:RiverStreamAbsent
 		  :otherwise 'recreationService:RiverStreamPresent))
 
@@ -26,7 +26,7 @@
 		  [914 1917] 'aestheticService:LargeMountain ; no higher than Mt. Washington!
 		  :otherwise 'aestheticService:NoMountain)) ; will catch artifacts too		  
 		  
-(defmodel open-space 'recreationService:OpenSpace
+(defmodel open-space 'recreationService:OpenSpaceClass
   "Classifies an area as open space according to NLCD 2001 data"
   (classification (ranking 'nlcd:NLCDNumeric)
       #{81 82}       'recreationService:AgriculturalLand
@@ -119,13 +119,13 @@
 			:otherwise 	'recreationService:NotDeveloped)) 
 
 (defmodel roads 'recreationService:Roads
-  (classification (ranking 'recreationService:Roads)
+  (classification (binary-coding 'infrastructure:Road)
 		  0          'recreationService:RoadsAbsent
 		  :otherwise 'recreationService:RoadsPresent))
 
 (defmodel energy-infrastructure 'recreationService:EnergyInfrastructure
 	"Presence of energy infrastructure"
-	(classification (ranking 'recreationService:EnergyInfrastructure)
+	(classification (binary-coding 'infrastructure:EnergyInfrastructure)
 			0						'recreationService:EnergyInfrastructureAbsent
 			:otherwise	'recreationService:EnergyInfrastructurePresent)) 
 

@@ -11,7 +11,7 @@
 ;; (i.e., <3 full pixels for the La Antigua watershed.  Use precip for now, with the goal of 
 ;; incorporating a better runoff model (plus sink models that actually capture infiltration & ET).
 (defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
-  (measurement 'waterSupplyService:AnnualPrecipitation "mm"))
+  (measurement 'habitat:AnnualPrecipitation "mm"))
 
 ;;Incorporate runoff data in the future once we've done a better job with the hydro modeling.
 ;;(defmodel runoff 'soilretentionEcology:AnnualRunoff
@@ -78,14 +78,14 @@
     :state    #(/ (+ (* (:sheep-population  %) 0.002745)
                      (* (:goats-population  %) 0.002745)
                      (* (:cattle-population %) 0.011032)
-                     (* (:pigs-population   %) 0.026444))
+                     (* (:pigs-population   %) 0.01331))
                   1000)))
 
-(defmodel livestock-total-water-use-discretized 'waterSupplyService:LivestockWaterUseClass
+(defmodel livestock-total-water-use-discretized 'waterSupplyService:LivestockTotalWaterUseClass
   (classification livestock-total-water-use 
-    [] 'waterSupplyService:
-    [] 'waterSupplyService:
-    [] 'waterSupplyService:)) 
+    [1.15 :>] 'waterSupplyService:HighLivestockTotalWaterUse
+    [0.5 1.15] 'waterSupplyService:ModerateLivestockTotalWaterUse
+    [:<  0.5] 'waterSupplyService:LowLivestockTotalWaterUse))
 
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWaterClass
@@ -97,7 +97,17 @@
 ;;Agricultural surface water use. Step 3: Estimate livestock water derived from surface water.
 ;;Bayesian model for livestock surface water use
 
-(defmodel livestock-surface-water-use (DO THIS - undiscretizer - in mm)) 
+;;Sediment source value
+(defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
+ (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
+      0                     'soilretentionEcology:NoAnnualSedimentSource
+      [:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
+      [15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
+      [40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
+
+;;(defmodel livestock-surface-water-use 'waterSupplyService:LivestockSurfaceWaterUse
+ ;;(classification (measurement '))) 
+
 
 (defmodel livestock-SW-use 'waterSupplyService:LivestockSurfaceWaterUse
   (bayesian 'waterSupplyService:LivestockSurfaceWaterUse "mm"  ;;This is an annual value
@@ -114,13 +124,15 @@
                   2000
                   0)))
 
-Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.
+;;Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.
+
+;;Below would be the logical and simple way to do things.  However these features are not yet enabled.
 
 ;;Agricultural surface water use. Step 5: Add crop irrigation and livestock surface water use.
-(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
-  (measurement 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
-      :context (irrigation-water-use livestock-surface-water-use)
-      :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
+ ;;(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
+  ;;(measurement 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
+    ;;  :context (irrigation-water-use livestock-surface-water-use)
+    ;;  :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
 
 
 ;; ----------------------------------------------------------------------------------------------
@@ -163,7 +175,7 @@ Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.
     #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
 		
 (defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
-	(classification (ranking 'habitat:PercentCanopyCover)
+	(classification (ranking 'habitat:PercentVegetationCover)
 		[80 100] 'waterSupplyService:VeryHighVegetationCover
 		[60 80]  'waterSupplyService:HighVegetationCover
 		[40 60]  'waterSupplyService:ModerateVegetationCover
