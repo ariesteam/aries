@@ -3,7 +3,7 @@
 ;; test namespace
 ;; fv Nov 09
 ;; --------------------------------------------------------------------------------------------------
-(ns test
+(ns test.models
   (:refer-clojure :rename {count length})
   (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding count
 			    measurement classification categorization ranking identification bayesian)))
@@ -95,7 +95,7 @@
 (defmodel land-use-change 'floodService:Farmland
 	(classification (binary-coding 'nlcd:NLCDNumeric
       :as nlcd   
-      :state #(if (= (:nlcd %) 82) 1 0))
+      :state #(if (== (:nlcd %) 82) 1 0))
    0 'floodService:FarmlandPresent
    1 'floodService:FarmlandAbsent
    :update #(let [sum (tl/apply-not-nil + (:nlcd#n %) (:nlcd#s %) (:nlcd#e %) (:nlcd#w %))]
