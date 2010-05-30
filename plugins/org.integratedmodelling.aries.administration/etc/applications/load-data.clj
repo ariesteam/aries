@@ -1,6 +1,10 @@
-(modelling/with-kbox 
+(ns core.tasks
+  (:refer tl :only (with-kbox kbox get-plugin-resource))
+  (:refer geospace :only (get-centroid get-bounding-box)))
+
+(with-kbox 
 	
-	(modelling/kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/ariesdata" 
+	(kbox aries-kbox "postgres://postgres:rnbh304@localhost:5432/ariesdata" 
 				:protocol "pg" 
 				:schema "postgis"
 				:metadata (
@@ -16,16 +20,16 @@
 		:persist org.integratedmodelling.aries.aries
 		
 		:metadata-generator {
-			:centroid    #(geospace/get-centroid %)
-			:boundingbox #(geospace/get-bounding-box %)
+			:centroid    #(get-centroid %)
+			:boundingbox #(get-bounding-box %)
 		}
 		
-		(import (tl/get-plugin-resource 'aries.administration "ark.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "common.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "ipcc.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "nlcd2001.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "marine.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "kb1.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "bv1.xml"))
-		(import (tl/get-plugin-resource 'aries.administration "raven_ridge_viewsheds.xml")) 
+		(import (get-plugin-resource 'aries.administration "ark.xml"))
+		(import (get-plugin-resource 'aries.administration "common.xml"))
+		(import (get-plugin-resource 'aries.administration "ipcc.xml"))
+		(import (get-plugin-resource 'aries.administration "nlcd2001.xml"))
+		(import (get-plugin-resource 'aries.administration "marine.xml"))
+		(import (get-plugin-resource 'aries.administration "kb1.xml"))
+		(import (get-plugin-resource 'aries.administration "bv1.xml"))
+		(import (get-plugin-resource 'aries.administration "raven_ridge_viewsheds.xml")) 
 	)

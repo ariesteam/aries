@@ -246,11 +246,11 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Ranking id="tmp_dec">
+	<measurement:Measurement id="tmp_dec">
 		<observation:hasObservable>
 			<geophysics:DecemberMeanGroundSurfaceTemperature />
 		</observation:hasObservable>
-		<measurement:unit>C</measurement:unit>
+		<measurement:unit>°C</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -269,7 +269,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<measurement:Measurement id="DecPrecip">
 		<observation:hasObservable>
@@ -623,11 +623,11 @@
 	</measurement:Ranking>
 
 	<!--  Mean monthly temperature -->
-	<measurement:Ranking id="tmp_jan">
+	<measurement:Measurement id="tmp_jan">
 		<observation:hasObservable>
 			<geophysics:JanuaryMeanGroundSurfaceTemperature />
 		</observation:hasObservable>
-		<measurement:unit>C</measurement:unit>
+		<measurement:unit>°C</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -646,7 +646,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 <!-- January mean monthly total precipitation in WA-->
 	<measurement:Measurement id="puget_precipitation_january">
