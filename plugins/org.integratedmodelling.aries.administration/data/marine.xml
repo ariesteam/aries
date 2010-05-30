@@ -67,7 +67,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<measurement:Measurement id="BathSlope">
+	<!-- FV this is still the BS layer so I reverted to a ranking. The models are in sync
+		with the BS numbers. -->
+	<measurement:Ranking id="BathSlope">
 		<observation:hasObservable>
 			<geophysics:BathymetricSlope />
 		</observation:hasObservable>
@@ -89,7 +91,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Ranking>
 	
 	<observation:Categorization id="marine_coral">
 		<observation:hasObservable>

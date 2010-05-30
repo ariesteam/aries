@@ -46,7 +46,7 @@
 ;; TODO check - BN has only 4 classes, so I put the last 2 together and eliminated
 ;; VeryHighSlope with breakpoint at 9,000,000
 (defmodel slope 'coastalProtection:BathymetricSlope
-	(classification (ranking 'habitat:BathymetricSlope)
+	(classification (ranking 'geophysics:BathymetricSlope)
 		[4000000 :>]      'coastalProtection:HighSlope
 		[2000000 4000000] 'coastalProtection:ModerateSlope
 		[200000 2000000]  'coastalProtection:LowSlope
