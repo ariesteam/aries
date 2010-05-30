@@ -41,7 +41,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'carbonService:Slope
-		(classification (ranking 'geophysics:DegreeSlope :units)
+		(classification (measurement 'geophysics:DegreeSlope "\u00b0")
 			 [:< 1.15] 	  'carbonService:Level
 			 [1.15 4.57] 	'carbonService:GentlyUndulating
 			 [4.57 16.70] 'carbonService:RollingToHilly

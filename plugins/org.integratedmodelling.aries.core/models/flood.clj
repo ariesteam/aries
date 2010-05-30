@@ -15,7 +15,7 @@
 
 (defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (categorization 'habitat:HydrologicSoilsGroup)
+	(classification (numeric-coding 'habitat:HydrologicSoilsGroup)
 			1        'floodService:SoilGroupA
 			2        'floodService:SoilGroupB
 			3        'floodService:SoilGroupC
@@ -48,7 +48,7 @@
 		
 ;; surface temperature - again, should be monthly and matched by temporal extents.
 (defmodel monthly-temperature 'floodService:MonthlyTemperature
-		(classification (ranking 'geophysics:JanuaryMeanGroundSurfaceTemperature "C")
+		(classification (measurement 'geophysics:JanuaryMeanGroundSurfaceTemperature "\u00b0C")
 			 [4 :>] 	'floodService:HighTemperature
 			 [-4 4] 	'floodService:ModerateTemperature
 			 [:< -4] 	'floodService:LowTemperature))
@@ -189,6 +189,7 @@
 		:otherwise   'floodService:DetentionBasinStoragePresent))
 		
 ;; Flood sink probability
+;; TODO missing data
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodSink 
@@ -199,7 +200,8 @@
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
 	 	 			soil-group-puget vegetation-type slope monthly-temperature levees bridges
-	 	 			successional-stage imperviousness dam-storage detention-basin-storage
+	 	 			successional-stage imperviousness dam-storage 
+          (comment detention-basin-storage)
 	 	 			(comment mean-days-precipitation vegetation-height)
 	 	 			percent-vegetation-cover)))
 

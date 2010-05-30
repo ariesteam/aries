@@ -66,27 +66,32 @@
 		[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
 ;;Vegetation type
+;; FV the models in here are DR-specific so I see no point in using general specs. It does
+;; create problems because the BNs are not prepared to get the GLC classes, which do come
+;; up when the DR data have holes. Commenting out the non-DR contingencies - we should put them
+;; back when models are general, but then only after making the BNs aware of all possible values.
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
-	(classification (numeric-coding 'nlcd:NLCDNumeric)
-		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
-		#{52 81}             'soilretentionEcology:ShrublandPasture
-		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped)
-  (classification (numeric-coding 'mglulc:MGLULCNumeric)
-    #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
-    #{3 7 23}                                  'soilretentionEcology:DegradedForest
-		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} 'soilretentionEcology:Savanna
-    #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)
+;	(classification (numeric-coding 'nlcd:NLCDNumeric)
+;		#{41 42 43 71 90 95} 'soilretentionEcology:ForestGrasslandWetland
+;		#{52 81}             'soilretentionEcology:ShrublandPasture
+;		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped)
+;  (classification (numeric-coding 'mglulc:MGLULCNumeric)
+;    #{1 2 4 5 6 10 14}                         'soilretentionEcology:ForestWetland
+;    #{3 7 23}                                  'soilretentionEcology:DegradedForest
+;		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} 'soilretentionEcology:Savanna
+;    #{11 12 13 16 17}                          'soilretentionEcology:CroplandDeveloped)
   (classification (numeric-coding 'domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} 'soilretentionEcology:ForestAndShrubland
     #{22 24 62 63}          'soilretentionEcology:WaterWetlandsMangroves
 	 	#{41 45 53}             'soilretentionEcology:ShadeCoffeeCocoa
     #{23 36 38 40 59}       'soilretentionEcology:IntensiveCroplandAndPasture
     #{42}                   'soilretentionEcology:UrbanAndRoads)
-  (classification (numeric-coding 'glc:GLCNumeric)
-		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
-		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
-    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped))
+;  (classification (numeric-coding 'glc:GLCNumeric)
+;		#{1 2 3 4 5 6 7 8 9 15} 'soilretentionEcology:ForestGrasslandWetland
+;		#{10 11 12 13 14 17 18} 'soilretentionEcology:ShrublandPasture
+;    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)
+)
 
 (defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCoverClass
 	(classification (numeric-coding 'habitat:PercentVegetationCover)
@@ -98,20 +103,29 @@
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
-	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
+  ;; FV - sorry, my bad - there's a bug so the right way doesn't work as a prototype obs. Will be fixed asap.
+  ;; please leave as is for now or the BN won't compile.
+	(classification 'soilretentionEcology:SedimentSourceValueAnnual
+;	(classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
       0                     'soilretentionEcology:NoAnnualSedimentSource
   		[:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
   		[15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
   		[40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
   		
 ;; source bayesian model for Dominican Republic
+;; FV there is much evidence setting for intermediate nodes here - those should be used for
+;; training, when the PI eventually implements it. Commented those below.
 (defmodel source-dr 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnualClass)
     :observed (sediment-source-value-annual) 
-    :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
-              storm-probability runoff vegetation-type percent-vegetation-cover))) 
+    :context  (soil-group slope soil-texture 
+              (comment  soil-erodibility)
+              precipitation-annual  
+              storm-probability 
+              (comment runoff) 
+              vegetation-type percent-vegetation-cover))) 
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
@@ -161,7 +175,7 @@
                     1
                     0)
        :context (
-          (binary-coding 'soilretentionEcology:Farmland  :as farmlandpresent)
+          (binary-coding 'soilretentionEcology:FarmlandCode  :as farmlandpresent)
           (binary-coding 'geofeatures:Floodplain :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
@@ -175,7 +189,7 @@
                         :otherwise
                         0)
                   0)
-       :context ((ranking 'soilretentionEcology:Farmland :as farmlandpresent))))
+       :context ((binary-coding 'soilretentionEcology:FarmlandCode :as farmlandpresent))))
 
 ;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
 ;;Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
@@ -219,17 +233,19 @@
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual 'soilretentionEcology:AnnualSedimentSinkClass 
-  (classification (measurement 'soilretentionEcology:AnnualSedimentSink "t/ha")
+  ;; FV temporarily subst with dumb classification - see comment for sediment-source-value-annual
+  (classification 'soilretentionEcology:AnnualSedimentSinkClass 
+;;  (classification (measurement 'soilretentionEcology:AnnualSedimentSink "t/ha")
        [10 15]              'soilretentionEcology:HighAnnualSedimentSink
        [5 10]               'soilretentionEcology:ModerateAnnualSedimentSink
        [:exclusive 0 5]     'soilretentionEcology:LowAnnualSedimentSink
        0                    'soilretentionEcology:NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
-(defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSinkClass
+(defmodel sediment-sink-dr 'soilretentionEcology:AnnualSedimentSink
   (bayesian 'soilretentionEcology:AnnualSedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
-    :keep    ('soilretentionEcology:AnnualSedimentSink)
+    :keep    ('soilretentionEcology:AnnualSedimentSinkClass)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 
@@ -247,13 +263,12 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
- ;;(defmodel data 'aestheticService:AestheticEnjoyment 
-	;;(identification 'aestheticService:AestheticEnjoyment)
-		;;  :context (
-		;;	source :as source
-		;;	homeowners :as use
-		;;	sink :as sink
-		;;	altitude :as altitude))
+(defmodel farmland-soil-deposition-data 'soilretentionEcology:FarmlandSoilDeposition
+   (identification 'soilretentionEcology:FarmlandSoilDeposition 
+     :context (
+       source-dr
+       sediment-sink-dr
+       farmers-deposition-use-dr)))
 			
 ;; the real enchilada
 ;;(defmodel view 'aestheticService:AestheticView

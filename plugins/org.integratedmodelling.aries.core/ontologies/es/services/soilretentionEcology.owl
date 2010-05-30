@@ -483,6 +483,7 @@
     <rdfs:subClassOf rdf:resource="#Rivers"/>
   </owl:Class>
   <owl:Class rdf:ID="ReservoirsClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Reservoirs</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
@@ -608,6 +609,8 @@
     <rdfs:subClassOf rdf:resource="#HydroelectricUsePresenceClass"/>
   </owl:Class>
   <owl:Class rdf:about="#FarmlandCode">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Presence of farmlands</rdfs:label>
     <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainsClass">
@@ -753,6 +756,9 @@
   <owl:Class rdf:ID="CoastlineAbsent">
     <rdfs:subClassOf rdf:resource="#Coastline"/>
   </owl:Class>
+  <owl:Class rdf:ID="FarmlandSoilDeposition">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
+  </owl:Class>
   <owl:Class rdf:ID="LowAnnualSnowmelt">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AnnualSnowmeltClass"/>
@@ -835,6 +841,7 @@
     <rdfs:subClassOf rdf:resource="#HabitatTypes"/>
   </owl:Class>
   <owl:Class rdf:about="#DepositionProneFarmers">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanAndRoads">
@@ -1051,21 +1058,29 @@
   <owl:Class rdf:about="#SoilErodibilityClass">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        </owl:onProperty>
         <owl:someValuesFrom>
-          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
+          <owl:Class rdf:ID="SoilDepthToBedrock"/>
         </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#SoilOrganicMatter"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#SoilStructure"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="SoilCompaction"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Soil erodibility may be due to several factors, including texture, compaction, root density, and vegetative cover.</rdfs:comment>
     <rdfs:subClassOf>
@@ -1076,32 +1091,24 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilTextureClass"/>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
+        <owl:someValuesFrom rdf:resource="#SoilStructure"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Soil erodibility</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-        <owl:someValuesFrom rdf:resource="#SoilOrganicMatter"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generic-dependent"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilDepthToBedrock"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="SoilCompaction"/>
+          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
         </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SoilTextureClass"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -1114,6 +1121,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#AnnualSedimentSinkClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Annual sediment sink</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
@@ -1125,6 +1133,9 @@
   </owl:Class>
   <owl:Class rdf:ID="NoAnnualSedimentSink">
     <rdfs:subClassOf rdf:resource="#AnnualSedimentSinkClass"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Source">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
   </owl:Class>
   <owl:Class rdf:ID="PublicWaterSupplyIntakes">
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
@@ -1198,6 +1209,7 @@
     <rdfs:subClassOf rdf:resource="#Snowmelt"/>
   </owl:Class>
   <owl:Class rdf:about="#TropicalStormProbabilityClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tropical storm probability</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
@@ -1517,6 +1529,7 @@
     >Total soil loss</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#SedimentSourceValueAnnualClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Average annual soil erosion</rdfs:label>
     <rdfs:subClassOf rdf:resource="#Source"/>
