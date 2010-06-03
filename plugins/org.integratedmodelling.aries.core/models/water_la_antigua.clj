@@ -45,7 +45,7 @@
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
 ;;do it for now.
 (defmodel non-rival-water-users 'waterSupplyService:NonRivalWaterUse
-  (ranking 'waterSupplyService:NonRivalWaterUse
+  (binary-coding 'waterSupplyService:NonRivalWaterUse
     :context ((binary-coding 'waterSupplyService:NonRivalWaterUseCode :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
@@ -75,17 +75,16 @@
               (count 'waterSupplyService:SheepPopulation  "/km^2" :as sheep-population)
               (count 'waterSupplyService:PigsPopulation   "/km^2" :as pigs-population)
               (count 'waterSupplyService:GoatsPopulation  "/km^2" :as goats-population))
-    :state    #(/ (+ (* (:sheep-population  %) 0.002745)
-                     (* (:goats-population  %) 0.002745)
-                     (* (:cattle-population %) 0.011032)
-                     (* (:pigs-population   %) 0.01331))
-                  1000)))
+    :state    #(+ (* (:sheep-population  %) 0.002745) ;;this is in m^3/1000 animals, the conversion ultimately giving mm
+                  (* (:goats-population  %) 0.002745)
+                  (* (:cattle-population %) 0.011032)
+                  (* (:pigs-population   %) 0.013310))))
 
 (defmodel livestock-total-water-use-discretized 'waterSupplyService:LivestockTotalWaterUseClass
-  (classification livestock-total-water-use 
-    [1.15 :>] 'waterSupplyService:HighLivestockTotalWaterUse
+  (classification livestock-total-water-use
+    [1.15 :>]  'waterSupplyService:HighLivestockTotalWaterUse
     [0.5 1.15] 'waterSupplyService:ModerateLivestockTotalWaterUse
-    [:<  0.5] 'waterSupplyService:LowLivestockTotalWaterUse))
+    [:<  0.5]  'waterSupplyService:LowLivestockTotalWaterUse))
 
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWaterClass
@@ -94,13 +93,7 @@
     [250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
     [:< 250]     'waterSupplyService:SurfaceWaterProximate))
 
-;;Agricultural surface water use. Step 3: Estimate livestock water derived from surface water.
-;;Bayesian model for livestock surface water use
-
-;;(defmodel livestock-surface-water-use 'waterSupplyService:LivestockSurfaceWaterUse
- ;;(classification (measurement '))) 
-
-;;Agricultural surface water use. Step 4: Estimate crop irrigation water needs.
+;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 (defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUseClass
   (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
      :context ((categorization 'veracruz-lulc:VeracruzLULCCategory  :as irrigated-cropland))
@@ -108,17 +101,29 @@
                   2000
                   0)))
 
-;;Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.  KB: it's entirely unclear
-;; how to do this.
+;;Classification of irrigationWaterUse into 6 classes.
+(defmodel irrigation-water-use-discretized 'waterSupplyService:IrrigationWaterUseClass
+  (classification irrigation-water-use
+    [2400 :>]   'waterSupplyService:VeryHighIrrigationUse
+    [2150 2400] 'waterSupplyService:HighIrrigationUse
+    [1850 2150] 'waterSupplyService:ModerateIrrigationUse
+    [1600 1850] 'waterSupplyService:LowIrrigationUse
+    [:< 1600]   'waterSupplyService:VeryLowIrrigationUse
+    0           'waterSupplyService:NoIrrigationUse))
 
-;;Undiscretization of agricultural surface water use???
+;;Undiscretization of agricultural surface water use
+(defmodel use-undiscretizer 'waterSupplyService:AgriculturalSurfaceWaterUseClass
+  (classification 'waterSupplyService:AgriculturalSurfaceWaterUseClass 
+    [2000 :>]    'waterSupplyService:HighAgriculturalSurfaceWaterUse
+    [1000 2000]  'waterSupplyService:ModerateAgriculturalSurfaceWaterUse
+    [:< 1000]    'waterSupplyService:LowAgriculturalSurfaceWaterUse)) 
 
-(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
-  (bayesian 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
+(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUseClass
+  (bayesian 'waterSupplyService:AgriculturalSurfaceWaterUseClass  
     :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
-    :keep     ('waterSupplyService:AgriculturalSurfaceWaterUse)
-    :observed (agricultural-surface-water-use)
-    :context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use))) 
+    :context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
+    :keep     ('waterSupplyService:AgriculturalSurfaceWaterUseClass)
+    :observed (use-undiscretizer))) 
 
 ;;Below would be the logical and simple way to do things.  However these features are not yet enabled.
 
@@ -177,25 +182,25 @@
 		[0 20]   'waterSupplyService:VeryLowVegetationCover))
 
 (defmodel dam-presence 'waterSupplyService:Dams
-	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseClass)
+	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseCode)
 			1		      'waterSupplyService:DamPresent
      :otherwise 'waterSupplyService:DamAbsent))
 
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
-(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSink
-  (classification 'waterSupplyService:SurfaceWaterSink "mm" 
+(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
+  (classification 'waterSupplyService:SurfaceWaterSinkClass 
     [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
     [100 180]          'waterSupplyService:HighSurfaceWaterSink
     [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
     [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
     0                  'waterSupplyService:NoSurfaceWaterSink)) 
 
-(defmodel sink 'waterSupplyService:SurfaceWaterSink
-	  (bayesian 'waterSupplyService:SurfaceWaterSink
+(defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
+	  (bayesian 'waterSupplyService:SurfaceWaterSinkClass
 	  	:import   "aries.core::SurfaceWaterSupplySink.xdsl"
-	  	:keep     ('waterSupplyService:SurfaceWaterSink)
 	 	 	:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
+      :keep     ('waterSupplyService:SurfaceWaterSinkClass)
       :observed (sink-undiscretizer)))
 
 
@@ -213,13 +218,20 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
- ;;(defmodel data 'aestheticService:AestheticEnjoyment 
-	;;(identification 'aestheticService:AestheticEnjoyment)
-		;;  :context (
-		;;	source :as source
-		;;	homeowners :as use
-		;;	sink :as sink
-		;;	altitude :as altitude))
+(defmodel data 'waterSupplyService:WaterSupply 
+  (identification 'waterSupplyService:WaterSupply))
+;;  :context (slope :as slope))
+;;            soil-group :as soil-group
+;;            vegetation-type :as vegetation-type
+;;            imperviousness :as imperviousness
+;;            dam-presence :as dam-presence
+;;            percent-vegetation-cover :as percent-vegetation-cover
+;;            surface-water-proximity :as surface-water-proximity
+;;            livestock-total-water-use :as livestock-total-water-use
+;;            industrial-users :as industrial-users
+;;            non-rival-water-users :as non-rival-water-users
+;;            precipitation-annual :as precipitation-annual
+;;            residential-surface-water-use :as residential-surface-water-use))
 			
 ;; the real enchilada
 ;;(defmodel view 'aestheticService:AestheticView
