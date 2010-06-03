@@ -97,34 +97,28 @@
 ;;Agricultural surface water use. Step 3: Estimate livestock water derived from surface water.
 ;;Bayesian model for livestock surface water use
 
-;;Sediment source value
-(defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
- (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "t/ha")
-      0                     'soilretentionEcology:NoAnnualSedimentSource
-      [:exclusive 0 15]     'soilretentionEcology:LowAnnualSedimentSource 
-      [15 40]               'soilretentionEcology:ModerateAnnualSedimentSource
-      [40 :>]               'soilretentionEcology:HighAnnualSedimentSource))
-
 ;;(defmodel livestock-surface-water-use 'waterSupplyService:LivestockSurfaceWaterUse
  ;;(classification (measurement '))) 
 
-
-(defmodel livestock-SW-use 'waterSupplyService:LivestockSurfaceWaterUse
-  (bayesian 'waterSupplyService:LivestockSurfaceWaterUse "mm"  ;;This is an annual value
-    :import   "aries.core::SurfaceWaterUseLivestock.xdsl"
-    :keep     ('waterSupplyService:LivestockSurfaceWaterUse)
-    :observed (livestock-surface-water-use)
-    :context  (surface-water-proximity livestock-total-water-use-discretized))) 
-
 ;;Agricultural surface water use. Step 4: Estimate crop irrigation water needs.
-(defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUse
+(defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUseClass
   (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
      :context ((categorization 'veracruz-lulc:VeracruzLULCCategory  :as irrigated-cropland))
      :state   #(if (= (:irrigated-cropland %) "riego")
                   2000
                   0)))
 
-;;Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.
+;;Classification of irrigationWaterUse into 6 classes.  Then add it to the BN.  KB: it's entirely unclear
+;; how to do this.
+
+;;Undiscretization of agricultural surface water use???
+
+(defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUse
+  (bayesian 'waterSupplyService:AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
+    :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
+    :keep     ('waterSupplyService:AgriculturalSurfaceWaterUse)
+    :observed (agricultural-surface-water-use)
+    :context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use))) 
 
 ;;Below would be the logical and simple way to do things.  However these features are not yet enabled.
 
