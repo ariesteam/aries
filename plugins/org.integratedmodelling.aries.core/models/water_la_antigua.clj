@@ -96,8 +96,10 @@
 ;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 (defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUseClass
   (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
-     :context ((categorization 'veracruz-lulc:VeracruzLULCCategory  :as irrigated-cropland))
-     :state   #(if (= (:irrigated-cropland %) "riego")
+     :context ((categorization 'veracruz-lulc:VeracruzLULCCategory))
+     ;; FV temporarily changed the ID to veracruzlulccategory - attribution with :as seems broken for categories.
+     ;; without the :as, the ID defaults to the lowercased concept name, so the code below works.
+     :state   #(if (= (:veracruzlulccategory %) "riego")
                   2000
                   0)))
 
