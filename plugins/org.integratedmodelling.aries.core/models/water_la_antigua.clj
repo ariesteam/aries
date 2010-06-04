@@ -201,7 +201,7 @@
 (defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
 	  (bayesian 'waterSupplyService:SurfaceWaterSinkClass
 	  	:import   "aries.core::SurfaceWaterSupplySink.xdsl"
-	 	 	:context  (soil-group vegetation-type slope imperviousness (comment dam-presence) percent-vegetation-cover)
+	 	 	:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
       :keep     ('waterSupplyService:SurfaceWaterSinkClass)
       :observed (sink-undiscretizer)))
 
@@ -219,12 +219,14 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-;(defmodel data 'waterSupplyService:WaterSupply 
-;  (identification 'waterSupplyService:WaterSupply)
-;  :context (irrigation-water-use
-;            agricultural-water-use
-;            sink
-;            precipitation-annual))
+(defmodel data 'waterSupplyService:WaterSupply 
+  (identification 'waterSupplyService:WaterSupply 
+  :context (irrigation-water-use
+            agricultural-surface-water-use
+            industrial-users
+            non-rival-water-users
+            sink
+            precipitation-annual)))
   
 ;; the real enchilada
 ;;(defmodel view 'aestheticService:AestheticView
