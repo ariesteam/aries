@@ -99,12 +99,13 @@
 ;; cellular automaton contagion model - farmland only survives to next generation if surrounded by farmland
 ;; on three sides, meaning it will erode at the edges at each update until all farmland patches are square.
 (defmodel land-use-change 'floodService:Farmland
-	(classification (binary-coding 'nlcd:NLCDNumeric
+	(classification 
+		(binary-coding 'nlcd:NLCDNumeric
       :as nlcd   
-      :state #(if (== (:nlcd %) 82) 1 0))
-   0 'floodService:FarmlandPresent
-   1 'floodService:FarmlandAbsent
-   :update #(let [sum (tl/apply-not-nil + (:nlcd#n %) (:nlcd#s %) (:nlcd#e %) (:nlcd#w %))]
+      :state #(if (= (:nlcd %) 82) 1 0))
+   	0 'floodService:FarmlandPresent
+    1 'floodService:FarmlandAbsent
+    :update #(let [sum (tl/apply-not-nil + (:nlcd#n %) (:nlcd#s %) (:nlcd#e %) (:nlcd#w %))]
     			       (if (< sum 3) (tl/conc 'floodService:FarmlandAbsent) (tl/conc 'floodService:FarmlandPresent)))))
 
 ;; test structural variability
