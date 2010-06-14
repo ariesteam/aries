@@ -27,6 +27,28 @@
 	xmlns:veracruz-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl#"
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#">
 
+	<measurement:Count id="sanPedro_amphibian_rich">
+		<observation:hasObservable>
+			<habitat:AmphibianDiversity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Count>
+
 	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
@@ -76,6 +98,30 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Measurement id="PrecipAvgYearly">
+		<observation:hasObservable>
+			<habitat:AnnualPrecipitation />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>usa:PrecipAvgYearly</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
@@ -100,6 +146,28 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Count id="sanPedro_bird_rich">
+		<observation:hasObservable>
+			<habitat:AvianDiversity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460413.1586537273</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116626.26715711149</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698486.6739021853</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Count>
 	
 	<measurement:Count id="buffalo">
 			<observation:hasObservable>
@@ -428,6 +496,48 @@
 			</observation:hasObservationExtent>
 		</measurement:Count>
 
+	<measurement:BinaryCoding id="sanPedro_az_highway">
+		<observation:hasObservable>
+			<infrastructure:Highway />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:az_highway</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460413.501423483</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>119389.85840045358</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106342.7079872754</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698201.022330201</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="sanPedro_mex_highway">
+		<observation:hasObservable>
+			<infrastructure:Highway />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3428508.610817847</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>551463.8398600442</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3467610.423053983</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>607605.2811839104</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
 	<measurement:Measurement id="puget_hydroreservoirs2">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUseLevel />
@@ -544,6 +654,28 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:Count id="sanPedro_mammal_rich">
+		<observation:hasObservable>
+			<habitat:MammalDiversity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:mammal_rich</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Count>
+
 	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
@@ -574,6 +706,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mexico:Non_Rival_Use</geospace:hasCoverageId>
+				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -704,6 +837,52 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<measurement:Ranking id="canopy2_Project">
+		<observation:hasObservable>
+			<habitat:PercentVegetationCover />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:canopy2_Project</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>34603</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>33376</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>31.406</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.1</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.736</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-112.317</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="canopy5_Project">
+		<observation:hasObservable>
+			<habitat:PercentVegetationCover />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:canopy5_Project</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>33070</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>22359</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.348</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-115.876</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.918</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-104.68</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 	<measurement:Ranking id="imperviousGlobal">
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
@@ -722,6 +901,52 @@
 				<geospace:hasLonLowerBound>-180.004</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>75.004</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+<measurement:Ranking id="impervious2_Project">
+		<observation:hasObservable>
+			<habitat:PercentImperviousness />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:impervious2_Project</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>34603</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>33376</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>31.406</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.1</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>43.736</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-112.317</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="impervious5_Project">
+		<observation:hasObservable>
+			<habitat:PercentImperviousness />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:impervious5_Project</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>33070</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>22359</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.348</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-115.876</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.918</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-104.68</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
@@ -806,6 +1031,28 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+	<measurement:Count id="sanPedro_reptile_rich">
+		<observation:hasObservable>
+			<habitat:ReptileDiversity />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:reptile_rich</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460523.9885570426</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116630.32188851421</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698484.5783375392</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Count>
 
 	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
@@ -935,6 +1182,93 @@
 			</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
+<measurement:BinaryCoding id="sanPedro_az_hydrography">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_hydrography</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>31.332001459188426</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-115.33000540843109</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.84600019046589</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-107.35500689472907</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="sanPedro_mex_hydrography">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:mex_hydrography</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3430042.7384353103</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>547756.3152878443</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3466986.5616748715</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>600524.6907883079</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+<!--Make this a road classification in the ontology for calculating travel cost -->
+	<measurement:Classification id="sanPedro_az_roads">
+		<observation:hasObservable>
+			<infrastructure:Road />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>category</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Classification>
+
+<!-- This one is just a presence/absence of roads -->
+	<measurement:BinaryCoding id="sanPedro_az_roads">
+		<observation:hasObservable>
+			<infrastructure:Road />
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
 	<measurement:Measurement id="puget_pugeterosionmetrics">
 		<observation:hasObservable>
 			<soilretentionEcology:SedimentSourceValueAnnual />
@@ -1003,6 +1337,29 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<measurement:BinaryCoding id="springs">
+	<observation:hasObservable>
+		<waterSupplyService:Springs />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:springs</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>17404</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>20999</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3466682.059992473</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>162614.52298397402</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4096712.06000003</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>684794.5230006124</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<measurement:Measurement id="str_gradient">
 		<observation:hasObservable>
@@ -1176,53 +1533,6 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
-<measurement:BinaryCoding id="springs">
-	<observation:hasObservable>
-		<waterSupplyService:Springs />
-	</observation:hasObservable>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:springs</geospace:hasCoverageId>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>17404</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>20999</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>3466682.059992473</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>162614.52298397402</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>4096712.06000003</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>684794.5230006124</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-	<measurement:Measurement id="well_depth">
-		<observation:hasObservable>
-			<waterSupplyService:WellDepth />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:well_depth</geospace:hasCoverageId>
-				<measurement:unit>ft</measurement:unit>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466659.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-
 <!-- FERD: These units are in gallons/minute, ucheck is being a bit funny on verifying if that's a legit unit-->
 
 	<measurement:Measurement id="well_tested_rate">
@@ -1249,336 +1559,75 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Ranking id="impervious2_Project">
+	<measurement:Measurement id="well_depth">
 		<observation:hasObservable>
-			<habitat:PercentImperviousness />
+			<waterSupplyService:WellDepth />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:impervious2_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:well_depth</geospace:hasCoverageId>
+				<measurement:unit>ft</measurement:unit>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>34603</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>33376</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>31.406</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-125.1</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>43.736</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-112.317</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3466659.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
-	<measurement:Ranking id="impervious5_Project">
+<!--NEED TO ADD CORRECT ONTOLOGY FOR THIS
+	<measurement:Categorization id="mexico_mex_lulc"> 
 		<observation:hasObservable>
-			<habitat:PercentImperviousness />
+			<mexlulc:MexLULCNumeric/> 
+		</observation:hasObservable>
+		<observation:hasDataSource> 
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
+			</geospace:WFSDataSource> 
+		</observation:hasDataSource>
+		<observation:hasObservationExtent> 
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>14.531</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-117.302</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.718</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-86.71</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet> </observation:hasObservationExtent>
+		</measurement:Categorization>
+	-->
+
+	<!-- Need to tag correct concepts for use here -->
+	<measurement:Ranking id="swregap_landcover_Project">
+		<observation:hasObservable>
+			<observation:GenericQuantifiable />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:impervious5_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:swregap_landcover_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>33070</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>22359</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.348</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-115.876</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.918</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-104.68</geospace:hasLonUpperBound>
+				<geospace:hasXRangeMax>71174</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>46292</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>29.6</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.477</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.486</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-99.591</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-
-	<measurement:Ranking id="canopy2_Project">
-		<observation:hasObservable>
-			<habitat:PercentVegetationCover />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:canopy2_Project</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>34603</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>33376</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>31.406</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-125.1</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>43.736</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-112.317</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<measurement:Ranking id="canopy5_Project">
-		<observation:hasObservable>
-			<habitat:PercentVegetationCover />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:canopy5_Project</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>33070</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>22359</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.348</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-115.876</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.918</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-104.68</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-<measurement:BinaryCoding id="sanPedro_az_hydrography">
-<observation:hasObservable>
-<geofeatures:River/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:az_hydrography</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>31.332001459188426</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-115.33000540843109</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>37.84600019046589</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-107.35500689472907</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<measurement:BinaryCoding id="sanPedro_mex_hydrography">
-<observation:hasObservable>
-<geofeatures:River/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:mex_hydrography</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3430042.7384353103</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>547756.3152878443</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>3466986.5616748715</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>600524.6907883079</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<measurement:BinaryCoding id="sanPedro_mex_highway">
-<observation:hasObservable>
-<infrastructure:Highway/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3428508.610817847</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>551463.8398600442</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>3467610.423053983</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>607605.2811839104</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<!-- Make this a road classification in the ontology for calculating travel cost -->
-<measurement:Classification id="sanPedro_az_roads">
-<observation:hasObservable>
-<infrastructure:Road/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-<geospace:hasValueAttribute>category</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Classification>
-
-<!-- This one is just a presence/absence of roads -->
-<measurement:BinaryCoding id="sanPedro_az_roads">
-<observation:hasObservable>
-<infrastructure:Road/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<!-- NEED TO ADD THIS ONTOLOGY 
-<measurement:Categorization id="mexico_mex_lulc">
-<observation:hasObservable>
-<mexlulc:MexLULCNumeric/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
-<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>14.531</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-117.302</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>32.718</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-86.71</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Categorization> -->
-
-<measurement:BinaryCoding id="sanPedro_az_highway">
-<observation:hasObservable>
-<infrastructure:Highway/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:az_highway</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460413.501423483</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>119389.85840045358</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106342.7079872754</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698201.022330201</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<measurement:Ranking id="sanPedro_reptile_rich">
-<observation:hasObservable>
-<habitat:ReptileDiversity/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:reptile_rich</geospace:hasCoverageId>
-<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460523.9885570426</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116630.32188851421</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698484.5783375392</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="sanPedro_mammal_rich">
-<observation:hasObservable>
-<habitat:MammalDiversity/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:mammal_rich</geospace:hasCoverageId>
-<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="sanPedro_amphibian_rich">
-<observation:hasObservable>
-<habitat:AmphibianDiversity/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
-<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="sanPedro_bird_rich">
-<observation:hasObservable>
-<habitat:AvianDiversity/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
-<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>3460413.1586537273</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>116626.26715711149</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>698486.6739021853</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
 
 </kbox>
