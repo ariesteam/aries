@@ -158,9 +158,9 @@
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
            result-type save-file]
     :or {result-type :closure-map}}]
-  (let [observation  (if (vector? observation-or-model-spec)
-                       (apply run-at-location observation-or-model-spec)
-                       observation-or-model-spec)]
+  (let [observation (if (vector? observation-or-model-spec)
+                      (apply run-at-location observation-or-model-spec)
+                      observation-or-model-spec)]
     ;; This version of SPAN only works for grid-based observations (i.e. raster maps).
     (assert (grid-extent? observation))
     (let [rows         (grid-rows    observation)
@@ -173,7 +173,7 @@
                          (if (= flow-model "Sediment")
                            (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                            layer-map))]
-      (if save-file
+      (if (string? save-file)
         (save-span-layers save-file source-layer sink-layer use-layer flow-layers)
         (run-span (remove-nil-val-entries
                    {:source-layer       source-layer

@@ -1,4 +1,8 @@
 ;; File to test that clj-span loads and runs.
+(ns applications.spantest)
+
+(refer 'clj-span.aries-span-bridge :only '(span-driver))
+(refer 'tl :only '(conc))
 
 (println "Hello from spantest.clj!")
 
@@ -25,15 +29,23 @@
   [{:keys [model-name location resolution source-concept sink-concept use-concept flow-concept]
     :as span-spec}]
   (let [model-spec     [model-name location resolution]
-        source-concept (tl/conc source-concept)
-        sink-concept   (tl/conc sink-concept)
-        use-concept    (tl/conc use-concept)
-        flow-concept   (tl/conc flow-concept)
-        flow-params    (select-keys :source-threshold :sink-threshold :use-threshold :trans-threshold
-                                    :rv-max-states :downscaling-factor :source-type :sink-type :use-type
-                                    :benefit-type :result-type :save-file)]
-    (aries-span-bridge/span-driver model-spec source-concept sink-concept use-concept flow-concept flow-params)))
-
-;;(def outfile (System/getProperty "user.home"))
+        source-concept (conc source-concept)
+        sink-concept   (conc sink-concept)
+        use-concept    (conc use-concept)
+        flow-concept   (conc flow-concept)
+        flow-params    (select-keys span-spec
+                                    [:source-threshold :sink-threshold :use-threshold :trans-threshold
+                                     :rv-max-states :downscaling-factor :source-type :sink-type :use-type
+                                     :benefit-type :result-type :save-file])]
+    (println model-spec)
+    (println source-concept)
+    (println sink-concept)
+    (println use-concept)
+    (println flow-concept)
+    (println flow-params)
+    (println "Running the SPAN model...")
+    (span-driver model-spec source-concept sink-concept use-concept flow-concept flow-params)))
 
 (run-span-example span-spec-1)
+
+;;(def outfile (System/getProperty "user.home"))
