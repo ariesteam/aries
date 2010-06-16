@@ -28,9 +28,9 @@
 	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#">
 
-	<measurement:Count id="sanPedro_amphibian_rich">
+	<measurement:Ranking id="sanPedro_amphibian_rich">
 		<observation:hasObservable>
-			<habitat:AmphibianDiversity />
+			<habitat:AmphibianRichness />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -48,7 +48,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Count>
+	</measurement:Ranking>
 
 	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
@@ -148,9 +148,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Count id="sanPedro_bird_rich">
+	<measurement:Measurement id="sanPedro_bird_rich">
 		<observation:hasObservable>
-			<habitat:AvianDiversity />
+			<habitat:AvianRichness />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -168,7 +168,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Count>
+	</measurement:Measurement>
 	
 	<measurement:Count id="buffalo">
 			<observation:hasObservable>
@@ -631,9 +631,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Count id="sanPedro_mammal_rich">
+	<measurement:Measurement id="sanPedro_mammal_rich">
 		<observation:hasObservable>
-			<habitat:MammalDiversity />
+			<habitat:MammalRichness />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -651,7 +651,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Count>
+	</measurement:Measurement>
 
 	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
@@ -1612,9 +1612,9 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Count id="sanPedro_reptile_rich">
+	<measurement:Measurement id="sanPedro_reptile_rich">
 		<observation:hasObservable>
-			<habitat:ReptileDiversity />
+			<habitat:ReptileRichness />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -1632,7 +1632,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Count>
+	</measurement:Measurement>
 
 	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
