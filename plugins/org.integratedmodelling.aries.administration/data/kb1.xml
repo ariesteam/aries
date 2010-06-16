@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
 	THIS FILE IS THE EXCLUSIVE PROPERTY OF KEN AND BRIAN TO ADD ANY NEW DATASET THEY
 	ANNOTATE. ENJOY!
  -->
@@ -2142,8 +2142,8 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-<!--NEED TO ADD CORRECT ONTOLOGY FOR THIS
-	<observation:Categorization id="mexico_mex_lulc"> 
+    <!--NEED TO ADD CORRECT ONTOLOGY FOR THIS
+	<measurement:Categorization id="mexico_mex_lulc"> 
 		<observation:hasObservable>
 			<mexlulc:MexLULCNumeric/> 
 		</observation:hasObservable>
@@ -2165,7 +2165,8 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		</observation:Categorization>
 	-->
 
-	<!-- Need to tag correct concepts for use here 
+	<!-- Need to tag correct concepts for use here -->
+    <!--Failing hard
 	<measurement:Ranking id="swregap_landcover_Project">
 		<observation:hasObservable>
 			<observation:GenericQuantifiable />
@@ -2187,6 +2188,7 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
+    -->
 
 </kbox>
