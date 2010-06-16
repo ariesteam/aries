@@ -106,6 +106,7 @@
 		<parameter id="resource" value="aries/aries-core.clj"/>
 		<parameter id="resource" value="aries/offline-tasks.clj"/>
 		<parameter id="resource" value="span/interface.clj"/>
+		<parameter id="resource" value="clj_span/aries_span_bridge.clj"/>
 		<parameter id="resource" value="aries/demo/aries-demo.clj"/>
 		<parameter id="resource" value="aesthetics.clj" />
 		<parameter id="resource" value="flood.clj" />
@@ -117,9 +118,6 @@
 		<parameter id="resource" value="water_la_antigua.clj" />
 		<parameter id="resource" value="carbon_jen.clj" />
 		<parameter id="resource" value="carbon_sam.clj" />
-				
-		
-		
 	</extension> 
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="test">
@@ -135,6 +133,14 @@
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
 			<parameter id="script" value="applications/batch.clj"/>
+		</parameter>
+	</extension>
+
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="spantest">
+		<parameter id="id" value="spantest"/>
+		<parameter id="declaration">
+			<parameter id="language" value="clojure"/>
+			<parameter id="script" value="applications/spantest.clj"/>
 		</parameter>
 	</extension>
 	
