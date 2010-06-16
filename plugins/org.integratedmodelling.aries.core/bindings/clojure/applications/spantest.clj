@@ -3,9 +3,9 @@
 (println "Hello from spantest.clj!")
 
 (let [observation (modelling/run-at-location "core.models.aesthetics/data" 'chehalis 64)
-      source-conc (tl/conc 'aestheticService:NaturalBeauty)
-      use-conc    (tl/conc 'aestheticService:HomeownersEnjoyment)
-      sink-conc   (tl/conc 'aestheticService:ViewSink)
+      source-conc (tl/conc 'aestheticService:TheoreticalNaturalBeauty)
+      use-conc    (tl/conc 'aestheticService:HomeownerViewUse)
+      sink-conc   (tl/conc 'aestheticService:TotalVisualBlight)
       flow-conc   (tl/conc 'geophysics:Altitude)
       flow-params  {:source-threshold   0.05
                     :sink-threshold     0.20
