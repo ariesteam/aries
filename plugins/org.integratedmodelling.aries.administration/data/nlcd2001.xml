@@ -22,31 +22,6 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 		
-		<!-- NLCD categories for Puget region. FIXME: DELETE as soon as the ones below are
-		working properly. 
-        <measurement:NumericCoding id="puget_nlcd">
-                <observation:hasObservable>
-                        <nlcd:NLCDNumeric />
-                </observation:hasObservable>
-                <observation:hasDataSource>
-                        <geospace:WCSDataSource>
-                                <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-                                <geospace:hasCoverageId>puget:NCLDKing</geospace:hasCoverageId>
-                        </geospace:WCSDataSource>
-                </observation:hasDataSource>
-                <observation:hasObservationExtent>
-                        <geospace:RasterGrid>
-                                <geospace:hasXRangeMax>26024</geospace:hasXRangeMax>
-                                <geospace:hasYRangeMax>31326</geospace:hasYRangeMax>
-                                <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-                                <geospace:hasLatLowerBound>40.1420532</geospace:hasLatLowerBound>
-                                <geospace:hasLonLowerBound>-127.2639418</geospace:hasLonLowerBound>
-                                <geospace:hasLatUpperBound>50.1177680</geospace:hasLatUpperBound>
-                                <geospace:hasLonUpperBound>-114.5863185</geospace:hasLonUpperBound>
-                        </geospace:RasterGrid>
-                </observation:hasObservationExtent>
-        </measurement:NumericCoding> -->
-        
 	<measurement:NumericCoding id="nlcd_lc_ll_01">
 		<observation:hasObservable>
 			<nlcd:NLCDNumeric />
@@ -56,7 +31,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_01</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_01</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -81,7 +56,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_02</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_02</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -106,7 +81,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_03</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_03</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -131,7 +106,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_04</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_04</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -156,7 +131,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_05</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_05</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -181,7 +156,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_06</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_06</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -206,7 +181,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_07</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_07</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -231,7 +206,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_08</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_08</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -256,7 +231,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_09</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_09</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -281,7 +256,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_10</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -306,7 +281,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_11</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -331,7 +306,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_12</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -356,7 +331,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_13</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -381,7 +356,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>nlcd_lc_ll_14</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:nlcd_lc_ll_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
