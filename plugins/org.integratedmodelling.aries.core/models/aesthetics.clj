@@ -128,11 +128,11 @@
 
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:AestheticEnjoyment 
-  (identification 'aestheticService:AestheticEnjoyment)
+  (identification 'aestheticService:AestheticEnjoyment
   :context (source     :as source
 	    homeowners :as use
 	    sink       :as sink
-	    altitude   :as altitude))
+	    altitude   :as altitude)))
 
 ;; the real enchilada
 (defmodel view 'aestheticService:AestheticView
