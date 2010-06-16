@@ -1781,7 +1781,7 @@
 	</measurement:BinaryCoding>
 
 <!--Make this a road classification in the ontology for calculating travel cost -->
-	<measurement:Classification id="sanPedro_az_roads">
+	<observation:Categorization id="sanPedro_az_roads">
 		<observation:hasObservable>
 			<infrastructure:Road />
 		</observation:hasObservable>
@@ -1801,7 +1801,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Classification>
+	</observation:Categorization>
 
 <!-- This one is just a presence/absence of roads -->
 	<measurement:BinaryCoding id="sanPedro_az_roads">
@@ -2089,15 +2089,20 @@
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
+<!--Native units are in gallons/minute, as a point file.  To convert this to aerial units, we assume each
+well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, divide cubic meters by
+4 m^2, convert m to mm, and convert minutes to year.  This gives an overall conversion factor of 497,349 -->
+
 	<measurement:Measurement id="well_tested_rate">
 		<observation:hasObservable>
 			<waterSupplyService:WellCapacity />
 		</observation:hasObservable>
+		<measurement:unit>mm/yr</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:well_tested_rate</geospace:hasCoverageId>
-				<measurement:unit>gal/min</measurement:unit>
+				<geospace:hasTransformation>self * 497349</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2117,11 +2122,11 @@
 		<observation:hasObservable>
 			<waterSupplyService:WellDepth />
 		</observation:hasObservable>
+		<measurement:unit>ft</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:well_depth</geospace:hasCoverageId>
-				<measurement:unit>ft</measurement:unit>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2138,7 +2143,7 @@
 	</measurement:Measurement>
 
 <!--NEED TO ADD CORRECT ONTOLOGY FOR THIS
-	<measurement:Categorization id="mexico_mex_lulc"> 
+	<observation:Categorization id="mexico_mex_lulc"> 
 		<observation:hasObservable>
 			<mexlulc:MexLULCNumeric/> 
 		</observation:hasObservable>
@@ -2157,7 +2162,7 @@
 				<geospace:hasLonUpperBound>-86.71</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet> </observation:hasObservationExtent>
-		</measurement:Categorization>
+		</observation:Categorization>
 	-->
 
 	<!-- Need to tag correct concepts for use here -->
