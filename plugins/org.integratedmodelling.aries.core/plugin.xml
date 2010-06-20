@@ -96,7 +96,10 @@
 		<parameter id="url" value="es/services/waterSupplyService.owl"/>
 		<parameter id="concept-space" value="waterSupplyService"/>
 	</extension>
-	
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="southernCalifornia">
+		<parameter id="url" value="es/services/local/southernCalifornia.owl"/>
+		<parameter id="concept-space" value="southernCalifornia"/>
+	</extension>
 
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
