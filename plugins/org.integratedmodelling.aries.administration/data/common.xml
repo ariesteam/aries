@@ -468,6 +468,9 @@
 		<observation:hasObservable>
 			<habitat:HardwoodSoftwoodRatio />
 		</observation:hasObservable>
+		<rdfs:comment>Data source: Interagency Vegetation Mapping Project</rdfs:comment>
+		<!-- FERD TO ADD LOCATION FOR URL 
+		e.g., http://www.blm.gov/or/gis/data-details.php?data=ds000103-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -486,67 +489,7 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>		
-	
-	<!-- highways in Chehalis watershed from shape coverage, 
-		 seen as a presence/absence ranking -->
-	<measurement:BinaryCoding id="puget_highways">
-	
-		<observation:hasObservable>
-			<infrastructure:Highway />
-		</observation:hasObservable>
 
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugethighways</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>87414.6015625</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>637163.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1353168.875</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2514549.75</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
-	
-<!--  This has to be commented out for now if we're going to try to run a useful global verision: it's been replaced by a rasterized puget HSG layer.
-<observation:Categorization id="puget_soilgroup">
-	
-		<observation:hasObservable>
-			<habitat:HydrologicSoilsGroup />
-		</observation:hasObservable>
-
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugethydrologicsoilsgroup</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>hydgrpdcd</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>5077470.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>374335.96875</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>5435820.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>806557.9375</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization> -->
-	
-<!-- HSG was slow to rasterize as a vector file (above) so I inserted the raster layer below.  It seems like this should read in the clojure models, but let's make sure. -->
-	
-	<!-- FV: TODO insert this instead of the above once the mapping is understood - the
-	above is a categorization to A,B,C,D; this one is a raster with integers - how to
-	translate? When understood, models need to be changed to reflect the mapping AND
-	we should discuss using the global file as well. -->
-	<!-- KB: I'm hoping the discretization provided in sediment.clj will do the job (changes were made to
-	flood.clj too).  Let me know if it doesn't. -->	
-	<!--Refactor the ontologies to get rid of extra xml here: don't need separate versions for flood,
-	water supply, soil regulation-->
 	<measurement:Ranking id="HSG">
 		<observation:hasObservable>
 			<habitat:HydrologicSoilsGroup />
@@ -1247,6 +1190,9 @@
 	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
 		observable instance. Using the same observable will just pick one of the two
 		SoilPh measurements in a model without a way to discriminate. -->
+	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
+	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
+	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
 	<measurement:Ranking id="global_soil_ph">
 		<observation:hasObservable>
 			<habitat:SoilPh />
@@ -1273,6 +1219,9 @@
 	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
 		observable instance. Using the same observable will just pick one of the two
 		SoilPh measurements in a model without a way to discriminate. -->
+	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
+	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
+	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
 	<measurement:Ranking id="soil_ph1">
 		<observation:hasObservable>
 			<habitat:SoilPh />

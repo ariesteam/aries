@@ -3,10 +3,11 @@
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
+;; these are the undiscretization statements, necessary for training purposes.
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "t/ha*year" 
+						:units "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighStorage
 	  				[9 12]    'carbonService:HighStorage
 	  				[6 9]     'carbonService:ModerateStorage
@@ -17,7 +18,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units "t/ha*yr" 
+						:units "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighVegetationStorage
 	  				[9 12]    'carbonService:HighVegetationStorage
 	  				[6 9]     'carbonService:ModerateVegetationStorage
@@ -28,13 +29,13 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha*year" 
+						:units    "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighSoilStorage
 	  				[9 12]    'carbonService:HighSoilStorage
 	  				[6 9]     'carbonService:ModerateSoilStorage
 	  				[3 6]     'carbonService:LowSoilStorage
 	  				[0.01 3]  'carbonService:VeryLowSoilStorage
-	  				[:< 0.01] 'carbonService:NoSoilStorage))	  			
+	  				[:< 0.01] 'carbonService:NoSoilStorage))
 	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
@@ -55,9 +56,7 @@
 	 		2           'carbonService:EarlySuccession
 	 		1           'carbonService:PoleSuccession
 	 		:otherwise  'carbonService:NoSuccession))
-	 		    
-;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
-;; TODO check with Ken
+	 		  
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover :units "%")
 		[80 :>] 'carbonService:VeryHighVegetationCover
@@ -112,8 +111,8 @@
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
-	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
-	 	 	            hardwood-softwood-ratio)))  
+	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency 
+	 	 	            percent-vegetation-cover hardwood-softwood-ratio)))  
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

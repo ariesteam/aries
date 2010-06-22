@@ -26,13 +26,13 @@
     (classification (numeric-coding 'habitat:SlopeStability)	 		
       1           'soilretentionEcology:HighSlopeStability
 	 		2           'soilretentionEcology:ModerateSlopeStability
-	 		3           'soilretentionEcology:LowSlopeStability)) 
+	 		3           'soilretentionEcology:LowSlopeStability))
 
 (defmodel soil-texture 'soilretentionEcology:SoilTextureClass
     (classification (categorization 'habitat:SoilTexture)
       "Coarse"    'soilretentionEcology:CoarseSoilTexture
       "Medium"    'soilretentionEcology:MediumSoilTexture
-      "Fine"      'soilretentionEcology:FineSoilTexture)) 
+      "Fine"      'soilretentionEcology:FineSoilTexture))
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibilityClass
@@ -96,6 +96,8 @@
 		[1200 2400] 	'soilretentionEcology:HighAnnualRunoff
 		[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
+;;CAN'T do a global vegetation type defmodel if classes are different: split this up & use the local
+;; vegetation type defmodel into the BN
 ;;Vegetation type
 (defmodel vegetation-type 'soilretentionEcology:VegetationType
 	"Just a reclass of the NLCD land use layer"
