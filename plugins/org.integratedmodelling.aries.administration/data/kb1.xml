@@ -147,6 +147,31 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:Measurement id="groundwater_recharge">
+		<observation:hasObservable>
+			<habitat:AnnualRecharge />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>usa:groundwater_recharge</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>5398</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>2481</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>22.851</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-127.888</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>51.609</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-65.346</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
 			<habitat:AnnualSnowmelt />
@@ -1675,6 +1700,30 @@
 				</geospace:RasterGrid>
 			</observation:hasObservationExtent>
 		</measurement:Count>
+		
+	<measurement:Measurement id="pet">
+		<observation:hasObservable>
+			<habitat:PotentialEvapotranspiration />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:pet</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>17998</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 		
 		<measurement:Count id="poultry">
 			<observation:hasObservable>

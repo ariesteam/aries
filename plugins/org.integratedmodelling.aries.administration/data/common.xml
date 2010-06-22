@@ -25,6 +25,31 @@
 
 <!--Note that these data are yearly while input data (snowmelt/precip) are monthly.  A poor way to resolve this would be to divide the values below by 12.  A monthly runoff dataset would be far preferable.  -->
 
+<measurement:Measurement id="evapotrans">
+	<observation:hasObservable>
+		<habitat:ActualEvapotranspiration />
+	</observation:hasObservable>
+	<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:evapotrans</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<measurement:Measurement id="avgannrunoff">
 		<observation:hasObservable>
 			<habitat:AnnualRunoff />
@@ -390,31 +415,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
-	
-	<measurement:Measurement id="global_evapotranspiration">
-		<observation:hasObservable>
-			<habitat:ActualEvapotranspiration />
-		</observation:hasObservable>
-		<measurement:unit>mm/year</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-				<geospace:hasCoverageId>puget:evapotrans</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>719</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>359</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
 	
 	<measurement:Ranking id="puget_fire_frequency">
 		<observation:hasObservable>
