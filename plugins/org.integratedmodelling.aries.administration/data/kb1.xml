@@ -2578,5 +2578,29 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
     -->
+<!-- Need an ontologic concept for this one 
+<measurement:BinaryCoding id="facilities">
+	<observation:hasObservable>
+		<observation:GenericQuantifiable />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+			</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:facilities</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>10120</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>9431</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>32.544</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.261</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>41.977</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-114.139</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>  -->
 
 </kbox>

@@ -164,7 +164,7 @@
 	 	   [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
 	 	   [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
 	 	   [5 10]                'waterSupplyService:LowImperviousCover
-	 	   [0 5]                 'waterSupplyService:VeryLowImperviousCover))
+	 	   [1 5]                 'waterSupplyService:VeryLowImperviousCover))
 
 (defmodel vegetation-type 'waterSupplyService:VegetationType
 	"Just a reclass of the Veracruz land use layer"
@@ -181,7 +181,7 @@
 		[60 80]  'waterSupplyService:HighVegetationCover
 		[40 60]  'waterSupplyService:ModerateVegetationCover
 		[20 40]  'waterSupplyService:LowVegetationCover
-		[0 20]   'waterSupplyService:VeryLowVegetationCover))
+		[1 20]   'waterSupplyService:VeryLowVegetationCover))
 
 (defmodel dam-presence 'waterSupplyService:Dams
 	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseCode)

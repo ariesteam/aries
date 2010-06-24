@@ -415,29 +415,29 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
-	
-	<measurement:Ranking id="puget_fire_frequency">
-		<observation:hasObservable>
-			<habitat:FireFrequency />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:FireFrequency</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>453</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>205</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>45.4801765978</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.78165</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.0504411</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-116.933967157</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+
+<measurement:Ranking id="PointDensity">
+	<observation:hasObservable>
+		<habitat:FireFrequency />
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:PointDensity</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>453</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>205</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>45.48</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.782</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.05</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-116.934</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 		
 	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
 		carbon models) when I figure out how to express that. -->

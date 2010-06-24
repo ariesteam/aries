@@ -99,7 +99,7 @@
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
 		[20 40]  'soilretentionEcology:LowVegetationCover
-		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
+		[1 20]   'soilretentionEcology:VeryLowVegetationCover))
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass

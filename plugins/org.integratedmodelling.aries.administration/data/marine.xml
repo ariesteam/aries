@@ -161,28 +161,27 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-		<measurement:Measurement id="mg_disttocoast">
-			<observation:hasObservable>
-				<fisheries:DistanceToCoast />
-			</observation:hasObservable>
-			<measurement:unit>km</measurement:unit>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-					</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:disttocoast</geospace:hasCoverageId>
-					<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-348490.07247449365</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-347328.71373174875</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>2021333.4203605766</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>1242623.5988219227</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:96618</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
+	<measurement:Measurement id="mg_distance_to_coast">
+		<observation:hasObservable>
+			<fisheries:DistanceToCoast />
+		</observation:hasObservable>
+		<measurement:unit>km</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:distance_to_coast</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>41403.36258522968</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>36880.90490145731</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1581494.8141772489</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>862106.635571087</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:96618</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
 	<observation:Categorization id="mg_estuaryarea">
@@ -405,6 +404,7 @@
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>poverty_pct_1</geospace:hasCoverageId>
+				<geospace:hasNodataValue>7.546573162078857</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

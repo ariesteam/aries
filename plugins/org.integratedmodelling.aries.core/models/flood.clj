@@ -15,7 +15,7 @@
 
 (defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (numeric-coding 'habitat:HydrologicSoilsGroup)
+	(classification (ranking 'habitat:HydrologicSoilsGroup)
 			1        'floodService:SoilGroupA
 			2        'floodService:SoilGroupB
 			3        'floodService:SoilGroupC
@@ -146,16 +146,16 @@
 		[60 80] 'floodService:HighVegetationCover
 		[40 60] 'floodService:ModerateVegetationCover
 		[20 40] 'floodService:LowVegetationCover
-		[0 20]  'floodService:VeryLowVegetationCover))
+		[1 20]  'floodService:VeryLowVegetationCover))
 		
 (defmodel successional-stage 'floodService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}      'floodService:OldGrowth
-	 		4           'floodService:LateSuccession
-	 		3           'floodService:MidSuccession
-	 		2           'floodService:PoleSuccession
-	 		1           'floodService:EarlySuccession
-	 		:otherwise  'floodService:NoSuccession))
+	 		#{5 6}                          'floodService:OldGrowth
+	 		4                               'floodService:LateSuccession
+	 		3                               'floodService:MidSuccession
+	 		2                               'floodService:PoleSuccession
+	 		1                               'floodService:EarlySuccession
+	 		#{22 23 24 25 26 27 28 40 41}   'floodService:NoSuccession))
 	 		
 (defmodel imperviousness 'floodService:PercentImperviousCover
 	 (classification (ranking 'habitat:PercentImperviousness)

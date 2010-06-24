@@ -9,7 +9,7 @@
 
 (defmodel soil-group 'soilretentionEcology:HydrologicSoilsGroup
 	"Relevant soil group"
-	(classification (numeric-coding 'habitat:HydrologicSoilsGroup)
+	(classification (ranking 'habitat:HydrologicSoilsGroup)
 			1       'soilretentionEcology:SoilGroupA
 			2       'soilretentionEcology:SoilGroupB
 			3       'soilretentionEcology:SoilGroupC
@@ -127,7 +127,7 @@
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
 		[20 40]  'soilretentionEcology:LowVegetationCover
-		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
+		[1 20]   'soilretentionEcology:VeryLowVegetationCover))
 
 (defmodel successional-stage 'soilretentionEcology:SuccessionalStageClass
 	 (classification (numeric-coding 'ecology:SuccessionalStage)  

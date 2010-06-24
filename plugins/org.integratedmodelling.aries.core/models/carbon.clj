@@ -50,12 +50,12 @@
     
 (defmodel successional-stage 'carbonService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}      'carbonService:OldGrowth
-	 		4           'carbonService:LateSuccession
-	 		3           'carbonService:MidSuccession
-	 		2           'carbonService:EarlySuccession
-	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))
+	 		#{5 6}                         'carbonService:OldGrowth
+	 		4                              'carbonService:LateSuccession
+	 		3                              'carbonService:MidSuccession
+	 		2                              'carbonService:EarlySuccession
+	 		1                              'carbonService:PoleSuccession
+	 		#{22 23 24 25 26 27 28 40 41}  'carbonService:NoSuccession))
 	 		  
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover :units "%")
@@ -63,7 +63,7 @@
 		[60 80] 'carbonService:HighVegetationCover
 		[40 60] 'carbonService:ModerateVegetationCover
 		[20 40] 'carbonService:LowVegetationCover
-		[0 20]  'carbonService:VeryLowVegetationCover))
+		[1 20]  'carbonService:VeryLowVegetationCover))
 
 (defmodel soil-ph 'carbonService:Soilph
 		 (classification (ranking 'habitat:SoilPh)
