@@ -28,7 +28,7 @@
 		  
 (defmodel open-space 'recreationService:OpenSpaceClass
   "Classifies an area as open space according to NLCD 2001 data"
-  (classification (ranking 'nlcd:NLCDNumeric)
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
       #{81 82}       'recreationService:AgriculturalLand
       #{41 42 43}    'recreationService:ForestedLand
       #{31 90 95 52} 'recreationService:OtherOpenLand
@@ -112,7 +112,7 @@
 ;;development, clearcuts, roads, energy infrastructure
 (defmodel development 'recreationService:Development
 	"Development as defined by the NLCD 2001"
-	(classification (ranking 'nlcd:NLCDNumeric)
+	(classification (numeric-coding 'nlcd:NLCDNumeric)
 			22 					'recreationService:LowIntensityDevelopment
 			23  				'recreationService:MediumIntensityDevelopment
 			24  				'recreationService:HighIntensityDevelopment

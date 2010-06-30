@@ -2,9 +2,9 @@
 <smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="ProximityToSurfaceWaterClass">
-			<state id="SurfaceWaterProximate" />
-			<state id="SurfaceWaterModeratelyProximate" />
-			<state id="SurfaceWaterNotProximate" />
+			<state id="HighSurfaceWaterProximity" />
+			<state id="ModerateSurfaceWaterProximity" />
+			<state id="LowSurfaceWaterProximity" />
 			<probabilities>0.49 0.49 0.02</probabilities>
 		</cpt>
 		<cpt id="TotalLivestockWaterUseClass">
@@ -38,7 +38,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="AgriculturalSurfaceWaterUse" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="AgriculturalSurfaceWaterUse" faultnameformat="nodestate">
 			<node id="ProximityToSurfaceWaterClass">
 				<name>ProximityToSurfaceWaterClass</name>
 				<interior color="ffcc99" />

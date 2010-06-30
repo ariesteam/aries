@@ -5,6 +5,8 @@
 
 ;; these are the undiscretization statements, necessary for training purposes.
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
+;;KB: Should this actually be sequestration?  And should discretization on the two 
+;; below defmodels be updated?
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
 						:units "t/ha" 
@@ -81,10 +83,17 @@
 
 ; use NLCD layers to infer anoxic vs. oxic
 (defmodel oxygen 'carbonService:SoilOxygenConditions 
- (classification (ranking 'nlcd:NLCDNumeric)
-		  #{90 95}   'carbonService:Anoxic
-		  :otherwise 'carbonService:Oxic))
-		  
+ (classification (numeric-coding 'nlcd:NLCDNumeric)
+		  #{90 95}   'carbonService:AnoxicSoils
+		  :otherwise 'carbonService:OxicSoils))
+
+(defmodel soil-cn-ratio 'carbonService:SoilCNRatio
+  (classification (ranking 'habitat:SoilCNRatio)
+       [35 :>]   'carbonService:VeryHighCNRatio
+       [20 35]   'carbonService:HighCNRatio
+       [10 20]   'carbonService:LowCNRatio
+       [:< 10]   'carbonService:VeryLowCNRatio)) 
+
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
 		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
         [9 10] 'carbonService:VeryLowHardness
@@ -98,7 +107,10 @@
 		 			[:< 0.25]  'carbonService:LowFireFrequency
 		 			[0.25 0.9] 'carbonService:ModerateFireFrequency
 		 			[0.9 :>]   'carbonService:HighFireFrequency))
-			
+
+;;defmodel for carbon sequestration (NPP) BUT remember values over 30 are null!
+;;FERD: Do we do defmodels for intermediate variables??
+
 ;; Bayesian source model
 ;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
 (defmodel source 'carbonService:CarbonSourceValue   
@@ -112,7 +124,7 @@
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
 	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency 
-	 	 	            percent-vegetation-cover hardwood-softwood-ratio)))  
+	 	 	            soil-cn-ratio oxygen percent-vegetation-cover hardwood-softwood-ratio)))  
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

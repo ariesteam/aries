@@ -34,6 +34,8 @@
 		<observation:hasObservable>
 			<infrastructure:Airport />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: National Transportation Atlas Database</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -55,6 +57,9 @@
 		<observation:hasObservable>
 			<habitat:AmphibianRichness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -73,15 +78,20 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- Native units are in inches, convert to mm for consistency with other data sources -->
 	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
-		<measurement:unit>in</measurement:unit>
+			<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: USDA-NRCS, derived from PRISM climate data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://datagateway.nrcs.usda.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:AnnualPrecip</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
 				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -102,7 +112,10 @@
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: WorldClim</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.worldclim.org/bioclim</metadata:hasURL>
+			<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -127,7 +140,10 @@
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+		    <rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+			<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -151,7 +167,10 @@
 		<observation:hasObservable>
 			<habitat:AnnualRecharge />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+			<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: USGS WRD NDSI</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://water.usgs.gov/lookup/getgislist</metadata:hasURL>	
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -176,7 +195,10 @@
 		<observation:hasObservable>
 			<habitat:AnnualSnowmelt />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: University of Delaware Global Water Balance Archive</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://climate.geog.udel.edu/~climate/html_pages/README.wb_ts2.html</metadata:hasURL>	
+			<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -200,6 +222,9 @@
 		<observation:hasObservable>
 			<habitat:AvianRichness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -222,7 +247,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:BuffaloPopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -246,7 +274,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:CattlePopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -270,6 +301,9 @@
 		<observation:hasObservable>
 			<soilretentionEcology:ConservationPractice />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -315,6 +349,9 @@
 		<observation:hasObservable>
 			<soilretentionEcology:CoverManagement />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -337,11 +374,14 @@
 	<observation:hasObservable>
 		<habitat:DecemberSnowmelt />
 	</observation:hasObservable>
-	<measurement:unit>mm</measurement:unit>
+		<rdfs:comment>Data source: University of Delaware Global Water Balance Archive</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority> 
+		<metadata:hasURL>http://climate.geog.udel.edu/~climate/html_pages/README.wb_ts2.html</metadata:hasURL>	
+		<measurement:unit>mm</measurement:unit>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>snowmelt_dec</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:snowmelt_dec</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -357,7 +397,8 @@
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-	<measurement:Measurement id="DR_slope">
+<!-- Commenting out local slope data, remove once global slope is shown to be working properly.
+ 	<measurement:Measurement id="DR_slope">
 		<observation:hasObservable>
 			<geophysics:DegreeSlope />
 		</observation:hasObservable>
@@ -404,12 +445,13 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement>  -->
 
 	<measurement:NumericCoding id="DR_lulc">
 		<observation:hasObservable>
 			<domlulc:DOMLULCNumeric />
 		</observation:hasObservable>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -454,9 +496,12 @@
 		<observation:hasObservable>
 			<habitat:FireFrequency />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from SWReGAP vegetation type and TNC historic fire return interval data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -477,6 +522,9 @@
 		<observation:hasObservable>
 			<habitat:FireThreat />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: California Fire and Resource Assessment Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://frap.cdf.ca.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -501,6 +549,8 @@
 		<observation:hasObservable>
 			<geofeatures:Floodplain />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -523,7 +573,9 @@
 		<observation:hasObservable>
 			<habitat:FloodplainWidth />
 		</observation:hasObservable>
-		<measurement:unit>m</measurement:unit>
+			<rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -547,6 +599,9 @@
 	<observation:hasObservable>
 		<geofeatures:Floodplain />
 	</observation:hasObservable>
+			<rdfs:comment>Data source: Dartmouth Flood Observatory</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.dartmouth.edu/~floods/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -569,6 +624,9 @@
 		<observation:hasObservable>
 			<glc:GLCNumeric />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: GLC 2000 Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://bioval.jrc.ec.europa.eu/products/glc2000/glc2000.php</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -592,7 +650,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:GoatsPopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>	
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -616,6 +677,9 @@
 		<observation:hasObservable>
 			<infrastructure:Highway />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -637,6 +701,8 @@
 		<observation:hasObservable>
 			<infrastructure:Highway />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: TIGER/Line 2000 Streets</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -658,7 +724,10 @@
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUseLevel />
 		</observation:hasObservable>
-		<measurement:unit>m^3</measurement:unit>
+		  		<rdfs:comment>Data source: National Atlas of the United States, Major Dams of the United States</rdfs:comment>
+				<metadata:hasPriority>0</metadata:hasPriority>
+				<metadata:hasURL>http://nationalatlas.gov/atlasftp.html?openChapters=chpwater</metadata:hasURL>
+				<measurement:unit>m^3</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -681,7 +750,10 @@
 	<observation:hasObservable>
 		<soilretentionEcology:HydroelectricUseLevel />
 	</observation:hasObservable>
-	<measurement:unit>m^3</measurement:unit>
+		<rdfs:comment>Data source: FAO AQUASTAT</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority> 
+		<metadata:hasURL>http://www.fao.org/nr/water/aquastat/gis/index2.stm</metadata:hasURL>
+		<measurement:unit>m^3</measurement:unit>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -726,6 +798,9 @@
 	<observation:hasObservable>
 		<habitat:HydrologicSoilsGroup />
 	</observation:hasObservable>
+		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -749,6 +824,9 @@
 		<observation:hasObservable>
 			<habitat:HydrologicSoilsGroup />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -796,11 +874,14 @@
 		<observation:hasObservable>
 			<habitat:JanuarySnowmelt />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: University of Delaware Global Water Balance Archive</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://climate.geog.udel.edu/~climate/html_pages/README.wb_ts2.html</metadata:hasURL>	
+			<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>snowmelt_jan</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:snowmelt_jan</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -820,6 +901,9 @@
 		<observation:hasObservable>
 			<habitat:MammalRichness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -842,6 +926,9 @@
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
 		</observation:hasObservable>
+				<rdfs:comment>Data source: Foiben-Taosarintanin’i Madagasikara (FTM)</rdfs:comment>
+				<metadata:hasPriority>0</metadata:hasPriority> 
+				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -888,6 +975,8 @@
 		<observation:hasObservable>
 			<habitat:PercentFloodplainVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -911,6 +1000,8 @@
 		<observation:hasObservable>
 			<habitat:PercentFloodplainVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -934,6 +1025,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NOAA-NGDC</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.ngdc.noaa.gov/dmsp/download_global_isa.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -957,6 +1051,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -981,6 +1078,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1005,6 +1105,9 @@
 	<observation:hasObservable>
 		<habitat:PercentImperviousness />
 	</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1029,6 +1132,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1053,6 +1159,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1077,6 +1186,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1101,6 +1213,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1125,6 +1240,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1149,6 +1267,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1173,6 +1294,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1197,6 +1321,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1221,6 +1348,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1245,6 +1375,9 @@
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1269,6 +1402,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>			
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1292,6 +1428,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1315,6 +1454,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1338,6 +1480,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1361,6 +1506,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1385,6 +1533,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1409,6 +1560,9 @@
 	<observation:hasObservable>
 		<habitat:PercentVegetationCover />
 	</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1433,6 +1587,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1457,6 +1614,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1481,6 +1641,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1505,6 +1668,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1529,6 +1695,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1553,6 +1722,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1577,6 +1749,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1601,6 +1776,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1625,6 +1803,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1649,6 +1830,9 @@
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1681,7 +1865,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:PigsPopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1705,7 +1892,10 @@
 		<observation:hasObservable>
 			<habitat:PotentialEvapotranspiration />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
+			<rdfs:comment>Data source: CGIAR Global Aridity/Global PET database</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://csi.cgiar.org/aridity/index.asp</metadata:hasURL>
+			<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1729,7 +1919,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:PoultryPopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1821,6 +2014,9 @@
 		<observation:hasObservable>
 			<soilretentionEcology:RainfallRunoffErosivityIndex />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1843,6 +2039,9 @@
 		<observation:hasObservable>
 			<habitat:ReptileRichness />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1886,6 +2085,9 @@
 		<observation:hasObservable>
 			<geofeatures:Reservoir />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: FAO AQUASTAT</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.fao.org/nr/water/aquastat/gis/index2.stm</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1909,6 +2111,9 @@
 		<observation:hasObservable>
 			<geofeatures:River />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Washington DNR hydrography data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1930,6 +2135,9 @@
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
+		<rdfs:comment>Data source: Foiben-Taosarintanin’i Madagasikara (FTM)</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1993,6 +2201,9 @@
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
+		<rdfs:comment>Data source: National Hydrography Dataset</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2014,6 +2225,9 @@
 		<observation:hasObservable>
 			<geofeatures:River />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2035,6 +2249,9 @@
 		<observation:hasObservable>
 			<geofeatures:River />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Caltrans, Teale Data Center</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.dot.ca.gov/hq/tsip/gis/datalibrary/gisdatalibrary.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2057,6 +2274,9 @@
 		<observation:hasObservable>
 			<infrastructure:Road />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2080,6 +2300,9 @@
 		<observation:hasObservable>
 			<recreationService:RoadTravelCapacity />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2103,6 +2326,8 @@
 		<observation:hasObservable>
 			<recreationService:RoadTravelCapacity />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: TIGER/Line 2000 Streets</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2125,7 +2350,10 @@
 		<observation:hasObservable>
 			<soilretentionEcology:SedimentSourceValueAnnual />
 		</observation:hasObservable>
-		<measurement:unit>kg/ha</measurement:unit>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
+			<measurement:unit>kg/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2148,7 +2376,10 @@
 			<observation:hasObservable>
 				<waterSupplyService:SheepPopulation />
 			</observation:hasObservable>
-			<measurement:unit>/km^2</measurement:unit>
+				<rdfs:comment>Data source: FAO Gridded Livestock of the World</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.fao.org/Ag/againfo/////resources/en/glw/GLW_dens.html</metadata:hasURL>
+				<measurement:unit>/km^2</measurement:unit>
 			<observation:hasDataSource>
 				<geospace:WCSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2172,6 +2403,9 @@
 		<observation:hasObservable>
 			<soilretentionEcology:SlopeSteepnessAndLengthFactor />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2194,6 +2428,9 @@
 		<observation:hasObservable>
 			<habitat:SoilErodibility />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2212,10 +2449,66 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 
+for grasslands and deserts and soil_ph1 for all other ecosystem types -->
+
+<measurement:Ranking id="california_soil_ph_0_30_oc">
+	<observation:hasObservable>
+		<habitat:SoilPh />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:soil_ph_0_30_oc</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>phwater</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3693786.6285227924</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>395918.61400854855</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3757176.1154322056</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>472740.9629056087</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
+	<measurement:Ranking id="california_soil_ph_30_100_oc">
+		<observation:hasObservable>
+			<habitat:SoilPh />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:soil_ph_30_100_oc</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>phwater</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3693786.6285227924</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>395918.61400854855</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3757176.1154322056</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>472740.9629056087</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 <measurement:BinaryCoding id="springs">
 	<observation:hasObservable>
 		<waterSupplyService:Springs />
 	</observation:hasObservable>
+		<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2239,7 +2532,10 @@
 		<observation:hasObservable>
 			<habitat:StreamGradient />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
+			<rdfs:comment>Data source: Derived from Digital Chart of the World hydrography and SRTM slope layers</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://data.geocomm.com/catalog/DR/group105.html</metadata:hasURL>	
+			<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2264,7 +2560,9 @@
 		<observation:hasObservable>
 			<habitat:StreamGradient />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
+			<measurement:unit>°</measurement:unit>
+			<rdfs:comment>Data source: Derived from FTM hydrography and SRTM slope layers</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2289,7 +2587,9 @@
 		<observation:hasObservable>
 			<habitat:StreamGradient />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
+			<rdfs:comment>Data source: Derived from DNR hydrography and SRTM slope layers</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2314,6 +2614,9 @@
 		<observation:hasObservable>
 			<ecology:TerrestrialEcoregion />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: WWF Terrestrial Ecoregions Database</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.worldwildlife.org/science/data/item1875.html</metadata:hasURL>	
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2338,7 +2641,10 @@
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<measurement:unit>t/ha</measurement:unit>
+			<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+			<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2363,7 +2669,10 @@
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<measurement:unit>t/ha</measurement:unit>
+			<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+			<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2411,6 +2720,9 @@
 		<observation:hasObservable>
 			<southernCalifornia:VegetationTypeSoCal />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA Forest Service Pacific Southwest Region Remote Sensing Lab</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://www.fs.fed.us/r5/rsl/clearinghouse/gis-download.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2433,6 +2745,7 @@
 		<observation:hasObservable>
 			<veracruz-lulc:VeracruzLULCCategory />
 		</observation:hasObservable>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2459,7 +2772,10 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		<observation:hasObservable>
 			<waterSupplyService:WellCapacity />
 		</observation:hasObservable>
-		<measurement:unit>mm/year</measurement:unit>
+			<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
+			<measurement:unit>mm/year</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2484,7 +2800,10 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		<observation:hasObservable>
 			<waterSupplyService:WellDepth />
 		</observation:hasObservable>
-		<measurement:unit>ft</measurement:unit>
+			<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
+			<measurement:unit>ft</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2509,7 +2828,10 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		<observation:hasObservable>
 			<habitat:WoodyDebris />
 		</observation:hasObservable>
-		<measurement:unit>g/m^2</measurement:unit>
+			<rdfs:comment>Data source: NASA-CASA CQUEST Project</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://sgeaims.arc.nasa.gov/website/cquest/meta1.html</metadata:hasURL>
+			<measurement:unit>g/m^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2535,6 +2857,7 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		<observation:hasObservable>
 			<mexlulc:MexLULCNumeric/> 
 		</observation:hasObservable>
+			<metadata:hasPriority>5</metadata:hasPriority> 
 		<observation:hasDataSource> 
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2559,6 +2882,9 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		<observation:hasObservable>
 			<observation:GenericQuantifiable />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Southwest Regional Gap Analysis Project</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>

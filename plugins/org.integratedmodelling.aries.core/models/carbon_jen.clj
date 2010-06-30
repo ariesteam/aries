@@ -7,7 +7,7 @@
 ;; Jen leaves out the catgory Very Low from her discretization
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units 		"t/ha*yr" 
+						:units 		"t/ha" 
 	  				[80 :>]    'carbonService:VeryHighVegetationStorage
 	  				[70 80]    'carbonService:HighVegetationStorage
 	  				[50 70]    'carbonService:ModerateVegetationStorage
@@ -18,7 +18,7 @@
 ;; Jen leaves out the catgory Very Low from her discretization
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha*year" 
+						:units    "t/ha" 
 	  				[210 :>]   'carbonService:VeryHighSoilStorage
 	  				[140 210]  'carbonService:HighSoilStorage
 	  				[70 140]   'carbonService:ModerateSoilStorage

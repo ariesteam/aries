@@ -97,10 +97,12 @@
 		<observation:hasObservable>
 			<habitat:DecemberDaysOfPrecipitation />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:meandaysprecipdec</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:meandaysprecipdec</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>

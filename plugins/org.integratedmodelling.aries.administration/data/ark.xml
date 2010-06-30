@@ -29,6 +29,8 @@
 		<observation:hasObservable>
 			<geophysics:FlowDirection />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: HydroSHEDS</rdfs:comment>
+			<metadata:hasURL>http://www.worldwildlife.org/science/projects/freshwater/item1991.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -52,6 +54,9 @@
 		<observation:hasObservable>
 			<corine:CORINENumeric />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: CORINE Land Cover</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://www.eea.europa.eu/themes/landuse/interactive/clc-download</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -76,11 +81,13 @@
 		<observation:hasObservable>
 			<geophysics:Altitude />
 		</observation:hasObservable>
-		<measurement:unit>m</measurement:unit>
+			<rdfs:comment>Data source: Shuttle Radar Topography Mission (SRTM)</rdfs:comment>
+			<metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+			<measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dem90m</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:dem90m</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-32768</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -97,6 +104,31 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+<measurement:Measurement id="slope90m">
+	<observation:hasObservable>
+		<geophysics:DegreeSlope />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
+		<metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+	<measurement:unit>°</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<!--
 		floodplains in Chehalis watershed from shape coverage, seen as a
@@ -107,7 +139,8 @@
 		<observation:hasObservable>
 			<geofeatures:Floodplain />
 		</observation:hasObservable>
-
+			<rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>

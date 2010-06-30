@@ -4,6 +4,8 @@
   (:refer aries :only (span)))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
+;;KB: Should this actually be sequestration?  And should discretization on the two 
+;; below defmodels be updated?
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
 						:units "t/ha*year" 
@@ -40,24 +42,6 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel slope 'carbonService:Slope
-		(classification (measurement 'geophysics:DegreeSlope "\u00b0")
-			 [:< 1.15] 	  'carbonService:Level
-			 [1.15 4.57] 	'carbonService:GentlyUndulating
-			 [4.57 16.70] 'carbonService:RollingToHilly
-			 [16.70 :>] 	'carbonService:SteeplyDissectedToMountainous))
-    
-(defmodel successional-stage 'carbonService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}      'carbonService:OldGrowth
-	 		4           'carbonService:LateSuccession
-	 		3           'carbonService:MidSuccession
-	 		2           'carbonService:EarlySuccession
-	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))
-	 		    
-;; INTERMEDIATE VARIABLE?  Genie refuses to set evidence for this one.
-;; TODO check with Ken
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover :units "%")
 		[80 :>] 'carbonService:VeryHighVegetationCover
@@ -68,43 +52,54 @@
 
 (defmodel soil-ph 'carbonService:Soilph
 		 (classification (ranking 'habitat:SoilPh)
-        1       'carbonService:HighPh
-        2       'carbonService:LowPh
-        #{3 4}  'carbonService:ModeratePh))
-
-(defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
-		 (classification (ranking 'habitat:SummerHighWinterLow)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL))
+        [7.3 :>]       'carbonService:HighPh
+        [5.5 7.3]      'carbonService:ModeratePh
+        [:< 5.5]       'carbonService:LowPh))
 
 ; use NLCD layers to infer anoxic vs. oxic
 (defmodel oxygen 'carbonService:SoilOxygenConditions 
- (classification (ranking 'nlcd:NLCDNumeric)
+ (classification (numeric-coding 'nlcd:NLCDNumeric)
 		  #{90 95}   'carbonService:Anoxic
 		  :otherwise 'carbonService:Oxic))
-		  
-(defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
-		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
-        [80 100] 'carbonService:VeryLowHardness
-        [60 80]  'carbonService:LowHardness
-        [40 60]  'carbonService:ModerateHardness
-        [20 40]  'carbonService:HighHardness
-        [0 20]   'carbonService:VeryHighHardness))
 				
-(defmodel fire-frequency 'carbonService:FireFrequency
-		 (classification (ranking 'habitat:FireFrequency)	
-		 			[:< 0.25]  'carbonService:LowFireFrequency
-		 			[0.25 0.9] 'carbonService:ModerateFireFrequency
-		 			[0.9 :>]   'carbonService:HighFireFrequency))
-			
+(defmodel fire-threat 'carbonService:FireThreatClass
+		 (classification (ranking 'habitat:FireThreat)	
+		 			4  'carbonService:VeryHighFireThreat
+          3  'carbonService:HighFireThreat
+		 			2  'carbonService:ModerateFireThreat
+		 			1  'carbonService:LowFireThreat))
+
+(defmodel actual-evapotranspiration 'carbonService:ActualEvapotranspiration
+ (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+    [92 :>]   'carbonService:VeryHighActualEvapotranspiration
+    [58 92]   'carbonService:HighActualEvapotranspiration
+    [32 58]   'carbonService:ModerateActualEvapotranspiration
+    [12 32]   'carbonService:LowActualEvapotranspiration
+    [:< 12]   'carbonService:VeryLowActualEvapotranspiration)) 
+
+;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
+(defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCal
+  (classification (categorization southernCalifornia:VegetationTypeSoCal)
+    "HDW"          'southernCalifornia:HardwoodForestVegetationType
+    #{"CON" "MIX"} 'southernCalifornia:MixedConiferVegetationType
+    "SHB"          'southernCalifornia:ShrubVegetationType
+    "HEB"          'southernCalifornia:HerbaceousVegetationType)) 
+
+;;(defmodel land-use 'southernCalifornia:LandCover
+  ;;"Reclass of the NLCD land use for the purposes of carbon modeling"
+  ;;(classification (numeric-coding 'nlcd:NLCDNumeric)
+   ;; #{11 90 95}         'southernCalifornia:WetlandOpenWaterLandCover
+   ;; #{41 42 43 51 52}   'southernCalifornia:ScrubAndForestLandCover
+   ;; #{71 81 82}         'southernCalifornia:GrasslandAndCultivatedLandCover
+   ;; 21                  'southernCalifornia:OpenSpaceLandCover
+   ;; 22                  'southernCalifornia:LowDevelopedLandCover
+   ;; #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
+
 ;; Bayesian source model
 ;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
 (defmodel source 'carbonService:CarbonSourceValue   
 	  (bayesian 'carbonService:CarbonSourceValue 
-	  	:import   "aries.core::CarbonSourceValue.xdsl"
+	  	:import   "aries.core::CarbonSourceValueMark.xdsl"
 	  	:keep     ('carbonService:NetCarbonUptake
                  'carbonService:VegetationAndSoilCarbonSequestration
                  'carbonService:VegetationAndSoilCarbonStorage
@@ -112,9 +107,26 @@
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
-	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency
-	 	 	            hardwood-softwood-ratio)))  
-	 	 	           	 		
+	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration
+                    vegetation-type comment land-use)))  
+
+;; ----------------------------------------------------------------------------------------------
+;; carbon model accuracy check
+;; ----------------------------------------------------------------------------------------------
+
+;;Decomposition Factor (DF) has been noted to be a good predictor of NPP for chaparral ecosystems 
+;;(Li, et al. 2006), which is highly correlated with carbon sequestration rates (sources). 
+;;Since water is a primary limiting factor for the study site's ecoregion this sub-modeled deterministic 
+;;node serves to assess model accuracy (Expressed as:  DF = P/PET)
+;;Values from this check should be compared to soil and vegetation carbon sequestration, or possibly 
+;; used as a higher resolution proxy.
+
+(defmodel decomposition-factor 'habitat:DecompositionFactor
+  (ranking 'habitat:DecompositionFactor
+    :context (('habitat:PotentialEvapotranspiration "mm" :as potential-evapotranspiration)
+              ('habitat:AnnualPrecipitation  "mm" :as mean-annual-precipitation))
+    :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration))))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------

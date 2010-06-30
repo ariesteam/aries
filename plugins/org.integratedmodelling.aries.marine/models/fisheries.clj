@@ -12,13 +12,12 @@
 ;; use models
 ;; --------------------------------------------------------------------------------------
 
-;; FIXME the MG distcoast layer is screwed up - this uses an incomplete
-;; buffer layer that only encodes one buffer zone, therefore the moderate
-;; class is never encoded.
+;;CHANGE DISCRETIZATION BELOW TO FIX...
 (defmodel coastal-proximity 'fisheries:DistanceToCoast
 	(classification (ranking 'fisheries:DistanceToCoast)
-		1 'fisheries:HighCoastalProximity
-		:otherwise 'fisheries:LowCoastalProximity))
+		1       'fisheries:HighCoastalProximity
+    5       'fisheries:ModerateCoastalProximity
+		[25 :>] 'fisheries:LowCoastalProximity))
 
 (defmodel poverty 'fisheries:Poverty
 	(classification (ranking 'policytarget:PovertyPercentage)
@@ -60,13 +59,13 @@
  		#{"HIgh" "High"}	  'fisheries:HighBleaching
  	  #{"Low" "Moderate"} 'fisheries:ModerateBleaching))
  	
-;; FIXME this is a measurement in degrees^2; can't get it into jscience  	  
+;; Converted to km^2 so should work now but need to get into xml via wfs2opal & test in Thinkcap  	  
 (defmodel reef-area 'fisheries:CoralReefArea
-	(classification (ranking 'fisheries:CoralReefArea)
-		[0.02 :>]         'fisheries:HighReefArea
-		[0.002 0.02]      'fisheries:ModerateReefArea
-		[:exclusive 0 0.002]   'fisheries:LowReefArea
-		nil               'fisheries:NoReefArea))
+	(classification (measurement 'fisheries:CoralReefArea "km^2")
+		[250 :>]            'fisheries:HighReefArea
+		[25 250]            'fisheries:ModerateReefArea
+		[:exclusive 0 25]   'fisheries:LowReefArea
+		nil                 'fisheries:NoReefArea))
  	  
 (defmodel estuary-area 'fisheries:EstuaryArea
 	(classification (categorization 'fisheries:EstuaryArea)

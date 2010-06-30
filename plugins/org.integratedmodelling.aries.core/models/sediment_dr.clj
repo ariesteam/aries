@@ -17,7 +17,7 @@
 
 (defmodel slope 'soilretentionEcology:SlopeClass
 	(classification (measurement 'geophysics:DegreeSlope "\u00b0")
-			 [:< 1.15] 	  'soilretentionEcology:Level
+			 [0 1.15] 	  'soilretentionEcology:Level
 			 [1.15 4.57] 	'soilretentionEcology:GentlyUndulating
 			 [4.57 16.70] 'soilretentionEcology:RollingToHilly
 			 [16.70 :>] 	'soilretentionEcology:SteeplyDissectedToMountainous))
@@ -99,7 +99,7 @@
 		[60 80]  'soilretentionEcology:HighVegetationCover
 		[40 60]  'soilretentionEcology:ModerateVegetationCover
 		[20 40]  'soilretentionEcology:LowVegetationCover
-		[1 20]   'soilretentionEcology:VeryLowVegetationCover))
+		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass

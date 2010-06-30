@@ -19,11 +19,18 @@
 	xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
 	xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#">
-			
+
+<!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
+Potter, P., et al. In press. Characterizing the spatial patterns of global fertilizer application and manure production. Forthcoming in Earth Interactions. 
+ -->
+
 	<measurement:Ranking id="A_hololepidotus">
 		<observation:hasObservable>
 			<fisheries:ArgyrosomusHololepidotusHabitat />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -47,6 +54,9 @@
 		<observation:hasObservable>
 			<policytarget:AssetsAtRiskStorm />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: CIESIN - Columbia University World Data Center for Human Interactions in the Environment</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://sedac.ciesin.columbia.edu/wdc/hazards.jsp</metadata:hasURL>
 		<rdfs:comment>Deciles of economic assets at risk due to tropical storms</rdfs:comment>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -73,7 +83,10 @@
 		<observation:hasObservable>
 			<geophysics:BathymetricSlope />
 		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
+			<rdfs:comment>Data source: General Bathymetric Chart of the Oceans (GEBCO)</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.gebco.net/data_and_products/gridded_bathymetry_data/</metadata:hasURL>
+			<measurement:unit>°</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -97,6 +110,9 @@
 		<observation:hasObservable>
 			<coastalProtection:CoralBleaching />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from UNEP-WCMC World Atlas of Coral Reefs</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.unep-wcmc.org/marine/coralatlas/introduction.htm</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -115,13 +131,17 @@
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</observation:Categorization>
-		
-	<!-- FIXME this is a measurement in degrees^2, jscience may have trouble with it -->
+
+<!-- 	FIXME this is a measurement in degrees^2, jscience may have trouble with it 
+	KB: REPLACE with new data in Geoserver once wfs2opal is working
 	<measurement:Ranking id="marine_coralarea">
 		<observation:hasObservable>
 			<fisheries:CoralReefArea />
 		</observation:hasObservable>
-		<!--  <measurement:unit>degrees^2</measurement:unit>  -->
+			<rdfs:comment>Data source: UNEP-WCMC World Atlas of Coral Reefs</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.unep-wcmc.org/marine/coralatlas/introduction.htm</metadata:hasURL>
+			 <measurement:unit>degrees^2</measurement:unit> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -138,8 +158,9 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-	
+	</measurement:Ranking> -->
+
+-
 	<measurement:Ranking id="marine_coastbuf">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
@@ -165,7 +186,9 @@
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
 		</observation:hasObservable>
-		<measurement:unit>km</measurement:unit>
+			<rdfs:comment>Data source: Derived from FTM coastline data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<measurement:unit>km</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -188,6 +211,8 @@
 		<observation:hasObservable>
 			<fisheries:EstuaryArea />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from FTM hydrography data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -210,6 +235,9 @@
 		<observation:hasObservable>
 			<fisheries:LethrinusBorbonicusHabitat />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -233,6 +261,9 @@
 		<observation:hasObservable>
 			<fisheries:LethrinusMahsenaHabitat />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -256,7 +287,10 @@
 		<observation:hasObservable>
 			<policytarget:LivesAtRiskStorm />
 		</observation:hasObservable>
-		<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
+			<rdfs:comment>Data source: CIESIN - Columbia University World Data Center for Human Interactions in the Environment</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://sedac.ciesin.columbia.edu/wdc/hazards.jsp</metadata:hasURL>
+			<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -280,6 +314,9 @@
 		<observation:hasObservable>
 			<fisheries:LutjanusArgentimaculatusHabitat />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -299,17 +336,20 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the length, not the width -->
+	<!-- FIXME: 1) this is a measurement in degrees; 2) it's the length, not the width 
+	KB: REPLACE with new data in Geoserver once wfs2opal is working
 	<measurement:Ranking id="marine_mangroves">
 		<observation:hasObservable>
 			<coastalProtection:MangroveWidth />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: UNEP-WCMC</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>marine:mangroves</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>shape_len</geospace:hasValueAttribute>
-				<!-- the shapefile wrongly states that the attribute is a String -->
+						the shapefile wrongly states that the attribute is a String 
 				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -322,14 +362,17 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 		
 	<!--  FIXME this is actually a measurement in kg/ha.yr -->
 	<measurement:Ranking id="NfertPlusManure">
 		<observation:hasObservable>
 			<policytarget:NitrogenFromFertilizerAndManure />
 		</observation:hasObservable>
-		<!-- <measurement:unit>kg/(ha·yr)</measurement:unit>  -->
+				<rdfs:comment>Data source: Potter et al. (in press)</rdfs:comment>
+				<metadata:hasPriority>10</metadata:hasPriority> 
+				<metadata:hasURL>http://www.geog.mcgill.ca/~nramankutty/Datasets/Datasets.html</metadata:hasURL>
+				<!-- <measurement:unit>kg/(ha·yr)</measurement:unit>  -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -353,6 +396,9 @@
 			<observation:hasObservable>
 				<infrastructure:Path />
 			</observation:hasObservable>
+				<rdfs:comment>Data source: Foiben-Taosarintanin’i Madagasikara (FTM)</rdfs:comment>
+				<metadata:hasPriority>0</metadata:hasPriority> 
+				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -370,12 +416,15 @@
 			</observation:hasObservationExtent>
 		</measurement:BinaryCoding>
 
-<!-- Global population density, persons/mi^2, derived from raw Landscan data, which was counts/pixel -->
+<!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel -->
 	<measurement:Count id="popDens2006">
 		<observation:hasObservable>
 			<policytarget:PopulationDensity />
 		</observation:hasObservable>
-		<measurement:unit>/km^2</measurement:unit>
+			<rdfs:comment>Data source: Oak Ridge National Laboratory LandScan Dataset</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.ornl.gov/sci/landscan/</metadata:hasURL>
+			<measurement:unit>/km^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -400,10 +449,13 @@
 		<observation:hasObservable>
 			<policytarget:PovertyPercentage />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: SEDAC-CIESIN Poverty Mapping Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://sedac.ciesin.columbia.edu/povmap/ds_global.jsp</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>poverty_pct_1</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:poverty_pct_1</geospace:hasCoverageId>
 				<geospace:hasNodataValue>7.546573162078857</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -424,6 +476,9 @@
 		<observation:hasObservable>
 			<coastalProtection:SeagrassDensity />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: UNEP-WCMC World Atlas of Seagrasses</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.unep-wcmc.org/marine/seagrassatlas/introduction.htm</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -445,6 +500,9 @@
 		<observation:hasObservable>
 			<habitat:TropicalStormProbability />
 		</observation:hasObservable>
+			<rdfs:comment>Data source: CIESIN - Columbia University World Data Center for Human Interactions in the Environment</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://sedac.ciesin.columbia.edu/wdc/hazards.jsp</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>

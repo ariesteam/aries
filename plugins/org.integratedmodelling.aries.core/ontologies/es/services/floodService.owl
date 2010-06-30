@@ -170,6 +170,11 @@
       <owl:Class rdf:ID="FarmersInFloodHazardZones"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModerateFloodplainWidth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FloodplainWidth"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="VeryLowGreenStorage">
     <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
@@ -336,6 +341,11 @@
   <owl:Class rdf:ID="ModerateGrayStorage">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GrayInfrastructureStorage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateRainfallErosivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RainfallErosivityClass"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#SoilInfiltration">
@@ -544,14 +554,14 @@
       <owl:Class rdf:about="#SimplifiedFloodControllingHabitat"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="HighVegetationHeight">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#VegetationHeight"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="ModeratelyHighImperviousCover">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PercentImperviousCover"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HighVegetationHeight">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#VegetationHeight"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HousingPresent">
@@ -609,6 +619,11 @@
     <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Kelp beds can reduce wave energy.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="VeryHighRainfallErosivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallErosivityClass"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowImperviousCover">
     <rdfs:subClassOf>
@@ -697,13 +712,18 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Permanently or periodically saturated systems characterized by shallow water tables and biota adapted to dealing with semi-aquatic conditions (adapted from Krohne 1998)</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="HighRainfallErosivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallErosivityClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#FloodplainConveyance">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
-          <owl:Class rdf:ID="FloodplainWidth"/>
+          <owl:Class rdf:about="#FloodplainWidth"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -769,6 +789,11 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Different soil types have different infiltration capacities.  See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="LowRainfallErosivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallErosivityClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="PrivateAssetPresent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PrivateAsset"/>
@@ -784,14 +809,14 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Greatest infiltration capacity; generally sand, loamy sand, or sandy loam, with "low runoff potential and high infiltration rates even when thoroughly wetted.  They consist chiefly of deep, well to excessively drained sand or gravel and have a high rate of water transmission (greater than 0.30 in/hr)." (USDA-NRCS)</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:about="#Floodplains">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+  </owl:Class>
   <owl:Class rdf:ID="BridgesNotPresent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Bridges"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Floodplains">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
   </owl:Class>
   <owl:Class rdf:ID="LeveesNotPresent">
     <rdfs:subClassOf>
@@ -845,6 +870,11 @@
       <owl:Class rdf:about="#PercentVegetationCover"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="VeryLowRainfallErosivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallErosivityClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="LateSuccessionalPlantation">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Plantation"/>
@@ -854,6 +884,13 @@
   </owl:Class>
   <owl:Class rdf:ID="HighPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NoFloodplainWidth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FloodplainWidth"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >No Floodplain</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="FloodSource">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1278,13 +1315,13 @@
   <owl:Class rdf:ID="PublicAssetPresent">
     <rdfs:subClassOf rdf:resource="#PublicAsset"/>
   </owl:Class>
-  <owl:Class rdf:ID="HighGreenStorage">
-    <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
-  </owl:Class>
   <owl:Class rdf:ID="TectonicEvent">
     <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An earthquake or other tectonic event generating potentially damaging oceanic/coastal wave activity.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="HighGreenStorage">
+    <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:ID="DevelopedHighIntensity">
     <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
@@ -1438,6 +1475,11 @@
   <owl:Class rdf:ID="ModerateRunoff">
     <rdfs:subClassOf rdf:resource="#Runoff"/>
   </owl:Class>
+  <owl:Class rdf:about="#RainfallErosivityClass">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rainfall Erosivity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
+  </owl:Class>
   <owl:Class rdf:about="#Levees">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
@@ -1449,6 +1491,11 @@
   </owl:Class>
   <owl:Class rdf:ID="ModerateFloodSource">
     <rdfs:subClassOf rdf:resource="#FloodSourceValue"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LowFloodplainWidth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FloodplainWidth"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ModerateHazardPublicOwners">
     <rdfs:subClassOf>
@@ -1605,6 +1652,11 @@
     <rdfs:subClassOf rdf:resource="#TectonicEvent"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Eruptions can cause lahars, potentially devastating flows of rock, soil, and water due to the rapid melting of mountain glaciers by lava combined with the flow of mud due to the energy produced during an eruption.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="HighFloodplainWidth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FloodplainWidth"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Highways">
     <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
@@ -1802,11 +1854,28 @@
   </owl:ObjectProperty>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighGreenStorage"/>
-      <owl:Class rdf:about="#LowGreenStorage"/>
-      <owl:Class rdf:about="#ModerateGreenStorage"/>
-      <owl:Class rdf:about="#VeryHighGreenStorage"/>
-      <owl:Class rdf:about="#VeryLowGreenStorage"/>
+      <owl:Class rdf:about="#HighGrayStorage"/>
+      <owl:Class rdf:about="#LowGrayStorage"/>
+      <owl:Class rdf:about="#ModerateGrayStorage"/>
+      <owl:Class rdf:about="#VeryHighGrayStorage"/>
+      <owl:Class rdf:about="#VeryLowGrayStorage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#LargeDamStorage"/>
+      <owl:Class rdf:about="#ModerateDamStorage"/>
+      <owl:Class rdf:about="#SmallDamStorage"/>
+      <owl:Class rdf:about="#VeryLargeDamStorage"/>
+      <owl:Class rdf:about="#VerySmallDamStorage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighDaysPrecipitation"/>
+      <owl:Class rdf:about="#LowDaysPrecipitation"/>
+      <owl:Class rdf:about="#VeryHighDaysPrecipitation"/>
+      <owl:Class rdf:about="#VeryLowDaysPrecipitation"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -1818,67 +1887,30 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighSink"/>
-      <owl:Class rdf:about="#LowSink"/>
-      <owl:Class rdf:about="#ModerateSink"/>
-      <owl:Class rdf:about="#VeryHighSink"/>
-      <owl:Class rdf:about="#VeryLowSink"/>
+      <owl:Class rdf:about="#HighRunoff"/>
+      <owl:Class rdf:about="#LowRunoff"/>
+      <owl:Class rdf:about="#ModerateRunoff"/>
+      <owl:Class rdf:about="#VeryHighRunoff"/>
+      <owl:Class rdf:about="#VeryLowRunoff"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighGrayStorage"/>
-      <owl:Class rdf:about="#LowGrayStorage"/>
-      <owl:Class rdf:about="#ModerateGrayStorage"/>
-      <owl:Class rdf:about="#VeryHighGrayStorage"/>
-      <owl:Class rdf:about="#VeryLowGrayStorage"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighImperviousCover"/>
-      <owl:Class rdf:about="#LowImperviousCover"/>
-      <owl:Class rdf:about="#ModeratelyHighImperviousCover"/>
-      <owl:Class rdf:about="#ModeratelyLowImperviousCover"/>
-      <owl:Class rdf:about="#VeryHighImperviousCover"/>
-      <owl:Class rdf:about="#VeryLowImperviousCover"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighPrecipitation"/>
-      <owl:Class rdf:about="#LowPrecipitation"/>
-      <owl:Class rdf:about="#ModeratePrecipitation"/>
-      <owl:Class rdf:about="#VeryHighPrecipitation"/>
-      <owl:Class rdf:about="#VeryLowPrecipitation"/>
+      <owl:Class rdf:about="#HighGreenStorage"/>
+      <owl:Class rdf:about="#LowGreenStorage"/>
+      <owl:Class rdf:about="#ModerateGreenStorage"/>
+      <owl:Class rdf:about="#VeryHighGreenStorage"/>
+      <owl:Class rdf:about="#VeryLowGreenStorage"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AnnotationProperty rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#AbstractClass"/>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighDaysPrecipitation"/>
-      <owl:Class rdf:about="#LowDaysPrecipitation"/>
-      <owl:Class rdf:about="#VeryHighDaysPrecipitation"/>
-      <owl:Class rdf:about="#VeryLowDaysPrecipitation"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighVegetationHeight"/>
-      <owl:Class rdf:about="#LowVegetationHeight"/>
-      <owl:Class rdf:about="#ModerateVegetationHeight"/>
-      <owl:Class rdf:about="#VeryHighVegetationHeight"/>
-      <owl:Class rdf:about="#VeryLowVegetationHeight"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#EarlySuccession"/>
-      <owl:Class rdf:about="#LateSuccession"/>
-      <owl:Class rdf:about="#MidSuccession"/>
-      <owl:Class rdf:about="#NoSuccession"/>
-      <owl:Class rdf:about="#OldGrowth"/>
-      <owl:Class rdf:about="#PoleSuccession"/>
+      <owl:Class rdf:about="#HighFloodSource"/>
+      <owl:Class rdf:about="#LowFloodSource"/>
+      <owl:Class rdf:about="#ModerateFloodSource"/>
+      <owl:Class rdf:about="#VeryHighFloodSource"/>
+      <owl:Class rdf:about="#VeryLowFloodSource"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -1900,20 +1932,21 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighRunoff"/>
-      <owl:Class rdf:about="#LowRunoff"/>
-      <owl:Class rdf:about="#ModerateRunoff"/>
-      <owl:Class rdf:about="#VeryHighRunoff"/>
-      <owl:Class rdf:about="#VeryLowRunoff"/>
+      <owl:Class rdf:about="#HighSink"/>
+      <owl:Class rdf:about="#LowSink"/>
+      <owl:Class rdf:about="#ModerateSink"/>
+      <owl:Class rdf:about="#VeryHighSink"/>
+      <owl:Class rdf:about="#VeryLowSink"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#LargeDamStorage"/>
-      <owl:Class rdf:about="#ModerateDamStorage"/>
-      <owl:Class rdf:about="#SmallDamStorage"/>
-      <owl:Class rdf:about="#VeryLargeDamStorage"/>
-      <owl:Class rdf:about="#VerySmallDamStorage"/>
+      <owl:Class rdf:about="#EarlySuccession"/>
+      <owl:Class rdf:about="#LateSuccession"/>
+      <owl:Class rdf:about="#MidSuccession"/>
+      <owl:Class rdf:about="#NoSuccession"/>
+      <owl:Class rdf:about="#OldGrowth"/>
+      <owl:Class rdf:about="#PoleSuccession"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -1925,11 +1958,30 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighFloodSource"/>
-      <owl:Class rdf:about="#LowFloodSource"/>
-      <owl:Class rdf:about="#ModerateFloodSource"/>
-      <owl:Class rdf:about="#VeryHighFloodSource"/>
-      <owl:Class rdf:about="#VeryLowFloodSource"/>
+      <owl:Class rdf:about="#HighPrecipitation"/>
+      <owl:Class rdf:about="#LowPrecipitation"/>
+      <owl:Class rdf:about="#ModeratePrecipitation"/>
+      <owl:Class rdf:about="#VeryHighPrecipitation"/>
+      <owl:Class rdf:about="#VeryLowPrecipitation"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighImperviousCover"/>
+      <owl:Class rdf:about="#LowImperviousCover"/>
+      <owl:Class rdf:about="#ModeratelyHighImperviousCover"/>
+      <owl:Class rdf:about="#ModeratelyLowImperviousCover"/>
+      <owl:Class rdf:about="#VeryHighImperviousCover"/>
+      <owl:Class rdf:about="#VeryLowImperviousCover"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighVegetationHeight"/>
+      <owl:Class rdf:about="#LowVegetationHeight"/>
+      <owl:Class rdf:about="#ModerateVegetationHeight"/>
+      <owl:Class rdf:about="#VeryHighVegetationHeight"/>
+      <owl:Class rdf:about="#VeryLowVegetationHeight"/>
     </owl:members>
   </owl:AllDisjointClasses>
 </rdf:RDF>

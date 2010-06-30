@@ -13,16 +13,12 @@
 ;; sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------
 
-;; FIXME the data are not really about mangrove width;
-;; FIXME this must be a measurement and the table below is apparently for degrees
-;; FIXME the boundaries are taken from Ken's table for a Laborde 1927 projection,and
-;; multiplied by 10 to give it diversity - not sure it's meant to be degrees as this one
-;; is. The range for mangroves in mg is 0.06-1.47
+;; Converted to m so should work now but need to get into xml via wfs2opal & test in Thinkcap 
 (defmodel mangrove-width 'coastalProtection:MangroveWidth
-	(classification (ranking 'coastalProtection:MangroveWidth)
-		[0.177 :>]     'coastalProtection:HighMangroveWidth
-		[0.085 0.177] 'coastalProtection:ModerateMangroveWidth
-		[:< 0.085]        'coastalProtection:LowMangroveWidth
+	(classification (measurement 'coastalProtection:MangroveWidth "m")
+		[2000 :>]       'coastalProtection:HighMangroveWidth
+		[400 2000]      'coastalProtection:ModerateMangroveWidth
+		[:< 400]        'coastalProtection:LowMangroveWidth
 		nil             'coastalProtection:NoMangroveWidth))
 
 ;; TODO almost all coral polygons in existing data do not report bleaching; I 

@@ -89,9 +89,9 @@
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
 (defmodel surface-water-proximity 'waterSupplyService:ProximityToSurfaceWaterClass
   (classification (measurement 'waterSupplyService:ProximityToSurfaceWater "m")
-    [500 :>]     'waterSupplyService:SurfaceWaterNotProximate
-    [250 500]    'waterSupplyService:SurfaceWaterModeratelyProximate
-    [:< 250]     'waterSupplyService:SurfaceWaterProximate))
+    [500 :>]     'waterSupplyService:LowSurfaceWaterProximity
+    [250 500]    'waterSupplyService:ModerateSurfaceWaterProximity
+    [:< 250]     'waterSupplyService:HighSurfaceWaterProximity))
 
 ;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 (defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUseClass
@@ -145,7 +145,7 @@
 
 (defmodel slope 'waterSupplyService:SlopeClass
 		(classification (measurement 'geophysics:DegreeSlope "\u00B0")
-			 [:< 1.15] 	            'waterSupplyService:Level
+			 [0 1.15] 	            'waterSupplyService:Level
 			 [1.15 4.57] 	          'waterSupplyService:GentlyUndulating
 			 [4.57 16.70]           'waterSupplyService:RollingToHilly
 			 [16.70 90 :inclusive] 	'waterSupplyService:SteeplyDissectedToMountainous))

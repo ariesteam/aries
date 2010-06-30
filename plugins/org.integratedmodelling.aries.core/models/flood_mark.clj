@@ -1,4 +1,4 @@
-(ns core.models.flood
+(ns core.models.flood-mark
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defagent defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
@@ -13,7 +13,7 @@
 (defmodel flow-direction 'geophysics:FlowDirection
 	(ranking 'geophysics:FlowDirection)) 
 
-(defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
+(defmodel soil-group 'floodService:HydrologicSoilsGroup
 	"Relevant soil group"
 	(classification (ranking 'habitat:HydrologicSoilsGroup)
 			1        'floodService:SoilGroupA
@@ -22,44 +22,35 @@
 			4        'floodService:SoilGroupD))
 
 (defmodel precipitation 'floodService:Precipitation
-	(classification (measurement 'habitat:JanuaryPrecipitation "mm")
+	(classification (measurement 'habitat:AnnualPrecipitation "mm")
 		[:< 75] 	  'floodService:VeryLowPrecipitation
 		[75 150] 	  'floodService:LowPrecipitation
 		[150 300] 	'floodService:ModeratePrecipitation
 		[300 600] 	'floodService:HighPrecipitation
 		[600 :>] 	  'floodService:VeryHighPrecipitation))
-		
+
+(defmodel imperviousness 'floodService:PercentImperviousCover
+   (classification (ranking 'habitat:PercentImperviousness)
+       [80 100 :inclusive]    'floodService:VeryHighImperviousCover
+       [50 80]                'floodService:HighImperviousCover
+       [20 50]                'floodService:ModeratelyHighImperviousCover
+       [10 20]                'floodService:ModeratelyLowImperviousCover
+       [5 10]                 'floodService:LowImperviousCover
+       [0 5]                  'floodService:VeryLowImperviousCover))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel land-use 'floodService:LandUseLandCover
-	"Just a reclass of the NLCD land use layer"
-	(classification (numeric-coding 'nlcd:NLCDNumeric)
-		82	               'floodService:Agriculture
-		#{11 90 95 12}	   'floodService:WetlandsOpenWater
-		21	               'floodService:DevelopedOpenSpace
-		#{41 42 43}        'floodService:Forest
-		#{71 81 52}	       'floodService:GrassPasture
-		#{22	31}          'floodService:DevelopedLowIntensity
-		23	               'floodService:DevelopedMediumIntensity
-		24	               'floodService:DevelopedHighIntensity))
-		
-;; surface temperature - again, should be monthly and matched by temporal extents.
-(defmodel monthly-temperature 'floodService:MonthlyTemperature
-		(classification (measurement 'geophysics:JanuaryMeanGroundSurfaceTemperature "\u00b0C")
-			 [4 :>] 	'floodService:HighTemperature
-			 [-4 4] 	'floodService:ModerateTemperature
-			 [:< -4] 	'floodService:LowTemperature))
-			 
-;; snow presence - only the puget-specific statement for now
-(defmodel snow-presence 'floodService:SnowPresence
-		(classification (categorization 'puget:SnowPrecipitationCategory)
-			#{"LL" "HL"} 'floodService:LowlandAndHighland
-			#{"RD" "SD"} 'floodService:RainDominatedAndSnowDominated
-			"RS"         'floodService:PeakRainOnSnow))
-	 	 	
+(defmodel rainfall-erosivity 'floodService:RainfallErosivityClass
+  (classification (ranking 'soilretentionEcology:RainfallRunoffErosivityIndex)
+      [90 :>]     'floodService:VeryHighRainfallErosivity
+      [70 89]     'floodService:HighRainfallErosivity
+      [50 69]     'floodService:ModerateRainfallErosivity
+      [30 49]     'floodService:LowRainfallErosivity
+      [:< 29]     'floodService:VeryLowRainfallErosivity)) 
+
+;;Use runoff as training data here?
 (defmodel flood-source-value 'floodService:FloodSourceValue
 	(classification 'floodService:FloodSourceValue
 	  		[:< 200]    'floodService:VeryLowFloodSource
@@ -71,8 +62,8 @@
 ;; Flood source probability, ad hoc method
 (defmodel source 'floodService:FloodSource
 	  (bayesian 'floodService:FloodSource 
-	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
-	 	 	:context  (precipitation monthly-temperature snow-presence)
+	  	:import   "aries.core::FloodSourceValueAdHocMark.xdsl"
+	 	 	:context  (precipitation imperviousness rainfall-erosivity)
 	 	 	:observed (flood-source-value)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -108,7 +99,8 @@
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly
 			 [16.70 :>] 	'floodService:SteeplyDissectedToMountainous))
-			 
+
+;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.		 
 (defmodel levees 'floodService:Levees
 	"Presence of a levee in given context"
 	(classification (binary-coding 'infrastructure:Levee)
@@ -127,20 +119,13 @@
 ;;;   :agent "aries/flood/bridge"
 ;;))
 
+;;REDO THIS AS VEGETATION TYPE SOCAL
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
 	(classification (numeric-coding 'nlcd:NLCDNumeric)
 		#{90 95}	         'floodService:WetlandVegetation
 		#{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
 		#{21 22 23 24 82}	 'floodService:DevelopedCultivatedVegetation))
-
-(defmodel vegetation-height 'floodService:VegetationHeight
-	(classification (measurement 'habitat:VegetationHeight "ft")
-		[120 :>] 'floodService:VeryHighVegetationHeight
-		[80 120] 'floodService:HighVegetationHeight
-		[50 80]  'floodService:ModerateVegetationHeight
-		[20 50]  'floodService:LowVegetationHeight
-		[:< 20]  'floodService:VeryLowVegetationHeight))
 		
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover)
@@ -157,26 +142,9 @@
     [:< 200]    'floodService:LowFloodplainWidth
     :otherwise  'floodService:NoFloodplain))
 
-(defmodel successional-stage 'floodService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}                          'floodService:OldGrowth
-	 		4                               'floodService:LateSuccession
-	 		3                               'floodService:MidSuccession
-	 		2                               'floodService:PoleSuccession
-	 		1                               'floodService:EarlySuccession
-	 		#{22 23 24 25 26 27 28 40 41}   'floodService:NoSuccession))
-	 		
-(defmodel imperviousness 'floodService:PercentImperviousCover
-	 (classification (ranking 'habitat:PercentImperviousness)
-	 	   [80 100 :inclusive]   'floodService:VeryHighImperviousCover
-	 	   [50 80]               'floodService:HighImperviousCover
-	 	   [20 50]               'floodService:ModeratelyHighImperviousCover
-	 	   [10 20]               'floodService:ModeratelyLowImperviousCover
-	 	   [5 10]                'floodService:LowImperviousCover
-	 	   [0 5]                 'floodService:VeryLowImperviousCover))
-	 	   
 ;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
 ;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
+;;FIX above - know how to do it.  Also need to get a dam storage layer for SoCal.
 (defmodel dam-storage 'floodService:DamStorage
 	(classification (ranking 'floodService:DamStorage)
 			[6000000 :>]		  'floodService:VeryLargeDamStorage
@@ -184,14 +152,17 @@
 			[1750000 3750000]	'floodService:ModerateDamStorage
 			[500000 1750000]	'floodService:SmallDamStorage
 			[:< 400]		      'floodService:VerySmallDamStorage))
-			
+
+;;Talk to Mark about removing this node?  If he's running it at an annual timestep it's potentially less than useful.
+;;  At very least if it's to be run at a monthly timestep we need to know what month to use.
 (defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
 	(classification (ranking 'habitat:JanuaryDaysOfPrecipitation)
 		#{8 9}    'floodService:VeryHighDaysPrecipitation
 		#{6 7}    'floodService:HighDaysPrecipitation
 		#{4 5}    'floodService:LowDaysPrecipitation
 		#{1 2 3}  'floodService:VeryLowDaysPrecipitation))
-		
+
+;;No data for detention basins in Orange County at this point but leaving the defmodel statement in for now.    
 (defmodel detention-basin-storage 'floodService:DetentionBasinStorage
 	(classification (binary-coding 'infrastructure:DetentionBasin)
 		0            'floodService:DetentionBasinStorageNotPresent
@@ -202,17 +173,16 @@
 (defmodel sink 'floodService:FloodSink
 		"Interface to Flood resident use bayesian network"
 	  (bayesian 'floodService:FloodSink 
-	  	:import   "aries.core::FloodSink.xdsl"
+	  	:import   "aries.core::FloodSinkMark.xdsl"
 	  	:keep     (
 	  			'floodService:FloodSink 
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group-puget vegetation-type slope monthly-temperature levees 
-	 	 			successional-stage imperviousness dam-storage floodplain-width
+	 	 			soil-group slope imperviousness floodplain-width percent-vegetation-cover
+	 	 			  dam-storage 
           (comment detention-basin-storage)
-	 	 			(comment mean-days-precipitation vegetation-height)
-	 	 			percent-vegetation-cover)))
+	 	 			(comment mean-days-precipitation vegetation-height))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -349,3 +319,73 @@
    	:rv-max-states    10 
     :context (source farmers-use sink altitude)))
 
+;; -------------------------------------------------------------------------
+;; agents -- only for testing and not used right now
+;; -------------------------------------------------------------------------
+
+(defagent farm 'floodService:Farmland 
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
+
+(defagent levee 'floodService:Levees
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
+
+;;(defagent bridge 'floodService:Bridges 
+
+  "Test only, don't worry."
+  (measurement 'geophysics:Altitude "m" :as altitude)
+  (ranking 'habitat:PercentImperviousness :as imperviousness)
+  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
+    :as          slope
+    [:< 1.15] 	 'floodService:Level
+    [1.15 4.57]  'floodService:GentlyUndulating
+    [4.57 16.70] 'floodService:RollingToHilly
+    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
+     
+  ;; these are supposed to be rules                                                          
+  :update    
+       #(let [ state (.getState % 'geophysics:Altitude) ]
+            (if (> state 4000)  
+                (.die %)))
+  
+  ;; this is used to transform the representation of the context if we get
+  ;; something that doesn't fit it.
+  :resolves (:space "20 cm" :time "1 s"))	
+	 	 	

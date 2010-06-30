@@ -6,7 +6,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "t/ha*year" 
+						:units "t/ha" 
 	  				[300 :>]    'carbonService:VeryHighStorage
 	  				[220 300]   'carbonService:HighStorage
 	  				[140 220]   'carbonService:ModerateStorage
@@ -17,7 +17,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units "t/ha*yr" 
+						:units "t/ha" 
 	  				[100 :>]   'carbonService:VeryHighVegetationStorage
 	  				[80 100]   'carbonService:HighVegetationStorage
 	  				[60 80]    'carbonService:ModerateVegetationStorage
@@ -28,7 +28,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha*year" 
+						:units    "t/ha" 
 	  				[200 :>]   'carbonService:VeryHighSoilStorage
 	  				[140 200]  'carbonService:HighSoilStorage
 	  				[80 140]   'carbonService:ModerateSoilStorage
