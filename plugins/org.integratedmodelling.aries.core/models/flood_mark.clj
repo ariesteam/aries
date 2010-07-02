@@ -101,25 +101,6 @@
 			 [4.57 16.70] 'floodService:RollingToHilly
 			 [16.70 :>] 	'floodService:SteeplyDissectedToMountainous))
 
-;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.		 
-(defmodel levees 'floodService:Levees
-	"Presence of a levee in given context"
-	(classification (binary-coding 'infrastructure:Levee)
-			0 'floodService:LeveesNotPresent
-			1 'floodService:LeveesPresent
-;    :agent "aries/flood/levee"
-))
-
-;; Bridges removed - effects on flooding assumed to be minimal.
-
-;;(defmodel bridges 'floodService:Bridges
-;;	"Presence of a bridge in given context"
-;;	(classification (binary-coding 'infrastructure:Bridge)
-;;			0 'floodService:BridgesNotPresent
-;;			1 'floodService:BridgesPresent
-;;;   :agent "aries/flood/bridge"
-;;))
-
 ;;REDO THIS AS VEGETATION TYPE SOCAL
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
@@ -135,13 +116,6 @@
 		[40 60] 'floodService:ModerateVegetationCover
 		[20 40] 'floodService:LowVegetationCover
 		[0 20]  'floodService:VeryLowVegetationCover))
-
-(defmodel floodplain-width 'floodService:FloodplainWidth
-(classification (measurement 'habitat:FloodplainWidth "m")
-    [400 :>]    'floodService:HighFloodplainWidth
-    [200 400]   'floodService:ModerateFloodplainWidth
-    [:< 200]    'floodService:LowFloodplainWidth
-    :otherwise  'floodService:NoFloodplain))
 
 ;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
 ;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
@@ -171,8 +145,7 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group slope imperviousness floodplain-width percent-vegetation-cover
-	 	 			  dam-storage 
+	 	 			soil-group slope imperviousness percent-vegetation-cover dam-storage 
           (comment detention-basin-storage))))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -309,5 +282,21 @@
    	:downscaling-factor 3,
    	:rv-max-states    10 
     :context (source farmers-use sink altitude)))
+
+;;Levees and floodplain width: used in the flow model
+;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     
+(defmodel levees 'floodService:Levees
+  "Presence of a levee in given context"
+  (classification (binary-coding 'infrastructure:Levee)
+      0 'floodService:LeveesNotPresent
+      1 'floodService:LeveesPresent
+;    :agent "aries/flood/levee"
+))
+(defmodel floodplain-width 'floodService:FloodplainWidth
+(classification (measurement 'habitat:FloodplainWidth "m")
+    [400 :>]    'floodService:HighFloodplainWidth
+    [200 400]   'floodService:ModerateFloodplainWidth
+    [:< 200]    'floodService:LowFloodplainWidth
+    :otherwise  'floodService:NoFloodplain))
 
 	 	 	

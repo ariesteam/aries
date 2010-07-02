@@ -108,24 +108,6 @@
 			 [1.15 4.57] 	'floodService:GentlyUndulating
 			 [4.57 16.70] 'floodService:RollingToHilly
 			 [16.70 :>] 	'floodService:SteeplyDissectedToMountainous))
-			 
-(defmodel levees 'floodService:Levees
-	"Presence of a levee in given context"
-	(classification (binary-coding 'infrastructure:Levee)
-			0 'floodService:LeveesNotPresent
-			1 'floodService:LeveesPresent
-;    :agent "aries/flood/levee"
-))
-
-;; Bridges removed - effects on flooding assumed to be minimal.
-
-;;(defmodel bridges 'floodService:Bridges
-;;	"Presence of a bridge in given context"
-;;	(classification (binary-coding 'infrastructure:Bridge)
-;;			0 'floodService:BridgesNotPresent
-;;			1 'floodService:BridgesPresent
-;;;   :agent "aries/flood/bridge"
-;;))
 
 (defmodel vegetation-type 'floodService:VegetationType
 	"Just a reclass of the NLCD land use layer"
@@ -149,13 +131,6 @@
 		[40 60] 'floodService:ModerateVegetationCover
 		[20 40] 'floodService:LowVegetationCover
 		[0 20]  'floodService:VeryLowVegetationCover))
-
-(defmodel floodplain-width 'floodService:FloodplainWidth
-(classification (measurement 'habitat:FloodplainWidth "m")
-    [400 :>]    'floodService:HighFloodplainWidth
-    [200 400]   'floodService:ModerateFloodplainWidth
-    [:< 200]    'floodService:LowFloodplainWidth
-    :otherwise  'floodService:NoFloodplain))
 
 (defmodel successional-stage 'floodService:SuccessionalStage
 	 (classification (ranking 'ecology:SuccessionalStage)
@@ -208,8 +183,8 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group-puget vegetation-type slope monthly-temperature levees 
-	 	 			successional-stage imperviousness dam-storage floodplain-width
+	 	 			soil-group-puget vegetation-type slope monthly-temperature  
+	 	 			successional-stage imperviousness dam-storage 
           (comment detention-basin-storage)
 	 	 			(comment mean-days-precipitation vegetation-height)
 	 	 			percent-vegetation-cover)))
@@ -349,3 +324,18 @@
    	:rv-max-states    10 
     :context (source farmers-use sink altitude)))
 
+;;Levees and floodplain width: used in the flow model
+(defmodel levees 'floodService:Levees
+  "Presence of a levee in given context"
+  (classification (binary-coding 'infrastructure:Levee)
+      0 'floodService:LeveesNotPresent
+      1 'floodService:LeveesPresent
+;    :agent "aries/flood/levee"
+))
+
+(defmodel floodplain-width 'floodService:FloodplainWidth
+(classification (measurement 'habitat:FloodplainWidth "m")
+    [400 :>]    'floodService:HighFloodplainWidth
+    [200 400]   'floodService:ModerateFloodplainWidth
+    [:< 200]    'floodService:LowFloodplainWidth
+    :otherwise  'floodService:NoFloodplain))
