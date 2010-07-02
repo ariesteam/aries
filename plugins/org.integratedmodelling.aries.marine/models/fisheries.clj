@@ -12,7 +12,6 @@
 ;; use models
 ;; --------------------------------------------------------------------------------------
 
-;;CHANGE DISCRETIZATION BELOW TO FIX...
 (defmodel coastal-proximity 'fisheries:DistanceToCoast
 	(classification (ranking 'fisheries:DistanceToCoast)
 		1       'fisheries:HighCoastalProximity
@@ -59,7 +58,7 @@
  		#{"HIgh" "High"}	  'fisheries:HighBleaching
  	  #{"Low" "Moderate"} 'fisheries:ModerateBleaching))
  	
-;; Converted to km^2 so should work now but need to get into xml via wfs2opal & test in Thinkcap  	  
+;; Converted to km^2 so should work now but need to test  	  
 (defmodel reef-area 'fisheries:CoralReefArea
 	(classification (measurement 'fisheries:CoralReefArea "km^2")
 		[250 :>]            'fisheries:HighReefArea
@@ -72,11 +71,9 @@
  		"Small"		 'fisheries:SmallEstuary
  		"Large"	   'fisheries:LargeEstuary
  	  :otherwise 'fisheries:NoEstuary))
- 	  
-;; FIXME the source model is a measurement in kg/ha.yr
-;; FIXME the discretization in the BN is different than the excel - compacting high classes
+
 (defmodel nitrogen 'fisheries:NitrogenRunoff
-	(classification (ranking 'policytarget:NitrogenFromFertilizerAndManure)
+	(classification (measurement 'policytarget:NitrogenFromFertilizerAndManure "kg/ha*year")
 		[90 :>] 'fisheries:HighNitrogenRunoff
 		[40 90]  'fisheries:ModerateNitrogenRunoff
 		[15 40]  'fisheries:LowNitrogenRunoff

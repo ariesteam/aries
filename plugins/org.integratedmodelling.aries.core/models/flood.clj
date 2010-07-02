@@ -175,7 +175,7 @@
 	 	   [5 10]                'floodService:LowImperviousCover
 	 	   [0 5]                 'floodService:VeryLowImperviousCover))
 	 	   
-;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
+;;This is actually in m^3 and should be a measurement but I'm getting error messages- 
 ;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
 (defmodel dam-storage 'floodService:DamStorage
 	(classification (ranking 'floodService:DamStorage)

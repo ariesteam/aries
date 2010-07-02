@@ -333,10 +333,10 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasObservable>
 			<habitat:DecemberPrecipitation />
 		</observation:hasObservable>
-		<measurement:unit>mm</measurement:unit>
-	    <rdfs:comment>Data source: USDA-NRCS, derived from PRISM climate data</rdfs:comment>
-		<metadata:hasPriority>5</metadata:hasPriority> 
-		<metadata:hasURL>http://datagateway.nrcs.usda.gov/</metadata:hasURL>
+			<measurement:unit>mm</measurement:unit>
+	    	<rdfs:comment>Data source: USDA-NRCS, derived from PRISM climate data</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority> 
+			<metadata:hasURL>http://datagateway.nrcs.usda.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -484,19 +484,20 @@ Slope in degrees for Puget Sound & Madagascar
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 		
-	<!-- TODO this is actually a measurement in tons/hour.10km2; make it so (also in the 
-		carbon models) when I figure out how to express that. -->
-	<measurement:Ranking id="greenhouse_gas_emissions">
+	<!-- TODO this is actually a measurement in tons/yr.10km2, conversion makes it tons/ha*year -->
+	<measurement:Measurement id="greenhouse_gas_emissions">
 		<observation:hasObservable>
-			<carbonService:GreenhouseGasEmitters />
+			<carbonService:GreenhouseGasEmissions />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: Purdue University Vulcan Project</rdfs:comment>
 			<metadata:hasPriority>0</metadata:hasPriority> 
 			<metadata:hasURL>http://www.purdue.edu/eas/carbon/vulcan/index.php</metadata:hasURL>
+			<measurement:unit>t/ha*year</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:TotnoCEM_Final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:TotnoCEM_Final</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.0001</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -510,7 +511,7 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<measurement:Ranking id="puget_hardwood_softwood_ratio">
 		<observation:hasObservable>
@@ -1388,6 +1389,32 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>	
 	
+<measurement:Ranking id="SumHiWintLow">
+	<observation:hasObservable>
+		<habitat:SummerHighWinterLow />
+	</observation:hasObservable>
+			<rdfs:comment>Data source: Derived from WorldClim data</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority> 
+			<metadata:hasURL>http://www.worldclim.org/bioclim</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:SumHiWintLow</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>17998</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+	
 	<measurement:Ranking id="US_summer_high_winter_low">
 		<observation:hasObservable>
 			<habitat:SummerHighWinterLow />
@@ -1422,7 +1449,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			<rdfs:comment>Data source: University of Montana/NASA MODIS NPP</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
 			<metadata:hasURL>http://www.ntsg.umt.edu/modis/</metadata:hasURL>
-			<measurement:unit>t/ha</measurement:unit>
+			<measurement:unit>t/ha*year</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>

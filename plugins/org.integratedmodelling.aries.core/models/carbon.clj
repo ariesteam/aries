@@ -55,8 +55,8 @@
 	 		#{5 6}                         'carbonService:OldGrowth
 	 		4                              'carbonService:LateSuccession
 	 		3                              'carbonService:MidSuccession
-	 		2                              'carbonService:EarlySuccession
-	 		1                              'carbonService:PoleSuccession
+	 		2                              'carbonService:PoleSuccession
+	 		1                              'carbonService:EarlySuccession
 	 		#{22 23 24 25 26 27 28 40 41}  'carbonService:NoSuccession))
 	 		  
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
@@ -131,8 +131,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-			;; TODO make this a measurement
-		 (classification (ranking 'carbonService:GreenhouseGasEmissions)
+		 (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
 		 	 [250000 :>]     'carbonService:VeryHighEmitter
 		 	 [100000 250000] 'carbonService:HighEmitter
 		 	 [25000 100000]  'carbonService:ModerateEmitter

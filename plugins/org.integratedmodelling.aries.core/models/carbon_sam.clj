@@ -98,8 +98,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-			;; TODO make this a measurement
-		 (classification (ranking 'carbonService:GreenhouseGasEmissions)
+		 (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
 		 	 [250000 :>]     'carbonService:VeryHighEmitter
 		 	 [100000 250000] 'carbonService:HighEmitter
 		 	 [25000 100000]  'carbonService:ModerateEmitter

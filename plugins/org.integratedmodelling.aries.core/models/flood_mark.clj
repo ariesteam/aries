@@ -51,6 +51,7 @@
       [:< 29]     'floodService:VeryLowRainfallErosivity)) 
 
 ;;Use runoff as training data here?
+;;YES: DEFMODEL STATEMENTS FOR INTERMEDIATE VARIABLES USED FOR TRAINING
 (defmodel flood-source-value 'floodService:FloodSourceValue
 	(classification 'floodService:FloodSourceValue
 	  		[:< 200]    'floodService:VeryLowFloodSource
@@ -153,15 +154,6 @@
 			[500000 1750000]	'floodService:SmallDamStorage
 			[:< 400]		      'floodService:VerySmallDamStorage))
 
-;;Talk to Mark about removing this node?  If he's running it at an annual timestep it's potentially less than useful.
-;;  At very least if it's to be run at a monthly timestep we need to know what month to use.
-(defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
-	(classification (ranking 'habitat:JanuaryDaysOfPrecipitation)
-		#{8 9}    'floodService:VeryHighDaysPrecipitation
-		#{6 7}    'floodService:HighDaysPrecipitation
-		#{4 5}    'floodService:LowDaysPrecipitation
-		#{1 2 3}  'floodService:VeryLowDaysPrecipitation))
-
 ;;No data for detention basins in Orange County at this point but leaving the defmodel statement in for now.    
 (defmodel detention-basin-storage 'floodService:DetentionBasinStorage
 	(classification (binary-coding 'infrastructure:DetentionBasin)
@@ -181,8 +173,7 @@
 	 	 	:context  (
 	 	 			soil-group slope imperviousness floodplain-width percent-vegetation-cover
 	 	 			  dam-storage 
-          (comment detention-basin-storage)
-	 	 			(comment mean-days-precipitation vegetation-height))))
+          (comment detention-basin-storage))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -319,73 +310,4 @@
    	:rv-max-states    10 
     :context (source farmers-use sink altitude)))
 
-;; -------------------------------------------------------------------------
-;; agents -- only for testing and not used right now
-;; -------------------------------------------------------------------------
-
-(defagent farm 'floodService:Farmland 
-
-  "Test only, don't worry."
-  (measurement 'geophysics:Altitude "m" :as altitude)
-  (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
-    :as          slope
-    [:< 1.15] 	 'floodService:Level
-    [1.15 4.57]  'floodService:GentlyUndulating
-    [4.57 16.70] 'floodService:RollingToHilly
-    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
-     
-  ;; these are supposed to be rules                                                          
-  :update    
-       #(let [ state (.getState % 'geophysics:Altitude) ]
-            (if (> state 4000)  
-                (.die %)))
-  
-  ;; this is used to transform the representation of the context if we get
-  ;; something that doesn't fit it.
-  :resolves (:space "20 cm" :time "1 s"))	
-
-(defagent levee 'floodService:Levees
-
-  "Test only, don't worry."
-  (measurement 'geophysics:Altitude "m" :as altitude)
-  (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
-    :as          slope
-    [:< 1.15] 	 'floodService:Level
-    [1.15 4.57]  'floodService:GentlyUndulating
-    [4.57 16.70] 'floodService:RollingToHilly
-    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
-     
-  ;; these are supposed to be rules                                                          
-  :update    
-       #(let [ state (.getState % 'geophysics:Altitude) ]
-            (if (> state 4000)  
-                (.die %)))
-  
-  ;; this is used to transform the representation of the context if we get
-  ;; something that doesn't fit it.
-  :resolves (:space "20 cm" :time "1 s"))	
-
-;;(defagent bridge 'floodService:Bridges 
-
-  "Test only, don't worry."
-  (measurement 'geophysics:Altitude "m" :as altitude)
-  (ranking 'habitat:PercentImperviousness :as imperviousness)
-  (classification (measurement 'geophysics:DegreeSlope "\u00b0")
-    :as          slope
-    [:< 1.15] 	 'floodService:Level
-    [1.15 4.57]  'floodService:GentlyUndulating
-    [4.57 16.70] 'floodService:RollingToHilly
-    [16.70 :>] 	 'floodService:SteeplyDissectedToMountainous)
-     
-  ;; these are supposed to be rules                                                          
-  :update    
-       #(let [ state (.getState % 'geophysics:Altitude) ]
-            (if (> state 4000)  
-                (.die %)))
-  
-  ;; this is used to transform the representation of the context if we get
-  ;; something that doesn't fit it.
-  :resolves (:space "20 cm" :time "1 s"))	
 	 	 	

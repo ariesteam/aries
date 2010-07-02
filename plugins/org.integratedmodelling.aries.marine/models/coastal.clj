@@ -13,7 +13,7 @@
 ;; sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------
 
-;; Converted to m so should work now but need to get into xml via wfs2opal & test in Thinkcap 
+;; Converted to m so should work now but need to test 
 (defmodel mangrove-width 'coastalProtection:MangroveWidth
 	(classification (measurement 'coastalProtection:MangroveWidth "m")
 		[2000 :>]       'coastalProtection:HighMangroveWidth

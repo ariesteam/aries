@@ -5,10 +5,11 @@
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 ;;KB: Should this actually be sequestration?  And should discretization on the two 
-;; below defmodels be updated?
+;; below defmodels be updated?  YES!
+;; CREATE A NEW DEFMODEL FOR VEG & SOIL C SEQUESTRATION
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "t/ha*year" 
+						:units "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighStorage
 	  				[9 12]    'carbonService:HighStorage
 	  				[6 9]     'carbonService:ModerateStorage
@@ -19,7 +20,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units "t/ha*yr" 
+						:units "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighVegetationStorage
 	  				[9 12]    'carbonService:HighVegetationStorage
 	  				[6 9]     'carbonService:ModerateVegetationStorage
@@ -30,7 +31,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha*year" 
+						:units    "t/ha" 
 	  				[12 :>]   'carbonService:VeryHighSoilStorage
 	  				[9 12]    'carbonService:HighSoilStorage
 	  				[6 9]     'carbonService:ModerateSoilStorage
@@ -127,13 +128,14 @@
               ('habitat:AnnualPrecipitation  "mm" :as mean-annual-precipitation))
     :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration))))
 
+;;Do we need a % after potential-evapotranspiration too?  Is the syntax right for this?
+
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-			;; TODO make this a measurement
-		 (classification (ranking 'carbonService:GreenhouseGasEmissions)
+		 (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
 		 	 [250000 :>]     'carbonService:VeryHighEmitter
 		 	 [100000 250000] 'carbonService:HighEmitter
 		 	 [25000 100000]  'carbonService:ModerateEmitter

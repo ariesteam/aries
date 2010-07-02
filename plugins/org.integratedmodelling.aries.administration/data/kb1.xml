@@ -191,6 +191,31 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:Measurement id="california_runoff_wch">
+		<observation:hasObservable>
+			<habitat:AnnualRunoff />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: Mean annual runoff, 1951-2002, modeled using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<measurement:unit>in/year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:runoff_wch</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
 			<habitat:AnnualSnowmelt />
@@ -322,7 +347,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	
 	<observation:Categorization id="global_nationalboundaries">
 		<observation:hasObservable>
 			<geofeatures:Country />
@@ -446,6 +470,60 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
+
+	<measurement:Measurement id="DepthToWaterSanPedro">
+		<observation:hasObservable>
+			<waterSupplyService:DepthToWaterTable />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+			<measurement:unit>cm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:DepthToWaterSanPedro</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:Measurement id="DepthToWater_puget">
+		<observation:hasObservable>
+			<waterSupplyService:DepthToWaterTable />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+			<measurement:unit>cm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:DepthToWater_puget</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 	<measurement:NumericCoding id="DR_lulc">
 		<observation:hasObservable>
@@ -594,6 +672,32 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+<measurement:Measurement id="floodplain_width">
+	<observation:hasObservable>
+		<habitat:FloodplainWidth />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<measurement:unit>m</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:floodplain_width</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>3310</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>3125</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>32.627</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.403</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>42.008</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-114.467</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 <measurement:BinaryCoding id="global_globalfloodplains">
 	<observation:hasObservable>
@@ -2449,6 +2553,32 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+	<measurement:Ranking id="SoilErodibilty">
+		<observation:hasObservable>
+			<habitat:SoilErodibility />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilErodibilty</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 <!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 
 for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 
@@ -2499,6 +2629,136 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasLonUpperBound>472740.9629056087</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+<measurement:Ranking id="SoilpH_0_30_puget">
+		<observation:hasObservable>
+			<habitat:SoilPh />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+		<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilpH_0_30_puget</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="SoilpH_30_100_puget">
+		<observation:hasObservable>
+			<habitat:SoilPh />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilpH_30_100_puget</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+<measurement:Ranking id="SoilpH_0_30_san_pedro">
+	<observation:hasObservable>
+		<habitat:SoilPh />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
+	<measurement:Ranking id="SoilpH_30_100_san_pedro">
+		<observation:hasObservable>
+			<habitat:SoilPh />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:SoilpH_30_100_san_pedro</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="SoilTexture">
+		<observation:hasObservable>
+			<habitat:SoilTexture />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilTexture</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
@@ -2928,5 +3188,57 @@ well to be 4 m^2 in aerial extent (2x2 m).  We convert gallons to cubic meters, 
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>  -->
+
+<!-- Need correct ontologic concepts for the two below if we're gonna use 'em 
+
+<measurement:Measurement id="california_infiltration_wch">
+	<observation:hasObservable>
+		<observation:GenericObservable />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Mean annual infiltration, 1951-2002, modeled using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority> 
+		<measurement:unit>in/year</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:infiltration_wch</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
+	<measurement:Measurement id="california_deep_percolation_wch">
+		<observation:hasObservable>
+			<observation:GenericObservable />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: Mean annual deep percolation, 1951-2002, modeled using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority> 
+			<measurement:unit>in/year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:deep_percolation_wch</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>  -->
 
 </kbox>
