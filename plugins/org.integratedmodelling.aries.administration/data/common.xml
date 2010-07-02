@@ -275,7 +275,8 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 	
 <!-- This should be a measurement, in mm.  Native units are in feet; conversion from mm to feet is 1 ft =
 304.8 mm.   Creating a raster layer of dam storage in ft (ac-ft excess storage capacity divided by acreage
-of the reservoir, located at data/united_states/dams.  This will need to be placed in geoserver & wcs2opal-->
+of the reservoir, located at data/united_states/dams.  This will need to be placed in geoserver & wcs2opal
+(and may need to be clipped before getting into geoserver) -->
 	<measurement:Ranking id="puget_reservoirs2">
 		<observation:hasObservable>
 			<floodService:DamStorage />
