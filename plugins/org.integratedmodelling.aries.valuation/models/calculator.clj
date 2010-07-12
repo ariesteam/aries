@@ -34,5 +34,8 @@
 	(es-calculator 'esvaluation:HistoricESValue 
 		:context (land-use)) )
 		
-		
-  
+(defmodel food-production-value 'esvaluation:FoodProductionValue 
+	"Food production value according to stupid ES value calculator, Costanza/DeGroot/Wilson-style"
+	(es-calculator 'esvaluation:FoodProductionValue 
+		:context (land-use)))
+		  

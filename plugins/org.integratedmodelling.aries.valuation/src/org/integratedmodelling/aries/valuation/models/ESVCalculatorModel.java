@@ -6,6 +6,7 @@ import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.interfaces.IModel;
+import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
@@ -25,7 +26,8 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+
 	@Override
 	public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents) throws ThinklabException {
 

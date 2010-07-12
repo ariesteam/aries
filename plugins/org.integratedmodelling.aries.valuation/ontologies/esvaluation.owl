@@ -9,14 +9,24 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling/ks/aries/esvaluation.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/currency/currency.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/economics/economics.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/currency/currency.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="EcosystemServiceValue">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/economics/economics.owl#EconomicValue"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#ModeledObservable"/>
+  <owl:Class rdf:ID="ClimateStabilityValue">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="HistoricESValue"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="HistoricESValue">
+  <owl:Class rdf:ID="FoodProductionValue">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#HistoricESValue"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EcosystemServiceValue">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#ModeledObservable"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/economics/economics.owl#EconomicValue"/>
+  </owl:Class>
+  <owl:Class rdf:about="#HistoricESValue">
     <rdfs:subClassOf rdf:resource="#EcosystemServiceValue"/>
   </owl:Class>
   <owl:Class rdf:ID="ESVCalculator">
@@ -24,4 +34,4 @@
   </owl:Class>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer -->
+<!-- Created with TopBraid -->

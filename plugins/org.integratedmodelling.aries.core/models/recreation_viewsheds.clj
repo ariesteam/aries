@@ -19,6 +19,7 @@
 		  0          'recreationService:RiverStreamAbsent
 		  :otherwise 'recreationService:RiverStreamPresent))
 
+;; ARGH - fv - Everest is OK!
 (defmodel mountain 'aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
@@ -156,15 +157,16 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;;Not sure what's going on below, but it's throwing errors.
+;; FV it had the old syntax with :context outside of the identification form - fixed
 
 ;; all data, for testing and storage
-;;(defmodel data 'aestheticService:AestheticEnjoyment 
-	;;(identification 'aestheticService:AestheticEnjoyment)
-		;;:context (
-			;;source :as source
-			;;homeowners :as use
-			;;sink :as sink
-			;;altitude :as altitude))
+(defmodel data 'aestheticService:AestheticEnjoyment 
+	(identification 'aestheticService:AestheticEnjoyment
+		:context (
+			source :as source
+			user :as use
+			sink :as sink
+			altitude :as altitude)))
 			
 ;; the real enchilada
 ;;(defmodel view 'aestheticService:AestheticView

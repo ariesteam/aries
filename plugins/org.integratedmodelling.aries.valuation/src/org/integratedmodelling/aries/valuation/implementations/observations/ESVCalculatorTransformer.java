@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import org.integratedmodelling.aries.valuation.ARIESValuationPlugin;
 import org.integratedmodelling.aries.valuation.calculator.ESCalculatorFactory;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.context.ObservationContext;
@@ -51,6 +52,9 @@ public class ESVCalculatorTransformer
 	HashSet<IConcept> outputStates = new HashSet<IConcept>();
 	IConcept cSpace = null;
 	
+	// if not null, 
+	public IConcept service = null;
+	
 	static double SQUARE_METERS_TO_ACRES = 0.000247105381;
 	
 	@Override
@@ -69,6 +73,10 @@ public class ESVCalculatorTransformer
 			IObservationContext context) throws ThinklabException {
 		
 		IConcept landUseConcept = KnowledgeManager.get().requireConcept(LAND_USE_DEPENDENCY);
+		
+		
+		if (!this.getObservableClass().equals(ARIESValuationPlugin.ESVConcept()))
+			this.service = this.getObservableClass();
 
 		/*
 		 * find out rows and cols from context and ensure all extents are
@@ -101,6 +109,9 @@ public class ESVCalculatorTransformer
 		 */
 		ArrayList<Triple<Double,Double,Double>> totals = new ArrayList<Triple<Double,Double,Double>>();
 		for (IConcept observable : ESCalculatorFactory.get().getAllESConcepts()) {
+			
+			if (service != null && !observable.is(service))
+				continue;
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size, 
 					(ObservationContext)context); 
@@ -211,6 +222,7 @@ public class ESVCalculatorTransformer
 		 * add all dependents - for now these have means and stds in them, not 
 		 * distributions, so a ranking is appropriate.
 		 */
+		Polylist stdef = null;
 		for (Pair<IConcept, IState> st : states) {
 			
 			Polylist ddef = Polylist.list(
@@ -221,8 +233,14 @@ public class ESVCalculatorTransformer
 							CoreScience.HAS_DATASOURCE, 
 							st.getSecond().conceptualize()));
 			
-			rdef = ObservationFactory.addDependency(rdef, ddef);
+			rdef = ObservationFactory.addDependency(rdef, stdef = ddef);
 		}
+		
+		/*
+		 * return the lone service obs if that's what we asked for.
+		 */
+		if (service != null && stdef != null)
+			return stdef;
 		
 		return rdef;
 		
