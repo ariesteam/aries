@@ -1,11 +1,13 @@
 package org.integratedmodelling.aries.valuation.implementations.observations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.integratedmodelling.aries.valuation.ARIESValuationPlugin;
 import org.integratedmodelling.aries.valuation.calculator.ESCalculatorFactory;
+import org.integratedmodelling.aries.valuation.models.ESVCalculatorModel;
+import org.integratedmodelling.aries.valuation.models.ESVCalculatorModel.Influence;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.datasources.MemDoubleContextualizedDatasource;
@@ -46,6 +48,10 @@ public class ESVCalculatorTransformer
 	 */
 	private static final String LAND_USE_DEPENDENCY = "esclass:HistoricalESLandcover";
 
+	// reflected, must be public
+	public boolean normalize = false;
+	public ArrayList<Influence> influences = null;
+	
 	ArrayList<Pair<GeneralClassifier, IConcept>> classifiers = 
 		new ArrayList<Pair<GeneralClassifier,IConcept>>();
 	
@@ -125,10 +131,8 @@ public class ESVCalculatorTransformer
 			totals.add(new Triple<Double, Double, Double>(0.0,0.0,0.0));
 		} 	
 		
-		/*
-		 * find the state of our very only dependency
-		 */
-		IState state = ObservationFactory.getStateMap(sourceObs).get(landUseConcept);
+		Map<IConcept, IState> statemap = ObservationFactory.getStateMap(sourceObs);
+		IState state = statemap.get(landUseConcept);
 
 		/*
 		 * create data
@@ -157,29 +161,53 @@ public class ESVCalculatorTransformer
 					 * compute silly value for silly ecosystem service
 					 */
 					Pair<Double, Double> vres = 
-						ESCalculatorFactory.get().computeValue(cs.getFirst(), landcover, cellAcres);
+						ESCalculatorFactory.get().computeValue(cs.getFirst(), landcover, normalize);
 				
-					double mean = vres.getFirst() + (vres.getSecond()- vres.getFirst())/2; 
-					
+										
 					/*
 					 * add mean, min and max to ds and source, memorized as values per acre, not
 					 * per pixel.
 					 */
-					mins[i] = vres.getFirst()/SQUARE_METERS_TO_ACRES;
-					maxs[i] = vres.getSecond()/SQUARE_METERS_TO_ACRES;
-				
-					cs.getSecond().addValue(i, new Double(mean)/SQUARE_METERS_TO_ACRES);
+					mins[i] = vres.getFirst();
+					maxs[i] = vres.getSecond();
 
-					tmin  += mins[i]; 
-					tmax  += maxs[i]; 
-					tmean += mean/SQUARE_METERS_TO_ACRES;
+					/*
+					 * process influences if any
+					 */
+					if ((influences != null && influences.size() > 0)) {
+						
+						for (ESVCalculatorModel.Influence inf : influences) {
+							
+							IState ist = statemap.get(inf.observable);
+							if (ist == null)
+								throw new ThinklabValidationException("cannot find state for required influence " + inf.observable);
+							double n = ist.getDoubleValue(i);
+							if (Double.isNaN(n))
+								continue;
+							if (n < inf.min) n = inf.min;
+							if (n > inf.max) n = inf.max;
+							double mul = (n - inf.min)/(inf.max - inf.min);
+							mins[i] += mins[i]*mul;
+							maxs[i] += maxs[i]*mul;
+						}
+						
+					}
+
+					double mean = mins[i] + (maxs[i]- mins[i])/2; 
+					
+					cs.getSecond().addValue(i, new Double(mean));
+
+					tmin  += mins[i]*cellAcres; 
+					tmax  += maxs[i]*cellAcres; 
+					tmean += mean*cellAcres;
 				
 					// total ACTUAL values per pixel cumulated
 					Triple<Double,Double,Double> tt = totals.get(stt);
-					tt.setFirst(tt.getFirst() + vres.getFirst());
-					tt.setSecond(tt.getSecond() + vres.getSecond());
+					tt.setFirst(tt.getFirst() + mins[i]);
+					tt.setSecond(tt.getSecond() + maxs[i]);
 					tt.setThird(tt.getThird() + mean);
 					totals.set(stt, tt);
+
 					
 				} else {
 					
@@ -192,6 +220,7 @@ public class ESVCalculatorTransformer
 			}
 		}
 		
+	
 		/*
 		 * set aggregate totals in metadata for display
 		 */
@@ -211,12 +240,6 @@ public class ESVCalculatorTransformer
 				Polylist.list(
 						CoreScience.HAS_OBSERVABLE, getObservable().toList(null)));
 		
-		/*
-		 * make new extents to match previous
-		 */
-		for (IConcept ext : context.getDimensions()) {
-			rdef = ObservationFactory.addExtent(rdef, context.getExtent(ext).conceptualize());
-		}
 		
 		/*
 		 * add all dependents - for now these have means and stds in them, not 
@@ -239,10 +262,18 @@ public class ESVCalculatorTransformer
 		/*
 		 * return the lone service obs if that's what we asked for.
 		 */
-		if (service != null && stdef != null)
-			return stdef;
-		
-		return rdef;
+		Polylist ret = 
+			(service != null && stdef != null) ?
+					stdef : rdef;
+
+		/*
+		 * make new extents to match previous
+		 */
+		for (IConcept ext : context.getDimensions()) {
+			ret = ObservationFactory.addExtent(ret, context.getExtent(ext).conceptualize());
+		}
+
+		return ret;
 		
 	}
 }

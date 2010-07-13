@@ -74,6 +74,27 @@ public class ESCalculatorFactory {
 	 * @param ESid
 	 * @return
 	 */
+	public double getGlobalMinimumESValue(IConcept es) {
+		
+		ESValue e = esValues.get((String) esMappings.getKey(es));
+		return e.minValue;
+	}
+	
+	/**
+	 * Get global maximum value of passed ecosystem service
+	 * @param ESid
+	 * @return
+	 */
+	public double getGlobalMaximumESValue(IConcept es) {
+		ESValue e = esValues.get((String) esMappings.getKey(es));
+		return e.maxValue;
+	}
+	
+	/**
+	 * Get global minimum value of passed ecosystem service
+	 * @param ESid
+	 * @return
+	 */
 	public double getGlobalMinimumESValue(String ESid) {
 		
 		ESValue es = esValues.get(ESid);
@@ -89,15 +110,14 @@ public class ESCalculatorFactory {
 		ESValue es = esValues.get(ESid);
 		return es.maxValue;
 	}
-	
 	/**
 	 * Value of passed ES in passed LC for passed area in acres.
 	 * @param es
 	 * @param lc
-	 * @param cellAcres
+	 * @param normalize (just conversion coefficient for ES in land use, twice)
 	 * @return
 	 */
-	public Pair<Double, Double> computeValue(IConcept es, IConcept lc, double cellAcres) {
+	public Pair<Double, Double> computeValue(IConcept es, IConcept lc, boolean normalize) {
 		
 		String esid = (String) esMappings.getKey(es);
 		String lcid = (String) lcMappings.getKey(lc);
@@ -106,7 +126,9 @@ public class ESCalculatorFactory {
 		double max = getGlobalMaximumESValue(esid);
 		double con = getESConversionCoefficient(esid, lcid);
 		
-		return new Pair<Double, Double>(min*con*cellAcres, max*con*cellAcres);
+		return normalize ? 
+				new Pair<Double, Double>(con, con) :
+				new Pair<Double, Double>(min*con, max*con);
 	}
 	
 	public IConcept getConceptForESID(String esid) {

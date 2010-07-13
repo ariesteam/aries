@@ -1,7 +1,7 @@
 (ns valuation.models.calculator
-  (:refer-clojure)
+  (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defmodel measurement classification categorization ranking 
-  												 numeric-coding binary-coding identification bayesian))
+  												 numeric-coding binary-coding identification bayesian count))
   (:refer aries.valuation :only (es-calculator)))
   
 (defmodel land-use 'esclass:HistoricalESLandcover
@@ -28,14 +28,88 @@
 		42	                             'esclass:Coastal
 		31	                             'esclass:Rock
 		#{30 31 32 33 34}	               'esclass:Tundra))
+
+;; ------------------------------------------------------------------------------------------------
+;; the crap RB, MW and countless others get paid money to produce.
+;; ------------------------------------------------------------------------------------------------
 		
 (defmodel esvalue 'esvaluation:HistoricESValue 
-	"The stupid ES value calculator, Costanza/DeGroot/Wilson-style"
+	"ES value calculator, Costanza/DeGroot/Wilson-style"
 	(es-calculator 'esvaluation:HistoricESValue 
 		:context (land-use)) )
+
+;; ------------------------------------------------------------------------------------------------
+;; "enhanced" valuation models. Still crap, but these would be worth 10 years of publications if they
+;; came from the great Gund researchers. All in a day's work for ARIES ecosystemserviceman.
+;; ------------------------------------------------------------------------------------------------
 		
-(defmodel food-production-value 'esvaluation:FoodProductionValue 
-	"Food production value according to stupid ES value calculator, Costanza/DeGroot/Wilson-style"
-	(es-calculator 'esvaluation:FoodProductionValue 
-		:context (land-use)))
+(defmodel slope 'geophysics:DegreeSlope
+	(measurement 'geophysics:DegreeSlope "\u00b0"))
+
+(defmodel elevation 'geophysics:Altitude
+	(measurement 'geophysics:Altitude "mm"))
+
+(defmodel precipitation 'habitat:AnnualPrecipitation
+	(measurement 'habitat:AnnualPrecipitation "mm"))
+
+(defmodel population 'policytarget:PopulationDensity
+  (count 'policytarget:PopulationDensity "/km^2")) 
+
+(defmodel food-production-value 'esclass:FoodProduction 
+	(es-calculator 'esclass:FoodProduction
+    :influence (
+                 (geophysics:DegreeSlope -0.4 :min 0 :max 17)
+                 (policytarget:PopulationDensity -0.5 :min 100 :max 5000)
+                 (habitat:AnnualPrecipitation 0.3 :min 600 :max 800)
+                 (geophysics:Altitude -0.7 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation slope population)))
+
+(defmodel climate-regulation-value 'esclass:ClimateRegulation 
+	(es-calculator 'esclass:ClimateRegulation
+    :influence (
+                 (geophysics:DegreeSlope -0.25 :min 4 :max 17)
+                 (policytarget:PopulationDensity -0.25 :min 300 :max 1000)
+                 (habitat:AnnualPrecipitation 0.4 :min 700 :max 800)
+                 (geophysics:Altitude -0.1 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation slope population)))
+
+(defmodel water-supply-value 'esclass:WaterSupply 
+	(es-calculator 'esclass:WaterSupply
+    :influence (
+                 (geophysics:DegreeSlope -0.15 :min 5 :max 10)
+                 (policytarget:PopulationDensity -0.25 :min 1000 :max 5000)
+                 (habitat:AnnualPrecipitation 0.2 :min 600 :max 800))
+    :normalize false
+		:context (land-use slope precipitation population)))
 		  
+(defmodel soil-formation-value 'esclass:SoilFormation 
+	(es-calculator 'esclass:SoilFormation
+    :influence (
+                 (geophysics:DegreeSlope -0.5 :min 8 :max 15)
+                 (policytarget:PopulationDensity -0.5 :min 200 :max 2000)
+                 (habitat:AnnualPrecipitation -0.3 :min 600 :max 800))
+    :normalize false    
+		:context (land-use population precipitation slope)))
+		  
+(defmodel pollination-value 'esclass:Pollination 
+	(es-calculator 'esclass:Pollination
+    :influence (
+                 (habitat:AnnualPrecipitation 0.11 :min 600 :max 800)
+                 (policytarget:PopulationDensity -0.45 :min 500 :max 3000)
+                 (geophysics:Altitude -0.45 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation population)))
+
+;; -----------------------------------------------------------------------------
+;; enchiladinha
+;; -----------------------------------------------------------------------------
+
+(defmodel esvalue-corrected 'esvaluation:ESValueCorrected
+  (identification 'esvaluation:ESValueCorrected
+    :context (food-production-value climate-regulation-value
+               water-supply-value soil-formation-value
+               pollination-value))) 
+
+		  		  
