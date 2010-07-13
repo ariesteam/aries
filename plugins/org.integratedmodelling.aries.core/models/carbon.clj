@@ -96,10 +96,10 @@
 
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
 		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
-        [9 10] 'carbonService:VeryLowHardness
-        [7 8]  'carbonService:LowHardness
-        [5 6]  'carbonService:ModerateHardness
-        [3 4]  'carbonService:HighHardness
+        [8 10] 'carbonService:VeryLowHardness
+        [6 8]  'carbonService:LowHardness
+        [4 6]  'carbonService:ModerateHardness
+        [2 4]  'carbonService:HighHardness
         [1 2]  'carbonService:VeryHighHardness))
 				
 (defmodel fire-frequency 'carbonService:FireFrequency
