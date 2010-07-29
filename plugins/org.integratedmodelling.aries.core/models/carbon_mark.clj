@@ -9,35 +9,68 @@
 ;; CREATE A NEW DEFMODEL FOR VEG & SOIL C SEQUESTRATION
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
-						:units "t/ha" 
-	  				[12 :>]   'carbonService:VeryHighStorage
-	  				[9 12]    'carbonService:HighStorage
-	  				[6 9]     'carbonService:ModerateStorage
-	  				[3 6]     'carbonService:LowStorage
-	  				[0.01 3]  'carbonService:VeryLowStorage
-	  				[:< 0.01] 'carbonService:NoStorage))
+						:units      "t/ha" 
+	  				[12 :>]     'carbonService:VeryHighStorage
+	  				[9 12]      'carbonService:HighStorage
+	  				[6 9]       'carbonService:ModerateStorage
+	  				[3 6]       'carbonService:LowStorage
+	  				[0.01 3]    'carbonService:VeryLowStorage
+	  				[:< 0.01]   'carbonService:NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
-						:units "t/ha" 
-	  				[12 :>]   'carbonService:VeryHighVegetationStorage
-	  				[9 12]    'carbonService:HighVegetationStorage
-	  				[6 9]     'carbonService:ModerateVegetationStorage
-	  				[3 6]     'carbonService:LowVegetationStorage
-	  				[0.01 3]  'carbonService:VeryLowVegetationStorage
-	  				[:< 0.01] 'carbonService:NoVegetationStorage)) 				
+						:units      "t/ha" 
+	  				[12 :>]     'carbonService:VeryHighVegetationStorage
+	  				[9 12]      'carbonService:HighVegetationStorage
+	  				[6 9]       'carbonService:ModerateVegetationStorage
+	  				[3 6]       'carbonService:LowVegetationStorage
+	  				[0.01 3]    'carbonService:VeryLowVegetationStorage
+	  				[:< 0.01]   'carbonService:NoVegetationStorage)) 				
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha" 
-	  				[12 :>]   'carbonService:VeryHighSoilStorage
-	  				[9 12]    'carbonService:HighSoilStorage
-	  				[6 9]     'carbonService:ModerateSoilStorage
-	  				[3 6]     'carbonService:LowSoilStorage
-	  				[0.01 3]  'carbonService:VeryLowSoilStorage
-	  				[:< 0.01] 'carbonService:NoSoilStorage))	  			
+						:units      "t/ha" 
+	  				[12 :>]     'carbonService:VeryHighSoilStorage
+	  				[9 12]      'carbonService:HighSoilStorage
+	  				[6 9]       'carbonService:ModerateSoilStorage
+	  				[3 6]       'carbonService:LowSoilStorage
+	  				[0.01 3]    'carbonService:VeryLowSoilStorage
+	  				[:< 0.01]   'carbonService:NoSoilStorage))
+
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+    (classification 'carbonService:VegetationAndSoilCarbonSequestration
+            :units      "t/ha"
+            [12 :>]     'carbonService:VeryHighSequestration
+            [9 12]      'carbonService:HighSequestration
+            [6 9]       'carbonService:ModerateSequestration
+            [3 6]       'carbonService:LowSequestration
+            [0.01 3]    'carbonService:VeryLowSequestration
+            [:< 0.01]   'carbonService:NoSequestration))
+
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+     (classification 'carbonService:StoredCarbonRelease
+            :units      "t/ha"
+            [12 :>]     'carbonService:VeryHighRelease
+            [9 12]      'carbonService:HighRelease
+            [6 9]       'carbonService:ModerateRelease
+            [3 6]       'carbonService:LowRelease
+            [0.01 3]    'carbonService:VeryLowRelease
+            [:< 0.01]   'carbonService:NoRelease))
+
+(defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
+    (classification 'carbonService:NetCarbonUptake
+            :units      "t/ha"
+            [12 :>]     'carbonService:VeryHighCarbonUptake
+            [9 12]      'carbonService:HighCarbonUptake
+            [6 9]       'carbonService:ModerateCarbonUptake
+            [3 6]       'carbonService:LowCarbonUptake
+            [0.01 3]    'carbonService:VeryLowCarbonUptake
+            [:< 0.01]   'carbonService:NoCarbonUptake))
+ 
+
 	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
@@ -60,8 +93,8 @@
 ; use NLCD layers to infer anoxic vs. oxic
 (defmodel oxygen 'carbonService:SoilOxygenConditions 
  (classification (numeric-coding 'nlcd:NLCDNumeric)
-		  #{90 95}   'carbonService:Anoxic
-		  :otherwise 'carbonService:Oxic))
+		  #{90 95}   'carbonService:AnoxicSoils
+		  :otherwise 'carbonService:OxicSoils))
 				
 (defmodel fire-threat 'carbonService:FireThreatClass
 		 (classification (ranking 'habitat:FireThreat)	
@@ -70,31 +103,31 @@
 		 			2  'carbonService:ModerateFireThreat
 		 			1  'carbonService:LowFireThreat))
 
-(defmodel actual-evapotranspiration 'carbonService:ActualEvapotranspiration
- (classification (measurement 'habitat:ActualEvapotranspiration "mm")
-    [92 :>]   'carbonService:VeryHighActualEvapotranspiration
-    [58 92]   'carbonService:HighActualEvapotranspiration
-    [32 58]   'carbonService:ModerateActualEvapotranspiration
-    [12 32]   'carbonService:LowActualEvapotranspiration
-    [:< 12]   'carbonService:VeryLowActualEvapotranspiration)) 
+(defmodel actual-evapotranspiration 'carbonService:ActualEvapotranspirationClass
+    (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+      [92 :>]   'carbonService:VeryHighActualEvapotranspiration
+      [58 92]   'carbonService:HighActualEvapotranspiration
+      [32 58]   'carbonService:ModerateActualEvapotranspiration
+      [12 32]   'carbonService:LowActualEvapotranspiration
+      [:< 12]   'carbonService:VeryLowActualEvapotranspiration)) 
 
 ;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
 (defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCal
-  (classification (categorization southernCalifornia:VegetationTypeSoCal)
+    (classification (categorization 'southernCalifornia:VegetationTypeSoCal)
     "HDW"          'southernCalifornia:HardwoodForestVegetationType
     #{"CON" "MIX"} 'southernCalifornia:MixedConiferVegetationType
     "SHB"          'southernCalifornia:ShrubVegetationType
     "HEB"          'southernCalifornia:HerbaceousVegetationType)) 
 
-;;(defmodel land-use 'southernCalifornia:LandCover
-  ;;"Reclass of the NLCD land use for the purposes of carbon modeling"
-  ;;(classification (numeric-coding 'nlcd:NLCDNumeric)
-   ;; #{11 90 95}         'southernCalifornia:WetlandOpenWaterLandCover
-   ;; #{41 42 43 51 52}   'southernCalifornia:ScrubAndForestLandCover
-   ;; #{71 81 82}         'southernCalifornia:GrasslandAndCultivatedLandCover
-   ;; 21                  'southernCalifornia:OpenSpaceLandCover
-   ;; 22                  'southernCalifornia:LowDevelopedLandCover
-   ;; #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
+;;"Reclass of the NLCD land use for the purposes of carbon modeling"
+(defmodel land-use 'southernCalifornia:LandCover
+   (classification (numeric-coding 'nlcd:NLCDNumeric)
+   #{11 90 95}         'southernCalifornia:WetlandOpenWaterLandCover
+   #{41 42 43 51 52}   'southernCalifornia:ScrubAndForestLandCover
+   #{71 81 82}         'southernCalifornia:GrasslandAndCultivatedLandCover
+   21                  'southernCalifornia:OpenSpaceLandCover
+   22                  'southernCalifornia:LowDevelopedLandCover
+   #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
 
 ;; Bayesian source model
 ;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
@@ -107,9 +140,9 @@
                  'carbonService:VegetationCarbonStorage
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
-	    :observed (veg-soil-storage soil-storage veg-storage)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration
-                    vegetation-type comment land-use)))  
+	    :observed (veg-soil-storage soil-storage veg-storage veg-soil-sequestration stored-carbon-release net-carbon-uptake)
+	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))  
+;; don't forget about the land-use model
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check
@@ -124,11 +157,9 @@
 
 (defmodel decomposition-factor 'habitat:DecompositionFactor
   (ranking 'habitat:DecompositionFactor
-    :context (('habitat:PotentialEvapotranspiration "mm" :as potential-evapotranspiration)
-              ('habitat:AnnualPrecipitation  "mm" :as mean-annual-precipitation))
-    :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration))))
-
-;;Do we need a % after potential-evapotranspiration too?  Is the syntax right for this?
+    :context ((measurement 'habitat:PotentialEvapotranspiration "mm" :as potential-evapotranspiration)
+              (measurement 'habitat:AnnualPrecipitation  "mm" :as mean-annual-precipitation))
+    :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration %))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

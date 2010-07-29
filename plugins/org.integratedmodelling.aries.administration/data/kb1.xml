@@ -3689,6 +3689,32 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:Measurement id="TotnoCEM_Final">
+		<observation:hasObservable>
+			<carbonService:GreenhouseGasEmitters />
+		</observation:hasObservable>
+		<measurement:unit>t/ha*year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>TotnoCEM_Final</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>619</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>289</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>22.059390176999997</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-137.257054</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>57.3100689</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-62.03137878700001
+				</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<!--
 		NEED TO ADD CORRECT ONTOLOGY FOR THIS <measurement:Categorization
 		id="mexico_mex_lulc"> <observation:hasObservable>

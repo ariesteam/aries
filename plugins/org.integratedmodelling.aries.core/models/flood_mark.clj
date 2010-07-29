@@ -73,22 +73,18 @@
 
 ;; Flood source probability (runoff levels), SCS curve number method
 ;; See: https://engineering.purdue.edu/mapserve/LTHIA7/documentation/scs.htm
-(defmodel source-cn 'floodService:FloodSource
-	  (measurement 'habitat:AnnualRunoff "mm" 
-	 	 	:context  (land-use :as landuse 
-                 soil-group-puget :as soilgroup
-                 (ranking 'habitat:PercentImperviousness) :as imperv
-                 precipitation :as precipitation)
-      :state #(let [
-                    ctable 
-                       {(tl/conc 'floodService:Agriculture) [64 75 82 85],
-                        (tl/conc 'floodService:Forest) [64 75 82 85],
-                        (tl/conc 'floodService:GrassPasture) [64 75 82 85],
-                        (tl/conc 'floodService:DevelopedOpenSpace) [64 75 82 85],
-                        (tl/conc 'floodService:Agriculture) [64 75 82 85]}
-                       ]
-                )
-))
+;;(defmodel source-cn 'floodService:FloodSource
+;;	  (measurement 'habitat:AnnualRunoff "mm" 
+;;	 	 	:context  (land-use :as landuse 
+;;                 soil-group-puget :as soilgroup
+;;                 (ranking 'habitat:PercentImperviousness) :as imperv
+;;                 precipitation :as precipitation)
+;;      :state #(let [ctable {(tl/conc 'floodService:Agriculture)        [64 75 82 85]
+;;                            (tl/conc 'floodService:Forest)             [64 75 82 85]
+;;                            (tl/conc 'floodService:GrassPasture)       [64 75 82 85]
+;;                            (tl/conc 'floodService:DevelopedOpenSpace) [64 75 82 85]}]
+;;                )
+;;))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -145,8 +141,8 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group slope imperviousness percent-vegetation-cover dam-storage 
-          (comment detention-basin-storage))))
+	 	 			soil-group slope imperviousness percent-vegetation-cover dam-storage)))
+;; don't forget about the detention-basin-storage
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
