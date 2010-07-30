@@ -109,7 +109,7 @@
   last item in second form, etc."
   {:added "1.1"} 
   ([x form] (if (seq? form)
-              (with-meta `(~(first form) ~@(next form)  ~x) (meta form))
+              (with-meta `(~(first form) ~@(rest form)  ~x) (meta form))
               (list form x)))
   ([x form & more] `(my->> (my->> ~x ~form) ~@more)))
 

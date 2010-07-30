@@ -104,3 +104,6 @@
                              :benefit-type :result-type :save-file])))
 
 (run-span-example span-spec-1)
+;;(run-span-example span-spec-2)
+;;(run-span-example span-spec-3)
+;;(run-span-example span-spec-4)

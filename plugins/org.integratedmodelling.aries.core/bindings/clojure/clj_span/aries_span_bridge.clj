@@ -31,7 +31,7 @@
         [clj-misc.utils          :only (mapmap remove-nil-val-entries p &)]
         [clj-misc.randvars       :only (cont-type disc-type successive-sums)]))
 
-(comment
+;;(comment
   (refer 'tl :only '(conc))
 
   (refer 'geospace :only '(grid-rows
@@ -54,27 +54,27 @@
                               get-data
                               run-at-shape
                               run-at-location))
-  )
+;;  )
 
-(declare conc
-         grid-rows
-         grid-columns
-         grid-extent?
-         get-shape
-         get-spatial-extent
-         find-state
-         find-observation
-         get-state-map
-         get-observable-class
-         probabilistic?
-         binary?
-         encodes-continuous-distribution?
-         get-dist-breakpoints
-         get-possible-states
-         get-probabilities
-         get-data
-         run-at-shape
-         run-at-location)
+;;(declare conc
+;;         grid-rows
+;;         grid-columns
+;;         grid-extent?
+;;         get-shape
+;;         get-spatial-extent
+;;         find-state
+;;         find-observation
+;;         get-state-map
+;;         get-observable-class
+;;         probabilistic?
+;;         binary?
+;;         encodes-continuous-distribution?
+;;         get-dist-breakpoints
+;;         get-possible-states
+;;         get-probabilities
+;;         get-data
+;;         run-at-shape
+;;         run-at-location)
 
 (defn- unpack-datasource
   "Returns a seq of length n of the values in ds,

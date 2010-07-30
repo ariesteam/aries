@@ -128,7 +128,7 @@
 (defn divides?
   "Is y divisible by x? (i.e. x is the denominator)"
   [x y]
-  (zero? (mod y x)))
+  (zero? (rem y x)))
 
 (defn least-common-multiple
   [x y]
