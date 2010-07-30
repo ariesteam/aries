@@ -148,11 +148,11 @@
    flow-params map and an observation containing the concepts'
    dependent features (or model-spec [model-name location resolution]
    which produces this observation), calculates the SPAN flows, and
-   returns the results using one of the following
-   result-types: :cli-menu :closure-map. If the :save-file parameter
-   is set in the flow-params map, the SPAN model will not be run, and
-   instead the source, sink, use, and flow layers will be extracted
-   from the observation and written to :save-file."
+   returns the results using one of the following result-types:
+   (:cli-menu :closure-map). If the :save-file parameter is set in the
+   flow-params map, the SPAN model will not be run, and instead the
+   source, sink, use, and flow layers will be extracted from the
+   observation and written to :save-file."
   [observation-or-model-spec source-concept sink-concept use-concept flow-concept
    {:keys [source-threshold sink-threshold use-threshold trans-threshold
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type

@@ -4,15 +4,15 @@
 (refer 'clj-span.aries-span-bridge :only '(span-driver))
 (refer 'tl :only '(conc))
 
-(println "Hello from spantest.clj!")
+(def homedir (System/getProperty "user.home"))
 
-(def span-spec-1 {:model-name        "core.models.aesthetics/data"
+(def span-spec-1 {:model-name         "core.models.aesthetics/data"
                   :location           'chehalis
-                  :resolution         64
-                  :source-concept    'aestheticService:TheoreticalNaturalBeauty
-                  :sink-concept      'aestheticService:TotalVisualBlight
-                  :use-concept       'aestheticService:HomeownerViewUse
-                  :flow-concept      'geophysics:Altitude
+                  :resolution         256
+                  :source-concept     'aestheticService:TheoreticalNaturalBeauty
+                  :sink-concept       'aestheticService:TotalVisualBlight
+                  :use-concept        'aestheticService:HomeownerViewUse
+                  :flow-concept       'geophysics:Altitude
                   :source-threshold   0.05
                   :sink-threshold     0.20
                   :use-threshold      0.05
@@ -23,29 +23,20 @@
                   :sink-type          :infinite
                   :use-type           :infinite
                   :benefit-type       :non-rival
-                  :result-type        :closure-map})
+                  :result-type        :closure-map
+                  :save-file          (str homedir "/viewshed_data.clj")})
 
 (defn run-span-example
   [{:keys [model-name location resolution source-concept sink-concept use-concept flow-concept]
     :as span-spec}]
-  (let [model-spec     [model-name location resolution]
-        source-concept (conc source-concept)
-        sink-concept   (conc sink-concept)
-        use-concept    (conc use-concept)
-        flow-concept   (conc flow-concept)
-        flow-params    (select-keys span-spec
-                                    [:source-threshold :sink-threshold :use-threshold :trans-threshold
-                                     :rv-max-states :downscaling-factor :source-type :sink-type :use-type
-                                     :benefit-type :result-type :save-file])]
-    (println model-spec)
-    (println source-concept)
-    (println sink-concept)
-    (println use-concept)
-    (println flow-concept)
-    (println flow-params)
-    (println "Running the SPAN model...")
-    (span-driver model-spec source-concept sink-concept use-concept flow-concept flow-params)))
+  (span-driver [model-name location resolution]
+               (conc source-concept)
+               (conc sink-concept)
+               (conc use-concept)
+               (conc flow-concept)
+               (select-keys span-spec
+                            [:source-threshold :sink-threshold :use-threshold :trans-threshold
+                             :rv-max-states :downscaling-factor :source-type :sink-type :use-type
+                             :benefit-type :result-type :save-file])))
 
 (run-span-example span-spec-1)
-
-;;(def outfile (System/getProperty "user.home"))
