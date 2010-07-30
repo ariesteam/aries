@@ -19,7 +19,7 @@
 ;;;
 ;;; This namespace defines the service-carrier type and the
 ;;; multimethods which must be implemented by each flow model
-;;; specification: distribute-flow!, decay, and undecay.
+;;; specification: distribute-flow, decay, and undecay.
 
 (ns clj-span.model-api)
 

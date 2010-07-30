@@ -43,6 +43,7 @@
 ;;; _d  rv-scalar-divide
 
 (ns clj-misc.randvars
+  (:refer-clojure :exclude (type))
   (:use [clj-misc.utils :only (p select-n-distinct select-n-summands my-partition-all constraints-1.0)]))
 
 (def type (comp :type meta))

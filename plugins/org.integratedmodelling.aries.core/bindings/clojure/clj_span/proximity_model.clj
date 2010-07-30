@@ -19,14 +19,15 @@
 ;;;
 ;;; This namespace defines the proximity model.
 ;;;
-;;; * Routes run from Source to Use and Sink to Use
-;;; * Contain positive and negative utility values (total source +
-;;;   sink values)
+;;; * Routes run from Source to Use
+;;;
+;;; * Contain positive utility values (total source - sink effects)
+;;;
 ;;; * Searches outward from Source points until decay and sink effects
 ;;;   block the frontier's progress
 
 (ns clj-span.proximity-model
-  (:use [clj-misc.utils      :only (seq2map p &)]
+  (:use [clj-misc.utils      :only (p & my->>)]
         [clj-span.params     :only (*trans-threshold*)]
         [clj-span.model-api  :only (distribute-flow decay undecay service-carrier)]
         [clj-misc.randvars   :only (_0_ _-_ _* _d _>_ rv-pos rv-mean)]
@@ -47,61 +48,84 @@
 (defmethod undecay "Proximity"
   [_ weight step] (if (> step 1) (_* weight (* step step)) weight))
 
-(defn- make-frontier-element!
-  "If the location is a sink, its id is saved on the sinks-encountered
-   list and its sink-value is subtracted from the current utility
-   along this path.  If the location is a use point, negative utility
-   carriers are stored on it from each of the previously encountered
-   sinks as well as a positive utility carrier from the original
-   source point. This function returns a pair of [location-id
-   [outgoing-utility route-including-location-id sinks-encountered]]."
-  [location-id flow-model cache-layer source-layer sink-layer
-   use-layer [incoming-utility exclusive-route sinks-encountered]]
-  (let [sink-value        (get-in sink-layer location-id)
-        use-value         (get-in use-layer  location-id)
-        inclusive-route   (conj exclusive-route location-id)
-        outgoing-utility  (if (not= _0_ sink-value) ; sink-location?
-                            (rv-pos (_-_ incoming-utility sink-value))
-                            incoming-utility)
-        sinks-encountered (if (not= _0_ sink-value) ; sink location?
-                            (conj sinks-encountered location-id)
-                            sinks-encountered)]
-    (when (not= _0_ use-value)  ; use location?
-      (let [carrier-cache      (get-in cache-layer location-id)
-            source-id          (first inclusive-route)
-            steps              (dec (count inclusive-route))
-            possible-weight    (decay flow-model (get-in source-layer source-id) steps)
-            actual-weight      (decay flow-model outgoing-utility steps)
-            last-actual-weight (:actual-weight (@carrier-cache source-id))]
-        (if (or (nil? last-actual-weight) (_>_ actual-weight last-actual-weight))
-          (swap! carrier-cache assoc source-id
-                 (struct-map service-carrier
-                   :source-id       source-id
-                   :route           (bitpack-route inclusive-route)
-                   :possible-weight possible-weight
-                   :actual-weight   actual-weight
-                   :sink-effects    (seq2map sinks-encountered #(vector % (get-in sink-layer %))))))))
-    [location-id [outgoing-utility inclusive-route sinks-encountered]]))
+(defstruct frontier-option :utility :route :sink-effects)
+
+(defn- make-frontier-option
+  "If the location is a sink, its id and sink-value are saved on the
+   sink-effects map and its sink-value is subtracted from the current
+   utility along this path.  Whether a sink or not, the current
+   location's id is appended to the route."
+  [location-id sink-layer {:keys [utility route sink-effects] :as last-frontier-option}]
+  (let [sink-value (get-in sink-layer location-id)]
+    (if (not= _0_ sink-value)
+      (struct-map frontier-option
+        :utility      (rv-pos (_-_ utility sink-value))
+        :route        (conj route location-id)
+        :sink-effects (conj sink-effects [location-id sink-value]))
+      (update-in last-frontier-option [:route] conj location-id))))
+
+(defn- too-little-utility?
+  "Returns true if the rv-mean of this frontier-option's
+   distance-decayed utility is less than *trans-threshold*."
+  [flow-model {:keys [utility route]}]
+  (< (rv-mean (decay flow-model utility (dec (count route))))
+     *trans-threshold*))
+
+(defn- expand-frontier
+  "Returns a new frontier which surrounds the one passed in and
+   contains only those frontier-options which have a decayed utility
+   greater than *trans-threshold*. A frontier is here defined to be a
+   map of location ids [i j] to frontier-option structs."
+  [flow-model sink-layer rows cols frontier]
+  (my->> (for [boundary-id (find-bounding-box (keys frontier) rows cols)]
+           (when-let [frontier-options (my->> boundary-id
+                                              (get-neighbors rows cols)
+                                              (map frontier)
+                                              (remove nil?)
+                                              seq)]
+             (my->> frontier-options
+                    (apply max-key (& rv-mean :utility))
+                    (make-frontier-option boundary-id sink-layer)
+                    (array-map boundary-id))))
+         (remove #(or (nil? %) (too-little-utility? flow-model (val %))))
+         (apply merge)))
+
+(defn- store-carrier!
+  "If the location is a use point, a service-carrier is stored in its
+   carrier-cache containing the highest utility route that
+   expand-frontier found from the source-point to this one."
+  [flow-model cache-layer source-layer use-layer
+   [location-id {:keys [utility route sink-effects]}]]
+  (when (not= _0_ (get-in use-layer location-id))
+    (let [carrier-cache      (get-in cache-layer location-id)
+          source-id          (first route)
+          steps              (dec (count route))
+          possible-weight    (decay flow-model (get-in source-layer source-id) steps)
+          actual-weight      (decay flow-model utility steps)
+          last-actual-weight (:actual-weight (@carrier-cache source-id))]
+      (if (or (nil? last-actual-weight) (_>_ actual-weight last-actual-weight))
+        (swap! carrier-cache assoc source-id
+               (struct-map service-carrier
+                 :source-id       source-id
+                 :route           (bitpack-route route)
+                 :possible-weight possible-weight
+                 :actual-weight   actual-weight
+                 :sink-effects    sink-effects))))))
 
 (defn- distribute-gaussian!
-  [flow-model cache-layer source-layer sink-layer use-layer rows cols source-id source-weight]
-  (loop [frontier (into {} (list (make-frontier-element! source-id
-                                                         flow-model
-                                                         cache-layer
-                                                         source-layer
-                                                         sink-layer
-                                                         use-layer
-                                                         [source-weight [] []])))]
-    (when (seq frontier)
-      (recur (into {}
-                   (remove #(or (nil? %)
-                                (let [[_ [u r _]] %]
-                                  (< (rv-mean (decay flow-model u (dec (count r))))
-                                     *trans-threshold*)))
-                           (for [boundary-id (find-bounding-box (keys frontier) rows cols)]
-                             (when-let [frontier-options (seq (remove nil? (map frontier (get-neighbors boundary-id rows cols))))]
-                               (make-frontier-element! boundary-id flow-model cache-layer source-layer sink-layer use-layer
-                                                       (apply max-key (fn [[u r s]] (rv-mean u)) frontier-options))))))))))
+  "Creates a frontier struct for the source location and then expands
+   the frontier in all directions until no further utility can be
+   distributed (due to distance decay or sinks).  Stores a
+   service-carrier in every use location it encounters."
+  [flow-model cache-layer source-layer sink-layer use-layer rows cols source-id]
+  (doseq [frontier (take-while seq (iterate (p expand-frontier flow-model sink-layer rows cols)
+                                            {source-id (make-frontier-option source-id
+                                                                             sink-layer
+                                                                             (struct-map frontier-option
+                                                                               :utility      (get-in source-layer source-id)
+                                                                               :route        []
+                                                                               :sink-effects {}))}))]
+    (dorun (map (p store-carrier! flow-model cache-layer source-layer use-layer) frontier))))
 
 (defmethod distribute-flow "Proximity"
   [flow-model source-layer sink-layer use-layer _]
@@ -113,6 +137,5 @@
     (println "Source points:" (count source-points))
     (dorun (pmap
             (p distribute-gaussian! flow-model cache-layer source-layer sink-layer use-layer rows cols)
-            source-points
-            (map (p get-in source-layer) source-points)))
+            source-points))
     (map-matrix (& vals deref) cache-layer)))

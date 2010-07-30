@@ -46,13 +46,13 @@
 (defn make-bounded-neighbor-generator
   "Returns a function that, given a point, generates a sequence of all
    neighboring points whose values are within the bounds, specified as
-   follows: [[0 10][0 6]]."
+   follows: [[min-rows max-rows][min-cols max-cols]]."
   [bounds]
   (fn [[x y]]
     (filter (fn [point] (in-bounds? point bounds))
-            (for [row-mod [dec identity inc] col-mod [dec identity inc]
-                  :when (not (and (= row-mod identity) (= col-mod identity)))]
-              [(row-mod x) (col-mod y)]))))
+            (for [row-mod [-1 0 +1] col-mod [-1 0 +1]
+                  :when (not (and (zero? row-mod) (zero? col-mod)))]
+                  [(+ x row-mod) (+ y col-mod)]))))
 
 (defn nearest-point-where
   "Returns the nearest point to origin-point which satisfies the test

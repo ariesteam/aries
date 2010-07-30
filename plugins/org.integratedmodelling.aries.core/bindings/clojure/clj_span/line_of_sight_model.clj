@@ -20,12 +20,17 @@
 ;;; This namespace defines the line-of-sight model.
 ;;;
 ;;; * Routes run from Source to Use
-;;; * Contain positive and negative utility values (total decayed
-;;;   source and sink values)
+;;;
+;;; * Contain positive utility values (total decayed source values)
+;;;
 ;;; * Projects a line of sight from each user to source point
+;;;
 ;;; * Weights utility by amount of visible height of source above view
 ;;;   line
-;;; * Sinks are counted independently of source sight lines
+;;;
+;;; * Sink effects are computed as the decayed negative utility (sink
+;;;   value) received from any sink location along a view path to a
+;;;   source point.
 
 (ns clj-span.line-of-sight-model
   (:use [clj-span.params     :only (*trans-threshold*)]
@@ -72,6 +77,7 @@
                    runs           (map (p euclidean-distance use-point) sight-line)
                    slopes         (butlast (map _d rises runs))
                    sight-slopes   (cons _0_
+                                        ;;(reductions rv-max slopes)
                                         (reduce #(conj %1 (rv-max (peek %1) %2))
                                                 [(first slopes)]
                                                 (rest slopes)))

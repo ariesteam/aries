@@ -17,13 +17,13 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; This namespace defines the run-span, simulate-service-flows, and
-;;; data-preprocessing functions.  run-span is the main entry point
-;;; into the SPAN system and may be called with a number of different
-;;; options specifying the form of its results.
+;;; This namespace defines the run-span, generate-results-map, and
+;;; preprocess-data-layers functions.  run-span is the main entry
+;;; point into the SPAN system and may be called with a number of
+;;; different options specifying the form of its results.
 
 (ns clj-span.core
-  (:use [clj-misc.utils          :only (seq2map mapmap constraints-1.0 def- p &)]
+  (:use [clj-misc.utils          :only (seq2map constraints-1.0 def- p &)]
         [clj-span.model-api      :only (distribute-flow)]
         [clj-span.params         :only (set-global-params!)]
         [clj-span.interface      :only (provide-results)]
@@ -34,16 +34,15 @@
                                         resample-matrix
                                         get-rows
                                         get-cols
-                                        get-neighbors
                                         grids-align?
-                                        is-matrix?
-                                        matrix2coord-map)]
+                                        is-matrix?)]
         [clj-span.analyzer       :only (theoretical-source
                                         inaccessible-source
                                         possible-source
                                         blocked-source
                                         actual-source
                                         theoretical-sink
+                                        inaccessible-sink
                                         actual-sink
                                         theoretical-use
                                         inaccessible-use
@@ -58,28 +57,6 @@
             clj-span.proximity-model
             clj-span.line-of-sight-model)
   (:import (java.io File FileWriter FileReader BufferedReader)))
-
-(comment
-  (defstruct location :id :neighbors :source :sink :use :flow-features :carrier-cache)
-)
-(comment
-  (defn- make-location-map
-    "Returns a map of ids to location objects, one per location in the
-     data layers."
-    [source-layer sink-layer use-layer flow-layers]
-    (let [rows (get-rows source-layer)
-          cols (get-cols source-layer)]
-      (into {}
-            (for [i (range rows) j (range cols) :let [id [i j]]]
-              [id (struct-map location
-                    :id            id
-                    :neighbors     (get-neighbors id rows cols)
-                    :source        (get-in source-layer id)
-                    :sink          (get-in sink-layer   id)
-                    :use           (get-in use-layer    id)
-                    :flow-features (mapmap identity #(get-in % id) flow-layers)
-                    :carrier-cache (atom ()))]))))
-  )
 
 (defn zero-layer-below-threshold
   "Takes a two dimensional array of RVs and replaces all values whose
@@ -125,6 +102,7 @@
                     "Source - Blocked"      #(blocked-source      cache-layer)
                     "Source - Actual"       #(actual-source       cache-layer)
                     "Sink   - Theoretical"  #(theoretical-sink    scaled-source-layer scaled-sink-layer scaled-use-layer)
+                    "Sink   - Inaccessible" #(inaccessible-sink   scaled-source-layer scaled-sink-layer scaled-use-layer cache-layer)
                     "Sink   - Actual"       #(actual-sink         cache-layer)
                     "Use    - Theoretical"  #(theoretical-use     scaled-source-layer scaled-use-layer)
                     "Use    - Inaccessible" #(inaccessible-use    scaled-source-layer scaled-use-layer cache-layer)

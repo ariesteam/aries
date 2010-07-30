@@ -38,10 +38,15 @@
   "Creates a rows x cols vector of vectors whose states are generated
    by calling val-fn on the [i j] coordinate pair."
   [rows cols val-fn]
-  (vec (pmap
-        (fn [i] (vec (map
-                      (fn [j] (val-fn [i j]))
-                      (range cols))))
+  ;; Empirically, I've seen that for less than 100000 cells, map is
+  ;; more efficient than pmap and vice versa, unless the matrix has
+  ;; many more rows than cols.
+  (vec ((if (and (>= (* rows cols) 100000)
+                 (>  (* cols 10)   rows))
+          pmap
+          map)
+        (fn [i] (vec (map (fn [j] (val-fn [i j]))
+                          (range cols))))
         (range rows))))
 
 (defn filter-matrix-for-coords
@@ -120,6 +125,15 @@
        (make-matrix (get-rows matrix) (get-cols matrix)
                     (fn [coords] (apply f (map #(get-in % coords) matrices)))))))
 
+(defn divides?
+  "Is y divisible by x? (i.e. x is the denominator)"
+  [x y]
+  (zero? (mod y x)))
+
+(defn least-common-multiple
+  [x y]
+  (first (filter (p divides? x) (iterate (p + y) y))))
+
 (defn resample-matrix
   [new-rows new-cols aggregator-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
@@ -127,8 +141,8 @@
         orig-cols             (get-cols matrix)]
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
-      (let [lcm-rows              (first (filter #(zero? (rem % new-rows)) (iterate (p + orig-rows) orig-rows)))
-            lcm-cols              (first (filter #(zero? (rem % new-cols)) (iterate (p + orig-cols) orig-cols)))
+      (let [lcm-rows              (least-common-multiple new-rows orig-rows)
+            lcm-cols              (least-common-multiple new-cols orig-cols)
             upscale-factor-rows   (/ lcm-rows orig-rows)
             upscale-factor-cols   (/ lcm-cols orig-cols)
             lcm-matrix            (if (and (== upscale-factor-rows 1)
@@ -158,7 +172,7 @@
 
 (defn get-neighbors
   "Return a sequence of neighboring points within the map bounds."
-  [[i j] rows cols]
+  [rows cols [i j]]
   (filter (p in-bounds? rows cols)
           (map #(vector (+ i %1) (+ j %2))
                [-1 -1 -1  0 0  1 1 1]

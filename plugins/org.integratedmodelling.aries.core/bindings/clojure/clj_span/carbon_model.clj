@@ -20,9 +20,16 @@
 ;;; This namespace defines the carbon model.
 ;;;
 ;;; * Routes run from Source to Use (no Sinks in this model)
+;;;
 ;;; * Contain positive utility values only
+;;;
 ;;; * Divides all CO2 sequestration among users by relative
 ;;;   consumption (i.e. Emissions)
+;;;
+;;; * If there is more production (total source) than consumption
+;;;   (total sink), then the excess is not assigned to any user.  As a
+;;;   result, inaccessible-source (theoretical - possible) will show
+;;;   the excess CO2 sequestration/storage values.
 
 (ns clj-span.carbon-model
   (:use [clj-misc.utils      :only (p &)]
@@ -53,16 +60,17 @@
                   (let [amount-usable (rv-min use-cap (_*_ use-cap source-use-ratio))]
                     (swap! (get-in cache-layer uid)
                            (constantly
-                            (map (fn [sid source-percent]
-                                   (let [weight (_*_ source-percent amount-usable)]
-                                     (struct-map service-carrier
-                                       :source-id       sid
-                                       :route           nil
-                                       :possible-weight weight
-                                       :actual-weight   weight
-                                       :sink-effects    nil)))
-                                 source-points
-                                 percent-produced)))))
+                            (doall
+                             (map (fn [sid source-percent]
+                                    (let [weight (_*_ source-percent amount-usable)]
+                                      (struct-map service-carrier
+                                        :source-id       sid
+                                        :route           nil
+                                        :possible-weight weight
+                                        :actual-weight   weight
+                                        :sink-effects    nil)))
+                                  source-points
+                                  percent-produced))))))
                 use-points
                 use-values))))
     (map-matrix (& seq deref) cache-layer)))

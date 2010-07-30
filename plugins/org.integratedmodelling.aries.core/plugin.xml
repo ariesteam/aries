@@ -125,16 +125,16 @@
 		<parameter id="resource" value="flood_mark.clj" />
 	</extension> 
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="test">
-		<parameter id="id" value="aries-demo"/>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="demo">
+		<parameter id="id" value="demo"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
 			<parameter id="script" value="applications/demo.clj"/>
 		</parameter>
 	</extension>
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="view">
-		<parameter id="id" value="view"/>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="batch">
+		<parameter id="id" value="batch"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
 			<parameter id="script" value="applications/batch.clj"/>

@@ -19,8 +19,8 @@
 ;;;
 ;;; This namespace defines functions for analyzing the location
 ;;; sequence returned by clj-span.core/simulate-service-flows.  Each
-;;; public function may be applied independently of the others and
-;;; will generate a map of {[i j] -> value} pairs.
+;;; public function may be applied independently of the others to
+;;; generate its result matrix.
 
 (ns clj-span.analyzer
   (:use [clj-misc.utils      :only (p)]
@@ -193,6 +193,16 @@
   (map-matrix _-_
               (theoretical-source source-layer use-layer)
               (possible-source    cache-layer)))
+
+(defn inaccessible-sink
+  "Returns a map of {location-id -> inaccessible-sink}.
+   Inaccessible-sink is the amount of the theoretical-sink which
+   cannot be utilized by any location either due to propagation decay
+   of the asset or lack of flow pathways through the sink locations."
+  [source-layer sink-layer use-layer cache-layer]
+  (map-matrix _-_
+              (theoretical-sink source-layer sink-layer use-layer)
+              (actual-sink      cache-layer)))
 
 (defn inaccessible-use
   "Returns a map of {location-id -> inaccessible-use}.

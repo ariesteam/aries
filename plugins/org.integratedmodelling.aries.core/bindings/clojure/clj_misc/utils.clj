@@ -38,6 +38,17 @@
   (cons 'do (for [pre-constraint (:pre constraint-map)]
               `(assert ~pre-constraint))))
 
+;; FIXME: doesn't work because % is caught by the reader
+(defmacro constraints-1.0-full
+  [constraint-map & body]
+  `(do
+     ~@(for [pre-constraint# (:pre constraint-map)]
+         `(assert ~pre-constraint#))
+     (let [result# ~@body]
+       ~@(for [post-constraint# (:post constraint-map)]
+           `(#(assert ~post-constraint#) result#))
+       result#)))
+
 (defmacro def-
   [name & args]
   (let [name# (with-meta name {:private true})]
@@ -90,6 +101,17 @@
       (seq result)
       (recur (drop partition-size remaining)
              (conj result (take partition-size remaining))))))
+
+(defmacro my->>
+  "Threads the expr through the forms. Inserts x as the
+  last item in the first form, making a list of it if it is not a
+  list already. If there are more forms, inserts the first form as the
+  last item in second form, etc."
+  {:added "1.1"} 
+  ([x form] (if (seq? form)
+              (with-meta `(~(first form) ~@(next form)  ~x) (meta form))
+              (list form x)))
+  ([x form & more] `(my->> (my->> ~x ~form) ~@more)))
 
 (defn add-anyway
   "Sums the non-nil argument values."

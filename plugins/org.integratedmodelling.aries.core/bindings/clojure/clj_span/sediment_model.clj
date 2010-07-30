@@ -48,48 +48,6 @@
               distances-to-dirs (seq2map hydrosheds-delta-codes (fn [[code v]] [(square-distance unit-vector v) code]))]
           (distances-to-dirs (apply min (keys distances-to-dirs))))))))
 
-(defn- step-downstream!
-  [cache-layer hydrosheds-layer sink-map use-map scaled-sinks
-   rows cols [current-id source-ids source-fractions incoming-utilities sink-effects]]
-  (let [flow-delta (hydrosheds-delta-codes (get-in hydrosheds-layer current-id))]
-    (when flow-delta ; if nil, we've hit 0 (ocean) or -1 (inland sink)
-      (let [new-id (map + current-id flow-delta)]
-        (when (in-bounds? rows cols new-id) ; otherwise, we've gone off the map
-          (let [affected-sinks     (filter (& (p not= _0_) deref scaled-sinks) (sink-map new-id))
-                affected-users     (if (seq affected-sinks) (use-map new-id))
-                total-incoming     (reduce _+_ incoming-utilities)
-                sink-effects       (if (seq affected-sinks) ; sinks encountered
-                                     (merge sink-effects
-                                            (let [total-sink-cap (reduce _+_ (map (& deref scaled-sinks) affected-sinks))
-                                                  sink-fraction  (_d_ total-incoming total-sink-cap)]
-                                              (seq2map affected-sinks
-                                                       #(let [sink-cap @(scaled-sinks %)]
-                                                          [% (rv-min sink-cap (_*_ sink-cap sink-fraction))]))))
-                                     sink-effects)
-                outgoing-utilities (if (seq affected-sinks) ; sinks encountered
-                                     (do
-                                       (doseq [sink-id affected-sinks]
-                                         (swap! (scaled-sinks sink-id) _-_ (sink-effects sink-id)))
-                                       (let [total-sunk   (reduce _+_ (map sink-effects affected-sinks))
-                                             out-fraction (-_ 1 (_d_ total-sunk total-incoming))]
-                                         (map (p _*_ out-fraction) incoming-utilities)))
-                                     incoming-utilities)]
-            (when (seq affected-users)  ; users encountered
-              (doseq [cache (map (p get-in cache-layer) affected-users)]
-                (swap! cache concat
-                       (map (fn [sid sfrac utility]
-                              (struct-map service-carrier
-                                :source-id       sid
-                                :route           nil
-                                :possible-weight _0_
-                                :actual-weight   utility
-                                :sink-effects    (mapmap identity (p _*_ sfrac) sink-effects)))
-                            source-ids
-                            source-fractions
-                            incoming-utilities))))
-            (when (> (reduce + (map rv-mean outgoing-utilities)) *trans-threshold*)
-              [new-id source-ids source-fractions outgoing-utilities sink-effects])))))))
-
 (defn- move-points-into-stream-channel
   "Returns a map of in-stream-ids to lists of the out-of-stream-ids
    that were shifted into this position."
@@ -132,14 +90,76 @@
                         (let [activation-factor (- 1 (/ run-to-data run-to-boundary))]
                           [data-id (atom (_* (get-in data-layer data-id) activation-factor))]))))))))
 
+(defn- step-downstream!
+  [cache-layer hydrosheds-layer sink-map use-map scaled-sinks rows cols
+   [current-id source-ids source-fractions incoming-utilities sink-effects]]
+  (let [flow-delta (hydrosheds-delta-codes (get-in hydrosheds-layer current-id))]
+    (when flow-delta ; if nil, we've hit 0 (ocean) or -1 (inland sink)
+      (let [new-id (map + current-id flow-delta)]
+        (when (in-bounds? rows cols new-id) ; otherwise, we've gone off the map
+          (let [affected-sinks     (filter (& (p not= _0_) deref scaled-sinks) (sink-map new-id))
+                total-incoming     (reduce _+_ incoming-utilities)
+                sink-effects       (if (seq affected-sinks) ; sinks encountered
+                                     (merge sink-effects
+                                            (let [total-sink-cap (reduce _+_ (map (& deref scaled-sinks) affected-sinks))
+                                                  sink-fraction  (_d_ total-incoming total-sink-cap)]
+                                              (seq2map affected-sinks
+                                                       #(let [sink-cap @(scaled-sinks %)]
+                                                          [% (rv-min sink-cap (_*_ sink-cap sink-fraction))]))))
+                                     sink-effects)
+                outgoing-utilities (if (seq affected-sinks) ; sinks encountered
+                                     (do
+                                       (doseq [sink-id affected-sinks]
+                                         (swap! (scaled-sinks sink-id) _-_ (sink-effects sink-id)))
+                                       (let [total-sunk   (reduce _+_ (map sink-effects affected-sinks))
+                                             out-fraction (-_ 1 (_d_ total-sunk total-incoming))]
+                                         (map (p _*_ out-fraction) incoming-utilities)))
+                                     incoming-utilities)]
+            (doseq [cache (map (p get-in cache-layer) (if (seq affected-sinks) (use-map new-id)))]
+              (swap! cache concat
+                     (map (fn [sid sfrac utility]
+                            (struct-map service-carrier
+                              :source-id       sid
+                              :route           nil
+                              :possible-weight _0_
+                              :actual-weight   utility
+                              :sink-effects    (mapmap identity (p _*_ sfrac) sink-effects)))
+                          source-ids
+                          source-fractions
+                          incoming-utilities)))
+            (when (> (reduce + (map rv-mean outgoing-utilities)) *trans-threshold*)
+              [new-id source-ids source-fractions outgoing-utilities sink-effects])))))))
+
+(defn- distribute-downstream!
+  [cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols]
+  (dorun (take-while seq (iterate
+                          (fn [sediment-carriers]
+                            (remove nil?
+                                    (pmap (p step-downstream!
+                                             cache-layer
+                                             hydrosheds-layer
+                                             sink-map
+                                             use-map
+                                             scaled-sinks
+                                             rows cols)
+                                          sediment-carriers)))
+                          (pmap 
+                           (fn [in-stream-id]
+                             (let [source-ids       (source-map in-stream-id)
+                                   source-values    (map (& deref scaled-sources) source-ids)
+                                   total-source     (reduce _+_ source-values)
+                                   source-fractions (map #(_d_ % total-source) source-values)]
+                               [in-stream-id source-ids source-fractions source-values {}]))
+                           (keys source-map))))))
+
 (defmethod distribute-flow "Sediment"
   [_ source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",
     floodplain-layer "FloodPlainPresence", elevation-layer "Altitude"}]
   (println "Running Sediment flow model.")
-  (let [rows           (get-rows source-layer)
-        cols           (get-cols source-layer)
-        cache-layer    (make-matrix rows cols (constantly (atom ())))
+  (let [rows        (get-rows source-layer)
+        cols        (get-cols source-layer)
+        cache-layer (make-matrix rows cols (constantly (atom ())))
         [source-map sink-map use-map] (pmap (&
                                              (p move-points-into-stream-channel hydrosheds-layer stream-layer)
                                              (p filter-matrix-for-coords (p not= _0_)))
@@ -150,20 +170,5 @@
     (println "Source points:" (count (concat (vals source-map))))
     (println "Sink points:  " (count (concat (vals sink-map))))
     (println "Use points:   " (count (concat (vals use-map))))
-    (loop [sediment-carriers (for [in-stream-id (keys source-map)]
-                               (let [source-ids       (source-map in-stream-id)
-                                     source-values    (map (& deref scaled-sources) source-ids)
-                                     total-source     (reduce _+_ source-values)
-                                     source-fractions (map #(_d_ % total-source) source-values)]
-                                 [in-stream-id source-ids source-fractions source-values {}]))]
-      (if (empty? sediment-carriers)
-        (map-matrix (& seq deref) cache-layer)
-        (recur (remove nil?
-                       (pmap (p step-downstream!
-                                cache-layer
-                                hydrosheds-layer
-                                sink-map
-                                use-map
-                                scaled-sinks
-                                rows cols)
-                             sediment-carriers)))))))
+    (distribute-downstream! cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols)
+    (map-matrix (& seq deref) cache-layer)))
