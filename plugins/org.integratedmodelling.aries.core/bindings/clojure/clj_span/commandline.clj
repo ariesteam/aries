@@ -113,7 +113,7 @@
       (assoc :sink-type          (keyword (input-params "-sink-type")))
       (assoc :use-type           (keyword (input-params "-use-type")))
       (assoc :benefit-type       (keyword (input-params "-benefit-type")))
-      (assoc :flow-model         ({"line-of-sight" "LineOfSight", "proximity" "Proximity", "carbon" "Carbon", "sediment" "Sediment"}
+      (assoc :flow-model         ({"line-of-sight" "LineOfSight", "proximity" "Proximity", "carbon" "CO2Removed", "sediment" "Sediment"}
                                   (input-params "-flow-model")))))
 
 (defn -main

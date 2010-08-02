@@ -137,22 +137,27 @@
 (defn resample-matrix
   [new-rows new-cols aggregator-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
+  (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
+  (println "Distinct RV    Maxes  (pre-resampling):" (sort (distinct (map #(apply max-key val %) (matrix2seq matrix)))))
   (let [orig-rows             (get-rows matrix)
         orig-cols             (get-cols matrix)]
+    (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
       (let [lcm-rows              (least-common-multiple new-rows orig-rows)
             lcm-cols              (least-common-multiple new-cols orig-cols)
             upscale-factor-rows   (/ lcm-rows orig-rows)
             upscale-factor-cols   (/ lcm-cols orig-cols)
-            lcm-matrix            (if (and (== upscale-factor-rows 1)
-                                           (== upscale-factor-cols 1))
-                                    matrix
-                                    (make-matrix lcm-rows lcm-cols
-                                                 (fn [[i j]] (get-in matrix [(int (/ i upscale-factor-rows))
-                                                                             (int (/ j upscale-factor-cols))]))))
+            lcm-matrix            (do (println "Making the lcm-matrix...")
+                                      (if (and (== upscale-factor-rows 1)
+                                               (== upscale-factor-cols 1))
+                                        matrix
+                                        (make-matrix lcm-rows lcm-cols
+                                                     (fn [[i j]] (get-in matrix [(int (/ i upscale-factor-rows))
+                                                                                 (int (/ j upscale-factor-cols))])))))
             downscale-factor-rows (/ lcm-rows new-rows)
             downscale-factor-cols (/ lcm-cols new-cols)]
+        (println "Making the final matrix...")
         (if (and (== downscale-factor-rows 1)
                  (== downscale-factor-cols 1))
           lcm-matrix

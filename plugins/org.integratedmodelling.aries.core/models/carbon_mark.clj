@@ -10,7 +10,7 @@
 ;; YES!  CREATE A NEW DEFMODEL FOR VEG & SOIL C SEQUESTRATION
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
   (classification 'carbonService:VegetationAndSoilCarbonStorage
-                  :units      "t/ha" 
+                  :units      "t/ha*year" 
                   [12 :>]     'carbonService:VeryHighStorage
                   [9 12]      'carbonService:HighStorage
                   [6 9]       'carbonService:ModerateStorage
@@ -21,7 +21,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
   (classification 'carbonService:VegetationCarbonStorage
-                  :units      "t/ha" 
+                  :units      "t/ha*year" 
                   [12 :>]     'carbonService:VeryHighVegetationStorage
                   [9 12]      'carbonService:HighVegetationStorage
                   [6 9]       'carbonService:ModerateVegetationStorage
@@ -32,7 +32,7 @@
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
   (classification 'carbonService:SoilCarbonStorage
-                  :units      "t/ha" 
+                  :units      "t/ha*year" 
                   [12 :>]     'carbonService:VeryHighSoilStorage
                   [9 12]      'carbonService:HighSoilStorage
                   [6 9]       'carbonService:ModerateSoilStorage
@@ -42,7 +42,7 @@
 
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration
-                  :units      "t/ha"
+                  :units      "t/ha*year"
                   [12 :>]     'carbonService:VeryHighSequestration
                   [9 12]      'carbonService:HighSequestration
                   [6 9]       'carbonService:ModerateSequestration
@@ -53,7 +53,7 @@
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
-                  :units      "t/ha"
+                  :units      "t/ha*year"
                   [12 :>]     'carbonService:VeryHighRelease
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
@@ -63,7 +63,7 @@
 
 (defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
   (classification 'carbonService:NetCarbonUptake
-                  :units      "t/ha"
+                  :units      "t/ha*year"
                   [12 :>]     'carbonService:VeryHighCarbonUptake
                   [9 12]      'carbonService:HighCarbonUptake
                   [6 9]       'carbonService:ModerateCarbonUptake
@@ -137,11 +137,18 @@
                        'carbonService:VegetationAndSoilCarbonSequestration
                        'carbonService:VegetationAndSoilCarbonStorage
                        'carbonService:VegetationCarbonStorage
-                       'carbonService:StoredCarbonRelease
-                       'carbonService:SoilCarbonStorage)
-            :observed (veg-soil-storage soil-storage veg-storage veg-soil-sequestration stored-carbon-release net-carbon-uptake)
+                       'carbonService:SoilCarbonStorage
+                       'carbonService:StoredCarbonRelease)
+            :observed (net-carbon-uptake veg-soil-sequestration veg-soil-storage veg-storage soil-storage stored-carbon-release)
 	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
 ;; don't forget about the land-use model
+
+(defmodel source-simple 'carbonService:CarbonSourceValue   
+  (bayesian 'carbonService:CarbonSourceValue 
+            :import   "aries.core::CarbonSourceValueMark.xdsl"
+            :keep     ('carbonService:NetCarbonUptake)
+            :observed (net-carbon-uptake)
+	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check
@@ -172,37 +179,45 @@
                   [1000 25000]    'carbonService:LowEmitter
                   [100 1000]      'carbonService:VeryLowEmitter
                   [:< 100]        'carbonService:NoEmitter))
-		 	 
+
+(defmodel use-undiscretizer 'carbonService:CarbonEmitterUse
+  (classification 'carbonService:CarbonEmitterUse
+                  0 'carbonService:EmitterUseAbsent
+                  1 'carbonService:EmitterUsePresent))
+
 (defmodel use-emitters 'carbonService:CarbonUse
   (bayesian 'carbonService:CarbonUse
-	  		(classification 'carbonService:CarbonEmitterUse
-                            0          'carbonService:EmitterUseAbsent
-                            :otherwise 'carbonService:EmitterUsePresent) 
-            :import  "aries.core::CarbonUse.xdsl"
-            :keep    ('carbonService:CarbonEmitterUse)
-            :context (greenhouse-gas-emitter)))
+            :import   "aries.core::CarbonUse.xdsl"
+            :keep     ('carbonService:CarbonEmitterUse)
+            :observed (use-undiscretizer)
+            :context  (greenhouse-gas-emitter)))
  	 					
+(defmodel use-simple 'carbonService:GreenhouseGasEmitters
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
-;; flow model for emitters
+;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
 (defmodel emitter-flow 'carbonService:ClimateStability
-  (span 'carbonService:CO2Removed 
-  	    'carbonService:VegetationAndSoilCarbonStorage
-  	    'carbonService:CarbonEmitterUse
+  (span 'carbonService:CO2Removed
+  	    'carbonService:NetCarbonUptake
+  	    'carbonService:GreenhouseGasEmitters
       	nil
       	nil
   	    nil
-        :source-threshold 1,
-        :sink-threshold   0.5,
-        :use-threshold    0.5,
-        :trans-threshold  1.0,
-        :sink-type        :relative,
-        :use-type         :relative,
-        :benefit-type     :rival,
-        :rv-max-states    10 
-        :context (source use-emitters)))		
+        :source-threshold   0.1
+        :sink-threshold     0.1
+        :use-threshold      0.1
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :rv-max-states      10
+        :downscaling-factor 16
+        :context (source-simple use-simple)))
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)

@@ -22,8 +22,8 @@
 ;;; functions.
 
 (ns clj-span.interface
-  (:use [clj-misc.utils      :only (mapmap)]
-        [clj-misc.matrix-ops :only (matrix2seq print-matrix get-rows get-cols in-bounds?)]))
+  (:use [clj-misc.utils      :only (& mapmap)]
+        [clj-misc.matrix-ops :only (matrix2seq matrix2coord-map print-matrix get-rows get-cols in-bounds?)]))
 
 (defn- select-location
   "Prompts for coords and returns the selected [i j] pair."
@@ -114,4 +114,10 @@
 
 (defmethod provide-results :closure-map
   [_ _ _ _ _ results-menu]
-  results-menu)
+  (println "Returning the results map to Ferd's code.")
+  (mapmap
+   (fn [label]
+     (let [[_ word1 word2] (re-find #"(\w+)\s+-\s+(\w+)" label)]
+       (keyword (str (.toLowerCase word2) \- (.toLowerCase word1)))))
+   (fn [closure] (& matrix2coord-map closure))
+   results-menu))

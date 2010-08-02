@@ -78,8 +78,8 @@
 
 (defn- unpack-datasource
   "Returns a seq of length n of the values in ds,
-   represented as probability distributions.  All values and
-   probabilities are represented as rationals."
+   represented as probability distributions {rationals -> doubles}.
+   NaN state values are converted to 0s."
   [ds rows cols]
   (let [n            (* rows cols)
         to-rationals (p map #(if (Double/isNaN %) 0 (rationalize %)))]
@@ -99,20 +99,20 @@
                                                                 bounds))))
                 get-cdf-vals          (if unbounded-from-below?
                                         (if unbounded-from-above?
-                                          (& successive-sums to-rationals butlast (p get-probabilities ds))
-                                          (& successive-sums to-rationals (p get-probabilities ds)))
+                                          (& successive-sums butlast (p get-probabilities ds))
+                                          (& successive-sums (p get-probabilities ds)))
                                         (if unbounded-from-above?
-                                          (& (p successive-sums 0) to-rationals butlast (p get-probabilities ds))
-                                          (& (p successive-sums 0) to-rationals (p get-probabilities ds))))]
+                                          (& (p successive-sums 0) butlast (p get-probabilities ds))
+                                          (& (p successive-sums 0) (p get-probabilities ds))))]
             (for [idx (range n)]
               (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type))))
         ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
         (let [prob-dist (apply create-struct (get-possible-states ds))]
           (for [idx (range n)]
-            (with-meta (apply struct prob-dist (to-rationals (get-probabilities ds idx))) disc-type))))
+            (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
       (for [value (to-rationals (get-data ds))]
-        (with-meta (array-map value 1) disc-type)))))
+        (with-meta (array-map value 1.0) disc-type)))))
 
 (defn- layer-from-observation
   "Builds a rows x cols matrix (vector of vectors) of the concept's
@@ -158,11 +158,13 @@
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
            result-type save-file]
     :or {result-type :closure-map}}]
+  (println "Running model to get observation if this wasn't already done.")
   (let [observation (if (vector? observation-or-model-spec)
                       (apply run-at-location observation-or-model-spec)
                       observation-or-model-spec)]
     ;; This version of SPAN only works for grid-based observations (i.e. raster maps).
     (assert (grid-extent? observation))
+    (println "Unpacking observation into data-layers.")
     (let [rows         (grid-rows    observation)
           cols         (grid-columns observation)
           flow-model   (.getLocalName (get-observable-class observation))
@@ -173,6 +175,21 @@
                          (if (= flow-model "Sediment")
                            (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                            layer-map))]
+      (println "flow-model         =" flow-model)
+      (println "downscaling-factor =" downscaling-factor)
+      (println "rv-max-states      =" rv-max-states)
+      (println "source-threshold   =" source-threshold)
+      (println "sink-threshold     =" sink-threshold)
+      (println "use-threshold      =" use-threshold)
+      (println "trans-threshold    =" trans-threshold)
+      (println "source-type        =" source-type)
+      (println "sink-type          =" sink-type)
+      (println "use-type           =" use-type)
+      (println "benefit-type       =" benefit-type)
+      (println "result-type        =" result-type)
+      (println "save-file          =" save-file)
+      (println "(Pausing 10 seconds)")
+      (Thread/sleep 10000)
       (if (string? save-file)
         (save-span-layers save-file source-layer sink-layer use-layer flow-layers)
         (run-span (remove-nil-val-entries

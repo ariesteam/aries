@@ -16,11 +16,11 @@ import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
 import clojure.lang.Keyword;
-import clojure.lang.PersistentArrayMap;
+import clojure.lang.PersistentHashMap;
 
 public class SPANModel extends DefaultAbstractModel {
 
-	public final static String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
+	public static final String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
 
 	/**
 	 * these are reclassified in the context of the main observable, so that the
@@ -43,7 +43,7 @@ public class SPANModel extends DefaultAbstractModel {
 	IConcept useObservable = null;
 	IConcept flowObservable = null;
 	IConcept flowDataObservable = null;
-	private PersistentArrayMap flowParams = new PersistentArrayMap(new Object[]{});
+	private PersistentHashMap flowParams = PersistentHashMap.create(new Object[]{});
 	
 	/*
 	 * this is the actual way to pass parameters
@@ -101,15 +101,20 @@ public class SPANModel extends DefaultAbstractModel {
 	public void applyClause(String keyword, Object argument)
 			throws ThinklabException {
 
-		if (keyword.equals(":sink-type") ||
-			keyword.equals(":use-type") ||
-			keyword.equals(":benefit-type") ||
-			keyword.equals(":downscaling-factor") ||
-			keyword.equals(":rv-max-states")) {
+		if (keyword.equals(":source-threshold")   ||
+            keyword.equals(":sink-threshold")     ||
+			keyword.equals(":use-threshold")      ||
+			keyword.equals(":trans-threshold")    ||
+            keyword.equals(":source-type")        ||
+            keyword.equals(":sink-type")          ||
+			keyword.equals(":use-type")           ||
+			keyword.equals(":benefit-type")       ||
+			keyword.equals(":rv-max-states")      ||
+			keyword.equals(":downscaling-factor")) {
 			
 			// these must be sent back to Clojure, and a normal Map won't do - what a pain
 			flowParams = 
-				(PersistentArrayMap) 
+				(PersistentHashMap) 
 					flowParams.assoc(Keyword.intern(null, keyword.substring(1)), argument);
 			
 		} else {
@@ -137,28 +142,28 @@ public class SPANModel extends DefaultAbstractModel {
 				CoreScience.HAS_OBSERVABLE,
 				Polylist.list(getObservable())));
 		
-		PersistentArrayMap fp = (PersistentArrayMap) PersistentArrayMap.create(flowParams);
+		PersistentHashMap fp = (PersistentHashMap) PersistentHashMap.create(flowParams);
 		
 		for (IModel m : dependents) {
 			if (m.getObservable().is(TRANSITION_THRESHOLD_CONCEPT)) {
 				Object st = ((DefaultStatefulAbstractModel)m).getState();
-				fp = (PersistentArrayMap) fp.assoc(
+				fp = (PersistentHashMap) fp.assoc(
 						Keyword.intern(null, "trans-threshold"), st);
 			} else if (m.getObservable().is(SINK_THRESHOLD_CONCEPT)) {
 				Object st = ((DefaultStatefulAbstractModel)m).getState();
-				fp = (PersistentArrayMap) fp.assoc(
+				fp = (PersistentHashMap) fp.assoc(
 						Keyword.intern(null, "sink-threshold"), st);
 			} else if (m.getObservable().is(USE_THRESHOLD_CONCEPT)) {
 				Object st = ((DefaultStatefulAbstractModel)m).getState();
-				fp = (PersistentArrayMap) fp.assoc(
+				fp = (PersistentHashMap) fp.assoc(
 						Keyword.intern(null, "use-threshold"), st);
 			} else if (m.getObservable().is(SOURCE_THRESHOLD_CONCEPT)) {
 				Object st = ((DefaultStatefulAbstractModel)m).getState();
-				fp = (PersistentArrayMap) fp.assoc(
+				fp = (PersistentHashMap) fp.assoc(
 						Keyword.intern(null, "source-threshold"), st);
 			} else if (m.getObservable().is(DECAY_RATE_CONCEPT)) {
 				Object st = ((DefaultStatefulAbstractModel)m).getState();
-				fp = (PersistentArrayMap) fp.assoc(
+				fp = (PersistentHashMap) fp.assoc(
 						Keyword.intern(null, "decay-rate"), st);				
 			}
 		}

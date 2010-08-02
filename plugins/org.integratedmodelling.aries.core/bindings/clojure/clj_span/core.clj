@@ -32,6 +32,8 @@
         [clj-misc.matrix-ops     :only (map-matrix
                                         make-matrix
                                         resample-matrix
+                                        matrix2seq
+                                        print-matrix
                                         get-rows
                                         get-cols
                                         grids-align?
@@ -62,11 +64,14 @@
   "Takes a two dimensional array of RVs and replaces all values whose
    means are less than the threshold with _0_."
   [threshold layer]
+  (println "Distinct Layer Values (pre-zeroing):" (count (distinct (matrix2seq layer))))
+  (println "Distinct RV    Maxes  (pre-zeroing):" (sort (distinct (map #(apply max-key val %) (matrix2seq layer)))))
   (map-matrix #(if (< (rv-mean %) threshold) _0_ %) layer))
 
 (defn preprocess-data-layers
   "Preprocess data layers (downsampling and zeroing below their thresholds)."
   [source-layer source-threshold sink-layer sink-threshold use-layer use-threshold flow-layers downscaling-factor]
+  (println "Preprocessing the input data layers.")
   (let [rows             (get-rows source-layer)
         cols             (get-cols source-layer)
         scaled-rows      (int (/ rows downscaling-factor))
@@ -162,7 +167,7 @@
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type sink-type use-type])
           (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight" "Proximity" "Carbon" "Sediment"} flow-model)
+          (#{"LineOfSight" "Proximity" "CO2Removed" "Sediment"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states
