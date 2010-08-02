@@ -10,35 +10,35 @@
 ;; YES!  CREATE A NEW DEFMODEL FOR VEG & SOIL C SEQUESTRATION
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
   (classification 'carbonService:VegetationAndSoilCarbonStorage
-                  :units      "t/ha*year" 
-                  [12 :>]     'carbonService:VeryHighStorage
-                  [9 12]      'carbonService:HighStorage
-                  [6 9]       'carbonService:ModerateStorage
-                  [3 6]       'carbonService:LowStorage
-                  [0.01 3]    'carbonService:VeryLowStorage
-                  [:< 0.01]   'carbonService:NoStorage))
+                  :units      "t/ha" 
+                  [1000 :>]     'carbonService:VeryHighStorage
+                  [600 1000]    'carbonService:HighStorage
+                  [300 600]     'carbonService:ModerateStorage
+                  [100 300]     'carbonService:LowStorage
+                  [0.01 100]    'carbonService:VeryLowStorage
+                  [:< 0.01]     'carbonService:NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
   (classification 'carbonService:VegetationCarbonStorage
-                  :units      "t/ha*year" 
-                  [12 :>]     'carbonService:VeryHighVegetationStorage
-                  [9 12]      'carbonService:HighVegetationStorage
-                  [6 9]       'carbonService:ModerateVegetationStorage
-                  [3 6]       'carbonService:LowVegetationStorage
-                  [0.01 3]    'carbonService:VeryLowVegetationStorage
-                  [:< 0.01]   'carbonService:NoVegetationStorage)) 				
+                  :units      "t/ha" 
+                  [900 :>]       'carbonService:VeryHighVegetationStorage
+                  [500 900]      'carbonService:HighVegetationStorage
+                  [250 500]      'carbonService:ModerateVegetationStorage
+                  [75 250]       'carbonService:LowVegetationStorage
+                  [0.01 75]      'carbonService:VeryLowVegetationStorage
+                  [:< 0.01]      'carbonService:NoVegetationStorage)) 				
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
   (classification 'carbonService:SoilCarbonStorage
-                  :units      "t/ha*year" 
-                  [12 :>]     'carbonService:VeryHighSoilStorage
-                  [9 12]      'carbonService:HighSoilStorage
-                  [6 9]       'carbonService:ModerateSoilStorage
-                  [3 6]       'carbonService:LowSoilStorage
-                  [0.01 3]    'carbonService:VeryLowSoilStorage
-                  [:< 0.01]   'carbonService:NoSoilStorage))
+                  :units      "t/ha" 
+                  [680 :>]       'carbonService:VeryHighSoilStorage
+                  [440 680]      'carbonService:HighSoilStorage
+                  [200 440]      'carbonService:ModerateSoilStorage
+                  [50 200]       'carbonService:LowSoilStorage
+                  [0.01 50]      'carbonService:VeryLowSoilStorage
+                  [:< 0.01]      'carbonService:NoSoilStorage))
 
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration
