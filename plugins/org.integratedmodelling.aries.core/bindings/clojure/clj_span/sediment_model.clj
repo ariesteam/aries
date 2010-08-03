@@ -91,6 +91,11 @@
                           [data-id (atom (_* (get-in data-layer data-id) activation-factor))]))))))))
 
 (defn- step-downstream!
+  "Computes the state of the sediment-carrier after it takes another
+   step downstream.  If it encounters a sink location, it drops some
+   sediment according to the remaining sink capacity at this location.
+   If there are also users present, a service-carrier is stored in the
+   user's carrier-cache."
   [cache-layer hydrosheds-layer sink-map use-map scaled-sinks rows cols
    [current-id source-ids source-fractions incoming-utilities sink-effects]]
   (let [flow-delta (hydrosheds-delta-codes (get-in hydrosheds-layer current-id))]
@@ -130,7 +135,14 @@
             (when (> (reduce + (map rv-mean outgoing-utilities)) *trans-threshold*)
               [new-id source-ids source-fractions outgoing-utilities sink-effects])))))))
 
+(defstruct sediment-carrier :in-stream-id :source-ids :source-fractions :source-values :sink-effects)
+
 (defn- distribute-downstream!
+  "Constructs a sequence of sediment-carrier objects (one per
+   in-stream source id) and then iteratively computes the next-step
+   downstream sediment-carriers from the previous until they no longer
+   have any sediment, fall off the map bounds, or hit an inland sink.
+   All the carriers are moved together in timesteps (more or less)."
   [cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols]
   (dorun (take-while seq (iterate
                           (fn [sediment-carriers]
@@ -149,6 +161,12 @@
                                    source-values    (map (& deref scaled-sources) source-ids)
                                    total-source     (reduce _+_ source-values)
                                    source-fractions (map #(_d_ % total-source) source-values)]
+;;                               (struct-map sediment-carrier
+;;                                   :in-stream-id     in-stream-id
+;;                                   :source-ids       source-ids
+;;                                   :source-fractions source-fractions
+;;                                   :source-values    source-values
+;;                                   :sink-effects     {})
                                [in-stream-id source-ids source-fractions source-values {}]))
                            (keys source-map))))))
 

@@ -59,28 +59,28 @@
     (if (and (seq source-points) (seq use-points))
       (let [source-values     (map (p get-in source-layer) source-points)
             use-values        (map (p get-in use-layer)    use-points)
-            total-production  (do (println "Summing Source Values") (reduce _+_ source-values))
-            total-consumption (do (println "Summing Use Values") (reduce _+_ use-values))
-            percent-produced  (do (println "Calculating Source Percents") (map #(_d_ % total-production) source-values))
-            source-use-ratio  (do (println "Computing Source/Use Ratio") (_d_ total-production total-consumption))]
+            total-production  (do (println "Summing Source Values") (time (reduce _+_ source-values)))
+            total-consumption (do (println "Summing Use Values") (time (reduce _+_ use-values)))
+            percent-produced  (do (println "Calculating Source Percents") (time (map #(_d_ % total-production) source-values)))
+            source-use-ratio  (do (println "Computing Source/Use Ratio") (time (_d_ total-production total-consumption)))]
         (println "Let's go store the carriers!")
-        (dorun (pmap
-                (fn [uid use-cap]
-                  (let [amount-usable (rv-min use-cap (_*_ use-cap source-use-ratio))]
-                    (swap! (get-in cache-layer uid)
-                           (constantly
-                            (doall
-                             (map (fn [sid source-percent]
-                                    (let [weight (_*_ source-percent amount-usable)]
-                                      (struct-map service-carrier
-                                        :source-id       sid
-                                        :route           nil
-                                        :possible-weight weight
-                                        :actual-weight   weight
-                                        :sink-effects    nil)))
-                                  source-points
-                                  percent-produced))))))
-                use-points
-                use-values))))
+        (time (dorun (pmap
+                      (fn [uid use-cap]
+                        (let [amount-usable (rv-min use-cap (_*_ use-cap source-use-ratio))]
+                          (swap! (get-in cache-layer uid)
+                                 (constantly
+                                  (doall
+                                   (map (fn [sid source-percent]
+                                          (let [weight (_*_ source-percent amount-usable)]
+                                            (struct-map service-carrier
+                                              :source-id       sid
+                                              :route           nil
+                                              :possible-weight weight
+                                              :actual-weight   weight
+                                              :sink-effects    nil)))
+                                        source-points
+                                        percent-produced))))))
+                      use-points
+                      use-values)))))
     (println "Done storing carriers. Returning the cache-layer.")
     (map-matrix (& seq deref) cache-layer)))

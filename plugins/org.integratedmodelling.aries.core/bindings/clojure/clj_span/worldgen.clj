@@ -68,3 +68,24 @@
         cols  (Integer/parseInt (second (re-find #"^NCOLS\s+(\d+)" (second lines))))
         data  (drop-while (p re-find #"^[^\d]") lines)]
     (println "Stub...process the data...")))
+
+(defn make-ascii-grid-from-layer
+  [layer]
+  (let [buf (StringBuffer.)]
+    (.append buf "finish me...")
+    (.toString buf)))
+
+(comment
+ "north:                   4299000.00
+  south:                   4247000.00
+  east:                     528000.00
+  west:                     500000.00
+  rows:                         10   
+  cols:                         15   
+  null:                      -9999   
+
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
