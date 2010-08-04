@@ -7,7 +7,7 @@
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
 						:units "t/ha" 
-	  				[300 :>]    'carbonService:VeryHighStorage
+	  				[300 3200]  'carbonService:VeryHighStorage
 	  				[220 300]   'carbonService:HighStorage
 	  				[140 220]   'carbonService:ModerateStorage
 	  				[70 140]    'carbonService:LowStorage
@@ -18,7 +18,7 @@
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
 						:units "t/ha" 
-	  				[100 :>]   'carbonService:VeryHighVegetationStorage
+	  				[100 2301] 'carbonService:VeryHighVegetationStorage
 	  				[80 100]   'carbonService:HighVegetationStorage
 	  				[60 80]    'carbonService:ModerateVegetationStorage
 	  				[30 60]    'carbonService:LowVegetationStorage
@@ -29,7 +29,7 @@
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
 						:units    "t/ha" 
-	  				[200 :>]   'carbonService:VeryHighSoilStorage
+	  				[200 820]  'carbonService:VeryHighSoilStorage
 	  				[140 200]  'carbonService:HighSoilStorage
 	  				[80 140]   'carbonService:ModerateSoilStorage
 	  				[40 80]    'carbonService:LowSoilStorage

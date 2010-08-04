@@ -10,34 +10,34 @@
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
 	(classification 'carbonService:VegetationAndSoilCarbonStorage
 						:units "t/ha" 
-	  				[1000 :>]     'carbonService:VeryHighStorage
+	  				[1000 3200]   'carbonService:VeryHighStorage
             [600 1000]    'carbonService:HighStorage
             [300 600]     'carbonService:ModerateStorage
             [100 300]     'carbonService:LowStorage
             [0.01 100]    'carbonService:VeryLowStorage
-            [:< 0.01]     'carbonService:NoStorage))
+            [0 0.01]      'carbonService:NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
 	(classification 'carbonService:VegetationCarbonStorage
 						:units "t/ha" 
-	  				[900 :>]       'carbonService:VeryHighVegetationStorage
+	  				[900 2301]     'carbonService:VeryHighVegetationStorage
             [500 900]      'carbonService:HighVegetationStorage
             [250 500]      'carbonService:ModerateVegetationStorage
             [75 250]       'carbonService:LowVegetationStorage
             [0.01 75]      'carbonService:VeryLowVegetationStorage
-            [:< 0.01]      'carbonService:NoVegetationStorage)) 			
+            [0 0.01]       'carbonService:NoVegetationStorage)) 			
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
 		(classification 'carbonService:SoilCarbonStorage
 						:units    "t/ha" 
-	  				[680 :>]       'carbonService:VeryHighSoilStorage
+	  				[680 820]      'carbonService:VeryHighSoilStorage
             [440 680]      'carbonService:HighSoilStorage
             [200 440]      'carbonService:ModerateSoilStorage
             [50 200]       'carbonService:LowSoilStorage
             [0.01 50]      'carbonService:VeryLowSoilStorage
-            [:< 0.01]      'carbonService:NoSoilStorage))
+            [0 0.01]       'carbonService:NoSoilStorage))
 	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model

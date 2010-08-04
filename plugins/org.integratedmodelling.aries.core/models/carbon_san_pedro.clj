@@ -5,71 +5,68 @@
 
 ;; output and training
 ;; TODO make it classify the appropriate measurement - buggy for now
-;; KB: Should this actually be sequestration?  And should
-;; discretization on the two below defmodels be updated?
-;; YES!  CREATE A NEW DEFMODEL FOR VEG & SOIL C SEQUESTRATION
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
   (classification 'carbonService:VegetationAndSoilCarbonStorage
                   :units      "t/ha" 
-                  [500 :>]      'carbonService:VeryHighStorage
+                  [500 3200]    'carbonService:VeryHighStorage
                   [300 500]     'carbonService:HighStorage
                   [150 300]     'carbonService:ModerateStorage
                   [75 150]      'carbonService:LowStorage
                   [0.01 75]     'carbonService:VeryLowStorage
-                  [:< 0.01]     'carbonService:NoStorage))
+                  [0 0.01]      'carbonService:NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
   (classification 'carbonService:VegetationCarbonStorage
                   :units      "t/ha" 
-                  [325 :>]       'carbonService:VeryHighVegetationStorage
-                  [190 325]      'carbonService:HighVegetationStorage
-                  [105 190]      'carbonService:ModerateVegetationStorage
-                  [40 105]       'carbonService:LowVegetationStorage
-                  [0.01 40]      'carbonService:VeryLowVegetationStorage
-                  [:< 0.01]      'carbonService:NoVegetationStorage)) 				
+                  [325 2301]      'carbonService:VeryHighVegetationStorage
+                  [190 325]       'carbonService:HighVegetationStorage
+                  [105 190]       'carbonService:ModerateVegetationStorage
+                  [40 105]        'carbonService:LowVegetationStorage
+                  [0.01 40]       'carbonService:VeryLowVegetationStorage
+                  [0 0.01]        'carbonService:NoVegetationStorage)) 			
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now				
+;; output and training TODO make it classify the appropriate measurement - buggy for now        
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
   (classification 'carbonService:SoilCarbonStorage
                   :units      "t/ha" 
-                  [680 :>]       'carbonService:VeryHighSoilStorage
+                  [680 820]      'carbonService:VeryHighSoilStorage
                   [440 680]      'carbonService:HighSoilStorage
                   [200 440]      'carbonService:ModerateSoilStorage
                   [50 200]       'carbonService:LowSoilStorage
                   [0.01 50]      'carbonService:VeryLowSoilStorage
-                  [:< 0.01]      'carbonService:NoSoilStorage))
+                  [0 0.01]       'carbonService:NoSoilStorage))
 
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration
                   :units      "t/ha*year"
-                  [12 :>]     'carbonService:VeryHighSequestration
+                  [12 30]     'carbonService:VeryHighSequestration
                   [9 12]      'carbonService:HighSequestration
                   [6 9]       'carbonService:ModerateSequestration
                   [3 6]       'carbonService:LowSequestration
                   [0.01 3]    'carbonService:VeryLowSequestration
-                  [:< 0.01]   'carbonService:NoSequestration))
+                  [0 0.01]    'carbonService:NoSequestration))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 :>]     'carbonService:VeryHighRelease
+                  [12 3200]   'carbonService:VeryHighRelease
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease
                   [0.01 3]    'carbonService:VeryLowRelease
-                  [:< 0.01]   'carbonService:NoRelease))
+                  [0 0.01]    'carbonService:NoRelease))
 
 (defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
   (classification 'carbonService:NetCarbonUptake
                   :units      "t/ha*year"
-                  [12 :>]     'carbonService:VeryHighCarbonUptake
-                  [9 12]      'carbonService:HighCarbonUptake
-                  [6 9]       'carbonService:ModerateCarbonUptake
-                  [3 6]       'carbonService:LowCarbonUptake
-                  [0.01 3]    'carbonService:VeryLowCarbonUptake
-                  [:< 0.01]   'carbonService:NoCarbonUptake))
+                  [6 30]        'carbonService:HighCarbonUptake
+                  [3 6]         'carbonService:ModerateCarbonUptake
+                  [0 3]         'carbonService:LowCarbonUptake
+                  [-3 0]        'carbonService:LowCarbonRelease
+                  [-9 -3]       'carbonService:ModerateCarbonRelease
+                  [-3200 -9]    'carbonService:HighCarbonRelease))
 	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model

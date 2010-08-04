@@ -141,12 +141,12 @@
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
 		</cpt>
 		<cpt id="NetCarbonUptake">
-			<state id="VeryHighCarbonUptake" />
 			<state id="HighCarbonUptake" />
 			<state id="ModerateCarbonUptake" />
 			<state id="LowCarbonUptake" />
-			<state id="VeryLowCarbonUptake" />
-			<state id="NoCarbonUptake" />
+			<state id="LowCarbonRelease" />
+			<state id="ModerateCarbonRelease" />
+			<state id="HighCarbonRelease" />
 			<parents>StoredCarbonRelease VegetationAndSoilCarbonSequestration</parents>
 			<probabilities>1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.1 0.1 0 0 0 0.7 0.2 0.1 0 0 0 0.6 0.2 0.2 0 0 0 0.5 0.25 0.2 0.05 0 0 0.9 0.1 0 0 0 0 0.4 0.5 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.4 0.4 0.05 0 0 0.1 0.4 0.4 0.1 0 0 0.8 0.1 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.4 0.4 0.15 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.1 0.4 0.4 0.1 0.7 0.2 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.6 0.2 0.6 0.2 0.2 0 0 0 0.15 0.4 0.4 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0.2 0.4 0.4 0.5 0.25 0.2 0.05 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0.2 0.4 0.4 0 0 0 0 0 1</probabilities>
 			<property id="ClimateStability">ClimateStability = CarbonSequestration - StoredCarbonRelease</property>

@@ -118,7 +118,7 @@
 ;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
 ;;FIX above - know how to do it.  Also need to get a dam storage layer for SoCal.
 (defmodel dam-storage 'floodService:DamStorage
-  (classification (ranking 'floodService:DamStorage)
+  (classification (measurement 'floodService:DamStorage "mm")
                   [6000000 :>]      'floodService:VeryLargeDamStorage
                   [3750000 6000000] 'floodService:LargeDamStorage
                   [1750000 3750000] 'floodService:ModerateDamStorage

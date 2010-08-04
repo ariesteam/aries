@@ -105,18 +105,18 @@
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
 		</cpt>
 		<deterministic id="NetCarbonUptake">
-			<state id="VeryHighCarbonUptake" />
 			<state id="HighCarbonUptake" />
 			<state id="ModerateCarbonUptake" />
 			<state id="LowCarbonUptake" />
-			<state id="VeryLowCarbonUptake" />
-			<state id="NoCarbonUptake" />
+			<state id="LowCarbonRelease" />
+			<state id="ModerateCarbonRelease" />
+			<state id="HighCarbonRelease" />
 			<parents>StoredCarbonRelease VegetationAndSoilCarbonSequestration</parents>
-			<resultingstates>NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake VeryLowCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake LowCarbonUptake VeryLowCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake ModerateCarbonUptake LowCarbonUptake VeryLowCarbonUptake NoCarbonUptake NoCarbonUptake NoCarbonUptake HighCarbonUptake ModerateCarbonUptake LowCarbonUptake VeryLowCarbonUptake NoCarbonUptake NoCarbonUptake VeryHighCarbonUptake HighCarbonUptake ModerateCarbonUptake LowCarbonUptake VeryLowCarbonUptake NoCarbonUptake</resultingstates>
+			<resultingstates>HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease ModerateCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease LowCarbonRelease ModerateCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease LowCarbonUptake LowCarbonRelease ModerateCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonRelease ModerateCarbonUptake LowCarbonUptake LowCarbonRelease ModerateCarbonRelease HighCarbonRelease HighCarbonRelease HighCarbonUptake ModerateCarbonUptake LowCarbonUptake LowCarbonRelease ModerateCarbonRelease HighCarbonRelease</resultingstates>
 		</deterministic>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="StoredCarbonRelease">
 				<name>StoredCarbonRelease</name>
 				<interior color="c0c0c0" />
