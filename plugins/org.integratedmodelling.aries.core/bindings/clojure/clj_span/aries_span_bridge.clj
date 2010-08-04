@@ -102,8 +102,8 @@
                                           (& successive-sums butlast (p get-probabilities ds))
                                           (& successive-sums (p get-probabilities ds)))
                                         (if unbounded-from-above?
-                                          (& (p successive-sums 0) butlast (p get-probabilities ds))
-                                          (& (p successive-sums 0) (p get-probabilities ds))))]
+                                          (& (p successive-sums 0.0) butlast (p get-probabilities ds))
+                                          (& (p successive-sums 0.0) (p get-probabilities ds))))]
             (for [idx (range n)]
               (with-meta (apply struct prob-dist (get-cdf-vals idx)) cont-type))))
         ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
@@ -175,6 +175,7 @@
                          (if (= flow-model "Sediment")
                            (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                            layer-map))]
+      (println "Flow Parameters:")
       (println "flow-model         =" flow-model)
       (println "downscaling-factor =" downscaling-factor)
       (println "rv-max-states      =" rv-max-states)

@@ -138,7 +138,6 @@
   [new-rows new-cols aggregator-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
   (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
-  (println "Distinct RV    Maxes  (pre-resampling):" (sort (distinct (map #(apply max-key val %) (matrix2seq matrix)))))
   (let [orig-rows             (get-rows matrix)
         orig-cols             (get-cols matrix)]
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
@@ -157,6 +156,11 @@
                                                                                  (int (/ j upscale-factor-cols))])))))
             downscale-factor-rows (/ lcm-rows new-rows)
             downscale-factor-cols (/ lcm-cols new-cols)]
+        (let [diff1 (seq (apply clojure.set/difference (map (& set matrix2seq) [matrix lcm-matrix])))
+              diff2 (seq (apply clojure.set/difference (map (& set matrix2seq) [lcm-matrix matrix])))]
+          (if (or diff1 diff2)
+            (println "Some values changed during upsampling:\nLost:" diff1 "\nAdded:" diff2)
+            (println "No value changes during upsampling.")))
         (println "Making the final matrix...")
         (if (and (== downscale-factor-rows 1)
                  (== downscale-factor-cols 1))

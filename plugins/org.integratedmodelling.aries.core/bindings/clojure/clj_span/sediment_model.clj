@@ -24,7 +24,7 @@
         [clj-span.model-api     :only (distribute-flow service-carrier)]
         [clj-misc.utils         :only (mapmap seq2map seq2redundant-map euclidean-distance square-distance def- p &)]
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix filter-matrix-for-coords in-bounds? find-line-between map-matrix)]
-        [clj-misc.randvars      :only (_0_ _+_ _-_ _*_ _d_ -_ _* _d rv-min rv-mean)]))
+        [clj-misc.randvars      :only (_0_ _+_ _-_ _*_ _d_ -_ _* _d rv-min rv-mean rv-cdf-lookup)]))
 
 (def hydrosheds-delta-codes {{  1 1.0} [ 0  1]    ; e
                              {  2 1.0} [-1  1]    ; se
@@ -132,7 +132,7 @@
                           source-ids
                           source-fractions
                           incoming-utilities)))
-            (when (> (reduce + (map rv-mean outgoing-utilities)) *trans-threshold*)
+            (when (< (rv-cdf-lookup (reduce _+_ _0_ outgoing-utilities) *trans-threshold*) 0.5)
               [new-id source-ids source-fractions outgoing-utilities sink-effects])))))))
 
 (defstruct sediment-carrier :in-stream-id :source-ids :source-fractions :source-values :sink-effects)

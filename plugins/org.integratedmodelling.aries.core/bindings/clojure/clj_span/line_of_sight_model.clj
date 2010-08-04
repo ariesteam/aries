@@ -42,7 +42,7 @@
                                     filter-matrix-for-coords
                                     bitpack-route
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* _d -_ rv-mean rv-max rv-pos)]
+        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* _d -_ rv-mean rv-max rv-pos rv-cdf-lookup)]
         [clj-span.model-api  :only (distribute-flow decay undecay service-carrier)]))
 
 ;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
@@ -87,7 +87,7 @@
                                                        (last runs)
                                                        (last elevs)
                                                        use-elev)]
-               (when (> (rv-mean source-utility) *trans-threshold*)
+               (when (< (rv-cdf-lookup source-utility *trans-threshold*) 0.5)
                  (let [sink-effects (into {}
                                           (map #(let [sink-value (get-in sink-layer %1)]
                                                   (if (not= sink-value _0_)

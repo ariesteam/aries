@@ -17,7 +17,7 @@
 
 (ns clj-span.water-model
   (:use [clj-misc.utils     :only (memoize-by-first-arg depth-first-tree-search def-)]
-        [clj-misc.randvars  :only (_<_ _d rv-scale rv-zero-below-scalar rv-mean)]
+        [clj-misc.randvars  :only (_<_ _d rv-scale rv-zero-below-scalar rv-mean rv-cdf-lookup)]
         [clj-span.model-api :only (distribute-flow! service-carrier)]
         [clj-span.analyzer  :only (source-loc? sink-loc? use-loc?)]
         [clj-span.params    :only (*trans-threshold*)]))
@@ -63,7 +63,7 @@
   [[weight route] location-map]
   (when-let [downhill-neighbors (most-downhill-neighbors (peek route) location-map)]
     (let [downhill-weight (_d weight (count downhill-neighbors))]
-      (if (> (rv-mean downhill-weight) *trans-threshold*)
+      (if (< (rv-cdf-lookup downhill-weight *trans-threshold*) 0.5)
         (let [zeroed-downhill-weight (rv-zero-below-scalar downhill-weight *trans-threshold*)]
           (map #(vector zeroed-downhill-weight (conj route %)) downhill-neighbors))))))
 
@@ -73,7 +73,7 @@
         neighbors   (map location-map (:neighbors current-loc))
         trans-probs (transition-probabilities current-loc neighbors)]
     (when (< (first trans-probs) 0.9) ;; FIXME add this to flow-params
-      (filter (fn [[w _]] (> (rv-mean w) *trans-threshold*))
+      (filter (fn [[w _]] (< (rv-cdf-lookup w *trans-threshold*) 0.5))
               (map (fn [l p] [(rv-scale weight p) (conj route l)]) neighbors (rest trans-probs))))))
 
 ;; FIXME make this function only store carriers on sinks if a use

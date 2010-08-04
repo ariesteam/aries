@@ -44,7 +44,7 @@
 
 (ns clj-misc.randvars
   (:refer-clojure :exclude (type))
-  (:use [clj-misc.utils :only (p select-n-distinct select-n-summands my-partition-all constraints-1.0)]))
+  (:use [clj-misc.utils :only (p select-n-distinct select-n-summands my-partition-all constraints-1.0 mapmap)]))
 
 (def type (comp :type meta))
 
@@ -72,6 +72,18 @@
     nums
     (cons (first nums) (map - (rest nums) nums))))
 
+(defmulti to-discrete-randvar type)
+
+(defmethod to-discrete-randvar ::continuous-distribution
+  [continuous-RV]
+  (with-meta
+    (let [sorted-RV (sort continuous-RV)]
+      (zipmap (keys sorted-RV)
+              (successive-differences (vals sorted-RV))))
+    disc-type))
+
+(defmethod to-discrete-randvar ::discrete-distribution [discrete-RV] discrete-RV)
+
 (defmulti to-continuous-randvar type)
 
 (defmethod to-continuous-randvar ::discrete-distribution
@@ -94,6 +106,25 @@
     (if (= rv-type :discrete)
       discrete-RV
       (to-continuous-randvar discrete-RV))))
+
+(defmulti rv-cdf-lookup
+  ;;"Return F_X(x) = P(X<x)."
+  (fn [X x] (type X)))
+
+(defmethod rv-cdf-lookup ::discrete-distribution
+  [X x]
+  (let [X* (to-continuous-randvar X)]
+    (or (X* x)
+        (if-let [below-x (seq (filter #(< % x) (keys X*)))]
+          (X* (apply max below-x))
+          0.0))))
+
+(defmethod rv-cdf-lookup ::continuous-distribution
+  [X x]
+  (or (X x)
+      (if-let [below-x (seq (filter #(< % x) (keys X)))]
+        (X (apply max below-x))
+        0.0)))
 
 (defmulti rv-resample
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
@@ -140,6 +171,50 @@
 (def _0_ rv-zero)
 
 ;;; testing functions below here
+
+;; FIXME: Continuous convolutions always assume the lower bound
+;; interpretation of the stepwise CDFs. We should probably average all
+;; upper and lowers (or just use discrete values for everything?)
+
+;; FIXME: These convolution functions also all assume independence
+;; between X and Y. We need more information from ARIES to ascertain
+;; this (or some way of representing this dependence/covariance).
+
+(defmulti rv-convolute* (fn [f X Y] [(type X) (type Y)]))
+
+;; P(X+Y=z) = \sum_{x \in X} \sum_{y \in Y} I(x+y=z) P(x) P(y)
+(defmethod rv-convolute* [::discrete-distribution ::discrete-distribution]
+  [f X Y]
+  (apply merge-with + (for [[v1 p1] X [v2 p2] Y] {(f v1 v2) (* p1 p2)})))
+
+;; F(Z) = P(X+Y<z) = \int_{-\infinity}^{\infinity} dy \sum_{x \in X} I(x+y<=z) P(x) p(y)
+;;      = \sum_{x \in X} P_X(x) F_Y(z-x)
+(defmethod rv-convolute* [::discrete-distribution ::continuous-distribution]
+  [f X Y]
+  (apply merge-with + (for [[v1 p1] X [v2 p2] Y] {(f v1 v2) (* p1 p2)})))
+
+;; F(Z) = P(X+Y<z) = \int_{-\infinity}^{\infinity} dx \sum_{y \in Y} I(x+y<=z) p(x) P(y)
+;;      = \sum_{y \in Y} P_Y(y) F_X(z-y)
+(defmethod rv-convolute* [::continuous-distribution ::discrete-distribution]
+  [f X Y]
+  (apply merge-with + (for [[v1 p1] X [v2 p2] Y] {(f v1 v2) (* p1 p2)})))
+
+;; F(Z) = P(X+Y<z) = \int_{-\infinity}^{\infinity} dx \int_{-\infinity}^{\infinity} dy I(x+y<=z) p(x) p(y)
+;;      = \int_{-\infinity}^{\infinity} p(x) dx \int_{-\infinity}^{z-x} p(y) dy
+;;      = \int_{-\infinity}^{\infinity} p(x) dx F_Y(z-x)
+;;      = \int_{-\infinity}^{\infinity} F_Y(z-x) dF_X(x)
+;;
+;; where dF_X(x) for these stepwise interpretations of the CDFs can be
+;; interpreted as 0 everywhere except where we have a sample value in
+;; the RV map, in which case dF_X(x) = F_X(x_i)-F_X(x_i-1).  This also
+;; breaks up the integral over Y into a discrete sum over the values
+;; of Y where dF_X(x) is not 0. Thus:
+;;
+;; Let X* be the countably finite subset of X values for which dF_X(x) > 0.
+;; F(Z) = \sum_{x \in X*} F_Y(z-x) dF_X(x)
+(defmethod rv-convolute* [::continuous-distribution ::continuous-distribution]
+  [f X Y]
+  (apply merge-with + (for [[v1 p1] (to-discrete-randvar X) [v2 p2] Y] {(f v1 v2) (* p1 p2)})))
 
 (defn rv-convolute-1
   [f X Y]
@@ -235,7 +310,7 @@
   "Returns the distribution of f of two random variables X and Y."
   [f X Y]
   (with-meta
-    (rv-convolute-6 f X Y)
+    (rv-convolute* f X Y) ;; rv-convolute-6 was fastest before (without transients)
     (if (#{(type X) (type Y)} ::continuous-distribution)
       cont-type
       disc-type)))
@@ -286,7 +361,8 @@
 (defn- rv-map
   "Returns the distribution of the random variable X with f applied to its range values."
   [f X]
-  (with-meta (into {} (map (fn [[s p]] [(f s) p]) X)) (meta X)))
+  (with-meta (mapmap f identity X) (meta X)))
+;;  (with-meta (into {} (map (fn [[s p]] [(f s) p]) X)) (meta X)))
 
 (defn scalar-rv-add
   [x Y]
@@ -354,8 +430,10 @@
 
 (defn rv-average
   [RVs]
-  ;;(println "Averaging" (count RVs) (type (last RVs)) "RVs...")
-  (rv-scalar-divide (reduce rv-add RVs) (count RVs)))
+  (if (seq RVs)
+    (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs))))
+;;      (do (println "Averaging" numRVs (type (first RVs)) "RVs...")
+;;          (time (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs)))))
 
 (defmulti rv-scale
   (fn [rv scale-factor] (type rv)))

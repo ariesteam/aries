@@ -30,7 +30,7 @@
   (:use [clj-misc.utils      :only (p & my->>)]
         [clj-span.params     :only (*trans-threshold*)]
         [clj-span.model-api  :only (distribute-flow decay undecay service-carrier)]
-        [clj-misc.randvars   :only (_0_ _-_ _* _d _>_ rv-pos rv-mean)]
+        [clj-misc.randvars   :only (_0_ _-_ _* _d _>_ rv-pos rv-mean rv-cdf-lookup)]
         [clj-misc.matrix-ops :only (get-neighbors
                                     make-matrix
                                     map-matrix
@@ -65,11 +65,13 @@
       (update-in last-frontier-option [:route] conj location-id))))
 
 (defn- too-little-utility?
-  "Returns true if the rv-mean of this frontier-option's
-   distance-decayed utility is less than *trans-threshold*."
+  "Returns true if the probability that this frontier-option's
+   distance-decayed utility is less than *trans-threshold* is greater
+   than 0.5."
   [flow-model {:keys [utility route]}]
-  (< (rv-mean (decay flow-model utility (dec (count route))))
-     *trans-threshold*))
+  (> (rv-cdf-lookup (decay flow-model utility (dec (count route)))
+                    *trans-threshold*)
+     0.5))
 
 (defn- expand-frontier
   "Returns a new frontier which surrounds the one passed in and

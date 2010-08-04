@@ -27,7 +27,7 @@
         [clj-span.model-api      :only (distribute-flow)]
         [clj-span.params         :only (set-global-params!)]
         [clj-span.interface      :only (provide-results)]
-        [clj-misc.randvars       :only (_0_ rv-mean rv-average)]
+        [clj-misc.randvars       :only (_0_ rv-mean rv-average rv-cdf-lookup)]
         [clj-span.sediment-model :only (aggregate-flow-dirs)]
         [clj-misc.matrix-ops     :only (map-matrix
                                         make-matrix
@@ -65,8 +65,7 @@
    means are less than the threshold with _0_."
   [threshold layer]
   (println "Distinct Layer Values (pre-zeroing):" (count (distinct (matrix2seq layer))))
-  (println "Distinct RV    Maxes  (pre-zeroing):" (sort (distinct (map #(apply max-key val %) (matrix2seq layer)))))
-  (map-matrix #(if (< (rv-mean %) threshold) _0_ %) layer))
+  (map-matrix #(if (> (rv-cdf-lookup % threshold) 0.5) _0_ %) layer))
 
 (defn preprocess-data-layers
   "Preprocess data layers (downsampling and zeroing below their thresholds)."
