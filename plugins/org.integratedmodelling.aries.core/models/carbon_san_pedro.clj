@@ -1,4 +1,4 @@
-(ns core.models.carbon-mark
+(ns core.models.carbon-san-pedro
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
@@ -170,27 +170,6 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
-
-(defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-  (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
-                  [250000 :>]     'carbonService:VeryHighEmitter
-                  [100000 250000] 'carbonService:HighEmitter
-                  [25000 100000]  'carbonService:ModerateEmitter
-                  [1000 25000]    'carbonService:LowEmitter
-                  [100 1000]      'carbonService:VeryLowEmitter
-                  [:< 100]        'carbonService:NoEmitter))
-
-(defmodel use-undiscretizer 'carbonService:CarbonEmitterUse
-  (classification 'carbonService:CarbonEmitterUse
-                  0 'carbonService:EmitterUseAbsent
-                  1 'carbonService:EmitterUsePresent))
-
-(defmodel use-emitters 'carbonService:CarbonUse
-  (bayesian 'carbonService:CarbonUse
-            :import   "aries.core::CarbonUse.xdsl"
-            :keep     ('carbonService:CarbonEmitterUse)
-            :observed (use-undiscretizer)
-            :context  (greenhouse-gas-emitter)))
  	 					
 (defmodel use-simple 'carbonService:GreenhouseGasEmitters
   (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))

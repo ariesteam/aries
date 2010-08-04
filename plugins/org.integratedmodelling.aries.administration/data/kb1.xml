@@ -218,39 +218,59 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Measurement id="california_runoff_wch">
+<!-- below is "Deep percolation," as modeled with the GWAM model for West Coyote Hills.  Worth checking to make sure this is
+equivalent to groundwwater recharge, though it makes sense that it should be -->
+	<measurement:Measurement id="california_percolation_wch">
 		<observation:hasObservable>
-			<habitat:AnnualRunoff />
+			<habitat:AnnualRecharge />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Mean annual runoff, 1951-2002, modeled
-			using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10
-		</rdfs:comment>
+		<rdfs:comment>Data source: Mean annual deep percolation, 1951-2002, modeled
+			using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<measurement:unit>in/year</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:runoff_wch
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:percolation_wch</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3751022.4715446113
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>409664.2808525585
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3752274.098726226
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>413096.65288435936
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26911
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+<measurement:Measurement id="california_runoff_wch">
+	<observation:hasObservable>
+		<habitat:AnnualRunoff />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Mean annual runoff, 1951-2002, modeled
+			using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<measurement:unit>in/year</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:runoff_wch</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
@@ -1136,6 +1156,32 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
+
+<measurement:Measurement id="california_infiltration_wch">
+	<observation:hasObservable>
+		<habitat:Infiltration />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Mean annual infiltration, 1951-2002, modeled
+		using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<measurement:unit>in/year</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:infiltration_wch</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_jan">
 		<observation:hasObservable>
@@ -3779,47 +3825,6 @@
 		</measurement:BinaryCoding>
 	-->
 
-	<!--
-		Need correct ontologic concepts for the two below if we're gonna use
-		'em <measurement:Measurement id="california_infiltration_wch">
-		<observation:hasObservable> <observation:GenericObservable />
-		</observation:hasObservable> <rdfs:comment>Data source: Mean annual
-		infiltration, 1951-2002, modeled using Los Angeles Basin Groundwater
-		Augmentation Model Version 4.1.10</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<measurement:unit>in/year</measurement:unit>
-		<observation:hasDataSource> <geospace:WFSDataSource>
-		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>california:infiltration_wch</geospace:hasCoverageId>
-		<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
-		</geospace:WFSDataSource> </observation:hasDataSource>
-		<observation:hasObservationExtent> <geospace:ArealFeatureSet>
-		<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
-		<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
-		<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
-		<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
-		<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet> </observation:hasObservationExtent>
-		</measurement:Measurement> <measurement:Measurement
-		id="california_deep_percolation_wch"> <observation:hasObservable>
-		<observation:GenericObservable /> </observation:hasObservable>
-		<rdfs:comment>Data source: Mean annual deep percolation, 1951-2002,
-		modeled using Los Angeles Basin Groundwater Augmentation Model Version
-		4.1.10</rdfs:comment> <metadata:hasPriority>0</metadata:hasPriority>
-		<measurement:unit>in/year</measurement:unit>
-		<observation:hasDataSource> <geospace:WFSDataSource>
-		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>california:deep_percolation_wch</geospace:hasCoverageId>
-		<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
-		</geospace:WFSDataSource> </observation:hasDataSource>
-		<observation:hasObservationExtent> <geospace:ArealFeatureSet>
-		<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
-		<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
-		<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
-		<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
-		<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet> </observation:hasObservationExtent>
-		</measurement:Measurement>
-	-->
+	<!--Need correct ontologic concepts for the two below if we're gonna use 'em -->
 
 </kbox>

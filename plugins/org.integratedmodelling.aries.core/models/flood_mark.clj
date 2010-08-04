@@ -287,4 +287,4 @@
                   [400 :>]     'floodService:HighFloodplainWidth
                   [200 400]    'floodService:ModerateFloodplainWidth
                   [:< 200]     'floodService:LowFloodplainWidth
-                  :otherwise   'floodService:NoFloodplain))
+                  :otherwise   'floodService:NoFloodplainWidth))
