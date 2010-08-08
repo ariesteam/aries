@@ -22,12 +22,12 @@
 			<state id="VeryLowVegetationCover" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
-		<cpt id="VegetationInfiltrationInterceptionEvapotranspirationClass">
-			<state id="VeryHighVegetationSink" />
-			<state id="HighVegetationSink" />
-			<state id="ModerateVegetationSink" />
-			<state id="LowVegetationSink" />
-			<state id="VeryLowVegetationSink" />
+		<cpt id="EvapotranspirationClass">
+			<state id="VeryHighEvapotranspiration" />
+			<state id="HighEvapotranspiration" />
+			<state id="ModerateEvapotranspiration" />
+			<state id="LowEvapotranspiration" />
+			<state id="VeryLowEvapotranspiration" />
 			<parents>VegetationType PercentVegetationCoverClass</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0 0.75 0.2 0.05 0 0 0.4 0.4 0.2 0 0 0.1 0.4 0.4 0.1 0 0 0.3 0.4 0.3 0 0 0.1 0.4 0.4 0.1 0.6 0.35 0.05 0 0 0.3 0.4 0.3 0 0 0.05 0.425 0.425 0.1 0 0 0.25 0.5 0.25 0 0 0.1 0.3 0.4 0.2 0.5 0.4 0.1 0 0 0.2 0.4 0.4 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0.1 0.4 0.5 0 0 0.1 0.2 0.7 0 0 0.05 0.2 0.75 0 0 0.05 0.1 0.85 0 0 0 0.1 0.9 0 0 0 0.05 0.95</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
@@ -71,7 +71,7 @@
 			<state id="ModerateSurfaceWaterSink" />
 			<state id="LowSurfaceWaterSink" />
 			<state id="NoSurfaceWaterSink" />
-			<parents>Dams VegetationInfiltrationInterceptionEvapotranspirationClass SoilInfiltrationClass</parents>
+			<parents>Dams EvapotranspirationClass SoilInfiltrationClass</parents>
 			<probabilities>0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.8 0.2 0 0 0 0.35 0.25 0.25 0.15 0 0.2 0.2 0.2 0.2 0.2 0.15 0.15 0.2 0.2 0.3 0 0.2 0.2 0.2 0.4 0 0.1 0.15 0.2 0.55 0.3 0.25 0.25 0.2 0 0.15 0.2 0.2 0.25 0.2 0 0.2 0.2 0.2 0.4 0 0.15 0.2 0.2 0.45 0 0 0.2 0.2 0.6 0.2 0.2 0.25 0.25 0.1 0 0.2 0.25 0.25 0.3 0 0 0.25 0.25 0.5 0 0 0.2 0.25 0.55 0 0 0 0.3 0.7 0.15 0.2 0.2 0.2 0.25 0 0.15 0.2 0.25 0.4 0 0 0.2 0.2 0.6 0 0 0 0.3 0.7 0 0 0 0.25 0.75 0.1 0.15 0.15 0.2 0.4 0 0.1 0.15 0.2 0.55 0 0 0.15 0.2 0.65 0 0 0 0.25 0.75 0 0 0 0.2 0.8</probabilities>
 			<property id="ActualRunoff">ActualRunoff = PotentialRunoff-GreenInfrastructureInfluence-GrayInfrastructureInfluence</property>
 		</cpt>
@@ -105,8 +105,8 @@
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
 				<barchart active="true" width="128" height="108" />
 			</node>
-			<node id="VegetationInfiltrationInterceptionEvapotranspirationClass">
-				<name>VegetationInfiltrationInterceptionEvapotranspirationClass</name>
+			<node id="EvapotranspirationClass">
+				<name>EvapotranspirationClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

@@ -47,6 +47,15 @@
 (defmodel meagre-habitat 'fisheries:ArgyrosomusHololepidotusHabitat
 	(ranking 'fisheries:ArgyrosomusHololepidotusHabitat))
 
+(defmodel snubnose-emperor-habitat 'fisheries:LethrinusBorbonicusHabitat
+  (ranking 'fisheries:LethrinusBorbonicusHabitat))
+
+(defmodel sky-emperor-habitat 'fisheries:LethrinusMahsenaHabitat
+  (ranking 'fisheries:LethrinusMahsenaHabitat))
+
+(defmodel mangrove-red-snapper-habitat 'fisheries:LutjanusArgentimaculatusHabitat
+  (ranking 'fisheries:LutjanusArgentimaculatusHabitat))
+
 ;; TODO almost all coral polygons in existing data do not report bleaching; I 
 ;; don't know what text should be in the categories to define other states, so
 ;; only HighBleaching is reported here if the field isn't empty.

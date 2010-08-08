@@ -149,16 +149,23 @@
 	 	   [10 20]               'floodService:ModeratelyLowImperviousCover
 	 	   [5 10]                'floodService:LowImperviousCover
 	 	   [0 5]                 'floodService:VeryLowImperviousCover))
-	 	   
-;;This is actually in m^3 and should be a measurement but I'm getting error messages- 
-;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
-(defmodel dam-storage 'floodService:DamStorage
-	(classification (ranking 'floodService:DamStorage)
-			[6000000 :>]		  'floodService:VeryLargeDamStorage
-			[3750000 6000000]	'floodService:LargeDamStorage
-			[1750000 3750000]	'floodService:ModerateDamStorage
-			[500000 1750000]	'floodService:SmallDamStorage
-			[:< 400]		      'floodService:VerySmallDamStorage))
+
+(defmodel evapotranspiration 'floodService:EvapotranspirationClass
+  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+                  [90 :>]    'floodService:VeryHighEvapotranspiration
+                  [60 90]    'floodService:HighEvapotranspiration
+                  [30 60]    'floodService:ModerateEvapotranspiration
+                  [12 30]    'floodService:LowEvapotranspiration
+                  [0 12]     'floodService:VeryLowEvapotranspiration)) 
+
+(defmodel dam-storage 'floodService:DamStorageClass
+  (classification (measurement 'floodService:DamStorage "mm")
+                  [30000 :>]      'floodService:VeryLargeDamStorage
+                  [9000 30000]    'floodService:LargeDamStorage
+                  [3000 9000]     'floodService:ModerateDamStorage
+                  [900 3000]      'floodService:SmallDamStorage
+                  [0 900]         'floodService:VerySmallDamStorage
+                   :otherwise     'floodService:NoDamStorage))
 			
 (defmodel mean-days-precipitation 'floodService:MeanDaysPrecipitationPerMonth
 	(classification (ranking 'habitat:JanuaryDaysOfPrecipitation)
@@ -167,11 +174,16 @@
 		#{4 5}    'floodService:LowDaysPrecipitation
 		#{1 2 3}  'floodService:VeryLowDaysPrecipitation))
 		
+;;Gary: I can add in a value for this (i.e., if detention basins average 3 m in depth, with some much 
+;; deeper but many shallower, they'd store 3000 mm of flood water - need to make sure this is limited 
+;; only to the pixels with detention basins in the accompanying coverage.
 (defmodel detention-basin-storage 'floodService:DetentionBasinStorage
 	(classification (binary-coding 'infrastructure:DetentionBasin)
 		0            'floodService:DetentionBasinStorageNotPresent
 		:otherwise   'floodService:DetentionBasinStoragePresent))
-		
+
+;;Add undiscretization statements from flood_mark.clj.
+
 ;; Flood sink probability
 ;; TODO missing data
 (defmodel sink 'floodService:FloodSink
@@ -184,8 +196,8 @@
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
 	 	 			soil-group-puget vegetation-type slope monthly-temperature  
-	 	 			successional-stage imperviousness dam-storage 
-          (comment detention-basin-storage)
+	 	 			successional-stage imperviousness dam-storage evapotranspiration
+          (comment detention-basin-storage) ;;Why is this commented out?
 	 	 			(comment mean-days-precipitation vegetation-height)
 	 	 			percent-vegetation-cover)))
 

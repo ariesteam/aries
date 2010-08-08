@@ -50,10 +50,9 @@
                   [30 49]  'floodService:LowRainfallErosivity
                   [:< 29]  'floodService:VeryLowRainfallErosivity)) 
 
-;;Use runoff as training data here?
-;;YES: DEFMODEL STATEMENTS FOR INTERMEDIATE VARIABLES USED FOR TRAINING
+;;Use runoff as training data here
 (defmodel flood-source-value 'floodService:FloodSourceValue
-  (classification 'floodService:FloodSourceValue
+  (classification (measurement 'habitat:AnnualRunoff "mm")
                   [:< 200]    'floodService:VeryLowFloodSource
                   [200 600]   'floodService:LowFloodSource
                   [600 1200]  'floodService:ModerateFloodSource
@@ -114,22 +113,58 @@
                   [20 40]  'floodService:LowVegetationCover
                   [0 20]   'floodService:VeryLowVegetationCover))
 
-;;This is actually in m^3 and should be a ranking but I'm getting error messages- 
-;;"measurements can only be of physical properties: floodService:DamStorage" - so left as ranking for now
-;;FIX above - know how to do it.  Also need to get a dam storage layer for SoCal.
-(defmodel dam-storage 'floodService:DamStorage
-  (classification (measurement 'floodService:DamStorage "mm")
-                  [6000000 :>]      'floodService:VeryLargeDamStorage
-                  [3750000 6000000] 'floodService:LargeDamStorage
-                  [1750000 3750000] 'floodService:ModerateDamStorage
-                  [500000 1750000]  'floodService:SmallDamStorage
-                  [:< 400]          'floodService:VerySmallDamStorage))
+(defmodel evapotranspiration 'floodService:EvapotranspirationClass
+  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+                  [90 :>]    'floodService:VeryHighEvapotranspiration
+                  [60 90]    'floodService:HighEvapotranspiration
+                  [30 60]    'floodService:ModerateEvapotranspiration
+                  [12 30]    'floodService:LowEvapotranspiration
+                  [0 12]     'floodService:VeryLowEvapotranspiration)) 
 
-;;No data for detention basins in Orange County at this point but leaving the defmodel statement in for now.    
-(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-  (classification (binary-coding 'infrastructure:DetentionBasin)
-                  0              'floodService:DetentionBasinStorageNotPresent
-                  :otherwise     'floodService:DetentionBasinStoragePresent))
+;;GARY: Do we need to convert to mm, or should it do it automatically?  (in=25.4 mm)
+(defmodel infiltration 'floodService:SoilInfiltrationClass
+  (classification (measurement 'habitat:Infiltration "in")
+                  [0.976 :>]       'floodService:VeryHighSoilInfiltration
+                  [0.519 0.976]    'floodService:HighSoilInfiltration
+                  [0.327 0.519]    'floodService:ModerateSoilInfiltration
+                  [0.133 0.327]    'floodService:LowSoilInfiltration
+                  [0 0.133]        'floodService:VeryLowSoilInfiltration)) 
+
+;;This only presence/absence data as data are lacking for southern California.
+(defmodel dam-storage 'floodService:DamStorageClass
+  (classification (binary-coding 'floodService:DamStorage)
+                  0  'floodService:NoDamStorage
+                  1  'floodService:SmallDamStorage))
+
+;;Undiscretizer for FloodSink
+(defmodel flood-sink 'floodService:FloodSink
+  (classification 'floodService:FloodSink
+                  :units      "mm" 
+                  [30000 90000]     'floodService:VeryHighSink
+                  [10000 30000]     'floodService:HighSink
+                  [3000 10000]      'floodService:ModerateSink
+                  [900 3000]        'floodService:LowSink
+                  [0 900]           'floodService:VeryLowSink))
+
+;;Undiscretizer for GreenInfrastructureStorage
+(defmodel green-infrastructure-storage 'floodService:GreenInfrastructureStorage
+  (classification 'floodService:GreenInfrastructureStorage
+                  :units      "mm" 
+                  [115 320]    'floodService:VeryHighGreenStorage
+                  [72 115]     'floodService:HighGreenStorage
+                  [40 72]      'floodService:ModerateGreenStorage
+                  [15 40]      'floodService:LowGreenStorage
+                  [0 15]       'floodService:VeryLowGreenStorage))
+
+;;Undiscretizer for GrayInfrastructureStorage
+(defmodel gray-infrastructure-storage 'floodService:GrayInfrastructureStorage
+  (classification 'floodService:GrayInfrastructureStorage
+                  :units      "mm" 
+                  [30000 90000]     'floodService:VeryHighGrayStorage
+                  [10000 30000]     'floodService:HighGrayStorage
+                  [3000 10000]      'floodService:ModerateGrayStorage
+                  [900 3000]        'floodService:LowGrayStorage
+                  [0 900]           'floodService:VeryLowGrayStorage))
 
 ;; Flood sink probability
 ;; TODO missing data
@@ -140,40 +175,21 @@
             :keep     ('floodService:FloodSink 
                        'floodService:GreenInfrastructureStorage
                        'floodService:GrayInfrastructureStorage)
-            :context  (soil-group slope imperviousness percent-vegetation-cover)))
-;; don't forget about the dam-storage and detention-basin-storage
+            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage
+                        infiltration evapotranspiration)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
+
+;;Use undiscretizers are simple: 0/1
+;; F the undiscretizers: use the same language as sediment_dr.clj
 
 (defmodel floodplains 'floodService:Floodplains
   "Presence of a floodplain in given context"
   (classification (binary-coding 'geofeatures:Floodplain)
                   0 'floodService:NotInFloodplain
                   1 'floodService:InFloodplain))
-
-(defmodel structures 'floodService:Structures
-  "Assume that any privately owned land in floodplain has vulnerable structures. TODO make more specific when we know more"
-  (classification (ranking 'lulc:PrivatelyOwnedLand)
-                  0 'floodService:StructuresNotPresent
-                  1 'floodService:StructuresPresent))
-
-(defmodel housing 'floodService:PresenceOfHousing
-  "Classifies land use from property data."
-                                        ; following sources are specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-                  "RESIDENTIAL"   'floodService:HousingPresent
-                  :otherwise      'floodService:HousingNotPresent)
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-                  #{"R" "K"}      'floodService:HousingPresent
-                  :otherwise      'floodService:HousingNotPresent)
-  ;; fall-back: if no data in the ones above, use NLCD high-intensity development category
-  ;; TODO check if that's ok
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  24           'floodService:HousingPresent
-                  :otherwise   'floodService:HousingNotPresent)
-  )
 
 (defmodel public-asset 'floodService:PublicAsset
   "Public assets are defined as presence of highways, railways or both."
@@ -184,7 +200,6 @@
                   :context ((ranking 'infrastructure:Highway) :as highway
                             (ranking 'infrastructure:Railway) :as railway)))
 
-;; 
 (defmodel farmland 'floodService:Farmland
   "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding 'nlcd:NLCDNumeric)
@@ -193,37 +208,25 @@
                                         ;    :agent     "aries/flood/farm"
                   :editable  true))
 
-;; Resident users in floodplains
-(defmodel residents-use 'floodService:FloodResidentsUse
-  "Interface to Flood resident use bayesian network"
-  (bayesian 'floodService:FloodResidentsUse 
-            :import   "aries.core::FloodResidentsUse.xdsl"
-            :keep     ('floodService:ResidentsInFloodHazardZones)
-            :context  (housing floodplains)))
+;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+(defmodel farmers-use 'floodService:FloodFarmersUse 
+  (binary-coding 'floodService:FloodFarmersUse
+       :state #(if (and (= (:floodplains %) 1.0)
+                        (= (:farmlandpresent %) 1.0))
+                    1
+                    0)
+       :context ((binary-coding 'floodService:FarmlandPresent :as farmlandpresent)
+                 (binary-coding 'geofeatures:Floodplain :as floodplains)))) 
 
-;; Farmer users in floodplains
-(defmodel farmers-use 'floodService:FloodFarmersUse
-  "Interface to Flood farmers use bayesian network"
-  (bayesian 'floodService:FloodFarmersUse 
-            :import   "aries.core::FloodFarmersUse.xdsl"
-            :keep     ('floodService:FarmersInFloodHazardZones)
-            :context  (farmland floodplains)))
-
-;; Public assets in floodplains
+;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel public-use 'floodService:FloodPublicAssetsUse
-  "Interface to Flood public asset use bayesian network"
-  (bayesian 'floodService:FloodPublicAssetsUse 
-            :import   "aries.core::FloodPublicAssetsUse.xdsl"
-            :keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
-            :context  (public-asset floodplains)))
-
-;; Private assets in floodplains
-(defmodel private-use 'floodService:FloodPrivateAssetsUse
-  "Interface to Flood public asset use bayesian network"
-  (bayesian 'floodService:FloodPrivateAssetsUse 
-            :import   "aries.core::FloodPublicAssetsUse.xdsl"
-            :keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
-            :context  (structures floodplains)))
+  (binary-coding 'floodService:FloodPublicAssetsUse
+       :state #(if (and (= (:floodplains %) 1.0)
+                        (= (:publicasset %) 1.0))
+                    1
+                    0)
+       :context ((binary-coding 'floodService:PublicAsset :as publicasset)
+                 (binary-coding 'geofeatures:Floodplain :as floodplains))))
 
 ;; ---------------------------------------------------------------------------------------------------          
 ;; overall models 
@@ -242,17 +245,17 @@
                             sink :as sink
                             public-use :as use)))
 
-(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
-  (identification 'floodService:AvoidedDamageToPrivateAssets 
-                  :context (source :as source
-                            sink :as sink
-                            private-use :as use)))
+;;(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
+  ;;(identification 'floodService:AvoidedDamageToPrivateAssets 
+    ;;              :context (source :as source
+    ;;                        sink :as sink
+    ;;                        private-use :as use)))
 
-(defmodel data-residents 'floodService:AvoidedDamageToResidents 
-  (identification 'floodService:AvoidedDamageToResidents 
-                  :context (source :as source
-                            sink :as sink
-                            residents-use :as use)))
+;;(defmodel data-residents 'floodService:AvoidedDamageToResidents 
+  ;;(identification 'floodService:AvoidedDamageToResidents 
+    ;;              :context (source :as source
+      ;;                      sink :as sink
+      ;;                      residents-use :as use)))
 
 ;; flow model   for farmers     
 (defmodel flood-regulation-farmers 'floodService:AvoidedDamageToFarms

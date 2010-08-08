@@ -18,7 +18,7 @@
 			<state id="VeryLowImperviousCover" />
 			<probabilities>0.3 0.5 0.05 0.05 0.05 0.05</probabilities>
 		</cpt>
-		<cpt id="AnnualRainfallErosivity">
+		<cpt id="RainfallErosivityClass">
 			<state id="VeryHighRainfallErosivity" />
 			<state id="HighRainfallErosivity" />
 			<state id="ModerateRainfallErosivity" />
@@ -32,7 +32,7 @@
 			<state id="ModerateFloodSource" />
 			<state id="LowFloodSource" />
 			<state id="VeryLowFloodSource" />
-			<parents>PercentImperviousCover AnnualPrecipitation AnnualRainfallErosivity</parents>
+			<parents>PercentImperviousCover AnnualPrecipitation RainfallErosivityClass</parents>
 			<probabilities>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0.9 0.1 0 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.09999999999999998 0.1 0.6 0.3 0 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0 0.1 0.8 0.1 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0.1 0.2 0.5 0.2 0 0 0.1 0.6 0.3 0 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0 0.1 0.8 0.1 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0.05 0.15 0.6 0.2 0 0 0.2 0.5 0.3 0 0 0.2 0.4 0.4 0 0 0.2 0.3 0.5 0 0 0.2 0.2 0.6 0 0 0.1 0.2 0.7 1 0 0 0 0 1 0 0 0 0 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0.7 0.3 0 0 0 0.9 0.1 0 0 0 0.2 0.8 0 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.09999999999999998 0.1 0.6 0.3 0 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0 0.1 0.8 0.1 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0.05 0.15 0.6 0.2 0 0 0.1 0.6 0.3 0 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0 0.1 0.8 0.1 0 0 0.2 0.7 0.09999999999999998 0 0 0.3 0.5 0.2 0 0 0.2 0.4 0.4 0 0 0.2 0.3 0.5 0 0 0.2 0.2 0.6 0 0 0.1 0.2 0.7 0 0 0 0.2 0.8 1 0 0 0 0 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0.7 0.2 0.09999999999999998 0 0 0.6 0.2 0.2 0 0 0.1 0.8 0.1 0 0 0.2 0.6 0.2 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.09999999999999998 0.1 0.6 0.3 0 0 0.09999999999999998 0.09999999999999998 0.7 0.09999999999999998 0 0 0.1 0.8 0.1 0 0 0.1 0.7000000000000001 0.1 0.1 0 0.1 0.5 0.2 0.2 0 0.05 0.6 0.3 0.05 0 0 0.1 0.7000000000000001 0.2 0 0 0.05 0.8 0.15 0 0 0.15 0.7000000000000001 0.15 0 0 0.25 0.55 0.2 0 0 0.2 0.3 0.5 0 0 0.2 0.2 0.6 0 0 0.1 0.2 0.7 0 0 0 0.2 0.8 0 0 0 0.1 0.9 0.95 0.05 0 0 0 0.85 0.15 0 0 0 0.75 0.2 0.05 0 0 0.65 0.2 0.15 0 0 0.55 0.25 0.2 0 0 0.4 0.4 0.2 0 0 0.15 0.65 0.2 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.1 0.075 0.6 0.3 0.025 0 0.05 0.05 0.7 0.2 0 0 0.075 0.8 0.125 0 0 0.075 0.7 0.125 0.1 0 0.075 0.5 0.225 0.2 0 0.025 0.6 0.3 0.075 0 0 0.1 0.7 0.2 0 0 0.025 0.8 0.175 0 0 0.1 0.7 0.2 0 0 0.15 0.425 0.425 0 0 0.2 0.25 0.55 0 0 0.15 0.2 0.65 0 0 0.05 0.2 0.75 0 0 0 0.15 0.85 0 0 0 0.05 0.95 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0.7 0.2 0.09999999999999998 0 0 0.6 0.2 0.2 0 0 0.5000000000000001 0.2000000000000001 0.2000000000000001 0.1 0 0.6 0.4 0 0 0 0.1 0.8 0.1 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.09999999999999998 0.05 0.6 0.3 0.05 0 0 0.1 0.7000000000000001 0.2 0 0 0.05 0.8 0.15 0 0 0.04999999999999999 0.7 0.15 0.09999999999999998 0 0.05 0.55 0.2 0.2 0 0 0.6000000000000001 0.3 0.1 0 0 0.1 0.7000000000000001 0.2 0 0 0 0.8 0.2 0 0 0 0.7000000000000001 0.3 0 0 0 0.5 0.5 0 0 0.2 0.2 0.6 0 0 0.1 0.2 0.7 0 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 0 1 0.8 0.2 0 0 0 0.7 0.2 0.09999999999999998 0 0 0.6 0.2 0.2 0 0 0.5000000000000001 0.2000000000000001 0.2000000000000001 0.1 0 0.4000000000000001 0.3 0.2000000000000001 0.1 0 0.6 0.2 0.2 0 0 0.15 0.7 0.15 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.5 0 0 0 0.2 0.5 0.2 0.09999999999999998 0 0.6000000000000001 0.3 0.1 0 0 0.1 0.7000000000000001 0.2 0 0 0 0.8 0.2 0 0 0 0.7 0.2 0.09999999999999998 0 0 0.5 0.3 0.2 0 0.1 0.6 0.3 0 0 0.09999999999999998 0.5 0.2999999999999999 0.09999999999999998 0 0 0.15 0.7 0.15 0 0 0.1 0.8 0.1 0 0 0 0.1 0.9 0 0 0 0.3 0.7 0 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 0 1 0 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -40,7 +40,7 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="FloodSourceValue">
 				<name>FloodSourceValue</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>374 76 458 128</position>
@@ -56,18 +56,18 @@
 				<comment>Mean annual precipitation</comment>
 				<barchart active="true" width="173" height="108" />
 			</node>
-			<node id="AnnualRainfallErosivity">
-				<name>AnnualRainfallErosivity</name>
-				<interior color="e5f6f7" />
+			<node id="RainfallErosivityClass">
+				<name>RainfallErosivityClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>585 237 676 293</position>
+				<position>636 237 727 293</position>
 				<comment>Data source: US EPA, Emap West Browser\n\nR Factor (rainfall erosivity index) is a good variable for capturing rainfall intensity which correlates with runoff flow and damage.This variable depends on the intensity and duration of rainfall in the area of interest. It also incorporates Length-Slope Factor. This is a very information rich dataset along with its companion dataset (Emap_epa_west3k). \n\nR factor is commonly used and is derived with the Universal Soil \nLoss Equation (USLE) (Wischmeier &amp; Smith 1978). \n\nhttp://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_sl_rusle_r_qt.htm\n\n</comment>
-				<barchart active="true" width="165" height="110" />
+				<barchart active="true" width="267" height="110" />
 			</node>
 			<node id="PercentImperviousCover">
 				<name>PercentImperviousCover</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>340 268 488 300</position>

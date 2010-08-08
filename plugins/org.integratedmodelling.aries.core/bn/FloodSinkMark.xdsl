@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="DamStorage">
+		<cpt id="DamStorageClass">
 			<state id="VeryLargeDamStorage" />
 			<state id="LargeDamStorage" />
 			<state id="ModerateDamStorage" />
@@ -13,7 +13,7 @@
 		<cpt id="DetentionBasinStorage">
 			<state id="DetentionBasinStoragePresent" />
 			<state id="DetentionBasinStorageNotPresent" />
-			<probabilities>0.005 0.995</probabilities>
+			<probabilities>0.001 0.999</probabilities>
 		</cpt>
 		<cpt id="GrayInfrastructureStorage">
 			<state id="VeryHighGrayStorage" />
@@ -21,7 +21,7 @@
 			<state id="ModerateGrayStorage" />
 			<state id="LowGrayStorage" />
 			<state id="VeryLowGrayStorage" />
-			<parents>DamStorage DetentionBasinStorage</parents>
+			<parents>DamStorageClass DetentionBasinStorage</parents>
 			<probabilities>0.8 0.15 0.05 0 0 0.75 0.15 0.1 0 0 0.6 0.2 0.2 0 0 0.55 0.225 0.225 0 0 0 0.1 0.6 0.3 0 0 0.05 0.6 0.35 0 0 0 0.05 0.475 0.475 0 0 0 0.4 0.6 0 0 0 0.45 0.55 0 0 0 0.35 0.65 0 0 0.05 0.475 0.475 0 0 0 0 1</probabilities>
 			<property id="GrayInfrastructureInfluence">GrayInfrastructureInfluence=DamStorage+DetentionBasinStorage</property>
 		</cpt>
@@ -39,7 +39,7 @@
 			<state id="VeryLowVegetationCover" />
 			<probabilities>0.05 0.05 0.2 0.3 0.4</probabilities>
 		</cpt>
-		<cpt id="Evapotranspiration">
+		<cpt id="EvapotranspirationClass">
 			<state id="VeryHighEvaoptranspiration" />
 			<state id="HighEvaoptranspiration" />
 			<state id="ModerateEvaoptranspiration" />
@@ -72,7 +72,7 @@
 			<state id="VeryLowImperviousCover" />
 			<probabilities>0.3 0.5 0.05 0.05 0.05 0.05</probabilities>
 		</cpt>
-		<cpt id="SoilInfiltration">
+		<cpt id="SoilInfiltrationClass">
 			<state id="VeryHighSoilInfiltration" />
 			<state id="HighSoilInfiltration" />
 			<state id="ModerateSoilInfiltration" />
@@ -88,7 +88,7 @@
 			<state id="ModerateGreenStorage" />
 			<state id="LowGreenStorage" />
 			<state id="VeryLowGreenStorage" />
-			<parents>Evapotranspiration SoilInfiltration</parents>
+			<parents>EvapotranspirationClass SoilInfiltrationClass</parents>
 			<probabilities>0.85 0.1 0.05 0 0 0.8 0.15 0.05 0 0 0.6 0.2 0.2 0 0 0.35 0.3 0.3 0.05 0 0.3 0.3 0.3 0.1 0 0.7 0.15 0.15 0 0 0.65 0.2 0.15 0 0 0.5 0.3 0.2 0 0 0.2 0.2 0.4 0.2 0 0 0.25 0.4 0.3 0.05 0.5 0.3 0.2 0 0 0.4 0.3 0.3 0 0 0.15 0.3 0.275 0.275 0 0 0.3 0.3 0.4 0 0 0.15 0.35 0.35 0.15 0.4 0.3 0.3 0 0 0.2 0.3 0.3 0.2 0 0 0.35 0.35 0.3 0 0 0.25 0.3 0.4 0.05 0 0 0.3 0.3 0.4 0.25 0.3 0.3 0.15 0 0.15 0.2 0.4 0.25 0 0 0.25 0.25 0.25 0.25 0 0.15 0.15 0.35 0.35 0 0 0.1 0.35 0.55</probabilities>
 			<property id="GreenInfrastructureInfluence">GreenInfrastructureInfluence=SoilInfiltration+VegetationInfiltrationAndInterception+FloodplainStorage</property>
 		</cpt>
@@ -132,27 +132,27 @@
 				<comment>Could add detention basins and other forms of gray infrastructure if we had the spatial data to map them.\n\nGrayInfrastructureStorage = (DamStorage + DetentionBasinStorage)/MeanDaysOfPrecipitationPerMonth \n(Great, but we don&apos;t have numbers for these values, so in the mean time they&apos;ll be chance nodes).</comment>
 				<barchart active="true" width="163" height="108" />
 			</node>
-			<node id="DamStorage">
-				<name>DamStorage</name>
-				<interior color="e5f6f7" />
+			<node id="DamStorageClass">
+				<name>DamStorageClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>833 291 914 321</position>
 				<comment>I&apos;M NOT CERTAIN THESE PRIORS MAKE SENSE.\n\nPossibly get rid of &apos;NoDamStorage&apos; since we should have spatial data for presence absence. We will likely still need priors for storage capacity.</comment>
 				<barchart active="true" width="128" height="126" />
 			</node>
-			<node id="SoilInfiltration">
-				<name>SoilInfiltration</name>
-				<interior color="e5f6f7" />
+			<node id="SoilInfiltrationClass">
+				<name>SoilInfiltrationClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>214 255 303 290</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)\n\nI believe the SSURGO data has a Bulk Density attribute, but I have no idea of how to isolate that info from the GIS layer. All attribute are in numeric codes.</comment>
 				<barchart active="true" width="128" height="108" />
 			</node>
-			<node id="Evapotranspiration">
-				<name>Evapotranspiration</name>
-				<interior color="e5f6f7" />
+			<node id="EvapotranspirationClass">
+				<name>EvapotranspirationClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>372 258 588 292</position>
@@ -173,9 +173,9 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>507 425 602 455</position>
+				<position>679 425 774 455</position>
 				<comment>Data Source: USDA Forest Service - Pacific Southwest Region - Remote Sensing Lab \n\n2002,2003 existing vegetation map product at a scale of 1:24,000\n\n&quot;Tile 51&quot; covers parts of Orange and Los Angeles Counties\n\n&quot;Shrub&quot;, &quot;Mixed Conifer Hardwood&quot;, &quot;Herbaceous&quot;, and &quot;Hardwood&quot; attributes aggregated together to = ForestGrasslandShrublandCultivatedVegetation\n\n&quot;Urban&quot; attribute = DevelopedVegetation\n\n&quot;Water&quot; = WetlandVegetation\n\nBased on review of GIS datasets within the study area (San Gabriel River Watershed) priors were assigned to each &quot;vegetation type.&quot;</comment>
-				<barchart active="true" width="128" height="76" />
+				<barchart active="true" width="472" height="76" />
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
