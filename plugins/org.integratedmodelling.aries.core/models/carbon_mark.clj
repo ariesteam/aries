@@ -102,6 +102,9 @@
                   2  'carbonService:ModerateFireThreat
                   1  'carbonService:LowFireThreat))
 
+;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
+;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
+;; WCH but change if you ran it again for Southern California.
 (defmodel actual-evapotranspiration 'carbonService:ActualEvapotranspirationClass
   (classification (measurement 'habitat:ActualEvapotranspiration "mm")
                   [92 :>]   'carbonService:VeryHighActualEvapotranspiration
@@ -148,7 +151,7 @@
             :import   "aries.core::CarbonSourceValueMark.xdsl"
             :keep     ('carbonService:NetCarbonUptake)
             :observed (net-carbon-uptake)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
+	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check

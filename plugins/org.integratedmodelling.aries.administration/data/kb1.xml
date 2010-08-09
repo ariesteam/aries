@@ -765,7 +765,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<observation:Categorization id="california_californiafloodplain">
+	<measurement:BinaryCoding id="california_californiafloodplain">
 		<observation:hasObservable>
 			<geofeatures:Floodplain />
 		</observation:hasObservable>
@@ -794,7 +794,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</observation:Categorization>
+	</measurement:BinaryCoding>
 
 	<measurement:Measurement id="FloodplainWidth">
 		<observation:hasObservable>
@@ -3092,77 +3092,63 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!--
-		soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use
-		soil_ph2 for grasslands and deserts and soil_ph1 for all other
-		ecosystem types
-	-->
+	<!--soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 for 
+		grasslands and deserts and soil_ph1 for all other ecosystem types-->
 
-	<measurement:Ranking id="california_soil_ph_0_30_oc">
+<measurement:Ranking id="SoilpH_0_30">
+	<observation:hasObservable>
+		<habitat:SoilPh />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:SoilpH_0_30</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>396581.821</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3756631.02</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
+
+<!-- Commenting out soilpH30_100 for now: part of the problem might be "duplicate" layers before
+ARIES can handle them in a rule-based system?
+ 	<measurement:Ranking id="SoilpH_30_100">
 		<observation:hasObservable>
 			<habitat:SoilPh />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:soil_ph_0_30_oc
-				</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>phwater</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:SoilpH_30_100</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3693786.6285227924
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>395918.61400854855
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3757176.1154322056
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>472740.9629056087
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26911
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>396581.821</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3756631.02</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
-
-	<measurement:Ranking id="california_soil_ph_30_100_oc">
-		<observation:hasObservable>
-			<habitat:SoilPh />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:soil_ph_30_100_oc
-				</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>phwater</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3693786.6285227924
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>395918.61400854855
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3757176.1154322056
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>472740.9629056087
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26911
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
 	<measurement:Ranking id="SoilpH_0_30_puget">
 		<observation:hasObservable>
