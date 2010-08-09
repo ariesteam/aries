@@ -140,11 +140,11 @@
 (defmodel flood-sink 'floodService:FloodSink
   (classification 'floodService:FloodSink
                   :units      "mm" 
-                  [30000 90000]     'floodService:VeryHighSink
-                  [10000 30000]     'floodService:HighSink
-                  [3000 10000]      'floodService:ModerateSink
-                  [900 3000]        'floodService:LowSink
-                  [0 900]           'floodService:VeryLowSink))
+                  [30000 90000]     'floodService:VeryHighFloodSink
+                  [10000 30000]     'floodService:HighFloodSink
+                  [3000 10000]      'floodService:ModerateFloodSink
+                  [900 3000]        'floodService:LowFloodSink
+                  [0 900]           'floodService:VeryLowFloodSink))
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage 'floodService:GreenInfrastructureStorage

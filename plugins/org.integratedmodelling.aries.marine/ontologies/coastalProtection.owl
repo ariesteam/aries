@@ -51,6 +51,42 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow -->
+
+    <owl:Class rdf:about="&eserv;ActualFlow"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink -->
+
+    <owl:Class rdf:about="&eserv;ActualSink"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource -->
+
+    <owl:Class rdf:about="&eserv;ActualSource"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse -->
+
+    <owl:Class rdf:about="&eserv;ActualUse"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow -->
+
+    <owl:Class rdf:about="&eserv;BlockedFlow"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse -->
+
+    <owl:Class rdf:about="&eserv;BlockedUse"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget -->
 
     <owl:Class rdf:about="&eserv;ContingentPolicyTarget"/>
@@ -63,6 +99,54 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSinkTrait -->
+
+    <owl:Class rdf:about="&eserv;FlowRelatedSinkTrait">
+        <rdfs:subClassOf rdf:resource="&eserv;FlowRelatedTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSourceTrait -->
+
+    <owl:Class rdf:about="&eserv;FlowRelatedSourceTrait">
+        <rdfs:subClassOf rdf:resource="&eserv;FlowRelatedTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait -->
+
+    <owl:Class rdf:about="&eserv;FlowRelatedTrait"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#FlowTrait -->
+
+    <owl:Class rdf:about="&eserv;FlowTrait">
+        <rdfs:subClassOf rdf:resource="&eserv;FlowRelatedTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink -->
+
+    <owl:Class rdf:about="&eserv;InaccessibleSink"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource -->
+
+    <owl:Class rdf:about="&eserv;InaccessibleSource"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse -->
+
+    <owl:Class rdf:about="&eserv;InaccessibleUse"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource -->
 
     <owl:Class rdf:about="&eserv;NegativeSource"/>
@@ -72,6 +156,32 @@
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink -->
 
     <owl:Class rdf:about="&eserv;PositiveSink"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#Possible -->
+
+    <owl:Class rdf:about="&eserv;Possible">
+        <rdfs:comment></rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow -->
+
+    <owl:Class rdf:about="&eserv;PossibleFlow"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource -->
+
+    <owl:Class rdf:about="&eserv;PossibleSource"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse -->
+
+    <owl:Class rdf:about="&eserv;PossibleUse"/>
     
 
 
@@ -99,12 +209,158 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink -->
+
+    <owl:Class rdf:about="&eserv;TheoreticalSink"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource -->
+
+    <owl:Class rdf:about="&eserv;TheoreticalSource"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse -->
+
+    <owl:Class rdf:about="&eserv;TheoreticalUse"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait -->
+
+    <owl:Class rdf:about="&eserv;UseTrait">
+        <rdfs:subClassOf rdf:resource="&eserv;FlowRelatedTrait"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalFloodWaterFlow -->
+
+    <owl:Class rdf:about="#ActualCoastalFloodWaterFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
+        <rdfs:comment
+            >Actual coastal flood flows when accounting for water flow direction and sink effects</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalFloodWaterSink -->
+
+    <owl:Class rdf:about="#ActualCoastalFloodWaterSink">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
+        <rdfs:comment
+            >Sinks that actively absorb flood water (i.e., have enough sink strength to reduce energy from coastal flood waters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalFloodWaterSource -->
+
+    <owl:Class rdf:about="#ActualCoastalFloodWaterSource">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
+        <rdfs:comment
+            >Areas susceptible to coastal flooding  that have coastal or inland populations vulnerable to flooding.  These coastal or inland populations do get hit with flood waters due to either inadequate sink strengths or too large a quantity of flood water relative to the sink.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalFloodWaterUse -->
+
+    <owl:Class rdf:about="#ActualCoastalFloodWaterUse">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
+        <rdfs:comment
+            >Potential coastal or inland beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalWindFlow -->
+
+    <owl:Class rdf:about="#ActualCoastalWindFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
+        <rdfs:comment
+            >Actual coastal wind flows when accounting for coastal wind direction and sink effects</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalWindSink -->
+
+    <owl:Class rdf:about="#ActualCoastalWindSink">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
+        <rdfs:comment
+            >Sinks that actively slow wind (i.e., have enough vegetation cover and height  to reduce energy from coastal wind).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalWindSource -->
+
+    <owl:Class rdf:about="#ActualCoastalWindSource">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
+        <rdfs:comment
+            >Areas susceptible to damage from coastal winds that have coastal or inland populations vulnerable to wind damage.  These coastal or inland populations do get hit with wind damage due to either inadequate sink strengths or wind speeds too high relative to the sink.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualCoastalWindUse -->
+
+    <owl:Class rdf:about="#ActualCoastalWindUse">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
+        <rdfs:comment
+            >Potential coastal or inland beneficiaries of wind mitigation that are hit with wind damage due to too high speed winds or inadequate sink strength.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BathymetricSlope -->
 
     <owl:Class rdf:about="#BathymetricSlope">
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
         <rdfs:comment>Undersea slope</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BeneficiariesOfCoastalFloodWaterRegulation -->
+
+    <owl:Class rdf:about="#BeneficiariesOfCoastalFloodWaterRegulation">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
+        <rdfs:comment
+            >Populations that actually receive coastal flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BeneficiariesOfCoastalWindRegulation -->
+
+    <owl:Class rdf:about="#BeneficiariesOfCoastalWindRegulation">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
+        <rdfs:comment
+            >Populations that actually receive wind regulation benefits:: they are vulnerable to high-speed winds, but have a sink located between them and the source of offshore wind that reduces the magnitude of wind damage.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BlockedCoastalFloodWaterFlow -->
+
+    <owl:Class rdf:about="#BlockedCoastalFloodWaterFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
+        <rdfs:comment
+            >The coastal flood flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BlockedCoastalWindFlow -->
+
+    <owl:Class rdf:about="#BlockedCoastalWindFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
+        <rdfs:comment
+            >The coastal wind flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of wind sinks).</rdfs:comment>
     </owl:Class>
     
 
@@ -225,6 +481,66 @@
 
     <owl:Class rdf:about="#HighTropicalStormProbability">
         <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalFloodWaterBeneficiaries -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalFloodWaterBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
+        <rdfs:comment
+            >Potential beneficiaries of coastal flood control that do not receive enough flood water to be at risk, due to the direction and magnitude of coastal flood flows.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalFloodWaterSink -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalFloodWaterSink">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
+        <rdfs:comment
+            >A flood sink region capable of reducing the energy of coastal flood water that does not perform this function due to inadequate size of coastal waves typical to the area.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalFloodWaterSource -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalFloodWaterSource">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
+        <rdfs:comment
+            >Potential sources of flood water that do not cause flooding to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting flood sources to vulnerable populations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalWindBeneficiaries -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalWindBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
+        <rdfs:comment
+            >Potential beneficiaries of coastal wind mitigation that do not receive enough high speed winds to be at risk, due to the direction and magnitude of coastal winds.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalWindSink -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalWindSink">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
+        <rdfs:comment
+            >A wind sink region capable of reducing the energy of coastal wind that does not perform this function due to inadequate speed of coastal wind typical to the area.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#InaccessibleCoastalWindSource -->
+
+    <owl:Class rdf:about="#InaccessibleCoastalWindSource">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
+        <rdfs:comment
+            >Potential sources of coastal wind that do not cause damage to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting wind sources to vulnerable populations.</rdfs:comment>
     </owl:Class>
     
 
@@ -407,11 +723,131 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalFloodWaterBeneficiaries -->
+
+    <owl:Class rdf:about="#PossibleCoastalFloodWaterBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
+        <rdfs:comment
+            >Populations vulnerable to floods (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of coastal flood waters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalFloodWaterFlow -->
+
+    <owl:Class rdf:about="#PossibleCoastalFloodWaterFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
+        <rdfs:comment
+            >Flood flows when accounting for flow topology (i.e., coastal floodwater movement directions) but not accounting for sinks.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalFloodWaterSource -->
+
+    <owl:Class rdf:about="#PossibleCoastalFloodWaterSource">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
+        <rdfs:comment
+            >Sources of coastal floodwater when accounting for flow topology (flow directions) and the presence of coastal or inland users but not accounting for the action of flood sinks that reduce the energy of coastal flood waters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalWindBeneficiaries -->
+
+    <owl:Class rdf:about="#PossibleCoastalWindBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
+        <rdfs:comment
+            >Populations vulnerable to high speed coastal winds (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of high-speed coastal wind.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalWindFlow -->
+
+    <owl:Class rdf:about="#PossibleCoastalWindFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
+        <rdfs:comment
+            >Flood flows when accounting for flow topology (i.e., coastal wind directions) but not accounting for sinks.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PossibleCoastalWindSource -->
+
+    <owl:Class rdf:about="#PossibleCoastalWindSource">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
+        <rdfs:comment
+            >Sources of coastal wind when accounting for flow topology (wind directions) and the presence of coastal or inland users but not accounting for the action of sinks that reduce the energy of coastal wind.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassDensity -->
 
     <owl:Class rdf:about="#SeagrassDensity">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalFloodWaterBeneficiaries -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalFloodWaterBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
+        <rdfs:comment
+            >Potential beneficiaries of coastal flood control, including both actually vulnerable populations and those in areas that are of low or irregular flood risk or who are protected from flooding by strong sinks (i.e., are unlikely to flood).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalFloodWaterSink -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalFloodWaterSink">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
+        <rdfs:comment
+            >Areas capable of reducing the energy of coastal flood waters, whether or not they receive enough flood water to perform this function.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalFloodWaterSource -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalFloodWaterSource">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:comment
+            >Areas generating coastal flood water that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have coastal or inland populations vulnerable to flooding, or have strong sinks capable of reducing the energy of coastal flood waters.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalWindBeneficiaries -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalWindBeneficiaries">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
+        <rdfs:comment
+            >Potential beneficiaries of coastal wind regulation, including both actually vulnerable populations and those in areas that are of low or irregular winds or who are protected from wind damage by strong sinks (i.e., are unlikely to receive damaging winds due to these sinks).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalWindSink -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalWindSink">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
+        <rdfs:comment
+            >Areas capable of reducing the energy of coastal wind, whether or not they receive enough high-speed wind to perform this function.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TheoreticalCoastalWindSource -->
+
+    <owl:Class rdf:about="#TheoreticalCoastalWindSource">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:comment
+            >Areas generating high-speed coastal winds that could contribute to wind damage, regardless of whether or not they create enough quantity to contribute to substantial damage, have coastal or inland populations vulnerable to wind damage, or have strong sinks capable of reducing the energy of high-speed coastal winds.</rdfs:comment>
     </owl:Class>
     
 
@@ -497,11 +933,18 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSlope"/>
-            <rdf:Description rdf:about="#LowSlope"/>
-            <rdf:Description rdf:about="#ModerateSlope"/>
-            <rdf:Description rdf:about="#VeryHighSlope"/>
-            <rdf:Description rdf:about="#VeryLowSlope"/>
+            <rdf:Description rdf:about="#HighBleaching"/>
+            <rdf:Description rdf:about="#ModerateBleaching"/>
+            <rdf:Description rdf:about="#NoBleaching"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighRiskToLife"/>
+            <rdf:Description rdf:about="#LowRiskToLife"/>
+            <rdf:Description rdf:about="#ModerateRiskToLife"/>
+            <rdf:Description rdf:about="#NoRiskToLife"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -516,23 +959,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighRiskToAssets"/>
-            <rdf:Description rdf:about="#LowRiskToAssets"/>
-            <rdf:Description rdf:about="#ModerateRiskToAssets"/>
-            <rdf:Description rdf:about="#NoRiskToAssets"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBleaching"/>
-            <rdf:Description rdf:about="#ModerateBleaching"/>
-            <rdf:Description rdf:about="#NoBleaching"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighMangroveWidth"/>
             <rdf:Description rdf:about="#LowMangroveWidth"/>
             <rdf:Description rdf:about="#ModerateMangroveWidth"/>
@@ -542,10 +968,20 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighRiskToLife"/>
-            <rdf:Description rdf:about="#LowRiskToLife"/>
-            <rdf:Description rdf:about="#ModerateRiskToLife"/>
-            <rdf:Description rdf:about="#NoRiskToLife"/>
+            <rdf:Description rdf:about="#HighSlope"/>
+            <rdf:Description rdf:about="#LowSlope"/>
+            <rdf:Description rdf:about="#ModerateSlope"/>
+            <rdf:Description rdf:about="#VeryHighSlope"/>
+            <rdf:Description rdf:about="#VeryLowSlope"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighRiskToAssets"/>
+            <rdf:Description rdf:about="#LowRiskToAssets"/>
+            <rdf:Description rdf:about="#ModerateRiskToAssets"/>
+            <rdf:Description rdf:about="#NoRiskToAssets"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
