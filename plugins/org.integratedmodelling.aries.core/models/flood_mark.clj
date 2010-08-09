@@ -121,14 +121,13 @@
                   [12 30]    'floodService:LowEvapotranspiration
                   [0 12]     'floodService:VeryLowEvapotranspiration)) 
 
-;;GARY: Do we need to convert to mm, or should it do it automatically?  (in=25.4 mm)
 (defmodel infiltration 'floodService:SoilInfiltrationClass
-  (classification (measurement 'habitat:Infiltration "in")
-                  [0.976 :>]       'floodService:VeryHighSoilInfiltration
-                  [0.519 0.976]    'floodService:HighSoilInfiltration
-                  [0.327 0.519]    'floodService:ModerateSoilInfiltration
-                  [0.133 0.327]    'floodService:LowSoilInfiltration
-                  [0 0.133]        'floodService:VeryLowSoilInfiltration)) 
+  (classification (measurement 'habitat:AnnualInfiltration "mm")
+                  [25 :>]   'floodService:VeryHighSoilInfiltration
+                  [13 25]   'floodService:HighSoilInfiltration
+                  [8 13]    'floodService:ModerateSoilInfiltration
+                  [3 8]     'floodService:LowSoilInfiltration
+                  [0 3]     'floodService:VeryLowSoilInfiltration))
 
 ;;This only presence/absence data as data are lacking for southern California.
 (defmodel dam-storage 'floodService:DamStorageClass

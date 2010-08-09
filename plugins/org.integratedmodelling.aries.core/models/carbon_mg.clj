@@ -3,8 +3,6 @@
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
-;;This model is for western Washington State
-
 ;; these are the undiscretization statements, necessary for training purposes.
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 ;;KB: Should this actually be sequestration?  And should discretization on the two 
@@ -69,11 +67,12 @@
 		[20 40] 'carbonService:LowVegetationCover
 		[1 20]  'carbonService:VeryLowVegetationCover))
 
+;; Values of "1" correspond to high pH (>7.3), "2" to low pH (<5.5), "3-4" to intermediate pH (5.5-7.3)
 (defmodel soil-ph 'carbonService:Soilph
-  (classification (ranking 'habitat:SoilPh)
-                  [7.3 :>]       'carbonService:HighPh
-                  [5.5 7.3]      'carbonService:ModeratePh
-                  [:< 5.5]       'carbonService:LowPh))
+		 (classification (ranking 'habitat:SoilPh)
+        #{3 4}  'carbonService:HighPh
+        2       'carbonService:ModeratePh
+        1       'carbonService:LowPh))
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
 		 (classification (ranking 'habitat:SummerHighWinterLow)

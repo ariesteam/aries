@@ -15,6 +15,7 @@
                   [0.01 75]     'carbonService:VeryLowStorage
                   [0 0.01]      'carbonService:NoStorage))
 
+;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage
   (classification 'carbonService:VegetationCarbonStorage
@@ -26,6 +27,7 @@
                   [0.01 40]       'carbonService:VeryLowVegetationStorage
                   [0 0.01]        'carbonService:NoVegetationStorage)) 				
 
+;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
   (classification 'carbonService:SoilCarbonStorage
@@ -37,6 +39,7 @@
                   [0.01 50]      'carbonService:VeryLowSoilStorage
                   [0 0.01]       'carbonService:NoSoilStorage))
 
+;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration
                   :units      "t/ha*year"

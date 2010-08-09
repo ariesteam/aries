@@ -90,10 +90,34 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!--
-		Native units are in inches, convert to mm for consistency with other
-		data sources
-	-->
+<!--Native units are in inches, convert to mm for consistency with other data sources-->
+<measurement:Measurement id="california_infiltration_wch">
+	<observation:hasObservable>
+		<habitat:AnnualInfiltration />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Mean annual infiltration, 1951-2002, modeled
+		using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:infiltration_wch</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+			<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<measurement:Measurement id="AnnualPrecip">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
@@ -219,7 +243,7 @@
 	</measurement:Measurement>
 
 <!-- below is "Deep percolation," as modeled with the GWAM model for West Coyote Hills.  Worth checking to make sure this is
-equivalent to groundwwater recharge, though it makes sense that it should be -->
+equivalent to groundwater recharge, though it makes sense that it should be -->
 	<measurement:Measurement id="california_percolation_wch">
 		<observation:hasObservable>
 			<habitat:AnnualRecharge />
@@ -227,12 +251,13 @@ equivalent to groundwwater recharge, though it makes sense that it should be -->
 		<rdfs:comment>Data source: Mean annual deep percolation, 1951-2002, modeled
 			using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<measurement:unit>in/year</measurement:unit>
+		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>california:percolation_wch</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -253,12 +278,13 @@ equivalent to groundwwater recharge, though it makes sense that it should be -->
 		<rdfs:comment>Data source: Mean annual runoff, 1951-2002, modeled
 			using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<measurement:unit>in/year</measurement:unit>
+		<measurement:unit>mm</measurement:unit>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>california:runoff_wch</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
+			<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1156,32 +1182,6 @@ equivalent to groundwwater recharge, though it makes sense that it should be -->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
-
-<measurement:Measurement id="california_infiltration_wch">
-	<observation:hasObservable>
-		<habitat:Infiltration />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: Mean annual infiltration, 1951-2002, modeled
-		using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<measurement:unit>in/year</measurement:unit>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>california:infiltration_wch</geospace:hasCoverageId>
-			<geospace:hasValueAttribute>totavgann</geospace:hasValueAttribute>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3751022.4715446113</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>409664.2808525585</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>3752274.098726226</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>413096.65288435936</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_jan">
 		<observation:hasObservable>
@@ -3639,14 +3639,14 @@ equivalent to groundwwater recharge, though it makes sense that it should be -->
 
 	<measurement:Measurement id="well_tested_rate">
 		<observation:hasObservable>
-			<waterSupplyService:WellCapacity />
+			<waterSupplyService:AnnualWellCapacity />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: Arizona Department of Water Resources
 			Wells-55 database</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx
 		</metadata:hasURL>
-		<measurement:unit>mm/year</measurement:unit>
+		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs

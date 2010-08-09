@@ -61,7 +61,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasObservable>
 			<habitat:AnnualRunoff />
 		</observation:hasObservable>
-			<measurement:unit>mm/year</measurement:unit>
+			<measurement:unit>mm</measurement:unit>
 			<rdfs:comment>Data source: University of New Hampshire GRDC Composite Runoff Fields</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
 			<metadata:hasURL>http://www.grdc.sr.unh.edu/</metadata:hasURL>			
@@ -991,7 +991,7 @@ Slope in degrees for Puget Sound & Madagascar
 
 <!--  For use in USLE/RUSLE -->
 
-	<measurement:Ranking id="rfactor_1980">
+<!--  	<measurement:Ranking id="rfactor_1980">
 		<observation:hasObservable>
 			<soilretentionEcology:RainfallRunoffErosivityIndex />
 		</observation:hasObservable>
@@ -1014,7 +1014,7 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
 <measurement:Ranking id="puget_dam_storage_puget">
 	<observation:hasObservable>
@@ -1310,7 +1310,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
 	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
 	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
-	<measurement:Ranking id="global_soil_ph">
+<!--  	<measurement:Ranking id="global_soil_ph">
 		<observation:hasObservable>
 			<habitat:SoilPh />
 		</observation:hasObservable>
@@ -1333,7 +1333,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>	
+	</measurement:Ranking>	-->
 	
 	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
 		observable instance. Using the same observable will just pick one of the two
@@ -1341,7 +1341,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
 	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
 	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
-	<measurement:Ranking id="soil_ph1">
+<!--  	<measurement:Ranking id="soil_ph1">
 		<observation:hasObservable>
 			<habitat:SoilPh />
 		</observation:hasObservable>
@@ -1364,7 +1364,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 	
 	<observation:Categorization id="global_globalsoiltexture">
 			<observation:hasObservable>
