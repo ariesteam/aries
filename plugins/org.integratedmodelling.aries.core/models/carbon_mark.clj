@@ -15,6 +15,8 @@
                   [0.01 75]     'carbonService:VeryLowStorage
                   [0 0.01]      'carbonService:NoStorage))
 
+;;Note: 500 t/ha is the max sum of vegetation and soil carbon storage in Mark's study area.  
+;; Could change the upper bound discretization on that one for veg C storage, stored C release, net C uptake...
 ;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage 'carbonService:VegetationCarbonStorage

@@ -22,8 +22,9 @@
 		;;[1200 2400] 	'soilretentionEcology:HighAnnualRunoff
 		;;[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
-;;check snowmelt data for the San Pedro: see if it's an at all significant component (e.g., which 
-;; mountain ranges does it fall on: Huachucas/Rincons, or others too?
+;;Snowmelt data (currently only at global scale) say the only snowmelt in AZ is from the White 
+;; Mtns & Colorado Plateau - none for the Sky Islands.  Keep snowmelt out of the model unless we
+;; get a local dataset.
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model

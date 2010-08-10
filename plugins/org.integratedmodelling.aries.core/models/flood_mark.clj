@@ -42,6 +42,8 @@
 ;; ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
+;;Error in Ferd's code in handling this layer: removing from the context list and setting the prior
+;; at a uniform level reflecting the data for the site of interest.
 (defmodel rainfall-erosivity 'floodService:RainfallErosivityClass
   (classification (ranking 'soilretentionEcology:RainfallRunoffErosivityIndex)
                   [90 :>]  'floodService:VeryHighRainfallErosivity
@@ -51,7 +53,7 @@
                   [:< 29]  'floodService:VeryLowRainfallErosivity)) 
 
 ;;Use runoff as training data here
-(defmodel flood-source-value 'floodService:FloodSourceValue
+(defmodel flood-source-training 'floodService:FloodSourceValue
   (classification (measurement 'habitat:AnnualRunoff "mm")
                   [:< 200]    'floodService:VeryLowFloodSource
                   [200 600]   'floodService:LowFloodSource
@@ -59,11 +61,19 @@
                   [1200 2400] 'floodService:HighFloodSource
                   [2400 :>]   'floodService:VeryHighFloodSource))
 
+(defmodel flood-source-value 'floodService:FloodSourceValue
+  (classification 'floodService:FloodSourceValue
+                  [0 200]        'floodService:VeryLowFloodSource
+                  [200 600]      'floodService:LowFloodSource
+                  [600 1200]     'floodService:ModerateFloodSource
+                  [1200 2400]    'floodService:HighFloodSource
+                  [2400 11000]   'floodService:VeryHighFloodSource))
+
 ;; Flood source probability, ad hoc method
 (defmodel source 'floodService:FloodSource
   (bayesian 'floodService:FloodSource 
             :import   "aries.core::FloodSourceValueAdHocMark.xdsl"
-            :context  (precipitation imperviousness rainfall-erosivity)
+            :context  (precipitation imperviousness)
             :keep     ('floodService:FloodSourceValue)
             :observed (flood-source-value)))
 
@@ -174,10 +184,9 @@
   "Interface to Flood resident use bayesian network"
   (bayesian 'floodService:FloodSink 
             :import   "aries.core::FloodSinkMark.xdsl"
-            :keep     ('floodService:FloodSink 
-                       'floodService:GreenInfrastructureStorage
-                       'floodService:GrayInfrastructureStorage)
-            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage)))
+            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage)
+            :observed (flood-sink) 
+            :keep     ('floodService:FloodSink)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -188,9 +197,9 @@
 
 (defmodel floodplains 'floodService:Floodplains
   "Presence of a floodplain in given context"
-  (classification (binary-coding 'geofeatures:Floodplain)
-                  0 'floodService:NotInFloodplain
-                  1 'floodService:InFloodplain))
+  (classification (categorization 'geofeatures:Floodplain)
+                  #{"ANI" "X"}       'floodService:NotInFloodplain
+                  #{"A" "AO" "X500"} 'floodService:InFloodplain))
 
 (defmodel public-asset 'floodService:PublicAsset
   "Public assets are defined as presence of highways, railways or both."
@@ -212,22 +221,20 @@
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-use 'floodService:FloodFarmersUse 
   (binary-coding 'floodService:FloodFarmersUse
-       :state #(if (and (= (:floodplains %) 1.0)
-                        (= (:farmlandpresent %) 1.0))
+       :state #(if (and (= (tl/conc 'floodService:InFloodplain)   (:floodplains %))
+                        (= (tl/conc 'floodService:FarmlandPresent)(:farmland %)))
                     1
                     0)
-       :context ((binary-coding 'floodService:FarmlandPresent :as farmlandpresent)
-                 (binary-coding 'geofeatures:Floodplain :as floodplains)))) 
+       :context (farmland floodplains)))
 
 ;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel public-use 'floodService:FloodPublicAssetsUse
   (binary-coding 'floodService:FloodPublicAssetsUse
-       :state #(if (and (= (:floodplains %) 1.0)
-                        (= (:publicasset %) 1.0))
+       :state #(if (and (= (tl/conc 'floodService:InFloodplain)       (:floodplains %))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                     1
                     0)
-       :context ((binary-coding 'floodService:PublicAsset :as publicasset)
-                 (binary-coding 'geofeatures:Floodplain :as floodplains))))
+       :context  (public-asset floodplains)))
 
 ;; ---------------------------------------------------------------------------------------------------          
 ;; overall models 
@@ -237,13 +244,13 @@
 (defmodel data-farmers 'floodService:AvoidedDamageToFarms 
   (identification 'floodService:AvoidedDamageToFarms 
                   :context (source :as source
-                            sink :as sink
+                            ;;sink :as sink
                             farmers-use :as use)))
 
 (defmodel data-public 'floodService:AvoidedDamageToPublicAssets 
   (identification 'floodService:AvoidedDamageToPublicAssets 
                   :context (source :as source
-                            sink :as sink
+                            ;;sink :as sink
                             public-use :as use)))
 
 ;;(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
