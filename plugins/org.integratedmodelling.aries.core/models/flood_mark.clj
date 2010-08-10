@@ -113,6 +113,9 @@
                   [20 40]  'floodService:LowVegetationCover
                   [0 20]   'floodService:VeryLowVegetationCover))
 
+;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
+;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
+;; WCH but change if you ran it again for Southern California.
 (defmodel evapotranspiration 'floodService:EvapotranspirationClass
   (classification (measurement 'habitat:ActualEvapotranspiration "mm")
                   [90 :>]    'floodService:VeryHighEvapotranspiration
@@ -174,8 +177,7 @@
             :keep     ('floodService:FloodSink 
                        'floodService:GreenInfrastructureStorage
                        'floodService:GrayInfrastructureStorage)
-            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage
-                        infiltration evapotranspiration)))
+            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
