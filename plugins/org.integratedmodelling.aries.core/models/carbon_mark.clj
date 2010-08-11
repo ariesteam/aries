@@ -201,9 +201,8 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 8
-        :save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-simple use-simple)))
-
 
 
 ;; ----------------------------------------------------------------------------------------------
