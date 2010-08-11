@@ -78,12 +78,12 @@
         (time
          (do
            (println "Updating" (count use-points) "carrier caches...")
-           (dorun (pmap
-                   (fn [use-id use-capacity]
-                     (print \*) (flush)
-                     (swap! (get-in cache-layer use-id) (constantly (get-carrier-list use-capacity))))
-                   use-points
-                   use-values))
+           (doseq [_ (pmap
+                      (fn [use-id use-capacity]
+                        (swap! (get-in cache-layer use-id) (constantly (get-carrier-list use-capacity))))
+                      use-points
+                      use-values)]
+             (print "*") (flush))
            (println "\nAll done.")))))
     (println "Simulation complete. Returning the cache-layer.")
     (map-matrix (& seq deref) cache-layer)))

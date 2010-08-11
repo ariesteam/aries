@@ -85,6 +85,7 @@
                             #(rv-min (*_ max-flowpaths %) total-source))
                           (p *_ max-flowpaths))]
       (map-matrix #(if (not= _0_ %) (sink-amount %) _0_) sink-layer))))
+(def theoretical-sink (memoize theoretical-sink))
 
 (defn actual-sink
   "Returns a matrix of RVs, in which each cell contains the fraction
@@ -94,6 +95,7 @@
                          (for [cache (remove nil? (matrix2seq cache-layer))]
                            (:sink-effects cache)))]
     (make-matrix (get-rows cache-layer) (get-cols cache-layer) #(get coord-map % _0_))))
+(def actual-sink (memoize actual-sink))
 
 (defn theoretical-use
   "If *use-type* is finite, return use-layer. Else return a new layer
