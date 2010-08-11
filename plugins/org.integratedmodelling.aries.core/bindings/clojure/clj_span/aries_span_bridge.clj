@@ -265,7 +265,8 @@
       (println "(Pausing 10 seconds)")
       (Thread/sleep 10000)
       (if (string? save-file)
-        (save-span-layers save-file source-layer sink-layer use-layer flow-layers)
+        (do (println "Writing extracted SPAN layers to" save-file "and exiting early.")
+            (save-span-layers save-file source-layer sink-layer use-layer flow-layers))
         (run-span (remove-nil-val-entries
                    {:source-layer       source-layer
                     :source-threshold   source-threshold

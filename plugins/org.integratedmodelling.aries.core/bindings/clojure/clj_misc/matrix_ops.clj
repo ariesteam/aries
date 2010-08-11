@@ -218,6 +218,15 @@
          (printf format-string elt))
        (newline))))
 
+(defn print-matrix-rotated
+  [matrix]
+  (let [rows (get-rows matrix)
+        cols (get-cols matrix)]
+    (dotimes [j cols]
+      (dotimes [i rows]
+        (printf "%s" (get-in matrix [(- (dec rows) i) j])))
+      (newline))))
+
 (defn matrix-mult
   "Returns a new matrix whose values are the element-by-element
    products of the values in A and B."

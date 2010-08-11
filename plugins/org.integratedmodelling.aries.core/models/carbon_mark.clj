@@ -199,11 +199,13 @@
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :rv-max-states      100
+        :rv-max-states      10
         :downscaling-factor 8
-        ;;:save-file          "/home/gjohnson/code/clojure/projects/clj-span/resources/carbon_data.clj"
+        :save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-simple use-simple)))
-		
+
+
+
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)
 ;; observations that are specifically tagged for a scenario will be picked up automatically

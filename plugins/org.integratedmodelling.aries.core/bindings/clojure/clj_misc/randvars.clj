@@ -148,6 +148,12 @@
         (X (apply max below-x))
         0.0)))
 
+(defn rv-below?
+  [X x]
+  (> (rv-cdf-lookup X x) 0.5))
+
+(def rv-above? (complement rv-below?))
+
 (defn- sum-discrepancy
   ([[p1 p2]]
      (Math/abs (- (apply + p1) (apply + p2))))
