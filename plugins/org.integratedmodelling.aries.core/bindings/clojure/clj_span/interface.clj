@@ -22,7 +22,8 @@
 ;;; functions.
 
 (ns clj-span.interface
-  (:use [clj-misc.utils      :only (& mapmap)]
+  (:use [clj-misc.randvars   :only (_0_)]
+        [clj-misc.utils      :only (& p mapmap)]
         [clj-misc.matrix-ops :only (matrix2seq matrix2coord-map print-matrix get-rows get-cols in-bounds?)]))
 
 (defn- select-location
@@ -119,5 +120,5 @@
    (fn [label]
      (let [[_ word1 word2] (re-find #"(\w+)\s+-\s+(\w+)" label)]
        (keyword (str (.toLowerCase word2) \- (.toLowerCase word1)))))
-   (fn [closure] (& matrix2coord-map closure))
+   (fn [closure] (& (p matrix2coord-map _0_) closure))
    results-menu))

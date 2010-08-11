@@ -81,6 +81,38 @@
    represented as probability distributions {rationals -> doubles}.
    NaN state values are converted to 0s."
   [ds rows cols]
+  (let [n             (* rows cols)
+        to-rationals  (p map #(if (Double/isNaN %) 0 (rationalize %)))
+        get-midpoints #(map (fn [next prev] (/ (- next prev) 2)) (rest %) %)]
+    (if (and (probabilistic? ds) (not (binary? ds)))
+      (if (encodes-continuous-distribution? ds)
+        ;; sampled continuous distributions
+        ;; FIXME: How is missing information represented?
+        ;; FIXME: Evil hack warning! Continuous RV arithmetic is
+        ;; broken so I'm going to make these all discrete
+        ;; distributions which use the range midpoints as their
+        ;; states.
+        (let [bounds                (get-dist-breakpoints ds)
+              unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
+              unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
+          (if (or unbounded-from-below? unbounded-from-above?)
+            (throw (Exception. "All undiscretized bounds must be closed above and below.")))
+          (let [prob-dist (apply create-struct (to-rationals (get-midpoints bounds)))]
+            (for [idx (range n)]
+              (with-meta (apply struct prob-dist (get-probabilities ds idx) disc-type)))))
+        ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
+        (let [prob-dist (apply create-struct (get-possible-states ds))]
+          (for [idx (range n)]
+            (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
+      ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
+      (for [value (to-rationals (get-data ds))]
+        (with-meta (array-map value 1.0) disc-type)))))
+
+(defn- unpack-datasource-orig
+  "Returns a seq of length n of the values in ds,
+   represented as probability distributions {rationals -> doubles}.
+   NaN state values are converted to 0s."
+  [ds rows cols]
   (let [n            (* rows cols)
         to-rationals (p map #(if (Double/isNaN %) 0 (rationalize %)))]
     (if (and (probabilistic? ds) (not (binary? ds)))

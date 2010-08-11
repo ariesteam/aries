@@ -155,7 +155,7 @@
                                              scaled-sinks
                                              rows cols)
                                           sediment-carriers)))
-                          (pmap 
+                          (pmap
                            (fn [in-stream-id]
                              (let [source-ids       (source-map in-stream-id)
                                    source-values    (map (& deref scaled-sources) source-ids)
@@ -178,9 +178,8 @@
   (let [rows        (get-rows source-layer)
         cols        (get-cols source-layer)
         cache-layer (make-matrix rows cols (constantly (atom ())))
-        [source-map sink-map use-map] (pmap (&
-                                             (p move-points-into-stream-channel hydrosheds-layer stream-layer)
-                                             (p filter-matrix-for-coords (p not= _0_)))
+        [source-map sink-map use-map] (pmap (& (p move-points-into-stream-channel hydrosheds-layer stream-layer)
+                                               (p filter-matrix-for-coords (p not= _0_)))
                                             [source-layer sink-layer use-layer])
         [scaled-sources scaled-sinks] (pmap (p scale-by-stream-proximity floodplain-layer elevation-layer)
                                             [source-map   sink-map]

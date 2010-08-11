@@ -126,21 +126,79 @@
         (X (apply max below-x))
         0.0)))
 
+(defn- sum-discrepancy
+  ([[p1 p2]]
+     (Math/abs (- (apply + p1) (apply + p2))))
+  ([f [p1 p2]]
+     (Math/abs (- (apply + (map f p1)) (apply + (map f p2))))))
+
+(defn minimum-discrepancy-partition
+  "Given a sequence of sorted values, partition them into two
+   sequences (preserving their order), so as to minimize the
+   difference between their sums.  If an optional function f is passed
+   it will be applied to the values before they are summed."
+  ([values]
+     (let [num-values (count values)]
+       (if (< num-values 2)
+         (list values)
+         (let [partitions         (for [i (range 1 num-values)]
+                                    [(take i values) (drop i values)])
+               diffs-to-partitions (zipmap (map sum-discrepancy partitions)
+                                           partitions)]
+           (diffs-to-partitions (apply min (keys diffs-to-partitions)))))))
+  ([f values]
+     (let [num-values (count values)]
+       (if (< num-values 2)
+         (list values)
+         (let [partitions         (for [i (range 1 num-values)]
+                                    [(take i values) (drop i values)])
+               diffs-to-partitions (zipmap (map (p sum-discrepancy f) partitions)
+                                           partitions)]
+           (diffs-to-partitions (apply min (keys diffs-to-partitions))))))))
+
+(defn partition-by-probs
+  "Given a random variable X, returns a partition of its states which
+   attempts to minimize the difference between each partition's total
+   probability."
+  [max-partitions X]
+  (if-not (> (count X) max-partitions)
+    (map list X)
+    ;; hmm...this is a variation on the Number Partitioning Problem
+    ;; (NPP), which is NP-complete. Scheisse.  I'll apply the
+    ;; differencing algorithm repeatedly to successively smaller
+    ;; partitions until the total number is reached.
+    (let [X*           (sort X)
+          search-depth (int (/ (Math/log max-partitions) (Math/log 2)))]
+      (nth (iterate (p mapcat (p minimum-discrepancy-partition val))
+                    (list X*))
+           search-depth))))
+
 (defmulti rv-resample
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
   type)
 
 (defmethod rv-resample ::discrete-distribution
   [X]
-  (if-not (> (count X) *rv-max-states*)
+  (if (<= (count X) *rv-max-states*)
     X
-    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-      (with-meta
-        (into {}
-              (map #(vector (/ (apply + (keys %)) (count %))
-                            (apply + (vals %)))
-                   (my-partition-all partition-size (sort-by key X))))
-        (meta X)))))
+    (with-meta
+      (into {}
+            (map #(vector (/ (apply + (keys %)) (count %))
+                          (apply + (vals %)))
+                 (partition-by-probs *rv-max-states* X)))
+      (meta X))))
+
+;;(defmethod rv-resample ::discrete-distribution
+;;  [X]
+;;  (if-not (> (count X) *rv-max-states*)
+;;    X
+;;    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+;;      (with-meta
+;;        (into {}
+;;              (map #(vector (/ (apply + (keys %)) (count %))
+;;                            (apply + (vals %)))
+;;                   (my-partition-all partition-size (sort X))))
+;;        (meta X)))))
 
 (defmethod rv-resample ::continuous-distribution
   [X]

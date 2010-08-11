@@ -23,7 +23,7 @@
 
 (ns clj-misc.matrix-ops
   (:use [clojure.set    :only (map-invert)]
-        [clj-misc.utils :only (constraints-1.0 def- p &)]))
+        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries)]))
 
 (defn get-rows [matrix] (count matrix))
 (defn get-cols [matrix] (count (first matrix)))
@@ -92,9 +92,11 @@
   (apply concat matrix))
 
 (defn matrix2coord-map
-  [matrix]
-  (zipmap (for [i (get-rows matrix) j (get-cols matrix)] [i j])
-          (matrix2seq matrix)))
+  ([matrix]
+     (zipmap (for [i (range (get-rows matrix)) j (range (get-cols matrix))] [i j])
+             (matrix2seq matrix)))
+  ([nil-val matrix]
+     (remove-nil-val-entries nil-val (matrix2coord-map matrix))))
 
 (defn coord-map2matrix
   [rows cols nil-val coord-map]

@@ -92,7 +92,7 @@
                   [:< 5.5]       'carbonService:LowPh))
 
 ; use NLCD layers to infer anoxic vs. oxic
-(defmodel oxygen 'carbonService:SoilOxygenConditions 
+(defmodel soil-oxygen-conditions 'carbonService:SoilOxygenConditions 
   (classification (numeric-coding 'nlcd:NLCDNumeric)
                   #{90 95}   'carbonService:AnoxicSoils
                   :otherwise 'carbonService:OxicSoils))
@@ -145,7 +145,7 @@
                        'carbonService:SoilCarbonStorage
                        'carbonService:StoredCarbonRelease)
             :observed (net-carbon-uptake veg-soil-sequestration veg-soil-storage veg-storage soil-storage stored-carbon-release)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
+	 	 	:context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat actual-evapotranspiration vegetation-type land-use)))
 
 ;;Ask Gary again about "source-simple"
 (defmodel source-simple 'carbonService:CarbonSourceValue   
@@ -153,7 +153,7 @@
             :import   "aries.core::CarbonSourceValueMark.xdsl"
             :keep     ('carbonService:NetCarbonUptake)
             :observed (net-carbon-uptake)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat vegetation-type land-use)))
+	 	 	:context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check

@@ -159,8 +159,10 @@
                (doto out-map (.put (keyfn key) (valfn val))))))))
 
 (defn remove-nil-val-entries
-  [amap]
-  (into {} (remove (& nil? val) amap)))
+  ([amap]
+     (into {} (remove (& nil? val) amap)))
+  ([nil-val amap]
+     (into {} (remove (& (p = nil-val) val) amap))))
 
 (defn key-by-val
   "Returns the key from a map m whose corresponding value field is a
