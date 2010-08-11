@@ -110,7 +110,8 @@ public class SPANModel extends DefaultAbstractModel {
 			keyword.equals(":use-type")           ||
 			keyword.equals(":benefit-type")       ||
 			keyword.equals(":rv-max-states")      ||
-			keyword.equals(":downscaling-factor")) {
+			keyword.equals(":downscaling-factor") ||
+			keyword.equals(":save-file")) {
 			
 			// these must be sent back to Clojure, and a normal Map won't do - what a pain
 			flowParams = 

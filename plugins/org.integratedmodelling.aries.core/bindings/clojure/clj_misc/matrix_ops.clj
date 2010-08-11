@@ -143,6 +143,7 @@
   (let [orig-rows             (get-rows matrix)
         orig-cols             (get-cols matrix)]
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
+    (println "Distinct probability sums (pre-resampling):" (distinct (map #(apply + (keys %)) (matrix2seq matrix))))
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
       (let [lcm-rows              (least-common-multiple new-rows orig-rows)

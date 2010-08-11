@@ -201,6 +201,7 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 16
+        :save-file          "/home/gjohnson/code/clojure/projects/clj-span/resources/carbon_data.clj"
         :context (source-simple use-simple)))
 		
 ;; ----------------------------------------------------------------------------------------------
