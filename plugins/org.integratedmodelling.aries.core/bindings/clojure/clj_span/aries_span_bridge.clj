@@ -25,7 +25,8 @@
 ;;; clj-span.core/run-span.
 
 (ns clj-span.aries-span-bridge
-  (:use [clj-span.sediment-model :only (aggregate-flow-dirs)]
+  (:use [clj-span.core           :only (run-span)]
+        [clj-span.sediment-model :only (aggregate-flow-dirs)]
         [clj-misc.matrix-ops     :only (seq2matrix resample-matrix map-matrix)]
         [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0)]
         [clj-misc.randvars       :only (cont-type disc-type successive-sums)])
