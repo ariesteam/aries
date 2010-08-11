@@ -116,6 +116,12 @@
   (and (== 1 (count (distinct (map get-rows matrices))))
        (== 1 (count (distinct (map get-cols matrices))))))
 
+(defn invert-matrix
+  [matrix]
+  (vec (for [i (range (get-cols matrix))]
+         (vec (for [j (range (get-rows matrix))]
+                (get-in matrix [j i]))))))
+
 (defn map-matrix
   "Maps a function f over the values in matrix, returning a new
    matrix."
@@ -143,7 +149,7 @@
   (let [orig-rows             (get-rows matrix)
         orig-cols             (get-cols matrix)]
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
-    (println "Distinct probability sums (pre-resampling):" (distinct (map #(apply + (keys %)) (matrix2seq matrix))))
+    (println "Distinct probability sums (pre-resampling):" (distinct (map #(apply + (vals %)) (matrix2seq matrix))))
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
       (let [lcm-rows              (least-common-multiple new-rows orig-rows)
@@ -205,7 +211,7 @@
   "Pretty prints a matrix to *out* according to format-string. Index
    [0,0] will be on the bottom left corner."
   ([matrix]
-     (print-matrix matrix "%3s "))
+     (printf-matrix matrix "%3s "))
   ([matrix format-string]
      (doseq [row (reverse (seq matrix))]
        (doseq [elt (seq row)]

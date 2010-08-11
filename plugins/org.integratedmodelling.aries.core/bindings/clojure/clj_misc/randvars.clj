@@ -103,7 +103,7 @@
 (defmethod to-discrete-randvar ::continuous-distribution
   [continuous-RV]
   (with-meta
-    (let [sorted-RV (sort continuous-RV)]
+    (let [sorted-RV (sort-by key continuous-RV)]
       (zipmap (keys sorted-RV)
               (successive-differences (vals sorted-RV))))
     disc-type))
@@ -115,7 +115,7 @@
 (defmethod to-continuous-randvar ::discrete-distribution
   [discrete-RV]
   (with-meta
-    (let [sorted-RV (sort discrete-RV)]
+    (let [sorted-RV (sort-by key discrete-RV)]
       (zipmap (keys sorted-RV)
               (successive-sums (vals sorted-RV))))
     cont-type))
@@ -126,7 +126,7 @@
   [rv-type num-states valid-states]
   (constraints-1.0 {:pre [(#{:discrete :continuous} rv-type)]})
   (let [discrete-RV (with-meta
-                      (zipmap (map rationalize  (select-n-distinct num-states valid-states))
+                      (zipmap (map float (select-n-distinct num-states valid-states))
                               (map #(/ % 100.0) (select-n-summands num-states 100 1)))
                       disc-type)]
     (if (= rv-type :discrete)
@@ -139,11 +139,7 @@
 
 (defmethod rv-cdf-lookup ::discrete-distribution
   [X x]
-  (let [X* (to-continuous-randvar X)]
-    (or (X* x)
-        (if-let [below-x (seq (filter #(< % x) (keys X*)))]
-          (X* (apply max below-x))
-          0.0))))
+  (rv-cdf-lookup (to-continuous-randvar X) x))
 
 (defmethod rv-cdf-lookup ::continuous-distribution
   [X x]
@@ -167,8 +163,7 @@
      (let [num-values (count values)]
        (if (< num-values 2)
          (list values)
-         (let [partitions         (for [i (range 1 num-values)]
-                                    [(take i values) (drop i values)])
+         (let [partitions          (for [i (range 1 num-values)] (split-at i values))
                diffs-to-partitions (zipmap (map sum-discrepancy partitions)
                                            partitions)]
            (diffs-to-partitions (apply min (keys diffs-to-partitions)))))))
@@ -192,7 +187,7 @@
     ;; (NPP), which is NP-complete. Scheisse.  I'll apply the
     ;; differencing algorithm repeatedly to successively smaller
     ;; partitions until the total number is reached.
-    (let [X*           (sort X)
+    (let [X*           (sort-by key X)
           search-depth (int (/ (Math/log max-partitions) (Math/log 2)))]
       ;;(nth (iterate #(mapcat (fn [p] (minimum-discrepancy-partition val p)) %)
       (nth (iterate (p mapcat (p minimum-discrepancy-partition val))
@@ -203,33 +198,33 @@
   ;;"Returns a new random variable with <=*rv-max-states* states sampled from X."
   type)
 
-;;(defmethod rv-resample ::discrete-distribution
-;;  [X]
-;;  (if (<= (count X) *rv-max-states*)
-;;    X
-;;    (with-meta
-;;      (seq2map (partition-by-probs *rv-max-states* X)
-;;               #(vector (/ (apply + (keys %)) (count %))
-;;                        (apply + (vals %))))
-;;      (meta X))))
-
 (defmethod rv-resample ::discrete-distribution
   [X]
-  (if-not (> (count X) *rv-max-states*)
+  (if (<= (count X) *rv-max-states*)
     X
-    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-      (with-meta
-        (seq2map (my-partition-all partition-size (sort X))
-                 #(vector (/ (apply + (keys %)) (count %))
-                          (apply + (vals %))))
-        (meta X)))))
+    (with-meta
+      (seq2map (partition-by-probs *rv-max-states* X)
+               #(vector (/ (apply + (keys %)) (count %))
+                        (apply + (vals %))))
+      (meta X))))
+
+;;(defmethod rv-resample ::discrete-distribution
+;;  [X]
+;;  (if-not (> (count X) *rv-max-states*)
+;;    X
+;;    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
+;;      (with-meta
+;;        (seq2map (my-partition-all partition-size (sort-by key X))
+;;                 #(vector (/ (apply + (keys %)) (count %))
+;;                          (apply + (vals %))))
+;;        (meta X)))))
 
 (defmethod rv-resample ::continuous-distribution
   [X]
   (if-not (> (count X) *rv-max-states*)
     X
     (let [step-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-      (with-meta (into {} (take-nth step-size (sort X))) (meta X)))))
+      (with-meta (into {} (take-nth step-size (sort-by key X))) (meta X)))))
 
 (defmulti rv-mean
   ;;"Returns the mean value of a random variable X."
@@ -249,7 +244,7 @@
         lower  (reduce + (map * states (rest probs)))]
     (/ (+ upper lower) 2)))
 
-(def rv-zero (with-meta (array-map 0 1.0) disc-type))
+(def rv-zero (with-meta (array-map 0.0 1.0) disc-type))
 (def _0_ rv-zero)
 
 ;;; testing functions below here
@@ -328,7 +323,7 @@
 
 (defn rv-convolute-4
   [f X Y]
-  (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
+  (let [convolution (sort-by key (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
         all-unique  (reduce (fn [acc [v2 p2 :as n]]
                               (let [[v1 p1] (peek acc)]
                                 (if (== v1 v2)
@@ -341,7 +336,7 @@
 (comment
   (defn rv-convolute-5
     [f X Y]
-    (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
+    (let [convolution (sort-by key (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
           all-unique  (reduce (fn [acc [v2 p2 :as n]]
                                 (let [last-idx (dec (count acc))
                                       [v1 p1]  (acc last-idx)]
@@ -444,71 +439,65 @@
   "Returns the distribution of the random variable X with f applied to its range values."
   [f X]
   (with-meta (mapmap f identity X) (meta X)))
-;;  (with-meta (into {} (map (fn [[s p]] [(f s) p]) X)) (meta X)))
 
 (defn scalar-rv-add
   [x Y]
-  (let [x* (rationalize x)]
-    (rv-map #(+ x* %) Y)))
+  (rv-map #(+ x %) Y))
 (def +_ scalar-rv-add)
 
 (defn scalar-rv-subtract
   [x Y]
-  (let [x* (rationalize x)]
-    (rv-map #(- x* %) Y)))
+  (rv-map #(- x %) Y))
 (def -_ scalar-rv-subtract)
 
 (defn scalar-rv-multiply
   [x Y]
-  (let [x* (rationalize x)]
-    (rv-map #(* x* %) Y)))
+  (rv-map #(* x %) Y))
 (def *_ scalar-rv-multiply)
+
+;; Throws an exception if the RV has a 0 state (Snapp thinks this is a good idea).
+;; FIXME: Consider the case with continuous RVs (no finite probability
+;; of actually Y=0, so maybe we can fudge it somehow.
 
 (defn scalar-rv-divide
   [x Y]
-  (let [x* (rationalize x)
-        Y* (dissoc Y 0)]
-    (rv-map #(/ x* %) Y*)))
+  (rv-map #(/ x %) Y))
 (def d_ scalar-rv-divide)
 
 (defn rv-scalar-add
   [X y]
-  (let [y* (rationalize y)]
-    (rv-map #(+ % y*) X)))
+  (rv-map #(+ % y) X))
 (def _+ rv-scalar-add)
 
 (defn rv-scalar-subtract
   [X y]
-  (let [y* (rationalize y)]
-    (rv-map #(- % y*) X)))
+  (rv-map #(- % y) X))
 (def _- rv-scalar-subtract)
 
 (defn rv-scalar-multiply
   [X y]
-  (let [y* (rationalize y)]
-    (rv-map #(* % y*) X)))
+  (rv-map #(* % y) X))
 (def _* rv-scalar-multiply)
 
 (defn rv-scalar-divide
   [X y]
-  (let [y* (rationalize y)]
-    (rv-map #(/ % y*) X)))
+  (rv-map #(/ % y) X))
 (def _d rv-scalar-divide)
 
 (defn rv-zero-above-scalar
   "Sets all values greater than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (> %2 %1) 0 %2) {(rationalize y) 1} X))
+  (rv-convolute #(if (> %2 %1) 0.0 %2) {y 1.0} X))
 
 (defn rv-zero-below-scalar
   "Sets all values less than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (< %2 %1) 0 %2) {(rationalize y) 1} X))
+  (rv-convolute #(if (< %2 %1) 0.0 %2) {y 1.0} X))
 
 (defn rv-pos
   "Sets all negative values in X to 0."
   [X]
-  (rv-zero-below-scalar X 0))
+  (rv-zero-below-scalar X 0.0))
 
 (defn rv-average
   [RVs]
@@ -520,31 +509,31 @@
 (defmulti rv-scale
   (fn [rv scale-factor] (type rv)))
 
-(defmethod rv-scale ::continuous-distribution
-  [rv-unsorted scale-factor-double]
-  (let [scale-factor (rationalize scale-factor-double)
-        rv           (sort rv-unsorted)
-        values       (vec (keys rv))
-        probs        (vec (map (p * scale-factor) (successive-differences (vals rv))))
-        zero-pos     (loop [i 0, max (count values)] (when (< i max) (if (zero? (values i)) i (recur (inc i) max))))
-        pos-pos      (loop [i 0, max (count values)] (when (< i max) (if (pos?  (values i)) i (recur (inc i) max))))
-        values2      (if zero-pos values (concat (take pos-pos values) [0] (drop pos-pos values)))
-        probs2       (successive-sums (if zero-pos
-                                        (assoc probs zero-pos (+ (probs zero-pos) (- 1 scale-factor)))
-                                        (concat (take pos-pos probs) [(- 1 scale-factor)] (drop pos-pos probs))))]
-    (with-meta (zipmap values2 probs2) cont-type)))
-
 (defmethod rv-scale ::discrete-distribution
-  [rv scale-factor-double]
-  (let [scale-factor (rationalize scale-factor-double)
-        values       (vec (keys rv))
-        probs        (vec (map (p * scale-factor) (vals rv)))
-        zero-pos     (loop [i 0, max (count values)] (when (< i max) (if (zero? (values i)) i (recur (inc i) max))))
-        values2      (if zero-pos values (cons 0 values))
-        probs2       (if zero-pos
-                       (assoc probs zero-pos (+ (probs zero-pos) (- 1 scale-factor)))
-                       (cons (- 1 scale-factor) probs))]
-    (with-meta (zipmap values2 probs2) disc-type)))
+  [X scale-factor]
+  (let [states       (vec (keys X))
+        probs        (vec (map (p * scale-factor) (vals X)))
+        zero-pos     (first (filter #(zero? (states %)) (range (count states))))]
+    (with-meta
+      (zipmap (if zero-pos states (cons 0.0 states))
+              (if zero-pos
+                (assoc probs zero-pos (+ (probs zero-pos) (- 1.0 scale-factor)))
+                (cons (- 1.0 scale-factor) probs)))
+      disc-type)))
+
+(defmethod rv-scale ::continuous-distribution
+  [X scale-factor]
+  (let [X*           (sort-by key X)
+        states       (vec (keys X*))
+        probs        (vec (map (p * scale-factor) (successive-differences (vals X*))))
+        zero-pos     (first (filter #(zero? (states %)) (range (count states))))
+        pos-pos      (first (filter #(pos?  (states %)) (range (count states))))]
+    (with-meta
+      (zipmap (if zero-pos states (concat (take pos-pos states) [0.0] (drop pos-pos states)))
+              (successive-sums (if zero-pos
+                                 (assoc probs zero-pos (+ (probs zero-pos) (- 1.0 scale-factor)))
+                                 (concat (take pos-pos probs) [(- 1.0 scale-factor)] (drop pos-pos probs)))))
+      cont-type)))
 
 ;; Example profiling code
 ;;(use 'clj-misc.memtest)

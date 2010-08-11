@@ -66,13 +66,13 @@
 (defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
   (classification 'carbonService:NetCarbonUptake
                   :units      "t/ha*year"
-                  [6 30]        'carbonService:HighCarbonUptake
-                  [3 6]         'carbonService:ModerateCarbonUptake
-                  [0 3]         'carbonService:LowCarbonUptake
-                  [-3 0]        'carbonService:LowCarbonRelease
-                  [-9 -3]       'carbonService:ModerateCarbonRelease
-                  [-3200 -9]    'carbonService:HighCarbonRelease))
-	  				
+                  [  6 30]     'carbonService:HighCarbonUptake
+                  [  3  6]     'carbonService:ModerateCarbonUptake
+                  [  0  3]     'carbonService:LowCarbonUptake
+                  [ -3  0]     'carbonService:LowCarbonRelease
+                  [ -6 -3]     'carbonService:ModerateCarbonRelease
+                  [-30 -6]     'carbonService:HighCarbonRelease))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
@@ -199,9 +199,9 @@
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :rv-max-states      10
-        :downscaling-factor 16
-        :save-file          "/home/gjohnson/code/clojure/projects/clj-span/resources/carbon_data.clj"
+        :rv-max-states      100
+        :downscaling-factor 8
+        ;;:save-file          "/home/gjohnson/code/clojure/projects/clj-span/resources/carbon_data.clj"
         :context (source-simple use-simple)))
 		
 ;; ----------------------------------------------------------------------------------------------

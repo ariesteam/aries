@@ -63,7 +63,7 @@
    means are less than the threshold with _0_."
   [threshold layer]
   (println "Distinct Layer Values (pre-zeroing):" (count (distinct (matrix2seq layer))))
-  (println "Distinct probability sums (pre-zeroing):" (distinct (map #(apply + (keys %)) (matrix2seq layer))))
+  (println "Distinct probability sums (pre-zeroing):" (distinct (map #(apply + (vals %)) (matrix2seq layer))))
   (map-matrix #(if (> (rv-cdf-lookup % threshold) 0.5) _0_ %) layer))
 
 (defn preprocess-data-layers

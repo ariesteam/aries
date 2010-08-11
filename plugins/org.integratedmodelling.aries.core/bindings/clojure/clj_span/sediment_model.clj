@@ -26,23 +26,23 @@
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix filter-matrix-for-coords in-bounds? find-line-between map-matrix)]
         [clj-misc.randvars      :only (_0_ _+_ _-_ _*_ _d_ -_ _* _d rv-min rv-mean rv-cdf-lookup)]))
 
-(def hydrosheds-delta-codes {{  1 1.0} [ 0  1]    ; e
-                             {  2 1.0} [-1  1]    ; se
-                             {  4 1.0} [-1  0]    ; s
-                             {  8 1.0} [-1 -1]    ; sw
-                             { 16 1.0} [ 0 -1]    ; w
-                             { 32 1.0} [ 1 -1]    ; nw
-                             { 64 1.0} [ 1  0]    ; n
-                             {128 1.0} [ 1  1]}); ne
+(def hydrosheds-delta-codes {{  1.0 1.0} [ 0  1]    ; e
+                             {  2.0 1.0} [-1  1]    ; se
+                             {  4.0 1.0} [-1  0]    ; s
+                             {  8.0 1.0} [-1 -1]    ; sw
+                             { 16.0 1.0} [ 0 -1]    ; w
+                             { 32.0 1.0} [ 1 -1]    ; nw
+                             { 64.0 1.0} [ 1  0]    ; n
+                             {128.0 1.0} [ 1  1]}); ne
 
 ;; try out (vecfoo (floor (/ (atan2 x y) 45))) or approximate by checking quadrant of vector-direction
 (defn aggregate-flow-dirs
   [hydrocodes]
-  (if-let [exit-code (some #{{-1 1.0} {0 1.0}} hydrocodes)]
+  (if-let [exit-code (some #{{-1.0 1.0} {0.0 1.0}} hydrocodes)]
     exit-code
     (let [vector-direction (reduce (p map +) (map hydrosheds-delta-codes hydrocodes))]
       (if (= vector-direction [0 0])
-        {-1 1.0} ; since we don't know where to go, we'll just terminate this path by saying we hit an inland sink
+        {-1.0 1.0} ; since we don't know where to go, we'll just terminate this path by saying we hit an inland sink
         (let [vector-magnitude  (euclidean-distance [0 0] vector-direction)
               unit-vector       (map #(/ % vector-magnitude) vector-direction)
               distances-to-dirs (seq2map hydrosheds-delta-codes (fn [[code v]] [(square-distance unit-vector v) code]))]

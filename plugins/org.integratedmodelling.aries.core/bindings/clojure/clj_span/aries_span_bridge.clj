@@ -57,25 +57,27 @@
                               run-at-location))
 ;;  )
 
-;;(declare conc
-;;         grid-rows
-;;         grid-columns
-;;         grid-extent?
-;;         get-shape
-;;         get-spatial-extent
-;;         find-state
-;;         find-observation
-;;         get-state-map
-;;         get-observable-class
-;;         probabilistic?
-;;         binary?
-;;         encodes-continuous-distribution?
-;;         get-dist-breakpoints
-;;         get-possible-states
-;;         get-probabilities
-;;         get-data
-;;         run-at-shape
-;;         run-at-location)
+(comment
+(declare conc
+         grid-rows
+         grid-columns
+         grid-extent?
+         get-shape
+         get-spatial-extent
+         find-state
+         find-observation
+         get-state-map
+         get-observable-class
+         probabilistic?
+         binary?
+         encodes-continuous-distribution?
+         get-dist-breakpoints
+         get-possible-states
+         get-probabilities
+         get-data
+         run-at-shape
+         run-at-location)
+)
 
 (defn save-span-layers
   [filename source-layer sink-layer use-layer flow-layers]
@@ -99,8 +101,9 @@
     (with-open [outstream (FileWriter. filename)]
       (binding [*out*       outstream
                 *print-dup* true]
-        (doseq [layer [source-layer sink-layer use-layer flow-layers]]
-          (prn (map-matrix to-hash-map layer)))))
+        (doseq [layer [source-layer sink-layer use-layer]]
+          (prn (if layer (map-matrix to-hash-map layer))))
+        (prn (mapmap identity #(map-matrix to-hash-map %) flow-layers))))
     dummy-map))
 
 (defn read-span-layers
@@ -120,7 +123,7 @@
    NaN state values are converted to 0s."
   [ds rows cols]
   (let [n             (* rows cols)
-        to-rationals  (p map #(if (Double/isNaN %) 0 (rationalize %)))
+        NaNs-to-zero  (p map #(if (Double/isNaN %) 0.0 %))
         get-midpoints #(map (fn [next prev] (/ (+ next prev) 2)) (rest %) %)]
     (if (and (probabilistic? ds) (not (binary? ds)))
       (if (encodes-continuous-distribution? ds)
@@ -135,7 +138,7 @@
               unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
           (if (or unbounded-from-below? unbounded-from-above?)
             (throw (Exception. "All undiscretized bounds must be closed above and below.")))
-          (let [prob-dist (apply create-struct (to-rationals (get-midpoints bounds)))]
+          (let [prob-dist (apply create-struct (NaNs-to-zero (get-midpoints bounds)))]
             (for [idx (range n)]
               (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
         ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
@@ -143,7 +146,7 @@
           (for [idx (range n)]
             (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
-      (for [value (to-rationals (get-data ds))]
+      (for [value (NaNs-to-zero (get-data ds))]
         (with-meta (array-map value 1.0) disc-type)))))
 
 (defn- unpack-datasource-orig
