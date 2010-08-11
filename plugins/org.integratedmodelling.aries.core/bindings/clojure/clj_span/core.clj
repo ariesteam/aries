@@ -56,8 +56,7 @@
   (:require clj-span.carbon-model
             clj-span.sediment-model
             clj-span.proximity-model
-            clj-span.line-of-sight-model)
-  (:import (java.io File FileWriter FileReader BufferedReader)))
+            clj-span.line-of-sight-model))
 
 (defn zero-layer-below-threshold
   "Takes a two dimensional array of RVs and replaces all values whose
@@ -122,27 +121,6 @@
 (def integer>=1?    #(and (integer? %) (>= % 1)))
 (def number>=1?     #(and (number?  %) (>= % 1)))
 (def nil-or-matrix? #(or  (nil?     %) (is-matrix? %)))
-
-(defn save-span-layers
-  [filename source-layer sink-layer use-layer flow-layers]
-  (with-open [outstream (FileWriter. filename)]
-    (binding [*out*       outstream
-              *print-dup* true]
-      (prn source-layer)
-      (prn sink-layer)
-      (prn use-layer)
-      (prn flow-layers))))
-
-(defn read-span-layers
-  [filename]
-  (constraints-1.0 {:pre [(.canRead (File. filename))]})
-  (with-open [instream (BufferedReader. (FileReader. filename))]
-    (binding [*in* instream]
-      (let [source-layer (read)
-            sink-layer   (read)
-            use-layer    (read)
-            flow-layers  (read)]
-        [source-layer sink-layer use-layer flow-layers]))))
 
 (defn run-span
   [{:keys [source-layer  source-threshold   sink-layer    sink-threshold

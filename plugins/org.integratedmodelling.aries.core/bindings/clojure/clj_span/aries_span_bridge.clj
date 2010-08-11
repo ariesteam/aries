@@ -25,11 +25,11 @@
 ;;; clj-span.core/run-span.
 
 (ns clj-span.aries-span-bridge
-  (:use [clj-span.core           :only (run-span save-span-layers)]
-        [clj-span.sediment-model :only (aggregate-flow-dirs)]
-        [clj-misc.matrix-ops     :only (seq2matrix resample-matrix)]
-        [clj-misc.utils          :only (mapmap remove-nil-val-entries p &)]
-        [clj-misc.randvars       :only (cont-type disc-type successive-sums)]))
+  (:use [clj-span.sediment-model :only (aggregate-flow-dirs)]
+        [clj-misc.matrix-ops     :only (seq2matrix resample-matrix map-matrix)]
+        [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0)]
+        [clj-misc.randvars       :only (cont-type disc-type successive-sums)])
+  (:import (java.io File FileWriter FileReader PushbackReader)))
 
 ;;(comment
   (refer 'tl :only '(conc))
@@ -75,6 +75,43 @@
 ;;         get-data
 ;;         run-at-shape
 ;;         run-at-location)
+
+(defn save-span-layers
+  [filename source-layer sink-layer use-layer flow-layers]
+  (let [dummy-map   {:theoretical-source  (constantly {})
+                     :inaccessible-source (constantly {})
+                     :possible-source     (constantly {})
+                     :blocked-source      (constantly {})
+                     :actual-source       (constantly {})
+                     :theoretical-sink    (constantly {})
+                     :inaccessible-sink   (constantly {})
+                     :actual-sink         (constantly {})
+                     :theoretical-use     (constantly {})
+                     :inaccessible-use    (constantly {})
+                     :possible-use        (constantly {})
+                     :blocked-use         (constantly {})
+                     :actual-use          (constantly {})
+                     :possible-flow       (constantly {})
+                     :blocked-flow        (constantly {})
+                     :actual-flow         (constantly {})}
+        to-hash-map #(with-meta (into {} %) (meta %))]
+    (with-open [outstream (FileWriter. filename)]
+      (binding [*out*       outstream
+                *print-dup* true]
+        (doseq [layer [source-layer sink-layer use-layer flow-layers]]
+          (prn (map-matrix to-hash-map layer)))))
+    dummy-map))
+
+(defn read-span-layers
+  [filename]
+  (constraints-1.0 {:pre [(.canRead (File. filename))]})
+  (with-open [instream (PushbackReader. (FileReader. filename))]
+    (binding [*in* instream]
+      (let [source-layer (read)
+            sink-layer   (read)
+            use-layer    (read)
+            flow-layers  (read)]
+        [source-layer sink-layer use-layer flow-layers]))))
 
 (defn- unpack-datasource
   "Returns a seq of length n of the values in ds,
