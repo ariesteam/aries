@@ -69,30 +69,6 @@
   [idx v]
   (vec (dissoc-seq idx v)))
 
-(defn select-n-distinct
-  [n coll]
-  (if (>= n (count coll))
-    (vec coll)
-    (first
-     (nth (iterate (fn [[picks opts]]
-                     (let [idx (rand-int (count opts))]
-                       [(conj picks (opts idx))
-                        (dissoc-vec idx opts)]))
-                   [[] (vec coll)])
-          n))))
-
-(defn select-n-summands
-  "Returns a vector of n numbers which add up to total.  If total is a
-   double, the summands will be doubles.  The same goes for integers."
-  [n total]
-  (if (< n 2)
-    (list total)
-    (let [rand-fn  (if (integer? total) rand-int rand)
-          summands (nth (iterate #(conj % (rand-fn (reduce - total %)))
-                                 [(rand-fn total)])
-                        (- n 2))]
-      (conj summands (reduce - total summands)))))
-
 (defn my-partition-all
   [partition-size coll]
   (loop [remaining coll

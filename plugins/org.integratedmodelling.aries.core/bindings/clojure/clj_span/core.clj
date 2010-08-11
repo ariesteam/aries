@@ -33,7 +33,6 @@
                                         make-matrix
                                         resample-matrix
                                         matrix2seq
-                                        print-matrix
                                         get-rows
                                         get-cols
                                         grids-align?

@@ -83,7 +83,7 @@
   [ds rows cols]
   (let [n             (* rows cols)
         to-rationals  (p map #(if (Double/isNaN %) 0 (rationalize %)))
-        get-midpoints #(map (fn [next prev] (/ (- next prev) 2)) (rest %) %)]
+        get-midpoints #(map (fn [next prev] (/ (+ next prev) 2)) (rest %) %)]
     (if (and (probabilistic? ds) (not (binary? ds)))
       (if (encodes-continuous-distribution? ds)
         ;; sampled continuous distributions
@@ -99,7 +99,7 @@
             (throw (Exception. "All undiscretized bounds must be closed above and below.")))
           (let [prob-dist (apply create-struct (to-rationals (get-midpoints bounds)))]
             (for [idx (range n)]
-              (with-meta (apply struct prob-dist (get-probabilities ds idx) disc-type)))))
+              (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))
         ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
         (let [prob-dist (apply create-struct (get-possible-states ds))]
           (for [idx (range n)]
