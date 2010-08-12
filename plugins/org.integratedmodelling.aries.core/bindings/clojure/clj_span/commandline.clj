@@ -49,7 +49,7 @@
    "            -sink-type          <finite|infinite> \\ \n"
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|sediment>\n"))
+   "            -flow-model         <line-of-sight|proximity|carbon|flood|sediment>\n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -75,8 +75,8 @@
    ["-sink-type"          #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
-   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "sediment"}
-    " must be one of line-of-sight, proximity, carbon, or sediment."]])
+   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "sediment"}
+    " must be one of line-of-sight, proximity, carbon, flood, or sediment."]])
 
 (defn- valid-params?
   [params]
@@ -113,7 +113,11 @@
       (assoc :sink-type          (keyword (input-params "-sink-type")))
       (assoc :use-type           (keyword (input-params "-use-type")))
       (assoc :benefit-type       (keyword (input-params "-benefit-type")))
-      (assoc :flow-model         ({"line-of-sight" "LineOfSight", "proximity" "Proximity", "carbon" "CO2Removed", "sediment" "Sediment"}
+      (assoc :flow-model         ({"line-of-sight" "LineOfSight"
+                                   "proximity"     "Proximity"
+                                   "carbon"        "CO2Removed"
+                                   "flood"         "Flood"
+                                   "sediment"      "Sediment"}
                                   (input-params "-flow-model")))))
 
 (defn -main

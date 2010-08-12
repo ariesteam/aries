@@ -365,7 +365,7 @@
                                   [v2 p2] (first Y*)
                                   v       (f v1 v2)
                                   p       (* p1 p2)]
-                              ;;(update-in fXY [v] #(+ p (or % 0)))))))))
+                              ;;(update-in fXY [v] #(+ p (or % 0.0)))))))))
                               (if-let [old-p (fXY v)]
                                 (assoc fXY v (+ old-p p))
                                 (assoc fXY v p))))))))
@@ -416,7 +416,7 @@
 
 (defn rv-divide
   [X Y]
-  (rv-resample (rv-convolute / X (dissoc Y 0))))
+  (rv-resample (rv-convolute / X (dissoc Y 0.0))))
 (def _d_ rv-divide)
 
 (defn rv-max
@@ -429,17 +429,21 @@
 
 (defn rv-lt
   [X Y]
-  (get (rv-convolute < X Y) true 0))
-(def _<_ rv-lt)
-
-;;(defn rv-gt
-;;  [X Y]
-;;  (get (rv-convolute > X Y) true 0))
+  (get (rv-convolute < X Y) true 0.0))
 
 (defn rv-gt
   [X Y]
-  (= X (rv-max X Y)))
-(def _>_ rv-gt)
+  (get (rv-convolute > X Y) true 0.0))
+
+(defn rv-lt?
+  [X Y]
+  (> (rv-lt X Y) 0.5))
+(def _<_ rv-lt?)
+
+(defn rv-gt?
+  [X Y]
+  (> (rv-gt X Y) 0.5))
+(def _>_ rv-gt?)
 
 (defn- rv-map
   "Returns the distribution of the random variable X with f applied to its range values."
@@ -511,6 +515,10 @@
 ;;    (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs))))
     (do (println "Averaging" (count RVs) (type (first RVs)) "RVs...")
         (time (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs))))))
+
+(defn rv-convolutions
+  [& Xs]
+  (reduce (p rv-convolute conj) (rv-map list (first Xs)) (rest Xs)))
 
 (defmulti rv-scale
   (fn [rv scale-factor] (type rv)))

@@ -53,7 +53,8 @@
                                         possible-flow
                                         blocked-flow
                                         actual-flow)])
-  (:require clj-span.carbon-model
+  (:require clj-span.flood-model
+            clj-span.carbon-model
             clj-span.sediment-model
             clj-span.proximity-model
             clj-span.line-of-sight-model))
@@ -144,7 +145,7 @@
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type sink-type use-type])
           (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight" "Proximity" "CO2Removed" "Sediment"} flow-model)
+          (#{"LineOfSight" "Proximity" "CO2Removed" "Flood" "Sediment"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states
