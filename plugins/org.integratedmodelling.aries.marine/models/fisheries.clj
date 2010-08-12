@@ -38,7 +38,10 @@
 	  	:import   "aries.marine::FisheriesSubsistenceUse.xdsl"
 	  	:keep     ('fisheries:SubsistenceUse)
 	 	 	:context  (poverty population-density coastal-proximity)))
-	 	 	
+
+;;Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
+;; low use = 2.3 kg fish/yr.  This calculates total demand.
+
 ;; --------------------------------------------------------------------------------------
 ;; source models
 ;; --------------------------------------------------------------------------------------
@@ -56,6 +59,10 @@
 (defmodel mangrove-red-snapper-habitat 'fisheries:LutjanusArgentimaculatusHabitat
   (ranking 'fisheries:LutjanusArgentimaculatusHabitat))
 
+
+
+;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
+;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
 ;; TODO almost all coral polygons in existing data do not report bleaching; I 
 ;; don't know what text should be in the categories to define other states, so
 ;; only HighBleaching is reported here if the field isn't empty.
@@ -98,6 +105,8 @@
 ;; --------------------------------------------------------------------------------------
 ;; all together now
 ;; --------------------------------------------------------------------------------------
+
+;;Flow models: need a defmodel statement for paths?  Obviously we need a span statement.
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision 

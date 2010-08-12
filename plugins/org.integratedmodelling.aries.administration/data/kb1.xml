@@ -181,20 +181,20 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
 
+<!-- Raw data are in mm*100, so use correction below -->
 	<measurement:Measurement id="PrecipAvgYearly">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
 		<metadata:hasPriority>5</metadata:hasPriority>
-		<metadata:hasURL>http://www.prism.oregonstate.edu/products/
-		</metadata:hasURL>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
 		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>usa:PrecipAvgYearly</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -205,8 +205,7 @@
 				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
@@ -1096,34 +1095,31 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:Ranking id="oc_hsg">
-		<observation:hasObservable>
-			<habitat:HydrologicSoilsGroup />
-		</observation:hasObservable>
+<measurement:Ranking id="oc_hsg">
+	<observation:hasObservable>
+		<habitat:HydrologicSoilsGroup />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:oc_hsg</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>396581.821</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3756631.02</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26911
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:oc_hsg</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>386509.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3769127.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:Ranking id="san_pedro_hsg">
 		<observation:hasObservable>
@@ -3116,18 +3112,17 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
 			<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
 			<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>396581.821</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>3756631.02</geospace:hasLatUpperBound>
+			<geospace:hasLonLowerBound>386509.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3769127.0</geospace:hasLatUpperBound>
 			<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-
 <!-- Commenting out soilpH30_100 for now: part of the problem might be "duplicate" layers before
 ARIES can handle them in a rule-based system?
- 	<measurement:Ranking id="SoilpH_30_100">
+	<measurement:Ranking id="SoilpH_30_100">
 		<observation:hasObservable>
 			<habitat:SoilPh />
 		</observation:hasObservable>
@@ -3145,8 +3140,8 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
 				<geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>396581.821</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3756631.02</geospace:hasLatUpperBound>
+				<geospace:hasLonLowerBound>386509.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3769127.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>

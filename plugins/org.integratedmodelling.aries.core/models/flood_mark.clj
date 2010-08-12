@@ -244,13 +244,13 @@
 (defmodel data-farmers 'floodService:AvoidedDamageToFarms 
   (identification 'floodService:AvoidedDamageToFarms 
                   :context (source :as source
-                            ;;sink :as sink
+                            sink :as sink
                             farmers-use :as use)))
 
 (defmodel data-public 'floodService:AvoidedDamageToPublicAssets 
   (identification 'floodService:AvoidedDamageToPublicAssets 
                   :context (source :as source
-                            ;;sink :as sink
+                            sink :as sink
                             public-use :as use)))
 
 ;;(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
