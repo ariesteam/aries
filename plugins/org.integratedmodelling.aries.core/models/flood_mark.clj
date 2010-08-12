@@ -282,7 +282,7 @@
         :benefit-type       :non-rival,
         :downscaling-factor 3,
         :rv-max-states      10 
-        :context (source farmers-use sink altitude)))
+        :contexplt (source farmers-use sink altitude)))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     

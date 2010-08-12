@@ -305,30 +305,30 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 
 <!-- Data for California are unfortunately lacking, so this is just a presence/absence map.  
 Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise -->
-	<measurement:BinaryCoding id="california_dam_storage_socal">
-		<observation:hasObservable>
-			<floodService:DamStorage />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: National Atlas of the United States, Major Dams of the United States</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority>
-			<metadata:hasURL>http://nationalatlas.gov/atlasftp.html?openChapters=chpwater</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:dam_storage_socal</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3702424.287036522</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>401679.479663721</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3790382.3645441667</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>448528.5578083895</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
-	
+<measurement:BinaryCoding id="california_dam_storage_socal">
+	<observation:hasObservable>
+		<floodService:DamStorage />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: National Atlas of the United States, Major Dams of the United States</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://nationalatlas.gov/atlasftp.html?openChapters=chpwater</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>california:dam_storage_socal</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3702424.287036522</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>379189.00360562425</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3790640.4773841826</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>448528.5578083895</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
 	<measurement:Measurement id="tmp_dec">
 		<observation:hasObservable>
 			<geophysics:DecemberMeanGroundSurfaceTemperature />
