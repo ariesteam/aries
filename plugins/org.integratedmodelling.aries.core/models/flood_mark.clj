@@ -192,10 +192,13 @@
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
-;;Use undiscretizers are simple: 0/1
-;; F the undiscretizers: use the same language as sediment_dr.clj
+(defmodel floodplains-100 'floodService:Floodplains
+  "Presence of a floodplain in given context"
+  (classification (categorization 'geofeatures:Floodplain)
+                  #{"ANI" "X" "X500"}       'floodService:NotInFloodplain
+                  #{"A" "AO"} 'floodService:InFloodplain))
 
-(defmodel floodplains 'floodService:Floodplains
+(defmodel floodplains-500 'floodService:Floodplains
   "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
                   #{"ANI" "X"}       'floodService:NotInFloodplain
@@ -219,39 +222,67 @@
                   :editable  true))
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel farmers-use 'floodService:FloodFarmersUse 
+(defmodel farmers-use-100 'floodService:FloodFarmersUse 
   (binary-coding 'floodService:FloodFarmersUse
        :state #(if (and (= (tl/conc 'floodService:InFloodplain)   (:floodplains %))
                         (= (tl/conc 'floodService:FarmlandPresent)(:farmland %)))
                     1
                     0)
-       :context (farmland floodplains)))
+       :context (farmland floodplains-100)))
+
+(defmodel farmers-use-500 'floodService:FloodFarmersUse 
+  (binary-coding 'floodService:FloodFarmersUse
+       :state #(if (and (= (tl/conc 'floodService:InFloodplain)   (:floodplains %))
+                        (= (tl/conc 'floodService:FarmlandPresent)(:farmland %)))
+                    1
+                    0)
+       :context (farmland floodplains-500)))
 
 ;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel public-use 'floodService:FloodPublicAssetsUse
+(defmodel public-use-100 'floodService:FloodPublicAssetsUse
   (binary-coding 'floodService:FloodPublicAssetsUse
        :state #(if (and (= (tl/conc 'floodService:InFloodplain)       (:floodplains %))
                         (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                     1
                     0)
-       :context  (public-asset floodplains)))
+       :context  (public-asset floodplains-100)))
+
+(defmodel public-use-500 'floodService:FloodPublicAssetsUse
+  (binary-coding 'floodService:FloodPublicAssetsUse
+       :state #(if (and (= (tl/conc 'floodService:InFloodplain)       (:floodplains %))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
+                    1
+                    0)
+       :context  (public-asset floodplains-500)))
 
 ;; ---------------------------------------------------------------------------------------------------          
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------          
 
 ;; all data, for testing and storage
-(defmodel data-farmers 'floodService:AvoidedDamageToFarms 
+(defmodel data-farmers-100 'floodService:AvoidedDamageToFarms 
   (identification 'floodService:AvoidedDamageToFarms 
                   :context (source :as source
                             sink :as sink
-                            farmers-use :as use)))
+                            farmers-use-100 :as use)))
 
-(defmodel data-public 'floodService:AvoidedDamageToPublicAssets 
+(defmodel data-farmers-500 'floodService:AvoidedDamageToFarms 
+  (identification 'floodService:AvoidedDamageToFarms 
+                  :context (source :as source
+                            sink :as sink
+                            farmers-use-500 :as use)))
+
+(defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets 
   (identification 'floodService:AvoidedDamageToPublicAssets 
                   :context (source :as source
                             sink :as sink
-                            public-use :as use)))
+                            public-use-100 :as use)))
+
+(defmodel data-public-500 'floodService:AvoidedDamageToPublicAssets 
+  (identification 'floodService:AvoidedDamageToPublicAssets 
+                  :context (source :as source
+                            sink :as sink
+                            public-use-500 :as use)))
 
 ;;(defmodel data-private 'floodService:AvoidedDamageToPrivateAssets 
   ;;(identification 'floodService:AvoidedDamageToPrivateAssets 
