@@ -1,7 +1,6 @@
 ;; --------------------------------------------------------------------------------------------------
 ;; UNEP marine project
-;; models for coastal protection
-;; fv Jan 10
+;; models for subsistence fisheries
 ;; --------------------------------------------------------------------------------------------------
 
 (ns marine.models.fisheries
@@ -13,7 +12,7 @@
 ;; --------------------------------------------------------------------------------------
 
 (defmodel coastal-proximity 'fisheries:DistanceToCoast
-	(classification (ranking 'fisheries:DistanceToCoast)
+	(classification (measurement 'fisheries:DistanceToCoast "km")
 		1       'fisheries:HighCoastalProximity
     5       'fisheries:ModerateCoastalProximity
 		[25 :>] 'fisheries:LowCoastalProximity))
@@ -32,36 +31,59 @@
 		[50 200]     'fisheries:LowPopulationDensity
 		[:< 50]      'fisheries:VeryLowPopulationDensity))
 
-;;NEED AN UNDISCRETIZER HERE??
+;;Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
+;; low use = 2.3 kg fish/yr.  This calculates total demand.
+(defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
+  (classification 'fisheries:SubsistenceUse
+    :units "kg/km^2*year" 
+    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+    ;; This classification syntax is documented as working but isn't implemented!
+    (* (:population-density-count self) 6.8)  'fisheries:HighSubsistenceUse
+    (* (:population-density-count self) 4.6)  'fisheries:ModerateSubsistenceUse
+    (* (:population-density-count self) 2.3)  'fisheries:LowSubsistenceUse
+    0                                         'fisheries:NoSubsistenceUse))
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   	"Interface to subsistence use bayesian network"
 	  (bayesian 'fisheries:SubsistenceFishing 
 	  	:import   "aries.marine::FisheriesSubsistenceUse.xdsl"
 	  	:keep     ('fisheries:SubsistenceUse)
+      :observed (subsistence-fishing-undiscretized) 
 	 	 	:context  (poverty population-density coastal-proximity)))
-
-;;Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
-;; low use = 2.3 kg fish/yr.  This calculates total demand.
 
 ;; --------------------------------------------------------------------------------------
 ;; source models
 ;; --------------------------------------------------------------------------------------
 
-;; TODO classify
-(defmodel meagre-habitat 'fisheries:ArgyrosomusHololepidotusHabitat
-	(ranking 'fisheries:ArgyrosomusHololepidotusHabitat))
+;;Statements below estimate harvest by pixel of three species of marine pelagic fishes
+;; valued for human consumption.  Assumptions about the harvested quantity of each species are documented
+;; in the ARIES modeling guide.  These values can be adjusted as needed with improved data or expert knowledge.
+(defmodel slender-emperor-harvest 'fisheries:LethrinusBorbonicusHarvest
+  (measurement 'fisheries:LethrinusBorbonicusHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LethrinusBorbonicusAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
 
-(defmodel snubnose-emperor-habitat 'fisheries:LethrinusBorbonicusHabitat
-  (ranking 'fisheries:LethrinusBorbonicusHabitat))
+(defmodel sky-emperor-harvest 'fisheries:LethrinusMahsenaHarvest
+  (measurement 'fisheries:LethrinusMahsenaHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LethrinusMahsenaAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
 
-(defmodel sky-emperor-habitat 'fisheries:LethrinusMahsenaHabitat
-  (ranking 'fisheries:LethrinusMahsenaHabitat))
+(defmodel mangrove-red-snapper-harvest 'fisheries:LutjanusArgentimaculatusHarvest
+  (measurement 'fisheries:LutjanusArgentimaculatusHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LutjanusArgentimaculatusAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
 
-(defmodel mangrove-red-snapper-habitat 'fisheries:LutjanusArgentimaculatusHabitat
-  (ranking 'fisheries:LutjanusArgentimaculatusHabitat))
-
-
+;; FIXME: all values from the context list or being looked up as nil!
+(defmodel total-pelagic-subsistence-harvest 'fisheries:TotalSubsistenceHarvest
+  (measurement 'fisheries:TotalSubsistenceHarvest "kg/km^2*year"
+      :context (slender-emperor-harvest sky-emperor-harvest mangrove-red-snapper-harvest)
+      :state    #(do (println "Slender Emperor:"      (:slender-emperor-harvest %))
+                     (println "Sky Emperor:"          (:sky-emperor-harvest %))
+                     (println "Mangrove Red Snapper:" (:mangrove-red-snapper-harvest %))
+                     (apply + (map (fn [fishval] (or fishval 0.0))
+                                   [(:slender-emperor-harvest      %)
+                                    (:sky-emperor-harvest          %)
+                                    (:mangrove-red-snapper-harvest %)])))))
 
 ;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
 ;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
@@ -105,12 +127,15 @@
 	 	 	:context  (bleaching-fisheries reef-area estuary-area nitrogen)))		
 		
 ;; --------------------------------------------------------------------------------------
-;; all together now
+;; flow models
 ;; --------------------------------------------------------------------------------------
 
-;;Flow models: need a defmodel statement for paths?  Obviously we need a span statement.
+;;Obviously we need a span statement.
+
+(defmodel paths 'infrastructure:Path
+  (binary-coding 'infrastructure:Path))
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision 
-		:context (meagre-habitat fish-habitat-quality subsistence-fishing)))
+		:context (total-pelagic-subsistence-harvest subsistence-fishing paths)))
 	 	 	

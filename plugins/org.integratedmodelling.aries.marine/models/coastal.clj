@@ -1,7 +1,6 @@
 ;; --------------------------------------------------------------------------------------------------
 ;; UNEP marine project
 ;; models for coastal protection
-;; fv Jan 10
 ;; --------------------------------------------------------------------------------------------------
 
 (ns marine.models.coastal
@@ -60,19 +59,12 @@
 ;; use models
 ;; --------------------------------------------------------------------------------------
 
+;;Rather than classifying it and losing information, just return the deciles of risk to life and property.
 (defmodel risk-to-life 'coastalProtection:CycloneDependentLivesAtRisk
-	(classification (ranking 'policytarget:LivesAtRiskStorm)
-		[8 :>]   'coastalProtection:HighRiskToLife
-		[5 8]    'coastalProtection:ModerateRiskToLife
-		[1 5]    'coastalProtection:LowRiskToLife
-		[:< 1]   'coastalProtection:NoRiskToLife))
+	(ranking 'policytarget:LivesAtRiskStorm))
 
 (defmodel risk-to-assets 'coastalProtection:CycloneSensitiveEconomicValue
-	(classification (ranking 'policytarget:AssetsAtRiskStorm)
-		[8 :>]   'coastalProtection:HighRiskToAssets
-		[5 8]    'coastalProtection:ModerateRiskToAssets
-		[1 5]    'coastalProtection:LowRiskToAssets
-		[:< 1]   'coastalProtection:NoRiskToAssets))
+	(ranking 'policytarget:AssetsAtRiskStorm))
 		
 ;; --------------------------------------------------------------------------------------
 ;; source models

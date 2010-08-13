@@ -24,6 +24,38 @@
 Potter, P., et al. In press. Characterizing the spatial patterns of global fertilizer application and manure production. Forthcoming in Earth Interactions. 
  -->
 
+<!-- Conversion turns this value from a percentage of the abundance in Madagascar per 0.5x0.5 degree
+pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a latitude of 19 degrees
+(the mean of latitudes in Madagascar), which gives a value of 11,654.98 km^2/degree^2 -->
+<measurement:Measurement id="A_hololepidotus_Mg_abun">
+	<observation:hasObservable>
+		<fisheries:ArgyrosomusHololepidotusAbundanceMg />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
+		<measurement:unit>kg/km^2*year</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>marine:A_hololepidotus_Mg_abun</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			<geospace:hasTransformation>self * 0.0003432</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>248</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>354</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-29.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>40.5</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-9.4</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>53.5</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<measurement:Ranking id="A_hololepidotus">
 		<observation:hasObservable>
 			<fisheries:ArgyrosomusHololepidotusHabitat />
@@ -49,7 +81,9 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
+
+<!-- Original values are deciles of risk from 0 to 10.  For the purposes of Gary's flow models, these
+are better expressed as values from 0 to 1, hence the conversion by a factor of 0.1 -->
 	<measurement:Ranking id="gdcycgdp">
 		<observation:hasObservable>
 			<policytarget:AssetsAtRiskStorm />
@@ -62,6 +96,7 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:gdcycgdp</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -158,10 +193,11 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-	<measurement:Ranking id="marine_coastbuf">
+	<measurement:Measurement id="marine_coastbuf">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
 		</observation:hasObservable>
+			<measurement:unit>km</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -177,7 +213,7 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
 	<measurement:Measurement id="mg_distance_to_coast">
 		<observation:hasObservable>
@@ -228,6 +264,39 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
+<!-- Conversion turns this value from a percentage of the abundance in Madagascar per 0.5x0.5 degree
+pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a latitude of 19 degrees
+(the mean of latitudes in Madagascar), which gives a value of 11,654.98 km^2/degree^2 -->
+	<measurement:Measurement id="L_borbonicus_Mg_abun">
+		<observation:hasObservable>
+			<fisheries:LethrinusBorbonicusAbundanceMg />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
+			<measurement:unit>kg/km^2*year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_borbonicus_Mg_abun</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+				<geospace:hasTransformation>self * 0.0003432</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>248</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>354</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-29.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>40.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-9.4</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>53.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+
 	<measurement:Ranking id="L_borbonicus">
 		<observation:hasObservable>
 			<fisheries:LethrinusBorbonicusHabitat />
@@ -254,6 +323,38 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- Conversion turns this value from a percentage of the abundance in Madagascar per 0.5x0.5 degree
+pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a latitude of 19 degrees
+(the mean of latitudes in Madagascar), which gives a value of 11,654.98 km^2/degree^2 -->
+	<measurement:Measurement id="L_mahsena_Mg_abun">
+		<observation:hasObservable>
+			<fisheries:LethrinusMahsenaAbundanceMg />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
+			<measurement:unit>kg/km^2*year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_mahsena_Mg_abun</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+				<geospace:hasTransformation>self * 0.0003432</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>248</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>354</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-29.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>40.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-9.4</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>53.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Ranking id="L_mahensa">
 		<observation:hasObservable>
 			<fisheries:LethrinusMahsenaHabitat />
@@ -279,7 +380,9 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-		
+
+<!-- Original values are deciles of risk from 0 to 10.  For the purposes of Gary's flow models, these
+are better expressed as values from 0 to 1, hence the conversion by a factor of 0.1 -->
 	<measurement:Ranking id="gdcycmrt">
 		<observation:hasObservable>
 			<policytarget:LivesAtRiskStorm />
@@ -292,6 +395,7 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:gdcycmrt</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -306,6 +410,38 @@ Potter, P., et al. In press. Characterizing the spatial patterns of global ferti
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<!-- Conversion turns this value from a percentage of the abundance in Madagascar per 0.5x0.5 degree
+pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a latitude of 19 degrees
+(the mean of latitudes in Madagascar), which gives a value of 11,654.98 km^2/degree^2 -->
+	<measurement:Measurement id="L_argentimaculatus_Mg_abun">
+		<observation:hasObservable>
+			<fisheries:LutjanusArgentimaculatusAbundanceMg />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: The Sea Around Us Project</rdfs:comment>
+			<metadata:hasPriority>10</metadata:hasPriority>
+			<metadata:hasURL>http://www.seaaroundus.org/</metadata:hasURL>
+			<measurement:unit>kg/km^2*year</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>marine:L_argentimaculatus_Mg_abun</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+				<geospace:hasTransformation>self * 0.0003432</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>248</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>354</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-29.0</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>40.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-9.4</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>53.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 	
 		<measurement:Ranking id="L_argentimaculatus">
 		<observation:hasObservable>
