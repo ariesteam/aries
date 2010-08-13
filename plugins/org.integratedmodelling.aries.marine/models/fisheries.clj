@@ -32,6 +32,8 @@
 		[50 200]     'fisheries:LowPopulationDensity
 		[:< 50]      'fisheries:VeryLowPopulationDensity))
 
+;;NEED AN UNDISCRETIZER HERE??
+
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   	"Interface to subsistence use bayesian network"
 	  (bayesian 'fisheries:SubsistenceFishing 

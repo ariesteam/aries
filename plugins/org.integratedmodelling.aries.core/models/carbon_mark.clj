@@ -202,7 +202,7 @@
         :rv-max-states      10
         :downscaling-factor 1
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-simple use-simple)))
+        :context (source-simple use-simple decomposition-factor)))
 
 
 ;; ----------------------------------------------------------------------------------------------
