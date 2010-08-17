@@ -140,7 +140,34 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
+
+<measurement:Measurement id="mg_bath1-171_ProjectRaster1">
+	<observation:hasObservable>
+		<geophysics:Bathymetry />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: NASA ETOPO1 Global Relief Model</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://www.ngdc.noaa.gov/mgg/global/global.html/</metadata:hasURL>
+	<measurement:unit>m</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:mg_bath1-171_ProjectRaster1</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>899</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>1259</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-30.008</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>39.992</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-8.992</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>55.008</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<observation:Categorization id="marine_coral">
 		<observation:hasObservable>
 			<coastalProtection:CoralBleaching />

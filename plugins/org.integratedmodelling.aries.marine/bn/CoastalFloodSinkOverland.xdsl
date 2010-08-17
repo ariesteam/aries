@@ -48,6 +48,11 @@
 			<state id="NoOverlandCoastalFloodSink" />
 			<probabilities>0.85 0.15 0 0</probabilities>
 		</cpt>
+		<cpt id="LandUseLandCover">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
@@ -81,7 +86,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>653 314 816 386</position>
+				<position>783 316 946 388</position>
 				<barchart active="true" width="249" height="90" />
 			</node>
 			<node id="Slope">
@@ -89,7 +94,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>478 335 523 363</position>
+				<position>641 337 686 365</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="Tides">
@@ -97,7 +102,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>948 325 993 353</position>
+				<position>1061 326 1106 354</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="OverlandCoastalFloodSink">
@@ -107,6 +112,13 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>522 63 620 104</position>
 				<barchart active="true" width="165" height="90" />
+			</node>
+			<node id="LandUseLandCover">
+				<name>LandUseLandCover</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>390 329 496 395</position>
 			</node>
 		</genie>
 	</extensions>

@@ -13,6 +13,9 @@
 (defmodel flow-direction 'geophysics:FlowDirection
   (ranking 'geophysics:FlowDirection)) 
 
+(defmodel streams 'geofeatures:River
+  (binary-coding 'geofeatures:River)) 
+
 (defmodel soil-group 'floodService:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking 'habitat:HydrologicSoilsGroup)
@@ -192,17 +195,17 @@
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel floodplains-100 'floodService:Floodplains
+(defmodel floodplains-100 'floodService:Floodplains100
   "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
-                  #{"ANI" "X" "X500"}       'floodService:NotInFloodplain
-                  #{"A" "AO"} 'floodService:InFloodplain))
+                  #{"ANI" "X" "X500"} 'floodService:NotIn100YrFloodplain
+                  #{"A" "AO"}         'floodService:In100YrFloodplain))
 
-(defmodel floodplains-500 'floodService:Floodplains
+(defmodel floodplains-500 'floodService:Floodplains500
   "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
-                  #{"ANI" "X"}       'floodService:NotInFloodplain
-                  #{"A" "AO" "X500"} 'floodService:InFloodplain))
+                  #{"ANI" "X"}       'floodService:NotIn500YrFloodplain
+                  #{"A" "AO" "X500"} 'floodService:In500YrFloodplain))
 
 (defmodel public-asset 'floodService:PublicAsset
   "Public assets are defined as presence of highways, railways or both."
@@ -222,37 +225,39 @@
                   :editable  true))
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel farmers-use-100 'floodService:FloodFarmersUse 
-  (binary-coding 'floodService:FloodFarmersUse
-       :state #(if (and (= (tl/conc 'floodService:InFloodplain)   (:floodplains %))
-                        (= (tl/conc 'floodService:FarmlandPresent)(:farmland %)))
+(defmodel farmers-use-100 'floodService:FloodFarmersUse100
+  (binary-coding 'floodService:FloodFarmersUse100
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains-100 %))
+                        (= (tl/conc 'floodService:FarmlandPresent)     (:farmland %)))
                     1
                     0)
        :context (farmland floodplains-100)))
 
-(defmodel farmers-use-500 'floodService:FloodFarmersUse 
-  (binary-coding 'floodService:FloodFarmersUse
-       :state #(if (and (= (tl/conc 'floodService:InFloodplain)   (:floodplains %))
-                        (= (tl/conc 'floodService:FarmlandPresent)(:farmland %)))
+(defmodel farmers-use-500 'floodService:FloodFarmersUse500
+  (binary-coding 'floodService:FloodFarmersUse500
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains-500 %))
+                        (= (tl/conc 'floodService:FarmlandPresent)     (:farmland %)))
                     1
                     0)
        :context (farmland floodplains-500)))
 
 ;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
-(defmodel public-use-100 'floodService:FloodPublicAssetsUse
-  (binary-coding 'floodService:FloodPublicAssetsUse
-       :state #(if (and (= (tl/conc 'floodService:InFloodplain)       (:floodplains %))
+(defmodel public-use-100 'floodService:FloodPublicAssetsUse100
+  (binary-coding 'floodService:FloodPublicAssetsUse100
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains-100 %))
                         (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                     1
                     0)
        :context  (public-asset floodplains-100)))
 
-(defmodel public-use-500 'floodService:FloodPublicAssetsUse
-  (binary-coding 'floodService:FloodPublicAssetsUse
-       :state #(if (and (= (tl/conc 'floodService:InFloodplain)       (:floodplains %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
-                    1
-                    0)
+(defmodel public-use-500 'floodService:FloodPublicAssetsUse500
+  (binary-coding 'floodService:FloodPublicAssetsUse500
+       :state #(do (println "Floodplains-500:" (:floodplains-500 %))
+                   (println "Public Asset:"    (:public-asset %)) 
+                   (if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains-500 %))
+                            (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
+                        1
+                        0))
        :context  (public-asset floodplains-500)))
 
 ;; ---------------------------------------------------------------------------------------------------          
@@ -296,24 +301,46 @@
       ;;                      sink :as sink
       ;;                      residents-use :as use)))
 
-;; flow model   for farmers     
-(defmodel flood-regulation-farmers 'floodService:AvoidedDamageToFarms
+;; flow model for farmers in the 100-year floodplain   
+(defmodel flood-regulation-farmers-100 'floodService:AvoidedDamageToFarms
+  (span 'floodService:FloodWaterMovement 
+        'floodService:FloodSourceValue
+        'floodService:FloodFarmersUse100
+        'floodService:FloodSink
+        nil 
+        nil
+        :source-threshold   10
+        :sink-threshold     0.3
+        :use-threshold      0.3
+        :trans-threshold    1.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 3
+        :rv-max-states      10 
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+        :context (source farmers-use-100 sink altitude floodplains streams)))
+
+;; flow model for farmers in the 500-year floodplain  
+(defmodel flood-regulation-farmers-500 'floodService:AvoidedDamageToFarms
   (span 'floodService:FarmlandFlooding 
         'floodService:FloodSourceValue
-        'floodService:FarmersInFloodHazardZones
+        'floodService:FloodFarmersUse500
         'floodService:FloodSink
         'floodService:WaterMovement
         'geophysics:Altitude
-        :source-threshold   10,
-        :sink-threshold     0.3,
-        :use-threshold      0.3,
-        :trans-threshold    1.0,
-        :sink-type          :finite,
-        :use-type           :infinite,
-        :benefit-type       :non-rival,
-        :downscaling-factor 3,
+        :source-threshold   10
+        :sink-threshold     0.3
+        :use-threshold      0.3
+        :trans-threshold    1.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 3
         :rv-max-states      10 
-        :contexplt (source farmers-use sink altitude)))
+        :context (source farmers-use-500 sink altitude)))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     
