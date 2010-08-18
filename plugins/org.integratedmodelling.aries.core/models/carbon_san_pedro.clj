@@ -1,3 +1,6 @@
+;;MUST SEPARATE SOURCE AND SINK MODELS HERE: DO THIS THE RIGHT WAY AND EXPORT IT TO ALL THE OTHER CARBON
+;; MODELS.
+
 (ns core.models.carbon-san-pedro
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))

@@ -14,7 +14,7 @@
   (ranking 'geophysics:FlowDirection)) 
 
 (defmodel streams 'geofeatures:River
-  (binary-coding 'geofeatures:River)) 
+  (binary-coding 'geofeatures:River))
 
 (defmodel soil-group 'floodService:HydrologicSoilsGroup
   "Relevant soil group"
@@ -195,6 +195,8 @@
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
+;;Uses for all beneficiary groups are defined for both the 100- and 500-year floodplain.  These are then incorporated into 
+;; the identification and SPAN statements so beneficiary and flow maps can be run for both spatial extents of floodplains.
 (defmodel floodplains-100 'floodService:Floodplains100
   "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
@@ -265,26 +267,26 @@
 ;; ---------------------------------------------------------------------------------------------------          
 
 ;; all data, for testing and storage
-(defmodel data-farmers-100 'floodService:AvoidedDamageToFarms 
-  (identification 'floodService:AvoidedDamageToFarms 
-                  :context (source :as source
-                            sink :as sink
-                            farmers-use-100 :as use)))
+;;(defmodel data-farmers-100 'floodService:AvoidedDamageToFarms100
+;;  (identification 'floodService:AvoidedDamageToFarms100
+;;                  :context (source :as source
+;;                            sink :as sink
+;;                            farmers-use-100 :as use)))
 
-(defmodel data-farmers-500 'floodService:AvoidedDamageToFarms 
-  (identification 'floodService:AvoidedDamageToFarms 
-                  :context (source :as source
-                            sink :as sink
-                            farmers-use-500 :as use)))
+;;(defmodel data-farmers-500 'floodService:AvoidedDamageToFarms500
+;;  (identification 'floodService:AvoidedDamageToFarms500
+;;                  :context (source :as source
+;;                            sink :as sink
+;;                            farmers-use-500 :as use)))
 
-(defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets 
-  (identification 'floodService:AvoidedDamageToPublicAssets 
+(defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets100
+  (identification 'floodService:AvoidedDamageToPublicAssets100
                   :context (source :as source
                             sink :as sink
                             public-use-100 :as use)))
 
-(defmodel data-public-500 'floodService:AvoidedDamageToPublicAssets 
-  (identification 'floodService:AvoidedDamageToPublicAssets 
+(defmodel data-public-500 'floodService:AvoidedDamageToPublicAssets500
+  (identification 'floodService:AvoidedDamageToPublicAssets500
                   :context (source :as source
                             sink :as sink
                             public-use-500 :as use)))
@@ -302,45 +304,46 @@
       ;;                      residents-use :as use)))
 
 ;; flow model for farmers in the 100-year floodplain   
-(defmodel flood-regulation-farmers-100 'floodService:AvoidedDamageToFarms
-  (span 'floodService:FloodWaterMovement 
+(defmodel flood-regulation-farmers-100 'floodService:AvoidedDamageToFarms100
+  (span 'floodService:FloodWaterMovement
         'floodService:FloodSourceValue
         'floodService:FloodFarmersUse100
         'floodService:FloodSink
         nil 
         nil
-        :source-threshold   10
-        :sink-threshold     0.3
-        :use-threshold      0.3
-        :trans-threshold    1.0
+        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3
-        :rv-max-states      10 
+        :downscaling-factor 8
+        :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context (source farmers-use-100 sink altitude floodplains streams)))
+        :context (source farmers-use-100 sink altitude floodplains-100 streams)))
 
 ;; flow model for farmers in the 500-year floodplain  
-(defmodel flood-regulation-farmers-500 'floodService:AvoidedDamageToFarms
-  (span 'floodService:FarmlandFlooding 
+(defmodel flood-regulation-farmers-500 'floodService:AvoidedDamageToFarms500
+  (span 'floodService:FloodWaterMovement 
         'floodService:FloodSourceValue
         'floodService:FloodFarmersUse500
         'floodService:FloodSink
-        'floodService:WaterMovement
-        'geophysics:Altitude
-        :source-threshold   10
-        :sink-threshold     0.3
-        :use-threshold      0.3
-        :trans-threshold    1.0
+        nil
+        nil
+        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3
-        :rv-max-states      10 
-        :context (source farmers-use-500 sink altitude)))
+        :downscaling-factor 8
+        :rv-max-states      10
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+        :context (source farmers-use-500 sink altitude floodplains-500 streams)))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     
