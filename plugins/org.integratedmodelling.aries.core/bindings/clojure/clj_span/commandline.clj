@@ -116,7 +116,7 @@
       (assoc :flow-model         ({"line-of-sight" "LineOfSight"
                                    "proximity"     "Proximity"
                                    "carbon"        "CO2Removed"
-                                   "flood"         "Flood"
+                                   "flood"         "FloodWaterMovement"
                                    "sediment"      "Sediment"}
                                   (input-params "-flow-model")))))
 

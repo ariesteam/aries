@@ -242,14 +242,15 @@
     (print "*") (flush))
   (println "\nAll done."))
 
-(defmethod distribute-flow "Flood"
+(defmethod distribute-flow "FloodWaterMovement"
   [_ source-layer sink-layer use-layer
-   {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",
-    floodplain-layer "FloodPlainPresence", elevation-layer "Altitude"}]
+   {hydrosheds-layer "Hydrosheds", stream-layer "River", elevation-layer "Altitude"
+    floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
   (println "Running Flood flow model.")
-  (let [rows          (get-rows source-layer)
-        cols          (get-cols source-layer)
-        cache-layer   (make-matrix rows cols (constantly (atom ())))
+  (let [floodplain-layer (or floodplain-layer500 floodplain-layer100)
+        rows             (get-rows source-layer)
+        cols             (get-cols source-layer)
+        cache-layer      (make-matrix rows cols (constantly (atom ())))
         [source-points sink-points use-points] (pmap (p filter-matrix-for-coords (p not= _0_))
                                                      [source-layer sink-layer use-layer])]
     (println "Source points:" (count source-points))

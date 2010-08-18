@@ -145,7 +145,7 @@
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type sink-type use-type])
           (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight" "Proximity" "CO2Removed" "Flood" "Sediment"} flow-model)
+          (#{"LineOfSight" "Proximity" "CO2Removed" "FloodWaterMovement" "Sediment"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states
