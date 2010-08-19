@@ -16,14 +16,6 @@
 (defmodel streams 'geofeatures:River
   (binary-coding 'geofeatures:River))
 
-(defmodel soil-group 'floodService:HydrologicSoilsGroup
-  "Relevant soil group"
-  (classification (ranking 'habitat:HydrologicSoilsGroup)
-                  1        'floodService:SoilGroupA
-                  2        'floodService:SoilGroupB
-                  3        'floodService:SoilGroupC
-                  4        'floodService:SoilGroupD))
-
 (defmodel precipitation 'floodService:Precipitation
   (classification (measurement 'habitat:AnnualPrecipitation "mm")
                   [:< 75]     'floodService:VeryLowPrecipitation
@@ -55,7 +47,7 @@
                   [30 49]  'floodService:LowRainfallErosivity
                   [:< 29]  'floodService:VeryLowRainfallErosivity)) 
 
-;;Use runoff as training data here
+;;Use runoff as training data - or possibly for the sink model (talk to a hydrologist)
 (defmodel flood-source-training 'floodService:FloodSourceValue
   (classification (measurement 'habitat:AnnualRunoff "mm")
                   [:< 200]    'floodService:VeryLowFloodSource
@@ -102,6 +94,14 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
+
+(defmodel soil-group 'floodService:HydrologicSoilsGroup
+  "Relevant soil group"
+  (classification (ranking 'habitat:HydrologicSoilsGroup)
+                  1        'floodService:SoilGroupA
+                  2        'floodService:SoilGroupB
+                  3        'floodService:SoilGroupC
+                  4        'floodService:SoilGroupD))
 
 (defmodel slope 'floodService:Slope
   (classification (measurement 'geophysics:DegreeSlope "\u00b0")
@@ -265,17 +265,17 @@
 ;; ---------------------------------------------------------------------------------------------------          
 
 ;; all data, for testing and storage
-;;(defmodel data-farmers-100 'floodService:AvoidedDamageToFarms100
-;;  (identification 'floodService:AvoidedDamageToFarms100
-;;                  :context (source :as source
-;;                            sink :as sink
-;;                            farmers-use-100 :as use)))
+(defmodel data-farmers-100 'floodService:AvoidedDamageToFarms100
+  (identification 'floodService:AvoidedDamageToFarms100
+                  :context (source :as source
+                            sink :as sink
+                            farmers-use-100 :as use)))
 
-;;(defmodel data-farmers-500 'floodService:AvoidedDamageToFarms500
-;;  (identification 'floodService:AvoidedDamageToFarms500
-;;                  :context (source :as source
-;;                            sink :as sink
-;;                            farmers-use-500 :as use)))
+(defmodel data-farmers-500 'floodService:AvoidedDamageToFarms500
+  (identification 'floodService:AvoidedDamageToFarms500
+                  :context (source :as source
+                            sink :as sink
+                            farmers-use-500 :as use)))
 
 (defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets100
   (identification 'floodService:AvoidedDamageToPublicAssets100

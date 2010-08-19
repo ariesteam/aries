@@ -57,6 +57,35 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!-- Raw data are in degrees C*100, so use correction below -->	
+<measurement:Measurement id="Temp_Max_Yearly">
+	<observation:hasObservable>
+		<geophysics:AnnualMaximumGroundSurfaceTemperature />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+	<measurement:unit>°C</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:Temp_Max_Yearly</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<measurement:Measurement id="avgannrunoff">
 		<observation:hasObservable>
 			<habitat:AnnualRunoff />
@@ -328,6 +357,35 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
+
+<!-- Raw data are in degrees C*100, so use correction below -->	
+<measurement:Measurement id="Temp_Max_Dec">
+	<observation:hasObservable>
+		<geophysics:DecemberMaximumGroundSurfaceTemperature />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+		<measurement:unit>°C</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:Temp_Max_Dec</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<measurement:Measurement id="tmp_dec">
 		<observation:hasObservable>
@@ -651,6 +709,35 @@ Slope in degrees for Puget Sound & Madagascar
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<!-- Raw data are in degrees C*100, so use correction below -->	
+<measurement:Measurement id="Temp_Max_Jan">
+	<observation:hasObservable>
+		<geophysics:JanuaryMaximumGroundSurfaceTemperature />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+		<measurement:unit>°C</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:Temp_Max_Jan</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<!--  Mean monthly temperature -->
 	<measurement:Measurement id="tmp_jan">

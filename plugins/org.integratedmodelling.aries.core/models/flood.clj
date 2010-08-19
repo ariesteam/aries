@@ -17,33 +17,19 @@
   (binary-coding 'geofeatures:River))
 
 (defmodel soil-group-puget 'floodService:HydrologicSoilsGroup
-	"Relevant soil group"
-	(classification (ranking 'habitat:HydrologicSoilsGroup)
-			1        'floodService:SoilGroupA
-			2        'floodService:SoilGroupB
-			3        'floodService:SoilGroupC
-			4        'floodService:SoilGroupD))
-
-(defmodel precipitation-annual 'floodService:Precipitation
-  (classification (measurement 'habitat:AnnualPrecipitation "mm")
-                  [:< 75]     'floodService:VeryLowPrecipitation
-                  [75 150]    'floodService:LowPrecipitation
-                  [150 300]   'floodService:ModeratePrecipitation
-                  [300 600]   'floodService:HighPrecipitation
-                  [600 :>]    'floodService:VeryHighPrecipitation))
-
-(defmodel precipitation-monthly 'floodService:Precipitation
-	(classification (measurement 'habitat:JanuaryPrecipitation "mm")
-		[:< 75] 	  'floodService:VeryLowPrecipitation
-		[75 150] 	  'floodService:LowPrecipitation
-		[150 300] 	'floodService:ModeratePrecipitation
-		[300 600] 	'floodService:HighPrecipitation
-		[600 :>] 	  'floodService:VeryHighPrecipitation))
-		
+  "Relevant soil group"
+  (classification (ranking 'habitat:HydrologicSoilsGroup)
+      1        'floodService:SoilGroupA
+      2        'floodService:SoilGroupB
+      3        'floodService:SoilGroupC
+      4        'floodService:SoilGroupD))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
+
+(defmodel precipitation-monthly 'floodService:Precipitation
+  (measurement 'habitat:JanuaryPrecipitation "mm"))
 
 (defmodel land-use 'floodService:LandUseLandCover
 	"Just a reclass of the NLCD land use layer"
@@ -57,14 +43,22 @@
 		23	               'floodService:DevelopedMediumIntensity
 		24	               'floodService:DevelopedHighIntensity))
 		
-;; surface temperature - again, should be monthly and matched by temporal extents.
-(defmodel monthly-temperature 'floodService:MonthlyTemperature
-		(classification (measurement 'geophysics:JanuaryMeanGroundSurfaceTemperature "\u00b0C")
-			 [4 :>] 	'floodService:HighTemperature
-			 [-4 4] 	'floodService:ModerateTemperature
-			 [:< -4] 	'floodService:LowTemperature))
+;; Surface temperature - again, should be monthly and matched by temporal extents.  For mean temperature
+;;  could use a slightly lower discretization, i.e., < -4, -4 to 4, >4
+(defmodel monthly-temperature 'floodService:MonthlyMaximumTemperature
+		(classification (measurement 'geophysics:JanuaryMaximumGroundSurfaceTemperature "\u00b0C")
+			 [6 :>] 	'floodService:HighMonthlyMaximumTemperature
+			 [0 6] 	  'floodService:ModerateMonthlyMaximumTemperature
+			 [:< 0] 	'floodService:LowMonthlyMaximumTemperature))
+
+(defmodel annual-temperature 'floodService:AnnualMaximumTemperature
+    (classification (measurement 'geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
+       [6 :>]   'floodService:HighAnnualMaximumTemperature
+       [0 6]    'floodService:ModerateAnnualMaximumTemperature
+       [:< 0]   'floodService:LowAnnualMaximumTemperature)) 
 			 
-;; snow presence - only the puget-specific statement for now
+;; Snow presence - only the puget-specific statement for now.  This is not currently part of any
+;; model but could be incorporated in the future.
 (defmodel snow-presence 'floodService:SnowPresence
 		(classification (categorization 'puget:SnowPrecipitationCategory)
 			#{"LL" "HL"} 'floodService:LowlandAndHighland
@@ -79,14 +73,10 @@
         [0]                  'floodService:NoAnnualSnowmelt)))
 
 (defmodel snowmelt-monthly 'floodService:MonthlySnowmelt
-    (classification (measurement 'habitat:JanuarySnowmelt "mm"
-        [100 :>]            'floodService:HighMonthlySnowmelt
-        [50 100]            'floodService:ModerateMonthlySnowmelt
-        [:exclusive 0 50]   'floodService:LowMonthlySnowmelt
-        [0]                 'floodService:NoMonthlySnowmelt))) 
+    (measurement 'habitat:JanuarySnowmelt "mm"))
 
-;;Use runoff as training data here
-(defmodel flood-source-training 'floodService:FloodSourceValue
+;;Use runoff as training data - or possibly for the sink model (talk to a hydrologist)
+(defmodel runoff-training 'floodService:FloodSourceValue
   (classification (measurement 'habitat:AnnualRunoff "mm")
                   [:< 200]    'floodService:VeryLowFloodSource
                   [200 600]   'floodService:LowFloodSource
@@ -94,20 +84,17 @@
                   [1200 2400] 'floodService:HighFloodSource
                   [2400 :>]   'floodService:VeryHighFloodSource))
 
-(defmodel flood-source-value 'floodService:FloodSourceValue
-	(classification 'floodService:FloodSourceValue
-	  		[0 200]       'floodService:VeryLowFloodSource
-	  		[200 600]     'floodService:LowFloodSource
-	  		[600 1200]    'floodService:ModerateFloodSource
-	  		[1200 2400]   'floodService:HighFloodSource
-	  		[2400 11000]  'floodService:VeryHighFloodSource))
+;;Monthly source data is just the sum of precipitation and snowmelt.
+(defmodel source-monthly 'floodService:FloodSourceMonthly
+   (measurement 'floodService:FloodSourceMonthly "mm"
+        :context (precipitation-monthly snowmelt-monthly)
+        :state   #(+ (:precipitation-monthly %) (:snowmelt-monthly %)))) 
 
-;; Flood source probability, ad hoc method
-(defmodel source 'floodService:FloodSource
-	  (bayesian 'floodService:FloodSource 
-	  	:import   "aries.core::FloodSourceValueAdHoc.xdsl"
-	 	 	:context  (precipitation-monthly monthly-temperature snow-presence)
-	 	 	:observed (flood-source-value)))
+;;Annual source data is simply precipitation-annual (assume all snow melts in each year, which
+;; is true everywhere but for glaciers.  Assume that glaciers are neither gaining nor losing
+;; mass, which is not true but a simplifying assumption for now.
+(defmodel source-annual 'floodService:Precipitation
+    (measurement 'habitat:AnnualPrecipitation "mm"))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; CN source model
@@ -190,7 +177,7 @@
                   [60 90]    'floodService:HighEvapotranspiration
                   [30 60]    'floodService:ModerateEvapotranspiration
                   [12 30]    'floodService:LowEvapotranspiration
-                  [0 12]     'floodService:VeryLowEvapotranspiration)) 
+                  [0 12]     'floodService:VeryLowEvapotranspiration))
 
 (defmodel dam-storage 'floodService:DamStorageClass
   (classification (measurement 'floodService:DamStorage "mm")
@@ -215,13 +202,13 @@
     #{4 5}    'floodService:LowDaysPrecipitationPerYear
     #{1 2 3}  'floodService:VeryLowDaysPrecipitationPerYear))
 
-;;Gary: I can add in a value for this (i.e., if detention basins average 3 m in depth, with some much 
-;; deeper but many shallower, they'd store 3000 mm of flood water - need to make sure this is limited 
-;; only to the pixels with detention basins in the accompanying coverage.
+;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
+;;  empty.  Can alter this as appropriate.
 (defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-	(classification (binary-coding 'infrastructure:DetentionBasin)
-		0            'floodService:DetentionBasinStorageNotPresent
-		:otherwise   'floodService:DetentionBasinStoragePresent))
+	(measurement 'floodService:DetentionBasinStorage "mm" 
+    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
+    :state #(cond (== (:detention-basin-storage %) 0) 0
+                  (== (:detention-basin-storage %) 1) 3000)))
 
 ;;Undiscretizer for FloodSink
 (defmodel flood-sink 'floodService:FloodSink
@@ -253,22 +240,34 @@
                   [900 3000]        'floodService:LowGrayStorage
                   [0 900]           'floodService:VeryLowGrayStorage))
 
-;; Flood sink probability
-;; TODO missing data
-(defmodel sink 'floodService:FloodSink
-		"Interface to Flood resident use bayesian network"
-	  (bayesian 'floodService:FloodSink 
-	  	:import   "aries.core::FloodSink.xdsl"
+;; Flood sink probability, monthly
+(defmodel sink-monthly 'floodService:MonthlyFloodSink
+	  (bayesian 'floodService:MonthlyFloodSink
+	  	:import   "aries.core::FloodSinkMonthly.xdsl"
 	  	:keep     (
 	  			'floodService:FloodSink 
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
 	 	 			soil-group-puget vegetation-type slope monthly-temperature  
-	 	 			successional-stage imperviousness dam-storage evapotranspiration
+	 	 			successional-stage imperviousness dam-storage 
           (comment detention-basin-storage) ;;Why is this commented out?
 	 	 			(comment mean-days-precipitation-monthly vegetation-height)
 	 	 			percent-vegetation-cover)))
+
+;; Flood sink probability, annual
+(defmodel sink-annual 'floodService:AnnualFloodSink
+    (bayesian 'floodService:AnnualFloodSink
+      :import   "aries.core::FloodSinkAnnual.xdsl"
+      :keep   (
+              'floodService:FloodSink 
+              'floodService:GreenInfrastructureStorage 
+              'floodService:GrayInfrastructureStorage) 
+      :context (soil-group-puget vegetation-type slope annual-temperature  
+          successional-stage imperviousness dam-storage 
+          (comment detention-basin-storage) ;;Why is this commented out?
+          (comment mean-days-precipitation-annual vegetation-height)
+          percent-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
@@ -282,13 +281,13 @@
 
 (defmodel floodplains-100 'floodService:Floodplains100
   (classification (categorization 'geofeatures:Floodplain)
-                  #{"X500"}      'floodService:NotIn100YrFloodplain
-                  #{"A"}         'floodService:In100YrFloodplain))
+                  #{"A"}         'floodService:In100YrFloodplain
+                  :otherwise))
 
 (defmodel floodplains-500 'floodService:Floodplains500
   (classification (categorization 'geofeatures:Floodplain)
-                  #{"A" "X500"}      'floodService:In500YrFloodplain))
-                  :otherwise         'floodService:NotIn500YrFloodplain
+                  #{"A" "X500"}      'floodService:In500YrFloodplain
+                  :otherwise         'floodService:NotIn500YrFloodplain))
 
 (defmodel structures 'floodService:Structures
 	"Assume that any privately owned land in floodplain has vulnerable structures. TODO make more specific when we know more"
@@ -436,61 +435,62 @@
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;; all data, for testing and storage
+;; all data, for testing and storage.  These are currently set to "source-annual" but should also be
+;; tested for "source-monthly"
 (defmodel data-farmers-100 'floodService:AvoidedDamageToFarms100 
 	(identification 'floodService:AvoidedDamageToFarms100 
 		:context (
-			source :as source
-			sink :as sink
+			source-annual :as source
+			sink-annual :as sink
 			farmers-use-100 :as use)))
 
 (defmodel data-farmers-500 'floodService:AvoidedDamageToFarms500 
   (identification 'floodService:AvoidedDamageToFarms500 
     :context (
-      source :as source
-      sink :as sink
+      source-annual :as source
+      sink-annual :as sink
       farmers-use-500 :as use)))
 
 (defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets100 
 	(identification 'floodService:AvoidedDamageToPublicAssets100 
 		:context (
-			source :as source
-			sink :as sink
+			source-annual :as source
+			sink-annual :as sink
 			public-use-100 :as use)))
 
 (defmodel data-public-500 'floodService:AvoidedDamageToPublicAssets500 
   (identification 'floodService:AvoidedDamageToPublicAssets500 
     :context (
-      source :as source
-      sink :as sink
+      source-annual :as source
+      sink-annual :as sink
       public-use-500 :as use)))
 
 (defmodel data-private-100 'floodService:AvoidedDamageToPrivateAssets100 
 	(identification 'floodService:AvoidedDamageToPrivateAssets100 
 		:context (
-			source :as source
-			sink :as sink
+			source-annual :as source
+			sink-annual :as sink
 			private-use-100 :as use)))
 
 (defmodel data-private-500 'floodService:AvoidedDamageToPrivateAssets500 
   (identification 'floodService:AvoidedDamageToPrivateAssets500 
     :context (
-      source :as source
-      sink :as sink
+      source-annual :as source
+      sink-annual :as sink
       private-use-500 :as use)))
 
 (defmodel data-residents-100 'floodService:AvoidedDamageToResidents100 
 	(identification 'floodService:AvoidedDamageToResidents100 
 		:context (
-			source :as source
-			sink :as sink
+			source-annual :as source
+			sink-annual :as sink
 			residents-use-100 :as use)))
 
 (defmodel data-residents-500 'floodService:AvoidedDamageToResidents500 
   (identification 'floodService:AvoidedDamageToResidents500 
     :context (
-      source :as source
-      sink :as sink
+      source-annual :as source
+      sink-annual :as sink
       residents-use-500 :as use)))
 
 (defmodel flood-flow-data100 'floodService:TempFloodData100$
@@ -501,7 +501,8 @@
   (identification 'floodService:TempFloodData500
     :context (altitude streams floodplains-500))) 
 
-;; flow model	for farmers	(build the others when this is shown to work)
+;; Flow model	for farmers	in the 100-yr floodplain at annual time step. 
+;;  Build the others when this is shown to work for 500-yr floodplain, other beneficiary groups, monthly models.
 (defmodel flood-regulation-farmers100 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
   	    'floodService:FloodSourceValue
@@ -520,7 +521,7 @@
    	:downscaling-factor 8
    	:rv-max-states      10 
     ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-    :context (source farmers-use-100 sink flood-flow-data100)))
+    :context (source-annual farmers-use-100 sink-annual flood-flow-data100)))
 
 ;;Levees and floodplain width: used in the flow model
 (defmodel levees 'floodService:Levees

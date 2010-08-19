@@ -143,37 +143,35 @@
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-	<measurement:Measurement id="AnnualPrecip">
+<!-- Raw data are in mm*100, so use correction below -->
+	<measurement:Measurement id="PrecipAvgYearly">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
+		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
 		<measurement:unit>mm</measurement:unit>
-		<rdfs:comment>Data source: USDA-NRCS, derived from PRISM climate data
-		</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://datagateway.nrcs.usda.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:AnnualPrecip</geospace:hasCoverageId>
-				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
-				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>usa:PrecipAvgYearly</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>559</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>245</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>45.548</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.763</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.006</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-116.909</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
 
 <!-- Commeting out to run Mark's model, bring back in to run global models 
 	<measurement:Measurement id="bio_12">
@@ -205,35 +203,6 @@
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
-
-<!-- Raw data are in mm*100, so use correction below -->
-	<measurement:Measurement id="PrecipAvgYearly">
-		<observation:hasObservable>
-			<habitat:AnnualPrecipitation />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
-		<metadata:hasPriority>5</metadata:hasPriority>
-		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
-		<measurement:unit>mm</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:PrecipAvgYearly</geospace:hasCoverageId>
-				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>7023</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>3103</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.937</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
 
 	<measurement:Measurement id="groundwater_recharge">
 		<observation:hasObservable>
