@@ -46,7 +46,7 @@
 			</node>
 			<node id="WindSpeedClass">
 				<name>WindSpeedClass</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>208 311 301 369</position>
@@ -54,7 +54,7 @@
 			</node>
 			<node id="AtmosphericPressureClass">
 				<name>AtmosphericPressureClass</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>530 295 671 383</position>
@@ -62,12 +62,17 @@
 			</node>
 			<node id="BathymetryClass">
 				<name>BathymetryClass</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>835 303 928 361</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
+			<textbox>
+				<caption>If there was any way to use old storm tracks we have all 3 pieces of data here and could do a BN for source value (even calibrated with some data from the  Naerra and Jury 1998 article!).  But I understand your reluctance to use storm tracks.  Otherwise we still need a wave runup model.</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>135 439 799 481</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>

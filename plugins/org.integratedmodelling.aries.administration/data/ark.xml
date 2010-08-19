@@ -130,10 +130,36 @@
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!-- This should be the correct floodplains layer for Western Washington, capable of distinguishing
+      between 100- and 500-year floodplains. -->
+<observation:Categorization id="puget_pugetfloodplain">
+	<observation:hasObservable>
+		<geofeatures:Floodplain />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>zone</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>45.85126051068143</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.7500353279863</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.0003072438</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.02006408919881</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4267</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
+
 	<!--
 		floodplains in Chehalis watershed from shape coverage, seen as a
-		presence/absence ranking
-	-->
+		presence/absence ranking.  Commenting this out as it's unclear that this layer even still exists.
+		It's also incapabale of distinguishing between 100- and 500-year floodplains.
 	<measurement:BinaryCoding id="chehalis_floodplain">
 
 		<observation:hasObservable>
@@ -157,6 +183,6 @@
 				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding> -->
 
 </kbox>

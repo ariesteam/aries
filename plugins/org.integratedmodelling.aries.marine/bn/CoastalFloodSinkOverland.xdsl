@@ -49,9 +49,11 @@
 			<probabilities>0.85 0.15 0 0</probabilities>
 		</cpt>
 		<cpt id="LandUseLandCover">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="Beach" />
+			<state id="HerbaceousWetland" />
+			<state id="WoodyWetland" />
+			<state id="Et_cetera" />
+			<probabilities>0.5 0.5 0 0</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -75,7 +77,7 @@
 			</node>
 			<node id="MangroveWidth">
 				<name>MangroveWidth</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>36 449 133 485</position>
@@ -91,7 +93,7 @@
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>641 337 686 365</position>
@@ -115,11 +117,17 @@
 			</node>
 			<node id="LandUseLandCover">
 				<name>LandUseLandCover</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>390 329 496 395</position>
+				<position>367 323 473 389</position>
+				<barchart active="true" width="221" height="90" />
 			</node>
+			<textbox>
+				<caption>Need a way to aggregate these if we use a BN so the CPTs aren&apos;t completely intractable</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>212 155 401 197</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>

@@ -198,13 +198,11 @@
 ;;Uses for all beneficiary groups are defined for both the 100- and 500-year floodplain.  These are then incorporated into 
 ;; the identification and SPAN statements so beneficiary and flow maps can be run for both spatial extents of floodplains.
 (defmodel floodplains-100 'floodService:Floodplains100
-  "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
                   #{"ANI" "X" "X500"} 'floodService:NotIn100YrFloodplain
                   #{"A" "AO"}         'floodService:In100YrFloodplain))
 
 (defmodel floodplains-500 'floodService:Floodplains500
-  "Presence of a floodplain in given context"
   (classification (categorization 'geofeatures:Floodplain)
                   #{"ANI" "X"}       'floodService:NotIn500YrFloodplain
                   #{"A" "AO" "X500"} 'floodService:In500YrFloodplain))
@@ -303,6 +301,10 @@
       ;;                      sink :as sink
       ;;                      residents-use :as use)))
 
+(defmodel flood-flow-data100 'floodService:TempFloodData100$
+  (identification 'floodService:TempFloodData100
+    :context (altitude streams floodplains-100))) 
+
 ;; flow model for farmers in the 100-year floodplain   
 (defmodel flood-regulation-farmers-100 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
@@ -310,7 +312,7 @@
         'floodService:FloodFarmersUse100
         'floodService:FloodSink
         nil 
-        nil
+        'floodService:TempFloodData100
         :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
@@ -322,7 +324,11 @@
         :downscaling-factor 8
         :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context (source farmers-use-100 sink altitude floodplains-100 streams)))
+        :context (source farmers-use-100 sink flood-flow-data100)))
+
+(defmodel flood-flow-data500 'floodService:TempFloodData500$
+  (identification 'floodService:TempFloodData500
+    :context (altitude streams floodplains-500))) 
 
 ;; flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 'floodService:AvoidedDamageToFarms500
@@ -331,7 +337,7 @@
         'floodService:FloodFarmersUse500
         'floodService:FloodSink
         nil
-        nil
+        'floodService:TempFloodData500
         :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
@@ -343,7 +349,7 @@
         :downscaling-factor 8
         :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context (source farmers-use-500 sink altitude floodplains-500 streams)))
+        :context (source farmers-use-500 sink flood-flow-data500)))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     
