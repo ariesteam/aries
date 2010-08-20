@@ -333,7 +333,7 @@
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-use-100 'floodService:FloodFarmersUse100
   (binary-coding 'floodService:FloodFarmersUse100
-       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains-100 %))
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains100 %))
                         (= (tl/conc 'floodService:FarmlandPresent)     (:farmland %)))
                     1
                     0)
@@ -341,7 +341,7 @@
 
 (defmodel farmers-use-500 'floodService:FloodFarmersUse500
   (binary-coding 'floodService:FloodFarmersUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains-500 %))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains500 %))
                         (= (tl/conc 'floodService:FarmlandPresent)     (:farmland %)))
                     1
                     0)
@@ -350,26 +350,24 @@
 ;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel public-use-100 'floodService:FloodPublicAssetsUse100
   (binary-coding 'floodService:FloodPublicAssetsUse100
-       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains-100 %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains100 %))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
                     1
                     0)
        :context  (public-asset floodplains-100)))
 
 (defmodel public-use-500 'floodService:FloodPublicAssetsUse500
   (binary-coding 'floodService:FloodPublicAssetsUse500
-       :state #(do (println "Floodplains-500:" (:floodplains-500 %))
-                   (println "Public Asset:"    (:public-asset %)) 
-                   (if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains-500 %))
-                            (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains500 %))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
                         1
                         0))
-       :context  (public-asset floodplains-500)))
+       :context  (public-asset floodplains-500))
 
 ;; Models housing in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel residents-use-100 'floodService:FloodResidentsUse100
   (binary-coding 'floodService:FloodResidentsUse100
-       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains-100 %))
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains100 %))
                         (= (tl/conc 'floodService:HousingPresent)      (:housing %)))
                     1
                     0)
@@ -377,7 +375,7 @@
 
 (defmodel residents-use-500 'floodService:FloodResidentsUse500
   (binary-coding 'floodService:FloodResidentsUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains-500 %))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains500 %))
                         (= (tl/conc 'floodService:HousingPresent)      (:housing %)))
                     1
                     0)
@@ -386,7 +384,7 @@
 ;; Models other private structures in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel private-use-100 'floodService:FloodPrivateAssetsUse100
   (binary-coding 'floodService:FloodPrivateAssetsUse100
-       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains-100 %))
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)      (:floodplains100 %))
                         (= (tl/conc 'floodService:StructuresPresent)      (:structures %)))
                     1
                     0)
@@ -394,7 +392,7 @@
 
 (defmodel private-use-500 'floodService:FloodPrivateAssetsUse500
   (binary-coding 'floodService:FloodPrivateAssetsUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)      (:floodplains-500 %))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)      (:floodplains500 %))
                         (= (tl/conc 'floodService:StructuresPresent)      (:structures %)))
                     1
                     0)
@@ -433,6 +431,18 @@
 ;;	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
 ;;	 	 	:context  (structures floodplains-100)))
 
+;; ---------------------------------------------------------------------------
+;; flow data models
+;; ---------------------------------------------------------------------------
+
+(defmodel flood-flow-data100 'floodService:TempFloodData100$
+  (identification 'floodService:TempFloodData100
+    :context (altitude streams floodplains-100)))
+
+(defmodel flood-flow-data500 'floodService:TempFloodData500$
+  (identification 'floodService:TempFloodData500
+    :context (altitude streams floodplains-500)))
+
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
@@ -444,64 +454,64 @@
 		:context (
 			source-annual :as source
 			sink-annual :as sink
-			farmers-use-100 :as use)))
+			farmers-use-100 :as use
+      flood-flow-data100 :as flow)))
 
 (defmodel data-farmers-500 'floodService:AvoidedDamageToFarms500 
   (identification 'floodService:AvoidedDamageToFarms500 
     :context (
       source-annual :as source
       sink-annual :as sink
-      farmers-use-500 :as use)))
+      farmers-use-500 :as use
+      flood-flow-data500 :as flow)))
 
 (defmodel data-public-100 'floodService:AvoidedDamageToPublicAssets100 
 	(identification 'floodService:AvoidedDamageToPublicAssets100 
 		:context (
 			source-annual :as source
 			sink-annual :as sink
-			public-use-100 :as use)))
+			public-use-100 :as use
+      flood-flow-data100 :as flow)))
 
 (defmodel data-public-500 'floodService:AvoidedDamageToPublicAssets500 
   (identification 'floodService:AvoidedDamageToPublicAssets500 
     :context (
       source-annual :as source
       sink-annual :as sink
-      public-use-500 :as use)))
+      public-use-500 :as use
+      flood-flow-data500 :as flow)))
 
 (defmodel data-private-100 'floodService:AvoidedDamageToPrivateAssets100 
 	(identification 'floodService:AvoidedDamageToPrivateAssets100 
 		:context (
 			source-annual :as source
 			sink-annual :as sink
-			private-use-100 :as use)))
+			private-use-100 :as use
+      flood-flow-data100 :as flow)))
 
 (defmodel data-private-500 'floodService:AvoidedDamageToPrivateAssets500 
   (identification 'floodService:AvoidedDamageToPrivateAssets500 
     :context (
       source-annual :as source
       sink-annual :as sink
-      private-use-500 :as use)))
+      private-use-500 :as use
+      flood-flow-data500 :as flow)))
 
 (defmodel data-residents-100 'floodService:AvoidedDamageToResidents100 
 	(identification 'floodService:AvoidedDamageToResidents100 
 		:context (
 			source-annual :as source
 			sink-annual :as sink
-			residents-use-100 :as use)))
+			residents-use-100 :as use
+      flood-flow-data100 :as flow)))
 
 (defmodel data-residents-500 'floodService:AvoidedDamageToResidents500 
   (identification 'floodService:AvoidedDamageToResidents500 
     :context (
       source-annual :as source
       sink-annual :as sink
-      residents-use-500 :as use)))
-
-(defmodel flood-flow-data100 'floodService:TempFloodData100$
-  (identification 'floodService:TempFloodData100
-    :context (altitude streams floodplains-100))) 
-
-(defmodel flood-flow-data500 'floodService:TempFloodData500$
-  (identification 'floodService:TempFloodData500
-    :context (altitude streams floodplains-500))) 
+      residents-use-500 :as use
+      flood-flow-data500 :as flow)))
 
 ;; Flow model	for farmers	in the 100-yr floodplain at annual time step. 
 ;;  Build the others when this is shown to work for 500-yr floodplain, other beneficiary groups, monthly models.
