@@ -193,7 +193,7 @@
   	    nil
         :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
         :sink-threshold     nil
-        :use-threshold      100
+        :use-threshold      100.0
         :trans-threshold    nil
         :source-type        :finite
         :sink-type          :finite
