@@ -73,17 +73,16 @@
       :context ((measurement 'fisheries:LutjanusArgentimaculatusAbundanceMg "kg/km^2*year" :as abundance))
       :state   #(* (:abundance %) 8712431)))
 
-;; FIXME: all values from the context list or being looked up as nil!
 (defmodel total-pelagic-subsistence-harvest 'fisheries:TotalSubsistenceHarvest
   (measurement 'fisheries:TotalSubsistenceHarvest "kg/km^2*year"
       :context (slender-emperor-harvest sky-emperor-harvest mangrove-red-snapper-harvest)
-      :state    #(do (println "Slender Emperor:"      (:slender-emperor-harvest %))
-                     (println "Sky Emperor:"          (:sky-emperor-harvest %))
-                     (println "Mangrove Red Snapper:" (:mangrove-red-snapper-harvest %))
+      :state    #(do (println "Slender Emperor:"      (:lethrinusborbonicusharvest %))
+                     (println "Sky Emperor:"          (:lethrinusmahsenaharvest %))
+                     (println "Mangrove Red Snapper:" (:lutjanusargentimaculatusharvest %))
                      (apply + (map (fn [fishval] (or fishval 0.0))
-                                   [(:slender-emperor-harvest      %)
-                                    (:sky-emperor-harvest          %)
-                                    (:mangrove-red-snapper-harvest %)])))))
+                                   [(:lethrinusborbonicusharvest      %)
+                                    (:lethrinusmahsenaharvest          %)
+                                    (:lutjanusargentimaculatusharvest %)])))))
 
 ;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
 ;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
