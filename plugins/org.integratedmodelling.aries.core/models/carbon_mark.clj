@@ -85,13 +85,14 @@
                   [20 40] 'carbonService:LowVegetationCover
                   [0 20]  'carbonService:VeryLowVegetationCover))
 
+;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
 (defmodel soil-ph 'carbonService:Soilph
-  (classification (ranking 'habitat:SoilPh)
+  (classification (ranking 'habitat:SoilPhDeep)
                   [7.3 :>]       'carbonService:HighPh
                   [5.5 7.3]      'carbonService:ModeratePh
                   [:< 5.5]       'carbonService:LowPh))
 
-; use NLCD layers to infer anoxic vs. oxic
+;; use NLCD layers to infer anoxic vs. oxic
 (defmodel soil-oxygen-conditions 'carbonService:SoilOxygenConditions 
   (classification (numeric-coding 'nlcd:NLCDNumeric)
                   #{90 95}   'carbonService:AnoxicSoils

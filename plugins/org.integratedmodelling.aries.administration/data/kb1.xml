@@ -101,7 +101,7 @@
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>usa:meandaysprecipannual</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
-			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+			<!--  <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType> -->
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -172,8 +172,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-
-<!-- Commeting out to run Mark's model, bring back in to run global models 
 	<measurement:Measurement id="bio_12">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
@@ -202,7 +200,7 @@
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>  -->
+	</measurement:Measurement>  
 
 	<measurement:Measurement id="groundwater_recharge">
 		<observation:hasObservable>
@@ -553,6 +551,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<geospace:hasLonUpperBound>-70.472</geospace:hasLonUpperBound>
 		<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid> </observation:hasObservationExtent>
+		
 		</measurement:Measurement> <measurement:Measurement id="la_slope">
 		<observation:hasObservable> <geophysics:DegreeSlope />
 		</observation:hasObservable> <measurement:unit>°</measurement:unit>
@@ -1328,7 +1327,6 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- Commeting out to run Mark's model - turn back on to run global models 
 	<measurement:Ranking id="imperviousGlobal">
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
@@ -1357,7 +1355,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
 
 	<measurement:Ranking id="impervious2_Project">
 		<observation:hasObservable>
@@ -1824,7 +1822,6 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!--  Commented out for the purpose of running Mark's model - need it for DR modeling.
 	<measurement:Ranking id="NorthAmericaTreeCover">
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
@@ -1854,7 +1851,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
 
 	<measurement:Ranking id="SouthAmericaTreeCover">
 		<observation:hasObservable>
@@ -2499,11 +2496,9 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:ReptileRichness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona
-			Data Services Program</rdfs:comment>
+		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu
-		</metadata:hasURL>
+		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
@@ -2586,7 +2581,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:BinaryCoding id="puget_wastreams">
+<!--  	<measurement:BinaryCoding id="puget_wastreams">
 		<observation:hasObservable>
 			<geofeatures:River />
 		</observation:hasObservable>
@@ -2608,34 +2603,33 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding> -->
 
-	<measurement:BinaryCoding id="mg_mgrivers">
-		<observation:hasObservable>
-			<geofeatures:River />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)
-		</rdfs:comment>
+<measurement:BinaryCoding id="PugetStreams">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Washington DNR hydrography data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-34.687</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-16.869</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>57.497</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+		<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:PugetStreams</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>11016</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>12749</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>197105.43</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>607661.051</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>1344695.43</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>1599281.051</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<measurement:BinaryCoding id="dominicanRepublic_drrivers">
 		<observation:hasObservable>
@@ -3038,12 +3032,11 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!--soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 for 
-		grasslands and deserts and soil_ph1 for all other ecosystem types-->
-
+<!--soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 for 
+	grasslands and deserts and soil_ph1 for all other ecosystem types-->
 <measurement:Ranking id="SoilpH_0_30">
 	<observation:hasObservable>
-		<habitat:SoilPh />
+		<habitat:SoilPhShallow />
 	</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
@@ -3067,11 +3060,9 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- Commenting out soilpH30_100 for now: part of the problem might be "duplicate" layers before
-ARIES can handle them in a rule-based system?
 	<measurement:Ranking id="SoilpH_30_100">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhDeep />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 			<metadata:hasPriority>0</metadata:hasPriority>
@@ -3093,22 +3084,19 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
 
 	<measurement:Ranking id="SoilpH_0_30_puget">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhShallow />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilpH_0_30_puget
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilpH_0_30_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3119,26 +3107,22 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
 	<measurement:Ranking id="SoilpH_30_100_puget">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhDeep />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilpH_30_100_puget
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:SoilpH_30_100_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3149,26 +3133,22 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
 	<measurement:Ranking id="SoilpH_0_30_san_pedro">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhShallow />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3179,26 +3159,22 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
 	<measurement:Ranking id="SoilpH_30_100_san_pedro">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhDeep />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:SoilpH_30_100_san_pedro
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:SoilpH_30_100_san_pedro</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3209,8 +3185,7 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -3221,12 +3196,10 @@ ARIES can handle them in a rule-based system?
 		</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:SoilTexture</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3238,8 +3211,7 @@ ARIES can handle them in a rule-based system?
 				<geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

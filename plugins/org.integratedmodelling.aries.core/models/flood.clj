@@ -65,12 +65,14 @@
 			#{"RD" "SD"} 'floodService:RainDominatedAndSnowDominated
 			"RS"         'floodService:PeakRainOnSnow))
 
+;;These bins are producing uniform snowmelt results everywhere - consider altering if these data are 
+;; actually used in another model statement.
 (defmodel snowmelt-annual 'floodService:AnnualSnowmelt
-    (classification (measurement 'habitat:AnnualSnowmelt "mm"
+    (classification (measurement 'habitat:AnnualSnowmelt "mm")
         [700 :>]             'floodService:HighAnnualSnowmelt
         [250 700]            'floodService:ModerateAnnualSnowmelt
         [:exclusive 0 250]   'floodService:LowAnnualSnowmelt
-        [0]                  'floodService:NoAnnualSnowmelt)))
+        [0]                  'floodService:NoAnnualSnowmelt))
 
 (defmodel snowmelt-monthly 'floodService:MonthlySnowmelt
     (measurement 'habitat:JanuarySnowmelt "mm"))
@@ -281,8 +283,8 @@
 
 (defmodel floodplains-100 'floodService:Floodplains100
   (classification (categorization 'geofeatures:Floodplain)
-                  #{"A"}         'floodService:In100YrFloodplain
-                  :otherwise))
+                  "A"            'floodService:In100YrFloodplain
+                  :otherwise     'floodService:NotIn100YrFloodplain))
 
 (defmodel floodplains-500 'floodService:Floodplains500
   (classification (categorization 'geofeatures:Floodplain)

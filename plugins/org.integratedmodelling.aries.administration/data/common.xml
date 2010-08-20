@@ -519,7 +519,7 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
 	
-	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer -->
+	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer 
 
 	<measurement:BinaryCoding id="DetentionBasins">
 		<observation:hasObservable>
@@ -544,7 +544,57 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding> 
+
+<measurement:BinaryCoding id="DetentionBasins">
+	<observation:hasObservable>
+		<infrastructure:DetentionBasin />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from King, Pierce, and San Juan county GIS point data</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:DetentionBasins</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-31750.937</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>1075096.36</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>628249.063</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>1481896.36</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding> -->
+
+<!--  <measurement:BinaryCoding id="ReclassDetention">
+	<observation:hasObservable>
+		<infrastructure:DetentionBasin />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from King, Pierce, and San Juan county GIS point data</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:ReclassDetention</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-104169.53247416666</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>3527211.9747666665</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>2061180.4675258328</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>4861854.974766666</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>  -->
 
 <measurement:Ranking id="PointDensity">
 	<observation:hasObservable>
@@ -653,8 +703,6 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- Commeting out for the purposes of running Mark's model - bring it in to run DR & others 
-
 <measurement:Ranking id="hsg">
 	<observation:hasObservable>
 		<habitat:HydrologicSoilsGroup />
@@ -679,7 +727,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:Ranking>  -->
+</measurement:Ranking>  
 
 	<!-- mean days of precipitation. One of those sucky puget-specific shapefiles.
 	     TODO this is actually non puget-specific so the concept should be in an ontology
@@ -992,7 +1040,6 @@ Slope in degrees for Puget Sound & Madagascar
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 	
-<!--  -->
 	<measurement:Ranking id="puget_impervious_surfaces">
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
@@ -1081,7 +1128,7 @@ Slope in degrees for Puget Sound & Madagascar
 
 <!--  For use in USLE/RUSLE -->
 
-<!--  	<measurement:Ranking id="rfactor_1980">
+<measurement:Ranking id="rfactor_1980">
 		<observation:hasObservable>
 			<soilretentionEcology:RainfallRunoffErosivityIndex />
 		</observation:hasObservable>
@@ -1104,7 +1151,7 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
 
 <measurement:Ranking id="puget_dam_storage_puget">
 	<observation:hasObservable>
@@ -1393,16 +1440,12 @@ Slope in degrees for Puget Sound & Madagascar
 	
 <!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 
 for grasslands and deserts and soil_ph1 for all other ecosystem types -->
-	
-	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
-		observable instance. Using the same observable will just pick one of the two
-		SoilPh measurements in a model without a way to discriminate. -->
 	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
 	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
 	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
-<!--  	<measurement:Ranking id="global_soil_ph">
+ 	<measurement:Ranking id="global_soil_ph">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhDeep />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: FAO Digital Soil Map of the World</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
@@ -1425,15 +1468,12 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>	-->
 	
-	<!-- fv TODO: add depth property to soilPh in habitat; set depth class into 
-		observable instance. Using the same observable will just pick one of the two
-		SoilPh measurements in a model without a way to discriminate. -->
-	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
+<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
 	or within a wide range.  Because of this, the ARIES map display will show holes in the data on land.
 	In these cases it's just using the priors, so it's not a concern that no value shows on the maps. -->
-<!--  	<measurement:Ranking id="soil_ph1">
+  	<measurement:Ranking id="soil_ph1">
 		<observation:hasObservable>
-			<habitat:SoilPh />
+			<habitat:SoilPhShallow />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: FAO Digital Soil Map of the World</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
@@ -1454,7 +1494,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
+	</measurement:Ranking>
 	
 	<observation:Categorization id="global_globalsoiltexture">
 			<observation:hasObservable>
@@ -1647,7 +1687,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- projection needs to be set in geotools
+	<!-- projection needs to be set in geotools -->
 	<measurement:Measurement id="puget_vegetation_height">
 		<measurement:unit>ft</measurement:unit>
 		<observation:hasObservable>
@@ -1670,10 +1710,10 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasLonLowerBound>3321194.1450003847</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>1722488.5825707817</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>4148547.01785063</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>ESRI:102749</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:102749</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>  -->
+	</measurement:Measurement>  
 	
 		<measurement:Ranking id="puget_pugetwaterquality">
 			<observation:hasObservable>
