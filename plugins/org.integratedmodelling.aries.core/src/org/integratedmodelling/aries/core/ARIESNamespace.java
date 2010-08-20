@@ -5,7 +5,6 @@ import java.util.HashSet;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
-import org.integratedmodelling.thinklab.interfaces.knowledge.IKnowledge;
 import org.integratedmodelling.utils.Pair;
 
 public class ARIESNamespace {

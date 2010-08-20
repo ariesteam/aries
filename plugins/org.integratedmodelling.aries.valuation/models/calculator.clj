@@ -40,7 +40,7 @@
 
 ;; ------------------------------------------------------------------------------------------------
 ;; "enhanced" valuation models. Still crap, but these would be worth 10 years of publications if they
-;; came from the great Gund researchers. All in a day's work for ARIES ecosystemserviceman.
+;; came from the great Gund researchers.
 ;; ------------------------------------------------------------------------------------------------
 		
 (defmodel slope 'geophysics:DegreeSlope
@@ -54,6 +54,15 @@
 
 (defmodel population 'policytarget:PopulationDensity
   (count 'policytarget:PopulationDensity "/km^2")) 
+
+(defmodel pipeline-small 'infrastructure:SmallPipeline
+  (binary-coding 'infrastructure:SmallPipeline)) 
+
+(defmodel pipeline-medium 'infrastructure:MediumPipeline
+  (binary-coding 'infrastructure:MediumPipeline)) 
+
+(defmodel pipeline-large 'infrastructure:LargePipeline
+  (binary-coding 'infrastructure:LargePipeline)) 
 
 (defmodel food-production-value 'esclass:FoodProduction 
 	(es-calculator 'esclass:FoodProduction
@@ -102,14 +111,92 @@
     :normalize false    
 		:context (land-use elevation precipitation population)))
 
+(defmodel recreation-value 'esclass:Recreation 
+	(es-calculator 'esclass:Recreation
+    :influence (
+                 (habitat:AnnualPrecipitation -0.20 :min 700 :max 800)
+                 (policytarget:PopulationDensity -0.45 :min 500 :max 3000)
+                 (geophysics:DegreeSlope -0.35 :min 25 :max 55))
+    :normalize false    
+		:context (land-use slope precipitation population)))
+
+;; modified for pipeline effects, val d'agri specific
+
+(defmodel food-production-value-pipeline 'esclass:FoodProduction 
+	(es-calculator 'esclass:FoodProduction
+    :influence (
+                 (infrastructure:MediumPipeline -1.00 :min 0 :max 1)
+                 (geophysics:DegreeSlope -0.4 :min 0 :max 17)
+                 (policytarget:PopulationDensity -0.5 :min 100 :max 5000)
+                 (habitat:AnnualPrecipitation 0.3 :min 600 :max 800)
+                 (geophysics:Altitude -0.7 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation slope population pipeline-medium)))
+
+(defmodel climate-regulation-value-pipeline 'esclass:ClimateRegulation 
+	(es-calculator 'esclass:ClimateRegulation
+    :influence (
+                 (infrastructure:SmallPipeline -1.00 :min 0 :max 1)
+                 (geophysics:DegreeSlope -0.25 :min 4 :max 17)
+                 (policytarget:PopulationDensity -0.25 :min 300 :max 1000)
+                 (habitat:AnnualPrecipitation 0.4 :min 700 :max 800)
+                 (geophysics:Altitude -0.1 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation slope population pipeline-small)))
+
+(defmodel water-supply-value-pipeline 'esclass:WaterSupply 
+	(es-calculator 'esclass:WaterSupply
+    :influence (
+                 (infrastructure:MediumPipeline -0.80 :min 0 :max 1)
+                 (geophysics:DegreeSlope -0.15 :min 5 :max 10)
+                 (policytarget:PopulationDensity -0.25 :min 1000 :max 5000)
+                 (habitat:AnnualPrecipitation 0.2 :min 600 :max 800))
+    :normalize false
+		:context (land-use slope precipitation population pipeline-medium)))
+		  
+(defmodel soil-formation-value-pipeline 'esclass:SoilFormation 
+	(es-calculator 'esclass:SoilFormation
+    :influence (
+                 (infrastructure:MediumPipeline -0.50 :min 0 :max 1)
+                 (geophysics:DegreeSlope -0.5 :min 8 :max 15)
+                 (policytarget:PopulationDensity -0.5 :min 200 :max 2000)
+                 (habitat:AnnualPrecipitation -0.3 :min 600 :max 800))
+    :normalize false    
+		:context (land-use population precipitation slope pipeline-medium)))
+		  
+(defmodel pollination-value-pipeline 'esclass:Pollination 
+	(es-calculator 'esclass:Pollination
+    :influence (
+                 (infrastructure:LargePipeline -0.70 :min 0 :max 1)
+                 (habitat:AnnualPrecipitation 0.11 :min 600 :max 800)
+                 (policytarget:PopulationDensity -0.45 :min 500 :max 3000)
+                 (geophysics:Altitude -0.45 :min 500 :max 1750))
+    :normalize false    
+		:context (land-use elevation precipitation population pipeline-large)))
+
+(defmodel recreation-value-pipeline 'esclass:Recreation 
+	(es-calculator 'esclass:Recreation
+    :influence (
+                 (infrastructure:LargePipeline -1.00 :min 0 :max 1)
+                 (habitat:AnnualPrecipitation -0.20 :min 700 :max 800)
+                 (policytarget:PopulationDensity -0.45 :min 500 :max 3000)
+                 (geophysics:DegreeSlope -0.35 :min 25 :max 55))
+    :normalize false    
+		:context (land-use slope precipitation population pipeline-large)))
+
 ;; -----------------------------------------------------------------------------
-;; enchiladinha
+;; enchiladinhas
 ;; -----------------------------------------------------------------------------
 
 (defmodel esvalue-corrected 'esvaluation:ESValueCorrected
   (identification 'esvaluation:ESValueCorrected
     :context (food-production-value climate-regulation-value
                water-supply-value soil-formation-value
-               pollination-value))) 
+               pollination-value recreation-value))) 
 
+(defmodel esvalue-corrected-pipeline 'esvaluation:ESValueCorrected
+  (identification 'esvaluation:ESValueCorrected
+    :context (food-production-value-pipeline climate-regulation-value-pipeline
+               water-supply-value-pipeline soil-formation-value-pipeline
+               pollination-value-pipeline recreation-value-pipeline))) 
 		  		  

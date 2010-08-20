@@ -28,6 +28,7 @@
 		(import (get-plugin-resource 'aries.administration "common.xml"))
 		(import (get-plugin-resource 'aries.administration "ipcc.xml"))
 		(import (get-plugin-resource 'aries.administration "nlcd2001.xml"))
+		(import (get-plugin-resource 'aries.administration "agri.xml"))
 		(import (get-plugin-resource 'aries.administration "marine.xml"))
 		(import (get-plugin-resource 'aries.administration "kb1.xml"))
 		(import (get-plugin-resource 'aries.administration "bv1.xml"))

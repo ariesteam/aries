@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kbox xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
+	xmlns:geofeatures="http://www.integratedmodelling.org/ks/geospace/geofeatures.owl#"
+	xmlns:geophysics="http://www.integratedmodelling.org/ks/geospace/geophysics.owl#"
+	xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
+	xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+	xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
+	xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
+	xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
+	xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
+	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
+	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
+	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
+	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
+	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
+	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
+	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+	xmlns:soilretentionEcology="http://www.integratedmodelling.org/ks/es/services/soilretentionEcology.owl#"
+	xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/services/waterSupplyService.owl#"
+	xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
+	xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
+	xmlns:veracruz-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl#"
+	xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/services/aestheticService.owl#"
+	xmlns:southernCalifornia="http://www.integratedmodelling.org/ks/es/services/local/southernCalifornia.owl#"
+	xmlns:recreationService="http://www.integratedmodelling.org/ks/es/services/recreationService.owl#"
+	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#">
+	
+	<measurement:BinaryCoding id="aglk_all1d_poly">
+		<observation:hasObservable>
+			<infrastructure:SmallPipeline/>
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>aglk:all_1d_poly</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>40.301</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>15.744</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>40.471</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>15.993</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="aglk_all45d_poly">
+		<observation:hasObservable>
+			<infrastructure:MediumPipeline/>
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>aglk:all_45d_poly</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>40.301</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>15.744</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>40.471</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>15.993</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="aglk_all7d_poly">
+		<observation:hasObservable>
+			<infrastructure:LargePipeline/>
+		</observation:hasObservable>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
+				</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>aglk:all_7d_poly</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>40.301</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>15.744</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>40.471</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>15.993</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326
+				</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+</kbox>
