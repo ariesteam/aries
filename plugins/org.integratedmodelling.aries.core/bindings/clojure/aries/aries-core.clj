@@ -47,7 +47,8 @@
   (proxy [org.integratedmodelling.aries.core.span.SPANProxy] []
     (runSPAN [observation source-concept use-concept sink-concept flow-concept flow-params]
              (println "We are inside runSPAN!")
-             (time (span-driver observation source-concept sink-concept use-concept flow-concept flow-params)))))
+             (binding [tl/*session* (tl/get-new-session)]
+               (time (span-driver observation source-concept sink-concept use-concept flow-concept flow-params))))))
 
 ;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.SPANTransformer/setSPANProxy (get-span-proxy))
