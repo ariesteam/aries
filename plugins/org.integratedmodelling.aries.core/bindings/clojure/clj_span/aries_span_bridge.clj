@@ -206,7 +206,7 @@
 
 (defn- get-hydrosheds-layer
   [observation rows cols]
-  (let [hydrosheds-observation  (run-at-shape "aries/flood/flow-direction"
+  (let [hydrosheds-observation  (run-at-shape "core.models.flood/flow-direction"
                                               (get-shape (get-spatial-extent observation)))
         hydrosheds-native-rows  (grid-rows    hydrosheds-observation)
         hydrosheds-native-cols  (grid-columns hydrosheds-observation)

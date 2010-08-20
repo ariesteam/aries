@@ -246,7 +246,7 @@
   [_ source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "River", elevation-layer "Altitude"
     floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
-  (println "Running Flood flow model.")
+  (println "Running Flood flow model for" (if floodplain-layer500 "500" "100") "year floodplain.")
   (let [floodplain-layer (or floodplain-layer500 floodplain-layer100)
         rows             (get-rows source-layer)
         cols             (get-cols source-layer)

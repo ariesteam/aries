@@ -17,7 +17,7 @@
 
 (ns clj-span.water-model
   (:use [clj-misc.utils     :only (memoize-by-first-arg depth-first-tree-search def-)]
-        [clj-misc.randvars  :only (_<_ _d rv-scale rv-zero-below-scalar rv-mean rv-cdf-lookup)]
+        [clj-misc.randvars  :only (rv-lt _d rv-scale rv-zero-below-scalar rv-mean rv-cdf-lookup)]
         [clj-span.model-api :only (distribute-flow! service-carrier)]
         [clj-span.analyzer  :only (source-loc? sink-loc? use-loc?)]
         [clj-span.params    :only (*trans-threshold*)]))
@@ -42,7 +42,7 @@
   [location neighbors]
   (let [local-elev        (get-in location [:flow-features elev-concept])
         neighbor-elevs    (vec (map #(get-in % [:flow-features elev-concept]) neighbors))
-        neighbors-lower?  (vec (map #(_<_ % local-elev) neighbor-elevs))
+        neighbors-lower?  (vec (map #(rv-lt % local-elev) neighbor-elevs))
         local-lowest?     (reduce (fn [a b] (* (- 1 a) (- 1 b))) neighbors-lower?)
         neighbors-lowest? (loop [i   (dec (count neighbor-elevs))
                                  j   0
@@ -52,7 +52,7 @@
                               (if (== j i)
                                 (recur (dec i) 0 i<j)
                                 (recur i (inc j) 
-                                       (let [lt-prob (_<_ (neighbor-elevs i) (neighbor-elevs j))]
+                                       (let [lt-prob (rv-lt (neighbor-elevs i) (neighbor-elevs j))]
                                          (-> i<j
                                              (assoc i (* (i<j i) lt-prob))
                                              (assoc j (* (i<j j) (- 1 lt-prob)))))))))]

@@ -31,8 +31,8 @@
 ;;; _-_ rv-subtract
 ;;; _*_ rv-multiply
 ;;; _d_ rv-divide
-;;; _<_ rv-lt
-;;; _>_ rv-gt
+;;; _<_ rv-lt?
+;;; _>_ rv-gt?
 ;;;  +_ scalar-rv-add
 ;;;  -_ scalar-rv-subtract
 ;;;  *_ scalar-rv-multiply
@@ -419,14 +419,6 @@
   (rv-resample (rv-convolute / X (dissoc Y 0.0))))
 (def _d_ rv-divide)
 
-(defn rv-max
-  [X Y]
-  (if (> (rv-mean X) (rv-mean Y)) X Y))
-
-(defn rv-min
-  [X Y]
-  (if (< (rv-mean X) (rv-mean Y)) X Y))
-
 (defn rv-lt
   [X Y]
   (get (rv-convolute < X Y) true 0.0))
@@ -444,6 +436,14 @@
   [X Y]
   (> (rv-gt X Y) 0.5))
 (def _>_ rv-gt?)
+
+(defn rv-max
+  [X Y]
+  (if (rv-gt? X Y) X Y))
+
+(defn rv-min
+  [X Y]
+  (if (rv-lt? X Y) X Y))
 
 (defn- rv-map
   "Returns the distribution of the random variable X with f applied to its range values."
