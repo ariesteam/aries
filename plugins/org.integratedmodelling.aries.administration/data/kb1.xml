@@ -60,60 +60,54 @@
 		<observation:hasObservable>
 			<habitat:AmphibianRichness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona
-			Data Services Program</rdfs:comment>
+		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu
-		</metadata:hasURL>
+		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:amphibian_rich
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460302.342616228
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116526.91446972464
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106788.5249591796
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698583.9876596787
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
+not supported by Geoserver.  Stuck commeting out and not using the data for now??
 
 <measurement:Ranking id="usa_meandaysprecipannual">
 	<observation:hasObservable>
 		<habitat:AnnualDaysOfPrecipitation />
 	</observation:hasObservable>
-			<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
-			<metadata:hasPriority>5</metadata:hasPriority> 
+	<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>usa:meandaysprecipannual</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
-			<!--  <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType> -->
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>24.46261554638897</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-124.80199999999999</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>49.42511478755149</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-66.935</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
+			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:Ranking> -->
 
 <!--Native units are in inches, convert to mm for consistency with other data sources-->
 <measurement:Measurement id="california_infiltration_wch">
@@ -2324,16 +2318,13 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PotentialEvapotranspiration />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: CGIAR Global Aridity/Global PET database
-		</rdfs:comment>
+		<rdfs:comment>Data source: CGIAR Global Aridity/Global PET database</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://csi.cgiar.org/aridity/index.asp
-		</metadata:hasURL>
+		<metadata:hasURL>http://csi.cgiar.org/aridity/index.asp</metadata:hasURL>
 		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:pet</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2345,8 +2336,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>

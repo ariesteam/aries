@@ -154,7 +154,7 @@
             :import   "aries.core::CarbonSourceValueMark.xdsl"
             :keep     ('carbonService:NetCarbonUptake)
             :observed (net-carbon-uptake)
-	 	 	:context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
+	 	 	      :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check
@@ -202,6 +202,10 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 1
+        :keep ('carbonService:NetCarbonUptake 'carbonService:GreenhouseGasEmissions
+                'carbonService:PotentialCarbonMitigation 'carbonService:UsedCarbonMitigation
+                'carbonService:SatisfiedCarbonMitigation 'carbonService:CarbonMitigationSurplus
+                'carbonService:CarbonMitigationDeficit)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-simple use-simple decomposition-factor)))
 

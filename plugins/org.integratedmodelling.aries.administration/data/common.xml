@@ -359,6 +359,34 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
+<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
+not supported by Geoserver.  Stuck commeting out and not using the data for now??
+
+<measurement:Ranking id="usa_meandaysprecipdec">
+	<observation:hasObservable>
+		<habitat:DecemberDaysOfPrecipitation />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:meandaysprecipdec</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>  -->
+
 <!-- Raw data are in degrees C*100, so use correction below -->	
 <measurement:Measurement id="Temp_Max_Dec">
 	<observation:hasObservable>
@@ -729,35 +757,32 @@ Slope in degrees for Puget Sound & Madagascar
 	</observation:hasObservationExtent>
 </measurement:Ranking>  
 
-	<!-- mean days of precipitation. One of those sucky puget-specific shapefiles.
-	     TODO this is actually non puget-specific so the concept should be in an ontology
-	     for whatever authority publishes this.
-	     TODO solve the time issue when things calm down.-->
-	<measurement:Ranking id="days_of_precipitation_code_january">
-	
-		<observation:hasObservable>
-			<habitat:JanuaryDaysOfPrecipitation />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
-			<metadata:hasPriority>5</metadata:hasPriority> 
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:meandaysprecipjan</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
-				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>24.4630870819092</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.802490234375</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.4254341125488</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-66.9145584106445</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
+not supported by Geoserver.  Stuck commeting out and not using the data for now??
+<measurement:Ranking id="usa_meandaysprecipjan">
+	<observation:hasObservable>
+		<habitat:JanuaryDaysOfPrecipitation />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:meandaysprecipjan</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking> -->
 
 <!-- Raw data are in degrees C*100, so use correction below -->	
 <measurement:Measurement id="Temp_Max_Jan">

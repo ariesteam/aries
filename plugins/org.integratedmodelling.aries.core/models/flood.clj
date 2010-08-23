@@ -533,6 +533,7 @@
    	:downscaling-factor 8
    	:rv-max-states      10 
     ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+    ;;:keep ('floodService:concept-1 'floodService:concept-2 'floodService:concept-3) 
     :context (source-annual farmers-use-100 sink-annual flood-flow-data100)))
 
 ;;Levees and floodplain width: used in the flow model

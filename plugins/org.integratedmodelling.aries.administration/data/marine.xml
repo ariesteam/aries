@@ -548,30 +548,30 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-	
-	<measurement:BinaryCoding id="mg_paths">
-			<observation:hasObservable>
-				<infrastructure:Path />
-			</observation:hasObservable>
-				<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:paths</geospace:hasCoverageId>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>42655.480440575746</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>41318.29564322572</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>1579160.178312065</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>860975.2647306218</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:96618</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="mg_paths2">
+	<observation:hasObservable>
+		<infrastructure:Path />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:paths2</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-25.593</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>43.228</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-11.972</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>50.477</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel -->
 	<measurement:Count id="popDens2006">
