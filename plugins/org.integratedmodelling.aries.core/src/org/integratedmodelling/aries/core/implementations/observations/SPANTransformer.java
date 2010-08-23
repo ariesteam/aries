@@ -1,7 +1,6 @@
 package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Map;
 
 import org.integratedmodelling.aries.core.ARIESNamespace;
@@ -130,7 +129,7 @@ public class SPANTransformer
 		}
 		
 		/*
-		 * new simpler strategy: the modeller names the concepts she wants
+		 * new simpler strategy: the modeler names the concepts she wants
 		 * computed, which must derive from the given traits. If any of the
 		 * keepers are children of that trait, we compute it.
 		 */

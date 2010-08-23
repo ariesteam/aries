@@ -9,7 +9,6 @@ import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
 import org.integratedmodelling.modelling.ModelFactory;
 import org.integratedmodelling.modelling.interfaces.IModel;
-import org.integratedmodelling.modelling.random.BayesianModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
@@ -17,9 +16,9 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
 import org.integratedmodelling.utils.Polylist;
 
+import clojure.lang.Compiler;
 import clojure.lang.Keyword;
 import clojure.lang.PersistentHashMap;
-import clojure.lang.Compiler;
 
 public class SPANModel extends DefaultAbstractModel {
 
