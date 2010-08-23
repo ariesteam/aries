@@ -204,7 +204,7 @@
         :downscaling-factor 1
         :keep ('carbonService:NetCarbonUptake 'carbonService:GreenhouseGasEmissions
                 'carbonService:PotentialCarbonMitigation 'carbonService:UsedCarbonMitigation
-                'carbonService:SatisfiedCarbonMitigation 'carbonService:CarbonMitigationSurplus
+                'carbonService:SatisfiedCarbonMitigationDemand 'carbonService:CarbonMitigationSurplus
                 'carbonService:CarbonMitigationDeficit)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-simple use-simple decomposition-factor)))

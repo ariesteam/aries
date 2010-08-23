@@ -219,7 +219,12 @@ public class SPANTransformer
 			IConcept observable = defineObservable(k.toString().substring(1));
 			
 			if (observable != null) {
-				
+
+				System.out.println(
+						k.toString().substring(1) + 
+						" being stored as an observation of " + 
+						observable);
+
 				Object closure = closures.get(k);
 				IFn clojure = (IFn) closure;
 				IState state = 
