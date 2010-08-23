@@ -18,6 +18,7 @@ import org.integratedmodelling.corescience.literals.GeneralClassifier;
 import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.extents.GridExtent;
+import org.integratedmodelling.modelling.ModelFactory;
 import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -29,6 +30,7 @@ import org.integratedmodelling.thinklab.interfaces.annotations.InstanceImplement
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
+import org.integratedmodelling.thinklab.interfaces.knowledge.IRelationship;
 import org.integratedmodelling.utils.CamelCase;
 import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.Polylist;
@@ -63,10 +65,26 @@ public class SPANTransformer
 		span = proxy;
 	}
 	
+	@Override
+	public void initialize(IInstance i) throws ThinklabException {
+
+		super.initialize(i);
+		
+		
+		/*
+		 * read the result concepts we want to compute after the flows have
+		 * been computed
+		 */
+		for (IRelationship r : i.getRelationships(ModelFactory.RETAINS_STATES)) {
+			outputStates.add(KnowledgeManager.get().requireConcept(r.getValue().toString()));
+		}
+		
+	}
+	
 	ArrayList<Pair<GeneralClassifier, IConcept>> classifiers = 
 		new ArrayList<Pair<GeneralClassifier,IConcept>>();
 	
-	HashSet<IConcept> outputStates = new HashSet<IConcept>();
+	ArrayList<IConcept> outputStates = new ArrayList<IConcept>();
 	IConcept cSpace = null;
 	
 	@Override
@@ -110,41 +128,53 @@ public class SPANTransformer
 		} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
 			source = flowConcept;
 		}
-
-		if (source != null) {
-
-			if (source.is(concept)) {
-				ret = source;
-			} else {
-				for (IConcept ch : source.getChildren()) {
-					if (ch.is(concept)) {
-						ret = ch;
-						break;
-					}
-				}
-				if (ret == null) {
-					// this is a bit complicated: scan the children of the
-					// first parent
-					// that is in the same concept space
-					IConcept parent = null;
-					for (IConcept ch : source.getParents()) {
-						if (ch.getConceptSpace().equals(
-								source.getConceptSpace())) {
-							parent = ch;
-							break;
-						}
-					}
-					if (parent != null) {
-						for (IConcept ch : parent.getChildren()) {
-							if (ch.is(concept)) {
-								ret = ch;
-								break;
-							}
-						}
-					}
-				}
+		
+		/*
+		 * new simpler strategy: the modeller names the concepts she wants
+		 * computed, which must derive from the given traits. If any of the
+		 * keepers are children of that trait, we compute it.
+		 */
+		for (IConcept c : outputStates) {
+			if (c.is(concept)) {
+				ret = c;
+				break;
 			}
 		}
+		
+//		if (source != null) {
+//
+//			if (source.is(concept)) {
+//				ret = source;
+//			} else {
+//				for (IConcept ch : source.getChildren()) {
+//					if (ch.is(concept)) {
+//						ret = ch;
+//						break;
+//					}
+//				}
+//				if (ret == null) {
+//					// this is a bit complicated: scan the children of the
+//					// first parent
+//					// that is in the same concept space
+//					IConcept parent = null;
+//					for (IConcept ch : source.getParents()) {
+//						if (ch.getConceptSpace().equals(
+//								source.getConceptSpace())) {
+//							parent = ch;
+//							break;
+//						}
+//					}
+//					if (parent != null) {
+//						for (IConcept ch : parent.getChildren()) {
+//							if (ch.is(concept)) {
+//								ret = ch;
+//								break;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
 
 		return ret;
 	}

@@ -7,7 +7,9 @@ import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.DefaultAbstractModel;
 import org.integratedmodelling.modelling.DefaultStatefulAbstractModel;
+import org.integratedmodelling.modelling.ModelFactory;
 import org.integratedmodelling.modelling.interfaces.IModel;
+import org.integratedmodelling.modelling.random.BayesianModel;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
@@ -46,6 +48,10 @@ public class SPANModel extends DefaultAbstractModel {
     IConcept flowDataObservable = null;
     private PersistentHashMap flowParams = PersistentHashMap.create(new Object[]{});
     
+	ArrayList<String> keeperIds = new ArrayList<String>();
+	ArrayList<IConcept> keepers = new ArrayList<IConcept>();
+
+    
     /*
      * this is the actual way to pass parameters
      */
@@ -66,6 +72,8 @@ public class SPANModel extends DefaultAbstractModel {
         flowDataObservable = ((SPANModel)model).flowDataObservable;
         flowParams = ((SPANModel)model).flowParams;
         parameters = ((SPANModel)model).parameters;
+		keeperIds = ((SPANModel)model).keeperIds;
+		keepers = ((SPANModel)model).keepers;
     }
 
     static Keyword downscalingFactor = Keyword.intern(null, "downscaling-factor");
@@ -126,7 +134,13 @@ public class SPANModel extends DefaultAbstractModel {
                 (PersistentHashMap)
                     flowParams.assoc(Keyword.intern(null, keyword.substring(1)), evaledArgument);
 
-        } else {
+        }  else if (keyword.equals(":keep")) {
+			
+			Collection<?> p = (Collection<?>) argument;
+			for (Object c : p)
+				keeperIds.add(c.toString());
+
+		} else {
             super.applyClause(keyword, argument);
         }
     }
@@ -176,6 +190,13 @@ public class SPANModel extends DefaultAbstractModel {
                         Keyword.intern(null, "decay-rate"), st);                
             }
         }
+		
+        // add what to keep in result list
+        for (int i = 0; i < keepers.size(); i++) {
+			arr.add(Polylist.list(
+						ModelFactory.RETAINS_STATES, 
+						keepers.get(i).toString()));
+		}
         
         // set flow parameters directly into instance implementation (SPANTransformer) 
         // using reflection. Non-serializable, but who cares.
@@ -201,7 +222,10 @@ public class SPANModel extends DefaultAbstractModel {
         // TODO take the concept IDs and annotate them as usual. NOTE: the 
         // concepts themselves should actually be observables of dependents, so
         // the whole thing needs attention.
-        
+		
+		for (String s : keeperIds) {
+			keepers.add(annotateConcept(s,session, null));
+		}
     }
 
 }
