@@ -187,8 +187,8 @@ public class ESVCalculatorTransformer
 							if (n < inf.min) n = inf.min;
 							if (n > inf.max) n = inf.max;
 							double mul = (n - inf.min)/(inf.max - inf.min);
-							mins[i] += mins[i]*mul;
-							maxs[i] += maxs[i]*mul;
+							mins[i] += mins[i]*mul*inf.influenceFactor;
+							maxs[i] += maxs[i]*mul*inf.influenceFactor;
 						}
 						
 					}
