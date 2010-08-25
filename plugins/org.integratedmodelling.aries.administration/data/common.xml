@@ -359,15 +359,12 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
-<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
-not supported by Geoserver.  Stuck commeting out and not using the data for now??
-
 <measurement:Ranking id="usa_meandaysprecipdec">
 	<observation:hasObservable>
 		<habitat:DecemberDaysOfPrecipitation />
 	</observation:hasObservable>
-	<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
-	<metadata:hasPriority>5</metadata:hasPriority>
+		<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -378,14 +375,14 @@ not supported by Geoserver.  Stuck commeting out and not using the data for now?
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.783</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.427</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.915</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking>  -->
+</measurement:Ranking>
 
 <!-- Raw data are in degrees C*100, so use correction below -->	
 <measurement:Measurement id="Temp_Max_Dec">
@@ -548,58 +545,9 @@ Slope in degrees for Puget Sound & Madagascar
 	</measurement:Measurement>  -->
 	
 	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer 
+This layer is still having serious problems.  Check with Ferd.
 
-	<measurement:BinaryCoding id="DetentionBasins">
-		<observation:hasObservable>
-			<infrastructure:DetentionBasin />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: Derived from King, Pierce, and San Juan county GIS point data</rdfs:comment>
-			<metadata:hasPriority>5</metadata:hasPriority> 
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:DetentionBasins</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-31750.937</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1075096.36</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>628249.063</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1481896.36</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding> 
-
-<measurement:BinaryCoding id="DetentionBasins">
-	<observation:hasObservable>
-		<infrastructure:DetentionBasin />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: Derived from King, Pierce, and San Juan county GIS point data</rdfs:comment>
-	<metadata:hasPriority>5</metadata:hasPriority>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:DetentionBasins</geospace:hasCoverageId>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>-31750.937</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>1075096.36</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>628249.063</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>1481896.36</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
-
-<!--  <measurement:BinaryCoding id="ReclassDetention">
+ <measurement:BinaryCoding id="ReclassDetention">
 	<observation:hasObservable>
 		<infrastructure:DetentionBasin />
 	</observation:hasObservable>
@@ -622,7 +570,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>  -->
+</measurement:BinaryCoding> -->
 
 <measurement:Ranking id="PointDensity">
 	<observation:hasObservable>
@@ -755,10 +703,8 @@ Slope in degrees for Puget Sound & Madagascar
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:Ranking>  
+</measurement:Ranking>
 
-<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
-not supported by Geoserver.  Stuck commeting out and not using the data for now??
 <measurement:Ranking id="usa_meandaysprecipjan">
 	<observation:hasObservable>
 		<habitat:JanuaryDaysOfPrecipitation />
@@ -775,14 +721,14 @@ not supported by Geoserver.  Stuck commeting out and not using the data for now?
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.802</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.425</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.915</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking> -->
+</measurement:Ranking>
 
 <!-- Raw data are in degrees C*100, so use correction below -->	
 <measurement:Measurement id="Temp_Max_Jan">

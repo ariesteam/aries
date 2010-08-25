@@ -333,6 +333,11 @@
         :benefit-type       :non-rival
         :downscaling-factor 8
         :rv-max-states      10
+        :keep ('floodService:Runoff 'floodService:PotentialRunoffMitigation 'floodService:PotentiallyVulnerablePopulations
+              'floodService:PotentiallyDamagingFloodFlow 'floodService:PotentiallyDamagingRunoff 'floodService:PotentialFloodDamageReceived
+              'floodService:ActualFloodFlow 'floodService:FloodDamagingRunoff 'floodService:UtilizedRunoffMitigation
+              'floodService:FloodDamageReceived 'floodService:BenignRunoff 'floodService:UnutilizedRunoffMitigation
+              'floodService:AbsorbedFloodFlow 'floodService:FloodMitigatedRunoff 'floodService:FloodMitigationBenefitsAccrued) 
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
         :context (source farmers-use-100 sink flood-flow-data100)))
 

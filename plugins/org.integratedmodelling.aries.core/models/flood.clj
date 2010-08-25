@@ -253,9 +253,9 @@
 	 	 	:context  (
 	 	 			soil-group-puget vegetation-type slope monthly-temperature  
 	 	 			successional-stage imperviousness dam-storage 
-          (comment detention-basin-storage) ;;Why is this commented out?
-	 	 			(comment mean-days-precipitation-monthly vegetation-height)
-	 	 			percent-vegetation-cover)))
+          (comment detention-basin-storage) 
+	 	 			(comment vegetation-height)
+	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
 
 ;; Flood sink probability, annual
 (defmodel sink-annual 'floodService:AnnualFloodSink
@@ -267,9 +267,9 @@
               'floodService:GrayInfrastructureStorage) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
           successional-stage imperviousness dam-storage 
-          (comment detention-basin-storage) ;;Why is this commented out?
-          (comment mean-days-precipitation-annual vegetation-height)
-          percent-vegetation-cover)))
+          (comment detention-basin-storage)
+          (comment vegetation-height)
+          percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models

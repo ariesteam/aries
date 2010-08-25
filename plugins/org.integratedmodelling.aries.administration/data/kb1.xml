@@ -81,9 +81,6 @@
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!--   Reprojection to WGS 84 (or NAD 83) badly screws up the bounding box.  Native SRS (4609)
-not supported by Geoserver.  Stuck commeting out and not using the data for now??
-
 <measurement:Ranking id="usa_meandaysprecipannual">
 	<observation:hasObservable>
 		<habitat:AnnualDaysOfPrecipitation />
@@ -100,14 +97,14 @@ not supported by Geoserver.  Stuck commeting out and not using the data for now?
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>37.5</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-96.001</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.5</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-96.001</geospace:hasLonUpperBound>
+			<geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.802</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.425</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.935</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Ranking> -->
+</measurement:Ranking>
 
 <!--Native units are in inches, convert to mm for consistency with other data sources-->
 <measurement:Measurement id="california_infiltration_wch">
