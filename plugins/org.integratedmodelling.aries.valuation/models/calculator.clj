@@ -19,15 +19,15 @@
 		#{12 73 74}	                     'esclass:Desert
 		#{51 52}	                       'esclass:Tundra)
 	(classification (numeric-coding 'corine:CORINENumeric)
-		[1 9 :inclusive]	               'esclass:Urban
+		[1 11 :inclusive]	               'esclass:Urban
 		[12 22 :inclusive]	             'esclass:AgriculturePasture
 		#{23 24 25}                      'esclass:Forest
-		#{2}	                           'esclass:GrasslandsShrublands
-		#{40 41}	                       'esclass:LakesRiversPondsReservoirs
+		#{26 27 28 29}	                 'esclass:GrasslandsShrublands
+		#{40 41 44}	                     'esclass:LakesRiversPondsReservoirs
 		[35 39 :inclusive]               'esclass:Wetlands
-		42	                             'esclass:Coastal
+		#{42 43}	                       'esclass:Coastal
 		31	                             'esclass:Rock
-		#{30 31 32 33 34}	               'esclass:Tundra))
+		#{30 32 33 34}  	               'esclass:Tundra))
 
 ;; ------------------------------------------------------------------------------------------------
 ;; the crap RB, MW and countless others get paid money to produce.
