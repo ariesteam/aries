@@ -398,39 +398,6 @@
                     0)
        :context (structures floodplains-500)))
 
-;;Old Bayesian models - delete once you know others work
-;; Resident users in floodplains
-;;(defmodel residents-use 'floodService:FloodResidentsUse
-;;		"Interface to Flood resident use bayesian network"
-;;	  (bayesian 'floodService:FloodResidentsUse 
-;;	  	:import   "aries.core::FloodResidentsUse.xdsl"
-;;	  	:keep     ('floodService:ResidentsInFloodHazardZones)
-;;	 	 	:context  (housing floodplains-100)))
-
-;; Farmer users in floodplains
-;;(defmodel farmers-use 'floodService:FloodFarmersUse
-;;		"Interface to Flood farmers use bayesian network"
-;;	  (bayesian 'floodService:FloodFarmersUse 
-;;	  	:import   "aries.core::FloodFarmersUse.xdsl"
-;;	  	:keep     ('floodService:FarmersInFloodHazardZones)
-;;	 	 	:context  (farmland floodplains-100)))
-
-;; Public assets in floodplains
-;;(defmodel public-use 'floodService:FloodPublicAssetsUse
-;;  	"Interface to Flood public asset use bayesian network"
-;;	  (bayesian 'floodService:FloodPublicAssetsUse 
-;;	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
-;;	  	:keep     ('floodService:PublicAssetOwnersAndUsersInFloodHazardZones)
-;;	 	 	:context  (public-asset floodplains-100)))
-	 	 	
-;; Private assets in floodplains
-;;(defmodel private-use 'floodService:FloodPrivateAssetsUse100
-;; 	"Interface to Flood public asset use bayesian network"
-;;	  (bayesian 'floodService:FloodPrivateAssetsUse100
-;;	  	:import   "aries.core::FloodPublicAssetsUse.xdsl"
-;;	  	:keep     ('floodService:PrivateAssetOwnersAndUsersInFloodHazardZones)
-;;	 	 	:context  (structures floodplains-100)))
-
 ;; ---------------------------------------------------------------------------
 ;; flow data models
 ;; ---------------------------------------------------------------------------
@@ -533,7 +500,11 @@
    	:downscaling-factor 8
    	:rv-max-states      10 
     ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-    ;;:keep ('floodService:concept-1 'floodService:concept-2 'floodService:concept-3) 
+    :keep ('floodService:Runoff 'floodService:PotentialRunoffMitigation 'floodService:PotentiallyVulnerablePopulations
+           'floodService:PotentiallyDamagingFloodFlow 'floodService:PotentiallyDamagingRunoff 'floodService:PotentialFloodDamageReceived
+           'floodService:ActualFloodFlow 'floodService:FloodDamagingRunoff 'floodService:UtilizedRunoffMitigation
+           'floodService:FloodDamageReceived 'floodService:BenignRunoff 'floodService:UnutilizedRunoffMitigation
+           'floodService:AbsorbedFloodFlow 'floodService:FloodMitigatedRunoff 'floodService:FloodMitigationBenefitsAccrued) 
     :context (source-annual farmers-use-100 sink-annual flood-flow-data100)))
 
 ;;Levees and floodplain width: used in the flow model

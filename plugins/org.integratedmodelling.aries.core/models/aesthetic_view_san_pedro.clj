@@ -1,4 +1,4 @@
-(ns core.models.aesthetics
+(ns core.models.aesthetic-view-san-pedro
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario
                            defmodel
@@ -17,6 +17,7 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
+;;Remove ocean; add riparian corridor to source model
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding 'geofeatures:Lake)

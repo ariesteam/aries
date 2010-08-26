@@ -1,4 +1,4 @@
-(ns core.models.aesthetics
+(ns core.models.aesthetic-proximity-san-pedro
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario
                            defmodel
@@ -17,6 +17,7 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
+;;Remove ocean; add riparian corridor to source model
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding 'geofeatures:Lake)
@@ -142,7 +143,7 @@
         'aestheticService:TheoreticalNaturalBeauty
         'aestheticService:HomeownerViewUse
       	'aestheticService:TotalVisualBlight
-      	nil
+      	'aestheticService:View
         'geophysics:Altitude
         ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
@@ -154,12 +155,12 @@
         :benefit-type     :non-rival
         :downscaling-factor 3
         :rv-max-states      10
-        :keep ('aestheticService:PotentialViews 'aestheticService:PotentialVisualBlight 'aestheticService:HomeownersWithViewDemand
-               'aestheticService:PossibleViews 'aestheticService:VisibleNaturalBeauty 'aestheticService:HomeownersWithPossibleViews
-               'aestheticService:ActualViews 'aestheticService:EnjoyedViews 'aestheticService:RelevantVisualBlight
-               'aestheticService:HomeownersWithViews 'aestheticService:UnseenViews 'aestheticService:InaccessibleVisualBlight
-               'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:InvisibleNaturalBeauty
-               'aestheticService:HomeownersWithDegradedViews)
+        :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand
+               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximiateHomeowners
+               'aestheticService:AccessibleProximity 'aestheticService:EnjoyedOpenSpace 'aestheticService:BlockingProximitySink
+               'aestheticService:HomeownersWithProximiateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
+               'aestheticService:HomeownersWithoutProximateOpenSpace 'aestheticService:BlockedProximity 'aestheticService:BlockedOpenSpace
+               'aestheticService:HomeownersWithBlockedProximity)
         :context (source
                   homeowners
                   sink

@@ -681,18 +681,15 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 
 	<measurement:NumericCoding id="Reclass_fire_Clip">
 		<observation:hasObservable>
-			<habitat:FireFrequency />
+			<habitat:FireReturnInterval />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Derived from SWReGAP vegetation type and
-			TNC historic fire return interval data</rdfs:comment>
+		<rdfs:comment>Data source: Derived from SWReGAP vegetation type and TNC historic fire return interval data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-				<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -703,8 +700,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-120.016</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>42.022</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-102.017</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
@@ -713,17 +709,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:FireThreat />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: California Fire and Resource Assessment
-			Program</rdfs:comment>
+		<rdfs:comment>Data source: California Fire and Resource Assessment Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://frap.cdf.ca.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-				<geospace:hasCoverageId>california:Reclass_fthr1
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:Reclass_fthr1</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -734,8 +727,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-125.408</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>42.403</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-112.889</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>

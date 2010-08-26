@@ -90,6 +90,9 @@
       <owl:Class rdf:ID="Highways"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="OpenSpaceProximateHomeowners">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse"/>
+  </owl:Class>
   <owl:Class rdf:ID="LakeFrontAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="LakeFront"/>
@@ -121,13 +124,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
-  <owl:Class rdf:ID="LostBenefitshed">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
-    </rdfs:subClassOf>
-    <rdfs:comment>Potential homeowners that cannot access the view due to obstructions or visual blight</rdfs:comment>
-    <rdfs:label>Blocked View Beneficiaries</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="Cemetery">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
@@ -187,6 +183,13 @@
       <owl:Class rdf:about="#EmergentWetland"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithDegradedViews">
+    <rdfs:label>Blocked View Beneficiaries</rdfs:label>
+    <rdfs:comment>Potential homeowners that cannot access the view due to obstructions or visual blight</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="LowCrimePotential">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="CrimePotential"/>
@@ -232,18 +235,18 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="InaccessibleVisualBlight">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HighCrimePotential">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CrimePotential"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HomeownerProximityUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="#ProximityBenefitshed"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HighCrimePotential">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#CrimePotential"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="BlockingProximitySink">
     <rdfs:subClassOf>
@@ -260,6 +263,9 @@
   </owl:Class>
   <owl:Class rdf:ID="CemeteryPresent">
     <rdfs:subClassOf rdf:resource="#Cemetery"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PotentialProximitySink">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink"/>
   </owl:Class>
   <owl:Class rdf:ID="WoodyWetlandPresent">
     <rdfs:subClassOf>
@@ -304,12 +310,12 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="HomeownersWithViews"/>
-        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
         </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HomeownersEnjoyingViews"/>
+        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
@@ -317,6 +323,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/geospace/geofeatures.owl#Ocean"/>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
+  <owl:Class rdf:ID="EnjoyedOpenSpace">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource"/>
+  </owl:Class>
   <owl:Class rdf:ID="OceanAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Ocean"/>
@@ -327,16 +336,12 @@
       <owl:Class rdf:about="#TheoreticalNaturalBeauty"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="PotentialProximateOpenSpace">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource"/>
+  </owl:Class>
   <owl:Class rdf:about="#Highways">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
-  </owl:Class>
-  <owl:Class rdf:ID="View">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
-    </rdfs:subClassOf>
-    <rdfs:comment>The view value that would exist for the beneficiaries if visual blight was not blocking it.</rdfs:comment>
-    <rdfs:label>Total Potential Viewshed</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="LowProximityValue">
     <rdfs:subClassOf>
@@ -354,7 +359,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="PossibleProximateOpenSpace">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#TotalVisualBlight">
     <rdfs:subClassOf>
@@ -365,6 +372,13 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UrbanProximity"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#HomeownersEnjoyingViews">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >People living in places with high quality views value them highly, even if they are not immediately adjacent to open space.  This is often included in the purchase price of housing.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="RequiringTMDL">
     <rdfs:subClassOf>
@@ -444,12 +458,10 @@
     >The enjoyment of natural amenities is typically a passive process (i.e., enjoying views, fresh air, outdoor recreation).</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#HomeownersWithViews"/>
-        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#HomeownersEnjoyingViews"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -464,6 +476,9 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
   </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithBlockedProximity">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
+  </owl:Class>
   <owl:Class rdf:ID="ForestAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Forest"/>
@@ -475,11 +490,20 @@
   <owl:Class rdf:ID="AccessibleOpenSpace">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
   </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithPossibleViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse"/>
+  </owl:Class>
   <owl:Class rdf:ID="HighwaysAbsent">
     <owl:disjointWith rdf:resource="#HighwaysPresent"/>
     <rdfs:subClassOf rdf:resource="#Highways"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
+  <owl:Class rdf:ID="HomeownersWithOpenSpaceProximity">
+    <rdfs:comment>The homeowners actually benefitting from proximity to open space.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#RiverFront">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ScenicViews"/>
@@ -490,13 +514,19 @@
       <owl:Class rdf:ID="FormalProtection"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="LostProximityBenefitshed">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
+  <owl:Class rdf:ID="EnjoyedViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource"/>
   </owl:Class>
   <owl:Class rdf:about="#UrbanProximity">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ScenicViews"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithoutViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithoutProximateOpenSpace">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse"/>
   </owl:Class>
   <owl:Class rdf:ID="AestheticQualityProducingEcosystem">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -505,6 +535,11 @@
   </owl:Class>
   <owl:Class rdf:ID="BlockedOpenSpace">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedViews">
+    <rdfs:label>Lost Viewshed</rdfs:label>
+    <rdfs:comment>The portion of the total possible view value that is decreased or blocked by visual blight.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
   </owl:Class>
   <owl:Class rdf:about="#FormalProtection">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -576,6 +611,9 @@
       <owl:Class rdf:about="#HousingValue"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="UnseenViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource"/>
+  </owl:Class>
   <owl:Class rdf:about="#WaterQuality">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
@@ -613,7 +651,6 @@
     >The "quality of life" benefits associated with living in an area with high perceived scenic or other environmental quality.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Existence"/>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   <owl:Class rdf:about="#TheoreticalNaturalBeauty">
     <rdfs:comment>The total amount of natural beauty generated by the ecosystems, without regard to its actual availability to the beneficiaries.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
@@ -621,6 +658,9 @@
   </owl:Class>
   <owl:Class rdf:ID="CemeteryAbsent">
     <rdfs:subClassOf rdf:resource="#Cemetery"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PotentialVisualBlight">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateBlight">
     <rdfs:subClassOf rdf:resource="#VisualBlight"/>
@@ -678,13 +718,6 @@
   <owl:Class rdf:ID="ModerateProximityValue">
     <rdfs:subClassOf rdf:resource="#ProximitySourceValue"/>
   </owl:Class>
-  <owl:Class rdf:ID="ActualBenefitshed">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
-    </rdfs:subClassOf>
-    <rdfs:comment>The portion of homeowners that are actually reached by the view benefit.</rdfs:comment>
-    <rdfs:label>Actual View Beneficiaries</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="MeetsStandards">
     <rdfs:subClassOf rdf:resource="#WaterQuality"/>
   </owl:Class>
@@ -700,9 +733,11 @@
   <owl:Class rdf:ID="RiverFrontAbsent">
     <rdfs:subClassOf rdf:resource="#RiverFront"/>
   </owl:Class>
-  <owl:Class rdf:ID="ActualProximityBenefitshed">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
-    <rdfs:comment>The homeowners actually benefitting from proximity to open space.</rdfs:comment>
+  <owl:Class rdf:ID="HomeownersWithViewDemand">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithOpenSpaceDemand">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
   </owl:Class>
   <owl:Class rdf:ID="PresenceOfHousing">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
@@ -712,7 +747,7 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
   <owl:Class rdf:ID="InaccessibleProximitySink">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSink"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink"/>
   </owl:Class>
   <owl:Class rdf:ID="LowBlight">
     <rdfs:subClassOf rdf:resource="#VisualBlight"/>
@@ -726,11 +761,19 @@
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
+  <owl:Class rdf:ID="UnaccessedOpenSpace">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource"/>
+  </owl:Class>
   <owl:Class rdf:about="#GolfCourse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateViewValue">
     <rdfs:subClassOf rdf:resource="#ViewSourceValue"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualViews">
+    <rdfs:label>Actual Viewshed</rdfs:label>
+    <rdfs:comment>The actual view value once visual blight is factored in.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="AccessibleProximity">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
@@ -759,11 +802,6 @@
   <owl:Class rdf:about="#EmergentWetland">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
   </owl:Class>
-  <owl:Class rdf:ID="ActualView">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
-    <rdfs:comment>The actual view value once visual blight is factored in.</rdfs:comment>
-    <rdfs:label>Actual Viewshed</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:about="#ViewSink">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Whatever detracts from an aesthetic view by being visible along the sight line.</rdfs:comment>
@@ -780,13 +818,13 @@
   <owl:Class rdf:ID="HighProximityValue">
     <rdfs:subClassOf rdf:resource="#ProximitySourceValue"/>
   </owl:Class>
+  <owl:Class rdf:ID="PossibleViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
+    <rdfs:comment>The view value that would exist for the beneficiaries if visual blight was not blocking it.</rdfs:comment>
+    <rdfs:label>Total Potential Viewshed</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateOpenSpaceValue">
     <rdfs:subClassOf rdf:resource="#OpenSpacePotentialValue"/>
-  </owl:Class>
-  <owl:Class rdf:ID="BlockedView">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
-    <rdfs:comment>The portion of the total possible view value that is decreased or blocked by visual blight.</rdfs:comment>
-    <rdfs:label>Lost Viewshed</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#AestheticEnjoymentProvision">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -801,13 +839,13 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
+  <owl:Class rdf:ID="HomeownersWithViews">
+    <rdfs:label>Actual View Beneficiaries</rdfs:label>
+    <rdfs:comment>The portion of homeowners that are actually reached by the view benefit.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateResourceQuality">
     <rdfs:subClassOf rdf:resource="#ResourceQuality"/>
-  </owl:Class>
-  <owl:Class rdf:about="#HomeownersWithViews">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >People living in places with high quality views value them highly, even if they are not immediately adjacent to open space.  This is often included in the purchase price of housing.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
   <owl:Class rdf:about="#LakeFront">
     <rdfs:subClassOf rdf:resource="#ScenicViews"/>
@@ -815,21 +853,21 @@
   <owl:Class rdf:ID="NoViewValue">
     <rdfs:subClassOf rdf:resource="#ViewSourceValue"/>
   </owl:Class>
-  <owl:Class rdf:ID="NoWater">
-    <rdfs:subClassOf rdf:resource="#WaterBody"/>
-  </owl:Class>
   <owl:Class rdf:ID="SmallMountain">
     <rdfs:subClassOf rdf:resource="#Mountain"/>
   </owl:Class>
-  <owl:Class rdf:ID="TransportationInfrastructureAbsent">
-    <owl:disjointWith rdf:resource="#TransportationInfrastructurePresent"/>
-    <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
+  <owl:Class rdf:ID="NoWater">
+    <rdfs:subClassOf rdf:resource="#WaterBody"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ProximityToBeauty">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
   </owl:Class>
   <owl:Class rdf:ID="HousingAbsent">
     <rdfs:subClassOf rdf:resource="#PresenceOfHousing"/>
   </owl:Class>
-  <owl:Class rdf:about="#ProximityToBeauty">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NonRivalBenefit"/>
+  <owl:Class rdf:ID="TransportationInfrastructureAbsent">
+    <owl:disjointWith rdf:resource="#TransportationInfrastructurePresent"/>
+    <rdfs:subClassOf rdf:resource="#CommercialIndustrialTransportation"/>
   </owl:Class>
   <owl:Class rdf:ID="WoodyWetlandAbsent">
     <rdfs:subClassOf rdf:resource="#WoodyWetland"/>
@@ -868,6 +906,9 @@
   <owl:Class rdf:ID="VeryLargeArea">
     <rdfs:subClassOf rdf:resource="#Area"/>
   </owl:Class>
+  <owl:Class rdf:ID="PotentialViews">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource"/>
+  </owl:Class>
   <owl:Class rdf:ID="LargeArea">
     <rdfs:subClassOf rdf:resource="#Area"/>
   </owl:Class>
@@ -899,10 +940,10 @@
   </owl:FunctionalProperty>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighBlight"/>
-      <owl:Class rdf:about="#LowBlight"/>
-      <owl:Class rdf:about="#ModerateBlight"/>
-      <owl:Class rdf:about="#NoBlight"/>
+      <owl:Class rdf:about="#HighViewValue"/>
+      <owl:Class rdf:about="#LowViewValue"/>
+      <owl:Class rdf:about="#ModerateViewValue"/>
+      <owl:Class rdf:about="#NoViewValue"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -915,10 +956,19 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighViewValue"/>
-      <owl:Class rdf:about="#LowViewValue"/>
-      <owl:Class rdf:about="#ModerateViewValue"/>
-      <owl:Class rdf:about="#NoViewValue"/>
+      <owl:Class rdf:about="#HighHousingValue"/>
+      <owl:Class rdf:about="#LowHousingValue"/>
+      <owl:Class rdf:about="#ModerateHousingValue"/>
+      <owl:Class rdf:about="#VeryHighHousingValue"/>
+      <owl:Class rdf:about="#VeryLowHousingValue"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighBlight"/>
+      <owl:Class rdf:about="#LowBlight"/>
+      <owl:Class rdf:about="#ModerateBlight"/>
+      <owl:Class rdf:about="#NoBlight"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -933,15 +983,6 @@
       <owl:Class rdf:about="#LargeMountain"/>
       <owl:Class rdf:about="#NoMountain"/>
       <owl:Class rdf:about="#SmallMountain"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighHousingValue"/>
-      <owl:Class rdf:about="#LowHousingValue"/>
-      <owl:Class rdf:about="#ModerateHousingValue"/>
-      <owl:Class rdf:about="#VeryHighHousingValue"/>
-      <owl:Class rdf:about="#VeryLowHousingValue"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>

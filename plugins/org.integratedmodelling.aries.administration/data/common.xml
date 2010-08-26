@@ -544,10 +544,9 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
 	
-	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer 
-This layer is still having serious problems.  Check with Ferd.
+	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer. -->
 
- <measurement:BinaryCoding id="ReclassDetention">
+<measurement:BinaryCoding id="DetentionNew">
 	<observation:hasObservable>
 		<infrastructure:DetentionBasin />
 	</observation:hasObservable>
@@ -556,29 +555,31 @@ This layer is still having serious problems.  Check with Ferd.
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:ReclassDetention</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:DetentionNew</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>1354</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>2198</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>-104169.53247416666</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>3527211.9747666665</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>2061180.4675258328</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>4861854.974766666</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
+			<geospace:hasXRangeMax>1833</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>1966</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.3</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.3</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.72</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.47</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
+</measurement:BinaryCoding>
 
-<measurement:Ranking id="PointDensity">
+<!-- Units for this are in fires/km2 from 1970-2007 -->
+<measurement:Measurement id="PointDensity">
 	<observation:hasObservable>
 		<habitat:FireFrequency />
 	</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from Washington DNR wildfire point data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority> 
 		<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+		<measurement:unit>/km^2</measurement:unit>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -596,7 +597,7 @@ This layer is still having serious problems.  Check with Ferd.
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:Measurement>
 		
 	<!-- TODO this is actually a measurement in tons/yr.10km2, conversion makes it tons/ha*year -->
 	<measurement:Measurement id="greenhouse_gas_emissions">
@@ -1657,34 +1658,33 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
-	
-	<!-- projection needs to be set in geotools -->
-	<measurement:Measurement id="puget_vegetation_height">
-		<measurement:unit>ft</measurement:unit>
+
+	<measurement:Measurement id="vegHt_Project">
 		<observation:hasObservable>
 			<habitat:VegetationHeight />
 		</observation:hasObservable>
-			<rdfs:comment>Data source: Derived from Puget Sound LIDAR Consortium</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority> 
-			<metadata:hasURL>http://pugetsoundlidar.ess.washington.edu/</metadata:hasURL>
+		<rdfs:comment>Data source: Derived from Puget Sound LIDAR Consortium</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://pugetsoundlidar.ess.washington.edu/</metadata:hasURL>
+		<measurement:unit>ft</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:vegHt</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:vegHt_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>2561</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>510</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1557470.1133952795</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>3321194.1450003847</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1722488.5825707817</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>4148547.01785063</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:102749</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>2915</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>447</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>46.608</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.3</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.6</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.996</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>  
+	</measurement:Measurement>
 	
 		<measurement:Ranking id="puget_pugetwaterquality">
 			<observation:hasObservable>

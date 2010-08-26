@@ -77,6 +77,33 @@
 ;; all together now
 ;; --------------------------------------------------------------------------------------
 
+;;This SPAN statement has just been copied from flood_mark, but the "keep" 
+;; list has been updated to correctly reflect the coastal flood flow concepts.
+(defmodel coastal-protection-flow 'floodService:AvoidedDamageToFarms100
+  (span 'floodService:FloodWaterMovement
+        'floodService:FloodSourceValue
+        'floodService:FloodFarmersUse100
+        'floodService:FloodSink
+        nil 
+        'floodService:TempFloodData100
+        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :rival
+        :downscaling-factor 8
+        :rv-max-states      10
+        :keep ('coastal:CoastalWaveSource 'coastal:PotentialWaveMitigation 'coastal:PotentiallyWaveVulnerablePopulations
+              'coastal:PotentiallyDamagingWaveFlow 'coastal:PotentiallyDamagingWaveSource 'coastal:PotentialFloodDamageReceived
+              'coastal:ActualWaveFlow 'coastal:FloodDamagingWaveSource 'coastal:UtilizedWaveMitigation
+              'coastal:FloodDamageReceived 'coastal:BenignWaveSource 'coastal:UnutilizedWaveMitigation
+              'coastal:AbsorbedWaveFlow 'coastal:MitigatedWaveSource 'coastal:FloodMitigationBenefitsAccrued) 
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
+        :context (storm-probability risk-to-life coastal-flood-sink)))
+
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
 		:context (coastal-flood-sink risk-to-life risk-to-assets storm-probability)))

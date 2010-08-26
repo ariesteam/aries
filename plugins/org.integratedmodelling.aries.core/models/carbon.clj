@@ -106,7 +106,7 @@
         [1 2]  'carbonService:VeryHighHardness))
 				
 (defmodel fire-frequency 'carbonService:FireFrequency
-		 (classification (ranking 'habitat:FireFrequency)	
+		 (classification (measurement 'habitat:FireFrequency "/km^2")	
 		 			[:< 0.25]  'carbonService:LowFireFrequency
 		 			[0.25 0.9] 'carbonService:ModerateFireFrequency
 		 			[0.9 :>]   'carbonService:HighFireFrequency))

@@ -129,7 +129,30 @@
 ;; flow models
 ;; --------------------------------------------------------------------------------------
 
-;;Obviously we need a span statement.
+;;This SPAN statement has just been copied from flood_mark, but the "keep" 
+;; list has been updated to correctly reflect the fisheries flow concepts.
+(defmodel fisheries-subsistence-flow 'floodService:AvoidedDamageToFarms100
+  (span 'floodService:FloodWaterMovement
+        'floodService:FloodSourceValue
+        'floodService:FloodFarmersUse100
+        'floodService:FloodSink
+        nil 
+        'floodService:TempFloodData100
+        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :rival
+        :downscaling-factor 8
+        :rv-max-states      10
+        :keep ('fisheries:SubsistenceFishSupply 'fisheries:SubsistenceFishDemand 'fisheries:SubsistenceFishFlow
+              'fisheries:UtilizedSubsistenceFish 'fisheries:SatisfiedSubsistenceFishDemand 'fisheries:UnutilizedSubsistenceFish
+              'fisheries:UnsatisfiedFishDemand) 
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
+        :context (subsistence-fishing total-pelagic-subsistence-harvest)))
 
 (defmodel paths 'infrastructure:Path
   (binary-coding 'infrastructure:Path))
