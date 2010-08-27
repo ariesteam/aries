@@ -100,6 +100,14 @@
 		<parameter id="url" value="es/services/local/southernCalifornia.owl"/>
 		<parameter id="concept-space" value="southernCalifornia"/>
 	</extension>
+	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="sanPedro">
+		<parameter id="url" value="es/services/local/sanPedro.owl"/>
+		<parameter id="concept-space" value="sanPedro"/>
+ 	</extension> 
+		<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="mexico">
+		<parameter id="url" value="es/services/local/mexico.owl"/>
+		<parameter id="concept-space" value="mexico"/>
+    </extension>
 
 	<!-- bindings  -->
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
@@ -111,18 +119,24 @@
 		<parameter id="resource" value="span/interface.clj"/>
 		<parameter id="resource" value="clj_span/aries_span_bridge.clj"/>
 		<parameter id="resource" value="aries/demo/aries-demo.clj"/>
+		<parameter id="resource" value="aesthetic_proximity_san_pedro.clj" />
+	    <parameter id="resource" value="aesthetic_proximity.clj" />
+	    <parameter id="resource" value="aesthetic_view_san_pedro.clj" />
 		<parameter id="resource" value="aesthetics.clj" />
+		<parameter id="resource" value="carbon_jen.clj" />
+	    <parameter id="resource" value="carbon_mark.clj" />
+	    <parameter id="resource" value="carbon_sam.clj" />
+	    <parameter id="resource" value="carbon_san_pedro.clj" />
+	    <parameter id="resource" value="carbon.clj" />
+	    <parameter id="resource" value="flood_mark.clj" />
 		<parameter id="resource" value="flood.clj" />
-		<parameter id="resource" value="carbon.clj" />
 		<parameter id="resource" value="test.clj" />
 		<parameter id="resource" value="recreation_viewsheds.clj" />
+		<parameter id="resource" value="recreation_san_pedro.clj" />
 		<parameter id="resource" value="sediment_dr.clj" />
 		<!-- <parameter id="resource" value="sediment.clj" /> -->
 		<parameter id="resource" value="water_la_antigua.clj" />
-		<parameter id="resource" value="carbon_jen.clj" />
-		<parameter id="resource" value="carbon_sam.clj" />
-		<parameter id="resource" value="carbon_mark.clj" />
-		<parameter id="resource" value="flood_mark.clj" />
+		<parameter id="resource" value="water_san_pedro.clj" />
 	</extension> 
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="demo">

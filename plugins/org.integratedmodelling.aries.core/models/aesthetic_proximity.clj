@@ -146,7 +146,7 @@
         'aestheticService:TheoreticalNaturalBeauty
         'aestheticService:HomeownerViewUse
       	'aestheticService:TotalVisualBlight
-      	'aestheticService:View
+      	nil
         'geophysics:Altitude
         ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
