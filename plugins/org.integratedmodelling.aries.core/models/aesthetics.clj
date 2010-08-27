@@ -32,9 +32,9 @@
 (defmodel mountain 'aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
-                  [1000 2750]  'aestheticService:SmallMountain ; 
-                  [2750 8850]  'aestheticService:LargeMountain ; no higher than mount Everest!
-                  :otherwise   'aestheticService:NoMountain)) ; will catch artifacts too
+                  [1000 2750]  'aestheticService:SmallMountain  
+                  [2750 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
+                  :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
   (classification 'aestheticService:TheoreticalNaturalBeauty
@@ -109,7 +109,7 @@
                   :otherwise 'aestheticService:HighwaysPresent))
 
 (defmodel sink 'aestheticService:ViewSink
-  "Whatever is ugly enough to absorb our enjoyment"
+  "Landscape features that reduce the quality and enjoyment of scenic views"
   (bayesian 'aestheticService:ViewSink 
             :import  "aries.core::ViewSink.xdsl"
             :context (commercial-transportation highway)

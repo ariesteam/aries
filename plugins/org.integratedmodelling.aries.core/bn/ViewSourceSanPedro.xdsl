@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Mountain">
+			<state id="LargeMountain" />
+			<state id="SmallMountain" />
+			<state id="NoMountain" />
+			<probabilities>0.05 0.4 0.55</probabilities>
+		</cpt>
+		<cpt id="ScenicVegetationType">
+			<state id="AlpineAndCliff" />
+			<state id="Forest" />
+			<state id="Woodland" />
+			<state id="RiparianAndWater" />
+			<state id="Other" />
+			<probabilities>0.013 0.021 0.064 0.014 0.888</probabilities>
+		</cpt>
+		<cpt id="TheoreticalNaturalBeauty">
+			<state id="HighNaturalBeauty" />
+			<state id="ModerateNaturalBeauty" />
+			<state id="LowNaturalBeauty" />
+			<state id="NoNaturalBeauty" />
+			<parents>ScenicVegetationType Mountain</parents>
+			<probabilities>0.8 0.2 0 0 0.7 0.3 0 0 0.6000000000000001 0.3 0.1 0 0.7 0.3 0 0 0.5 0.4 0.1 0 0.4 0.4 0.2 0 0.6 0.4 0 0 0.5 0.5 0 0 0.4 0.4 0.1 0.1 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.4 0.4 0.2 0 0.1 0.2 0.2 0.5 0 0.1 0.4 0.5</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+			<node id="Mountain">
+				<name>Mountain</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>502 280 631 310</position>
+				<barchart active="true" width="217" height="76" />
+			</node>
+			<node id="TheoreticalNaturalBeauty">
+				<name>TheoreticalNaturalBeauty</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="7" />
+				<position>263 95 375 125</position>
+				<comment>Some of the elevation-vegetation combinations are a bit nonsensical (e.g., alpine with no mountain, riparian with large mountain).  In these cases values in CPT were kept more uniform for the vegetation type across elevation ranges.</comment>
+				<barchart active="true" width="179" height="95" />
+			</node>
+			<node id="ScenicVegetationType">
+				<name>ScenicVegetationType</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>134 260 222 315</position>
+				<barchart active="true" width="208" height="108" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

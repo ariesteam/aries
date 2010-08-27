@@ -17,47 +17,87 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Remove ocean; add riparian corridor to source model
-(defmodel lake 'aestheticService:Lake
-  "Just being a lake. We may want to reclass lake area instead"
-  (classification (binary-coding 'geofeatures:Lake)
-                  0          'aestheticService:LakeAbsent
-                  :otherwise 'aestheticService:LakePresent))
-
-(defmodel ocean 'aestheticService:Ocean
-  "Just being there."
-  (classification (binary-coding 'geofeatures:Ocean)
-                  0          'aestheticService:OceanAbsent
-                  :otherwise 'aestheticService:OceanPresent))
-
 (defmodel mountain 'aestheticService:Mountain
-  "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
-                  [1000 2750]  'aestheticService:SmallMountain ; 
-                  [2750 8850]  'aestheticService:LargeMountain ; no higher than mount Everest!
-                  :otherwise   'aestheticService:NoMountain)) ; will catch artifacts too
+                  [1400 1800]  'aestheticService:SmallMountain  
+                  [1800 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
+                  :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
+
+(defmodel scenic-vegetation 'sanPedro:ScenicVegetationType
+  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC) 
+                  #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               'sanPedro:AlpineAndCliff
+                  #{22 23 33 37 38 91}                                    'sanPedro:Forest
+                  #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} 'sanPedro:Woodland ;; includes pinon & juniper savannas
+                  #{76 81 83 84 85 98 118}                                'sanPedro:RiparianAndWater
+                  :otherwise                                              'sanPedro:Other)
+  (classification (categorization 'mexico:CONABIOLULCCategory)
+                  #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} 'sanPedro:Forest
+                  #{"Vegetacion de galeria"}                                                     'sanPedro:Woodland
+                  #{"Cuerpos de agua"}                                                           'sanPedro:RiparianAndWater
+                  :otherwise                                                                     'sanPedro:Other))
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
   (classification 'aestheticService:TheoreticalNaturalBeauty
-                  [0   25] 'aestheticService:NoNaturalBeauty 
-                  [25  50] 'aestheticService:LowNaturalBeauty 
-                  [50  75] 'aestheticService:ModerateNaturalBeauty 
-                  [75 100] 'aestheticService:HighNaturalBeauty))
+                  [0    5] 'aestheticService:NoNaturalBeauty 
+                  [5   25] 'aestheticService:LowNaturalBeauty 
+                  [25  50] 'aestheticService:ModerateNaturalBeauty 
+                  [50 100] 'aestheticService:HighNaturalBeauty))
 
 ;; source bayesian model	    		 
 (defmodel source 'aestheticService:AestheticEnjoymentProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticEnjoymentProvision 
-            :import   "aries.core::ViewSource.xdsl"
-            :context  (mountain lake ocean)
+            :import   "aries.core::ViewSourceSanPedro.xdsl"
+            :context  (mountain scenic-vegetation)
             :observed (theoretical-beauty)
             :keep     ('aestheticService:TheoreticalNaturalBeauty)))
+
+;; ----------------------------------------------------------------------------------------------
+;; sink model
+;; ----------------------------------------------------------------------------------------------
+
+(defmodel mine 'aestheticService:Mines                         
+  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)         
+                  #{19 117}       'aestheticService:MinesPresent
+                  :otherwise      'aestheticService:MinesAbsent))
+
+(defmodel transmission-line 'aestheticService:TransmissionLines 
+  (classification (binary-coding 'infrastructure:TransmissionLine)
+                  0          'aestheticService:TransmissionLinesPresent
+                  :otherwise 'aestheticService:TransmissionLinesAbsent))
+
+(defmodel highway 'aestheticService:Highways 
+  (classification (binary-coding 'infrastructure:Highway)
+                  0          'aestheticService:HighwaysAbsent
+                  :otherwise 'aestheticService:HighwaysPresent))
+
+(defmodel developed-land 'aestheticService:DevelopedLand
+  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)           
+                  111        'aestheticService:LowDensityDevelopment
+                  112        'aestheticService:HighDensityDevelopment
+                  :otherwise 'aestheticService:NoDevelopment))
+
+(defmodel view-sink-undiscretizer 'aestheticService:VisualBlight
+  (classification 'aestheticService:VisualBlight
+                  [0    5]  'aestheticService:NoBlight 
+                  [5   25]  'aestheticService:LowBlight 
+                  [25  50]  'aestheticService:ModerateBlight 
+                  [50 100]  'aestheticService:HighBlight))
+
+(defmodel sink 'aestheticService:ViewSink
+  "Landscape features that reduce the quality and enjoyment of scenic views"
+  (bayesian 'aestheticService:ViewSink 
+            :import  "aries.core::ViewSinkSanPedro.xdsl"
+            :context  (mine highway transmission-line developed-land)
+            :observed (view-sink-undiscretizer) 
+            :keep     ('aestheticService:TotalVisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
+;;UPDATE THIS ONCE FULL PARCEL DATA IS AVAILABLE
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
   ;; specific to Puget region, will not be used if data unavailable
@@ -79,6 +119,13 @@
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
+;;Define conditions under which these are present - ideally get a layer, or could develop one by hand.  Relevant highways in the San
+;; Pedro Valley include I-10 from Tucson to Benson, Arizona Highways 80 & 82.
+;;(defmodel scenic-highways 'aestheticService:ScenicDrives
+;;  (classification (binary-coding 'infrastructure:Highway)
+;;                        'aestheticService:ScenicDrivesPresent
+;;                        'aestheticService:ScenicDrivesAbsent))
+
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ViewUse
   "Property owners who can afford to pay for the view"
@@ -86,35 +133,6 @@
             :import  "aries.core::ViewUse.xdsl"
             :context (property-value housing)
             :keep    ('aestheticService:HomeownerViewUse)))
-
-;; ----------------------------------------------------------------------------------------------
-;; sink model
-;; ----------------------------------------------------------------------------------------------
-
-;; TODO errors
-(defmodel clearcut 'aestheticService:Clearcuts 
-  (classification (binary-coding 'geofeatures:Clearcut)
-                  0          'aestheticService:ClearcutsAbsent
-                  :otherwise 'aestheticService:ClearcutsPresent))
-
-                                        ; use NLCD layers to extract transportation infrastructure
-(defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  23         'aestheticService:TransportationInfrastructurePresent
-                  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
-
-                                        ; presence/absence of highways
-(defmodel highway 'aestheticService:Highways 
-  (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
-
-(defmodel sink 'aestheticService:ViewSink
-  "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
-            :import  "aries.core::ViewSink.xdsl"
-            :context (commercial-transportation highway)
-            :keep    ('aestheticService:TotalVisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model

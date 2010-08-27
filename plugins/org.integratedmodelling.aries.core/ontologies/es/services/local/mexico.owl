@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#"
+    xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
+    xmlns:landclassification="http://www.integratedmodelling.org/ks/ecology/lulc/landclassification.owl#"
+    xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
+    xmlns:corine="http://www.integratedmodelling.org/ks/ecology/lulc/corine.owl#"
+    xmlns:anderson1="http://www.integratedmodelling.org/ks/ecology/lulc/anderson1.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:apa="http://www.integratedmodelling.org/ks/ecology/lulc/apa.owl#"
+    xmlns:nlcd="http://www.integratedmodelling.org/ks/ecology/lulc/nlcd.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.integratedmodelling.org/ks/local/mexico.owl#"
+    xmlns:veracruz-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl#"
+    xmlns:anderson2="http://www.integratedmodelling.org/ks/ecology/lulc/anderson2.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.integratedmodelling.org/ks/local/mexico.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/anderson1.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/landclassification.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/anderson2.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/corine.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/apa.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/nlcd.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="CONABIOLULCCategory">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationTextCategorization"/>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->
