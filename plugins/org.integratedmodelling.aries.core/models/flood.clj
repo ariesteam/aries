@@ -251,10 +251,8 @@
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
-	 	 			soil-group-puget vegetation-type slope monthly-temperature  
-	 	 			successional-stage imperviousness dam-storage 
-          (comment detention-basin-storage) 
-	 	 			(comment vegetation-height)
+	 	 			soil-group-puget vegetation-type slope monthly-temperature vegetation-height
+	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
 
 ;; Flood sink probability, annual

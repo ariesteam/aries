@@ -544,9 +544,8 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
 	
-	<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer. -->
-
-<measurement:BinaryCoding id="DetentionNew">
+<!-- presence/absence of detention basins. This raster layer replaces an earlier point layer. -->
+<measurement:Ranking id="puget_detention">
 	<observation:hasObservable>
 		<infrastructure:DetentionBasin />
 	</observation:hasObservable>
@@ -555,21 +554,21 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:DetentionNew</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:puget_detention</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>1833</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>1966</geospace:hasYRangeMax>
+			<geospace:hasXRangeMax>5628</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>6002</geospace:hasYRangeMax>
 			<geospace:hasLatLowerBound>46.3</geospace:hasLatLowerBound>
 			<geospace:hasLonLowerBound>-124.3</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>48.72</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-121.47</geospace:hasLonUpperBound>
+			<geospace:hasLatUpperBound>48.703</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.478</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
+</measurement:Ranking>
 
 <!-- Units for this are in fires/km2 from 1970-2007 -->
 <measurement:Measurement id="PointDensity">

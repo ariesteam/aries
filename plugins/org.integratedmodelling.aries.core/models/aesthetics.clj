@@ -54,6 +54,43 @@
             :keep     ('aestheticService:TheoreticalNaturalBeauty)))
 
 ;; ----------------------------------------------------------------------------------------------
+;; sink model
+;; ----------------------------------------------------------------------------------------------
+
+;; TODO errors
+(defmodel clearcut 'aestheticService:Clearcuts 
+  (classification (binary-coding 'geofeatures:Clearcut)
+                  0          'aestheticService:ClearcutsAbsent
+                  :otherwise 'aestheticService:ClearcutsPresent))
+
+; use NLCD layers to extract transportation infrastructure
+(defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  23         'aestheticService:TransportationInfrastructurePresent
+                  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
+
+; presence/absence of highways
+(defmodel highway 'aestheticService:Highways 
+  (classification (binary-coding 'infrastructure:Highway)
+                  0          'aestheticService:HighwaysAbsent
+                  :otherwise 'aestheticService:HighwaysPresent))
+
+(defmodel view-sink-undiscretizer 'aestheticService:VisualBlight
+  (classification 'aestheticService:VisualBlight
+                  [0    5]  'aestheticService:NoBlight 
+                  [5   25]  'aestheticService:LowBlight 
+                  [25  50]  'aestheticService:ModerateBlight 
+                  [50 100]  'aestheticService:HighBlight))
+
+(defmodel sink 'aestheticService:ViewSink
+  "Landscape features that reduce the quality and enjoyment of scenic views"
+  (bayesian 'aestheticService:ViewSink 
+            :import  "aries.core::ViewSink.xdsl"
+            :context (commercial-transportation highway)
+            :observed (view-sink-undiscretizer)
+            :keep    ('aestheticService:TotalVisualBlight)))
+
+;; ----------------------------------------------------------------------------------------------
 ;; use model
 ;; ----------------------------------------------------------------------------------------------
 
@@ -85,35 +122,6 @@
             :import  "aries.core::ViewUse.xdsl"
             :context (property-value housing)
             :keep    ('aestheticService:HomeownerViewUse)))
-
-;; ----------------------------------------------------------------------------------------------
-;; sink model
-;; ----------------------------------------------------------------------------------------------
-
-;; TODO errors
-(defmodel clearcut 'aestheticService:Clearcuts 
-  (classification (binary-coding 'geofeatures:Clearcut)
-                  0          'aestheticService:ClearcutsAbsent
-                  :otherwise 'aestheticService:ClearcutsPresent))
-
-                                        ; use NLCD layers to extract transportation infrastructure
-(defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  23         'aestheticService:TransportationInfrastructurePresent
-                  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
-
-                                        ; presence/absence of highways
-(defmodel highway 'aestheticService:Highways 
-  (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
-
-(defmodel sink 'aestheticService:ViewSink
-  "Landscape features that reduce the quality and enjoyment of scenic views"
-  (bayesian 'aestheticService:ViewSink 
-            :import  "aries.core::ViewSink.xdsl"
-            :context (commercial-transportation highway)
-            :keep    ('aestheticService:TotalVisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model

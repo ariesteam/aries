@@ -49,10 +49,28 @@
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticEnjoymentProvision 
-            :import   "aries.core::ViewSource.xdsl"
+            :import   "aries.core::ProximitySourceSanPedro.xdsl"
             :context  (mountain lake ocean)
             :observed (theoretical-beauty)
             :keep     ('aestheticService:TheoreticalNaturalBeauty)))
+
+;; ----------------------------------------------------------------------------------------------
+;; sink model
+;; ----------------------------------------------------------------------------------------------
+
+(defmodel highway 'aestheticService:Highways 
+  (classification (binary-coding 'infrastructure:Highway)
+                  0          'aestheticService:HighwaysAbsent
+                  :otherwise 'aestheticService:HighwaysPresent))
+
+;;No BN needed here.  In the presence of highways, set the sink value to 90, otherwise set to 0.
+
+(defmodel sink 'aestheticService:ViewSink
+  "Whatever is ugly enough to absorb our enjoyment"
+  (bayesian 'aestheticService:ViewSink 
+            :import  "aries.core::ViewSink.xdsl"
+            :context (commercial-transportation highway)
+            :keep    ('aestheticService:TotalVisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -64,10 +82,6 @@
   (classification (categorization 'puget:ParcelUseCategoryKing)
                   #{"R" "K"}  'aestheticService:HousingPresent
                   :otherwise  'aestheticService:HousingAbsent))
-;; TODO bring these back when the flow model runs at acceptable speeds.
-;;  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-;;		"RESIDENTIAL" 'aestheticService:HousingPresent
-;;		:otherwise    'aestheticService:HousingAbsent)
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -79,42 +93,23 @@
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
+;;Defmodel statement for urban proximity: get Census population density into geoserver, wfs2opal, xml
+;; ("PersonsKm2" field).  Make sure discretization still makes sense for AZ.
+;;(defmodel urban-proximity 'aestheticService:UrbanProximity
+;;  (classification (ranking 'concept)
+;;                  [309 :>] 'aestheticService:Urban
+;;                  [77 309] 'aestheticService:Suburban
+;;                  [77 :>]  'aestheticService:Rural)) 
+
+;;NEED AN UNDISCRETIZATION STATEMENT: ASK FERD
+
 ;; bayesian model
-(defmodel homeowners 'aestheticService:ViewUse
-  "Property owners who can afford to pay for the view"
-  (bayesian 'aestheticService:ViewUse 
-            :import  "aries.core::ViewUse.xdsl"
-            :context (property-value housing)
-            :keep    ('aestheticService:HomeownerViewUse)))
-
-;; ----------------------------------------------------------------------------------------------
-;; sink model
-;; ----------------------------------------------------------------------------------------------
-
-;; TODO errors
-(defmodel clearcut 'aestheticService:Clearcuts 
-  (classification (binary-coding 'geofeatures:Clearcut)
-                  0          'aestheticService:ClearcutsAbsent
-                  :otherwise 'aestheticService:ClearcutsPresent))
-
-                                        ; use NLCD layers to extract transportation infrastructure
-(defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  23         'aestheticService:TransportationInfrastructurePresent
-                  :otherwise 'aestheticService:TransportationInfrastructureAbsent))
-
-                                        ; presence/absence of highways
-(defmodel highway 'aestheticService:Highways 
-  (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
-
-(defmodel sink 'aestheticService:ViewSink
-  "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
-            :import  "aries.core::ViewSink.xdsl"
-            :context (commercial-transportation highway)
-            :keep    ('aestheticService:TotalVisualBlight)))
+;;(defmodel homeowners 'aestheticService:ViewUse
+;;  "Property owners who can afford to pay for proximity to open space"
+;;  (bayesian 'aestheticService:ViewUse 
+;;            :import  "aries.core::ProximityUse.xdsl"
+;;            :context (property-value urban-proximity housing)
+;;            :keep    ('aestheticService:HomeownerViewUse)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
