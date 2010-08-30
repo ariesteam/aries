@@ -115,12 +115,19 @@
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
+;;undiscretizer for view use
+(defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
+  (classification 'aestheticService:HomeownerViewUse
+                  [0 5]   'aestheticService:HomeownerViewUseAbsent 
+                  [5 100] 'aestheticService:HomeownerViewUsePresent))
+
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ViewUse
   "Property owners who can afford to pay for the view"
   (bayesian 'aestheticService:ViewUse 
             :import  "aries.core::ViewUse.xdsl"
             :context (property-value housing)
+            :observed (view-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerViewUse)))
 
 ;; ----------------------------------------------------------------------------------------------

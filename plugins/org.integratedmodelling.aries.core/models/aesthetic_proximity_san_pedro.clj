@@ -63,14 +63,12 @@
                   0          'aestheticService:HighwaysAbsent
                   :otherwise 'aestheticService:HighwaysPresent))
 
-;;No BN needed here.  In the presence of highways, set the sink value to 90, otherwise set to 0.
-
-(defmodel sink 'aestheticService:ViewSink
-  "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
-            :import  "aries.core::ViewSink.xdsl"
-            :context (commercial-transportation highway)
-            :keep    ('aestheticService:TotalVisualBlight)))
+;;Check with Gary that the below statement is correct; if so remove highways statement above.
+(defmodel sink 'aestheticService:ProximitySink
+  (numeric-coding 'aestheticService:ProximitySink
+    :context ((binary-coding 'infrastructure:Highway :as highway))
+    :state #(cond (== (:highway %) 1) 90   ;;90% of proximity value is depleted by the sink if highways are present
+                  :otherwise          0))) ;;Otherwise zero sink
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -93,23 +91,27 @@
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
-;;Defmodel statement for urban proximity: get Census population density into geoserver, wfs2opal, xml
-;; ("PersonsKm2" field).  Make sure discretization still makes sense for AZ.
-;;(defmodel urban-proximity 'aestheticService:UrbanProximity
-;;  (classification (ranking 'concept)
-;;                  [309 :>] 'aestheticService:Urban
-;;                  [77 309] 'aestheticService:Suburban
-;;                  [77 :>]  'aestheticService:Rural)) 
+;;Urban proximity proxied by year 2000 population density for Arizona
+(defmodel urban-proximity 'aestheticService:UrbanProximity
+  (classification (count 'policytarget:PopulationDensity "/km^2")
+                  [309 :>] 'aestheticService:Urban
+                  [77 309] 'aestheticService:Suburban
+                  [77 :>]  'aestheticService:Rural))
 
-;;NEED AN UNDISCRETIZATION STATEMENT: ASK FERD
+;;undiscretizer for proximty use
+(defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProxmityUse
+  (classification 'aestheticService:HomeownerProxmityUse
+                  [0 5]   'aestheticService:HomeownerProximityUseAbsent 
+                  [5 100] 'aestheticService:HomeownerProximityUsePresent))
 
 ;; bayesian model
-;;(defmodel homeowners 'aestheticService:ViewUse
-;;  "Property owners who can afford to pay for proximity to open space"
-;;  (bayesian 'aestheticService:ViewUse 
-;;            :import  "aries.core::ProximityUse.xdsl"
-;;            :context (property-value urban-proximity housing)
-;;            :keep    ('aestheticService:HomeownerViewUse)))
+(defmodel homeowners 'aestheticService:ProximityUse
+  "Property owners who can afford to pay for proximity to open space"
+  (bayesian 'aestheticService:ProximityUse 
+            :import  "aries.core::ProximityUse.xdsl"
+            :context (property-value urban-proximity housing)
+            :observed (proximity-use-undiscretizer) 
+            :keep    ('aestheticService:HomeownerProximityUse)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model

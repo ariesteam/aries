@@ -30,7 +30,8 @@
 	xmlns:recreationService="http://www.integratedmodelling.org/ks/es/services/recreationService.owl#"
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#"
 	xmlns:mexico="http://www.integratedmodelling.org/ks/es/services/local/mexico.owl#"
-	xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#">
+	xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
+	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
 
 	<measurement:BinaryCoding id="usa_airports">
 		<observation:hasObservable>
@@ -2225,6 +2226,59 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound><geospace:hasCoordinateReferenceSystem>EPSG:4326
 				</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Count>
+
+<!-- 2000 population density for Arizona -->
+<measurement:Count id="sanPedro_az_popdens">
+	<observation:hasObservable>
+		<policytarget:PopulationDensity />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<measurement:unit>/km^2</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_popdens</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>popdens00</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>31.332001479427568</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-114.81700548244825</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.01100029892272</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-109.04500650352345</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Count>
+
+<!-- 2007 population density for Washington -->
+	<measurement:Count id="puget_pugetpopulationdensity">
+		<observation:hasObservable>
+			<policytarget:PopulationDensity />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Washington State Office of Financial Management 2007 Census Block Group data</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.ofm.wa.gov/pop/smallarea/default.asp</metadata:hasURL>
+		<measurement:unit>/km^2</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:pugetpopulationdensity</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>54007.72199547973</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>508412.22498618934</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>1385120.9910318155</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2612573.0955876815</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
