@@ -99,8 +99,8 @@
                   [77 :>]  'aestheticService:Rural))
 
 ;;undiscretizer for proximty use
-(defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProxmityUse
-  (classification 'aestheticService:HomeownerProxmityUse
+(defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse
+  (classification 'aestheticService:HomeownerProximityUse
                   [0 5]   'aestheticService:HomeownerProximityUseAbsent 
                   [5 100] 'aestheticService:HomeownerProximityUsePresent))
 

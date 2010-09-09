@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="ActualEvapotranspiration">
+			<state id="VeryHighEvapotranspiration" />
+			<state id="HighEvapotranspiration" />
+			<state id="ModerateEvapotranspoiration" />
+			<state id="LowEvapotranspiration" />
+			<state id="VeryLowEvapotranspiration" />
+			<probabilities>0.2 0.5 0.2 0.1 0</probabilities>
+		</cpt>
+		<cpt id="LandCover">
+			<state id="HighAndMedDevelopedLandCover" />
+			<state id="LowDevelopedLandCover" />
+			<state id="OpenSpacelandLandCover" />
+			<state id="CultivatedLandCover" />
+			<state id="ScrubAndForestLandCover" />
+			<state id="WetlandOpenWaterLandCover" />
+			<probabilities>0.7 0.2 0.01 0.03 0.05 0.01</probabilities>
+		</cpt>
+		<cpt id="PercentVegetationCover">
+			<state id="VeryHighVegetationCover" />
+			<state id="HighVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="LowVegetationCover" />
+			<state id="VeryLowVegetationCover" />
+			<probabilities>0.05 0.05 0.2 0.3 0.4</probabilities>
+		</cpt>
+		<cpt id="VegetationTypeSoCal">
+			<state id="HardwoodForestVegetationType" />
+			<state id="MixedConiferVegetationType" />
+			<state id="ShrubVegetationType" />
+			<state id="HerbaceousVegetationType" />
+			<probabilities>0.05 0.45 0.05 0.45</probabilities>
+		</cpt>
+		<cpt id="SequestrationRate">
+			<state id="VeryHighSequestrationRate" />
+			<state id="HighSequestrationRate" />
+			<state id="ModerateSequestrationRate" />
+			<state id="LowSequestrationRate" />
+			<state id="VeryLowSequestrationRate" />
+			<state id="NoSequestrationRate" />
+			<parents>LandCover ActualEvapotranspiration VegetationTypeSoCal</parents>
+			<probabilities>0 0 0 0.15 0.2 0.65 0 0 0 0.1 0.2 0.7 0 0 0 0.05 0.2 0.75 0 0 0 0.1 0.1 0.8 0 0 0 0.1 0.2 0.7 0 0 0 0.05 0.2 0.75 0 0 0 0.1 0.1 0.8 0 0 0 0.05 0.1 0.85 0 0 0 0 0.25 0.75 0 0 0 0 0.2 0.8 0 0 0 0 0.15 0.85 0 0 0 0 0.1 0.9 0 0 0 0 0.2 0.8 0 0 0 0 0.15 0.85 0 0 0 0 0.1 0.9 0 0 0 0 0.05 0.95 0 0 0 0 0.15 0.85 0 0 0 0 0.1 0.9 0 0 0 0 0.05 0.95 0 0 0 0 0 1 0 0 0.9 0.1 0 0 0 0 0.85 0.1 0.05 0 0 0 0.8 0.1 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.85 0.1 0.05 0 0 0 0.8 0.1 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.8 0.1 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.6 0.25 0.15 0 0 0 0.7 0.2 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.6 0.25 0.15 0 0 0 0.55 0.25 0.15 0.05 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.8 0.2 0 0 0 0 0.75 0.25 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.8 0.2 0 0 0 0 0.05 0.9 0.05 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.125 0.75 0.125 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.8 0.2 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0.1 0.8 0.1 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0 1 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0 0 1 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0 0 1 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0 0 0 0 1 0 0 0 0 0.025 0.95 0.025 0 0 0 0.05 0.9 0.05 0 0 0 0.075 0.85 0.075 0</probabilities>
+			<property id="DSL_OUTCOME_ORDER">-1</property>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonSequestration">
+			<state id="VeryHighSequestration" />
+			<state id="HighSequestration" />
+			<state id="ModerateSequestration" />
+			<state id="LowSequestration" />
+			<state id="VeryLowSequestration" />
+			<state id="NoSequestration" />
+			<parents>PercentVegetationCover SequestrationRate</parents>
+			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1</probabilities>
+			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+			<node id="VegetationAndSoilCarbonSequestration">
+				<name>VegetationAndSoilCarbonSequestration</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>756 239 1088 265</position>
+				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
+				<barchart active="true" width="265" height="126" />
+			</node>
+			<node id="PercentVegetationCover">
+				<name>PercentVegetationCover</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1125 705 1232 735</position>
+				<comment>Data source: GLCF/Univ. of Maryland\nResolution: 1km2\n\nVegetationDensity node was dropped because all variables but one (PercentVegCover) was left after removing variables that lacked relevance to the local conditions. I believe we have spatial data for VegCover, correct? \n\nVeryHigh = 80-100, High = 60-79, Moderate = 40-59, Low = 20-39, VeryLow = 0-19 (%)\n\nHigher percent cover correlates with higher soil carbon storage, vegetation carbon storage, and vegetation and soil carbon sequestration. Lower percent cover correlates with the opposite.</comment>
+				<barchart active="true" width="146" height="116" />
+			</node>
+			<node id="SequestrationRate">
+				<name>SequestrationRate</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>551 509 666 540</position>
+				<comment>Type your annotation here</comment>
+				<barchart active="true" width="161" height="126" />
+			</node>
+			<node id="VegetationTypeSoCal">
+				<name>VegetationTypeSoCal</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>931 741 1042 768</position>
+				<comment>Vegetation type can help to predict the quantity of vegetation sequestration and storage capacities from expected biomass for certain plant species (Kirby &amp; Potvin, 2007) (for local species literature see, Gray &amp; Schlesinger, 1981; Gray &amp; Schlesinger, 1983; Quideau et al., 2001; Vourlitis et al., 2009).  \n\n\nData Source: USDA Forest Service - Pacific Southwest Region - Remote Sensing Lab \n\n2002,2003 existing vegetation map product at a scale of 1:24,000\n\n&quot;Tile 51&quot; covers parts of Orange and Los Angeles Counties\n\n</comment>
+				<barchart active="true" width="148" height="96" />
+			</node>
+			<node id="ActualEvapotranspiration">
+				<name>ActualEvapotranspiration</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>518 686 611 810</position>
+				<comment>AET has been found to be well correlated with primary production (Lieth &amp; Box 1972; Elegene, 1989), litter production and decomposition rate (Meentemeyer 1978, 1985), some vegetation types (Mather&amp; Yoshioka 1966), and some other biosphere phenomena (e.g. Brook et al. 1983). \n\nThis is especially true in water-limited regions such as semi-arid biomes where the study area is located (Claudio et al., 2006; Fuentes et al., 2006). \n\nIn addition, acutal evapotranspiration is a controlling factor on soil storage, mineralization, and decomposition (Meentemeyer 1978, 1985; Conant et al., 2004). \n\nWithin chaparrel/scrub ecosystems Slope/Aspect is a variable that influences AET (Miller, 1947; Parsons, 1973; Miller, 1974; Ng, 1980) and other water balance measurements. Therefore, since we have data for AET and the Slope/Aspect effects are captured in an AET measurement, the Slope/Aspect variable was left out of the model. \n\nAET is relatively higher in the study area&apos;s semi-arid biome than other biomes. The pirors were therefore slanted towards the higher range.</comment>
+				<barchart active="true" width="189" height="108" />
+			</node>
+			<node id="LandCover">
+				<name>LandCover</name>
+				<interior color="ffff99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>729 700 833 796</position>
+				<comment>Land cover has been noted extensively for its correlation with carbon sequestration, especially over larger spatial scales (FAO, 1996; Skole &amp; Tucker, 1997; Steinger, 2000; IPCC, 2006; Tallis et al., n.d.)\n\n</comment>
+				<barchart active="true" width="165" height="126" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

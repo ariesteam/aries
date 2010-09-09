@@ -42,7 +42,7 @@
 		 			[0.9 :>]    'carbonService:HighFireFrequency
 		 			[0.25 0.9]  'carbonService:ModerateFireFrequency 
 		 			[0.05 0.25] 'carbonService:LowFireFrequency
-		 			[:< 0.05]   'carbonService:VeryLowFireFrequency))
+		 			[:< 0.05]   'carbonService:NoFireFrequency))
 		 			
 (defmodel stand-condition 'carbonService:StandCondition
 			(classification (ranking 'carbonService:StandCondition)

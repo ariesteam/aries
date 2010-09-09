@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SummerHighWinterLow">
+			<state id="VeryHighSOL" />
+			<state id="HighSOL" />
+			<state id="ModerateSOL" />
+			<state id="LowSOL" />
+			<state id="VeryLowSOL" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="PercentVegetationCover">
+			<state id="VeryHighVegetationCover" />
+			<state id="HighVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="LowVegetationCover" />
+			<state id="VeryLowVegetationCover" />
+			<probabilities>0 0 0 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="HardwoodSoftwoodRatio">
+			<state id="VeryHighHardness" />
+			<state id="HighHardness" />
+			<state id="ModerateHardness" />
+			<state id="LowHardness" />
+			<state id="VeryLowHardness" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="VegetationDensity">
+			<state id="VeryHighVegetationDensity" />
+			<state id="HighVegetationDensity" />
+			<state id="ModerateVegetationDensity" />
+			<state id="LowVegetationDensity" />
+			<state id="VeryLowVegetationDensity" />
+			<state id="NoVegetationDensity" />
+			<parents>HardwoodSoftwoodRatio PercentVegetationCover</parents>
+			<probabilities>0.96 0.04 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0</probabilities>
+			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonSequestration">
+			<state id="VeryHighSequestration" />
+			<state id="HighSequestration" />
+			<state id="ModerateSequestration" />
+			<state id="LowSequestration" />
+			<state id="VeryLowSequestration" />
+			<state id="NoSequestration" />
+			<parents>VegetationDensity SummerHighWinterLow</parents>
+			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+			<node id="VegetationAndSoilCarbonSequestration">
+				<name>VegetationAndSoilCarbonSequestration</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>745 226 1077 252</position>
+				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
+				<barchart active="true" width="265" height="126" />
+			</node>
+			<node id="PercentVegetationCover">
+				<name>PercentVegetationCover</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>830 722 937 752</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="HardwoodSoftwoodRatio">
+				<name>HardwoodSoftwoodRatio</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>541 731 699 759</position>
+				<barchart active="true" width="262" height="108" />
+			</node>
+			<node id="SummerHighWinterLow">
+				<name>SummerHighWinterLow</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1096 711 1232 746</position>
+				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
+				<barchart active="true" width="199" height="109" />
+			</node>
+			<node id="VegetationDensity">
+				<name>VegetationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>560 551 682 580</position>
+				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
+				<barchart active="true" width="128" height="126" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

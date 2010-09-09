@@ -54,26 +54,21 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease
+                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease
                   [0.01 3]    'carbonService:VeryLowRelease
                   [0 0.01]    'carbonService:NoRelease))
-
-(defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
-  (classification 'carbonService:NetCarbonUptake
-                  :units      "t/ha*year"
-                  [6 30]        'carbonService:HighCarbonUptake
-                  [3 6]         'carbonService:ModerateCarbonUptake
-                  [0 3]         'carbonService:LowCarbonUptake
-                  [-3 0]        'carbonService:LowCarbonRelease
-                  [-9 -3]       'carbonService:ModerateCarbonRelease
-                  [-3200 -9]    'carbonService:HighCarbonRelease))
 	  				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
 
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
   (classification (ranking 'habitat:PercentVegetationCover :units "%")
@@ -83,122 +78,135 @@
                   [20 40] 'carbonService:LowVegetationCover
                   [0 20]  'carbonService:VeryLowVegetationCover))
 
+;;ARE WE OK HAVING SOME CLASSES IN THE DATA WITH NO CORRESPONDING DISCRETE STATES (i.e., ag, developed, barren)?
+;; Not considered but in the area: 5 9 15 16 17 18 19 20 21 65 93 110 111 112 114 117
+;;Ditto for Mexico: most LULC categories are not used, and not all discrete states are represented.
+(defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
+     (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
+        #{34 35 92}               'carbonService:VeryLowHardness
+        14                        'carbonService:LowHardness
+        #{33 45 51 91}            'carbonService:ModerateHardness
+        #{55 56 57 59 60 96 105}  'carbonService:HighHardness
+        #{52 118}                 'carbonService:VeryHighHardness)
+     (classification (categorization 'mexico:CONABIOLULCCategory)
+        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:VeryLowHardness
+        #{"Chaparral"}                                              'carbonService:ModerateHardness
+        #{"Bosque de encino"}                                       'carbonService:HighHardness
+        #{"Mezquital-huizachal"}                                    'carbonService:VeryHighHardness))
+
+(defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
+     (classification (ranking 'habitat:SummerHighWinterLow)
+        [:< 24]       'carbonService:VeryLowSOL
+        [24 30]       'carbonService:LowSOL
+        [30 35]       'carbonService:ModerateSOL
+        [35 40]       'carbonService:HighSOL
+        [40 :>]       'carbonService:VeryHighSOL))
+
+;; Bayesian source model
+(defmodel source 'carbonService:CarbonSourceValue   
+  (bayesian 'carbonService:CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationSanpedro.xdsl"
+            :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
+            :observed (veg-soil-sequestration)
+	 	 	      :context  (hardwood-softwood-ratio percent-vegetation-cover summer-high-winter-low)))
+
+;; ----------------------------------------------------------------------------------------------
+;; sink models
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
+
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
+;;This should work OK with both global & SSURGO data, but check to make sure.
 (defmodel soil-ph 'carbonService:Soilph
   (classification (ranking 'habitat:SoilPhDeep)
                   [7.3 :>]       'carbonService:HighPh
                   [5.5 7.3]      'carbonService:ModeratePh
                   [:< 5.5]       'carbonService:LowPh))
 
-; use NLCD layers to infer anoxic vs. oxic
+(defmodel slope 'carbonService:Slope
+    (classification (measurement 'geophysics:DegreeSlope "\u00b0")
+       [:< 1.15]    'carbonService:Level
+       [1.15 4.57]  'carbonService:GentlyUndulating
+       [4.57 16.70] 'carbonService:RollingToHilly
+       [16.70 :>]   'carbonService:SteeplyDissectedToMountainous))
+
+;;Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC data (i.e., CONABIO) 
+;; denote wetlands at least for Sonora.
 (defmodel oxygen 'carbonService:SoilOxygenConditions 
   (classification (numeric-coding 'nlcd:NLCDNumeric)
                   #{90 95}   'carbonService:AnoxicSoils
+                  :otherwise 'carbonService:OxicSoils)
+  (classification (numeric-coding 'glc:GLCNumeric)
+                  15         'carbonService:AnoxicSoils
                   :otherwise 'carbonService:OxicSoils))
-				
-(defmodel fire-threat 'carbonService:FireThreatClass
-  (classification (ranking 'habitat:FireThreat)	
-                  4  'carbonService:VeryHighFireThreat
-                  3  'carbonService:HighFireThreat
-                  2  'carbonService:ModerateFireThreat
-                  1  'carbonService:LowFireThreat))
 
-(defmodel actual-evapotranspiration 'carbonService:ActualEvapotranspirationClass
-  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
-                  [92 :>]   'carbonService:VeryHighActualEvapotranspiration
-                  [58 92]   'carbonService:HighActualEvapotranspiration
-                  [32 58]   'carbonService:ModerateActualEvapotranspiration
-                  [12 32]   'carbonService:LowActualEvapotranspiration
-                  [:< 12]   'carbonService:VeryLowActualEvapotranspiration))
+(defmodel fire-frequency 'carbonService:FireFrequency
+  (classification (numeric-coding 'habitat:FireReturnInterval) 
+                  1        'carbonService:HighFireFrequency
+                  #{2 3}   'carbonService:ModerateFrequency ;;includes "variable" fire frequency
+                  4        'carbonService:LowFireFrequency
+                  #{5 6}   'carbonService:NoFireFrequency))
 
-;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
-(defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCal
-  (classification (categorization 'southernCalifornia:VegetationTypeSoCal)
-                  "HDW"          'southernCalifornia:HardwoodForestVegetationType
-                  #{"CON" "MIX"} 'southernCalifornia:MixedConiferVegetationType
-                  "SHB"          'southernCalifornia:ShrubVegetationType
-                  "HEB"          'southernCalifornia:HerbaceousVegetationType))
-
-;;"Reclass of the NLCD land use for the purposes of carbon modeling"
-(defmodel land-use 'southernCalifornia:LandCover
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{11 90 95}         'southernCalifornia:WetlandOpenWaterLandCover
-                  #{41 42 43 51 52}   'southernCalifornia:ScrubAndForestLandCover
-                  #{71 81 82}         'southernCalifornia:GrasslandAndCultivatedLandCover
-                  21                  'southernCalifornia:OpenSpaceLandCover
-                  22                  'southernCalifornia:LowDevelopedLandCover
-                  #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
-
-;; Bayesian source model
-;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
-(defmodel source 'carbonService:CarbonSourceValue   
-  (bayesian 'carbonService:CarbonSourceValue 
-            :import   "aries.core::CarbonSourceValueMark.xdsl"
-            :keep     ('carbonService:NetCarbonUptake
-                       'carbonService:VegetationAndSoilCarbonSequestration
-                       'carbonService:VegetationAndSoilCarbonStorage
+(defmodel sink 'carbonService:CarbonSinkValue   
+  (bayesian 'carbonService:CarbonSinkValue 
+            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :keep     ('carbonService:VegetationAndSoilCarbonStorage
                        'carbonService:VegetationCarbonStorage
                        'carbonService:SoilCarbonStorage
                        'carbonService:StoredCarbonRelease)
-            :observed (net-carbon-uptake veg-soil-sequestration veg-soil-storage veg-storage soil-storage stored-carbon-release)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
-
-;;Ask Gary again about "source-simple"
-(defmodel source-simple 'carbonService:CarbonSourceValue   
-  (bayesian 'carbonService:CarbonSourceValue 
-            :import   "aries.core::CarbonSourceValueMark.xdsl"
-            :keep     ('carbonService:NetCarbonUptake)
-            :observed (net-carbon-uptake)
-	 	 	:context  (soil-ph percent-vegetation-cover oxygen fire-threat actual-evapotranspiration vegetation-type land-use)))
-
-;; ----------------------------------------------------------------------------------------------
-;; carbon model accuracy check
-;; ----------------------------------------------------------------------------------------------
-
-;;Decomposition Factor (DF) has been noted to be a good predictor of NPP for chaparral ecosystems 
-;;(Li, et al. 2006), which is highly correlated with carbon sequestration rates (sources). 
-;;Since water is a primary limiting factor for the study site's ecoregion this sub-modeled deterministic 
-;;node serves to assess model accuracy (Expressed as:  DF = P/PET)
-;;Values from this check should be compared to soil and vegetation carbon sequestration, or possibly 
-;; used as a higher resolution proxy.
-
-(defmodel decomposition-factor 'habitat:DecompositionFactor
-  (ranking 'habitat:DecompositionFactor
-           :context ((measurement 'habitat:PotentialEvapotranspiration "mm" :as potential-evapotranspiration)
-                     (measurement 'habitat:AnnualPrecipitation  "mm" :as mean-annual-precipitation))
-           :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration %))))
+            :observed (veg-soil-storage veg-storage soil-storage stored-carbon-release)
+            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
+                        summer-high-winter-low fire-frequency)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
- 	 					
+
+;:GHG emissions map for the U.S.  For the rest of the world, use global population density layer multiplied
+;; by per capita emissions for that country from EIA.  2006 data used as this corresponds to current population
+;; density layer: 4.05 tonnes CO2/capita for Mexico in 2006, which is equivalent to 1.105 tonnes C/capita
 (defmodel use-simple 'carbonService:GreenhouseGasEmitters
-  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
+  (classification 'carbonService:GreenhouseGasEmissions
+    :units "t/ha*year" 
+    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+    ;; This classification syntax is documented as working but isn't implemented!
+    (* (:population-density-count self) 1.105)  'carbonService:GreenhouseGasEmissions))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
 ;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
-(defmodel emitter-flow 'carbonService:ClimateStability
+;; REWRITE TO ACCOUNT FOR SEPARATION OF SOURCES & SINKS
+(defmodel carbon-flow 'carbonService:ClimateStability
   (span 'carbonService:CO2Removed
-  	    'carbonService:NetCarbonUptake
-  	    'carbonService:GreenhouseGasEmitters
-      	nil
-      	nil
-  	    nil
-        :source-threshold   0.1
-        :sink-threshold     0.1
-        :use-threshold      0.1
-        :trans-threshold    0.1
+        'carbonService:CarbonSourceValue 
+        'carbonService:GreenhouseGasEmissions
+        'carbonService:CarbonSinkValue 
+        nil
+        nil
+        :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
+        :sink-threshold     nil  ;;SET TO 0.1?
+        :use-threshold      1.0
+        :trans-threshold    nil
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
         :rv-max-states      10
-        :downscaling-factor 16
-        :context (source-simple use-simple)))
-		
+        :downscaling-factor 1
+        :keep ('carbonService:NetCarbonUptake 'carbonService:GreenhouseGasEmissions
+                'carbonService:PotentialCarbonMitigation 'carbonService:UsedCarbonMitigation
+                'carbonService:SatisfiedCarbonMitigationDemand 'carbonService:CarbonMitigationSurplus
+                'carbonService:CarbonMitigationDeficit)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source sink use-simple)))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)
 ;; observations that are specifically tagged for a scenario will be picked up automatically

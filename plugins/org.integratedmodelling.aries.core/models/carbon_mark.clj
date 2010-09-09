@@ -135,7 +135,6 @@
                   #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
 
 ;; Bayesian source model
-;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
             :import   "aries.core::CarbonSourceValueMark.xdsl"
@@ -148,7 +147,6 @@
             :observed (net-carbon-uptake veg-soil-sequestration veg-soil-storage veg-storage soil-storage stored-carbon-release)
 	 	 	:context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat actual-evapotranspiration vegetation-type land-use)))
 
-;;Ask Gary again about "source-simple"
 (defmodel source-simple 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
             :import   "aries.core::CarbonSourceValueMark.xdsl"
