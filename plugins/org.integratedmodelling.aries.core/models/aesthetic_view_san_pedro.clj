@@ -15,7 +15,9 @@
                   :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
 (defmodel scenic-vegetation 'sanPedro:ScenicVegetationType
+  [(categorization 'geofeatures:Country :as country)]
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC) 
+                  :when #(= (:country %) "United States"))
                   #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               'sanPedro:AlpineAndCliff
                   #{22 23 33 37 38 91}                                    'sanPedro:Forest
                   #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} 'sanPedro:Woodland ;; includes pinon & juniper savannas
@@ -53,6 +55,7 @@
                   #{19 117}       'aestheticService:MinesPresent
                   :otherwise      'aestheticService:MinesAbsent))
 
+;; Run model and figure this out. It seems backwards
 (defmodel transmission-line 'aestheticService:TransmissionLines 
   (classification (binary-coding 'infrastructure:TransmissionLine)
                   0          'aestheticService:TransmissionLinesPresent
@@ -63,6 +66,7 @@
                   0          'aestheticService:HighwaysAbsent
                   :otherwise 'aestheticService:HighwaysPresent))
 
+;; Insert correct concepts for Mexico
 (defmodel developed-land 'aestheticService:DevelopedLand
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)           
                   111        'aestheticService:LowDensityDevelopment

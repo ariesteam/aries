@@ -32,13 +32,32 @@
                   #{40 44 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 66 67 82 94 96 97 105 108}  'aestheticService:DesertScrubPresent                  
                   :otherwise                                                                          'aestheticService:DesertScrubAbsent))
 
+(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
+  (numeric-coding 'sanPedro:RiparianAndWetlandCode
+                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
+                            (ranking 'sanPedro:RiparianConditionClass :as condition))
+                  :state   #(cond (and (== (:condition %) 1)
+                                       (contains? #{77 78 79 81 85 94 97 98 109 110 118} (:lulc %)))
+                                  1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
+
+                                  (and (== (:condition %) 2)
+                                       (contains? #{77 78 79 81 85 94 97 98 109 110 118} (:lulc %)))
+                                  2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
+
+                                  (and (== (:condition %) 3)
+                                       (contains? #{77 78 79 81 85 94 97 98 109 110} (:lulc %)))
+                                  3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
+
+                                  :otherwise 0 ;;'sanPedro:RiparianOrWetlandAbsent
+                                  )))
+
 ;;Figure out how to get quality represented here using riparian + condition class
 (defmodel riparian-wetland 'sanPedro:RiparianAndWetland
-  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
-                  #{77 78 79 81 85 94 97 98 109 110}     'sanPedro:HighQualityRiparianOrWetlandPresent     ;; + condition class 3
-                  #{77 78 79 81 85 94 97 98 109 110 118} 'sanPedro:ModerateQualityRiparianOrWetlandPresent ;; + condition class 2
-                  #{77 78 79 81 85 94 97 98 109 110 118} 'sanPedro:LowQualityRiparianOrWetlandPresent      ;; + condition class 1             
-                  :otherwise                             'sanPedro:RiparianOrWetlandAbsent))
+  (classification riparian-wetland-code
+                  3 'sanPedro:HighQualityRiparianOrWetlandPresent
+                  2 'sanPedro:ModerateQualityRiparianOrWetlandPresent
+                  1 'sanPedro:LowQualityRiparianOrWetlandPresent
+                  0 'sanPedro:RiparianOrWetlandAbsent))
 
 ;;No data yet for parks - though would likely only matter in cities anyway.
 ;;(defmodel park 'aestheticService:Park
@@ -169,10 +188,10 @@
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         ;;:use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
         ;;:trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
-        ;;:source-type    :
-        :sink-type        :relative
-        :use-type         :relative
-        :benefit-type     :non-rival
+        :source-type        :infinite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
         :downscaling-factor 3
         :rv-max-states      10
         :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand

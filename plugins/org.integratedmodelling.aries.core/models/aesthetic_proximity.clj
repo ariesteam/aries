@@ -66,10 +66,14 @@
 ;; conservation status dataset.
 (defmodel formal-protection 'aestheticService:FormalProtection
   (classification (binary-coding 'puget:ProtectedStatus)
-                  0            'aestheticService:Protected
+                  1            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
-;;CHECK WITH FERD ON HOW TO CALCULATE AREA
+;; Compute area of open space polygons as a GIS operation and store
+;; this value redundantly in each pixel in the polygon.  Make sure all
+;; the appropriate ontology changes are made (including inheriting
+;; from Areas and all that jazz.
+
 ;;(defmodel area 'aestheticService:OpenSpaceArea...
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
@@ -94,17 +98,11 @@
 ;; sink model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel highway 'aestheticService:Highways 
-  (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
-
-;;Check with Gary that the below statement is correct; if so remove highways statement above.
 (defmodel sink 'aestheticService:ProximitySink
-  (numeric-coding 'aestheticService:ProximitySink
-    :context ((binary-coding 'infrastructure:Highway :as highway))
-    :state #(cond (== (:highway %) 1) 90   ;;90% of proximity value is depleted by the sink if highways are present
-                  :otherwise          0))) ;;Otherwise zero sink
+  (ranking 'aestheticService:ProximitySink
+           :context ((binary-coding 'infrastructure:Highway :as highway))
+           :state #(cond (== (:highway %) 1) 50   ;;50 units of proximity value are depleted by the sink if highways are present
+                         :otherwise          0))) ;;Otherwise zero sink
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -153,14 +151,6 @@
             :observed (proximity-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerProximityUse)))
 
-;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
-;; ----------------------------------------------------------------------------------------------
-
-;;REMOVE, YES?
-(defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))	 								
-
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
@@ -168,10 +158,9 @@
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:Proximity
   (identification 'aestheticService:Proximity
-                  :context (source :as source
-                                   homeowners :as use
-                                   sink       :as sink
-                                   altitude   :as altitude)))  ;;Remove?
+                  :context (source     :as source
+                            homeowners :as use
+                            sink       :as sink)))
 
 ;; the real enchilada - need to be updated to the latest SPAN language
 (defmodel proximity 'aestheticService:AestheticProximity
@@ -180,27 +169,36 @@
         'aestheticService:ProximityUse
         'aestheticService:ProximitySink
         nil
-        'geophysics:Altitude ;;DELETE THIS??
+        nil
         ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         ;;:use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
         ;;:trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         ;;:source-type    :
-        :sink-type        :relative
-        :use-type         :relative
+        :sink-type        :infinite
+        :use-type         :infinite
         :benefit-type     :non-rival
         :downscaling-factor 3
         :rv-max-states      10
-        :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand
-               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximiateHomeowners
-               'aestheticService:AccessibleProximity 'aestheticService:EnjoyedOpenSpace 'aestheticService:BlockingProximitySink
-               'aestheticService:HomeownersWithProximiateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
-               'aestheticService:HomeownersWithoutProximateOpenSpace 'aestheticService:BlockedProximity 'aestheticService:BlockedOpenSpace
+        :keep ('aestheticService:PotentialProximateOpenSpace
+               'aestheticService:PotentialProximitySink
+               'aestheticService:HomeownersWithOpenSpaceDemand
+               'aestheticService:PossibleProximateOpenSpace
+               'aestheticService:AccessibleOpenSpace
+               'aestheticService:OpenSpaceProximiateHomeowners
+               'aestheticService:AccessibleProximity
+               'aestheticService:EnjoyedOpenSpace
+               'aestheticService:BlockingProximitySink
+               'aestheticService:HomeownersWithProximateOpenSpace
+               'aestheticService:UnaccessedOpenSpace
+               'aestheticService:InaccessibleProximitySink
+               'aestheticService:HomeownersWithoutProximateOpenSpace
+               'aestheticService:BlockedProximity
+               'aestheticService:BlockedOpenSpace
                'aestheticService:HomeownersWithBlockedProximity)
         :context (source
                   homeowners
                   sink
-                  altitude
                   (ranking 'eserv:SourceThreshold :value 50 :min 0 :max 100)
                   (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
                   (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)

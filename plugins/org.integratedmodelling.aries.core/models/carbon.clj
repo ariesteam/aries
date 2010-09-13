@@ -163,15 +163,17 @@
       	nil
       	nil
   	    nil
-  	:source-threshold 1,
-   	:sink-threshold   0.5,
-   	:use-threshold    0.5,
-   	:trans-threshold  1.0,
-   	:sink-type        :relative,
-   	:use-type         :relative,
-   	:benefit-type     :rival,
-   	:rv-max-states    10 
-    :context (source use-emitters)))		
+  	:source-threshold   1
+   	:sink-threshold     0.5
+   	:use-threshold      0.5
+   	:trans-threshold    1.0
+   	:source-type        :finite
+   	:sink-type          :finite
+   	:use-type           :finite
+   	:benefit-type       :rival
+   	:rv-max-states      10
+    :downscaling-factor 1
+    :context (source use-emitters)))
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)
