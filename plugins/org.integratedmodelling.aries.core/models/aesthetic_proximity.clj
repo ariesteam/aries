@@ -1,61 +1,94 @@
-;;This is the proximity model for Western Washington; it's unchanged from the view model but contains
-;; the correct flow concepts in the SPAN statement for proximity, so use as a starting point to build
-;; the Western Washington proximity model.
+;;Proximity model for Western Washington
 (ns core.models.aesthetic-proximity
   (:refer-clojure :rename {count length})
-  (:refer modelling :only [defscenario
-                           defmodel
-                           measurement
-                           classification
-                           categorization
-                           ranking
-                           numeric-coding
-                           binary-coding
-                           identification
-                           bayesian
-                           count])
+  (:refer modelling :only [defscenario defmodel measurement classification categorization ranking
+                           numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Remove ocean; add riparian corridor to source model
-(defmodel lake 'aestheticService:Lake
-  "Just being a lake. We may want to reclass lake area instead"
-  (classification (binary-coding 'geofeatures:Lake)
-                  0          'aestheticService:LakeAbsent
-                  :otherwise 'aestheticService:LakePresent))
+;;NEED TO CHANGE concepts so aren't repeating within the same defmodel statement?
+(defmodel lake-front 'aestheticService:LakeFront
+  (classification (binary-coding 'aestheticService:LakeFront)
+                  0          'aestheticService:LakeFrontAbsent
+                  :otherwise 'aestheticService:LakeFrontPresent))
 
-(defmodel ocean 'aestheticService:Ocean
-  "Just being there."
-  (classification (binary-coding 'geofeatures:Ocean)
-                  0          'aestheticService:OceanAbsent
-                  :otherwise 'aestheticService:OceanPresent))
+(defmodel river-front 'aestheticService:RiverFront
+  (classification (binary-coding 'aestheticService:RiverFront)
+                  0          'aestheticService:RiverFrontAbsent
+                  :otherwise 'aestheticService:RiverFrontPresent))
 
-(defmodel mountain 'aestheticService:Mountain
-  "Classifies an elevation model into three levels of provision of beautiful mountains"
-  (classification (measurement 'geophysics:Altitude "m")
-                  [1000 2750]  'aestheticService:SmallMountain ; 
-                  [2750 8850]  'aestheticService:LargeMountain ; no higher than mount Everest!
-                  :otherwise   'aestheticService:NoMountain)) ; will catch artifacts too
+(defmodel beach 'aestheticService:Beach
+  (classification (binary-coding 'aestheticService:Beach)
+                  0          'aestheticService:BeachAbsent
+                  :otherwise 'aestheticService:BeachPresent))
 
-(defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
-  (classification 'aestheticService:TheoreticalNaturalBeauty
-                  [0   25] 'aestheticService:NoNaturalBeauty 
-                  [25  50] 'aestheticService:LowNaturalBeauty 
-                  [50  75] 'aestheticService:ModerateNaturalBeauty 
-                  [75 100] 'aestheticService:HighNaturalBeauty))
+(defmodel forest 'aestheticService:Forest
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  #{41 42 43}  'aestheticService:ForestPresent                  
+                  :otherwise   'aestheticService:ForestAbsent))
+
+(defmodel woody-wetland 'aestheticService:WoodyWetland
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  90           'aestheticService:WoodyWetlandPresent                  
+                  :otherwise   'aestheticService:WoodyWetlandAbsent))
+
+(defmodel emergent-wetland 'aestheticService:EmergentWetland
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  95           'aestheticService:EmergentWetlandPresent                  
+                  :otherwise   'aestheticService:EmergentWetlandAbsent))
+
+(defmodel farmland 'aestheticService:Farmland
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  #{81 82}     'aestheticService:FarmlandPresent                  
+                  :otherwise   'aestheticService:FarmlandAbsent))
+
+(defmodel park 'aestheticService:Park
+  (classification (binary-coding 'aestheticService:Park)
+                  0          'aestheticService:ParkAbsent
+                  :otherwise 'aestheticService:ParkPresent))
+
+(defmodel crime-potential 'aestheticService:CrimePotential
+  (classification (categorization 'aestheticService:CrimePotential)
+                  #{"Seattle" "Tacoma"} 'aestheticService:HighCrimePotential
+                  :otherwise            'aestheticService:LowCrimePotential))
+
+(defmodel water-quality 'aestheticService:WaterQuality
+  (classification (ranking 'aestheticService:WaterQuality)
+                  1            'aestheticService:MeetsStandards
+                  #{2 4 24}    'aestheticService:OfConcern
+                  5            'aestheticService:RequiringTMDL
+                  :otherwise   'aestheticService:NoSurfaceWater))
+
+;;This is set as a Puget-specific concept since it's a binary coding rather than a ranking like the global
+;; conservation status dataset.
+(defmodel formal-protection 'aestheticService:FormalProtection
+  (classification (binary-coding 'puget:ProtectedStatus)
+                  0            'aestheticService:Protected} 
+                  :otherwise   'aestheticService:NotProtected)) 
+
+;;CHECK WITH FERD ON HOW TO CALCULATE AREA
+;;(defmodel area 'aestheticService:OpenSpaceArea...
+
+(defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
+  (classification 'aestheticService:TheoreticalProximitySource
+                  [0   10] 'aestheticService:NoProximityValue 
+                  [10  40] 'aestheticService:LowProximityValue 
+                  [40  75] 'aestheticService:ModerateProximityValue 
+                  [75 100] 'aestheticService:HighProximityValue))
 
 ;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticEnjoymentProvision
+(defmodel source 'aestheticService:AestheticProximityProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision 
+  (bayesian 'aestheticService:AestheticProximityProvision
             :import   "aries.core::ProximitySource.xdsl"
-            :context  (mountain lake ocean)
-            :observed (theoretical-beauty)
-            :keep     ('aestheticService:TheoreticalNaturalBeauty)))
+            :context  (lake-front river-front beach forest woody-wetland emergent-wetland farmland park
+                       crime-potential water-quality formal-protection)
+            :observed (theoretical-open-space)
+            :keep     ('aestheticService:TheoreticalProximitySource)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink model
@@ -124,6 +157,7 @@
 ;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
+;;REMOVE, YES?
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))	 								
 
@@ -132,23 +166,21 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-;;(defmodel data 'aestheticService:AestheticEnjoyment 
-;;  (identification 'aestheticService:AestheticEnjoyment
-(defmodel data 'aestheticService:LineOfSight
-  (identification 'aestheticService:LineOfSight
+(defmodel data 'aestheticService:Proximity
+  (identification 'aestheticService:Proximity
                   :context (source :as source
                                    homeowners :as use
                                    sink       :as sink
-                                   altitude   :as altitude)))
+                                   altitude   :as altitude)))  ;;Remove?
 
 ;; the real enchilada - need to be updated to the latest SPAN language
-(defmodel view 'aestheticService:AestheticView
-  (span 'aestheticService:LineOfSight 
-        'aestheticService:TheoreticalNaturalBeauty
-        'aestheticService:HomeownerViewUse
-      	'aestheticService:TotalVisualBlight
-      	nil
-        'geophysics:Altitude
+(defmodel proximity 'aestheticService:AestheticProximity
+  (span 'aestheticService:Proximity
+        'aestheticService:AestheticProximityProvision
+        'aestheticService:ProximityUse
+        'aestheticService:ProximitySink
+        nil
+        'geophysics:Altitude ;;DELETE THIS??
         ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         ;;:use-threshold      0.0    ;;Set at zero since output values for this are a 0/1

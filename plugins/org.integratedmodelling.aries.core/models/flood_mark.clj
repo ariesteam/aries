@@ -1,7 +1,6 @@
-(ns core.models.flood-mark
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defagent defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
-  (:refer aries :only (span)))
+  (:refer aries :only (span))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; common models

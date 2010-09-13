@@ -1,16 +1,8 @@
 (ns core.models.aesthetics
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario
-                           defmodel
-                           measurement
-                           classification
-                           categorization
-                           ranking
-                           numeric-coding
-                           binary-coding
-                           identification
-                           bayesian
-                           count])
+                           defmodel measurement classification categorization ranking numeric-coding
+                           binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -44,10 +36,10 @@
                   [75 100] 'aestheticService:HighNaturalBeauty))
 
 ;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticEnjoymentProvision
+(defmodel source 'aestheticService:AestheticViewProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision 
+  (bayesian 'aestheticService:AestheticViewProvision 
             :import   "aries.core::ViewSource.xdsl"
             :context  (mountain lake ocean)
             :observed (theoretical-beauty)
@@ -130,6 +122,12 @@
             :observed (view-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerViewUse)))
 
+;;Location of scenic roads/drives
+(defmodel scenic-drives 'aestheticService:ScenicDrives
+  (classification (binary-coding 'aestheticService:ScenicDrives)
+                  0  'aestheticService:ScenicDrivesAbsent
+                  1  'aestheticService:ScenicDrivesPresent))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
@@ -142,8 +140,6 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-;;(defmodel data 'aestheticService:AestheticEnjoyment 
-;;  (identification 'aestheticService:AestheticEnjoyment
 (defmodel data 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
                   :context (source :as source
@@ -183,3 +179,5 @@
                   (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
                   (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)
                   (ranking 'eserv:TransitionThreshold :value 1.0))))
+
+;;Develop another one of these to account for scenic drives.

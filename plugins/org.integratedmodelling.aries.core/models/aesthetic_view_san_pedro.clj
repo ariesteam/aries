@@ -1,16 +1,7 @@
 (ns core.models.aesthetic-view-san-pedro
   (:refer-clojure :rename {count length})
-  (:refer modelling :only [defscenario
-                           defmodel
-                           measurement
-                           classification
-                           categorization
-                           ranking
-                           numeric-coding
-                           binary-coding
-                           identification
-                           bayesian
-                           count])
+  (:refer modelling :only [defscenario defmodel measurement classification categorization ranking
+                           numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -44,10 +35,10 @@
                   [50 100] 'aestheticService:HighNaturalBeauty))
 
 ;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticEnjoymentProvision
+(defmodel source 'aestheticService:AestheticViewProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision 
+  (bayesian 'aestheticService:AestheticViewProvision 
             :import   "aries.core::ViewSourceSanPedro.xdsl"
             :context  (mountain scenic-vegetation)
             :observed (theoretical-beauty)
@@ -104,6 +95,7 @@
   (classification (categorization 'puget:ParcelUseCategoryKing)
                   #{"R" "K"}  'aestheticService:HousingPresent
                   :otherwise  'aestheticService:HousingAbsent))
+
 ;; TODO bring these back when the flow model runs at acceptable speeds.
 ;;  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
 ;;		"RESIDENTIAL" 'aestheticService:HousingPresent
@@ -153,8 +145,6 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-;;(defmodel data 'aestheticService:AestheticEnjoyment 
-;;  (identification 'aestheticService:AestheticEnjoyment
 (defmodel data 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
                   :context (source :as source
@@ -194,3 +184,5 @@
                   (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
                   (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)
                   (ranking 'eserv:TransitionThreshold :value 1.0))))
+
+;;Develop another one of these to account for scenic drives.

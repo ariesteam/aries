@@ -1040,7 +1040,6 @@ Slope in degrees for Puget Sound & Madagascar
 	
 	<!-- protected status from national WDPA database, used as a presence/absence coverage -->
 	<measurement:Ranking id="WPA2a">
-	
 		<observation:hasObservable>
 			<conservation:ProtectedStatus />
 		</observation:hasObservable>
@@ -1074,9 +1073,9 @@ Slope in degrees for Puget Sound & Madagascar
 	KBA data.
 	
 	-->
-	<measurement:Ranking id="puget_pugetformalprotection">
+	<measurement:BinaryCoding id="puget_pugetformalprotection">
 			<observation:hasObservable>
-				<conservation:ProtectedStatus />
+				<puget:ProtectedStatus />
 			</observation:hasObservable>
 				<rdfs:comment>Derived from national, state, and local public lands layers</rdfs:comment>
 				<metadata:hasPriority>0</metadata:hasPriority>
@@ -1095,7 +1094,7 @@ Slope in degrees for Puget Sound & Madagascar
 					<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:BinaryCoding>
 
 <!--  For use in USLE/RUSLE -->
 
