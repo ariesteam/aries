@@ -66,7 +66,7 @@
 ;; conservation status dataset.
 (defmodel formal-protection 'aestheticService:FormalProtection
   (classification (binary-coding 'puget:ProtectedStatus)
-                  0            'aestheticService:Protected} 
+                  0            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
 ;;CHECK WITH FERD ON HOW TO CALCULATE AREA

@@ -55,7 +55,7 @@
 ;; Might be worthwhile to replace with local data
 (defmodel formal-protection 'aestheticService:FormalProtection
   (classification (binary-coding 'conservation:ProtectedStatus)
-                  0            'aestheticService:Protected} 
+                  0            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
 ;;CHECK WITH FERD ON HOW TO CALCULATE AREA

@@ -1,6 +1,7 @@
-  (:refer-clojure :rename {count length}) 
+(ns core.models.flood-mark
+  (:refer-clojure :rename {count length})
   (:refer modelling :only (defagent defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
-  (:refer aries :only (span))
+  (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; common models
@@ -322,22 +323,28 @@
         'floodService:FloodSink
         nil 
         'floodService:TempFloodData100
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+;;        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+;;        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :source-threshold   600.0    ;; Excludes all but >50% ModerateFloodSource
+        :sink-threshold     30000.0  ;; Excludes all but >50% VeryHighFloodSink
         :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
         :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 8
+        :downscaling-factor 1  ;; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
         :rv-max-states      10
+<<<<<<< Updated upstream
         :keep ('floodService:Runoff 'floodService:PotentialRunoffMitigation 'floodService:PotentiallyVulnerablePopulations
               'floodService:PotentiallyDamagingFloodFlow 'floodService:PotentiallyDamagingRunoff 'floodService:PotentialFloodDamageReceived
               'floodService:ActualFloodFlow 'floodService:FloodDamagingRunoff 'floodService:UtilizedRunoffMitigation
               'floodService:FloodDamageReceived 'floodService:BenignRunoff 'floodService:UnutilizedRunoffMitigation
               'floodService:AbsorbedFloodFlow 'floodService:FloodMitigatedRunoff 'floodService:FloodMitigationBenefitsAccrued) 
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
+=======
+        :save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
+>>>>>>> Stashed changes
         :context (source farmers-use-100 sink flood-flow-data100)))
 
 ;; flow model for farmers in the 500-year floodplain  
