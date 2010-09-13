@@ -170,12 +170,12 @@
 ;; by per capita emissions for that country from EIA.  2006 data used as this corresponds to current population
 ;; density layer: 4.05 tonnes CO2/capita for Mexico in 2006, which is equivalent to 1.105 tonnes C/capita
 (defmodel use-simple 'carbonService:GreenhouseGasEmitters
-  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
-  (classification 'carbonService:GreenhouseGasEmissions
-    :units "t/ha*year" 
-    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
-    ;; This classification syntax is documented as working but isn't implemented!
-    (* (:population-density-count self) 1.105)  'carbonService:GreenhouseGasEmissions))
+  [(categorization 'geofeatures:Country :as country)]
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
+               :when #(= (:country %) "United States"))
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
+               :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+               :state   #(* (:population-density-count %) 1.105)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
