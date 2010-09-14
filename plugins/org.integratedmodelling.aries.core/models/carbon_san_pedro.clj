@@ -1,5 +1,5 @@
-;;MUST SEPARATE SOURCE AND SINK MODELS HERE: DO THIS THE RIGHT WAY AND EXPORT IT TO ALL THE OTHER CARBON
-;; MODELS.
+;;Source & sink models have been separated for San Pedro: do the same for the carbon models in Puget Sound, Madagascar,
+;; Orange County, and Vermont.
 
 (ns core.models.carbon-san-pedro
   (:refer-clojure :rename {count length}) 
@@ -182,7 +182,6 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
-;; REWRITE TO ACCOUNT FOR SEPARATION OF SOURCES & SINKS
 (defmodel carbon-flow 'carbonService:ClimateStability
   (span 'carbonService:CO2Removed
         'carbonService:CarbonSourceValue 
@@ -200,10 +199,12 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 1
-        :keep ('carbonService:NetCarbonUptake 'carbonService:GreenhouseGasEmissions
-                'carbonService:PotentialCarbonMitigation 'carbonService:UsedCarbonMitigation
-                'carbonService:SatisfiedCarbonMitigationDemand 'carbonService:CarbonMitigationSurplus
-                'carbonService:CarbonMitigationDeficit)
+        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
+                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
+                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
+                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source sink use-simple)))
 

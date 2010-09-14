@@ -133,47 +133,39 @@
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-		 (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
-		 	 [250000 :>]     'carbonService:VeryHighEmitter
-		 	 [100000 250000] 'carbonService:HighEmitter
-		 	 [25000 100000]  'carbonService:ModerateEmitter
-		 	 [1000 25000]    'carbonService:LowEmitter
-		 	 [100 1000]      'carbonService:VeryLowEmitter
-		 	 [:< 100]        'carbonService:NoEmitter))
-		 	 
-(defmodel use-emitters 'carbonService:CarbonUse
-	  (bayesian 'carbonService:CarbonUse
-	  		(classification 'carbonService:CarbonEmitterUse
-	  				0          'carbonService:EmitterUseAbsent
-	  			  :otherwise 'carbonService:EmitterUsePresent) 
-	  	:import  "aries.core::CarbonUse.xdsl"
-	  	:keep    ('carbonService:CarbonEmitterUse)
-	  	:context (greenhouse-gas-emitter)))
+(defmodel use-simple 'carbonService:GreenhouseGasEmissions
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
-;; flow model for emitters
-(defmodel emitter-flow 'carbonService:ClimateStability
-  (span 'carbonService:CO2Removed 
-  	    'carbonService:VegetationAndSoilCarbonStorage
-  	    'carbonService:CarbonEmitterUse
-      	nil
-      	nil
-  	    nil
-  	:source-threshold   1
-   	:sink-threshold     0.5
-   	:use-threshold      0.5
-   	:trans-threshold    1.0
-   	:source-type        :finite
-   	:sink-type          :finite
-   	:use-type           :finite
-   	:benefit-type       :rival
-   	:rv-max-states      10
-    :downscaling-factor 1
-    :context (source use-emitters)))
+;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
+;;(defmodel carbon-flow 'carbonService:ClimateStability
+;;  (span 'carbonService:CO2Removed
+;;        'carbonService:NetCarbonUptake
+;;        'carbonService:GreenhouseGasEmissions
+;;        nil  ;;add 'carbonService:CarbonSinkValue
+;;        nil
+;;        nil
+;;        :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
+;;        :sink-threshold     nil  ;;SET TO 0.1?
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :finite
+;;        :sink-type          :finite
+;;        :use-type           :finite
+;;        :benefit-type       :rival
+;;        :rv-max-states      10
+;;        :downscaling-factor 1
+;;        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
+;;                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
+;;                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+;;                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
+;;                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+;;                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+;;        :context (source-simple use-simple))) ;;add sink
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)

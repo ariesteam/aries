@@ -50,7 +50,7 @@
 	<!-- Puget beaches -->
 	<measurement:BinaryCoding id="puget_pugetbeaches">
 		<observation:hasObservable>
-			<aestheticService:Beach />
+			<aestheticService:BeachPresence />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -69,10 +69,10 @@
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<!-- Potential Crime -->
+<!-- Potential Crime, derived from boundaries of big cities -->
 	<observation:Categorization id="puget_pugetcities">
 		<observation:hasObservable>
-			<aestheticService:CrimePotential />
+			<geofeatures:City />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -144,7 +144,7 @@
 	<!-- Puget parks -->
 	<measurement:BinaryCoding id="puget_pugetparks">
 		<observation:hasObservable>
-			<aestheticService:Park />
+			<aestheticService:ParkPresence />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>

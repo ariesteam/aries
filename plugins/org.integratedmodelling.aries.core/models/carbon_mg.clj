@@ -1,4 +1,4 @@
-(ns core.models.carbon
+(ns core.models.carbon-mg
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
@@ -49,15 +49,6 @@
 			 [1.15 4.57] 	'carbonService:GentlyUndulating
 			 [4.57 16.70] 'carbonService:RollingToHilly
 			 [16.70 :>] 	'carbonService:SteeplyDissectedToMountainous))
-    
-(defmodel successional-stage 'carbonService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}                         'carbonService:OldGrowth
-	 		4                              'carbonService:LateSuccession
-	 		3                              'carbonService:MidSuccession
-	 		2                              'carbonService:PoleSuccession
-	 		1                              'carbonService:EarlySuccession
-	 		#{22 23 24 25 26 27 28 40 41}  'carbonService:NoSuccession))
 	 		  
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover :units "%")
@@ -95,14 +86,6 @@
        [20 35]   'carbonService:HighCNRatio
        [10 20]   'carbonService:LowCNRatio
        [:< 10]   'carbonService:VeryLowCNRatio)) 
-
-(defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
-		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
-        [8 10] 'carbonService:VeryLowHardness
-        [6 8]  'carbonService:LowHardness
-        [4 6]  'carbonService:ModerateHardness
-        [2 4]  'carbonService:HighHardness
-        [1 2]  'carbonService:VeryHighHardness))
 				
 (defmodel fire-frequency 'carbonService:FireFrequency
 		 (classification (ranking 'habitat:FireFrequency)	
@@ -125,52 +108,51 @@
 	  						 'carbonService:StoredCarbonRelease
 	   						 'carbonService:SoilCarbonStorage)
 	    :observed (veg-soil-storage soil-storage veg-storage)
-	 	 	:context  (soil-ph slope successional-stage  summer-high-winter-low fire-frequency 
-	 	 	            soil-cn-ratio oxygen percent-vegetation-cover hardwood-softwood-ratio)))  
+	 	 	:context  (soil-ph slope summer-high-winter-low fire-frequency 
+	 	 	            soil-cn-ratio oxygen percent-vegetation-cover)))  
 	 	 	           	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel greenhouse-gas-emitter 'carbonService:GreenhouseGasEmitters
-		 (classification (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year")
-		 	 [250000 :>]     'carbonService:VeryHighEmitter
-		 	 [100000 250000] 'carbonService:HighEmitter
-		 	 [25000 100000]  'carbonService:ModerateEmitter
-		 	 [1000 25000]    'carbonService:LowEmitter
-		 	 [100 1000]      'carbonService:VeryLowEmitter
-		 	 [:< 100]        'carbonService:NoEmitter))
-		 	 
-(defmodel use-emitters 'carbonService:CarbonUse
-	  (bayesian 'carbonService:CarbonUse
-	  		(classification 'carbonService:CarbonEmitterUse
-	  				0          'carbonService:EmitterUseAbsent
-	  			  :otherwise 'carbonService:EmitterUsePresent) 
-	  	:import  "aries.core::CarbonUse.xdsl"
-	  	:keep    ('carbonService:CarbonEmitterUse)
-	  	:context (greenhouse-gas-emitter)))
+;:GHG emissions map for Madagascar: use global population density layer multiplied by per capita emissions
+;; for that country from EIA.  2006 data used as this corresponds to current population density layer: 
+;; 0.14 tonnes CO2/capita for Madagascar in 2006, which is equivalent to 0.04 tonnes C/capita
+(defmodel use-simple 'carbonService:GreenhouseGasEmitters
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
+               :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+               :state   #(* (:population-density-count %) 0.04)))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
-;; flow model for emitters
-(defmodel emitter-flow 'carbonService:ClimateStability
-  (span 'carbonService:CO2Removed 
-  	    'carbonService:VegetationAndSoilCarbonStorage
-  	    'carbonService:CarbonEmitterUse
-      	nil
-      	nil
-  	    nil
-  	:source-threshold 1,
-   	:sink-threshold   0.5,
-   	:use-threshold    0.5,
-   	:trans-threshold  1.0,
-   	:sink-type        :relative,
-   	:use-type         :relative,
-   	:benefit-type     :rival,
-   	:rv-max-states    10 
-    :context (source use-emitters)))		
+;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
+(defmodel carbon-flow 'carbonService:ClimateStability
+  (span 'carbonService:CO2Removed
+        'carbonService:NetCarbonUptake
+        'carbonService:GreenhouseGasEmissions
+        nil  ;;add 'carbonService:CarbonSinkValue
+        nil
+        nil
+        :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
+        :sink-threshold     nil  ;;SET TO 0.1?
+        :use-threshold      1.0
+        :trans-threshold    nil
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :rv-max-states      10
+        :downscaling-factor 1
+        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
+                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
+                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
+                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-simple use-simple))) ;;add sink
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)

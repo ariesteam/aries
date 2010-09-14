@@ -9,19 +9,18 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NEED TO CHANGE concepts so aren't repeating within the same defmodel statement?
 (defmodel lake-front 'aestheticService:LakeFront
-  (classification (binary-coding 'aestheticService:LakeFront)
+  (classification (binary-coding 'aestheticService:LakeFrontPresence)
                   0          'aestheticService:LakeFrontAbsent
                   :otherwise 'aestheticService:LakeFrontPresent))
 
 (defmodel river-front 'aestheticService:RiverFront
-  (classification (binary-coding 'aestheticService:RiverFront)
+  (classification (binary-coding 'aestheticService:RiverFrontPresence)
                   0          'aestheticService:RiverFrontAbsent
                   :otherwise 'aestheticService:RiverFrontPresent))
 
 (defmodel beach 'aestheticService:Beach
-  (classification (binary-coding 'aestheticService:Beach)
+  (classification (binary-coding 'aestheticService:BeachPresence)
                   0          'aestheticService:BeachAbsent
                   :otherwise 'aestheticService:BeachPresent))
 
@@ -46,17 +45,17 @@
                   :otherwise   'aestheticService:FarmlandAbsent))
 
 (defmodel park 'aestheticService:Park
-  (classification (binary-coding 'aestheticService:Park)
+  (classification (binary-coding 'aestheticService:ParkPresence)
                   0          'aestheticService:ParkAbsent
                   :otherwise 'aestheticService:ParkPresent))
 
 (defmodel crime-potential 'aestheticService:CrimePotential
-  (classification (categorization 'aestheticService:CrimePotential)
+  (classification (categorization 'geofeatures:City)
                   #{"Seattle" "Tacoma"} 'aestheticService:HighCrimePotential
                   :otherwise            'aestheticService:LowCrimePotential))
 
 (defmodel water-quality 'aestheticService:WaterQuality
-  (classification (ranking 'aestheticService:WaterQuality)
+  (classification (ranking 'aestheticService:WaterQualityAssessment)
                   1            'aestheticService:MeetsStandards
                   #{2 4 24}    'aestheticService:OfConcern
                   5            'aestheticService:RequiringTMDL
@@ -69,11 +68,9 @@
                   1            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
-;; Compute area of open space polygons as a GIS operation and store
-;; this value redundantly in each pixel in the polygon.  Make sure all
-;; the appropriate ontology changes are made (including inheriting
-;; from Areas and all that jazz.
-
+;; Compute area of open space polygons as a GIS operation and store this value redundantly in each pixel in the 
+;; polygon.  Make sure all the appropriate ontology changes are made (including inheriting from Areas and all 
+;; that jazz.
 ;;(defmodel area 'aestheticService:OpenSpaceArea...
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
@@ -174,7 +171,7 @@
         ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
         ;;:use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
         ;;:trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
-        ;;:source-type    :
+        :source-type      :infinite
         :sink-type        :infinite
         :use-type         :infinite
         :benefit-type     :non-rival

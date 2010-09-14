@@ -156,9 +156,6 @@
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;;Not sure what's going on below, but it's throwing errors.
-;; FV it had the old syntax with :context outside of the identification form - fixed
-
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:AestheticEnjoyment 
 	(identification 'aestheticService:AestheticEnjoyment

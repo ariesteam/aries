@@ -187,11 +187,11 @@
   (span 'carbonService:CO2Removed
   	    'carbonService:NetCarbonUptake
   	    'carbonService:GreenhouseGasEmissions
-      	nil
+      	nil  ;;add 'carbonService:CarbonSinkValue
       	nil
   	    nil
         :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
-        :sink-threshold     nil
+        :sink-threshold     nil  ;;SET TO 0.1?
         :use-threshold      1.0
         :trans-threshold    nil
         :source-type        :finite
@@ -200,12 +200,14 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 1
-        :keep ('carbonService:NetCarbonUptake 'carbonService:GreenhouseGasEmissions
-                'carbonService:PotentialCarbonMitigation 'carbonService:UsedCarbonMitigation
-                'carbonService:SatisfiedCarbonMitigationDemand 'carbonService:CarbonMitigationSurplus
-                'carbonService:CarbonMitigationDeficit)
+        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
+                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
+                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
+                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-simple use-simple decomposition-factor)))
+        :context (source-simple use-simple decomposition-factor))) ;;add sink
 
 
 ;; ----------------------------------------------------------------------------------------------
