@@ -13,9 +13,7 @@
 (defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
   (measurement 'habitat:AnnualPrecipitation "mm"))
 
-;;USE APPROPRIATE SWAT/KINEROS INPUTS:
-;; SWAT water yield, transmission loss, surface runoff, percolation precip, ET
-;; KINEROS runoff, infiltration
+;;Consider using percolation data here too?
 
 (defmodel recharge 'habitat:AnnualRecharge
   (measurement 'habitat:AnnualRecharge "mm"))
@@ -29,7 +27,7 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
-;;processes.  Deterministic models could likely be used.
+;;processes.  Deterministic models could be used to replace this as appropriate.
 
 (defmodel slope 'waterSupplyService:SlopeClass
     (classification (measurement 'geophysics:DegreeSlope "\u00B0")
@@ -88,8 +86,12 @@
     :state #(cond (== (:spring-presence %) 0) 0
                   (== (:spring-presence %) 1) 100)))
 
+;;(defmodel baseflow (as water yield?)
+
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration.
+
+;; SHOULD IT BE TIED TO RUNOFF?
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
     [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
@@ -116,13 +118,19 @@
 ;;  the Highway 80 bridge over the San Pedro and Benson (far south of Pomerene).  The canal irrigates 1,050
 ;;  ac, mostly pasture (67%) and small grains (11%).  From 1968-1972 its discharge was 1,400 ac-ft/yr.  St. David
 ;;  Ditch also irrigates 1,050 ac of pasture (79%) and alfalfa (7%).  
-;;  From 1968-1972 its discharge was 4,600 ac-ft/yr (Lacher 1994).
+;;  From 1968-1972 its discharge was 4,600 ac-ft/yr (Lacher 1994).  This is equivalent to 1,335 mm water/yr for 
+;;  agricultural acreage watered by the St. David diversion and 406 mm water/yr for ag acreage watered 
+;;  by the Pomerene Diversion.
 
 ;;(defmodel well-extraction 'waterSupplyService:AnnualWellCapacity
 
+;;(defmodel well-ownership 'waterSupplyService:WellOwnership
+      ;;'waterSupplyService:Agricultural
+      ;;'waterSupplyService:Domestic
+      ;;'waterSupplyService:Military
+      ;;'waterSupplyService:Mining
 
-
-
+;;(defmodel surface-diversions 'waterSupplyService:SurfaceDiversions
 
 
 
@@ -133,11 +141,13 @@
 ;; dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Everything below needs to be updated correctly for water.
+;;Updated below for water.
  	 								
 ;;(defmodel altitude 'geophysics:Altitude
   ;;(measurement 'geophysics:Altitude "m"))	 								
  
+;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
+
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	

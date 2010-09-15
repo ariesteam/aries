@@ -32,8 +32,8 @@
 			<state id="LowVegetationDensity" />
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
-			<parents>HardwoodSoftwoodRatio PercentVegetationCover</parents>
-			<probabilities>0.96 0.04 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0</probabilities>
+			<parents>PercentVegetationCover HardwoodSoftwoodRatio</parents>
+			<probabilities>0.96 0.04 0 0 0 0 0.97 0.03 0 0 0 0 0.98 0.02 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
@@ -72,7 +72,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>541 731 699 759</position>
+				<position>541 721 699 749</position>
 				<barchart active="true" width="262" height="108" />
 			</node>
 			<node id="SummerHighWinterLow">
@@ -93,6 +93,11 @@
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="128" height="126" />
 			</node>
+			<textbox>
+				<caption>FIX CPT!!!</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>485 529 535 543</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>

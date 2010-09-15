@@ -58,11 +58,11 @@
                   1 'sanPedro:LowQualityRiparianOrWetlandPresent
                   0 'sanPedro:RiparianOrWetlandAbsent))
 
-;;No data yet for parks - though would likely only matter in cities anyway.
-;;(defmodel park 'aestheticService:Park
-;;  (classification (binary-coding 'aestheticService:Park)
-;;                  0          'aestheticService:ParkAbsent
-;;                  :otherwise 'aestheticService:ParkPresent))
+(defmodel park 'aestheticService:Park
+    (classification (numeric-coding 'habitat:LandOwnership)
+     #{8 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
+       117 118 119 120 121 122 123 124 125 126 127}   'aestheticService:ParkPresent
+     :otherwise                                       'aestheticService:ParkAbsent)) 
 
 (defmodel fire-threat 'aestheticService:FireThreat
   (classification (numeric-coding 'habitat:FireReturnInterval) 
@@ -94,7 +94,7 @@
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticProximityProvision
             :import   "aries.core::ProximitySourceSanPedro.xdsl"
-            :context  (forest farmland grassland desert-scrub riparian-wetland fire-threat formal-protection)
+            :context  (forest farmland grassland desert-scrub riparian-wetland park fire-threat formal-protection)
             :observed (theoretical-open-space)
             :keep     ('aestheticService:TheoreticalProximitySource)))
 

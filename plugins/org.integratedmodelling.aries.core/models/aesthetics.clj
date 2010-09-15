@@ -122,11 +122,11 @@
             :observed (view-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerViewUse)))
 
-;;Location of scenic roads/drives
-(defmodel scenic-drives 'aestheticService:ScenicDrives
-  (classification (binary-coding 'aestheticService:ScenicDrives)
-                  0  'aestheticService:ScenicDrivesAbsent
-                  1  'aestheticService:ScenicDrivesPresent))
+;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
+(defmodel scenic-highways 'aestheticService:ScenicDrives
+  (classification (binary-coding 'infrastructure:Highway)
+                        'aestheticService:ScenicDrivesPresent
+                        'aestheticService:ScenicDrivesAbsent))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model

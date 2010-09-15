@@ -33,6 +33,38 @@
 	xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
 	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
 
+<!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
+Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona: Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173. 
+Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A framework for preserving semi-arid regions in the Southwest. Journal of Contemporary Water Research and Education 114: 60-74.-->
+
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<habitat:ActualEvapotranspiration />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>et_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:BinaryCoding id="usa_airports">
 		<observation:hasObservable>
 			<infrastructure:Airport />
@@ -56,30 +88,30 @@
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:Ranking id="sanPedro_amphibian_rich">
-		<observation:hasObservable>
-			<habitat:AmphibianRichness />
-		</observation:hasObservable>
+<measurement:Ranking id="sanPedro_amphibian_rich">
+	<observation:hasObservable>
+		<habitat:AmphibianRichness />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460302.342616228</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116526.91446972464</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698583.9876596787</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414974.363269456</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>114877.97304113029</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699436.3793787669</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 <measurement:Ranking id="usa_meandaysprecipannual">
 	<observation:hasObservable>
@@ -160,6 +192,34 @@
 				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed.  These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<habitat:AnnualPrecipitation />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>precip_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
@@ -275,6 +335,34 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<habitat:AnnualRunoff />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>surq_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
 			<habitat:AnnualSnowmelt />
@@ -302,64 +390,63 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<!--Native units are in gallons/minute, as a point file. To convert this
-		to aerial units, we assume each well to be 4 m^2 in aerial extent (2x2
-		m). We convert gallons to cubic meters, divide cubic meters by 4 m^2,
-		convert m to mm, and convert minutes to year. This gives an overall
-		conversion factor of 497,349-->
+<!--Native units are in gallons/minute, as a point file. To convert this to aerial units, we assume each 
+well to be 4 m^2 in aerial extent (2x2 m). We convert gallons to cubic meters, divide cubic meters by 4 m^2,
+convert m to mm, and convert minutes to year. This gives an overall conversion factor of 497,349-->
 
-	<measurement:Measurement id="well_tested_rate">
-		<observation:hasObservable>
-			<waterSupplyService:AnnualWellCapacity />
-		</observation:hasObservable>
+<measurement:Measurement id="well_tested_rate">
+	<observation:hasObservable>
+		<waterSupplyService:AnnualWellCapacity />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
 		<measurement:unit>mm</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:well_tested_rate</geospace:hasCoverageId>
-				<geospace:hasTransformation>self * 497349</geospace:hasTransformation>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466659.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:well_tested_rate</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 497349</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
-	<measurement:Ranking id="sanPedro_bird_rich">
-		<observation:hasObservable>
-			<habitat:AvianRichness />
-		</observation:hasObservable>
+<measurement:Ranking id="sanPedro_bird_rich">
+	<observation:hasObservable>
+		<habitat:AvianRichness />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460413.1586537273</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116626.26715711149</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698486.6739021853</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu
+	</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414974.349525294</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>114973.68290087063</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699340.7518807739</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:Count id="buffalo">
 		<observation:hasObservable>
@@ -415,30 +502,30 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-	<observation:Categorization id="mexico_mex_lulc">
-		<observation:hasObservable>
-			<mexico:CONABIOLULCCategory />
-		</observation:hasObservable>
+<observation:Categorization id="mexico_mex_lulc">
+	<observation:hasObservable>
+		<mexico:CONABIOLULCCategory />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: Comision Nacional Para el Conocimiento y Uso de la Biodiversidad (CONABIO)</rdfs:comment>
 		<metadata:hasPriority>5</metadata:hasPriority>
 		<metadata:hasURL>http://www.conabio.gob.mx/informacion/gis/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>14.531</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-117.302</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.718</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-86.71</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>14.531</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-117.302</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-86.71</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
 
 	<measurement:Ranking id="usa_pugeterosionmetrics">
 		<observation:hasObservable>
@@ -596,7 +683,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
+				<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
@@ -677,31 +764,31 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:NumericCoding id="Reclass_fire_Clip">
-		<observation:hasObservable>
-			<habitat:FireReturnInterval />
-		</observation:hasObservable>
+<measurement:NumericCoding id="Reclass_fire_Clip">
+	<observation:hasObservable>
+		<habitat:FireReturnInterval />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from SWReGAP vegetation type and TNC historic fire return interval data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-				<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>51935</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>30893</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>31.315</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-120.016</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>42.022</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-102.017</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:NumericCoding>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+			<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>51935</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>30893</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-120.016</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>42.022</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-102.017</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:NumericCoding>
 
 	<measurement:Ranking id="Reclass_fthr1">
 		<observation:hasObservable>
@@ -931,6 +1018,31 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
+	
+	
+<measurement:BinaryCoding id="sanPedro_mex_highway">
+	<observation:hasObservable>
+		<infrastructure:Highway />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<measurement:BinaryCoding id="usa_highways">
 		<observation:hasObservable>
@@ -1055,31 +1167,31 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-	<measurement:Ranking id="san_pedro_hsg">
-		<observation:hasObservable>
-			<habitat:HydrologicSoilsGroup />
-		</observation:hasObservable>
+<measurement:Ranking id="san_pedro_hsg">
+	<observation:hasObservable>
+		<habitat:HydrologicSoilsGroup />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:san_pedro_hsg</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:san_pedro_hsg</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:NumericCoding id="Industry">
 		<observation:hasObservable>
@@ -1103,6 +1215,34 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
+
+<!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm 
+and 1997 land cover, for the Sierra Vista subwatershed only-->
+<measurement:Measurement id="sanPedro_sp_kineros_97">
+	<observation:hasObservable>
+		<habitat:Infiltration />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:sp_kineros_97</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>infilt_m</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 
 	<measurement:Measurement id="snowmelt_jan">
 		<observation:hasObservable>
@@ -1131,68 +1271,76 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Ranking id="sanPedro_mammal_rich">
-		<observation:hasObservable>
-			<habitat:MammalRichness />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona
-			Data Services Program</rdfs:comment>
+<measurement:NumericCoding id="sanPedro_az_land_ownership">
+	<observation:hasObservable>
+		<habitat:LandOwnership />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL><observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_land_ownership</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>owner</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.8504152074</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>114880.4225935507</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106788.0780395595</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699438.888976447</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:Ranking id="sanPedro_mammal_rich">
+	<observation:hasObservable>
+		<habitat:MammalRichness />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu
-		</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:mammal_rich
-				</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460302.342616228
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116526.91446972464
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106788.5249591796
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698583.9876596787
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mammal_rich</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414974.363269456</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>114877.97304113029</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106788.5249591796</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699436.3793787669</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)
-		</rdfs:comment>
+		<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>os_id</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-81.08509300346486
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-6.701190793362912
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.43162264220882
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>96.38474213762674
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:29700
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>-81.08509300346486</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-6.701190793362912</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.43162264220882</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>96.38474213762674</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
@@ -1203,10 +1351,8 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:Non_Rival_Use
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:Non_Rival_Use</geospace:hasCoverageId>
 				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1214,16 +1360,11 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>22</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>6</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>19.142240226562222
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-97.2746372601786
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>19.576122241899572
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-96.27930746109703
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>19.142240226562222</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-97.2746372601786</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>19.576122241899572</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-96.27930746109703</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
@@ -1232,13 +1373,11 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentFloodplainVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory
-			flood extents and UMD-GLCF tree canopy data</rdfs:comment>
+		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mg:FloodplainVegMg</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1250,8 +1389,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>43.217</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>-11.942</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>50.492</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1260,15 +1398,12 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentFloodplainVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory
-			flood extents and UMD-GLCF tree canopy data</rdfs:comment>
+		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:dr_fp_veg
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>dominicanRepublic:dr_fp_veg</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1279,8 +1414,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-84.933</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>23.333</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-64.583</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1291,14 +1425,11 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservable>
 		<rdfs:comment>Data source: NOAA-NGDC</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://www.ngdc.noaa.gov/dmsp/download_global_isa.html
-		</metadata:hasURL>
+		<metadata:hasURL>http://www.ngdc.noaa.gov/dmsp/download_global_isa.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:imperviousGlobal
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:imperviousGlobal</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1309,8 +1440,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-180.004</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>75.004</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1319,17 +1449,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>california:impervious2_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:impervious2_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1340,8 +1467,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-125.1</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>43.736</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-112.317</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1350,17 +1476,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>sanPedro:impervious5_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:impervious5_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1371,8 +1494,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-115.876</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>37.918</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-104.68</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1381,17 +1503,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious10_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious10_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1402,8 +1521,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-101.846</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>37.247</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-91.28</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1412,17 +1530,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious11_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious11_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1433,8 +1548,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-91.816</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>43.174</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-78.52</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1443,17 +1557,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious12_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious12_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1464,8 +1575,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-92.817</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>37.391</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-83.885</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1474,17 +1584,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious13_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious13_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1495,8 +1602,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-81.75</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>49.123</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-65.894</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1505,17 +1611,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious14_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious14_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1526,8 +1629,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-87.735</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>39.111</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-74.752</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1536,17 +1638,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious3_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious3_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1557,8 +1656,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-119.737</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>50.586</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-105.081</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1567,17 +1665,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious4_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious4_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1588,8 +1683,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-116.988</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>45.851</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-103.981</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1598,17 +1692,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious6_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious6_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1619,8 +1710,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-109.919</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>49.428</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-93.744</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1629,17 +1719,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious7_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious7_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1650,8 +1737,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-107.642</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>42.373</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-98.521</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1660,17 +1746,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious8_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious8_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1681,8 +1764,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-96.446</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>49.389</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-80.997</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1691,17 +1773,14 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentImperviousness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: NLCD 2001 impervious surface data
-		</rdfs:comment>
+		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious9_Project
-				</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious9_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1712,8 +1791,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-101.053</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>44.811</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-88.674</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1722,17 +1800,13 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>University of Maryland Global Land Cover Facility
-		</rdfs:comment>
+		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml
-		</metadata:hasURL>
+		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:AsiaPacificTreeCover
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:AsiaPacificTreeCover</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1743,8 +1817,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>93.0</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>6.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1753,17 +1826,13 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>University of Maryland Global Land Cover Facility
-		</rdfs:comment>
+		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml
-		</metadata:hasURL>
+		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:EuropeAsiaTreeCover
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:EuropeAsiaTreeCover</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1774,8 +1843,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-11.317</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1784,17 +1852,13 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>University of Maryland Global Land Cover Facility
-		</rdfs:comment>
+		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml
-		</metadata:hasURL>
+		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:NorthAmericaTreeCover
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:NorthAmericaTreeCover</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1805,8 +1869,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-7.658</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1815,17 +1878,13 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
-		<rdfs:comment>University of Maryland Global Land Cover Facility
-		</rdfs:comment>
+		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
-		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml
-		</metadata:hasURL>
+		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:SouthAmericaTreeCover
-				</geospace:hasCoverageId>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:SouthAmericaTreeCover</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1836,8 +1895,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasLonLowerBound>-93.425</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>13.85</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-21.325</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326
-				</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -2193,14 +2251,38 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<!--
-		TODO fv - KB: Native units are in livestock units/km, so no conversion
-		should be necessary. BTW I do think these concepts should be in an
-		agriculture ontology and they should be named something with "Density"
-		in them. There are tons of agricultural concepts in the ontologies
-		from the SEAMLESS project, we could discuss integrating those at some
-		point.
-	-->
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<waterSupplyService:Percolation />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>perc_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+<!--TODO fv - KB: Native units are in livestock units/km, so no conversion should be necessary. 
+BTW I do think these concepts should be in an agriculture ontology and they should be named something 
+with "Density" in them. There are tons of agricultural concepts in the ontologies from the SEAMLESS project, 
+we could discuss integrating those at some point.-->
 	<measurement:Count id="pigs">
 		<observation:hasObservable>
 			<waterSupplyService:PigsPopulation />
@@ -2234,9 +2316,9 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	<observation:hasObservable>
 		<policytarget:PopulationDensity />
 	</observation:hasObservable>
-	<rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<measurement:unit>/km^2</measurement:unit>
+		<rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<measurement:unit>/km^2</measurement:unit>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2246,10 +2328,10 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>31.332001479427568</geospace:hasLatLowerBound>
+			<geospace:hasLatLowerBound>30.868001600279342</geospace:hasLatLowerBound>
 			<geospace:hasLonLowerBound>-114.81700548244825</geospace:hasLonLowerBound>
 			<geospace:hasLatUpperBound>37.01100029892272</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-109.04500650352345</geospace:hasLonUpperBound>
+			<geospace:hasLonUpperBound>-109.04500647198498</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
@@ -2432,9 +2514,10 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		<observation:hasObservable>
 			<habitat:ReptileRichness />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
+			<rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu
+		</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2444,10 +2527,10 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460523.9885570426</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116630.32188851421</geospace:hasLonLowerBound>
+				<geospace:hasLatLowerBound>3414974.349525294</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>114973.68290087063</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698484.5783375392</geospace:hasLonUpperBound>
+				<geospace:hasLonUpperBound>699340.7518807739</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
@@ -2499,6 +2582,80 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
+
+<measurement:Ranking id="sanPedro_sprnca_condition_class">
+	<observation:hasObservable>
+		<sanPedro:RiparianConditionClass />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Stromberg et al. (2006)</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>condition</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
+<!-- Scenario for a 0.5-meter rise in groundwater throughout the SPRNCA -->
+	<measurement:Ranking id="sanPedro_sprnca_condition_class">
+		<observation:hasObservable>
+			<sanPedro:RiparianConditionClassHalfMeterRise />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: Brookshire et al. (2010)</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>cc_gw__0_5__10</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+<!-- Scenario for all segments with perennial surface flow throughout the SPRNCA -->
+	<measurement:Ranking id="sanPedro_sprnca_condition_class">
+		<observation:hasObservable>
+			<sanPedro:RiparianConditionClassAllWet />
+		</observation:hasObservable>
+			<rdfs:comment>Data source: Brookshire et al. (2010)</rdfs:comment>
+			<metadata:hasPriority>5</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>scen9</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 <!--  	<measurement:BinaryCoding id="puget_wastreams">
 		<observation:hasObservable>
@@ -2592,69 +2749,53 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:BinaryCoding id="sanPedro_az_hydrography">
-		<observation:hasObservable>
-			<geofeatures:River />
-		</observation:hasObservable>
+<measurement:BinaryCoding id="sanPedro_az_hydrography">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: National Hydrography Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:az_hydrography
-				</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>31.332001459188426
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-115.33000540843109
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>37.84600019046589
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-107.35500689472907
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4269
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_hydrography</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>30.86800158030866</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-115.33000540843109</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.84600019046589</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-107.35500686129348</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
-	<measurement:BinaryCoding id="sanPedro_mex_hydrography">
-		<observation:hasObservable>
-			<geofeatures:River />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser
-		</rdfs:comment>
+<measurement:BinaryCoding id="sanPedro_mex_hydrography">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/
-		</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-				</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:mex_hydrography
-				</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3430042.7384353103
-				</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>547756.3152878443
-				</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3466986.5616748715
-				</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>600524.6907883079
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912
-				</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mex_hydrography</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<measurement:BinaryCoding id="california_hydro">
 		<observation:hasObservable>
@@ -2680,64 +2821,59 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</measurement:BinaryCoding>
 
 	<!-- This one is just a presence/absence of roads -->
-	<measurement:BinaryCoding id="sanPedro_az_roads">
-		<observation:hasObservable>
-			<infrastructure:Road />
-		</observation:hasObservable>
+<measurement:BinaryCoding id="sanPedro_az_roads">
+	<observation:hasObservable>
+		<infrastructure:Road />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.864255436</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>115167.55203442869</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699343.2614684913</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
-	<!--
-		Road classification for calculating travel cost; 6 categories of road
+	<!--Road classification for calculating travel cost; 6 categories of road
 		(excluding access ramps) from interstate highways to trails, alleys,
-		and primitive roads
-	-->
-	<observation:Categorization id="sanPedro_az_roads">
-		<observation:hasObservable>
-			<recreationService:RoadTravelCapacity />
-		</observation:hasObservable>
+		and primitive roads-->
+<observation:Categorization id="sanPedro_az_roads">
+	<observation:hasObservable>
+		<recreationService:RoadTravelCapacity />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
-<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>category</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3460301.848519356</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>116815.25632079755</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>category</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.864255436</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>115167.55203442869</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>699343.2614684913</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
 
-	<!--
-		Road classification for calculating travel cost; 9 numeric classes of
-		highways
-	-->
+	<!--Road classification for calculating travel cost; 9 numeric classes of highways-->
 	<measurement:NumericCoding id="usa_highways">
 		<observation:hasObservable>
 			<recreationService:RoadTravelCapacity />
@@ -2761,6 +2897,57 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
+
+<!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm -->
+<measurement:Measurement id="sanPedro_sp_kineros_97">
+	<observation:hasObservable>
+		<habitat:Runoff />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:sp_kineros_97</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>runoff_mm</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
+<!-- Scenic drives for eastern Arizona, western Washington, Vermont only. -->
+<measurement:BinaryCoding id="usa_highways_scenic">
+	<observation:hasObservable>
+		<aestheticService:ScenicDrives />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: TIGER/Line 2000 Streets and Rand McNally Atlas scenic drives</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:highways_scenic</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>31.349</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.548</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.928</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-71.16</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<measurement:Measurement id="puget_pugeterosionmetrics">
 		<observation:hasObservable>
@@ -2997,39 +3184,40 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="SoilpH_0_30_san_pedro">
-		<observation:hasObservable>
-			<habitat:SoilPhShallow />
-		</observation:hasObservable>
+<measurement:Ranking id="SoilpH_0_30_san_pedro">
+	<observation:hasObservable>
+		<habitat:SoilPhShallow />
+	</observation:hasObservable>
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:Ranking id="SoilpH_30_100_san_pedro">
 		<observation:hasObservable>
 			<habitat:SoilPhDeep />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
+		</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3040,7 +3228,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466438.5</geospace:hasLatLowerBound>
+				<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
@@ -3101,7 +3289,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
-	<measurement:BinaryCoding id="springs">
+<!-- 	<measurement:BinaryCoding id="springs">
 		<observation:hasObservable>
 			<waterSupplyService:Springs />
 		</observation:hasObservable>
@@ -3125,7 +3313,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding>  -->
 
 	<measurement:Measurement id="str_gradient">
 		<observation:hasObservable>
@@ -3249,14 +3437,42 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3474157.2394293677</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>548058.8265658239</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>3584676.624286038</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>607995.6343941971</geospace:hasLonUpperBound>
+			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3683458.4720972935</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>608601.3345555842</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
+
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<waterSupplyService:TransmissionLoss />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>tloss_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 	<!--These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
 	converts it to tonnes C/ha -->
@@ -3388,14 +3604,42 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
+<!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+	<measurement:Measurement id="sanPedro_sp_swat_97">
+		<observation:hasObservable>
+			<waterSupplyService:WaterYield />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>watyld_mm</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3683452.407758169</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>608027.6973406251</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Measurement id="well_depth">
 		<observation:hasObservable>
 			<waterSupplyService:WellDepth />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
-		<measurement:unit>ft</measurement:unit>
+			<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
+			<metadata:hasPriority>0</metadata:hasPriority>
+			<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
+			<measurement:unit>ft</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3406,7 +3650,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>3466659.5</geospace:hasLatLowerBound>
+				<geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
 				<geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
 				<geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
@@ -3444,25 +3688,29 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<!--
-		Need an ontologic concept for this one <measurement:BinaryCoding
-		id="facilities"> <observation:hasObservable>
-		<observation:GenericQuantifiable /> </observation:hasObservable>
-		<observation:hasDataSource> <geospace:WCSDataSource>
-		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs
-		</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>california:facilities</geospace:hasCoverageId>
-		</geospace:WCSDataSource> </observation:hasDataSource>
-		<observation:hasObservationExtent> <geospace:RasterGrid>
-		<geospace:hasXRangeMax>10120</geospace:hasXRangeMax>
-		<geospace:hasYRangeMax>9431</geospace:hasYRangeMax>
-		<geospace:hasLatLowerBound>32.544</geospace:hasLatLowerBound>
-		<geospace:hasLonLowerBound>-124.261</geospace:hasLonLowerBound>
-		<geospace:hasLatUpperBound>41.977</geospace:hasLatUpperBound>
-		<geospace:hasLonUpperBound>-114.139</geospace:hasLonUpperBound>
-		<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid> </observation:hasObservationExtent>
-		</measurement:BinaryCoding>
-	-->
+	<!--Need an ontologic concept for this one - basically EPA-regulated facilities (industry, waste discharge points,
+	superfund sites, etc.)
+	<measurement:BinaryCoding id="facilities"> 
+			<observation:hasObservable>
+				<observation:GenericQuantifiable /> 
+			</observation:hasObservable>
+		<observation:hasDataSource> 
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>california:facilities</geospace:hasCoverageId>
+			</geospace:WCSDataSource> 
+		</observation:hasDataSource>
+		<observation:hasObservationExtent> 
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>10120</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>9431</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>32.544</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.261</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>41.977</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-114.139</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid> 
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>-->
 
 </kbox>

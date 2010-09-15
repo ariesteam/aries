@@ -115,12 +115,11 @@
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
-;;Define conditions under which these are present - ideally get a layer, or could develop one by hand.  Relevant highways in the San
-;; Pedro Valley include I-10 from Tucson to Benson, Arizona Highways 80 & 82.
-;;(defmodel scenic-highways 'aestheticService:ScenicDrives
-;;  (classification (binary-coding 'infrastructure:Highway)
-;;                        'aestheticService:ScenicDrivesPresent
-;;                        'aestheticService:ScenicDrivesAbsent))
+;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
+(defmodel scenic-highways 'aestheticService:ScenicDrives
+  (classification (binary-coding 'infrastructure:Highway)
+                        'aestheticService:ScenicDrivesPresent
+                        'aestheticService:ScenicDrivesAbsent))
 
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
