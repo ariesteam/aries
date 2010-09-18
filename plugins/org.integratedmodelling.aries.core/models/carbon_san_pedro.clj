@@ -83,16 +83,13 @@
 ;;Ditto for Mexico: most LULC categories are not used, and not all discrete states are represented.
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
      (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
-        #{34 35 92}               'carbonService:VeryLowHardness
-        14                        'carbonService:LowHardness
-        #{33 45 51 91}            'carbonService:ModerateHardness
-        #{55 56 57 59 60 96 105}  'carbonService:HighHardness
-        #{52 118}                 'carbonService:VeryHighHardness)
+        #{14 34 35 92}                   'carbonService:LowHardness
+        #{33 45 51 91}                   'carbonService:ModerateHardness
+        #{52 55 56 57 59 60 96 105 118}  'carbonService:HighHardness)
      (classification (categorization 'mexico:CONABIOLULCCategory)
-        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:VeryLowHardness
+        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:LowHardness
         #{"Chaparral"}                                              'carbonService:ModerateHardness
-        #{"Bosque de encino"}                                       'carbonService:HighHardness
-        #{"Mezquital-huizachal"}                                    'carbonService:VeryHighHardness))
+        #{"Bosque de encino" "Mezquital-huizachal"}                 'carbonService:HighHardness))
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
      (classification (ranking 'habitat:SummerHighWinterLow)
@@ -105,7 +102,7 @@
 ;; Bayesian source model
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationSanpedro.xdsl"
+            :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
             :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
 	 	 	      :context  (hardwood-softwood-ratio percent-vegetation-cover summer-high-winter-low)))
@@ -147,7 +144,7 @@
 (defmodel fire-frequency 'carbonService:FireFrequency
   (classification (numeric-coding 'habitat:FireReturnInterval) 
                   1        'carbonService:HighFireFrequency
-                  #{2 3}   'carbonService:ModerateFrequency ;;includes "variable" fire frequency
+                  #{2 3}   'carbonService:ModerateFireFrequency ;;includes "variable" fire frequency
                   4        'carbonService:LowFireFrequency
                   #{5 6}   'carbonService:NoFireFrequency))
 
@@ -180,6 +177,12 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
+
+(defmodel identification-carbon 'carbonService:ClimateStability
+  (identification 'carbonService:ClimateStability
+                  :context (source :as source
+                            sink :as sink
+                            use-simple :as use)))
 
 ;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
 (defmodel carbon-flow 'carbonService:ClimateStability

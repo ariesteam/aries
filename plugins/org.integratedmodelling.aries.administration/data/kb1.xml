@@ -917,6 +917,32 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
+	<measurement:NumericCoding id="gambels_quail">
+		<observation:hasObservable>
+			<sanPedro:GambelsQuailHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:gambels_quail</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
 	<measurement:NumericCoding id="landcover_glc2000">
 		<observation:hasObservable>
 			<glc:GLCNumeric />
@@ -1271,6 +1297,32 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:NumericCoding id="javelina">
+		<observation:hasObservable>
+			<sanPedro:JavelinaHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:javelina</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
 <measurement:NumericCoding id="sanPedro_az_land_ownership">
 	<observation:hasObservable>
 		<habitat:LandOwnership />
@@ -1342,6 +1394,58 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 				<geospace:hasLonUpperBound>96.38474213762674</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="mourning_dove">
+		<observation:hasObservable>
+			<sanPedro:MourningDoveHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:mourning_dove</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="mule_deer">
+		<observation:hasObservable>
+			<sanPedro:MuleDeerHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:mule_deer</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
@@ -2418,25 +2522,28 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-	<measurement:BinaryCoding id="pima_parcels">
+	<measurement:BinaryCoding id="pima_parcels_Project">
 		<observation:hasObservable>
 			<aestheticService:PresenceOfHousing />
 		</observation:hasObservable>
+		<rdfs:comment>Data source: Pima County GIS</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://dot.pima.gov/gis/</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:pima_parcels</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:pima_parcels_Project</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>17579</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7784</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>163967.452</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>275846.117</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>553267.452</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1154896.117</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2868</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>19023</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7194</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-113.293</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.87</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
@@ -2925,6 +3032,32 @@ we could discuss integrating those at some point.-->
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+	<measurement:NumericCoding id="scaled_quail">
+		<observation:hasObservable>
+			<sanPedro:ScaledQuailHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:scaled_quail</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
 <!-- Scenic drives for eastern Arizona, western Washington, Vermont only. -->
 <measurement:BinaryCoding id="usa_highways_scenic">
 	<observation:hasObservable>
@@ -3397,6 +3530,32 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+<measurement:Measurement id="Diversions">
+	<observation:hasObservable>
+		<waterSupplyService:SurfaceDiversionCapacity />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Digitized locations of St. David and Pomerene diversions</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:Diversions</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>45</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>122</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-111.02</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-109.87</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 	<measurement:Ranking id="global_terrestrialecoregions">
 		<observation:hasObservable>
 			<ecology:TerrestrialEcoregion />
@@ -3632,6 +3791,30 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+	<measurement:BinaryCoding id="wells_sonora">
+		<observation:hasObservable>
+			<infrastructure:Well />
+		</observation:hasObservable>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:wells_sonora</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>743</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1148</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.02</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.87</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
 	<measurement:Measurement id="well_depth">
 		<observation:hasObservable>
 			<waterSupplyService:WellDepth />
@@ -3658,6 +3841,58 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+	<measurement:NumericCoding id="whitetail_deer">
+		<observation:hasObservable>
+			<sanPedro:WhiteTailDeerHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:whitetail_deer</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+	
+	<measurement:NumericCoding id="whitewing_dove">
+		<observation:hasObservable>
+			<sanPedro:WhiteWingedDoveHabitat />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:whitewing_dove</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
 
 	<!-- Units are in g carbon/m^2 -->
 	<measurement:Measurement id="wd_det_1km_Project">

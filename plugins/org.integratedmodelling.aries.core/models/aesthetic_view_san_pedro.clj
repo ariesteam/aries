@@ -21,7 +21,7 @@
                   #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               'sanPedro:AlpineAndCliff
                   #{22 23 33 37 38 91}                                    'sanPedro:Forest
                   #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} 'sanPedro:Woodland ;; includes pinon & juniper savannas
-                  #{76 81 83 84 85 98 118}                                'sanPedro:RiparianAndWater
+                  #{77 78 79 80 81 83 84 85 98 109 110 118}               'sanPedro:RiparianAndWater
                   :otherwise                                              'sanPedro:Other)
   (classification (categorization 'mexico:CONABIOLULCCategory)
                   #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} 'sanPedro:Forest
@@ -55,10 +55,9 @@
                   #{19 117}       'aestheticService:MinesPresent
                   :otherwise      'aestheticService:MinesAbsent))
 
-;; Run model and figure this out. It seems backwards
 (defmodel transmission-line 'aestheticService:TransmissionLines 
   (classification (binary-coding 'infrastructure:TransmissionLine)
-                  0          'aestheticService:TransmissionLinesPresent
+                  1          'aestheticService:TransmissionLinesPresent
                   :otherwise 'aestheticService:TransmissionLinesAbsent))
 
 (defmodel highway 'aestheticService:Highways 

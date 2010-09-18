@@ -37,15 +37,15 @@
                   :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
                             (ranking 'sanPedro:RiparianConditionClass :as condition))
                   :state   #(cond (and (== (:condition %) 1)
-                                       (contains? #{77 78 79 81 85 94 97 98 109 110 118} (:lulc %)))
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
                                   1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
 
                                   (and (== (:condition %) 2)
-                                       (contains? #{77 78 79 81 85 94 97 98 109 110 118} (:lulc %)))
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
                                   2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
 
                                   (and (== (:condition %) 3)
-                                       (contains? #{77 78 79 81 85 94 97 98 109 110} (:lulc %)))
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
                                   3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
 
                                   :otherwise 0 ;;'sanPedro:RiparianOrWetlandAbsent

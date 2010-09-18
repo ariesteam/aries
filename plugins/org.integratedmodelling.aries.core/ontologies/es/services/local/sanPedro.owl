@@ -7,13 +7,15 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="RiparianConditionClassAllWet">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  <owl:Class rdf:ID="GambelsQuailHabitat">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="HarvestableSpeciesHabitat"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="RiparianAndWetland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -23,19 +25,24 @@
       <owl:Class rdf:ID="RiparianConditionClass"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="RiparianOrWetlandAbsent">
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ForestOrWoodlandPresent">
+  <owl:Class rdf:ID="MearnsQuailHabitat">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="ForestAndWoodland"/>
+      <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
+  <owl:Class rdf:ID="RiparianOrWetlandAbsent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="SouthwestRegionalGapAnalysisLULC">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WhiteTailDeerHabitat">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#HarvestableSpeciesHabitat">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="Other">
     <rdfs:subClassOf>
@@ -45,22 +52,52 @@
   <owl:Class rdf:about="#ScenicVegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
+  <owl:Class rdf:ID="ScaledQuailHabitat">
+    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
   <owl:Class rdf:ID="LowQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ForestAndWoodland">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RiparianAndWetlandCode">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RiparianAndWater">
+    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MuleDeerHabitat">
+    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ForestOrWoodlandAbsent">
+    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RiparianConditionClassHalfMeterRise">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RiparianConditionClassAllWet">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ForestOrWoodlandPresent">
+    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
+    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MourningDoveHabitat">
+    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="JavelinaHabitat">
+    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="WetRiparianCondition">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#RiparianConditionClass"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#ForestAndWoodland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
   <owl:Class rdf:ID="Forest">
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianAndWetlandCode">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="Woodland">
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
@@ -68,22 +105,16 @@
   <owl:Class rdf:ID="AlpineAndCliff">
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
   </owl:Class>
-  <owl:Class rdf:ID="RiparianAndWater">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
-  </owl:Class>
   <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WhiteWingedDoveHabitat">
+    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="IntermediateRiparianCondition">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#RiparianConditionClass"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ForestOrWoodlandAbsent">
-    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianConditionClassHalfMeterRise">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:about="#RiparianConditionClass">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>

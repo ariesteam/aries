@@ -18,12 +18,10 @@
 			<probabilities>0 0 0 0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="HardwoodSoftwoodRatio">
-			<state id="VeryHighHardness" />
 			<state id="HighHardness" />
 			<state id="ModerateHardness" />
 			<state id="LowHardness" />
-			<state id="VeryLowHardness" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -33,7 +31,7 @@
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
 			<parents>PercentVegetationCover HardwoodSoftwoodRatio</parents>
-			<probabilities>0.96 0.04 0 0 0 0 0.97 0.03 0 0 0 0 0.98 0.02 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0</probabilities>
+			<probabilities>0.97 0.03 0 0 0 0 0.98 0.02 0 0 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
