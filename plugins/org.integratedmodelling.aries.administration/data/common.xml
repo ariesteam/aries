@@ -1601,33 +1601,34 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	
 <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb) converts it to tonnes C/ha -->
 	
-	<measurement:Ranking id="NBCD_FIA_biomass">
-		<observation:hasObservable>
-			<carbonService:VegetationCarbonStorage />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority> 
-			<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
-			<measurement:unit>t/ha</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:NBCD_FIA_biomass</geospace:hasCoverageId>
-				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>16577</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>16616</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-202195.3</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>172779.204</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>296344.7</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>670149.204</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2855</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+<measurement:Measurement id="NBCD_MZ01_FIA_ALD_biomass_final">
+	<observation:hasObservable>
+		<carbonService:VegetationCarbonStorage />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+	<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
+	<measurement:unit>t/ha</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:NBCD_MZ01_FIA_ALD_biomass_final</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>19517</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>19296</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>44.588</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-126.315</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.938</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-118.438</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
 	
 <!-- Global vegetation carbon storage layer, below, is in tonnes C/ha, and does NOT need to be divided by 2, like the US biomass data do -->
 	<measurement:Ranking id="c_1km_recl">

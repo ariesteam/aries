@@ -50,7 +50,6 @@
 
                                   :otherwise 0 ;;'sanPedro:RiparianOrWetlandAbsent
                                   )))
-
 (defmodel riparian-wetland 'sanPedro:RiparianAndWetland
   (classification riparian-wetland-code
                   3 'sanPedro:HighQualityRiparianOrWetlandPresent

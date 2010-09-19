@@ -116,6 +116,7 @@
 
 ;; Bayesian source model
 ;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
+;; keep & observed lists must be cut to one item for use with span.
 (defmodel source 'carbonService:CarbonSourceValue   
 	  (bayesian 'carbonService:CarbonSourceValue 
 	  	:import   "aries.core::CarbonSourceValue.xdsl"

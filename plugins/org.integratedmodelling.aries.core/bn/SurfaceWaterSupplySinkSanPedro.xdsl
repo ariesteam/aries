@@ -9,7 +9,7 @@
 			<state id="DesertScrub" />
 			<state id="Riparian" />
 			<state id="Agriculture" />
-			<state id="UrbanAndBarren" />
+			<state id="UrbanBarrenWater" />
 			<probabilities>0.1 0.1 0.1 0.2 0.4 0.025 0.025 0.05</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCoverClass">
@@ -27,7 +27,7 @@
 			<state id="LowEvapotranspiration" />
 			<state id="VeryLowEvapotranspiration" />
 			<parents>VegetationType PercentVegetationCoverClass</parents>
-			<probabilities>0.2 0.4 0.4 0 0 0.15 0.425 0.425 0 0 0.05 0.4 0.4 0.15 0 0 0.2 0.6 0.2 0 0 0.05 0.2 0.3 0.45 0.05 0.3 0.4 0.25 0 0 0.3 0.4 0.3 0 0 0.1 0.4 0.4 0.1 0 0 0.4 0.4 0.2 0 0 0.2 0.3 0.5 0.1 0.4 0.4 0.1 0 0.05 0.425 0.425 0.1 0 0 0.25 0.5 0.25 0 0 0.2 0.4 0.4 0 0 0 0.3 0.4 0.3 0 0 0.1 0.3 0.6 0 0 0.05 0.35 0.6 0 0 0.05 0.3 0.65 0 0 0 0.2 0.8 0 0 0 0.15 0.85 0 0 0.05 0.2 0.75 0 0 0.05 0.15 0.8 0 0 0 0.15 0.85 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0.9 0.1 0 0 0 0.75 0.2 0.05 0 0 0.3 0.4 0.3 0 0 0.1 0.4 0.4 0.1 0 0 0.3 0.4 0.3 0 0.1 0.4 0.4 0.1 0 0.05 0.425 0.425 0.1 0 0 0.3 0.4 0.3 0 0 0.1 0.4 0.4 0.1 0 0 0.3 0.4 0.3 0 0.1 0.1 0.2 0.6 0 0.05 0.05 0.2 0.7 0 0 0.05 0.2 0.75 0 0 0 0.2 0.8 0 0 0 0.15 0.85</probabilities>
+			<probabilities>0.3 0.4 0.3 0 0 0.25 0.4 0.35 0 0 0.1 0.4 0.4 0.1 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333333 0 0 0 0.3 0.4 0.3 0.1 0.3 0.4 0.2 0 0.05 0.3 0.4 0.25 0 0 0.2 0.4 0.4 0 0 0.1 0.45 0.45 0 0 0 0.4 0.4 0.2 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0.2 0.6 0.2 0 0 0 0.4 0.4 0.2 0 0 0.2 0.3 0.5 0 0 0.2 0.3 0.5 0 0 0.1 0.3 0.6 0 0 0 0.3 0.7 0 0 0 0.25 0.75 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0 0.2 0.8 0 0 0 0.15 0.85 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.7 0.2 0.1 0 0 0.3 0.6 0.1 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.4 0.1 0 0.1 0.4 0.4 0.1 0 0 0.4 0.4 0.2 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0.2 0.2 0.2 0.4 0 0.1 0.1 0.2 0.6 0 0 0.1 0.2 0.7 0 0 0 0.2 0.8 0 0 0 0.05 0.95</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
 		<cpt id="SlopeClass">
@@ -96,7 +96,7 @@
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>422 255 638 289</position>
@@ -113,7 +113,7 @@
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>690 465 785 495</position>
@@ -144,11 +144,6 @@
 				<position>32 261 180 293</position>
 				<barchart active="true" width="190" height="126" />
 			</node>
-			<textbox>
-				<caption>NOTE: For the lower 48 US states, have a groundwater recharge layer which could be useful for the water models.</caption>
-				<font color="000000" name="Arial" size="8" />
-				<position>661 121 1220 135</position>
-			</textbox>
 		</genie>
 	</extensions>
 </smile>

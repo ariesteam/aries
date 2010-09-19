@@ -401,12 +401,13 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
-		<measurement:unit>mm</measurement:unit>
+		<measurement:unit>mm</measurement:unit>'
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:well_tested_rate</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 497349</geospace:hasTransformation>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3636,58 +3637,89 @@ we could discuss integrating those at some point.-->
 	<!--These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
 	converts it to tonnes C/ha -->
 
-	<measurement:Measurement id="NBCD_MZ04_FIA_ALD_biomass">
+	<measurement:Measurement id="NBCD_MZ04_FIA_ALD_biomass_final">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
 		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:NBCD_MZ04_FIA_ALD_biomass</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:NBCD_MZ04_FIA_ALD_biomass_final</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>15941</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>24948</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>1242855.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-2302725.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1991355.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-1824435.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:42303</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>17782</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>15309</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>32.491</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.543</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>38.125</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-115.999</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:Measurement id="NBCD_MZ25_FIA_ALD_biomass">
+	<measurement:Measurement id="NBCD_MZ15_FIA_ALD_biomass_final">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
 		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:NBCD_MZ25_FIA_ALD_biomass</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:NBCD_MZ15_FIA_ALD_biomass_final</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>22010</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>18947</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>974475.0</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-1477305.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1542945.0</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-816945.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:42303</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>19982</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>17060</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>31.783</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-114.342</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.591</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-107.539</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:Measurement id="NBCD_MZ25_FIA_ALD_biomass_final">
+		<observation:hasObservable>
+			<carbonService:VegetationCarbonStorage />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
+		<measurement:unit>t/ha</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:NBCD_MZ25_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>23611</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>17316</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.788</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-112.533</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>36.546</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-104.681</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
@@ -3793,7 +3825,7 @@ we could discuss integrating those at some point.-->
 
 	<measurement:BinaryCoding id="wells_sonora">
 		<observation:hasObservable>
-			<infrastructure:Well />
+			<waterSupplyService:Wells />
 		</observation:hasObservable>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
@@ -3827,6 +3859,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:well_depth</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

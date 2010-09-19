@@ -232,26 +232,63 @@
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-	<measurement:Measurement id="biomass2carb">
+<!--  	These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
+	converts it to tonnes C/ha -->
+	
+	<measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
+		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
 		<measurement:unit>t/ha</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:biomass2carb</geospace:hasCoverageId>
+				<geospace:hasCoverageId>vermont:NBCD_MZ65_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>23604</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>29016</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2139684.504</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1552933.652</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3010224.504</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2261113.652</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:42303</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>11168</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>10493</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>40.515</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-74.156</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>44.54</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-69.872</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:Measurement id="NBCD_MZ66_FIA_ALD_biomass_final">
+		<observation:hasObservable>
+			<carbonService:VegetationCarbonStorage />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
+		<measurement:unit>t/ha</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>vermont:NBCD_MZ66_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>16371</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>11559</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>42.887</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-73.409</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.465</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.925</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>

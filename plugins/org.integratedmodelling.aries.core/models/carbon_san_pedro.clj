@@ -151,11 +151,8 @@
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
-            :keep     ('carbonService:VegetationAndSoilCarbonStorage
-                       'carbonService:VegetationCarbonStorage
-                       'carbonService:SoilCarbonStorage
-                       'carbonService:StoredCarbonRelease)
-            :observed (veg-soil-storage veg-storage soil-storage stored-carbon-release)
+            :keep     ('carbonService:StoredCarbonRelease)
+            :observed (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                         summer-high-winter-low fire-frequency)))
 
@@ -166,13 +163,17 @@
 ;:GHG emissions map for the U.S.  For the rest of the world, use global population density layer multiplied
 ;; by per capita emissions for that country from EIA.  2006 data used as this corresponds to current population
 ;; density layer: 4.05 tonnes CO2/capita for Mexico in 2006, which is equivalent to 1.105 tonnes C/capita
-(defmodel use-simple 'carbonService:GreenhouseGasEmitters
-  [(categorization 'geofeatures:Country :as country)]
-  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
-               :when #(= (:country %) "United States"))
-  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
-               :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
-               :state   #(* (:population-density-count %) 1.105)))
+
+(defmodel use-simple 'carbonService:GreenhouseGasEmissions
+  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
+
+;;(defmodel use-simple 'carbonService:GreenhouseGasEmitters
+;;  [(categorization 'geofeatures:Country :as country)]
+;;  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
+;;               :when #(= (:country %) "United States"))
+;;  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"
+;;               :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+;;               :state   #(* (:population-density-count %) 1.105)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; top-level service models

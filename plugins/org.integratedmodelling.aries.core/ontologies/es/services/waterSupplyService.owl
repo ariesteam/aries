@@ -895,6 +895,9 @@
   <owl:Class rdf:ID="VeryLowImperviousCover">
     <rdfs:subClassOf rdf:resource="#PercentImperviousCoverClass"/>
   </owl:Class>
+  <owl:Class rdf:about="#IrrigatedCropland">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateAnnualSnowfall">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AnnualSnowfall"/>
@@ -902,9 +905,6 @@
   </owl:Class>
   <owl:Class rdf:ID="NoResidentialGWU">
     <rdfs:subClassOf rdf:resource="#ResidentialGroundwaterUse"/>
-  </owl:Class>
-  <owl:Class rdf:about="#IrrigatedCropland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="RainWater">
     <rdfs:subClassOf>
@@ -930,6 +930,9 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Livestock Total Water Use</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="WellPresence">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ServiceObservable"/>
   <owl:Class rdf:ID="HighCattlePopulation">
@@ -1186,6 +1189,11 @@
   </owl:Class>
   <owl:Class rdf:about="#InfiltrationCapacity">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Other">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#WellOwnership"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="SoilInfiltration">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>

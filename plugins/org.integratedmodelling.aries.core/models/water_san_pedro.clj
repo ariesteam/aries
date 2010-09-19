@@ -25,11 +25,13 @@
 ;; particular segments of the stream network - either all at the base or distributed somehow across
 ;; the network - both are naive assumptions, in different ways.  Talk to Darius about this.
 
-;;Incorporate runoff data in the future once we've done a better job with the hydro modeling.
-;; Runoff as a sum of precip, snowmelt, spring discharge.  Could then do a "surface water source"
-;; that sums runoff and baseflow.
-;;(defmodel runoff 'soilretentionEcology:AnnualRunoff
-  ;;(classification (measurement 'soilretentionEcology:Runoff "mm/year"))
+;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
+;; Runoff as a sum of precip, snowmelt, spring discharge.
+(defmodel runoff 'soilretentionEcology:AnnualRunoff
+  (measurement 'soilretentionEcology:AnnualRunoff "mm/year"
+    :context (precipitation-annual :as precipitation-annual spring-discharge :as spring-discharge) 
+    :state #(+ (:precipitation-annual %)
+               (:spring-discharge     %))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; groundwater source model
@@ -69,15 +71,25 @@
        [5 10]                'waterSupplyService:LowImperviousCover
        [1 5]                 'waterSupplyService:VeryLowImperviousCover))
 
-;;REWORK FOR APPROPRIATE SAN PEDRO LAYER
 (defmodel vegetation-type 'waterSupplyService:VegetationType
-  "Just a reclass of the Veracruz land use layer"
-  (classification (categorization 'veracruz-lulc:VeracruzLULCCategory)
-    "Bosque mesofilo de montana"                                                 'waterSupplyService:CloudForest
-    #{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} 'waterSupplyService:DevelopedCultivated
-    #{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} 'waterSupplyService:DryForest
-    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} 'waterSupplyService:GrasslandShrubland
-    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
+  "Reclass of SWReGAP & CONABIO LULC layers"
+  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           'sanPedro:Forest
+    #{33 41 91}                                                                        'sanPedro:OakWoodland
+    #{52 109}                                                                          'sanPedro:MesquiteWoodland
+    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              'sanPedro:Grassland
+    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} 'sanPedro:DesertScrub
+    #{77 78 79 80 81 83 84 85 98 109 110 118}                                          'sanPedro:Riparian
+    114                                                                                'sanPedro:Agriculture
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  'sanPedro:UrbanBarrenWater)
+   (classification (categorization 'mexico:CONABIOLULCCategory)
+     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  'sanPedro:Forest
+     #{"Bosque de encino" "Vegetacion de galeria"}                                'sanPedro:OakWoodland
+     #{"Mezquital-huizachal"}                                                     'sanPedro:MesquiteWoodland
+     #{"Pastizal natural"}                                                        'sanPedro:Grassland
+     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} 'sanPedro:DesertScrub
+     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     'sanPedro:Riparian
+     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  'sanPedro:UrbanBarrenWater))
 
 (defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
   (classification (ranking 'habitat:PercentVegetationCover)
@@ -87,7 +99,8 @@
     [20 40]  'waterSupplyService:LowVegetationCover
     [1 20]   'waterSupplyService:VeryLowVegetationCover))
 
-;;Make discretization reflect values from SE AZ
+;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
+;; Need to resolve which is correct.
 (defmodel evapotranspiration 'floodService:EvapotranspirationClass
   (classification (measurement 'habitat:ActualEvapotranspiration "mm")
                   [90 :>]    'floodService:VeryHighEvapotranspiration
@@ -99,7 +112,7 @@
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration.
 
-;; SHOULD IT BE TIED TO RUNOFF?
+;; TIE TO RUNOFF?
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
     [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
@@ -119,13 +132,15 @@
 ;; groundwater sink model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Springs can be a source of surface water or a sink for groundwater.  No need for a second defmodel
-;; statement - the first one suffices and a duplicate one causes errors.
-
 ;;(defmodel baseflow (as water yield?) - would do this as a GIS operation, assigning baseflow to 
 ;; particular segments of the stream network - either all at the base or distributed somehow across
 ;; the network - both are naive assumptions, in different ways.  Talk to Darius about this.
 
+;;(defmodel groundwater-sink 'soilretentionEcology:GroundwaterSink
+;;  (measurement 'soilretentionEcology:GroundwaterSink "mm/year"
+;;    :context (spring-discharge :as spring-discharge baseflow :as baseflow) 
+;;    :state #(+ (:baseflow %)
+;;               (:spring-discharge     %))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; surface water use model
@@ -149,6 +164,19 @@
 ;; groundwater use model
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel well-presence 'waterSupplyService:Wells 
+ (binary-coding 'waterSupplyService:Wells
+    :context ((measurement 'waterSupplyService:AnnualWellCapacity "mm" :as well-capacity))
+    :state   #(if (nil? (:well-capacity %)) 0 1))) 
+
+(defmodel well-presence2 'waterSupplyService:Wells
+  [(categorization 'geofeatures:Country :as country)]
+  (binary-coding 'waterSupplyService:Wells
+    :context ((measurement 'waterSupplyService:AnnualWellCapacity "mm" :as well-capacity))
+    :state   #(if (nil? (:well-capacity %)) 0 1) 
+    :when    #(= (:country %) "United States"))
+  (binary-coding 'waterSupplyService:Wells))
+
 ;;Have data on well locations/depths/capacities/ownership.  To use well depth in the model you'd need to
 ;; pair it with a groundwater surface contour map (which we don't have but may be able to get).  Use
 ;; capacity as a proxy for use, for wells lacking capacity data use their locations plus probability
@@ -160,13 +188,27 @@
 ;; within Active Management Areas, drilled pursuant to a groundwater right or authorized groundwater withdrawal
 ;; permit (http://gisweb.azwater.gov/WellRegistry/SearchFAQ.aspx#WellType)
 
-;;(defmodel well-extraction 'waterSupplyService:AnnualWellCapacity
+;;Currently setting wells in Sonora to 35 gallons per minute (conversion below is to start with the "1" from 
+;; presence absence, multiply by 35, then convert from GPM to mm/yr.  Talk with Gary on how to turn this into a 
+;; probability distribution.
+;;(defmodel well-extraction2 'waterSupplyService:AnnualWellCapacity
+;;  [(categorization 'geofeatures:Country :as country)]
+;;  (measurement 'waterSupplyService:AnnualWellCapacity "mm"
+;;               :when #(= (:country %) "United States"))
+;;  (measurement 'waterSupplyService:AnnualWellCapacity "mm"
+;;               :context ((binary-coding 'infrastructure:Well :as well-presence))
+;;               :state   #(* (:well-presence %) 17407215)))
 
+;;(defmodel well-extraction 'waterSupplyService:AnnualWellCapacity
+;; (measurement 'waterSupplyService:AnnualWellCapacity "mm")) 
+
+;;Use "OWNER_NAME" attribute
 ;;(defmodel well-ownership 'waterSupplyService:WellOwnership
-      ;;'waterSupplyService:Agricultural
+      ;;'waterSupplyService:Agricultural ;;Name includes "ranch," "farms"
       ;;'waterSupplyService:Domestic
-      ;;'waterSupplyService:Military
-      ;;'waterSupplyService:Mining
+      ;;'waterSupplyService:Military ;;US ARMY FT HUACHUCA,,
+      ;;'waterSupplyService:Mining  ;;ASARCO INC, ASARCO INCORPORATED-RAY COMPLEX, ASARCO INC,, BHP COPPER INC,, BHP MINERALS, BHP BILLITON, PHELPS DODGE CORP,, PHELPS DODGE CORPORATION
+      ;;'waterSupplyService:Other
 
 ;; ----------------------------------------------------------------------------------------------
 ;; dependencies for the flow model
