@@ -203,6 +203,7 @@
    state values in the observation."
   [observation concept rows cols]
   (when concept
+    (println "Extracting" (.getLocalName concept) "layer.")
     (seq2matrix rows cols (unpack-datasource (find-state observation concept) rows cols))))
 
 (defn- layer-map-from-observation

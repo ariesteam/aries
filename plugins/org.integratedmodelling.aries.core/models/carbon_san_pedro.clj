@@ -210,7 +210,7 @@
                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source sink use-simple)))
+        :context (source use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)
