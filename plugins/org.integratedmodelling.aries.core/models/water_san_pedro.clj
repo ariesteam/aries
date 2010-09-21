@@ -81,15 +81,15 @@
     #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} 'sanPedro:DesertScrub
     #{77 78 79 80 81 83 84 85 98 109 110 118}                                          'sanPedro:Riparian
     114                                                                                'sanPedro:Agriculture
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  'sanPedro:UrbanBarrenWater)
-   (classification (categorization 'mexico:CONABIOLULCCategory)
-     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  'sanPedro:Forest
-     #{"Bosque de encino" "Vegetacion de galeria"}                                'sanPedro:OakWoodland
-     #{"Mezquital-huizachal"}                                                     'sanPedro:MesquiteWoodland
-     #{"Pastizal natural"}                                                        'sanPedro:Grassland
-     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} 'sanPedro:DesertScrub
-     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     'sanPedro:Riparian
-     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  'sanPedro:UrbanBarrenWater))
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  'sanPedro:UrbanBarrenWater))
+;;   (classification (categorization 'mexico:CONABIOLULCCategory)
+;;     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  'sanPedro:Forest
+;;     #{"Bosque de encino" "Vegetacion de galeria"}                                'sanPedro:OakWoodland
+;;     #{"Mezquital-huizachal"}                                                     'sanPedro:MesquiteWoodland
+;;     #{"Pastizal natural"}                                                        'sanPedro:Grassland
+;;     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} 'sanPedro:DesertScrub
+;;     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     'sanPedro:Riparian
+;;     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  'sanPedro:UrbanBarrenWater))
 
 (defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
   (classification (ranking 'habitat:PercentVegetationCover)
@@ -121,7 +121,7 @@
     [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
     0                  'waterSupplyService:NoSurfaceWaterSink))
 
-(defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
+(defmodel surface-sink 'waterSupplyService:SurfaceWaterSinkClass
     (bayesian 'waterSupplyService:SurfaceWaterSinkClass
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (soil-group vegetation-type slope imperviousness percent-vegetation-cover)
@@ -228,31 +228,51 @@
 ;; all data, for testing and storage
 ;;(defmodel data 'waterSupplyService:WaterSupply 
 ;;  (identification 'waterSupplyService:WaterSupply 
-;;  :context (irrigation-water-use
-;;            agricultural-surface-water-use
-;;            industrial-users
-;;            non-rival-water-users
-;;            sink
-;;            precipitation-annual)))
+;;  :context (precipitation-annual ;;replace with "runoff" when springs data are working
+;;            recharge
+;;            surface-sink         ;;add "groundwater sink" when ready
+;;            surface-diversions
+;;            well-presence)))
   
-;; the real enchilada
-;;(defmodel view 'aestheticService:AestheticView
+;; flow model for surface water
+;;(defmodel surface-flow 'aestheticService:AestheticView
  ;; (span 'aestheticService:LineOfSight 
-  	;;    'aestheticService:TheoreticalNaturalBeauty
-  	;;    'aestheticService:HomeownerViewUse
-    ;;  	'aestheticService:TotalVisualBlight
-    ;;  	'aestheticService:View
-  	;;    'geophysics:Altitude
-  ;; 	:sink-type        :relative
-  ;; 	:use-type         :relative
-  ;; 	:benefit-type     :non-rival
-  ;; 	:downscaling-factor 3
-  ;; 	:rv-max-states    10 
-  ;;  :context
-    ;;     (source homeowners sink altitude
-    ;;     (ranking 'eserv:SourceThreshold :value 50)
-    ;;     (ranking 'eserv:SinkThreshold :value 0.3)
-    ;;     (ranking 'eserv:UseThreshold :value 0.1)
-    ;;     (ranking 'eserv:TransitionThreshold :value 1.0))
-;;))
+  	;;    'waterSupplyService:AnnualPrecipitation  ;;replace with runoff once springs & baseflow are accounted for
+  	;;    'waterSupplyService:SurfaceDiversionCapacity
+    ;;  	'waterSupplyService:SurfaceWaterSinkClass
+    ;;  	'aestheticService:View   ;;nil?
+  	;;    'geophysics:Altitude     ;;nil?
+  ;;      :source-threshold   1.0  ;;??
+  ;;      :sink-threshold     1.0  ;;??
+  ;;      :use-threshold      10.0 ;;??
+  ;;      :trans-threshold    nil  ;;??
+  ;;      :source-type      :finite
+  ;;    	:sink-type        :finite
+  ;;    	:use-type         :finite
+  ;; 	    :benefit-type     :rival
+  ;;    	:downscaling-factor 3
+  ;; 	    :rv-max-states      10 
+  ;;      :keep ('waterSupplyService:FlowConcept1 'waterSupplyService:FlowConcept2) 
+  ;;      :context (precipitation-annual surface-sink surface-diversions)))))
+
+;; flow model for groundwater
+;;(defmodel groundwater-flow 'aestheticService:AestheticView
+ ;; (span 'aestheticService:LineOfSight 
+    ;;    'habitat:AnnualRecharge   
+    ;;    'waterSupplyService:Wells
+    ;;    'waterSupplyService:SurfaceWaterSinkClass ;;replace with proper GW sink class when it's ready
+    ;;    'aestheticService:View   ;;nil?
+    ;;    'geophysics:Altitude     ;;nil?
+  ;;      :source-threshold   1.0  ;;Tough to define without further consideration of GW flow model
+  ;;      :sink-threshold     1.0  ;;Tough to define without further consideration of GW flow model
+  ;;      :use-threshold      10.0 ;;Tough to define without further consideration of GW flow model
+  ;;      :trans-threshold    nil  ;;Tough to define without further consideration of GW flow model
+  ;;      :source-type      :finite
+  ;;      :sink-type        :finite
+  ;;      :use-type         :finite
+  ;;      :benefit-type     :rival
+  ;;      :downscaling-factor 3
+  ;;      :rv-max-states      10 
+  ;;      :keep ('waterSupplyService:FlowConcept1 'waterSupplyService:FlowConcept2) 
+  ;;      :context (recharge groundwater-sink well-presence)))))
 

@@ -1373,6 +1373,32 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
+<measurement:NumericCoding id="mearns_quail">
+	<observation:hasObservable>
+		<sanPedro:MearnsQuailHabitat />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mearns_quail</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>61859</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>44222</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>28.94</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-122.067</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>44.182</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-100.746</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:NumericCoding>
+
 	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />

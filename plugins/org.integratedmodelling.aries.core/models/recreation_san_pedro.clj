@@ -4,7 +4,7 @@
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; provision model
+;;  birding source model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel bird-richness 'recreationService:BirdSpeciesRichness
@@ -13,6 +13,64 @@
        [6 8]        'recreationService:HighBirdSpeciesRichness
        [4 6]        'recreationService:ModerateBirdSpeciesRichness
        [0 4]        'recreationService:LowBirdSpeciesRichness))
+
+;;Riparian zones as important to birding and hunting because of their importance to valued animal species
+;; and for human preferences to recreate in riparian areas in the desert.
+(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
+  (numeric-coding 'sanPedro:RiparianAndWetlandCode
+                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
+                            (ranking 'sanPedro:RiparianConditionClass :as condition))
+                  :state   #(cond (and (== (:condition %) 1)
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+                                  1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
+
+                                  (and (== (:condition %) 2)
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+                                  2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
+
+                                  (and (== (:condition %) 3)
+                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
+                                  3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
+
+                                  :otherwise 0 ;;'sanPedro:NoRiparianOrWetlandPresentHig
+                                  )))
+(defmodel riparian-wetland 'sanPedro:RiparianAndWetland
+  (classification riparian-wetland-code
+                  3 'sanPedro:HighQualityRiparianOrWetlandPresent
+                  2 'sanPedro:ModerateQualityRiparianOrWetlandPresent
+                  1 'sanPedro:LowQualityRiparianOrWetlandPresent
+                  0 'sanPedro:RiparianOrWetlandAbsent))
+
+;;No public access includes private land, Native American reservations, military land.
+;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
+;; Ft. Huachucha currently is accessible to the public and birdwatching and hunting occur on-base
+(defmodel public-lands 'recreationService:PublicAccess
+    (classification (numeric-coding 'habitat:LandOwnership)
+     #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
+       68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
+       117 118 119 120 121 122 123 124 125 126 127}   'recreationService:PublicLand
+     #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
+       78 79 84 87 88 89 90}                          'recreationService:NoPublicAccess))
+
+;;Undiscretization statements to be use in BNs
+(defmodel birding-quality 'recreationService:SiteBirdingQuality
+  (classification 'recreationService:SiteBirdingQuality
+      [0 10]   'recreationService:VeryLowBirdingQuality 
+      [10 33]  'recreationService:LowBirdingQuality 
+      [33 67]  'recreationService:ModerateBirdingQuality 
+      [67 100] 'recreationService:HighBirdingQuality))
+
+;; Bayesian source models
+(defmodel source-birding 'recreationService:BirdingSourceValue   
+  (bayesian 'recreationService:BirdingSourceValue                
+            :import   "aries.core::RecreationBirdingSourceSanPedro.xdsl"
+            :keep     ('recreationService:SiteBirdingQuality)
+            :observed (birding-quality)
+            :context  (bird-richness riparian-wetland public-lands)))
+
+;; ----------------------------------------------------------------------------------------------
+;;  hunting source model
+;; ----------------------------------------------------------------------------------------------
 
 (defmodel dove-habitat-code 'sanPedro:DoveHabitatCode
    (numeric-coding 'sanPedro:DoveHabitatCode
@@ -63,44 +121,6 @@
      29            'sanPedro:JavelinaHabitatPresent
      :otherwise    'sanPedro:JavelinaHabitatAbsent)) 
 
-;;Riparian zones as important to birding and hunting because of their importance to valued animal species
-;; and for human preferences to recreate in riparian areas in the desert.
-(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
-  (numeric-coding 'sanPedro:RiparianAndWetlandCode
-                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
-                            (ranking 'sanPedro:RiparianConditionClass :as condition))
-                  :state   #(cond (and (== (:condition %) 1)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-                                  1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
-
-                                  (and (== (:condition %) 2)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-                                  2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
-
-                                  (and (== (:condition %) 3)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
-                                  3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
-
-                                  :otherwise 0 ;;'sanPedro:NoRiparianOrWetlandPresentHig
-                                  )))
-(defmodel riparian-wetland 'sanPedro:RiparianAndWetland
-  (classification riparian-wetland-code
-                  3 'sanPedro:HighQualityRiparianOrWetlandPresent
-                  2 'sanPedro:ModerateQualityRiparianOrWetlandPresent
-                  1 'sanPedro:LowQualityRiparianOrWetlandPresent
-                  0 'sanPedro:RiparianOrWetlandAbsent))
-
-;;No public access includes private land, Native American reservations, military land.
-;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
-;; Ft. Huachucha currently is accessible to the public and birdwatching and hunting occur on-base
-(defmodel public-lands 'recreationService:PublicAccess
-    (classification (numeric-coding 'habitat:LandOwnership)
-     #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
-       68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
-       117 118 119 120 121 122 123 124 125 126 127}   'recreationService:PublicLand
-     #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
-       78 79 84 87 88 89 90}                          'recreationService:NoPublicAccess))
-
 ;;TRANSITION ZONES?  CONVERT RASTER LULC TO VECTOR & BUFFER.  WHAT TRANSITION ZONES MATTER TO WHAT SPECIES
 ;; IS IMPORTANT.  ASK BILL K & KEN BOYKIN ABOUT IMPORTANT HABITAT TYPES/TRANSITION ZONES FOR OUR 8 SPP. OF 
 ;; INTEREST.
@@ -121,13 +141,6 @@
 ;; FOR MULTI-ACTIVITY/MULTI-GOAL RECREATION (SUMMED, WEIGHTED UTILITY FUNCTION)
 
 ;;Undiscretization statements to be use in BNs
-(defmodel birding-quality 'recreationService:SiteBirdingQuality
-  (classification 'recreationService:SiteBirdingQuality
-      [0 10]   'recreationService:VeryLowBirdingQuality 
-      [10 33]  'recreationService:LowBirdingQuality 
-      [33 67]  'recreationService:ModerateBirdingQuality 
-      [67 100] 'recreationService:HighBirdingQuality))
-
 (defmodel deer-hunting-quality 'recreationService:SiteDeerHuntingQuality
   (classification 'recreationService:SiteDeerHuntingQuality
       [0 5]    'recreationService:VeryLowDeerHuntingQuality 
@@ -157,13 +170,6 @@
       [67 100] 'recreationService:HighQuailHuntingQuality))
 
 ;; Bayesian source models
-(defmodel source-birding 'recreationService:BirdingSourceValue   
-  (bayesian 'recreationService:BirdingSourceValue                
-            :import   "aries.core::RecreationBirdingSourceSanPedro.xdsl"
-            :keep     ('recreationService:SiteBirdingQuality)
-            :observed (birding-quality)
-            :context  (bird-richness riparian-wetland public-lands)))
-
 (defmodel source-deer-hunting 'recreationService:DeerHuntingSourceValue
   (bayesian 'recreationService:DeerHuntingSourceValue                
             :import   "aries.core::RecreationHuntingDeerSourceSanPedro.xdsl"

@@ -15,19 +15,19 @@
                   :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
 (defmodel scenic-vegetation 'sanPedro:ScenicVegetationType
-  [(categorization 'geofeatures:Country :as country)]
+;;  [(categorization 'geofeatures:Country :as country)]
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC) 
-                  :when #(= (:country %) "United States")
+;;                  :when #(= (:country %) "United States")
                   #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               'sanPedro:AlpineAndCliff
                   #{22 23 33 37 38 91}                                    'sanPedro:Forest
                   #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} 'sanPedro:Woodland ;; includes pinon & juniper savannas
                   #{77 78 79 80 81 83 84 85 98 109 110 118}               'sanPedro:RiparianAndWater
-                  :otherwise                                              'sanPedro:Other)
-  (classification (categorization 'mexico:CONABIOLULCCategory)
-                  #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} 'sanPedro:Forest
-                  #{"Vegetacion de galeria"}                                                     'sanPedro:Woodland
-                  #{"Cuerpos de agua"}                                                           'sanPedro:RiparianAndWater
-                  :otherwise                                                                     'sanPedro:Other))
+                  :otherwise                                              'sanPedro:Other))
+;;  (classification (categorization 'mexico:CONABIOLULCCategory)
+;;                  #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} 'sanPedro:Forest
+;;                  #{"Vegetacion de galeria"}                                                     'sanPedro:Woodland
+;;                  #{"Cuerpos de agua"}                                                           'sanPedro:RiparianAndWater
+;;                  :otherwise                                                                     'sanPedro:Other))
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
   (classification 'aestheticService:TheoreticalNaturalBeauty
@@ -85,7 +85,7 @@
             :import  "aries.core::ViewSinkSanPedro.xdsl"
             :context  (mine highway transmission-line developed-land)
             :observed (view-sink-undiscretizer) 
-            :keep     ('aestheticService:TotalVisualBlight)))
+            :keep     ('aestheticService:VisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -117,8 +117,8 @@
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
 (defmodel scenic-highways 'aestheticService:ScenicDrives
   (classification (binary-coding 'infrastructure:Highway)
-                        'aestheticService:ScenicDrivesPresent
-                        'aestheticService:ScenicDrivesAbsent))
+                1             'aestheticService:ScenicDrivesPresent
+                :otherwise    'aestheticService:ScenicDrivesAbsent))
 
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
@@ -149,17 +149,17 @@
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
-                  :context (source :as source
-                                   homeowners :as use
-                                   sink       :as sink
-                                   altitude   :as altitude)))
+                  :context (source          :as source
+                            ;;scenic-highways :as use  ;;add homeowners once data are in place.
+                            sink            :as sink)))
+                            ;;altitude        :as altitude)))
 
 ;; the real enchilada - need to be updated to the latest SPAN language
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
         'aestheticService:TheoreticalNaturalBeauty
         'aestheticService:HomeownerViewUse
-      	'aestheticService:TotalVisualBlight
+      	'aestheticService:VisualBlight
       	nil
         'geophysics:Altitude
         ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
@@ -178,13 +178,6 @@
                'aestheticService:HomeownersWithViews 'aestheticService:UnseenViews 'aestheticService:InaccessibleVisualBlight
                'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:InvisibleNaturalBeauty
                'aestheticService:HomeownersWithDegradedViews)
-        :context (source
-                  homeowners
-                  sink
-                  altitude
-                  (ranking 'eserv:SourceThreshold :value 50 :min 0 :max 100)
-                  (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
-                  (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)
-                  (ranking 'eserv:TransitionThreshold :value 1.0))))
+        :context (source homeowners sink altitude)))
 
 ;;Develop another one of these to account for scenic drives.
