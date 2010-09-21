@@ -89,7 +89,23 @@
          (assoc "Use"    use-layer))
      selected-feature)))
 
-(defmulti provide-results (fn [result-type source-layer sink-layer use-layer flow-layers results-menu] result-type))
+(defmulti provide-results
+  ;;"Returns the results to the caller according to the requested result-type:
+  ;;
+  ;;  :cli-menu = Provides a command-line driven menu system, which
+  ;;              allows the user to view the result maps as matrices
+  ;;              along with a report on their number of distinct
+  ;;              values. Additional actions include viewing all
+  ;;              properties of a particular location and viewing the
+  ;;              input source, sink, use, and flow-layers as matrices.
+  ;;
+  ;;  :closure-map = Transforms the results-menu into the form expected
+  ;;                 by ARIES.  That is, labels (keys) in the map are
+  ;;                 converted from mixed-case strings to lowercase
+  ;;                 keywords and matrices (vals) are transformed into
+  ;;                 maps of {[i j] -> RV}, excluding all locations
+  ;;                 whose values equal _0_."
+  (fn [result-type source-layer sink-layer use-layer flow-layers results-menu] result-type))
 
 (defmethod provide-results :cli-menu
   [_ source-layer sink-layer use-layer flow-layers results-menu]

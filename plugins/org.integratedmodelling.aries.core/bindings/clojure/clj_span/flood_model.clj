@@ -89,23 +89,24 @@
    between the stream edge (1.0) and the floodplain boundary (0.0)."
   [in-floodplain? elevation-layer in-stream-map]
   (into {}
-        (for [in-stream-id (keys in-stream-map) data-id (in-stream-map in-stream-id)]
-          (if (= in-stream-id data-id)
-            ;; location is already in-stream, activation is 100%
-            [data-id 1.0]
-            ;; location is out-of-stream, activation is scaled
-            ;; by the relative distance between this location,
-            ;; the in-stream proxy location, and the nearest
-            ;; floodplain boundary
-            (let [loc-delta       (map - data-id in-stream-id)
-                  outside-id      (first (filter (& not in-floodplain?)
-                                                 (rest (iterate (p map + loc-delta) data-id))))
-                  inside-id       (map - outside-id loc-delta)
-                  boundary-id     (first (filter (& not in-floodplain?)
-                                                 (find-line-between inside-id outside-id)))
-                  run-to-boundary (euclidean-distance in-stream-id boundary-id)
-                  run-to-data     (euclidean-distance in-stream-id data-id)]
-              [data-id (- 1.0 (/ run-to-data run-to-boundary))])))))
+        (map (fn [result] (print "f") (flush) result)
+             (for [in-stream-id (keys in-stream-map) data-id (in-stream-map in-stream-id)]
+               (if (= in-stream-id data-id)
+                 ;; location is already in-stream, activation is 100%
+                 [data-id 1.0]
+                 ;; location is out-of-stream, activation is scaled
+                 ;; by the relative distance between this location,
+                 ;; the in-stream proxy location, and the nearest
+                 ;; floodplain boundary
+                 (let [loc-delta       (map - data-id in-stream-id)
+                       outside-id      (first (filter (& not in-floodplain?)
+                                                      (rest (iterate (p map + loc-delta) data-id))))
+                       inside-id       (map - outside-id loc-delta)
+                       boundary-id     (first (filter (& not in-floodplain?)
+                                                      (find-line-between inside-id outside-id)))
+                       run-to-boundary (euclidean-distance in-stream-id boundary-id)
+                       run-to-data     (euclidean-distance in-stream-id data-id)]
+                   [data-id (- 1.0 (/ run-to-data run-to-boundary))]))))))
 
 (defn- handle-sink-effects!
   "Computes the amount sunk by each sink encountered either along an
@@ -117,6 +118,9 @@
    amount sunk and a map of the sink-ids to the amount each sinks."
   [stream-bound? sink-map unsaturated-sink? sink-caps sink-AFs current-id actual-weight]
    (if stream-bound?
+     ;; We're in the stream. Spread the collected source weights
+     ;; latitudinally among all sinks in the floodplain. Activation
+     ;; factors must be applied to the sinks before they are used.
      (dosync
       (if-let [affected-sinks (seq (filter unsaturated-sink? (sink-map current-id)))]
         (let [convolutions         (rv-convolutions actual-weight
@@ -151,6 +155,7 @@
           (doseq [sink-id affected-sinks]
             (alter (sink-caps sink-id) (constantly (new-sink-caps sink-id))))
           [new-actual-weight new-sink-effects])))
+     ;; Not in the stream. Only one source weight and one sink. Activation factors don't matter.
      (dosync
       (if-let [sink-cap-ref (sink-caps current-id)]
         (let [sink-cap              (deref sink-cap-ref)
@@ -257,10 +262,11 @@
     (println "Sink points:  " (count sink-points))
     (println "Use points:   " (count use-points))
     (let [flow-delta         (fn [id] (hydrosheds-delta-codes (get-in hydrosheds-layer id)))
-          step-downstream    (fn [id] (if-let [dir (flow-delta id)] ; if nil, we've hit 0.0 (ocean) or -1.0 (inland sink)
-                                        (let [next-id (map + id dir)]
-                                          (if (in-bounds? rows cols next-id)
-                                            next-id))))
+          step-downstream    (memoize
+                              (fn [id] (if-let [dir (flow-delta id)] ; if nil, we've hit 0.0 (ocean) or -1.0 (inland sink)
+                                         (let [next-id (map + id dir)]
+                                           (if (in-bounds? rows cols next-id)
+                                             next-id)))))
           in-stream?         (fn [id] (not= _0_ (get-in stream-layer id)))
           in-floodplain?     (fn [id] (not= _0_ (get-in floodplain-layer id)))
           [sink-map use-map] (do (println "Shifting sink and use points into the nearest stream channel...")

@@ -145,11 +145,11 @@
 (defn resample-matrix
   [new-rows new-cols aggregator-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
+  (newline)
   (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
   (let [orig-rows             (get-rows matrix)
         orig-cols             (get-cols matrix)]
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
-    (println "Distinct probability sums (pre-resampling):" (distinct (map #(apply + (vals %)) (matrix2seq matrix))))
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
       (let [lcm-rows              (least-common-multiple new-rows orig-rows)

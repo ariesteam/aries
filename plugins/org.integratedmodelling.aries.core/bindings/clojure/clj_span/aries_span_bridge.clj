@@ -121,7 +121,7 @@
 
 (defn- unpack-datasource
   "Returns a seq of length n of the values in ds,
-   represented as probability distributions {rationals -> doubles}.
+   represented as probability distributions {doubles -> doubles}.
    NaN state values are converted to 0s."
   [ds rows cols]
   (let [n             (* rows cols)
@@ -242,7 +242,7 @@
     (println "Unpacking observation into data-layers.")
     (let [rows         (grid-rows       observation)
           cols         (grid-columns    observation)
-          [w h]        (cell-dimensions observation)
+          [w h]        (cell-dimensions observation) ;; in meters
           flow-model   (.getLocalName (get-observable-class observation))
           source-layer (layer-from-observation observation source-concept rows cols)
           sink-layer   (layer-from-observation observation sink-concept   rows cols)

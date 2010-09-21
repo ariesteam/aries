@@ -27,7 +27,7 @@
         [clj-span.model-api      :only (distribute-flow)]
         [clj-span.params         :only (set-global-params!)]
         [clj-span.interface      :only (provide-results)]
-        [clj-misc.randvars       :only (_0_ rv-mean rv-average rv-cdf-lookup)]
+        [clj-misc.randvars       :only (_0_ rv-mean rv-average rv-below?)]
         [clj-span.sediment-model :only (aggregate-flow-dirs)]
         [clj-misc.matrix-ops     :only (map-matrix
                                         make-matrix
@@ -60,12 +60,15 @@
             clj-span.line-of-sight-model))
 
 (defn zero-layer-below-threshold
-  "Takes a two dimensional array of RVs and replaces all values whose
-   means are less than the threshold with _0_."
+  "Takes a two dimensional array of RVs and replaces all values which
+   have a >50% likelihood of being below the threshold with _0_."
   [threshold layer]
-  (println "Distinct Layer Values (pre-zeroing):" (count (distinct (matrix2seq layer))))
-  (println "Distinct probability sums (pre-zeroing):" (distinct (map #(apply + (vals %)) (matrix2seq layer))))
-  (map-matrix #(if (> (rv-cdf-lookup % threshold) 0.5) _0_ %) layer))
+  (println "Zeroing layer...")
+  (let [result (time (map-matrix #(if (rv-below? % threshold) _0_ %) layer))]
+    (printf "Distinct Layer Values: [Pre] %d [Post] %d\n"
+            (count (distinct (matrix2seq layer)))
+            (count (distinct (matrix2seq result))))
+    result))
 
 (defn preprocess-data-layers
   "Preprocess data layers (downsampling and zeroing below their thresholds)."
@@ -81,12 +84,12 @@
         [scaled-source-layer scaled-sink-layer scaled-use-layer] (map preprocess-layer
                                                                       [source-layer     sink-layer     use-layer]
                                                                       [source-threshold sink-threshold use-threshold])
-        scaled-flow-layers (seq2map flow-layers (fn [[name matrix]]
+        scaled-flow-layers (seq2map flow-layers (fn [[name layer]]
                                                   [name (resample-matrix
                                                          scaled-rows
                                                          scaled-cols
                                                          (if (= name "Hydrosheds") aggregate-flow-dirs rv-average)
-                                                         matrix)]))]
+                                                         layer)]))]
     [scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]))
 
 (defn generate-results-map

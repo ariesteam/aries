@@ -404,6 +404,15 @@
   (rv-resample (rv-convolute + X Y)))
 (def _+_ rv-add)
 
+(defn rv-sum
+  [Xs]
+  (if (< (count Xs) 10)
+    (reduce rv-add Xs)
+    (recur (pmap #(apply rv-add %)
+                 (partition 2 (if (even? (count Xs))
+                                Xs
+                                (cons _0_ Xs)))))))
+
 (defn rv-subtract
   [X Y]
   (rv-resample (rv-convolute - X Y)))
@@ -548,6 +557,13 @@
                                  (assoc probs zero-pos (+ (probs zero-pos) (- 1.0 scale-factor)))
                                  (concat (take pos-pos probs) [(- 1.0 scale-factor)] (drop pos-pos probs)))))
       cont-type)))
+
+(defn draw
+  "Extracts a value from X using a uniform distribution."
+  [X]
+  (let [roll (rand)
+        X*   (to-continuous-randvar X)]
+    (apply min (filter #(< roll (X* %)) (keys X*)))))
 
 ;; Example profiling code
 ;;(use 'clj-misc.memtest)

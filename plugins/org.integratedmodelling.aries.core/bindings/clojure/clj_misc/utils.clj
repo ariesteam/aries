@@ -278,3 +278,5 @@
     (dorun (map #(send %1 action-fn %2) (cycle agents) arg-seq))
     (println "Waiting for Agents to Finish...")
     (apply await agents)))
+
+(defn sum [nums] (reduce + nums))
