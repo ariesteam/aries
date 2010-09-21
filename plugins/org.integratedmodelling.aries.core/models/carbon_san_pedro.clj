@@ -204,9 +204,9 @@
         :rv-max-states      10
         :downscaling-factor 8
         :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
-               'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
+               'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
-               'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
+               'carbonService:UsedCarbonSink 'carbonService:SatisfiedCarbonMitigationDemand
                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
