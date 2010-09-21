@@ -203,7 +203,8 @@
                                                                  (make-randvar :discrete 0 ())
                                                                  (repeat (count sink-points) (make-randvar :discrete 0 ()))])
                                   carrier-list-samples)))
-                   (apply pcalls (repeat *num-world-samples* #(sample-world source-dists sink-dists use-dists get-carrier-list))))
+                   ;;(apply pcalls (repeat *num-world-samples* #(sample-world source-dists sink-dists use-dists get-carrier-list))))
+                   (pmap #(%) (repeat *num-world-samples* #(sample-world source-dists sink-dists use-dists get-carrier-list))))
 
             ;; Convert our results to sequences of proper service-carrier structs.
             complete-randvar-carrier-lists
