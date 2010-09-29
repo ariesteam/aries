@@ -38,7 +38,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A framework for preserving semi-arid regions in the Southwest. Journal of Contemporary Water Research and Education 114: 60-74.-->
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<habitat:ActualEvapotranspiration />
@@ -63,7 +63,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 
 	<measurement:BinaryCoding id="usa_airports">
 		<observation:hasObservable>
@@ -196,7 +196,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 	</measurement:Measurement>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed.  These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed.  These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
@@ -221,7 +221,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 
 	<measurement:Measurement id="bio_12">
 		<observation:hasObservable>
@@ -336,7 +336,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 </measurement:Measurement>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<habitat:AnnualRunoff />
@@ -361,7 +361,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 
 	<measurement:Measurement id="snowmelt_annual">
 		<observation:hasObservable>
@@ -1244,7 +1244,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	</measurement:NumericCoding>
 
 <!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm 
-and 1997 land cover, for the Sierra Vista subwatershed only-->
+and 1997 land cover, for the Sierra Vista subwatershed only
 <measurement:Measurement id="sanPedro_sp_kineros_97">
 	<observation:hasObservable>
 		<habitat:Infiltration />
@@ -1269,7 +1269,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Measurement>
+</measurement:Measurement> -->
 
 	<measurement:Measurement id="snowmelt_jan">
 		<observation:hasObservable>
@@ -2383,7 +2383,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 	</measurement:Ranking>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<waterSupplyService:Percolation />
@@ -2408,8 +2408,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
-
+	</measurement:Measurement> -->
+ 
 <!--TODO fv - KB: Native units are in livestock units/km, so no conversion should be necessary. 
 BTW I do think these concepts should be in an agriculture ontology and they should be named something 
 with "Density" in them. There are tons of agricultural concepts in the ontologies from the SEAMLESS project, 
@@ -3032,7 +3032,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
-<!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm -->
+<!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm 
 <measurement:Measurement id="sanPedro_sp_kineros_97">
 	<observation:hasObservable>
 		<habitat:Runoff />
@@ -3057,7 +3057,7 @@ we could discuss integrating those at some point.-->
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Measurement>
+</measurement:Measurement> -->
 
 	<measurement:NumericCoding id="scaled_quail">
 		<observation:hasObservable>
@@ -3633,7 +3633,7 @@ we could discuss integrating those at some point.-->
 </measurement:BinaryCoding>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<waterSupplyService:TransmissionLoss />
@@ -3658,7 +3658,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 
 	<!--These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
 	converts it to tonnes C/ha -->
@@ -3822,7 +3822,7 @@ we could discuss integrating those at some point.-->
 	</observation:Categorization>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
-(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.-->
+(1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
 	<measurement:Measurement id="sanPedro_sp_swat_97">
 		<observation:hasObservable>
 			<waterSupplyService:WaterYield />
@@ -3847,7 +3847,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement> -->
 
 	<measurement:BinaryCoding id="wells_sonora">
 		<observation:hasObservable>

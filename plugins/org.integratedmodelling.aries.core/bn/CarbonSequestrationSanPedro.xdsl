@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SummerHighWinterLow">
-			<state id="VeryHighSOL" />
-			<state id="HighSOL" />
-			<state id="ModerateSOL" />
-			<state id="LowSOL" />
-			<state id="VeryLowSOL" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		<cpt id="MeanAnnualPrecipitation">
+			<state id="HighMeanAnnualPrecipitation" />
+			<state id="ModerateMeanAnnualPrecipitation" />
+			<state id="LowMeanAnnualPrecipitation" />
+			<probabilities>0.1 0.3 0.6</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCover">
 			<state id="VeryHighVegetationCover" />
@@ -23,17 +21,6 @@
 			<state id="LowHardness" />
 			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
 		</cpt>
-		<cpt id="VegetationDensity">
-			<state id="VeryHighVegetationDensity" />
-			<state id="HighVegetationDensity" />
-			<state id="ModerateVegetationDensity" />
-			<state id="LowVegetationDensity" />
-			<state id="VeryLowVegetationDensity" />
-			<state id="NoVegetationDensity" />
-			<parents>PercentVegetationCover HardwoodSoftwoodRatio</parents>
-			<probabilities>0.97 0.03 0 0 0 0 0.98 0.02 0 0 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0</probabilities>
-			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
-		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
 			<state id="VeryHighSequestration" />
 			<state id="HighSequestration" />
@@ -41,8 +28,8 @@
 			<state id="LowSequestration" />
 			<state id="VeryLowSequestration" />
 			<state id="NoSequestration" />
-			<parents>VegetationDensity SummerHighWinterLow</parents>
-			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<parents>MeanAnnualPrecipitation HardwoodSoftwoodRatio PercentVegetationCover</parents>
+			<probabilities>0.05 0.25 0.3 0.3 0.1 0 0.05 0.25 0.3 0.3 0.1 0 0.05 0.2 0.3 0.3 0.15 0 0.05 0.175 0.3 0.3 0.175 0 0.05 0.15 0.3 0.3 0.2 0 0.1 0.25 0.3 0.3 0.05 0 0.1 0.225 0.3 0.3 0.075 0 0.1 0.2 0.3 0.3 0.1 0 0.1 0.175 0.3 0.3 0.125 0 0.1 0.15 0.3 0.3 0.15 0 0.15 0.25 0.3 0.25 0.05 0 0.15 0.225 0.3 0.275 0.05 0 0.15 0.2 0.3 0.3 0.05 0 0.15 0.175 0.3 0.325 0.05 0 0.15 0.15 0.3 0.35 0.05 0 0.01 0.01 0.3 0.4 0.28 0 0.01 0.01 0.275 0.4 0.305 0 0.01 0.01 0.25 0.4 0.33 0 0.01 0.01 0.225 0.4 0.355 0 0.01 0.01 0.2 0.4 0.38 0 0.01 0.01 0.35 0.4 0.23 0 0.01 0.01 0.325 0.4 0.255 0 0.01 0.01 0.3 0.4 0.28 0 0.01 0.01 0.275 0.4 0.305 0 0.01 0.01 0.25 0.4 0.33 0 0.01 0.01 0.4 0.4 0.18 0 0.01 0.01 0.375 0.4 0.205 0 0.01 0.01 0.35 0.4 0.23 0 0.01 0.01 0.325 0.4 0.255 0 0.01 0.01 0.3 0.4 0.28 0 0.01 0.01 0.05 0.35 0.58 0 0.01 0.01 0.08 0.3 0.6 0 0.01 0.01 0.03 0.33 0.62 0 0.01 0.01 0.03 0.3 0.65 0 0 0 0.02 0.33 0.65 0 0.01 0.01 0.08 0.4 0.5 0 0.01 0.01 0.08 0.35 0.55 0 0.01 0.01 0.03 0.45 0.5 0 0.01 0.01 0.03 0.4 0.55 0 0 0 0.02 0.4 0.58 0 0.02 0.02 0.1 0.5 0.36 0 0.02 0.02 0.1 0.45 0.41 0 0.01 0.01 0.08 0.45 0.45 0 0.01 0.01 0.03 0.45 0.5 0 0 0 0.03 0.45 0.52 0</probabilities>
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
 		</cpt>
 	</nodes>
@@ -62,7 +49,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>863 722 970 752</position>
+				<position>860 564 967 594</position>
 				<barchart active="true" width="194" height="108" />
 			</node>
 			<node id="HardwoodSoftwoodRatio">
@@ -70,37 +57,18 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>541 721 699 749</position>
+				<position>560 564 718 592</position>
 				<barchart active="true" width="262" height="108" />
 			</node>
-			<node id="SummerHighWinterLow">
-				<name>SummerHighWinterLow</name>
+			<node id="MeanAnnualPrecipitation">
+				<name>MeanAnnualPrecipitation</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1096 711 1232 746</position>
+				<position>1064 558 1200 593</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart active="true" width="199" height="109" />
 			</node>
-			<node id="VegetationDensity">
-				<name>VegetationDensity</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>560 551 682 580</position>
-				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="128" height="126" />
-			</node>
-			<textbox>
-				<caption>UPDATE \nCPT</caption>
-				<font color="000000" name="Arial" size="8" bold="true" />
-				<position>485 529 530 557</position>
-			</textbox>
-			<textbox>
-				<caption>ADD SOME MOISTURE-RELATED\nNODE, I.E., ANNUAL PRECIP</caption>
-				<font color="000000" name="Arial" size="8" />
-				<position>228 473 386 501</position>
-			</textbox>
 		</genie>
 	</extensions>
 </smile>

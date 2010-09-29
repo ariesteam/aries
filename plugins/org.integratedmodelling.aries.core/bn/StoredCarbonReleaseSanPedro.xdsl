@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SummerHighWinterLow">
-			<state id="VeryHighSOL" />
-			<state id="HighSOL" />
-			<state id="ModerateSOL" />
-			<state id="LowSOL" />
-			<state id="VeryLowSOL" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		<cpt id="MeanAnnualPrecipitation">
+			<state id="LowMeanAnnualPrecipitation" />
+			<state id="ModerateMeanAnnualPrecipitation" />
+			<state id="HighMeanAnnualPrecipitation" />
+			<probabilities>0.6 0.3 0.1</probabilities>
 		</cpt>
 		<cpt id="FireFrequency">
 			<state id="HighFireFrequency" />
@@ -25,12 +23,10 @@
 			<probabilities>0.01 0.01 0.01 0.47 0.5</probabilities>
 		</cpt>
 		<cpt id="HardwoodSoftwoodRatio">
-			<state id="VeryHighHardness" />
 			<state id="HighHardness" />
 			<state id="ModerateHardness" />
 			<state id="LowHardness" />
-			<state id="VeryLowHardness" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -40,7 +36,7 @@
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
 			<parents>HardwoodSoftwoodRatio PercentVegetationCover</parents>
-			<probabilities>0.96 0.04 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0</probabilities>
+			<probabilities>0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="SoilOxygenConditions">
@@ -55,8 +51,8 @@
 			<state id="LowVegetationStorage" />
 			<state id="VeryLowVegetationStorage" />
 			<state id="NoVegetationStorage" />
-			<parents>SummerHighWinterLow VegetationDensity</parents>
-			<probabilities>0.05 0.2 0.4 0.25 0.1 0 0 0.25 0.4 0.25 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.05 0.6 0.35 0 0 0 0 0.15 0.85 0 0 0 0 0 0 1 0.2 0.3 0.3 0.15 0.05 0 0.1 0.4 0.3 0.15 0.05 0 0 0.05 0.45 0.3 0.2 0 0 0 0.1 0.55 0.35 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.5 0.3 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0 0.15 0.5 0.15 0.2 0 0 0 0.2 0.5 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0 0 1 0.7 0.15 0.1 0.05 0 0 0.6 0.2 0.15 0.05 0 0 0.1 0.3 0.3 0.2 0.1 0 0 0.05 0.3 0.4 0.25 0 0 0 0.1 0.4 0.5 0 0 0 0 0 0 1 0.8 0.15 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.35 0.35 0.2 0 0 0 0.2 0.35 0.45 0 0 0 0 0 0 1</probabilities>
+			<parents>VegetationDensity MeanAnnualPrecipitation</parents>
+			<probabilities>0.2 0.3 0.3 0.15 0.05 0 0.5 0.3 0.15 0.05 0 0 0.7 0.15 0.1 0.05 0 0 0.1 0.4 0.3 0.15 0.05 0 0.4 0.4 0.15 0.05 0 0 0.6 0.2 0.15 0.05 0 0 0 0.05 0.45 0.3 0.2 0 0 0.15 0.5 0.15 0.2 0 0.1 0.3 0.3 0.2 0.1 0 0 0 0.1 0.55 0.35 0 0 0 0.2 0.5 0.3 0 0 0.05 0.3 0.4 0.25 0 0 0 0 0.2 0.8 0 0 0 0.05 0.25 0.7 0 0 0 0.1 0.4 0.5 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="Slope">
 			<state id="Level" />
@@ -170,8 +166,8 @@
 				<comment>+ aspect (more C on N-NE facing slope)</comment>
 				<barchart active="true" width="128" height="90" />
 			</node>
-			<node id="SummerHighWinterLow">
-				<name>SummerHighWinterLow</name>
+			<node id="MeanAnnualPrecipitation">
+				<name>MeanAnnualPrecipitation</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -184,7 +180,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>476 570 598 599</position>
+				<position>475 568 597 597</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="128" height="126" />
 			</node>

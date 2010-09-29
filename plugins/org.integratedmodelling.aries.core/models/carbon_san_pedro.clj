@@ -79,7 +79,7 @@
                   [0 20]  'carbonService:VeryLowVegetationCover))
 
 ;;ARE WE OK HAVING SOME CLASSES IN THE DATA WITH NO CORRESPONDING DISCRETE STATES (i.e., ag, developed, barren)?
-;; Not considered but in the area: 5 9 15 16 17 18 19 20 21 65 93 110 111 112 114 117
+;; Not considered but in the area: 5 9 15 16 17 18 19 20 21 65 93 110 111 112 114 117 (could set these to hard, indicating slower sequestration)
 ;;Ditto for Mexico: most LULC categories are not used, and not all discrete states are represented.
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
      (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
@@ -91,6 +91,8 @@
         #{"Chaparral"}                                              'carbonService:ModerateHardness
         #{"Bosque de encino" "Mezquital-huizachal"}                 'carbonService:HighHardness))
 
+;;Have removed this from the model and replaced it with annual precip.  This is probably a better variable to include
+;; in carbon models in wetter regions, while annual precip is far more important in water-limited regions.
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
      (classification (ranking 'habitat:SummerHighWinterLow)
         [:< 24]       'carbonService:VeryLowSOL
@@ -99,13 +101,19 @@
         [35 40]       'carbonService:HighSOL
         [40 :>]       'carbonService:VeryHighSOL))
 
+(defmodel annual-precipitation 'carbonService:MeanAnnualPrecipitation
+     (classification (measurement 'habitat:AnnualPrecipitation "mm")
+        [500 :>]        'carbonService:HighMeanAnnualPrecipitation
+        [400 500]       'carbonService:ModerateMeanAnnualPrecipitation
+        [:< 400]        'carbonService:LowMeanAnnualPrecipitation))
+
 ;; Bayesian source model
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
             :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
             :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
-	 	 	      :context  (hardwood-softwood-ratio percent-vegetation-cover summer-high-winter-low)))
+	 	 	      :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; sink models
@@ -154,7 +162,7 @@
             :keep     ('carbonService:StoredCarbonRelease)
             :observed (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
-                        summer-high-winter-low fire-frequency)))
+                        annual-precipitation fire-frequency)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
