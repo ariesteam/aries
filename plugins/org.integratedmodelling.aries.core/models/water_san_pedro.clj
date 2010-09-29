@@ -15,15 +15,15 @@
 
 ;;Springs can be a source of surface water or a sink for groundwater.
 ;; Springs data are having a lot of problems with Geoserver.
+;; At least for arid regions, springs are likely not a net source - 
 (defmodel spring-discharge 'waterSupplyService:SpringDischarge
   (measurement 'waterSupplyService:SpringDischarge "mm"
     :context ((binary-coding 'waterSupplyService:Springs :as spring-presence))
     :state #(cond (== (:spring-presence %) 0) 0
                   (== (:spring-presence %) 1) 100)))
 
-;;(defmodel baseflow (as water yield?) - would do this as a GIS operation, assigning baseflow to 
-;; particular segments of the stream network - either all at the base or distributed somehow across
-;; the network - both are naive assumptions, in different ways.  Talk to Darius about this.
+;;(defmodel baseflow -> this is complex and requires MODFLOW outputs to identify contributions to gaining reaches.  
+;; Give it a closer look when we've gotten a better handle on whether MODFLOW integration is possible.
 
 ;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
 ;; Runoff as a sum of precip, snowmelt, spring discharge.
@@ -226,13 +226,13 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-;;(defmodel data 'waterSupplyService:WaterSupply 
-;;  (identification 'waterSupplyService:WaterSupply 
-;;  :context (precipitation-annual ;;replace with "runoff" when springs data are working
-;;            recharge
-;;            surface-sink         ;;add "groundwater sink" when ready
-;;            surface-diversions
-;;            well-presence)))
+(defmodel data 'waterSupplyService:WaterSupply 
+  (identification 'waterSupplyService:WaterSupply 
+  :context (precipitation-annual ;;replace with "runoff" when springs data are working
+            recharge
+            surface-sink         ;;add "groundwater sink" when ready
+            surface-diversions
+            well-presence)))
   
 ;; flow model for surface water
 ;;(defmodel surface-flow 'aestheticService:AestheticView
