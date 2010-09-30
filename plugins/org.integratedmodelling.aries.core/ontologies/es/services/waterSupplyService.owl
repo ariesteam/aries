@@ -160,6 +160,11 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="UsedSurfaceWaterSupply">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="UsedWaterSupply"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="HighProximityToWaterExtraction">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ProximityToWaterExtraction"/>
@@ -183,14 +188,14 @@
       <owl:Class rdf:ID="GroundwaterSink"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="LowAgriculturalRainWaterUse">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="AgriculturalRainWaterUseClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="HighVegetationSink">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#VegetationInfiltrationInterceptionEvapotranspirationClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LowAgriculturalRainWaterUse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AgriculturalRainWaterUseClass"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#LivestockWaterUseClass">
@@ -237,6 +242,14 @@
       <owl:Class rdf:ID="LandCover"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="SatisfiedWaterDemand">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The portion of demand for water satisfied by extraction of surface or groundwater.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SatisfiedGroundwaterDemand">
+    <rdfs:subClassOf rdf:resource="#SatisfiedWaterDemand"/>
+  </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   <owl:Class rdf:ID="VeryLowVegetationCover">
     <rdfs:subClassOf>
@@ -249,15 +262,25 @@
   <owl:Class rdf:about="#AnnualSnowmelt">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
   </owl:Class>
+  <owl:Class rdf:about="#LivestockRainWaterUse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="LivestockWaterUseType"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleSurfaceWaterFlow">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PossibleWaterFlow"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateGroundwaterSink">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GroundwaterSink"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#LivestockRainWaterUse">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="LivestockWaterUseType"/>
-    </rdfs:subClassOf>
+  <owl:Class rdf:ID="MaximumWaterSink">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Any location where surface water can transition into groundwater (via percolation/recharge) or atmospheric water (via evapotranspiration), or where groundwater can transition into surface water (via springs or baseflow).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink"/>
   </owl:Class>
   <owl:Class rdf:ID="WellProximate">
     <rdfs:subClassOf>
@@ -295,6 +318,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="LivestockSurfaceWaterUseClass"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleWaterUse">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Water actually reaching a user, but not accounting for the activity of sinks.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse"/>
   </owl:Class>
   <owl:Class rdf:ID="WellNotProximate">
     <rdfs:subClassOf>
@@ -363,6 +391,13 @@
       <owl:Class rdf:about="#InfiltrationCapacity"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="GroundwaterDemand">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="WaterDemand"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >All atmospheric, ground, or surface water transitions (i.e., precipitation, snowmelt, baseflow, and springs for surface water, infiltration for groundwater) that result in an initial source location for surface or groundwater.</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateAgriculturalSurfaceWaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="AgriculturalSurfaceWaterUseClass"/>
@@ -371,6 +406,11 @@
   <owl:Class rdf:ID="ProximityToSurfaceWater">
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PossibleWaterFlow">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The movement of surface water via topography and stream networks, and groundwater via appropriate groundwater modeling, but not accounting for sinks (i.e., transitions between surface and groundwater, or evapotranspirative losses of surface water)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateCroplandWaterUse">
     <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
@@ -396,6 +436,9 @@
       <owl:Class rdf:about="#IrrigationWaterNeeds"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="UnusableWaterSink">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink"/>
+  </owl:Class>
   <owl:Class rdf:ID="HighSnowpack">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Snowpack"/>
@@ -409,9 +452,12 @@
   <owl:Class rdf:ID="VeryHighCroplandWaterUse">
     <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
   </owl:Class>
-  <owl:Class rdf:ID="NonRivalWaterUse">
+  <owl:Class rdf:ID="MaximumGroundwaterSink">
+    <rdfs:subClassOf rdf:resource="#MaximumWaterSink"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GroundwaterRecharge">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+      <owl:Class rdf:ID="WaterSupply"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Pasture">
@@ -419,8 +465,18 @@
       <owl:Class rdf:about="#CroplandType"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="NonRivalWaterUse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="HighMonthlyPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualSurfaceWaterFlow">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ActualWaterFlow"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="SpringPresent">
     <rdfs:subClassOf>
@@ -436,9 +492,9 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
   </owl:Class>
-  <owl:Class rdf:ID="LowCropWaterUse">
+  <owl:Class rdf:ID="UsedGroundwaterRecharge">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="CroplandWaterUse"/>
+      <owl:Class rdf:about="#UsedWaterSupply"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ModerateIrrigationNeeds">
@@ -446,19 +502,24 @@
       <owl:Class rdf:about="#IrrigationWaterNeeds"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="LowCropWaterUse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CroplandWaterUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#SurfaceWaterSinkClass">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="HighBuffaloPopulation">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#BuffaloPopulation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateResidentialGWU">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ResidentialGroundwaterUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HighBuffaloPopulation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#BuffaloPopulation"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LowTotalLivestockWaterUse">
@@ -493,6 +554,11 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vegetation Infiltration, Interception, and Evapotranspiration</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SunkSurfaceWaterSupply">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SunkWaterSupply"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Percolation">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
@@ -530,6 +596,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PoultryPopulation"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#UsedWaterSupply">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths and sinks (i.e., actually provide water to human beneficiaries).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateMonthlySnowmelt">
     <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
@@ -571,14 +642,14 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
-  <owl:Class rdf:ID="LowAnnualSnowfall">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#AnnualSnowfall"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="HighVegetationCover">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PercentVegetationCoverClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LowAnnualSnowfall">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AnnualSnowfall"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#TotalLivestockWaterUseClass">
@@ -591,6 +662,9 @@
   </owl:Class>
   <owl:Class rdf:ID="ModerateCattleWaterNeeds">
     <rdfs:subClassOf rdf:resource="#CattleWaterNeeds"/>
+  </owl:Class>
+  <owl:Class rdf:ID="UnusableSurfaceWaterSink">
+    <rdfs:subClassOf rdf:resource="#UnusableWaterSink"/>
   </owl:Class>
   <owl:Class rdf:ID="HighTemperature">
     <rdfs:subClassOf>
@@ -650,6 +724,11 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ActualEvapotranspiration"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="SunkGroundwaterFlow">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SunkWaterFlow"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="LowGoatsWaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GoatsWaterUse"/>
@@ -707,6 +786,14 @@
       <owl:Class rdf:ID="GroundwaterUse"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="PossibleSurfaceWaterUse">
+    <rdfs:subClassOf rdf:resource="#PossibleWaterUse"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WaterDemand">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Total demand for water (most realistically portrayed as total demand, but can be split into surface and groundwater).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateTotalLivestockWaterUse">
     <rdfs:subClassOf rdf:resource="#TotalLivestockWaterUseClass"/>
   </owl:Class>
@@ -719,6 +806,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PercentVegetationCoverClass"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BlockedWaterDemand">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Demand for surface or groundwater that goes unsatisfied due to the action of sinks that transition water between surface, atmospheric, and groundwater.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
   </owl:Class>
   <owl:Class rdf:about="#AgriculturalSurfaceWaterUseClass">
     <rdfs:subClassOf>
@@ -756,13 +848,13 @@
       <owl:Class rdf:ID="ResidentialWaterSourceType"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="HighActualEvapotranspiration">
-    <rdfs:subClassOf rdf:resource="#ActualEvapotranspiration"/>
-  </owl:Class>
   <owl:Class rdf:ID="IrrigatedCroplandAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="IrrigatedCropland"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HighActualEvapotranspiration">
+    <rdfs:subClassOf rdf:resource="#ActualEvapotranspiration"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowAnnualPrecipitation">
     <rdfs:subClassOf>
@@ -781,13 +873,18 @@
   <owl:Class rdf:ID="HydropowerUse">
     <rdfs:subClassOf rdf:resource="#NonRivalWaterUseCode"/>
   </owl:Class>
-  <owl:Class rdf:ID="SurfaceDiversions">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
+  <owl:Class rdf:ID="PossibleSurfaceWaterSupply">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PossibleWaterSupply"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighGroundwaterSource">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="GroundwaterSource"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SurfaceDiversions">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
   <owl:Class rdf:ID="NoSurfaceWaterSource">
     <rdfs:subClassOf rdf:resource="#SurfaceWaterSource"/>
@@ -808,15 +905,15 @@
       <owl:Class rdf:about="#ProximityToWaterExtraction"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateVegetationCover">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#PercentVegetationCoverClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="#IndustrialWaterUseCode">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Industrial Water Use</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateVegetationCover">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PercentVegetationCoverClass"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="NoGroundwaterSource">
     <rdfs:subClassOf>
@@ -838,27 +935,32 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:Class>
+  <owl:Class rdf:ID="SunkSurfaceWaterFlow">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SunkWaterFlow"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="HighCattleWaterUse">
     <rdfs:subClassOf rdf:resource="#CattleWaterUse"/>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateAnnualSnowmelt">
-    <rdfs:subClassOf rdf:resource="#AnnualSnowmelt"/>
+  <owl:Class rdf:about="#MonthlyTemperature">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AtmosphericTemperature"/>
   </owl:Class>
   <owl:Class rdf:ID="HighPoultryPopulation">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PoultryPopulation"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#MonthlyTemperature">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AtmosphericTemperature"/>
+  <owl:Class rdf:ID="ModerateAnnualSnowmelt">
+    <rdfs:subClassOf rdf:resource="#AnnualSnowmelt"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WetAgriculture">
+    <rdfs:subClassOf rdf:resource="#CroplandType"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighAnnualPrecipitation">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AnnualPrecipitation"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="WetAgriculture">
-    <rdfs:subClassOf rdf:resource="#CroplandType"/>
   </owl:Class>
   <owl:Class rdf:ID="LowMonthlyPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
@@ -870,14 +972,17 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
+  <owl:Class rdf:ID="PossibleGroundwaterFlow">
+    <rdfs:subClassOf rdf:resource="#PossibleWaterFlow"/>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateSurfaceWaterUse">
     <rdfs:subClassOf rdf:resource="#SurfaceWaterUse"/>
   </owl:Class>
-  <owl:Class rdf:ID="HighHouseholdWU">
-    <rdfs:subClassOf rdf:resource="#TotalResidentialWaterUse"/>
-  </owl:Class>
   <owl:Class rdf:ID="LowTemperature">
     <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HighHouseholdWU">
+    <rdfs:subClassOf rdf:resource="#TotalResidentialWaterUse"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilGroupC">
     <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
@@ -885,6 +990,11 @@
   <owl:Class rdf:ID="NoResidentialSWU">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ResidentialSurfaceWaterUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="UnusableGroundwaterRecharge">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="UnusableWaterSupply"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="NoGroundwaterUse">
@@ -895,8 +1005,26 @@
   <owl:Class rdf:ID="VeryLowImperviousCover">
     <rdfs:subClassOf rdf:resource="#PercentImperviousCoverClass"/>
   </owl:Class>
+  <owl:Class rdf:about="#PossibleWaterSupply">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths but not accounting for sinks (i.e., potentially can provide water to human beneficiaries).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MaximumSurfaceWaterSink">
+    <rdfs:subClassOf rdf:resource="#MaximumWaterSink"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualGroundwaterSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ActualWaterSink"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#IrrigatedCropland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+  </owl:Class>
+  <owl:Class rdf:about="#UnusableWaterSupply">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The source locations of surface or groundwater that are not available to human users because their flow paths do not move them in a direction where they can be accessed by human beneficiaries.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateAnnualSnowfall">
     <rdfs:subClassOf>
@@ -934,6 +1062,11 @@
   <owl:Class rdf:ID="WellPresence">
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
+  <owl:Class rdf:ID="InaccessibleGroundwaterDemand">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="InaccessibleWaterDemand"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ServiceObservable"/>
   <owl:Class rdf:ID="HighCattlePopulation">
     <rdfs:subClassOf rdf:resource="#CattlePopulation"/>
@@ -967,6 +1100,9 @@
   <owl:Class rdf:ID="HighLivestockRainWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockRainWaterUse"/>
   </owl:Class>
+  <owl:Class rdf:ID="BlockedSurfaceWaterDemand">
+    <rdfs:subClassOf rdf:resource="#BlockedWaterDemand"/>
+  </owl:Class>
   <owl:Class rdf:ID="LowSheepWaterUse">
     <rdfs:subClassOf rdf:resource="#SheepWaterUse"/>
   </owl:Class>
@@ -986,6 +1122,11 @@
   </owl:Class>
   <owl:Class rdf:ID="ModerateSurfaceWaterSink">
     <rdfs:subClassOf rdf:resource="#SurfaceWaterSinkClass"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SunkWaterSupply">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The source locations of surface or groundwater that fail to reach a user due to their encountering a sink and transitioning from surface or groundwater into the atmosphere, surface, or groundwater.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
   </owl:Class>
   <owl:Class rdf:about="#Runoff">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
@@ -1057,6 +1198,9 @@
   <owl:Class rdf:ID="VeryHighMonthlyPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
   </owl:Class>
+  <owl:Class rdf:ID="UnusableSurfaceWaterSupply">
+    <rdfs:subClassOf rdf:resource="#UnusableWaterSupply"/>
+  </owl:Class>
   <owl:Class rdf:ID="LowCroplandWaterUse">
     <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
   </owl:Class>
@@ -1107,6 +1251,11 @@
   <owl:Class rdf:ID="Wetland">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
+  <owl:Class rdf:about="#InaccessibleWaterDemand">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Demand for surface or groundwater that goes unsatisfied due to a lack of surface or groundwater flow connections between sources of water and the location of water users.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleUse"/>
+  </owl:Class>
   <owl:Class rdf:about="#ProximityToWells">
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatial-location_q"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
@@ -1126,6 +1275,9 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GoatsWaterNeeds"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="UnusableGroundwaterSink">
+    <rdfs:subClassOf rdf:resource="#UnusableWaterSink"/>
   </owl:Class>
   <owl:Class rdf:about="#PoultryPopulation">
     <rdfs:subClassOf rdf:resource="#LivestockPopulation"/>
@@ -1161,6 +1313,9 @@
   <owl:Class rdf:ID="VeryLowMonthlyPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
   </owl:Class>
+  <owl:Class rdf:ID="SunkGroundwaterRecharge">
+    <rdfs:subClassOf rdf:resource="#SunkWaterSupply"/>
+  </owl:Class>
   <owl:Class rdf:about="#Springs">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#RunningWater"/>
   </owl:Class>
@@ -1174,6 +1329,9 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PerCapitaResidentialWaterUse"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SurfaceWaterDemand">
+    <rdfs:subClassOf rdf:resource="#WaterDemand"/>
   </owl:Class>
   <owl:Class rdf:ID="LowLivestockRainWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockRainWaterUse"/>
@@ -1218,16 +1376,19 @@
       <owl:Class rdf:about="#CroplandWaterUse"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateLivestockGroundwaterUse">
-    <rdfs:subClassOf rdf:resource="#LivestockGroundwaterUse"/>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateAnnualRunoff">
     <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateLivestockGroundwaterUse">
+    <rdfs:subClassOf rdf:resource="#LivestockGroundwaterUse"/>
   </owl:Class>
   <owl:Class rdf:ID="HighPerCapitaResidentialWaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PerCapitaResidentialWaterUse"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ActualWaterFlow">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="LowSurfaceWaterProximity">
     <rdfs:subClassOf rdf:resource="#ProximityToSurfaceWaterClass"/>
@@ -1238,14 +1399,14 @@
   <owl:Class rdf:ID="LivestockTotalWaterUse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
   </owl:Class>
-  <owl:Class rdf:ID="RollingToHilly">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#SlopeClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="LowGroundwaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#GroundwaterUse"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RollingToHilly">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SlopeClass"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LowResidentialSWU">
@@ -1271,12 +1432,22 @@
   <owl:Class rdf:ID="FineSoilTexture">
     <rdfs:subClassOf rdf:resource="#SoilTexture"/>
   </owl:Class>
+  <owl:Class rdf:about="#GroundwaterUse">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SunkWaterFlow">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Water flow that fails to reach a user because it encountered a sink and transitioned from surface or groundwater into the atmosphere, surface, or groundwater.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
+  </owl:Class>
   <owl:Class rdf:ID="Baseflow">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
-  <owl:Class rdf:about="#GroundwaterUse">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse"/>
+  <owl:Class rdf:ID="ActualSurfaceWaterSink">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ActualWaterSink"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="NoGroundwaterSink">
     <rdfs:subClassOf rdf:resource="#GroundwaterSink"/>
@@ -1307,11 +1478,11 @@
       <owl:Class rdf:about="#ProximityToWaterExtraction"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="HighAgriculturalSurfaceWaterUse">
-    <rdfs:subClassOf rdf:resource="#AgriculturalSurfaceWaterUseClass"/>
-  </owl:Class>
   <owl:Class rdf:about="#VegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HighAgriculturalSurfaceWaterUse">
+    <rdfs:subClassOf rdf:resource="#AgriculturalSurfaceWaterUseClass"/>
   </owl:Class>
   <owl:Class rdf:ID="HighMonthlySnowfall">
     <rdfs:subClassOf>
@@ -1330,8 +1501,14 @@
   <owl:Class rdf:ID="LowAgriculturalSurfaceWaterUse">
     <rdfs:subClassOf rdf:resource="#AgriculturalSurfaceWaterUseClass"/>
   </owl:Class>
-  <owl:Class rdf:ID="WaterSupply">
+  <owl:Class rdf:about="#WaterSupply">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ServiceObservable"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ActualGroundwaterFlow">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The movement of surface and groundwater, accounting for flow topology and sinks (i.e., transitions between surface and groundwater, or evapotranspirative losses of surface water).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ActualWaterFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateGoatsWaterNeeds">
     <rdfs:subClassOf>
@@ -1344,6 +1521,9 @@
   <owl:Class rdf:ID="LowAnnualRunoff">
     <rdfs:subClassOf rdf:resource="#AnnualRunoff"/>
   </owl:Class>
+  <owl:Class rdf:ID="SurfaceWaterSupply">
+    <rdfs:subClassOf rdf:resource="#WaterSupply"/>
+  </owl:Class>
   <owl:Class rdf:ID="Level">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SlopeClass"/>
@@ -1355,8 +1535,14 @@
   <owl:Class rdf:about="#MonthlySnowfall">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowfall"/>
   </owl:Class>
+  <owl:Class rdf:ID="SatisfiedSurfaceWaterDemand">
+    <rdfs:subClassOf rdf:resource="#SatisfiedWaterDemand"/>
+  </owl:Class>
   <owl:Class rdf:ID="HighAnnualSnowfall">
     <rdfs:subClassOf rdf:resource="#AnnualSnowfall"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleGroundwaterUse">
+    <rdfs:subClassOf rdf:resource="#PossibleWaterUse"/>
   </owl:Class>
   <owl:Class rdf:about="#AnnualPrecipitation">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
@@ -1365,14 +1551,19 @@
   <owl:Class rdf:ID="LivestockSurfaceWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockWaterUseType"/>
   </owl:Class>
-  <owl:Class rdf:ID="HighEvaporation">
-    <rdfs:subClassOf rdf:resource="#Evaporation"/>
-  </owl:Class>
   <owl:Class rdf:ID="HighResidentialSWU">
     <rdfs:subClassOf rdf:resource="#ResidentialSurfaceWaterUse"/>
   </owl:Class>
+  <owl:Class rdf:ID="HighEvaporation">
+    <rdfs:subClassOf rdf:resource="#Evaporation"/>
+  </owl:Class>
   <owl:Class rdf:ID="ModerateCattlePopulation">
     <rdfs:subClassOf rdf:resource="#CattlePopulation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ActualWaterSink">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Locations where surface water transitions into groundwater (via infiltration) or atmospheric water (via evapotranspiration), or where groundwater transitions into surface water (via springs or baseflow).</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
   </owl:Class>
   <owl:Class rdf:ID="LowCattlePopulation">
     <rdfs:subClassOf rdf:resource="#CattlePopulation"/>
@@ -1389,25 +1580,28 @@
   <owl:Class rdf:ID="DevelopedCultivated">
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
+  <owl:Class rdf:ID="ModerateSheepPopulation">
+    <rdfs:subClassOf rdf:resource="#SheepPopulation"/>
+  </owl:Class>
   <owl:Class rdf:ID="VegetationInfiltrationInterceptionEvapotranspiration">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateSheepPopulation">
-    <rdfs:subClassOf rdf:resource="#SheepPopulation"/>
+  <owl:Class rdf:ID="NoSurfaceWaterSink">
+    <rdfs:subClassOf rdf:resource="#SurfaceWaterSinkClass"/>
   </owl:Class>
   <owl:Class rdf:about="#PigsWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockWaterUseClass"/>
   </owl:Class>
-  <owl:Class rdf:ID="NoSurfaceWaterSink">
-    <rdfs:subClassOf rdf:resource="#SurfaceWaterSinkClass"/>
+  <owl:Class rdf:ID="LowLivestockGroundwaterUse">
+    <rdfs:subClassOf rdf:resource="#LivestockGroundwaterUse"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighCropWaterUse">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#CroplandWaterUse"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="LowLivestockGroundwaterUse">
-    <rdfs:subClassOf rdf:resource="#LivestockGroundwaterUse"/>
+  <owl:Class rdf:ID="BlockedGroundwaterDemand">
+    <rdfs:subClassOf rdf:resource="#BlockedWaterDemand"/>
   </owl:Class>
   <owl:Class rdf:ID="LowPigsWaterUse">
     <rdfs:subClassOf rdf:resource="#PigsWaterUse"/>
@@ -1426,11 +1620,14 @@
   <owl:Class rdf:ID="LowLivestockTotalWaterUse">
     <rdfs:subClassOf rdf:resource="#LivestockTotalWaterUseClass"/>
   </owl:Class>
+  <owl:Class rdf:about="#GroundwaterSource">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType"/>
+  </owl:Class>
   <owl:Class rdf:about="#PigsPopulation">
     <rdfs:subClassOf rdf:resource="#LivestockPopulation"/>
   </owl:Class>
-  <owl:Class rdf:about="#GroundwaterSource">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#SourceType"/>
+  <owl:Class rdf:ID="RaftingUse">
+    <rdfs:subClassOf rdf:resource="#NonRivalWaterUseCode"/>
   </owl:Class>
   <owl:Class rdf:about="#SlopeClass">
     <rdfs:subClassOf>
@@ -1439,14 +1636,11 @@
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Slope</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="RaftingUse">
-    <rdfs:subClassOf rdf:resource="#NonRivalWaterUseCode"/>
+  <owl:Class rdf:ID="ModerateTemperature">
+    <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateGoatsPopulation">
     <rdfs:subClassOf rdf:resource="#GoatsPopulation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateTemperature">
-    <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateGroundwaterSource">
     <rdfs:subClassOf rdf:resource="#GroundwaterSource"/>
@@ -1456,11 +1650,11 @@
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Agricultural Groundwater Use</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:ID="ModerateAgriculturalGroundwaterUse">
-    <rdfs:subClassOf rdf:resource="#AgriculturalGroundwaterUseClass"/>
-  </owl:Class>
   <owl:Class rdf:about="#CroplandWaterUse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SocioEconomicQuality"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateAgriculturalGroundwaterUse">
+    <rdfs:subClassOf rdf:resource="#AgriculturalGroundwaterUseClass"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateEvaporation">
     <rdfs:subClassOf rdf:resource="#Evaporation"/>
@@ -1474,6 +1668,9 @@
   </owl:Class>
   <owl:Class rdf:ID="HighCropWaterUse">
     <rdfs:subClassOf rdf:resource="#CroplandWaterUse"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PossibleGroundwaterRecharge">
+    <rdfs:subClassOf rdf:resource="#PossibleWaterSupply"/>
   </owl:Class>
   <owl:Class rdf:ID="LowIrrigationUse">
     <rdfs:subClassOf rdf:resource="#IrrigationWaterUseClass"/>
@@ -1492,6 +1689,9 @@
   </owl:Class>
   <owl:Class rdf:ID="LowActualEvapotranspiration">
     <rdfs:subClassOf rdf:resource="#ActualEvapotranspiration"/>
+  </owl:Class>
+  <owl:Class rdf:ID="InaccessibleSurfaceWaterDemand">
+    <rdfs:subClassOf rdf:resource="#InaccessibleWaterDemand"/>
   </owl:Class>
   <owl:Class rdf:about="#GoatsWaterNeeds">
     <rdfs:subClassOf rdf:resource="#LivestockWaterNeeds"/>

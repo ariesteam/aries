@@ -9,7 +9,11 @@
 
 ;;Runoff data might be preferable to precipitation - check scale.  Snowmelt data (currently only at global scale) 
 ;; says the only snowmelt in AZ is from the White Mtns & Colorado Plateau - none for the SE AZ.  
-;; Keep snowmelt out of the model unless a local dataset says otherwise.
+;; Keep snowmelt out of the model unless a local dataset says otherwise.  No incoming interbasin water
+;; transfers to the San Pedro at this point (nb: incoming interbasin water transfers could be groundwater
+;; sources if incoming water is directly used to recharge groundwater).
+
+
 (defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
   (measurement 'habitat:AnnualPrecipitation "mm"))
 
@@ -26,7 +30,7 @@
 ;; Give it a closer look when we've gotten a better handle on whether MODFLOW integration is possible.
 
 ;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
-;; Runoff as a sum of precip, snowmelt, spring discharge.
+;; Runoff as a sum of precip, snowmelt, spring discharge, baseflow, incoming interbasin water transfers.
 (defmodel runoff 'soilretentionEcology:AnnualRunoff
   (measurement 'soilretentionEcology:AnnualRunoff "mm/year"
     :context (precipitation-annual :as precipitation-annual spring-discharge :as spring-discharge) 
@@ -40,6 +44,9 @@
 ;;Consider using percolation data here instead if more appropriate?
 (defmodel recharge 'habitat:AnnualRecharge
   (measurement 'habitat:AnnualRecharge "mm"))
+
+;; No incoming interbasin water transfers to the San Pedro at this point (nb: incoming interbasin water transfers could be 
+;; groundwater sources if incoming water is directly used to recharge groundwater).
 
 ;; ----------------------------------------------------------------------------------------------
 ;; surface water sink model
@@ -71,7 +78,7 @@
        [5 10]                'waterSupplyService:LowImperviousCover
        [1 5]                 'waterSupplyService:VeryLowImperviousCover))
 
-(defmodel vegetation-type 'waterSupplyService:VegetationType
+(defmodel vegetation-type 'sanPedro:VegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
     #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           'sanPedro:Forest
@@ -145,6 +152,9 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; surface water use model
 ;; ----------------------------------------------------------------------------------------------
+
+;;Add any interbasin trasnfers here - their locations and quantities.  This quantity of water would just disappear
+;; from the watershed of interest and appear in the watershed as a source.
 
 ;;The Pomerene Diversion is 7.5 miles downstream of the St. David diversion, actually located between 
 ;;  the Highway 80 bridge over the San Pedro and Benson (far south of Pomerene).  The canal irrigates 1,050
@@ -252,7 +262,11 @@
   ;; 	    :benefit-type     :rival
   ;;    	:downscaling-factor 3
   ;; 	    :rv-max-states      10 
-  ;;      :keep ('waterSupplyService:FlowConcept1 'waterSupplyService:FlowConcept2) 
+  ;;      :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
+  ;;        'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
+  ;;        'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
+  ;;        'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
+  ;;        'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
   ;;      :context (precipitation-annual surface-sink surface-diversions)))))
 
 ;; flow model for groundwater
@@ -273,6 +287,10 @@
   ;;      :benefit-type     :rival
   ;;      :downscaling-factor 3
   ;;      :rv-max-states      10 
-  ;;      :keep ('waterSupplyService:FlowConcept1 'waterSupplyService:FlowConcept2) 
+  ;;      :keep ('waterSupplyService:GroundwaterRecharge        'waterSupplyService:MaximumGroundwaterSink      'waterSupplyService:GroundwaterDemand
+  ;;             'waterSupplyService:PossibleGroundwaterFlow    'waterSupplyService:PossibleGroundwaterRecharge 'waterSupplyService:PossibleGroundwaterUse
+  ;;             'waterSupplyService:ActualGroundwaterFlow      'waterSupplyService:UsedGroundwaterRechage      'waterSupplyService:ActualGroundwaterSink          'waterSupplyService:SatisfiedGroundwaterDemand
+  ;;             'waterSupplyService:UnusableGroundwaterRechage 'waterSupplyService:UnusableGroundwaterSink     'waterSupplyService:InaccessibleGroundwaterDemand
+  ;;             'waterSupplyService:SunkGroundwaterFlow        'waterSupplyService:SunkSurfaceWaterSupply      'waterSupplyService:BlockedGroundwaterDemand)   
   ;;      :context (recharge groundwater-sink well-presence)))))
 
