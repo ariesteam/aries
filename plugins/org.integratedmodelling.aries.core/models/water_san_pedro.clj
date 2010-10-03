@@ -7,18 +7,22 @@
 ;; surface water source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Runoff data might be preferable to precipitation - check scale.  Snowmelt data (currently only at global scale) 
-;; says the only snowmelt in AZ is from the White Mtns & Colorado Plateau - none for the SE AZ.  
-;; Keep snowmelt out of the model unless a local dataset says otherwise.  No incoming interbasin water
-;; transfers to the San Pedro at this point (nb: incoming interbasin water transfers could be groundwater
-;; sources if incoming water is directly used to recharge groundwater).
+;;Surface water source = precipitaiton + snowmelt + springs + baseflow + incoming interbasin water transfers
+
+;;Runoff data might be preferable to precipitation - check scale.  
+
+;;Snowmelt data (currently only at global scale) says the only snowmelt in AZ is from the White Mtns & Colorado Plateau - 
+;; none for the SE AZ.  
+;; Keep snowmelt out of the model unless a local dataset says otherwise.  
+
+;; No incoming interbasin water transfers to the San Pedro at this point (nb: incoming interbasin water transfers could 
+;; be groundwater sources if incoming water is directly used to recharge groundwater).
 
 
 (defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
   (measurement 'habitat:AnnualPrecipitation "mm"))
 
 ;;Springs can be a source of surface water or a sink for groundwater.
-;; Springs data are having a lot of problems with Geoserver.
 ;; At least for arid regions, springs are likely not a net source - 
 (defmodel spring-discharge 'waterSupplyService:SpringDischarge
   (measurement 'waterSupplyService:SpringDischarge "mm"
@@ -139,9 +143,8 @@
 ;; groundwater sink model
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defmodel baseflow (as water yield?) - would do this as a GIS operation, assigning baseflow to 
-;; particular segments of the stream network - either all at the base or distributed somehow across
-;; the network - both are naive assumptions, in different ways.  Talk to Darius about this.
+;;(defmodel baseflow -> this is complex and requires MODFLOW outputs to identify contributions to gaining reaches.  
+;; Give it a closer look when we've gotten a better handle on whether MODFLOW integration is possible.
 
 ;;(defmodel groundwater-sink 'soilretentionEcology:GroundwaterSink
 ;;  (measurement 'soilretentionEcology:GroundwaterSink "mm/year"
