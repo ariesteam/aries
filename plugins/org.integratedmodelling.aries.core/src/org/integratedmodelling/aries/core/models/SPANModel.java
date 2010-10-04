@@ -85,8 +85,7 @@ public class SPANModel extends DefaultAbstractModel {
 
     @Override
     public IConcept getCompatibleObservationType(ISession session) {
-        // TODO Auto-generated method stub
-        return null;
+        return CoreScience.Observation();
     }
 
     public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, IConcept flowData) {

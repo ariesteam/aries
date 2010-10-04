@@ -128,6 +128,21 @@
     :state #(- (:altitude %) 100.0))) 
 
 ;; -------------------------------------------------------------------------
+;; bayesian node - sample specs
+;; -------------------------------------------------------------------------
+
+;(defmodel test-bayesian-node 'observation:GenericQuantifiable
+;  (probabilistic-classification 'observation:ProbabilisticQuantifiable$
+;     :context (farmland lulc)
+;     :cpt-organization (farmland lulc : case1 case2 case3)
+;     :cpt (
+;         farmland-absent terrestrial : 20 35 17
+;         farmland-absent marine : 20 35 17
+;         farmland-present terrestrial : 20 35 17
+;         farmland-present marine : 20 35 17)))
+          
+
+;; -------------------------------------------------------------------------
 ;; agents
 ;; -------------------------------------------------------------------------
 

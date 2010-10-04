@@ -28,10 +28,10 @@
   </owl:Class>
   <owl:Class rdf:ID="Other">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="ScenicVegetationType"/>
+      <owl:Class rdf:ID="VegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#ScenicVegetationType">
+  <owl:Class rdf:about="#VegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="SingleQuailSpeciesPresent">
@@ -99,10 +99,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AlpineAndCliff">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="Woodland">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="MultipleDeerSpeciesPresent">
     <rdfs:subClassOf>
@@ -163,7 +163,7 @@
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="RiparianAndWater">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="MuleDeerHabitat">
     <rdfs:subClassOf rdf:resource="#DeerHabitat"/>
@@ -204,7 +204,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Forest">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#QuailHabitat">

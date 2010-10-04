@@ -14,7 +14,7 @@
                   [1800 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
                   :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
-(defmodel scenic-vegetation 'sanPedro:ScenicVegetationType
+(defmodel scenic-vegetation 'sanPedro:VegetationType
 ;;  [(categorization 'geofeatures:Country :as country)]
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC) 
 ;;                  :when #(= (:country %) "United States")
