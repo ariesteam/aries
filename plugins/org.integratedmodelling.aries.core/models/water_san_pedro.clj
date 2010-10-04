@@ -22,6 +22,12 @@
 (defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
   (measurement 'habitat:AnnualPrecipitation "mm"))
 
+(defmodel precipitation-dry-year 'waterSupplyService:AnnualPrecipitationDryYear
+  (measurement 'habitat:AnnualPrecipitation2002 "mm"))
+
+(defmodel precipitation-wet-year 'waterSupplyService:AnnualPrecipitationWetYear
+  (measurement 'habitat:AnnualPrecipitation2007 "mm"))
+
 ;;Springs can be a source of surface water or a sink for groundwater.
 ;; At least for arid regions, springs are likely not a net source - 
 (defmodel spring-discharge 'waterSupplyService:SpringDischarge
@@ -237,6 +243,21 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
+
+;;dumb identification statement for BSR, since sinks aren't working
+(defmodel data-bsr 'waterSupplyService:WaterSupply 
+  (identification 'waterSupplyService:WaterSupply 
+  :context (precipitation-annual
+            precipitation-dry-year
+            precipitation-wet-year 
+            spring-discharge
+            recharge
+            slope
+            percent-vegetation-cover
+            imperviousness
+            soil-group         
+            surface-diversions
+            well-presence)))
 
 ;; all data, for testing and storage
 (defmodel data 'waterSupplyService:WaterSupply 

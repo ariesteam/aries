@@ -93,9 +93,9 @@
 ;;Ditto for Mexico: most LULC categories are not used, and not all discrete states are represented.
 (defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
      (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
-        #{14 34 35 92}                   'carbonService:LowHardness
-        #{33 45 51 91}                   'carbonService:ModerateHardness
-        #{52 55 56 57 59 60 96 105 118}  'carbonService:HighHardness)
+        #{14 34 35 83 92}                   'carbonService:LowHardness
+        #{33 45 51 91}                      'carbonService:ModerateHardness
+        #{52 55 56 57 59 60 84 96 105 118}  'carbonService:HighHardness)
      (classification (categorization 'mexico:CONABIOLULCCategory)
         #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:LowHardness
         #{"Chaparral"}                                              'carbonService:ModerateHardness

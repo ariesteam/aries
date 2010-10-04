@@ -251,6 +251,62 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  
 
+<measurement:Measurement id="2002_wgs84">
+	<observation:hasObservable>
+		<habitat:AnnualPrecipitation2002 />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
+	<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+	<measurement:unit>mm</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:2002_wgs84</geospace:hasCoverageId>
+			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>1403</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>619</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.938</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
+	<measurement:Measurement id="2007_wgs84">
+		<observation:hasObservable>
+			<habitat:AnnualPrecipitation2007 />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: PRISM climate data</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>usa:2007_wgs84</geospace:hasCoverageId>
+				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>1403</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>619</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>24.062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-125.021</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.938</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-66.479</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
 	<measurement:Measurement id="groundwater_recharge">
 		<observation:hasObservable>
 			<habitat:AnnualRecharge />
