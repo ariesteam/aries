@@ -263,6 +263,8 @@
 (defmodel data 'waterSupplyService:WaterSupply 
   (identification 'waterSupplyService:WaterSupply 
   :context (precipitation-annual ;;replace with "runoff" when springs data are working
+            precipitation-dry-year
+            precipitation-wet-year 
             recharge
             surface-sink         ;;add "groundwater sink" when ready
             surface-diversions
