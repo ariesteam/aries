@@ -55,6 +55,9 @@
 (defmodel recharge 'habitat:AnnualRecharge
   (measurement 'habitat:AnnualRecharge "mm"))
 
+;;(defmodel artificial-recharge 'waterSupplyService:ArtificialRecharge (artificial recharge can be added to natural recharge
+;;  as a source of groundwater)
+
 ;; No incoming interbasin water transfers to the San Pedro at this point (nb: incoming interbasin water transfers could be 
 ;; groundwater sources if incoming water is directly used to recharge groundwater).
 
@@ -144,6 +147,9 @@
       :context  (soil-group vegetation-type slope imperviousness percent-vegetation-cover)
       :keep     ('waterSupplyService:SurfaceWaterSinkClass)
       :observed (sink-undiscretizer)))
+
+;; Add artificial recharge as a sink of surface water.  Can sum with the natural surface-sink to get total surface
+;;  water sink.
 
 ;; ----------------------------------------------------------------------------------------------
 ;; groundwater sink model
@@ -239,6 +245,12 @@
   ;;(measurement 'geophysics:Altitude "m"))	 								
  
 ;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
+
+(defmodel flow-direction 'geophysics:FlowDirection
+  (ranking 'geophysics:FlowDirection)) 
+
+(defmodel streams 'geofeatures:River
+  (binary-coding 'geofeatures:River))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; overall models 

@@ -2869,7 +2869,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding> -->
+	</measurement:BinaryCoding> 
 
 <measurement:BinaryCoding id="PugetStreams">
 	<observation:hasObservable>
@@ -2892,6 +2892,32 @@ we could discuss integrating those at some point.-->
 			<geospace:hasLonLowerBound>607661.051</geospace:hasLonLowerBound>
 			<geospace:hasLatUpperBound>1344695.43</geospace:hasLatUpperBound>
 			<geospace:hasLonUpperBound>1599281.051</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding> -->
+
+<measurement:BinaryCoding id="PugetStreams2">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Washington DNR hydrography data</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:PugetStreams2</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>11016</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>12749</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>5223497.4931154745</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>755970.3373246934</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>6419082.732709399</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>1796821.4452474322</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
