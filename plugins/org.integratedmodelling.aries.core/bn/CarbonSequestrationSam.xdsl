@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="VegetationType">
+			<state id="RowCrops" />
+			<state id="GrasslandHerbaceous" />
+			<state id="Forest" />
+			<state id="Wetland" />
+			<state id="NoVegetation" />
+			<probabilities>0.01 0.19 0.8 0 0</probabilities>
+		</cpt>
+		<cpt id="SummerHighWinterLow">
+			<state id="VeryHighSOL" />
+			<state id="HighSOL" />
+			<state id="ModerateSOL" />
+			<state id="LowSOL" />
+			<state id="VeryLowSOL" />
+			<probabilities>0 0.25 0.25 0.25 0.25</probabilities>
+		</cpt>
+		<cpt id="MeanAnnualPrecipitation">
+			<state id="VeryHighMeanAnnualPrecipitation" />
+			<state id="HighMeanAnnualPrecipitation" />
+			<state id="ModerateMeanAnnualPrecipitation" />
+			<state id="LowMeanAnnualPrecipitation" />
+			<state id="VeryLowMeanAnnualPrecipitation" />
+			<probabilities>0 0.5 0.5 0 0</probabilities>
+		</cpt>
+		<cpt id="VegetationCarbonStorage">
+			<state id="VeryHighVegetationStorage" />
+			<state id="HighVegetationStorage" />
+			<state id="ModerateVegetationStorage" />
+			<state id="LowVegetationStorage" />
+			<state id="VeryLowVegetationStorage" />
+			<state id="NoVegetationStorage" />
+			<parents>VegetationType SummerHighWinterLow MeanAnnualPrecipitation</parents>
+			<probabilities>0 0 0.7 0.3 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.7 0.1 0 0 0 0 0.5 0.5 0 0 0 0 0 1 0 0 0 0.3 0.7 0 0 0 0 0.2 0.7 0.1 0 0 0 0.1 0.6 0.3 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0.2 0.7 0.1 0 0 0 0.1 0.6 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0 1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0 1 0 0 0 0 0.8 0.2 0 0 0 0 0.7 0.3 0 0 0 0 0.6 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 0.7 0.3 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 0.7 0.3 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SoilCNRatio">
+			<state id="VeryHighCNRatio" />
+			<state id="HighCNRatio" />
+			<state id="LowCNRatio" />
+			<state id="VeryLowCNRatio" />
+			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+			<property id="SoilInfluence">SoilInfluence=((ObservedSoilTexture/MaxSoilTexture)/2)+((ObservedSoilDepth/MaxSoilDepth)/2)</property>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonSequestration">
+			<state id="VeryHighSequestration" />
+			<state id="HighSequestration" />
+			<state id="ModerateSequestration" />
+			<state id="LowSequestration" />
+			<state id="VeryLowSequestration" />
+			<state id="NoSequestration" />
+			<parents>VegetationCarbonStorage SummerHighWinterLow SoilCNRatio</parents>
+			<probabilities>0.9 0.1 0 0 0 0 0.8 0.2000000000000001 0 0 0 0 0.7 0.2 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.8 0.2 0 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.2 0.3 0.5 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.3 0.5 0.1 0 0 0 0.4 0.3 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.5 0.3 0 0 0 0.1 0.7 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.5 0.3 0 0 0 0.15 0.7 0.15 0 0 0 0.1 0.7 0.2 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2000000000000001 0 0 0 0 0.7 0.2 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.8 0.2 0 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.2 0.3 0.5 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.3 0.5 0.1 0 0 0 0.4 0.3 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.5 0.3 0 0 0 0.1 0.7 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.5 0.3 0 0 0 0.15 0.7 0.15 0 0 0 0.1 0.7 0.2 0 0 0.4 0.6 0 0 0 0 0.2 0.7 0.1 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.4 0.2 0 0 0.1 0.8 0.1 0 0 0 0.1 0.7 0.2 0 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.7 0.3 0 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0.1 0.5 0.4 0 0 0 0.1 0.8 0.1 0 0 0 0.1 0.7 0.2 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.7 0.3 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0.3 0.6 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0.1 0.7 0.2 0 0 0 0.1 0.6 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0.2 0.6 0.2 0 0 0 0.1 0.6 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0.1 0.6 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+			<node id="VegetationCarbonStorage">
+				<name>VegetationCarbonStorage</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>471 365 627 398</position>
+				<barchart active="true" width="188" height="126" />
+			</node>
+			<node id="VegetationType">
+				<name>VegetationType</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>218 565 329 592</position>
+				<barchart active="true" width="276" height="143" />
+			</node>
+			<node id="SummerHighWinterLow">
+				<name>SummerHighWinterLow</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>787 531 923 566</position>
+				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
+				<barchart active="true" width="142" height="108" />
+			</node>
+			<node id="SoilCNRatio">
+				<name>SoilCNRatio</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1037 522 1124 554</position>
+				<barchart active="true" width="266" height="90" />
+			</node>
+			<node id="VegetationAndSoilCarbonSequestration">
+				<name>VegetationAndSoilCarbonSequestration</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>686 204 991 230</position>
+				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
+				<barchart active="true" width="226" height="108" />
+			</node>
+			<node id="MeanAnnualPrecipitation">
+				<name>MeanAnnualPrecipitation</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>554 554 666 584</position>
+				<comment>Could add &quot;very high&quot; state for dense forests, but for Vermont, this is unnecessary</comment>
+				<barchart active="true" width="282" height="141" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

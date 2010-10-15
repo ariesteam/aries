@@ -228,24 +228,28 @@
             sink
             precipitation-annual)))
   
-;; the real enchilada
-;;(defmodel view 'aestheticService:AestheticView
+;; flow model for surface water
+;;(defmodel surface-flow 'aestheticService:AestheticView
  ;; (span 'aestheticService:LineOfSight 
-  	;;    'aestheticService:TheoreticalNaturalBeauty
-  	;;    'aestheticService:HomeownerViewUse
-    ;;  	'aestheticService:TotalVisualBlight
-    ;;  	'aestheticService:View
-  	;;    'geophysics:Altitude
-  ;; 	:sink-type        :relative
-  ;; 	:use-type         :relative
-  ;; 	:benefit-type     :non-rival
-  ;; 	:downscaling-factor 3
-  ;; 	:rv-max-states    10 
-  ;;  :context
-    ;;     (source homeowners sink altitude
-    ;;     (ranking 'eserv:SourceThreshold :value 50)
-    ;;     (ranking 'eserv:SinkThreshold :value 0.3)
-    ;;     (ranking 'eserv:UseThreshold :value 0.1)
-    ;;     (ranking 'eserv:TransitionThreshold :value 1.0))
-;;))
+    ;;    'waterSupplyService:AnnualPrecipitation
+    ;;    'waterSupplyService:SurfaceDiversionCapacity       ;;Replace with right concept for La Antigua
+    ;;    'waterSupplyService:SurfaceWaterSinkClass
+    ;;    'aestheticService:View   ;;nil?
+    ;;    'geophysics:Altitude     ;;nil?
+  ;;      :source-threshold   1.0  ;;??
+  ;;      :sink-threshold     1.0  ;;??
+  ;;      :use-threshold      10.0 ;;??
+  ;;      :trans-threshold    nil  ;;??
+  ;;      :source-type      :finite
+  ;;      :sink-type        :finite
+  ;;      :use-type         :finite
+  ;;      :benefit-type     :rival
+  ;;      :downscaling-factor 3
+  ;;      :rv-max-states      10 
+  ;;      :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
+  ;;        'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
+  ;;        'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
+  ;;        'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
+  ;;        'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
+  ;;      :context (precipitation-annual surface-sink surface-diversions)))))
 

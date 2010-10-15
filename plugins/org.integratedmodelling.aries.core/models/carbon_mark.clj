@@ -77,6 +77,11 @@
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
 
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
+
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
   (classification (ranking 'habitat:PercentVegetationCover :units "%")
                   [80 :>] 'carbonService:VeryHighVegetationCover
@@ -84,26 +89,6 @@
                   [40 60] 'carbonService:ModerateVegetationCover
                   [20 40] 'carbonService:LowVegetationCover
                   [0 20]  'carbonService:VeryLowVegetationCover))
-
-;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph 'carbonService:Soilph
-  (classification (ranking 'habitat:SoilPhDeep)
-                  [7.3 :>]       'carbonService:HighPh
-                  [5.5 7.3]      'carbonService:ModeratePh
-                  [:< 5.5]       'carbonService:LowPh))
-
-;; use NLCD layers to infer anoxic vs. oxic
-(defmodel soil-oxygen-conditions 'carbonService:SoilOxygenConditions 
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{90 95}   'carbonService:AnoxicSoils
-                  :otherwise 'carbonService:OxicSoils))
-				
-(defmodel fire-threat 'carbonService:FireThreatClass
-  (classification (ranking 'habitat:FireThreat)	
-                  4  'carbonService:VeryHighFireThreat
-                  3  'carbonService:HighFireThreat
-                  2  'carbonService:ModerateFireThreat
-                  1  'carbonService:LowFireThreat))
 
 ;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
 ;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
@@ -117,8 +102,8 @@
                   [:< 12]   'carbonService:VeryLowActualEvapotranspiration))
 
 ;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
-(defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCal
-  (classification (categorization 'southernCalifornia:VegetationTypeSoCal)
+(defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCalCarbon
+  (classification (categorization 'southernCalifornia:VegTypeSoCal)
                   "HDW"          'southernCalifornia:HardwoodForestVegetationType
                   #{"CON" "MIX"} 'southernCalifornia:MixedConiferVegetationType
                   "SHB"          'southernCalifornia:ShrubVegetationType
@@ -134,25 +119,13 @@
                   22                  'southernCalifornia:LowDevelopedLandCover
                   #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
 
-;; Bayesian source model
+;;See above statement for AET: Add back in if you use it for wider extents of Southern California
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
-            :import   "aries.core::CarbonSourceValueMark.xdsl"
-            :keep     ('carbonService:NetCarbonUptake
-                       'carbonService:VegetationAndSoilCarbonSequestration
-                       'carbonService:VegetationAndSoilCarbonStorage
-                       'carbonService:VegetationCarbonStorage
-                       'carbonService:SoilCarbonStorage
-                       'carbonService:StoredCarbonRelease)
-            :observed (net-carbon-uptake veg-soil-sequestration veg-soil-storage veg-storage soil-storage stored-carbon-release)
-	 	 	:context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat actual-evapotranspiration vegetation-type land-use)))
-
-(defmodel source-simple 'carbonService:CarbonSourceValue   
-  (bayesian 'carbonService:CarbonSourceValue 
-            :import   "aries.core::CarbonSourceValueMark.xdsl"
-            :keep     ('carbonService:NetCarbonUptake)
-            :observed (net-carbon-uptake)
-	 	 	      :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
+            :import   "aries.core::CarbonSequestrationMark.xdsl"
+            :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
+            :observed (veg-soil-sequestration)
+	 	 	      :context  (percent-vegetation-cover vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; carbon model accuracy check
@@ -172,6 +145,42 @@
            :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration %))))
 
 ;; ----------------------------------------------------------------------------------------------
+;; sink models
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
+
+;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
+(defmodel soil-ph 'carbonService:Soilph
+  (classification (ranking 'habitat:SoilPhDeep)
+                  [7.3 :>]       'carbonService:HighPh
+                  [5.5 7.3]      'carbonService:ModeratePh
+                  [:< 5.5]       'carbonService:LowPh))
+
+;; use NLCD layers to infer anoxic vs. oxic
+(defmodel soil-oxygen-conditions 'carbonService:SoilOxygenConditions 
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+                  #{90 95}   'carbonService:AnoxicSoils
+                  :otherwise 'carbonService:OxicSoils))
+        
+(defmodel fire-threat 'carbonService:FireThreatClass
+  (classification (ranking 'habitat:FireThreat) 
+                  4  'carbonService:VeryHighFireThreat
+                  3  'carbonService:HighFireThreat
+                  2  'carbonService:ModerateFireThreat
+                  1  'carbonService:LowFireThreat))
+
+(defmodel sink 'carbonService:CarbonSinkValue   
+  (bayesian 'carbonService:CarbonSinkValue 
+            :import   "aries.core::StoredCarbonReleaseMark.xdsl"
+            :keep     ('carbonService:StoredCarbonRelease)
+            :observed (stored-carbon-release)
+            :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
+
+;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
  	 					
@@ -182,32 +191,38 @@
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel identification-carbon 'carbonService:ClimateStability
+  (identification 'carbonService:ClimateStability
+                  :context (source :as source
+                            sink :as sink
+                            use-simple :as use)))
+
 ;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
 (defmodel carbon-flow 'carbonService:ClimateStability
   (span 'carbonService:CO2Removed
-  	    'carbonService:NetCarbonUptake
+  	    'carbonService:CarbonSourceValue
   	    'carbonService:GreenhouseGasEmissions
-      	nil  ;;add 'carbonService:CarbonSinkValue
+      	'carbonService:CarbonSinkValue
       	nil
-  	    nil
-        :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
-        :sink-threshold     nil  ;;SET TO 0.1?
-        :use-threshold      1.0
+        nil
+        :source-threshold   10.0
+        :sink-threshold     10.0
+        :use-threshold       1.0
         :trans-threshold    nil
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
         :rv-max-states      10
-        :downscaling-factor 1
+        :downscaling-factor 8
         :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
-                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
-                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
-                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
-                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
-                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
+               'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
+               'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+               'carbonService:UsedCarbonSink 'carbonService:SatisfiedCarbonMitigationDemand
+               'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+               'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-simple use-simple decomposition-factor))) ;;add sink
+        :context (source use-simple sink)))
 
 
 ;; ----------------------------------------------------------------------------------------------

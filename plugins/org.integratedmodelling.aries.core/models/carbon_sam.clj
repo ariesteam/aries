@@ -35,10 +35,36 @@
 	  				[40 80]    'carbonService:LowSoilStorage
 	  				[0 40]     'carbonService:VeryLowSoilStorage
 	  				0          'carbonService:NoSoilStorage))	  			
-	  				
+
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+                  :units      "t/ha*year"
+                  [12 30]     'carbonService:VeryHighSequestration
+                  [9 12]      'carbonService:HighSequestration
+                  [6 9]       'carbonService:ModerateSequestration
+                  [3 6]       'carbonService:LowSequestration
+                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [0 0.01]    'carbonService:NoSequestration))
+
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+  (classification 'carbonService:StoredCarbonRelease
+                  :units      "t/ha*year"
+                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [9 12]      'carbonService:HighRelease
+                  [6 9]       'carbonService:ModerateRelease
+                  [3 6]       'carbonService:LowRelease
+                  [0.01 3]    'carbonService:VeryLowRelease
+                  [0 0.01]    'carbonService:NoRelease))
+				
 ;; ----------------------------------------------------------------------------------------------
 ;; source model
 ;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
 		 (classification (ranking 'habitat:SummerHighWinterLow)
@@ -57,42 +83,54 @@
 					[:< 40]				'carbonService:VeryLowMeanAnnualPrecipitation))
 						
 (defmodel soil-CN-ratio 'carbonService:SoilCNRatio
-			(classification (ranking 'carbonService:SoilCNRatio)
+			(classification (ranking 'habitat:SoilCNRatio)
 					[25 :>]				'carbonService:VeryHighCNRatio
 					[17.5 25]			'carbonService:HighCNRatio
 					[10 17.5]			'carbonService:LowCNRatio
 					[:< 10]				'carbonService:VeryLowCNRatio))
-					
+
 (defmodel veg-type 'carbonService:VegetationType
-			(classification (ranking 'carbonService:VegetationType)
+			(classification (ranking 'carbonService:VegType)
 					#{1 5 25}			'carbonService:RowCrops
 					#{36 37 62}		'carbonService:GrasslandHerbaceous
 					63					  'carbonService:Forest
 					87						'carbonService:Wetland
 					#{61 82}			'carbonService:NoVegetation))
 					
-(defmodel biomass-removal-rate 'carbonService:BiomassRemovalRate
-			(classification (ranking 'carbonService:BiomassRemovalRate)
-					[90 :>]				'carbonService:VeryHighRemovalRate
-					[66 90]				'carbonService:HighRemovalRate
-					[10 66]				'carbonService:LowRemovalRate
-					[:< 10]				'carbonService:VeryLowRemovalRate)) 
-
 ;; Bayesian source model
-;; keep = observations computed by the Bayesian network that we keep.  context = leaf nodes as derived from models
 (defmodel source 'carbonService:CarbonSourceValue   
-	  (bayesian 'carbonService:CarbonSourceValue 
-	  	:import   "aries.core::CarbonSourceValue.xdsl"
-	  	:keep     ('carbonService:NetCarbonUptake
-                 'carbonService:VegetationAndSoilCarbonSequestration
-                 'carbonService:VegetationAndSoilCarbonStorage
-                 'carbonService:VegetationCarbonStorage
-	  						 'carbonService:StoredCarbonRelease
-	   						 'carbonService:SoilCarbonStorage)
-	    :observed (soil-storage veg-storage)
-	 	 	:context  (veg-soil-storage veg-storage soil-storage summer-high-winter-low mean-annual-precip
-	 	 								soil-CN-ratio veg-type biomass-removal-rate)))  
-	 	 	           	 		
+  (bayesian 'carbonService:CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationSam.xdsl"
+            :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
+            :observed (veg-soil-sequestration)
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
+
+;; ----------------------------------------------------------------------------------------------
+;; sink models
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
+;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
+;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
+;; areas at risk of deforestation or fire.
+
+;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer
+;;(defmodel biomass-removal-rate 'carbonService:BiomassRemovalRate
+;;      (classification (ranking 'habitat:BiomassRemovalRate)  
+;;          [90 :>]       'carbonService:VeryHighRemovalRate
+;;          [66 90]       'carbonService:HighRemovalRate
+;;          [10 66]       'carbonService:LowRemovalRate
+;;          [:< 10]       'carbonService:VeryLowRemovalRate)) 
+
+;;No data here for "biomass residue input," "soil tillage" - use priors
+
+(defmodel sink 'carbonService:CarbonSinkValue   
+  (bayesian 'carbonService:CarbonSinkValue 
+            :import   "aries.core::StoredCarbonReleaseSam.xdsl"
+            :keep     ('carbonService:StoredCarbonRelease)
+            :observed (stored-carbon-release)
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
+   	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; use models
 ;; ----------------------------------------------------------------------------------------------
@@ -104,32 +142,38 @@
 ;; top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel identification-carbon 'carbonService:ClimateStability
+  (identification 'carbonService:ClimateStability
+                  :context (source :as source
+                            sink :as sink
+                            use-simple :as use)))
+
 ;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
-;;(defmodel carbon-flow 'carbonService:ClimateStability
-;;  (span 'carbonService:CO2Removed
-;;        'carbonService:NetCarbonUptake
-;;        'carbonService:GreenhouseGasEmissions
-;;        nil  ;;add 'carbonService:CarbonSinkValue
-;;        nil
-;;        nil
-;;        :source-threshold   0.1  ;;This should be set to a more real value once the source model is correctly split into a source and sink.
-;;        :sink-threshold     nil  ;;SET TO 0.1?
-;;        :use-threshold      1.0
-;;        :trans-threshold    nil
-;;        :source-type        :finite
-;;        :sink-type          :finite
-;;        :use-type           :finite
-;;        :benefit-type       :rival
-;;        :rv-max-states      10
-;;        :downscaling-factor 1
-;;        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
-;;                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigation
-;;                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
-;;                'carbonService:UsedCarbonSink 'carbonService:SatisfiedMitigationDemand
-;;                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
-;;                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
-;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-;;        :context (source-simple use-simple))) ;;add sink
+(defmodel carbon-flow 'carbonService:ClimateStability
+  (span 'carbonService:CO2Removed
+        'carbonService:CarbonSourceValue 
+        'carbonService:GreenhouseGasEmissions
+        'carbonService:CarbonSinkValue 
+        nil
+        nil
+        :source-threshold   10.0
+        :sink-threshold     10.0
+        :use-threshold       1.0
+        :trans-threshold    nil
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :rv-max-states      10
+        :downscaling-factor 8
+        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
+               'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
+               'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
+               'carbonService:UsedCarbonSink 'carbonService:SatisfiedCarbonMitigationDemand
+               'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
+               'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source use-simple sink)))
 		
 ;; ----------------------------------------------------------------------------------------------
 ;; scenarios (evolving)

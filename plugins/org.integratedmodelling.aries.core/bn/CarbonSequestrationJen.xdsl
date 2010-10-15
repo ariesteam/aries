@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SoilCNRatio">
+			<state id="VeryHighSoilCNRatio" />
+			<state id="HighSoilCNRatio" />
+			<state id="ModerateSoilCNRatio" />
+			<state id="LowSoilCNRatio" />
+			<probabilities>0 0.413 0.5560000000000001 0.031</probabilities>
+		</cpt>
+		<cpt id="SummerHighWinterLow">
+			<state id="VeryHighSummerHighWinterLow" />
+			<state id="HighSummerHighWinterLow" />
+			<state id="ModerateSummerHighWinterLow" />
+			<state id="LowSummerHighWinterLow" />
+			<state id="VeryLowSummerHighWinterLow" />
+			<probabilities>0.16 0.38 0.43 0.02 0.01</probabilities>
+		</cpt>
+		<cpt id="SequestrationRate">
+			<state id="VeryHighSequestrationRate" />
+			<state id="HighSequestrationRate" />
+			<state id="ModerateSequestrationRate" />
+			<state id="LowSequestrationRate" />
+			<state id="VeryLowSequestrationRate" />
+			<state id="NoSequestrationRate" />
+			<parents>SoilCNRatio SummerHighWinterLow</parents>
+			<probabilities>0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
+		</cpt>
+		<cpt id="StandSizeDensity">
+			<state id="HighStandSizeDensity" />
+			<state id="ModerateStandSizeDensity" />
+			<state id="LowStandSizeDensity" />
+			<state id="NoStandSizeDensity" />
+			<probabilities>0.955 0.013 0.002 0.03</probabilities>
+		</cpt>
+		<cpt id="StandCondition">
+			<state id="HighStandCondition" />
+			<state id="ModerateStandCondition" />
+			<state id="LowStandCondition" />
+			<state id="NoStandCondition" />
+			<probabilities>0.8555 0.0209 0.0948 0.0288</probabilities>
+		</cpt>
+		<cpt id="VegetationDensity">
+			<state id="HighVegetationDensity" />
+			<state id="ModerateVegetationDensity" />
+			<state id="LowVegetationDensity" />
+			<state id="VeryLowVegetationDensity" />
+			<state id="NoVegetationDensity" />
+			<parents>StandSizeDensity StandCondition</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.2 0.2 0.2 0.2 0.2 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.2 0.2 0.2 0.2 0.2 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.2 0.2 0.2 0.2 0.2 0.5 0.5 0 0 0 0.5 0.5 0 0 0 0.5 0.5 0 0 0</probabilities>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonSequestration">
+			<state id="VeryHighVegetationAndSoilCarbonSequestration" />
+			<state id="HighVegetationAndSoilCarbonSequestration" />
+			<state id="ModerateVegetationAndSoilCarbonSequestration" />
+			<state id="LowVegetationAndSoilCarbonSequestration" />
+			<state id="VeryLowVegetationAndSoilCarbonSequestration" />
+			<state id="NoVegetationAndSoilCarbonSequestration" />
+			<parents>SequestrationRate VegetationDensity</parents>
+			<probabilities>0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0 0.5 0.5 0 0 0 0</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+			<node id="VegetationAndSoilCarbonSequestration">
+				<name>VegetationAndSoilCarbonSequestration</name>
+				<interior color="008000" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>340 132 475 201</position>
+				<barchart active="true" width="229" height="126" />
+			</node>
+			<node id="StandSizeDensity">
+				<name>StandSizeDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>461 471 562 534</position>
+				<comment>From discussion with Diane Harlow Burbank, Ecologist\nGreen Mountain &amp; Finger Lakes National Forest\n\nSize density is more about successional stage.</comment>
+				<barchart active="true" width="128" height="126" />
+			</node>
+			<node id="SequestrationRate">
+				<name>SequestrationRate</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>183 302 282 363</position>
+				<barchart active="true" width="128" height="126" />
+			</node>
+			<node id="SoilCNRatio">
+				<name>SoilCNRatio</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>67 454 154 515</position>
+				<barchart active="true" width="128" height="90" />
+			</node>
+			<node id="SummerHighWinterLow">
+				<name>SummerHighWinterLow</name>
+				<interior color="00ffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>211 467 356 532</position>
+				<barchart active="true" width="144" height="108" />
+			</node>
+			<node id="StandCondition">
+				<name>StandCondition</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>637 458 757 535</position>
+				<comment>Diane Harlow Burbank, Ecologist\nGreen Mountain &amp; Finger Lakes National Forest\n\nStand condition relates to sparse stand and high risk which can give an idea of standing biomass.</comment>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="VegetationDensity">
+				<name>VegetationDensity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>452 288 580 369</position>
+				<comment>After discussing with Diane Harlow Burbank, Ecologist\nGreen Mountain &amp; Finger Lakes National Forest, she thinks a combination of Size density and Stand condition would give the best representation of vegetation density using the Forest Service Inventory which is different than the FIA plots. \n\nThe FIA plots are more general and are not as precise as the data available for the Green Mountain National Forest.</comment>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<textbox>
+				<caption>ALL CPTs INCOMPLETE!</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>593 164 665 192</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

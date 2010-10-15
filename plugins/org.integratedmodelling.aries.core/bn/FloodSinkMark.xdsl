@@ -25,7 +25,7 @@
 			<probabilities>0.8 0.15 0.05 0 0 0.75 0.15 0.1 0 0 0.6 0.2 0.2 0 0 0.55 0.225 0.225 0 0 0 0.1 0.6 0.3 0 0 0.05 0.6 0.35 0 0 0 0.05 0.475 0.475 0 0 0 0.4 0.6 0 0 0 0.45 0.55 0 0 0 0.35 0.65 0 0 0.05 0.475 0.475 0 0 0 0 1</probabilities>
 			<property id="GrayInfrastructureInfluence">GrayInfrastructureInfluence=DamStorage+DetentionBasinStorage</property>
 		</cpt>
-		<cpt id="VegetationTypeSoCal">
+		<cpt id="VegetationTypeSoCalFlood">
 			<state id="WetlandVegetation" />
 			<state id="ForestGrasslandShrublandCultivatedVegetation" />
 			<state id="DevelopedVegetation" />
@@ -45,7 +45,7 @@
 			<state id="ModerateEvaoptranspiration" />
 			<state id="LowEvaoptranspiration" />
 			<state id="VeryLowEvaoptranspiration" />
-			<parents>PercentVegetationCover VegetationTypeSoCal</parents>
+			<parents>PercentVegetationCover VegetationTypeSoCalFlood</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0 0.2 0.2 0.3 0.3 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0 0.05 0.15 0.4 0.4 0.8 0.2 0 0 0 0.7 0.2 0.1 0 0 0 0 0.1 0.4 0.5 0.75 0.25 0 0 0 0.6 0.2 0.1 0.1 0 0 0 0.05 0.3 0.65 0.7 0.3 0 0 0 0.4 0.4 0.1 0.1 0 0 0 0 0.2 0.8</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
@@ -168,9 +168,9 @@
 				<comment>Data source: GLF/Univ. of Maryland\nResolution 1km2\n\nStudy area is highly urbanized. The percent vegetation cover priors reflect such conditions. \n\nDecreased vegetation cover decreases &apos;Vegetation infiltration and interception,&apos; and vice versa.  </comment>
 				<barchart active="true" width="161" height="108" />
 			</node>
-			<node id="VegetationTypeSoCal">
-				<name>VegetationTypeSoCal</name>
-				<interior color="e5f6f7" />
+			<node id="VegetationTypeSoCalFlood">
+				<name>VegetationTypeSoCalFlood</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>679 425 774 455</position>

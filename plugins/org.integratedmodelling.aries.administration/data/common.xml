@@ -1381,33 +1381,6 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 	
-<!-- Binary coding for wetlands in Mg; just use NLCD for U.S. -->
-	<measurement:BinaryCoding id="wetlands">
-		<observation:hasObservable>
-			<carbonService:SoilOxygenConditions/>
-		</observation:hasObservable>
-				<rdfs:comment>Data source: Derived from Foiben-Taosarintanini Madagasikara (FTM) land cover map</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:wetlands</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>29719</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>54068</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>7135327.75</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>266392.5</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>8703357.75</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1128301.5</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32738</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
-	
 <!-- soil_ph1 is pH at 0-30 cm; soil_ph2 is pH at 30-100 cm depth; use soil_ph2 
 for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	<!-- For both global soil pH layers, one of the classes corresponds to complex soils units with soil pH uncertain 
@@ -1709,6 +1682,33 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
+
+<!-- Binary coding for wetlands in Mg; just use NLCD for U.S. -->
+	<measurement:BinaryCoding id="wetlands">
+		<observation:hasObservable>
+			<habitat:Wetland/>
+		</observation:hasObservable>
+				<rdfs:comment>Data source: Derived from Foiben-Taosarintanini Madagasikara (FTM) land cover map</rdfs:comment>
+				<metadata:hasPriority>0</metadata:hasPriority> 
+				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:wetlands</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>29719</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>54068</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>7135327.75</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>266392.5</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>8703357.75</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>1128301.5</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32738</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
 
 <!--  ITEMS BELOW HAVE NOT BEEN ALPHABETIZED BY ONTOLOGIC CONCEPT.  THEY MAY NEED TO BE RE-TAGGED IN GEOSERVER. -->
 

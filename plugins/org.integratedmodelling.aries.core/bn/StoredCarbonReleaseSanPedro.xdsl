@@ -87,12 +87,12 @@
 			<parents>VegetationCarbonStorage SoilCarbonStorage</parents>
 			<resultingstates>VeryHighStorage HighStorage LowStorage HighStorage HighStorage NoStorage VeryHighStorage HighStorage ModerateStorage LowStorage VeryLowStorage NoStorage HighStorage ModerateStorage LowStorage LowStorage VeryLowStorage NoStorage ModerateStorage LowStorage LowStorage LowStorage VeryLowStorage NoStorage LowStorage LowStorage VeryLowStorage VeryLowStorage VeryLowStorage NoStorage VeryLowStorage VeryLowStorage NoStorage NoStorage NoStorage NoStorage</resultingstates>
 		</deterministic>
-		<cpt id="DeforestationRisk">
+		<cpt id="DeforestationRiskClass">
 			<state id="HighDeforestationRisk" />
 			<state id="ModerateDeforestationRisk" />
 			<state id="LowDeforestationRisk" />
 			<state id="NoDeforestationRisk" />
-			<probabilities>0.2 0.2 0.3 0.3</probabilities>
+			<probabilities>0.01 0.01 0.02 0.96</probabilities>
 		</cpt>
 		<cpt id="StoredCarbonRelease">
 			<state id="VeryHighRelease" />
@@ -101,7 +101,7 @@
 			<state id="LowRelease" />
 			<state id="VeryLowRelease" />
 			<state id="NoRelease" />
-			<parents>VegetationAndSoilCarbonStorage FireFrequency DeforestationRisk</parents>
+			<parents>VegetationAndSoilCarbonStorage FireFrequency DeforestationRiskClass</parents>
 			<probabilities>0.8 0.15 0.05 0 0 0 0.75 0.2 0.05 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2000000000000001 0.2000000000000001 0.2000000000000001 0.2000000000000001 0.1 0.6 0.3 0.05 0.05 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0.1 0.1 0.2000000000000001 0.3 0.2000000000000001 0.1 0.5 0.3 0.1 0.1 0 0 0 0.1 0.3 0.3 0.2 0.1 0 0 0 0.1 0.4 0.5 0 0 0 0 0 1 0.6 0.25 0.1 0.05 0 0 0.55 0.25 0.15 0.05 0 0 0.5 0.25 0.15 0.1 0 0 0.4500000000000001 0.2500000000000001 0.2000000000000001 0.1 0 0 0.5 0.25 0.15 0.1 0 0 0.45 0.25 0.25 0.05 0 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.1 0.3 0.3 0.2000000000000001 0.1 0.4000000000000001 0.3 0.2000000000000001 0.1 0 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.05 0.25 0.4 0.25 0.05 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.05 0.25 0.4 0.25 0.05 0 0 0 0 0 1 0.4 0.4 0.15 0.05 0 0 0.35 0.35 0.25 0.05 0 0 0.3 0.3 0.2 0.15 0.05 0 0.25 0.25 0.25 0.2 0.05 0 0.3 0.35 0.3 0.05 0 0 0.25 0.3 0.25 0.2 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.3 0.3 0.1 0.1 0.3 0.3 0.3 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.25 0.25 0.2 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.25 0.25 0.2 0 0 0.2 0.2 0.3 0.3 0 0 0 0 0 1 0.2 0.3 0.3 0.2 0 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.3 0.3 0.15 0.15 0 0.05 0.25 0.25 0.25 0.15 0.05 0.15 0.3 0.3 0.15 0.1 0 0.05 0.2 0.25 0.25 0.2 0.05 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.2 0.3 0.25 0.25 0.1 0.3 0.3 0.15 0.15 0 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.1 0.2 0.3 0.4 0 0 0 0.15 0.25 0.6 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.1 0.2 0.3 0.4 0 0 0 0.15 0.25 0.6 0 0 0 0 0 1 0.05 0.2 0.25 0.25 0.2 0.05 0 0.15 0.3 0.3 0.15 0.1 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.05 0.25 0.3 0.4 0 0.15 0.3 0.3 0.15 0.1 0 0.05 0.2 0.25 0.25 0.25 0 0 0.05 0.25 0.3 0.4 0 0 0 0.3 0.3 0.4 0 0.1 0.2500000000000001 0.3 0.2500000000000001 0.1 0 0 0.05 0.25 0.3 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.2 0.7 0 0 0.05 0.25 0.3 0.4 0 0 0 0.1 0.2 0.7 0 0 0 0.1 0.2 0.7 0 0 0 0 0 1 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.02 0.98 0 0 0 0 0.02 0.98 0 0 0 0 0.05 0.95 0 0 0 0 0.02 0.98 0 0 0 0 0.02 0.98 0 0 0 0 0.01 0.99 0 0 0 0 0.02 0.98 0 0 0 0 0.01 0.99 0 0 0 0 0.01 0.99 0 0 0 0 0 1</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
@@ -201,8 +201,8 @@
 				<position>92 346 182 377</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
-			<node id="DeforestationRisk">
-				<name>DeforestationRisk</name>
+			<node id="DeforestationRiskClass">
+				<name>DeforestationRiskClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

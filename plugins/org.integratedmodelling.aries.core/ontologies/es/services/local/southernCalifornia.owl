@@ -11,36 +11,47 @@
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/floodService.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="HerbaceousVegetationType">
+  <owl:Class rdf:ID="ForestGrasslandShrublandCultivatedVegetation">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="VegetationTypeSoCal"/>
+      <owl:Class rdf:ID="VegetationTypeSoCalFlood"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VegetationTypeSoCalCarbon">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HerbaceousVegetationType">
+    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCalCarbon"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DevelopedVegetation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#VegetationTypeSoCalFlood"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VegTypeSoCal">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="LandCover">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat"/>
   </owl:Class>
-  <owl:Class rdf:ID="OpenSpaceLandCover">
+  <owl:Class rdf:ID="WetlandOpenWaterLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
-  <owl:Class rdf:ID="WetlandOpenWaterLandCover">
+  <owl:Class rdf:ID="OpenSpaceLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="LowDevelopedLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="MixedConiferVegetationType">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#VegetationTypeSoCal"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCalCarbon"/>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
   <owl:Class rdf:ID="ScrubAndForestLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="HardwoodForestVegetationType">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#VegetationTypeSoCal"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCalCarbon"/>
   </owl:Class>
   <owl:Class rdf:ID="HighAndMedDevelopedLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
@@ -48,11 +59,14 @@
   <owl:Class rdf:ID="GrasslandAndCultivatedLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
-  <owl:Class rdf:about="#VegetationTypeSoCal">
+  <owl:Class rdf:about="#VegetationTypeSoCalFlood">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="ShrubVegetationType">
-    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCal"/>
+    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCalCarbon"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WetlandVegetation">
+    <rdfs:subClassOf rdf:resource="#VegetationTypeSoCalFlood"/>
   </owl:Class>
 </rdf:RDF>
 

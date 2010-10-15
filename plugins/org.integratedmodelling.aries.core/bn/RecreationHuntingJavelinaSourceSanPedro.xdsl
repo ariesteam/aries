@@ -6,7 +6,7 @@
 			<state id="JavelinaHabitatAbsent" />
 			<probabilities>0.7 0.3</probabilities>
 		</cpt>
-		<cpt id="PublicAccess">
+		<cpt id="PublicAccessClass">
 			<state id="PublicLand" />
 			<state id="NoPublicAccess" />
 			<probabilities>0.6 0.4</probabilities>
@@ -23,7 +23,7 @@
 			<state id="ModerateJavelinaHuntingQuality" />
 			<state id="LowJavelinaHuntingQuality" />
 			<state id="VeryLowJavelinaHuntingQuality" />
-			<parents>JavelinaHabitat PublicAccess RiparianAndWetlandCode</parents>
+			<parents>JavelinaHabitat PublicAccessClass RiparianAndWetlandCode</parents>
 			<probabilities>0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 	</nodes>
@@ -37,8 +37,8 @@
 				<position>320 322 432 392</position>
 				<barchart active="true" width="241" height="64" />
 			</node>
-			<node id="PublicAccess">
-				<name>PublicAccess</name>
+			<node id="PublicAccessClass">
+				<name>PublicAccessClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

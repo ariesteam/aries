@@ -110,13 +110,12 @@
                   [4.57 16.70] 'floodService:RollingToHilly
                   [16.70 :>]   'floodService:SteeplyDissectedToMountainous))
 
-;;REDO THIS AS VEGETATION TYPE SOCAL
-(defmodel vegetation-type 'floodService:VegetationType
-  "Just a reclass of the NLCD land use layer"
+;;Use NLCD here, the Vegetation Type SoCal layer provided by Mark doesn't have enough categories to cover the discretization below.
+(defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCalFlood
   (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{90 95}           'floodService:WetlandVegetation
-                  #{41 42 43 52 71}  'floodService:ForestGrasslandShrublandVegetation
-                  #{21 22 23 24 82}  'floodService:DevelopedCultivatedVegetation))
+                  #{90 95}           'southernCalifornia:WetlandVegetation
+                  #{41 42 43 52 71}  'southernCalifornia:ForestGrasslandShrublandVegetation
+                  #{21 22 23 24 82}  'southernCalifornia:DevelopedCultivatedVegetation))
 
 (defmodel percent-vegetation-cover 'floodService:PercentVegetationCover
   (classification (ranking 'habitat:PercentVegetationCover)
@@ -187,7 +186,7 @@
   "Interface to Flood resident use bayesian network"
   (bayesian 'floodService:FloodSink 
             :import   "aries.core::FloodSinkMark.xdsl"
-            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage)
+            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage vegetation-type)
             :observed (flood-sink) 
             :keep     ('floodService:FloodSink)))
 

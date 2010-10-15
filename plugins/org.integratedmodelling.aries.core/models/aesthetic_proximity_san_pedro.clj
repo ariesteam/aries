@@ -77,7 +77,7 @@
 
 ;; Compute area of open space polygons as a GIS operation and store this value redundantly in each pixel in the 
 ;; polygon.  Make sure all the appropriate ontology changes are made (including inheriting from Areas and all 
-;; that jazz.
+;; that jazz).
 ;;(defmodel area 'aestheticService:OpenSpaceArea...
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource

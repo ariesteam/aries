@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="ViewerPosition">
-			<state id="HighElevationView" />
-			<state id="MidElevationView" />
-			<state id="LowElevationView" />
+		<cpt id="ViewPositionClass">
+			<state id="HighViewPosition" />
+			<state id="MediumViewPosition" />
+			<state id="LowViewPosition" />
 			<probabilities>0.0056 0.2964 0.698</probabilities>
 		</cpt>
-		<cpt id="TravelTime">
+		<cpt id="TravelTimeClass">
 			<state id="LongTravelTime" />
 			<state id="ModerateTravelTime" />
 			<state id="ShortTravelTime" />
 			<probabilities>0.6 0.2 0.2</probabilities>
 		</cpt>
-		<cpt id="PublicAccess">
+		<cpt id="PublicAccessClass">
 			<state id="PublicLand" />
 			<state id="PrivateLandWithAccess" />
 			<state id="NoPublicAccess" />
@@ -23,16 +23,16 @@
 			<state id="HighCongestion" />
 			<state id="ModerateCongestion" />
 			<state id="LowCongestion" />
-			<parents>TravelTime PublicAccess</parents>
+			<parents>TravelTimeClass PublicAccessClass</parents>
 			<probabilities>0.2 0.4 0.4 0.1 0.3 0.6 0 0 1 0.4 0.5 0.1 0.3 0.5 0.2 0 0 1 0.7 0.2 0.1 0.5 0.3 0.2 0 0 1</probabilities>
 		</cpt>
-		<cpt id="HikingDistance">
+		<cpt id="HikingDistanceClass">
 			<state id="LongHikingDistance" />
 			<state id="ModerateHikingDistance" />
 			<state id="ShortHikingDistance" />
 			<probabilities>0.37 0.49 0.14</probabilities>
 		</cpt>
-		<cpt id="HikingSlope">
+		<cpt id="HikingSlopeClass">
 			<state id="SteepSlope" />
 			<state id="ModerateSlope" />
 			<state id="LowSlope" />
@@ -42,21 +42,21 @@
 			<state id="Strenuous" />
 			<state id="Moderate" />
 			<state id="Easy" />
-			<parents>HikingDistance HikingSlope</parents>
+			<parents>HikingDistanceClass HikingSlopeClass</parents>
 			<probabilities>1 0 0 0.3 0.6 0.1 0.1 0.7 0.2 0.9 0.1 0 0.2 0.6 0.2 0 0.1 0.9 0.8 0.2 0 0.1 0.5 0.4 0 0 1</probabilities>
 		</cpt>
 		<cpt id="ViewerEnjoyment">
 			<state id="HighViewerEnjoyment" />
 			<state id="ModerateViewerEnjoyment" />
 			<state id="LowViewerEnjoyment" />
-			<parents>ViewerPosition Congestion HikingDifficulty</parents>
+			<parents>ViewPositionClass Congestion HikingDifficulty</parents>
 			<probabilities>0 0.2 0.8 0.1 0.2 0.7 0.2 0.3 0.5 0.1 0.2 0.7 0.2 0.3 0.5 0.2 0.5 0.3 0.6 0.3 0.1 0.6 0.35 0.05 0.8 0.2 0 0 0.2 0.8 0.1 0.2 0.7 0.2 0.3 0.5 0.05 0.25 0.7 0.1 0.4 0.5 0.15 0.55 0.3 0.5 0.4 0.1 0.7 0.25 0.05 0.8 0.2 0 0 0.1 0.9 0 0.2 0.8 0.1 0.3 0.6 0.1 0.2 0.7 0.1 0.4 0.5 0.2 0.4 0.4 0.3 0.6 0.1 0.4 0.55 0.05 0.7 0.3 0</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3568.0" name="Network2" faultnameformat="nodestate">
-			<node id="ViewerPosition">
-				<name>ViewPosition</name>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+			<node id="ViewPositionClass">
+				<name>ViewPositionClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -79,16 +79,16 @@
 				<position>369 299 437 341</position>
 				<barchart active="true" width="189" height="80" />
 			</node>
-			<node id="TravelTime">
-				<name>TravelTime</name>
+			<node id="TravelTimeClass">
+				<name>TravelTimeClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>190 429 331 517</position>
 				<barchart active="true" width="210" height="80" />
 			</node>
-			<node id="PublicAccess">
-				<name>PublicAccess</name>
+			<node id="PublicAccessClass">
+				<name>PublicAccessClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -103,16 +103,16 @@
 				<position>697 295 761 335</position>
 				<barchart active="true" width="128" height="72" />
 			</node>
-			<node id="HikingDistance">
-				<name>HikingDistance</name>
+			<node id="HikingDistanceClass">
+				<name>HikingDistanceClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="7" />
 				<position>724 453 781 488</position>
 				<barchart active="true" width="153" height="76" />
 			</node>
-			<node id="HikingSlope">
-				<name>HikingSlope</name>
+			<node id="HikingSlopeClass">
+				<name>HikingSlopeClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="7" />

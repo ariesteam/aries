@@ -80,7 +80,7 @@
             :import  "aries.core::ViewSink.xdsl"
             :context (commercial-transportation highway)
             :observed (view-sink-undiscretizer)
-            :keep    ('aestheticService:TotalVisualBlight)))
+            :keep    ('aestheticService:VisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; use model
@@ -144,6 +144,7 @@
   (identification 'aestheticService:LineOfSight
                   :context (source :as source
                                    homeowners :as use
+                                   ;;scenic-highways :as use (once wfs is working)
                                    sink       :as sink
                                    altitude   :as altitude)))
 

@@ -1,19 +1,7 @@
-;;Source & sink models have been separated for San Pedro: do the same for the carbon models in Puget Sound, Madagascar,
-;; Orange County, and Vermont.
-
 (ns core.models.carbon-san-pedro
   (:refer-clojure :rename {count length}) 
-  (:refer modelling :only [defscenario
-                           defmodel
-                           measurement
-                           classification
-                           categorization
-                           ranking
-                           numeric-coding
-                           binary-coding
-                           identification
-                           bayesian
-                           count])
+  (:refer modelling :only [defscenario defmodel measurement classification categorization ranking numeric-coding
+                           binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
 ;; output and training

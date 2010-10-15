@@ -57,37 +57,37 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; ViewPosition, TravelTime, PublicAccess, HikingDistance, HikingSlope
 
-(defmodel view-position 'recreationService:ViewPosition
+(defmodel view-position 'recreationService:ViewPositionClass
   "Location of a view point, a function of elevation."
-  (classification (ranking 'recreationService:ViewPosition)
+  (classification (measurement 'recreationService:ViewPosition "m")
 		  [0 457]   'recreationService:LowViewPosition
 		  [457 914] 'recreationService:MediumViewPosition
 		  [914 :>]  'recreationService:HighViewPosition))
 		  
-(defmodel travel-time 'recreationService:TravelTime
+(defmodel travel-time 'recreationService:TravelTimeClass
 	"Travel time to hiking resources"
 	(classification (ranking 'recreationService:TravelTime)
 			1  'recreationService:ShortTravelTime
 			2  'recreationService:ModerateTravelTime
 			3  'recreationService:LongTravelTime))
 			
-(defmodel public-access 'recreationService:PublicAccess
+(defmodel public-access 'recreationService:PublicAccessClass
 	"describes access constraints to a particular parcel"
 	(classification (ranking 'recreationService:PublicAccess)
 		  0   'recreationService:PublicLand
 		  1		'recreationService:PrivateLandWithAccess
 		  2		'recreationService:NoPublicAccess)) 
 	
-(defmodel hiking-distance 'recreationService:HikingDistance
+(defmodel hiking-distance 'recreationService:HikingDistanceClass
 	"Refers to trail distance between the starting point and the view point"
 	(classification (ranking 'recreationService:HikingDistance)
 			1   'recreationService:ShortHikingDistance
 			2   'recreationService:ModerateHikingDistance
 			3   'recreationService:LongHikingDistance))
 	
-(defmodel hiking-slope 'recreationService:HikingSlope
+(defmodel hiking-slope 'recreationService:HikingSlopeClass
 	"describes the steepness of the hiking trail"
-	(classification (ranking 'recreationService:HikingSlope)
+	(classification (measurement 'recreationService:HikingSlope "\u00b0")
 			[:< 10] 'recreationService:LowSlope
 			[10 45] 'recreationService:ModerateSlope
 			[45 :>]	'recreationService:SteepSlope))

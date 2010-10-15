@@ -1,38 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SummerHighWinterLow">
-			<state id="VeryHighSOL" />
-			<state id="HighSOL" />
-			<state id="ModerateSOL" />
-			<state id="LowSOL" />
-			<state id="VeryLowSOL" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
-		</cpt>
-		<cpt id="SuccessionalStage">
-			<state id="OldGrowth" />
-			<state id="LateSuccession" />
-			<state id="MidSuccession" />
-			<state id="PoleSuccession" />
-			<state id="EarlySuccession" />
-			<state id="NoSuccession" />
-			<probabilities>0.1 0.15 0.15 0.15 0.05 0.4</probabilities>
-		</cpt>
 		<cpt id="PercentVegetationCover">
-			<state id="VeryHighVegetationCover" />
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
 			<state id="VeryLowVegetationCover" />
-			<probabilities>0 0 0 0.5 0.5</probabilities>
-		</cpt>
-		<cpt id="HardwoodSoftwoodRatio">
-			<state id="VeryHighHardness" />
-			<state id="HighHardness" />
-			<state id="ModerateHardness" />
-			<state id="LowHardness" />
-			<state id="VeryLowHardness" />
+			<state id="LowVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="HighVegetationCover" />
+			<state id="VeryHighVegetationCover" />
 			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="DegradationStatus">
+			<state id="Degraded" />
+			<state id="NotDegraded" />
+			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -41,9 +21,17 @@
 			<state id="LowVegetationDensity" />
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
-			<parents>SuccessionalStage PercentVegetationCover HardwoodSoftwoodRatio</parents>
-			<probabilities>0.99 0.01 0 0 0 0 0.96 0.04 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.7 0.3 0 0 0 0 0.99 0.01 0 0 0 0 0.96 0.04 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.7 0.3 0 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.2 0.25 0.55 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.3 0.3 0.2 0 0 0.1 0.3 0.3 0.3 0 0 0 0.4 0.3 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0 0.4 0.6 0 0 0 0.95 0.05 0 0 0 0 0.85 0.15 0 0 0 0 0.75 0.25 0 0 0 0 0.65 0.35 0 0 0 0 0.55 0.45 0 0 0 0 0.92 0.08 0 0 0 0 0.82 0.18 0 0 0 0 0.72 0.28 0 0 0 0 0.62 0.38 0 0 0 0 0.52 0.48 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0 0.5 0.5 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.3 0.3 0.2 0 0 0.1 0.35 0.35 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0.05 0.35 0.6 0 0 0 0.55 0.35 0.1 0 0 0 0.45 0.45 0.1 0 0 0 0.35 0.45 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.5 0.4 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.45 0.25 0 0 0 0.2 0.45 0.35 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.4 0.55 0 0 0 0.05 0.35 0.6 0 0 0 0.15 0.45 0.3 0.1 0 0 0.05 0.45 0.4 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.35 0.35 0.3 0 0 0 0.3 0.3 0.4 0 0 0 0.3 0.55 0.15 0 0 0 0.2 0.55 0.25 0 0 0 0.1 0.55 0.35 0 0 0 0.1 0.45 0.45 0 0 0 0.1 0.35 0.55 0 0 0.15 0.4 0.3 0.15 0 0 0.05 0.4 0.4 0.15 0 0 0.05 0.3 0.4 0.25 0 0 0.05 0.25 0.3 0.4 0 0 0 0.25 0.3 0.45 0 0 0 0.45 0.45 0.1 0 0 0 0.35 0.45 0.2 0 0 0 0.25 0.45 0.3 0 0 0 0.25 0.35 0.4 0 0 0 0.25 0.3 0.45 0 0 0 0.25 0.6 0.15 0 0 0 0.15 0.6 0.25 0 0 0 0.15 0.5 0.35 0 0 0 0.05 0.5 0.45 0 0 0 0.05 0.4 0.55 0 0 0 0.2 0.65 0.15 0 0 0 0.1 0.65 0.25 0 0 0 0.1 0.55 0.35 0 0 0 0.1 0.5 0.4 0 0 0 0.05 0.4 0.55 0 0 0 0 0.55 0.45 0 0 0 0 0.45 0.55 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.25 0.75 0 0 0 0.15 0.45 0.4 0 0 0 0.05 0.45 0.5 0 0 0 0.05 0.4 0.55 0 0 0 0.05 0.35 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0 0.55 0.45 0 0 0 0 0.45 0.55 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.25 0.75 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.4 0.6 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.05 0.95 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.05 0.95 0 0 0 0 0.05 0.95 0 0 0 0 0.4 0.5 0.1 0 0 0 0.3 0.5 0.2 0 0 0 0.2 0.5 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.3 0.6 0 0 0 0.4 0.3 0.3 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.3 0.6 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.5 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0.1 0.3 0.6 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.5 0 0 0 0.1 0.3 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0 0.3 0.7</probabilities>
+			<parents>PercentVegetationCover DegradationStatus</parents>
+			<probabilities>0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
+		</cpt>
+		<cpt id="SummerHighWinterLow">
+			<state id="VeryHighSOL" />
+			<state id="HighSOL" />
+			<state id="ModerateSOL" />
+			<state id="LowSOL" />
+			<state id="VeryLowSOL" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
 		<cpt id="SoilCNRatio">
 			<state id="VeryHighCNRatio" />
@@ -65,11 +53,11 @@
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
 			<state id="VeryHighSequestration" />
-			<state id="HighSequestration" />
-			<state id="ModerateSequestration" />
-			<state id="LowSequestration" />
-			<state id="VeryLowSequestration" />
-			<state id="NoSequestration" />
+			<state id="HighhSequestration" />
+			<state id="ModeratehSequestration" />
+			<state id="LowhSequestration" />
+			<state id="VeryLowhSequestration" />
+			<state id="NohSequestration" />
 			<parents>VegetationDensity SequestrationRate</parents>
 			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
@@ -79,71 +67,62 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
-				<interior color="ccffcc" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>745 226 1077 252</position>
+				<position>656 176 988 202</position>
 				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
-				<barchart active="true" width="265" height="126" />
+				<barchart active="true" width="294" height="126" />
 			</node>
 			<node id="PercentVegetationCover">
 				<name>PercentVegetationCover</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1136 594 1243 624</position>
-				<barchart active="true" width="128" height="108" />
-			</node>
-			<node id="HardwoodSoftwoodRatio">
-				<name>HardwoodSoftwoodRatio</name>
-				<interior color="ffcc99" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>886 596 1044 624</position>
-				<barchart active="true" width="262" height="108" />
-			</node>
-			<node id="SuccessionalStage">
-				<name>SuccessionalStage</name>
-				<interior color="ffcc99" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>1312 593 1437 623</position>
-				<barchart active="true" width="128" height="126" />
+				<position>854 541 963 571</position>
+				<barchart active="true" width="267" height="108" />
 			</node>
 			<node id="SummerHighWinterLow">
 				<name>SummerHighWinterLow</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>648 590 784 625</position>
+				<position>571 538 707 573</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
-				<barchart active="true" width="199" height="109" />
+				<barchart active="true" width="186" height="108" />
 			</node>
 			<node id="VegetationDensity">
 				<name>VegetationDensity</name>
-				<interior color="e5f6f7" />
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>975 436 1097 465</position>
+				<position>982 371 1104 400</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="128" height="126" />
+				<barchart active="true" width="281" height="126" />
 			</node>
 			<node id="SoilCNRatio">
 				<name>SoilCNRatio</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>490 580 577 612</position>
-				<barchart active="true" width="128" height="90" />
+				<position>348 527 435 559</position>
+				<barchart active="true" width="204" height="90" />
 			</node>
 			<node id="SequestrationRate">
 				<name>SequestrationRate</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>569 369 684 400</position>
+				<barchart active="true" width="313" height="126" />
+			</node>
+			<node id="DegradationStatus">
+				<name>DegradationStatus</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>677 438 792 469</position>
-				<comment>Type your annotation here</comment>
-				<barchart active="true" width="128" height="126" />
+				<position>1090 516 1207 550</position>
+				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>
 	</extensions>
