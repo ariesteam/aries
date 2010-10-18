@@ -41,40 +41,8 @@
                   [0.01 50]      'carbonService:VeryLowSoilStorage
                   [0 0.01]       'carbonService:NoSoilStorage))
 
-;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
-(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
-  (classification 'carbonService:VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
-
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
-  (classification 'carbonService:StoredCarbonRelease
-                  :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
-
-(defmodel net-carbon-uptake 'carbonService:NetCarbonUptake
-  (classification 'carbonService:NetCarbonUptake
-                  :units      "t/ha*year"
-                  [  6 30]     'carbonService:HighCarbonUptake
-                  [  3  6]     'carbonService:ModerateCarbonUptake
-                  [  0  3]     'carbonService:LowCarbonUptake
-                  [ -3  0]     'carbonService:LowCarbonRelease
-                  [ -6 -3]     'carbonService:ModerateCarbonRelease
-                  [-30 -6]     'carbonService:HighCarbonRelease))
-
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -119,6 +87,17 @@
                   22                  'southernCalifornia:LowDevelopedLandCover
                   #{23 24}            'southernCalifornia:HighAndMedDevelopedLandCover))
 
+;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+                  :units      "t/ha*year"
+                  [12 30]     'carbonService:VeryHighSequestration
+                  [9 12]      'carbonService:HighSequestration
+                  [6 9]       'carbonService:ModerateSequestration
+                  [3 6]       'carbonService:LowSequestration
+                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [0 0.01]    'carbonService:NoSequestration))
+
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
@@ -128,7 +107,7 @@
 	 	 	      :context  (percent-vegetation-cover vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; carbon model accuracy check
+;; Carbon model accuracy check
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Decomposition Factor (DF) has been noted to be a good predictor of NPP for chaparral ecosystems 
@@ -145,7 +124,7 @@
            :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration %))))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink models
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -173,6 +152,17 @@
                   2  'carbonService:ModerateFireThreat
                   1  'carbonService:LowFireThreat))
 
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+  (classification 'carbonService:StoredCarbonRelease
+                  :units      "t/ha*year"
+                  [12 3200]   'carbonService:VeryHighRelease
+                  [9 12]      'carbonService:HighRelease
+                  [6 9]       'carbonService:ModerateRelease
+                  [3 6]       'carbonService:LowRelease
+                  [0.01 3]    'carbonService:VeryLowRelease
+                  [0 0.01]    'carbonService:NoRelease))
+
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseMark.xdsl"
@@ -181,14 +171,14 @@
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
  	 					
 (defmodel use-simple 'carbonService:GreenhouseGasEmissions
   (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
 
 ;; ----------------------------------------------------------------------------------------------
-;; top-level service models
+;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel identification-carbon 'carbonService:ClimateStability
@@ -226,7 +216,7 @@
 
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
+;; Scenarios (evolving)
 ;; observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------

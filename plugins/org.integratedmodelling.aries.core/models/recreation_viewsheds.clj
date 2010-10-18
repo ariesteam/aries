@@ -4,7 +4,7 @@
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; provision model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel lake 'aestheticService:Lake
@@ -53,7 +53,60 @@
     :observed (theoretical-beauty)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use model
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+;;development, clearcuts, roads, energy infrastructure
+(defmodel development 'recreationService:Development
+  "Development as defined by the NLCD 2001"
+  (classification (numeric-coding 'nlcd:NLCDNumeric)
+      22          'recreationService:LowIntensityDevelopment
+      23          'recreationService:MediumIntensityDevelopment
+      24          'recreationService:HighIntensityDevelopment
+      :otherwise  'recreationService:NotDeveloped)) 
+
+(defmodel roads 'recreationService:Roads
+  (classification (binary-coding 'infrastructure:Road)
+      0          'recreationService:RoadsAbsent
+      :otherwise 'recreationService:RoadsPresent))
+
+(defmodel energy-infrastructure 'recreationService:EnergyInfrastructure
+  "Presence of energy infrastructure"
+  (classification (binary-coding 'infrastructure:EnergyInfrastructure)
+      0           'recreationService:EnergyInfrastructureAbsent
+      :otherwise  'recreationService:EnergyInfrastructurePresent)) 
+
+;;Resolve this one with Gary
+;;(defmodel transportation-energy-infrastructure 'recreationService:TransportationEnergyInfrastructure
+;;   (binary-coding 'recreationService:TransportationEnergyInfrastructure
+;;        :context ((binary-coding 'infrastructure:Road                  :as road)
+;;                  (binary-coding 'infrastructure:EnergyInfrastructure  :as energy-infrastructure)) 
+;;        :state    #(let [num-dove (Math/ceil (/ (+ (:mourning-dove  %)
+;;                                                   (:white-winged-dove %)) 
+;;                                              29.0))]
+;;                        num-dove)))
+;;(defmodel dove-habitat 'sanPedro:DoveHabitat
+;;    (classification dove-habitat-code
+;;             2 'sanPedro:MultipleDoveSpeciesPresent
+;;             1 'sanPedro:SingleDoveSpeciesPresent
+;;             0 'sanPedro:DoveSpeciesAbsent))
+
+(defmodel visual-blight 'aestheticService:VisualBlight
+  (classification 'aestheticService:VisualBlight
+      [0 10]   'aestheticService:NoBlight
+      [10 50]  'aestheticService:LowBlight
+      [50 90]  'aestheticService:ModerateBlight
+      [67 100] 'aestheticService:HighBlight))
+      
+(defmodel sink 'aestheticService:ViewSink
+  "Whatever is ugly enough to absorb our enjoyment"
+  (bayesian 'aestheticService:ViewSink 
+    :import  "aries.core::RecreationViewSink.xdsl"
+    :keep    ('aestheticService:VisualBlight)
+    :context (development roads energy-infrastructure)
+    :observed (visual-blight)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 ;; ViewPosition, TravelTime, PublicAccess, HikingDistance, HikingSlope
 
@@ -108,52 +161,14 @@
     :observed (viewer-enjoyment)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
-;; ----------------------------------------------------------------------------------------------
-;;development, clearcuts, roads, energy infrastructure
-(defmodel development 'recreationService:Development
-	"Development as defined by the NLCD 2001"
-	(classification (numeric-coding 'nlcd:NLCDNumeric)
-			22 					'recreationService:LowIntensityDevelopment
-			23  				'recreationService:MediumIntensityDevelopment
-			24  				'recreationService:HighIntensityDevelopment
-			:otherwise 	'recreationService:NotDeveloped)) 
-
-(defmodel roads 'recreationService:Roads
-  (classification (binary-coding 'infrastructure:Road)
-		  0          'recreationService:RoadsAbsent
-		  :otherwise 'recreationService:RoadsPresent))
-
-(defmodel energy-infrastructure 'recreationService:EnergyInfrastructure
-	"Presence of energy infrastructure"
-	(classification (binary-coding 'infrastructure:EnergyInfrastructure)
-			0						'recreationService:EnergyInfrastructureAbsent
-			:otherwise	'recreationService:EnergyInfrastructurePresent)) 
-
-(defmodel visual-blight 'aestheticService:VisualBlight
-	(classification 'aestheticService:VisualBlight
-  		[0 10]   'aestheticService:NoBlight
-  		[10 50]  'aestheticService:LowBlight
-  		[50 90]  'aestheticService:ModerateBlight
-  		[67 100] 'aestheticService:HighBlight))
-  		
-(defmodel sink 'aestheticService:ViewSink
-  "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
-    :import  "aries.core::RecreationViewSink.xdsl"
-    :keep    ('aestheticService:VisualBlight)
-    :context (development roads energy-infrastructure)
-    :observed (visual-blight)))
-
-;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
+;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))	 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage

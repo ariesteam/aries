@@ -5,7 +5,7 @@
   (:refer aries :only [span]))
 
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel mountain 'aestheticService:Mountain
@@ -47,7 +47,7 @@
             :keep     ('aestheticService:TheoreticalNaturalBeauty)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel mine 'aestheticService:Mines                         
@@ -89,7 +89,7 @@
             :keep     ('aestheticService:VisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use model
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;UPDATE THIS ONCE FULL PARCEL DATA IS AVAILABLE
@@ -137,14 +137,14 @@
             :keep    ('aestheticService:HomeownerViewUse)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
+;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel altitude 'geophysics:Altitude
   (measurement 'geophysics:Altitude "m"))	 								
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage

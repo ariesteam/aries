@@ -38,29 +38,8 @@
                   [0.01 50]      'carbonService:VeryLowSoilStorage
                   [0 0.01]       'carbonService:NoSoilStorage))
 
-(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
-  (classification 'carbonService:VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
-
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
-  (classification 'carbonService:StoredCarbonRelease
-                  :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
-	  				
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -105,6 +84,16 @@
         [400 500]       'carbonService:ModerateMeanAnnualPrecipitation
         [:< 400]        'carbonService:LowMeanAnnualPrecipitation))
 
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+                  :units      "t/ha*year"
+                  [12 30]     'carbonService:VeryHighSequestration
+                  [9 12]      'carbonService:HighSequestration
+                  [6 9]       'carbonService:ModerateSequestration
+                  [3 6]       'carbonService:LowSequestration
+                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [0 0.01]    'carbonService:NoSequestration))
+
 ;; Bayesian source model
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
@@ -114,7 +103,7 @@
 	 	 	      :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink models
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -154,6 +143,17 @@
                   4        'carbonService:LowFireFrequency
                   #{5 6}   'carbonService:NoFireFrequency))
 
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+  (classification 'carbonService:StoredCarbonRelease
+                  :units      "t/ha*year"
+                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [9 12]      'carbonService:HighRelease
+                  [6 9]       'carbonService:ModerateRelease
+                  [3 6]       'carbonService:LowRelease
+                  [0.01 3]    'carbonService:VeryLowRelease
+                  [0 0.01]    'carbonService:NoRelease))
+
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
@@ -163,7 +163,7 @@
                         annual-precipitation fire-frequency)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 ;:GHG emissions map for the U.S.  For the rest of the world, use global population density layer multiplied
@@ -182,7 +182,7 @@
 ;;               :state   #(* (:population-density-count %) 1.105)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; top-level service models
+;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel identification-carbon 'carbonService:ClimateStability

@@ -3,28 +3,6 @@
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now
-;; Jen leaves out the catgory Very Low from her discretization
-(defmodel veg-storage 'carbonService:VegetationCarbonStorage
-	(classification 'carbonService:VegetationCarbonStorage
-						:units 		"t/ha" 
-	  				[80 2301]  'carbonService:VeryHighVegetationStorage
-	  				[70 80]    'carbonService:HighVegetationStorage
-	  				[50 70]    'carbonService:ModerateVegetationStorage
-	  				[0 50]     'carbonService:LowVegetationStorage
-	  				0          'carbonService:NoVegetationStorage)) 				
-
-;; output and training TODO make it classify the appropriate measurement - buggy for now				
-;; Jen leaves out the catgory Very Low from her discretization
-(defmodel soil-storage 'carbonService:SoilCarbonStorage
-		(classification 'carbonService:SoilCarbonStorage
-						:units    "t/ha" 
-	  				[210 820]  'carbonService:VeryHighSoilStorage
-	  				[140 210]  'carbonService:HighSoilStorage
-	  				[70 140]   'carbonService:ModerateSoilStorage
-	  				[0 70]     'carbonService:LowSoilStorage
-	  				0          'carbonService:NoSoilStorage))
-
 (defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
   (classification 'carbonService:VegetationAndSoilCarbonStorage
                   :units      "t/ha" 
@@ -35,29 +13,8 @@
                   [0.01 75]     'carbonService:VeryLowStorage
                   [0 0.01]      'carbonService:NoStorage))
 
-(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
-  (classification 'carbonService:VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
-
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
-  (classification 'carbonService:StoredCarbonRelease
-                  :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
-
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -93,7 +50,17 @@
 					[20 35]					'carbonService:HighCNRatio
 					[10 20]					'carbonService:LowCNRatio
 					[:< 10]					'carbonService:VeryLowCNRatio)) 
-			
+
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+                  :units      "t/ha*year"
+                  [12 30]     'carbonService:VeryHighSequestration
+                  [9 12]      'carbonService:HighSequestration
+                  [6 9]       'carbonService:ModerateSequestration
+                  [3 6]       'carbonService:LowSequestration
+                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [0 0.01]    'carbonService:NoSequestration))
+
 ;; Bayesian source model
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
@@ -103,7 +70,7 @@
             :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
  	    
 ;; ----------------------------------------------------------------------------------------------
-;; sink models
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -118,10 +85,35 @@
           [0.05 0.25] 'carbonService:LowFireFrequency
           [:< 0.05]   'carbonService:NoFireFrequency))
 
+(defmodel veg-storage 'carbonService:VegetationCarbonStorage
+  (classification (measurement 'habitat:VegetationCarbonStorage "t/ha")
+            [80 :>]    'carbonService:VeryHighVegetationStorage
+            [70 80]    'carbonService:HighVegetationStorage
+            [50 70]    'carbonService:ModerateVegetationStorage
+            [0 50]     'carbonService:LowVegetationStorage
+            0          'carbonService:NoVegetationStorage))         
+
+(defmodel soil-storage 'carbonService:SoilCarbonStorage
+    (classification (measurement 'habitat:SoilCarbonStorage "t/ha") 
+            [210 :>]   'carbonService:VeryHighSoilStorage
+            [140 210]  'carbonService:HighSoilStorage
+            [70 140]   'carbonService:ModerateSoilStorage
+            [0 70]     'carbonService:LowSoilStorage
+            0          'carbonService:NoSoilStorage))
+
 ;;Use Bayesian priors for insect & blowdown frequencies
 
-;;There may be some funkiness here from using veg-storage and soil-storage as leaf nodes when they've been used in the 
-;; past as undiscretizers.  Check with Gary on this when it's time to run the model.
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+  (classification 'carbonService:StoredCarbonRelease
+                  :units      "t/ha*year"
+                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [9 12]      'carbonService:HighRelease
+                  [6 9]       'carbonService:ModerateRelease
+                  [3 6]       'carbonService:LowRelease
+                  [0.01 3]    'carbonService:VeryLowRelease
+                  [0 0.01]    'carbonService:NoRelease))
+
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseJen.xdsl"
@@ -130,14 +122,14 @@
             :context  (fire-frequency veg-storage soil-storage)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel use-simple 'carbonService:GreenhouseGasEmissions
   (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
  	 					
 ;; ----------------------------------------------------------------------------------------------
-;; top-level service models
+;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------	
 
 (defmodel identification-carbon 'carbonService:ClimateStability
@@ -174,7 +166,7 @@
         :context (source use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
+;; Scenarios (evolving)
 ;; observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
-;;  birding source model
+;;  Birding source model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel bird-richness 'recreationService:BirdSpeciesRichness
@@ -69,7 +69,7 @@
             :context  (bird-richness riparian-wetland public-lands)))
 
 ;; ----------------------------------------------------------------------------------------------
-;;  hunting source model
+;;  Hunting source model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel dove-habitat-code 'sanPedro:DoveHabitatCode
@@ -199,14 +199,14 @@
             :context  (riparian-wetland public-lands quail-habitat)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use model
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel population-density 'policytarget:PopulationDensity
   (count 'policytarget:PopulationDensity "/km^2"))
 
 ;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
+;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;(defmodel travel-capacity 'recreationService:RoadTravelCapacity
@@ -229,7 +229,7 @@
 ;; visitor choice between alternative recreational sites.
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage

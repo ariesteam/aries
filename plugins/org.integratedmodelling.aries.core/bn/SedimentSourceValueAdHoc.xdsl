@@ -1,43 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="MonthlySnowpack">
-			<state id="HighMonthlySnowpack" />
-			<state id="ModerateMonthlySnowpack" />
-			<state id="LowMonthlySnowpack" />
-			<state id="NoMonthlySnowpack" />
-			<probabilities>0.55 0.3 0.15 0</probabilities>
-		</cpt>
-		<cpt id="MonthlyPrecipitationClass">
-			<state id="VeryHighMonthlyPrecipitation" />
-			<state id="HighMonthlyPrecipitation" />
-			<state id="ModerateMonthlyPrecipitation" />
-			<state id="LowMonthlyPrecipitation" />
-			<state id="VeryLowMonthlyPrecipitation" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2000000000000001</probabilities>
-		</cpt>
-		<cpt id="MonthlyTemperatureClass">
-			<state id="HighTemperature" />
-			<state id="ModerateTemperature" />
-			<state id="LowTemperature" />
-			<probabilities>0.85 0.05 0.1</probabilities>
-		</cpt>
-		<cpt id="MonthlySnowmeltClass">
-			<state id="HighMonthlySnowmelt" />
-			<state id="ModerateMonthlySnowmelt" />
-			<state id="LowMonthlySnowmelt" />
-			<state id="NoMonthlySnowmelt" />
-			<parents>MonthlyTemperatureClass MonthlySnowpack MonthlyPrecipitationClass</parents>
-			<probabilities>0.1 0.8 0.1 0 0.05 0.475 0.475 0 0 0.4 0.4 0.2 0 0.1 0.45 0.45 0 0 0.15 0.85 0.5 0.5 0 0 0.25 0.5 0.25 0 0.1 0.5 0.2 0.2 0 0.2 0.4 0.4 0 0 0.3 0.7 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.25 0.4 0.25 0.1 0 0.1 0.4 0.5 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.05 0.4 0.5 0.05 0.05 0.3 0.55 0.1 0 0.25 0.35 0.4 0 0 0.3 0.7 0 0 0.05 0.95 0.3 0.4000000000000001 0.2000000000000001 0.1 0.15 0.35 0.3 0.2 0.05 0.3 0.4 0.25 0 0.1 0.3 0.6 0 0 0.15 0.85 0.75 0.1 0.1 0.05 0.4 0.4 0.15 0.05 0.3 0.3 0.3 0.1 0.1 0.375 0.375 0.15 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</probabilities>
-		</cpt>
-		<cpt id="AnnualRunoffClass">
-			<state id="VeryHighAnnualRunoff" />
-			<state id="HighAnnualRunoff" />
-			<state id="ModerateAnnualRunoff" />
-			<state id="LowAnnualRunoff" />
-			<state id="VeryLowAnnualRunoff" />
-			<parents>MonthlyPrecipitationClass MonthlySnowmeltClass</parents>
-			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.75 0.2 0.05 0 0 0.65 0.25 0.1 0 0 0.75 0.25 0 0 0 0.25 0.5 0.25 0 0 0.1 0.45 0.45 0 0 0.05 0.4 0.4 0.15 0 0.65 0.3 0.05 0 0 0.15 0.55 0.3 0 0 0 0.3 0.4 0.3 0 0 0.05 0.45 0.45 0.05 0.3 0.4 0.3 0 0 0.1 0.375 0.375 0.15 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.35 0.6 0.1 0.35 0.35 0.2 0 0.1 0.2 0.4 0.2 0.1 0 0 0.05 0.15 0.8 0 0 0 0.1 0.9</probabilities>
+		<cpt id="AnnualPrecipitationClass">
+			<state id="VeryHighAnnualPrecipitation" />
+			<state id="HighAnnualPrecipitation" />
+			<state id="ModerateAnnualPrecipitation" />
+			<state id="LowAnnualPrecipitation" />
+			<state id="VeryLowAnnualPrecipitation" />
+			<probabilities>0.7 0.25 0.04 0.01 0</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCoverClass">
 			<state id="VeryHighVegetationCover" />
@@ -110,7 +80,7 @@
 			<state id="ModerateAnnualSedimentSource" />
 			<state id="LowAnnualSedimentSource" />
 			<state id="NoAnnualSedimentSource" />
-			<parents>AnnualRunoffClass SoilErodibilityClass VegetativeMaturity</parents>
+			<parents>AnnualPrecipitationClass SoilErodibilityClass VegetativeMaturity</parents>
 			<probabilities>0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.3 0.25 0.25 0.2 0.5 0.25 0.15 0.1 0.75 0.2 0.05 0 0.95 0.05 0 0 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.4 0.4 0.2 0 0.5 0.4 0.1 0 0.05 0.15 0.3 0.5 0.1 0.2 0.3 0.4 0.15 0.25 0.3 0.3 0.2 0.3 0.3 0.2 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.2 0.3 0.3 0.2 0.4000000000000001 0.3 0.2000000000000001 0.1 0.65 0.25 0.1 0 0.85 0.15 0 0 0.1 0.35 0.35 0.2 0.2 0.35 0.35 0.1 0.3 0.4 0.3 0 0.4 0.4 0.2 0 0 0.1 0.4 0.5 0 0.2 0.4 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0.1 0.3 0.3 0.3 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.15 0.3 0.3 0.25 0.3 0.3 0.25 0.15 0.55 0.25 0.2 0 0.75 0.15 0.1 0 0.05 0.3 0.4 0.25 0.15 0.35 0.35 0.15 0.2 0.4 0.4 0 0.3 0.4 0.3 0 0 0.05 0.4 0.55 0 0.15 0.4 0.45 0.05 0.2 0.35 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.1 0.2 0.35 0.35 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.5 0.4 0.1 0 0 0.25 0.35 0.4 0.1 0.3 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.3 0.3 0.2 0 0.05 0.3 0.65 0 0.1 0.3 0.6 0.05 0.15 0.3 0.5 0.05 0.2 0.3 0.45 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0.1 0.25 0.65 0 0.2 0.3 0.5 0.05 0.2 0.3 0.45 0.3 0.3 0.3 0.1 0 0.1 0.2 0.7 0 0.15 0.2 0.65 0.05 0.15 0.25 0.55 0.05 0.2 0.3 0.45 0 0 0.1 0.9 0 0 0.2 0.8 0 0.05 0.25 0.7 0 0.1 0.25 0.65 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -124,12 +94,12 @@
 				<position>470 35 604 68</position>
 				<barchart active="true" width="247" height="90" />
 			</node>
-			<node id="AnnualRunoffClass">
-				<name>AnnualRunoffClass</name>
+			<node id="AnnualPrecipitationClass">
+				<name>AnnualPrecipitationClass</name>
 				<interior color="ccffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>463 163 512 193</position>
+				<position>460 172 509 202</position>
 				<barchart active="true" width="128" height="108" />
 			</node>
 			<node id="VegetativeMaturity">
@@ -163,38 +133,6 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>919 275 1034 310</position>
 				<barchart active="true" width="203" height="126" />
-			</node>
-			<node id="MonthlyPrecipitationClass">
-				<name>MonthlyPrecipitationClass</name>
-				<interior color="ccffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>227 391 363 428</position>
-				<barchart active="true" width="229" height="108" />
-			</node>
-			<node id="MonthlySnowpack">
-				<name>MonthlySnowpack</name>
-				<interior color="ffcc99" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>655 401 780 439</position>
-				<barchart active="true" width="224" height="90" />
-			</node>
-			<node id="MonthlySnowmeltClass">
-				<name>MonthlySnowmeltClass</name>
-				<interior color="ccffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>433 299 567 332</position>
-				<barchart active="true" width="146" height="90" />
-			</node>
-			<node id="MonthlyTemperatureClass">
-				<name>MonthlyTemperatureClass</name>
-				<interior color="ccffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>441 402 570 440</position>
-				<barchart active="true" width="157" height="72" />
 			</node>
 			<node id="SoilErodibilityClass">
 				<name>SoilErodibilityClass</name>

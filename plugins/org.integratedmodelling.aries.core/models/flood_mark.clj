@@ -34,7 +34,7 @@
                   [0 5]                  'floodService:VeryLowImperviousCover))
 
 ;; ----------------------------------------------------------------------------------------------
-;; ad-hoc source models
+;; Ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Error in Ferd's code in handling this layer: removing from the context list and setting the prior
@@ -92,7 +92,7 @@
 ;;))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel soil-group 'floodService:HydrologicSoilsGroup
@@ -191,7 +191,7 @@
             :keep     ('floodService:FloodSink)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Uses for all beneficiary groups are defined for both the 100- and 500-year floodplain.  These are then incorporated into 
@@ -258,7 +258,7 @@
        :context  (public-asset floodplains-500)))
 
 ;; ---------------------------------------------------------------------------
-;; flow data models
+;; Flow data models
 ;; ---------------------------------------------------------------------------
 
 (defmodel flood-flow-data100 'floodService:TempFloodData100$
@@ -270,7 +270,7 @@
     :context (altitude streams floodplains-500)))
 
 ;; ---------------------------------------------------------------------------------------------------          
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------          
 
 ;; all data, for testing and storage

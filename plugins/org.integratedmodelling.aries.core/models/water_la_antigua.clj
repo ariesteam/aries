@@ -4,7 +4,7 @@
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; provision model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Runoff would be preferable to precipitation, but it's at a very coarse spatial resolution
@@ -23,7 +23,76 @@
 		;;[2400 :>] 	  'soilretentionEcology:VeryHighAnnualRunoff))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use model
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
+;;processes.  Deterministic models could likely be used.
+
+(defmodel slope 'waterSupplyService:SlopeClass
+    (classification (measurement 'geophysics:DegreeSlope "\u00B0")
+       [0 1.15]               'waterSupplyService:Level
+       [1.15 4.57]            'waterSupplyService:GentlyUndulating
+       [4.57 16.70]           'waterSupplyService:RollingToHilly
+       [16.70 90 :inclusive]  'waterSupplyService:SteeplyDissectedToMountainous))
+
+(defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
+  (classification (ranking 'habitat:HydrologicSoilsGroup)
+      1       'waterSupplyService:SoilGroupA
+      2       'waterSupplyService:SoilGroupB
+      3       'waterSupplyService:SoilGroupC
+      4       'waterSupplyService:SoilGroupD))
+
+(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
+   (classification (ranking 'habitat:PercentImperviousness)
+       [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
+       [50 80]               'waterSupplyService:HighImperviousCover
+       [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
+       [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
+       [5 10]                'waterSupplyService:LowImperviousCover
+       [1 5]                 'waterSupplyService:VeryLowImperviousCover))
+
+(defmodel vegetation-type 'waterSupplyService:VegetationType
+  "Just a reclass of the Veracruz land use layer"
+  (classification (categorization 'veracruz-lulc:VeracruzLULCCategory)
+    "Bosque mesofilo de montana"                                                 'waterSupplyService:CloudForest
+    #{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} 'waterSupplyService:DevelopedCultivated
+    #{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} 'waterSupplyService:DryForest
+    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} 'waterSupplyService:GrasslandShrubland
+    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
+    
+(defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
+  (classification (ranking 'habitat:PercentVegetationCover)
+    [80 100] 'waterSupplyService:VeryHighVegetationCover
+    [60 80]  'waterSupplyService:HighVegetationCover
+    [40 60]  'waterSupplyService:ModerateVegetationCover
+    [20 40]  'waterSupplyService:LowVegetationCover
+    [1 20]   'waterSupplyService:VeryLowVegetationCover))
+
+(defmodel dam-presence 'waterSupplyService:Dams
+  (classification (binary-coding 'waterSupplyService:NonRivalWaterUseCode)
+      1         'waterSupplyService:DamPresent
+     :otherwise 'waterSupplyService:DamAbsent))
+
+;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
+;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
+(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
+  (classification 'waterSupplyService:SurfaceWaterSinkClass 
+    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+    [100 180]          'waterSupplyService:HighSurfaceWaterSink
+    [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
+    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
+    0                  'waterSupplyService:NoSurfaceWaterSink)) 
+
+(defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
+    (bayesian 'waterSupplyService:SurfaceWaterSinkClass
+      :import   "aries.core::SurfaceWaterSupplySink.xdsl"
+      :context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
+      :keep     ('waterSupplyService:SurfaceWaterSinkClass)
+      :observed (sink-undiscretizer)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Industrial surface water use
@@ -135,78 +204,8 @@
     ;;  :context (irrigation-water-use livestock-surface-water-use)
     ;;  :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
 
-
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
-;;processes.  Deterministic models could likely be used.
-
-(defmodel slope 'waterSupplyService:SlopeClass
-		(classification (measurement 'geophysics:DegreeSlope "\u00B0")
-			 [0 1.15] 	            'waterSupplyService:Level
-			 [1.15 4.57] 	          'waterSupplyService:GentlyUndulating
-			 [4.57 16.70]           'waterSupplyService:RollingToHilly
-			 [16.70 90 :inclusive] 	'waterSupplyService:SteeplyDissectedToMountainous))
-
-(defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
-	(classification (ranking 'habitat:HydrologicSoilsGroup)
-			1       'waterSupplyService:SoilGroupA
-			2       'waterSupplyService:SoilGroupB
-			3       'waterSupplyService:SoilGroupC
-			4       'waterSupplyService:SoilGroupD))
-
-(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
-	 (classification (ranking 'habitat:PercentImperviousness)
-	 	   [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
-	 	   [50 80]               'waterSupplyService:HighImperviousCover
-	 	   [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
-	 	   [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
-	 	   [5 10]                'waterSupplyService:LowImperviousCover
-	 	   [1 5]                 'waterSupplyService:VeryLowImperviousCover))
-
-(defmodel vegetation-type 'waterSupplyService:VegetationType
-	"Just a reclass of the Veracruz land use layer"
-	(classification (categorization 'veracruz-lulc:VeracruzLULCCategory)
-		"Bosque mesofilo de montana"	                                               'waterSupplyService:CloudForest
-		#{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} 'waterSupplyService:DevelopedCultivated
-		#{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} 'waterSupplyService:DryForest
-    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} 'waterSupplyService:GrasslandShrubland
-    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   'waterSupplyService:Rainforest))
-		
-(defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
-	(classification (ranking 'habitat:PercentVegetationCover)
-		[80 100] 'waterSupplyService:VeryHighVegetationCover
-		[60 80]  'waterSupplyService:HighVegetationCover
-		[40 60]  'waterSupplyService:ModerateVegetationCover
-		[20 40]  'waterSupplyService:LowVegetationCover
-		[1 20]   'waterSupplyService:VeryLowVegetationCover))
-
-(defmodel dam-presence 'waterSupplyService:Dams
-	(classification (binary-coding 'waterSupplyService:NonRivalWaterUseCode)
-			1		      'waterSupplyService:DamPresent
-     :otherwise 'waterSupplyService:DamAbsent))
-
-;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
-;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
-(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
-  (classification 'waterSupplyService:SurfaceWaterSinkClass 
-    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
-    [100 180]          'waterSupplyService:HighSurfaceWaterSink
-    [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
-    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
-    0                  'waterSupplyService:NoSurfaceWaterSink)) 
-
-(defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
-	  (bayesian 'waterSupplyService:SurfaceWaterSinkClass
-	  	:import   "aries.core::SurfaceWaterSupplySink.xdsl"
-	 	 	:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
-      :keep     ('waterSupplyService:SurfaceWaterSinkClass)
-      :observed (sink-undiscretizer)))
-
-;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
+;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Everything below needs to be updated correctly for water.
@@ -215,7 +214,7 @@
   ;;(measurement 'geophysics:Altitude "m"))	 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage

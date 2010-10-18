@@ -36,29 +36,8 @@
 	  				[0 40]     'carbonService:VeryLowSoilStorage
 	  				0          'carbonService:NoSoilStorage))	  			
 
-(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
-  (classification 'carbonService:VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
-
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
-  (classification 'carbonService:StoredCarbonRelease
-                  :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
-				
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -96,7 +75,17 @@
 					63					  'carbonService:Forest
 					87						'carbonService:Wetland
 					#{61 82}			'carbonService:NoVegetation))
-					
+
+(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
+  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+                  :units      "t/ha*year"
+                  [12 30]     'carbonService:VeryHighSequestration
+                  [9 12]      'carbonService:HighSequestration
+                  [6 9]       'carbonService:ModerateSequestration
+                  [3 6]       'carbonService:LowSequestration
+                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [0 0.01]    'carbonService:NoSequestration))
+
 ;; Bayesian source model
 (defmodel source 'carbonService:CarbonSourceValue   
   (bayesian 'carbonService:CarbonSourceValue 
@@ -106,7 +95,7 @@
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink models
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
@@ -114,7 +103,8 @@
 ;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
 ;; areas at risk of deforestation or fire.
 
-;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer
+;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer.  Assume the below discretization
+;; is in percentages?
 ;;(defmodel biomass-removal-rate 'carbonService:BiomassRemovalRate
 ;;      (classification (ranking 'habitat:BiomassRemovalRate)  
 ;;          [90 :>]       'carbonService:VeryHighRemovalRate
@@ -122,7 +112,18 @@
 ;;          [10 66]       'carbonService:LowRemovalRate
 ;;          [:< 10]       'carbonService:VeryLowRemovalRate)) 
 
-;;No data here for "biomass residue input," "soil tillage" - use priors
+;;No data here for "biomass residue input," "soil tillage" "biomass removal rate"- use priors
+
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
+  (classification 'carbonService:StoredCarbonRelease
+                  :units      "t/ha*year"
+                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [9 12]      'carbonService:HighRelease
+                  [6 9]       'carbonService:ModerateRelease
+                  [3 6]       'carbonService:LowRelease
+                  [0.01 3]    'carbonService:VeryLowRelease
+                  [0 0.01]    'carbonService:NoRelease))
 
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
@@ -132,14 +133,14 @@
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
    	 		
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel use-simple 'carbonService:GreenhouseGasEmissions
   (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
  	 					
 ;; ----------------------------------------------------------------------------------------------
-;; top-level service models
+;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel identification-carbon 'carbonService:ClimateStability

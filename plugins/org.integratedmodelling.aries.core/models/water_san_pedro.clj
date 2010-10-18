@@ -4,7 +4,7 @@
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; surface water source model
+;; Surface water source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Surface water source = precipitaiton + snowmelt + springs + baseflow + incoming interbasin water transfers
@@ -48,7 +48,7 @@
                (:spring-discharge     %))))
 
 ;; ----------------------------------------------------------------------------------------------
-;; groundwater source model
+;; Groundwater source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Consider using percolation data here instead if more appropriate?
@@ -62,7 +62,7 @@
 ;; groundwater sources if incoming water is directly used to recharge groundwater).
 
 ;; ----------------------------------------------------------------------------------------------
-;; surface water sink model
+;; Surface water sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
@@ -152,7 +152,7 @@
 ;;  water sink.
 
 ;; ----------------------------------------------------------------------------------------------
-;; groundwater sink model
+;; Groundwater sink model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;(defmodel baseflow -> this is complex and requires MODFLOW outputs to identify contributions to gaining reaches.  
@@ -165,7 +165,7 @@
 ;;               (:spring-discharge     %))))
 
 ;; ----------------------------------------------------------------------------------------------
-;; surface water use model
+;; Surface water use model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Add any interbasin trasnfers here - their locations and quantities.  This quantity of water would just disappear
@@ -186,7 +186,7 @@
  (measurement 'waterSupplyService:SurfaceDiversionCapacity "mm"))
 
 ;; ----------------------------------------------------------------------------------------------
-;; groundwater use model
+;; Groundwater use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel well-presence 'waterSupplyService:Wells 
@@ -236,7 +236,7 @@
       ;;'waterSupplyService:Other
 
 ;; ----------------------------------------------------------------------------------------------
-;; dependencies for the flow model
+;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Update below for water.
@@ -253,7 +253,7 @@
   (binary-coding 'geofeatures:River))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;;dumb identification statement for BSR, since sinks aren't working

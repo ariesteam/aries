@@ -25,7 +25,7 @@
       4        'floodService:SoilGroupD))
 
 ;; ----------------------------------------------------------------------------------------------
-;; ad-hoc source models
+;; Ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel precipitation-monthly 'floodService:Precipitation
@@ -122,7 +122,7 @@
 ))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel slope 'floodService:Slope
@@ -271,7 +271,7 @@
           percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; use models
+;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
 ;;(defmodel floodplains 'floodService:Floodplains
@@ -398,7 +398,7 @@
        :context (structures floodplains-500)))
 
 ;; ---------------------------------------------------------------------------
-;; flow data models
+;; Flow data models
 ;; ---------------------------------------------------------------------------
 
 (defmodel flood-flow-data100 'floodService:TempFloodData100$
@@ -410,7 +410,7 @@
     :context (altitude streams floodplains-500)))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage.  These are currently set to "source-annual" but should also be

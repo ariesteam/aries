@@ -6,7 +6,7 @@
   (:refer aries :only [span]))
 
 ;; ----------------------------------------------------------------------------------------------
-;; source model
+;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Data on land cover types are for the U.S. only, using SWReGAP data.  Since we have no parcel/housing location
@@ -98,7 +98,7 @@
             :keep     ('aestheticService:TheoreticalProximitySource)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; sink model
+;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel sink 'aestheticService:ProximitySink
@@ -108,7 +108,7 @@
                          :otherwise          0))) ;;Otherwise zero sink
 
 ;; ----------------------------------------------------------------------------------------------
-;; use model
+;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel housing 'aestheticService:PresenceOfHousing
@@ -151,7 +151,7 @@
             :keep    ('aestheticService:HomeownerProximityUse)))						
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
-;; overall models 
+;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
