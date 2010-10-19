@@ -64,45 +64,32 @@
       24          'recreationService:HighIntensityDevelopment
       :otherwise  'recreationService:NotDeveloped)) 
 
-(defmodel roads 'recreationService:Roads
-  (classification (binary-coding 'infrastructure:Road)
-      0          'recreationService:RoadsAbsent
-      :otherwise 'recreationService:RoadsPresent))
-
-(defmodel energy-infrastructure 'recreationService:EnergyInfrastructure
-  "Presence of energy infrastructure"
-  (classification (binary-coding 'infrastructure:EnergyInfrastructure)
-      0           'recreationService:EnergyInfrastructureAbsent
-      :otherwise  'recreationService:EnergyInfrastructurePresent)) 
-
-;;Resolve this one with Gary
-;;(defmodel transportation-energy-infrastructure 'recreationService:TransportationEnergyInfrastructure
-;;   (binary-coding 'recreationService:TransportationEnergyInfrastructure
-;;        :context ((binary-coding 'infrastructure:Road                  :as road)
-;;                  (binary-coding 'infrastructure:EnergyInfrastructure  :as energy-infrastructure)) 
-;;        :state    #(let [num-dove (Math/ceil (/ (+ (:mourning-dove  %)
-;;                                                   (:white-winged-dove %)) 
-;;                                              29.0))]
-;;                        num-dove)))
-;;(defmodel dove-habitat 'sanPedro:DoveHabitat
-;;    (classification dove-habitat-code
-;;             2 'sanPedro:MultipleDoveSpeciesPresent
-;;             1 'sanPedro:SingleDoveSpeciesPresent
-;;             0 'sanPedro:DoveSpeciesAbsent))
+(defmodel transportation-energy-infrastructure-code 'recreationService:TransportationEnergyInfrastructureCode
+   (binary-coding 'recreationService:TransportationEnergyInfrastructureCode
+        :context ((binary-coding 'infrastructure:Road                  :as road)
+                  (binary-coding 'infrastructure:EnergyInfrastructure  :as energy-infrastructure)) 
+        :state   #(if (or (= (:road %) 1)
+                          (= (:energy-infrastructure %) 1))
+                      1
+                      0))) 
+(defmodel transportation-energy-infrastructure 'recreationService:TransportationEnergyInfrastructure
+   (classification transportation-energy-infrastructure-code
+             1  'recreationService:TransportationEnergyInfrastructurePresent 
+             0  'recreationService:TransportationEnergyInfrastructureAbsent))                        
 
 (defmodel visual-blight 'aestheticService:VisualBlight
   (classification 'aestheticService:VisualBlight
       [0 10]   'aestheticService:NoBlight
       [10 50]  'aestheticService:LowBlight
       [50 90]  'aestheticService:ModerateBlight
-      [67 100] 'aestheticService:HighBlight))
+      [90 100] 'aestheticService:HighBlight))
       
 (defmodel sink 'aestheticService:ViewSink
   "Whatever is ugly enough to absorb our enjoyment"
   (bayesian 'aestheticService:ViewSink 
     :import  "aries.core::RecreationViewSink.xdsl"
     :keep    ('aestheticService:VisualBlight)
-    :context (development roads energy-infrastructure)
+    :context (development transportation-energy-infrastructure)
     :observed (visual-blight)))
 
 ;; ----------------------------------------------------------------------------------------------

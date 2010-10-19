@@ -242,22 +242,26 @@
 ;;			altitude :as altitude)))
 			
 ;; the real enchilada
-;;(defmodel view 'aestheticService:AestheticView
-  ;;(span 'aestheticService:LineOfSight 
-  	    ;;'aestheticService:TheoreticalNaturalBeauty
-  	    ;;'aestheticService:HomeownerViewUse
-      	;;'aestheticService:TotalVisualBlight
-      	;;'aestheticService:View
-  	    ;;'geophysics:Altitude
-   	;;:sink-type        :relative
-   	;;:use-type         :relative
-   	;;:benefit-type     :non-rival
-   	;;:downscaling-factor 3
-   	;;:rv-max-states    10 
-    ;;:context
-      ;;   (source homeowners sink altitude)
-        ;;  (ranking 'eserv:SourceThreshold :value 50)
-          ;;(ranking 'eserv:SinkThreshold :value 0.3)
-          ;;(ranking 'eserv:UseThreshold :value 0.1)
-          ;;(ranking 'eserv:TransitionThreshold :value 1.0))
-;;))
+;;(defmodel recreation-flow 'carbonService:ClimateStability
+;;  (span 'carbonService:CO2Removed
+;;        'recreationService:BirdingSourceValue   ;;and corresponding hunting/wildlife viewing models 
+;;        'carbonService:GreenhouseGasEmissions
+;;        nil
+;;        nil
+;;        nil
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold       1.0
+;;        :trans-threshold    nil
+;;        :source-type        :finite
+;;        :sink-type          :finite
+;;        :use-type           :finite
+;;        :benefit-type       :rival
+;;        :rv-max-states      10
+;;        :downscaling-factor 8
+;;        :keep ('recreationService:RecreationalAttractiveness 'recreationService:PotentialRecreationalUsers 
+;;               'recreationService:RecreationalUserFlow       'recreationService:RecreationalUse
+;;               'recreationService:ActualRecreationalUsers    'recreationService:TransportationRestrictedRecreationalUse
+;;               'recreationService:TransportationRestrictedRecreationalUsers)
+;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+;;        :context (source-birding use-simple sink)))

@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="EnergyInfrastructure">
-			<state id="EnergyInfrastructurePresent" />
-			<state id="EnergyInfrastructureAbsent" />
-			<probabilities>0.036 0.964</probabilities>
-		</cpt>
-		<cpt id="Roads">
-			<state id="RoadsPresent" />
-			<state id="RoadsAbsent" />
-			<probabilities>0.036 0.964</probabilities>
-		</cpt>
-		<deterministic id="TransportationEnergyInfrastructure">
+		<cpt id="TransportationEnergyInfrastructure">
 			<state id="TransportEnergyInfrastructurePresent" />
 			<state id="TransportEnergyInfrastructureAbsent" />
-			<parents>EnergyInfrastructure Roads</parents>
-			<resultingstates>TransportEnergyInfrastructurePresent TransportEnergyInfrastructurePresent TransportEnergyInfrastructurePresent TransportEnergyInfrastructureAbsent</resultingstates>
-		</deterministic>
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
 		<cpt id="Clearcuts">
 			<state id="ClearcutsPresent" />
 			<state id="ClearcutsAbsent" />
-			<probabilities>0.02 0.98</probabilities>
+			<probabilities>0.005 0.995</probabilities>
 		</cpt>
 		<cpt id="Development">
 			<state id="HighIntensityDevelopment" />
@@ -55,22 +44,6 @@
 				<font color="000000" name="Arial" size="7" />
 				<position>210 350 334 427</position>
 				<barchart active="true" width="246" height="80" />
-			</node>
-			<node id="Roads">
-				<name>Roads</name>
-				<interior color="ffcc99" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="7" />
-				<position>689 533 737 563</position>
-				<barchart active="true" width="128" height="64" />
-			</node>
-			<node id="EnergyInfrastructure">
-				<name>EnergyInfrastructure</name>
-				<interior color="ffcc99" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="7" />
-				<position>897 510 1007 578</position>
-				<barchart active="true" width="247" height="64" />
 			</node>
 			<node id="TransportationEnergyInfrastructure">
 				<name>TransportationEnergyInfrastructure</name>
