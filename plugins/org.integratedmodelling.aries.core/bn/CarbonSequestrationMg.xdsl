@@ -53,11 +53,11 @@
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonSequestration">
 			<state id="VeryHighSequestration" />
-			<state id="HighhSequestration" />
-			<state id="ModeratehSequestration" />
-			<state id="LowhSequestration" />
-			<state id="VeryLowhSequestration" />
-			<state id="NohSequestration" />
+			<state id="HighSequestration" />
+			<state id="ModerateSequestration" />
+			<state id="LowSequestration" />
+			<state id="VeryLowSequestration" />
+			<state id="NoSequestration" />
 			<parents>VegetationDensity SequestrationRate</parents>
 			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
@@ -67,7 +67,7 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>656 176 988 202</position>
@@ -76,52 +76,52 @@
 			</node>
 			<node id="PercentVegetationCover">
 				<name>PercentVegetationCover</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>854 541 963 571</position>
+				<position>831 483 940 513</position>
 				<barchart active="true" width="267" height="108" />
 			</node>
 			<node id="SummerHighWinterLow">
 				<name>SummerHighWinterLow</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>571 538 707 573</position>
+				<position>578 483 714 518</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart active="true" width="186" height="108" />
 			</node>
 			<node id="VegetationDensity">
 				<name>VegetationDensity</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>982 371 1104 400</position>
+				<position>939 336 1061 365</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="281" height="126" />
 			</node>
 			<node id="SoilCNRatio">
 				<name>SoilCNRatio</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>348 527 435 559</position>
+				<position>383 476 470 508</position>
 				<barchart active="true" width="204" height="90" />
 			</node>
 			<node id="SequestrationRate">
 				<name>SequestrationRate</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>569 369 684 400</position>
+				<position>583 336 698 367</position>
 				<barchart active="true" width="313" height="126" />
 			</node>
 			<node id="DegradationStatus">
 				<name>DegradationStatus</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1090 516 1207 550</position>
+				<position>1062 457 1179 491</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 		</genie>

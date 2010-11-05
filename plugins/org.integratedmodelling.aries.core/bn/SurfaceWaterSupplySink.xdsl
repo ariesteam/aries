@@ -83,7 +83,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>411 65 521 112</position>
+				<position>518 79 628 126</position>
 				<comment>Equivalent to absorbed/detained runoff\n\nBasically the amount of water than can be absorbed over the time period of interest (day, month, etc.)</comment>
 				<barchart active="true" width="303" height="108" />
 			</node>
@@ -92,7 +92,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>774 247 855 277</position>
+				<position>874 256 955 286</position>
 				<comment>Only 1 dam is located in the La Antigua watershed, and it&apos;s a small one.  Data on dam size is unlikely to exist globally, so using presence/absence data.</comment>
 				<barchart active="true" width="126" height="74" />
 			</node>
@@ -101,16 +101,16 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>244 255 333 290</position>
+				<position>321 269 410 304</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="188" height="108" />
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>422 255 638 289</position>
+				<position>529 269 745 303</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="330" height="108" />
 			</node>
@@ -119,15 +119,15 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>398 437 510 471</position>
-				<barchart active="true" width="176" height="108" />
+				<position>530 433 642 467</position>
+				<barchart active="true" width="258" height="108" />
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>697 437 792 467</position>
+				<position>877 433 972 463</position>
 				<comment>Cloud forest &gt; Selva &gt; (Dry) Forest &gt; Grassland &amp; shrubland\n\n&quot;Entidad&quot; coarser than &quot;Tipo&quot;\nCloud forest MUCH higher than all other vegetation types.\n\nCloud forest = Bosque mesofilo de montana\nRainforest = Selva baja &amp; mediana\nDryForest = All other bosque, plus selva altas subperennifolia\nGrasslandShrubland = Mattoiral, Pradera, Vegetacion de dunas and halofila, Popal\nDevelopedCultivated = Pastizal cultivado, Pastizal inducido, Zona urbana, riego, temporal</comment>
 				<barchart active="true" width="365" height="108" />
 			</node>
@@ -136,15 +136,15 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>90 429 135 457</position>
-				<barchart active="true" width="154" height="90" />
+				<position>121 311 166 339</position>
+				<barchart active="true" width="191" height="90" />
 			</node>
 			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>227 430 350 460</position>
+				<position>52 212 175 242</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="PercentImperviousCoverClass">
@@ -152,8 +152,8 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>32 261 180 293</position>
-				<barchart active="true" width="190" height="126" />
+				<position>165 441 313 473</position>
+				<barchart active="true" width="338" height="126" />
 			</node>
 			<textbox>
 				<caption>NOTE: For the lower 48 US states, I&apos;ve got a groundwater recharge layer which could be quite useful for the water models.</caption>

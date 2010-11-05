@@ -140,102 +140,102 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>604 52 714 99</position>
+				<position>590 52 700 99</position>
 				<comment>Equivalent to absorbed/detained runoff\n\nBasically the amount of water than can be absorbed over the time period of interest (day, month, etc.)</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="250" height="108" />
 			</node>
 			<node id="GreenInfrastructureStorage">
 				<name>GreenInfrastructureStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>389 129 560 170</position>
+				<position>277 102 448 143</position>
 				<comment>GreenInfrastructureStorage = (SoilInfiltration + FloodplainStorage + VegetationInfiltrationAndInterception))/MeanDaysOfPrecipitationPerMonth\n(Great, but we don&apos;t have numbers for these values, so in the mean time they&apos;ll be chance nodes).</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="229" height="108" />
 			</node>
 			<node id="GrayInfrastructureStorage">
 				<name>GrayInfrastructureStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>782 133 951 173</position>
+				<position>880 95 1049 135</position>
 				<comment>Could add detention basins and other forms of gray infrastructure if we had the spatial data to map them.\n\nGrayInfrastructureStorage = (DamStorage + DetentionBasinStorage)/MeanDaysOfPrecipitationPerMonth \n(Great, but we don&apos;t have numbers for these values, so in the mean time they&apos;ll be chance nodes).</comment>
-				<barchart active="true" width="163" height="108" />
+				<barchart active="true" width="224" height="108" />
 			</node>
 			<node id="DamStorageClass">
 				<name>DamStorageClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>826 276 907 306</position>
+				<position>1243 195 1324 225</position>
 				<comment>I&apos;M NOT CERTAIN THESE PRIORS MAKE SENSE.</comment>
-				<barchart active="true" width="128" height="126" />
+				<barchart active="true" width="253" height="126" />
 			</node>
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>214 255 303 290</position>
+				<position>327 318 416 353</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="249" height="108" />
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>370 277 586 311</position>
+				<position>593 322 809 356</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="194" height="108" />
+				<barchart active="true" width="287" height="108" />
 			</node>
 			<node id="VegetationHeight">
 				<name>VegetationHeight</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>879 432 980 465</position>
+				<position>1242 463 1343 496</position>
 				<comment>A higher canopy actually reduces erosion less - raindrops have more time to gain velocity after being slowed by hitting the leaves.</comment>
-				<barchart active="true" width="128" height="90" />
+				<barchart active="true" width="261" height="108" />
 			</node>
 			<node id="PercentVegetationCover">
 				<name>PercentVegetationCover</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>526 441 638 475</position>
-				<barchart active="true" width="128" height="108" />
+				<position>817 548 929 582</position>
+				<barchart active="true" width="277" height="108" />
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>729 448 824 478</position>
-				<barchart active="true" width="128" height="72" />
+				<position>1173 569 1268 599</position>
+				<barchart active="true" width="404" height="72" />
 			</node>
 			<node id="SuccessionalStage">
 				<name>SuccessionalStage</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>376 430 499 461</position>
-				<barchart active="true" width="128" height="126" />
+				<position>559 541 682 572</position>
+				<barchart active="true" width="215" height="126" />
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>65 356 110 384</position>
-				<barchart active="true" width="154" height="90" />
+				<position>78 420 123 448</position>
+				<barchart active="true" width="195" height="90" />
 			</node>
 			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>90 447 213 477</position>
+				<position>11 322 134 352</position>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="PercentImperviousCover">
@@ -243,15 +243,15 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>13 243 161 275</position>
-				<barchart active="true" width="153" height="126" />
+				<position>96 541 244 573</position>
+				<barchart active="true" width="322" height="126" />
 			</node>
 			<node id="DetentionBasinStorage">
 				<name>DetentionBasinStorage</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1105 254 1247 284</position>
+				<position>1120 298 1262 328</position>
 				<barchart active="true" width="442" height="64" />
 			</node>
 			<node id="AnnualMaximumTemperature">
@@ -259,17 +259,17 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>255 440 332 471</position>
-				<barchart active="true" width="128" height="72" />
+				<position>328 651 405 682</position>
+				<barchart active="true" width="368" height="72" />
 			</node>
 			<node id="MeanDaysPrecipitationPerYear">
 				<name>MeanDaysPrecipitationPerYear</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>582 267 782 298</position>
+				<position>712 218 912 249</position>
 				<comment>If this is high, absorption is greater.  If it&apos;s low, it&apos;s less.</comment>
-				<barchart active="true" width="159" height="90" />
+				<barchart active="true" width="358" height="90" />
 			</node>
 		</genie>
 	</extensions>

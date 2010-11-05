@@ -119,61 +119,61 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>389 129 560 170</position>
+				<position>317 129 488 170</position>
 				<comment>GreenInfrastructureStorage = (SoilInfiltration + FloodplainStorage + VegetationInfiltrationAndInterception))/MeanDaysOfPrecipitationPerMonth\n(Great, but we don&apos;t have numbers for these values, so in the mean time they&apos;ll be chance nodes).</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="272" height="108" />
 			</node>
 			<node id="GrayInfrastructureStorage">
 				<name>GrayInfrastructureStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>782 133 951 173</position>
+				<position>813 133 982 173</position>
 				<comment>Could add detention basins and other forms of gray infrastructure if we had the spatial data to map them.\n\nGrayInfrastructureStorage = (DamStorage + DetentionBasinStorage)/MeanDaysOfPrecipitationPerMonth \n(Great, but we don&apos;t have numbers for these values, so in the mean time they&apos;ll be chance nodes).</comment>
-				<barchart active="true" width="163" height="108" />
+				<barchart active="true" width="224" height="108" />
 			</node>
 			<node id="DamStorageClass">
 				<name>DamStorageClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>833 291 914 321</position>
+				<position>1055 292 1136 322</position>
 				<comment>I&apos;M NOT CERTAIN THESE PRIORS MAKE SENSE.\n\nPossibly get rid of &apos;NoDamStorage&apos; since we should have spatial data for presence absence. We will likely still need priors for storage capacity.</comment>
-				<barchart active="true" width="128" height="126" />
+				<barchart active="true" width="272" height="126" />
 			</node>
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>214 255 303 290</position>
+				<position>288 278 377 313</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)\n\nI believe the SSURGO data has a Bulk Density attribute, but I have no idea of how to isolate that info from the GIS layer. All attribute are in numeric codes.</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="254" height="108" />
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>372 258 588 292</position>
+				<position>595 293 811 327</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="213" height="108" />
+				<barchart active="true" width="282" height="108" />
 			</node>
 			<node id="PercentVegetationCover">
 				<name>PercentVegetationCover</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>333 431 445 465</position>
+				<position>536 441 648 475</position>
 				<comment>Data source: GLF/Univ. of Maryland\nResolution 1km2\n\nStudy area is highly urbanized. The percent vegetation cover priors reflect such conditions. \n\nDecreased vegetation cover decreases &apos;Vegetation infiltration and interception,&apos; and vice versa.  </comment>
-				<barchart active="true" width="161" height="108" />
+				<barchart active="true" width="340" height="108" />
 			</node>
 			<node id="VegetationTypeSoCalFlood">
 				<name>VegetationTypeSoCalFlood</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>679 425 774 455</position>
+				<position>961 424 1056 454</position>
 				<comment>Data Source: USDA Forest Service - Pacific Southwest Region - Remote Sensing Lab \n\n2002,2003 existing vegetation map product at a scale of 1:24,000\n\n&quot;Tile 51&quot; covers parts of Orange and Los Angeles Counties\n\n&quot;Shrub&quot;, &quot;Mixed Conifer Hardwood&quot;, &quot;Herbaceous&quot;, and &quot;Hardwood&quot; attributes aggregated together to = ForestGrasslandShrublandCultivatedVegetation\n\n&quot;Urban&quot; attribute = DevelopedVegetation\n\n&quot;Water&quot; = WetlandVegetation\n\nBased on review of GIS datasets within the study area (San Gabriel River Watershed) priors were assigned to each &quot;vegetation type.&quot;</comment>
 				<barchart active="true" width="472" height="76" />
 			</node>
@@ -182,16 +182,16 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>65 428 110 456</position>
+				<position>135 448 180 476</position>
 				<comment>No slope data found for study area. Can it be derived from national DEM?\n\nThe SSURGO soil dataset guide says there is a &quot;slope&quot; attribute, but I do not know how to islolate it with ArcGIS. All attributes are numerically coded. </comment>
-				<barchart active="true" width="154" height="90" />
+				<barchart active="true" width="194" height="90" />
 			</node>
 			<node id="HydrologicSoilGroup">
 				<name>HydrologicSoilGroup</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>177 425 300 455</position>
+				<position>16 327 139 357</position>
 				<comment>Data sources: SSURGO (Orange County), STATSGO (Los Angeles)\n\nNo SSURGO data for South Los Angeles (northern part of study area) is currently available.\n\nSSURGO dataset is more detailed.\n\n\n\n</comment>
 				<barchart active="true" width="128" height="90" />
 			</node>
@@ -200,18 +200,18 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>13 243 161 275</position>
+				<position>217 583 365 615</position>
 				<comment>Data source: USGS\n\nNLDC 2003\n\nThe study area is highly urbanized and much of it highly impervious. Priors were informed by Yang et al. (2002) Landsat 7 imagery. \n\nIncreased imperviousness reduces &apos;soil infiltration.&apos;</comment>
-				<barchart active="true" width="153" height="126" />
+				<barchart active="true" width="335" height="126" />
 			</node>
 			<node id="DetentionBasinStorage">
 				<name>DetentionBasinStorage</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>956 256 1098 286</position>
+				<position>1137 178 1279 208</position>
 				<comment>Approximately 5 major Spreading Grounds are located within the San Gabriel River Watershed.</comment>
-				<barchart active="true" width="150" height="64" />
+				<barchart active="true" width="337" height="64" />
 			</node>
 		</genie>
 	</extensions>

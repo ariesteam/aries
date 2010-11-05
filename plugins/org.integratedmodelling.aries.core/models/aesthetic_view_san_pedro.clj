@@ -131,7 +131,7 @@
 (defmodel homeowners 'aestheticService:ViewUse
   "Property owners who can afford to pay for the view"
   (bayesian 'aestheticService:ViewUse 
-            :import  "aries.core::ViewUse.xdsl"
+            :import  "aries.core::ViewUseSanPedro.xdsl"
             :context (property-value housing)
             :observed (view-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerViewUse)))
@@ -178,7 +178,7 @@
                'aestheticService:PossibleViews 'aestheticService:VisibleNaturalBeauty 'aestheticService:HomeownersWithPossibleViews
                'aestheticService:ActualViews 'aestheticService:EnjoyedViews 'aestheticService:RelevantVisualBlight
                'aestheticService:HomeownersWithViews 'aestheticService:UnseenViews 'aestheticService:InaccessibleVisualBlight
-               'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:InvisibleNaturalBeauty
+               'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:DegradedNaturalBeauty
                'aestheticService:HomeownersWithDegradedViews)
         :context (source homeowners sink altitude)))
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="DoveHabitat">
-			<state id="MultipleDoveSpeciesPresent" />
-			<state id="SingleDoveSpeciesPresent" />
-			<state id="DoveHabitatAbsent" />
+		<cpt id="DeerHabitat">
+			<state id="MultipleDeerSpeciesPresent" />
+			<state id="SingleDeerSpeciesPresent" />
+			<state id="DeerHabitatAbsent" />
 			<probabilities>0.5 0.4 0.1</probabilities>
 		</cpt>
 		<cpt id="PublicAccessClass">
@@ -19,24 +19,24 @@
 			<state id="NoRiparianOrWetlandPresent" />
 			<probabilities>0.001 0.001 0.002 0.996</probabilities>
 		</cpt>
-		<cpt id="SiteDoveHuntingQuality">
-			<state id="HighDoveHuntingQuality" />
-			<state id="ModerateDoveHuntingQuality" />
-			<state id="LowDoveHuntingQuality" />
-			<state id="VeryLowDoveHuntingQuality" />
-			<parents>DoveHabitat PublicAccessClass RiparianAndWetlandCode</parents>
+		<cpt id="SiteDeerHuntingQuality">
+			<state id="HighDeerHuntingQuality" />
+			<state id="ModerateDeerHuntingQuality" />
+			<state id="LowDeerHuntingQuality" />
+			<state id="VeryLowDeerHuntingQuality" />
+			<parents>DeerHabitat PublicAccessClass RiparianAndWetlandCode</parents>
 			<probabilities>0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
-			<node id="DoveHabitat">
-				<name>DoveHabitat</name>
+			<node id="DeerHabitat">
+				<name>DeerHabitat</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>320 322 432 392</position>
-				<barchart active="true" width="241" height="64" />
+				<position>299 322 411 392</position>
+				<barchart active="true" width="284" height="72" />
 			</node>
 			<node id="PublicAccessClass">
 				<name>PublicAccessClass</name>
@@ -54,8 +54,8 @@
 				<position>1040 312 1171 393</position>
 				<barchart active="true" width="426" height="90" />
 			</node>
-			<node id="SiteDoveHuntingQuality">
-				<name>SiteDoveHuntingQuality</name>
+			<node id="SiteDeerHuntingQuality">
+				<name>SiteDeerHuntingQuality</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

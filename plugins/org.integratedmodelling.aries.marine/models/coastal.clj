@@ -7,9 +7,16 @@
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
-  
+      
 ;; --------------------------------------------------------------------------------------
-;; sink (coastal protection) model
+;; Source models
+;; --------------------------------------------------------------------------------------
+
+(defmodel storm-probability 'coastalProtection:TropicalStormProbability
+  (ranking 'habitat:TropicalStormProbability))
+
+;; --------------------------------------------------------------------------------------
+;; Sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------
 
 ;; Converted to m so should work now but need to test
@@ -56,7 +63,7 @@
 	 	 	:context  (bleaching seagrass slope mangrove-width)))
 
 ;; --------------------------------------------------------------------------------------
-;; use models
+;; Use models
 ;; --------------------------------------------------------------------------------------
 
 ;;Rather than classifying it and losing information, just return the deciles of risk to life and property.
@@ -65,16 +72,9 @@
 
 (defmodel risk-to-assets 'coastalProtection:CycloneSensitiveEconomicValue
 	(ranking 'policytarget:AssetsAtRiskStorm))
-		
-;; --------------------------------------------------------------------------------------
-;; source models
-;; --------------------------------------------------------------------------------------
-
-(defmodel storm-probability 'coastalProtection:TropicalStormProbability
-	(ranking 'habitat:TropicalStormProbability))
 
 ;; --------------------------------------------------------------------------------------
-;; all together now
+;; Flow models
 ;; --------------------------------------------------------------------------------------
 
 ;;This SPAN statement has just been copied from flood_mark, but the "keep" 

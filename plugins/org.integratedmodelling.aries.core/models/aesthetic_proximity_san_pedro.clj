@@ -145,7 +145,7 @@
 (defmodel homeowners 'aestheticService:ProximityUse
   "Property owners who can afford to pay for proximity to open space"
   (bayesian 'aestheticService:ProximityUse 
-            :import  "aries.core::ProximityUse.xdsl"
+            :import  "aries.core::ProximityUseSanPedro.xdsl"
             :context (property-value urban-proximity housing)
             :observed (proximity-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerProximityUse)))						
@@ -153,6 +153,11 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
+
+;;Gary: For the flow models, distance decay on proxmity should usually be steep (i.e., very steep after 0.5 mi, almost
+;; nothing left after 1.0 mi.  However, this decay should be a little less steep for rivers in western regions (i.e.,
+;; San Pedro) - perhaps a similar decay function stretched with an inflection point at 1.0 mi and decaying to very little
+;; at 2.0 mi.
 
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:Proximity

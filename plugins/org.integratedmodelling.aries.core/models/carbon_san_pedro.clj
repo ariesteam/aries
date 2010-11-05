@@ -78,6 +78,9 @@
         [35 40]       'carbonService:HighSOL
         [40 :>]       'carbonService:VeryHighSOL))
 
+;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their discretization for rangeland carbon modeling.
+;; For the San Pedro, the entire valley floor would be in the 230-460 range and the surrounding mountains as >460.
+;; For now, keep the below discretization, though strongly consider using it.
 (defmodel annual-precipitation 'carbonService:MeanAnnualPrecipitation
      (classification (measurement 'habitat:AnnualPrecipitation "mm")
         [500 :>]        'carbonService:HighMeanAnnualPrecipitation
@@ -153,6 +156,9 @@
                   [3 6]       'carbonService:LowRelease
                   [0.01 3]    'carbonService:VeryLowRelease
                   [0 0.01]    'carbonService:NoRelease))
+
+;;Consider reworking the soil carbon storage part of the model based on Martens et al. 2005 - soil texture, precip, 
+;; temperature as most important correlates of high soil carbon storage.
 
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 

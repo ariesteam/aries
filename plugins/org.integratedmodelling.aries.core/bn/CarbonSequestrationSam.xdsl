@@ -59,54 +59,54 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationCarbonStorage">
 				<name>VegetationCarbonStorage</name>
-				<interior color="00ff00" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>471 365 627 398</position>
-				<barchart active="true" width="188" height="126" />
+				<position>301 305 457 338</position>
+				<barchart active="true" width="309" height="126" />
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="00ff00" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>218 565 329 592</position>
-				<barchart active="true" width="276" height="143" />
+				<position>109 488 220 515</position>
+				<barchart active="true" width="276" height="108" />
 			</node>
 			<node id="SummerHighWinterLow">
 				<name>SummerHighWinterLow</name>
-				<interior color="00ff00" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>787 531 923 566</position>
+				<position>674 473 810 508</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart active="true" width="142" height="108" />
 			</node>
 			<node id="SoilCNRatio">
 				<name>SoilCNRatio</name>
-				<interior color="00ff00" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1037 522 1124 554</position>
+				<position>916 482 1003 514</position>
 				<barchart active="true" width="266" height="90" />
 			</node>
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>686 204 991 230</position>
+				<position>506 145 811 171</position>
 				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
-				<barchart active="true" width="226" height="108" />
+				<barchart active="true" width="226" height="126" />
 			</node>
 			<node id="MeanAnnualPrecipitation">
 				<name>MeanAnnualPrecipitation</name>
-				<interior color="00ff00" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>554 554 666 584</position>
+				<position>422 490 534 520</position>
 				<comment>Could add &quot;very high&quot; state for dense forests, but for Vermont, this is unnecessary</comment>
-				<barchart active="true" width="282" height="141" />
+				<barchart active="true" width="339" height="112" />
 			</node>
 		</genie>
 	</extensions>

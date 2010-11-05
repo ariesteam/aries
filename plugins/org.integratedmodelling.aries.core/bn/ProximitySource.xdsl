@@ -34,7 +34,7 @@
 			<property id="ResourceCharacteristics">ResourceCharacteristics=WaterQuality+Crime+FormalProtection</property>
 		</cpt>
 		<cpt id="Farmland">
-			<state id="FarmlandPrsent" />
+			<state id="FarmlandPresent" />
 			<state id="FarmlandAbsent" />
 			<probabilities>0.2 0.8</probabilities>
 		</cpt>
@@ -110,15 +110,15 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>423 83 551 120</position>
-				<barchart active="true" width="239" height="90" />
+				<position>377 50 505 87</position>
+				<barchart active="true" width="277" height="90" />
 			</node>
 			<node id="OpenSpaceArea">
 				<name>OpenSpaceArea</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>89 196 132 222</position>
+				<position>74 196 117 222</position>
 				<barchart active="true" width="162" height="90" />
 			</node>
 			<node id="OpenSpacePotentialValue">
@@ -126,41 +126,41 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>480 200 601 241</position>
+				<position>559 190 680 231</position>
 				<comment>These priors are suitable for regional scale analysis, including areas well outside cities.  For a strictly urban or suburban application, priors should reflect less open space and more developed land.</comment>
-				<barchart active="true" width="212" height="90" />
+				<barchart active="true" width="277" height="90" />
 			</node>
 			<node id="ResourceQuality">
 				<name>ResourceQuality</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>243 204 396 241</position>
+				<position>263 182 416 219</position>
 				<comment>Water quality, crime, and lack of formal protection detract from value; formal protection adds to value.</comment>
-				<barchart active="true" width="194" height="72" />
+				<barchart active="true" width="257" height="72" />
 			</node>
 			<node id="WaterQuality">
 				<name>WaterQuality</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>89 303 164 349</position>
-				<barchart active="true" width="128" height="90" />
+				<position>56 291 131 337</position>
+				<barchart active="true" width="163" height="90" />
 			</node>
 			<node id="CrimePotential">
 				<name>CrimePotential</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>146 423 191 451</position>
-				<barchart active="true" width="128" height="64" />
+				<position>106 397 151 425</position>
+				<barchart active="true" width="193" height="64" />
 			</node>
 			<node id="FormalProtection">
 				<name>FormalProtection</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>283 449 389 489</position>
+				<position>248 391 354 431</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Beach">
@@ -168,23 +168,23 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>877 275 930 309</position>
-				<barchart active="true" width="128" height="64" />
+				<position>887 303 940 337</position>
+				<barchart active="true" width="174" height="64" />
 			</node>
 			<node id="EmergentWetland">
 				<name>EmergentWetland</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>848 208 951 241</position>
-				<barchart active="true" width="128" height="64" />
+				<position>906 238 1009 271</position>
+				<barchart active="true" width="263" height="64" />
 			</node>
 			<node id="Forest">
 				<name>Forest</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>791 60 843 92</position>
+				<position>893 93 945 125</position>
 				<barchart active="true" width="185" height="64" />
 			</node>
 			<node id="Farmland">
@@ -192,15 +192,15 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>465 454 513 484</position>
-				<barchart active="true" width="128" height="64" />
+				<position>532 445 580 475</position>
+				<barchart active="true" width="180" height="64" />
 			</node>
 			<node id="Park">
 				<name>Park</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>420 340 461 365</position>
+				<position>413 291 454 316</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="Cemetery">
@@ -208,31 +208,31 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>590 422 651 460</position>
-				<barchart active="true" width="128" height="64" />
+				<position>706 441 767 479</position>
+				<barchart active="true" width="171" height="64" />
 			</node>
 			<node id="GolfCourse">
 				<name>GolfCourse</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>715 422 783 464</position>
-				<barchart active="true" width="128" height="64" />
+				<position>901 435 969 477</position>
+				<barchart active="true" width="208" height="64" />
 			</node>
 			<node id="LakeFront">
 				<name>LakeFront</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>866 427 927 465</position>
-				<barchart active="true" width="128" height="64" />
+				<position>435 360 496 398</position>
+				<barchart active="true" width="189" height="64" />
 			</node>
 			<node id="RiverFront">
 				<name>RiverFront</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>940 340 1002 378</position>
+				<position>942 368 1004 406</position>
 				<barchart active="true" width="288" height="64" />
 			</node>
 			<node id="WoodyWetland">
@@ -240,8 +240,8 @@
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>894 138 993 174</position>
-				<barchart active="true" width="216" height="64" />
+				<position>908 168 1007 204</position>
+				<barchart active="true" width="262" height="64" />
 			</node>
 		</genie>
 	</extensions>

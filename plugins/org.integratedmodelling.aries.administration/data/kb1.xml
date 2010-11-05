@@ -1077,31 +1077,6 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-
-	<measurement:BinaryCoding id="sanPedro_mex_highway">
-		<observation:hasObservable>
-			<infrastructure:Highway />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>3428508.610817847</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>551463.8398600442</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>3467610.423053983</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>607605.2811839104</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
-	
 	
 <measurement:BinaryCoding id="sanPedro_mex_highway">
 	<observation:hasObservable>

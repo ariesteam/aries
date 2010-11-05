@@ -7,8 +7,83 @@
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
+
 ;; --------------------------------------------------------------------------------------
-;; use models
+;; Source models
+;; --------------------------------------------------------------------------------------
+
+;;Statements below estimate harvest by pixel of three species of marine pelagic fishes
+;; valued for human consumption.  Assumptions about the harvested quantity of each species are documented
+;; in the ARIES modeling guide.  These values can be adjusted as needed with improved data or expert knowledge.
+(defmodel slender-emperor-harvest 'fisheries:LethrinusBorbonicusHarvest
+  (measurement 'fisheries:LethrinusBorbonicusHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LethrinusBorbonicusAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
+
+(defmodel sky-emperor-harvest 'fisheries:LethrinusMahsenaHarvest
+  (measurement 'fisheries:LethrinusMahsenaHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LethrinusMahsenaAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
+
+(defmodel mangrove-red-snapper-harvest 'fisheries:LutjanusArgentimaculatusHarvest
+  (measurement 'fisheries:LutjanusArgentimaculatusHarvest "kg/km^2*year" 
+      :context ((measurement 'fisheries:LutjanusArgentimaculatusAbundanceMg "kg/km^2*year" :as abundance))
+      :state   #(* (:abundance %) 8712431)))
+
+(defmodel total-pelagic-subsistence-harvest 'fisheries:TotalSubsistenceHarvest
+  (measurement 'fisheries:TotalSubsistenceHarvest "kg/km^2*year"
+      :context (slender-emperor-harvest sky-emperor-harvest mangrove-red-snapper-harvest)
+      :state    #(do (println "Slender Emperor:"      (:lethrinusborbonicusharvest %))
+                     (println "Sky Emperor:"          (:lethrinusmahsenaharvest %))
+                     (println "Mangrove Red Snapper:" (:lutjanusargentimaculatusharvest %))
+                     (apply + (map (fn [fishval] (or fishval 0.0))
+                                   [(:lethrinusborbonicusharvest      %)
+                                    (:lethrinusmahsenaharvest          %)
+                                    (:lutjanusargentimaculatusharvest %)])))))
+
+;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
+;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
+;; TODO almost all coral polygons in existing data do not report bleaching; I 
+;; don't know what text should be in the categories to define other states, so
+;; only HighBleaching is reported here if the field isn't empty.
+;; TODO this is the same as for coastalProtection, it's a weird file - we should use a more
+;; general category anyway if this is going to stay the only datafile for long.
+(defmodel bleaching-fisheries 'fisheries:CoralBleaching
+  (classification (categorization 'coastalProtection:CoralBleaching)
+    #{nil "None"}       'fisheries:NoBleaching
+    #{"HIgh" "High"}    'fisheries:HighBleaching
+    #{"Low" "Moderate"} 'fisheries:ModerateBleaching))
+  
+;; Converted to km^2 so should work now but need to test      
+(defmodel reef-area 'fisheries:CoralReefArea
+  (classification (measurement 'fisheries:CoralReefArea "km^2")
+    [250 :>]            'fisheries:HighReefArea
+    [25 250]            'fisheries:ModerateReefArea
+    [:exclusive 0 25]   'fisheries:LowReefArea
+    nil                 'fisheries:NoReefArea))
+    
+(defmodel estuary-area 'fisheries:EstuaryArea
+  (classification (categorization 'fisheries:EstuaryArea)
+    "Small"    'fisheries:SmallEstuary
+    "Large"    'fisheries:LargeEstuary
+    :otherwise 'fisheries:NoEstuary))
+
+(defmodel nitrogen 'fisheries:NitrogenRunoff
+  (classification (measurement 'policytarget:NitrogenFromFertilizerAndManure "kg/ha*year")
+    [90 :>] 'fisheries:HighNitrogenRunoff
+    [40 90]  'fisheries:ModerateNitrogenRunoff
+    [15 40]  'fisheries:LowNitrogenRunoff
+    [:< 15]  'fisheries:NoNitrogenRunoff))
+    
+(defmodel fish-habitat-quality 'fisheries:FishHabitat
+    "Interface to subsistence use bayesian network"
+    (bayesian 'fisheries:FishHabitat 
+      :import   "aries.marine::FisheriesA_hololepidotus.xdsl"
+      :keep     ('fisheries:ReefQuality 'fisheries:EstuaryQuality)
+      :context  (bleaching-fisheries reef-area estuary-area nitrogen))) 
+
+;; --------------------------------------------------------------------------------------
+;; Use models
 ;; --------------------------------------------------------------------------------------
 
 (defmodel coastal-proximity 'fisheries:DistanceToCoast
@@ -49,84 +124,10 @@
 	  	:import   "aries.marine::FisheriesSubsistenceUse.xdsl"
 	  	:keep     ('fisheries:SubsistenceUse)
       :observed (subsistence-fishing-undiscretized) 
-	 	 	:context  (poverty population-density coastal-proximity)))
-
-;; --------------------------------------------------------------------------------------
-;; source models
-;; --------------------------------------------------------------------------------------
-
-;;Statements below estimate harvest by pixel of three species of marine pelagic fishes
-;; valued for human consumption.  Assumptions about the harvested quantity of each species are documented
-;; in the ARIES modeling guide.  These values can be adjusted as needed with improved data or expert knowledge.
-(defmodel slender-emperor-harvest 'fisheries:LethrinusBorbonicusHarvest
-  (measurement 'fisheries:LethrinusBorbonicusHarvest "kg/km^2*year" 
-      :context ((measurement 'fisheries:LethrinusBorbonicusAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
-
-(defmodel sky-emperor-harvest 'fisheries:LethrinusMahsenaHarvest
-  (measurement 'fisheries:LethrinusMahsenaHarvest "kg/km^2*year" 
-      :context ((measurement 'fisheries:LethrinusMahsenaAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
-
-(defmodel mangrove-red-snapper-harvest 'fisheries:LutjanusArgentimaculatusHarvest
-  (measurement 'fisheries:LutjanusArgentimaculatusHarvest "kg/km^2*year" 
-      :context ((measurement 'fisheries:LutjanusArgentimaculatusAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
-
-(defmodel total-pelagic-subsistence-harvest 'fisheries:TotalSubsistenceHarvest
-  (measurement 'fisheries:TotalSubsistenceHarvest "kg/km^2*year"
-      :context (slender-emperor-harvest sky-emperor-harvest mangrove-red-snapper-harvest)
-      :state    #(do (println "Slender Emperor:"      (:lethrinusborbonicusharvest %))
-                     (println "Sky Emperor:"          (:lethrinusmahsenaharvest %))
-                     (println "Mangrove Red Snapper:" (:lutjanusargentimaculatusharvest %))
-                     (apply + (map (fn [fishval] (or fishval 0.0))
-                                   [(:lethrinusborbonicusharvest      %)
-                                    (:lethrinusmahsenaharvest          %)
-                                    (:lutjanusargentimaculatusharvest %)])))))
-
-;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
-;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
-;; TODO almost all coral polygons in existing data do not report bleaching; I 
-;; don't know what text should be in the categories to define other states, so
-;; only HighBleaching is reported here if the field isn't empty.
-;; TODO this is the same as for coastalProtection, it's a weird file - we should use a more
-;; general category anyway if this is going to stay the only datafile for long.
-(defmodel bleaching-fisheries 'fisheries:CoralBleaching
-	(classification (categorization 'coastalProtection:CoralBleaching)
- 		#{nil "None"}			  'fisheries:NoBleaching
- 		#{"HIgh" "High"}	  'fisheries:HighBleaching
- 	  #{"Low" "Moderate"} 'fisheries:ModerateBleaching))
- 	
-;; Converted to km^2 so should work now but need to test  	  
-(defmodel reef-area 'fisheries:CoralReefArea
-	(classification (measurement 'fisheries:CoralReefArea "km^2")
-		[250 :>]            'fisheries:HighReefArea
-		[25 250]            'fisheries:ModerateReefArea
-		[:exclusive 0 25]   'fisheries:LowReefArea
-		nil                 'fisheries:NoReefArea))
- 	  
-(defmodel estuary-area 'fisheries:EstuaryArea
-	(classification (categorization 'fisheries:EstuaryArea)
- 		"Small"		 'fisheries:SmallEstuary
- 		"Large"	   'fisheries:LargeEstuary
- 	  :otherwise 'fisheries:NoEstuary))
-
-(defmodel nitrogen 'fisheries:NitrogenRunoff
-	(classification (measurement 'policytarget:NitrogenFromFertilizerAndManure "kg/ha*year")
-		[90 :>] 'fisheries:HighNitrogenRunoff
-		[40 90]  'fisheries:ModerateNitrogenRunoff
-		[15 40]  'fisheries:LowNitrogenRunoff
-		[:< 15]  'fisheries:NoNitrogenRunoff))
-		
-(defmodel fish-habitat-quality 'fisheries:FishHabitat
-  	"Interface to subsistence use bayesian network"
-	  (bayesian 'fisheries:FishHabitat 
-	  	:import   "aries.marine::FisheriesA_hololepidotus.xdsl"
-	  	:keep     ('fisheries:ReefQuality 'fisheries:EstuaryQuality)
-	 	 	:context  (bleaching-fisheries reef-area estuary-area nitrogen)))		
+	 	 	:context  (poverty population-density coastal-proximity)))	
 		
 ;; --------------------------------------------------------------------------------------
-;; flow models
+;; Flow models
 ;; --------------------------------------------------------------------------------------
 
 ;;This SPAN statement has just been copied from flood_mark, but the "keep" 

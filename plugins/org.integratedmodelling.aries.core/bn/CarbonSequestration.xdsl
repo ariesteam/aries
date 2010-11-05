@@ -79,71 +79,71 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
-				<interior color="ccffcc" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>745 226 1077 252</position>
+				<position>360 95 692 121</position>
 				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
 				<barchart active="true" width="265" height="126" />
 			</node>
 			<node id="PercentVegetationCover">
 				<name>PercentVegetationCover</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1136 594 1243 624</position>
-				<barchart active="true" width="128" height="108" />
+				<position>779 402 886 432</position>
+				<barchart active="true" width="289" height="108" />
 			</node>
 			<node id="HardwoodSoftwoodRatio">
 				<name>HardwoodSoftwoodRatio</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>886 596 1044 624</position>
+				<position>470 404 628 432</position>
 				<barchart active="true" width="262" height="108" />
 			</node>
 			<node id="SuccessionalStage">
 				<name>SuccessionalStage</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1312 593 1437 623</position>
-				<barchart active="true" width="128" height="126" />
+				<position>1050 409 1175 439</position>
+				<barchart active="true" width="244" height="126" />
 			</node>
 			<node id="SummerHighWinterLow">
 				<name>SummerHighWinterLow</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>648 590 784 625</position>
+				<position>240 401 376 436</position>
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart active="true" width="199" height="109" />
 			</node>
 			<node id="VegetationDensity">
 				<name>VegetationDensity</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>975 436 1097 465</position>
+				<position>595 253 717 282</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="128" height="126" />
+				<barchart active="true" width="275" height="126" />
 			</node>
 			<node id="SoilCNRatio">
 				<name>SoilCNRatio</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>490 580 577 612</position>
-				<barchart active="true" width="128" height="90" />
+				<position>69 395 156 427</position>
+				<barchart active="true" width="176" height="90" />
 			</node>
 			<node id="SequestrationRate">
 				<name>SequestrationRate</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>677 438 792 469</position>
+				<position>238 252 353 283</position>
 				<comment>Type your annotation here</comment>
-				<barchart active="true" width="128" height="126" />
+				<barchart active="true" width="297" height="126" />
 			</node>
 		</genie>
 	</extensions>

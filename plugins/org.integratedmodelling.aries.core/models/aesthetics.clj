@@ -170,7 +170,7 @@
                'aestheticService:PossibleViews 'aestheticService:VisibleNaturalBeauty 'aestheticService:HomeownersWithPossibleViews
                'aestheticService:ActualViews 'aestheticService:EnjoyedViews 'aestheticService:RelevantVisualBlight
                'aestheticService:HomeownersWithViews 'aestheticService:UnseenViews 'aestheticService:InaccessibleVisualBlight
-               'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:InvisibleNaturalBeauty
+               'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:DegradedNaturalBeauty
                'aestheticService:HomeownersWithDegradedViews)
         :context (source
                   homeowners
