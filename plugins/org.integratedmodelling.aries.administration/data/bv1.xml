@@ -23,7 +23,10 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
-	<measurement:Measurement id="PRECIPA7100">
+<!-- This layer should go, and I'm not including it in the spreadsheet to restore Geoserver.  It's just PRISM mean annual
+precip clipped to Vermont, and we've already got a nationwide PRISM mean annual precip layer ready to go.
+
+ 	<measurement:Measurement id="PRECIPA7100">
 		<observation:hasObservable>
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
@@ -45,7 +48,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement>  -->
 
 	<!-- Puget beaches -->
 	<measurement:BinaryCoding id="puget_pugetbeaches">

@@ -1275,7 +1275,7 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
-	<measurement:Ranking id="SoilCarbFinal">
+	<measurement:Measurement id="SoilCarbFinal">
 		<observation:hasObservable>
 			<carbonService:SoilCarbonStorage />
 		</observation:hasObservable>
@@ -1299,7 +1299,7 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 	<measurement:Ranking id="global_soil_CN_ratio">
 		<observation:hasObservable>
@@ -1544,7 +1544,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	</measurement:Ranking>	
 	
 <!-- Native units are kg C/m2, requiring a scaling factor of 0.0001.  Change this scaling to 0.001 to convert to t/ha.  Values over 30,000 are null values -->
-	<measurement:Ranking id="npp_modis1km">
+	<measurement:Measurement id="npp_modis1km">
 		<observation:hasObservable>
 			<carbonService:VegetationAndSoilCarbonSequestration />
 		</observation:hasObservable>
@@ -1570,7 +1570,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 	
     <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb) converts it to tonnes C/ha -->
 	
@@ -1604,7 +1604,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 </measurement:Measurement>
 	
 <!-- Global vegetation carbon storage layer, below, is in tonnes C/ha, and does NOT need to be divided by 2, like the US biomass data do -->
-	<measurement:Ranking id="c_1km_recl">
+	<measurement:Measurement id="c_1km_recl">
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
@@ -1629,13 +1629,13 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Measurement>
 
 	<measurement:Measurement id="vegHt_Project">
 		<observation:hasObservable>
 			<habitat:VegetationHeight />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: Derived from Puget Sound LIDAR Consortium</rdfs:comment>
+		<rdfs:comment>Data source: Derived from Puget Sound LIDAR Consortium data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://pugetsoundlidar.ess.washington.edu/</metadata:hasURL>
 		<measurement:unit>ft</measurement:unit>
