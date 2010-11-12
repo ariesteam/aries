@@ -40,7 +40,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>global:evapotrans</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:aet_global</geospace:hasCoverageId>
 			<geospace:hasNodataValue></geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -69,7 +69,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:Temp_Max_Yearly</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:tmp_ann_max_us</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -97,7 +97,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:avgannrunoff</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:avg_ann_runoff_global</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-32768</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -206,7 +206,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:CoastalWetlands</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:coastal_wetlands_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -232,7 +232,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:NLCD92_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:comm_ind_trans_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -259,7 +259,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:pfactor1990_30min</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_pfactor</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -286,7 +286,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:cfactor1990_30min</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_cfactor</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -396,7 +396,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:Temp_Max_Dec</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:tmp_dec_us</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -424,7 +424,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_dec</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tmp_dec_global</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -453,7 +453,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:DecPrecip</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:precip_dec_puget</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -504,7 +504,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:Slope_Combined</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -528,7 +528,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:mad_slope</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -554,7 +554,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:puget_detention</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:detention_basins_puget</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -582,7 +582,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:PointDensity</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:fire_freq_puget</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -610,7 +610,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:TotnoCEM_Final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:ghg_emissions_us</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.0001</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -637,7 +637,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:HardwoodSoftwood</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:hardwood_softwood</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -663,7 +663,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:HSG</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:hsg_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -689,7 +689,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasNodataValue>127</geospace:hasNodataValue>
-			<geospace:hasCoverageId>global:hsg</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:hsg_global</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -742,7 +742,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:Temp_Max_Jan</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:tmp_jan_us</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -771,7 +771,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:tmp_jan</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tmp_jan_global</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -941,7 +941,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>puget:FloodplainCanopy</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:floodplain_veg_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -968,7 +968,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:canopy1_011007_Project_1</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_1</geospace:hasCoverageId>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -995,7 +995,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>global:AfricaTreeCover</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:tree_cover_africa</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1022,7 +1022,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>puget:impervious</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_1</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1107,7 +1107,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:rfactor_1980</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_rfactor</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1205,7 +1205,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:slpstab83_Projec</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:slope_stability_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1232,7 +1232,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:lsfactor_30min</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_lsfactor</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1285,7 +1285,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:SoilCarbFinal</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:soil_carbon_storage</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1310,7 +1310,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:SoilCNRatioFinal</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:soil_cn_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1337,7 +1337,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:kfactor_30min</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_kfactor</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1365,7 +1365,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:annual_loss1980</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:rusle_soil_loss</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1395,7 +1395,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:soil_ph2</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:soil_pH_30_100_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1423,7 +1423,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:soil_ph1</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:soil_pH_0_30_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1475,7 +1475,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SuccessionalStage</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:successional_stage_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1501,7 +1501,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>global:SumHiWintLow</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:sum_hi_wint_lo_global</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1527,7 +1527,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:SummerHiWinterLoUS</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:sum_hi_wint_lo_us</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1555,7 +1555,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:npp_modis1km</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:npp_modis</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.001</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1586,7 +1586,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:NBCD_MZ01_FIA_ALD_biomass_final</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:biomass_1</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -1615,7 +1615,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:c_1km_recl</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:biomass_carbon_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1642,7 +1642,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:vegHt_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:veg_ht_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1694,7 +1694,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:wetlands</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:wetlands_mg</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
