@@ -156,7 +156,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetbridges</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:bridges_puget</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -316,7 +316,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:reservoirs_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>depth_ft</geospace:hasValueAttribute>
 				<geospace:hasTransformation>self * 304.8</geospace:hasTransformation>
 				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
@@ -345,7 +345,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>california:dam_storage_socal</geospace:hasCoverageId>
+			<geospace:hasCoverageId>california:dam_storage_ca</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -368,7 +368,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:meandaysprecipdec</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:mean_days_precip_dec</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
@@ -479,7 +479,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:mgdeforestation</geospace:hasCoverageId>
+					<geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
@@ -714,7 +714,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:meandaysprecipjan</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:mean_days_precip_jan</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
@@ -801,7 +801,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:precipjan</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:precip_jan_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
 				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
 				<!-- the shapefile wrongly states that the attribute is a String -->
@@ -833,7 +833,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetlake</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:lake_puget</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -857,7 +857,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetlakefront</geospace:hasCoverageId>
+					<geospace:hasCoverageId>puget:lakefront_puget</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -883,7 +883,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:levees_puget</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -913,7 +913,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetocean</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:ocean_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>water_cd</geospace:hasValueAttribute>
 				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
 			</geospace:WFSDataSource>
@@ -1082,7 +1082,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetformalprotection</geospace:hasCoverageId>
+					<geospace:hasCoverageId>puget:formal_protection_puget</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -1133,7 +1133,7 @@ Slope in degrees for Puget Sound & Madagascar
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:reservoirs_puget</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1157,7 +1157,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetriverfront</geospace:hasCoverageId>
+					<geospace:hasCoverageId>puget:riverfront_puget</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -1181,7 +1181,7 @@ Slope in degrees for Puget Sound & Madagascar
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
+					<geospace:hasCoverageId>mg:hydrography_mg</geospace:hasCoverageId>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
@@ -1260,7 +1260,7 @@ Slope in degrees for Puget Sound & Madagascar
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetrainonsnow</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:rain_on_snow_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>precip_sno</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -1448,7 +1448,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>global:globalsoiltexture</geospace:hasCoverageId>
+					<geospace:hasCoverageId>global:soil_texture_global</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
@@ -1668,7 +1668,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>puget:pugetwaterquality</geospace:hasCoverageId>
+					<geospace:hasCoverageId>puget:water_quality_puget</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>quality</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
@@ -1710,9 +1710,9 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<!--  ITEMS BELOW HAVE NOT BEEN ALPHABETIZED BY ONTOLOGIC CONCEPT.  THEY MAY NEED TO BE RE-TAGGED IN GEOSERVER. -->
+<!--  ITEMS BELOW HAVE NOT BEEN ALPHABETIZED BY ONTOLOGIC CONCEPT.  THEY MAY NEED TO BE RE-TAGGED IN GEOSERVER. 
 
-	<!-- landuse category from property data, used as a 1/0 coverage -->
+	 landuse category from property data, used as a 1/0 coverage 
 	<observation:Categorization id="chehalis_housing">
 	
 		<observation:hasObservable>
@@ -1740,7 +1740,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 	</observation:Categorization>
 
 	
-	<!-- thanks WA counties for doing it differently, all of you -->
+ thanks WA counties for doing it differently, all of you 
 	<observation:Categorization id="king_presence_of_housing">
 
 		<observation:hasObservable>
@@ -1765,7 +1765,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</observation:Categorization>
+	</observation:Categorization> -->
 	
 	<measurement:Ranking id="mg_mglulc">
 			<observation:hasObservable>
@@ -1777,7 +1777,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			<observation:hasDataSource>
 				<geospace:WFSDataSource>
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
+					<geospace:hasCoverageId>mg:lulc_mg</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>natbd500</geospace:hasValueAttribute>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>

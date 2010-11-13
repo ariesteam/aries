@@ -122,7 +122,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:meandaysprecipannual</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:mean_days_precip_annual</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
 			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
@@ -178,7 +178,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:PrecipAvgYearly</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:annual_precip_us</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -234,7 +234,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:bio_12</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:annual_precip_global</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -262,7 +262,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>usa:2002_wgs84</geospace:hasCoverageId>
+			<geospace:hasCoverageId>usa:precip_2002</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -290,7 +290,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:2007_wgs84</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:precip_2007</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -318,7 +318,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:groundwater_recharge</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:gw_recharge_us</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-32768.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -461,7 +461,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:well_tested_rate</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:well_tested_rate_san_pedro</geospace:hasCoverageId>
 			<geospace:hasTransformation>self * 497349</geospace:hasTransformation>
 			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
@@ -569,7 +569,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
+			<geospace:hasCoverageId>mexico:lulc_mexico</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
@@ -594,7 +594,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_p</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -616,7 +616,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:nationalboundaries</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:national_boundaries</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>cntry_name</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -641,7 +641,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_c</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -690,7 +690,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservable> <measurement:unit>°</measurement:unit>
 		<observation:hasDataSource> <geospace:WCSDataSource>
 		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>dominicanRepublic:DR_slope</geospace:hasCoverageId>
+		<geospace:hasCoverageId>dominican:DR_slope</geospace:hasCoverageId>
 		<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource> </observation:hasDataSource>
 		<observation:hasObservationExtent> <geospace:RasterGrid>
@@ -733,7 +733,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:DepthToWaterSanPedro</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:depth_to_water_san_pedro</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -760,7 +760,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:DepthToWater_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:depth_to_water_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -784,7 +784,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:DR_lulc</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:LULC_dr</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -807,7 +807,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:coffee_farms</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:coffee_farms_dr</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -831,7 +831,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-			<geospace:hasCoverageId>sanPedro:Reclass_fire_Clip</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:fire_san_pedro</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -858,7 +858,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-				<geospace:hasCoverageId>california:Reclass_fthr1</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:fire_threat_ca</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -883,7 +883,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:californiafloodplain</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:floodplain_ca</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>zone_</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -908,7 +908,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:FloodplainWidth</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:floodplain_width_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -934,7 +934,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:floodplain_width</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:floodplain_width_ca</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -960,7 +960,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:globalfloodplains</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:floodplains_global</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -984,7 +984,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:gambels_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:gambels</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1061,7 +1061,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>TotnoCEM_Final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:ghg_emissions_us</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1088,7 +1088,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:highways_mex</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1111,7 +1111,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:highways</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:highways_us</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1136,7 +1136,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:hydroreservoirs2</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:hydro_reservoir_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>normal_s_1</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -1162,7 +1162,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:HydroDams</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:hydro_dams_africa</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1185,7 +1185,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:drreservoirs</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:reservoirs_dr</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1209,7 +1209,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>california:oc_hsg</geospace:hasCoverageId>
+			<geospace:hasCoverageId>california:hsg_ca</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1235,7 +1235,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:san_pedro_hsg</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:hsg_san_pedro</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1258,7 +1258,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:Industry</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mexico:industrial_use_la</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1339,7 +1339,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:javelina_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:javelina</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1364,7 +1364,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL><observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_land_ownership</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:land_ownership_az</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>owner</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
@@ -1414,7 +1414,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:mearns_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:mearns</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1440,7 +1440,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:lulc_mg</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>os_id</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -1465,7 +1465,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:mourning_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:mourning</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1491,7 +1491,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:mule_240</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:mule</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1514,7 +1514,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:Non_Rival_Use</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mexico:non_rival_use_la</geospace:hasCoverageId>
 				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1540,7 +1540,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:FloodplainVegMg</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:floodplain_veg_mg</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1565,7 +1565,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:dr_fp_veg</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:floodplain_veg_dr</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1591,7 +1591,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:imperviousGlobal</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:impervious_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1618,7 +1618,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>california:impervious2_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_2</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1645,7 +1645,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>sanPedro:impervious5_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_5</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1672,7 +1672,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious10_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1699,7 +1699,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious11_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1726,7 +1726,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious12_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1753,7 +1753,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious13_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1780,7 +1780,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious14_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1807,7 +1807,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious3_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_3</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1834,7 +1834,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious4_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_4</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1861,7 +1861,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious6_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_6</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1888,7 +1888,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious7_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_7</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1915,7 +1915,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious8_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_8</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1942,7 +1942,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:impervious9_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:impervious_9</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1968,7 +1968,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:AsiaPacificTreeCover</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tree_cover_asia_pacific</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1994,7 +1994,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:EuropeAsiaTreeCover</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tree_cover_europe_asia</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2020,7 +2020,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:NorthAmericaTreeCover</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tree_cover_north_america</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2046,7 +2046,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:SouthAmericaTreeCover</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:tree_cover_south_america</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2073,7 +2073,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>california:canopy2_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_2</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2100,7 +2100,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>sanPedro:canopy5_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_5</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2127,7 +2127,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy10_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2154,7 +2154,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy11_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2181,7 +2181,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy12_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2208,7 +2208,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>vermont:canopy13_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>vermont:canopy_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2235,7 +2235,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy14_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2262,7 +2262,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy3_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_3</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2289,7 +2289,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy4_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_4</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2316,7 +2316,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy6_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_6</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2343,7 +2343,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy7_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_7</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2370,7 +2370,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy8_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_8</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2397,7 +2397,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:canopy9_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_9</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2484,7 +2484,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_popdens</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:population_density_az</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>popdens00</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
@@ -2511,7 +2511,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetpopulationdensity</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:population_density_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -2537,7 +2537,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:pet</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:pet_global</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2614,7 +2614,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:Proximity_SurfaceWater1</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mexico:surface_water_prox_la</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2660,7 +2660,7 @@ we could discuss integrating those at some point.-->
 		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL><observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_r</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -2708,7 +2708,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:drreservoirs</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:reservoirs_dr</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2732,7 +2732,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:Africa_dams3</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:dams_africa</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2832,7 +2832,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:PugetStreams3</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:hydrography_puget</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2855,7 +2855,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:drrivers</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:hydrography_dr</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2876,7 +2876,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:lastreams</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mexico:hydrography_la</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2900,7 +2900,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_hydrography</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:hydrography_az</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2924,7 +2924,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:mex_hydrography</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:hydrography_mex</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2948,7 +2948,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:hydro</geospace:hasCoverageId></geospace:WFSDataSource>
+				<geospace:hasCoverageId>california:hydrography_ca</geospace:hasCoverageId></geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
@@ -2972,7 +2972,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:roads_az</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2999,7 +2999,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:roads_az</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>category</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
@@ -3024,7 +3024,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:highways</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:highways_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3076,7 +3076,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:scaled_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:scaled</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3127,7 +3127,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_a_kh</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3179,7 +3179,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_ls</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3204,7 +3204,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>rusle_k</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3229,7 +3229,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilErodibilty</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3257,7 +3257,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>california:SoilpH_0_30</geospace:hasCoverageId>
+			<geospace:hasCoverageId>california:soil_pH_0_30_ca</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3283,7 +3283,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:SoilpH_30_100</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:soil_pH_30_100_ca</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3309,7 +3309,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilpH_0_30_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_pH__0_30_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3335,7 +3335,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilpH_30_100_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_pH__30_100_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3361,7 +3361,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:SoilpH_0_30_san_pedro</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:soil_pH_0_30_san_pedro</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3388,7 +3388,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:SoilpH_30_100_san_pedro</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:soil_pH_30_100_san_pedro</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3414,7 +3414,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:SoilTexture</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_texture_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3440,7 +3440,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:swregap_landcover_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:swregap_lulc</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3466,7 +3466,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:springs3</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:springs_san_pedro</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3493,7 +3493,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominicanRepublic:str_gradient</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:stream_gradient_dr</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3520,7 +3520,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:streamGradientMg</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:stream_gradient_mg</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3547,7 +3547,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetStreamGradient</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:stream_gradient_puget</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3574,7 +3574,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:Diversions</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:diversions_san_pedro</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3600,7 +3600,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:terrestrialecoregions</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:terrestrial_ecoregions</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>eco_id</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3682,7 +3682,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:NBCD_MZ04_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:biomass_4</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3711,7 +3711,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:NBCD_MZ15_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:biomass_15</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3740,7 +3740,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:NBCD_MZ25_FIA_ALD_biomass_final</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:biomass_25</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3764,7 +3764,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>vermont:cdl_awifs_r_vt_2009_utm18</geospace:hasCoverageId>
+				<geospace:hasCoverageId>vermont:crop_data_vt</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3790,7 +3790,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:vegtypesocal</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:veg_type_ca</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>covertype</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3813,7 +3813,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mexico:lulc_la</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -3891,7 +3891,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:well_depth</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:well_depth_san_pedro</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -3918,7 +3918,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:whitetail_240</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:whitetail</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3944,7 +3944,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:whitewing_240</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:whitewing</geospace:hasCoverageId>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3973,7 +3973,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>-9999.0</geospace:hasNodataValue>
-				<geospace:hasCoverageId>usa:wd_det_1km_Project</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:woody_debris_us</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3998,7 +3998,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource> 
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:facilities</geospace:hasCoverageId>
+				<geospace:hasCoverageId>california:facilities_ca</geospace:hasCoverageId>
 			</geospace:WCSDataSource> 
 		</observation:hasDataSource>
 		<observation:hasObservationExtent> 
