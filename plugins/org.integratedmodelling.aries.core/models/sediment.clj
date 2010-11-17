@@ -72,13 +72,12 @@
 		#{52 81}             'soilretentionEcology:ShrublandPasture
 		#{21 22 23 24 31 82} 'soilretentionEcology:CropsBarrenDeveloped))
 
+;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCoverClass
-	(classification (numeric-coding 'habitat:PercentVegetationCover)
-		[80 100] 'soilretentionEcology:VeryHighVegetationCover
-		[60 80]  'soilretentionEcology:HighVegetationCover
-		[40 60]  'soilretentionEcology:ModerateVegetationCover
-		[20 40]  'soilretentionEcology:LowVegetationCover
-		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
+  (classification (numeric-coding 'habitat:PercentVegetationCover)
+    [70 100]  'soilretentionEcology:HighVegetationCover
+    [30 70]  'soilretentionEcology:ModerateVegetationCover
+    [0 30]  'soilretentionEcology:LowVegetationCover))
 
 (defmodel successional-stage 'soilretentionEcology:SuccessionalStageClass
 	 (classification (numeric-coding 'ecology:SuccessionalStage)  

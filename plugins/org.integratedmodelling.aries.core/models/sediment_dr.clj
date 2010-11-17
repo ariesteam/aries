@@ -93,13 +93,12 @@
 ;    #{16 19 22}             'soilretentionEcology:CropsBarrenDeveloped)
 )
 
+;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover 'soilretentionEcology:PercentVegetationCoverClass
 	(classification (numeric-coding 'habitat:PercentVegetationCover)
-		[80 100] 'soilretentionEcology:VeryHighVegetationCover
-		[60 80]  'soilretentionEcology:HighVegetationCover
-		[40 60]  'soilretentionEcology:ModerateVegetationCover
-		[20 40]  'soilretentionEcology:LowVegetationCover
-		[0 20]   'soilretentionEcology:VeryLowVegetationCover))
+		[70 100]  'soilretentionEcology:HighVegetationCover
+		[30 70]  'soilretentionEcology:ModerateVegetationCover
+		[0 30]  'soilretentionEcology:LowVegetationCover))
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
