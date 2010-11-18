@@ -1053,6 +1053,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
+<!-- KB: Commenting this out, the correct version with conversion is in common.xml.
 	<measurement:Measurement id="TotnoCEM_Final">
 		<observation:hasObservable>
 			<carbonService:GreenhouseGasEmitters />
@@ -1076,7 +1077,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Measurement>
+	</measurement:Measurement>  -->
 	
 <measurement:BinaryCoding id="sanPedro_mex_highway">
 	<observation:hasObservable>
@@ -1178,7 +1179,9 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
+<!-- The same layer is listed twice in this .xml file, also under geofeatures:Reservoir.  Should be able to use the same concept, I'd think.
+See the sediment_dr.clj file to make sure, otherwise leaving this commented out for now.
+ 	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUsePresence />
 		</observation:hasObservable>
@@ -1197,7 +1200,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding> -->
 
 <measurement:Ranking id="oc_hsg">
 	<observation:hasObservable>
@@ -2208,7 +2211,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasNodataValue>127</geospace:hasNodataValue>
-				<geospace:hasCoverageId>vermont:canopy_13</geospace:hasCoverageId>
+				<geospace:hasCoverageId>usa:canopy_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2580,7 +2583,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-	<measurement:BinaryCoding id="pima_parcels_Project">
+<!-- Commented out until I figure out what to do with the AZ parcel data 	<measurement:BinaryCoding id="pima_parcels_Project">
 		<observation:hasObservable>
 			<aestheticService:PresenceOfHousing />
 		</observation:hasObservable>
@@ -2604,7 +2607,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding> -->
 
 	<measurement:Measurement id="Proximity_SurfaceWater1">
 		<observation:hasObservable>
@@ -3309,7 +3312,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:soil_pH__0_30_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_pH_0_30_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3335,7 +3338,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:soil_pH__30_100_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:soil_pH_30_100_puget</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

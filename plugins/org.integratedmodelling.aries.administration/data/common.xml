@@ -114,8 +114,9 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-	<!-- TODO this should be an economic value measurement with date and currency, not a 
-	     dumb ranking -->
+<!-- KB: this should be replaced by the combined Puget 
+     parcels dataset.  TODO this should be an economic value measurement with date and currency, not a 
+	     dumb ranking 
 	<measurement:Ranking id="king_property_value">
 	
 		<observation:hasObservable>
@@ -141,7 +142,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 	
 	<!-- bridges in Chehalis watershed from shape coverage, 
 		 seen as a presence/absence ranking -->
@@ -788,8 +789,10 @@ Slope in degrees for Puget Sound & Madagascar
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-<!-- January mean monthly total precipitation in WA-->
-<!-- Native units are in inches, convert to mm for consistency with other data sources -->
+<!-- January mean monthly total precipitation in WA
+ Native units are in inches, convert to mm for consistency with other data sources 
+ This layer is evidently completely screwed up (see Ferd's comments interspersed).  Also it should be wcs, not wfs.  
+ Commenting out for now as it's not even used.
 	<measurement:Measurement id="puget_precipitation_january">
 		<observation:hasObservable>
 			<habitat:JanuaryPrecipitation />
@@ -804,7 +807,7 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasCoverageId>puget:precip_jan_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>range</geospace:hasValueAttribute>
 				<geospace:hasTransformation>self * 25.4</geospace:hasTransformation>
-				<!-- the shapefile wrongly states that the attribute is a String -->
+				 the shapefile wrongly states that the attribute is a String 
 				<geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -816,9 +819,9 @@ Slope in degrees for Puget Sound & Madagascar
 				<geospace:hasLatUpperBound>49.0024948120117</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-116.915573120117</geospace:hasLonUpperBound>
 			</geospace:ArealFeatureSet>
-			<!-- TODO add time span -->
+			 TODO add time span 
 		</observation:hasObservationExtent>
-	</measurement:Measurement>	
+	</measurement:Measurement>	 -->
 
 <!-- lakes in Puget sound from shape coverage, 
 		 seen as a presence/absence ranking -->
@@ -1767,7 +1770,9 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 		</observation:hasObservationExtent>
 	</observation:Categorization> -->
 	
-	<measurement:Ranking id="mg_mglulc">
+<!-- Already have this mg lulc layer in kb1.xml, but as a numeric coding.  This corresponds to what's in the .clj models, so keep it and 
+comment this one out.
+ 	<measurement:Ranking id="mg_mglulc">
 			<observation:hasObservable>
 				<mglulc:MGLULCNumeric />
 			</observation:hasObservable>
@@ -1790,6 +1795,6 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 					<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
-		</measurement:Ranking>
+		</measurement:Ranking> -->
 		
 </kbox>

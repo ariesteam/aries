@@ -73,8 +73,8 @@
        [:< 10]   'carbonService:VeryLowCNRatio)) 
 
 (defmodel degradation-status 'carbonService:DegradationStatus
-  (classification (ranking 'mglulc:MGLULCNumeric)
-         #{53 57}         'carbonService:Degraded
+  (classification (numeric-coding 'mglulc:MGLULCNumeric)
+         #{3 7 23}         'carbonService:Degraded
          :otherwise       'carbonService:NotDegraded)) 
 
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration

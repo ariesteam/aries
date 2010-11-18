@@ -192,7 +192,7 @@
 
 ;;Reservoirs use for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresenceClass
-	(classification (binary-coding 'soilretentionEcology:HydroelectricUsePresence)
+	(classification (binary-coding 'geofeatures:Reservoir)
 			0			'soilretentionEcology:HydroelectricUseAbsent
 			1			'soilretentionEcology:HydroelectricUsePresent))
 

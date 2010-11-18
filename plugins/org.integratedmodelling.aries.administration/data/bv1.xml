@@ -95,7 +95,7 @@ precip clipped to Vermont, and we've already got a nationwide PRISM mean annual 
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
-	<!-- mean days of precipitation -->
+	<!-- mean days of precipitation - replaced by a reprojected version contained in common.xml
 	<measurement:Ranking id="puget_meandaysprecipdec">
 		<observation:hasObservable>
 			<habitat:DecemberDaysOfPrecipitation />
@@ -118,9 +118,9 @@ precip clipped to Vermont, and we've already got a nationwide PRISM mean annual 
 				<geospace:hasCoordinateReferenceSystem>EPSG:4609</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
-	<!--Puget population density: measured in people per square kilometer-->
+	<!--Puget population density: measured in people per square kilometer.  This is already in kb1.xml with better metadata, so commeting this one out.
 	<measurement:Count id="puget_pugetpopulationdensity">
 		<observation:hasObservable>
 			<policytarget:PopulationDensity />
@@ -142,7 +142,7 @@ precip clipped to Vermont, and we've already got a nationwide PRISM mean annual 
 				<geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:Count>
+	</measurement:Count> -->
 
 	<!-- Puget parks -->
 	<measurement:BinaryCoding id="puget_pugetparks">

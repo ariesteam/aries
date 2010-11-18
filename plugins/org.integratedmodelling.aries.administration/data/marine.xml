@@ -112,8 +112,8 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- FV this is still the BS layer so I reverted to a ranking. The models are in sync
-		with the BS numbers. -->
+	<!-- FV: this is still the BS layer so I reverted to a ranking. The models are in sync
+		with the BS numbers. KB: This layer still has major issues.  Commenting it out and using the mg layer until global is needed.
 	<measurement:Ranking id="BathSlope">
 		<observation:hasObservable>
 			<geophysics:BathymetricSlope />
@@ -139,7 +139,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> -->
 
 <measurement:Measurement id="mg_bath1-171_ProjectRaster1">
 	<observation:hasObservable>
