@@ -729,6 +729,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_depth_to_water_table</metadata:belongsToDataset>
 		<measurement:unit>cm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -756,6 +757,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_depth_to_water_table</metadata:belongsToDataset>
 		<measurement:unit>cm</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -880,6 +882,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservable>
 		<rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:belongsToDataset>FEMA_floodplain_extents</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -904,6 +907,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:belongsToDataset>Calculated_FEMA_floodplain_width</metadata:belongsToDataset>
 		<measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -930,6 +934,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:belongsToDataset>Calculated_FEMA_floodplain_width</metadata:belongsToDataset>
 		<measurement:unit>m</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -1209,6 +1214,7 @@ See the sediment_dr.clj file to make sure, otherwise leaving this commented out 
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_hydrologic_soils_group</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1235,6 +1241,7 @@ See the sediment_dr.clj file to make sure, otherwise leaving this commented out 
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_hydrologic_soils_group</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1540,6 +1547,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:belongsToDataset>DFO-UMD_GLCF_floodplain_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1565,6 +1573,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		</observation:hasObservable>
 		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:belongsToDataset>DFO-UMD_GLCF_floodplain_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1617,6 +1626,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1644,6 +1654,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1671,6 +1682,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1698,6 +1710,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1725,6 +1738,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1752,6 +1766,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1779,6 +1794,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1806,6 +1822,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1833,6 +1850,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1860,6 +1878,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1887,6 +1906,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1914,6 +1934,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1941,6 +1962,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 impervious surface data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_impervious</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1968,6 +1990,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
 		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
+		<metadata:belongsToDataset>UMD_GLCF_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1994,6 +2017,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
 		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
+		<metadata:belongsToDataset>UMD_GLCF_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2020,6 +2044,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
 		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
+		<metadata:belongsToDataset>UMD_GLCF_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2046,6 +2071,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>University of Maryland Global Land Cover Facility</rdfs:comment>
 		<metadata:hasPriority>10</metadata:hasPriority>
 		<metadata:hasURL>http://glcf.umiacs.umd.edu/index.shtml</metadata:hasURL>
+		<metadata:belongsToDataset>UMD_GLCF_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2072,6 +2098,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2099,6 +2126,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2126,6 +2154,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2153,6 +2182,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2180,6 +2210,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2207,6 +2238,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2234,6 +2266,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2261,6 +2294,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2288,6 +2322,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2315,6 +2350,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2342,6 +2378,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2369,6 +2406,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2396,6 +2434,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+		<metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2484,6 +2523,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<measurement:unit>/km^2</measurement:unit>
+		<metadata:belongsToDataset>US_Census_population_density</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -2510,6 +2550,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: Washington State Office of Financial Management 2007 Census Block Group data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.ofm.wa.gov/pop/smallarea/default.asp</metadata:hasURL>
+		<metadata:belongsToDataset>US_Census_population_density</metadata:belongsToDataset>
 		<measurement:unit>/km^2</measurement:unit>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
@@ -3257,6 +3298,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_soil_pH_shallow</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3283,6 +3325,7 @@ we could discuss integrating those at some point.-->
 			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 			<metadata:hasPriority>0</metadata:hasPriority>
 			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+			<metadata:belongsToDataset>SSURGO_soil_pH_deep</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3309,6 +3352,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_soil_pH_shallow</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3335,6 +3379,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_soil_pH_deep</metadata:belongsToDataset>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3361,6 +3406,7 @@ we could discuss integrating those at some point.-->
 		<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+		<metadata:belongsToDataset>SSURGO_soil_pH_shallow</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -3387,6 +3433,7 @@ we could discuss integrating those at some point.-->
 			<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
 			<metadata:hasPriority>0</metadata:hasPriority>
 			<metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html
+			<metadata:belongsToDataset>SSURGO_soil_pH_deep</metadata:belongsToDataset>
 		</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
@@ -3618,6 +3665,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- Upper San Pedro only transmission line data replaced by statewide data, below
 <measurement:BinaryCoding id="sanPedro_transmission_upper_san_pedro">
 	<observation:hasObservable>
 		<infrastructure:TransmissionLine />
@@ -3638,6 +3686,30 @@ we could discuss integrating those at some point.-->
 			<geospace:hasLatUpperBound>3683458.4720972935</geospace:hasLatUpperBound>
 			<geospace:hasLonUpperBound>608601.3345555842</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding> -->
+
+<measurement:BinaryCoding id="sanPedro_transmission_az">
+	<observation:hasObservable>
+		<infrastructure:TransmissionLine />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Arizona Land Resources Information System (ALRIS)</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.land.state.az.us/alris/layers.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:transmission_az</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3463408.88817789</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>134933.7738281882</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4105081.8290773137</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>697575.8714159467</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
@@ -3677,7 +3749,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
 		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
@@ -3706,7 +3778,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
 		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
@@ -3735,7 +3807,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasObservable>
 			<carbonService:VegetationCarbonStorage />
 		</observation:hasObservable>
-		<rdfs:comment>Data source: National Biomass and Carbon Dataset</rdfs:comment>
+		<rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
 		<metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>

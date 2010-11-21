@@ -189,6 +189,7 @@
 ;; Groundwater use model
 ;; ----------------------------------------------------------------------------------------------
 
+;;USPP Tech Committee has some recent docs on rural well water use (see email from Susan Bronson)
 (defmodel well-presence 'waterSupplyService:Wells 
  (binary-coding 'waterSupplyService:Wells
     :context ((measurement 'waterSupplyService:AnnualWellCapacity "mm" :as well-capacity))
@@ -264,12 +265,10 @@
             precipitation-wet-year 
             spring-discharge
             recharge
-            slope
-            percent-vegetation-cover
-            imperviousness
-            soil-group         
+            surface-sink       
             surface-diversions
-            well-presence)))
+            well-presence
+            well-presence2)))
 
 ;; all data, for testing and storage
 (defmodel data 'waterSupplyService:WaterSupply 
