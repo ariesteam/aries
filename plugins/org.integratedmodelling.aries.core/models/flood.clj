@@ -266,8 +266,7 @@
               'floodService:GrayInfrastructureStorage) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
           successional-stage imperviousness dam-storage 
-          (comment detention-basin-storage)
-          (comment vegetation-height)
+          detention-basin-storage (comment vegetation-height) 
           percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------
