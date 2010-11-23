@@ -100,6 +100,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -492,6 +493,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -1401,6 +1403,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:mammal_rich</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2529,6 +2532,7 @@ we could discuss integrating those at some point.-->
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:population_density_az</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>popdens00</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2557,6 +2561,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:population_density_puget</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2732,6 +2737,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:reptile_rich</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2803,6 +2809,7 @@ we could discuss integrating those at some point.-->
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>condition</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -2828,6 +2835,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>cc_gw__0_5__10</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2853,6 +2861,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>scen9</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -4087,5 +4096,83 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid> 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>-->
+
+<measurement:BinaryCoding id="parcels_puget">
+	<observation:hasObservable>
+		<aestheticService:PresenceOfHousing />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:parcels_puget</geospace:hasCoverageId>
+			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>558</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.615</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.351</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.087</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+	<measurement:Ranking id="housing_value_puget">
+		<observation:hasObservable>
+			<economics:AppraisedPropertyValue />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:housing_value_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>512</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.219</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>48.301</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.083</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:BinaryCoding id="housing_views_puget">
+		<observation:hasObservable>
+			<aestheticService:HomeownerViewUse />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: King County assessors' offices</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:housing_views_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>423</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>244</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>47.139</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.528</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.778</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.423</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
 
 </kbox>

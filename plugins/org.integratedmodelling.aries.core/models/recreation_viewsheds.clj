@@ -19,12 +19,11 @@
 		  0          'recreationService:RiverStreamAbsent
 		  :otherwise 'recreationService:RiverStreamPresent))
 
-;; ARGH - fv - Everest is OK!
 (defmodel mountain 'aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
 		  [457 914]  'aestheticService:SmallMountain ; 
-		  [914 1917] 'aestheticService:LargeMountain ; no higher than Mt. Washington!
+		  [914 8850] 'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
 		  :otherwise 'aestheticService:NoMountain)) ; will catch artifacts too		  
 		  
 (defmodel open-space 'recreationService:OpenSpaceClass

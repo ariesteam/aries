@@ -89,13 +89,9 @@
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
   ;; specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-                  #{"R" "K"}  'aestheticService:HousingPresent
-                  :otherwise  'aestheticService:HousingAbsent))
-;; TODO bring these back when the flow model runs at acceptable speeds.
-;;  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-;;		"RESIDENTIAL" 'aestheticService:HousingPresent
-;;		:otherwise    'aestheticService:HousingAbsent)
+  (classification (binary-coding 'aestheticService:PresenceOfHousing)
+        "RESIDENTIAL" 'aestheticService:HousingPresent  ;;CHANGE TO "IF ZERO OR GREATER" housing present, otherwise not.
+        :otherwise    'aestheticService:HousingNotPresent))
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -106,6 +102,13 @@
                   [200000   400000] 'aestheticService:ModerateHousingValue
                   [400000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
+
+;;Training data for King County: actual housing with views.  
+;; (GARY: is this OK to use, obviously not now, but in the future when we can use training data?)
+(defmodel view-use-king 'aestheticService:HomeownerViewUse
+   (classification (binary-coding 'aestheticService:HomeownerViewUse)
+                  [0 5]   'aestheticService:HomeownerViewUsePresent  ;;CHANGE TO "IF ZERO OR GREATER" view use present, otherwise not.
+                  [5 100] 'aestheticService:HomeownerViewUseAbsent)) 
 
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse

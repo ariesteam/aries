@@ -58,7 +58,7 @@
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
 ;;Or could strongly consider just running it on an annual time step, as that's what the data support.
 (defmodel runoff 'soilretentionEcology:AnnualRunoffClass
-	(classification (measurement 'habitat:AnnualRunoff "mm/year")
+	(classification (measurement 'habitat:AnnualRunoff "mm")
 		[0 200] 	    'soilretentionEcology:VeryLowAnnualRunoff
 		[200 600] 	  'soilretentionEcology:LowAnnualRunoff
 		[600 1200]  	'soilretentionEcology:ModerateAnnualRunoff
@@ -179,16 +179,17 @@
 			0 'soilretentionEcology:NotInFloodplain
 			1 'soilretentionEcology:InFloodplain))
 
-(defmodel farmland 'soilretentionEcology:Farmland
-	"Just a reclass of the regionally appropriate LULC layer"
-  (classification (binary-coding 'soilretentionEcology:FarmlandCode)
-    1          'soilretentionEcology:FarmlandPresent
-    0          'soilretentionEcology:FarmlandAbsent))
+;;(defmodel farmland 'soilretentionEcology:Farmland
+;;	"Just a reclass of the regionally appropriate LULC layer"
+;;  (classification (binary-coding 'soilretentionEcology:FarmlandCode)
+;;    1          'soilretentionEcology:FarmlandPresent
+;;    0          'soilretentionEcology:FarmlandAbsent))
 ;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
 ;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
-;;(classification (ranking 'domlulc:DOMLULCNumeric)
-		;;#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
-		;;:otherwise                'soilretentionEcology:Farmland)
+(defmodel farmland 'soilretentionEcology:Farmland
+  (classification (numeric-coding 'domlulc:DOMLULCNumeric)
+	  	#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
+		  :otherwise                  'soilretentionEcology:Farmland))
 
 ;;Reservoirs use for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresenceClass

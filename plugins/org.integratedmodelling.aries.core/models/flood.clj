@@ -28,6 +28,7 @@
 ;; Ad-hoc source models
 ;; ----------------------------------------------------------------------------------------------
 
+;;this layer has problems for now (see .xml) but not currently used.
 (defmodel precipitation-monthly 'floodService:Precipitation
   (measurement 'habitat:JanuaryPrecipitation "mm"))
 
@@ -109,7 +110,7 @@
 	 	 	:context  (land-use :as landuse 
                  soil-group-puget :as soilgroup
                  (ranking 'habitat:PercentImperviousness) :as imperv
-                 precipitation-monthly :as precipitation)
+                 source-annual :as precipitation)
       :state #(let [
                     ctable 
                        {(tl/conc 'floodService:Agriculture) [64 75 82 85],
@@ -213,8 +214,8 @@
                   (== (:detention-basin-storage %) 1) 3000)))
 
 ;;Undiscretizer for FloodSink
-(defmodel flood-sink 'floodService:FloodSink
-  (classification 'floodService:FloodSink
+(defmodel flood-sink 'floodService:AnnualFloodSink
+  (classification 'floodService:AnnualFloodSink
                   :units      "mm" 
                   [30000 90000]     'floodService:VeryHighFloodSink
                   [10000 30000]     'floodService:HighFloodSink
@@ -242,12 +243,12 @@
                   [900 3000]        'floodService:LowGrayStorage
                   [0 900]           'floodService:VeryLowGrayStorage))
 
-;; Flood sink probability, monthly
+;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 (defmodel sink-monthly 'floodService:MonthlyFloodSink
 	  (bayesian 'floodService:MonthlyFloodSink
 	  	:import   "aries.core::FloodSinkMonthly.xdsl"
 	  	:keep     (
-	  			'floodService:FloodSink 
+	  			'floodService:MonthlyFloodSink 
 	  			'floodService:GreenInfrastructureStorage
 	  			'floodService:GrayInfrastructureStorage)
 	 	 	:context  (
@@ -261,12 +262,12 @@
     (bayesian 'floodService:AnnualFloodSink
       :import   "aries.core::FloodSinkAnnual.xdsl"
       :keep   (
-              'floodService:FloodSink 
+              'floodService:AnnualFloodSink 
               'floodService:GreenInfrastructureStorage 
               'floodService:GrayInfrastructureStorage) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
           successional-stage imperviousness dam-storage 
-          detention-basin-storage (comment vegetation-height) 
+          detention-basin-storage (comment vegetation-height)  
           percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -289,6 +290,8 @@
                   #{"A" "X500"}      'floodService:In500YrFloodplain
                   :otherwise         'floodService:NotIn500YrFloodplain))
 
+;;KB: Don't seem to have any corresponding data here, but the assumption that structures are in the floodplain wherever
+;; there is private land is a bad one.  Let's avoid using this for now.
 (defmodel structures 'floodService:Structures
 	"Assume that any privately owned land in floodplain has vulnerable structures. TODO make more specific when we know more"
 	(classification (ranking 'lulc:PrivatelyOwnedLand)
@@ -298,12 +301,9 @@
 (defmodel housing 'floodService:PresenceOfHousing
 	"Classifies land use from property data."
 	; following sources are specific to Puget region, will not be used if data unavailable
-	(classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-		"RESIDENTIAL" 'floodService:HousingPresent
+	(classification (binary-coding 'aestheticService:PresenceOfHousing)
+		"RESIDENTIAL" 'floodService:HousingPresent  ;;CHANGE TO "IF ZERO OR GREATER" housing present, otherwise not.
 		:otherwise    'floodService:HousingNotPresent)
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-		  #{"R" "K"}  'floodService:HousingPresent
-		  :otherwise  'floodService:HousingNotPresent)
   ;; fall-back: if no data in the ones above, use NLCD high-intensity development category
 	;; TODO check if that's ok
 	(classification (numeric-coding 'nlcd:NLCDNumeric)
