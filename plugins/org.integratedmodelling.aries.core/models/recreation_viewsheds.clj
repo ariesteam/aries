@@ -7,6 +7,7 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
+;;Need a new defmodel statement combining lake & river into "waterview"
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding 'geofeatures:Lake)

@@ -180,7 +180,7 @@
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget 'soilretentionEcology:DepositionProneFarmers 
   (ranking 'soilretentionEcology:DepositionProneFarmers
-       :context ((ranking 'lulc:NLCDNumeric :as farmlandpresent)
+       :context ((ranking 'nlcd:NLCDNumeric :as farmlandpresent)
                  (ranking 'geofeatures:Floodplain :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
                         (= (:farmlandpresent %) 82.0))
@@ -198,7 +198,7 @@
                         :otherwise
                         0)
                   0)
-       :context ((ranking 'lulc:NLCDNumeric :as farmlandpresent))))
+       :context ((ranking 'nlcd:NLCDNumeric :as farmlandpresent))))
 
 ;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
 ;;Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
