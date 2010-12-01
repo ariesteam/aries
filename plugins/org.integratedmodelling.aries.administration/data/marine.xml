@@ -94,7 +94,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		<rdfs:comment>Deciles of economic assets at risk due to tropical storms</rdfs:comment>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:ts_economic_risk</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
 			</geospace:WCSDataSource>
@@ -178,7 +178,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:coral_global</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:coral</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>bleaching</geospace:hasValueAttribute>
 				<geospace:hasValueDefault>None</geospace:hasValueDefault>
 			</geospace:WFSDataSource>
@@ -205,7 +205,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>global:coral_area_global</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:coral_area2</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>area_km2</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
@@ -228,7 +228,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:coastal_buffer_global</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:coastalbuf</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -252,7 +252,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:dist_to_coast_mg</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:distance_to_coast</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>fid_lim_co</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -276,7 +276,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:estuary_area_mg</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:estuaryarea</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>estuary</geospace:hasValueAttribute>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
@@ -419,7 +419,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 			<rdfs:comment>Deciles of lives at risk due to tropical storms</rdfs:comment>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:ts_lives_at_risk</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
 			</geospace:WCSDataSource>
@@ -506,7 +506,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>global:mangrove_width_global</geospace:hasCoverageId>
+			<geospace:hasCoverageId>global:mangrove_width2</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>shape_len_</geospace:hasValueAttribute>
 			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
@@ -559,7 +559,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>mg:paths_mg</geospace:hasCoverageId>
+			<geospace:hasCoverageId>mg:paths2</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -639,7 +639,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:seagrass_global</geospace:hasCoverageId>
+				<geospace:hasCoverageId>global:seagrass</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -662,7 +662,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 			<metadata:hasURL>http://sedac.ciesin.columbia.edu/wdc/hazards.jsp</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:ts_probability</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>

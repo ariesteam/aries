@@ -77,12 +77,12 @@
 
 ;; Compute area of open space polygons as a GIS operation and store this value redundantly in each pixel in the 
 ;; polygon.  
-(defmodel area 'aestheticService:OpenSpaceAreaClass
-  (clasification (measurement 'aestheticService:OpenSpaceArea "ha")
-                  [40 :>] 'aestheticService:VeryLargeArea
-                  [10 40] 'aestheticService:LargeArea
-                  [2 10]  'aestheticService:SmallArea
-                  [2 :>]  'aestheticService:VerySmallArea)) 
+;;(defmodel area 'aestheticService:OpenSpaceAreaClass
+;;  (clasification (measurement 'aestheticService:OpenSpaceArea "ha")
+;;                  [40 :>] 'aestheticService:VeryLargeArea
+;;                  [10 40] 'aestheticService:LargeArea
+;;                  [2 10]  'aestheticService:SmallArea
+;;                  [2 :>]  'aestheticService:VerySmallArea)) 
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
   (classification 'aestheticService:TheoreticalProximitySource
