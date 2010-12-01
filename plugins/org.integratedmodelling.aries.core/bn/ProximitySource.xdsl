@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="OpenSpaceArea">
+		<cpt id="OpenSpaceAreaClass">
 			<state id="VerySmallArea" />
 			<state id="SmallArea" />
 			<state id="LargeArea" />
@@ -29,7 +29,7 @@
 			<state id="HighResourceQuality" />
 			<state id="ModerateResourceQuality" />
 			<state id="LowResourceQuality" />
-			<parents>WaterQuality CrimePotential FormalProtection OpenSpaceArea</parents>
+			<parents>WaterQuality CrimePotential FormalProtection OpenSpaceAreaClass</parents>
 			<probabilities>0.85 0.075 0.075 0.75 0.15 0.1 0.6 0.3 0.1 0.5 0.4 0.1 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 1 0 0 0.9 0.1 0 0.8 0.2 0 0.7 0.2 0.1 0.2 0.2 0.6 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.65 0.2 0.15 0.55 0.25 0.2 0.4 0.3 0.3 0.3 0.35 0.35 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0.8 0.1 0.1 0.7 0.2 0.1 0.6 0.2 0.2 0.5 0.3 0.2 0.15 0.15 0.7 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.45 0.3 0.25 0.35 0.35 0.3 0.2 0.4 0.4 0.1 0.45 0.45 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0.6 0.2 0.2 0.5 0.25 0.25 0.4 0.3 0.3 0.3 0.35 0.35 0.1 0.1 0.8 0.05 0.05 0.9 0.05 0.05 0.9 0.05 0.05 0.9 0.8 0.1 0.1 0.7 0.15 0.15 0.55 0.325 0.125 0.45 0.425 0.125 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0.95 0.05 0 0.85 0.15 0 0.75 0.2 0.05 0.65 0.225 0.125 0.15 0.225 0.625 0.1 0.2 0.7 0.05 0.15 0.8 0.025 0.075 0.9</probabilities>
 			<property id="ResourceCharacteristics">ResourceCharacteristics=WaterQuality+Crime+FormalProtection</property>
 		</cpt>
@@ -113,8 +113,8 @@
 				<position>377 50 505 87</position>
 				<barchart active="true" width="277" height="90" />
 			</node>
-			<node id="OpenSpaceArea">
-				<name>OpenSpaceArea</name>
+			<node id="OpenSpaceAreaClass">
+				<name>OpenSpaceAreaClass</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
