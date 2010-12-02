@@ -92,27 +92,17 @@
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
-;;UPDATE THIS ONCE FULL PARCEL DATA IS AVAILABLE
 (defmodel housing 'aestheticService:PresenceOfHousing
-  "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-                  #{"R" "K"}  'aestheticService:HousingPresent
-                  :otherwise  'aestheticService:HousingAbsent))
+  (classification (ranking 'economics:AppraisedPropertyValue)
+                  0               'aestheticService:HousingAbsent
+                  :otherwise      'aestheticService:HousingPresent))
 
-;; TODO bring these back when the flow model runs at acceptable speeds.
-;;  (classification (categorization 'puget:ParcelUseCategoryGraysHarbor)
-;;		"RESIDENTIAL" 'aestheticService:HousingPresent
-;;		:otherwise    'aestheticService:HousingAbsent)
-
-(defmodel property-value 'aestheticService:HousingValue
-  ;; TODO we need this to become an actual valuation with currency and date, so we can 
-  ;; turn any values into these dollars
+(defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking  'economics:AppraisedPropertyValue)
-                  [:<       100000] 'aestheticService:VeryLowHousingValue
-                  [100000   200000] 'aestheticService:LowHousingValue
-                  [200000   400000] 'aestheticService:ModerateHousingValue
-                  [400000  1000000] 'aestheticService:HighHousingValue
+                  [:<        50000] 'aestheticService:VeryLowHousingValue
+                  [50000    100000] 'aestheticService:LowHousingValue
+                  [100000   350000] 'aestheticService:ModerateHousingValue
+                  [350000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
@@ -151,8 +141,8 @@
 (defmodel data 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
                   :context (source          :as source
-                            ;;scenic-highways :as use  
-                            ;;homeowners      :as use  (once data are in place)
+                            scenic-highways :as use  
+                            homeowners      :as use 
                             sink            :as sink)))
                             ;;altitude        :as altitude)))
 
@@ -185,18 +175,21 @@
 ;;Develop another one of these to account for scenic drives.
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
-;; observations that are specifically tagged for a scenario will be picked up automatically
+;; Scenarios
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management 'sanPedro:MesquiteManagement)
+;;(defscenario mesquite-management 'sanPedro:MesquiteManagement): change scenic-vegetation to sanPedro:Other within polygons in the source model.
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth: change scenic-vegetation to sanPedro:Other within polygons in the source model.  
+;;  Add new developed-land as aestheticService:LowDensityDevelopment in the sink model.  Add more users in the developed areas in the use model.
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment: change scenic-vegetation to sanPedro:Other within polygons in the source model.
+;;  Add new developed-land as aestheticService:LowDensityDevelopment in the sink model.  Add more users in the developed areas in the use model.
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
       ;;sanPedro:BSRDevelopmentSite3

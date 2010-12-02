@@ -1085,6 +1085,9 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Measurement>  -->
 	
+<!--  Commenting this out as it causes the US highways layer to be ignored.  Comment back in once Ferd's model switching and
+cross-boundary data handling features are enabled.
+
 <measurement:BinaryCoding id="sanPedro_mex_highway">
 	<observation:hasObservable>
 		<infrastructure:Highway />
@@ -1107,14 +1110,14 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
+</measurement:BinaryCoding> -->
 
 	<measurement:BinaryCoding id="usa_highways">
 		<observation:hasObservable>
 			<infrastructure:Highway />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: TIGER/Line 2000 Streets</rdfs:comment>
-		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -4174,5 +4177,49 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
+
+<!-- Get these fixed up & ready to go...  
+<measurement:BinaryCoding id="sanPedro_mesquite_management">
+<observation:hasObservable>
+<sanPedro:MesquiteManagement/>
+</observation:hasObservable>
+<observation:hasDataSource>
+<geospace:WFSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>sanPedro:mesquite_management</geospace:hasCoverageId>
+</geospace:WFSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:ArealFeatureSet>
+<geospace:hasLatLowerBound>31.4403076171875</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-110.150840759277</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>31.5411224365234</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>-110.08780670166</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:ArealFeatureSet>
+</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<observation:Categorization id="puget_clearcuts_puget_new">
+<observation:hasObservable>
+<geofeatures:Clearcut/>
+</observation:hasObservable>
+<observation:hasDataSource>
+<geospace:WFSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>puget:clearcuts_puget_new</geospace:hasCoverageId>
+<geospace:hasValueAttribute>timharv_fp</geospace:hasValueAttribute>
+</geospace:WFSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:ArealFeatureSet>
+<geospace:hasLatLowerBound>45.587703704834</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-124.663955688477</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>49.0023994445801</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>-117.039825439453</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:ArealFeatureSet>
+</observation:hasObservationExtent>
+</observation:Categorization>  -->
 
 </kbox>

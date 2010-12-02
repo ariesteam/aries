@@ -89,7 +89,7 @@
        [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
        [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
        [5 10]                'waterSupplyService:LowImperviousCover
-       [1 5]                 'waterSupplyService:VeryLowImperviousCover))
+       [0 5]                 'waterSupplyService:VeryLowImperviousCover))
 
 (defmodel vegetation-type 'sanPedro:VegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
@@ -117,7 +117,7 @@
     [60 80]  'waterSupplyService:HighVegetationCover
     [40 60]  'waterSupplyService:ModerateVegetationCover
     [20 40]  'waterSupplyService:LowVegetationCover
-    [1 20]   'waterSupplyService:VeryLowVegetationCover))
+    [0 20]   'waterSupplyService:VeryLowVegetationCover))
 
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
@@ -257,28 +257,26 @@
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;;dumb identification statement for BSR, since sinks aren't working
-(defmodel data-bsr 'waterSupplyService:WaterSupply 
-  (identification 'waterSupplyService:WaterSupply 
-  :context (precipitation-annual
-            precipitation-dry-year
-            precipitation-wet-year 
-            spring-discharge
-            recharge
+;;Identifications for wet year surface water flow
+(defmodel data-wet-year 'waterSupplyService:WaterSupplyWetYear
+  (identification 'waterSupplyService:WaterSupplyWetYear
+  :context (precipitation-wet-year 
             surface-sink       
             surface-diversions
-            well-presence
-            well-presence2)))
+            streams)))
 
-;; all data, for testing and storage
-(defmodel data 'waterSupplyService:WaterSupply 
-  (identification 'waterSupplyService:WaterSupply 
-  :context (precipitation-annual ;;replace with "runoff" when springs data are working
-            precipitation-dry-year
-            precipitation-wet-year 
-            recharge
-            surface-sink         ;;add "groundwater sink" when ready
+(defmodel data-dry-year 'waterSupplyService:WaterSupplyDryYear
+  (identification 'waterSupplyService:WaterSupplyDryYear
+  :context (precipitation-dry-year 
+            surface-sink       
             surface-diversions
+            streams)))
+
+;; other elements for export to NetCDF, that will eventually go into groundwater models.
+(defmodel other-data 'waterSupplyService:GroundwaterSupply 
+  (identification 'waterSupplyService:GroundwaterSupply 
+  :context (precipitation-annual
+            recharge
             well-presence)))
   
 ;; flow model for surface water
@@ -333,18 +331,23 @@
 
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
-;; observations that are specifically tagged for a scenario will be picked up automatically
+;; Scenarios 
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management 'sanPedro:MesquiteManagement)
+;;(defscenario mesquite-management 'sanPedro:MesquiteManagement): Change veg type (to sanPedro:Grassland) & cover 
+;;  (to VeryLowVegetationCover) within polygons in sink model.
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth: New users based on new growth areas (demand up 10.4% in constrained, 56.8% in open).  
+;;   Change veg type, veg cover (VeryLow for 10, 11, 12, 19, 22, 25), impervious (ModeratelyHighImperviousCover for 11, 12, 22; 
+;;   HighImperviousCover for 10, 19, 25) within new development areas in sink model.
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment: New users based on polygon (545 mm within each polygon).  
+;; Change veg cover (VeryLow, veg type (UrbanBarrenWater), impervious (ModeratelyHigh) within polygons in sink model.
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
       ;;sanPedro:BSRDevelopmentSite3

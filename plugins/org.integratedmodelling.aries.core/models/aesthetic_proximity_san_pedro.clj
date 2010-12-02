@@ -116,20 +116,16 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel housing 'aestheticService:PresenceOfHousing
-  "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (categorization 'puget:ParcelUseCategoryKing)
-                  #{"R" "K"}  'aestheticService:HousingPresent
-                  :otherwise  'aestheticService:HousingAbsent))
+  (classification (ranking 'economics:AppraisedPropertyValue)
+                  0               'aestheticService:HousingAbsent
+                  :otherwise      'aestheticService:HousingPresent))
 
-(defmodel property-value 'aestheticService:HousingValue
-  ;; TODO we need this to become an actual valuation with currency and date, so we can 
-  ;; turn any values into these dollars
+(defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking  'economics:AppraisedPropertyValue)
-                  [:<       100000] 'aestheticService:VeryLowHousingValue
-                  [100000   200000] 'aestheticService:LowHousingValue
-                  [200000   400000] 'aestheticService:ModerateHousingValue
-                  [400000  1000000] 'aestheticService:HighHousingValue
+                  [:<        50000] 'aestheticService:VeryLowHousingValue
+                  [50000    100000] 'aestheticService:LowHousingValue
+                  [100000   350000] 'aestheticService:ModerateHousingValue
+                  [350000  1000000] 'aestheticService:HighHousingValue
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
 ;;Urban proximity proxied by year 2000 population density for Arizona
@@ -197,22 +193,25 @@
         :context (source homeowners sink)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
-;; observations that are specifically tagged for a scenario will be picked up automatically
+;; Scenarios 
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management 'sanPedro:MesquiteManagement)
+;;(defscenario mesquite-management 'sanPedro:MesquiteManagement: change woodland to grassland in source model.
 
-;;(defscenario cap-water-augmentation 'sanPedro:CAPWaterAugmentation
+;;(defscenario cap-water-augmentation 'sanPedro:CAPWaterAugmentation: Change riparianandwetlandquality in source model.
       ;;sanPedro:CAPWaterAugmentationHalfMeterRise
       ;;sanPedro:CAPWaterAugmentationAllPerennial
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth: change open space type to developed in source model.  Add more users to the
+;;  landscape.
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment: change open space type to developed in source model.  Add more users to the
+;;  landscape.
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
       ;;sanPedro:BSRDevelopmentSite3

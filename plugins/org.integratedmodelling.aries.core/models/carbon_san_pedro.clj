@@ -225,18 +225,22 @@
         :context (source use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
-;; observations that are specifically tagged for a scenario will be picked up automatically
+;; Scenarios
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management 'sanPedro:MesquiteManagement)
+;;(defscenario mesquite-management 'sanPedro:MesquiteManagement: change to VeryLowVegetationCover in source & sink models
+;;  within mesquite management polygons)
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth: change developed areas to VeryLowVegetationCover in source & sink
+      ;; models; change fire-frequency to NoFireFrequency; bump up use by 10.4% in constrained and 56.8% in open development scenarios)
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment: change developed areas to VeryLowVegetationCover in source & sink
+      ;; models; change fire-frequency to NoFireFrequency; bump up use by 3.6%)
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
       ;;sanPedro:BSRDevelopmentSite3

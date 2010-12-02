@@ -215,11 +215,12 @@
 ;; This is a massive layer - it may be really tough for ARIES to rasterize every time, while also time
 ;;   consuming for me to do so...
 
-;;(defmodel roads 'recreationService:Road                   ;;add to recreationService ontology
-;;  (classification (binary-coding 'infrastructure:Road)
-;;                  1          'recreationService:RoadPresent
-;;                  :otherwise 'recreationService:RoadAbsent))
+(defmodel roads 'recreationService:Roads                   
+  (classification (binary-coding 'infrastructure:Road)
+                 1          'recreationService:RoadsPresent
+                 :otherwise 'recreationService:RoadsAbsent))
 
+;;SPRNCA trails data are in postGIS database & the REST spreadsheet but not yet in Geoserver.
 ;;(defmodel trails 'recreationService:Trails 
 ;;  (classification (binary-coding 'infrastructure:Path)
 ;;                  1          'recreationService:TrailPresent
@@ -232,15 +233,17 @@
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;; all data, for testing and storage
-;;(defmodel data 'aestheticService:AestheticEnjoyment 
-;;	(identification 'aestheticService:AestheticEnjoyment
-;;		:context (
-;;			source :as source
-;;			user :as use
-;;			sink :as sink
-;;			altitude :as altitude)))
-			
+;;Identifications for recreation: flow models are not yet ready but concepts will be exported to NetCDF.
+(defmodel recreation-data 'recreationService:OutdoorRecreation
+  (identification 'recreationService:OutdoorRecreation
+  :context (source-birding 
+            source-deer-hunting       
+            source-quail-hunting 
+            source-dove-hunting 
+            source-javelina-hunting 
+            population-density
+            roads)))                ;;add trails data once it's in geoserver
+
 ;; the real enchilada
 ;;(defmodel recreation-flow 'carbonService:ClimateStability
 ;;  (span 'carbonService:CO2Removed
@@ -267,20 +270,21 @@
 ;;        :context (source-birding use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------
-;; scenarios (evolving)
-;; observations that are specifically tagged for a scenario will be picked up automatically
+;; Scenarios 
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario cap-water-augmentation 'sanPedro:CAPWaterAugmentation
+;;(defscenario cap-water-augmentation 'sanPedro:CAPWaterAugmentation (change RiparianWetlandQuality)
       ;;sanPedro:CAPWaterAugmentationHalfMeterRise
       ;;sanPedro:CAPWaterAugmentationAllPerennial
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth (add new users, up 10.4% in constrained, 56.8% in open)
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment (add new users, up 3.6% in BSR scenarios)
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
       ;;sanPedro:BSRDevelopmentSite3
