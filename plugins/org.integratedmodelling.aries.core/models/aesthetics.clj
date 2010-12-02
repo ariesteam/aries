@@ -50,6 +50,8 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;; TODO errors
+;;New layer on the way.  This is an categorization.  Clearcuts are #{"EVEN-AGE" "EVEN R/W" "EVEN/SALVAGE"} 
+;; (selecting the "TIMHARV_FP" attribute in wfs2opal) :otherwise, clearcuts absent.
 (defmodel clearcut 'aestheticService:Clearcuts 
   (classification (binary-coding 'geofeatures:Clearcut)
                   0          'aestheticService:ClearcutsAbsent

@@ -230,6 +230,19 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
+;;(defscenario mesquite-management 'sanPedro:MesquiteManagement)
+      
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+      ;;sanPedro:UrbanGrowth2020Open
+      ;;sanPedro:UrbanGrowth2020Constrained
+      
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+      ;;sanPedro:BSRDevelopmentSite1
+      ;;sanPedro:BSRDevelopmentSite2
+      ;;sanPedro:BSRDevelopmentSite3
+      ;;sanPedro:BSRDevelopmentSite4
+      ;;sanPedro:BSRDevelopmentSite5
+
 (defscenario ipcc-hadley-a2-incentivized 'carbonService:IPCCHadleyA2Incentivized
   "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 
   represents a future world of very rapid economic growth, global population that peaks 

@@ -265,3 +265,24 @@
 ;;               'recreationService:TransportationRestrictedRecreationalUsers)
 ;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
 ;;        :context (source-birding use-simple sink)))
+
+;; ----------------------------------------------------------------------------------------------
+;; scenarios (evolving)
+;; observations that are specifically tagged for a scenario will be picked up automatically
+;; instead of the baseline ones.
+;; ----------------------------------------------------------------------------------------------
+
+;;(defscenario cap-water-augmentation 'sanPedro:CAPWaterAugmentation
+      ;;sanPedro:CAPWaterAugmentationHalfMeterRise
+      ;;sanPedro:CAPWaterAugmentationAllPerennial
+      
+;;(defscenario urban-growth 'sanPedro:UrbanGrowth
+      ;;sanPedro:UrbanGrowth2020Open
+      ;;sanPedro:UrbanGrowth2020Constrained
+      
+;;(defscenario bsr-development 'sanPedro:BSRDevelopment
+      ;;sanPedro:BSRDevelopmentSite1
+      ;;sanPedro:BSRDevelopmentSite2
+      ;;sanPedro:BSRDevelopmentSite3
+      ;;sanPedro:BSRDevelopmentSite4
+      ;;sanPedro:BSRDevelopmentSite5
