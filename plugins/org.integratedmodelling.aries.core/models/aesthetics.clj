@@ -49,21 +49,17 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
-;; TODO errors
-;;New layer on the way.  This is an categorization.  Clearcuts are #{"EVEN-AGE" "EVEN R/W" "EVEN/SALVAGE"} 
-;; (selecting the "TIMHARV_FP" attribute in wfs2opal) :otherwise, clearcuts absent.
 (defmodel clearcut 'aestheticService:Clearcuts 
-  (classification (binary-coding 'geofeatures:Clearcut)
-                  0          'aestheticService:ClearcutsAbsent
-                  :otherwise 'aestheticService:ClearcutsPresent))
+  (classification (categorization 'geofeatures:Clearcut)
+                  #{"EVEN-AGE" "EVEN R/W" "EVEN/SALVAGE"}   'aestheticService:ClearcutsPresent
+                  :otherwise                                'aestheticService:ClearcutsAbsent))
 
-; use NLCD layers to extract transportation infrastructure
+; NLCD 1992 for Commercial/Industrial/Transportation land use
 (defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
   (classification (numeric-coding 'nlcd:NLCDNumeric)
                   23         'aestheticService:TransportationInfrastructurePresent
                   :otherwise 'aestheticService:TransportationInfrastructureAbsent))
 
-; presence/absence of highways
 (defmodel highway 'aestheticService:Highways 
   (classification (binary-coding 'infrastructure:Highway)
                   0          'aestheticService:HighwaysAbsent
@@ -80,7 +76,7 @@
   "Landscape features that reduce the quality and enjoyment of scenic views"
   (bayesian 'aestheticService:ViewSink 
             :import  "aries.core::ViewSink.xdsl"
-            :context (commercial-transportation highway)
+            :context (commercial-transportation clearcut highway)
             :observed (view-sink-undiscretizer)
             :keep    ('aestheticService:VisualBlight)))
 
@@ -90,10 +86,9 @@
 
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (binary-coding 'aestheticService:PresenceOfHousing)
-        "RESIDENTIAL" 'aestheticService:HousingPresent  ;;CHANGE TO "IF ZERO OR GREATER" housing present, otherwise not.
-        :otherwise    'aestheticService:HousingNotPresent))
+  (classification (ranking 'aestheticService:PresenceOfHousing)
+        [0 :>]        'aestheticService:HousingPresent  
+        :otherwise    'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -128,10 +123,10 @@
             :keep    ('aestheticService:HomeownerViewUse)))
 
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
-(defmodel scenic-highways 'aestheticService:ScenicDrives
-  (classification (binary-coding 'infrastructure:Highway)
-                        'aestheticService:ScenicDrivesPresent
-                        'aestheticService:ScenicDrivesAbsent))
+(defmodel scenic-highways 'aestheticService:ScenicDrivePresence
+  (classification (binary-coding 'aestheticService:ScenicDrives)
+                1             'aestheticService:ScenicDrivesPresent
+                :otherwise    'aestheticService:ScenicDrivesAbsent))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model

@@ -298,12 +298,11 @@
 			0 'floodService:StructuresNotPresent
 			1 'floodService:StructuresPresent))
 			
-(defmodel housing 'floodService:PresenceOfHousing
-	"Classifies land use from property data."
-	; following sources are specific to Puget region, will not be used if data unavailable
-	(classification (binary-coding 'aestheticService:PresenceOfHousing)
-		"RESIDENTIAL" 'floodService:HousingPresent  ;;CHANGE TO "IF ZERO OR GREATER" housing present, otherwise not.
-		:otherwise    'floodService:HousingNotPresent)
+(defmodel housing 'aestheticService:PresenceOfHousing
+  "Classifies land use from property data."
+  (classification (ranking 'aestheticService:PresenceOfHousing)
+        [0 :>]        'aestheticService:HousingPresent  
+        :otherwise    'aestheticService:HousingAbsent)
   ;; fall-back: if no data in the ones above, use NLCD high-intensity development category
 	;; TODO check if that's ok
 	(classification (numeric-coding 'nlcd:NLCDNumeric)

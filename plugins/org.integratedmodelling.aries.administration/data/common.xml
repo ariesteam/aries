@@ -171,31 +171,30 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 	
-	<!-- clearcuts in Puget sound from shape coverage, 
-		 seen as a presence/absence ranking -->	
-	<measurement:BinaryCoding id="puget_clearcuts">
-		<observation:hasObservable>
-			<geofeatures:Clearcut />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: Washington State DNR</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority> 
-			<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:clearcuts_puget</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2855</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>92233.43</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>620108.188</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1350701.875</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2514300.75</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+<observation:Categorization id="puget_clearcuts_puget_new">
+	<observation:hasObservable>
+		<geofeatures:Clearcut />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Washington State DNR</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:clearcuts_puget_new</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>timharv_fp</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>45.587703704834</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.663955688477</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.0023994445801</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-117.039825439453</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>  
 
 	<measurement:BinaryCoding id="CoastalWetlands">
 		<observation:hasObservable>

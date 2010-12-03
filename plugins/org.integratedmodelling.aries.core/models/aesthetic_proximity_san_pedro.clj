@@ -75,21 +75,20 @@
                   1            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
-;; Compute area of open space polygons as a GIS operation and store this value redundantly in each pixel in the 
-;; polygon.  
-;;(defmodel area 'aestheticService:OpenSpaceAreaClass
-;;  (clasification (measurement 'aestheticService:OpenSpaceArea "ha")
-;;                  [40 :>] 'aestheticService:VeryLargeArea
-;;                  [10 40] 'aestheticService:LargeArea
-;;                  [2 10]  'aestheticService:SmallArea
-;;                  [2 :>]  'aestheticService:VerySmallArea)) 
+;; Computes area of open space polygons as a GIS operation and stores this value in each pixel
+(defmodel area 'aestheticService:OpenSpaceAreaClass
+  (classification (measurement 'aestheticService:OpenSpaceArea "ha")
+                  [40 :>] 'aestheticService:VeryLargeArea
+                  [10 40] 'aestheticService:LargeArea
+                  [2 10]  'aestheticService:SmallArea
+                  [:< 2]  'aestheticService:VerySmallArea))
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
   (classification 'aestheticService:TheoreticalProximitySource
-                  [0   10] 'aestheticService:NoProximityValue 
-                  [10  40] 'aestheticService:LowProximityValue 
-                  [40  75] 'aestheticService:ModerateProximityValue 
-                  [75 100] 'aestheticService:HighProximityValue))
+                  [0   10] 'aestheticService:NoProximityPotential 
+                  [10  40] 'aestheticService:LowProximityPotential 
+                  [40  75] 'aestheticService:ModerateProximityPotential 
+                  [75 100] 'aestheticService:HighProximityPotential))
 
 ;; source bayesian model	    		 
 (defmodel source 'aestheticService:AestheticProximityProvision
@@ -97,7 +96,7 @@
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticProximityProvision
             :import   "aries.core::ProximitySourceSanPedro.xdsl"
-            :context  (forest farmland grassland desert-scrub riparian-wetland park fire-threat formal-protection)
+            :context  (forest farmland grassland desert-scrub park fire-threat formal-protection riparian-wetland area) 
             :observed (theoretical-open-space)
             :keep     ('aestheticService:TheoreticalProximitySource)))
 
@@ -121,7 +120,7 @@
                   :otherwise      'aestheticService:HousingPresent))
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
-  (classification (ranking  'economics:AppraisedPropertyValue)
+  (classification (ranking 'economics:AppraisedPropertyValue)
                   [:<        50000] 'aestheticService:VeryLowHousingValue
                   [50000    100000] 'aestheticService:LowHousingValue
                   [100000   350000] 'aestheticService:ModerateHousingValue
@@ -133,7 +132,7 @@
   (classification (count 'policytarget:PopulationDensity "/km^2")
                   [309 :>] 'aestheticService:Urban
                   [77 309] 'aestheticService:Suburban
-                  [77 :>]  'aestheticService:Rural))
+                  [:< 77]  'aestheticService:Rural))
 
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse
@@ -162,9 +161,9 @@
 ;; all data, for testing and storage
 (defmodel data 'aestheticService:Proximity
   (identification 'aestheticService:Proximity
-                  :context (source :as source
-                                   homeowners :as use
-                                   sink       :as sink)))
+                  :context (source     :as source
+                            homeowners :as use
+                            sink       :as sink)))
 
 ;; the real enchilada - need to be updated to the latest SPAN language
 (defmodel proximity 'aestheticService:AestheticProximity

@@ -220,7 +220,7 @@
                  1          'recreationService:RoadsPresent
                  :otherwise 'recreationService:RoadsAbsent))
 
-;;SPRNCA trails data are in postGIS database & the REST spreadsheet but not yet in Geoserver.
+;;SPRNCA trails: need to expand bounding box so it doesn't throw errors.
 ;;(defmodel trails 'recreationService:Trails 
 ;;  (classification (binary-coding 'infrastructure:Path)
 ;;                  1          'recreationService:TrailPresent
@@ -242,7 +242,7 @@
             source-dove-hunting 
             source-javelina-hunting 
             population-density
-            roads)))                ;;add trails data once it's in geoserver
+            roads)))                ;;add trails data once its bounding box has been adjusted
 
 ;; the real enchilada
 ;;(defmodel recreation-flow 'carbonService:ClimateStability

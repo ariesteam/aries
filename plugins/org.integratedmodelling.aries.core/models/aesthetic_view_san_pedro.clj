@@ -98,7 +98,7 @@
                   :otherwise      'aestheticService:HousingPresent))
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
-  (classification (ranking  'economics:AppraisedPropertyValue)
+  (classification (ranking 'economics:AppraisedPropertyValue)
                   [:<        50000] 'aestheticService:VeryLowHousingValue
                   [50000    100000] 'aestheticService:LowHousingValue
                   [100000   350000] 'aestheticService:ModerateHousingValue
@@ -106,8 +106,8 @@
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
-(defmodel scenic-highways 'aestheticService:ScenicDrives
-  (classification (binary-coding 'infrastructure:Highway)
+(defmodel scenic-highways 'aestheticService:ScenicDrivePresence
+  (classification (binary-coding 'aestheticService:ScenicDrives)
                 1             'aestheticService:ScenicDrivesPresent
                 :otherwise    'aestheticService:ScenicDrivesAbsent))
 
@@ -138,13 +138,19 @@
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-(defmodel data 'aestheticService:LineOfSight
+(defmodel data-homeowners 'aestheticService:LineOfSight
+  (identification 'aestheticService:LineOfSight
+                  :context (source          :as source
+                            homeowners      :as use 
+                            sink            :as sink
+                            altitude        :as altitude)))
+
+(defmodel data-scenic-highways 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
                   :context (source          :as source
                             scenic-highways :as use  
-                            homeowners      :as use 
-                            sink            :as sink)))
-                            ;;altitude        :as altitude)))
+                            sink            :as sink
+                            altitude        :as altitude)))
 
 ;; the real enchilada - need to be updated to the latest SPAN language
 (defmodel view 'aestheticService:AestheticView

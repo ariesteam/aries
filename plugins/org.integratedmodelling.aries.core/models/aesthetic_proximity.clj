@@ -68,22 +68,20 @@
                   1            'aestheticService:Protected
                   :otherwise   'aestheticService:NotProtected)) 
 
-;; Compute area of open space polygons as a GIS operation and store this value redundantly in each pixel in the 
-;; polygon.  
-;;NEED TO SET AN "OTHERWISE" = VerySmallArea too - null values are set for urban areas.
-;;(defmodel area 'aestheticService:OpenSpaceAreaClass
-;;  (clasification (measurement 'aestheticService:OpenSpaceArea "ha")
-;;                  [40 :>] 'aestheticService:VeryLargeArea
-;;                  [10 40] 'aestheticService:LargeArea
-;;                  [2 10]  'aestheticService:SmallArea
-;;                  [2 :>]  'aestheticService:VerySmallArea))
+;; Computes area of open space polygons as a GIS operation and stores this value in each pixel
+(defmodel area 'aestheticService:OpenSpaceAreaClass
+  (classification (measurement 'aestheticService:OpenSpaceArea "ha")
+                  [40 :>] 'aestheticService:VeryLargeArea
+                  [10 40] 'aestheticService:LargeArea
+                  [2 10]  'aestheticService:SmallArea
+                  [:< 2]  'aestheticService:VerySmallArea))
 
 (defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
   (classification 'aestheticService:TheoreticalProximitySource
-                  [0   10] 'aestheticService:NoProximityValue 
-                  [10  40] 'aestheticService:LowProximityValue 
-                  [40  75] 'aestheticService:ModerateProximityValue 
-                  [75 100] 'aestheticService:HighProximityValue))
+                  [0   10] 'aestheticService:NoProximityPotential 
+                  [10  40] 'aestheticService:LowProximityPotential
+                  [40  75] 'aestheticService:ModerateProximityPotential 
+                  [75 100] 'aestheticService:HighProximityPotential))
 
 ;; source bayesian model	    		 
 (defmodel source 'aestheticService:AestheticProximityProvision
@@ -92,7 +90,7 @@
   (bayesian 'aestheticService:AestheticProximityProvision
             :import   "aries.core::ProximitySource.xdsl"
             :context  (lake-front river-front beach forest woody-wetland emergent-wetland farmland park
-                       crime-potential water-quality formal-protection)
+                       crime-potential water-quality formal-protection area)
             :observed (theoretical-open-space)
             :keep     ('aestheticService:TheoreticalProximitySource)))
 
@@ -112,10 +110,9 @@
 
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
-  ;; specific to Puget region, will not be used if data unavailable
-  (classification (binary-coding 'aestheticService:PresenceOfHousing)
-        "RESIDENTIAL" 'aestheticService:HousingPresent  ;;CHANGE TO "IF ZERO OR GREATER" housing present, otherwise not.
-        :otherwise    'aestheticService:HousingNotPresent))
+  (classification (ranking 'aestheticService:PresenceOfHousing)
+        [0 :>]        'aestheticService:HousingPresent  
+        :otherwise    'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -132,7 +129,7 @@
   (classification (count 'policytarget:PopulationDensity "/km^2")
                   [309 :>] 'aestheticService:Urban
                   [77 309] 'aestheticService:Suburban
-                  [77 :>]  'aestheticService:Rural))
+                  [:< 77]  'aestheticService:Rural))
 
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse

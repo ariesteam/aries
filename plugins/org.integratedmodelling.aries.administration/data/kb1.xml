@@ -34,6 +34,7 @@
 	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
 
 <!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
+Steinitz, C., et al. 2003. Alternative futures for changing landscapes: The Upper San Pedro River Basin in Arizona and Sonora. Island Press: Wsahington, DC.
 Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona: Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173. 
 Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A framework for preserving semi-arid regions in the Southwest. Journal of Contemporary Water Research and Education 114: 60-74.-->
 
@@ -480,6 +481,33 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!--$/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement-->
+	<measurement:Ranking id="housing_value_san_pedro">
+		<observation:hasObservable>
+			<economics:AppraisedPropertyValue />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Derived from Pima and Pinal Co., AZ parcel data. Calculated property value/ac.</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:housing_value_san_pedro</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>7694</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7325</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3483272.59</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>321039.26</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3703082.59</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>551919.26</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
 <measurement:Ranking id="sanPedro_bird_rich">
 	<observation:hasObservable>
 		<habitat:AvianRichness />
@@ -505,6 +533,30 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </measurement:Ranking>
+
+	<measurement:Ranking id="sanPedro_bsr_development_sites2">
+		<observation:hasObservable>
+			<sanPedro:BSRDevelopment />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Developed by Entrix for 2010 BSR roundtable on ecosystem services</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:bsr_development_sites2</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>site</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>31.8778514862061</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-110.377891540527</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.0128517150879</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-110.249534606934</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 	<measurement:Count id="buffalo">
 		<observation:hasObservable>
@@ -736,6 +788,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:depth_to_water_san_pedro</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -764,6 +817,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:depth_to_water_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1446,6 +1500,29 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	</observation:hasObservationExtent>
 </measurement:NumericCoding>
 
+<measurement:BinaryCoding id="sanPedro_mesquite_management">
+	<observation:hasObservable>
+		<sanPedro:MesquiteManagement />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Hypothetical mesquite management polygons within the SPRNCA</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mesquite_management</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>31.4403076171875</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-110.150840759277</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>31.5411224365234</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-110.08780670166</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
 	<measurement:NumericCoding id="mg_mglulc">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
@@ -1544,6 +1621,83 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 				<geospace:hasLonUpperBound>-96.27930746109703</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:Measurement id="open_space_area_san_pedro">
+		<observation:hasObservable>
+			<aestheticService:OpenSpaceArea />
+		</observation:hasObservable>
+		<measurement:unit>ha</measurement:unit>
+		<rdfs:comment>Data source: Derived from NLCD 2001, calculating area of all open space</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:open_space_area_san_pedro</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>9439</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>7260</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>3466405.58</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>330743.611</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3684265.58</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>613973.611</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:Measurement id="open_space_area_puget">
+		<observation:hasObservable>
+			<aestheticService:OpenSpaceArea />
+		</observation:hasObservable>
+		<measurement:unit>ha</measurement:unit>
+		<rdfs:comment>Data source: Derived from NLCD 2001, calculating area of all open space</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:open_space_area_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>10269</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>10147</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>5125512.88</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>368260.429</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>5429982.88</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>676390.429</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:BinaryCoding id="sanPedro_trails_sprnca2">
+		<observation:hasObservable>
+			<infrastructure:Path />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Tucson Field Office, Arizona Bureau of Land Management</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:trails_sprnca2</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>3490616.2259507948</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>572743.1614215748</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>3523745.548341618</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>582134.5934271315</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
@@ -3315,6 +3469,7 @@ we could discuss integrating those at some point.-->
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>california:soil_pH_0_30_ca</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3342,6 +3497,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>california:soil_pH_30_100_ca</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3369,6 +3525,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:soil_pH_0_30_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3396,6 +3553,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:soil_pH_30_100_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3423,6 +3581,7 @@ we could discuss integrating those at some point.-->
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:soil_pH_0_30_san_pedro</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -3450,6 +3609,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>sanPedro:soil_pH_30_100_san_pedro</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3476,6 +3636,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:soil_texture_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3542,6 +3703,81 @@ we could discuss integrating those at some point.-->
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
+
+	<measurement:NumericCoding id="urban_growth_baseline_san_pedro">
+		<observation:hasObservable>
+			<sanPedro:Steinitz30ClassUrbanGrowthLULCBase />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Steinitz et al. (2003)</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:urban_growth_baseline_san_pedro</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.9198453</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-110.72688</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.5161673</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="urban_growth_constrained_san_pedro">
+		<observation:hasObservable>
+			<sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Steinitz et al. (2003)</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.9197689</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-110.726238</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.516111</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7938821</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
+	<measurement:NumericCoding id="urban_growth_open_san_pedro">
+		<observation:hasObservable>
+			<sanPedro:Steinitz30ClassUrbanGrowthLULCOpen />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Steinitz et al. (2003)</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.9197689</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-110.726238</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>32.516111</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7938821</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
 
 	<measurement:Measurement id="str_gradient">
 		<observation:hasObservable>
@@ -3636,6 +3872,7 @@ we could discuss integrating those at some point.-->
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:diversions_san_pedro</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -4100,7 +4337,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>-->
 
-<measurement:BinaryCoding id="parcels_puget">
+<measurement:Ranking id="parcels_puget">
 	<observation:hasObservable>
 		<aestheticService:PresenceOfHousing />
 	</observation:hasObservable>
@@ -4124,7 +4361,7 @@ we could discuss integrating those at some point.-->
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
+</measurement:Ranking>
 
 	<measurement:Ranking id="housing_value_puget">
 		<observation:hasObservable>
@@ -4177,49 +4414,5 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
-
-<!-- Get these fixed up & ready to go...  
-<measurement:BinaryCoding id="sanPedro_mesquite_management">
-<observation:hasObservable>
-<sanPedro:MesquiteManagement/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:mesquite_management</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>31.4403076171875</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-110.150840759277</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>31.5411224365234</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-110.08780670166</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<observation:Categorization id="puget_clearcuts_puget_new">
-<observation:hasObservable>
-<geofeatures:Clearcut/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>puget:clearcuts_puget_new</geospace:hasCoverageId>
-<geospace:hasValueAttribute>timharv_fp</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>45.587703704834</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-124.663955688477</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>49.0023994445801</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-117.039825439453</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</observation:Categorization>  -->
 
 </kbox>
