@@ -176,8 +176,8 @@
 
 (defmodel floodplains 'soilretentionEcology:FloodplainsClass
 	(classification (binary-coding 'geofeatures:Floodplain)
-			0 'soilretentionEcology:NotInFloodplain
-			1 'soilretentionEcology:InFloodplain))
+			0          'soilretentionEcology:InFloodplain
+			:otherwise 'soilretentionEcology:NotInFloodplain))
 
 ;;(defmodel farmland 'soilretentionEcology:Farmland
 ;;	"Just a reclass of the regionally appropriate LULC layer"
@@ -188,8 +188,8 @@
 ;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
 (defmodel farmland 'soilretentionEcology:Farmland
   (classification (numeric-coding 'domlulc:DOMLULCNumeric)
-	  	#{23 36 38 40 41 45 53 59}	'soilretentionEcology:Farmland
-		  :otherwise                  'soilretentionEcology:Farmland))
+	  	#{23 36 38 40 41 45 53 59}	'soilretentionEcology:FarmlandPresent
+		  :otherwise                  'soilretentionEcology:FarmlandAbsent))
 
 ;;Reservoirs use for DR: presence/absence only.
 (defmodel hydroelectric-use-presence 'soilretentionEcology:HydroelectricUsePresenceClass

@@ -433,6 +433,7 @@ equivalent to groundwater recharge, though it makes sense that it should be -->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:snowmelt_annual</geospace:hasCoverageId>
+				<geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -968,6 +969,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:floodplain_width_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1227,6 +1229,7 @@ cross-boundary data handling features are enabled.
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mg:hydro_dams_africa</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1327,6 +1330,7 @@ See the sediment_dr.clj file to make sure, otherwise leaving this commented out 
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mexico:industrial_use_la</geospace:hasCoverageId>
+				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1712,6 +1716,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mg:floodplain_veg_mg</geospace:hasCoverageId>
+				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1738,6 +1743,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>dominican:floodplain_veg_dr</geospace:hasCoverageId>
+				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1764,6 +1770,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:impervious_global</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-1.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2155,6 +2162,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tree_cover_asia_pacific</geospace:hasCoverageId>
+				<geospace:hasNodataValue>254.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2182,6 +2190,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tree_cover_europe_asia</geospace:hasCoverageId>
+				<geospace:hasNodataValue>254.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2209,6 +2218,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tree_cover_north_america</geospace:hasCoverageId>
+				<geospace:hasNodataValue>254.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2236,6 +2246,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:tree_cover_south_america</geospace:hasCoverageId>
+				<geospace:hasNodataValue>254.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -2821,6 +2832,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>mexico:surface_water_prox_la</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -3440,6 +3452,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -4007,6 +4020,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>usa:biomass_4</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+				<geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -4036,6 +4050,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>usa:biomass_15</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+				<geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -4065,6 +4080,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>usa:biomass_25</geospace:hasCoverageId>
 				<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+				<geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -4389,6 +4405,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- Replace this with views_king2 -->
 	<measurement:BinaryCoding id="housing_views_puget">
 		<observation:hasObservable>
 			<aestheticService:HomeownerViewUse />
@@ -4399,7 +4416,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:housing_views_puget</geospace:hasCoverageId>
-				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+				<geospace:hasNodataValue> 65535.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
