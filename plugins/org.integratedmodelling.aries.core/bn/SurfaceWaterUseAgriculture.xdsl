@@ -7,17 +7,17 @@
 			<state id="LowSurfaceWaterProximity" />
 			<probabilities>0.49 0.49 0.02</probabilities>
 		</cpt>
-		<cpt id="TotalLivestockWaterUseClass">
-			<state id="HighTotalLivestockWaterUse" />
-			<state id="ModerateTotalLivestockWaterUse" />
-			<state id="LowTotalLivestockWaterUse" />
+		<cpt id="LivestockTotalWaterUseClass">
+			<state id="HighLivestockTotalWaterUse" />
+			<state id="ModerateLivestockTotalWaterUse" />
+			<state id="LowLivestockTotalWaterUse" />
 			<probabilities>0.5 0.5 0</probabilities>
 		</cpt>
 		<cpt id="LivestockSurfaceWaterUseClass">
 			<state id="HighLivestockSurfaceWaterUse" />
 			<state id="ModerageLivestockSurfaceWaterUse" />
 			<state id="LowLivestockSurfaceWaterUse" />
-			<parents>ProximityToSurfaceWaterClass TotalLivestockWaterUseClass</parents>
+			<parents>ProximityToSurfaceWaterClass LivestockTotalWaterUseClass</parents>
 			<probabilities>0.6 0.3 0.1 0.5 0.35 0.15 0.4 0.4 0.2 0.2 0.4 0.4 0.15 0.35 0.5 0.1 0.3 0.6 0.1 0.2 0.7 0.05 0.15 0.8 0 0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="IrrigationWaterUseClass">
@@ -56,13 +56,13 @@
 				<position>337 203 478 291</position>
 				<barchart active="true" width="390" height="90" />
 			</node>
-			<node id="TotalLivestockWaterUseClass">
-				<name>TotalLivestockWaterUseClass</name>
+			<node id="LivestockTotalWaterUseClass">
+				<name>LivestockTotalWaterUseClass</name>
 				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>540 368 644 433</position>
-				<comment>Sum of CattleWU+SheepWU+GoatsWU+PigsWU</comment>
+				<comment>Sum of CattleWU+SheepWU+GoatsWU+PigsWU\n\nI found data on cattle here: http://www.inegi.org.mx/sistemas/mexicocifras/MexicoCifras.aspx?e=30&amp;m=0&amp;sec=M&amp;ind=1009000053&amp;ent=30&amp;enn=Veracruz%20de%20Ignacio%20de%20la%20Llave&amp;ani=2008\nThere you can export data for each municipality on pigs, cows. tec. Data are in production on anual tons. I also add to excel files as examples for pigs and cows. Octavio\n\nWater use for cattle I think can be also obtained from this file: new data La Atigua/water permission</comment>
 				<barchart active="true" width="334" height="72" />
 			</node>
 			<node id="AgriculturalSurfaceWaterUseClass">
