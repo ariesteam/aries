@@ -49,7 +49,7 @@
    "            -sink-type          <finite|infinite> \\ \n"
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|flood|sediment>\n"))
+   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment>\n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -79,8 +79,8 @@
    ["-sink-type"          #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
-   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "sediment"}
-    " must be one of line-of-sight, proximity, carbon, flood, or sediment."]])
+   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment"}
+    " must be one of line-of-sight, proximity, carbon, flood, surface-water, or sediment."]])
 
 (defn- valid-params?
   "Returns true if the params map:
@@ -127,6 +127,7 @@
                                    "proximity"     "Proximity"
                                    "carbon"        "CO2Removed"
                                    "flood"         "FloodWaterMovement"
+                                   "surface-water" "SurfaceWaterMovement"
                                    "sediment"      "Sediment"}
                                   (params "-flow-model")))))
 

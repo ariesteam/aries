@@ -25,7 +25,7 @@
   (:use [clj-misc.matrix-ops :only (make-matrix)]
         [clj-misc.utils      :only (constraints-1.0 p)]
         [clj-misc.randvars   :only (cont-type disc-type)]
-        [clojure.contrib.duck-streams :only (spit file-str with-in-reader read-lines)]))
+        [clojure.contrib.duck-streams :only (spit file-str with-in-reader read-lines) :rename {spit duck-spit}]))
 
 (defn read-layer-from-file
   [filename]
@@ -34,7 +34,7 @@
 (defn write-layer-to-file
   [filename layer]
   (binding [*print-dup* true]
-    (spit (file-str filename) layer)))
+    (duck-spit (file-str filename) layer)))
 
 ;; Deprecated - reimplement with clj-misc.randvars/make-randvar
 (defn make-random-layer

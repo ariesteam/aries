@@ -170,6 +170,17 @@
                                [in-stream-id source-ids source-fractions source-values {}]))
                            (keys source-map))))))
 
+;; Model updates due to conversation with Ken on 10/15/10:
+;;
+;; Three classes of sinks: floodplains, dams/reservoirs, water intakes
+;; Two class of beneficiaries: farmers in floodplains, avoided turbidity beneficiaries (dams and water intakes)
+;;
+;; In order to distinguish their behavior in this model, I need layers
+;; for the presence/absence of floodplains, dams/reservoirs, water
+;; intakes, and farmers passed as flow dependencies in the span
+;; statement.
+;;
+
 (defmethod distribute-flow "Sediment"
   [_ source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",

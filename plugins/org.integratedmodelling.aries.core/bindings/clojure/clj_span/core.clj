@@ -57,7 +57,8 @@
             clj-span.carbon-model
             clj-span.sediment-model
             clj-span.proximity-model
-            clj-span.line-of-sight-model))
+            clj-span.line-of-sight-model
+            clj-span.surface-water-model))
 
 (defn zero-layer-below-threshold
   "Takes a two dimensional array of RVs and replaces all values which
@@ -148,7 +149,7 @@
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type sink-type use-type])
           (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight" "Proximity" "CO2Removed" "FloodWaterMovement" "Sediment"} flow-model)
+          (#{"LineOfSight" "Proximity" "CO2Removed" "FloodWaterMovement" "SurfaceWaterMovement" "Sediment"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states

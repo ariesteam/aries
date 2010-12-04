@@ -27,6 +27,10 @@
 (def p partial)
 (def & comp)
 
+(defn thrush [& args]
+  (reduce #(%2 %1) args))
+(def t> thrush)
+
 (defn print-sysprops
   "Print out the result of System.getProperties()"
   []
