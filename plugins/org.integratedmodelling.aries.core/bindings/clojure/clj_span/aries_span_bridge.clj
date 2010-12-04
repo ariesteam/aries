@@ -258,7 +258,7 @@
           sink-layer   (layer-from-observation observation sink-concept   rows cols)
           use-layer    (layer-from-observation observation use-concept    rows cols)
           flow-layers  (let [layer-map (layer-map-from-observation observation flow-concept rows cols)]
-                         (if (#{"Sediment" "FloodWaterMovement"} flow-model)
+                         (if (#{"Sediment" "FloodWaterMovement" "SurfaceWaterMovement"} flow-model)
                            (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                            layer-map))]
       (println "Cell Dimensions in meters:" [w h] "\n")
