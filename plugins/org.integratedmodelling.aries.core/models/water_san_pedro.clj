@@ -242,16 +242,20 @@
 
 ;;Update below for water.
  	 								
-;;(defmodel altitude 'geophysics:Altitude
-  ;;(measurement 'geophysics:Altitude "m"))	 								
- 
-;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"))
 
 (defmodel flow-direction 'geophysics:FlowDirection
-  (ranking 'geophysics:FlowDirection)) 
+  (ranking 'geophysics:FlowDirection))
 
 (defmodel streams 'geofeatures:River
   (binary-coding 'geofeatures:River))
+
+(defmodel surface-water-flow-data 'waterSupplyService:TempSurfaceWaterData$
+  (identification 'waterSupplyService:TempSurfaceWaterData
+                  :context (altitude streams)))
+
+;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
@@ -278,31 +282,45 @@
   :context (precipitation-annual
             recharge
             well-presence)))
-  
+
 ;; flow model for surface water
-;;(defmodel surface-flow 'aestheticService:AestheticView
- ;; (span 'aestheticService:LineOfSight 
-  	;;    'waterSupplyService:AnnualPrecipitation  ;;replace with runoff once springs & baseflow are accounted for
-  	;;    'waterSupplyService:SurfaceDiversionCapacity
-    ;;  	'waterSupplyService:SurfaceWaterSinkClass
-    ;;  	'aestheticService:View   ;;nil?
-  	;;    'geophysics:Altitude     ;;nil?
-  ;;      :source-threshold   1.0  ;;??
-  ;;      :sink-threshold     1.0  ;;??
-  ;;      :use-threshold      10.0 ;;??
-  ;;      :trans-threshold    nil  ;;??
-  ;;      :source-type      :finite
-  ;;    	:sink-type        :finite
-  ;;    	:use-type         :finite
-  ;; 	    :benefit-type     :rival
-  ;;    	:downscaling-factor 3
-  ;; 	    :rv-max-states      10 
-  ;;      :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
-  ;;        'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
-  ;;        'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
-  ;;        'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
-  ;;        'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
-  ;;      :context (precipitation-annual surface-sink surface-diversions)))))
+(defmodel surface-flow 'waterSupplyService:SurfaceWaterMovement
+  (span 'waterSupplyService:SurfaceWaterMovement
+        'waterSupplyService:AnnualPrecipitation ;;replace with runoff once springs & baseflow are accounted for
+        'waterSupplyService:SurfaceDiversionCapacity
+        'waterSupplyService:SurfaceWaterSinkClass
+        nil
+        'waterSupplyService:TempSurfaceWaterData$
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.01
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :keep               ('waterSupplyService:SurfaceWaterSupply
+                             'waterSupplyService:MaximumSurfaceWaterSink
+                             'waterSupplyService:SurfaceWaterDemand
+                             'waterSupplyService:PossibleSurfaceWaterFlow
+                             'waterSupplyService:PossibleSurfaceWaterSupply
+                             'waterSupplyService:PossibleSurfaceWaterUse
+                             'waterSupplyService:ActualSurfaceWaterFlow
+                             'waterSupplyService:UsedSurfaceWaterSupply
+                             'waterSupplyService:ActualSurfaceWaterSink
+                             'waterSupplyService:SatisfiedSurfaceWaterDemand
+                             'waterSupplyService:UnusableSurfaceWaterSupply
+                             'waterSupplyService:UnusableSurfaceWaterSink
+                             'waterSupplyService:InaccessibleSurfaceWaterDemand
+                             'waterSupplyService:SunkSurfaceWaterFlow
+                             'waterSupplyService:SunkSurfaceWaterSupply
+                             'waterSupplyService:BlockedSurfaceWaterDemand)
+        :context            (precipitation-annual
+                             surface-sink
+                             surface-diversions
+                             surface-water-flow-data)))
 
 ;; flow model for groundwater
 ;;(defmodel groundwater-flow 'aestheticService:AestheticView

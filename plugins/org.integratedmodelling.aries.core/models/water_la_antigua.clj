@@ -247,29 +247,42 @@
             sink
             precipitation-annual
             streams)))
-  
+
 ;; flow model for surface water
 (defmodel surface-flow 'waterSupplyService:SurfaceWaterMovement
-  (span 'waterSupplyService:SurfaceWaterMovement 
+  (span 'waterSupplyService:SurfaceWaterMovement
         'waterSupplyService:AnnualPrecipitation
         'waterSupplyService:AgriculturalSurfaceWaterUseClass
         'waterSupplyService:SurfaceWaterSinkClass
         nil
         'waterSupplyService:TempSurfaceWaterData$
-        :source-threshold   0.0  
-        :sink-threshold     0.0  
-        :use-threshold      0.0 
-        :trans-threshold    nil 
-        :source-type      :finite
-        :sink-type        :finite
-        :use-type         :finite
-        :benefit-type     :rival
-        :downscaling-factor 3
-        :rv-max-states      10 
-        :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
-          'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
-          'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
-          'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
-          'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
-        :context (precipitation-annual sink agricultural-surface-water-use surface-water-flow-data)))
-
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.01
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :keep               ('waterSupplyService:SurfaceWaterSupply
+                             'waterSupplyService:MaximumSurfaceWaterSink
+                             'waterSupplyService:SurfaceWaterDemand
+                             'waterSupplyService:PossibleSurfaceWaterFlow
+                             'waterSupplyService:PossibleSurfaceWaterSupply
+                             'waterSupplyService:PossibleSurfaceWaterUse
+                             'waterSupplyService:ActualSurfaceWaterFlow
+                             'waterSupplyService:UsedSurfaceWaterSupply
+                             'waterSupplyService:ActualSurfaceWaterSink
+                             'waterSupplyService:SatisfiedSurfaceWaterDemand
+                             'waterSupplyService:UnusableSurfaceWaterSupply
+                             'waterSupplyService:UnusableSurfaceWaterSink
+                             'waterSupplyService:InaccessibleSurfaceWaterDemand
+                             'waterSupplyService:SunkSurfaceWaterFlow
+                             'waterSupplyService:SunkSurfaceWaterSupply
+                             'waterSupplyService:BlockedSurfaceWaterDemand)
+        :context            (precipitation-annual
+                             sink
+                             agricultural-surface-water-use
+                             surface-water-flow-data)))
