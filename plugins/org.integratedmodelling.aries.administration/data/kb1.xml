@@ -550,10 +550,10 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>31.8778514862061</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-110.377891540527</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.0128517150879</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-110.249534606934</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.012</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.281</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
@@ -1227,6 +1227,7 @@ cross-boundary data handling features are enabled.
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:hydroreservoirs2</geospace:hasCoverageId>
 				<geospace:hasValueAttribute>normal_s_1</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1541,10 +1542,10 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>31.4403076171875</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-110.150840759277</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>31.5411224365234</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-110.08780670166</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.012</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.281</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
@@ -1758,7 +1759,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<measurement:Ranking id="dr_fp_veg">
 		<observation:hasObservable>
 			<habitat:PercentFloodplainVegetationCover />
-		</observation:hasObservable>
+		</observation:hasObservable>ploa
 		<rdfs:comment>Data source: Derived from Dartmouth Flood Observatory flood extents and UMD-GLCF tree canopy data</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:belongsToDataset>DFO-UMD_GLCF_floodplain_canopy_cover</metadata:belongsToDataset>
@@ -1820,7 +1821,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_2</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1848,7 +1850,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_5</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1876,7 +1879,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1904,7 +1908,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1932,7 +1937,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1960,7 +1966,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1988,7 +1995,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2016,7 +2024,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_3</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2044,7 +2053,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_4</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2072,7 +2082,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_6</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2100,7 +2111,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_7</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2128,7 +2140,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_8</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2156,7 +2169,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:impervious_9</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2296,7 +2310,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_2</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2324,7 +2339,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_5</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2352,7 +2368,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_10</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2380,7 +2397,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_11</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2408,7 +2426,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_12</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2436,7 +2455,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_13</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2464,7 +2484,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_14</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2492,7 +2513,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_3</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2520,7 +2542,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_4</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2548,7 +2571,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_6</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2576,7 +2600,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_7</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2604,7 +2629,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_8</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2632,7 +2658,8 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasNodataValue>127</geospace:hasNodataValue>
+				<geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 				<geospace:hasCoverageId>usa:canopy_9</geospace:hasCoverageId>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -2955,10 +2982,10 @@ we could discuss integrating those at some point.-->
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>2020640.9572350862</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>227878.15057489474</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2177923.4146837196</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>377651.0166063338</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>215487.73841175652</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>2086397.449127984</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>342979.436222655</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>2201115.095656452</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
@@ -3353,7 +3380,7 @@ we could discuss integrating those at some point.-->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>31.349</geospace:hasLatLowerBound>
+			<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
 			<geospace:hasLonLowerBound>-124.548</geospace:hasLonLowerBound>
 			<geospace:hasLatUpperBound>48.928</geospace:hasLatUpperBound>
 			<geospace:hasLonUpperBound>-71.16</geospace:hasLonUpperBound>
@@ -3757,9 +3784,9 @@ we could discuss integrating those at some point.-->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.9198453</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-110.72688</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.5161673</geospace:hasLatUpperBound>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.012</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.281</geospace:hasLatUpperBound>
 				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
@@ -3782,10 +3809,10 @@ we could discuss integrating those at some point.-->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.9197689</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-110.726238</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.516111</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-109.7938821</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.012</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.281</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
@@ -3807,10 +3834,10 @@ we could discuss integrating those at some point.-->
 			<geospace:RasterGrid>
 				<geospace:hasXRangeMax>3156</geospace:hasXRangeMax>
 				<geospace:hasYRangeMax>5405</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.9197689</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-110.726238</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.516111</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-109.7938821</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-111.012</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.281</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.7945359</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
@@ -3950,31 +3977,6 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- Upper San Pedro only transmission line data replaced by statewide data, below
-<measurement:BinaryCoding id="sanPedro_transmission_upper_san_pedro">
-	<observation:hasObservable>
-		<infrastructure:TransmissionLine />
-	</observation:hasObservable>
-		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:transmission_upper_san_pedro</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3414973.534577496</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>498087.4793240902</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>3683458.4720972935</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>608601.3345555842</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
-
 <measurement:BinaryCoding id="sanPedro_transmission_az">
 	<observation:hasObservable>
 		<infrastructure:TransmissionLine />
@@ -3990,7 +3992,7 @@ we could discuss integrating those at some point.-->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3463408.88817789</geospace:hasLatLowerBound>
+			<geospace:hasLatLowerBound>498853.85500464373</geospace:hasLatLowerBound>
 			<geospace:hasLonLowerBound>134933.7738281882</geospace:hasLonLowerBound>
 			<geospace:hasLatUpperBound>4105081.8290773137</geospace:hasLatUpperBound>
 			<geospace:hasLonUpperBound>697575.8714159467</geospace:hasLonUpperBound>

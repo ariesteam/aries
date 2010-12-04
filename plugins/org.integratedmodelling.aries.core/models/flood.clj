@@ -257,7 +257,8 @@
 	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
 
 ;; Flood sink probability, annual
-;; COMMENT Detention basins & veg height back in once wfs is working again!
+;; COMMENT veg height back in once the layer's been expanded to a meaningful extent OR Ferd's enabled coexistence of
+;;  small layers + priors for areas without evidence.
 (defmodel sink-annual 'floodService:AnnualFloodSink
     (bayesian 'floodService:AnnualFloodSink
       :import   "aries.core::FloodSinkAnnual.xdsl"

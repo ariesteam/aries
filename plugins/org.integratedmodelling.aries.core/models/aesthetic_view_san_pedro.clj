@@ -55,7 +55,6 @@
                   #{19 117}       'aestheticService:MinesPresent
                   :otherwise      'aestheticService:MinesAbsent))
 
-;;Need to get new transmission line layer (for all AZ) into Geoserver & xml
 (defmodel transmission-line 'aestheticService:TransmissionLines 
   (classification (binary-coding 'infrastructure:TransmissionLine)
                   1          'aestheticService:TransmissionLinesPresent

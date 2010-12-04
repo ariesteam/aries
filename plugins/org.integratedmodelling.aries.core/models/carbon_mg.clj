@@ -55,7 +55,7 @@
 		[60 80] 'carbonService:HighVegetationCover
 		[40 60] 'carbonService:ModerateVegetationCover
 		[20 40] 'carbonService:LowVegetationCover
-		[1 20]  'carbonService:VeryLowVegetationCover))
+		[0 20]  'carbonService:VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
 		 (classification (ranking 'habitat:SummerHighWinterLow)

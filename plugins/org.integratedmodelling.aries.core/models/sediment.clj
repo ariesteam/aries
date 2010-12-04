@@ -102,8 +102,8 @@
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual ) 
     :observed (sediment-source-value-annual) 
-    :context  (soil-group slope soil-texture slope-stability precipitation-annual vegetation-type percent-vegetation-cover 
-              successional-stage)))
+    :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
+              successional-stage))) ;;slope-stability
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
@@ -159,9 +159,9 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel floodplains 'soilretentionEcology:Floodplains
-	(classification (binary-coding 'geofeatures:Floodplain)
-			0 'soilretentionEcology:NotInFloodplain
-			1 'soilretentionEcology:InFloodplain))
+	(classification (categorization 'geofeatures:Floodplain)
+			#{"A" "X500"} 'soilretentionEcology:InFloodplain
+			:otherwise    'soilretentionEcology:NotInFloodplain))
 
 (defmodel farmland 'soilretentionEcology:Farmland
 	"Just a reclass of the regionally appropriate LULC layer"

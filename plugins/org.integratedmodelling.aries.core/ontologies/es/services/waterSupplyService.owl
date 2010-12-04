@@ -203,6 +203,9 @@
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Livestock Water Use</rdfs:label>
   </owl:Class>
+  <owl:Class rdf:ID="SurfaceWaterMovement">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
+  </owl:Class>
   <owl:Class rdf:ID="VeryHighAnnualRunoff">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AnnualRunoff"/>
@@ -250,7 +253,6 @@
   <owl:Class rdf:ID="SatisfiedGroundwaterDemand">
     <rdfs:subClassOf rdf:resource="#SatisfiedWaterDemand"/>
   </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   <owl:Class rdf:ID="VeryLowVegetationCover">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PercentVegetationCoverClass"/>
@@ -259,6 +261,7 @@
   <owl:Class rdf:ID="ModerateCattleWaterUse">
     <rdfs:subClassOf rdf:resource="#CattleWaterUse"/>
   </owl:Class>
+  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   <owl:Class rdf:about="#AnnualSnowmelt">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
   </owl:Class>
@@ -914,15 +917,15 @@
       <owl:Class rdf:about="#ProximityToWaterExtraction"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#IndustrialWaterUseCode">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Industrial Water Use</rdfs:label>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateVegetationCover">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#PercentVegetationCoverClass"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#IndustrialWaterUseCode">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Industrial Water Use</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="NoGroundwaterSource">
     <rdfs:subClassOf>
