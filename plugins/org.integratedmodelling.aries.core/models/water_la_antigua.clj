@@ -69,6 +69,14 @@
     [20 40]  'waterSupplyService:LowVegetationCover
     [1 20]   'waterSupplyService:VeryLowVegetationCover))
 
+(defmodel evapotranspiration 'floodService:EvapotranspirationClass
+  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+                  [90 :>]    'floodService:VeryHighEvapotranspiration
+                  [60 90]    'floodService:HighEvapotranspiration
+                  [30 60]    'floodService:ModerateEvapotranspiration
+                  [12 30]    'floodService:LowEvapotranspiration
+                  [0 12]     'floodService:VeryLowEvapotranspiration))
+
 (defmodel dam-presence 'waterSupplyService:Dams
   (classification (binary-coding 'waterSupplyService:NonRivalWaterUseCode)
       1         'waterSupplyService:DamPresent
@@ -87,7 +95,8 @@
 (defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
     (bayesian 'waterSupplyService:SurfaceWaterSinkClass
       :import   "aries.core::SurfaceWaterSupplySink.xdsl"
-      :context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
+      ;;:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
+      :context  (soil-group vegetation-type slope imperviousness percent-vegetation-cover) 
       :keep     ('waterSupplyService:SurfaceWaterSinkClass)
       :observed (sink-undiscretizer)))
 
@@ -165,29 +174,30 @@
 ;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 (defmodel irrigation-water-use 'waterSupplyService:IrrigationWaterUseClass
   (measurement 'waterSupplyService:IrrigationWaterUse "mm"  ;;This is an annual value
-     :context ((categorization 'veracruz-lulc:VeracruzLULCCategory))
+     :context ((categorization 'veracruz-lulc:VeracruzLULCCategory :as veracruzlulccategory))
      ;; FV temporarily changed the ID to veracruzlulccategory - attribution with :as seems broken for categories.
      ;; without the :as, the ID defaults to the lowercased concept name, so the code below works.
      :state   #(if (= (:veracruzlulccategory %) "riego")
                   2000
                   0)))
 
+
 ;;Classification of irrigationWaterUse into 6 classes.
 (defmodel irrigation-water-use-discretized 'waterSupplyService:IrrigationWaterUseClass
   (classification irrigation-water-use
-    [2400 :>]   'waterSupplyService:VeryHighIrrigationUse
-    [2150 2400] 'waterSupplyService:HighIrrigationUse
-    [1850 2150] 'waterSupplyService:ModerateIrrigationUse
-    [1600 1850] 'waterSupplyService:LowIrrigationUse
+    0           'waterSupplyService:NoIrrigationUse
     [:< 1600]   'waterSupplyService:VeryLowIrrigationUse
-    0           'waterSupplyService:NoIrrigationUse))
+    [1600 1850] 'waterSupplyService:LowIrrigationUse
+    [1850 2150] 'waterSupplyService:ModerateIrrigationUse
+    [2150 2400] 'waterSupplyService:HighIrrigationUse
+    [2400 :>]   'waterSupplyService:VeryHighIrrigationUse))
 
 ;;Undiscretization of agricultural surface water use
 (defmodel use-undiscretizer 'waterSupplyService:AgriculturalSurfaceWaterUseClass
   (classification 'waterSupplyService:AgriculturalSurfaceWaterUseClass 
     [2000 :>]    'waterSupplyService:HighAgriculturalSurfaceWaterUse
     [1000 2000]  'waterSupplyService:ModerateAgriculturalSurfaceWaterUse
-    [:< 1000]    'waterSupplyService:LowAgriculturalSurfaceWaterUse)) 
+    [0 1000]    'waterSupplyService:LowAgriculturalSurfaceWaterUse)) 
 
 (defmodel agricultural-surface-water-use 'waterSupplyService:AgriculturalSurfaceWaterUseClass
   (bayesian 'waterSupplyService:AgriculturalSurfaceWaterUseClass  
@@ -210,8 +220,18 @@
 
 ;;Everything below needs to be updated correctly for water.
  	 								
-;;(defmodel altitude 'geophysics:Altitude
-  ;;(measurement 'geophysics:Altitude "m"))	 								
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"))
+
+(defmodel flow-direction 'geophysics:FlowDirection
+  (ranking 'geophysics:FlowDirection)) 
+
+(defmodel streams 'geofeatures:River
+  (binary-coding 'geofeatures:River))	
+
+(defmodel surface-water-flow-data 'waterSupplyService:TempSurfaceWaterData$
+  (identification 'waterSupplyService:TempSurfaceWaterData
+    :context (altitude streams))) 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
@@ -225,30 +245,31 @@
             industrial-users
             non-rival-water-users
             sink
-            precipitation-annual)))
+            precipitation-annual
+            streams)))
   
 ;; flow model for surface water
-;;(defmodel surface-flow 'aestheticService:AestheticView
- ;; (span 'aestheticService:LineOfSight 
-    ;;    'waterSupplyService:AnnualPrecipitation
-    ;;    'waterSupplyService:SurfaceDiversionCapacity       ;;Replace with right concept for La Antigua
-    ;;    'waterSupplyService:SurfaceWaterSinkClass
-    ;;    'aestheticService:View   ;;nil?
-    ;;    'geophysics:Altitude     ;;nil?
-  ;;      :source-threshold   1.0  ;;??
-  ;;      :sink-threshold     1.0  ;;??
-  ;;      :use-threshold      10.0 ;;??
-  ;;      :trans-threshold    nil  ;;??
-  ;;      :source-type      :finite
-  ;;      :sink-type        :finite
-  ;;      :use-type         :finite
-  ;;      :benefit-type     :rival
-  ;;      :downscaling-factor 3
-  ;;      :rv-max-states      10 
-  ;;      :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
-  ;;        'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
-  ;;        'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
-  ;;        'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
-  ;;        'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
-  ;;      :context (precipitation-annual surface-sink surface-diversions)))))
+(defmodel surface-flow 'waterSupplyService:SurfaceWaterMovement
+  (span 'waterSupplyService:SurfaceWaterMovement 
+        'waterSupplyService:AnnualPrecipitation
+        'waterSupplyService:AgriculturalSurfaceWaterUseClass
+        'waterSupplyService:SurfaceWaterSinkClass
+        nil
+        'waterSupplyService:TempSurfaceWaterData$
+        :source-threshold   0.0  
+        :sink-threshold     0.0  
+        :use-threshold      0.0 
+        :trans-threshold    nil 
+        :source-type      :finite
+        :sink-type        :finite
+        :use-type         :finite
+        :benefit-type     :rival
+        :downscaling-factor 3
+        :rv-max-states      10 
+        :keep ('waterSupplyService:SurfaceWaterSupply    'waterSupplyService:MaximumSurfaceWaterSink    'waterSupplyService:SurfaceWaterDemand
+          'waterSupplyService:PossibleSurfaceWaterFlow   'waterSupplyService:PossibleSurfaceWaterSupply 'waterSupplyService:PossibleSurfaceWaterUse
+          'waterSupplyService:ActualSurfaceWaterFlow     'waterSupplyService:UsedSurfaceWaterSupply     'waterSupplyService:ActualSurfaceWaterSink         'waterSupplyService:SatisfiedSurfaceWaterDemand
+          'waterSupplyService:UnusableSurfaceWaterSupply 'waterSupplyService:UnusableSurfaceWaterSink   'waterSupplyService:InaccessibleSurfaceWaterDemand 
+          'waterSupplyService:SunkSurfaceWaterFlow       'waterSupplyService:SunkSurfaceWaterSupply     'waterSupplyService:BlockedSurfaceWaterDemand)
+        :context (precipitation-annual sink agricultural-surface-water-use surface-water-flow-data)))
 
