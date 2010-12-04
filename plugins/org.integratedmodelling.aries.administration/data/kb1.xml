@@ -230,7 +230,7 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
 			<habitat:AnnualPrecipitation />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: WorldClim</rdfs:comment>
-		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.worldclim.org/bioclim</metadata:hasURL>
 		<measurement:unit>mm</measurement:unit>
 		<observation:hasDataSource>
@@ -618,13 +618,13 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<mexico:CONABIOLULCCategory />
 	</observation:hasObservable>
 		<rdfs:comment>Data source: Comision Nacional Para el Conocimiento y Uso de la Biodiversidad (CONABIO)</rdfs:comment>
-		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.conabio.gob.mx/informacion/gis/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
-			<geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
+			<geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -637,6 +637,29 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </observation:Categorization>
+
+<observation:Categorization id="mexico_lalulc">
+		<observation:hasObservable>
+			<veracruz-lulc:VeracruzLULCCategory />
+		</observation:hasObservable>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>2099767.0934606227</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>673608.6731989896</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2187949.8171524717</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>817055.4370278353</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</observation:Categorization>
 
 	<measurement:Ranking id="usa_pugeterosionmetrics">
 		<observation:hasObservable>
@@ -3095,6 +3118,7 @@ we could discuss integrating those at some point.-->
 		<observation:hasObservable>
 			<geofeatures:River />
 		</observation:hasObservable>
+		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -4144,28 +4168,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</observation:Categorization>
 
-	<observation:Categorization id="mexico_lalulc">
-		<observation:hasObservable>
-			<veracruz-lulc:VeracruzLULCCategory />
-		</observation:hasObservable>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>2099767.0934606227</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>673608.6731989896</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2187949.8171524717</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>817055.4370278353</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization>
+	
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
 (1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
