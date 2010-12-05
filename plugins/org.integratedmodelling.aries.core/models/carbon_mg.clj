@@ -59,7 +59,7 @@
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
 		 (classification (ranking 'habitat:SummerHighWinterLow)
-        [:< 24]       'carbonService:VeryLowSOL
+        [0 24]        'carbonService:VeryLowSOL
         [24 30]       'carbonService:LowSOL
         [30 35]       'carbonService:ModerateSOL
         [35 40]       'carbonService:HighSOL

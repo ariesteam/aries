@@ -30,11 +30,12 @@
 	 		2           'soilretentionEcology:ModerateSlopeStability
 	 		3           'soilretentionEcology:LowSlopeStability))
 
+;;This discretization is for SSURGO/STATSGO, paying attention to texture over inclusion of various sized rock fragments.
 (defmodel soil-texture 'soilretentionEcology:SoilTextureClass
-    (classification (categorization 'habitat:SoilTexture)
-      "Coarse"    'soilretentionEcology:CoarseSoilTexture
-      "Medium"    'soilretentionEcology:MediumSoilTexture
-      "Fine"      'soilretentionEcology:FineSoilTexture))
+    (classification (numeric-coding 'habitat:SoilTexture)
+      #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105} 'soilretentionEcology:CoarseSoilTexture
+      #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104} 'soilretentionEcology:MediumSoilTexture
+      #{7 16 23 41 44 45 46 51 52 53 54 56 58 100 101} 'soilretentionEcology:FineSoilTexture))
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibilityClass
@@ -103,7 +104,7 @@
     :keep     ('soilretentionEcology:SedimentSourceValueAnnual ) 
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
-              successional-stage))) ;;slope-stability
+              successional-stage slope-stability)))
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
 
@@ -166,8 +167,8 @@
 (defmodel farmland 'soilretentionEcology:Farmland
 	"Just a reclass of the regionally appropriate LULC layer"
 	(classification (numeric-coding 'nlcd:NLCDNumeric)
-		82	       'soilretentionEcology:Farmland
-		:otherwise 'soilretentionEcology:Farmland))
+		82	       'soilretentionEcology:FarmlandPresent
+		:otherwise 'soilretentionEcology:FarmlandAbsent))
 
 ;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
 ;;hyroelectric generation capacity (use) - in reality dam height & flow are important factors but 

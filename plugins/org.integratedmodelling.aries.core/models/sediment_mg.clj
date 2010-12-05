@@ -105,8 +105,8 @@
 
 (defmodel reservoirs 'soilretentionEcology:ReservoirsClass 
   (classification (binary-coding 'geofeatures:Reservoir)
-      0          'soilretentionEcology:ReservoirAbsent
-      :otherwise 'soilretentionEcology:ReservoirPresent))
+      1          'soilretentionEcology:ReservoirPresent
+      :otherwise 'soilretentionEcology:ReservoirAbsent))
 
 (defmodel stream-gradient 'soilretentionEcology:StreamGradientClass 
   (classification (measurement 'habitat:StreamGradient "\u00b0")
@@ -158,8 +158,8 @@
 
 (defmodel farmland 'soilretentionEcology:Farmland
   (classification (numeric-coding 'mglulc:MGLULCNumeric)
-		#{11 12 13} 'soilretentionEcology:Farmland
-		:otherwise 'soilretentionEcology:Farmland))
+		#{11 12 13} 'soilretentionEcology:FarmlandPresent 
+		:otherwise 'soilretentionEcology:FarmlandAbsent))
 
 ;;Use normal dam storage (ac-ft in the U.S. or m^3 in the rest of the world) as a proxy for 
 ;;hyroelectric generation capacity (use) - in reality dam height & flow are important factors but 

@@ -134,8 +134,8 @@
 
 (defmodel reservoirs 'soilretentionEcology:ReservoirsClass 
   (classification (binary-coding 'geofeatures:Reservoir)
-      0          'soilretentionEcology:ReservoirAbsent
-      :otherwise 'soilretentionEcology:ReservoirPresent))
+      1          'soilretentionEcology:ReservoirPresent
+      :otherwise 'soilretentionEcology:ReservoirAbsent))
 
 (defmodel stream-gradient 'soilretentionEcology:StreamGradientClass 
   (classification (measurement 'habitat:StreamGradient "\u00B0")

@@ -1214,29 +1214,30 @@ Slope in degrees for Puget Sound & Madagascar
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:BinaryCoding>
-	
-	<measurement:Ranking id="slpstab83_Projec">
+
+	<measurement:Ranking id="slope_stability">
 		<observation:hasObservable>
 			<habitat:SlopeStability />
 		</observation:hasObservable>
-				<rdfs:comment>Data source: Washington DNR</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+		<rdfs:comment>Data source: Washington DNR</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:slope_stability_puget</geospace:hasCoverageId>
+				<geospace:hasCoverageId>puget:slope_stability</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>55235</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>57142</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>4968598.457353599</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>2940212.77</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>6573762.88</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>4491809.9142972</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>12399</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>10381</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>45.483</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.864</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.03</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-120.627</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1733,89 +1734,5 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
-
-<!--  ITEMS BELOW HAVE NOT BEEN ALPHABETIZED BY ONTOLOGIC CONCEPT.  THEY MAY NEED TO BE RE-TAGGED IN GEOSERVER. 
-
-	 landuse category from property data, used as a 1/0 coverage 
-	<observation:Categorization id="chehalis_housing">
-	
-		<observation:hasObservable>
-			<puget:ParcelUseCategoryGraysHarbor />
-		</observation:hasObservable>
-				<rdfs:comment>Data source: Grays Harbor County GIS</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://www.ghc-gis.org/info/GIS/Index.html</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetparcelsgraysharbor</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>landuse2</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32049</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>543740.5</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1048695.875</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>825691.1875</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1337075.875</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization>
-
-	
- thanks WA counties for doing it differently, all of you 
-	<observation:Categorization id="king_presence_of_housing">
-
-		<observation:hasObservable>
-			<puget:ParcelUseCategoryKing />
-		</observation:hasObservable>
-				<rdfs:comment>Data source: King County GIS Center</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://www.kingcounty.gov/operations/gis.aspx</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetparcelsking</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>proptype</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>30932.6796875</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1218256.875</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>287704.25</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</observation:Categorization> -->
-	
-<!-- Already have this mg lulc layer in kb1.xml, but as a numeric coding.  This corresponds to what's in the .clj models, so keep it and 
-comment this one out.
- 	<measurement:Ranking id="mg_mglulc">
-			<observation:hasObservable>
-				<mglulc:MGLULCNumeric />
-			</observation:hasObservable>
-				<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
-				<metadata:hasPriority>0</metadata:hasPriority> 
-				<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
-			<observation:hasDataSource>
-				<geospace:WFSDataSource>
-					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-					<geospace:hasCoverageId>mg:lulc_mg</geospace:hasCoverageId>
-					<geospace:hasValueAttribute>natbd500</geospace:hasValueAttribute>
-				</geospace:WFSDataSource>
-			</observation:hasDataSource>
-			<observation:hasObservationExtent>
-				<geospace:ArealFeatureSet>
-					<geospace:hasLatLowerBound>-81.08509300346486</geospace:hasLatLowerBound>
-					<geospace:hasLonLowerBound>-6.701190793362912</geospace:hasLonLowerBound>
-					<geospace:hasLatUpperBound>32.43162264220882</geospace:hasLatUpperBound>
-					<geospace:hasLonUpperBound>96.38474213762674</geospace:hasLonUpperBound>
-					<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
-				</geospace:ArealFeatureSet>
-			</observation:hasObservationExtent>
-		</measurement:Ranking> -->
 		
 </kbox>

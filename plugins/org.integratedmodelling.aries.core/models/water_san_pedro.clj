@@ -41,8 +41,8 @@
 
 ;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
 ;; Runoff as a sum of precip, snowmelt, spring discharge, baseflow, incoming interbasin water transfers.
-(defmodel runoff 'soilretentionEcology:AnnualRunoff
-  (measurement 'soilretentionEcology:AnnualRunoff "mm/year"
+(defmodel runoff 'soilretentionEcology:AnnualRunoffSummed
+  (measurement 'soilretentionEcology:AnnualRunoffSummed "mm/year"
     :context (precipitation-annual :as precipitation-annual spring-discharge :as spring-discharge) 
     :state #(+ (:precipitation-annual %)
                (:spring-discharge     %))))

@@ -205,14 +205,6 @@
     #{4 5}    'floodService:LowDaysPrecipitationPerYear
     #{1 2 3}  'floodService:VeryLowDaysPrecipitationPerYear))
 
-;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
-;;  empty.  Can alter this as appropriate.
-(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-	(measurement 'floodService:DetentionBasinStorage "mm" 
-    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
-    :state #(cond (== (:detention-basin-storage %) 0) 0
-                  (== (:detention-basin-storage %) 1) 3000)))
-
 ;;Undiscretizer for FloodSink
 (defmodel flood-sink 'floodService:AnnualFloodSink
   (classification 'floodService:AnnualFloodSink
@@ -256,6 +248,14 @@
 	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
 
+;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
+;;  empty.  Can alter this as appropriate.
+(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+  (measurement 'floodService:DetentionBasinStorage "mm" 
+    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
+    :state #(cond (== (:detention-basin-storage %) 0) 0
+                  (== (:detention-basin-storage %) 1) 3000)))
+
 ;; Flood sink probability, annual
 ;; COMMENT veg height back in once the layer's been expanded to a meaningful extent OR Ferd's enabled coexistence of
 ;;  small layers + priors for areas without evidence.
@@ -268,7 +268,7 @@
               'floodService:GrayInfrastructureStorage) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
           successional-stage imperviousness dam-storage 
-          detention-basin-storage (comment vegetation-height)  
+          (comment vegetation-height detention-basin-storage)  
           percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------

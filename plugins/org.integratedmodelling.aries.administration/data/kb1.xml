@@ -482,8 +482,9 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-<!--$/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement-->
-	<measurement:Ranking id="housing_value_san_pedro">
+<!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement -->
+
+	<measurement:Ranking id="pinal_pima_value">
 		<observation:hasObservable>
 			<economics:AppraisedPropertyValue />
 		</observation:hasObservable>
@@ -492,19 +493,19 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:housing_value_san_pedro</geospace:hasCoverageId>
+				<geospace:hasCoverageId>sanPedro:pinal_pima_value</geospace:hasCoverageId>
 				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>7694</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7325</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>607835.3653628668</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>3766214.825399533</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>222908.20042295306</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>3415628.8645155914</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasXRangeMax>8374</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>6731</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-112.925</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>33.467</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.872</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
@@ -1552,7 +1553,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
-	<measurement:NumericCoding id="mg_mglulc">
+	<measurement:NumericCoding id="os3">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
 		</observation:hasObservable>
@@ -1560,20 +1561,22 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:mglulc</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>os_id</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:os3</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>-81.08509300346486</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-6.701190793362912</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>32.43162264220882</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>96.38474213762674</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2497</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>4630</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>-27.65</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>41.35</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-10.488</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>52.78</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
@@ -2971,23 +2974,23 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
+	<measurement:BinaryCoding id="dominican_drreservoirs2">
 		<observation:hasObservable>
 			<geofeatures:Reservoir />
 		</observation:hasObservable>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominican:drreservoirs</geospace:hasCoverageId>
+				<geospace:hasCoverageId>dominican:drreservoirs2</geospace:hasCoverageId>
 			</geospace:WFSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>215487.73841175652</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>2086397.449127984</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>342979.436222655</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>2201115.095656452</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
+				<geospace:hasLatLowerBound>18.391</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-71.7</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>19.9</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-70.186</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
@@ -3690,7 +3693,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="SoilTexture">
+	<measurement:NumericCoding id="SoilTexture">
 		<observation:hasObservable>
 			<habitat:SoilTexture />
 		</observation:hasObservable>
@@ -3715,7 +3718,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
 	<measurement:NumericCoding id="swregap_landcover_Project">
 		<observation:hasObservable>
