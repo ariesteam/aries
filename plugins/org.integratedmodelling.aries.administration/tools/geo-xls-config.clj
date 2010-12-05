@@ -8,10 +8,10 @@
                           :URI          :F
                           :DefaultStyle :G
                           :NativeSRS    :K
-                          :DeclaredSRS  :L}Ec
+                          :DeclaredSRS  :L}
   :namespace-prefix      "http://www.integratedmodelling.org/geo/ns/"
   :geoserver-rest-uri    "http://ecoinformatics.uvm.edu/geoserver/rest"
   :geoserver-username    "admin"
-  :geoserver-password    nil
+  :geoserver-password    "rnbh304"
   :geoserver-data-dir    "/raid/geodata/"
 }
