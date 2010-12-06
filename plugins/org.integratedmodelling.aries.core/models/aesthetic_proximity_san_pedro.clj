@@ -96,7 +96,7 @@
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian 'aestheticService:AestheticProximityProvision
             :import   "aries.core::ProximitySourceSanPedro.xdsl"
-            :context  (forest farmland grassland desert-scrub park fire-threat formal-protection) (comment riparian-wetland area) 
+            :context  (forest farmland grassland desert-scrub park fire-threat formal-protection riparian-wetland area) 
             :observed (theoretical-open-space)
             :keep     ('aestheticService:TheoreticalProximitySource)))
 
