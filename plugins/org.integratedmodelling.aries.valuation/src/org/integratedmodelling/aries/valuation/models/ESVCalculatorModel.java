@@ -98,7 +98,7 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 	}
 
 	@Override
-	public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents) throws ThinklabException {
+	public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents, int flags) throws ThinklabException {
 
 		return Polylist.list(
 			"esvaluation:ESVCalculator",

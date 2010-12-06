@@ -91,7 +91,7 @@
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual 'soilretentionEcology:SedimentSourceValueAnnualClass
- (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnual "kg/ha")
+ (classification (measurement 'soilretentionEcology:SedimentSourceValueAnnualClass "kg/ha")
   		0                          'soilretentionEcology:NoAnnualSedimentSource
   		[:exclusive 0 30000]       'soilretentionEcology:LowAnnualSedimentSource 
   		[30000 100000]             'soilretentionEcology:ModerateAnnualSedimentSource
@@ -101,7 +101,7 @@
 (defmodel source-puget 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValueAnnual ) 
+    :keep     ('soilretentionEcology:SedimentSourceValueAnnualClass ) 
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
               successional-stage slope-stability)))
@@ -150,7 +150,7 @@
 (defmodel sediment-sink-us 'soilretentionEcology:AnnualSedimentSinkClass
   (bayesian 'soilretentionEcology:AnnualSedimentSink    
     :import  "aries.core::SedimentSink.xdsl"
-    :keep    ('soilretentionEcology:AnnualSedimentSink)
+    :keep    ('soilretentionEcology:AnnualSedimentSinkClass)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width)))
 

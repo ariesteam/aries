@@ -144,7 +144,7 @@ public class SPANModel extends DefaultAbstractModel {
     }
 
     @Override
-    public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents) throws ThinklabException {
+    public Polylist buildDefinition(IKBox kbox, ISession session, Collection<Topology> extents, int flags) throws ThinklabException {
 
         ArrayList<Object> arr = new ArrayList<Object>();
         

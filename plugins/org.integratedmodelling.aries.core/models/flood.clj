@@ -235,6 +235,14 @@
                   [900 3000]        'floodService:LowGrayStorage
                   [0 900]           'floodService:VeryLowGrayStorage))
 
+;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
+;;  empty.  Can alter this as appropriate.
+(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+  (measurement 'floodService:DetentionBasinStorage "mm" 
+    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
+    :state #(cond (== (:detention-basin-storage %) 0) 0
+                  (== (:detention-basin-storage %) 1) 3000)))
+
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 (defmodel sink-monthly 'floodService:MonthlyFloodSink
 	  (bayesian 'floodService:MonthlyFloodSink
@@ -247,14 +255,6 @@
 	 	 			soil-group-puget vegetation-type slope monthly-temperature vegetation-height
 	 	 			successional-stage imperviousness dam-storage detention-basin-storage
 	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
-
-;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
-;;  empty.  Can alter this as appropriate.
-(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-  (measurement 'floodService:DetentionBasinStorage "mm" 
-    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
-    :state #(cond (== (:detention-basin-storage %) 0) 0
-                  (== (:detention-basin-storage %) 1) 3000)))
 
 ;; Flood sink probability, annual
 ;; COMMENT veg height back in once the layer's been expanded to a meaningful extent OR Ferd's enabled coexistence of

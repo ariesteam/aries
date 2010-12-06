@@ -92,7 +92,7 @@
 (defmodel source-mg 'soilretentionEcology:SedimentSourceValueAnnualClass
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValueAnnual)
+    :keep     ('soilretentionEcology:SedimentSourceValueAnnualClass)
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
               storm-probability runoff vegetation-type percent-vegetation-cover))) 
