@@ -3037,17 +3037,17 @@ we could discuss integrating those at some point.-->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>607835.3653628668</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>3682439.528696386</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>498882.00222237466</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>3415628.8645155914</geospace:hasLonUpperBound>
+			<geospace:hasLonLowerBound>607835.3653628668</geospace:hasLonLowerBound>
+			<geospace:hasLatLowerBound>3682439.528696386</geospace:hasLatLowerBound>
+			<geospace:hasLonUpperBound>498882.00222237466</geospace:hasLonUpperBound>
+			<geospace:hasLatUpperBound>3415628.8645155914</geospace:hasLatUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
 <!-- Scenario for a 0.5-meter rise in groundwater throughout the SPRNCA -->
-	<measurement:Ranking id="sanPedro_sprnca_condition_class">
+	<measurement:Ranking id="sanPedro_sprnca_condition_class_hmr">
 		<observation:hasObservable>
 			<sanPedro:RiparianConditionClassHalfMeterRise />
 		</observation:hasObservable>
@@ -3073,7 +3073,7 @@ we could discuss integrating those at some point.-->
 	</measurement:Ranking>
 
 <!-- Scenario for all segments with perennial surface flow throughout the SPRNCA -->
-	<measurement:Ranking id="sanPedro_sprnca_condition_class">
+	<measurement:Ranking id="sanPedro_sprnca_condition_class_wet">
 		<observation:hasObservable>
 			<sanPedro:RiparianConditionClassAllWet />
 		</observation:hasObservable>
