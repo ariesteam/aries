@@ -106,7 +106,7 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 			Polylist.list(":influences", this.influences),
 			Polylist.list(
 				CoreScience.HAS_OBSERVABLE,
-				Polylist.list(getObservable())));
+				Polylist.list(getObservableClass())));
 		
 	}
 

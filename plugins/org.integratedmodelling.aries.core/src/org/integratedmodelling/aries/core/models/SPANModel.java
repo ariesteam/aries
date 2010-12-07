@@ -161,28 +161,28 @@ public class SPANModel extends DefaultAbstractModel {
         arr.add("aries:SPANTransformer");
         arr.add(Polylist.list(
                 CoreScience.HAS_OBSERVABLE,
-                Polylist.list(getObservable())));
+                Polylist.list(getObservableClass())));
         
         PersistentHashMap fp = (PersistentHashMap) PersistentHashMap.create(flowParams);
         
         for (IModel m : dependents) {
-            if (m.getObservable().is(TRANSITION_THRESHOLD_CONCEPT)) {
+            if (m.getObservableClass().is(TRANSITION_THRESHOLD_CONCEPT)) {
                 Object st = ((DefaultStatefulAbstractModel)m).getState();
                 fp = (PersistentHashMap) fp.assoc(
                         Keyword.intern(null, "trans-threshold"), st);
-            } else if (m.getObservable().is(SINK_THRESHOLD_CONCEPT)) {
+            } else if (m.getObservableClass().is(SINK_THRESHOLD_CONCEPT)) {
                 Object st = ((DefaultStatefulAbstractModel)m).getState();
                 fp = (PersistentHashMap) fp.assoc(
                         Keyword.intern(null, "sink-threshold"), st);
-            } else if (m.getObservable().is(USE_THRESHOLD_CONCEPT)) {
+            } else if (m.getObservableClass().is(USE_THRESHOLD_CONCEPT)) {
                 Object st = ((DefaultStatefulAbstractModel)m).getState();
                 fp = (PersistentHashMap) fp.assoc(
                         Keyword.intern(null, "use-threshold"), st);
-            } else if (m.getObservable().is(SOURCE_THRESHOLD_CONCEPT)) {
+            } else if (m.getObservableClass().is(SOURCE_THRESHOLD_CONCEPT)) {
                 Object st = ((DefaultStatefulAbstractModel)m).getState();
                 fp = (PersistentHashMap) fp.assoc(
                         Keyword.intern(null, "source-threshold"), st);
-            } else if (m.getObservable().is(DECAY_RATE_CONCEPT)) {
+            } else if (m.getObservableClass().is(DECAY_RATE_CONCEPT)) {
                 Object st = ((DefaultStatefulAbstractModel)m).getState();
                 fp = (PersistentHashMap) fp.assoc(
                         Keyword.intern(null, "decay-rate"), st);                
