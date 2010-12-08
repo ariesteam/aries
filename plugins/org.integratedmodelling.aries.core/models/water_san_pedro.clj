@@ -135,7 +135,8 @@
 ;; TIE TO RUNOFF?
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
-    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+    [180 260]          'waterSupplyService:VeryHighSurfaceWaterSink
     [100 180]          'waterSupplyService:HighSurfaceWaterSink
     [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
     [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
@@ -283,10 +284,10 @@
             recharge
             well-presence)))
 
-;; flow model for surface water
-(defmodel surface-flow 'waterSupplyService:SurfaceWaterMovement
+;; flow model for surface water in a dry year
+(defmodel surface-flow-dry 'waterSupplyService:SurfaceWaterMovement
   (span 'waterSupplyService:SurfaceWaterMovement
-        'waterSupplyService:AnnualPrecipitation ;;replace with runoff once springs & baseflow are accounted for
+        'waterSupplyService:AnnualPrecipitationDryYear
         'waterSupplyService:SurfaceDiversionCapacity
         'waterSupplyService:SurfaceWaterSinkClass
         nil
@@ -301,6 +302,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
+        :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_dry_year_data.clj"
         :keep               ('waterSupplyService:SurfaceWaterSupply
                              'waterSupplyService:MaximumSurfaceWaterSink
                              'waterSupplyService:SurfaceWaterDemand
@@ -317,7 +319,47 @@
                              'waterSupplyService:SunkSurfaceWaterFlow
                              'waterSupplyService:SunkSurfaceWaterSupply
                              'waterSupplyService:BlockedSurfaceWaterDemand)
-        :context            (precipitation-annual
+        :context            (precipitation-dry-year
+                             surface-sink
+                             surface-diversions
+                             surface-water-flow-data)))
+
+;; flow model for surface water in a wet year
+(defmodel surface-flow-wet 'waterSupplyService:SurfaceWaterMovement
+  (span 'waterSupplyService:SurfaceWaterMovement
+        'waterSupplyService:AnnualPrecipitationWetYear
+        'waterSupplyService:SurfaceDiversionCapacity
+        'waterSupplyService:SurfaceWaterSinkClass
+        nil
+        'waterSupplyService:TempSurfaceWaterData$
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.01
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_wet_year_data.clj"
+        :keep               ('waterSupplyService:SurfaceWaterSupply
+                             'waterSupplyService:MaximumSurfaceWaterSink
+                             'waterSupplyService:SurfaceWaterDemand
+                             'waterSupplyService:PossibleSurfaceWaterFlow
+                             'waterSupplyService:PossibleSurfaceWaterSupply
+                             'waterSupplyService:PossibleSurfaceWaterUse
+                             'waterSupplyService:ActualSurfaceWaterFlow
+                             'waterSupplyService:UsedSurfaceWaterSupply
+                             'waterSupplyService:ActualSurfaceWaterSink
+                             'waterSupplyService:SatisfiedSurfaceWaterDemand
+                             'waterSupplyService:UnusableSurfaceWaterSupply
+                             'waterSupplyService:UnusableSurfaceWaterSink
+                             'waterSupplyService:InaccessibleSurfaceWaterDemand
+                             'waterSupplyService:SunkSurfaceWaterFlow
+                             'waterSupplyService:SunkSurfaceWaterSupply
+                             'waterSupplyService:BlockedSurfaceWaterDemand)
+        :context            (precipitation-wet-year
                              surface-sink
                              surface-diversions
                              surface-water-flow-data)))

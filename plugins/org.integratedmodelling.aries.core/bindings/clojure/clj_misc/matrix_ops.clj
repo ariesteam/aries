@@ -133,6 +133,51 @@
        (make-matrix (get-rows matrix) (get-cols matrix)
                     (fn [coords] (apply f (map #(get-in % coords) matrices)))))))
 
+(defn cell-fractions-covered
+  [i l]
+  (loop [low  (* i l)
+         high (+ low l)
+         next (Math/ceil low)
+         fractions ()]
+    (cond (== low next) ;; we started on a whole number (since l >= 1, we capture the entire cell)
+          (recur (inc next)
+                 high
+                 (inc (inc next))
+                 (conj fractions [(int low) 1.0]))
+
+          (>= next high) ;; we're done (grab this cell and return fractions)
+          (conj fractions [(int (Math/floor low)) (- high low)])
+
+          :otherwise ;; still scanning (grab this cell and go on to the next)
+          (recur next
+                 high
+                 (inc next)
+                 (conj fractions [(int (Math/floor low)) (- next low)])))))
+
+(defn get-downsampled-matrix-vals
+  [matrix l w i j]
+  (/ (reduce + (for [[i* l*] (cell-fractions-covered i l)
+                     [j* w*] (cell-fractions-covered j w)]
+                 (* (get-in matrix [i* j*]) l* w*)))
+     (* l w)))
+
+(defn downsample-matrix
+  [new-rows new-cols aggregator-fn matrix]
+  (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
+  (newline)
+  (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
+  (let [orig-rows (get-rows matrix)
+        orig-cols (get-cols matrix)]
+    (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
+    (if (and (== orig-rows new-rows) (== orig-cols new-cols))
+      matrix
+      (if (or (< orig-rows new-rows) (< orig-cols new-cols))
+        (throw (Exception. (str "Cannot downsample to dimensions larger than those of the original matrix: "
+                                [orig-rows orig-cols] "->" [new-rows new-cols])))
+        (let [cell-length (/ orig-rows new-rows)
+              cell-width  (/ orig-cols new-cols)]
+          (make-matrix new-rows new-cols (fn [[i j]] (get-downsampled-matrix-vals matrix cell-length cell-width i j))))))))
+
 (defn divides?
   "Is y divisible by x? (i.e. x is the denominator)"
   [x y]
@@ -142,13 +187,13 @@
   [x y]
   (first (filter (p divides? x) (iterate (p + y) y))))
 
-(defn resample-matrix
+(defn resample-matrix-slow
   [new-rows new-cols aggregator-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
   (newline)
   (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
-  (let [orig-rows             (get-rows matrix)
-        orig-cols             (get-cols matrix)]
+  (let [orig-rows (get-rows matrix)
+        orig-cols (get-cols matrix)]
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
@@ -182,11 +227,33 @@
                                        (aggregator-fn (for [i-offset offset-range-rows j-offset offset-range-cols]
                                                         (get-in lcm-matrix [(+ i-base i-offset) (+ j-base j-offset)]))))))))))))
 
+(defn resample-matrix
+  [new-rows new-cols aggregator-fn matrix]
+  (let [orig-rows (get-rows matrix)
+        orig-cols (get-cols matrix)]
+    (cond (and (== orig-rows new-rows) (== orig-cols new-cols))
+          matrix
+
+          (and (<= new-rows orig-rows) (new-cols orig-cols))
+          (downsample-matrix new-rows new-cols aggregator-fn matrix)
+
+          :otherwise
+          (resample-matrix-slow new-rows new-cols aggregator-fn matrix))))
+
 (defn in-bounds?
   "Returns true if the point is within the map bounds defined by
    [0 rows] and [0 cols], inclusive below and exclusive above."
   [rows cols [i j]]
   (and (>= i 0) (>= j 0) (< i rows) (< j cols)))
+
+(defn on-bounds?
+  "Returns true if the point occurs anywhere on the bounds
+   [[0 rows][0 cols]]."
+  [rows cols [i j]]
+  (or (== i 0)
+      (== i (dec rows))
+      (== j 0)
+      (== j (dec cols))))
 
 (defn get-neighbors
   "Return a sequence of neighboring points within the map bounds."

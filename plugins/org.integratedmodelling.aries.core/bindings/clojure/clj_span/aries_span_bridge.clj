@@ -204,6 +204,18 @@
   [observation concept rows cols]
   (when concept
     (println "Extracting" (.getLocalName concept) "layer.")
+    ;;(println "Observation:" observation)
+    ;;(println "Concept:" concept)
+    ;;(println "Find-Observation:" (find-observation observation concept) "\n\n")
+    ;;(println "State-Map:" (get-state-map (find-observation observation concept)) "\n\n")
+    ;;(println "Get-Obs1:" (get-obs observation))
+    ;;(println "Get-Obs2:" (get-obs (find-observation observation concept)))
+    ;;(println "Data-Source:" (.getDataSource (find-observation observation concept)) "\n\n")
+    ;;(println "Get-Obs Data-Source:" (.getDataSource (get-obs (find-observation observation concept))))
+    ;;(println "Find-State/Obs:" (find-state observation concept) "\n\n")
+    ;;(println "Dependencies:" (get-dependencies observation))
+    ;;(println "Contingencies:" (get-contingencies observation))
+    ;;(seq2matrix rows cols (unpack-datasource (first (.values (get-state-map (find-observation observation concept)))) rows cols))))
     (seq2matrix rows cols (unpack-datasource (find-state observation concept) rows cols))))
 
 (defn- layer-map-from-observation
@@ -258,7 +270,7 @@
           sink-layer   (layer-from-observation observation sink-concept   rows cols)
           use-layer    (layer-from-observation observation use-concept    rows cols)
           flow-layers  (let [layer-map (layer-map-from-observation observation flow-concept rows cols)]
-                         (if (#{"Sediment" "FloodWaterMovement" "SurfaceWaterMovement"} flow-model)
+                         (if (#{"Sediment" "FloodWaterMovement"} flow-model)
                            (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                            layer-map))]
       (println "Cell Dimensions in meters:" [w h] "\n")

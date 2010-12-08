@@ -58,7 +58,7 @@
   "Returns the nearest point to origin-point which satisfies the test
    criteria or nil if no such point can be found within the bounds
    [[min-x max-x] [min-y max-y]]."
-  [test origin-point bounds]
+  [test bounds origin-point]
   (breadth-first-search (list origin-point)
                         nil
                         (make-bounded-neighbor-generator bounds)

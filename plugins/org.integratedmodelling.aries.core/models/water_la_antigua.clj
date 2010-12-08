@@ -86,7 +86,8 @@
 ;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
-    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+    [180 260]          'waterSupplyService:VeryHighSurfaceWaterSink
     [100 180]          'waterSupplyService:HighSurfaceWaterSink
     [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
     [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
@@ -195,7 +196,8 @@
 ;;Undiscretization of agricultural surface water use
 (defmodel use-undiscretizer 'waterSupplyService:AgriculturalSurfaceWaterUseClass
   (classification 'waterSupplyService:AgriculturalSurfaceWaterUseClass 
-    [2000 :>]    'waterSupplyService:HighAgriculturalSurfaceWaterUse
+;;    [2000 :>]    'waterSupplyService:HighAgriculturalSurfaceWaterUse
+    [2000 3000]    'waterSupplyService:HighAgriculturalSurfaceWaterUse
     [1000 2000]  'waterSupplyService:ModerateAgriculturalSurfaceWaterUse
     [0 1000]    'waterSupplyService:LowAgriculturalSurfaceWaterUse)) 
 
@@ -266,6 +268,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
+        :save-file          "/home/gjohnson/code/java/imt/identifications/water_la_antigua_data.clj"
         :keep               ('waterSupplyService:SurfaceWaterSupply
                              'waterSupplyService:MaximumSurfaceWaterSink
                              'waterSupplyService:SurfaceWaterDemand
