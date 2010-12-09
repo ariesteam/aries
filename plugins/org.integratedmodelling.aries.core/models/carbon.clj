@@ -1,6 +1,6 @@
 (ns core.models.carbon
 	(:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer modelling :only (defscenario defmodel model measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
 ;;This model is for western Washington State
@@ -216,12 +216,16 @@
   in mid-century and declines thereafter, and rapid introduction of new and more efficient 
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
-  (classification (ranking 'ecology:SuccessionalStage)
+  
+  ;; FIXME this form needs to drop the name - it's only necessary for a defmodel, we can
+  ;; give it a temporary URN outside it.
+  (model "xxx" 'carbonService:SuccessionalStage
+    (classification (ranking 'ecology:SuccessionalStage)
 	 		#{5 6 4}    'carbonService:OldGrowth
 	 		3           'carbonService:MidSuccession
 	 		2           'carbonService:EarlySuccession
 	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession)) 
+	 		:otherwise  'carbonService:NoSuccession))) 
 
 (defscenario ipcc-hadley-b2-incentivized 'carbonService:IPCCHadleyB2Incentivized
   "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 
@@ -230,12 +234,13 @@
   reductions in material intensity, and the introduction of clean and resource-efficient 
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
-  (classification (ranking 'ecology:SuccessionalStage)
+  (model "xxx" 'carbonService:SuccessionalStage
+    (classification (ranking 'ecology:SuccessionalStage)
       #{5 6 4}    'carbonService:OldGrowth
 	 		3           'carbonService:MidSuccession
 	 		2           'carbonService:EarlySuccession
 	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))  
+	 		:otherwise  'carbonService:NoSuccession)))  
        
 (defscenario ipcc-hadley-a2 'carbonService:IPCCHadleyA2
 	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2
