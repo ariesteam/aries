@@ -87,12 +87,6 @@ public class SPANTransformer
 	IConcept cSpace = null;
 	
 	@Override
-	public IObservationContext getTransformedContext(IObservationContext context)
-			throws ThinklabException {
-		return context;
-	}
-
-	@Override
 	public IConcept getTransformedObservationClass() {
 		return CoreScience.Observation();
 	}

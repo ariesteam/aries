@@ -62,12 +62,6 @@ public class ESVCalculatorTransformer
 	public IConcept service = null;
 	
 	static double SQUARE_METERS_TO_ACRES = 0.000247105381;
-	
-	@Override
-	public IObservationContext getTransformedContext(IObservationContext context)
-			throws ThinklabException {
-		return context;
-	}
 
 	@Override
 	public IConcept getTransformedObservationClass() {
