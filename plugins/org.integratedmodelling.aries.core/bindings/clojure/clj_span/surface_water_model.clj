@@ -23,7 +23,7 @@
 (ns clj-span.surface-water-model
   (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
         [clj-misc.utils         :only (seq2map mapmap p &)]
-        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix
+        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix find-bounding-box
                                        filter-matrix-for-coords get-neighbors on-bounds?)]
         [clj-misc.randvars      :only (_0_ _+_ rv-convolutions rv-resample rv-min rv-max)]
         [clj-misc.point-algebra :only (nearest-point-where)]))
@@ -43,7 +43,7 @@
   [seeker
    (apply concat
           (for [location search-list]
-            (if (@in-stream-carriers location)
+            (if (seq @(in-stream-carriers location))
               ;; Carriers are stored at this location.
               (if-let [claimant (@claimant-list location)]
                 ;; Some other seeker claimed this location first
@@ -52,7 +52,7 @@
                   ;; captured-carriers list.  This seeker shares
                   ;; all their carriers.
                   (do
-                    (dosync (alter downstream-users merge-with concat {location [seeker]}))
+                    (dosync (alter downstream-users (p merge-with concat) {location [seeker]}))
                     nil)
                   ;; This location occurs partway through the
                   ;; claimant's captured-carriers list.  This
@@ -61,7 +61,7 @@
                   ;; location.
                   (do
                     (dosync (alter captured-carriers assoc location nil)
-                            (alter downstream-users merge-with concat {location [seeker claimant]}))
+                            (alter downstream-users (p merge-with concat) {location [seeker claimant]}))
                     nil))
                 ;; This location has not yet been claimed. Let's
                 ;; grab it, then continue upstream.
@@ -241,12 +241,43 @@
                                   returned as the final result and
                                   packed into the cache-layer."))]))
     (println "\nAll done.")
+    (println
+        "\nseekers"              (count seekers)
+        "\nclosed-set"           (count @closed-set)
+        "\nopen-set"             (count (clojure.set/difference (set (keys in-stream-carriers)) @closed-set))
+        "\nclaimant-list"        claimant-list
+        "\ndownstream-users"     downstream-users
+        "\ncaptured-carriers"    captured-carriers)
     {}))
 
-;; FIXME: reimplement this with clj-misc.matrix-ops/find-bounding-box for greater efficiency
-(defn- find-nearest-stream-points
+(defn find-nearest-stream-point-lazily
+  [in-stream? rows cols id]
+  (if (in-stream? id)
+    id
+    (first
+     (drop-while nil?
+                 (map #(first (filter in-stream? %))
+                      (iterate (p find-bounding-box rows cols)
+                               (find-bounding-box rows cols (list id))))))))
+
+(defn find-nearest-stream-point
+  [in-stream? rows cols id]
+  (if (in-stream? id)
+    id
+    (loop [bounding-box (find-bounding-box rows cols (list id))]
+      (if (seq bounding-box)
+        (if-let [stream-point (first (filter in-stream? bounding-box))]
+          stream-point
+          (recur (find-bounding-box rows cols bounding-box)))))))
+
+(defn find-nearest-stream-points
   [in-stream? rows cols use-points]
-  (let [stream-intakes (pmap (p nearest-point-where in-stream? [[0 rows][0 cols]]) use-points)]
+  (println "Finding nearest stream points to all users...")
+;;  (let [stream-intakes (pmap (p nearest-point-where in-stream? [[0 rows][0 cols]]) use-points)]
+  (let [stream-intakes (pmap (p find-nearest-stream-point in-stream? rows cols) use-points)]
+    (doseq [_ (take-nth 100 stream-intakes)]
+      (print "*") (flush))
+    (println "\nAll done.")
     (dissoc (apply merge-with concat (map array-map stream-intakes (map list use-points))) nil)))
 
 (defn- step-downhill
@@ -256,16 +287,13 @@
    steepest downhill slope, returns the first one found.  If
    exit-on-bounds? is true and the current id is located on the bounds
    [[0 rows][0 cols]], returns nil."
-  ([elevation-layer rows cols id]
-     (step-downhill elevation-layer rows cols id true))
-  ([elevation-layer rows cols id exit-on-bounds?]
-     (if (not (and exit-on-bounds?
-                   (on-bounds? rows cols id)))
-       (let [neighbors      (get-neighbors rows cols id)
-             neighbor-elevs (map (p get-in elevation-layer) neighbors)
-             local-elev     (get-in elevation-layer id)
-             min-elev       (reduce rv-min (cons local-elev neighbor-elevs))]
-         (first (filter #(= min-elev (get-in elevation-layer %)) neighbors))))))
+  [elevation-layer rows cols id]
+  (if (not (on-bounds? rows cols id))
+    (let [neighbors      (get-neighbors rows cols id)
+          neighbor-elevs (map (p get-in elevation-layer) neighbors)
+          local-elev     (get-in elevation-layer id)
+          min-elev       (reduce rv-min (cons local-elev neighbor-elevs))]
+      (first (filter #(= min-elev (get-in elevation-layer %)) neighbors)))))
 (def step-downhill (memoize step-downhill))
 
 (defn- head-streamward!
@@ -309,7 +337,7 @@
    returned."
   [source-points source-layer sink-caps stream-points elevation-layer rows cols]
   (println "Moving the surface-water-carriers downhill to streams...")
-  (let [in-stream-carriers (zipmap stream-points (repeatedly (ref [])))]
+  (let [in-stream-carriers (zipmap stream-points (repeatedly #(ref [])))]
     (doseq [_ (take-while seq (iterate
                                (fn [surface-water-carriers]
                                  (remove nil?
@@ -347,7 +375,7 @@
     (println "Stream points:" (count stream-points))
     (let [sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
           use-caps           (seq2map use-points  (fn [id] [id (ref (get-in use-layer  id))]))
-          unsaturated-use?   (fn [id] (not= _0_ (deref (use-caps  id))))
+          unsaturated-use?   (fn [id] (not= _0_ (deref (use-caps id))))
           in-stream-carriers (shift-source-to-stream source-points
                                                      source-layer
                                                      sink-caps

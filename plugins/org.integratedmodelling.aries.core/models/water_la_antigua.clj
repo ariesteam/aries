@@ -87,11 +87,13 @@
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
 ;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
-    [180 260]          'waterSupplyService:VeryHighSurfaceWaterSink
-    [100 180]          'waterSupplyService:HighSurfaceWaterSink
-    [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
-    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
-    0                  'waterSupplyService:NoSurfaceWaterSink)) 
+    [180 260]            'waterSupplyService:VeryHighSurfaceWaterSink
+    [100 180]            'waterSupplyService:HighSurfaceWaterSink
+    [50 100]             'waterSupplyService:ModerateSurfaceWaterSink
+    [1 50]               'waterSupplyService:LowSurfaceWaterSink
+    [0 1]                'waterSupplyService:NoSurfaceWaterSink))
+;;    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
+;;    0                  'waterSupplyService:NoSurfaceWaterSink))
 
 (defmodel sink 'waterSupplyService:SurfaceWaterSinkClass
     (bayesian 'waterSupplyService:SurfaceWaterSinkClass
@@ -258,10 +260,10 @@
         'waterSupplyService:SurfaceWaterSinkClass
         nil
         'waterSupplyService:TempSurfaceWaterData$
-        :source-threshold   0.0
-        :sink-threshold     0.0
-        :use-threshold      0.0
-        :trans-threshold    0.01
+        :source-threshold   1500.0
+        :sink-threshold     25.0
+        :use-threshold      500.0
+        :trans-threshold    10.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite

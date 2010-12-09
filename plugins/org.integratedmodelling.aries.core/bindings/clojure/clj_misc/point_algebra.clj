@@ -60,7 +60,7 @@
    [[min-x max-x] [min-y max-y]]."
   [test bounds origin-point]
   (breadth-first-search (list origin-point)
-                        nil
+                        #{}
                         (make-bounded-neighbor-generator bounds)
                         test))
 

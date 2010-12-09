@@ -79,7 +79,7 @@
    greater than *trans-threshold*. A frontier is here defined to be a
    map of location ids [i j] to frontier-option structs."
   [flow-model sink-layer rows cols frontier]
-  (my->> (for [boundary-id (find-bounding-box (keys frontier) rows cols)]
+  (my->> (for [boundary-id (find-bounding-box rows cols (keys frontier))]
            (when-let [frontier-options (my->> boundary-id
                                               (get-neighbors rows cols)
                                               (map frontier)

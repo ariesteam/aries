@@ -394,7 +394,8 @@
   [f X Y]
   (with-meta
     (rv-convolute* f X Y) ;; rv-convolute-6 was fastest before (without transients)
-    (if (#{(type X) (type Y)} ::continuous-distribution)
+    (if (or (= ::continuous-distribution (type X))
+            (= ::continuous-distribution (type Y)))
       cont-type
       disc-type)))
 

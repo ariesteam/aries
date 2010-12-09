@@ -136,11 +136,13 @@
 (defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
   (classification 'waterSupplyService:SurfaceWaterSinkClass 
 ;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
-    [180 260]          'waterSupplyService:VeryHighSurfaceWaterSink
-    [100 180]          'waterSupplyService:HighSurfaceWaterSink
-    [50 100]           'waterSupplyService:ModerateSurfaceWaterSink
-    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
-    0                  'waterSupplyService:NoSurfaceWaterSink))
+    [180 260]            'waterSupplyService:VeryHighSurfaceWaterSink
+    [100 180]            'waterSupplyService:HighSurfaceWaterSink
+    [50 100]             'waterSupplyService:ModerateSurfaceWaterSink
+    [1 50]               'waterSupplyService:LowSurfaceWaterSink
+    [0 1]                'waterSupplyService:NoSurfaceWaterSink))
+;;    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
+;;    0                  'waterSupplyService:NoSurfaceWaterSink))
 
 (defmodel surface-sink 'waterSupplyService:SurfaceWaterSinkClass
     (bayesian 'waterSupplyService:SurfaceWaterSinkClass
