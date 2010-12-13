@@ -153,13 +153,13 @@
   (span 'aestheticService:LineOfSight 
         'aestheticService:TheoreticalNaturalBeauty
         'aestheticService:HomeownerViewUse
-      	'aestheticService:TotalVisualBlight
+      	'aestheticService:VisualBlight
       	nil
         'geophysics:Altitude
-        ;;:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        ;;:sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        ;;:use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        ;;:trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
+        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
+        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type      :infinite
         :sink-type        :infinite
         :use-type         :infinite
