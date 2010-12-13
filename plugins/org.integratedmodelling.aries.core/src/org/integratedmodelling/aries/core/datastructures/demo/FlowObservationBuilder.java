@@ -3,7 +3,7 @@ package org.integratedmodelling.aries.core.datastructures.demo;
 import java.util.Collection;
 
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
-import org.integratedmodelling.modelling.visualization.NetCDFArchive;
+import org.integratedmodelling.modelling.storage.NetCDFArchive;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 
