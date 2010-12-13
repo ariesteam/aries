@@ -43,8 +43,9 @@
                            cell-dimensions))
 
   (refer 'corescience :only '(find-state
-                              find-observation
+;;                              find-observation
                               get-state-map
+                              get-dependent-states-map
                               get-observable-class))
 
   (refer 'modelling   :only '(probabilistic?
@@ -69,6 +70,7 @@
          find-state
          find-observation
          get-state-map
+         get-dependent-states-map
          get-observable-class
          probabilistic?
          binary?
@@ -124,11 +126,11 @@
    represented as probability distributions {doubles -> doubles}.
    NaN state values are converted to 0s."
   [ds rows cols]
-  (println "Inside unpack-datasource!")
+  (println "Inside unpack-datasource! " (str rows) " " (str cols))
   (let [n             (* rows cols)
         NaNs-to-zero  (p map #(if (Double/isNaN %) 0.0 %))
         get-midpoints #(map (fn [next prev] (/ (+ next prev) 2)) (rest %) %)]
-    (println "Checking datasource type...")
+    (println "Checking datasource type..." (str ds))
     (if (and (probabilistic? ds) (not (binary? ds)))
       (do (print "It's probabilistic...")
           (flush)
@@ -157,6 +159,7 @@
                   (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
       (do (println "It's deterministic.")
+          (println "DATASOURCE IS " ds) 
           (for [value (NaNs-to-zero (get-data ds))]
             (with-meta (array-map value 1.0) disc-type))))))
 
@@ -226,7 +229,8 @@
   (when concept
     (mapmap (memfn getLocalName)
             #(seq2matrix rows cols (unpack-datasource % rows cols))
-            (get-state-map (find-observation observation concept)))))
+;;            (get-state-map (find-observation observation concept)))))
+            (get-dependent-states-map observation concept))))
 
 (defn- get-hydrosheds-layer
   [observation rows cols]

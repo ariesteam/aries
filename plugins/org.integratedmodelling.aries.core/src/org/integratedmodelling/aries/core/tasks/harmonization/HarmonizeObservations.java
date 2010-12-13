@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.integratedmodelling.corescience.compiler.Compiler;
 import org.integratedmodelling.corescience.interfaces.IObservation;
+import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.ObservationFactory;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
@@ -32,7 +33,7 @@ public class HarmonizeObservations implements ITask {
 	Map<IConcept, IInstance> observations = null;
 	ShapeValue regionOfInterest = null;
 	
-	IInstance result = null;
+	IObservationContext result = null;
 	private int maxLinearResolution;
 	private IConcept observable;
 	
@@ -52,7 +53,7 @@ public class HarmonizeObservations implements ITask {
 		this.maxLinearResolution = res;
 	}
 	
-	public IInstance getHarmonizedObservation() {
+	public IObservationContext getHarmonizedObservation() {
 		return result;
 	}
 	
@@ -83,7 +84,7 @@ public class HarmonizeObservations implements ITask {
 		 */
 		IInstance obs = session.createObject(dset);
 		
-		result = new ObservationFactory().contextualize(obs, session);		
+		result = ObservationFactory.contextualize(obs, session);		
 	}
 
 }

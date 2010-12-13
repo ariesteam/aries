@@ -69,11 +69,10 @@ public class ESVCalculatorTransformer
 	}
 	
 	@Override
-	public Polylist transform(IInstance sourceObs, ISession session,
+	public Polylist transform(IObservationContext sourceCtx, ISession session,
 			IObservationContext context) throws ThinklabException {
 		
 		IConcept landUseConcept = KnowledgeManager.get().requireConcept(LAND_USE_DEPENDENCY);
-		
 		
 		if (!this.getObservableClass().equals(ARIESValuationPlugin.ESVConcept()))
 			this.service = this.getObservableClass();
@@ -85,12 +84,12 @@ public class ESVCalculatorTransformer
 		IExtent extent = context.getExtent(Geospace.get().SpaceObservable());
 		
 		if ( extent == null || !(extent instanceof GridExtent) || 
-				!(extent.getTotalGranularity() == context.getMultiplicity()))
+				!(extent.getValueCount() == context.getMultiplicity()))
 			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
 
 //		int rows = ((GridExtent)extent).getYCells();
 //		int cols = ((GridExtent)extent).getXCells();
-		int size = extent.getTotalGranularity();
+		int size = extent.getValueCount();
 		
 		// conversion factor for the silly dollars/acre stuff
 		double cellAcres = ((GridExtent)extent).getCellAreaMeters() * SQUARE_METERS_TO_ACRES;
@@ -125,8 +124,7 @@ public class ESVCalculatorTransformer
 			totals.add(new Triple<Double, Double, Double>(0.0,0.0,0.0));
 		} 	
 		
-		Map<IConcept, IState> statemap = ObservationFactory.getStateMap(sourceObs);
-		IState state = statemap.get(landUseConcept);
+		IState state = sourceCtx.getState(landUseConcept);
 
 		/*
 		 * create data
@@ -144,7 +142,7 @@ public class ESVCalculatorTransformer
 				/*
 				 * get silly landcover concept
 				 */
-				IConcept landcover = (IConcept) state.getValue(i, null);
+				IConcept landcover = (IConcept) state.getValue(i);
 
 				double[] mins = (double[]) cs.getSecond().getMetadata().get(Metadata.RANGE_MIN);
 				double[] maxs = (double[]) cs.getSecond().getMetadata().get(Metadata.RANGE_MAX);
@@ -172,7 +170,7 @@ public class ESVCalculatorTransformer
 						
 						for (ESVCalculatorModel.Influence inf : influences) {
 							
-							IState ist = statemap.get(inf.observable);
+							IState ist = sourceCtx.getState(inf.observable);
 							if (ist == null)
 								throw new ThinklabValidationException("cannot find state for required influence " + inf.observable);
 							double n = ist.getDoubleValue(i);
@@ -189,7 +187,7 @@ public class ESVCalculatorTransformer
 
 					double mean = mins[i] + (maxs[i]- mins[i])/2; 
 					
-					cs.getSecond().addValue(i, new Double(mean));
+					cs.getSecond().setValue(i, new Double(mean));
 
 					tmin  += mins[i]*cellAcres; 
 					tmax  += maxs[i]*cellAcres; 
@@ -207,7 +205,7 @@ public class ESVCalculatorTransformer
 					
 					mins[i] = Double.NaN;
 					maxs[i] = Double.NaN;
-					cs.getSecond().addValue(i, Double.NaN);
+					cs.getSecond().setValue(i, Double.NaN);
 					
 				}
 				stt ++;

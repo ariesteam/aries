@@ -2,6 +2,7 @@ package org.integratedmodelling.aries.core.datastructures.demo;
 
 import java.util.Collection;
 
+import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.modelling.visualization.NetCDFArchive;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
@@ -37,14 +38,14 @@ public class FlowObservationBuilder {
 	
 	static public void buildObservation(
 			Collection<Object> coll,
-			IInstance sourceData, 
-			IInstance useData, 
-			IInstance sinkData, 
-			IInstance flowData, 
+			IObservationContext sourceData, 
+			IObservationContext useData, 
+			IObservationContext sinkData, 
+			IObservationContext flowData, 
 			Object output) throws ThinklabException {
 		
 		NetCDFArchive netcdf = new NetCDFArchive();
-		netcdf.setObservation(sourceData);
+		netcdf.setContext(sourceData);
 		
 		if (useData != null)
 			netcdf.addObservation(useData);

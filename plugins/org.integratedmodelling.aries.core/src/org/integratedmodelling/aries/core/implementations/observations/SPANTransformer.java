@@ -173,7 +173,7 @@ public class SPANTransformer
 	}
 
 	@Override
-	public Polylist transform(IInstance sourceObs, ISession session,
+	public Polylist transform(IObservationContext sourceCtx, ISession session,
 			IObservationContext context) throws ThinklabException {
 		
 		/*
@@ -183,7 +183,7 @@ public class SPANTransformer
 		IExtent extent = context.getExtent(Geospace.get().SpaceObservable());
 		
 		if ( extent == null || !(extent instanceof GridExtent) || 
-				!(extent.getTotalGranularity() == context.getMultiplicity()))
+				!(extent.getValueCount() == context.getMultiplicity()))
 			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
 
 		int rows = ((GridExtent)extent).getYCells();
@@ -194,7 +194,7 @@ public class SPANTransformer
 		 */
 		Map<?,?> closures = 
 			span.runSPAN(
-				ObservationFactory.getObservation(sourceObs), 
+				sourceCtx, 
 				sourceConcept, 
 				useConcept,
 				sinkConcept, 

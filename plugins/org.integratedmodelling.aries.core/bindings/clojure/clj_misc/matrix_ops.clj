@@ -82,6 +82,7 @@
   "Creates a rows x cols vector of vectors whose states are
    the successive elements of aseq."
   [rows cols aseq]
+  (println "DATA COUNT " (count aseq) " " rows " " cols)
   (constraints-1.0 {:pre [(== (count aseq) (* rows cols))]})
   (vec (map vec (partition cols aseq))))
 

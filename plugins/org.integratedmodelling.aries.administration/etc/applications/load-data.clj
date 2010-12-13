@@ -1,5 +1,5 @@
 (ns core.tasks
-  (:refer tl :only (with-kbox kbox get-plugin-resource))
+  (:refer tl :only (with-kbox kbox get-plugin-resource get-property-value))
   (:refer geospace :only (get-centroid get-bounding-box)))
 
 (with-kbox 
@@ -9,7 +9,8 @@
 				:schema "postgis"
 				:metadata (
 	        :centroid     geospace:Point
-	        :boundingbox  geospace:Polygon)
+	        :boundingbox  geospace:Polygon
+          :dataset      thinklab-core:Text)
 				:sql.log.queries "true"
 				:kbox.parameter.srid "4326")
 				
@@ -22,6 +23,7 @@
 		:metadata-generator {
 			:centroid    #(get-centroid %)
 			:boundingbox #(get-bounding-box %)
+      :dataset     #(get-property-value % "metadata:belongsToDataset")
 		}
 		
 		(import (get-plugin-resource 'aries.administration "ark.xml"))

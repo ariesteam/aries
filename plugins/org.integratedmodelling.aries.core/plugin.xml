@@ -27,6 +27,8 @@
 		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
 		<library type="resources" path="models/" id="models" />
 		<library type="resources" path="config/" id="config" />
+		<library type="resources" path="contexts/" id="contexts" />
+		<library type="resources" path="scenarios/" id="scenarios" />
 		<library type="resources" path="bn/" id="bn" />
 		
 	</runtime>
@@ -140,6 +142,10 @@
 		<!-- <parameter id="resource" value="sediment.clj" /> -->
 		<parameter id="resource" value="water_la_antigua.clj" />
 		<parameter id="resource" value="water_san_pedro.clj" />
+		
+		<!-- context definitions -->
+		<parameter id="resource" value="beta.clj"/>
+		
 	</extension> 
 	
 	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="demo">

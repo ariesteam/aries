@@ -2,7 +2,7 @@ package org.integratedmodelling.aries.core.span;
 
 import java.util.Map;
 
-import org.integratedmodelling.corescience.interfaces.IObservation;
+import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 
 /**
@@ -25,7 +25,7 @@ public interface SPANProxy {
 	 * @return a flow map, from which results can be obtained.
 	 */
 	public abstract Map<?,?> runSPAN(
-			IObservation observation, 
+			IObservationContext sourceCtx, 
 			IConcept sourceConcept, IConcept useConcept, IConcept sinkConcept, IConcept flowConcept,
 			Map<?,?> flowParams);
 	
