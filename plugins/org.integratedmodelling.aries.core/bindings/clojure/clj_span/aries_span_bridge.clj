@@ -44,6 +44,8 @@
 
   (refer 'corescience :only '(find-state
 ;;                              find-observation
+                              ;; TODO remove this when it's not needed anymore
+                              collect-states
                               get-state-map
                               get-dependent-states-map
                               get-observable-class))
@@ -266,6 +268,8 @@
     ;; This version of SPAN only works for grid-based observations (i.e. raster maps).
     (assert (grid-extent? observation))
     (println "Unpacking observation into data-layers.")
+    ;; FIXME fv this is to address an issue before it shows up - to be removed
+    (collect-states observation)
     (let [rows         (grid-rows       observation)
           cols         (grid-columns    observation)
           [w h]        (cell-dimensions observation) ;; in meters
