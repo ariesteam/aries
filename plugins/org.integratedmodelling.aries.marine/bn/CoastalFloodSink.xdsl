@@ -3,73 +3,47 @@
 	<nodes>
 		<cpt id="Tides">
 			<state id="HighTide" />
+			<state id="MidTide" />
 			<state id="LowTide" />
-			<probabilities>0.5 0.5</probabilities>
+			<probabilities>0.25 0.5 0.25</probabilities>
 		</cpt>
-		<cpt id="MangroveDensity">
-			<state id="HighMangroveDensity" />
-			<state id="ModerateMangroveDensity" />
-			<state id="LowMangroveDensity" />
-			<state id="NoMangroveDensity" />
-			<probabilities>0.0333 0.03339999999999999 0.0333 0.9</probabilities>
+		<cpt id="DunePresenceClass">
+			<state id="DunePresent" />
+			<state id="DuneAbsent" />
+			<probabilities>0.01 0.99</probabilities>
 		</cpt>
-		<cpt id="MangroveWidth">
-			<state id="HighMangroveWidth" />
-			<state id="ModerateMangroveWidth" />
-			<state id="LowMangroveWidth" />
-			<state id="NoMangroveWidth" />
-			<probabilities>0.02 0.02 0.04 0.92</probabilities>
+		<cpt id="TerrestrialVegetationType">
+			<state id="Forested" />
+			<state id="Shrubland" />
+			<state id="Wetland" />
+			<state id="Herbaceous" />
+			<state id="Unvegetated" />
+			<probabilities>0.25 0.08 0.02 0.6 0.05</probabilities>
 		</cpt>
-		<cpt id="MangroveProtection">
-			<state id="HighMangroveProtection" />
-			<state id="ModerateMangroveProtection" />
-			<state id="LowMangroveProtection" />
-			<state id="NoMangroveProtection" />
-			<parents>MangroveWidth MangroveDensity</parents>
-			<probabilities>0.95 0.05 0 0 0.6 0.3 0.1 0 0.2 0.4 0.4 0 0 0 0 1 0.6 0.3 0.1 0 0.2 0.4 0.4 0 0 0.4 0.6 0 0 0 0 1 0.2 0.4 0.4 0 0 0.4 0.6 0 0 0.2 0.8 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+		<cpt id="MangrovePresenceClass">
+			<state id="MangrovesPresent" />
+			<state id="MangrovesAbsent" />
+			<probabilities>0.02 0.98</probabilities>
 		</cpt>
-		<cpt id="SeagrassSeasonality">
-			<state id="GrowingSeasonPeak" />
-			<state id="GrowingSeasonNonPeak" />
-			<state id="NotInGrowingSeason" />
-			<probabilities>0.1 0.4 0.5</probabilities>
+		<cpt id="SeagrassPresenceClass">
+			<state id="SeagrassPresent" />
+			<state id="SeagrassAbsent" />
+			<probabilities>0.02 0.98</probabilities>
 		</cpt>
-		<cpt id="SeagrassDensity">
-			<state id="HighSeagrassDensity" />
-			<state id="ModerateSeagrassDensity" />
-			<state id="LowSeagrassDensity" />
-			<state id="NoSeagrassDensity" />
-			<probabilities>0.0333 0.03339999999999999 0.0333 0.9</probabilities>
-		</cpt>
-		<cpt id="SeagrassProtection">
-			<state id="HighSeagrassProtection" />
-			<state id="ModerateSeagrassProtection" />
-			<state id="LowSeagrassProtection" />
-			<state id="NoSeagrassProtection" />
-			<parents>SeagrassSeasonality SeagrassDensity</parents>
-			<probabilities>0.8 0.2 0 0 0.6 0.3 0.1 0 0.1 0.45 0.45 0 0 0 0 1 0.15 0.4 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 0 1 0 0.05 0.25 0.7 0 0 0.15 0.85 0 0 0.05 0.95 0 0 0 1</probabilities>
-		</cpt>
-		<cpt id="CoralBleaching">
-			<state id="NoBleaching" />
-			<state id="ModerateBleaching" />
-			<state id="HighBleaching" />
-			<probabilities>0.3333333333333334 0.3333333333333334 0.3333333333333333</probabilities>
-		</cpt>
-		<cpt id="CoralReefProtection">
-			<state id="HighReefProtection" />
-			<state id="ModerateReefProtection" />
-			<state id="LowReefProtection" />
-			<state id="NoReefProtection" />
-			<parents>CoralBleaching</parents>
-			<probabilities>0.6 0.2 0.2 0 0.2 0.4 0.4 0 0 0.2 0.4 0.4</probabilities>
+		<cpt id="CoralQuality">
+			<state id="MinimallyBleachedCoralPresent" />
+			<state id="ModeratelyBleachedCoralPresent" />
+			<state id="HighlyBleachedCoralPresent" />
+			<state id="NoCoralPresent" />
+			<probabilities>0.01 0.01 0.01 0.97</probabilities>
 		</cpt>
 		<cpt id="EcosystemProtection">
-			<state id="HighCoastalVegetationProtection" />
-			<state id="ModerateCostalVegetationProtection" />
-			<state id="LowCoastalVegetationProtection" />
-			<state id="NoCoastalVegetationProtection" />
-			<parents>CoralReefProtection SeagrassProtection MangroveProtection</parents>
-			<probabilities>1 0 0 0 0.9 0.1 0 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.9 0.1 0 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.25 0.5 0.25 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.25 0.5 0.25 0 0.2 0.4 0.4 0 0.9 0.1 0 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.8 0.15 0.05 0 0.2 0.75 0.05 0 0 0.9 0.1 0 0 0.75 0.25 0 0.6 0.3 0.1 0 0 0.9 0.1 0 0 0.6 0.4 0 0 0.5 0.5 0 0.5 0.3 0.2 0 0 0.75 0.25 0 0 0.5 0.5 0 0 0.4 0.6 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.25 0.5 0.25 0 0.6 0.3 0.1 0 0 0.9 0.1 0 0 0.6 0.4 0 0 0.5 0.5 0 0.5 0.3 0.2 0 0 0.6 0.4 0 0 0.1 0.8 0.1 0 0 0.75 0.25 0.25 0.5 0.25 0 0 0.5 0.5 0 0 0 0.75 0.25 0 0 0.6 0.4 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.25 0.5 0.25 0 0.2 0.4 0.4 0 0.5 0.3 0.2 0 0 0.75 0.25 0 0 0.5 0.5 0 0 0.4 0.6 0 0.25 0.5 0.25 0 0 0.5 0.5 0 0 0 0.75 0.25 0 0 0.6 0.4 0.2 0.4 0.4 0 0 0.4 0.6 0 0 0 0.6 0.4 0 0 0 1</probabilities>
+			<state id="HighEcosystemProtection" />
+			<state id="ModerateEcosystemProtection" />
+			<state id="LowEcosystemProtection" />
+			<state id="NoEcosystemProtection" />
+			<parents>CoralQuality SeagrassPresenceClass MangrovePresenceClass</parents>
+			<probabilities>1 0 0 0 0.9 0.1 0 0 0.9 0.1 0 0 0.8 0.15 0.05 0 0.9 0.1 0 0 0.8 0.15 0.05 0 0.8 0.15 0.05 0 0.2 0.75 0.05 0 0.8 0.15 0.05 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0 0.9 0.1 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0 0.75 0.25 0</probabilities>
 		</cpt>
 		<cpt id="OceanDepthAndLandElevation">
 			<state id="HighLandElevation" />
@@ -95,28 +69,26 @@
 			<parents>OceanDepthAndLandElevation BathymetricSlope</parents>
 			<probabilities>1 0 0 1 0 0 1 0 0 1 0 0 0.95 0.05 0 0.85 0.15 0 0.4 0.4 0.2 0.25 0.45 0.3 0.9 0.1 0 0.75 0.25 0 0.3 0.4 0.3 0.2 0.4 0.4 0.5 0.5 0 0.35 0.55 0.1 0.25 0.45 0.3 0.2 0.4 0.4 0 0.35 0.65 0 0.25 0.75 0 0.05 0.95 0 0 1 0 0.25 0.75 0 0.15 0.85 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</probabilities>
 		</cpt>
-		<cpt id="NaturalCoastalFloodSink">
-			<state id="HighNaturalCoastalFloodSink" />
-			<state id="ModerateNaturalCoastalFloodSink" />
-			<state id="LowNaturalCoastalFloodSink" />
-			<state id="NoNaturalCoastalFloodSink" />
+		<cpt id="NaturalCoastalFloodProtection">
+			<state id="HighNaturalCoastalFloodProtection" />
+			<state id="ModerateNaturalCoastalFloodProtection" />
+			<state id="LowNaturalCoastalFloodProtection" />
+			<state id="NoNaturalCoastalFloodProtection" />
 			<parents>Tides EcosystemProtection GeomorphicProtection</parents>
-			<probabilities>0.85 0.15 0 0 0.65 0.35 0 0 0.1 0.65 0.25 0 0.65 0.35 0 0 0.1 0.6 0.3 0 0 0.4 0.6 0 0.1 0.65 0.25 0 0 0.4 0.6 0 0 0 0.5 0.5 0.05 0.45 0.5 0 0 0.15 0.5 0.35 0 0 0.1 0.9 0.95 0.05 0 0 0.75 0.25 0 0 0.2 0.6 0.2 0 0.75 0.25 0 0 0.2 0.6 0.2 0 0 0.5 0.5 0 0.2 0.6 0.2 0 0 0.5 0.5 0 0 0 0.6 0.4 0.1 0.5 0.4 0 0 0.25 0.5 0.25 0 0 0.25 0.75</probabilities>
+			<probabilities>0.85 0.15 0 0 0.65 0.35 0 0 0.1 0.65 0.25 0 0.65 0.35 0 0 0.1 0.6 0.3 0 0 0.4 0.6 0 0.1 0.65 0.25 0 0 0.4 0.6 0 0 0 0.5 0.5 0.05 0.45 0.5 0 0 0.15 0.5 0.35 0 0 0.1 0.9 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.95 0.05 0 0 0.75 0.25 0 0 0.2 0.6 0.2 0 0.75 0.25 0 0 0.2 0.6 0.2 0 0 0.5 0.5 0 0.2 0.6 0.2 0 0 0.5 0.5 0 0 0 0.6 0.4 0.1 0.5 0.4 0 0 0.25 0.5 0.25 0 0 0.25 0.75</probabilities>
 		</cpt>
-		<cpt id="ArtificialCoastalFloodSink">
-			<state id="HighArtificialCoastalFloodSink" />
-			<state id="ModerateArtificialCoastalFloodSink" />
-			<state id="LowArtificialCoastalFloodSink" />
-			<state id="NoArtificialCoastalFloodSink" />
-			<probabilities>0.005 0.01 0.02 0.965</probabilities>
+		<cpt id="ArtificialCoastalProtection">
+			<state id="ArtificialCoastalProtectionPresent" />
+			<state id="ArtificialCoastalProtectionAbsent" />
+			<probabilities>0.005 0.995</probabilities>
 		</cpt>
 		<cpt id="TotalCoastalFloodProtection">
 			<state id="HighCoastalFloodProtection" />
 			<state id="ModerateCoastalFloodProtection" />
 			<state id="LowCoastalFloodProtection" />
 			<state id="NoCoastalFloodProtection" />
-			<parents>NaturalCoastalFloodSink ArtificialCoastalFloodSink</parents>
-			<probabilities>0.9 0.1 0 0 0.8 0.2 0 0 0.75 0.25 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0.4 0.55 0.05 0 0.35 0.6 0.05 0 0.3 0.6 0.1 0 0.4 0.4 0.2 0 0 0.3 0.5 0.2 0 0.25 0.55 0.2 0 0.2 0.6 0.2 0.5 0.4 0.1 0 0.05 0.4 0.55 0 0 0.2 0.6 0.2 0 0 0 1</probabilities>
+			<parents>NaturalCoastalFloodProtection ArtificialCoastalProtection</parents>
+			<probabilities>0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.4 0.55 0.05 0 0.4 0.4 0.2 0 0 0.3 0.5 0.2 0.5 0.4 0.1 0 0.05 0.4 0.55 0</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -126,7 +98,7 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>874 194 919 222</position>
+				<position>756 185 801 213</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
 			<node id="EcosystemProtection">
@@ -134,122 +106,103 @@
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>277 198 446 251</position>
-				<barchart active="true" width="168" height="90" />
+				<position>256 309 425 362</position>
+				<barchart active="true" width="334" height="90" />
 			</node>
-			<node id="NaturalCoastalFloodSink">
-				<name>NaturalCoastalFloodSink</name>
+			<node id="NaturalCoastalFloodProtection">
+				<name>NaturalCoastalFloodProtection</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>567 106 665 147</position>
-				<barchart active="true" width="165" height="90" />
+				<position>402 163 500 204</position>
+				<barchart active="true" width="384" height="90" />
 			</node>
 			<node id="GeomorphicProtection">
 				<name>GeomorphicProtection</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>555 199 691 244</position>
-				<barchart active="true" width="128" height="72" />
+				<position>615 305 751 350</position>
+				<barchart active="true" width="317" height="72" />
 			</node>
-			<node id="MangroveProtection">
-				<name>MangroveProtection</name>
-				<interior color="e5f6f7" />
+			<node id="MangrovePresenceClass">
+				<name>MangrovePresenceClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>54 336 178 378</position>
-				<barchart active="true" width="128" height="90" />
+				<position>62 455 186 497</position>
+				<barchart active="true" width="184" height="57" />
 			</node>
-			<node id="SeagrassProtection">
-				<name>SeagrassProtection</name>
-				<interior color="e5f6f7" />
+			<node id="SeagrassPresenceClass">
+				<name>SeagrassPresenceClass</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>246 334 372 379</position>
-				<barchart active="true" width="128" height="90" />
+				<position>256 453 382 498</position>
+				<comment>Could run the model with no seagrass present to simulate winter conditions (i.e., seagrass dormant or present at very low density)</comment>
+				<barchart active="true" width="183" height="55" />
 			</node>
-			<node id="CoralReefProtection">
-				<name>CoralReefProtection</name>
-				<interior color="e5f6f7" />
+			<node id="CoralQuality">
+				<name>CoralQuality</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>451 335 564 381</position>
-				<barchart active="true" width="128" height="90" />
+				<position>498 470 611 516</position>
+				<barchart active="true" width="269" height="90" />
 			</node>
 			<node id="OceanDepthAndLandElevation">
 				<name>OceanDepthAndLandElevation</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>904 315 980 344</position>
-				<barchart active="true" width="195" height="144" />
-			</node>
-			<node id="CoralBleaching">
-				<name>CoralBleaching</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>758 435 826 477</position>
-				<barchart active="true" width="195" height="72" />
-			</node>
-			<node id="MangroveDensity">
-				<name>MangroveDensity</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>164 447 280 490</position>
-				<comment>Use latitude as proxy (Koch et al. 2009)</comment>
-				<barchart active="true" width="128" height="90" />
-			</node>
-			<node id="SeagrassDensity">
-				<name>SeagrassDensity</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>299 445 413 492</position>
-				<comment>Use latitude as proxy (Koch et al. 2009)</comment>
-				<barchart active="true" width="128" height="90" />
-			</node>
-			<node id="MangroveWidth">
-				<name>MangroveWidth</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>36 449 133 485</position>
-				<barchart active="true" width="137" height="90" />
-			</node>
-			<node id="SeagrassSeasonality">
-				<name>SeagrassSeasonality</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>498 439 623 483</position>
-				<barchart active="true" width="255" height="72" />
+				<position>1009 374 1085 403</position>
+				<barchart active="true" width="240" height="144" />
 			</node>
 			<node id="BathymetricSlope">
 				<name>BathymetricSlope</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>672 320 717 348</position>
-				<barchart active="true" width="128" height="90" />
+				<position>774 472 819 500</position>
+				<barchart active="true" width="181" height="90" />
 			</node>
-			<node id="ArtificialCoastalFloodSink">
-				<name>ArtificialCoastalFloodSink</name>
-				<interior color="e5f6f7" />
+			<node id="ArtificialCoastalProtection">
+				<name>ArtificialCoastalProtection</name>
+				<interior color="ffcc99" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>908 59 1071 131</position>
-				<barchart active="true" width="157" height="90" />
+				<position>1015 142 1178 214</position>
+				<comment>Put this as present/absent and the effects as very minor in the CPT.</comment>
+				<barchart active="true" width="357" height="54" />
 			</node>
 			<node id="TotalCoastalFloodProtection">
 				<name>TotalCoastalFloodProtection</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>726 25 848 101</position>
-				<barchart active="true" width="128" height="90" />
+				<position>700 20 822 96</position>
+				<barchart active="true" width="312" height="90" />
+			</node>
+			<textbox>
+				<caption>Steep slopes slow water faster which pushes it up higher (i.e., bottom friction, which has a technical term - look it up - but is lower on a shallow slope, which slows it down less).\n\nMove tides to the source model.  Magnitude is small in E Mg.  Leave effects as very small in Mg. (ACTUALLY, DON&apos;T DO THIS - WRONG PLACE FOR TIDAL DATA, RIGHT?)\n\nProcessing of slope data. Dealing with slope data that&apos;s below the ocean (which increases wave height) versus above the ocean (which decreases it)???  (CALL BRIAN)\n\nBRIAN&apos;S THOUGHTS ON HOW TO KEEP CPTs TRACTABLE &amp; THE DIFFERING EFFECTS OF SLOPE PER KEEPING AS ONE BN OR SPLITTING INTO 2?</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>188 572 1052 670</position>
+			</textbox>
+			<node id="DunePresenceClass">
+				<name>DunePresenceClass</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>38 218 146 285</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="TerrestrialVegetationType">
+				<name>TerrestrialVegetationType</name>
+				<interior color="ffcc99" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>67 107 200 190</position>
+				<barchart active="true" width="211" height="108" />
 			</node>
 		</genie>
 	</extensions>

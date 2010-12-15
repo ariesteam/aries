@@ -12,38 +12,83 @@
 ;; Source models
 ;; --------------------------------------------------------------------------------------
 
-(defmodel storm-probability 'coastalProtection:TropicalStormProbability
-  (ranking 'habitat:TropicalStormProbability))
+;;(defmodel storm-probability 'coastalProtection:TropicalStormProbability
+;;  (ranking 'habitat:TropicalStormProbability))
+
+(defmodel bathymetry-class 'coastalProtection:BathymetryClass
+  (classification (measurement 'geophysics:Bathymetry "m")
+    [0 :>]              'coastalProtection:Overland
+    [0 -20]             'coastalProtection:VeryShallow
+    [-20 -50]           'coastalProtection:Shallow
+    [-50 -200]          'coastalProtection:Deep
+    [:< -200]           'coastalProtection:VeryDeep))
+
+(defmodel atmospheric-pressure 'coastalProtection:AtmosphericPressureClass
+  (classification (measurement 'geophysics:AtmosphericPressure "mb") ;;check to see if this is a valid unit.
+    [990 :>]  'coastalProtection:ModeratelyLowAtmosphericPressure
+    [970 990] 'coastalProtection:LowAtmosphericPressure
+    [:< 970]  'coastalProtection:VeryLowAtmosphericPressure))
+
+;;Discretization based on the Southwest Indian Ocean Tropical Cyclone Scale. May need a different
+;; scale for other parts of the world.
+(defmodel wind-speed 'coastalProtection:WindSpeedClass
+  (classification (measurement 'geophysics:WindSpeed "km/h") ;;check to see if this is a valid unit.
+     [165 :>]    'coastalProtection:VeryHighWindSpeed
+     [117 165]   'coastalProtection:HighWindSpeed
+     [88 117]    'coastalProtection:ModeratelyHighWindSpeed
+     [62 88]     'coastalProtection:ModeratelyLowWindSpeed
+     [50 62]     'coastalProtection:LowWindSpeed
+     [:< 50]     'coastalProtection:VeryLowWindSpeed))
+
+;;Undiscretization & BN statements
+(defmodel storm-surge 'coastalProtection:StormSurgeClass
+  (classification 'coastalProtection:StormSurgeClass
+                  :units      "m"
+                  [5 :>]      'coastalProtection:VeryHighStormSurge
+                  [4 5]       'coastalProtection:HighStormSurge
+                  [3 4]       'coastalProtection:ModerateStormSurge
+                  [2 3]       'coastalProtection:LowStormSurge
+                  [1 2]       'coastalProtection:VeryLowStormSurge
+                  [:< 1]      'coastalProtection:NoStormSurge))
+
+(defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
+    "Interface to Flood public asset use bayesian network"
+    (bayesian 'coastalProtection:CoastalWaveSource
+      :import   "aries.marine::CoastalFloodSource.xdsl"
+      :keep     ('coastalProtection:StormSurgeClass)
+      :observed (storm-surge)
+      :context  (wind-speed atmospheric-pressure bathymetry-class)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Sink (coastal protection) model
 ;; --------------------------------------------------------------------------------------
 
-;; Converted to m so should work now but need to test
-(defmodel mangrove-width 'coastalProtection:MangroveWidth
-	(classification (measurement 'coastalProtection:MangroveWidth "m")
-		[2000 :>]       'coastalProtection:HighMangroveWidth
-		[400 2000]      'coastalProtection:ModerateMangroveWidth
-		[:< 400]        'coastalProtection:LowMangroveWidth
-		nil             'coastalProtection:NoMangroveWidth))
+(defmodel mangrove 'coastalProtection:MangrovePresenceClass
+  (classification (numeric-coding 'mglulc:MGLULCNumeric)
+    5          'coastalProtection:MangrovePresent
+    :otherwise 'coastalProtection:MangroveAbsent))
 
-;; TODO almost all coral polygons in existing data do not report bleaching; I 
-;; don't know what text should be in the categories to define other states, so
-;; only HighBleaching is reported here if the field isn't empty.
-(defmodel bleaching 'coastalProtection:CoralBleaching
+;; Most polygons do not report any data on bleaching, these are placed under "moderate bleaching".  There's a misspelling for "HIgh" in the data that's accounted for in the discretization below.
+(defmodel coral-quality 'coastalProtection:CoralQuality
 	(classification (categorization 'coastalProtection:CoralBleaching)
- 		#{nil "None"}			  'coastalProtection:NoBleaching
- 		#{"HIgh" "High"}	  'coastalProtection:HighBleaching
- 	  #{"Low" "Moderate"} 'coastalProtection:ModerateBleaching))
-	
+ 		#{"None" "Low"}			   'coastalProtection:MinimallyBleachedCoralPresent
+ 		#{"HIgh" "High"}	     'coastalProtection:HighlyBleachedCoralPresent
+ 	  #{"Moderate" ""}       'coastalProtection:ModeratelyBleachedCoralPresent
+    :otherwise             'coastalProtection:NoCoralPresent))
+ 
 ;; TODO only two classes represented from presence/absence; no idea how to 
 ;; model density based on existing data.
-(defmodel seagrass 'coastalProtection:SeagrassDensity
-	(classification (binary-coding 'coastalProtection:SeagrassDensity)
-		0 'coastalProtection:NoSeagrassDensity
-		1 'coastalProtection:HighSeagrassDensity))
-		
-;; sea floor slope 
+(defmodel seagrass 'coastalProtection:SeagrassPresenceClass
+	(classification (binary-coding 'coastalProtection:SeagrassPresence)
+		0 'coastalProtection:SeagrassAbsent
+		1 'coastalProtection:SeagrassPresent))
+
+(defmodel dune 'coastalProtection:DunePresenceClass
+  (classification (categorization 'geofeatures:Dune)
+    #{"dune"}   'coastalProtection:DunePresent    
+    :otherwise  'coastalProtection:DuneAbsent))
+
+;; THIS NEEDS TO BE FIXED - TALK TO BRIAN 12/15
 ;; Ken: units uncertain, layer is horribly large and cumbersome to work with
 ;; TODO check - BN has only 4 classes, so I put the last 2 together and eliminated
 ;; VeryHighSlope with breakpoint at 9,000,000
@@ -53,20 +98,56 @@
 		[2000000 4000000] 'coastalProtection:ModerateSlope
 		[200000 2000000]  'coastalProtection:LowSlope
 		[:< 200000]      'coastalProtection:VeryLowSlope))
-			
+
+;;Terrestrial vegetation types from Mg LULC layer
+(defmodel terrestrial-vegetation 'coastalProtection:TerrestrialVegetationType
+  (classification (numeric-coding 'mglulc:MGLULCNumeric)
+         #{1 3 4 8 10 20 21 23 30 31}             'coastalProtection:Forested ;;Includes tree-dominated savannas
+         #{6 7}                                   'coastalProtection:Shrubland
+         #{14}                                    'coastalProtection:Wetland
+         #{9 11 12 13 18 22 24 25 26 28 29 32 33} 'coastalProtection:Herbaceous ;;Includes agriculture, grass-dominated savannas
+         #{16 17 19 27}                           'coastalProtection:Unvegetated)) 
+
+(defmodel depth-elevation 'coastalProtection:OceanDepthAndLandElevation
+  (classification (measurement 'geophysics:Bathymetry "m")
+    [20 :>]             'coastalProtection:HighLandElevation
+    [5 20]              'coastalProtection:ModerateLandElevation
+    [0 5]               'coastalProtection:LowLandElevation
+    [0 -60]             'coastalProtection:Pelagic
+    [-60 -200]          'coastalProtection:Shelf
+    [-200 -2000]        'coastalProtection:Slope
+    [:< -2000]          'coastalProtection:DeepWater))
+
+;;Assumes some artificial flood protection near Toamasina, the main port city in Madagascar.  Development around the small ports is minimal.
+(defmodel artificial-coastal-protection 'coastalProtection:ArtificialCoastalProtection
+  (classification (binary-coding 'infrastructure:Port)
+    3          'coastalProtection:ArtificialCoastalProtectionPresent
+    :otherwise 'coastalProtection:ArtificialCoastalProtectionAbsent))
+
+;;FIX DISCRETIZATION BELOW (i.e., value ranges for mitigation)
+(defmodel coastal-flood-protection 'coastalProtection:TotalCoastalFloodProtection
+  (classification 'coastalProtection:TotalCoastalFloodProtection
+                  :units      "m"
+                  [3 :>]        'coastalProtection:HighCoastalFloodProtection
+                  [1 3]         'coastalProtection:ModerateCoastalFloodProtection
+                  [0.1 1]       'coastalProtection:LowCoastalFloodProtection
+                  [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
+
 ;; flood protection
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'coastalProtection:CoastalFloodSink 
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
-	 	 	:context  (bleaching seagrass slope mangrove-width)))
+      :observed (coastal-flood-protection)
+	 	 	:context  (mangrove coral-quality seagrass dune terrestrial-vegetation artificial-coastal-protection
+                 depth-elevation slope)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Use models
 ;; --------------------------------------------------------------------------------------
 
-;;Rather than classifying it and losing information, just return the deciles of risk to life and property.
+;;Returns the deciles of risk to life and property
 (defmodel risk-to-life 'coastalProtection:CycloneDependentLivesAtRisk
 	(ranking 'policytarget:LivesAtRiskStorm))
 
@@ -81,9 +162,9 @@
 ;; list has been updated to correctly reflect the coastal flood flow concepts.
 (defmodel coastal-protection-flow 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
-        'floodService:FloodSourceValue
-        'floodService:FloodFarmersUse100
-        'floodService:FloodSink
+        'coastalProtection:CoastalWaveSource
+        'coastalProtection:CycloneDependentLivesAtRisk
+        'coastalProtection:CoastalFloodSink
         nil 
         'floodService:TempFloodData100
         :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
@@ -102,10 +183,10 @@
               'coastal:FloodDamageReceived 'coastal:BenignWaveSource 'coastal:UnutilizedWaveMitigation
               'coastal:AbsorbedWaveFlow 'coastal:MitigatedWaveSource 'coastal:FloodMitigationBenefitsAccrued) 
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
-        :context (storm-probability risk-to-life coastal-flood-sink)))
+        :context (coastal-wave-source risk-to-life coastal-flood-sink)))
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
-		:context (coastal-flood-sink risk-to-life risk-to-assets storm-probability)))
+		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source)))
 
 	 	 	

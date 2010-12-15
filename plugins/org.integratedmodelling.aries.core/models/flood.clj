@@ -205,6 +205,22 @@
     #{4 5}    'floodService:LowDaysPrecipitationPerYear
     #{1 2 3}  'floodService:VeryLowDaysPrecipitationPerYear))
 
+;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
+;;  empty.  Can alter this as appropriate.  This is likely a more accurate way to measure detention basin storage
+;;  but in its current form is incompatible with the BN.  Consider the best way to do this (i.e., combining deterministic
+;;  and probabilistic functions when the time comes?)
+;;(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+;;  (measurement 'floodService:DetentionBasinStorage "mm" 
+;;    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
+;;    :state #(cond (== (:detention-basin-storage %) 0) 0
+;;                  (== (:detention-basin-storage %) 1) 3000)))
+
+;;Use this one for the time being so the sink model will run.  Then review which one to use with Gary.
+(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+  (classification (binary-coding 'infrastructure:DetentionBasin)
+    0    'floodService:DetentionBasinStorageNotPresent
+    1    'floodService:DetentionBasinStoragePresent))
+
 ;;Undiscretizer for FloodSink
 (defmodel flood-sink 'floodService:AnnualFloodSink
   (classification 'floodService:AnnualFloodSink
@@ -237,11 +253,11 @@
 
 ;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
 ;;  empty.  Can alter this as appropriate.
-(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
-  (measurement 'floodService:DetentionBasinStorage "mm" 
-    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
-    :state #(cond (== (:detention-basin-storage %) 0) 0
-                  (== (:detention-basin-storage %) 1) 3000)))
+;;(defmodel detention-basin-storage 'floodService:DetentionBasinStorage
+;;  (measurement 'floodService:DetentionBasinStorage "mm" 
+;;    :context ((binary-coding 'infrastructure:DetentionBasin :as detention-basin-storage))
+;;    :state #(cond (== (:detention-basin-storage %) 0) 0
+;;                  (== (:detention-basin-storage %) 1) 3000)))
 
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 (defmodel sink-monthly 'floodService:MonthlyFloodSink
@@ -268,7 +284,7 @@
               'floodService:GrayInfrastructureStorage) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
           successional-stage imperviousness dam-storage 
-          (comment vegetation-height detention-basin-storage)  
+          (comment vegetation-height) detention-basin-storage  
           percent-vegetation-cover mean-days-precipitation-annual)))
 
 ;; ----------------------------------------------------------------------------------------------

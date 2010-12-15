@@ -495,6 +495,10 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
+<!-- GET MANGROVE PRESENCE IN - this layer but just presence/absence -->
+
+
+
 <!-- FIXME: This measure is the length, not the width  -->
 <measurement:Measurement id="marine_mangrove_width2">
 	<observation:hasObservable>
@@ -631,7 +635,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	
 	<measurement:BinaryCoding id="marine_seagrass">
 		<observation:hasObservable>
-			<coastalProtection:SeagrassDensity />
+			<coastalProtection:SeagrassPresence />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: UNEP-WCMC World Atlas of Seagrasses</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
