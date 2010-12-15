@@ -88,16 +88,13 @@
     #{"dune"}   'coastalProtection:DunePresent    
     :otherwise  'coastalProtection:DuneAbsent))
 
-;; THIS NEEDS TO BE FIXED - TALK TO BRIAN 12/15
-;; Ken: units uncertain, layer is horribly large and cumbersome to work with
-;; TODO check - BN has only 4 classes, so I put the last 2 together and eliminated
-;; VeryHighSlope with breakpoint at 9,000,000
+;; Get new layer from Brian input.  Make sure .xml & ontology values are set as measurements with the right unit types (see "slope" for proper example)
 (defmodel slope 'coastalProtection:BathymetricSlope
-	(classification (ranking 'geophysics:BathymetricSlope)
-		[4000000 :>]      'coastalProtection:HighSlope
-		[2000000 4000000] 'coastalProtection:ModerateSlope
-		[200000 2000000]  'coastalProtection:LowSlope
-		[:< 200000]      'coastalProtection:VeryLowSlope))
+	(classification (measurement 'geophysics:BathymetricSlope "\u00b0")
+		[16.70 :>]      'coastalProtection:HighSlope
+		[4.57 16.70]    'coastalProtection:ModerateSlope
+		[1.15 4.57]     'coastalProtection:LowSlope
+		[:< 1.15]       'coastalProtection:VeryLowSlope))
 
 ;;Terrestrial vegetation types from Mg LULC layer
 (defmodel terrestrial-vegetation 'coastalProtection:TerrestrialVegetationType
@@ -106,7 +103,7 @@
          #{6 7}                                   'coastalProtection:Shrubland
          #{14}                                    'coastalProtection:Wetland
          #{9 11 12 13 18 22 24 25 26 28 29 32 33} 'coastalProtection:Herbaceous ;;Includes agriculture, grass-dominated savannas
-         #{16 17 19 27}                           'coastalProtection:Unvegetated)) 
+         #{16 17 19 27}                           'coastalProtection:Other)) 
 
 (defmodel depth-elevation 'coastalProtection:OceanDepthAndLandElevation
   (classification (measurement 'geophysics:Bathymetry "m")
