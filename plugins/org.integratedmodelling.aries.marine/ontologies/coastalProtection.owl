@@ -22,6 +22,11 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
   </owl:Class>
+  <owl:Class rdf:ID="CoastalWaveSourceGeralda">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CoastalWaveSource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="CycloneDependentLivesAtRisk">
     <rdfs:label>Lives at risk for tropical storms</rdfs:label>
     <rdfs:subClassOf>
@@ -44,6 +49,11 @@
   <owl:Class rdf:ID="LowAtmosphericPressure">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="AtmosphericPressureClass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CoastalWaveSourceDaisy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CoastalWaveSource"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ActualWindFlow">
@@ -383,8 +393,13 @@
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink">
     <rdfs:subClassOf rdf:resource="#WaveSinkType"/>
   </owl:Class>
-  <owl:Class rdf:ID="VeryHighSlope">
-    <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
+  <owl:Class rdf:ID="CoastalWaveSourceLitanne">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CoastalWaveSource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StormTracks">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="WaveUseType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
@@ -536,7 +551,7 @@
   <owl:Class rdf:ID="VeryHighStormSurge">
     <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
   </owl:Class>
-  <owl:Class rdf:ID="CoastalWaveSource">
+  <owl:Class rdf:about="#CoastalWaveSource">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource"/>
     </rdfs:subClassOf>
@@ -585,6 +600,9 @@
   </owl:Class>
   <owl:Class rdf:ID="HighSlope">
     <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BufferMg100km">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowSlope">
     <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
@@ -777,15 +795,6 @@
       <owl:Class rdf:about="#LowRiskToLife"/>
       <owl:Class rdf:about="#ModerateRiskToLife"/>
       <owl:Class rdf:about="#NoRiskToLife"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighSlope"/>
-      <owl:Class rdf:about="#LowSlope"/>
-      <owl:Class rdf:about="#ModerateSlope"/>
-      <owl:Class rdf:about="#VeryHighSlope"/>
-      <owl:Class rdf:about="#VeryLowSlope"/>
     </owl:members>
   </owl:AllDisjointClasses>
 </rdf:RDF>

@@ -18,8 +18,8 @@
 (defmodel storm-tracks 'coastalProtection:StormTracks
   (categorization 'coastalProtection:StormTracks)) 
 
-(defmodel buffer 'coastalProtection:100kmBufferMg
-  (binary-coding 'coastalProtection:100kmBufferMg)) 
+(defmodel buffer 'coastalProtection:BufferMg100km
+  (binary-coding 'coastalProtection:BufferMg100km)) 
 
 (defmodel bathymetry-class 'coastalProtection:BathymetryClass
   (classification (measurement 'geophysics:Bathymetry "m")
