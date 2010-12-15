@@ -15,6 +15,12 @@
 ;;(defmodel storm-probability 'coastalProtection:TropicalStormProbability
 ;;  (ranking 'habitat:TropicalStormProbability))
 
+(defmodel storm-tracks 'coastalProtection:StormTracks
+  (categorization 'coastalProtection:StormTracks)) 
+
+(defmodel buffer 'coastalProtection:100kmBufferMg
+  (binary-coding 'coastalProtection:100kmBufferMg)) 
+
 (defmodel bathymetry-class 'coastalProtection:BathymetryClass
   (classification (measurement 'geophysics:Bathymetry "m")
     [0 :>]              'coastalProtection:Overland
@@ -58,6 +64,37 @@
       :keep     ('coastalProtection:StormSurgeClass)
       :observed (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class)))
+
+;;This takes the BN values ONLY where they intersect the 100 km buffer along the storm track for a given storm (Daisy in the first case)
+(defmodel source-100km-daisy 'coastalProtection:CoastalWaveSourceDaisy
+  (measurement 'coastalProtection:CoastalWaveSourceDaisy
+    :context (storm-tracks        :as storm-tracks
+              buffer              :as buffer
+              coastal-wave-source :as coastal-wave-source)
+    :state  #(if (and (= (:storm-tracks %) "daisy")
+                      (= (:buffer %) 1))
+                 (:coastal-wave-source %)
+                 0.0)))
+
+(defmodel source-100km-geralda 'coastalProtection:CoastalWaveSourceGeralda
+  (measurement 'coastalProtection:CoastalWaveSourceGeralda
+    :context (storm-tracks        :as storm-tracks
+              buffer              :as buffer
+              coastal-wave-source :as coastal-wave-source)
+    :state  #(if (and (= (:storm-tracks %) "geralda")
+                      (= (:buffer %) 1))
+                 (:coastal-wave-source %)
+                 0.0)))
+
+(defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
+  (measurement 'coastalProtection:CoastalWaveSourceLitanne
+    :context (storm-tracks        :as storm-tracks
+              buffer              :as buffer
+              coastal-wave-source :as coastal-wave-source)
+    :state  #(if (and (= (:storm-tracks %) "litanne")
+                      (= (:buffer %) 1))
+                 (:coastal-wave-source %)
+                 0.0)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Sink (coastal protection) model
