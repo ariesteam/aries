@@ -30,7 +30,7 @@
     [:< -200]           'coastalProtection:VeryDeep))
 
 (defmodel atmospheric-pressure 'coastalProtection:AtmosphericPressureClass
-  (classification (measurement 'geophysics:AtmosphericPressure "mb") ;;check to see if this is a valid unit.
+  (classification (measurement 'geophysics:AtmosphericPressure "mb") ;;Not a valid unit: may need to change this to a ranking.
     [990 :>]  'coastalProtection:ModeratelyLowAtmosphericPressure
     [970 990] 'coastalProtection:LowAtmosphericPressure
     [:< 970]  'coastalProtection:VeryLowAtmosphericPressure))
@@ -38,7 +38,7 @@
 ;;Discretization based on the Southwest Indian Ocean Tropical Cyclone Scale. May need a different
 ;; scale for other parts of the world.
 (defmodel wind-speed 'coastalProtection:WindSpeedClass
-  (classification (measurement 'geophysics:WindSpeed "km/h") ;;check to see if this is a valid unit.
+  (classification (measurement 'geophysics:WindSpeed "km/h") 
      [165 :>]    'coastalProtection:VeryHighWindSpeed
      [117 165]   'coastalProtection:HighWindSpeed
      [88 117]    'coastalProtection:ModeratelyHighWindSpeed
@@ -120,19 +120,6 @@
 		0 'coastalProtection:SeagrassAbsent
 		1 'coastalProtection:SeagrassPresent))
 
-(defmodel dune 'coastalProtection:DunePresenceClass
-  (classification (categorization 'geofeatures:Dune)
-    #{"dune"}   'coastalProtection:DunePresent    
-    :otherwise  'coastalProtection:DuneAbsent))
-
-;; Get new layer from Brian input.  Make sure .xml & ontology values are set as measurements with the right unit types (see "slope" for proper example)
-(defmodel slope 'coastalProtection:BathymetricSlope
-	(classification (measurement 'geophysics:BathymetricSlope "\u00b0")
-		[16.70 :>]      'coastalProtection:HighSlope
-		[4.57 16.70]    'coastalProtection:ModerateSlope
-		[1.15 4.57]     'coastalProtection:LowSlope
-		[:< 1.15]       'coastalProtection:VeryLowSlope))
-
 ;;Terrestrial vegetation types from Mg LULC layer
 (defmodel terrestrial-vegetation 'coastalProtection:TerrestrialVegetationType
   (classification (numeric-coding 'mglulc:MGLULCNumeric)
@@ -142,23 +129,13 @@
          #{9 11 12 13 18 22 24 25 26 28 29 32 33} 'coastalProtection:Herbaceous ;;Includes agriculture, grass-dominated savannas
          #{16 17 19 27}                           'coastalProtection:Other)) 
 
-(defmodel depth-elevation 'coastalProtection:OceanDepthAndLandElevation
-  (classification (measurement 'geophysics:Bathymetry "m")
-    [20 :>]             'coastalProtection:HighLandElevation
-    [5 20]              'coastalProtection:ModerateLandElevation
-    [0 5]               'coastalProtection:LowLandElevation
-    [0 -60]             'coastalProtection:Pelagic
-    [-60 -200]          'coastalProtection:Shelf
-    [-200 -2000]        'coastalProtection:Slope
-    [:< -2000]          'coastalProtection:DeepWater))
-
 ;;Assumes some artificial flood protection near Toamasina, the main port city in Madagascar.  Development around the small ports is minimal.
 (defmodel artificial-coastal-protection 'coastalProtection:ArtificialCoastalProtection
   (classification (binary-coding 'infrastructure:Port)
     3          'coastalProtection:ArtificialCoastalProtectionPresent
     :otherwise 'coastalProtection:ArtificialCoastalProtectionAbsent))
 
-;;FIX DISCRETIZATION BELOW (i.e., value ranges for mitigation)
+;;The discretization below is a first cut, may need to be changed based on results of the flow model.
 (defmodel coastal-flood-protection 'coastalProtection:TotalCoastalFloodProtection
   (classification 'coastalProtection:TotalCoastalFloodProtection
                   :units      "m"
@@ -167,15 +144,14 @@
                   [0.1 1]       'coastalProtection:LowCoastalFloodProtection
                   [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
 
-;; flood protection
+;; Wave mitigation by ecosystems, i.e., the ecosystem service.
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
   	"Interface to Flood public asset use bayesian network"
 	  (bayesian 'coastalProtection:CoastalFloodSink 
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
       :observed (coastal-flood-protection)
-	 	 	:context  (mangrove coral-quality seagrass dune terrestrial-vegetation artificial-coastal-protection
-                 depth-elevation slope)))
+	 	 	:context  (mangrove coral-quality seagrass terrestrial-vegetation artificial-coastal-protection)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Use models
@@ -192,8 +168,49 @@
 ;; Flow models
 ;; --------------------------------------------------------------------------------------
 
+(defmodel dune 'coastalProtection:DunePresenceClass
+  (classification (categorization 'geofeatures:Dune)
+    #{"dune"}   'coastalProtection:DunePresent    
+    :otherwise  'coastalProtection:DuneAbsent))
+
+;; Get new layer from Brian input.  Make sure .xml & ontology values are set as measurements with the right unit types (see "slope" for proper example)
+(defmodel slope 'coastalProtection:BathymetricSlope
+  (classification (measurement 'geophysics:BathymetricSlope "\u00b0")
+    [16.70 :>]      'coastalProtection:HighSlope
+    [4.57 16.70]    'coastalProtection:ModerateSlope
+    [1.15 4.57]     'coastalProtection:LowSlope
+    [:< 1.15]       'coastalProtection:VeryLowSlope))
+
+(defmodel depth-elevation 'coastalProtection:OceanDepthAndLandElevation
+  (classification (measurement 'geophysics:Bathymetry "m")
+    [20 :>]             'coastalProtection:HighLandElevation
+    [5 20]              'coastalProtection:ModerateLandElevation
+    [0 5]               'coastalProtection:LowLandElevation
+    [0 -60]             'coastalProtection:Pelagic
+    [-60 -200]          'coastalProtection:Shelf
+    [-200 -2000]        'coastalProtection:Slope
+    [:< -2000]          'coastalProtection:DeepWater))
+
+;;The discretization below is a first cut, may need to be changed based on results of the flow model.
+(defmodel geomorphic-flood-protection 'coastalProtection:GeomorphicFloodProtection
+  (classification 'coastalProtection:GeomorphicFloodProtection
+                  :units      "m"
+                  [3 :>]        'coastalProtection:HighGeomorphicProtection
+                  [0.5 3]       'coastalProtection:ModerateGeomorphicProtection
+                  [0 0.5]       'coastalProtection:LowGeomorphicProtection))
+
+;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
+(defmodel geomorphic-flood-sink 'coastalProtection:GeomorphicWaveReduction
+    "Interface to Flood public asset use bayesian network"
+    (bayesian 'coastalProtection:GeomorphicWaveReduction 
+      :import   "aries.marine::CoastalFloodSink.xdsl"
+      :keep     ('coastalProtection:GeomorphicCoastalFloodProtection)
+      :observed (geomorphic-flood-protection)
+      :context  (dune depth-elevation slope)))
+
 ;;This SPAN statement has just been copied from flood_mark, but the "keep" 
 ;; list has been updated to correctly reflect the coastal flood flow concepts.
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
         'coastalProtection:CoastalWaveSource

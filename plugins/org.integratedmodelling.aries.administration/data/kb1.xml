@@ -4388,31 +4388,31 @@ we could discuss integrating those at some point.-->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-	<measurement:Ranking id="housing_value_puget">
-		<observation:hasObservable>
-			<economics:AppraisedPropertyValue />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:housing_value_puget</geospace:hasCoverageId>
-				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>512</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.219</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>48.301</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.083</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+<measurement:Ranking id="housing_value_puget2">
+	<observation:hasObservable>
+		<economics:AppraisedPropertyValue />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:housing_value_puget2</geospace:hasCoverageId>
+			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>8819</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>4685</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.7515983</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.243488</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.3061989</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.3177078</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking> 
 
 <!-- Replace this with views_king2 -->
 	<measurement:BinaryCoding id="housing_views_puget">
@@ -4425,7 +4425,7 @@ we could discuss integrating those at some point.-->
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>puget:housing_views_puget</geospace:hasCoverageId>
-				<geospace:hasNodataValue> 65535.0</geospace:hasNodataValue>
+				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>

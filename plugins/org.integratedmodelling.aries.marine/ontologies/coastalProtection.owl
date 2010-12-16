@@ -36,6 +36,11 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeUse"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModerateGeomorphicProtection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GeomorphicFloodProtection"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="VeryLowVegetationHeight">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="VegetationHeight"/>
@@ -71,6 +76,11 @@
     </rdfs:subClassOf>
     <rdfs:comment>Areas capable of reducing the energy of coastal wind, whether or not they receive enough high-speed wind to perform this function.</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:ID="GeomorphicWaveReduction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="MangrovesPresent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="MangrovePresenceClass"/>
@@ -82,9 +92,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="WindSinkType">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeSink"/>
     </rdfs:subClassOf>
@@ -111,6 +119,11 @@
       <owl:Class rdf:ID="DunePresenceClass"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="HighGeomorphicProtection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GeomorphicFloodProtection"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#DunePresenceClass">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource"/>
@@ -125,13 +138,13 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
   </owl:Class>
-  <owl:Class rdf:ID="NoRiskToLife">
-    <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateVegetationCover">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="VegetationCoverClass"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NoRiskToLife">
+    <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
   </owl:Class>
   <owl:Class rdf:ID="LowTropicalStormProbability">
     <rdfs:subClassOf>
@@ -235,12 +248,6 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="WindDamageReceived">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
-    </rdfs:subClassOf>
-    <rdfs:comment>Potential coastal or inland beneficiaries of wind mitigation that are hit with wind damage due to too high speed winds or inadequate sink strength.</rdfs:comment>
-  </owl:Class>
   <owl:Class rdf:ID="WindSourceType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf>
@@ -249,6 +256,12 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WindDamageReceived">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
+    </rdfs:subClassOf>
+    <rdfs:comment>Potential coastal or inland beneficiaries of wind mitigation that are hit with wind damage due to too high speed winds or inadequate sink strength.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowStormSurge">
     <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
@@ -401,6 +414,9 @@
   <owl:Class rdf:ID="StormTracks">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
+  <owl:Class rdf:about="#GeomorphicFloodProtection">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+  </owl:Class>
   <owl:Class rdf:ID="WaveUseType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#RelativeUse"/>
@@ -544,6 +560,9 @@
   </owl:Class>
   <owl:Class rdf:ID="LowVegetationCover">
     <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LowGeomorphicProtection">
+    <rdfs:subClassOf rdf:resource="#GeomorphicFloodProtection"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateSlope">
     <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
