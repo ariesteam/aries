@@ -115,36 +115,6 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
-<!-- KB: this should be replaced by the combined Puget 
-     parcels dataset.  TODO this should be an economic value measurement with date and currency, not a 
-	     dumb ranking 
-	<measurement:Ranking id="king_property_value">
-	
-		<observation:hasObservable>
-			<economics:AppraisedPropertyValue />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: King County GIS Center</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority> 
-			<metadata:hasURL>http://www.kingcounty.gov/operations/gis.aspx</metadata:hasURL>			
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetparcelsking</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>totapprval</geospace:hasValueAttribute>
-				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>30932.6796875</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>1218256.875</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>287704.25</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1577865.375</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
-	
 	<!-- bridges in Chehalis watershed from shape coverage, 
 		 seen as a presence/absence ranking -->
 	<measurement:BinaryCoding id="puget_bridges">

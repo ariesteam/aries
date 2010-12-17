@@ -71,11 +71,11 @@
 
 ;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
 (defmodel vegetation-type 'southernCalifornia:VegetationTypeSoCalCarbon
-  (classification (categorization 'southernCalifornia:VegTypeSoCal)
-                  "HDW"          'southernCalifornia:HardwoodForestVegetationType
-                  #{"CON" "MIX"} 'southernCalifornia:MixedConiferVegetationType
-                  "SHB"          'southernCalifornia:ShrubVegetationType
-                  "HEB"          'southernCalifornia:HerbaceousVegetationType))
+  (classification (numeric-coding 'southernCalifornia:VegTypeSoCal)
+                  1          'southernCalifornia:HardwoodForestVegetationType
+                  #{4 7}     'southernCalifornia:MixedConiferVegetationType
+                  0          'southernCalifornia:ShrubVegetationType
+                  3          'southernCalifornia:HerbaceousVegetationType))
 
 ;;"Reclass of the NLCD land use for the purposes of carbon modeling"
 (defmodel land-use 'southernCalifornia:LandCover

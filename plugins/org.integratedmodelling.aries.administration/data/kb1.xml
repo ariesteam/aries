@@ -482,8 +482,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
-<!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement -->
-
+<!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, 2010. -->
 	<measurement:Ranking id="pinal_pima_value">
 		<observation:hasObservable>
 			<economics:AppraisedPropertyValue />
@@ -510,6 +509,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, variable by county, 2005-2008. -->
 <measurement:Ranking id="housing_value_puget2">
 	<observation:hasObservable>
 		<economics:AppraisedPropertyValue />
@@ -1257,29 +1257,6 @@ cross-boundary data handling features are enabled.
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-
-<!-- The same layer is listed twice in this .xml file, also under geofeatures:Reservoir.  Should be able to use the same concept, I'd think.
-See the sediment_dr.clj file to make sure, otherwise leaving this commented out for now.
- 	<measurement:BinaryCoding id="dominicanRepublic_drreservoirs">
-		<observation:hasObservable>
-			<soilretentionEcology:HydroelectricUsePresence />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>dominican:drreservoirs</geospace:hasCoverageId>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>2020640.9572350862</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>227878.15057489474</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2177923.4146837196</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>377651.0166063338</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32619</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding> -->
 
 <measurement:Ranking id="oc_hsg">
 	<observation:hasObservable>
@@ -3154,27 +3131,29 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<measurement:BinaryCoding id="sanPedro_az_hydrography">
+<measurement:BinaryCoding id="hydrography_az">
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
-		<rdfs:comment>Data source: National Hydrography Dataset</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
+	<rdfs:comment>Data source: National Hydrography Dataset</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
 	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:az_hydrography</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:hydrography_az</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>26584</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>21712</geospace:hasYRangeMax>
 			<geospace:hasLatLowerBound>30.86800158030866</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-115.33000540843109</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.84600019046589</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-107.35500686129348</geospace:hasLonUpperBound>
+			<geospace:hasLonLowerBound>-115.330344</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>37.846517</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-107.354544</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
+		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
@@ -4136,7 +4115,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<observation:Categorization id="california_vegtypesocal">
+	<measurement:NumericCoding id="vegetation_type_ca">
 		<observation:hasObservable>
 			<southernCalifornia:VegTypeSoCal />
 		</observation:hasObservable>
@@ -4144,24 +4123,24 @@ we could discuss integrating those at some point.-->
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.fs.fed.us/r5/rsl/clearinghouse/gis-download.shtml</metadata:hasURL>
 		<observation:hasDataSource>
-			<geospace:WFSDataSource>
+			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>california:vegtypesocal</geospace:hasCoverageId>
-				<geospace:hasValueAttribute>covertype</geospace:hasValueAttribute>
-			</geospace:WFSDataSource>
+				<geospace:hasCoverageId>california:vegetation_type_ca</geospace:hasCoverageId>
+				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>33.565</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-118.657</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>34.332</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-117.658</geospace:hasLonUpperBound>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>3222</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>2473</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>33.5646695</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-118.657153</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>34.3319195</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-117.657713</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:ArealFeatureSet>
+			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</observation:Categorization>
-
-	
+	</measurement:NumericCoding>
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
 (1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
