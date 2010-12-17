@@ -4,10 +4,11 @@
 ;; --------------------------------------------------------------------------------------------------
 
 (ns marine.models.coastal
-	(:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only (defscenario defmodel measurement classification categorization
+                           ranking numeric-coding binary-coding identification bayesian count))
   (:refer aries :only (span)))
-      
+
 ;; --------------------------------------------------------------------------------------
 ;; Source models
 ;; --------------------------------------------------------------------------------------
@@ -50,12 +51,14 @@
 (defmodel storm-surge 'coastalProtection:StormSurgeClass
   (classification 'coastalProtection:StormSurgeClass
                   :units      "m"
-                  [5 :>]      'coastalProtection:VeryHighStormSurge
+;;                  [5 :>]      'coastalProtection:VeryHighStormSurge
+                  [5 6]      'coastalProtection:VeryHighStormSurge
                   [4 5]       'coastalProtection:HighStormSurge
                   [3 4]       'coastalProtection:ModerateStormSurge
                   [2 3]       'coastalProtection:LowStormSurge
                   [1 2]       'coastalProtection:VeryLowStormSurge
-                  [:< 1]      'coastalProtection:NoStormSurge))
+;;                  [:< 1]      'coastalProtection:NoStormSurge))
+                  [0 1]      'coastalProtection:NoStormSurge))
 
 (defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
     "Interface to Flood public asset use bayesian network"
@@ -107,11 +110,11 @@
 
 ;; Most polygons do not report any data on bleaching, these are placed under "moderate bleaching".  There's a misspelling for "HIgh" in the data that's accounted for in the discretization below.
 (defmodel coral-quality 'coastalProtection:CoralQuality
-	(classification (categorization 'coastalProtection:CoralBleaching)
- 		#{"None" "Low"}			   'coastalProtection:MinimallyBleachedCoralPresent
- 		#{"HIgh" "High"}	     'coastalProtection:HighlyBleachedCoralPresent
- 	  #{"Moderate" ""}       'coastalProtection:ModeratelyBleachedCoralPresent
-    :otherwise             'coastalProtection:NoCoralPresent))
+  (classification (categorization 'coastalProtection:CoralBleaching)
+         #{"None" "Low"}      'coastalProtection:MinimallyBleachedCoralPresent
+         #{"HIgh" "High"}     'coastalProtection:HighlyBleachedCoralPresent
+         #{"Moderate" ""}     'coastalProtection:ModeratelyBleachedCoralPresent
+         :otherwise           'coastalProtection:NoCoralPresent))
  
 ;; TODO only two classes represented from presence/absence; no idea how to 
 ;; model density based on existing data.
@@ -150,8 +153,8 @@
 	  (bayesian 'coastalProtection:CoastalFloodSink 
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
-      :observed (coastal-flood-protection)
-	 	 	:context  (mangrove coral-quality seagrass terrestrial-vegetation artificial-coastal-protection)))
+        :observed (coastal-flood-protection)
+        :context  (mangrove coral-quality seagrass terrestrial-vegetation artificial-coastal-protection)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Use models
@@ -194,7 +197,8 @@
 (defmodel geomorphic-flood-protection 'coastalProtection:GeomorphicFloodProtection
   (classification 'coastalProtection:GeomorphicFloodProtection
                   :units      "m"
-                  [1 :>]        'coastalProtection:HighGeomorphicProtection
+;;                  [1 :>]        'coastalProtection:HighGeomorphicProtection
+                  [1   2]       'coastalProtection:HighGeomorphicProtection
                   [0.5 1]       'coastalProtection:ModerateGeomorphicProtection
                   [0 0.5]       'coastalProtection:LowGeomorphicProtection))
 
@@ -207,25 +211,33 @@
       :observed (geomorphic-flood-protection)
       :context  (dune depth-elevation slope)))
 
+(defmodel coastal-flow-data 'coastalProtection:CoastalFlowData$
+  (identification 'coastalProtection:CoastalFlowData
+      :context (storm-tracks geomorphic-flood-protection)))
+
+(defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
+	(identification 'coastalProtection:CoastalStormProtection 
+		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source geomorphic-flood-sink)))
+
 ;;This SPAN statement has just been copied from flood_mark, but the "keep" 
 ;; list has been updated to correctly reflect the coastal flood flow concepts.
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
-(defmodel coastal-protection-flow 'floodService:AvoidedDamageToFarms100
-  (span 'floodService:FloodWaterMovement
-        'coastalProtection:CoastalWaveSource
+(defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:CoastalWaveSourceDaisy
         'coastalProtection:CycloneDependentLivesAtRisk
         'coastalProtection:CoastalFloodSink
         nil 
-        'floodService:TempFloodData100
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
+        'coastalProtection:CoastalFlowData
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
         :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
-        :sink-type          :finite
+        :sink-type          :infinite
         :use-type           :infinite
-        :benefit-type       :rival
-        :downscaling-factor 8
+        :benefit-type       :non-rival
+        :downscaling-factor 1
         :rv-max-states      10
         :keep ('coastal:CoastalWaveSource 'coastal:PotentialWaveMitigation 'coastal:PotentiallyWaveVulnerablePopulations
               'coastal:PotentiallyDamagingWaveFlow 'coastal:PotentiallyDamagingWaveSource 'coastal:PotentialFloodDamageReceived
@@ -233,10 +245,4 @@
               'coastal:FloodDamageReceived 'coastal:BenignWaveSource 'coastal:UnutilizedWaveMitigation
               'coastal:AbsorbedWaveFlow 'coastal:MitigatedWaveSource 'coastal:FloodMitigationBenefitsAccrued) 
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
-        :context (coastal-wave-source risk-to-life coastal-flood-sink)))
-
-(defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
-	(identification 'coastalProtection:CoastalStormProtection 
-		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source geomorphic-flood-sink)))
-
-	 	 	
+        :context (source-100km-daisy risk-to-life coastal-flood-sink)))
