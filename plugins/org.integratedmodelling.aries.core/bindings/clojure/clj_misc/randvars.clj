@@ -399,6 +399,10 @@
       cont-type
       disc-type)))
 
+(defn rv-fn
+  [f X Y]
+  (rv-resample (rv-convolute f X Y)))
+
 (defn rv-add
   [X Y]
   ;;(println "Adding" (count X) "by" (count Y) "RVs (" (type X) (type Y) ")")

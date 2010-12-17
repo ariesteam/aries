@@ -23,7 +23,7 @@
 
 (ns clj-misc.matrix-ops
   (:use [clojure.set    :only (map-invert)]
-        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries)]))
+        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries magnitude)]))
 
 (defn get-rows [matrix] (count matrix))
 (defn get-cols [matrix] (count (first matrix)))
@@ -54,6 +54,10 @@
   (filter (fn [id] (pred? (get-in matrix id)))
           (for [i (range (get-rows matrix)) j (range (get-cols matrix))] [i j])))
 
+(defn add-ids
+  [[a b] [c d]]
+  [(+ a c) (+ b d)])
+
 (defn subtract-ids
   [[a b] [c d]]
   [(- a c) (- b d)])
@@ -82,7 +86,6 @@
   "Creates a rows x cols vector of vectors whose states are
    the successive elements of aseq."
   [rows cols aseq]
-  (println "DATA COUNT " (count aseq) " " rows " " cols)
   (constraints-1.0 {:pre [(== (count aseq) (* rows cols))]})
   (vec (map vec (partition cols aseq))))
 
@@ -313,6 +316,13 @@
     (if (zero? max-val)
       matrix
       (map-matrix #(/ % max-val) matrix))))
+
+(defn find-point-at-dist-in-m
+  [id dir dist w h]
+  (let [step-size  (magnitude (map * dir [h w]))
+        num-steps  (/ dist step-size)
+        step-delta (map #(int (* num-steps %)) dir)]
+    (map + id step-delta)))
 
 (defn find-line-between
   "Returns the sequence of all points [i j] intersected by the line

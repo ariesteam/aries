@@ -247,6 +247,39 @@
   [pointA pointB]
   (Math/sqrt (square-distance pointA pointB)))
 
+(defn magnitude
+  [A]
+  (Math/sqrt (reduce + (map #(* % %) A))))
+
+(defn inner-product
+  [A B]
+  (constraints-1.0 {:pre [A B (== (count A) (count B))]})
+  (reduce + (map * A B)))
+
+(defn angular-distance
+  "Given two vectors A and B, returns the angle between them."
+  [[dy1 dx1 :as A] [dy2 dx2 :as B]]
+  (if (= A (map - B))
+    ;; 180 degree turn
+    Math/PI
+    (let [a2 (square-distance [0 0] B) ;; side a^2
+          b2 (square-distance [0 0] A) ;; side b^2
+          c2 (square-distance A B)]    ;; side c^2
+      ;; Solve for angle C (angle opposite to side c):
+      ;;   c^2 = a^2 + b^2 - 2ab*cosC
+      ;;   C   = acos((a^2 + b^2 - c^2)/2ab)
+      (Math/acos (/ (- (+ a2 b2) c2) (Math/sqrt (* 4 a2 b2)))))))
+
+(defn angular-distance2
+  "Given two vectors A and B, returns the angle between them."
+  [[dy1 dx1 :as A] [dy2 dx2 :as B]]
+  (if (= A (map - B))
+    ;; 180 degree turn
+    Math/PI
+    ;; Solve for angle C (angle opposite to side c):
+    ;;   C   = acos(x.y/a2*b2)
+    (Math/acos (/ (inner-product A B) (* (magnitude A) (magnitude B))))))
+
 (defn count-distinct
   "Returns a map of {distinct-val -> num-instances, ...} for all the
    distinct values in a sequence.  If n is given, only count the first
