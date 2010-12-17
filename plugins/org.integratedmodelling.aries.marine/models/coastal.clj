@@ -30,7 +30,7 @@
     [:< -200]           'coastalProtection:VeryDeep))
 
 (defmodel atmospheric-pressure 'coastalProtection:AtmosphericPressureClass
-  (classification (measurement 'geophysics:AtmosphericPressure "mb") ;;Not a valid unit: may need to change this to a ranking.
+  (classification (ranking 'geophysics:AtmosphericPressure) ;;This should be a measurement, in mb, but this is not yet a valid unit in Thinklab.
     [990 :>]  'coastalProtection:ModeratelyLowAtmosphericPressure
     [970 990] 'coastalProtection:LowAtmosphericPressure
     [:< 970]  'coastalProtection:VeryLowAtmosphericPressure))
@@ -139,9 +139,9 @@
 (defmodel coastal-flood-protection 'coastalProtection:TotalCoastalFloodProtection
   (classification 'coastalProtection:TotalCoastalFloodProtection
                   :units      "m"
-                  [3 :>]        'coastalProtection:HighCoastalFloodProtection
-                  [1 3]         'coastalProtection:ModerateCoastalFloodProtection
-                  [0.1 1]       'coastalProtection:LowCoastalFloodProtection
+                  [1 :>]        'coastalProtection:HighCoastalFloodProtection
+                  [0.5 1]       'coastalProtection:ModerateCoastalFloodProtection
+                  [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
                   [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
 
 ;; Wave mitigation by ecosystems, i.e., the ecosystem service.
@@ -169,11 +169,10 @@
 ;; --------------------------------------------------------------------------------------
 
 (defmodel dune 'coastalProtection:DunePresenceClass
-  (classification (categorization 'geofeatures:Dune)
+  (classification (binary-coding 'geofeatures:Dune)
     #{"dune"}   'coastalProtection:DunePresent    
     :otherwise  'coastalProtection:DuneAbsent))
 
-;; Get new layer from Brian input.  Make sure .xml & ontology values are set as measurements with the right unit types (see "slope" for proper example)
 (defmodel slope 'coastalProtection:BathymetricSlope
   (classification (measurement 'geophysics:BathymetricSlope "\u00b0")
     [16.70 :>]      'coastalProtection:HighSlope
@@ -195,8 +194,8 @@
 (defmodel geomorphic-flood-protection 'coastalProtection:GeomorphicFloodProtection
   (classification 'coastalProtection:GeomorphicFloodProtection
                   :units      "m"
-                  [3 :>]        'coastalProtection:HighGeomorphicProtection
-                  [0.5 3]       'coastalProtection:ModerateGeomorphicProtection
+                  [1 :>]        'coastalProtection:HighGeomorphicProtection
+                  [0.5 1]       'coastalProtection:ModerateGeomorphicProtection
                   [0 0.5]       'coastalProtection:LowGeomorphicProtection))
 
 ;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
@@ -204,7 +203,7 @@
     "Interface to Flood public asset use bayesian network"
     (bayesian 'coastalProtection:GeomorphicWaveReduction 
       :import   "aries.marine::CoastalFloodSink.xdsl"
-      :keep     ('coastalProtection:GeomorphicCoastalFloodProtection)
+      :keep     ('coastalProtection:GeomorphicFloodProtection)
       :observed (geomorphic-flood-protection)
       :context  (dune depth-elevation slope)))
 
@@ -238,6 +237,6 @@
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
-		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source)))
+		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source geomorphic-flood-sink)))
 
 	 	 	

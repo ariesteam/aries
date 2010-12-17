@@ -498,56 +498,6 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 				</geospace:ArealFeatureSet>
 			</observation:hasObservationExtent>
 		</measurement:Ranking>
-
-<!-- Commenting out slope data, remove once global slope is shown to be working properly.
-Slope in degrees for Puget Sound & Madagascar 
-	<measurement:Measurement id="PugetSlope">
-		<observation:hasObservable>
-			<geophysics:DegreeSlope />
-		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>12620</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>11257</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>5094045.61</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>345136.427</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>5431785.61</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>723766.427</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-	
-	<measurement:Measurement id="mad_slope">
-		<observation:hasObservable>
-			<geophysics:DegreeSlope />
-		</observation:hasObservable>
-		<measurement:unit>°</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>11423</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>17426</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-25.912917</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>42.08958366666667</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>-11.389583666666667</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>51.610417</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>  -->
 	
 <!-- presence/absence of detention basins. This raster layer replaces an earlier point layer. -->
 <measurement:Ranking id="puget_detention">
@@ -1215,33 +1165,33 @@ Slope in degrees for Puget Sound & Madagascar
 			</observation:hasObservationExtent>
 		</measurement:BinaryCoding>
 
-<!--  	<measurement:Ranking id="slope_stability">
-		<observation:hasObservable>
-			<habitat:SlopeStability />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: Washington DNR</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:slope_stability</geospace:hasCoverageId>
-				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>12399</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>10381</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>45.483</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.864</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>49.03</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-120.627</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking> -->
-	
+<measurement:Ranking id="slope_stability_puget3">
+	<observation:hasObservable>
+		<habitat:SlopeStability />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Washington DNR</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:slope_stability_puget3</geospace:hasCoverageId>
+			<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>12399</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>10381</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>45.4826389</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.864005</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.0299355</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-120.6272695</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
 <!-- For use in USLE/RUSLE -->
 	
 	<measurement:Ranking id="lsfactor_30min">

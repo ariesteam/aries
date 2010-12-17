@@ -174,10 +174,16 @@
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel floodplains 'soilretentionEcology:FloodplainsClass
-	(classification (binary-coding 'geofeatures:Floodplain)
-			0          'soilretentionEcology:InFloodplain
-			:otherwise 'soilretentionEcology:NotInFloodplain))
+;;FROM MG MODEL: UPDATED GLOBAL FLOODPLAINS LAYER - but what's below seems to work...
+(defmodel floodplains 'soilretentionEcology:Floodplains
+  (classification (binary-coding 'geofeatures:Floodplain)
+      0 'soilretentionEcology:NotInFloodplain
+      1 'soilretentionEcology:InFloodplain))
+
+;;(defmodel floodplains 'soilretentionEcology:FloodplainsClass
+;;	(classification (binary-coding 'geofeatures:Floodplain)
+;;			0          'soilretentionEcology:InFloodplain
+;;			:otherwise 'soilretentionEcology:NotInFloodplain))
 
 ;;(defmodel farmland 'soilretentionEcology:Farmland
 ;;	"Just a reclass of the regionally appropriate LULC layer"

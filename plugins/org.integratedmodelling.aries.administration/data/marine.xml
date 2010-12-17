@@ -112,8 +112,34 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-	<!-- FV: this is still the BS layer so I reverted to a ranking. The models are in sync
-		with the BS numbers. KB: This layer still has major issues.  Commenting it out and using the mg layer until global is needed.
+	<!-- This should be a measurement, in mb, but this is not yet a valid unit in Thinklab. -->
+		<measurement:Ranking id="mg_storm_tracks2_mg">
+		<observation:hasObservable>
+			<geophysics:AtmosphericPressure />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: UNEP Division of Early Warning and Assessment Global Resource Information Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://www.grid.unep.ch/data/gnv199.php</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>pr</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+	
+<!-- FV: this is still the BS layer so I reverted to a ranking. The models are in sync
+with the BS numbers. KB: This layer still has major issues.  Commenting it out and using the mg layer until global is needed.
 	<measurement:Ranking id="BathSlope">
 		<observation:hasObservable>
 			<geophysics:BathymetricSlope />
@@ -141,6 +167,33 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		</observation:hasObservationExtent>
 	</measurement:Ranking> -->
 
+<measurement:Measurement id="slope_mg">
+	<observation:hasObservable>
+		<geophysics:BathymetricSlope />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from NASA ETOPO1 Global Relief Model</rdfs:comment>
+	<metadata:hasPriority>10</metadata:hasPriority>
+	<metadata:hasURL>http://www.ngdc.noaa.gov/mgg/global/global.html/</metadata:hasURL>
+	<measurement:unit>°</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:slope_mg</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>899</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>1259</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-30.0083333</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>39.9916667</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-8.9916625</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>55.0083364</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Measurement>
+
 <measurement:Measurement id="mg_bath1-171_ProjectRaster1">
 	<observation:hasObservable>
 		<geophysics:Bathymetry />
@@ -167,6 +220,29 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:Measurement>
+
+<measurement:BinaryCoding id="mg_buffer_mg_100km">
+	<observation:hasObservable>
+		<coastalProtection:BufferMg100km />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from FTM coastline data</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:buffer_mg_100km</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-27.7</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>41.3</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-10.4</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>52.8</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<observation:Categorization id="marine_coral">
 		<observation:hasObservable>
@@ -266,6 +342,31 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:BinaryCoding id="mg_dunes_mg">
+	<observation:hasObservable>
+		<geofeatures:Dune />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:dunes_mg</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>nature</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-27.7</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>41.3</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-10.4</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>52.8</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 	
 	<observation:Categorization id="mg_estuaryarea">
 		<observation:hasObservable>
@@ -495,36 +596,29 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 	
-<!-- GET MANGROVE PRESENCE IN - this layer but just presence/absence -->
-
-
-
-<!-- FIXME: This measure is the length, not the width  -->
-<measurement:Measurement id="marine_mangrove_width2">
+<!-- This is actually just the presence/absence of mangroves: width is not important (calculated in the flow models) -->
+<measurement:BinaryCoding id="global_mangrove_width2">
 	<observation:hasObservable>
-		<coastalProtection:MangroveWidth />
+		<coastalProtection:MangrovePresence />
 	</observation:hasObservable>
-		<rdfs:comment>Data source: UNEP-WCMC</rdfs:comment>
-		<metadata:hasPriority>10</metadata:hasPriority>
-		<measurement:unit>m</measurement:unit>
+	<rdfs:comment>Data source: UNEP-WCMC</rdfs:comment>
+	<metadata:hasPriority>10</metadata:hasPriority>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>global:mangrove_width2</geospace:hasCoverageId>
-			<geospace:hasValueAttribute>shape_len_</geospace:hasValueAttribute>
-			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>-38.909</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-175.337</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>32.35</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>179.903</geospace:hasLonUpperBound>
+			<geospace:hasLatLowerBound>-38.909309387207</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-175.337432861328</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>32.3501739501953</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>179.903244018555</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:Measurement>
+</measurement:BinaryCoding> 
 
 	<measurement:Measurement id="NfertPlusManure">
 		<observation:hasObservable>
@@ -606,6 +700,33 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:Count>
 		
+<measurement:BinaryCoding id="port_mg">
+	<observation:hasObservable>
+		<infrastructure:Port />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:port_mg</geospace:hasCoverageId>
+			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>2429</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>4447</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-27.7</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>41.3</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-10.4</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>52.8</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding> 
+		
 	<measurement:Ranking id="poverty_pct_1">
 		<observation:hasObservable>
 			<policytarget:PovertyPercentage />
@@ -657,6 +778,31 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
+<observation:Categorization id="mg_storm_tracks2_mg">
+	<observation:hasObservable>
+		<coastalProtection:StormTracks />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: UNEP Division of Early Warning and Assessment Global Resource Information Database</rdfs:comment>
+	<metadata:hasPriority>10</metadata:hasPriority>
+	<metadata:hasURL>http://www.grid.unep.ch/data/gnv199.php</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>name2</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
+
 	<measurement:Ranking id="gdcyc">
 		<observation:hasObservable>
 			<habitat:TropicalStormProbability />
@@ -683,160 +829,31 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!--  
-<measurement:BinaryCoding id="mg_buffer_mg_100km">
-<observation:hasObservable>
-<coastalProtection:BufferMg100km/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:buffer_mg_100km</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-26.502649307251</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>42.2891082763672</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-10.6033172607422</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>51.385009765625</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<measurement:BinaryCoding id="mg_dunes_mg">
-<observation:hasObservable>
-<geofeatures:Dune/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:dunes_mg</geospace:hasCoverageId>
-<geospace:hasValueAttribute>nature</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-25.4302997589111</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>43.2285041809082</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-11.9549036026001</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>50.182430267334</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<measurement:BinaryCoding id="global_mangrove_width2">
-<observation:hasObservable>
-<coastalProtection:MangrovePresence/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>global:mangrove_width2</geospace:hasCoverageId>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-38.909309387207</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-175.337432861328</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>32.3501739501953</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>179.903244018555</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding> 
-
-<measurement:BinaryCoding id="port_mg">
-<observation:hasObservable>
-<infrastructure:Port/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:port_mg</geospace:hasCoverageId>
-<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>2429</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>4447</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>-25.5957588</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>43.2696424</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-12.2487588</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>50.5626424</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:BinaryCoding> 
-
-<observation:Categorization id="mg_storm_tracks2_mg">
-<observation:hasObservable>
-<coastalProtection:StormTracks/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
-<geospace:hasValueAttribute>name2</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</observation:Categorization>
-
-<measurement:Ranking id="mg_storm_tracks2_mg">
-<observation:hasObservable>
-<geophysics:AtmosphericPressure/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
-<geospace:hasValueAttribute>pr</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Measurement id="mg_storm_tracks2_mg">
-<observation:hasObservable>
-<geophysics:WindSpeed/>
-</observation:hasObservable>
-<measurement:unit>km/h</measurement:unit>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
-<geospace:hasValueAttribute>wind</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Measurement> -->
+	<measurement:Measurement id="mg_storm_tracks2_mg">
+		<observation:hasObservable>
+			<geophysics:WindSpeed />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: UNEP Division of Early Warning and Assessment Global Resource Information Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://www.grid.unep.ch/data/gnv199.php</metadata:hasURL>
+		<measurement:unit>km/h</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>wind</geospace:hasValueAttribute>
+				<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
 
 </kbox>

@@ -510,6 +510,32 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<measurement:Ranking id="housing_value_puget2">
+	<observation:hasObservable>
+		<economics:AppraisedPropertyValue />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:housing_value_puget2</geospace:hasCoverageId>
+			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>8819</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>4685</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.7515983</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.243488</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.3061989</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.3177078</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
+
 <measurement:Ranking id="sanPedro_bird_rich">
 	<observation:hasObservable>
 		<habitat:AvianRichness />
@@ -760,45 +786,6 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-
-	<!--
-		Commenting out local slope data, remove once global slope is shown to
-		be working properly. <measurement:Measurement id="DR_slope">
-		<observation:hasObservable> <geophysics:DegreeSlope />
-		</observation:hasObservable> <measurement:unit>°</measurement:unit>
-		<observation:hasDataSource> <geospace:WCSDataSource>
-		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>dominican:DR_slope</geospace:hasCoverageId>
-		<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-		</geospace:WCSDataSource> </observation:hasDataSource>
-		<observation:hasObservationExtent> <geospace:RasterGrid>
-		<geospace:hasXRangeMax>5159</geospace:hasXRangeMax>
-		<geospace:hasYRangeMax>4465</geospace:hasYRangeMax>
-		<geospace:hasLatLowerBound>18.847</geospace:hasLatLowerBound>
-		<geospace:hasLonLowerBound>-71.734</geospace:hasLonLowerBound>
-		<geospace:hasLatUpperBound>19.94</geospace:hasLatUpperBound>
-		<geospace:hasLonUpperBound>-70.472</geospace:hasLonUpperBound>
-		<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid> </observation:hasObservationExtent>
-		
-		</measurement:Measurement> <measurement:Measurement id="la_slope">
-		<observation:hasObservable> <geophysics:DegreeSlope />
-		</observation:hasObservable> <measurement:unit>°</measurement:unit>
-		<observation:hasDataSource> <geospace:WCSDataSource>
-		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-		<geospace:hasCoverageId>mexico:la_slope</geospace:hasCoverageId>
-		</geospace:WCSDataSource> </observation:hasDataSource>
-		<observation:hasObservationExtent> <geospace:RasterGrid>
-		<geospace:hasXRangeMax>5999</geospace:hasXRangeMax>
-		<geospace:hasYRangeMax>5999</geospace:hasYRangeMax>
-		<geospace:hasLatLowerBound>15.0</geospace:hasLatLowerBound>
-		<geospace:hasLonLowerBound>-100.0</geospace:hasLonLowerBound>
-		<geospace:hasLatUpperBound>20.0</geospace:hasLatUpperBound>
-		<geospace:hasLonUpperBound>-95.0</geospace:hasLonUpperBound>
-		<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid> </observation:hasObservationExtent>
-		</measurement:Measurement>
-	-->
 
 	<measurement:Measurement id="DepthToWaterSanPedro">
 		<observation:hasObservable>
@@ -1139,32 +1126,6 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-<!-- KB: Commenting this out, the correct version with conversion is in common.xml.
-	<measurement:Measurement id="TotnoCEM_Final">
-		<observation:hasObservable>
-			<carbonService:GreenhouseGasEmitters />
-		</observation:hasObservable>
-		<measurement:unit>t/ha*year</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>usa:ghg_emissions_us</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>619</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>289</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>22.059390176999997</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-137.257054</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>57.3100689</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-62.03137878700001
-				</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>  -->
-	
 <!--  Commenting this out as it causes the US highways layer to be ignored.  Comment back in once Ferd's model switching and
 cross-boundary data handling features are enabled.
 
@@ -1214,7 +1175,33 @@ cross-boundary data handling features are enabled.
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
-
+	
+	<measurement:BinaryCoding id="housing_views_puget">
+		<observation:hasObservable>
+			<aestheticService:HomeownerViewUse />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: King County assessors' offices</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:housing_views_puget</geospace:hasCoverageId>
+				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>423</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>244</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>47.139</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-122.528</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>47.778</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.423</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+	
 	<measurement:Measurement id="puget_hydroreservoirs2">
 		<observation:hasObservable>
 			<soilretentionEcology:HydroelectricUseLevel />
@@ -2851,31 +2838,31 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-<!-- Commented out until I figure out what to do with the AZ parcel data 	<measurement:BinaryCoding id="pima_parcels_Project">
-		<observation:hasObservable>
-			<aestheticService:PresenceOfHousing />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: Pima County GIS</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://dot.pima.gov/gis/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:pima_parcels_Project</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>19023</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>7194</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-113.293</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-109.87</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding> -->
+<measurement:Ranking id="parcels_puget">
+	<observation:hasObservable>
+		<aestheticService:PresenceOfHousing />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:parcels_puget</geospace:hasCoverageId>
+			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>558</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.615</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.351</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.087</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:Measurement id="Proximity_SurfaceWater1">
 		<observation:hasObservable>
@@ -4361,84 +4348,5 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid> 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>-->
-
-<measurement:Ranking id="parcels_puget">
-	<observation:hasObservable>
-		<aestheticService:PresenceOfHousing />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:parcels_puget</geospace:hasCoverageId>
-			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>558</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-124.615</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>48.351</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-121.087</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="housing_value_puget2">
-	<observation:hasObservable>
-		<economics:AppraisedPropertyValue />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:housing_value_puget2</geospace:hasCoverageId>
-			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>8819</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>4685</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>46.7515983</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-124.243488</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>48.3061989</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-121.3177078</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:Ranking> 
-
-<!-- Replace this with views_king2 -->
-	<measurement:BinaryCoding id="housing_views_puget">
-		<observation:hasObservable>
-			<aestheticService:HomeownerViewUse />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: King County assessors' offices</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:housing_views_puget</geospace:hasCoverageId>
-				<geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>423</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>244</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>47.139</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-122.528</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>47.778</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.423</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
 
 </kbox>

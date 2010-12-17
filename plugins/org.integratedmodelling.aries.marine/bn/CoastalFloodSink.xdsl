@@ -21,8 +21,8 @@
 			<probabilities>0.25 0.08 0.02 0.6 0.05</probabilities>
 		</cpt>
 		<cpt id="MangrovePresenceClass">
-			<state id="MangrovesPresent" />
-			<state id="MangrovesAbsent" />
+			<state id="MangrovePresent" />
+			<state id="MangroveAbsent" />
 			<probabilities>0.02 0.98</probabilities>
 		</cpt>
 		<cpt id="SeagrassPresenceClass">
@@ -62,7 +62,7 @@
 			<state id="VeryLowSlope" />
 			<probabilities>0.05 0.15 0.4 0.4</probabilities>
 		</cpt>
-		<cpt id="GeomorphicProtection">
+		<cpt id="GeomorphicFloodProtection">
 			<state id="HighGeomorphicProtection" />
 			<state id="ModerateGeomorphicProtection" />
 			<state id="LowGeomorphicProtection" />
@@ -101,8 +101,8 @@
 				<position>501 253 670 306</position>
 				<barchart active="true" width="364" height="90" />
 			</node>
-			<node id="GeomorphicProtection">
-				<name>GeomorphicProtection</name>
+			<node id="GeomorphicFloodProtection">
+				<name>GeomorphicFloodProtection</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -114,7 +114,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>298 374 422 416</position>
+				<position>323 378 447 420</position>
 				<barchart active="true" width="184" height="57" />
 			</node>
 			<node id="SeagrassPresenceClass">
@@ -122,7 +122,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>488 377 614 422</position>
+				<position>518 377 644 422</position>
 				<comment>Could run the model with no seagrass present to simulate winter conditions (i.e., seagrass dormant or present at very low density)</comment>
 				<barchart active="true" width="183" height="55" />
 			</node>
@@ -131,7 +131,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>738 387 851 433</position>
+				<position>768 387 881 433</position>
 				<barchart active="true" width="269" height="90" />
 			</node>
 			<node id="OceanDepthAndLandElevation">
