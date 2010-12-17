@@ -149,7 +149,7 @@
 ;;  Exit when all carriers have finished moving.
 (defmethod distribute-flow "CoastalStormMovement"
   [_ cell-width cell-height source-layer eco-sink-layer use-layer
-   {storm-tracks-layer "StormTracks", geo-sink-layer "GeomorphologicSink"}]
+   {storm-tracks-layer "StormTracks", geo-sink-layer "GeomorphicFloodProtection"}]
   (println "Running Coastal Storm Protection flow model.")
   (let [rows          (get-rows source-layer)
         cols          (get-cols source-layer)
