@@ -43,7 +43,7 @@
                            cell-dimensions))
 
   (refer 'corescience :only '(find-state
-;;                              find-observation
+                              ;;find-observation
                               ;; TODO remove this when it's not needed anymore
                               collect-states
                               get-state-map
@@ -70,7 +70,8 @@
          get-spatial-extent
          cell-dimensions
          find-state
-         find-observation
+         ;;find-observation
+         collect-states
          get-state-map
          get-dependent-states-map
          get-observable-class
@@ -128,11 +129,11 @@
    represented as probability distributions {doubles -> doubles}.
    NaN state values are converted to 0s."
   [ds rows cols]
-  (println "Inside unpack-datasource! " (str rows) " " (str cols))
+  (println "Inside unpack-datasource!" rows cols)
   (let [n             (* rows cols)
         NaNs-to-zero  (p map #(if (Double/isNaN %) 0.0 %))
         get-midpoints #(map (fn [next prev] (/ (+ next prev) 2)) (rest %) %)]
-    (println "Checking datasource type..." (str ds))
+    (println "Checking datasource type..." ds)
     (if (and (probabilistic? ds) (not (binary? ds)))
       (do (print "It's probabilistic...")
           (flush)
@@ -161,7 +162,7 @@
                   (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
       (do (println "It's deterministic.")
-          (println "DATASOURCE IS " ds) 
+          (println "DATASOURCE IS" ds)
           (for [value (NaNs-to-zero (get-data ds))]
             (with-meta (array-map value 1.0) disc-type))))))
 
@@ -231,7 +232,7 @@
   (when concept
     (mapmap (memfn getLocalName)
             #(seq2matrix rows cols (unpack-datasource % rows cols))
-;;            (get-state-map (find-observation observation concept)))))
+            ;;(get-state-map (find-observation observation concept)))))
             (get-dependent-states-map observation concept))))
 
 (defn- get-hydrosheds-layer
@@ -270,18 +271,17 @@
     (println "Unpacking observation into data-layers.")
     ;; FIXME fv this is to address an issue before it shows up - to be removed
     (collect-states observation)
-    (let [rows         (grid-rows       observation)
-          cols         (grid-columns    observation)
-          [w h]        (cell-dimensions observation) ;; in meters
-          flow-model   (.getLocalName (get-observable-class observation))
-          source-layer (layer-from-observation observation source-concept rows cols)
-          sink-layer   (layer-from-observation observation sink-concept   rows cols)
-          use-layer    (layer-from-observation observation use-concept    rows cols)
-          flow-layers  (let [layer-map (layer-map-from-observation observation flow-concept rows cols)]
-                         (if (#{"Sediment" "FloodWaterMovement"} flow-model)
-                           (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
-                           layer-map))]
-      (println "Cell Dimensions in meters:" [w h] "\n")
+    (let [rows            (grid-rows       observation)
+          cols            (grid-columns    observation)
+          [cell-w cell-h] (cell-dimensions observation) ;; in meters
+          flow-model      (.getLocalName (get-observable-class observation))
+          source-layer    (layer-from-observation observation source-concept rows cols)
+          sink-layer      (layer-from-observation observation sink-concept   rows cols)
+          use-layer       (layer-from-observation observation use-concept    rows cols)
+          flow-layers     (let [layer-map (layer-map-from-observation observation flow-concept rows cols)]
+                            (if (#{"Sediment" "FloodWaterMovement"} flow-model)
+                              (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
+                              layer-map))]
       (println "Flow Parameters:")
       (println "flow-model         =" flow-model)
       (println "downscaling-factor =" downscaling-factor)
@@ -290,6 +290,8 @@
       (println "sink-threshold     =" sink-threshold)
       (println "use-threshold      =" use-threshold)
       (println "trans-threshold    =" trans-threshold)
+      (println "cell-width         =" cell-w "meters")
+      (println "cell-height        =" cell-h "meters")
       (println "source-type        =" source-type)
       (println "sink-type          =" sink-type)
       (println "use-type           =" use-type)
@@ -310,6 +312,8 @@
                     :use-threshold      use-threshold
                     :flow-layers        flow-layers
                     :trans-threshold    trans-threshold
+                    :cell-width         cell-w
+                    :cell-height        cell-h
                     :rv-max-states      rv-max-states
                     :downscaling-factor downscaling-factor
                     :source-type        source-type

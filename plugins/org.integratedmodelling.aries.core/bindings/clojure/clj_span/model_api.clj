@@ -46,10 +46,10 @@
   ;; the service weight transmitted along these routes.  When the
   ;; simulation completes, a sequence of the locations in the network is
   ;; returned."
-  (fn [flow-model source-layer sink-layer use-layer flow-layers] flow-model))
+  (fn [flow-model cell-width cell-height source-layer sink-layer use-layer flow-layers] flow-model))
 
 (defmethod distribute-flow :default
-  [flow-model _ _ _ _]
+  [flow-model _ _ _ _ _ _]
   (throw (Exception. (str "distribute-flow is undefined for flow type: " flow-model))))
 
 (defmulti decay

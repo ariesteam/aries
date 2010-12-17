@@ -182,7 +182,7 @@
 ;;
 
 (defmethod distribute-flow "Sediment"
-  [_ source-layer sink-layer use-layer
+  [_ cell-width cell-height source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",
     floodplain-layer "FloodPlainPresence", elevation-layer "Altitude"}]
   (println "Running Sediment flow model.")

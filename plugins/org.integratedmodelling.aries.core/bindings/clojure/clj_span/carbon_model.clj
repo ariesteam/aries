@@ -132,7 +132,7 @@
 (def- *num-world-samples* 10)
 
 (defmethod distribute-flow "CO2Removed"
-  [_ source-layer sink-layer use-layer _]
+  [_ cell-width cell-height source-layer sink-layer use-layer _]
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative use
    values after being initially reduced by the sink values."

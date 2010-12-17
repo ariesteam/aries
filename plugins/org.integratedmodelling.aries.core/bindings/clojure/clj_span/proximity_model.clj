@@ -130,7 +130,7 @@
     (dorun (map (p store-carrier! flow-model cache-layer source-layer use-layer) frontier))))
 
 (defmethod distribute-flow "Proximity"
-  [flow-model source-layer sink-layer use-layer _]
+  [flow-model cell-width cell-height source-layer sink-layer use-layer _]
   (println "Running Proximity flow model.")
   (let [rows          (get-rows source-layer)
         cols          (get-cols source-layer)

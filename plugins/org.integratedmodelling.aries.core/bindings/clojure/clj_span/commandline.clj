@@ -35,21 +35,23 @@
 (def- usage-message
   (str
    "Usage: java -cp clj-span-standalone.jar clj_span.commandline \\ \n"
-   "            -source-layer       <filepath> \\ \n"
-   "            -sink-layer         <filepath> \\ \n"
-   "            -use-layer          <filepath> \\ \n"
-   "            -flow-layers        <filepath> \\ \n"
-   "            -source-threshold   <double>   \\ \n"
-   "            -sink-threshold     <double>   \\ \n"
-   "            -use-threshold      <double>   \\ \n"
-   "            -trans-threshold    <double>   \\ \n"
-   "            -rv-max-states      <integer>  \\ \n"
-   "            -downscaling-factor <number>   \\ \n"
+   "            -source-layer       <filepath>        \\ \n"
+   "            -sink-layer         <filepath>        \\ \n"
+   "            -use-layer          <filepath>        \\ \n"
+   "            -flow-layers        <filepath>        \\ \n"
+   "            -source-threshold   <double>          \\ \n"
+   "            -sink-threshold     <double>          \\ \n"
+   "            -use-threshold      <double>          \\ \n"
+   "            -trans-threshold    <double>          \\ \n"
+   "            -cell-width         <double>          \\ \n"
+   "            -cell-height        <double>          \\ \n"
+   "            -rv-max-states      <integer>         \\ \n"
+   "            -downscaling-factor <number>          \\ \n"
    "            -source-type        <finite|infinite> \\ \n"
    "            -sink-type          <finite|infinite> \\ \n"
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment>\n"))
+   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection>\n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -73,14 +75,16 @@
    ["-sink-threshold"     (& float?   read-string)  " is not a double."          ]
    ["-use-threshold"      (& float?   read-string)  " is not a double."          ]
    ["-trans-threshold"    (& float?   read-string)  " is not a double."          ]
+   ["-cell-width"         (& float?   read-string)  " is not a double."          ]
+   ["-cell-height"        (& float?   read-string)  " is not a double."          ]
    ["-rv-max-states"      (& integer? read-string)  " is not an integer."        ]
    ["-downscaling-factor" (& number?  read-string)  " is not a number."          ]               
    ["-source-type"        #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-sink-type"          #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
-   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment"}
-    " must be one of line-of-sight, proximity, carbon, flood, surface-water, or sediment."]])
+   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment" "coastal-storm-protection"}
+    " must be one of line-of-sight, proximity, carbon, flood, surface-water, sediment, or coastal-storm-protection."]])
 
 (defn- valid-params?
   "Returns true if the params map:
@@ -117,18 +121,21 @@
       (assoc :sink-threshold     (read-string (params "-sink-threshold")))
       (assoc :use-threshold      (read-string (params "-use-threshold")))
       (assoc :trans-threshold    (read-string (params "-trans-threshold")))
+      (assoc :cell-width         (read-string (params "-cell-width")))
+      (assoc :cell-height        (read-string (params "-cell-height")))
       (assoc :rv-max-states      (read-string (params "-rv-max-states")))
       (assoc :downscaling-factor (read-string (params "-downscaling-factor")))
       (assoc :source-type        (keyword (params "-source-type")))
       (assoc :sink-type          (keyword (params "-sink-type")))
       (assoc :use-type           (keyword (params "-use-type")))
       (assoc :benefit-type       (keyword (params "-benefit-type")))
-      (assoc :flow-model         ({"line-of-sight" "LineOfSight"
-                                   "proximity"     "Proximity"
-                                   "carbon"        "CO2Removed"
-                                   "flood"         "FloodWaterMovement"
-                                   "surface-water" "SurfaceWaterMovement"
-                                   "sediment"      "Sediment"}
+      (assoc :flow-model         ({"line-of-sight"            "LineOfSight"
+                                   "proximity"                "Proximity"
+                                   "carbon"                   "CO2Removed"
+                                   "flood"                    "FloodWaterMovement"
+                                   "surface-water"            "SurfaceWaterMovement"
+                                   "sediment"                 "Sediment"
+                                   "coastal-storm-protection" "CoastalStormMovement"}
                                   (params "-flow-model")))))
 
 (defn -main

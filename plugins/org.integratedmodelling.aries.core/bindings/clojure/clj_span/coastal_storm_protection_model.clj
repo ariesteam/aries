@@ -137,7 +137,6 @@
       (orientation-deltas (apply min (keys orientation-deltas))))))
 
 ;; FIXME: make sure all the right layers are being passed in with these concept names
-;; FIXME: need to get the cell-dims in here
 ;; FIXME: find a way to specify the wave width and initial storm direction
 ;;  Lookup the storm name.
 ;;  Create a function to determine the wave's new orientation.
@@ -149,13 +148,11 @@
 ;;  If a carrier's possible-weight falls below the threshold, stop the carrier.
 ;;  Exit when all carriers have finished moving.
 (defmethod distribute-flow "CoastalStormMovement"
-  [_ source-layer eco-sink-layer use-layer
+  [_ cell-width cell-height source-layer eco-sink-layer use-layer
    {storm-tracks-layer "StormTracks", geo-sink-layer "GeomorphologicSink"}]
   (println "Running Coastal Storm Protection flow model.")
   (let [rows          (get-rows source-layer)
         cols          (get-cols source-layer)
-        cell-width    100
-        cell-height   100
         cache-layer   (make-matrix rows cols (fn [_] (ref ())))
         source-points (filter-matrix-for-coords (p not= _0_) source-layer)]
     (println "Source points:" (count source-points))

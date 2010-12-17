@@ -362,7 +362,7 @@
     in-stream-carriers))
 
 (defmethod distribute-flow "SurfaceWaterMovement"
-  [_ source-layer sink-layer use-layer
+  [_ cell-width cell-height source-layer sink-layer use-layer
    {stream-layer "River", elevation-layer "Altitude"}]
   (println "Running Surface Water flow model.")
   (let [rows (get-rows source-layer)

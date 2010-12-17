@@ -95,8 +95,10 @@
 
 (defn generate-results-map
   "Run flow model and return the results as a map of layer names to closures."
-  [flow-model orig-rows orig-cols scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]
+  [flow-model orig-rows orig-cols cell-width cell-height scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]
   (let [cache-layer (distribute-flow flow-model
+                                     cell-width
+                                     cell-height
                                      scaled-source-layer
                                      scaled-sink-layer
                                      scaled-use-layer
@@ -128,10 +130,11 @@
 (def nil-or-matrix? #(or  (nil?     %) (is-matrix? %)))
 
 (defn run-span
-  [{:keys [source-layer  source-threshold   sink-layer    sink-threshold
-           use-layer     use-threshold      flow-layers   trans-threshold
-           rv-max-states downscaling-factor source-type   sink-type
-           use-type      benefit-type       flow-model    result-type]
+  [{:keys [source-layer source-threshold sink-layer    sink-threshold
+           use-layer    use-threshold    flow-layers   trans-threshold
+           cell-width   cell-height      rv-max-states downscaling-factor
+           source-type  sink-type        use-type      benefit-type
+           flow-model   result-type]
     :or {source-threshold   0.0
          sink-threshold     0.0
          use-threshold      0.0
@@ -144,12 +147,18 @@
           (every? nil-or-matrix? (cons sink-layer (vals flow-layers)))
           (apply  grids-align?   (remove nil? (list* source-layer sink-layer use-layer (vals flow-layers))))
           (every? double>=0?     [source-threshold sink-threshold use-threshold])
-          (double>0?   trans-threshold)
+          (every? double>0?      [trans-threshold cell-width cell-height])
           (integer>=1? rv-max-states)
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type sink-type use-type])
           (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight" "Proximity" "CO2Removed" "FloodWaterMovement" "SurfaceWaterMovement" "Sediment"} flow-model)
+          (#{"LineOfSight"
+             "Proximity"
+             "CO2Removed"
+             "FloodWaterMovement"
+             "SurfaceWaterMovement"
+             "Sediment"
+             "CoastalStormMovement"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states
@@ -168,6 +177,8 @@
                           flow-model
                           (get-rows source-layer)
                           (get-cols source-layer)
+                          cell-width
+                          cell-height
                           (preprocess-data-layers source-layer source-threshold
                                                   sink-layer   sink-threshold
                                                   use-layer    use-threshold

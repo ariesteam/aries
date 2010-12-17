@@ -107,7 +107,7 @@
 ;; Detects all sources and sinks visible from the use-point and stores
 ;; their utility contributions in the cache-layer."
 (defmethod distribute-flow "LineOfSight"
-  [flow-model source-layer sink-layer use-layer {elev-layer "Altitude"}]
+  [flow-model cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
   (println "Running LineOfSight flow model.")
   (let [cache-layer   (make-matrix (get-rows source-layer) (get-cols source-layer) (constantly (atom ())))
         source-points (filter-matrix-for-coords (p not= _0_) source-layer)
