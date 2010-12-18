@@ -6,7 +6,7 @@
 (ns marine.models.coastal
   (:refer-clojure :rename {count length})
   (:refer modelling :only (defscenario defmodel measurement classification categorization
-                           ranking numeric-coding binary-coding identification bayesian count))
+                           ranking numeric-coding binary-coding identification bayesian count get-data))
   (:refer aries :only (span)))
 
 ;; --------------------------------------------------------------------------------------
@@ -70,33 +70,33 @@
 
 ;;This takes the BN values ONLY where they intersect the 100 km buffer along the storm track for a given storm (Daisy in the first case)
 (defmodel source-100km-daisy 'coastalProtection:CoastalWaveSourceDaisy
-  (measurement 'coastalProtection:CoastalWaveSourceDaisy
+  (measurement 'coastalProtection:CoastalWaveSourceDaisy "m"
     :context (storm-tracks        :as storm-tracks
               buffer              :as buffer
               coastal-wave-source :as coastal-wave-source)
     :state  #(if (and (= (:storm-tracks %) "daisy")
                       (= (:buffer %) 1))
-                 (:coastal-wave-source %)
+                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
                  0.0)))
 
 (defmodel source-100km-geralda 'coastalProtection:CoastalWaveSourceGeralda
-  (measurement 'coastalProtection:CoastalWaveSourceGeralda
+  (measurement 'coastalProtection:CoastalWaveSourceGeralda "m"
     :context (storm-tracks        :as storm-tracks
               buffer              :as buffer
               coastal-wave-source :as coastal-wave-source)
     :state  #(if (and (= (:storm-tracks %) "geralda")
                       (= (:buffer %) 1))
-                 (:coastal-wave-source %)
+                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
                  0.0)))
 
 (defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
-  (measurement 'coastalProtection:CoastalWaveSourceLitanne
+  (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
     :context (storm-tracks        :as storm-tracks
               buffer              :as buffer
               coastal-wave-source :as coastal-wave-source)
     :state  #(if (and (= (:storm-tracks %) "litanne")
                       (= (:buffer %) 1))
-                 (:coastal-wave-source %)
+                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
                  0.0)))
 
 ;; --------------------------------------------------------------------------------------
