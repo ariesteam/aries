@@ -158,33 +158,4 @@
 	</observation:hasObservationExtent>
 </observation:Categorization>
 
-	<!--
-		floodplains in Chehalis watershed from shape coverage, seen as a
-		presence/absence ranking.  Commenting this out as it's unclear that this layer even still exists.
-		It's also incapabale of distinguishing between 100- and 500-year floodplains.
-	<measurement:BinaryCoding id="chehalis_floodplain">
-
-		<observation:hasObservable>
-			<geofeatures:Floodplain />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
-			<metadata:hasPriority>0</metadata:hasPriority> 
-		<observation:hasDataSource>
-			<geospace:WFSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
-				<geospace:hasFilter>zone = 'A'</geospace:hasFilter>
-			</geospace:WFSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:ArealFeatureSet>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-				<geospace:hasLatLowerBound>45.85062453730272</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-124.75110953315713</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>48.99989805456198</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-121.02121600590496</geospace:hasLonUpperBound>
-			</geospace:ArealFeatureSet>
-		</observation:hasObservationExtent>
-	</measurement:BinaryCoding> -->
-
 </kbox>

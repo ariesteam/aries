@@ -266,6 +266,13 @@
        sediment-sink-dr
        farmers-deposition-use-dr)))
 
+(defmodel reservoir-soil-deposition-data 'soilretentionEcology:ReservoirSoilDeposition
+   (identification 'soilretentionEcology:ReservoirSoilDeposition 
+     :context (
+       source-dr
+       sediment-sink-dr
+       hydroelectric-use-presence)))
+
 ;;Sediment flow model for recipients of beneficial sedimentation; 
 ;; all other parameters except for flow concepts need to be updated 
 ;;(defmodel sediment-flow 'carbonService:ClimateStability

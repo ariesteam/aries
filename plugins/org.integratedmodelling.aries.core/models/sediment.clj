@@ -37,6 +37,7 @@
       #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104} 'soilretentionEcology:MediumSoilTexture
       #{7 16 23 41 44 45 46 51 52 53 54 56 58 100 101} 'soilretentionEcology:FineSoilTexture))
 
+
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility 'soilretentionEcology:SoilErodibilityClass
      (classification (numeric-coding 'habitat:SoilErodibility)
@@ -231,14 +232,21 @@
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;; all data, for testing and storage
- ;;(defmodel data 'aestheticService:AestheticEnjoyment 
-	;;(identification 'aestheticService:AestheticEnjoyment)
-		;;  :context (
-		;;	source :as source
-		;;	homeowners :as use
-		;;	sink :as sink
-		;;	altitude :as altitude))
+(defmodel reservoir-soil-deposition-data 'soilretentionEcology:ReservoirSoilDeposition
+   (identification 'soilretentionEcology:ReservoirSoilDeposition 
+     :context (
+       source-puget
+       sediment-sink-us
+       hydroelectric-use-level
+       levees)))
+
+(defmodel farmland-soil-deposition-data 'soilretentionEcology:FarmlandSoilDeposition
+   (identification 'soilretentionEcology:FarmlandSoilDeposition 
+     :context (
+       source-puget
+       sediment-sink-us
+       farmers-deposition-use-puget
+       levees)))
 
 ;;Sediment flow model for recipients of beneficial sedimentation; 
 ;; all other parameters except for flow concepts need to be updated	

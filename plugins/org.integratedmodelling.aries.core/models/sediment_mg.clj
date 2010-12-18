@@ -218,14 +218,19 @@
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
-;; all data, for testing and storage
- ;;(defmodel data 'aestheticService:AestheticEnjoyment 
-	;;(identification 'aestheticService:AestheticEnjoyment)
-		;;  :context (
-		;;	source :as source
-		;;	homeowners :as use
-		;;	sink :as sink
-		;;	altitude :as altitude))
+(defmodel farmland-soil-deposition-data 'soilretentionEcology:FarmlandSoilDeposition
+   (identification 'soilretentionEcology:FarmlandSoilDeposition 
+     :context (
+       source-mg
+       sediment-sink-mg
+       farmers-deposition-use-mg)))
+
+(defmodel reservoir-soil-deposition-data 'soilretentionEcology:ReservoirSoilDeposition
+   (identification 'soilretentionEcology:ReservoirSoilDeposition 
+     :context (
+       source-mg
+       sediment-sink-mg
+       hydroelectric-use-level)))
 			
 ;;Sediment flow model for recipients of beneficial sedimentation; 
 ;; all other parameters except for flow concepts need to be updated 
