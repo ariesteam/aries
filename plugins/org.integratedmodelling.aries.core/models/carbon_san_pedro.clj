@@ -62,11 +62,11 @@
      (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
         #{14 34 35 83 92}                   'carbonService:LowHardness
         #{33 45 51 91}                      'carbonService:ModerateHardness
-        #{52 55 56 57 59 60 84 96 105 118}  'carbonService:HighHardness)
-     (classification (categorization 'mexico:CONABIOLULCCategory)
-        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:LowHardness
-        #{"Chaparral"}                                              'carbonService:ModerateHardness
-        #{"Bosque de encino" "Mezquital-huizachal"}                 'carbonService:HighHardness))
+        #{52 55 56 57 59 60 84 96 105 118}  'carbonService:HighHardness))
+;;     (classification (categorization 'mexico:CONABIOLULCCategory)
+;;        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} 'carbonService:LowHardness
+;;        #{"Chaparral"}                                              'carbonService:ModerateHardness
+;;        #{"Bosque de encino" "Mezquital-huizachal"}                 'carbonService:HighHardness))
 
 ;;Have removed this from the model and replaced it with annual precip.  This is probably a better variable to include
 ;; in carbon models in wetter regions, while annual precip is far more important in water-limited regions.
@@ -214,14 +214,14 @@
         :use-type           :finite
         :benefit-type       :rival
         :rv-max-states      10
-        :downscaling-factor 8
+        :downscaling-factor 2
+        :save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
                'carbonService:UsedCarbonSink 'carbonService:SatisfiedCarbonMitigationDemand
                'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
                'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------

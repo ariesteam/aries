@@ -213,7 +213,7 @@
 
 (defmodel coastal-flow-data 'coastalProtection:CoastalFlowData$
   (identification 'coastalProtection:CoastalFlowData
-      :context (storm-tracks geomorphic-flood-protection)))
+      :context (storm-tracks geomorphic-flood-sink)))
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
