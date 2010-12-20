@@ -48,9 +48,22 @@ public class ARIESNamespace {
 	public static final String ACTUAL = "eserv:Actual";
 	public static final String POSSIBLE = "eserv:Possible";
 	public static final String INACCESSIBLE = "eserv:Inaccessible";
+	
+	// namespace of contexts that define coverage for models
+	public static final String MODEL_COVERAGE_NAMESPACE = "aries.contexts.model-coverage";
 		
 	private static HashSet<IConcept> mainTraits = null;
 	private static HashSet<IConcept> mainServiceTypes = null;
+	static IConcept storyline = null;
+	
+	
+	public static IConcept Storyline() {
+
+		if (storyline == null) {
+			storyline = KnowledgeManager.get().retrieveConcept("aries:CaseStudy");
+		}
+		return storyline;
+	}
 	
 	private static IConcept classifyTrait(IConcept c, IConcept deflt) throws ThinklabException {
 		
