@@ -7,7 +7,7 @@
 			<state id="ModerateSOL" />
 			<state id="LowSOL" />
 			<state id="VeryLowSOL" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<probabilities>0 0 0.1 0.4 0.5</probabilities>
 		</cpt>
 		<cpt id="SuccessionalStage">
 			<state id="OldGrowth" />
@@ -30,7 +30,7 @@
 			<state id="ModerateVegetationCover" />
 			<state id="LowVegetationCover" />
 			<state id="VeryLowVegetationCover" />
-			<probabilities>0 0 0 0.5 0.5</probabilities>
+			<probabilities>0.3003003003003003 0.1331331331331331 0.1331331331331331 0.1331331331331331 0.3003003003003004</probabilities>
 		</cpt>
 		<cpt id="HardwoodSoftwoodRatio">
 			<state id="VeryHighHardness" />
@@ -38,7 +38,7 @@
 			<state id="ModerateHardness" />
 			<state id="LowHardness" />
 			<state id="VeryLowHardness" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+			<probabilities>0.1 0.1 0.1 0.25 0.45</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -56,13 +56,13 @@
 			<state id="HighCNRatio" />
 			<state id="LowCNRatio" />
 			<state id="VeryLowCNRatio" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+			<probabilities>0 0 0.8 0.2</probabilities>
 			<property id="SoilInfluence">SoilInfluence=((ObservedSoilTexture/MaxSoilTexture)/2)+((ObservedSoilDepth/MaxSoilDepth)/2)</property>
 		</cpt>
 		<cpt id="SoilOxygenConditions">
 			<state id="AnoxicSoils" />
 			<state id="OxicSoils" />
-			<probabilities>0.1 0.9</probabilities>
+			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="VegetationCarbonStorage">
 			<state id="VeryHighVegetationStorage" />
@@ -79,13 +79,13 @@
 			<state id="GentlyUndulating" />
 			<state id="RollingToHilly" />
 			<state id="SteeplyDissectedToMountainous" />
-			<probabilities>0.3 0.3 0.2 0.2</probabilities>
+			<probabilities>0.6 0.225 0.125 0.05</probabilities>
 		</cpt>
 		<cpt id="SoilpH">
 			<state id="HighPh" />
 			<state id="ModeratePh" />
 			<state id="LowPh" />
-			<probabilities>0.3333333333333334 0.3333333333333334 0.3333333333333333</probabilities>
+			<probabilities>0.05 0.6 0.35</probabilities>
 		</cpt>
 		<cpt id="SoilCarbonStorage">
 			<state id="VeryHighSoilStorage" />
@@ -112,7 +112,7 @@
 			<state id="ModerateDeforestationRisk" />
 			<state id="LowDeforestationRisk" />
 			<state id="NoDeforestationRisk" />
-			<probabilities>0.2 0.2 0.3 0.3</probabilities>
+			<probabilities>0.03303303303303304 0.03303303303303304 0.03303303303303304 0.9009009009009009</probabilities>
 		</cpt>
 		<cpt id="StoredCarbonRelease">
 			<state id="VeryHighRelease" />
@@ -243,7 +243,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>351 725 438 757</position>
+				<position>351 750 438 782</position>
 				<barchart active="true" width="168" height="90" />
 			</node>
 			<node id="SoilpH">

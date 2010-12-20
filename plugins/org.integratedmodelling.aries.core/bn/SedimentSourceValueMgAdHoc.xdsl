@@ -6,13 +6,13 @@
 			<state id="SoilsGroupB" />
 			<state id="SoilsGroupC" />
 			<state id="SoilsGroupD" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+			<probabilities>0.1 0.2 0.6 0.1</probabilities>
 		</cpt>
 		<cpt id="SoilTextureClass">
 			<state id="CoarseSoilTexture" />
 			<state id="MediumSoilTexture" />
 			<state id="FineSoilTexture" />
-			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
+			<probabilities>0.2 0.7 0.1</probabilities>
 		</cpt>
 		<cpt id="SlopeClass">
 			<state id="SteeplyDissectedToMountainous" />
@@ -42,7 +42,7 @@
 			<state id="ModerateAnnualPrecipitation" />
 			<state id="LowAnnualPrecipitation" />
 			<state id="VeryLowAnnualPrecipitation" />
-			<probabilities>0.2 0.2 0.2 0.2 0.2000000000000001</probabilities>
+			<probabilities>0.2 0.1 0.45 0.15 0.1</probabilities>
 		</cpt>
 		<cpt id="AnnualRunoffClass">
 			<state id="VeryHighAnnualRunoff" />
@@ -64,7 +64,7 @@
 			<state id="Savanna" />
 			<state id="DegradedForest" />
 			<state id="CroplandDeveloped" />
-			<probabilities>0.1 0.6 0.1 0.2</probabilities>
+			<probabilities>0.1 0.3 0.4 0.2</probabilities>
 		</cpt>
 		<cpt id="VegetativeMaturity">
 			<state id="HighVegetativeMaturity" />
@@ -87,7 +87,7 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="SedimentSourceValueAnnualClass">
 				<name>SedimentSourceValueAnnualClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>522 93 656 126</position>
@@ -95,7 +95,7 @@
 			</node>
 			<node id="SoilErodibilityClass">
 				<name>SoilErodibilityClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>278 230 367 267</position>
@@ -103,7 +103,7 @@
 			</node>
 			<node id="AnnualRunoffClass">
 				<name>AnnualRunoffClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>572 231 621 261</position>
@@ -111,7 +111,7 @@
 			</node>
 			<node id="VegetativeMaturity">
 				<name>VegetativeMaturity</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>832 221 956 260</position>
@@ -119,7 +119,7 @@
 			</node>
 			<node id="PercentVegetationCoverClass">
 				<name>PercentVegetationCoverClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>839 352 950 386</position>
@@ -127,7 +127,7 @@
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>1134 216 1244 249</position>
@@ -135,7 +135,7 @@
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>125 381 176 414</position>
@@ -143,7 +143,7 @@
 			</node>
 			<node id="SoilTextureClass">
 				<name>SoilTextureClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>323 387 391 423</position>
@@ -151,7 +151,7 @@
 			</node>
 			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>55 240 182 279</position>
@@ -160,15 +160,15 @@
 			</node>
 			<node id="AnnualPrecipitationClass">
 				<name>AnnualPrecipitationClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>681 567 817 604</position>
+				<position>742 484 878 521</position>
 				<barchart active="true" width="292" height="108" />
 			</node>
 			<node id="TropicalStormProbabilityClass">
 				<name>TropicalStormProbabilityClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>418 466 552 503</position>
@@ -177,7 +177,7 @@
 			<textbox>
 				<caption>Soil regulation source value: Ad hoc probabilistic model for Madagascar</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
-				<position>22 27 416 41</position>
+				<position>30 5 424 19</position>
 			</textbox>
 		</genie>
 	</extensions>

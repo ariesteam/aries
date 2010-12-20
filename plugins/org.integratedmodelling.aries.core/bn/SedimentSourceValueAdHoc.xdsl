@@ -13,7 +13,7 @@
 			<state id="HighVegetationCover" />
 			<state id="ModerateVegetationCover" />
 			<state id="LowVegetationCover" />
-			<probabilities>0.22 0.44 0.34</probabilities>
+			<probabilities>0.37 0.26 0.37</probabilities>
 		</cpt>
 		<cpt id="VegetationType">
 			<state id="ForestGrasslandWetland" />
@@ -28,7 +28,7 @@
 			<state id="PoleSuccession" />
 			<state id="EarlySuccession" />
 			<state id="NoSuccession" />
-			<probabilities>0 0.15 0.15 0.15 0.15 0.4</probabilities>
+			<probabilities>0.1 0.15 0.15 0.15 0.05 0.4</probabilities>
 		</cpt>
 		<cpt id="VegetativeMaturity">
 			<state id="HighVegetativeMaturity" />
@@ -39,10 +39,10 @@
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0.05 0.95 0.95 0.05 0 0 0.85 0.15 0 0 0.75 0.15 0.1 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.75 0.2 0.05 0 0.55 0.35 0.1 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.15 0.4 0.45 0 0.05 0.35 0.6 0 0 0.25 0.75 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.05 0.4 0.55 0 0 0.3 0.7 0 0 0.1 0.9 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SlopeStabilityClass">
-			<state id="HighSlopeStability" />
-			<state id="ModerateSlopeStability" />
 			<state id="LowSlopeStability" />
-			<probabilities>0.3 0.2 0.5</probabilities>
+			<state id="ModerateSlopeStability" />
+			<state id="HighSlopeStability" />
+			<probabilities>0.2 0.2 0.6</probabilities>
 		</cpt>
 		<cpt id="SlopeClass">
 			<state id="SteeplyDissectedToMountainous" />
@@ -55,14 +55,14 @@
 			<state id="CoarseSoilTexture" />
 			<state id="MediumSoilTexture" />
 			<state id="FineSoilTexture" />
-			<probabilities>0.3333333333333333 0.3333333333333333 0.3333333333333334</probabilities>
+			<probabilities>0.5 0.35 0.15</probabilities>
 		</cpt>
 		<cpt id="Copy_of_HydrologicSoilsGroup">
 			<state id="SoilGroupA" />
 			<state id="SoilGroupB" />
 			<state id="SoilGroupC" />
 			<state id="SoilGroupD" />
-			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+			<probabilities>0.03 0.78 0.13 0.06</probabilities>
 		</cpt>
 		<cpt id="SoilErodibilityClass">
 			<state id="VeryHighSoilErodibility" />
@@ -70,8 +70,8 @@
 			<state id="ModerateSoilErodibility" />
 			<state id="LowSoilErodibility" />
 			<state id="VeryLowSoilErodibility" />
-			<parents>SlopeStabilityClass SlopeClass SoilTextureClass Copy_of_HydrologicSoilsGroup</parents>
-			<probabilities>0.55 0.4 0.05 0 0 0.5 0.4 0.1 0 0 0.45 0.35 0.15 0.05 0 0.4 0.35 0.2 0.05 0 0.5 0.4 0.1 0 0 0.45 0.4 0.15 0 0 0.4 0.35 0.15 0.1 0 0.35 0.35 0.2 0.1 0 0.45 0.4 0.1 0.05 0 0.4 0.4 0.15 0.05 0 0.35 0.4 0.2 0.05 0 0.3 0.4 0.2 0.1 0 0.45 0.45 0.1 0 0 0.4 0.45 0.1 0.05 0 0.35 0.4 0.15 0.1 0 0.3 0.4 0.2 0.1 0 0.4 0.45 0.1 0.05 0 0.35 0.45 0.15 0.05 0 0.3 0.4 0.2 0.1 0 0.25 0.4 0.2 0.15 0 0.35 0.45 0.1 0.1 0 0.3 0.45 0.15 0.1 0 0.25 0.45 0.2 0.1 0 0.2 0.45 0.2 0.15 0 0.3 0.5 0.15 0.05 0 0.3 0.45 0.15 0.1 0 0.25 0.4 0.15 0.15 0.05 0.25 0.35 0.2 0.15 0.05 0.25 0.5 0.2 0.05 0 0.25 0.45 0.2 0.1 0 0.2 0.4 0.25 0.1 0.05 0.2 0.35 0.25 0.15 0.05 0.2 0.5 0.15 0.15 0 0.2 0.45 0.2 0.15 0 0.15 0.45 0.2 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.2 0.5 0.2 0.05 0.05 0.2 0.45 0.2 0.1 0.05 0.15 0.4 0.2 0.15 0.1 0.1 0.4 0.2 0.2 0.1 0.15 0.5 0.2 0.1 0.05 0.15 0.45 0.2 0.15 0.05 0.1 0.4 0.25 0.15 0.1 0.1 0.35 0.25 0.2 0.1 0.1 0.5 0.175 0.175 0.05 0.1 0.45 0.2 0.2 0.05 0.05 0.45 0.2 0.2 0.1 0.05 0.4 0.25 0.2 0.1 0.35 0.45 0.1 0.1 0 0.3 0.45 0.15 0.1 0 0.25 0.4 0.2 0.15 0 0.2 0.4 0.2 0.15 0.05 0.3 0.45 0.15 0.1 0 0.25 0.45 0.15 0.1 0.05 0.2 0.4 0.2 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.25 0.45 0.2 0.1 0 0.2 0.45 0.2 0.1 0.05 0.15 0.45 0.25 0.1 0.05 0.1 0.45 0.2 0.2 0.05 0.25 0.5 0.15 0.1 0 0.25 0.45 0.15 0.1 0.05 0.2 0.4 0.2 0.15 0.05 0.15 0.4 0.2 0.2 0.05 0.25 0.45 0.15 0.1 0.05 0.2 0.45 0.15 0.15 0.05 0.15 0.4 0.25 0.15 0.05 0.1 0.4 0.225 0.225 0.05 0.2 0.45 0.2 0.1 0.05 0.15 0.45 0.2 0.15 0.05 0.15 0.4 0.2 0.2 0.05 0.1 0.4 0.25 0.2 0.05 0.2 0.4 0.175 0.175 0.05 0.2 0.35 0.2 0.2 0.05 0.15 0.3 0.25 0.25 0.05 0.15 0.25 0.275 0.275 0.05 0.15 0.4 0.2 0.2 0.05 0.15 0.35 0.225 0.225 0.05 0.1 0.3 0.275 0.275 0.05 0.05 0.3 0.3 0.3 0.05 0.1 0.4 0.225 0.225 0.05 0.1 0.35 0.25 0.25 0.05 0.05 0.35 0.275 0.275 0.05 0.05 0.3 0.3 0.3 0.05 0.05 0.4 0.225 0.225 0.1 0.05 0.35 0.25 0.25 0.1 0 0.3 0.3 0.3 0.1 0 0.25 0.35 0.3 0.1 0.05 0.35 0.25 0.25 0.1 0 0.35 0.275 0.275 0.1 0 0.25 0.4 0.25 0.1 0 0.2 0.4 0.3 0.1 0 0.35 0.275 0.275 0.1 0 0.3 0.3 0.3 0.1 0 0.25 0.4 0.25 0.1 0 0.2 0.4 0.3 0.1 0 0.1 0.15 0.7 0.05 0 0.1 0.15 0.65 0.1 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.65 0.1 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.5 0.25 0 0.1 0.15 0.6 0.15 0 0.1 0.15 0.55 0.2 0 0.1 0.15 0.5 0.25 0 0.1 0.15 0.45 0.3 0 0.05 0.1 0.6 0.25 0 0.05 0.1 0.55 0.3 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.55 0.3 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.4 0.45 0 0.05 0.1 0.5 0.35 0 0.05 0.1 0.45 0.4 0 0.05 0.1 0.4 0.45 0 0.05 0.1 0.35 0.5 0 0 0.05 0.4 0.55 0 0 0.05 0.35 0.6 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.35 0.6 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.2 0.75 0 0 0.05 0.3 0.65 0 0 0.05 0.25 0.7 0 0 0.05 0.2 0.75 0 0 0.05 0.15 0.8 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9 0 0 0 0.1 0.9</probabilities>
+			<parents>SlopeClass SoilTextureClass Copy_of_HydrologicSoilsGroup SlopeStabilityClass</parents>
+			<probabilities>0.55 0.4 0.05 0 0 0.35 0.45 0.1 0.1 0 0 0.1 0.15 0.7 0.05 0.5 0.4 0.1 0 0 0.3 0.45 0.15 0.1 0 0 0.1 0.15 0.65 0.1 0.45 0.35 0.15 0.05 0 0.25 0.4 0.2 0.15 0 0 0.1 0.15 0.6 0.15 0.4 0.35 0.2 0.05 0 0.2 0.4 0.2 0.15 0.05 0 0.1 0.15 0.55 0.2 0.5 0.4 0.1 0 0 0.3 0.45 0.15 0.1 0 0 0.1 0.15 0.65 0.1 0.45 0.4 0.15 0 0 0.25 0.45 0.15 0.1 0.05 0 0.1 0.15 0.6 0.15 0.4 0.35 0.15 0.1 0 0.2 0.4 0.2 0.15 0.05 0 0.1 0.15 0.55 0.2 0.35 0.35 0.2 0.1 0 0.15 0.4 0.25 0.15 0.05 0 0.1 0.15 0.5 0.25 0.45 0.4 0.1 0.05 0 0.25 0.45 0.2 0.1 0 0 0.1 0.15 0.6 0.15 0.4 0.4 0.15 0.05 0 0.2 0.45 0.2 0.1 0.05 0 0.1 0.15 0.55 0.2 0.35 0.4 0.2 0.05 0 0.15 0.45 0.25 0.1 0.05 0 0.1 0.15 0.5 0.25 0.3 0.4 0.2 0.1 0 0.1 0.45 0.2 0.2 0.05 0 0.1 0.15 0.45 0.3 0.45 0.45 0.1 0 0 0.25 0.5 0.15 0.1 0 0 0.05 0.1 0.6 0.25 0.4 0.45 0.1 0.05 0 0.25 0.45 0.15 0.1 0.05 0 0.05 0.1 0.55 0.3 0.35 0.4 0.15 0.1 0 0.2 0.4 0.2 0.15 0.05 0 0.05 0.1 0.5 0.35 0.3 0.4 0.2 0.1 0 0.15 0.4 0.2 0.2 0.05 0 0.05 0.1 0.45 0.4 0.4 0.45 0.1 0.05 0 0.25 0.45 0.15 0.1 0.05 0 0.05 0.1 0.55 0.3 0.35 0.45 0.15 0.05 0 0.2 0.45 0.15 0.15 0.05 0 0.05 0.1 0.5 0.35 0.3 0.4 0.2 0.1 0 0.15 0.4 0.25 0.15 0.05 0 0.05 0.1 0.45 0.4 0.25 0.4 0.2 0.15 0 0.1 0.4 0.225 0.225 0.05 0 0.05 0.1 0.4 0.45 0.35 0.45 0.1 0.1 0 0.2 0.45 0.2 0.1 0.05 0 0.05 0.1 0.5 0.35 0.3 0.45 0.15 0.1 0 0.15 0.45 0.2 0.15 0.05 0 0.05 0.1 0.45 0.4 0.25 0.45 0.2 0.1 0 0.15 0.4 0.2 0.2 0.05 0 0.05 0.1 0.4 0.45 0.2 0.45 0.2 0.15 0 0.1 0.4 0.25 0.2 0.05 0 0.05 0.1 0.35 0.5 0.3 0.5 0.15 0.05 0 0.2 0.4 0.175 0.175 0.05 0 0 0.05 0.4 0.55 0.3 0.45 0.15 0.1 0 0.2 0.35 0.2 0.2 0.05 0 0 0.05 0.35 0.6 0.25 0.4 0.15 0.15 0.05 0.15 0.3 0.25 0.25 0.05 0 0 0.05 0.3 0.65 0.25 0.35 0.2 0.15 0.05 0.15 0.25 0.275 0.275 0.05 0 0 0.05 0.25 0.7 0.25 0.5 0.2 0.05 0 0.15 0.4 0.2 0.2 0.05 0 0 0.05 0.35 0.6 0.25 0.45 0.2 0.1 0 0.15 0.35 0.225 0.225 0.05 0 0 0.05 0.3 0.65 0.2 0.4 0.25 0.1 0.05 0.1 0.3 0.275 0.275 0.05 0 0 0.05 0.25 0.7 0.2 0.35 0.25 0.15 0.05 0.05 0.3 0.3 0.3 0.05 0 0 0.05 0.2 0.75 0.2 0.5 0.15 0.15 0 0.1 0.4 0.225 0.225 0.05 0 0 0.05 0.3 0.65 0.2 0.45 0.2 0.15 0 0.1 0.35 0.25 0.25 0.05 0 0 0.05 0.25 0.7 0.15 0.45 0.2 0.15 0.05 0.05 0.35 0.275 0.275 0.05 0 0 0.05 0.2 0.75 0.15 0.4 0.25 0.15 0.05 0.05 0.3 0.3 0.3 0.05 0 0 0.05 0.15 0.8 0.2 0.5 0.2 0.05 0.05 0.05 0.4 0.225 0.225 0.1 0 0 0 0.1 0.9 0.2 0.45 0.2 0.1 0.05 0.05 0.35 0.25 0.25 0.1 0 0 0 0.1 0.9 0.15 0.4 0.2 0.15 0.1 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.9 0.1 0.4 0.2 0.2 0.1 0 0.25 0.35 0.3 0.1 0 0 0 0.1 0.9 0.15 0.5 0.2 0.1 0.05 0.05 0.35 0.25 0.25 0.1 0 0 0 0.1 0.9 0.15 0.45 0.2 0.15 0.05 0 0.35 0.275 0.275 0.1 0 0 0 0.1 0.9 0.1 0.4 0.25 0.15 0.1 0 0.25 0.4 0.25 0.1 0 0 0 0.1 0.9 0.1 0.35 0.25 0.2 0.1 0 0.2 0.4 0.3 0.1 0 0 0 0.1 0.9 0.1 0.5 0.175 0.175 0.05 0 0.35 0.275 0.275 0.1 0 0 0 0.1 0.9 0.1 0.45 0.2 0.2 0.05 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.9 0.05 0.45 0.2 0.2 0.1 0 0.25 0.4 0.25 0.1 0 0 0 0.1 0.9 0.05 0.4 0.25 0.2 0.1 0 0.2 0.4 0.3 0.1 0 0 0 0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValueAnnualClass">
 			<state id="HighAnnualSedimentSource" />
@@ -86,7 +86,7 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="SedimentSourceValueAnnualClass">
 				<name>SedimentSourceValueAnnualClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>549 133 683 166</position>
@@ -94,7 +94,7 @@
 			</node>
 			<node id="AnnualPrecipitationClass">
 				<name>AnnualPrecipitationClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>590 283 639 313</position>
@@ -102,7 +102,7 @@
 			</node>
 			<node id="VegetativeMaturity">
 				<name>VegetativeMaturity</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>864 268 988 307</position>
@@ -110,7 +110,7 @@
 			</node>
 			<node id="PercentVegetationCoverClass">
 				<name>PercentVegetationCoverClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>876 389 987 423</position>
@@ -118,7 +118,7 @@
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>1205 267 1310 297</position>
@@ -126,7 +126,7 @@
 			</node>
 			<node id="SuccessionalStageClass">
 				<name>SuccessionalStageClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>1175 400 1290 435</position>
@@ -134,7 +134,7 @@
 			</node>
 			<node id="SoilErodibilityClass">
 				<name>SoilErodibilityClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>287 281 376 318</position>
@@ -142,7 +142,7 @@
 			</node>
 			<node id="SlopeStabilityClass">
 				<name>SlopeStabilityClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>556 425 637 463</position>
@@ -150,7 +150,7 @@
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>123 416 174 449</position>
@@ -158,7 +158,7 @@
 			</node>
 			<node id="SoilTextureClass">
 				<name>SoilTextureClass</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>330 425 398 461</position>
@@ -166,7 +166,7 @@
 			</node>
 			<node id="Copy_of_HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
-				<interior color="ccffff" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>62 273 189 312</position>
@@ -176,7 +176,7 @@
 			<textbox>
 				<caption>Soil regulation source value: Ad hoc probabilistic model for Puget Sound</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
-				<position>26 115 424 129</position>
+				<position>56 22 454 36</position>
 			</textbox>
 		</genie>
 	</extensions>

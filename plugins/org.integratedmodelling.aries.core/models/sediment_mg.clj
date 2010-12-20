@@ -39,7 +39,6 @@
 
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-annual 'soilretentionEcology:AnnualPrecipitationClass
-	"FIXME this is annual precipitation."
 	(classification (measurement 'habitat:AnnualPrecipitation "mm")
     [:< 600] 	    'soilretentionEcology:VeryLowAnnualPrecipitation
 		[600 1200] 	  'soilretentionEcology:LowAnnualPrecipitation
