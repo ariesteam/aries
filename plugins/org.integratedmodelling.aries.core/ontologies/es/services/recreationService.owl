@@ -43,14 +43,12 @@
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="WildlifeSpeciesRichnessClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SpeciesRichness"/>
+  </owl:Class>
   <owl:Class rdf:ID="RecreationalQuality">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-quality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="LowCongestion">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Congestion"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="VisuallySignificantLanscapes">
@@ -58,6 +56,11 @@
     >Landscapes with aesthetic qualities that provide a scenic backdrop for outdoor recreation.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LowCongestion">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Congestion"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ModerateCongestion">
@@ -122,6 +125,9 @@
       <owl:Class rdf:ID="Development"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="TransportationEnergyInfrastructureCode">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
+  </owl:Class>
   <owl:Class rdf:ID="RiverStreamAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="RiverStream"/>
@@ -131,9 +137,6 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SiteHuntingQuality"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="TransportationEnergyInfrastructureCode">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
   <owl:Class rdf:ID="Moderate">
@@ -210,6 +213,9 @@
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WildlifeSpeciesRichness">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SpeciesRichness"/>
   </owl:Class>
   <owl:Class rdf:ID="OtherOpenLand">
     <rdfs:subClassOf>
@@ -509,11 +515,11 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
-  <owl:Class rdf:ID="Strenuous">
-    <rdfs:subClassOf rdf:resource="#HikingDifficulty"/>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateViewerEnjoyment">
     <rdfs:subClassOf rdf:resource="#ViewerEnjoyment"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Strenuous">
+    <rdfs:subClassOf rdf:resource="#HikingDifficulty"/>
   </owl:Class>
   <owl:Class rdf:about="#Roads">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
@@ -531,9 +537,15 @@
     >The enjoyment of nature through various outdoor activities.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NaturalFeatures"/>
-        </owl:someValuesFrom>
+        <owl:someValuesFrom rdf:resource="#RenewableHuntingFishingGathering"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ProductionOfPlantsOrAnimals"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
         </owl:onProperty>
@@ -541,7 +553,9 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#ProductionOfPlantsOrAnimals"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="NaturalFeatures"/>
+        </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -555,20 +569,24 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Recreationists"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
-        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="NonrenewableHuntingFishingGathering"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NonrenewableHuntingFishingGathering"/>
-        </owl:someValuesFrom>
+        <owl:someValuesFrom rdf:resource="#ScenicLandscapes"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Recreationists"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -578,18 +596,6 @@
           <owl:Class rdf:ID="NatureWatching"/>
         </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#RenewableHuntingFishingGathering"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#ScenicLandscapes"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -663,6 +669,9 @@
   <owl:Class rdf:ID="DeerHuntingSourceValue">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#DestructiveExploitation"/>
   </owl:Class>
+  <owl:Class rdf:ID="VeryHighWildlifeSpeciesRichness">
+    <rdfs:subClassOf rdf:resource="#WildlifeSpeciesRichnessClass"/>
+  </owl:Class>
   <owl:Class rdf:about="#Development">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
@@ -670,13 +679,13 @@
   <owl:Class rdf:about="#HikingDistanceClass">
     <rdfs:subClassOf rdf:resource="#RecreationalQuality"/>
   </owl:Class>
-  <owl:Class rdf:about="#SiteHuntingQuality">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#DestructiveExploitation"/>
-  </owl:Class>
   <owl:Class rdf:ID="ModerateBirdingQuality">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SiteBirdingQuality"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SiteHuntingQuality">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#DestructiveExploitation"/>
   </owl:Class>
   <owl:Class rdf:about="#Recreation">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -684,6 +693,9 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ModerateWildlifeSpeciesRichness">
+    <rdfs:subClassOf rdf:resource="#WildlifeSpeciesRichnessClass"/>
   </owl:Class>
   <owl:Class rdf:about="#NonrenewableHuntingFishingGathering">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -737,6 +749,12 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HighWildlifeSpeciesRichness">
+    <rdfs:subClassOf rdf:resource="#WildlifeSpeciesRichnessClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LowWildlifeSpeciesRichness">
+    <rdfs:subClassOf rdf:resource="#WildlifeSpeciesRichnessClass"/>
   </owl:Class>
   <owl:Class rdf:ID="HighViewerEnjoyment">
     <rdfs:subClassOf rdf:resource="#ViewerEnjoyment"/>

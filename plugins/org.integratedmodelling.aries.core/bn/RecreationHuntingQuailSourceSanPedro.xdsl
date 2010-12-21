@@ -12,11 +12,11 @@
 			<state id="NoPublicAccess" />
 			<probabilities>0.6 0.4</probabilities>
 		</cpt>
-		<cpt id="RiparianAndWetlandCode">
-			<state id="HighQualityRiparianOrWetlandPresent" />
-			<state id="ModerateQualityRiparianOrWetlandPresent" />
-			<state id="LowQualityRiparianOrWetlandPresent" />
-			<state id="NoRiparianOrWetlandPresent" />
+		<cpt id="RiparianSpringWetlandQuality">
+			<state id="HighQualityRiparianSpringWetland" />
+			<state id="ModerateQualityRiparianSpringWetland" />
+			<state id="LowQualityRiparianSpringWetland" />
+			<state id="RiparianSpringWetlandAbsent" />
 			<probabilities>0.001 0.001 0.002 0.996</probabilities>
 		</cpt>
 		<cpt id="SiteQuailHuntingQuality">
@@ -24,7 +24,7 @@
 			<state id="ModerateQuailHuntingQuality" />
 			<state id="LowQuailHuntingQuality" />
 			<state id="VeryLowQuailHuntingQuality" />
-			<parents>PublicAccessClass QuailHabitat RiparianAndWetlandCode</parents>
+			<parents>PublicAccessClass QuailHabitat RiparianSpringWetlandQuality</parents>
 			<probabilities>0.7000000000000001 0.1 0.1 0.1 0.6 0.2 0.1 0.1 0.5 0.3 0.1 0.1 0.4 0.4 0.1 0.1 0.5000000000000001 0.2000000000000001 0.2000000000000001 0.1 0.4000000000000001 0.3 0.2000000000000001 0.1 0.3 0.3 0.3 0.1 0.2 0.3 0.3 0.2 0 0.1 0.1 0.8 0 0.05 0.1 0.85 0 0 0.1 0.9 0 0 0.05 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0.01 0.02 0.02 0.95 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -46,13 +46,13 @@
 				<position>664 329 742 377</position>
 				<barchart active="true" width="192" height="64" />
 			</node>
-			<node id="RiparianAndWetlandCode">
-				<name>RiparianAndWetlandCode</name>
+			<node id="RiparianSpringWetlandQuality">
+				<name>RiparianSpringWetlandQuality</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1040 312 1171 393</position>
-				<barchart active="true" width="426" height="90" />
+				<position>1061 312 1192 393</position>
+				<barchart active="true" width="468" height="90" />
 			</node>
 			<node id="SiteQuailHuntingQuality">
 				<name>SiteQuailHuntingQuality</name>

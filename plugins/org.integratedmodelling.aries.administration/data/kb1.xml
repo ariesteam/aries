@@ -1258,6 +1258,30 @@ cross-boundary data handling features are enabled.
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
 
+<measurement:BinaryCoding id="sanPedro_hydrography_simple_az">
+	<observation:hasObservable>
+		<sanPedro:HydrographySimple />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:hydrography_simple_az</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3466167.0595307318</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>533050.5962748814</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>3592355.959438759</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>609153.22257686</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
 <measurement:Ranking id="oc_hsg">
 	<observation:hasObservable>
 		<habitat:HydrologicSoilsGroup />

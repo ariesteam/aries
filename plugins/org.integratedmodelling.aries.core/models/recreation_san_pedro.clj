@@ -14,32 +14,83 @@
        [4 6]        'recreationService:ModerateBirdSpeciesRichness
        [0 4]        'recreationService:LowBirdSpeciesRichness))
 
+;;Check syntax with Gary: stuck commeting this out for now as it's throwing errors.
+;;(defmodel wildlife-richness 'recreationService:WildlifeSpeciesRichness
+;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
+;;      :context ((ranking 'habitat:AvianRichness      :as bird-species-richness)
+;;                (ranking 'habitat:MammalRichness     :as mammal-species-richness)
+;;                (ranking 'habitat:ReptileRichness    :as reptile-species-richness)
+;;                (ranking 'habitat:AmphibianRichness  :as amphibian-species-richness))
+;;      :state   #(* (+ (bird-species-richness mammal-species-richness reptile-species-richness amphibian-species-richness)) 0.25))) 
+;;(defmodel wildlife-species-richness 'recreationService:WildlifeSpeciesRichnessClass
+;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
+;;      [8 10] 'recreationService:VeryHighWildlifeSpeciesRichness
+;;      [6 8]  'recreationService:HighWildlifeSpeciesRichness
+;;      [4 6]  'recreationService:ModerateWildlifeSpeciesRichness
+;;      [0 4]  'recreationService:LowWildlifeSpeciesRichness)) 
+
 ;;Riparian zones as important to birding and hunting because of their importance to valued animal species
 ;; and for human preferences to recreate in riparian areas in the desert.
+;;Hydrography-simple currently covers only the Upper San Pedro, so need to get full
+;; layer from Bill Kepner.  Check syntax on the statements with Gary.
+(defmodel streams 'sanPedro:HydrographySimple  ;;A simplified hydrography layer: NHD is too much here (get it into Geoserver)
+  (binary-coding 'sanPedro:HydrographySimple))
+(defmodel springs 'waterSupplyService:Springs
+  (binary-coding 'waterSupplyService:Springs))
+(defmodel water-presence 'sanPedro:WaterPresence
+  (binary-coding 'sanPedro:WaterPresence
+    :context (streams :as streams springs :as springs) 
+    :state #(+ (:streams %)
+               (:springs %))))
 (defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
   (numeric-coding 'sanPedro:RiparianAndWetlandCode
-                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
+                  :context ((binary-coding 'sanPedro:WaterPresence :as water-presence)
                             (ranking 'sanPedro:RiparianConditionClass :as condition))
-                  :state   #(cond (and (== (:condition %) 1)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+                  :state   #(cond (and (== (:condition %) 1) ;;NEED TO SET AS "OTHERWISE" also.
+                                       (contains? #{1} (:water-presence %)))
                                   1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
 
                                   (and (== (:condition %) 2)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+                                       (contains? #{1} (:water-presence %)))
                                   2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
 
                                   (and (== (:condition %) 3)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
+                                       (contains? #{1} (:water-presence %)))
                                   3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
 
                                   :otherwise 0 ;;'sanPedro:NoRiparianOrWetlandPresentHig
                                   )))
-(defmodel riparian-wetland 'sanPedro:RiparianAndWetland
+(defmodel riparian-wetland 'sanPedro:RiparianSpringWetlandQuality
   (classification riparian-wetland-code
-                  3 'sanPedro:HighQualityRiparianOrWetlandPresent
-                  2 'sanPedro:ModerateQualityRiparianOrWetlandPresent
-                  1 'sanPedro:LowQualityRiparianOrWetlandPresent
-                  0 'sanPedro:RiparianOrWetlandAbsent))
+                  3 'sanPedro:HighQualityRiparianSpringWetland
+                  2 'sanPedro:ModerateQualityRiparianSpringWetland
+                  1 'sanPedro:LowQualityRiparianSpringWetland
+                  0 'sanPedro:RiparianSpringWetlandAbsent))
+
+;;(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
+;;  (numeric-coding 'sanPedro:RiparianAndWetlandCode
+;;                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
+;;                            (ranking 'sanPedro:RiparianConditionClass :as condition))
+;;                  :state   #(cond (and (== (:condition %) 1)
+;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+;;                                  1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
+
+;;                                  (and (== (:condition %) 2)
+;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
+;;                                  2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
+
+;;                                  (and (== (:condition %) 3)
+;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
+;;                                 3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
+
+;;                                  :otherwise 0 ;;'sanPedro:NoRiparianOrWetlandPresentHig
+;;                                  )))
+;;(defmodel riparian-wetland 'sanPedro:RiparianAndWetland
+;;  (classification riparian-wetland-code
+;;                  3 'sanPedro:HighQualityRiparianOrWetlandPresent
+;;                  2 'sanPedro:ModerateQualityRiparianOrWetlandPresent
+;;                  1 'sanPedro:LowQualityRiparianOrWetlandPresent
+;;                  0 'sanPedro:RiparianOrWetlandAbsent))
 
 ;;No public access includes private land, Native American reservations, military land.
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.

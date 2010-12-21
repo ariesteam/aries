@@ -54,16 +54,21 @@
       <owl:Class rdf:about="#VegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="LowQualityRiparianSpringWetland">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RiparianSpringWetlandQuality"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="RiparianAndWetlandCode">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MesquiteManagement">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
   </owl:Class>
   <owl:Class rdf:ID="Riparian">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#VegetationType"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MesquiteManagement">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanGrowthBaseline">
     <rdfs:subClassOf>
@@ -104,6 +109,11 @@
   <owl:Class rdf:ID="MourningDoveHabitat">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#DoveHabitat"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RiparianSpringWetlandAbsent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#UrbanGrowth">
@@ -162,6 +172,11 @@
   <owl:Class rdf:ID="UrbanGrowth2020Open">
     <rdfs:subClassOf rdf:resource="#UrbanGrowth"/>
   </owl:Class>
+  <owl:Class rdf:ID="HighQualityRiparianSpringWetland">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="DeerSpeciesAbsent">
     <rdfs:subClassOf rdf:resource="#DeerHabitat"/>
   </owl:Class>
@@ -196,22 +211,28 @@
       <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModerateQualityRiparianSpringWetland">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCBase">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#VegetationType">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+  </owl:Class>
   <owl:Class rdf:about="#HarvestableSpeciesHabitat">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="DesertScrub">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#VegetationType"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#VegetationType"/>
   </owl:Class>
-  <owl:Class rdf:about="#VegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+  <owl:Class rdf:ID="HydrographySimple">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#RunningWater"/>
   </owl:Class>
   <owl:Class rdf:ID="CAPWaterAugmentationBaseline">
     <rdfs:subClassOf rdf:resource="#CAPWaterAugmentation"/>
@@ -229,6 +250,9 @@
   </owl:Class>
   <owl:Class rdf:about="#DoveHabitat">
     <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="WaterPresence">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#CompleteWaterCoverage"/>
   </owl:Class>
   <owl:Class rdf:ID="Grassland">
     <rdfs:subClassOf rdf:resource="#VegetationType"/>
@@ -309,6 +333,9 @@
   </owl:Class>
   <owl:Class rdf:about="#QuailHabitat">
     <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:about="#RiparianSpringWetlandQuality">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
