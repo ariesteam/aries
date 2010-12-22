@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="BirdSpeciesRichness">
-			<state id="VeryHighBirdSpeciesRichness" />
-			<state id="HighBirdSpeciesRichness" />
-			<state id="ModerateBirdSpeciesRichness" />
-			<state id="LowBirdSpeciesRichness" />
+		<cpt id="WildlifeSpeciesRichness">
+			<state id="VeryHighWildlifeSpeciesRichness" />
+			<state id="HighWildlifeSpeciesRichness" />
+			<state id="ModerateWildlifeSpeciesRichness" />
+			<state id="LowWildlifeSpeciesRichness" />
 			<probabilities>0.05 0.1 0.8 0.05</probabilities>
 		</cpt>
 		<cpt id="PublicAccessClass">
@@ -20,24 +20,24 @@
 			<state id="RiparianSpringWetlandAbsent" />
 			<probabilities>0.001 0.001 0.002 0.996</probabilities>
 		</cpt>
-		<cpt id="SiteBirdingQuality">
-			<state id="HighBirdingQuality" />
-			<state id="ModerateBirdingQuality" />
-			<state id="LowBirdingQuality" />
-			<state id="VeryLowBirdingQuality" />
-			<parents>PublicAccessClass BirdSpeciesRichness RiparianSpringWetlandQuality</parents>
+		<cpt id="SiteWildlifeQuality">
+			<state id="HighWildlifeQuality" />
+			<state id="ModerateWildlifeQuality" />
+			<state id="LowWildlifeQuality" />
+			<state id="VeryLowWildlifeQuality" />
+			<parents>PublicAccessClass WildlifeSpeciesRichness RiparianSpringWetlandQuality</parents>
 			<probabilities>0.9 0.1 0 0 0.8 0.15 0.05 0 0.7 0.25 0.05 0 0.6000000000000001 0.3 0.1 0 0.6000000000000001 0.3 0.1 0 0.4 0.4 0.2 0 0.3 0.5 0.2 0 0.25 0.5 0.25 0 0.2 0.6 0.2 0 0.1 0.6 0.3 0 0 0.6 0.4 0 0 0.5 0.5 0 0 0.25 0.35 0.4 0 0.1 0.4 0.5 0 0 0.25 0.75 0 0 0.2 0.8 0.09 0.01 0 0.9 0.08 0.015 0.005 0.9 0.07000000000000001 0.025 0.005 0.9 0.06 0.03 0.01 0.9 0.06 0.03 0.01 0.9 0.04 0.04 0.02 0.9 0.03 0.05 0.02 0.9 0.025 0.05 0.025 0.9 0.02 0.06 0.02 0.9 0.01 0.06 0.03 0.9 0 0.06 0.04 0.9 0 0.05 0.05 0.9 0 0.025 0.035 0.94 0 0.01 0.04 0.95 0 0 0.025 0.975 0 0 0.02 0.98</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
-			<node id="BirdSpeciesRichness">
-				<name>BirdSpeciesRichness</name>
+			<node id="WildlifeSpeciesRichness">
+				<name>WildlifeSpeciesRichness</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>349 322 461 392</position>
-				<barchart active="true" width="308" height="90" />
+				<position>328 322 440 392</position>
+				<barchart active="true" width="349" height="90" />
 			</node>
 			<node id="PublicAccessClass">
 				<name>PublicAccessClass</name>
@@ -55,8 +55,8 @@
 				<position>989 320 1120 401</position>
 				<barchart active="true" width="443" height="90" />
 			</node>
-			<node id="SiteBirdingQuality">
-				<name>SiteBirdingQuality</name>
+			<node id="SiteWildlifeQuality">
+				<name>SiteWildlifeQuality</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

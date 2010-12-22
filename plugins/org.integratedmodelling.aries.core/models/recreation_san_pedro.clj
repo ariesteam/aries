@@ -14,21 +14,6 @@
        [4 6]        'recreationService:ModerateBirdSpeciesRichness
        [0 4]        'recreationService:LowBirdSpeciesRichness))
 
-;;Check syntax with Gary: stuck commeting this out for now as it's throwing errors.
-;;(defmodel wildlife-richness 'recreationService:WildlifeSpeciesRichness
-;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
-;;      :context ((ranking 'habitat:AvianRichness      :as bird-species-richness)
-;;                (ranking 'habitat:MammalRichness     :as mammal-species-richness)
-;;                (ranking 'habitat:ReptileRichness    :as reptile-species-richness)
-;;                (ranking 'habitat:AmphibianRichness  :as amphibian-species-richness))
-;;      :state   #(* (+ (bird-species-richness mammal-species-richness reptile-species-richness amphibian-species-richness)) 0.25))) 
-;;(defmodel wildlife-species-richness 'recreationService:WildlifeSpeciesRichnessClass
-;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
-;;      [8 10] 'recreationService:VeryHighWildlifeSpeciesRichness
-;;      [6 8]  'recreationService:HighWildlifeSpeciesRichness
-;;      [4 6]  'recreationService:ModerateWildlifeSpeciesRichness
-;;      [0 4]  'recreationService:LowWildlifeSpeciesRichness)) 
-
 ;;Riparian zones as important to birding and hunting because of their importance to valued animal species
 ;; and for human preferences to recreate in riparian areas in the desert.
 ;;Hydrography-simple currently covers only the Upper San Pedro, so need to get full
@@ -118,6 +103,39 @@
             :keep     ('recreationService:SiteBirdingQuality)
             :observed (birding-quality)
             :context  (bird-richness riparian-wetland public-lands)))
+
+;; ----------------------------------------------------------------------------------------------
+;;  Wildlife viewing source model
+;; ----------------------------------------------------------------------------------------------
+
+;;Check syntax with Gary: stuck commeting this out for now as it's throwing errors.
+;;(defmodel wildlife-richness 'recreationService:WildlifeSpeciesRichness
+;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
+;;      :context ((ranking 'habitat:AvianRichness      :as bird-species-richness)
+;;                (ranking 'habitat:MammalRichness     :as mammal-species-richness)
+;;                (ranking 'habitat:ReptileRichness    :as reptile-species-richness)
+;;                (ranking 'habitat:AmphibianRichness  :as amphibian-species-richness))
+;;      :state   #(* (+ (bird-species-richness mammal-species-richness reptile-species-richness amphibian-species-richness)) 0.25))) 
+;;(defmodel wildlife-species-richness 'recreationService:WildlifeSpeciesRichnessClass
+;;    (classification (ranking 'recreationService:WildlifeSpeciesRichness)
+;;      [8 10] 'recreationService:VeryHighWildlifeSpeciesRichness
+;;      [6 8]  'recreationService:HighWildlifeSpeciesRichness
+;;      [4 6]  'recreationService:ModerateWildlifeSpeciesRichness
+;;      [0 4]  'recreationService:LowWildlifeSpeciesRichness)) 
+
+(defmodel wildlife-quality 'recreationService:SiteWildlifeQuality
+  (classification 'recreationService:SiteWildlifeQuality
+      [0 10]   'recreationService:VeryLowWildlifeQuality 
+      [10 33]  'recreationService:LowWildlifeQuality 
+      [33 67]  'recreationService:ModerateWildlifeQuality 
+      [67 100] 'recreationService:HighWildlifeQuality))
+
+(defmodel source-wildlife 'recreationService:WildlifeViewingSourceValue
+  (bayesian 'recreationService:WildlifeViewingSourceValue
+          :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
+            :keep     ('recreationService:SiteWildlifeQuality)
+            :observed (wildlife-quality)
+            :context  (wildlife-richness riparian-wetland public-lands)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;;  Hunting source model
