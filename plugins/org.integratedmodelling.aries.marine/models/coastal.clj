@@ -219,8 +219,6 @@
 	(identification 'coastalProtection:CoastalStormProtection 
 		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source geomorphic-flood-sink)))
 
-;;This SPAN statement has just been copied from flood_mark, but the "keep" 
-;; list has been updated to correctly reflect the coastal flood flow concepts.
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
   (span 'coastalProtection:CoastalStormMovement

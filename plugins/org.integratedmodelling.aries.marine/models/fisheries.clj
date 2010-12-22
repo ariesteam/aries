@@ -134,9 +134,9 @@
 ;; list has been updated to correctly reflect the fisheries flow concepts.
 (defmodel fisheries-subsistence-flow 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
-        'floodService:FloodSourceValue
-        'floodService:FloodFarmersUse100
-        'floodService:FloodSink
+        'fisheries:TotalSubsistenceHarvest
+        'fisheries:SubsistenceFishing
+        nil
         nil 
         'floodService:TempFloodData100
         :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
