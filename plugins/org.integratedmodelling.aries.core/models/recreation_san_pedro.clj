@@ -14,6 +14,12 @@
        [4 6]        'recreationService:ModerateBirdSpeciesRichness
        [0 4]        'recreationService:LowBirdSpeciesRichness))
 
+(defmodel bird-rarity 'recreationService:RareCharismaticBirdHabitat
+    (classification (ranking 'habitat:RareBirdHabitat)
+      #{4 5}   'recreationService:HighRareCharismaticBirdHabitat
+      #{1 2 3} 'recreationService:ModerateRareCharismaticBirdHabitat
+      0        'recreationService:LowRareCharismaticBirdHabitat)) 
+
 ;;Riparian zones as important to birding and hunting because of their importance to valued animal species
 ;; and for human preferences to recreate in riparian areas in the desert.
 ;;Hydrography-simple currently covers only the Upper San Pedro, so need to get full
@@ -102,7 +108,7 @@
             :import   "aries.core::RecreationBirdingSourceSanPedro.xdsl"
             :keep     ('recreationService:SiteBirdingQuality)
             :observed (birding-quality)
-            :context  (bird-richness riparian-wetland public-lands)))
+            :context  (bird-richness bird-rarity riparian-wetland public-lands)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;;  Wildlife viewing source model
@@ -135,7 +141,7 @@
           :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
             :keep     ('recreationService:SiteWildlifeQuality)
             :observed (wildlife-quality)
-            :context  (wildlife-richness riparian-wetland public-lands)))
+            :context  (riparian-wetland public-lands))) ;;add wildlife-richness when statement's OK'd
 
 ;; ----------------------------------------------------------------------------------------------
 ;;  Hunting source model

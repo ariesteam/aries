@@ -2785,6 +2785,33 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
+<measurement:Count id="vermont_population_density_vt">
+	<observation:hasObservable>
+		<policytarget:PopulationDensity />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<measurement:unit>/km^2</measurement:unit>
+		<metadata:belongsToDataset>US_Census_population_density</metadata:belongsToDataset>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>vermont:population_density_vt</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>pop_dens</geospace:hasValueAttribute>
+			<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>42.7268600463867</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-73.4305191040039</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>45.0166702270508</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-71.4645538330078</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:Count>
+
 	<measurement:Measurement id="pet">
 		<observation:hasObservable>
 			<habitat:PotentialEvapotranspiration />
@@ -2934,6 +2961,33 @@ we could discuss integrating those at some point.-->
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+
+<measurement:Ranking id="rare_charismatic_bird_richness2">
+	<observation:hasObservable>
+		<habitat:RareBirdHabitat />
+	</observation:hasObservable>
+		<rdfs:comment>Data source: Southwest Regional GAP Analysis Project Animal Habitat Models</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap/habitatreview/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:rare_charismatic_bird_richness2</geospace:hasCoverageId>
+			<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>10660</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>7620</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>28.9392764</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-122.068598</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>44.1832764</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-100.744598</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 	<measurement:Ranking id="sanPedro_reptile_rich">
 		<observation:hasObservable>

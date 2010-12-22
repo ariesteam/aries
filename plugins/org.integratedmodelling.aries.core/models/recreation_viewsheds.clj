@@ -147,6 +147,9 @@
     :context  (view-position travel-time public-access hiking-distance hiking-slope)
     :observed (viewer-enjoyment)))
 
+(defmodel population-density 'policytarget:PopulationDensity
+  (count 'policytarget:PopulationDensity "/km^2"))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------

@@ -20,13 +20,19 @@
 			<state id="RiparianSpringWetlandAbsent" />
 			<probabilities>0.001 0.001 0.002 0.996</probabilities>
 		</cpt>
+		<cpt id="RareCharismaticBirdHabitat">
+			<state id="HighRareCharismaticBirdHabitat" />
+			<state id="ModerateRareCharismaticBirdHabitat" />
+			<state id="LowRareCharismaticBirdHabitat" />
+			<probabilities>0.3 0.6 0.1</probabilities>
+		</cpt>
 		<cpt id="SiteBirdingQuality">
 			<state id="HighBirdingQuality" />
 			<state id="ModerateBirdingQuality" />
 			<state id="LowBirdingQuality" />
 			<state id="VeryLowBirdingQuality" />
-			<parents>PublicAccessClass BirdSpeciesRichness RiparianSpringWetlandQuality</parents>
-			<probabilities>0.9 0.1 0 0 0.8 0.15 0.05 0 0.7 0.25 0.05 0 0.6000000000000001 0.3 0.1 0 0.6000000000000001 0.3 0.1 0 0.4 0.4 0.2 0 0.3 0.5 0.2 0 0.25 0.5 0.25 0 0.2 0.6 0.2 0 0.1 0.6 0.3 0 0 0.6 0.4 0 0 0.5 0.5 0 0 0.25 0.35 0.4 0 0.1 0.4 0.5 0 0 0.25 0.75 0 0 0.2 0.8 0.09 0.01 0 0.9 0.08 0.015 0.005 0.9 0.07000000000000001 0.025 0.005 0.9 0.06 0.03 0.01 0.9 0.06 0.03 0.01 0.9 0.04 0.04 0.02 0.9 0.03 0.05 0.02 0.9 0.025 0.05 0.025 0.9 0.02 0.06 0.02 0.9 0.01 0.06 0.03 0.9 0 0.06 0.04 0.9 0 0.05 0.05 0.9 0 0.025 0.035 0.94 0 0.01 0.04 0.95 0 0 0.025 0.975 0 0 0.02 0.98</probabilities>
+			<parents>BirdSpeciesRichness RareCharismaticBirdHabitat RiparianSpringWetlandQuality PublicAccessClass</parents>
+			<probabilities>0.9 0.1 0 0 0.09 0.01 0 0.9 0.8 0.2 0 0 0.08 0.02 0 0.9 0.7 0.3 0 0 0.07000000000000001 0.03 0 0.9 0.6 0.4 0 0 0.06 0.04 0 0.9 0.8 0.2 0 0 0.08 0.02 0 0.9 0.7 0.3 0 0 0.07000000000000001 0.03 0 0.9 0.6 0.4 0 0 0.06 0.04 0 0.9 0.5 0.4 0.1 0 0.05 0.04 0.01 0.9 0.7 0.3 0 0 0.07000000000000001 0.03 0 0.9 0.6 0.4 0 0 0.06 0.04 0 0.9 0.5 0.4 0.1 0 0.05 0.04 0.01 0.9 0.4 0.4 0.2 0 0.04 0.04 0.02 0.9 0.6 0.2999999999999999 0.09999999999999998 0 0.06 0.03 0.01 0.9 0.5 0.4 0.1 0 0.05 0.04 0.01 0.9 0.4 0.4 0.2 0 0.04 0.04 0.02 0.9 0.3 0.4 0.3 0 0.03 0.04 0.03 0.9 0.5 0.35 0.15 0 0.05 0.035 0.015 0.9 0.4 0.4 0.2 0 0.04 0.04 0.02 0.9 0.3 0.4 0.3 0 0.03 0.04 0.03 0.9 0.2 0.4 0.4 0 0.02 0.04 0.04 0.9 0.4 0.4 0.2 0 0.04 0.04 0.02 0.9 0.3 0.4 0.3 0 0.03 0.04 0.03 0.9 0.2 0.4 0.4 0 0.02 0.04 0.04 0.9 0.1 0.4 0.5 0 0.01 0.04 0.05 0.9 0.3 0.5 0.2 0 0.03 0.05 0.02 0.9 0.2 0.5 0.3 0 0.02 0.05 0.03 0.9 0.1 0.5 0.4 0 0.01 0.05 0.04 0.9 0.1 0.4 0.5 0 0.01 0.04 0.05 0.9 0.1 0.65 0.25 0 0.01 0.065 0.025 0.9 0 0.65 0.35 0 0 0.065 0.035 0.9 0 0.55 0.45 0 0 0.055 0.045 0.9 0 0.45 0.55 0 0 0.045 0.055 0.9 0.05 0.5 0.45 0 0.005 0.05 0.045 0.9 0 0.45 0.55 0 0 0.045 0.055 0.9 0 0.35 0.65 0 0 0.035 0.065 0.9 0 0.25 0.75 0 0 0.025 0.075 0.9 0.2 0.5 0.3 0 0.02 0.05 0.03 0.9 0.1 0.5 0.4 0 0.01 0.05 0.04 0.9 0 0.5 0.5 0 0 0.05 0.05 0.9 0 0.4 0.6 0 0 0.04 0.06 0.9 0 0.25 0.35 0.4 0 0.025 0.035 0.94 0 0.15 0.45 0.4 0 0.015 0.045 0.94 0 0.05 0.45 0.5 0 0.005 0.045 0.95 0 0.05 0.35 0.6 0 0.005 0.035 0.96 0 0.15 0.45 0.4 0 0.015 0.045 0.94 0 0.05 0.5 0.45 0 0.005 0.05 0.945 0 0.05 0.4 0.55 0 0.005 0.04 0.955 0 0.05 0.3 0.65 0 0.005 0.03 0.965</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -36,7 +42,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>349 322 461 392</position>
+				<position>230 314 342 384</position>
 				<barchart active="true" width="308" height="90" />
 			</node>
 			<node id="PublicAccessClass">
@@ -44,7 +50,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>659 330 737 378</position>
+				<position>879 316 957 364</position>
 				<barchart active="true" width="185" height="64" />
 			</node>
 			<node id="RiparianSpringWetlandQuality">
@@ -52,8 +58,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>989 320 1120 401</position>
-				<barchart active="true" width="443" height="90" />
+				<position>1150 312 1281 393</position>
+				<barchart active="true" width="383" height="90" />
 			</node>
 			<node id="SiteBirdingQuality">
 				<name>SiteBirdingQuality</name>
@@ -62,6 +68,14 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>654 145 749 204</position>
 				<barchart active="true" width="278" height="90" />
+			</node>
+			<node id="RareCharismaticBirdHabitat">
+				<name>RareCharismaticBirdHabitat</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>563 299 702 385</position>
+				<barchart active="true" width="355" height="72" />
 			</node>
 		</genie>
 	</extensions>
