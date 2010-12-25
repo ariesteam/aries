@@ -2,7 +2,6 @@ package org.integratedmodelling.aries.valuation.implementations.observations;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 
 import org.integratedmodelling.aries.valuation.ARIESValuationPlugin;
 import org.integratedmodelling.aries.valuation.calculator.ESCalculatorFactory;
@@ -12,6 +11,7 @@ import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.datasources.MemDoubleContextualizedDatasource;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
+import org.integratedmodelling.corescience.interfaces.IContext;
 import org.integratedmodelling.corescience.interfaces.IExtent;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.corescience.interfaces.IState;
@@ -28,7 +28,6 @@ import org.integratedmodelling.thinklab.exception.ThinklabValidationException;
 import org.integratedmodelling.thinklab.interfaces.annotations.InstanceImplementation;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
-import org.integratedmodelling.thinklab.interfaces.knowledge.IInstance;
 import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.Polylist;
 import org.integratedmodelling.utils.Triple;
@@ -69,8 +68,8 @@ public class ESVCalculatorTransformer
 	}
 	
 	@Override
-	public Polylist transform(IObservationContext sourceCtx, ISession session,
-			IObservationContext context) throws ThinklabException {
+	public IContext transform(IObservationContext sourceCtx, ISession session,
+			IContext context) throws ThinklabException {
 		
 		IConcept landUseConcept = KnowledgeManager.get().requireConcept(LAND_USE_DEPENDENCY);
 		
@@ -84,7 +83,7 @@ public class ESVCalculatorTransformer
 		IExtent extent = context.getExtent(Geospace.get().SpaceObservable());
 		
 		if ( extent == null || !(extent instanceof GridExtent) || 
-				!(extent.getValueCount() == context.getMultiplicity()))
+				!(extent.getValueCount() == ((IObservationContext)context).getMultiplicity()))
 			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
 
 //		int rows = ((GridExtent)extent).getYCells();
@@ -211,7 +210,6 @@ public class ESVCalculatorTransformer
 				stt ++;
 			}
 		}
-		
 	
 		/*
 		 * set aggregate totals in metadata for display
@@ -224,48 +222,13 @@ public class ESVCalculatorTransformer
 			stt++;
 		}
 		
-		/*
-		 * prepare new observation
-		 */
-		Polylist rdef = Polylist.list(
-				CoreScience.OBSERVATION,
-				Polylist.list(
-						CoreScience.HAS_OBSERVABLE, getObservable().toList(null)));
-		
-		
-		/*
-		 * add all dependents - for now these have means and stds in them, not 
-		 * distributions, so a ranking is appropriate.
-		 */
-		Polylist stdef = null;
+		ObservationContext ret = new ObservationContext(context.getExtents());
+		ret.setObservation(this);
 		for (Pair<IConcept, IState> st : states) {
-			
-			Polylist ddef = Polylist.list(
-					CurrencyPlugin.MONETARY_VALUE_OBSERVATION,
-					Polylist.list(
-							CoreScience.HAS_OBSERVABLE, Polylist.list(st.getFirst())),
-					Polylist.list(
-							CoreScience.HAS_DATASOURCE, 
-							st.getSecond().conceptualize()));
-			
-			rdef = ObservationFactory.addDependency(rdef, stdef = ddef);
+			ret.addState(st.getSecond());
 		}
 		
-		/*
-		 * return the lone service obs if that's what we asked for.
-		 */
-		Polylist ret = 
-			(service != null && stdef != null) ?
-					stdef : rdef;
-
-		/*
-		 * make new extents to match previous
-		 */
-		for (IConcept ext : context.getDimensions()) {
-			ret = ObservationFactory.addExtent(ret, context.getExtent(ext).conceptualize());
-		}
-
 		return ret;
-		
+
 	}
 }

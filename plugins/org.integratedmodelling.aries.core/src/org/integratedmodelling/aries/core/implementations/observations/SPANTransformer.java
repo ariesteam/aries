@@ -9,6 +9,7 @@ import org.integratedmodelling.aries.core.span.SPANProxy;
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.observations.Observation;
+import org.integratedmodelling.corescience.interfaces.IContext;
 import org.integratedmodelling.corescience.interfaces.IExtent;
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.corescience.interfaces.IState;
@@ -109,19 +110,18 @@ public class SPANTransformer
 
 		String cn = "eserv:" + CamelCase.toUpperCamelCase(keyword, '-');
 		IConcept concept = KnowledgeManager.get().requireConcept(cn);
-		IConcept source = null;
 		IConcept ret = null;
 
-		if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
-			source = sourceConcept;
-		} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
-			source = useConcept;
-		} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
-			source = sinkConcept;
-		} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
-			source = flowConcept;
-		}
-		
+//		if (concept.is(ARIESNamespace.SOURCE_TRAIT)) {
+//			source = sourceConcept;
+//		} else if (concept.is(ARIESNamespace.USE_TRAIT)) {
+//			source = useConcept;
+//		} else if (concept.is(ARIESNamespace.SINK_TRAIT)) {
+//			source = sinkConcept;
+//		} else if (concept.is(ARIESNamespace.FLOW_TRAIT)) {
+//			source = flowConcept;
+//		}
+//		
 		/*
 		 * new simpler strategy: the modeler names the concepts she wants
 		 * computed, which must derive from the given traits. If any of the
@@ -133,48 +133,13 @@ public class SPANTransformer
 				break;
 			}
 		}
-		
-//		if (source != null) {
-//
-//			if (source.is(concept)) {
-//				ret = source;
-//			} else {
-//				for (IConcept ch : source.getChildren()) {
-//					if (ch.is(concept)) {
-//						ret = ch;
-//						break;
-//					}
-//				}
-//				if (ret == null) {
-//					// this is a bit complicated: scan the children of the
-//					// first parent
-//					// that is in the same concept space
-//					IConcept parent = null;
-//					for (IConcept ch : source.getParents()) {
-//						if (ch.getConceptSpace().equals(
-//								source.getConceptSpace())) {
-//							parent = ch;
-//							break;
-//						}
-//					}
-//					if (parent != null) {
-//						for (IConcept ch : parent.getChildren()) {
-//							if (ch.is(concept)) {
-//								ret = ch;
-//								break;
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
 
 		return ret;
 	}
 
 	@Override
-	public Polylist transform(IObservationContext sourceCtx, ISession session,
-			IObservationContext context) throws ThinklabException {
+	public IContext transform(IObservationContext sourceCtx, ISession session,
+			IContext context) throws ThinklabException {
 		
 		/*
 		 * TODO find out rows and cols from context and ensure all extents are
@@ -183,7 +148,7 @@ public class SPANTransformer
 		IExtent extent = context.getExtent(Geospace.get().SpaceObservable());
 		
 		if ( extent == null || !(extent instanceof GridExtent) || 
-				!(extent.getValueCount() == context.getMultiplicity()))
+				!(extent.getValueCount() == ((IObservationContext)context).getMultiplicity()))
 			throw new ThinklabValidationException("span model run in a non-spatial context or with non-spatial extents");
 
 		int rows = ((GridExtent)extent).getYCells();
@@ -233,38 +198,13 @@ public class SPANTransformer
 			}
 		}
 		
-		/*
-		 * prepare new observation
-		 */
-		Polylist rdef = Polylist.list(
-				CoreScience.OBSERVATION,
-				Polylist.list(
-						CoreScience.HAS_OBSERVABLE, getObservable().toList(null)));
-		
-		/*
-		 * make new extents to match previous
-		 */
-		for (IConcept ext : context.getDimensions()) {
-			rdef = ObservationFactory.addExtent(rdef, context.getExtent(ext).conceptualize());
-		}
-		
-		/*
-		 * add all dependents - for now these have means and stds in them, not 
-		 * distributions, so a ranking is appropriate.
-		 */
+		ObservationContext ret = new ObservationContext(context.getExtents());
+		ret.setObservation(this);
 		for (Pair<IConcept, IState> st : states) {
-			
-			Polylist ddef = Polylist.list(
-					CoreScience.RANKING, // FIXME - should match the ds; ranking for now
-					Polylist.list(
-							CoreScience.HAS_OBSERVABLE, Polylist.list(st.getFirst())),
-					Polylist.list(
-							CoreScience.HAS_DATASOURCE, 
-							st.getSecond().conceptualize()));
-			
-			rdef = ObservationFactory.addDependency(rdef, ddef);
+			ret.addState(st.getSecond());
 		}
 		
-		return rdef;		
+		return ret;
+		
 	}
 }
