@@ -39,7 +39,10 @@
 		<title>Total Sequestration</title>
 		<name>C removed</name>
 		<units>tons C/ha.year</units>
-		<description>Total CO2 sequestered</description>
+		<description>Total CO2 sequestered. The amount of carbon taken up by vegetation and soils and added
+			to biotic and soil carbon stocks. This is the quantity available for
+			mitigating anthropogenic carbon emissions.
+			</description>
 		<runninghead>Tonnes of C sequestered by vegetation and soils</runninghead>
 		<group>flow</group>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -103,18 +106,6 @@
 		<sequence>5</sequence>
 	</page>
 	
-		<page>
-		<concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
-		<title>Total Sequestration</title>
-		<name>C removed</name>
-		<description>Total CO2 sequestered</description>
-		<runninghead>Tonnes of C sequestered by vegetation and soils</runninghead>
-		<group>flow</group>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-		<plot-type>uncertainty-2d</plot-type>
-		<sequence>0</sequence>
-	</page>
 	<page>
 		<concept>carbonService:SoilCNRatio</concept>
 		<title>C/N ratio in soil</title>
@@ -229,18 +220,6 @@
 		<description>No description given</description>
 		<runninghead>No description given</runninghead>
 		<sequence>11</sequence>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	<page>
-		<concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
-		<name>The amount of carbon taken up by vegetation and soils and added
-			to biotic and soil carbon stocks. This is the quantity available for
-			mitigating anthropogenic carbon emissions.</name>
-		<group />
-		<description>No description given</description>
-		<runninghead>No description given</runninghead>
-		<sequence>12</sequence>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
