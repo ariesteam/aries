@@ -104,7 +104,9 @@
             :import   "aries.core::CarbonSequestration.xdsl"
             :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
-            :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low percent-vegetation-cover successional-stage)))
+            :required ('carbonService:SuccessionalStage)
+            :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
+                       percent-vegetation-cover successional-stage)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink models
@@ -156,6 +158,7 @@
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonRelease.xdsl"
             :keep     ('carbonService:StoredCarbonRelease)
+            :required ('carbonService:SuccessionalStage)
             :observed (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage soil-cn-ratio summer-high-winter-low fire-frequency)))

@@ -1,11 +1,8 @@
 package org.integratedmodelling.aries.core;
 
-import java.io.File;
-
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.gazetteers.SimpleGazetteer;
 import org.integratedmodelling.modelling.visualization.VisualizationFactory;
-import org.integratedmodelling.modelling.visualization.presentation.PresentationFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.interfaces.storage.IKBox;
@@ -30,13 +27,9 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	protected void load(KnowledgeManager km) throws ThinklabException {
 
 		Geospace.get().addGazetteer("aries-inline", new SimpleGazetteer(getProperties()));
-//		KBoxManager.get().installKbox(
-//				"kbox://www.integratedmodelling.org/aries/demo", 
-//				new ARIESDemoKbox());
+
 		VisualizationFactory.get().loadColormapDefinitions(getProperties());
 		TransformationFactory.get().loadTransformationMappings(getProperties());
-		PresentationFactory.scanDirectory(
-				new File(this.getLoadDirectory() + File.separator + "storylines"));
 	}
 
 	@Override

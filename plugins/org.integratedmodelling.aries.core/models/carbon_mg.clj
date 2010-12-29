@@ -92,6 +92,7 @@
   (bayesian 'carbonService:CarbonSourceValue 
             :import   "aries.core::CarbonSequestrationMg.xdsl"
             :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
+            :required ('carbonService:SummerHighWinterLow)
             :observed (veg-soil-sequestration)
             :context  (percent-vegetation-cover summer-high-winter-low soil-cn-ratio degradation-status)))
 
@@ -155,6 +156,7 @@
   (bayesian 'carbonService:CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseMg.xdsl"
             :keep     ('carbonService:StoredCarbonRelease)
+            :required ('carbonService:SummerHighWinterLow)
             :observed (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover summer-high-winter-low soil-cn-ratio
                          degradation-status population-density deforestation-risk)))
