@@ -238,19 +238,19 @@
         :downscaling-factor 1
         :rv-max-states      10
         :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
-        :context            (source-100km-daisy risk-to-life coastal-flood-sink)
-        :keep               ('coastal:CoastalWaveSource
-                             'coastal:PotentialWaveMitigation
-                             'coastal:PotentiallyWaveVulnerablePopulations
-                             'coastal:PotentiallyDamagingWaveFlow
-                             'coastal:PotentiallyDamagingWaveSource
-                             'coastal:PotentialFloodDamageReceived
-                             'coastal:ActualWaveFlow
-                             'coastal:FloodDamagingWaveSource
-                             'coastal:UtilizedWaveMitigation
-                             'coastal:FloodDamageReceived
-                             'coastal:BenignWaveSource
-                             'coastal:UnutilizedWaveMitigation
-                             'coastal:AbsorbedWaveFlow
-                             'coastal:MitigatedWaveSource
-                             'coastal:FloodMitigationBenefitsAccrued)))
+        :context            (source-100km-daisy risk-to-life coastal-flood-sink coastal-flow-data)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialFloodDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:FloodDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:FloodMitigationBenefitsAccrued)))
