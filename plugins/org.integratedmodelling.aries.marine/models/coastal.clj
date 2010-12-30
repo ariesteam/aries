@@ -218,7 +218,13 @@
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
-		:context (coastal-wave-source risk-to-life risk-to-assets coastal-flood-sink coastal-flow-data)))
+                    :context (source-100km-daisy
+                              source-100km-geralda
+                              source-100km-litanne
+                              risk-to-life
+                              risk-to-assets
+                              coastal-flood-sink
+                              coastal-flow-data)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
