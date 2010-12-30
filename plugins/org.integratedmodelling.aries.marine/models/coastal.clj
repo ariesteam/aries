@@ -86,18 +86,77 @@
               coastal-wave-source :as coastal-wave-source)
     :state  #(if (and (= (:storm-tracks %) "geralda")
                       (= (:buffer %) 1))
-                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
+                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
                  0.0)))
+
+;; alternative logics for Lovely Litanne
+
+(defmodel source-100km-litanne-selector 'coastalProtection:LitannePresence
+  (classification 'coastalProtection:LitannePresence
+    :context (storm-tracks buffer)
+    :state  #(if (and (= (:stormtracks %) "litanne")
+                      (= (:buffermg100km %) 1))
+                 (tl/conc 'coastalProtection:LitannePresent) 
+                 nil)))
+
+(defmodel coastal-wave-source-litanne 'coastalProtection:CoastalWaveSource
+    "Interface to Flood public asset use bayesian network"
+    (bayesian 'coastalProtection:CoastalWaveSource
+      :import   "aries.marine::CoastalFloodSource.xdsl"
+      :keep     ('coastalProtection:StormSurgeClass)
+      :required ('coastalProtection:LitannePresence)
+      :observed (storm-surge)
+      :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-litanne-selector)))
+
+;; lovely Daisy
+
+(defmodel source-100km-daisy-selector 'coastalProtection:DaisyPresence
+  (classification 'coastalProtection:DaisyPresence
+    :context (storm-tracks buffer)
+    :state  #(if (and (= (:stormtracks %) "daisy")
+                      (= (:buffermg100km %) 1))
+                 (tl/conc 'coastalProtection:DaisyPresent) 
+                 nil)))
+
+(defmodel coastal-wave-source-daisy 'coastalProtection:CoastalWaveSource
+    "Interface to Flood public asset use bayesian network"
+    (bayesian 'coastalProtection:CoastalWaveSource
+      :import   "aries.marine::CoastalFloodSource.xdsl"
+      :keep     ('coastalProtection:StormSurgeClass)
+      :required ('coastalProtection:DaisyPresence)
+      :observed (storm-surge)
+      :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-daisy-selector)))
+
+;; old whore Geralda
+
+(defmodel source-100km-geralda-selector 'coastalProtection:GeraldaPresence
+  (classification 'coastalProtection:GeraldaPresence
+    :context (storm-tracks buffer)
+    :state  #(if (and (= (:stormtracks %) "geralda")
+                      (= (:buffermg100km %) 1))
+                 (tl/conc 'coastalProtection:GeraldaPresent) 
+                 nil)))
+
+(defmodel coastal-wave-source-geralda 'coastalProtection:CoastalWaveSource
+    "Interface to Flood public asset use bayesian network"
+    (bayesian 'coastalProtection:CoastalWaveSource
+      :import   "aries.marine::CoastalFloodSource.xdsl"
+      :keep     ('coastalProtection:StormSurgeClass)
+      :required ('coastalProtection:GeraldaPresence)
+      :observed (storm-surge)
+      :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-geralda-selector)))
+
+;; end of alternative strategies
 
 (defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
   (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
     :context (storm-tracks        :as storm-tracks
               buffer              :as buffer
               coastal-wave-source :as coastal-wave-source)
-    :state  #(if (and (= (:storm-tracks %) "litanne")
-                      (= (:buffer %) 1))
-                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
-                 0.0)))
+    :state  #(do (println %) (if (and (= (:stormtracks %) "litanne")
+                      (= (:buffermg100km %) 1))
+                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
+                 0.0))))
 
 ;; --------------------------------------------------------------------------------------
 ;; Sink (coastal protection) model

@@ -1,42 +1,50 @@
+# AESTHETICS TODO try with western_wa
 core.models.aesthetic-proximity/data	core.contexts.beta/viewshed
-core.models.aesthetic-proximity/proximity	core.contexts.beta/viewshed
+# undefined concept - core.models.aesthetic-proximity/proximity	core.contexts.beta/viewshed
 core.models.aesthetic-proximity-san-pedro/data	core.contexts.beta/san_pedro_us
-core.models.aesthetic-proximity-san-pedro/proximity	core.contexts.beta/san_pedro_us
+# concept undefined - core.models.aesthetic-proximity-san-pedro/proximity	core.contexts.beta/san_pedro_us
 core.models.aesthetics/data	core.contexts.beta/viewshed
-core.models.aesthetics/view	core.contexts.beta/viewshed
+# core.models.aesthetics/view	core.contexts.beta/viewshed
 core.models.aesthetic-view-san-pedro/data-homeowners	core.contexts.beta/san_pedro_us
-core.models.aesthetic-view-san-pedro/view	core.contexts.beta/san_pedro_us
-core.models.carbon/carbon-flow	core.contexts.beta/chehalis
+#core.models.aesthetic-view-san-pedro/view	core.contexts.beta/san_pedro_us
+
+# CARBON TODO try with western_wa
+# core.models.carbon/carbon-flow	core.contexts.beta/chehalis
 core.models.carbon/identification-carbon	core.contexts.beta/chehalis
-core.models.carbon-jen/carbon-flow	core.contexts.beta/lye_brook
-core.models.carbon-jen/identification-carbon	core.contexts.beta/lye_brook
-core.models.carbon-mark/carbon-flow	core.contexts.beta/ca_mark_watershed
+#core.models.carbon-jen/carbon-flow	core.contexts.beta/lye_brook
+# NO FIRE FREQUENCY -- core.models.carbon-jen/identification-carbon	core.contexts.beta/lye_brook
+#core.models.carbon-mark/carbon-flow	core.contexts.beta/ca_mark_watershed
 core.models.carbon-mark/identification-carbon	core.contexts.beta/ca_mark_watershed
-core.models.carbon-mg/carbon-flow	core.contexts.beta/mg
+#core.models.carbon-mg/carbon-flow	core.contexts.beta/mg
 core.models.carbon-mg/identification-carbon	core.contexts.beta/mg
-core.models.carbon-sam/carbon-flow	core.contexts.beta/vt
+#core.models.carbon-sam/carbon-flow	core.contexts.beta/vt
 core.models.carbon-sam/identification-carbon	core.contexts.beta/vt
-core.models.carbon-san-pedro/carbon-flow	core.contexts.beta/san_pedro_us
+#core.models.carbon-san-pedro/carbon-flow	core.contexts.beta/san_pedro_us
 core.models.carbon-san-pedro/identification-carbon	core.contexts.beta/san_pedro_us
+
+# FLOOD
 core.models.flood/data-farmers-100	core.contexts.beta/chehalis
 core.models.flood/data-farmers-500	core.contexts.beta/chehalis
 core.models.flood/data-public-100	core.contexts.beta/chehalis
-core.models.flood/data-public-500	core.contexts.beta/chehalis
+#core.models.flood/data-public-500	core.contexts.beta/chehalis
 core.models.flood/data-residents-100	core.contexts.beta/chehalis
 core.models.flood/data-residents-500	core.contexts.beta/chehalis
-core.models.flood/flood-regulation-farmers100	core.contexts.beta/chehalis
+# fucking flow model - core.models.flood/flood-regulation-farmers100	core.contexts.beta/chehalis
 core.models.flood-mark/data-farmers-100	core.contexts.beta/ca_mark_watershed
 core.models.flood-mark/data-farmers-500	core.contexts.beta/ca_mark_watershed
 core.models.flood-mark/data-public-100	core.contexts.beta/ca_mark_watershed
 core.models.flood-mark/data-public-500	core.contexts.beta/ca_mark_watershed
-core.models.flood-mark/flood-regulation-farmers-100	core.contexts.beta/ca_mark_watershed
-core.models.flood-mark/flood-regulation-farmers-500	core.contexts.beta/ca_mark_watershed
-core.models.flood-mark/flood-regulation-public-assets-100	core.contexts.beta/ca_mark_watershed
-core.models.flood-mark/flood-regulation-public-assets-500	core.contexts.beta/ca_mark_watershed
-core.models.recreation-san-pedro/recreation-data	core.contexts.beta/san_pedro_us
-core.models.recreation-viewsheds/data	raven_ridge_large
-core.models.sediment/farmland-soil-deposition-data	core.contexts.beta/chehalis
+
+# can't find floodService:AvoidedDamageToFarms100 core.models.flood-mark/flood-regulation-farmers-100	core.contexts.beta/ca_mark_watershed
+# core.models.flood-mark/flood-regulation-farmers-500	core.contexts.beta/ca_mark_watershed
+# core.models.flood-mark/flood-regulation-public-assets-100	core.contexts.beta/ca_mark_watershed
+#core.models.flood-mark/flood-regulation-public-assets-500	core.contexts.beta/ca_mark_watershed
+# WaterPresence not found -- core.models.recreation-san-pedro/recreation-data	core.contexts.beta/san_pedro_us
+core.models.recreation-viewsheds/data core.contexts.beta/raven_ridge_large
+# can't find Floodplains core.models.sediment/farmland-soil-deposition-data	core.contexts.beta/chehalis
 core.models.sediment/reservoir-soil-deposition-data	core.contexts.beta/chehalis
+
+#### still need testing below
 core.models.sediment-dr/farmland-soil-deposition-data	core.contexts.beta/DR
 core.models.sediment-dr/reservoir-soil-deposition-data	core.contexts.beta/DR
 core.models.sediment-mg/farmland-soil-deposition-data	core.contexts.beta/mg_sed

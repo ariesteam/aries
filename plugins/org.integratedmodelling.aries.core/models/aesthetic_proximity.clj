@@ -180,7 +180,7 @@
                'aestheticService:HomeownersWithOpenSpaceDemand
                'aestheticService:PossibleProximateOpenSpace
                'aestheticService:AccessibleOpenSpace
-               'aestheticService:OpenSpaceProximiateHomeowners
+               'aestheticService:OpenSpaceProximateHomeowners
                'aestheticService:AccessibleProximity
                'aestheticService:EnjoyedOpenSpace
                'aestheticService:BlockingProximitySink

@@ -9,37 +9,64 @@
 	
 	<!-- the storylines that this module can compute. One or more, and all their children scenarios are included. -->
 	<model-storyline>carbonService:CarbonSourceValue</model-storyline>
-	
+
 	<page>
 		<id>info</id>
-		<name>Case Study</name>
-		<concept></concept>
+		<name>Climate Mitigation</name>
 		<title>Model coverage and general information</title>
-		<description>
-			Carbon sequestration by terrestrial ecosystems is the net 
-			removal of carbon dioxide (CO2) from the atmosphere or the 
-			avoidance of carbon dioxide (CO2) emissions from terrestrial 
-			ecosystems into the atmosphere. The removal process includes 
-			CO2 uptake from the atmosphere by all chlorophyllous plants, 
-			through photosynthesis. This carbon (C) is stored as plant 
-			biomass (in the trunks, branches, leaves and roots of the plants) 
-			and organic matter in the soil (IPCC 2000). Terrestrial carbon 
-			sequestration depends on a series of factors including climatic 
-			conditions, vegetation structure and successional stage, and  
-			land use practices.
-		</description>
-		<runninghead></runninghead>
+		<description><![CDATA[
+			<p>Carbon sequestration by terrestrial ecosystems is the net
+			removal of carbon dioxide (CO2) from the atmosphere or the
+			avoidance of CO2 emissions from terrestrial
+			ecosystems into the atmosphere. The removal process includes
+			CO2 uptake from the atmosphere by all chlorophyllous plants,
+			through photosynthesis. This carbon (C) is stored as plant
+			biomass (in the trunks, branches, leaves and roots of the plants)
+			and organic matter in the soil (IPCC 2000). Terrestrial carbon
+			sequestration depends on a series of factors including climatic
+			conditions, vegetation structure and successional stage, and
+			land use practices.</p>
+
+			<p>In ARIES, we distinguish between ecosystem sources of
+			carbon sequestration capacity capable of removing CO2 from the
+			atmosphere and storing carbon in vegetation and soils. We also map
+			sinks, or areas that release stored carbon, largely via fire or
+			deforestation. By subtracting the amount of stored carbon release
+			from carbon sequestration in a region of interest, we are left with
+			the carbon remaining available to offset anthropogenic emissions.
+			Greenhouse gas emitters can be conceptualized as the beneficiaries of
+			carbon sequestration and storage. Since greenhouse gas emitters
+			benefit from the waste absorption capacity of the biosphere, carbon
+			sequestration and storage can be divided among emitters. Existing and
+			proposed systems to cap and assign property rights to atmospheric
+			greenhouse gas emissions use this framework. In other words:</p>
+
+			<quote><em>Carbon sequestration (source) – stored carbon release (sink) = carbon
+			available to offset emissions (use)</em></quote>
+
+			<p>By mapping levels of carbon sequestration, stored carbon release, and
+			anthropogenic emissions in a common unit (tonnes C/ha.yr), we can fully
+			describe regional carbon balances – the level of a region’s net
+			release or uptake of atmospheric CO2. This will become increasingly
+			important as local, state, and national governments continue to
+			inventory greenhouse gas emissions and implement strategies to
+			address climate change. Use of carbon sequestration is rival and
+			occurs at the global scale through atmospheric mixing.</p>  
+		]]></description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+		<b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, 
+		Sergey Krivov, Brian Voigt.<br/>
+		
+		<b>Additional contributors</b>: Ted Auch, Mark Casias, Sam Gorton, Jennifer Wright, Dave Batker,
+		Jim Pittman, Paula Swedeen. Miroslav Honzak.<br/> 
+	    
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
 	</page>
-	<page>
-		<id>credits</id>
-		<name>Credits</name>
-		<title>Credits</title>
-		<description></description>
-	</page>
-	<page>
-		<id>links</id>
-		<name>Links</name>
-		<title>See also</title>
-		<description></description>
-	</page>
+
 </presentation>

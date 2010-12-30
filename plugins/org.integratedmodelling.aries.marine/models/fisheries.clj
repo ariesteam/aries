@@ -106,7 +106,7 @@
 		[50 200]     'fisheries:LowPopulationDensity
 		[:< 50]      'fisheries:VeryLowPopulationDensity))
 
-;;Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
+;; Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
 ;; low use = 2.3 kg fish/yr.  This calculates total demand.
 (defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
   (classification 'fisheries:SubsistenceUse
@@ -130,6 +130,7 @@
   (bayesian 'fisheries:SubsistenceFishing
             :import   "aries.marine::FisheriesSubsistenceUse.xdsl"
             :keep     ('fisheries:SubsistenceUse)
+            :required ('fisheries:DistanceToCoast)
             :observed (subsistence-fishing-undiscretized)
             :context  (poverty population-density coastal-proximity)))
 
