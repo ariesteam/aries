@@ -85,9 +85,12 @@
 
 (defmodel coastal-proximity 'fisheries:DistanceToCoast
 	(classification (measurement 'fisheries:DistanceToCoast "km")
-		1       'fisheries:HighCoastalProximity
-        5       'fisheries:ModerateCoastalProximity
-		[25 :>] 'fisheries:LowCoastalProximity))
+;;		1       'fisheries:HighCoastalProximity
+;;      5       'fisheries:ModerateCoastalProximity
+;;		[25 :>] 'fisheries:LowCoastalProximity))
+		[0  1] 'fisheries:HighCoastalProximity
+        [1  5] 'fisheries:ModerateCoastalProximity
+		[5 :>] 'fisheries:LowCoastalProximity))
 
 (defmodel poverty 'fisheries:Poverty
 	(classification (ranking 'policytarget:PovertyPercentage)
