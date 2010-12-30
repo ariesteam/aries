@@ -97,7 +97,7 @@
 		[50 :>]   'fisheries:HighPoverty
 		[25 50]   'fisheries:ModeratePoverty
 		[:< 25]   'fisheries:LowPoverty))
-	
+
 (defmodel population-density 'fisheries:PopulationDensity
 	(classification (count 'policytarget:PopulationDensity "/km^2")
 		[2000 :>]    'fisheries:VeryHighPopulationDensity
@@ -110,13 +110,20 @@
 ;; low use = 2.3 kg fish/yr.  This calculates total demand.
 (defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
   (classification 'fisheries:SubsistenceUse
-    :units "kg/km^2*year" 
-    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
-    ;; This classification syntax is documented as working but isn't implemented!
-    (* (:population-density-count self) 6.8)  'fisheries:HighSubsistenceUse
-    (* (:population-density-count self) 4.6)  'fisheries:ModerateSubsistenceUse
-    (* (:population-density-count self) 2.3)  'fisheries:LowSubsistenceUse
-    0                                         'fisheries:NoSubsistenceUse))
+    :units "kg/km^2*year"
+    6.8  'fisheries:HighSubsistenceUse
+    4.6  'fisheries:ModerateSubsistenceUse
+    2.3  'fisheries:LowSubsistenceUse
+    0    'fisheries:NoSubsistenceUse))
+;;(defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
+;;  (classification 'fisheries:SubsistenceUse
+;;    :units "kg/km^2*year"
+;;    :context ((count 'policytarget:PopulationDensity "/km^2" :as population-density-count))
+;;    ;; This classification syntax is documented as working but isn't implemented!
+;;    (* (:population-density-count self) 6.8)  'fisheries:HighSubsistenceUse
+;;    (* (:population-density-count self) 4.6)  'fisheries:ModerateSubsistenceUse
+;;    (* (:population-density-count self) 2.3)  'fisheries:LowSubsistenceUse
+;;    0                                         'fisheries:NoSubsistenceUse))
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   "Interface to subsistence use bayesian network"
@@ -135,7 +142,7 @@
 
 (defmodel fish-flow-data 'fisheries:TempFishFlowData$
   (identification 'fisheries:TempFishFlowData
-      :context (paths)))
+      :context (paths (count 'policytarget:PopulationDensity "/km^2"))))
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision
