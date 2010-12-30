@@ -230,6 +230,8 @@
    values in the observation."
   [observation concept rows cols]
   (when concept
+    (println "Extracting" (.getLocalName concept) "layers.")
+    (println "Dependent-States-Map:" (get-dependent-states-map observation concept))
     (mapmap (memfn getLocalName)
             #(seq2matrix rows cols (unpack-datasource % rows cols))
             ;;(get-state-map (find-observation observation concept)))))

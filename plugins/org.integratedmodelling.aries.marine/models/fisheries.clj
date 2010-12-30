@@ -141,12 +141,12 @@
 (defmodel fisheries-subsistence-flow 'fisheries:SubsistenceFishProvision
   (span 'fisheries:SubsistenceFishAccessibility
         'fisheries:TotalSubsistenceHarvest
-        'fisheries:SubsistenceFishing
+        'fisheries:SubsistenceUse ;; SubsistenceFishing
         nil
         nil
         'fisheries:TempFishFlowData
         :source-threshold   0.0
-        :sink-threshold     0.0
+        :sink-threshold     nil
         :use-threshold      0.0
         :trans-threshold    0.1
         :source-type        :finite

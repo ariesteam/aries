@@ -142,7 +142,8 @@
 (defmodel coastal-flood-protection 'coastalProtection:TotalCoastalFloodProtection
   (classification 'coastalProtection:TotalCoastalFloodProtection
                   :units      "m"
-                  [1 :>]        'coastalProtection:HighCoastalFloodProtection
+;;                  [1 :>]        'coastalProtection:HighCoastalFloodProtection
+                  [1 2]        'coastalProtection:HighCoastalFloodProtection
                   [0.5 1]       'coastalProtection:ModerateCoastalFloodProtection
                   [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
                   [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
@@ -217,14 +218,14 @@
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
-		:context (coastal-flood-sink risk-to-life risk-to-assets coastal-wave-source geomorphic-flood-sink)))
+		:context (coastal-wave-source risk-to-life risk-to-assets coastal-flood-sink coastal-flow-data)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
   (span 'coastalProtection:CoastalStormMovement
         'coastalProtection:CoastalWaveSourceDaisy
         'coastalProtection:CycloneDependentLivesAtRisk
-        'coastalProtection:CoastalFloodSink
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
         nil 
         'coastalProtection:CoastalFlowData
         :source-threshold   0.0
@@ -244,13 +245,13 @@
                              'coastalProtection:PotentiallyWaveVulnerablePopulations
                              'coastalProtection:PotentiallyDamagingWaveFlow
                              'coastalProtection:PotentiallyDamagingWaveSource
-                             'coastalProtection:PotentialFloodDamageReceived
+                             'coastalProtection:PotentialWaveDamageReceived
                              'coastalProtection:ActualWaveFlow
                              'coastalProtection:FloodDamagingWaveSource
                              'coastalProtection:UtilizedWaveMitigation
-                             'coastalProtection:FloodDamageReceived
+                             'coastalProtection:WaveDamageReceived
                              'coastalProtection:BenignWaveSource
                              'coastalProtection:UnutilizedWaveMitigation
                              'coastalProtection:AbsorbedWaveFlow
                              'coastalProtection:MitigatedWaveSource
-                             'coastalProtection:FloodMitigationBenefitsAccrued)))
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
