@@ -230,17 +230,27 @@
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :trans-threshold    10.0 ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :keep ('coastal:CoastalWaveSource 'coastal:PotentialWaveMitigation 'coastal:PotentiallyWaveVulnerablePopulations
-              'coastal:PotentiallyDamagingWaveFlow 'coastal:PotentiallyDamagingWaveSource 'coastal:PotentialFloodDamageReceived
-              'coastal:ActualWaveFlow 'coastal:FloodDamagingWaveSource 'coastal:UtilizedWaveMitigation
-              'coastal:FloodDamageReceived 'coastal:BenignWaveSource 'coastal:UnutilizedWaveMitigation
-              'coastal:AbsorbedWaveFlow 'coastal:MitigatedWaveSource 'coastal:FloodMitigationBenefitsAccrued) 
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
-        :context (source-100km-daisy risk-to-life coastal-flood-sink)))
+        :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
+        :context            (source-100km-daisy risk-to-life coastal-flood-sink)
+        :keep               ('coastal:CoastalWaveSource
+                             'coastal:PotentialWaveMitigation
+                             'coastal:PotentiallyWaveVulnerablePopulations
+                             'coastal:PotentiallyDamagingWaveFlow
+                             'coastal:PotentiallyDamagingWaveSource
+                             'coastal:PotentialFloodDamageReceived
+                             'coastal:ActualWaveFlow
+                             'coastal:FloodDamagingWaveSource
+                             'coastal:UtilizedWaveMitigation
+                             'coastal:FloodDamageReceived
+                             'coastal:BenignWaveSource
+                             'coastal:UnutilizedWaveMitigation
+                             'coastal:AbsorbedWaveFlow
+                             'coastal:MitigatedWaveSource
+                             'coastal:FloodMitigationBenefitsAccrued)))
