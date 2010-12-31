@@ -214,6 +214,7 @@
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
         :observed (coastal-flood-protection)
+;;        :required ('coastalProtection:BufferMg100km)
         :context  (mangrove coral-quality seagrass terrestrial-vegetation artificial-coastal-protection)))
 
 ;; --------------------------------------------------------------------------------------
@@ -277,10 +278,7 @@
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection 
-                    :context (source-100km-daisy
-                              source-100km-geralda
-                              source-100km-litanne
-                              risk-to-life
+                    :context (risk-to-life
                               risk-to-assets
                               coastal-flood-sink
                               coastal-flow-data)))

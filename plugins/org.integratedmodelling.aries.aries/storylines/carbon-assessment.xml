@@ -1,6 +1,6 @@
 <presentation>
 
-	<title>CO2 assessment</title>
+	<title>Carbon assessment</title>
 	<runninghead>The values accrued by any beneficiary of CO2 capture</runninghead>
 	<description>The values accrued by any beneficiary of CO2 capture</description>
 	<!-- the concept of the main observation (the top-level model) -->
@@ -38,34 +38,49 @@
 		<concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
 		<title>Total Sequestration</title>
 		<name>C removed</name>
-		<units>tons C/ha.year</units>
-		<description>Total CO2 sequestered. The amount of carbon taken up by vegetation and soils and added
+		<units>tonnes C/ha.year</units>
+		<description><![CDATA[
+			<p>Total CO2 sequestered. The amount of carbon taken up by vegetation and soils and added
 			to biotic and soil carbon stocks. This is the quantity available for
-			mitigating anthropogenic carbon emissions.
-			</description>
+			mitigating anthropogenic carbon emissions.</p>
+			<h1>Role in models</h1>
+			<p>This map is the most relevant output of the ARIES carbon model. The
+				value of the area in mitigating the adverse effects of climate change 
+				is directly proportional to the level of carbon sequesterd
+				by vegetation and soil.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of tonnes of carbons sequestered per hectare per
+			year. As the output of the models is probabilistic, each point contains the distribution
+			probability of the amount of carbon.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server when the area was selected.</p>
+		]]></description>
 		<runninghead>Tonnes of C sequestered by vegetation and soils</runninghead>
-		<group>flow</group>
+		<group>source</group>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 		<plot-type>uncertainty-2d</plot-type>
+		<statistics>totals</statistics>
 	</page>
 	<page>
 		<concept>carbonService:StoredCarbonRelease</concept>
 		<name> Stored Carbon Release</name>
-		<group />
+		<title>Release of stored carbon</title>
+		<group>sink</group>
 		<description>The total emissions of carbon from the landscape, i.e.,
 			due to fire, deforestation, or other land use-land cover change.
 		</description>
-		<runninghead>The total emissions of carbon from the landscape, i.e.,
-			due to fire, deforestation, or other land use-land cover change.
-		</runninghead>
+		<runninghead>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, or other land use-land cover change.</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
+		<statistics>totals</statistics>	
+		<units>tonnes C/ha.year</units>
 	</page>
 		<page>
 		<concept>carbonService:GreenhouseGasEmitters</concept>
 		<name>CO2 Emitters</name>
-		<group />
+		<group>use</group>
 		<description>Emitters benefit under a scenario of compensation
 		</description>
 		<runninghead>Emitters benefit under a scenario of compensation
