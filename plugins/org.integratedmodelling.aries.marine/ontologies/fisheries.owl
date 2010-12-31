@@ -9,29 +9,41 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY policytarget "http://www.integratedmodelling.org/ks/policy/policytarget.owl#" >
-    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY fisheries "http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl"
-     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
-    <owl:Ontology rdf:about="">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/policy/policytarget.owl"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     
 
 
@@ -176,52 +188,59 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ArgyrosomusHololepidotusAbundance -->
 
-    <owl:Class rdf:about="#ArgyrosomusHololepidotusAbundance">
-        <rdfs:subClassOf rdf:resource="#FishAbundance"/>
+    <owl:Class rdf:about="&fisheries;ArgyrosomusHololepidotusAbundance">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ArgyrosomusHololepidotusAbundanceMg -->
 
-    <owl:Class rdf:about="#ArgyrosomusHololepidotusAbundanceMg">
-        <rdfs:subClassOf rdf:resource="#ArgyrosomusHololepidotusAbundance"/>
+    <owl:Class rdf:about="&fisheries;ArgyrosomusHololepidotusAbundanceMg">
+        <rdfs:subClassOf rdf:resource="&fisheries;ArgyrosomusHololepidotusAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ArgyrosomusHololepidotusHabitat -->
 
-    <owl:Class rdf:about="#ArgyrosomusHololepidotusHabitat">
-        <rdfs:label
-            >Habitat for Southern Meagre</rdfs:label>
+    <owl:Class rdf:about="&fisheries;ArgyrosomusHololepidotusHabitat">
+        <rdfs:label>Habitat for Southern Meagre</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
-        <rdfs:subClassOf rdf:resource="#FishHabitat"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ArgyrosomusHololepidotusHarvest -->
 
-    <owl:Class rdf:about="#ArgyrosomusHololepidotusHarvest">
-        <rdfs:subClassOf rdf:resource="#FishHarvest"/>
+    <owl:Class rdf:about="&fisheries;ArgyrosomusHololepidotusHarvest">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHarvest"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ArgyrosomusHololepidotusStock -->
 
-    <owl:Class rdf:about="#ArgyrosomusHololepidotusStock">
-        <rdfs:label
-            >Stocks of Southern Meagre</rdfs:label>
-        <rdfs:subClassOf rdf:resource="#FishStock"/>
+    <owl:Class rdf:about="&fisheries;ArgyrosomusHololepidotusStock">
+        <rdfs:label>Stocks of Southern Meagre</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&fisheries;FishStock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoastalProximity -->
+
+    <owl:Class rdf:about="&fisheries;CoastalProximity">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoralBleaching -->
 
-    <owl:Class rdf:about="#CoralBleaching">
+    <owl:Class rdf:about="&fisheries;CoralBleaching">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -230,7 +249,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoralReefArea -->
 
-    <owl:Class rdf:about="#CoralReefArea">
+    <owl:Class rdf:about="&fisheries;CoralReefArea">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&representation;Area"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -240,7 +259,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#DistanceToCoast -->
 
-    <owl:Class rdf:about="#DistanceToCoast">
+    <owl:Class rdf:about="&fisheries;DistanceToCoast">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
@@ -249,7 +268,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#EstuaryArea -->
 
-    <owl:Class rdf:about="#EstuaryArea">
+    <owl:Class rdf:about="&fisheries;EstuaryArea">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&representation;Area"/>
     </owl:Class>
@@ -258,7 +277,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#EstuaryQuality -->
 
-    <owl:Class rdf:about="#EstuaryQuality">
+    <owl:Class rdf:about="&fisheries;EstuaryQuality">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -267,7 +286,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#FishAbundance -->
 
-    <owl:Class rdf:about="#FishAbundance">
+    <owl:Class rdf:about="&fisheries;FishAbundance">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:subClassOf rdf:resource="&representation;Mass"/>
     </owl:Class>
@@ -276,7 +295,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#FishHabitat -->
 
-    <owl:Class rdf:about="#FishHabitat">
+    <owl:Class rdf:about="&fisheries;FishHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -284,7 +303,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#FishHarvest -->
 
-    <owl:Class rdf:about="#FishHarvest">
+    <owl:Class rdf:about="&fisheries;FishHarvest">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:subClassOf rdf:resource="&representation;Mass"/>
     </owl:Class>
@@ -293,7 +312,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#FishStock -->
 
-    <owl:Class rdf:about="#FishStock">
+    <owl:Class rdf:about="&fisheries;FishStock">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -301,7 +320,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#Fisheries -->
 
-    <owl:Class rdf:about="#Fisheries">
+    <owl:Class rdf:about="&fisheries;Fisheries">
         <rdfs:subClassOf rdf:resource="&eserv;RivalBenefit"/>
     </owl:Class>
     
@@ -309,442 +328,442 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighBleaching -->
 
-    <owl:Class rdf:about="#HighBleaching">
-        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
+    <owl:Class rdf:about="&fisheries;HighBleaching">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighCoastalProximity -->
 
-    <owl:Class rdf:about="#HighCoastalProximity">
-        <rdfs:subClassOf rdf:resource="#DistanceToCoast"/>
+    <owl:Class rdf:about="&fisheries;HighCoastalProximity">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoastalProximity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighNitrogenRunoff -->
 
-    <owl:Class rdf:about="#HighNitrogenRunoff">
-        <rdfs:subClassOf rdf:resource="#NitrogenRunoff"/>
+    <owl:Class rdf:about="&fisheries;HighNitrogenRunoff">
+        <rdfs:subClassOf rdf:resource="&fisheries;NitrogenRunoff"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighPopulationDensity -->
 
-    <owl:Class rdf:about="#HighPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="&fisheries;HighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="&fisheries;PopulationDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighPoverty -->
 
-    <owl:Class rdf:about="#HighPoverty">
-        <rdfs:subClassOf rdf:resource="#Poverty"/>
+    <owl:Class rdf:about="&fisheries;HighPoverty">
+        <rdfs:subClassOf rdf:resource="&fisheries;Poverty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityAHHabitat -->
 
-    <owl:Class rdf:about="#HighQualityAHHabitat">
-        <rdfs:subClassOf rdf:resource="#ArgyrosomusHololepidotusHabitat"/>
+    <owl:Class rdf:about="&fisheries;HighQualityAHHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;ArgyrosomusHololepidotusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityEstuary -->
 
-    <owl:Class rdf:about="#HighQualityEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryQuality"/>
+    <owl:Class rdf:about="&fisheries;HighQualityEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityLAHabitat -->
 
-    <owl:Class rdf:about="#HighQualityLAHabitat">
-        <rdfs:subClassOf rdf:resource="#LutjanusArgentimaculatusHabitat"/>
+    <owl:Class rdf:about="&fisheries;HighQualityLAHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LutjanusArgentimaculatusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityLBHabitat -->
 
-    <owl:Class rdf:about="#HighQualityLBHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusBorbonicusHabitat"/>
+    <owl:Class rdf:about="&fisheries;HighQualityLBHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusBorbonicusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityLMHabitat -->
 
-    <owl:Class rdf:about="#HighQualityLMHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusMahsenaHabitat"/>
+    <owl:Class rdf:about="&fisheries;HighQualityLMHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusMahsenaHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighQualityReef -->
 
-    <owl:Class rdf:about="#HighQualityReef">
-        <rdfs:subClassOf rdf:resource="#ReefQuality"/>
+    <owl:Class rdf:about="&fisheries;HighQualityReef">
+        <rdfs:subClassOf rdf:resource="&fisheries;ReefQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighReefArea -->
 
-    <owl:Class rdf:about="#HighReefArea">
-        <rdfs:subClassOf rdf:resource="#CoralReefArea"/>
+    <owl:Class rdf:about="&fisheries;HighReefArea">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighSubsistenceUse -->
 
-    <owl:Class rdf:about="#HighSubsistenceUse">
-        <rdfs:subClassOf rdf:resource="#SubsistenceUse"/>
+    <owl:Class rdf:about="&fisheries;HighSubsistenceUse">
+        <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceUse"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LargeEstuary -->
 
-    <owl:Class rdf:about="#LargeEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryArea"/>
+    <owl:Class rdf:about="&fisheries;LargeEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusBorbonicusAbundance -->
 
-    <owl:Class rdf:about="#LethrinusBorbonicusAbundance">
-        <rdfs:subClassOf rdf:resource="#FishAbundance"/>
+    <owl:Class rdf:about="&fisheries;LethrinusBorbonicusAbundance">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusBorbonicusAbundanceMg -->
 
-    <owl:Class rdf:about="#LethrinusBorbonicusAbundanceMg">
-        <rdfs:subClassOf rdf:resource="#LethrinusBorbonicusAbundance"/>
+    <owl:Class rdf:about="&fisheries;LethrinusBorbonicusAbundanceMg">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusBorbonicusAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusBorbonicusHabitat -->
 
-    <owl:Class rdf:about="#LethrinusBorbonicusHabitat">
+    <owl:Class rdf:about="&fisheries;LethrinusBorbonicusHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
-        <rdfs:subClassOf rdf:resource="#FishHabitat"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusBorbonicusHarvest -->
 
-    <owl:Class rdf:about="#LethrinusBorbonicusHarvest">
-        <rdfs:subClassOf rdf:resource="#FishHarvest"/>
+    <owl:Class rdf:about="&fisheries;LethrinusBorbonicusHarvest">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHarvest"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusBorbonicusStock -->
 
-    <owl:Class rdf:about="#LethrinusBorbonicusStock">
-        <rdfs:subClassOf rdf:resource="#FishStock"/>
+    <owl:Class rdf:about="&fisheries;LethrinusBorbonicusStock">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishStock"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusMahsenaAbundance -->
 
-    <owl:Class rdf:about="#LethrinusMahsenaAbundance">
-        <rdfs:subClassOf rdf:resource="#FishAbundance"/>
+    <owl:Class rdf:about="&fisheries;LethrinusMahsenaAbundance">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusMahsenaAbundanceMg -->
 
-    <owl:Class rdf:about="#LethrinusMahsenaAbundanceMg">
-        <rdfs:subClassOf rdf:resource="#LethrinusMahsenaAbundance"/>
+    <owl:Class rdf:about="&fisheries;LethrinusMahsenaAbundanceMg">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusMahsenaAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusMahsenaHabitat -->
 
-    <owl:Class rdf:about="#LethrinusMahsenaHabitat">
+    <owl:Class rdf:about="&fisheries;LethrinusMahsenaHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
-        <rdfs:subClassOf rdf:resource="#FishHabitat"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusMahsenaHarvest -->
 
-    <owl:Class rdf:about="#LethrinusMahsenaHarvest">
-        <rdfs:subClassOf rdf:resource="#FishHarvest"/>
+    <owl:Class rdf:about="&fisheries;LethrinusMahsenaHarvest">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHarvest"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LethrinusMahsenaStock -->
 
-    <owl:Class rdf:about="#LethrinusMahsenaStock">
-        <rdfs:subClassOf rdf:resource="#FishStock"/>
+    <owl:Class rdf:about="&fisheries;LethrinusMahsenaStock">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishStock"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowCoastalProximity -->
 
-    <owl:Class rdf:about="#LowCoastalProximity">
-        <rdfs:subClassOf rdf:resource="#DistanceToCoast"/>
+    <owl:Class rdf:about="&fisheries;LowCoastalProximity">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoastalProximity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowNitrogenRunoff -->
 
-    <owl:Class rdf:about="#LowNitrogenRunoff">
-        <rdfs:subClassOf rdf:resource="#NitrogenRunoff"/>
+    <owl:Class rdf:about="&fisheries;LowNitrogenRunoff">
+        <rdfs:subClassOf rdf:resource="&fisheries;NitrogenRunoff"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowPopulationDensity -->
 
-    <owl:Class rdf:about="#LowPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="&fisheries;LowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="&fisheries;PopulationDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowPoverty -->
 
-    <owl:Class rdf:about="#LowPoverty">
-        <rdfs:subClassOf rdf:resource="#Poverty"/>
+    <owl:Class rdf:about="&fisheries;LowPoverty">
+        <rdfs:subClassOf rdf:resource="&fisheries;Poverty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityAHHabitat -->
 
-    <owl:Class rdf:about="#LowQualityAHHabitat">
-        <rdfs:subClassOf rdf:resource="#ArgyrosomusHololepidotusHabitat"/>
+    <owl:Class rdf:about="&fisheries;LowQualityAHHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;ArgyrosomusHololepidotusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityEstuary -->
 
-    <owl:Class rdf:about="#LowQualityEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryQuality"/>
+    <owl:Class rdf:about="&fisheries;LowQualityEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityLAHabitat -->
 
-    <owl:Class rdf:about="#LowQualityLAHabitat">
-        <rdfs:subClassOf rdf:resource="#LutjanusArgentimaculatusHabitat"/>
+    <owl:Class rdf:about="&fisheries;LowQualityLAHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LutjanusArgentimaculatusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityLBHabitat -->
 
-    <owl:Class rdf:about="#LowQualityLBHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusBorbonicusHabitat"/>
+    <owl:Class rdf:about="&fisheries;LowQualityLBHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusBorbonicusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityLMHabitat -->
 
-    <owl:Class rdf:about="#LowQualityLMHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusMahsenaHabitat"/>
+    <owl:Class rdf:about="&fisheries;LowQualityLMHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusMahsenaHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowQualityReef -->
 
-    <owl:Class rdf:about="#LowQualityReef">
-        <rdfs:subClassOf rdf:resource="#ReefQuality"/>
+    <owl:Class rdf:about="&fisheries;LowQualityReef">
+        <rdfs:subClassOf rdf:resource="&fisheries;ReefQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowReefArea -->
 
-    <owl:Class rdf:about="#LowReefArea">
-        <rdfs:subClassOf rdf:resource="#CoralReefArea"/>
+    <owl:Class rdf:about="&fisheries;LowReefArea">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowSubsistenceUse -->
 
-    <owl:Class rdf:about="#LowSubsistenceUse">
-        <rdfs:subClassOf rdf:resource="#SubsistenceUse"/>
+    <owl:Class rdf:about="&fisheries;LowSubsistenceUse">
+        <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceUse"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LutjanusArgentimaculatusAbundance -->
 
-    <owl:Class rdf:about="#LutjanusArgentimaculatusAbundance">
-        <rdfs:subClassOf rdf:resource="#FishAbundance"/>
+    <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusAbundance">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LutjanusArgentimaculatusAbundanceMg -->
 
-    <owl:Class rdf:about="#LutjanusArgentimaculatusAbundanceMg">
-        <rdfs:subClassOf rdf:resource="#LutjanusArgentimaculatusAbundance"/>
+    <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusAbundanceMg">
+        <rdfs:subClassOf rdf:resource="&fisheries;LutjanusArgentimaculatusAbundance"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LutjanusArgentimaculatusHabitat -->
 
-    <owl:Class rdf:about="#LutjanusArgentimaculatusHabitat">
+    <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
-        <rdfs:subClassOf rdf:resource="#FishHabitat"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LutjanusArgentimaculatusHarvest -->
 
-    <owl:Class rdf:about="#LutjanusArgentimaculatusHarvest">
-        <rdfs:subClassOf rdf:resource="#FishHarvest"/>
+    <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusHarvest">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHarvest"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LutjanusArgentimaculatusStock -->
 
-    <owl:Class rdf:about="#LutjanusArgentimaculatusStock">
-        <rdfs:subClassOf rdf:resource="#FishStock"/>
+    <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusStock">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishStock"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateBleaching -->
 
-    <owl:Class rdf:about="#ModerateBleaching">
-        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
+    <owl:Class rdf:about="&fisheries;ModerateBleaching">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateCoastalProximity -->
 
-    <owl:Class rdf:about="#ModerateCoastalProximity">
-        <rdfs:subClassOf rdf:resource="#DistanceToCoast"/>
+    <owl:Class rdf:about="&fisheries;ModerateCoastalProximity">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoastalProximity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateNitrogenRunoff -->
 
-    <owl:Class rdf:about="#ModerateNitrogenRunoff">
-        <rdfs:subClassOf rdf:resource="#NitrogenRunoff"/>
+    <owl:Class rdf:about="&fisheries;ModerateNitrogenRunoff">
+        <rdfs:subClassOf rdf:resource="&fisheries;NitrogenRunoff"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModeratePopulationDensity -->
 
-    <owl:Class rdf:about="#ModeratePopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="&fisheries;ModeratePopulationDensity">
+        <rdfs:subClassOf rdf:resource="&fisheries;PopulationDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModeratePoverty -->
 
-    <owl:Class rdf:about="#ModeratePoverty">
-        <rdfs:subClassOf rdf:resource="#Poverty"/>
+    <owl:Class rdf:about="&fisheries;ModeratePoverty">
+        <rdfs:subClassOf rdf:resource="&fisheries;Poverty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityAHHabitat -->
 
-    <owl:Class rdf:about="#ModerateQualityAHHabitat">
-        <rdfs:subClassOf rdf:resource="#ArgyrosomusHololepidotusHabitat"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityAHHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;ArgyrosomusHololepidotusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityEstuary -->
 
-    <owl:Class rdf:about="#ModerateQualityEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryQuality"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityLAHabitat -->
 
-    <owl:Class rdf:about="#ModerateQualityLAHabitat">
-        <rdfs:subClassOf rdf:resource="#LutjanusArgentimaculatusHabitat"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityLAHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LutjanusArgentimaculatusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityLBHabitat -->
 
-    <owl:Class rdf:about="#ModerateQualityLBHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusBorbonicusHabitat"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityLBHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusBorbonicusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityLMHabitat -->
 
-    <owl:Class rdf:about="#ModerateQualityLMHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusMahsenaHabitat"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityLMHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusMahsenaHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateQualityReef -->
 
-    <owl:Class rdf:about="#ModerateQualityReef">
-        <rdfs:subClassOf rdf:resource="#ReefQuality"/>
+    <owl:Class rdf:about="&fisheries;ModerateQualityReef">
+        <rdfs:subClassOf rdf:resource="&fisheries;ReefQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateReefArea -->
 
-    <owl:Class rdf:about="#ModerateReefArea">
-        <rdfs:subClassOf rdf:resource="#CoralReefArea"/>
+    <owl:Class rdf:about="&fisheries;ModerateReefArea">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateSubsistenceUse -->
 
-    <owl:Class rdf:about="#ModerateSubsistenceUse">
-        <rdfs:subClassOf rdf:resource="#SubsistenceUse"/>
+    <owl:Class rdf:about="&fisheries;ModerateSubsistenceUse">
+        <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceUse"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NitrogenRunoff -->
 
-    <owl:Class rdf:about="#NitrogenRunoff">
+    <owl:Class rdf:about="&fisheries;NitrogenRunoff">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&policytarget;NitrogenFromFertilizerAndManure"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -754,95 +773,95 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoAHHabitat -->
 
-    <owl:Class rdf:about="#NoAHHabitat">
-        <rdfs:subClassOf rdf:resource="#ArgyrosomusHololepidotusHabitat"/>
+    <owl:Class rdf:about="&fisheries;NoAHHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;ArgyrosomusHololepidotusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoBleaching -->
 
-    <owl:Class rdf:about="#NoBleaching">
-        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
+    <owl:Class rdf:about="&fisheries;NoBleaching">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoEstuary -->
 
-    <owl:Class rdf:about="#NoEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryArea"/>
+    <owl:Class rdf:about="&fisheries;NoEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoLAHabitat -->
 
-    <owl:Class rdf:about="#NoLAHabitat">
-        <rdfs:subClassOf rdf:resource="#LutjanusArgentimaculatusHabitat"/>
+    <owl:Class rdf:about="&fisheries;NoLAHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LutjanusArgentimaculatusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoLBHabitat -->
 
-    <owl:Class rdf:about="#NoLBHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusBorbonicusHabitat"/>
+    <owl:Class rdf:about="&fisheries;NoLBHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusBorbonicusHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoLMHabitat -->
 
-    <owl:Class rdf:about="#NoLMHabitat">
-        <rdfs:subClassOf rdf:resource="#LethrinusMahsenaHabitat"/>
+    <owl:Class rdf:about="&fisheries;NoLMHabitat">
+        <rdfs:subClassOf rdf:resource="&fisheries;LethrinusMahsenaHabitat"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoNitrogenRunoff -->
 
-    <owl:Class rdf:about="#NoNitrogenRunoff">
-        <rdfs:subClassOf rdf:resource="#NitrogenRunoff"/>
+    <owl:Class rdf:about="&fisheries;NoNitrogenRunoff">
+        <rdfs:subClassOf rdf:resource="&fisheries;NitrogenRunoff"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoQualityEstuary -->
 
-    <owl:Class rdf:about="#NoQualityEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryQuality"/>
+    <owl:Class rdf:about="&fisheries;NoQualityEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoQualityReef -->
 
-    <owl:Class rdf:about="#NoQualityReef">
-        <rdfs:subClassOf rdf:resource="#ReefQuality"/>
+    <owl:Class rdf:about="&fisheries;NoQualityReef">
+        <rdfs:subClassOf rdf:resource="&fisheries;ReefQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoReefArea -->
 
-    <owl:Class rdf:about="#NoReefArea">
-        <rdfs:subClassOf rdf:resource="#CoralReefArea"/>
+    <owl:Class rdf:about="&fisheries;NoReefArea">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoSubsistenceUse -->
 
-    <owl:Class rdf:about="#NoSubsistenceUse">
-        <rdfs:subClassOf rdf:resource="#SubsistenceUse"/>
+    <owl:Class rdf:about="&fisheries;NoSubsistenceUse">
+        <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceUse"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#Paths -->
 
-    <owl:Class rdf:about="#Paths">
+    <owl:Class rdf:about="&fisheries;Paths">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -851,7 +870,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#PopulationDensity -->
 
-    <owl:Class rdf:about="#PopulationDensity">
+    <owl:Class rdf:about="&fisheries;PopulationDensity">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -860,16 +879,30 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#Poverty -->
 
-    <owl:Class rdf:about="#Poverty">
+    <owl:Class rdf:about="&fisheries;Poverty">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ProximityBuffer -->
+
+    <owl:Class rdf:about="&fisheries;ProximityBuffer"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ProximityBufferPresent -->
+
+    <owl:Class rdf:about="&fisheries;ProximityBufferPresent">
+        <rdfs:subClassOf rdf:resource="&fisheries;ProximityBuffer"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ReefQuality -->
 
-    <owl:Class rdf:about="#ReefQuality">
+    <owl:Class rdf:about="&fisheries;ReefQuality">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -878,7 +911,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SatisfiedSubsistenceFishDemand -->
 
-    <owl:Class rdf:about="#SatisfiedSubsistenceFishDemand">
+    <owl:Class rdf:about="&fisheries;SatisfiedSubsistenceFishDemand">
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
     </owl:Class>
     
@@ -886,15 +919,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SmallEstuary -->
 
-    <owl:Class rdf:about="#SmallEstuary">
-        <rdfs:subClassOf rdf:resource="#EstuaryArea"/>
+    <owl:Class rdf:about="&fisheries;SmallEstuary">
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishAccessibility -->
 
-    <owl:Class rdf:about="#SubsistenceFishAccessibility">
+    <owl:Class rdf:about="&fisheries;SubsistenceFishAccessibility">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -902,7 +935,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishDemand -->
 
-    <owl:Class rdf:about="#SubsistenceFishDemand">
+    <owl:Class rdf:about="&fisheries;SubsistenceFishDemand">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
     </owl:Class>
     
@@ -910,7 +943,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishFlow -->
 
-    <owl:Class rdf:about="#SubsistenceFishFlow">
+    <owl:Class rdf:about="&fisheries;SubsistenceFishFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
     </owl:Class>
     
@@ -918,15 +951,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishProvision -->
 
-    <owl:Class rdf:about="#SubsistenceFishProvision">
-        <rdfs:subClassOf rdf:resource="#Fisheries"/>
+    <owl:Class rdf:about="&fisheries;SubsistenceFishProvision">
+        <rdfs:subClassOf rdf:resource="&fisheries;Fisheries"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishSupply -->
 
-    <owl:Class rdf:about="#SubsistenceFishSupply">
+    <owl:Class rdf:about="&fisheries;SubsistenceFishSupply">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
     </owl:Class>
     
@@ -934,7 +967,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceFishing -->
 
-    <owl:Class rdf:about="#SubsistenceFishing">
+    <owl:Class rdf:about="&fisheries;SubsistenceFishing">
         <rdfs:subClassOf rdf:resource="&eserv;RelativeUse"/>
     </owl:Class>
     
@@ -942,9 +975,9 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SubsistenceUse -->
 
-    <owl:Class rdf:about="#SubsistenceUse">
+    <owl:Class rdf:about="&fisheries;SubsistenceUse">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
-        <rdfs:subClassOf rdf:resource="#SubsistenceFishing"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceFishing"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -952,15 +985,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#TotalSubsistenceHarvest -->
 
-    <owl:Class rdf:about="#TotalSubsistenceHarvest">
-        <rdfs:subClassOf rdf:resource="#FishHarvest"/>
+    <owl:Class rdf:about="&fisheries;TotalSubsistenceHarvest">
+        <rdfs:subClassOf rdf:resource="&fisheries;FishHarvest"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#UnsatisfiedSubsistenceFishDemand -->
 
-    <owl:Class rdf:about="#UnsatisfiedSubsistenceFishDemand">
+    <owl:Class rdf:about="&fisheries;UnsatisfiedSubsistenceFishDemand">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
     </owl:Class>
     
@@ -968,7 +1001,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#UnutilizedSubsistenceFish -->
 
-    <owl:Class rdf:about="#UnutilizedSubsistenceFish">
+    <owl:Class rdf:about="&fisheries;UnutilizedSubsistenceFish">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
     </owl:Class>
     
@@ -976,7 +1009,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#UtilizedSubsistenceFish -->
 
-    <owl:Class rdf:about="#UtilizedSubsistenceFish">
+    <owl:Class rdf:about="&fisheries;UtilizedSubsistenceFish">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
     </owl:Class>
     
@@ -984,16 +1017,16 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#VeryHighPopulationDensity -->
 
-    <owl:Class rdf:about="#VeryHighPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="&fisheries;VeryHighPopulationDensity">
+        <rdfs:subClassOf rdf:resource="&fisheries;PopulationDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#VeryLowPopulationDensity -->
 
-    <owl:Class rdf:about="#VeryLowPopulationDensity">
-        <rdfs:subClassOf rdf:resource="#PopulationDensity"/>
+    <owl:Class rdf:about="&fisheries;VeryLowPopulationDensity">
+        <rdfs:subClassOf rdf:resource="&fisheries;PopulationDensity"/>
     </owl:Class>
     
 
@@ -1045,94 +1078,94 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityReef"/>
-            <rdf:Description rdf:about="#LowQualityReef"/>
-            <rdf:Description rdf:about="#ModerateQualityReef"/>
-            <rdf:Description rdf:about="#NoQualityReef"/>
+            <rdf:Description rdf:about="&fisheries;HighQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;LowQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;ModerateQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;NoQualityEstuary"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityEstuary"/>
-            <rdf:Description rdf:about="#LowQualityEstuary"/>
-            <rdf:Description rdf:about="#ModerateQualityEstuary"/>
-            <rdf:Description rdf:about="#NoQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;HighPopulationDensity"/>
+            <rdf:Description rdf:about="&fisheries;LowPopulationDensity"/>
+            <rdf:Description rdf:about="&fisheries;ModeratePopulationDensity"/>
+            <rdf:Description rdf:about="&fisheries;VeryHighPopulationDensity"/>
+            <rdf:Description rdf:about="&fisheries;VeryLowPopulationDensity"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighReefArea"/>
-            <rdf:Description rdf:about="#LowReefArea"/>
-            <rdf:Description rdf:about="#ModerateReefArea"/>
-            <rdf:Description rdf:about="#NoReefArea"/>
+            <rdf:Description rdf:about="&fisheries;HighQualityReef"/>
+            <rdf:Description rdf:about="&fisheries;LowQualityReef"/>
+            <rdf:Description rdf:about="&fisheries;ModerateQualityReef"/>
+            <rdf:Description rdf:about="&fisheries;NoQualityReef"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighPopulationDensity"/>
-            <rdf:Description rdf:about="#LowPopulationDensity"/>
-            <rdf:Description rdf:about="#ModeratePopulationDensity"/>
-            <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
-            <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
+            <rdf:Description rdf:about="&fisheries;HighQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;LowQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;ModerateQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;NoAHHabitat"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
-            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
-            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
-            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
+            <rdf:Description rdf:about="&fisheries;HighCoastalProximity"/>
+            <rdf:Description rdf:about="&fisheries;LowCoastalProximity"/>
+            <rdf:Description rdf:about="&fisheries;ModerateCoastalProximity"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
-            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
-            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
-            <rdf:Description rdf:about="#NoAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;LargeEstuary"/>
+            <rdf:Description rdf:about="&fisheries;NoEstuary"/>
+            <rdf:Description rdf:about="&fisheries;SmallEstuary"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighSubsistenceUse"/>
-            <rdf:Description rdf:about="#LowSubsistenceUse"/>
-            <rdf:Description rdf:about="#ModerateSubsistenceUse"/>
-            <rdf:Description rdf:about="#NoSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;HighReefArea"/>
+            <rdf:Description rdf:about="&fisheries;LowReefArea"/>
+            <rdf:Description rdf:about="&fisheries;ModerateReefArea"/>
+            <rdf:Description rdf:about="&fisheries;NoReefArea"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighCoastalProximity"/>
-            <rdf:Description rdf:about="#LowCoastalProximity"/>
-            <rdf:Description rdf:about="#ModerateCoastalProximity"/>
+            <rdf:Description rdf:about="&fisheries;HighNitrogenRunoff"/>
+            <rdf:Description rdf:about="&fisheries;LowNitrogenRunoff"/>
+            <rdf:Description rdf:about="&fisheries;ModerateNitrogenRunoff"/>
+            <rdf:Description rdf:about="&fisheries;NoNitrogenRunoff"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBleaching"/>
-            <rdf:Description rdf:about="#ModerateBleaching"/>
-            <rdf:Description rdf:about="#NoBleaching"/>
+            <rdf:Description rdf:about="&fisheries;HighBleaching"/>
+            <rdf:Description rdf:about="&fisheries;ModerateBleaching"/>
+            <rdf:Description rdf:about="&fisheries;NoBleaching"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#LargeEstuary"/>
-            <rdf:Description rdf:about="#NoEstuary"/>
-            <rdf:Description rdf:about="#SmallEstuary"/>
+            <rdf:Description rdf:about="&fisheries;HighSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;LowSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;ModerateSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;NoSubsistenceUse"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.1.0.20069) http://owlapi.sourceforge.net -->
 
