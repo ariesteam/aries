@@ -88,12 +88,12 @@
 ;; DATA PROBLEM? ARC-INFO DISTANCE LAYER PLEASE?
 (defmodel coastal-proximity 'fisheries:CoastalProximity
 	(classification (measurement 'fisheries:DistanceToCoast "km")
-;;		1       'fisheries:HighCoastalProximity
-;;      5       'fisheries:ModerateCoastalProximity
-;;		[25 :>] 'fisheries:LowCoastalProximity))
-		[0  1] 'fisheries:HighCoastalProximity
-    [1  5] 'fisheries:ModerateCoastalProximity
-		[5 :>] 'fisheries:LowCoastalProximity))
+        1       'fisheries:HighCoastalProximity
+        5       'fisheries:ModerateCoastalProximity
+        [25 :>] 'fisheries:LowCoastalProximity))
+;;		[0  1] 'fisheries:HighCoastalProximity
+;;      [1  5] 'fisheries:ModerateCoastalProximity
+;;		[5 :>] 'fisheries:LowCoastalProximity))
 
 (defmodel poverty 'fisheries:Poverty
 	(classification (ranking 'policytarget:PovertyPercentage)
@@ -113,7 +113,7 @@
 ;; low use = 2.3 kg fish/yr.  This calculates total demand.
 (defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
   (classification 'fisheries:SubsistenceUse
-    :units "kg/km^2*year"
+    :units "kg/km^2*year" ; per person, multiply by population-density.
     6.8  'fisheries:HighSubsistenceUse
     4.6  'fisheries:ModerateSubsistenceUse
     2.3  'fisheries:LowSubsistenceUse

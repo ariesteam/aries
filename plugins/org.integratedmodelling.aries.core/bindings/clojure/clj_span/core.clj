@@ -58,7 +58,9 @@
             clj-span.sediment-model
             clj-span.proximity-model
             clj-span.line-of-sight-model
-            clj-span.surface-water-model))
+            clj-span.surface-water-model
+            clj-span.coastal-storm-protection-model
+            clj-span.subsistence-fisheries-model))
 
 (defn zero-layer-below-threshold
   "Takes a two dimensional array of RVs and replaces all values which
@@ -158,7 +160,8 @@
              "FloodWaterMovement"
              "SurfaceWaterMovement"
              "Sediment"
-             "CoastalStormMovement"} flow-model)
+             "CoastalStormMovement"
+             "SubsistenceFishAccessibility"} flow-model)
           (#{:cli-menu :closure-map} result-type)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states

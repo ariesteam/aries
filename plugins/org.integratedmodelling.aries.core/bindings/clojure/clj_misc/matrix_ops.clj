@@ -398,3 +398,19 @@
        (when (and (>= left 0)     (>= bottom 0)) (list [bottom left]))
        (when (and (<  right cols) (<  top rows)) (list [top right]))
        (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
+
+(defn find-nearest
+  [test? rows cols id]
+  (if (test? id)
+    id
+    (loop [bounding-box (find-bounding-box rows cols (list id))]
+      (if (seq bounding-box)
+        (if-let [goal-point (first (filter test? bounding-box))]
+          goal-point
+          (recur (find-bounding-box rows cols bounding-box)))))))
+
+(defn get-bearing
+  [source destination]
+  (let [delta-vec (subtract-ids destination source)
+        delta-mag (magnitude delta-vec)]
+    (map #(/ % delta-mag) delta-vec)))

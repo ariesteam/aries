@@ -214,6 +214,20 @@
                                    (filter (complement closed-set) (successors this-node)))
                            (conj closed-set this-node)))))))
 
+(defn shortest-path
+  "The classic breadth-first-search.  Bread and butter of computer
+   science.  Implemented using tail recursion, of course! ;)"
+  [root successors goal? heuristic-filter]
+  (loop [open-list  [[root]]
+         closed-set #{}]
+    (when-first [this-route open-list]
+                (let [this-node (peek this-route)]
+                  (if (goal? this-node)
+                    this-route
+                    (recur (concat (rest open-list)
+                                   (map (p conj this-route) (heuristic-filter this-node (remove closed-set (successors this-node)))))
+                           (conj closed-set this-node)))))))
+
 (defn depth-first-tree-search
   "The classic depth-first-tree-search.  Bread and butter of computer
    science.  Implemented using tail recursion, of course! ;)"
@@ -317,3 +331,14 @@
     (apply await agents)))
 
 (defn sum [nums] (reduce + nums))
+
+(defmacro with-progress-bar
+  [body]
+  `(do
+     (doseq [_# ~body]
+       (print "*") (flush))
+     (newline)))
+
+(defn iterate-while-seq
+  [f x]
+  (take-while seq (iterate (& (p remove nil?) f) x)))

@@ -51,7 +51,7 @@
    "            -sink-type          <finite|infinite> \\ \n"
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection>\n"))
+   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection|subsistence-fisheries>\n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -83,8 +83,8 @@
    ["-sink-type"          #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
-   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment" "coastal-storm-protection"}
-    " must be one of line-of-sight, proximity, carbon, flood, surface-water, sediment, or coastal-storm-protection."]])
+   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment" "coastal-storm-protection" "subsistence-fisheries"}
+    " must be one of line-of-sight, proximity, carbon, flood, surface-water, sediment, coastal-storm-protection, or subsistence-fisheries."]])
 
 (defn- valid-params?
   "Returns true if the params map:
@@ -135,7 +135,8 @@
                                    "flood"                    "FloodWaterMovement"
                                    "surface-water"            "SurfaceWaterMovement"
                                    "sediment"                 "Sediment"
-                                   "coastal-storm-protection" "CoastalStormMovement"}
+                                   "coastal-storm-protection" "CoastalStormMovement"
+                                   "subsistence-fisheries"    "SubsistenceFishAccessibility"}
                                   (params "-flow-model")))))
 
 (defn -main
