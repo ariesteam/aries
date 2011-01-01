@@ -83,9 +83,13 @@
 ;; Use models
 ;; --------------------------------------------------------------------------------------
 
-;; FIXME THIS THING ONLY RETURNS MODERATE PROXIMITY FOR THE BUFFER,
-;; AND  THE REST OF MG + THE OCEAN IS HIGH PROXIMITY
-;; DATA PROBLEM? ARC-INFO DISTANCE LAYER PLEASE?
+;; FV FIXME
+;; the distance to coast thing urgently needs to reclassify a proper distance layer or algorithm
+;; with actual numbers and not specific of fisheries
+;; 
+;; the discretization should be bounded so that non-coastal proximate areas return nulls, so it can be used
+;; to clip the bayesian network instead of having to write a "subsistence-selector" as below
+;; 
 (defmodel coastal-proximity 'fisheries:CoastalProximity
 	(classification (measurement 'fisheries:DistanceToCoast "km")
         1       'fisheries:HighCoastalProximity
@@ -129,11 +133,13 @@
 ;;    (* (:population-density-count self) 2.3)  'fisheries:LowSubsistenceUse
 ;;    0                                         'fisheries:NoSubsistenceUse))
 
-;; FIX THIS TO INCLUDE MODERATE/HIGH WHEN THE COASTAL PROXIMITY THING MAKES SENSE
+;; FIXME this should be removed when the distance to coast model is done properly
 (defmodel subsistence-selector 'fisheries:ProximityBuffer
   (classification 'fisheries:ProximityBuffer
     :context (coastal-proximity)
-    :state  #(if (tl/is? (:coastalproximity %) 'fisheries:ModerateCoastalProximity)
+    :state  #(if (or (tl/is? (:coastalproximity %) 'fisheries:ModerateCoastalProximity)
+                     (tl/is? (:coastalproximity %) 'fisheries:LowCoastalProximity)                   
+                     (tl/is? (:coastalproximity %) 'fisheries:HighCoastalProximity))
                (tl/conc 'fisheries:ProximityBufferPresent) 
                nil)))
 
@@ -142,6 +148,7 @@
   (bayesian 'fisheries:SubsistenceFishing
             :import   "aries.marine::FisheriesSubsistenceUse.xdsl"
             :keep     ('fisheries:SubsistenceUse)
+;; FIXME substitute below with distance to coast when it's correctly written and based on decent data
             :required ('fisheries:ProximityBuffer)
             :observed (subsistence-fishing-undiscretized)
             :context  (poverty population-density coastal-proximity subsistence-selector)))
@@ -159,7 +166,8 @@
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision
-		:context (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)))
+		:context (total-pelagic-subsistence-harvest subsistence-fishing 
+              fish-flow-data fish-habitat-quality)))
 
 (defmodel fisheries-subsistence-flow 'fisheries:SubsistenceFishProvision
   (span 'fisheries:SubsistenceFishAccessibility
