@@ -573,6 +573,7 @@
 
     <owl:Class rdf:about="&coastalProtection;DunePresenceClass">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
     
 
@@ -1355,6 +1356,7 @@
 
     <owl:Class rdf:about="&coastalProtection;SeagrassPresenceClass">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
     
 
@@ -1771,6 +1773,12 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;BooleanRanking"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
 
     <owl:Class rdf:about="&thinklab-core;OrderedRangeMapping"/>
@@ -1794,10 +1802,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;LowMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;NoMangroveWidth"/>
+            <rdf:Description rdf:about="&coastalProtection;HighBleaching"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateBleaching"/>
+            <rdf:Description rdf:about="&coastalProtection;NoBleaching"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1812,15 +1819,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;LowRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;NoRiskToAssets"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="&coastalProtection;HighSeagrassDensity"/>
             <rdf:Description rdf:about="&coastalProtection;LowSeagrassDensity"/>
             <rdf:Description rdf:about="&coastalProtection;ModerateSeagrassDensity"/>
@@ -1830,18 +1828,28 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;LowRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;NoRiskToLife"/>
+            <rdf:Description rdf:about="&coastalProtection;HighRiskToAssets"/>
+            <rdf:Description rdf:about="&coastalProtection;LowRiskToAssets"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToAssets"/>
+            <rdf:Description rdf:about="&coastalProtection;NoRiskToAssets"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;NoBleaching"/>
+            <rdf:Description rdf:about="&coastalProtection;HighMangroveWidth"/>
+            <rdf:Description rdf:about="&coastalProtection;LowMangroveWidth"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateMangroveWidth"/>
+            <rdf:Description rdf:about="&coastalProtection;NoMangroveWidth"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&coastalProtection;HighRiskToLife"/>
+            <rdf:Description rdf:about="&coastalProtection;LowRiskToLife"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToLife"/>
+            <rdf:Description rdf:about="&coastalProtection;NoRiskToLife"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
