@@ -1319,6 +1319,20 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ProtectionPresence -->
+
+    <owl:Class rdf:about="&coastalProtection;ProtectionPresence"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ProtectionPresent -->
+
+    <owl:Class rdf:about="&coastalProtection;ProtectionPresent">
+        <rdfs:subClassOf rdf:resource="&coastalProtection;ProtectionPresence"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SafetyAndSecurity -->
 
     <owl:Class rdf:about="&coastalProtection;SafetyAndSecurity">
@@ -1802,32 +1816,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;NoBleaching"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;LowCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;NoCoastalFloodProtection"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;LowSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;NoSeagrassDensity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="&coastalProtection;HighRiskToAssets"/>
             <rdf:Description rdf:about="&coastalProtection;LowRiskToAssets"/>
             <rdf:Description rdf:about="&coastalProtection;ModerateRiskToAssets"/>
@@ -1850,6 +1838,32 @@
             <rdf:Description rdf:about="&coastalProtection;LowRiskToLife"/>
             <rdf:Description rdf:about="&coastalProtection;ModerateRiskToLife"/>
             <rdf:Description rdf:about="&coastalProtection;NoRiskToLife"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&coastalProtection;HighSeagrassDensity"/>
+            <rdf:Description rdf:about="&coastalProtection;LowSeagrassDensity"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateSeagrassDensity"/>
+            <rdf:Description rdf:about="&coastalProtection;NoSeagrassDensity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&coastalProtection;HighCoastalFloodProtection"/>
+            <rdf:Description rdf:about="&coastalProtection;LowCoastalFloodProtection"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateCoastalFloodProtection"/>
+            <rdf:Description rdf:about="&coastalProtection;NoCoastalFloodProtection"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&coastalProtection;HighBleaching"/>
+            <rdf:Description rdf:about="&coastalProtection;ModerateBleaching"/>
+            <rdf:Description rdf:about="&coastalProtection;NoBleaching"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

@@ -30,6 +30,7 @@
     [-50 -200]          'coastalProtection:Deep
     [:< -200]           'coastalProtection:VeryDeep))
 
+
 (defmodel atmospheric-pressure 'coastalProtection:AtmosphericPressureClass
   (classification (ranking 'geophysics:AtmosphericPressure) ;;This should be a measurement, in mb, but this is not yet a valid unit in Thinklab.
     [990 :>]  'coastalProtection:ModeratelyLowAtmosphericPressure
@@ -207,6 +208,13 @@
                   [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
                   [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
 
+;; selects overland and shallow areas to clip coastal protection bn
+(defmodel protection-selector 'coastalProtection:ProtectionPresence
+  (classification (measurement 'geophysics:Bathymetry "m")
+    [0 :>]              'coastalProtection:ProtectionPresent
+    [0 -50]             'coastalProtection:ProtectionPresent))
+
+
 ;; Wave mitigation by ecosystems, i.e., the ecosystem service.
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
   	"Interface to Flood public asset use bayesian network"
@@ -214,8 +222,8 @@
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     ('coastalProtection:TotalCoastalFloodProtection)
         :observed (coastal-flood-protection)
-;;        :required ('coastalProtection:BufferMg100km)
-        :context  (mangrove coral-quality seagrass terrestrial-vegetation artificial-coastal-protection)))
+        :required ('coastalProtection:ProtectionPresence)
+        :context  (mangrove coral-quality seagrass terrestrial-vegetation protection-selector artificial-coastal-protection)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Use models
@@ -280,6 +288,7 @@
 	(identification 'coastalProtection:CoastalStormProtection 
                     :context (risk-to-life
                               risk-to-assets
+                              coastal-wave-source
                               coastal-flood-sink
                               coastal-flow-data)))
 
