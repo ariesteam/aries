@@ -57,7 +57,8 @@
     [250 :>]            'fisheries:HighReefArea
     [25 250]            'fisheries:ModerateReefArea
     [:exclusive 0 25]   'fisheries:LowReefArea
-    nil                 'fisheries:NoReefArea))
+    :otherwise          'fisheries:NoReefArea))
+    ;;nil                 'fisheries:NoReefArea))
     
 (defmodel estuary-area 'fisheries:EstuaryArea
   (classification (categorization 'fisheries:EstuaryArea)
@@ -105,7 +106,7 @@
 		[25 50]   'fisheries:ModeratePoverty
 		[:< 25]   'fisheries:LowPoverty))
 
-(defmodel population-density 'fisheries:PopulationDensity
+(defmodel population-density 'fisheries:PopulationDensityClass
 	(classification (count 'policytarget:PopulationDensity "/km^2")
 		[2000 :>]    'fisheries:VeryHighPopulationDensity
 		[1000 2000]  'fisheries:HighPopulationDensity
@@ -117,7 +118,7 @@
 ;; low use = 2.3 kg fish/yr.  This calculates total demand.
 (defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
   (classification 'fisheries:SubsistenceUse
-    :units "kg/km^2*year" ; per person, multiply by population-density.
+    :units "kg/km^2*year" ; per person, multiply by population density.
     6.8  'fisheries:HighSubsistenceUse
     4.6  'fisheries:ModerateSubsistenceUse
     2.3  'fisheries:LowSubsistenceUse
@@ -140,8 +141,7 @@
     :state  #(if (or (tl/is? (:coastalproximity %) 'fisheries:ModerateCoastalProximity)
                      (tl/is? (:coastalproximity %) 'fisheries:LowCoastalProximity)                   
                      (tl/is? (:coastalproximity %) 'fisheries:HighCoastalProximity))
-               (tl/conc 'fisheries:ProximityBufferPresent) 
-               nil)))
+               (tl/conc 'fisheries:ProximityBufferPresent))))
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing
   "Interface to subsistence use bayesian network"
@@ -186,7 +186,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-fisheries-data.clj"
+        :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-fisheries-data.clj"
         :context            (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)
         :keep               ('fisheries:SubsistenceFishSupply
                              'fisheries:SubsistenceFishDemand

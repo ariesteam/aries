@@ -25,9 +25,9 @@
 (defmodel bathymetry-class 'coastalProtection:BathymetryClass
   (classification (measurement 'geophysics:Bathymetry "m")
     [0 :>]              'coastalProtection:Overland
-    [0 -20]             'coastalProtection:VeryShallow
-    [-20 -50]           'coastalProtection:Shallow
-    [-50 -200]          'coastalProtection:Deep
+    [-20 0]             'coastalProtection:VeryShallow
+    [-50 -20]           'coastalProtection:Shallow
+    [-200 -50]          'coastalProtection:Deep
     [:< -200]           'coastalProtection:VeryDeep))
 
 
@@ -90,6 +90,16 @@
                  (get-data (:coastalwavesource %)) ;; this should give us the mean value
                  0.0)))
 
+(defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
+  (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
+    :context (storm-tracks        :as storm-tracks
+              buffer              :as buffer
+              coastal-wave-source :as coastal-wave-source)
+    :state  #(do (println %) (if (and (= (:stormtracks %) "litanne")
+                      (= (:buffermg100km %) 1))
+                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
+                 0.0))))
+
 ;; alternative logics for Lovely Litanne
 
 (defmodel source-100km-litanne-selector 'coastalProtection:LitannePresence
@@ -97,8 +107,7 @@
     :context (storm-tracks buffer)
     :state  #(if (and (= (:stormtracks %) "litanne")
                       (= (:buffermg100km %) 1))
-                 (tl/conc 'coastalProtection:LitannePresent) 
-                 nil)))
+                 (tl/conc 'coastalProtection:LitannePresent))))
 
 (defmodel coastal-wave-source-litanne 'coastalProtection:CoastalWaveSource
     "Interface to Flood public asset use bayesian network"
@@ -116,8 +125,7 @@
     :context (storm-tracks buffer)
     :state  #(if (and (= (:stormtracks %) "daisy")
                       (= (:buffermg100km %) 1))
-                 (tl/conc 'coastalProtection:DaisyPresent) 
-                 nil)))
+                 (tl/conc 'coastalProtection:DaisyPresent))))
 
 (defmodel coastal-wave-source-daisy 'coastalProtection:CoastalWaveSource
     "Interface to Flood public asset use bayesian network"
@@ -135,8 +143,7 @@
     :context (storm-tracks buffer)
     :state  #(if (and (= (:stormtracks %) "geralda")
                       (= (:buffermg100km %) 1))
-                 (tl/conc 'coastalProtection:GeraldaPresent) 
-                 nil)))
+                 (tl/conc 'coastalProtection:GeraldaPresent))))
 
 (defmodel coastal-wave-source-geralda 'coastalProtection:CoastalWaveSource
     "Interface to Flood public asset use bayesian network"
@@ -148,16 +155,6 @@
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-geralda-selector)))
 
 ;; end of alternative strategies
-
-(defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
-  (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
-    :context (storm-tracks        :as storm-tracks
-              buffer              :as buffer
-              coastal-wave-source :as coastal-wave-source)
-    :state  #(do (println %) (if (and (= (:stormtracks %) "litanne")
-                      (= (:buffermg100km %) 1))
-                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
-                 0.0))))
 
 ;; --------------------------------------------------------------------------------------
 ;; Sink (coastal protection) model
@@ -195,7 +192,7 @@
 ;;Assumes some artificial flood protection near Toamasina, the main port city in Madagascar.  Development around the small ports is minimal.
 (defmodel artificial-coastal-protection 'coastalProtection:ArtificialCoastalProtection
   (classification (binary-coding 'infrastructure:Port)
-    3          'coastalProtection:ArtificialCoastalProtectionPresent
+    1          'coastalProtection:ArtificialCoastalProtectionPresent
     :otherwise 'coastalProtection:ArtificialCoastalProtectionAbsent))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
@@ -211,9 +208,7 @@
 ;; selects overland and shallow areas to clip coastal protection bn
 (defmodel protection-selector 'coastalProtection:ProtectionPresence
   (classification (measurement 'geophysics:Bathymetry "m")
-    [0 :>]              'coastalProtection:ProtectionPresent
-    [0 -50]             'coastalProtection:ProtectionPresent))
-
+    [-50 :>] 'coastalProtection:ProtectionPresent))
 
 ;; Wave mitigation by ecosystems, i.e., the ecosystem service.
 (defmodel coastal-flood-sink 'coastalProtection:CoastalFloodSink
@@ -257,9 +252,9 @@
     [20 :>]             'coastalProtection:HighLandElevation
     [5 20]              'coastalProtection:ModerateLandElevation
     [0 5]               'coastalProtection:LowLandElevation
-    [0 -60]             'coastalProtection:Pelagic
-    [-60 -200]          'coastalProtection:Shelf
-    [-200 -2000]        'coastalProtection:Slope
+    [-60 0]             'coastalProtection:Pelagic
+    [-200 -60]          'coastalProtection:Shelf
+    [-2000 -200]        'coastalProtection:Slope
     [:< -2000]          'coastalProtection:DeepWater))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
@@ -289,13 +284,16 @@
                     :context (risk-to-life
                               risk-to-assets
                               coastal-wave-source
+                              source-100km-daisy-selector
+                              source-100km-litanne-selector
+                              source-100km-geralda-selector
                               coastal-flood-sink
                               coastal-flow-data)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
   (span 'coastalProtection:CoastalStormMovement
-        'coastalProtection:CoastalWaveSourceDaisy
+        'coastalProtection:CoastalWaveSource
         'coastalProtection:CycloneDependentLivesAtRisk
         'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
         nil 
@@ -311,7 +309,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
-        :context            (source-100km-daisy risk-to-life coastal-flood-sink coastal-flow-data)
+        :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink coastal-flow-data)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
                              'coastalProtection:PotentiallyWaveVulnerablePopulations
