@@ -298,6 +298,7 @@ with the BS numbers. KB: This layer still has major issues.  Commenting it out a
 	</observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!--
 	<measurement:Measurement id="marine_coastbuf">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
@@ -319,7 +320,35 @@ with the BS numbers. KB: This layer still has major issues.  Commenting it out a
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-	
+-->
+
+    <measurement:Measurement id="distance_to_coast">
+      <observation:hasObservable>
+        <fisheries:DistanceToCoast />
+      </observation:hasObservable>
+      <rdfs:comment>Data source: Derived from FTM coastline data</rdfs:comment>
+      <metadata:hasPriority>0</metadata:hasPriority>
+      <measurement:unit>km</measurement:unit>
+      <observation:hasDataSource>
+        <geospace:WCSDataSource>
+          <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+          <geospace:hasCoverageId>distance_to_coast</geospace:hasCoverageId>
+        </geospace:WCSDataSource>
+      </observation:hasDataSource>
+      <observation:hasObservationExtent>
+        <geospace:RasterGrid>
+          <geospace:hasXRangeMax>1538</geospace:hasXRangeMax>
+          <geospace:hasYRangeMax>3015</geospace:hasYRangeMax>
+          <geospace:hasLatLowerBound>57716.0</geospace:hasLatLowerBound>
+          <geospace:hasLonLowerBound>64874.0</geospace:hasLonLowerBound>
+          <geospace:hasLatUpperBound>1566418.0</geospace:hasLatUpperBound>
+          <geospace:hasLonUpperBound>834849.0</geospace:hasLonUpperBound>
+          <geospace:hasCoordinateReferenceSystem>EPSG:29700</geospace:hasCoordinateReferenceSystem>
+        </geospace:RasterGrid>
+      </observation:hasObservationExtent>
+    </measurement:Measurement>
+
+<!--
 	<measurement:Measurement id="mg_distance_to_coast">
 		<observation:hasObservable>
 			<fisheries:DistanceToCoast />
@@ -344,6 +373,7 @@ with the BS numbers. KB: This layer still has major issues.  Commenting it out a
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+-->
 	
 	<measurement:BinaryCoding id="mg_dunes_mg">
 	<observation:hasObservable>

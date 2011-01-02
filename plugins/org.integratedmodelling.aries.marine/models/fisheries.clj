@@ -96,9 +96,9 @@
         1       'fisheries:HighCoastalProximity
         5       'fisheries:ModerateCoastalProximity
         [25 :>] 'fisheries:LowCoastalProximity))
-;;		[0  1] 'fisheries:HighCoastalProximity
-;;      [1  5] 'fisheries:ModerateCoastalProximity
-;;		[5 :>] 'fisheries:LowCoastalProximity))
+;;        [0   2] 'fisheries:HighCoastalProximity
+;;        [2  20] 'fisheries:ModerateCoastalProximity
+;;        [20 :>] 'fisheries:LowCoastalProximity))
 
 (defmodel poverty 'fisheries:Poverty
 	(classification (ranking 'policytarget:PovertyPercentage)
