@@ -186,7 +186,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-fisheries-data.clj"
+        :save-file          "coastal-fisheries-data.clj"
         :context            (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)
         :keep               ('fisheries:SubsistenceFishSupply
                              'fisheries:SubsistenceFishDemand

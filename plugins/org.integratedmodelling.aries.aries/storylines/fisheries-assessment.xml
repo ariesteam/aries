@@ -19,8 +19,8 @@
 		<title>Introduction</title>
 		<description><![CDATA[
 		
-			<p>This storyline intends to demonstrate the use of ARIES in mapping and quantifying
-			specific values connected to an ecosystem service. In this case we concentrate on 
+			<p>This storyline demonstrates the use of ARIES in quantifying
+			specific values of an ecosystem service. In this case we concentrate on 
 			the value of fish resources to coastal population that depend on fish for sustainance.</p>
 			
 			<p>Subsistence harvesting of ecosystem goods is critical 
@@ -58,20 +58,24 @@
 		do not contain the given concept, the page is skipped. The data browser in the page will show the map with the plot types indicated. -->
 	<page>
 		<concept>fisheries:CoastalProximity</concept>
-		<name>Distance To Coast</name>
+		<name>Proximity</name>
 		<title>Distance To Coast</title>
 		<group />
 		<description><![CDATA[
-		<p>Populations that live in the coastal area in poor countries depend on fish stocks for their daily subsistence. Explain why restric to these.</p>
-		<p>We have computed: source = ; use = ; sink = ; finally, flow = .</p>
+		<p>Populations that live in the coastal area in poor countries depend on fish stocks for 
+		their daily subsistence. This analysis was therefore restricted to populations living
+		close to the coast. In this storyline, we used a coastal buffer of 5km, assuming that
+		the likely beneficiaries of subsistence fisheries need to be able to reach the coast walking
+		or biking. Distance to the coast was categorized in three classes of distance, and this
+		variable entered the probabilistic calculation of the benefitshed.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: public world coastline database</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Distance To Coast</runninghead>
@@ -81,21 +85,25 @@
 
 	<page>
 		<concept>fisheries:PopulationDensity</concept>
-		<name>Population Density</name>
+		<name>Population</name>
 		<title>Population Density</title>
 		<group />
 		<description><![CDATA[
-			<p>In order to determine the need for subsistence fisheries, we use population density data and intersect them with the
-			chosen coastal distance layer to start determininig how many people are likely to need subsistence fishing in the area. This
-			map shows ... for all of Madagascar, and is used as an input in the analysis.</p>
+			<p>In order to determine the need for subsistence fisheries, population density data
+			were used as a first step to determine the initial multiplier for the amount of 
+			need. The data were intersected them with the
+			chosen coastal distance layer to start determininig how many people are likely
+			to need subsistence fishing in the area. This
+			map shows population for all of Madagascar, and is used as an input in the 
+			probabilistic benefitshed calculations.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: LANDSCAN, Oak Ridge National Laboratories</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Population Density</runninghead>
@@ -103,25 +111,29 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-	
+
 	<page>
 		<concept>fisheries:Poverty</concept>
 		<name>Poverty</name>
 		<title>Poverty level</title>
 		<group />
 		<description><![CDATA[
-			<p>Apparently only people whose life sucks depend on fish. For this reason, the poverty layer published by ... is used
-			along with other information to determine how much life sucks for people in Madagascar. The map shown here classifies
-			poverty levels in three categories, which are used in the probabilistic model of subsistence to help determine the
-			level of need.</p>
+			<p>People are more likely to access fisheries for subsistence purposes 
+			when they lack other sources of nutrition. Poverty rates estimated by
+			Elvidge et al. (2009) were used as part of the probabilistic determination
+			of the degree of subsistence fisheries use. The map shows reclassified
+			poverty rates for the whole region of interest.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			Elvidge, C.D., P.S. Sutton, K.E. Baugh, B.T. Tuttle, A.T. Howard, 
+			E.H. Erwin, B. Bhaduri, and E. Bright.  2009.  A global poverty map 
+			derived from satellite data.  Computers and Geosciences 35 (8): 1652-1660.<br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: Elvidge et al., 2009</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Poverty</runninghead>
@@ -129,8 +141,6 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 	
-	
-
 	<page>
 		<concept>fisheries:SubsistenceUse</concept>
 		<name>Subsistence Use</name>
@@ -140,19 +150,17 @@
 			<h1>Benefitshed map</h1>
 			<p>This map depicts our <b>benefitshed</b>, the result of the probabilistic modelling of the need for fish to support the livelihoods of coastal
 			populations. Darker blues indicate a need that is higher in poorer populations that live closer to the coast. The map you are seeing is a 
-			probabilistic one, meaning that we establish the probability of needing fish for subsistence rather than the amount
-			of fish needed per capita, which is known from socioeconomic data. You can click on the map and visualize the
+			probabilistic one, illustrating the probability of needing fish for subsistence. You can click on the map and visualize the
 			probability distribution in each point. The flow model you will see later determines the actual value of the
 			fish resource, depending on the need, the quality and abundance of the resource, and the ability of accessing
 			it by walking to the shoreline.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Subsistence Use</runninghead>
@@ -162,49 +170,61 @@
 
 	<page>
 		<concept>fisheries:LethrinusMahsenaAbundanceMg</concept>
-		<name> Lethrinus Mahsena Abundance Mg</name>
-		<title> Lethrinus Mahsena Abundance Mg</title>
+		<name>Sky emperor</name>
+		<title>Sky emperor abundance</title>
 		<group />
 		<description><![CDATA[
-			<p>Now that we have quantified the need for fish, we must model the actual provision of fish. Data about abundance of
-			different species of fish are available for FishBase and can be used as a starting point in modeling the likely 
-			harvest. We have chosen the three most important species for subsistence in Madagascar. What you are looking at 
-			here is the abundance of ... in .... The data provided by FishBase have 0.5 degree resolution, so we need to use
-			a coarse grid here. Yet, ARIES can automatically interpolate with the result of other models to provide better
+			<p>Now that we have quantified the need for fish, we must model the likely provision of fish. Data about abundance of
+			different species of fish are hard to find, but some are available from The Sea Around Us project
+			and can be used as a starting point in modeling the likely 
+			availability. We have chosen the three most important species for subsistence in Madagascar. What you are looking at 
+			here is the relative abundance of <em>Lethrinus mahsena</em> (sky emperor). The numbers here have relative significance, as
+			the actual harvest data are shown later by intersecting with catch data from FAO.</p>
+			
+			<p>The data have 0.5 degree resolution, so we must use
+			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
 			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.</p>
-			<p>INFO ABOUT THE FISH.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON FISHBASE</a><br/>		
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON WIKIPEDIA</a><br/>		
+			<a href="http://www.fishbase.org/summary/speciessummary.php?id=1843" target="_blank"><em>Lethrinus mahsena</em> on FishBase</a><br/>		
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus Mahsena Abundance Mg</runninghead>
+		<runninghead> Lethrinus Mahsena abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
 	<page>
 		<concept>fisheries:LethrinusBorbonicusAbundanceMg</concept>
-		<name>L. Borbonicus abundance</name>
-		<title>Lethrinus Borbonicus abundance</title>
+		<name>Snubnose emperor</name>
+		<title>Snubnose emperor abundance</title>
 		<group />
 		<description><![CDATA[
-			<p>.... is another important fish species for subsistence. INFO ABOUT ..... </p>
+			<p>Data about abundance of
+			different species of fish are hard to find, but some are available from The Sea Around Us project
+			and can be used as a starting point in modeling the likely 
+			availability. What you are looking at 
+			here is the relative abundance of <em>Lethrinus borbonicus</em> (snubnose emperor). The numbers here have relative significance, as
+			the actual harvest data are shown later by intersecting with catch data from FAO.</p>
+			
+			<p>The data have 0.5 degree resolution, so we must use
+			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
+			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.</p>		
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON FISHBASE</a><br/>		
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON WIKIPEDIA</a><br/>		
+			<a href="http://fishbase.sinica.edu.tw/summary/SpeciesSummary.php?id=1844" target="_blank"><em>Lethrinus borbonicus</em> on FishBase</a><br/>		
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Lethrinus Borbonicus Abundance Mg</runninghead>
@@ -214,122 +234,118 @@
 	
 	<page>
 		<concept>fisheries:LutjanusArgentimaculatusAbundanceMg</concept>
-		<name> L.Argentimaculatus abundance</name>
-		<title>Lutjanus Argentimaculatus abundance</title>
+		<name>Mangrove snapper</name>
+		<title>Mangrove red snapper abundance</title>
 		<group />
 		<description><![CDATA[
-			<p>.... is another important fish species for subsistence. INFO ABOUT ..... </p>
+			<p>Data about abundance of
+			different species of fish are hard to find, but some are available from The Sea Around Us project
+			and can be used as a starting point in modeling the likely 
+			availability. What you are looking at 
+			here is the relative abundance of <em>Lutjanus argentimaculatus</em> (mangrove red snapper). The numbers here have relative significance, as
+			the actual harvest data are shown later by intersecting with catch data from FAO.</p>
+			
+			<p>The data have 0.5 degree resolution, so we must use
+			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
+			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.</p>		
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON FISHBASE</a><br/>		
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">LINK TO FISH PAGE ON WIKIPEDIA</a><br/>		
+			<a href="http://www.fishbase.org/Summary/SpeciesSummary.php?id=1407" target="_blank"><em>Lutjanus argentimaculatus</em> on FishBase</a><br/>		
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Lutjanus Argentimaculatus Abundance Mg</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-
-
-
-	
+ 	
 	<page>
-		<concept>fisheries:LethrinusBorbonicusHarvest</concept>
-		<name> Lethrinus Borbonicus Harvest</name>
-		<title> Lethrinus Borbonicus Harvest</title>
+		<concept>fisheries:TotalSubsistenceHarvest</concept>
+		<name>Total harvest</name>
+		<title>Total potential subsistence harvest</title>
 		<group />
 		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
+		<h1>Provisionshed map</h1>
+		<p>The source of benefits for this storyline is the total amount of potential fish 
+		harvestable by coastal populations. Only a small fraction of this potential is usable
+		by the beneficiaries; the computation of the actually used potential is shown later in
+		the flow model output.</p>
+		<p>Historical catch data are published by the FAO (2008).  These data do not explicitly 
+		describe subsistence catch and do not contain catch records specific to any of the species 
+		for which we have relative abundance data. Despite these limitations, we can use assumptions 
+		to estimate the likely supply or source value for each species.  These assumptions can be adjusted 
+		should more refined fisheries information become available. This map shows estimated source
+		values for the mangrove red snapper (<em>Lutjanus argentimaculatus</em>). A similar process was
+		used to estimate source values for the other species considered. The sum of these maps constitutes
+		our <b>source model</b>.</p>  
+		
+		<p>Historical catch data from The Sea Around Us Project shows that 71.6% of the total 
+		catch for Madagascar from 1950-2004 is “non-identified marine pelagic fishes.”  
+		In 2005, Madagascar produced 138,477 tonnes of fish from capture fisheries, of which 
+		77,636 tonnes were for commodity trade and production.  Another 72,300 tonnes were 
+		taken by traditional fishermen; however, this catch is not necessarily mutually 
+		exclusive of the commodity sector.  Subtracting the commodity catch from the 
+		total catch leaves 60,841 tonnes of fish which we assume goes toward 
+		local consumption.  Assuming 71.6% of the locally consumed fish are 
+		“non-identified marine pelagic fishes,” these account for 43,562 tonnes.
+		Assuming that each of the fish species for which 
+		we have distribution data accounted for 20% of that total,
+		this would give 8,712 tonnes of fish caught for each of these species.  
+		We then divide the total catch for each species according to their 
+		relative abundance along the Madagascar coast in order to produce a map
+		of subsistence fish production for each species under the above assumptions (Equation 1).  
+		A similar equation holds for subsistence fisheries use (Equation 2).</p>
+		
+		<quote>(1)  S = a1S1 + a2S2 + a3S3 + … + anSn</quote><br/>
+		<quote>(2)  D = a1S1 + a2S2 + a3S3 + … + anSn</quote>  
+
+		<p>Where</p>
+		
+		<dl>
+			 <dt>S</dt>  <dd>the total source or supply of subsistence fisheries (kg)</dd>
+	  		 <dt>D</dt>  <dd>the total demand for subsistence fisheries (kg)</dd>
+		   	 <dt>an</dt> <dd>the percentage of the total demand met with species n</dd>
+			 <dt>Sn</dt> <dd>the total mass of species n caught (kg)</dd>
+		</dl>
+
+		<p>We make a series of simplifying assumptions based on limited data regarding 
+		the magnitude of supply and demand in Madagascar’s subsistence fishery and the 
+		distribution of valuable species.  Given better data and/or expert knowledge of 
+		the relative use of different species, ARIES can adjust the model coefficients 
+		to more accurately quantify human dependence on Madagascar’s fisheries.</p>
+
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.fao.org/fishery/statistics/seatl-capture-production/4/en" target="_blank">FAO fishery statistical collections</a><br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: FAO 2008</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus Borbonicus Harvest</runninghead>
+		<runninghead> Lutjanus Argentimaculatus harvest</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
-	<page>
-		<concept>fisheries:LethrinusMahsenaHarvest</concept>
-		<name>L. Mahsena harvest</name>
-		<title>Lethrinus Mahsena Harvest</title>
-		<group />
-		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-		<runninghead> Lethrinus Mahsena Harvest</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page>
-		<concept>fisheries:LutjanusArgentimaculatusHarvest</concept>
-		<name>L.Argentimaculatus harvest</name>
-		<title>Lutjanus Argentimaculatus Harvest</title>
-		<group />
-		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-		<runninghead> Lutjanus Argentimaculatus Harvest</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
 
-	
+
+<!-- these to be reactivated when habitat suitability is included in the flow model
+
 	<page id="estuary-area">
 		<concept>fisheries:EstuaryArea</concept>
 		<name> Estuary Area</name>
 		<title> Estuary Area</title>
 		<see-also><![CDATA[
-
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 			]]></see-also>
 		<credits><![CDATA[
 
@@ -342,12 +358,15 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
+ 	
 	<page id="reef-quality">
 		<concept>fisheries:ReefQuality</concept>
 		<name> Reef Quality</name>
 		<title> Reef Quality</title>
 		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 
 			]]></see-also>
 		<credits><![CDATA[
@@ -366,6 +385,9 @@
 		<name> Coral Reef Area</name>
 		<title> Coral Reef Area</title>
 		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 
 			]]></see-also>
 		<credits><![CDATA[
@@ -385,6 +407,9 @@
 		<name> Nitrogen Runoff</name>
 		<title> Nitrogen Runoff</title>
 		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 
 			]]></see-also>
 		<credits><![CDATA[
@@ -404,6 +429,9 @@
 		<name> Estuary Quality</name>
 		<title>Estuary Quality</title>
 		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 
 			]]></see-also>
 		<credits><![CDATA[
@@ -417,12 +445,16 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
+	
 	<page>
 		id="coral-bleaching">
 		<concept>fisheries:CoralBleaching</concept>
 		<name> Coral Bleaching</name>
 		<title> Coral Bleaching</title>
 		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
 
 		]]></see-also>
 		<credits><![CDATA[
@@ -436,37 +468,7 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-
-
-
-
-	<page>
-		<concept>fisheries:TotalSubsistenceHarvest</concept>
-		<name>Subsistence Harvest</name>
-		<title>Total Subsistence Harvest</title>
-		<group />
-		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-		<runninghead> Total Subsistence Harvest</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
+ -->
 
 	<page>
 		<concept>infrastructure:Path</concept>
@@ -474,18 +476,37 @@
 		<title>Pathways to shore</title>
 		<group />
 		<description><![CDATA[
-			<p>Now that we know both the amount of need and the amount of potential provision of fish, we need to model the
-			flow of this ecosystem service to the beneficiaries we have identified. In this storyline, we use information about
-			paths and roads to establish the ease of access to the locations where fish are provided. This map shows the existing
-			paths in Madagascar, and is based on ... </p>
+			<p>We have computed both the amount of need (benefitshed) and the amount of potential
+			provision (provisionshed) of fish. The last step of the analysis is modelling the
+			flow of this ecosystem service to the beneficiaries we have identified, which allows us
+			to understand the actual value of this resource in this context, as well as pointing 
+			out areas of unmet need and inefficiencies in the use of the resource.</p>
+			
+			<p>The subsistence fisheries flow model shows the expected spatial dependence of 
+			specific fisheries users on particular fisheries areas. Users are assumed to move from a 
+			point of origin (their homes) to an oceanic fishery, harvest fish, and return 
+			to their homes, where fish are consumed, via road or path networks.</p>  
+			
+			<p>This map shows the paths and road network that determines the accessibility 
+			of the locations where fish are provided. The flow model moves a given quantity 
+			of fish (in kg) from the ocean to areas of demand along these roads or paths.  
+			Each coastal ocean point has an estimated potential source of fish, computed as
+			our provisionshed model.  Each point on land has an estimated potential use for oceanic 
+			fish, computed in our benefitshed model.</p>
+
+			<p>We assume that the use of oceanic subsistence fisheries is greatest close to 
+			the coast and declines relatively quickly moving inland.  We model this distance 
+			decay as a Gaussian curve with high subsistence use within 1 km of the coast, 
+			steep decline at distances of 2-3 km of the coast, and slowly declining 
+			subsistence use out to a distance of 5 km of the coast.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: Madagascar infrastructure database (BD500)</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead> Path</runninghead>
@@ -493,6 +514,119 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
+	
+	<page>
+		<concept>fisheries:SubsistenceFishFlow</concept>
+		<name>Fish flow</name>
+		<title>Actual subsistence fish flow</title>
+		<group />
+		<description><![CDATA[
+		<p>The movement of fish from areas where they are caught to communities where 
+			they are consumed, based on transportation networks, supply, demand, and 
+			distance decay.</p>
+		]]></description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Actual subsistence fish flow</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+	<page>
+		<concept>fisheries:UtilizedSubsistenceFish</concept>
+		<name>Actual value</name>
+		<title>Actually utilized subsistence fish</title>
+		<group />
+		<description><![CDATA[
+		<p>The quantity of fish harvested for subsistence use.</p>
+		]]></description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Actually utilized subsistence fish</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+	<page>
+		<concept>fisheries:SatisfiedSubsistenceFishDemand</concept>
+		<name>Satisfied need</name>
+		<title>Satisfied subsistence fish demand</title>
+		<group />
+		<description><![CDATA[
+		<p>The portion of demand for fish satisfied by flows of fish to people 
+		from a fishery area.</p>
+		]]></description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Satisfied subsistence fish demand</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+	
+		<page>
+		<concept>fisheries:UnutilizedSubsistenceFish</concept>
+		<name>Unused fish</name>
+		<title>Unutilized subsistence fish</title>
+		<group />
+		<description><![CDATA[
+		<p>Fisheries that are not used due to lack of proximity or pathways to users.  
+			This value may also be positive if some of the fish supply remains after 
+			all demand is satiatied.</p>
+		]]></description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Unutilized subsistence fish</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+      
+ 	<page>
+		<concept>fisheries:UnsatisfiedSubsistenceFishDemand</concept>
+		<name>Unmet need</name>
+		<title>Unsatisfied subsistence fish demand</title>
+		<group />
+		<description><![CDATA[
+		<p>The portion of demand for fish not satisfied due to inadequate size of the 
+		   fishery or a lack of proximity to a fishery.  If this is zero, some unutilized 
+		   fish may be a result of a true surplus and not just a lack of proximity.  
+		   If this is greater than zero, there is no surplus within range.</p>
+		]]></description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Unsatisfied subsistence fish demand</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>     
 
 
 </presentation>
