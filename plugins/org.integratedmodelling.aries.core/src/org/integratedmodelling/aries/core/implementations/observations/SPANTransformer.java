@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.core.implementations.observations;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import org.integratedmodelling.aries.core.ARIESNamespace;

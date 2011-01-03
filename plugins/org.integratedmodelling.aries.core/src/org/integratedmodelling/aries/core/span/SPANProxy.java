@@ -1,6 +1,7 @@
 package org.integratedmodelling.aries.core.span;
 
 import java.util.Map;
+import java.util.Collection;
 
 import org.integratedmodelling.corescience.interfaces.IObservationContext;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
