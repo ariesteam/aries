@@ -275,20 +275,33 @@
       :observed (geomorphic-flood-protection)
       :context  (dune depth-elevation slope)))
 
-(defmodel coastal-flow-data 'coastalProtection:CoastalFlowData$
-  (identification 'coastalProtection:CoastalFlowData
-      :context (storm-tracks geomorphic-flood-sink)))
+(defmodel storm-track-daisy 'coastalProtection:StormTrack
+  (binary-coding 'coastalProtection:StormTrack
+    :context (storm-tracks)
+    :state  #(if (= (:stormtracks %) "daisy") 1 0)))
+
+(defmodel storm-track-geralda 'coastalProtection:StormTrack
+  (binary-coding 'coastalProtection:StormTrack
+    :context (storm-tracks)
+    :state  #(if (= (:stormtracks %) "geralda") 1 0)))
+
+(defmodel storm-track-litanne 'coastalProtection:StormTrack
+  (binary-coding 'coastalProtection:StormTrack
+    :context (storm-tracks)
+    :state  #(if (= (:stormtracks %) "litanne") 1 0)))
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
-	(identification 'coastalProtection:CoastalStormProtection 
-                    :context (risk-to-life
+	(identification 'coastalProtection:CoastalStormProtection
+                    :context (coastal-wave-source-daisy
+                              coastal-wave-source-geralda
+                              coastal-wave-source-litanne
+                              risk-to-life
                               risk-to-assets
-                              coastal-wave-source
-                              source-100km-daisy-selector
-                              source-100km-litanne-selector
-                              source-100km-geralda-selector
                               coastal-flood-sink
-                              coastal-flow-data)))
+                              storm-track-daisy
+                              storm-track-geralda
+                              storm-track-litanne
+                              geomorphic-flood-sink)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
@@ -297,7 +310,7 @@
         'coastalProtection:CycloneDependentLivesAtRisk
         'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
         nil 
-        ('coastalProtection:StormTracks 'coastalProtection:GeomorphicFloodProtection)
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -309,7 +322,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :save-file          "coastal-storm-protection-data.clj"
-        :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink coastal-flow-data)
+        :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
                              'coastalProtection:PotentiallyWaveVulnerablePopulations

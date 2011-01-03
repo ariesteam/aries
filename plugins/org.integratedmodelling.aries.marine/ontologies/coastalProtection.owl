@@ -10,26 +10,26 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
-    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY coastalProtection "http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#"
      xml:base="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
-    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
+    <owl:Ontology rdf:about="">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     </owl:Ontology>
@@ -45,9 +45,9 @@
      -->
 
     <owl:AnnotationProperty rdf:about="&dc;type"/>
+    <owl:AnnotationProperty rdf:about="&dc;title"/>
     <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
     <owl:AnnotationProperty rdf:about="&rdfs;label"/>
-    <owl:AnnotationProperty rdf:about="&dc;title"/>
     
 
 
@@ -271,7 +271,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink -->
 
     <owl:Class rdf:about="&eserv;TheoreticalSink">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WaveSinkType"/>
+        <rdfs:subClassOf rdf:resource="#WaveSinkType"/>
     </owl:Class>
     
 
@@ -298,43 +298,47 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#AbsorbedWaveFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;AbsorbedWaveFlow">
+    <owl:Class rdf:about="#AbsorbedWaveFlow">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
-        <rdfs:comment>The coastal flood flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</rdfs:comment>
+        <rdfs:comment
+            >The coastal flood flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#AbsorbedWindFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;AbsorbedWindFlow">
+    <owl:Class rdf:about="#AbsorbedWindFlow">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
-        <rdfs:comment>The coastal wind flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of wind sinks).</rdfs:comment>
+        <rdfs:comment
+            >The coastal wind flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of wind sinks).</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualWaveFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;ActualWaveFlow">
+    <owl:Class rdf:about="#ActualWaveFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
-        <rdfs:comment>Actual coastal flood flows when accounting for water flow direction and sink effects</rdfs:comment>
+        <rdfs:comment
+            >Actual coastal flood flows when accounting for water flow direction and sink effects</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ActualWindFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;ActualWindFlow">
+    <owl:Class rdf:about="#ActualWindFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
-        <rdfs:comment>Actual coastal wind flows when accounting for coastal wind direction and sink effects</rdfs:comment>
+        <rdfs:comment
+            >Actual coastal wind flows when accounting for coastal wind direction and sink effects</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ArtificialCoastalProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;ArtificialCoastalProtection">
+    <owl:Class rdf:about="#ArtificialCoastalProtection">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
     </owl:Class>
     
@@ -342,23 +346,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ArtificialCoastalProtectionAbsent -->
 
-    <owl:Class rdf:about="&coastalProtection;ArtificialCoastalProtectionAbsent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;ArtificialCoastalProtection"/>
+    <owl:Class rdf:about="#ArtificialCoastalProtectionAbsent">
+        <rdfs:subClassOf rdf:resource="#ArtificialCoastalProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ArtificialCoastalProtectionPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;ArtificialCoastalProtectionPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;ArtificialCoastalProtection"/>
+    <owl:Class rdf:about="#ArtificialCoastalProtectionPresent">
+        <rdfs:subClassOf rdf:resource="#ArtificialCoastalProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#AtmosphericPressureClass -->
 
-    <owl:Class rdf:about="&coastalProtection;AtmosphericPressureClass">
+    <owl:Class rdf:about="#AtmosphericPressureClass">
         <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Pressure"/>
     </owl:Class>
@@ -367,7 +371,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BathymetricSlope -->
 
-    <owl:Class rdf:about="&coastalProtection;BathymetricSlope">
+    <owl:Class rdf:about="#BathymetricSlope">
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
         <rdfs:comment>Undersea slope</rdfs:comment>
@@ -377,7 +381,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BathymetryClass -->
 
-    <owl:Class rdf:about="&coastalProtection;BathymetryClass">
+    <owl:Class rdf:about="#BathymetryClass">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
@@ -386,25 +390,27 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BenignWaveSource -->
 
-    <owl:Class rdf:about="&coastalProtection;BenignWaveSource">
+    <owl:Class rdf:about="#BenignWaveSource">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
-        <rdfs:comment>Potential sources of flood water that do not cause flooding to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting flood sources to vulnerable populations.</rdfs:comment>
+        <rdfs:comment
+            >Potential sources of flood water that do not cause flooding to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting flood sources to vulnerable populations.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BenignWindSource -->
 
-    <owl:Class rdf:about="&coastalProtection;BenignWindSource">
+    <owl:Class rdf:about="#BenignWindSource">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
-        <rdfs:comment>Potential sources of coastal wind that do not cause damage to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting wind sources to vulnerable populations.</rdfs:comment>
+        <rdfs:comment
+            >Potential sources of coastal wind that do not cause damage to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting wind sources to vulnerable populations.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#BufferMg100km -->
 
-    <owl:Class rdf:about="&coastalProtection;BufferMg100km">
+    <owl:Class rdf:about="#BufferMg100km">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -412,7 +418,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalFloodSink -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalFloodSink">
+    <owl:Class rdf:about="#CoastalFloodSink">
         <rdfs:subClassOf rdf:resource="&eserv;PositiveSink"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
     </owl:Class>
@@ -421,7 +427,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalStormMovement -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalStormMovement">
+    <owl:Class rdf:about="#CoastalStormMovement">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -429,7 +435,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalStormProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalStormProtection">
+    <owl:Class rdf:about="#CoastalStormProtection">
         <rdfs:subClassOf rdf:resource="&eserv;RivalBenefit"/>
     </owl:Class>
     
@@ -437,7 +443,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWaveMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWaveMitigation">
+    <owl:Class rdf:about="#CoastalWaveMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;Performance"/>
     </owl:Class>
     
@@ -445,51 +451,53 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWaveSource -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWaveSource">
+    <owl:Class rdf:about="#CoastalWaveSource">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
-        <rdfs:comment>Areas generating coastal flood water that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have coastal or inland populations vulnerable to flooding, or have strong sinks capable of reducing the energy of coastal flood waters.</rdfs:comment>
+        <rdfs:comment
+            >Areas generating coastal flood water that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have coastal or inland populations vulnerable to flooding, or have strong sinks capable of reducing the energy of coastal flood waters.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWaveSourceDaisy -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWaveSourceDaisy">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoastalWaveSource"/>
+    <owl:Class rdf:about="#CoastalWaveSourceDaisy">
+        <rdfs:subClassOf rdf:resource="#CoastalWaveSource"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWaveSourceGeralda -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWaveSourceGeralda">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoastalWaveSource"/>
+    <owl:Class rdf:about="#CoastalWaveSourceGeralda">
+        <rdfs:subClassOf rdf:resource="#CoastalWaveSource"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWaveSourceLitanne -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWaveSourceLitanne">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoastalWaveSource"/>
+    <owl:Class rdf:about="#CoastalWaveSourceLitanne">
+        <rdfs:subClassOf rdf:resource="#CoastalWaveSource"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalWindSource -->
 
-    <owl:Class rdf:about="&coastalProtection;CoastalWindSource">
+    <owl:Class rdf:about="#CoastalWindSource">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
-        <rdfs:comment>Areas generating high-speed coastal winds that could contribute to wind damage, regardless of whether or not they create enough quantity to contribute to substantial damage, have coastal or inland populations vulnerable to wind damage, or have strong sinks capable of reducing the energy of high-speed coastal winds.</rdfs:comment>
+        <rdfs:comment
+            >Areas generating high-speed coastal winds that could contribute to wind damage, regardless of whether or not they create enough quantity to contribute to substantial damage, have coastal or inland populations vulnerable to wind damage, or have strong sinks capable of reducing the energy of high-speed coastal winds.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoralBleaching -->
 
-    <owl:Class rdf:about="&coastalProtection;CoralBleaching">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralHealth"/>
+    <owl:Class rdf:about="#CoralBleaching">
+        <rdfs:subClassOf rdf:resource="#CoralHealth"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -497,7 +505,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoralHealth -->
 
-    <owl:Class rdf:about="&coastalProtection;CoralHealth">
+    <owl:Class rdf:about="#CoralHealth">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -505,16 +513,17 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoralQuality -->
 
-    <owl:Class rdf:about="&coastalProtection;CoralQuality">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralHealth"/>
+    <owl:Class rdf:about="#CoralQuality">
+        <rdfs:subClassOf rdf:resource="#CoralHealth"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CycloneDependentLivesAtRisk -->
 
-    <owl:Class rdf:about="&coastalProtection;CycloneDependentLivesAtRisk">
-        <rdfs:label>Lives at risk for tropical storms</rdfs:label>
+    <owl:Class rdf:about="#CycloneDependentLivesAtRisk">
+        <rdfs:label
+            >Lives at risk for tropical storms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeUse"/>
     </owl:Class>
@@ -523,8 +532,9 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CycloneSensitiveEconomicValue -->
 
-    <owl:Class rdf:about="&coastalProtection;CycloneSensitiveEconomicValue">
-        <rdfs:label>Assets at risk for tropical storms</rdfs:label>
+    <owl:Class rdf:about="#CycloneSensitiveEconomicValue">
+        <rdfs:label
+            >Assets at risk for tropical storms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeUse"/>
     </owl:Class>
@@ -533,45 +543,45 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DaisyPresence -->
 
-    <owl:Class rdf:about="&coastalProtection;DaisyPresence"/>
+    <owl:Class rdf:about="#DaisyPresence"/>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DaisyPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;DaisyPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;DaisyPresence"/>
+    <owl:Class rdf:about="#DaisyPresent">
+        <rdfs:subClassOf rdf:resource="#DaisyPresence"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Deep -->
 
-    <owl:Class rdf:about="&coastalProtection;Deep">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetryClass"/>
+    <owl:Class rdf:about="#Deep">
+        <rdfs:subClassOf rdf:resource="#BathymetryClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DeepWater -->
 
-    <owl:Class rdf:about="&coastalProtection;DeepWater">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#DeepWater">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DuneAbsent -->
 
-    <owl:Class rdf:about="&coastalProtection;DuneAbsent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;DunePresenceClass"/>
+    <owl:Class rdf:about="#DuneAbsent">
+        <rdfs:subClassOf rdf:resource="#DunePresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DunePresenceClass -->
 
-    <owl:Class rdf:about="&coastalProtection;DunePresenceClass">
+    <owl:Class rdf:about="#DunePresenceClass">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
@@ -580,41 +590,43 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#DunePresent -->
 
-    <owl:Class rdf:about="&coastalProtection;DunePresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;DunePresenceClass"/>
+    <owl:Class rdf:about="#DunePresent">
+        <rdfs:subClassOf rdf:resource="#DunePresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#FloodDamagingWaveSource -->
 
-    <owl:Class rdf:about="&coastalProtection;FloodDamagingWaveSource">
+    <owl:Class rdf:about="#FloodDamagingWaveSource">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
-        <rdfs:comment>Areas susceptible to coastal flooding  that have coastal or inland populations vulnerable to flooding.  These coastal or inland populations do get hit with flood waters due to either inadequate sink strengths or too large a quantity of flood water relative to the sink.</rdfs:comment>
+        <rdfs:comment
+            >Areas susceptible to coastal flooding  that have coastal or inland populations vulnerable to flooding.  These coastal or inland populations do get hit with flood waters due to either inadequate sink strengths or too large a quantity of flood water relative to the sink.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#FloodDamagingWindSource -->
 
-    <owl:Class rdf:about="&coastalProtection;FloodDamagingWindSource">
+    <owl:Class rdf:about="#FloodDamagingWindSource">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
-        <rdfs:comment>Areas susceptible to damage from coastal winds that have coastal or inland populations vulnerable to wind damage.  These coastal or inland populations do get hit with wind damage due to either inadequate sink strengths or wind speeds too high relative to the sink.</rdfs:comment>
+        <rdfs:comment
+            >Areas susceptible to damage from coastal winds that have coastal or inland populations vulnerable to wind damage.  These coastal or inland populations do get hit with wind damage due to either inadequate sink strengths or wind speeds too high relative to the sink.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Forested -->
 
-    <owl:Class rdf:about="&coastalProtection;Forested">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TerrestrialVegetationType"/>
+    <owl:Class rdf:about="#Forested">
+        <rdfs:subClassOf rdf:resource="#TerrestrialVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#GeomorphicFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;GeomorphicFloodProtection">
+    <owl:Class rdf:about="#GeomorphicFloodProtection">
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
@@ -622,7 +634,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#GeomorphicWaveReduction -->
 
-    <owl:Class rdf:about="&coastalProtection;GeomorphicWaveReduction">
+    <owl:Class rdf:about="#GeomorphicWaveReduction">
         <rdfs:subClassOf rdf:resource="&eserv;PositiveSink"/>
     </owl:Class>
     
@@ -630,299 +642,299 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#GeraldaPresence -->
 
-    <owl:Class rdf:about="&coastalProtection;GeraldaPresence"/>
+    <owl:Class rdf:about="#GeraldaPresence"/>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#GeraldaPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;GeraldaPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;GeraldaPresence"/>
+    <owl:Class rdf:about="#GeraldaPresent">
+        <rdfs:subClassOf rdf:resource="#GeraldaPresence"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Herbaceous -->
 
-    <owl:Class rdf:about="&coastalProtection;Herbaceous">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TerrestrialVegetationType"/>
+    <owl:Class rdf:about="#Herbaceous">
+        <rdfs:subClassOf rdf:resource="#TerrestrialVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighBleaching -->
 
-    <owl:Class rdf:about="&coastalProtection;HighBleaching">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralBleaching"/>
+    <owl:Class rdf:about="#HighBleaching">
+        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighCoastalFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;HighCoastalFloodProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TotalCoastalFloodProtection"/>
+    <owl:Class rdf:about="#HighCoastalFloodProtection">
+        <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighGeomorphicProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;HighGeomorphicProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;GeomorphicFloodProtection"/>
+    <owl:Class rdf:about="#HighGeomorphicProtection">
+        <rdfs:subClassOf rdf:resource="#GeomorphicFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighLandElevation -->
 
-    <owl:Class rdf:about="&coastalProtection;HighLandElevation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#HighLandElevation">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighMangroveWidth -->
 
-    <owl:Class rdf:about="&coastalProtection;HighMangroveWidth">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangroveWidth"/>
+    <owl:Class rdf:about="#HighMangroveWidth">
+        <rdfs:subClassOf rdf:resource="#MangroveWidth"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToAssets -->
 
-    <owl:Class rdf:about="&coastalProtection;HighRiskToAssets">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneSensitiveEconomicValue"/>
+    <owl:Class rdf:about="#HighRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToLife -->
 
-    <owl:Class rdf:about="&coastalProtection;HighRiskToLife">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneDependentLivesAtRisk"/>
+    <owl:Class rdf:about="#HighRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighSeagrassDensity -->
 
-    <owl:Class rdf:about="&coastalProtection;HighSeagrassDensity">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassDensity"/>
+    <owl:Class rdf:about="#HighSeagrassDensity">
+        <rdfs:subClassOf rdf:resource="#SeagrassDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighSlope -->
 
-    <owl:Class rdf:about="&coastalProtection;HighSlope">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetricSlope"/>
+    <owl:Class rdf:about="#HighSlope">
+        <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;HighStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#HighStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighTropicalStormProbability -->
 
-    <owl:Class rdf:about="&coastalProtection;HighTropicalStormProbability">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TropicalStormProbability"/>
+    <owl:Class rdf:about="#HighTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighVegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;HighVegetationCover">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationCoverClass"/>
+    <owl:Class rdf:about="#HighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighVegetationHeight -->
 
-    <owl:Class rdf:about="&coastalProtection;HighVegetationHeight">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationHeight"/>
+    <owl:Class rdf:about="#HighVegetationHeight">
+        <rdfs:subClassOf rdf:resource="#VegetationHeight"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;HighWindMitigation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindMitigation"/>
+    <owl:Class rdf:about="#HighWindMitigation">
+        <rdfs:subClassOf rdf:resource="#WindMitigation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;HighWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#HighWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighlyBleachedCoralPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;HighlyBleachedCoralPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralQuality"/>
+    <owl:Class rdf:about="#HighlyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="#CoralQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LitannePresence -->
 
-    <owl:Class rdf:about="&coastalProtection;LitannePresence"/>
+    <owl:Class rdf:about="#LitannePresence"/>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LitannePresent -->
 
-    <owl:Class rdf:about="&coastalProtection;LitannePresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;LitannePresence"/>
+    <owl:Class rdf:about="#LitannePresent">
+        <rdfs:subClassOf rdf:resource="#LitannePresence"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowAtmosphericPressure -->
 
-    <owl:Class rdf:about="&coastalProtection;LowAtmosphericPressure">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;AtmosphericPressureClass"/>
+    <owl:Class rdf:about="#LowAtmosphericPressure">
+        <rdfs:subClassOf rdf:resource="#AtmosphericPressureClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowCoastalFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;LowCoastalFloodProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TotalCoastalFloodProtection"/>
+    <owl:Class rdf:about="#LowCoastalFloodProtection">
+        <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowGeomorphicProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;LowGeomorphicProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;GeomorphicFloodProtection"/>
+    <owl:Class rdf:about="#LowGeomorphicProtection">
+        <rdfs:subClassOf rdf:resource="#GeomorphicFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowLandElevation -->
 
-    <owl:Class rdf:about="&coastalProtection;LowLandElevation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#LowLandElevation">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowMangroveWidth -->
 
-    <owl:Class rdf:about="&coastalProtection;LowMangroveWidth">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangroveWidth"/>
+    <owl:Class rdf:about="#LowMangroveWidth">
+        <rdfs:subClassOf rdf:resource="#MangroveWidth"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToAssets -->
 
-    <owl:Class rdf:about="&coastalProtection;LowRiskToAssets">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneSensitiveEconomicValue"/>
+    <owl:Class rdf:about="#LowRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToLife -->
 
-    <owl:Class rdf:about="&coastalProtection;LowRiskToLife">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneDependentLivesAtRisk"/>
+    <owl:Class rdf:about="#LowRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowSeagrassDensity -->
 
-    <owl:Class rdf:about="&coastalProtection;LowSeagrassDensity">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassDensity"/>
+    <owl:Class rdf:about="#LowSeagrassDensity">
+        <rdfs:subClassOf rdf:resource="#SeagrassDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowSlope -->
 
-    <owl:Class rdf:about="&coastalProtection;LowSlope">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetricSlope"/>
+    <owl:Class rdf:about="#LowSlope">
+        <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;LowStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#LowStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowTropicalStormProbability -->
 
-    <owl:Class rdf:about="&coastalProtection;LowTropicalStormProbability">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TropicalStormProbability"/>
+    <owl:Class rdf:about="#LowTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowVegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;LowVegetationCover">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationCoverClass"/>
+    <owl:Class rdf:about="#LowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowVegetationHeight -->
 
-    <owl:Class rdf:about="&coastalProtection;LowVegetationHeight">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationHeight"/>
+    <owl:Class rdf:about="#LowVegetationHeight">
+        <rdfs:subClassOf rdf:resource="#VegetationHeight"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;LowWindMitigation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindMitigation"/>
+    <owl:Class rdf:about="#LowWindMitigation">
+        <rdfs:subClassOf rdf:resource="#WindMitigation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;LowWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#LowWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MangroveAbsent -->
 
-    <owl:Class rdf:about="&coastalProtection;MangroveAbsent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangrovePresenceClass"/>
+    <owl:Class rdf:about="#MangroveAbsent">
+        <rdfs:subClassOf rdf:resource="#MangrovePresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MangrovePresence -->
 
-    <owl:Class rdf:about="&coastalProtection;MangrovePresence">
+    <owl:Class rdf:about="#MangrovePresence">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -930,7 +942,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MangrovePresenceClass -->
 
-    <owl:Class rdf:about="&coastalProtection;MangrovePresenceClass">
+    <owl:Class rdf:about="#MangrovePresenceClass">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -938,15 +950,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MangrovePresent -->
 
-    <owl:Class rdf:about="&coastalProtection;MangrovePresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangrovePresenceClass"/>
+    <owl:Class rdf:about="#MangrovePresent">
+        <rdfs:subClassOf rdf:resource="#MangrovePresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MangroveWidth -->
 
-    <owl:Class rdf:about="&coastalProtection;MangroveWidth">
+    <owl:Class rdf:about="#MangroveWidth">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -956,241 +968,243 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MinimallyBleachedCoralPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;MinimallyBleachedCoralPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralQuality"/>
+    <owl:Class rdf:about="#MinimallyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="#CoralQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MitigatedWaveSource -->
 
-    <owl:Class rdf:about="&coastalProtection;MitigatedWaveSource">
+    <owl:Class rdf:about="#MitigatedWaveSource">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedSource"/>
-        <rdfs:comment>A source of coastal flooding that is mitigated through the action of sinks.</rdfs:comment>
+        <rdfs:comment
+            >A source of coastal flooding that is mitigated through the action of sinks.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#MitigatedWindSource -->
 
-    <owl:Class rdf:about="&coastalProtection;MitigatedWindSource">
+    <owl:Class rdf:about="#MitigatedWindSource">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedSource"/>
-        <rdfs:comment>A source of coastal wind that is mitigated through the action of sinks.</rdfs:comment>
+        <rdfs:comment
+            >A source of coastal wind that is mitigated through the action of sinks.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateBleaching -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateBleaching">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralBleaching"/>
+    <owl:Class rdf:about="#ModerateBleaching">
+        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateCoastalFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateCoastalFloodProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TotalCoastalFloodProtection"/>
+    <owl:Class rdf:about="#ModerateCoastalFloodProtection">
+        <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateGeomorphicProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateGeomorphicProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;GeomorphicFloodProtection"/>
+    <owl:Class rdf:about="#ModerateGeomorphicProtection">
+        <rdfs:subClassOf rdf:resource="#GeomorphicFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateLandElevation -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateLandElevation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#ModerateLandElevation">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateMangroveWidth -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateMangroveWidth">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangroveWidth"/>
+    <owl:Class rdf:about="#ModerateMangroveWidth">
+        <rdfs:subClassOf rdf:resource="#MangroveWidth"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToAssets -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateRiskToAssets">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneSensitiveEconomicValue"/>
+    <owl:Class rdf:about="#ModerateRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToLife -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateRiskToLife">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneDependentLivesAtRisk"/>
+    <owl:Class rdf:about="#ModerateRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSeagrassDensity -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateSeagrassDensity">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassDensity"/>
+    <owl:Class rdf:about="#ModerateSeagrassDensity">
+        <rdfs:subClassOf rdf:resource="#SeagrassDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSlope -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateSlope">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetricSlope"/>
+    <owl:Class rdf:about="#ModerateSlope">
+        <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#ModerateStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateTropicalStormProbability -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateTropicalStormProbability">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TropicalStormProbability"/>
+    <owl:Class rdf:about="#ModerateTropicalStormProbability">
+        <rdfs:subClassOf rdf:resource="#TropicalStormProbability"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateVegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateVegetationCover">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationCoverClass"/>
+    <owl:Class rdf:about="#ModerateVegetationCover">
+        <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateVegetationHeight -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateVegetationHeight">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationHeight"/>
+    <owl:Class rdf:about="#ModerateVegetationHeight">
+        <rdfs:subClassOf rdf:resource="#VegetationHeight"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;ModerateWindMitigation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindMitigation"/>
+    <owl:Class rdf:about="#ModerateWindMitigation">
+        <rdfs:subClassOf rdf:resource="#WindMitigation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModeratelyBleachedCoralPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;ModeratelyBleachedCoralPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralQuality"/>
+    <owl:Class rdf:about="#ModeratelyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="#CoralQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModeratelyHighWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;ModeratelyHighWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#ModeratelyHighWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModeratelyLowAtmosphericPressure -->
 
-    <owl:Class rdf:about="&coastalProtection;ModeratelyLowAtmosphericPressure">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;AtmosphericPressureClass"/>
+    <owl:Class rdf:about="#ModeratelyLowAtmosphericPressure">
+        <rdfs:subClassOf rdf:resource="#AtmosphericPressureClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModeratelyLowWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;ModeratelyLowWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#ModeratelyLowWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoBleaching -->
 
-    <owl:Class rdf:about="&coastalProtection;NoBleaching">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralBleaching"/>
+    <owl:Class rdf:about="#NoBleaching">
+        <rdfs:subClassOf rdf:resource="#CoralBleaching"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoCoastalFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;NoCoastalFloodProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TotalCoastalFloodProtection"/>
+    <owl:Class rdf:about="#NoCoastalFloodProtection">
+        <rdfs:subClassOf rdf:resource="#TotalCoastalFloodProtection"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoCoralPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;NoCoralPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoralQuality"/>
+    <owl:Class rdf:about="#NoCoralPresent">
+        <rdfs:subClassOf rdf:resource="#CoralQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoMangroveWidth -->
 
-    <owl:Class rdf:about="&coastalProtection;NoMangroveWidth">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;MangroveWidth"/>
+    <owl:Class rdf:about="#NoMangroveWidth">
+        <rdfs:subClassOf rdf:resource="#MangroveWidth"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToAssets -->
 
-    <owl:Class rdf:about="&coastalProtection;NoRiskToAssets">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneSensitiveEconomicValue"/>
+    <owl:Class rdf:about="#NoRiskToAssets">
+        <rdfs:subClassOf rdf:resource="#CycloneSensitiveEconomicValue"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToLife -->
 
-    <owl:Class rdf:about="&coastalProtection;NoRiskToLife">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CycloneDependentLivesAtRisk"/>
+    <owl:Class rdf:about="#NoRiskToLife">
+        <rdfs:subClassOf rdf:resource="#CycloneDependentLivesAtRisk"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoSeagrassDensity -->
 
-    <owl:Class rdf:about="&coastalProtection;NoSeagrassDensity">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassDensity"/>
+    <owl:Class rdf:about="#NoSeagrassDensity">
+        <rdfs:subClassOf rdf:resource="#SeagrassDensity"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;NoStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#NoStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#OceanDepthAndLandElevation -->
 
-    <owl:Class rdf:about="&coastalProtection;OceanDepthAndLandElevation">
+    <owl:Class rdf:about="#OceanDepthAndLandElevation">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
@@ -1199,31 +1213,31 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Other -->
 
-    <owl:Class rdf:about="&coastalProtection;Other">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TerrestrialVegetationType"/>
+    <owl:Class rdf:about="#Other">
+        <rdfs:subClassOf rdf:resource="#TerrestrialVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Overland -->
 
-    <owl:Class rdf:about="&coastalProtection;Overland">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetryClass"/>
+    <owl:Class rdf:about="#Overland">
+        <rdfs:subClassOf rdf:resource="#BathymetryClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Pelagic -->
 
-    <owl:Class rdf:about="&coastalProtection;Pelagic">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#Pelagic">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PeopleInCoastalFloodZones -->
 
-    <owl:Class rdf:about="&coastalProtection;PeopleInCoastalFloodZones">
+    <owl:Class rdf:about="#PeopleInCoastalFloodZones">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
     </owl:Class>
     
@@ -1231,111 +1245,121 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentialWaveDamageReceived -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentialWaveDamageReceived">
+    <owl:Class rdf:about="#PotentialWaveDamageReceived">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
-        <rdfs:comment>Populations vulnerable to floods (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of coastal flood waters.</rdfs:comment>
+        <rdfs:comment
+            >Populations vulnerable to floods (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of coastal flood waters.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentialWaveMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentialWaveMitigation">
+    <owl:Class rdf:about="#PotentialWaveMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
-        <rdfs:comment>Areas capable of reducing the energy of coastal flood waters, whether or not they receive enough flood water to perform this function.</rdfs:comment>
+        <rdfs:comment
+            >Areas capable of reducing the energy of coastal flood waters, whether or not they receive enough flood water to perform this function.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentialWindDamageReceived -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentialWindDamageReceived">
+    <owl:Class rdf:about="#PotentialWindDamageReceived">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
-        <rdfs:comment>Populations vulnerable to high speed coastal winds (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of high-speed coastal wind.</rdfs:comment>
+        <rdfs:comment
+            >Populations vulnerable to high speed coastal winds (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of high-speed coastal wind.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentialWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentialWindMitigation">
+    <owl:Class rdf:about="#PotentialWindMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
-        <rdfs:comment>Areas capable of reducing the energy of coastal wind, whether or not they receive enough high-speed wind to perform this function.</rdfs:comment>
+        <rdfs:comment
+            >Areas capable of reducing the energy of coastal wind, whether or not they receive enough high-speed wind to perform this function.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyDamagingWaveFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyDamagingWaveFlow">
+    <owl:Class rdf:about="#PotentiallyDamagingWaveFlow">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
-        <rdfs:comment>Flood flows when accounting for flow topology (i.e., coastal floodwater movement directions) but not accounting for sinks.</rdfs:comment>
+        <rdfs:comment
+            >Flood flows when accounting for flow topology (i.e., coastal floodwater movement directions) but not accounting for sinks.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyDamagingWaveSource -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyDamagingWaveSource">
+    <owl:Class rdf:about="#PotentiallyDamagingWaveSource">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
-        <rdfs:comment>Sources of coastal floodwater when accounting for flow topology (flow directions) and the presence of coastal or inland users but not accounting for the action of flood sinks that reduce the energy of coastal flood waters.</rdfs:comment>
+        <rdfs:comment
+            >Sources of coastal floodwater when accounting for flow topology (flow directions) and the presence of coastal or inland users but not accounting for the action of flood sinks that reduce the energy of coastal flood waters.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyDamagingWindFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyDamagingWindFlow">
+    <owl:Class rdf:about="#PotentiallyDamagingWindFlow">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
-        <rdfs:comment>Flood flows when accounting for flow topology (i.e., coastal wind directions) but not accounting for sinks.</rdfs:comment>
+        <rdfs:comment
+            >Flood flows when accounting for flow topology (i.e., coastal wind directions) but not accounting for sinks.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyDamagingWindSource -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyDamagingWindSource">
+    <owl:Class rdf:about="#PotentiallyDamagingWindSource">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
-        <rdfs:comment>Sources of coastal wind when accounting for flow topology (wind directions) and the presence of coastal or inland users but not accounting for the action of sinks that reduce the energy of coastal wind.</rdfs:comment>
+        <rdfs:comment
+            >Sources of coastal wind when accounting for flow topology (wind directions) and the presence of coastal or inland users but not accounting for the action of sinks that reduce the energy of coastal wind.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyWaveVulnerablePopulations -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyWaveVulnerablePopulations">
+    <owl:Class rdf:about="#PotentiallyWaveVulnerablePopulations">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
-        <rdfs:comment>Potential beneficiaries of coastal flood control, including both actually vulnerable populations and those in areas that are of low or irregular flood risk or who are protected from flooding by strong sinks (i.e., are unlikely to flood).</rdfs:comment>
+        <rdfs:comment
+            >Potential beneficiaries of coastal flood control, including both actually vulnerable populations and those in areas that are of low or irregular flood risk or who are protected from flooding by strong sinks (i.e., are unlikely to flood).</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#PotentiallyWindVulnerablePopulations -->
 
-    <owl:Class rdf:about="&coastalProtection;PotentiallyWindVulnerablePopulations">
+    <owl:Class rdf:about="#PotentiallyWindVulnerablePopulations">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
-        <rdfs:comment>Potential beneficiaries of coastal wind regulation, including both actually vulnerable populations and those in areas that are of low or irregular winds or who are protected from wind damage by strong sinks (i.e., are unlikely to receive damaging winds due to these sinks).</rdfs:comment>
+        <rdfs:comment
+            >Potential beneficiaries of coastal wind regulation, including both actually vulnerable populations and those in areas that are of low or irregular winds or who are protected from wind damage by strong sinks (i.e., are unlikely to receive damaging winds due to these sinks).</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ProtectionPresence -->
 
-    <owl:Class rdf:about="&coastalProtection;ProtectionPresence"/>
+    <owl:Class rdf:about="#ProtectionPresence"/>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ProtectionPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;ProtectionPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;ProtectionPresence"/>
+    <owl:Class rdf:about="#ProtectionPresent">
+        <rdfs:subClassOf rdf:resource="#ProtectionPresence"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SafetyAndSecurity -->
 
-    <owl:Class rdf:about="&coastalProtection;SafetyAndSecurity">
+    <owl:Class rdf:about="#SafetyAndSecurity">
         <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
     </owl:Class>
     
@@ -1343,15 +1367,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassAbsent -->
 
-    <owl:Class rdf:about="&coastalProtection;SeagrassAbsent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassPresenceClass"/>
+    <owl:Class rdf:about="#SeagrassAbsent">
+        <rdfs:subClassOf rdf:resource="#SeagrassPresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassDensity -->
 
-    <owl:Class rdf:about="&coastalProtection;SeagrassDensity">
+    <owl:Class rdf:about="#SeagrassDensity">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1360,7 +1384,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassPresence -->
 
-    <owl:Class rdf:about="&coastalProtection;SeagrassPresence">
+    <owl:Class rdf:about="#SeagrassPresence">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -1368,7 +1392,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassPresenceClass -->
 
-    <owl:Class rdf:about="&coastalProtection;SeagrassPresenceClass">
+    <owl:Class rdf:about="#SeagrassPresenceClass">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
@@ -1377,56 +1401,64 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#SeagrassPresent -->
 
-    <owl:Class rdf:about="&coastalProtection;SeagrassPresent">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;SeagrassPresenceClass"/>
+    <owl:Class rdf:about="#SeagrassPresent">
+        <rdfs:subClassOf rdf:resource="#SeagrassPresenceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Shallow -->
 
-    <owl:Class rdf:about="&coastalProtection;Shallow">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetryClass"/>
+    <owl:Class rdf:about="#Shallow">
+        <rdfs:subClassOf rdf:resource="#BathymetryClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Shelf -->
 
-    <owl:Class rdf:about="&coastalProtection;Shelf">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#Shelf">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Shrubland -->
 
-    <owl:Class rdf:about="&coastalProtection;Shrubland">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TerrestrialVegetationType"/>
+    <owl:Class rdf:about="#Shrubland">
+        <rdfs:subClassOf rdf:resource="#TerrestrialVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Slope -->
 
-    <owl:Class rdf:about="&coastalProtection;Slope">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;OceanDepthAndLandElevation"/>
+    <owl:Class rdf:about="#Slope">
+        <rdfs:subClassOf rdf:resource="#OceanDepthAndLandElevation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#StormSurgeClass -->
 
-    <owl:Class rdf:about="&coastalProtection;StormSurgeClass">
+    <owl:Class rdf:about="#StormSurgeClass">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#StormTrack -->
+
+    <owl:Class rdf:about="#StormTrack">
+        <rdfs:subClassOf rdf:resource="#StormTracks"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#StormTracks -->
 
-    <owl:Class rdf:about="&coastalProtection;StormTracks">
+    <owl:Class rdf:about="#StormTracks">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -1434,7 +1466,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TerrestrialVegetationType -->
 
-    <owl:Class rdf:about="&coastalProtection;TerrestrialVegetationType">
+    <owl:Class rdf:about="#TerrestrialVegetationType">
         <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
     </owl:Class>
     
@@ -1442,8 +1474,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TotalCoastalFloodProtection -->
 
-    <owl:Class rdf:about="&coastalProtection;TotalCoastalFloodProtection">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoastalFloodSink"/>
+    <owl:Class rdf:about="#TotalCoastalFloodProtection">
+        <rdfs:subClassOf rdf:resource="#CoastalFloodSink"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1452,7 +1484,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TropicalStormProbability -->
 
-    <owl:Class rdf:about="&coastalProtection;TropicalStormProbability">
+    <owl:Class rdf:about="#TropicalStormProbability">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;NegativeSource"/>
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
@@ -1462,43 +1494,47 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#UnutilizedWaveMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;UnutilizedWaveMitigation">
+    <owl:Class rdf:about="#UnutilizedWaveMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
-        <rdfs:comment>A flood sink region capable of reducing the energy of coastal flood water that does not perform this function due to inadequate size of coastal waves typical to the area.</rdfs:comment>
+        <rdfs:comment
+            >A flood sink region capable of reducing the energy of coastal flood water that does not perform this function due to inadequate size of coastal waves typical to the area.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#UnutilizedWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;UnutilizedWindMitigation">
+    <owl:Class rdf:about="#UnutilizedWindMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
-        <rdfs:comment>A wind sink region capable of reducing the energy of coastal wind that does not perform this function due to inadequate speed of coastal wind typical to the area.</rdfs:comment>
+        <rdfs:comment
+            >A wind sink region capable of reducing the energy of coastal wind that does not perform this function due to inadequate speed of coastal wind typical to the area.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#UtilizedWaveMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;UtilizedWaveMitigation">
+    <owl:Class rdf:about="#UtilizedWaveMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
-        <rdfs:comment>Sinks that actively absorb flood water (i.e., have enough sink strength to reduce energy from coastal flood waters.</rdfs:comment>
+        <rdfs:comment
+            >Sinks that actively absorb flood water (i.e., have enough sink strength to reduce energy from coastal flood waters.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#UtilizedWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;UtilizedWindMitigation">
+    <owl:Class rdf:about="#UtilizedWindMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
-        <rdfs:comment>Sinks that actively slow wind (i.e., have enough vegetation cover and height  to reduce energy from coastal wind).</rdfs:comment>
+        <rdfs:comment
+            >Sinks that actively slow wind (i.e., have enough vegetation cover and height  to reduce energy from coastal wind).</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;VegetationCover">
+    <owl:Class rdf:about="#VegetationCover">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -1506,7 +1542,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VegetationCoverClass -->
 
-    <owl:Class rdf:about="&coastalProtection;VegetationCoverClass">
+    <owl:Class rdf:about="#VegetationCoverClass">
         <rdfs:subClassOf rdf:resource="&habitat;VegetationCover"/>
     </owl:Class>
     
@@ -1514,7 +1550,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VegetationHeight -->
 
-    <owl:Class rdf:about="&coastalProtection;VegetationHeight">
+    <owl:Class rdf:about="#VegetationHeight">
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -1523,121 +1559,123 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryDeep -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryDeep">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetryClass"/>
+    <owl:Class rdf:about="#VeryDeep">
+        <rdfs:subClassOf rdf:resource="#BathymetryClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryHighStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryHighStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#VeryHighStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryHighVegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryHighVegetationCover">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationCoverClass"/>
+    <owl:Class rdf:about="#VeryHighVegetationCover">
+        <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryHighWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryHighWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#VeryHighWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowAtmosphericPressure -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowAtmosphericPressure">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;AtmosphericPressureClass"/>
+    <owl:Class rdf:about="#VeryLowAtmosphericPressure">
+        <rdfs:subClassOf rdf:resource="#AtmosphericPressureClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowSlope -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowSlope">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetricSlope"/>
+    <owl:Class rdf:about="#VeryLowSlope">
+        <rdfs:subClassOf rdf:resource="#BathymetricSlope"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowStormSurge -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowStormSurge">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;StormSurgeClass"/>
+    <owl:Class rdf:about="#VeryLowStormSurge">
+        <rdfs:subClassOf rdf:resource="#StormSurgeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowVegetationCover -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowVegetationCover">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationCoverClass"/>
+    <owl:Class rdf:about="#VeryLowVegetationCover">
+        <rdfs:subClassOf rdf:resource="#VegetationCoverClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowVegetationHeight -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowVegetationHeight">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;VegetationHeight"/>
+    <owl:Class rdf:about="#VeryLowVegetationHeight">
+        <rdfs:subClassOf rdf:resource="#VegetationHeight"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowWindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowWindMitigation">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindMitigation"/>
+    <owl:Class rdf:about="#VeryLowWindMitigation">
+        <rdfs:subClassOf rdf:resource="#WindMitigation"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryLowWindSpeed -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryLowWindSpeed">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;WindSpeedClass"/>
+    <owl:Class rdf:about="#VeryLowWindSpeed">
+        <rdfs:subClassOf rdf:resource="#WindSpeedClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#VeryShallow -->
 
-    <owl:Class rdf:about="&coastalProtection;VeryShallow">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;BathymetryClass"/>
+    <owl:Class rdf:about="#VeryShallow">
+        <rdfs:subClassOf rdf:resource="#BathymetryClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveDamageReceived -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveDamageReceived">
+    <owl:Class rdf:about="#WaveDamageReceived">
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
-        <rdfs:comment>Potential coastal or inland beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength.</rdfs:comment>
+        <rdfs:comment
+            >Potential coastal or inland beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveFlow">
+    <owl:Class rdf:about="#WaveFlow">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
-        <dc:type>The movement of waves generated by tropical storms, tsunamis, or other large wave events.</dc:type>
+        <dc:type
+            >The movement of waves generated by tropical storms, tsunamis, or other large wave events.</dc:type>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveFlowType -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveFlowType">
+    <owl:Class rdf:about="#WaveFlowType">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -1645,16 +1683,17 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveMitigationBenefitsAccrued -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveMitigationBenefitsAccrued">
+    <owl:Class rdf:about="#WaveMitigationBenefitsAccrued">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
-        <rdfs:comment>Populations that actually receive coastal flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</rdfs:comment>
+        <rdfs:comment
+            >Populations that actually receive coastal flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveSinkType -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveSinkType">
+    <owl:Class rdf:about="#WaveSinkType">
         <rdfs:subClassOf rdf:resource="&eserv;PositiveSink"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
     </owl:Class>
@@ -1663,7 +1702,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveSourceType -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveSourceType">
+    <owl:Class rdf:about="#WaveSourceType">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;NegativeSource"/>
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
@@ -1673,7 +1712,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WaveUseType -->
 
-    <owl:Class rdf:about="&coastalProtection;WaveUseType">
+    <owl:Class rdf:about="#WaveUseType">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeUse"/>
     </owl:Class>
@@ -1682,33 +1721,35 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Wetland -->
 
-    <owl:Class rdf:about="&coastalProtection;Wetland">
-        <rdfs:subClassOf rdf:resource="&coastalProtection;TerrestrialVegetationType"/>
+    <owl:Class rdf:about="#Wetland">
+        <rdfs:subClassOf rdf:resource="#TerrestrialVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindDamageReceived -->
 
-    <owl:Class rdf:about="&coastalProtection;WindDamageReceived">
+    <owl:Class rdf:about="#WindDamageReceived">
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
-        <rdfs:comment>Potential coastal or inland beneficiaries of wind mitigation that are hit with wind damage due to too high speed winds or inadequate sink strength.</rdfs:comment>
+        <rdfs:comment
+            >Potential coastal or inland beneficiaries of wind mitigation that are hit with wind damage due to too high speed winds or inadequate sink strength.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindFlow -->
 
-    <owl:Class rdf:about="&coastalProtection;WindFlow">
+    <owl:Class rdf:about="#WindFlow">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
-        <dc:title>The movement of damaging winds, generally from offshore towards shore (i.e., tropical storms).</dc:title>
+        <dc:title
+            >The movement of damaging winds, generally from offshore towards shore (i.e., tropical storms).</dc:title>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindFlowType -->
 
-    <owl:Class rdf:about="&coastalProtection;WindFlowType">
+    <owl:Class rdf:about="#WindFlowType">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -1716,25 +1757,26 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindMitigation -->
 
-    <owl:Class rdf:about="&coastalProtection;WindMitigation">
+    <owl:Class rdf:about="#WindMitigation">
         <rdfs:subClassOf rdf:resource="&eserv;Performance"/>
-        <rdfs:subClassOf rdf:resource="&coastalProtection;CoastalFloodSink"/>
+        <rdfs:subClassOf rdf:resource="#CoastalFloodSink"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindMitigationBenefitsAccrued -->
 
-    <owl:Class rdf:about="&coastalProtection;WindMitigationBenefitsAccrued">
+    <owl:Class rdf:about="#WindMitigationBenefitsAccrued">
         <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
-        <rdfs:comment>Populations that actually receive wind regulation benefits:: they are vulnerable to high-speed winds, but have a sink located between them and the source of offshore wind that reduces the magnitude of wind damage.</rdfs:comment>
+        <rdfs:comment
+            >Populations that actually receive wind regulation benefits:: they are vulnerable to high-speed winds, but have a sink located between them and the source of offshore wind that reduces the magnitude of wind damage.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindSinkType -->
 
-    <owl:Class rdf:about="&coastalProtection;WindSinkType">
+    <owl:Class rdf:about="#WindSinkType">
         <rdfs:subClassOf rdf:resource="&eserv;PositiveSink"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeSink"/>
     </owl:Class>
@@ -1743,7 +1785,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindSourceType -->
 
-    <owl:Class rdf:about="&coastalProtection;WindSourceType">
+    <owl:Class rdf:about="#WindSourceType">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;NegativeSource"/>
         <rdfs:subClassOf rdf:resource="&eserv;Source"/>
@@ -1753,7 +1795,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindSpeedClass -->
 
-    <owl:Class rdf:about="&coastalProtection;WindSpeedClass">
+    <owl:Class rdf:about="#WindSpeedClass">
         <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Speed"/>
     </owl:Class>
@@ -1762,7 +1804,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#WindUseType -->
 
-    <owl:Class rdf:about="&coastalProtection;WindUseType">
+    <owl:Class rdf:about="#WindUseType">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&eserv;RelativeUse"/>
     </owl:Class>
@@ -1816,59 +1858,59 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;LowRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToAssets"/>
-            <rdf:Description rdf:about="&coastalProtection;NoRiskToAssets"/>
+            <rdf:Description rdf:about="#HighCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#LowCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#ModerateCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#NoCoastalFloodProtection"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;LowMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateMangroveWidth"/>
-            <rdf:Description rdf:about="&coastalProtection;NoMangroveWidth"/>
+            <rdf:Description rdf:about="#HighSeagrassDensity"/>
+            <rdf:Description rdf:about="#LowSeagrassDensity"/>
+            <rdf:Description rdf:about="#ModerateSeagrassDensity"/>
+            <rdf:Description rdf:about="#NoSeagrassDensity"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;LowRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateRiskToLife"/>
-            <rdf:Description rdf:about="&coastalProtection;NoRiskToLife"/>
+            <rdf:Description rdf:about="#HighBleaching"/>
+            <rdf:Description rdf:about="#ModerateBleaching"/>
+            <rdf:Description rdf:about="#NoBleaching"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;LowSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateSeagrassDensity"/>
-            <rdf:Description rdf:about="&coastalProtection;NoSeagrassDensity"/>
+            <rdf:Description rdf:about="#HighRiskToAssets"/>
+            <rdf:Description rdf:about="#LowRiskToAssets"/>
+            <rdf:Description rdf:about="#ModerateRiskToAssets"/>
+            <rdf:Description rdf:about="#NoRiskToAssets"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;LowCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateCoastalFloodProtection"/>
-            <rdf:Description rdf:about="&coastalProtection;NoCoastalFloodProtection"/>
+            <rdf:Description rdf:about="#HighMangroveWidth"/>
+            <rdf:Description rdf:about="#LowMangroveWidth"/>
+            <rdf:Description rdf:about="#ModerateMangroveWidth"/>
+            <rdf:Description rdf:about="#NoMangroveWidth"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&coastalProtection;HighBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;ModerateBleaching"/>
-            <rdf:Description rdf:about="&coastalProtection;NoBleaching"/>
+            <rdf:Description rdf:about="#HighRiskToLife"/>
+            <rdf:Description rdf:about="#LowRiskToLife"/>
+            <rdf:Description rdf:about="#ModerateRiskToLife"/>
+            <rdf:Description rdf:about="#NoRiskToLife"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.1.0.20069) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 

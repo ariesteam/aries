@@ -293,7 +293,7 @@
         'waterSupplyService:SurfaceDiversionCapacity
         'waterSupplyService:SurfaceWaterSinkClass
         nil
-        'waterSupplyService:TempSurfaceWaterData$
+        ('geophysics:Altitude 'geofeatures:River)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -333,7 +333,7 @@
         'waterSupplyService:SurfaceDiversionCapacity
         'waterSupplyService:SurfaceWaterSinkClass
         nil
-        'waterSupplyService:TempSurfaceWaterData$
+        ('geophysics:Altitude 'geofeatures:River)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0

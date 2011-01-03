@@ -502,7 +502,7 @@
   	    'floodService:FloodFarmersUse100
       	'floodService:FloodSink
       	nil
-  	    'floodService:TempFloodData100
+  	    ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains100)
   	:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
     :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
     :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1

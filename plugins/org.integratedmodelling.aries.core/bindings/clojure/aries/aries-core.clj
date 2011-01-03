@@ -44,7 +44,7 @@
                           (tl/conc ~use-obs)
                           (tl/conc ~sink-obs)
                           (tl/conc ~flow-obs)
-                          (map tl/conc '~flow-data-obs-seq))
+                          (map tl/conc '~(map eval flow-data-obs-seq)))
      (if (not (nil? '~body))
        (doseq [classifier# (partition 2 '~body)]
          (if  (keyword? (first classifier#))

@@ -259,7 +259,7 @@
         'waterSupplyService:AgriculturalSurfaceWaterUseClass
         'waterSupplyService:SurfaceWaterSinkClass
         nil
-        'waterSupplyService:TempSurfaceWaterData$
+        ('geophysics:Altitude 'geofeatures:River)
         :source-threshold   1500.0
         :sink-threshold     25.0
         :use-threshold      500.0
