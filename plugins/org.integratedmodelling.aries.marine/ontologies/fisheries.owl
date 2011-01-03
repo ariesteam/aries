@@ -870,6 +870,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#PopulationDensity -->
+
+    <owl:Class rdf:about="#PopulationDensity">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#PopulationDensityClass -->
 
     <owl:Class rdf:about="#PopulationDensityClass">
@@ -1080,63 +1089,11 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityReef"/>
-            <rdf:Description rdf:about="#LowQualityReef"/>
-            <rdf:Description rdf:about="#ModerateQualityReef"/>
-            <rdf:Description rdf:about="#NoQualityReef"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
-            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
-            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
-            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighPopulationDensity"/>
             <rdf:Description rdf:about="#LowPopulationDensity"/>
             <rdf:Description rdf:about="#ModeratePopulationDensity"/>
             <rdf:Description rdf:about="#VeryHighPopulationDensity"/>
             <rdf:Description rdf:about="#VeryLowPopulationDensity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityEstuary"/>
-            <rdf:Description rdf:about="#LowQualityEstuary"/>
-            <rdf:Description rdf:about="#ModerateQualityEstuary"/>
-            <rdf:Description rdf:about="#NoQualityEstuary"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighBleaching"/>
-            <rdf:Description rdf:about="#ModerateBleaching"/>
-            <rdf:Description rdf:about="#NoBleaching"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#LargeEstuary"/>
-            <rdf:Description rdf:about="#NoEstuary"/>
-            <rdf:Description rdf:about="#SmallEstuary"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
-            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
-            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
-            <rdf:Description rdf:about="#NoAHHabitat"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1159,10 +1116,62 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighQualityEstuary"/>
+            <rdf:Description rdf:about="#LowQualityEstuary"/>
+            <rdf:Description rdf:about="#ModerateQualityEstuary"/>
+            <rdf:Description rdf:about="#NoQualityEstuary"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighNitrogenRunoff"/>
+            <rdf:Description rdf:about="#LowNitrogenRunoff"/>
+            <rdf:Description rdf:about="#ModerateNitrogenRunoff"/>
+            <rdf:Description rdf:about="#NoNitrogenRunoff"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighQualityReef"/>
+            <rdf:Description rdf:about="#LowQualityReef"/>
+            <rdf:Description rdf:about="#ModerateQualityReef"/>
+            <rdf:Description rdf:about="#NoQualityReef"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="#HighSubsistenceUse"/>
             <rdf:Description rdf:about="#LowSubsistenceUse"/>
             <rdf:Description rdf:about="#ModerateSubsistenceUse"/>
             <rdf:Description rdf:about="#NoSubsistenceUse"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighBleaching"/>
+            <rdf:Description rdf:about="#ModerateBleaching"/>
+            <rdf:Description rdf:about="#NoBleaching"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#HighQualityAHHabitat"/>
+            <rdf:Description rdf:about="#LowQualityAHHabitat"/>
+            <rdf:Description rdf:about="#ModerateQualityAHHabitat"/>
+            <rdf:Description rdf:about="#NoAHHabitat"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#LargeEstuary"/>
+            <rdf:Description rdf:about="#NoEstuary"/>
+            <rdf:Description rdf:about="#SmallEstuary"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

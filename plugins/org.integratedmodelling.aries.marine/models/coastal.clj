@@ -293,7 +293,7 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
   (span 'coastalProtection:CoastalStormMovement
-        'coastalProtection:CoastalWaveSource
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
         'coastalProtection:CycloneDependentLivesAtRisk
         'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
         nil 
@@ -308,7 +308,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink coastal-flow-data)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation

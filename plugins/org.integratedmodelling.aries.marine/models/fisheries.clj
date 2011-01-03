@@ -106,7 +106,7 @@
 		[25 50]   'fisheries:ModeratePoverty
 		[:< 25]   'fisheries:LowPoverty))
 
-(defmodel population-density 'fisheries:PopulationDensityClass
+(defmodel population-density-class 'fisheries:PopulationDensityClass
 	(classification (count 'policytarget:PopulationDensity "/km^2")
 		[2000 :>]    'fisheries:VeryHighPopulationDensity
 		[1000 2000]  'fisheries:HighPopulationDensity
@@ -119,10 +119,20 @@
 (defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
   (classification 'fisheries:SubsistenceUse
     :units "kg/km^2*year" ; per person, multiply by population density.
-    6.8  'fisheries:HighSubsistenceUse
-    4.6  'fisheries:ModerateSubsistenceUse
-    2.3  'fisheries:LowSubsistenceUse
-    0    'fisheries:NoSubsistenceUse))
+    ;; FIXME: Evil hack warning! Ferd doesn't have any way in his
+    ;; modelling API for CategoricalDistributionDatasource to extract
+    ;; the undiscretized values of a deterministic distribution.
+    ;; Therefore, we're going to be silly and just make them into
+    ;; ranges centered around the values we want.  My code (Gary) will
+    ;; just take their midpoints anyway, so it's no big deal.
+    [ 5.6 8.0]  'fisheries:HighSubsistenceUse
+    [ 3.6 5.6]  'fisheries:ModerateSubsistenceUse
+    [ 1.0 3.6]  'fisheries:LowSubsistenceUse
+    [-1.0 1.0]  'fisheries:NoSubsistenceUse))
+;;    6.8  'fisheries:HighSubsistenceUse
+;;    4.6  'fisheries:ModerateSubsistenceUse
+;;    2.3  'fisheries:LowSubsistenceUse
+;;    0    'fisheries:NoSubsistenceUse))
 
 ;;(defmodel subsistence-fishing-undiscretized 'fisheries:SubsistenceUse
 ;;  (classification 'fisheries:SubsistenceUse
@@ -151,7 +161,7 @@
 ;; FIXME substitute below with distance to coast when it's correctly written and based on decent data
             :required ('fisheries:ProximityBuffer)
             :observed (subsistence-fishing-undiscretized)
-            :context  (poverty population-density coastal-proximity subsistence-selector)))
+            :context  (poverty population-density-class coastal-proximity subsistence-selector)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Flow models
@@ -160,14 +170,19 @@
 (defmodel paths 'infrastructure:Path
   (binary-coding 'infrastructure:Path))
 
+(defmodel population-density 'fisheries:PopulationDensity
+  (count 'policytarget:PopulationDensity "/km^2"))
+
 (defmodel fish-flow-data 'fisheries:TempFishFlowData$
   (identification 'fisheries:TempFishFlowData
-      :context (paths (count 'policytarget:PopulationDensity "/km^2"))))
+      :context (paths population-density)))
 
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision
-		:context (total-pelagic-subsistence-harvest subsistence-fishing 
-              fish-flow-data fish-habitat-quality)))
+                    :context (total-pelagic-subsistence-harvest
+                              subsistence-fishing
+                              fish-flow-data)))
+                              ;;fish-habitat-quality)))
 
 (defmodel fisheries-subsistence-flow 'fisheries:SubsistenceFishProvision
   (span 'fisheries:SubsistenceFishAccessibility
@@ -186,7 +201,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/coastal-fisheries-data.clj"
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/subsistence-fisheries-data.clj"
         :context            (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)
         :keep               ('fisheries:SubsistenceFishSupply
                              'fisheries:SubsistenceFishDemand

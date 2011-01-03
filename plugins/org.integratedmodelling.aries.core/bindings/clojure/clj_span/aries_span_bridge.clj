@@ -88,6 +88,9 @@
 
 (defn save-span-layers
   [filename source-layer sink-layer use-layer flow-layers]
+  (println "Save Span Layers:")
+  (println "Flow Layer Key Types:" (map class (keys flow-layers)))
+  (println "Flow Layer Keys:" (keys flow-layers))
   (let [dummy-map   {:theoretical-source  (constantly {})
                      :inaccessible-source (constantly {})
                      :possible-source     (constantly {})
@@ -111,6 +114,7 @@
         (doseq [layer [source-layer sink-layer use-layer]]
           (prn (if layer (map-matrix to-hash-map layer))))
         (prn (mapmap identity #(map-matrix to-hash-map %) flow-layers))))
+    (println "Succeeded!")
     dummy-map))
 
 (defn read-span-layers
@@ -162,7 +166,6 @@
                   (with-meta (apply struct prob-dist (get-probabilities ds idx)) disc-type))))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
       (do (println "It's deterministic.")
-          (println "DATASOURCE IS" ds)
           (for [value (NaNs-to-zero (get-data ds))]
             (with-meta (array-map value 1.0) disc-type))))))
 
@@ -231,11 +234,36 @@
   [observation concept rows cols]
   (when concept
     (println "Extracting" (.getLocalName concept) "layers.")
-    (println "Dependent-States-Map:" (get-dependent-states-map observation concept))
-    (mapmap (memfn getLocalName)
-            #(seq2matrix rows cols (unpack-datasource % rows cols))
-            ;;(get-state-map (find-observation observation concept)))))
-            (get-dependent-states-map observation concept))))
+    (let [dependent-contexts (.getDependentContexts observation)
+          flow-contexts      (filter #(= concept (get-observable-class %)) dependent-contexts)
+          flow-context       (first flow-contexts)]
+      (println "Dependent Contexts:" dependent-contexts)
+      (println "Their Observables:"  (map get-observable-class dependent-contexts))
+      (println "Flow Contexts:"      flow-contexts)
+      (println "Flow Context:"       flow-context)
+      (println "Flow Context State Map:" (get-state-map flow-context))
+      (println "Observation:" observation)
+      (println "getStateMap(full):" (.getStateMap observation))
+      (println "getStateMap(full):" (.getStateMap flow-context))
+      (println "getStateObservables:" (.getStateObservables observation))
+      (println "getStateObservables:" (.getStateObservables flow-context))
+      (println "getStates:" (.getStates observation))
+      (println "getStates:" (.getStates flow-context))
+      (println "getStateMap:" (.getStateMap observation concept))
+      (println "getStateMap:" (.getStateMap flow-context concept))
+      (println "getDependentContexts:" (.getDependentContexts observation))
+      (println "getDependentContexts:" (.getDependentContexts flow-context))
+      (println "isEmpty:" (.isEmpty observation))
+      (println "isEmpty:" (.isEmpty flow-context))
+      (println "getObservation:" (.getObservation observation))
+      (println "getObservation:" (.getObservation flow-context))
+      (println "get-state-map .getObservation:" (get-state-map (.getObservation observation)))
+      (println "get-state-map .getObservation:" (get-state-map (.getObservation flow-context)))
+      (mapmap (memfn getLocalName)
+              #(seq2matrix rows cols (unpack-datasource % rows cols))
+              ;;(get-state-map (.getObservation observation)))))
+              ;;(get-dependent-states-map observation concept)))))
+              (get-state-map flow-context)))))
 
 (defn- get-hydrosheds-layer
   [observation rows cols]
