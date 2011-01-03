@@ -42,32 +42,32 @@ import org.integratedmodelling.thinklab.interfaces.knowledge.IKnowledgeSubject;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IProperty;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IRelationship;
 
-public class DependencyTree extends KnowledgeGraph {
-
-	private static final long serialVersionUID = -6151570001288627653L;
-
-	public DependencyTree(IConcept rootObservable) throws ThinklabException {
-		
-		forceTreeGeometry(true);
-		buildGraph(rootObservable);
-	}
-	
-	@Override
-	protected boolean followRelationship(IKnowledgeSubject source,
-			IRelationship relationship, IConcept target) {
-		/* for now */
-		return false;
-	}
-
-	@Override
-	protected boolean followProperty(IConcept source, IConcept target,
-			IProperty property) {
-		
-		return 
-			property == null || 
-			property.is(ARIESNamespace.HAS_PROVISION) ||
-			property.is(DOLCE.IMMEDIATE_RELATION) ||
-			property.is(DOLCE.IMMEDIATE_RELATION_I);
-	}
-
-}
+//public class DependencyTree extends KnowledgeGraph {
+//
+//	private static final long serialVersionUID = -6151570001288627653L;
+//
+//	public DependencyTree(IConcept rootObservable) throws ThinklabException {
+//		
+//		forceTreeGeometry(true);
+//		buildGraph(rootObservable);
+//	}
+//	
+//	@Override
+//	protected boolean followRelationship(IKnowledgeSubject source,
+//			IRelationship relationship, IConcept target) {
+//		/* for now */
+//		return false;
+//	}
+//
+//	@Override
+//	protected boolean followProperty(IConcept source, IConcept target,
+//			IProperty property) {
+//		
+//		return 
+//			property == null || 
+//			property.is(ARIESNamespace.HAS_PROVISION) ||
+//			property.is(DOLCE.IMMEDIATE_RELATION) ||
+//			property.is(DOLCE.IMMEDIATE_RELATION_I);
+//	}
+//
+//}

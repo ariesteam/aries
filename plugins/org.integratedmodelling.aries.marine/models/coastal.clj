@@ -308,7 +308,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/coastal-storm-protection-data.clj"
+        :save-file          "coastal-storm-protection-data.clj"
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink coastal-flow-data)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
