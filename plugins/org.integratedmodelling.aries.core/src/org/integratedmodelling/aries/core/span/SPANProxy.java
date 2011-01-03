@@ -26,7 +26,7 @@ public interface SPANProxy {
 	 */
 	public abstract Map<?,?> runSPAN(
 			IObservationContext sourceCtx, 
-			IConcept sourceConcept, IConcept useConcept, IConcept sinkConcept, IConcept flowConcept,
+			IConcept sourceConcept, IConcept useConcept, IConcept sinkConcept, Collection<IConcept> flowConcepts,
 			Map<?,?> flowParams);
 	
 }

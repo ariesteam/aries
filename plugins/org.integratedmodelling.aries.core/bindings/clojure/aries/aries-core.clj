@@ -19,10 +19,10 @@
   "Create a Java object to handle a SPAN run."
   []
   (proxy [org.integratedmodelling.aries.core.span.SPANProxy] []
-    (runSPAN [observation source-concept use-concept sink-concept flow-concept flow-params]
+    (runSPAN [observation source-concept use-concept sink-concept flow-concepts flow-params]
              (println "We are inside runSPAN!")
              (binding [tl/*session* (tl/get-new-session)]
-               (time (span-driver observation source-concept sink-concept use-concept flow-concept flow-params))))))
+               (time (span-driver observation source-concept sink-concept use-concept flow-concepts flow-params))))))
 
 ;; a static object will suffice, this is thread-safe to the point of boredom
 (org.integratedmodelling.aries.core.implementations.observations.SPANTransformer/setSPANProxy (get-span-proxy))
@@ -34,7 +34,7 @@
    and sink observables; any other dependents whose observable is not
    a source, sink or use type will be dependencies for the flow
    model."
-  [observable source-obs use-obs sink-obs flow-obs flow-data-obs & body]
+  [observable source-obs use-obs sink-obs flow-obs flow-data-obs-seq & body]
   `(let [model# (j-make-span)] 
      (.setObservable model# (if (seq? ~observable)
                               (listp ~observable)
@@ -44,7 +44,7 @@
                           (tl/conc ~use-obs)
                           (tl/conc ~sink-obs)
                           (tl/conc ~flow-obs)
-                          (tl/conc ~flow-data-obs))
+                          (map tl/conc '~flow-data-obs-seq))
      (if (not (nil? '~body))
        (doseq [classifier# (partition 2 '~body)]
          (if  (keyword? (first classifier#))

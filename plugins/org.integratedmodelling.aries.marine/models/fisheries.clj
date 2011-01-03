@@ -190,7 +190,7 @@
         'fisheries:SubsistenceUse ;; SubsistenceFishing
         nil
         nil
-        'fisheries:TempFishFlowData
+        ('infrastructure:Path 'fisheries:PopulationDensity)
         :source-threshold   0.0
         :sink-threshold     nil
         :use-threshold      0.0

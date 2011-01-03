@@ -88,9 +88,6 @@
 
 (defn save-span-layers
   [filename source-layer sink-layer use-layer flow-layers]
-  (println "Save Span Layers:")
-  (println "Flow Layer Key Types:" (map class (keys flow-layers)))
-  (println "Flow Layer Keys:" (keys flow-layers))
   (let [dummy-map   {:theoretical-source  (constantly {})
                      :inaccessible-source (constantly {})
                      :possible-source     (constantly {})
@@ -114,7 +111,6 @@
         (doseq [layer [source-layer sink-layer use-layer]]
           (prn (if layer (map-matrix to-hash-map layer))))
         (prn (mapmap identity #(map-matrix to-hash-map %) flow-layers))))
-    (println "Succeeded!")
     dummy-map))
 
 (defn read-span-layers
@@ -213,57 +209,24 @@
   [observation concept rows cols]
   (when concept
     (println "Extracting" (.getLocalName concept) "layer.")
-    ;;(println "Observation:" observation)
-    ;;(println "Concept:" concept)
-    ;;(println "Find-Observation:" (find-observation observation concept) "\n\n")
-    ;;(println "State-Map:" (get-state-map (find-observation observation concept)) "\n\n")
-    ;;(println "Get-Obs1:" (get-obs observation))
-    ;;(println "Get-Obs2:" (get-obs (find-observation observation concept)))
-    ;;(println "Data-Source:" (.getDataSource (find-observation observation concept)) "\n\n")
-    ;;(println "Get-Obs Data-Source:" (.getDataSource (get-obs (find-observation observation concept))))
-    ;;(println "Find-State/Obs:" (find-state observation concept) "\n\n")
-    ;;(println "Dependencies:" (get-dependencies observation))
-    ;;(println "Contingencies:" (get-contingencies observation))
-    ;;(seq2matrix rows cols (unpack-datasource (first (.values (get-state-map (find-observation observation concept)))) rows cols))))
     (seq2matrix rows cols (unpack-datasource (find-state observation concept) rows cols))))
 
 (defn- layer-map-from-observation
   "Builds a map of {concept-names -> matrices}, where each concept's
    matrix is a rows x cols vector of vectors of the concept's state
    values in the observation."
-  [observation concept rows cols]
-  (when concept
-    (println "Extracting" (.getLocalName concept) "layers.")
-    (let [dependent-contexts (.getDependentContexts observation)
-          flow-contexts      (filter #(= concept (get-observable-class %)) dependent-contexts)
-          flow-context       (first flow-contexts)]
-      (println "Dependent Contexts:" dependent-contexts)
-      (println "Their Observables:"  (map get-observable-class dependent-contexts))
-      (println "Flow Contexts:"      flow-contexts)
-      (println "Flow Context:"       flow-context)
-      (println "Flow Context State Map:" (get-state-map flow-context))
-      (println "Observation:" observation)
-      (println "getStateMap(full):" (.getStateMap observation))
-      (println "getStateMap(full):" (.getStateMap flow-context))
-      (println "getStateObservables:" (.getStateObservables observation))
-      (println "getStateObservables:" (.getStateObservables flow-context))
-      (println "getStates:" (.getStates observation))
-      (println "getStates:" (.getStates flow-context))
-      (println "getStateMap:" (.getStateMap observation concept))
-      (println "getStateMap:" (.getStateMap flow-context concept))
-      (println "getDependentContexts:" (.getDependentContexts observation))
-      (println "getDependentContexts:" (.getDependentContexts flow-context))
-      (println "isEmpty:" (.isEmpty observation))
-      (println "isEmpty:" (.isEmpty flow-context))
-      (println "getObservation:" (.getObservation observation))
-      (println "getObservation:" (.getObservation flow-context))
-      (println "get-state-map .getObservation:" (get-state-map (.getObservation observation)))
-      (println "get-state-map .getObservation:" (get-state-map (.getObservation flow-context)))
-      (mapmap (memfn getLocalName)
-              #(seq2matrix rows cols (unpack-datasource % rows cols))
-              ;;(get-state-map (.getObservation observation)))))
-              ;;(get-dependent-states-map observation concept)))))
-              (get-state-map flow-context)))))
+  [observation concepts rows cols]
+  (when (seq concepts)
+    (println "Extracting flow layers:" (map (memfn getLocalName) concepts))
+    (into {}
+          (map (fn [c] [(.getLocalName c)
+                        (seq2matrix rows cols (unpack-datasource (find-state observation c) rows cols))])
+               concepts))))
+;;    (let [concept-set (set concepts)]
+;;      (mapmap (memfn getLocalName)
+;;              #(seq2matrix rows cols (unpack-datasource % rows cols))
+;;              (filter (fn [[concept ds]] (contains? concept-set concept))
+;;                      (get-state-map observation))))))
 
 (defn- get-hydrosheds-layer
   [observation rows cols]
@@ -287,7 +250,7 @@
    flow-params map, the SPAN model will not be run, and instead the
    source, sink, use, and flow layers will be extracted from the
    observation and written to :save-file."
-  [observation-or-model-spec source-concept sink-concept use-concept flow-concept
+  [observation-or-model-spec source-concept sink-concept use-concept flow-concepts
    {:keys [source-threshold sink-threshold use-threshold trans-threshold
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
            result-type save-file]
@@ -308,7 +271,7 @@
           source-layer    (layer-from-observation observation source-concept rows cols)
           sink-layer      (layer-from-observation observation sink-concept   rows cols)
           use-layer       (layer-from-observation observation use-concept    rows cols)
-          flow-layers     (let [layer-map (layer-map-from-observation observation flow-concept rows cols)]
+          flow-layers     (let [layer-map (layer-map-from-observation observation flow-concepts rows cols)]
                             (if (#{"Sediment" "FloodWaterMovement"} flow-model)
                               (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
                               layer-map))]

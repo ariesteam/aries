@@ -297,7 +297,7 @@
         'coastalProtection:CycloneDependentLivesAtRisk
         'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
         nil 
-        'coastalProtection:CoastalFlowData
+        ('coastalProtection:StormTracks 'coastalProtection:GeomorphicFloodProtection)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0

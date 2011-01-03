@@ -39,13 +39,13 @@ public class SPANModel extends DefaultAbstractModel {
     IConcept sinkObservableId = null;
     IConcept useObservableId = null;
     IConcept flowObservableId = null;
-    IConcept flowDataObservableId = null;
-    
+    Collection<IConcept> flowDataObservableIds = null;
+  
     IConcept sourceObservable = null;
     IConcept sinkObservable = null;
     IConcept useObservable = null;
     IConcept flowObservable = null;
-    IConcept flowDataObservable = null;
+    Collection<IConcept> flowDataObservables = null;
     private PersistentHashMap flowParams = PersistentHashMap.create(new Object[]{});
     
 	ArrayList<String> keeperIds = new ArrayList<String>();
@@ -64,12 +64,12 @@ public class SPANModel extends DefaultAbstractModel {
         sinkObservableId = ((SPANModel)model).sinkObservableId;
         useObservableId = ((SPANModel)model).useObservableId;
         flowObservableId = ((SPANModel)model).flowObservableId;
-        flowDataObservableId = ((SPANModel)model).flowDataObservableId;
+        flowDataObservableIds = ((SPANModel)model).flowDataObservableIds;
         sourceObservable = ((SPANModel)model).sourceObservable;
         sinkObservable = ((SPANModel)model).sinkObservable;
         useObservable = ((SPANModel)model).useObservable;
         flowObservable = ((SPANModel)model).flowObservable;
-        flowDataObservable = ((SPANModel)model).flowDataObservable;
+        flowDataObservables = ((SPANModel)model).flowDataObservables;
         flowParams = ((SPANModel)model).flowParams;
         parameters = ((SPANModel)model).parameters;
 		keeperIds = ((SPANModel)model).keeperIds;
@@ -89,12 +89,12 @@ public class SPANModel extends DefaultAbstractModel {
         return CoreScience.Observation();
     }
 
-    public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, IConcept flowData) {
+    public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, Collection<IConcept> flowData) {
         this.sourceObservable = source;
         this.useObservable = use;
         this.sinkObservable = sink;
         this.flowObservable = flow;
-        this.flowDataObservable = flowData;
+        this.flowDataObservables = flowData;
     }
     
     @Override
@@ -204,7 +204,7 @@ public class SPANModel extends DefaultAbstractModel {
         arr.add(Polylist.list(":useConcept",    useObservable));
         arr.add(Polylist.list(":sinkConcept",   sinkObservable));
         arr.add(Polylist.list(":flowConcept",   flowObservable));
-        arr.add(Polylist.list(":flowDataConcept",   flowDataObservable));
+        arr.add(Polylist.list(":flowDataConcepts",   flowDataObservables));
 
         return Polylist.PolylistFromArrayList(arr);
     }

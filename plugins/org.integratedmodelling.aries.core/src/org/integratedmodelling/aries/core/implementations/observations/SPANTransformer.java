@@ -55,7 +55,7 @@ public class SPANTransformer
 	public IConcept sinkConcept = null;
 	public IConcept useConcept = null;
 	public IConcept flowConcept = null;
-	public IConcept flowDataConcept = null;
+	public Collection<IConcept> flowDataConcepts = null;
 	public Map<?,?> flowParams;
 	
 	/*
@@ -163,7 +163,7 @@ public class SPANTransformer
 				sourceConcept, 
 				useConcept,
 				sinkConcept, 
-				flowDataConcept, 
+				flowDataConcepts, 
 				flowParams);
 		
 		/*
