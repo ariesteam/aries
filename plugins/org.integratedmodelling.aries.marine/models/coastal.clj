@@ -332,7 +332,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-daisy-lives-data.clj"
+        ;;:save-file          "coastal-protection-flow-daisy-lives-data.clj"
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
@@ -368,7 +368,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-geralda-lives-data.clj"
+        ;;:save-file          "coastal-protection-flow-geralda-lives-data.clj"
         :context            (coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
@@ -404,7 +404,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-litanne-lives-data.clj"
+        ;;:save-file          "coastal-protection-flow-litanne-lives-data.clj"
         :context            (coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
@@ -440,7 +440,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-daisy-assets-data.clj"
+        ;;:save-file          "coastal-protection-flow-daisy-assets-data.clj"
         :context            (coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
@@ -476,7 +476,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-geralda-assets-data.clj"
+        ;;:save-file          "coastal-protection-flow-geralda-assets-data.clj"
         :context            (coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
@@ -512,7 +512,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-protection-flow-litanne-assets-data.clj"
+        ;;:save-file          "coastal-protection-flow-litanne-assets-data.clj"
         :context            (coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
