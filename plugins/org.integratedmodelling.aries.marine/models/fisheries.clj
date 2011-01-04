@@ -184,6 +184,11 @@
                               fish-flow-data)))
                               ;;fish-habitat-quality)))
 
+;; flow model using temporary SPANK implementation so that both Gary and the PI can sleep.
+(defmodel fisheries-ass-saver 'fisheries:SubsistenceFishProvision
+  (modelling/spank 'fisheries:SubsistenceFishProvision
+     :context (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)))
+
 (defmodel fisheries-subsistence-flow 'fisheries:SubsistenceFishProvision
   (span 'fisheries:SubsistenceFishAccessibility
         'fisheries:TotalSubsistenceHarvest

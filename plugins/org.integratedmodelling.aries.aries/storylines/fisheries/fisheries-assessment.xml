@@ -8,7 +8,7 @@
 	<concept>fisheries:SubsistenceFishProvision</concept>
 
 	<!-- all the models that apply and in which context -->
-	<model id="marine.models.fisheries/fisheries-subsistence-data" context="core.contexts.beta/mg" />
+	<model id="marine.models.fisheries/fisheries-ass-saver" context="core.contexts.beta/mg" />
 
 	<!--  main info page, visible when nothing has been computed yet -->
 	<page>
@@ -42,11 +42,10 @@
 		]]></description>
 		<see-also><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/mgfisheries.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead></runninghead>
@@ -513,6 +512,8 @@
 	</page>
 
 	
+<!-- disabling temporarily
+
 	<page>
 		<concept>fisheries:SubsistenceFishFlow</concept>
 		<name>Fish flow</name>
@@ -535,7 +536,8 @@
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
-
+ -->
+ 
 	<page>
 		<concept>fisheries:UtilizedSubsistenceFish</concept>
 		<name>Actual value</name>
@@ -598,8 +600,8 @@
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
 		<runninghead>Unutilized subsistence fish</runninghead>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
 	</page>
       
  	<page>
