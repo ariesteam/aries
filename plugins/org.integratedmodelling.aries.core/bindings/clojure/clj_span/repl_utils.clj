@@ -1,6 +1,7 @@
 (ns clj-span.repl-utils
-  (:use [clj-span.core :only (run-span)]
-        [clj-span.aries-span-bridge :only (read-span-layers)]))
+  (:use (clj-span core commandline aries-span-bridge analyzer)
+        (clj-misc utils matrix-ops randvars)
+        clojure.contrib.pprint))
 
 (defn load-layers
   [filename]
@@ -20,11 +21,53 @@
              :use-threshold 0.1
              :flow-layers flow-layers
              :trans-threshold 10.0
-             :rv-max-states 10
+             :cell-width    1
+             :cell-height   1
              :downscaling-factor 1   ;; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
+             :rv-max-states 10
              :source-type :finite
              :sink-type :finite
              :use-type :infinite
              :benefit-type :non-rival
              :flow-model "FloodWaterMovement"
+             :result-type :closure-map}))
+
+(defn test-run-storm
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 0.0
+             :sink-layer sink-layer
+             :sink-threshold 0.0
+             :use-layer use-layer
+             :use-threshold 0.0
+             :flow-layers flow-layers
+             :trans-threshold 0.1
+             :cell-width    2610.403605972515
+             :cell-height   733.4169286979684
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type :infinite
+             :use-type :infinite
+             :benefit-type :non-rival
+             :flow-model "CoastalStormMovement"
+             :result-type :closure-map}))
+
+(defn test-run-fishing
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 0.0
+             :use-layer use-layer
+             :use-threshold 0.0
+             :flow-layers flow-layers
+             :trans-threshold 0.1
+             :cell-width    2610.403605972515
+             :cell-height   733.4169286979684
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type nil
+             :use-type :finite
+             :benefit-type :rival
+             :flow-model "SubsistenceFishAccessibility"
              :result-type :closure-map}))

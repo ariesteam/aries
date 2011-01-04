@@ -52,14 +52,18 @@
 (defmodel storm-surge 'coastalProtection:StormSurgeClass
   (classification 'coastalProtection:StormSurgeClass
                   :units      "m"
-;;                  [5 :>]      'coastalProtection:VeryHighStormSurge
-                  [5 6]      'coastalProtection:VeryHighStormSurge
-                  [4 5]       'coastalProtection:HighStormSurge
-                  [3 4]       'coastalProtection:ModerateStormSurge
-                  [2 3]       'coastalProtection:LowStormSurge
-                  [1 2]       'coastalProtection:VeryLowStormSurge
-;;                  [:< 1]      'coastalProtection:NoStormSurge))
-                  [0 1]      'coastalProtection:NoStormSurge))
+;;                  [5 6]      'coastalProtection:VeryHighStormSurge
+;;                  [4 5]      'coastalProtection:HighStormSurge
+;;                  [3 4]      'coastalProtection:ModerateStormSurge
+;;                  [2 3]      'coastalProtection:LowStormSurge
+;;                  [1 2]      'coastalProtection:VeryLowStormSurge
+;;                  [0 1]      'coastalProtection:NoStormSurge))
+                  [14 17]      'coastalProtection:VeryHighStormSurge
+                  [11 14]      'coastalProtection:HighStormSurge
+                  [ 8 11]      'coastalProtection:ModerateStormSurge
+                  [ 5  8]      'coastalProtection:LowStormSurge
+                  [ 2  5]      'coastalProtection:VeryLowStormSurge
+                  [ 0  2]      'coastalProtection:NoStormSurge))
 
 (defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
     "Interface to Flood public asset use bayesian network"
@@ -200,10 +204,14 @@
   (classification 'coastalProtection:TotalCoastalFloodProtection
                   :units      "m"
 ;;                  [1 :>]        'coastalProtection:HighCoastalFloodProtection
-                  [1 2]        'coastalProtection:HighCoastalFloodProtection
-                  [0.5 1]       'coastalProtection:ModerateCoastalFloodProtection
-                  [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
-                  [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
+;;                  [1 2]        'coastalProtection:HighCoastalFloodProtection
+;;                  [0.5 1]       'coastalProtection:ModerateCoastalFloodProtection
+;;                  [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
+;;                  [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
+                  [0.2 0.3]     'coastalProtection:HighCoastalFloodProtection
+                  [0.1 0.2]     'coastalProtection:ModerateCoastalFloodProtection
+                  [0.0 0.1]     'coastalProtection:LowCoastalFloodProtection
+                  [0.0 0.0]     'coastalProtection:NoCoastalFloodProtection))
 
 ;; selects overland and shallow areas to clip coastal protection bn
 (defmodel protection-selector 'coastalProtection:ProtectionPresence
@@ -262,9 +270,12 @@
   (classification 'coastalProtection:GeomorphicFloodProtection
                   :units      "m"
 ;;                  [1 :>]        'coastalProtection:HighGeomorphicProtection
-                  [1   2]       'coastalProtection:HighGeomorphicProtection
-                  [0.5 1]       'coastalProtection:ModerateGeomorphicProtection
-                  [0 0.5]       'coastalProtection:LowGeomorphicProtection))
+;;                  [1   2]       'coastalProtection:HighGeomorphicProtection
+;;                  [0.5 1]       'coastalProtection:ModerateGeomorphicProtection
+;;                  [0 0.5]       'coastalProtection:LowGeomorphicProtection))
+                  [0.2 0.3]     'coastalProtection:HighGeomorphicProtection
+                  [0.1 0.2]     'coastalProtection:ModerateGeomorphicProtection
+                  [0.0 0.1]     'coastalProtection:LowGeomorphicProtection))
 
 ;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
 (defmodel geomorphic-flood-sink 'coastalProtection:GeomorphicWaveReduction
@@ -304,7 +315,7 @@
                               geomorphic-flood-sink)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
-(defmodel coastal-protection-flow 'coastalProtection:CoastalStormProtection
+(defmodel coastal-protection-flow-daisy-lives 'coastalProtection:CoastalStormProtection
   (span 'coastalProtection:CoastalStormMovement
         'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
         'coastalProtection:CycloneDependentLivesAtRisk
@@ -314,15 +325,195 @@
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
-        :trans-threshold    10.0 ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "coastal-storm-protection-data.clj"
+        :save-file          "coastal-protection-flow-daisy-lives-data.clj"
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialWaveDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:WaveDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
+
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
+(defmodel coastal-protection-flow-geralda-lives 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
+        'coastalProtection:CycloneDependentLivesAtRisk
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
+        nil 
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "coastal-protection-flow-geralda-lives-data.clj"
+        :context            (coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialWaveDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:WaveDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
+
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
+(defmodel coastal-protection-flow-litanne-lives 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
+        'coastalProtection:CycloneDependentLivesAtRisk
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
+        nil 
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "coastal-protection-flow-litanne-lives-data.clj"
+        :context            (coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialWaveDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:WaveDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
+
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
+(defmodel coastal-protection-flow-daisy-assets 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
+        'coastalProtection:CycloneSensitiveEconomicValue
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
+        nil 
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "coastal-protection-flow-daisy-assets-data.clj"
+        :context            (coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialWaveDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:WaveDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
+
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
+(defmodel coastal-protection-flow-geralda-assets 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
+        'coastalProtection:CycloneSensitiveEconomicValue
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
+        nil 
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "coastal-protection-flow-geralda-assets-data.clj"
+        :context            (coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
+        :keep               ('coastalProtection:CoastalWaveSource
+                             'coastalProtection:PotentialWaveMitigation
+                             'coastalProtection:PotentiallyWaveVulnerablePopulations
+                             'coastalProtection:PotentiallyDamagingWaveFlow
+                             'coastalProtection:PotentiallyDamagingWaveSource
+                             'coastalProtection:PotentialWaveDamageReceived
+                             'coastalProtection:ActualWaveFlow
+                             'coastalProtection:FloodDamagingWaveSource
+                             'coastalProtection:UtilizedWaveMitigation
+                             'coastalProtection:WaveDamageReceived
+                             'coastalProtection:BenignWaveSource
+                             'coastalProtection:UnutilizedWaveMitigation
+                             'coastalProtection:AbsorbedWaveFlow
+                             'coastalProtection:MitigatedWaveSource
+                             'coastalProtection:WaveMitigationBenefitsAccrued)))
+
+;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
+(defmodel coastal-protection-flow-litanne-assets 'coastalProtection:CoastalStormProtection
+  (span 'coastalProtection:CoastalStormMovement
+        'coastalProtection:StormSurgeClass             ;; CoastalWaveSource
+        'coastalProtection:CycloneSensitiveEconomicValue
+        'coastalProtection:TotalCoastalFloodProtection ;;CoastalFloodSink
+        nil 
+        ('coastalProtection:StormTrack 'coastalProtection:GeomorphicFloodProtection)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :save-file          "coastal-protection-flow-litanne-assets-data.clj"
+        :context            (coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
                              'coastalProtection:PotentialWaveMitigation
                              'coastalProtection:PotentiallyWaveVulnerablePopulations

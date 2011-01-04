@@ -73,18 +73,21 @@
 (defn theoretical-sink
   "If *sink-type* is finite, return sink-layer. Else return sink-layer
    * max-flowpaths (limited by total-source if *source-type* is
-   finite)."
+   finite).  If *sink-type* is nil, we may assume that there are no
+   sinks in this model."
   [source-layer sink-layer use-layer]
-  (if (= *sink-type* :finite)
-    sink-layer
-    (let [num-sources   (count (remove (p = _0_) (matrix2seq source-layer)))
-          num-users     (count (remove (p = _0_) (matrix2seq use-layer)))
-          max-flowpaths (* num-sources num-users)
-          sink-amount   (if (*source-type* :finite)
-                          (let [total-source (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))]
-                            #(rv-min (*_ max-flowpaths %) total-source))
-                          (p *_ max-flowpaths))]
-      (map-matrix #(if (not= _0_ %) (sink-amount %) _0_) sink-layer))))
+  (if (nil? *sink-type*)
+    (make-matrix (get-rows source-layer) (get-cols source-layer) (constantly _0_))
+    (if (= *sink-type* :finite)
+      sink-layer
+      (let [num-sources   (count (remove (p = _0_) (matrix2seq source-layer)))
+            num-users     (count (remove (p = _0_) (matrix2seq use-layer)))
+            max-flowpaths (* num-sources num-users)
+            sink-amount   (if (*source-type* :finite)
+                            (let [total-source (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))]
+                              #(rv-min (*_ max-flowpaths %) total-source))
+                            (p *_ max-flowpaths))]
+        (map-matrix #(if (not= _0_ %) (sink-amount %) _0_) sink-layer)))))
 (def theoretical-sink (memoize theoretical-sink))
 
 (defn actual-sink

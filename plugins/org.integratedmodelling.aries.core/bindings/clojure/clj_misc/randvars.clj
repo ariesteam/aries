@@ -253,6 +253,14 @@
 (def rv-zero (with-meta (array-map 0.0 1.0) disc-type))
 (def _0_ rv-zero)
 
+(defn rv-zero-ish?
+  [delta X]
+  (<= (- 1.0 (X 0.0 0.0)) delta))
+
+(defn rv=ish?
+  [delta X Y]
+  (every? (fn [[x px]] (if-let [py (Y x)] (<= (Math/abs (- py px)) delta))) X))
+
 ;;; testing functions below here
 
 ;; FIXME: Continuous convolutions always assume the lower bound
@@ -388,12 +396,12 @@
   )
 
 ;;; finish testing functions
-
+;; rv-convolute-6 was fastest before (without transients)
 (defn- rv-convolute
   "Returns the distribution of f of two random variables X and Y."
   [f X Y]
   (with-meta
-    (rv-convolute* f X Y) ;; rv-convolute-6 was fastest before (without transients)
+    (into {} (filter (fn [[x p]] (> p 0.0)) (rv-convolute* f X Y)))
     (if (or (= ::continuous-distribution (type X))
             (= ::continuous-distribution (type Y)))
       cont-type

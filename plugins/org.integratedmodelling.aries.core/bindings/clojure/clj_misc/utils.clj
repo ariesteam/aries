@@ -334,11 +334,13 @@
 
 (defmacro with-progress-bar
   [body]
-  `(do
-     (doseq [_# ~body]
+  `(let [result-seq# (delay ~body)]
+     (doseq [_# (force result-seq#)]
        (print "*") (flush))
-     (newline)))
+     (newline)
+     (force result-seq#)))
 
 (defn iterate-while-seq
   [f x]
-  (take-while seq (iterate (& (p remove nil?) f) x)))
+  ;;(take-while seq (iterate (& (p remove nil?) f) x)))
+  (take-while seq (iterate #(remove nil? (f %)) x)))

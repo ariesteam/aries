@@ -62,6 +62,10 @@
   [[a b] [c d]]
   [(- a c) (- b d)])
 
+(defn multiply-ids
+  [[a b] [c d]]
+  [(* a c) (* b d)])
+
 (def- delta-codes {[ 0  1] (byte -1)    ; e
                    [-1  1] (byte -2)    ; se
                    [-1  0] (byte -4)    ; s
@@ -403,11 +407,18 @@
   [test? rows cols id]
   (if (test? id)
     id
-    (loop [bounding-box (find-bounding-box rows cols (list id))]
+    (loop [bounding-box (get-neighbors rows cols id)]
       (if (seq bounding-box)
         (if-let [goal-point (first (filter test? bounding-box))]
           goal-point
           (recur (find-bounding-box rows cols bounding-box)))))))
+
+(defn find-in-range
+  [test? min-row max-row min-col max-col]
+  (filter test?
+          (for [i (range min-row max-row)
+                j (range min-col max-col)]
+            [i j])))
 
 (defn get-bearing
   [source destination]

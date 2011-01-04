@@ -154,10 +154,9 @@
                 (let [prob-dist (apply create-struct (NaNs-to-zero (get-midpoints bounds)))]
                   (for [idx (range n)]
                     (with-meta
-                      (let [probs (get-probabilities ds idx)]
-                        (if (some nil? probs) ;; BN wasn't run at this location.
-                          (array-map 0.0 1.0)
-                          (apply struct prob-dist probs)))
+                      (if-let [probs (get-probabilities ds idx)]
+                        (apply struct prob-dist probs)
+                        (array-map 0.0 1.0))
                       disc-type)))))
             ;; discrete distributions (FIXME: How is missing information represented? Fns aren't setup for non-numeric values.)
             (do
@@ -165,10 +164,9 @@
               (let [prob-dist (apply create-struct (get-possible-states ds))]
                 (for [idx (range n)]
                   (with-meta
-                    (let [probs (get-probabilities ds idx)]
-                      (if (some nil? probs) ;; BN wasn't run at this location.
-                        (array-map 0.0 1.0)
-                        (apply struct prob-dist probs)))
+                    (if-let [probs (get-probabilities ds idx)]
+                      (apply struct prob-dist probs)
+                      (array-map 0.0 1.0))
                     disc-type))))))
       ;; binary distributions and deterministic values (FIXME: NaNs become 0s currently. Is this good?)
       (do (println "It's deterministic.")

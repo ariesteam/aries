@@ -152,7 +152,8 @@
           (every? double>0?      [trans-threshold cell-width cell-height])
           (integer>=1? rv-max-states)
           (number>=1?  downscaling-factor)
-          (every? #{:finite :infinite} [source-type sink-type use-type])
+          (every? #{:finite :infinite} [source-type use-type])
+          (contains? #{:finite :infinite nil} sink-type)
           (#{:rival :non-rival} benefit-type)
           (#{"LineOfSight"
              "Proximity"

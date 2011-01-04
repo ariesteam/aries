@@ -28,6 +28,7 @@
                                     get-cols
                                     make-matrix
                                     map-matrix
+                                    matrix2seq
                                     add-ids
                                     subtract-ids
                                     in-bounds?
@@ -60,8 +61,8 @@
 (defn apply-local-effects!
   [storm-orientation eco-sink-layer geo-sink-layer use-layer cache-layer rows cols
    {:keys [route possible-weight actual-weight sink-effects] :as storm-carrier}]
-  (let [current-location  (peek route)
-        next-location     (add-ids current-location storm-orientation)
+  (let [current-location (peek route)
+        next-location    (add-ids current-location storm-orientation)
         [new-possible-weight new-actual-weight new-sink-effects] (handle-sink-effects current-location
                                                                                       possible-weight
                                                                                       actual-weight
@@ -95,8 +96,10 @@
                                                                                      rows
                                                                                      cols)
                                                                                   storm-carriers)))]
-                             (if-not (on-bounds? rows cols storm-centerpoint)
-                               [next-storm-centerpoint next-storm-orientation next-storm-carriers])))
+                             (if (and next-storm-orientation
+                                      (not (on-bounds? rows cols storm-centerpoint)))
+                               [next-storm-centerpoint next-storm-orientation next-storm-carriers]
+                               (println "Location-dependent termination:" next-storm-orientation storm-centerpoint))))
                          [storm-source-point storm-orientation storm-carriers]))]
     (print "*") (flush))
   (println "\nAll done."))
@@ -136,8 +139,11 @@
                                          neighbor-orientation]))]
       (orientation-deltas (apply min (keys orientation-deltas))))))
 
-;; FIXME: make sure all the right layers are being passed in with these concept names
-;; FIXME: find a way to specify the wave width and initial storm direction
+;; FIXME: find a way to specify the wave width and initial storm
+;;        orientation through the flow-params map.
+(def *wave-width* 100000) ;; in meters
+(def *initial-storm-orientation* [0 -1]) ;; start the storm to the West
+
 ;;  Lookup the storm name.
 ;;  Create a function to determine the wave's new orientation.
 ;;  Discover the storm direction.
@@ -149,7 +155,7 @@
 ;;  Exit when all carriers have finished moving.
 (defmethod distribute-flow "CoastalStormMovement"
   [_ cell-width cell-height source-layer eco-sink-layer use-layer
-   {storm-tracks-layer "StormTracks", geo-sink-layer "GeomorphicFloodProtection"}]
+   {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicFloodProtection"}]
   (println "Running Coastal Storm Protection flow model.")
   (let [rows          (get-rows source-layer)
         cols          (get-cols source-layer)
@@ -157,11 +163,10 @@
         source-points (filter-matrix-for-coords (p not= _0_) source-layer)]
     (println "Source points:" (count source-points))
     (let [storm-source-point   (first source-points) ;; we are only going to use one source point in this model
-          storm-name           (get-in storm-tracks-layer storm-source-point)
-          on-track?            #(= storm-name (get-in storm-tracks-layer %))
+          on-track?            #(not= _0_ (get-in storm-track-layer %))
           get-next-orientation (p get-storm-orientation on-track? rows cols)
-          storm-orientation    (get-next-orientation storm-source-point [0 -1]) ;; start the storm to the west
-          wave-line            (find-wave-line storm-source-point storm-orientation 100000 cell-width cell-height rows cols) ;; wave width = 100km
+          storm-orientation    (get-next-orientation storm-source-point *initial-storm-orientation*)
+          wave-line            (find-wave-line storm-source-point storm-orientation *wave-width* cell-width cell-height rows cols)
           wave-height          (get-in source-layer storm-source-point)
           storm-carriers       (map #(struct-map service-carrier
                                        :source-id       %
@@ -180,5 +185,6 @@
                                cache-layer
                                rows
                                cols)
+      (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
       (println "Simulation complete. Returning the cache-layer.")
       (map-matrix (& seq deref) cache-layer))))

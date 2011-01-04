@@ -35,7 +35,7 @@
         [clj-misc.utils      :only (p
                                     &
                                     seq2map
-                                    mapmap
+                                    count-distinct
                                     angular-distance
                                     with-progress-bar
                                     iterate-while-seq
@@ -44,25 +44,25 @@
                                     get-cols
                                     make-matrix
                                     map-matrix
+                                    matrix2seq
                                     subtract-ids
                                     filter-matrix-for-coords
                                     get-neighbors
                                     get-bearing
                                     find-nearest
+                                    find-in-range
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ _d *_ _*_ rv-fn)]))
+        [clj-misc.randvars   :only (_0_ *_ _*_ rv-fn rv-zero-ish?)]))
 
-(defstruct fisherman :need :route :cache)
+(defstruct fisherman :need :route :cache :fishing-area)
 
-;; FIXME: These fishermen are not constrained by distance and can only
-;;        travel through cells containing fish.
 (defn go-fish!
-  [fish-supply fish-left? rows cols {:keys [need route cache] :as fisherman}]
+  [fish-supply fish-left? {:keys [need route cache fishing-area] :as fisherman}]
   (dosync
    (let [current-id       (peek route)
          local-supply-ref (fish-supply current-id)
          local-supply     (deref local-supply-ref)
-         need-remaining   (if (not= _0_ local-supply) ;; Check for fish locally.
+         need-remaining   (if-not (rv-zero-ish? 0.05 local-supply) ;; Check for fish locally.
                             ;; There are fish here. Let's get some.
                             (let [fish-caught    (rv-fn min local-supply need)
                                   fish-remaining (rv-fn (fn [s n] (- s (min s n))) local-supply need)
@@ -78,75 +78,95 @@
                               need-remaining)
                             need)]
      ;; On to the next.
-     (if (not= _0_ need-remaining)
-       (if-let [fishable-neighbors (seq (filter fish-left? (get-neighbors rows cols current-id)))]
-         (let [split-need (_d need-remaining (count fishable-neighbors))]
-           (for [id fishable-neighbors]
-             (assoc fisherman
-               :need  split-need
-               :route (conj route id)))))))))
+     (if-not (rv-zero-ish? 0.05 need-remaining) ;; to catch those pesky floating-point rounding errors
+       (let [fishing-area-remaining (filter fish-left? fishing-area)]
+         (if-let [next-location (first fishing-area-remaining)]
+           (assoc fisherman
+             :need         need-remaining
+             :route        (conj (pop route) next-location)
+             :fishing-area (rest fishing-area-remaining))))))))
 
 (defn send-forth-fishermen!
-  [fishermen source-kg rows cols]
-  (let [fish-supply (mapmap identity ref source-kg)
-        fish-left?  #(not= _0_ (deref (fish-supply %)))]
+  [fishermen fish-supply]
+  (let [fish-left? #(if-let [supply-ref (fish-supply %)] (not (rv-zero-ish? 0.05 (deref supply-ref))))]
     (println "Fishing time...")
     (with-progress-bar
       (iterate-while-seq
-       (p apply concat (p pmap (p go-fish! fish-supply fish-left? rows cols)))
+;;       #(let [fishermen-remaining (map (p go-fish! fish-supply fish-left?) %)]
+;;          (println "Fishermen:" (count fishermen-remaining))
+;;          fishermen-remaining)
+       #(pmap (p go-fish! fish-supply fish-left?) %)
        fishermen))
     (println "All done.")))
 
+(def *fishing-range* 5000) ;; max distance in meters that a fisherman can sail from shore
+
+;; FIXME: Perhaps I should sort the fishing-area ids by distance to launch point.
 (defn make-fishermen
-  [use-kg fishing-routes cache-layer]
-  (map (fn [use-val route]
-         (struct-map fisherman
-           :need  use-val
-           :route route
-           :cache (get-in cache-layer (first route))))
-       use-kg
-       fishing-routes))
+  [fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height]
+  (println "Distinct route lengths:" (count-distinct (map count fishing-routes)))
+  (println "Distinct launch points:" (count (distinct (map peek fishing-routes))))
+  (let [dx (int (/ *fishing-range* cell-width))
+        dy (int (/ *fishing-range* cell-height))]
+    (map (fn [use-val route]
+           (let [[launch-row launch-col] (peek route)
+                 min-row  (- launch-row dy)
+                 max-row  (+ launch-row dy 1)
+                 min-col  (- launch-col dx)
+                 max-col  (+ launch-col dx 1)]
+             (struct-map fisherman
+               :need         use-val
+               :route        route
+               :cache        (get-in cache-layer (first route))
+               :fishing-area (find-in-range fishing-spot? min-row max-row min-col max-col))))
+         use-vals
+         fishing-routes)))
 
 (defn find-shortest-paths-to-coast
   [path? fishing-spot? rows cols use-points]
   (println "Finding paths to coast...")
-  (with-progress-bar
-    (pmap
-     #(let [path-root      (find-nearest path?         rows cols %)
-            fishing-spot   (find-nearest fishing-spot? rows cols %)
-            bearing        (get-bearing path-root fishing-spot)
-            follow-path    (fn [id] (filter path? (get-neighbors rows cols id)))
-            follow-bearing (fn [id neighbors] (let [neighbor-bearings  (map (fn [nid] (subtract-ids nid id)) neighbors)
-                                                    bearing-deviations (map (p angular-distance bearing) neighbor-bearings)
-                                                    min-deviation      (apply min bearing-deviations)]
-                                                (keys (filter (fn [[_ dev]] (== dev min-deviation))
-                                                              (zipmap neighbors bearing-deviations)))))]
-        (vec (concat (find-line-between % path-root)
-                     (rest (shortest-path path-root follow-path fishing-spot? follow-bearing)))))
-     use-points))
-  (println "All done."))
+  (let [fishing-routes
+        (with-progress-bar
+          (pmap
+           #(let [path-root      (find-nearest path?         rows cols %)
+                  fishing-spot   (find-nearest fishing-spot? rows cols %)
+                  bearing        (get-bearing path-root fishing-spot)
+                  follow-path    (fn [id] (filter path? (get-neighbors rows cols id)))
+                  follow-bearing (fn [id neighbors] (let [neighbor-bearings  (map (fn [nid] (subtract-ids nid id)) neighbors)
+                                                          bearing-deviations (map (p angular-distance bearing) neighbor-bearings)
+                                                          min-deviation      (apply min bearing-deviations)]
+                                                      (keys (filter (fn [[_ dev]] (== dev min-deviation))
+                                                                    (zipmap neighbors bearing-deviations)))))]
+              (vec (concat (find-line-between % path-root)
+                           (rest (shortest-path path-root follow-path fishing-spot? follow-bearing)))))
+           use-points))]
+    (println "All done.")
+    fishing-routes))
 
 (defmethod distribute-flow "SubsistenceFishAccessibility"
   [_ cell-width cell-height source-layer _ use-layer
    {path-layer "Path", population-density-layer "PopulationDensity"}]
   (println "Running Subsistence Fisheries flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
+  (let [rows        (get-rows source-layer)
+        cols        (get-cols source-layer)
+        cache-layer (make-matrix rows cols (fn [_] (ref ())))
         [source-points use-points path-points] (pmap (p filter-matrix-for-coords (p not= _0_))
                                                      [source-layer use-layer path-layer])]
     (println "Source points: " (count source-points))
     (println "Use points:    " (count use-points))
     (let [km2-per-cell   (* cell-width cell-height (Math/pow 10.0 -6.0))
-          source-kg      (seq2map source-points (fn [id] [id (*_ km2-per-cell                                   ;; km^2
-                                                                 (get-in source-layer id))]))                   ;; kg/km^2*year
-          use-kg         (seq2map use-points    (fn [id] [id (*_ km2-per-cell                                   ;; km^2
-                                                                 (_*_ (get-in use-layer id)                     ;; kg/person*year
-                                                                      (get-in population-density-layer id)))])) ;; person/km^2
+          fish-supply    (seq2map source-points
+                                  (fn [id] [id (ref (*_ km2-per-cell                    ;; km^2
+                                                        (get-in source-layer id)))]))   ;; kg/km^2*year
+          use-vals       (map (fn [id] (*_ km2-per-cell                                 ;; km^2
+                                           (_*_ (get-in use-layer id)                   ;; kg/person*year
+                                                (get-in population-density-layer id)))) ;; person/km^2
+                              use-points)
           path?          (set path-points)
           fishing-spot?  (set source-points)
           fishing-routes (find-shortest-paths-to-coast path? fishing-spot? rows cols use-points)
-          fishermen      (make-fishermen use-kg fishing-routes cache-layer)]
-      (send-forth-fishermen! fishermen source-kg rows cols)
+          fishermen      (make-fishermen fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height)]
+      (send-forth-fishermen! fishermen fish-supply)
+      (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
       (println "Simulation complete. Returning the cache-layer.")
       (map-matrix (& seq deref) cache-layer))))
