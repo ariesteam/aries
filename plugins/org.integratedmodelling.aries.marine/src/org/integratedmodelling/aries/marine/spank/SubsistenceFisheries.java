@@ -53,7 +53,7 @@ public class SubsistenceFisheries extends SPANK {
 			this.accessPoints = new ArrayList<Integer>();
 			this.distance = Math.sqrt(xmeters*ymeters);
 			
-			// TODO group access points according to how many neighboring path points
+			// group access points according to how many neighboring path points
 			// they have; take only those that have 0 or 1 so we ensure we are
 			// taking single path at a time.
 			for (int ap : accessPoints) {
