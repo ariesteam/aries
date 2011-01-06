@@ -732,7 +732,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		</observation:hasObservationExtent>
 	</measurement:Count>
 		
-<measurement:BinaryCoding id="port_mg">
+<measurement:Ranking id="port_mg">
 	<observation:hasObservable>
 		<infrastructure:Port />
 	</observation:hasObservable>
@@ -741,7 +741,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>mg:port_mg</geospace:hasCoverageId>
 			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
@@ -757,7 +757,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding> 
+</measurement:Ranking> 
 		
 	<measurement:Ranking id="poverty_pct_1">
 		<observation:hasObservable>

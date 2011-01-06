@@ -78,7 +78,7 @@
     (bayesian 'fisheries:FishHabitat 
       :import   "aries.marine::FisheriesA_hololepidotus.xdsl"
       :keep     ('fisheries:ReefQuality 'fisheries:EstuaryQuality)
-      :context  (bleaching-fisheries reef-area estuary-area nitrogen))) 
+      :context  (bleaching-fisheries reef-area estuary-area nitrogen)))
 
 ;; --------------------------------------------------------------------------------------
 ;; Use models
@@ -173,21 +173,18 @@
 (defmodel population-density 'fisheries:PopulationDensity
   (count 'policytarget:PopulationDensity "/km^2"))
 
-(defmodel fish-flow-data 'fisheries:TempFishFlowData$
-  (identification 'fisheries:TempFishFlowData
-      :context (paths population-density)))
-
 (defmodel fisheries-subsistence-data 'fisheries:SubsistenceFishProvision
 	(identification 'fisheries:SubsistenceFishProvision
                     :context (total-pelagic-subsistence-harvest
                               subsistence-fishing
-                              fish-flow-data)))
+                              paths
+                              population-density)))
                               ;;fish-habitat-quality)))
 
 ;; flow model using temporary SPANK implementation so that both Gary and the PI can sleep.
 (defmodel fisheries-ass-saver 'fisheries:SubsistenceFishProvision
   (modelling/spank 'fisheries:SubsistenceFishProvision
-     :context (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)))
+     :context (total-pelagic-subsistence-harvest subsistence-fishing paths population-density)))
 
 (defmodel fisheries-subsistence-flow 'fisheries:SubsistenceFishProvision
   (span 'fisheries:SubsistenceFishAccessibility
@@ -207,7 +204,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         ;;:save-file          "subsistence-fisheries-data.clj"
-        :context            (total-pelagic-subsistence-harvest subsistence-fishing fish-flow-data)
+        :context            (total-pelagic-subsistence-harvest subsistence-fishing paths population-density)
         :keep               ('fisheries:SubsistenceFishSupply
                              'fisheries:SubsistenceFishDemand
                              'fisheries:SubsistenceFishFlow

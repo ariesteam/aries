@@ -51,18 +51,18 @@
 (defmodel storm-surge 'coastalProtection:StormSurgeClass
   (classification 'coastalProtection:StormSurgeClass
                   :units      "m"
-;;                  [5 6]      'coastalProtection:VeryHighStormSurge
-;;                  [4 5]      'coastalProtection:HighStormSurge
-;;                  [3 4]      'coastalProtection:ModerateStormSurge
-;;                  [2 3]      'coastalProtection:LowStormSurge
-;;                  [1 2]      'coastalProtection:VeryLowStormSurge
-;;                  [0 1]      'coastalProtection:NoStormSurge))
-                  [14 17]      'coastalProtection:VeryHighStormSurge
-                  [11 14]      'coastalProtection:HighStormSurge
-                  [ 8 11]      'coastalProtection:ModerateStormSurge
-                  [ 5  8]      'coastalProtection:LowStormSurge
-                  [ 2  5]      'coastalProtection:VeryLowStormSurge
-                  [ 0  2]      'coastalProtection:NoStormSurge))
+                  [5 6]      'coastalProtection:VeryHighStormSurge
+                  [4 5]      'coastalProtection:HighStormSurge
+                  [3 4]      'coastalProtection:ModerateStormSurge
+                  [2 3]      'coastalProtection:LowStormSurge
+                  [0 2]      'coastalProtection:VeryLowStormSurge
+                  [0 0]      'coastalProtection:NoStormSurge))
+;;                  [14 17]      'coastalProtection:VeryHighStormSurge
+;;                  [11 14]      'coastalProtection:HighStormSurge
+;;                  [8 11]       'coastalProtection:ModerateStormSurge
+;;                  [5 8]        'coastalProtection:LowStormSurge
+;;                  [2 5]        'coastalProtection:VeryLowStormSurge
+;;                  [0 2]        'coastalProtection:NoStormSurge))
 
 ;;(defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
 ;;    "Interface to Flood public asset use bayesian network"
@@ -103,7 +103,7 @@
 ;;                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
 ;;                 0.0))))
 
-;; alternative logics for Lovely Litanne
+;; alternative logics for Litanne
 
 (defmodel source-100km-litanne-selector 'coastalProtection:LitannePresence
   (classification 'coastalProtection:LitannePresence
@@ -121,7 +121,7 @@
       :observed (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-litanne-selector)))
 
-;; lovely Daisy
+;; Daisy
 
 (defmodel source-100km-daisy-selector 'coastalProtection:DaisyPresence
   (classification 'coastalProtection:DaisyPresence
@@ -139,7 +139,7 @@
       :observed (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-daisy-selector)))
 
-;; old whore Geralda
+;; Geralda
 
 (defmodel source-100km-geralda-selector 'coastalProtection:GeraldaPresence
   (classification 'coastalProtection:GeraldaPresence
@@ -194,8 +194,8 @@
 
 ;;Assumes some artificial flood protection near Toamasina, the main port city in Madagascar.  Development around the small ports is minimal.
 (defmodel artificial-coastal-protection 'coastalProtection:ArtificialCoastalProtection
-  (classification (binary-coding 'infrastructure:Port)
-    1          'coastalProtection:ArtificialCoastalProtectionPresent
+  (classification (ranking 'infrastructure:Port)
+    3          'coastalProtection:ArtificialCoastalProtectionPresent
     :otherwise 'coastalProtection:ArtificialCoastalProtectionAbsent))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
@@ -207,10 +207,10 @@
 ;;                  [0.5 1]       'coastalProtection:ModerateCoastalFloodProtection
 ;;                  [0.1 0.5]     'coastalProtection:LowCoastalFloodProtection
 ;;                  [0 0.1]       'coastalProtection:NoCoastalFloodProtection))
-                  [0.2 0.3]     'coastalProtection:HighCoastalFloodProtection
-                  [0.1 0.2]     'coastalProtection:ModerateCoastalFloodProtection
-                  [0.0 0.1]     'coastalProtection:LowCoastalFloodProtection
-                  [0.0 0.0]     'coastalProtection:NoCoastalFloodProtection))
+                  [0.07 0.1]      'coastalProtection:HighCoastalFloodProtection
+                  [0.03 0.07]     'coastalProtection:ModerateCoastalFloodProtection
+                  [0 0.03]        'coastalProtection:LowCoastalFloodProtection
+                  [0 0]           'coastalProtection:NoCoastalFloodProtection))
 
 ;; selects overland and shallow areas to clip coastal protection bn
 (defmodel protection-selector 'coastalProtection:ProtectionPresence
@@ -272,9 +272,10 @@
 ;;                  [1   2]       'coastalProtection:HighGeomorphicProtection
 ;;                  [0.5 1]       'coastalProtection:ModerateGeomorphicProtection
 ;;                  [0 0.5]       'coastalProtection:LowGeomorphicProtection))
-                  [0.2 0.3]     'coastalProtection:HighGeomorphicProtection
-                  [0.1 0.2]     'coastalProtection:ModerateGeomorphicProtection
-                  [0.0 0.1]     'coastalProtection:LowGeomorphicProtection))
+                  [0.07 0.1]    'coastalProtection:HighGeomorphicProtection
+                  [0.03 0.07]   'coastalProtection:ModerateGeomorphicProtection
+                  [0 0.03]      'coastalProtection:LowGeomorphicProtection
+                  [0 0]         'coastalProtection:NoGeomorphicProtection))
 
 ;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
 (defmodel geomorphic-flood-sink 'coastalProtection:GeomorphicWaveReduction
