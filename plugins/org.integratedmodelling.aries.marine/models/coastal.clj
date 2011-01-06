@@ -30,7 +30,6 @@
     [-200 -50]          'coastalProtection:Deep
     [:< -200]           'coastalProtection:VeryDeep))
 
-
 (defmodel atmospheric-pressure 'coastalProtection:AtmosphericPressureClass
   (classification (ranking 'geophysics:AtmosphericPressure) ;;This should be a measurement, in mb, but this is not yet a valid unit in Thinklab.
     [990 :>]  'coastalProtection:ModeratelyLowAtmosphericPressure
@@ -65,44 +64,44 @@
                   [ 2  5]      'coastalProtection:VeryLowStormSurge
                   [ 0  2]      'coastalProtection:NoStormSurge))
 
-(defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
-    "Interface to Flood public asset use bayesian network"
-    (bayesian 'coastalProtection:CoastalWaveSource
-      :import   "aries.marine::CoastalFloodSource.xdsl"
-      :keep     ('coastalProtection:StormSurgeClass)
-      :observed (storm-surge)
-      :context  (wind-speed atmospheric-pressure bathymetry-class)))
-
+;;(defmodel coastal-wave-source 'coastalProtection:CoastalWaveSource
+;;    "Interface to Flood public asset use bayesian network"
+;;    (bayesian 'coastalProtection:CoastalWaveSource
+;;      :import   "aries.marine::CoastalFloodSource.xdsl"
+;;      :keep     ('coastalProtection:StormSurgeClass)
+;;      :observed (storm-surge)
+;;      :context  (wind-speed atmospheric-pressure bathymetry-class)))
+;;
 ;;This takes the BN values ONLY where they intersect the 100 km buffer along the storm track for a given storm (Daisy in the first case)
-(defmodel source-100km-daisy 'coastalProtection:CoastalWaveSourceDaisy
-  (measurement 'coastalProtection:CoastalWaveSourceDaisy "m"
-    :context (storm-tracks        :as storm-tracks
-              buffer              :as buffer
-              coastal-wave-source :as coastal-wave-source)
-    :state  #(if (and (= (:storm-tracks %) "daisy")
-                      (= (:buffer %) 1))
-                 (get-data (:storm-surge-class %)) ;; this should give us the mean value
-                 0.0)))
-
-(defmodel source-100km-geralda 'coastalProtection:CoastalWaveSourceGeralda
-  (measurement 'coastalProtection:CoastalWaveSourceGeralda "m"
-    :context (storm-tracks        :as storm-tracks
-              buffer              :as buffer
-              coastal-wave-source :as coastal-wave-source)
-    :state  #(if (and (= (:storm-tracks %) "geralda")
-                      (= (:buffer %) 1))
-                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
-                 0.0)))
-
-(defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
-  (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
-    :context (storm-tracks        :as storm-tracks
-              buffer              :as buffer
-              coastal-wave-source :as coastal-wave-source)
-    :state  #(do (println %) (if (and (= (:stormtracks %) "litanne")
-                      (= (:buffermg100km %) 1))
-                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
-                 0.0))))
+;;(defmodel source-100km-daisy 'coastalProtection:CoastalWaveSourceDaisy
+;;  (measurement 'coastalProtection:CoastalWaveSourceDaisy "m"
+;;    :context (storm-tracks        :as storm-tracks
+;;              buffer              :as buffer
+;;              coastal-wave-source :as coastal-wave-source)
+;;    :state  #(if (and (= (:storm-tracks %) "daisy")
+;;                      (= (:buffer %) 1))
+;;                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
+;;                 0.0)))
+;;
+;;(defmodel source-100km-geralda 'coastalProtection:CoastalWaveSourceGeralda
+;;  (measurement 'coastalProtection:CoastalWaveSourceGeralda "m"
+;;    :context (storm-tracks        :as storm-tracks
+;;              buffer              :as buffer
+;;              coastal-wave-source :as coastal-wave-source)
+;;    :state  #(if (and (= (:storm-tracks %) "geralda")
+;;                      (= (:buffer %) 1))
+;;                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
+;;                 0.0)))
+;;
+;;(defmodel source-100km-litanne 'coastalProtection:CoastalWaveSourceLitanne
+;;  (measurement 'coastalProtection:CoastalWaveSourceLitanne "m"
+;;    :context (storm-tracks        :as storm-tracks
+;;              buffer              :as buffer
+;;              coastal-wave-source :as coastal-wave-source)
+;;    :state  #(do (println %) (if (and (= (:stormtracks %) "litanne")
+;;                      (= (:buffermg100km %) 1))
+;;                 (get-data (:coastalwavesource %)) ;; this should give us the mean value
+;;                 0.0))))
 
 ;; alternative logics for Lovely Litanne
 
