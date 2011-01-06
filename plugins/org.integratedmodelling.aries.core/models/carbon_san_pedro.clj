@@ -197,17 +197,16 @@
                             sink :as sink
                             use-simple :as use)))
 
-;; flow model for emitters (why doesn't 'carbonService:ClimateStability = 'carbonService:CO2Removed ?)
 (defmodel carbon-flow 'carbonService:ClimateStability
   (span 'carbonService:CO2Removed
-        'carbonService:CarbonSourceValue 
+        'carbonService:VegetationAndSoilCarbonSequestration 
         'carbonService:GreenhouseGasEmissions
-        'carbonService:CarbonSinkValue 
+        'carbonService:StoredCarbonRelease 
         nil
         nil
-        :source-threshold   10.0
-        :sink-threshold     10.0
-        :use-threshold       1.0
+        :source-threshold   1.0
+        :sink-threshold     1.0
+        :use-threshold      10.0
         :trans-threshold    nil
         :source-type        :finite
         :sink-type          :finite
@@ -215,7 +214,7 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 2
-        :save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
                'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
                'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation

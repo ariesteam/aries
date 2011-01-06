@@ -148,23 +148,22 @@
                                    sink       :as sink
                                    altitude   :as altitude)))
 
-;; the real enchilada - need to be updated to the latest SPAN language
 (defmodel view 'aestheticService:AestheticView
   (span 'aestheticService:LineOfSight 
         'aestheticService:TheoreticalNaturalBeauty
         'aestheticService:HomeownerViewUse
-      	'aestheticService:VisualBlight
-      	nil
+        'aestheticService:VisualBlight
+        nil
         ('geophysics:Altitude)
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   4.0  ;;Initially set within the lowest bin
+        :sink-threshold     4.0  ;;Initially set within the lowest bin
+        :use-threshold      4.0  ;;Initially set within the lowest bin
+        :trans-threshold    4.0  ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
         :source-type      :infinite
         :sink-type        :infinite
         :use-type         :infinite
         :benefit-type     :non-rival
-        :downscaling-factor 3
+        :downscaling-factor 2
         :rv-max-states      10
         :keep ('aestheticService:PotentialViews 'aestheticService:PotentialVisualBlight 'aestheticService:HomeownersWithViewDemand
                'aestheticService:PossibleViews 'aestheticService:VisibleNaturalBeauty 'aestheticService:HomeownersWithPossibleViews
@@ -172,13 +171,6 @@
                'aestheticService:HomeownersWithViews 'aestheticService:UnseenViews 'aestheticService:InaccessibleVisualBlight
                'aestheticService:HomeownersWithoutViews 'aestheticService:BlockedViews 'aestheticService:DegradedNaturalBeauty
                'aestheticService:HomeownersWithDegradedViews)
-        :context (source
-                  homeowners
-                  sink
-                  altitude
-                  (ranking 'eserv:SourceThreshold :value 50 :min 0 :max 100)
-                  (ranking 'eserv:SinkThreshold :value 0.3 :min 0 :max 1)
-                  (ranking 'eserv:UseThreshold :value 0.1 :min 0 :max 1)
-                  (ranking 'eserv:TransitionThreshold :value 1.0))))
+        :context (source homeowners sink altitude)))
 
 ;;Develop another one of these to account for scenic drives.

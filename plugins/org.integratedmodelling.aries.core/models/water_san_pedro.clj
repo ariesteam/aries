@@ -288,16 +288,16 @@
 
 ;; flow model for surface water in a dry year
 (defmodel surface-flow-dry 'waterSupplyService:SurfaceWaterMovement
-  (span 'waterSupplyService:SurfaceWaterMovement
+  (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
         'waterSupplyService:AnnualPrecipitationDryYear
         'waterSupplyService:SurfaceDiversionCapacity
         'waterSupplyService:SurfaceWaterSinkClass
         nil
         ('geophysics:Altitude 'geofeatures:River)
-        :source-threshold   0.0
-        :sink-threshold     0.0
-        :use-threshold      0.0
-        :trans-threshold    0.01
+        :source-threshold   5.0
+        :sink-threshold     5.0
+        :use-threshold      1.0
+        :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
@@ -328,16 +328,16 @@
 
 ;; flow model for surface water in a wet year
 (defmodel surface-flow-wet 'waterSupplyService:SurfaceWaterMovement
-  (span 'waterSupplyService:SurfaceWaterMovement
+  (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
         'waterSupplyService:AnnualPrecipitationWetYear
         'waterSupplyService:SurfaceDiversionCapacity
         'waterSupplyService:SurfaceWaterSinkClass
         nil
         ('geophysics:Altitude 'geofeatures:River)
-        :source-threshold   0.0
-        :sink-threshold     0.0
-        :use-threshold      0.0
-        :trans-threshold    0.01
+        :source-threshold   5.0
+        :sink-threshold     5.0
+        :use-threshold      1.0
+        :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
@@ -367,13 +367,13 @@
                              surface-water-flow-data)))
 
 ;; flow model for groundwater
-;;(defmodel groundwater-flow 'aestheticService:AestheticView
- ;; (span 'aestheticService:LineOfSight 
+;;(defmodel groundwater-flow 'waterSupplyService:GroundwaterMovement
+ ;; (span 'waterSupplyService:GroundwaterMovement  ;;Can this be the same as the above concept?
     ;;    'habitat:AnnualRecharge   
     ;;    'waterSupplyService:Wells
     ;;    'waterSupplyService:SurfaceWaterSinkClass ;;replace with proper GW sink class when it's ready
-    ;;    'aestheticService:View   ;;nil?
-    ;;    'geophysics:Altitude     ;;nil?
+    ;;    nil
+    ;;    'geophysics:Altitude     ;;uncertain of dependencies here
   ;;      :source-threshold   1.0  ;;Tough to define without further consideration of GW flow model
   ;;      :sink-threshold     1.0  ;;Tough to define without further consideration of GW flow model
   ;;      :use-threshold      10.0 ;;Tough to define without further consideration of GW flow model

@@ -151,8 +151,8 @@
                   1  'floodService:SmallDamStorage))
 
 ;;Undiscretizer for FloodSink
-(defmodel flood-sink 'floodService:FloodSink
-  (classification 'floodService:FloodSink
+(defmodel flood-sink 'floodService:AnnualFloodSink
+  (classification 'floodService:AnnualFloodSink
                   :units      "mm" 
                   [30000 90000]     'floodService:VeryHighFloodSink
                   [10000 30000]     'floodService:HighFloodSink
@@ -188,7 +188,7 @@
             :import   "aries.core::FloodSinkMark.xdsl"
             :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage vegetation-type)
             :observed (flood-sink) 
-            :keep     ('floodService:FloodSink)))
+            :keep     ('floodService:AnnualFloodSink)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
@@ -317,17 +317,15 @@
 ;; flow model for farmers in the 100-year floodplain   
 (defmodel flood-regulation-farmers-100 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
-        'floodService:FloodSourceValue
+        'floodService:Precipitation
         'floodService:FloodFarmersUse100
-        'floodService:FloodSink
+        'floodService:AnnualFloodSink
         nil 
         ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains100)
-;;        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-;;        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :source-threshold   600.0    ;; Excludes all but >50% ModerateFloodSource
-        :sink-threshold     30000.0  ;; Excludes all but >50% VeryHighFloodSink
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0     ;; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ;; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -349,15 +347,15 @@
 ;; flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 'floodService:AvoidedDamageToFarms500
   (span 'floodService:FloodWaterMovement 
-        'floodService:FloodSourceValue
+        'floodService:Precipitation
         'floodService:FloodFarmersUse500
-        'floodService:FloodSink
+        'floodService:AnnualFloodSink
         nil
         ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains500)
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0     ;; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ;; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -370,15 +368,15 @@
 ;; flow model for public-assets in the 100-year floodplain
 (defmodel flood-regulation-public-assets-100 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
-        'floodService:FloodSourceValue
+        'floodService:Precipitation
         'floodService:FloodPublicAssetsUse100
-        'floodService:FloodSink
+        'floodService:AnnualFloodSink
         nil
         ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains100)
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0     ;; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ;; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -391,15 +389,15 @@
 ;; flow model for public-assets in the 500-year floodplain
 (defmodel flood-regulation-public-assets-500 'floodService:AvoidedDamageToFarms500
   (span 'floodService:FloodWaterMovement
-        'floodService:FloodSourceValue
+        'floodService:Precipitation
         'floodService:FloodPublicAssetsUse500
-        'floodService:FloodSink
+        'floodService:AnnualFloodSink
         nil
         ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains500)
-        :source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-        :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-        :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0     ;; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ;; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite

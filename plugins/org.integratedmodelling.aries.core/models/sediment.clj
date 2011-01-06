@@ -99,15 +99,15 @@
   		[100000 :>]                'soilretentionEcology:HighAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound   	 
-(defmodel source-puget 'soilretentionEcology:SedimentSourceValueAnnualClass
+(defmodel source-puget 'soilretentionEcology:SedimentSourceValueAnnual
   (bayesian 'soilretentionEcology:SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
-    :keep     ('soilretentionEcology:SedimentSourceValueAnnualClass ) 
+    :keep     ('soilretentionEcology:SedimentSourceValueAnnualClass) 
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
               successional-stage slope-stability)))
 
-;; Add deterministic model for USLE: Have data for it for the western U.S. and world in 1980.
+;; Add deterministic model for USLE: Have data for it for the western U.S. and globally.
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -148,7 +148,7 @@
        [:exclusive 0 10000]   'soilretentionEcology:LowAnnualSedimentSink
        0                      'soilretentionEcology:NoAnnualSedimentSink)) 
 
-(defmodel sediment-sink-us 'soilretentionEcology:AnnualSedimentSinkClass
+(defmodel sediment-sink-us 'soilretentionEcology:AnnualSedimentSink
   (bayesian 'soilretentionEcology:AnnualSedimentSink    
     :import  "aries.core::SedimentSink.xdsl"
     :keep    ('soilretentionEcology:AnnualSedimentSinkClass)
@@ -216,17 +216,16 @@
 ;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Everything below needs to be updated correctly for sediment.
- 	 								
-;;(defmodel altitude 'geophysics:Altitude
-  ;;(measurement 'geophysics:Altitude "m"))	 								
+(defmodel altitude 'geophysics:Altitude
+  (measurement 'geophysics:Altitude "m"))	 								
 
 (defmodel levees 'soilretentionEcology:LeveesClass 
   (classification (binary-coding 'infrastructure:Levee)
       0          'soilretentionEcology:LeveeAbsent
       :otherwise 'soilretentionEcology:LeveePresent))
 
-;;Add defmodels for stream network & HydroSHEDS?
+(defmodel streams 'geofeatures:River
+  (binary-coding 'geofeatures:River))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
@@ -248,90 +247,87 @@
        farmers-deposition-use-puget
        levees)))
 
-;;Sediment flow model for recipients of beneficial sedimentation; 
-;; all other parameters except for flow concepts need to be updated	
-;;(defmodel sediment-flow 'carbonService:ClimateStability
-;;  (span 'carbonService:CO2Removed
-;;        'carbonService:CarbonSourceValue 
-;;        'carbonService:GreenhouseGasEmissions
-;;        'carbonService:CarbonSinkValue 
-;;        nil
-;;        nil
-;;        :source-threshold   10.0
-;;        :sink-threshold     10.0
-;;        :use-threshold       1.0
-;;        :trans-threshold    nil
-;;        :source-type        :finite
-;;        :sink-type          :finite
-;;        :use-type           :finite
-;;        :benefit-type       :rival
-;;        :rv-max-states      10
-;;        :downscaling-factor 8
-;;        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
-;;               'soilretentionEcology:PotentialSedimentDepositionBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
-;;               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleSedimentDepositionBeneficiaries
-;;               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
-;;               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualSedimentDepositionBeneficiaries
-;;               'soilretentionEcology:UnutilizedSedimentSource 'soilretentionEcology:InaccessibleSedimentDepositionBeneficiaries
-;;               'soilretentionEcology:AbsorbedSedimentFlow 'soilretentionEcology:NegatedSedimentSource
-;;               'soilretentionEcology:LostValuableSediment)
-;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-;;        :context (source use-simple sink)))
+;;Sediment flow model for recipients of beneficial sedimentation
+(defmodel sediment-beneficial 'soilretentionEcology:BeneficialSedimentTransport
+  (span 'soilretentionEcology:SedimentTransport
+        'soilretentionEcology:SedimentSourceValueAnnualClass 
+        'soilretentionEcology:DepositionProneFarmers
+        'soilretentionEcology:AnnualSedimentSinkClass 
+        nil
+        ('geophysics:Altitude 'soilretentionEcology:Floodplains 'soilretentionEcology:LeveesClass 'geofeatures:River) 
+        :source-threshold   1000.0
+        :sink-threshold     500.0
+        :use-threshold      10.0
+        :trans-threshold    100.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :rv-max-states      10
+        :downscaling-factor 2
+        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
+               'soilretentionEcology:PotentialSedimentDepositionBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
+               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleSedimentDepositionBeneficiaries
+               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
+               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualSedimentDepositionBeneficiaries
+               'soilretentionEcology:UnutilizedSedimentSource 'soilretentionEcology:InaccessibleSedimentDepositionBeneficiaries
+               'soilretentionEcology:AbsorbedSedimentFlow 'soilretentionEcology:NegatedSedimentSource
+               'soilretentionEcology:LostValuableSediment)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains)))
 
-;;Sediment flow model for recipients of avoided detrimental sedimentation; 
-;; all other parameters except for flow concepts need to be updated 
-;;(defmodel sediment-flow 'carbonService:ClimateStability
-;;  (span 'carbonService:CO2Removed
-;;        'carbonService:CarbonSourceValue 
-;;        'carbonService:GreenhouseGasEmissions
-;;        'carbonService:CarbonSinkValue 
-;;        nil
-;;        nil
-;;        :source-threshold   10.0
-;;        :sink-threshold     10.0
-;;        :use-threshold       1.0
-;;        :trans-threshold    nil
-;;        :source-type        :finite
-;;        :sink-type          :finite
-;;        :use-type           :finite
-;;        :benefit-type       :rival
-;;        :rv-max-states      10
-;;        :downscaling-factor 8
-;;        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
-;;               'soilretentionEcology:PotentialReducedSedimentDepositionBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
-;;               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleReducedSedimentDepositionBeneficiaries
-;;               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
-;;               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualReducedSedimentDepositionBeneficiaries
-;;               'soilretentionEcology:UnutilizedDeposition 'soilretentionEcology:AbsorbedSedimentFlow
-;;               'soilretentionEcology:NegatedSedimentSource 'soilretentionEcology:BlockedHarmfulSediment)
-;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-;;        :context (source use-simple sink)))
+;;Sediment flow model for recipients of avoided detrimental sedimentation
+(defmodel sediment-detrimental 'soilretentionEcology:DetrimentalSedimentTransport
+  (span 'soilretentionEcology:SedimentTransport
+        'soilretentionEcology:SedimentSourceValueAnnualClass 
+        'soilretentionEcology:DepositionProneFarmers ;;change the beneficiary group as needed
+        'soilretentionEcology:AnnualSedimentSinkClass 
+        nil
+        ('geophysics:Altitude 'soilretentionEcology:Floodplains 'soilretentionEcology:LeveesClass 'geofeatures:River)
+        :source-threshold   1000.0
+        :sink-threshold     500.0
+        :use-threshold      10.0
+        :trans-threshold    100.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :non-rival
+        :rv-max-states      10
+        :downscaling-factor 2
+        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
+               'soilretentionEcology:PotentialReducedSedimentDepositionBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
+               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleReducedSedimentDepositionBeneficiaries
+               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
+               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualReducedSedimentDepositionBeneficiaries
+               'soilretentionEcology:UnutilizedDeposition 'soilretentionEcology:AbsorbedSedimentFlow
+               'soilretentionEcology:NegatedSedimentSource 'soilretentionEcology:BlockedHarmfulSediment)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
 
-;;Sediment flow model for recipients of reduced turbidity; 
-;; all other parameters except for flow concepts need to be updated 
-;;(defmodel sediment-flow 'carbonService:ClimateStability
-;;  (span 'carbonService:CO2Removed
-;;        'carbonService:CarbonSourceValue 
-;;        'carbonService:GreenhouseGasEmissions
-;;        'carbonService:CarbonSinkValue 
-;;        nil
-;;        nil
-;;        :source-threshold   10.0
-;;        :sink-threshold     10.0
-;;        :use-threshold       1.0
-;;        :trans-threshold    nil
-;;        :source-type        :finite
-;;        :sink-type          :finite
-;;        :use-type           :finite
-;;        :benefit-type       :rival
-;;        :rv-max-states      10
-;;        :downscaling-factor 8
-;;        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
-;;               'soilretentionEcology:PotentialReducedTurbidityBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
-;;               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleReducedTurbidityBeneficiaries
-;;               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
-;;               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualReducedTurbidityBeneficiaries
-;;               'soilretentionEcology:UnutilizedDeposition 'soilretentionEcology:AbsorbedSedimentFlow 
-;;               'soilretentionEcology:NegatedSedimentSource 'soilretentionEcology:ReducedTurbidity)
-;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-;;        :context (source use-simple sink)))
+;;Sediment flow model for recipients of reduced turbidity
+(defmodel sediment-turbidity 'soilretentionEcology:DetrimentalTurbidity
+  (span 'soilretentionEcology:SedimentTransport
+        'soilretentionEcology:SedimentSourceValueAnnualClass 
+        'carbonService:GreenhouseGasEmissions  ;;change the beneficiary group as needed
+        'soilretentionEcology:AnnualSedimentSinkClass 
+        nil
+        ('geophysics:Altitude 'soilretentionEcology:Floodplains 'soilretentionEcology:LeveesClass 'geofeatures:River)
+        :source-threshold   1000.0
+        :sink-threshold     500.0
+        :use-threshold       10.0
+        :trans-threshold    nil
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :non-rival
+        :rv-max-states      10
+        :downscaling-factor 2
+        :keep ('soilretentionEcology:MaximumSedimentSource 'soilretentionEcology:MaximumPotentialDeposition 
+               'soilretentionEcology:PotentialReducedTurbidityBeneficiaries 'soilretentionEcology:PossibleSedimentFlow
+               'soilretentionEcology:PossibleSedimentSource 'soilretentionEcology:PossibleReducedTurbidityBeneficiaries
+               'soilretentionEcology:ActualSedimentFlow 'soilretentionEcology:ActualSedimentSource
+               'soilretentionEcology:UtilizedDeposition 'soilretentionEcology:ActualReducedTurbidityBeneficiaries
+               'soilretentionEcology:UnutilizedDeposition 'soilretentionEcology:AbsorbedSedimentFlow 
+               'soilretentionEcology:NegatedSedimentSource 'soilretentionEcology:ReducedTurbidity)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed

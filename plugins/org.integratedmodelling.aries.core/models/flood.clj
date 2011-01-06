@@ -29,8 +29,8 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;;this layer has problems for now (see .xml) but not currently used.
-(defmodel precipitation-monthly 'floodService:Precipitation
-  (measurement 'habitat:JanuaryPrecipitation "mm"))
+;;(defmodel precipitation-monthly 'floodService:Precipitation
+;;  (measurement 'habitat:JanuaryPrecipitation "mm"))
 
 (defmodel land-use 'floodService:LandUseLandCover
 	"Just a reclass of the NLCD land use layer"
@@ -88,10 +88,10 @@
                   [2400 :>]   'floodService:VeryHighFloodSource))
 
 ;;Monthly source data is just the sum of precipitation and snowmelt.
-(defmodel source-monthly 'floodService:FloodSourceMonthly
-   (measurement 'floodService:FloodSourceMonthly "mm"
-        :context (precipitation-monthly snowmelt-monthly)
-        :state   #(+ (:precipitation-monthly %) (:snowmelt-monthly %)))) 
+;;(defmodel source-monthly 'floodService:FloodSourceMonthly
+;;   (measurement 'floodService:FloodSourceMonthly "mm"
+;;        :context (precipitation-monthly snowmelt-monthly)
+;;        :state   #(+ (:precipitation-monthly %) (:snowmelt-monthly %)))) 
 
 ;;Annual source data is simply precipitation-annual (assume all snow melts in each year, which
 ;; is true everywhere but for glaciers.  Assume that glaciers are neither gaining nor losing
@@ -275,8 +275,8 @@
 ;; Flood sink probability, annual
 ;; COMMENT veg height back in once the layer's been expanded to a meaningful extent OR Ferd's enabled coexistence of
 ;;  small layers + priors for areas without evidence.
-(defmodel sink-annual 'floodService:AnnualFloodSink
-    (bayesian 'floodService:AnnualFloodSink
+(defmodel sink-annual 'floodService:FloodSink
+    (bayesian 'floodService:FloodSink
       :import   "aries.core::FloodSinkAnnual.xdsl"
       :keep   (
               'floodService:AnnualFloodSink 
@@ -413,7 +413,7 @@
        :context (structures floodplains-500)))
 
 ;; ---------------------------------------------------------------------------
-;; Flow data models
+;; Flow data models & dependencies for the flow models
 ;; ---------------------------------------------------------------------------
 
 (defmodel flood-flow-data100 'floodService:TempFloodData100$
@@ -423,6 +423,22 @@
 (defmodel flood-flow-data500 'floodService:TempFloodData500$
   (identification 'floodService:TempFloodData500
     :context (altitude streams floodplains-500)))
+
+;;Levees and floodplain width: used in the flow model
+(defmodel levees 'floodService:Levees
+  "Presence of a levee in given context"
+  (classification (binary-coding 'infrastructure:Levee)
+      0 'floodService:LeveesNotPresent
+      1 'floodService:LeveesPresent
+;    :agent "aries/flood/levee"
+))
+
+(defmodel floodplain-width 'floodService:FloodplainWidth
+(classification (measurement 'habitat:FloodplainWidth "m")
+    [400 :>]    'floodService:HighFloodplainWidth
+    [200 400]   'floodService:ModerateFloodplainWidth
+    [:< 200]    'floodService:LowFloodplainWidth
+    :otherwise  'floodService:NoFloodplainWidth))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
@@ -498,15 +514,15 @@
 ;;  Build the others when this is shown to work for 500-yr floodplain, other beneficiary groups, monthly models.
 (defmodel flood-regulation-farmers100 'floodService:AvoidedDamageToFarms100
   (span 'floodService:FloodWaterMovement
-  	    'floodService:FloodSourceValue
+  	    'floodService:Precipitation
   	    'floodService:FloodFarmersUse100
-      	'floodService:FloodSink
+      	'floodService:AnnualFloodSink
       	nil
-  	    ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains100)
-  	:source-threshold   100.0  ;;Initially set as the midpoint of the lowest bin
-    :sink-threshold     450.0  ;;Initially set as the midpoint of the lowest bin
-    :use-threshold      0.0    ;;Set at zero since output values for this are a 0/1
-    :trans-threshold    10.0   ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+  	    ('geophysics:Altitude 'geofeatures:River 'floodService:Floodplains100 'floodService:Levees)
+        :source-threshold   50.0     ;; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ;; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ;;Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ;;Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
    	:source-type        :finite
     :sink-type          :finite
    	:use-type           :infinite
@@ -519,20 +535,4 @@
            'floodService:ActualFloodFlow 'floodService:FloodDamagingRunoff 'floodService:UtilizedRunoffMitigation
            'floodService:FloodDamageReceived 'floodService:BenignRunoff 'floodService:UnutilizedRunoffMitigation
            'floodService:AbsorbedFloodFlow 'floodService:FloodMitigatedRunoff 'floodService:FloodMitigationBenefitsAccrued) 
-    :context (source-annual farmers-use-100 sink-annual flood-flow-data100)))
-
-;;Levees and floodplain width: used in the flow model
-(defmodel levees 'floodService:Levees
-  "Presence of a levee in given context"
-  (classification (binary-coding 'infrastructure:Levee)
-      0 'floodService:LeveesNotPresent
-      1 'floodService:LeveesPresent
-;    :agent "aries/flood/levee"
-))
-
-(defmodel floodplain-width 'floodService:FloodplainWidth
-(classification (measurement 'habitat:FloodplainWidth "m")
-    [400 :>]    'floodService:HighFloodplainWidth
-    [200 400]   'floodService:ModerateFloodplainWidth
-    [:< 200]    'floodService:LowFloodplainWidth
-    :otherwise  'floodService:NoFloodplainWidth))
+    :context (source-annual farmers-use-100 sink-annual flood-flow-data100 levees)))
