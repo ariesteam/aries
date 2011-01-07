@@ -4,7 +4,7 @@
   (:refer geospace :only [grid shape]))
 
 
-(defcontext san-pedro-development
+(defcontext bsr-development
    "BSR development scenarios" 
    (grid 256 'san_pedro_us)
 ;; Changes to surface water model
