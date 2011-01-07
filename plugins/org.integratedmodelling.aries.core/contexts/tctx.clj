@@ -3,7 +3,6 @@
   (:refer modelling :only [defcontext model transform])
   (:refer geospace :only [grid shape]))
 
-
 (defcontext chehalis
   "Chehalis watershed @ 256 linear. Just the square bounding box."
   (grid 
