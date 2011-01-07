@@ -19,7 +19,19 @@ public class ARIESPlugin extends ThinklabPlugin {
 	
 	@Override
 	protected void load(KnowledgeManager km) throws ThinklabException {
+		
+		/*
+		 * official gazetteers
+		 */
 		Geospace.get().loadGazetteersFromDirectory(getScratchPath());
+		/*
+		 * load any personal gazetteers
+		 */
+		Geospace.get().loadGazetteersFromDirectory(new File(System.getProperty("user.home")));
+		
+		/*
+		 * storylines - may change after the whole namespace thing is sorted out.
+		 */
 		PresentationFactory.scanDirectory(
 				new File(this.getLoadDirectory() + File.separator + "storylines"));
 	}

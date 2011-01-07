@@ -24,9 +24,14 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	}
 	
 	@Override
-	protected void load(KnowledgeManager km) throws ThinklabException {
-
+	protected void preStart() throws Exception {
+		// load locations in advance of loading bindings, so that contexts can
+		// use them.
 		Geospace.get().addGazetteer("aries-inline", new SimpleGazetteer(getProperties()));
+	}
+
+	@Override
+	protected void load(KnowledgeManager km) throws ThinklabException {
 
 		VisualizationFactory.get().loadColormapDefinitions(getProperties());
 		TransformationFactory.get().loadTransformationMappings(getProperties());
