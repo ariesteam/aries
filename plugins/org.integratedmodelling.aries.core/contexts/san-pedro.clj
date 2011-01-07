@@ -3,7 +3,6 @@
   (:refer modelling :only [defcontext model transform])
   (:refer geospace :only [grid shape]))
 
-
 (defcontext bsr-development
    "BSR development scenarios" 
    (grid 256 'san_pedro_us)
