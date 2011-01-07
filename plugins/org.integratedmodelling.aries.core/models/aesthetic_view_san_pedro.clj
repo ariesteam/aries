@@ -14,12 +14,12 @@
                   [1800 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
                   :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
-(defmodel scenic-vegetation 'sanPedro:VegetationType
+(defmodel scenic-vegetation 'sanPedro:ScenicVegetationType
 ;;  [(categorization 'geofeatures:Country :as country)]
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC) 
 ;;                  :when #(= (:country %) "United States")
                   #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               'sanPedro:AlpineAndCliff
-                  #{22 23 33 37 38 91}                                    'sanPedro:Forest
+                  #{22 23 33 37 38 91}                                    'sanPedro:Forests
                   #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} 'sanPedro:Woodland ;; includes pinon & juniper savannas
                   #{77 78 79 80 81 83 84 85 98 109 110 118}               'sanPedro:RiparianAndWater
                   :otherwise                                              'sanPedro:Other))

@@ -91,7 +91,7 @@
        [5 10]                'waterSupplyService:LowImperviousCover
        [0 5]                 'waterSupplyService:VeryLowImperviousCover))
 
-(defmodel vegetation-type 'sanPedro:VegetationType
+(defmodel vegetation-type 'sanPedro:EvapotranspirationVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
   (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
     #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           'sanPedro:Forest
