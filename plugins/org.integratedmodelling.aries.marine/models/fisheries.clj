@@ -32,11 +32,13 @@
 
 (defmodel total-pelagic-subsistence-harvest 'fisheries:TotalSubsistenceHarvest
   (measurement 'fisheries:TotalSubsistenceHarvest "kg/km^2*year"
-      :context (slender-emperor-harvest sky-emperor-harvest mangrove-red-snapper-harvest)
+      :context (slender-emperor-harvest :as sle-harvest 
+                sky-emperor-harvest :as ske-harvest
+                mangrove-red-snapper-harvest :as mrs-harvest)
       :state   #(apply + (remove nil?
-                                 [(:lethrinusborbonicusharvest      %)
-                                  (:lethrinusmahsenaharvest         %)
-                                  (:lutjanusargentimaculatusharvest %)]))))
+                                 [(:sle-harvest  %)
+                                  (:ske-harvest  %)
+                                  (:mrs-harvest %)]))))
 
 ;; KB, 8/11/10: Statements below are to link habitat change to fish change.  This is not
 ;;   part of the 1st generation flow models, and could be added to subsequent marine modeling work.
@@ -147,10 +149,10 @@
 ;; FIXME this should be removed when the distance to coast model is done properly
 (defmodel subsistence-selector 'fisheries:ProximityBuffer
   (classification 'fisheries:ProximityBuffer
-    :context (coastal-proximity)
-    :state  #(if (or (tl/is? (:coastalproximity %) 'fisheries:ModerateCoastalProximity)
-                     (tl/is? (:coastalproximity %) 'fisheries:LowCoastalProximity)                   
-                     (tl/is? (:coastalproximity %) 'fisheries:HighCoastalProximity))
+    :context (coastal-proximity :as proximity)
+    :state  #(if (or (tl/is? (:proximity %) 'fisheries:ModerateCoastalProximity)
+                     (tl/is? (:proximity %) 'fisheries:LowCoastalProximity)                   
+                     (tl/is? (:proximity %) 'fisheries:HighCoastalProximity))
                (tl/conc 'fisheries:ProximityBufferPresent))))
 
 (defmodel subsistence-fishing 'fisheries:SubsistenceFishing

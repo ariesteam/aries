@@ -219,9 +219,7 @@
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
   
-  ;; FIXME this form needs to drop the name - it's only necessary for a defmodel, we can
-  ;; give it a temporary URN outside it.
-  (model "xxx" 'carbonService:SuccessionalStage
+  (model 'carbonService:SuccessionalStage
     (classification (ranking 'ecology:SuccessionalStage)
 	 		#{5 6 4}    'carbonService:OldGrowth
 	 		3           'carbonService:MidSuccession
@@ -236,7 +234,7 @@
   reductions in material intensity, and the introduction of clean and resource-efficient 
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
-  (model "xxx" 'carbonService:SuccessionalStage
+  (model 'carbonService:SuccessionalStage
     (classification (ranking 'ecology:SuccessionalStage)
       #{5 6 4}    'carbonService:OldGrowth
 	 		3           'carbonService:MidSuccession

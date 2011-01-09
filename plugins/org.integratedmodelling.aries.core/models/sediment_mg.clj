@@ -180,6 +180,7 @@
           (ranking 'geofeatures:Floodplain :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
+;; FV FIXME I don't see any SedimentSourceValueAnnual in the context?
 (defmodel farmers-erosion-use-mg 'soilretentionEcology:ErosionProneFarmers
   (ranking 'soilretentionEcology:ErosionProneFarmers
        :state #(if (= (:farmlandpresent %) 11 12 13)
