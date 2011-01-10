@@ -11,8 +11,8 @@
       (shape 'san_pedro_us))  
     (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
       (shape 'san_pedro_us))  
-    (transform 'sanPedro:VegetationType 'sanPedro:UrbanBarrenWater
-      (shape 'san_pedro_us))  
+;    (transform 'sanPedro:VegetationType 'sanPedro:UrbanBarrenWater
+;      (shape 'san_pedro_us))  
 ;; Changes to aesthetic proximity & view models
 ;    (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
 ;      (shape 'san_pedro_us))  
