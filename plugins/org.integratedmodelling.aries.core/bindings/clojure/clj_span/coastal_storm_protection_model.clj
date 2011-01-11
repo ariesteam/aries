@@ -19,9 +19,19 @@
 ;;;
 ;;; This namespace defines the coastal-storm-protection model.
 ;;;
+;;;  Lookup the storm name.
+;;;  Create a function to determine the wave's new orientation.
+;;;  Discover the storm direction.
+;;;  Project a swath of carriers 100km wide perpendicular to the storm direction.
+;;;  Deplete all sinks that the wave intersects.
+;;;  Move the carriers together to their new positions along the wavefront and repeat the sink depletion process.
+;;;  If users are encountered, store a carrier on the user and keep going (non-rival use).
+;;;  If a carrier's possible-weight falls below the threshold, stop the carrier.
+;;;  Exit when all carriers have finished moving.
 
 (ns clj-span.coastal-storm-protection-model
-  (:use [clj-span.params     :only (*trans-threshold*)]
+  (:use [clj-span.gui        :only (draw-layer)]
+        [clj-span.params     :only (*trans-threshold*)]
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-misc.utils      :only (seq2map p & angular-distance)]
         [clj-misc.matrix-ops :only (get-rows
@@ -59,7 +69,8 @@
     [post-geo-possible-weight post-eco-actual-weight eco-sink-effects]))
 
 (defn apply-local-effects!
-  [storm-orientation eco-sink-layer geo-sink-layer use-layer cache-layer rows cols
+  [storm-orientation eco-sink-layer geo-sink-layer use-layer cache-layer
+   possible-flow-layer actual-flow-layer rows cols
    {:keys [route possible-weight actual-weight sink-effects] :as storm-carrier}]
   (let [current-location (peek route)
         next-location    (add-ids current-location storm-orientation)
@@ -72,36 +83,58 @@
                             :possible-weight new-possible-weight
                             :actual-weight   new-actual-weight
                             :sink-effects    (merge-with _+_ sink-effects new-sink-effects))]
+    (dosync
+     (alter (get-in possible-flow-layer current-location) _+_ possible-weight)
+     (alter (get-in actual-flow-layer   current-location) _+_ actual-weight))
     (if (not= _0_ (get-in use-layer current-location))
       (dosync (alter (get-in cache-layer current-location) conj post-sink-carrier)))
     (if (and (in-bounds? rows cols next-location)
              (rv-above? new-possible-weight *trans-threshold*))
       (assoc post-sink-carrier :route (conj route next-location)))))
 
+(def *animation-sleep-ms* 1000)
+
+(defn run-animation [panel]
+  (send-off *agent* run-animation)
+  (Thread/sleep *animation-sleep-ms*)
+  (doto panel (.repaint)))
+
+(defn end-animation [panel] panel)
+
 (defn distribute-wave-energy!
   [storm-source-point storm-orientation storm-carriers get-next-orientation
    eco-sink-layer geo-sink-layer use-layer cache-layer rows cols]
   (println "Moving the wave energy toward the coast...")
-  (doseq [_ (take-while (& seq last)
-                        (iterate
-                         (fn [[storm-centerpoint storm-orientation storm-carriers]]
-                           (let [next-storm-centerpoint (add-ids storm-centerpoint storm-orientation)
-                                 next-storm-orientation (get-next-orientation next-storm-centerpoint storm-orientation)
-                                 next-storm-carriers    (doall (remove nil? (pmap (p apply-local-effects!
-                                                                                     storm-orientation
-                                                                                     eco-sink-layer
-                                                                                     geo-sink-layer
-                                                                                     use-layer
-                                                                                     cache-layer
-                                                                                     rows
-                                                                                     cols)
-                                                                                  storm-carriers)))]
-                             (if (and next-storm-orientation
-                                      (not (on-bounds? rows cols storm-centerpoint)))
-                               [next-storm-centerpoint next-storm-orientation next-storm-carriers]
-                               (println "Location-dependent termination:" next-storm-orientation storm-centerpoint))))
-                         [storm-source-point storm-orientation storm-carriers]))]
-    (print "*") (flush))
+  (let [possible-flow-layer    (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
+        possible-flow-animator (agent (draw-layer "Possible Flow" possible-flow-layer :possible-flow 1))
+        actual-flow-animator   (agent (draw-layer "Actual Flow"   actual-flow-layer   :actual-flow   1))]
+    (send-off possible-flow-animator run-animation)
+    (send-off actual-flow-animator   run-animation)
+    (doseq [_ (take-while (& seq last)
+                          (iterate
+                           (fn [[storm-centerpoint storm-orientation storm-carriers]]
+                             (let [next-storm-centerpoint (add-ids storm-centerpoint storm-orientation)
+                                   next-storm-orientation (get-next-orientation next-storm-centerpoint storm-orientation)
+                                   next-storm-carriers    (doall (remove nil? (pmap (p apply-local-effects!
+                                                                                       storm-orientation
+                                                                                       eco-sink-layer
+                                                                                       geo-sink-layer
+                                                                                       use-layer
+                                                                                       cache-layer
+                                                                                       possible-flow-layer
+                                                                                       actual-flow-layer
+                                                                                       rows
+                                                                                       cols)
+                                                                                    storm-carriers)))]
+                               (if (and next-storm-orientation
+                                        (not (on-bounds? rows cols storm-centerpoint)))
+                                 [next-storm-centerpoint next-storm-orientation next-storm-carriers]
+                                 (println "Location-dependent termination:" next-storm-orientation storm-centerpoint))))
+                           [storm-source-point storm-orientation storm-carriers]))]
+      (print "*") (flush))
+    (send-off possible-flow-animator end-animation)
+    (send-off actual-flow-animator   end-animation))
   (println "\nAll done."))
 
 (def storm-to-wave-orientations
@@ -144,15 +177,11 @@
 (def *wave-width* 100000) ;; in meters
 (def *initial-storm-orientation* [0 -1]) ;; start the storm to the West
 
-;;  Lookup the storm name.
-;;  Create a function to determine the wave's new orientation.
-;;  Discover the storm direction.
-;;  Project a swath of carriers 100km wide perpendicular to the storm direction.
-;;  Deplete all sinks that the wave intersects.
-;;  Move the carriers together to their new positions along the wavefront and repeat the sink depletion process.
-;;  If users are encountered, store a carrier on the user and keep going (non-rival use).
-;;  If a carrier's possible-weight falls below the threshold, stop the carrier.
-;;  Exit when all carriers have finished moving.
+;; FIXME: Source and Sink values should be scaled properly by the size
+;;        of the cells they inhabit.  This is not being done correctly
+;;        now, so running the simulation at a higher resolution will
+;;        make the waves die down faster (since the sinks will be
+;;        doubled).
 (defmethod distribute-flow "CoastalStormMovement"
   [_ cell-width cell-height source-layer eco-sink-layer use-layer
    {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicFloodProtection"}]

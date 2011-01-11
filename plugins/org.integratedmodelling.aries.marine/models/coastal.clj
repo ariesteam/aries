@@ -108,8 +108,8 @@
 (defmodel source-100km-litanne-selector 'coastalProtection:LitannePresence
   (classification 'coastalProtection:LitannePresence
     :context (storm-tracks buffer)
-    :state  #(if (and (= (:stormtracks %) "litanne")
-                      (= (:buffermg100km %) 1))
+    :state  #(if (and (= (:storm-tracks %) "litanne")
+                      (= (:buffer-mg100km %) 1))
                  (tl/conc 'coastalProtection:LitannePresent))))
 
 (defmodel coastal-wave-source-litanne 'coastalProtection:CoastalWaveSource
@@ -126,8 +126,8 @@
 (defmodel source-100km-daisy-selector 'coastalProtection:DaisyPresence
   (classification 'coastalProtection:DaisyPresence
     :context (storm-tracks buffer)
-    :state  #(if (and (= (:stormtracks %) "daisy")
-                      (= (:buffermg100km %) 1))
+    :state  #(if (and (= (:storm-tracks %) "daisy")
+                      (= (:buffer-mg100km %) 1))
                  (tl/conc 'coastalProtection:DaisyPresent))))
 
 (defmodel coastal-wave-source-daisy 'coastalProtection:CoastalWaveSource
@@ -144,8 +144,8 @@
 (defmodel source-100km-geralda-selector 'coastalProtection:GeraldaPresence
   (classification 'coastalProtection:GeraldaPresence
     :context (storm-tracks buffer)
-    :state  #(if (and (= (:stormtracks %) "geralda")
-                      (= (:buffermg100km %) 1))
+    :state  #(if (and (= (:storm-tracks %) "geralda")
+                      (= (:buffer-mg100km %) 1))
                  (tl/conc 'coastalProtection:GeraldaPresent))))
 
 (defmodel coastal-wave-source-geralda 'coastalProtection:CoastalWaveSource
@@ -289,17 +289,17 @@
 (defmodel storm-track-daisy 'coastalProtection:StormTrack
   (binary-coding 'coastalProtection:StormTrack
     :context (storm-tracks)
-    :state  #(if (= (:stormtracks %) "daisy") 1 0)))
+    :state  #(if (= (:storm-tracks %) "daisy") 1 0)))
 
 (defmodel storm-track-geralda 'coastalProtection:StormTrack
   (binary-coding 'coastalProtection:StormTrack
     :context (storm-tracks)
-    :state  #(if (= (:stormtracks %) "geralda") 1 0)))
+    :state  #(if (= (:storm-tracks %) "geralda") 1 0)))
 
 (defmodel storm-track-litanne 'coastalProtection:StormTrack
   (binary-coding 'coastalProtection:StormTrack
     :context (storm-tracks)
-    :state  #(if (= (:stormtracks %) "litanne") 1 0)))
+    :state  #(if (= (:storm-tracks %) "litanne") 1 0)))
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection

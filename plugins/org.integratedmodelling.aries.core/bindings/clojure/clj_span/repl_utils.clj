@@ -1,5 +1,5 @@
 (ns clj-span.repl-utils
-  (:use (clj-span core commandline aries-span-bridge analyzer)
+  (:use (clj-span core commandline aries-span-bridge analyzer gui)
         (clj-misc utils matrix-ops randvars)
         clojure.contrib.pprint))
 

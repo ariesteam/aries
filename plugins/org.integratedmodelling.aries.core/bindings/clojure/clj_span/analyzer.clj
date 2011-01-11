@@ -28,7 +28,7 @@
         [clj-span.params     :only (*source-type*
                                     *sink-type*
                                     *use-type*)]
-        [clj-misc.randvars   :only (_0_ _+_ _-_ _d *_ rv-min)]
+        [clj-misc.randvars   :only (_0_ _+_ _d *_ rv-fn rv-min)]
         [clj-misc.matrix-ops :only (get-rows
                                     get-cols
                                     matrix2seq
@@ -195,7 +195,7 @@
    cannot be used by any location either due to propagation decay,
    lack of use capacity, or lack of flow pathways to use locations."
   [source-layer use-layer cache-layer]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [t p] (max (- t p) 0.0)))
               (theoretical-source source-layer use-layer)
               (possible-source    cache-layer)))
 
@@ -205,7 +205,7 @@
    cannot be utilized by any location either due to propagation decay
    of the asset or lack of flow pathways through the sink locations."
   [source-layer sink-layer use-layer cache-layer]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [t a] (max (- t a) 0.0)))
               (theoretical-sink source-layer sink-layer use-layer)
               (actual-sink      cache-layer)))
 
@@ -215,7 +215,7 @@
    be utilized by each location either due to propagation decay of the
    asset or lack of flow pathways to use locations."
   [source-layer use-layer cache-layer]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [t p] (max (- t p) 0.0)))
               (theoretical-use source-layer use-layer)
               (possible-use    cache-layer)))
 
@@ -224,7 +224,7 @@
    Blocked-source is the amount of the possible-source which cannot be
    used by any location due to upstream sinks or uses."
   [cache-layer]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [p a] (max (- p a) 0.0)))
               (possible-source cache-layer)
               (actual-source   cache-layer)))
 
@@ -233,7 +233,7 @@
    Blocked-use is the amount of the possible-use which cannot be
    realized due to upstream sinks or uses."
   [cache-layer]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [p a] (max (- p a) 0.0)))
               (possible-use cache-layer)
               (actual-use   cache-layer)))
 
@@ -242,6 +242,6 @@
    Blocked-flow is the amount of the possible-flow which cannot be
    realized due to upstream sinks or uses."
   [cache-layer flow-model]
-  (map-matrix _-_
+  (map-matrix (p rv-fn (fn [p a] (max (- p a) 0.0)))
               (possible-flow cache-layer flow-model)
               (actual-flow   cache-layer flow-model)))

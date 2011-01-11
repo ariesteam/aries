@@ -122,6 +122,8 @@
          use-vals
          fishing-routes)))
 
+;; FIXME: Fishermen whose nearest path doesn't reach the coast will
+;; throw an Agent error exception.
 (defn find-shortest-paths-to-coast
   [path? fishing-spot? rows cols use-points]
   (println "Finding paths to coast...")
