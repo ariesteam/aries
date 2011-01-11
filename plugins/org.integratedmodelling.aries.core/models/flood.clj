@@ -417,11 +417,11 @@
 ;; ---------------------------------------------------------------------------
 
 (defmodel flood-flow-data100 'floodService:TempFloodData100$
-  (identification 'floodService:TempFloodData100
+  (identification 'floodService:TempFloodData100$
     :context (altitude streams floodplains-100)))
 
 (defmodel flood-flow-data500 'floodService:TempFloodData500$
-  (identification 'floodService:TempFloodData500
+  (identification 'floodService:TempFloodData500$
     :context (altitude streams floodplains-500)))
 
 ;;Levees and floodplain width: used in the flow model
