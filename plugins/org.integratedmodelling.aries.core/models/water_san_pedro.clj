@@ -68,28 +68,67 @@
 ;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
 ;;processes.  Deterministic models could be used to replace this as appropriate.
 
-(defmodel slope 'waterSupplyService:SlopeClass
-    (classification (measurement 'geophysics:DegreeSlope "\u00B0")
-       [0 1.15]               'waterSupplyService:Level
-       [1.15 4.57]            'waterSupplyService:GentlyUndulating
-       [4.57 16.70]           'waterSupplyService:RollingToHilly
-       [16.70 90 :inclusive]  'waterSupplyService:SteeplyDissectedToMountainous))
+;;(defmodel slope 'waterSupplyService:SlopeClass
+;;    (classification (measurement 'geophysics:DegreeSlope "\u00B0")
+;;       [0 1.15]               'waterSupplyService:Level
+;;       [1.15 4.57]            'waterSupplyService:GentlyUndulating
+;;       [4.57 16.70]           'waterSupplyService:RollingToHilly
+;;       [16.70 90 :inclusive]  'waterSupplyService:SteeplyDissectedToMountainous))
 
-(defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
-  (classification (ranking 'habitat:HydrologicSoilsGroup)
-      1       'waterSupplyService:SoilGroupA
-      2       'waterSupplyService:SoilGroupB
-      3       'waterSupplyService:SoilGroupC
-      4       'waterSupplyService:SoilGroupD))
+;;(defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
+;;  (classification (ranking 'habitat:HydrologicSoilsGroup)
+;;      1       'waterSupplyService:SoilGroupA
+;;      2       'waterSupplyService:SoilGroupB
+;;      3       'waterSupplyService:SoilGroupC
+;;      4       'waterSupplyService:SoilGroupD))
 
-(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
-   (classification (ranking 'habitat:PercentImperviousness)
-       [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
-       [50 80]               'waterSupplyService:HighImperviousCover
-       [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
-       [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
-       [5 10]                'waterSupplyService:LowImperviousCover
-       [0 5]                 'waterSupplyService:VeryLowImperviousCover))
+;;(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
+;;   (classification (ranking 'habitat:PercentImperviousness)
+;;       [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
+;;       [50 80]               'waterSupplyService:HighImperviousCover
+;;       [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
+;;       [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
+;;       [5 10]                'waterSupplyService:LowImperviousCover
+;;       [0 5]                 'waterSupplyService:VeryLowImperviousCover))
+
+;; TIE TO RUNOFF?
+;;(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
+;;  (classification 'waterSupplyService:SurfaceWaterSinkClass 
+;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
+;;    [180 260]            'waterSupplyService:VeryHighSurfaceWaterSink
+;;    [100 180]            'waterSupplyService:HighSurfaceWaterSink
+;;    [50 100]             'waterSupplyService:ModerateSurfaceWaterSink
+;;    [1 50]               'waterSupplyService:LowSurfaceWaterSink
+;;    [0 1]                'waterSupplyService:NoSurfaceWaterSink))
+;;    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
+;;    0                  'waterSupplyService:NoSurfaceWaterSink))
+
+;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
+;; Need to resolve which is correct.
+;; Later on this should be used for training, but not yet.
+;;(defmodel evapotranspiration 'floodService:EvapotranspirationClass
+;;  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
+;;                  [60 :>]    'floodService:HighEvapotranspiration
+;;                  [30 60]    'floodService:ModerateEvapotranspiration
+;;                  [0 30]    'floodService:LowEvapotranspiration)) 
+
+(defmodel mountain-front 'waterSupplyService:MountainFront
+    (classification (binary-coding 'geofeatures:MountainFront)
+        1           'waterSupplyService:MountainFrontPresent
+        :otherwise  'waterSupplyService:MountainFrontAbsent))
+
+;;GARY: any problem having 2 uses of geofeatures:River in the same model??
+(defmodel stream-channel 'waterSupplyService:StreamChannel
+  (classification (binary-coding 'geofeatures:River) 
+        1           'waterSupplyService:StreamChannelPresent
+        :otherwise  'waterSupplyService:StreamChannelAbsent))
+
+;; Global layer looks funny - discretization should be something like >38, 34-38, <34.  Clearly these don't refer to identical concepts.
+(defmodel annual-temperature 'waterSupplyService:AnnualMaximumTemperature
+    (classification (measurement 'geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
+       [28 :>]   'waterSupplyService:VeryHighAnnualMaximumTemperature
+       [22 28]    'waterSupplyService:HighAnnualMaximumTemperature
+       [:< 22]   'waterSupplyService:ModerateAnnualMaximumTemperature)) 
 
 (defmodel vegetation-type 'sanPedro:EvapotranspirationVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
@@ -121,35 +160,40 @@
 
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
+;; Later on this should be used for training, but not yet.
 (defmodel evapotranspiration 'floodService:EvapotranspirationClass
-  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
-                  [90 :>]    'floodService:VeryHighEvapotranspiration
-                  [60 90]    'floodService:HighEvapotranspiration
+  (classification 'floodService:EvapotranspirationClass 
+                  :units "mm"
+                  [60 120]   'floodService:HighEvapotranspiration
                   [30 60]    'floodService:ModerateEvapotranspiration
-                  [12 30]    'floodService:LowEvapotranspiration
-                  [0 12]     'floodService:VeryLowEvapotranspiration)) 
+                  [0 30]     'floodService:LowEvapotranspiration))
 
-;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
-;; but with breakpoint values doubled to account for the effects of soil infiltration.
+(defmodel infiltration 'waterSupplyService:SoilInfiltrationClass
+  (classification 'waterSupplyService:SoilInfiltrationClass 
+                  :units "mm"
+                  [60 120]   'waterSupplyService:HighInfiltration
+                  [30 60]    'waterSupplyService:ModerateInfiltration
+                  [0 30]     'waterSupplyService:LowInfiltration))
 
-;; TIE TO RUNOFF?
-(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
-  (classification 'waterSupplyService:SurfaceWaterSinkClass 
-;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
-    [180 260]            'waterSupplyService:VeryHighSurfaceWaterSink
-    [100 180]            'waterSupplyService:HighSurfaceWaterSink
-    [50 100]             'waterSupplyService:ModerateSurfaceWaterSink
-    [1 50]               'waterSupplyService:LowSurfaceWaterSink
-    [0 1]                'waterSupplyService:NoSurfaceWaterSink))
-;;    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
-;;    0                  'waterSupplyService:NoSurfaceWaterSink))
-
-(defmodel surface-sink 'waterSupplyService:SurfaceWaterSinkClass
-    (bayesian 'waterSupplyService:SurfaceWaterSinkClass
+(defmodel et-sink 'waterSupplyService:Evapotranspiration
+    (bayesian 'waterSupplyService:Evapotranspiration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
-      :context  (soil-group vegetation-type slope imperviousness percent-vegetation-cover)
-      :keep     ('waterSupplyService:SurfaceWaterSinkClass)
-      :observed (sink-undiscretizer)))
+      :context  (annual-temperature vegetation-type percent-vegetation-cover)
+      :keep     ('floodService:EvapotranspirationClass)
+      :observed (evapotranspiration)))
+
+(defmodel infiltration-sink 'waterSupplyService:SoilInfiltration
+    (bayesian 'waterSupplyService:SoilInfiltration
+      :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
+      :context  (stream-channel mountain-front)
+      :keep     ('waterSupplyService:SoilInfiltrationClass)
+      :observed (infiltration)))
+
+(defmodel surface-water-sink 'waterSupplyService:SurfaceWaterSink
+  (measurement 'waterSupplyService:SurfaceWaterSink "mm/year"
+    :context (infiltration-sink :as infiltration-sink et-sink :as et-sink) 
+    :state #(+ (:infiltration-sink %)
+               (:et-sink           %))))
 
 ;; Add artificial recharge as a sink of surface water.  Can sum with the natural surface-sink to get total surface
 ;;  water sink.
@@ -268,14 +312,14 @@
 (defmodel data-wet-year 'waterSupplyService:WaterSupplyWetYear
   (identification 'waterSupplyService:WaterSupplyWetYear
   :context (precipitation-wet-year 
-            surface-sink       
+            surface-water-sink       
             surface-diversions
             streams)))
 
 (defmodel data-dry-year 'waterSupplyService:WaterSupplyDryYear
   (identification 'waterSupplyService:WaterSupplyDryYear
   :context (precipitation-dry-year 
-            surface-sink       
+            surface-water-sink       
             surface-diversions
             streams)))
 
@@ -291,7 +335,7 @@
   (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
         'waterSupplyService:AnnualPrecipitationDryYear
         'waterSupplyService:SurfaceDiversionCapacity
-        'waterSupplyService:SurfaceWaterSinkClass
+        'waterSupplyService:SurfaceWaterSink
         nil
         ('geophysics:Altitude 'geofeatures:River)
         :source-threshold   5.0
@@ -322,7 +366,7 @@
                              'waterSupplyService:SunkSurfaceWaterSupply
                              'waterSupplyService:BlockedSurfaceWaterDemand)
         :context            (precipitation-dry-year
-                             surface-sink
+                             surface-water-sink
                              surface-diversions
                              surface-water-flow-data)))
 
@@ -331,7 +375,7 @@
   (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
         'waterSupplyService:AnnualPrecipitationWetYear
         'waterSupplyService:SurfaceDiversionCapacity
-        'waterSupplyService:SurfaceWaterSinkClass
+        'waterSupplyService:SurfaceWaterSink
         nil
         ('geophysics:Altitude 'geofeatures:River)
         :source-threshold   5.0
@@ -362,7 +406,7 @@
                              'waterSupplyService:SunkSurfaceWaterSupply
                              'waterSupplyService:BlockedSurfaceWaterDemand)
         :context            (precipitation-wet-year
-                             surface-sink
+                             surface-water-sink
                              surface-diversions
                              surface-water-flow-data)))
 

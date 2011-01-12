@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="EvapotranspirationVegetationType">
+		<cpt id="VegetationType">
 			<state id="Forest" />
 			<state id="OakWoodland" />
 			<state id="MesquiteWoodland" />
@@ -20,129 +20,98 @@
 			<state id="VeryLowVegetationCover" />
 			<probabilities>0.05 0.05 0.05 0.1 0.75</probabilities>
 		</cpt>
+		<cpt id="AnnualMaximumTemperature">
+			<state id="VeryHighAnnualMaximumTemperature" />
+			<state id="HighAnnualMaximumTemperature" />
+			<state id="ModerateAnnualMaximumTemperature" />
+			<probabilities>0.6 0.3 0.1</probabilities>
+		</cpt>
 		<cpt id="EvapotranspirationClass">
-			<state id="VeryHighEvapotranspiration" />
 			<state id="HighEvapotranspiration" />
 			<state id="ModerateEvapotranspiration" />
 			<state id="LowEvapotranspiration" />
-			<state id="VeryLowEvapotranspiration" />
-			<parents>EvapotranspirationVegetationType PercentVegetationCoverClass</parents>
-			<probabilities>0.3 0.4 0.3 0 0 0.25 0.4 0.35 0 0 0.1 0.4 0.4 0.1 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333333 0 0 0 0.3 0.4 0.3 0.1 0.3 0.4 0.2 0 0.05 0.3 0.4 0.25 0 0 0.2 0.4 0.4 0 0 0.1 0.45 0.45 0 0 0 0.4 0.4 0.2 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0.2 0.6 0.2 0 0 0 0.4 0.4 0.2 0 0 0.2 0.3 0.5 0 0 0.2 0.3 0.5 0 0 0.1 0.3 0.6 0 0 0 0.3 0.7 0 0 0 0.25 0.75 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0 0.2 0.8 0 0 0 0.15 0.85 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.7 0.2 0.1 0 0 0.3 0.6 0.1 0 0 0.1 0.6 0.3 0 0 0.1 0.4 0.4 0.1 0 0.1 0.4 0.4 0.1 0 0 0.4 0.4 0.2 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0.2 0.2 0.2 0.4 0 0.1 0.1 0.2 0.6 0 0 0.1 0.2 0.7 0 0 0 0.2 0.8 0 0 0 0.05 0.95</probabilities>
+			<parents>VegetationType PercentVegetationCoverClass AnnualMaximumTemperature</parents>
+			<probabilities>0.5 0.5 0 0.4 0.6 0 0.3 0.7 0 0.45 0.55 0 0.35 0.65 0 0.25 0.75 0 0.25 0.65 0.1 0.15 0.65 0.2 0.05 0.65 0.3 0.3333333333333333 0.3333333333333333 0.3333333333333333 0.3 0.3 0.4 0.25 0.25 0.5 0 0.5 0.5 0 0.4 0.6 0 0.3 0.7 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.1 0.6 0.3 0.15 0.7 0.15 0.05 0.75 0.2 0.05 0.7 0.25 0.15 0.6 0.25 0.05 0.6 0.35 0.05 0.5 0.45 0.1 0.45 0.45 0.05 0.4 0.55 0.05 0.3 0.65 0 0.4 0.6 0 0.3 0.7 0 0.2 0.8 0.3 0.7 0 0.2 0.8 0 0.1 0.9 0 0.4 0.4 0.2 0.3 0.4 0.3 0.2 0.5 0.3 0.2 0.6 0.2 0.1 0.6 0.3 0.1 0.5 0.4 0 0.4 0.6 0 0.3 0.7 0 0.2 0.8 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.7 0.3 0 0.6 0.4 0 0.5 0.4 0.1 0.3 0.7 0 0.2 0.8 0 0.2 0.7 0.1 0.1 0.9 0 0.05 0.8 0.15 0.05 0.7 0.25 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.05 0.65 0.3 0.1 0.8 0.1 0.05 0.8 0.15 0 0.8 0.2 0.05 0.8 0.15 0 0.8 0.2 0 0.7 0.3 0 0.8 0.2 0 0.7 0.3 0 0.6 0.4 0 0.6 0.4 0 0.5 0.5 0 0.4 0.6 0.1 0.3 0.6 0.05 0.25 0.7 0.05 0.2 0.75 0.1 0.2 0.7 0.05 0.15 0.8 0.05 0.1 0.85 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
-		<cpt id="SlopeClass">
-			<state id="SteeplyDissectedToMountainous" />
-			<state id="RollingToHilly" />
-			<state id="GentlyUndulating" />
-			<state id="Level" />
-			<probabilities>0.05 0.125 0.225 0.6</probabilities>
+		<cpt id="MountainFront">
+			<state id="MountainFrontPresent" />
+			<state id="MountainFrontAbsent" />
+			<probabilities>0.025 0.975</probabilities>
 		</cpt>
-		<cpt id="HydrologicSoilsGroup">
-			<state id="SoilGroupA" />
-			<state id="SoilGroupB" />
-			<state id="SoilGroupC" />
-			<state id="SoilGroupD" />
-			<probabilities>0.05 0.3 0.3 0.35</probabilities>
-		</cpt>
-		<cpt id="PercentImperviousCoverClass">
-			<state id="VeryHighImperviousCover" />
-			<state id="HighImperviousCover" />
-			<state id="ModeratelyHighImperviousCover" />
-			<state id="ModeratelyLowImperviousCover" />
-			<state id="LowImperviousCover" />
-			<state id="VeryLowImperviousCover" />
-			<probabilities>0.025 0.075 0.1 0.2 0.3 0.3</probabilities>
+		<cpt id="StreamChannel">
+			<state id="StreamChannelPresent" />
+			<state id="StreamChannelAbsent" />
+			<probabilities>0.01 0.99</probabilities>
 		</cpt>
 		<cpt id="SoilInfiltrationClass">
-			<state id="VeryHighInfiltration" />
 			<state id="HighInfiltration" />
 			<state id="ModerateInfiltration" />
 			<state id="LowInfiltration" />
-			<state id="VeryLowInfiltration" />
-			<parents>SlopeClass HydrologicSoilsGroup PercentImperviousCoverClass</parents>
-			<probabilities>0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0 0.25 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0.05 0.2 0.75 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0 0.25 0.75 0 0 0 0 1 0 0 0.05 0.15 0.8 0 0 0.025 0.225 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.25 0.65 0 0 0.15 0.2 0.65 0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.05 0.15 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0.1 0.25 0.65 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0.05 0.125 0.125 0.7 0.05 0.125 0.225 0.25 0.35 0.65 0.15 0.15 0.05 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0.9 0.075 0.025 0 0 0 0.025 0.125 0.15 0.7 0.025 0.125 0.25 0.25 0.35 0.6 0.2 0.15 0.05 0 0.75 0.2 0.05 0 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0 0 0.1 0.3 0.6 0 0.05 0.375 0.375 0.2 0 0.15 0.325 0.325 0.2 0 0.25 0.45 0.3 0 0.15 0.425 0.425 0 0 0.35 0.4 0.25 0 0 0 0 0 0.25 0.75 0 0 0.25 0.4 0.35 0 0.05 0.3 0.4 0.25 0 0.15 0.425 0.425 0 0.05 0.425 0.425 0.1 0 0.15 0.325 0.325 0.2 0 0.05 0.05 0.1 0.1 0.7 0.1 0.1 0.2 0.25 0.35 0.7 0.15 0.1 0.05 0 0.85 0.1 0.05 0 0 0.9 0.1 0 0 0 0.95 0.05 0 0 0 0.025 0.025 0.125 0.125 0.7 0.075 0.075 0.25 0.25 0.35 0.65 0.175 0.125 0.05 0 0.8 0.15 0.05 0 0 0.85 0.15 0 0 0 0.9 0.1 0 0 0 0 0 0.15 0.25 0.6 0 0.1 0.35 0.35 0.2 0 0.2 0.3 0.3 0.2 0 0.3 0.4 0.3 0 0.2 0.4 0.4 0 0 0.4 0.4 0.2 0 0 0 0 0.05 0.2 0.75 0 0 0.3 0.4 0.3 0 0.1 0.25 0.4 0.25 0 0.2 0.4 0.4 0 0.1 0.4 0.4 0.1 0 0.2 0.3 0.3 0.2 0</probabilities>
+			<parents>MountainFront StreamChannel</parents>
+			<probabilities>0.6 0.3 0.1 0.4 0.4 0.2 0.3 0.3 0.4 0 0.025 0.975</probabilities>
 			<property id="SoilInfiltration">SoilInfiltration=1-((ObservedSlope/MaxSlope)/3)-((ObservedHSG/HSGD)/3)-((ObservedImperviousCover/100)/3)</property>
-		</cpt>
-		<cpt id="SurfaceWaterSinkClass">
-			<state id="VeryHighSurfaceWaterSink" />
-			<state id="HighSurfaceWaterSink" />
-			<state id="ModerateSurfaceWaterSink" />
-			<state id="LowSurfaceWaterSink" />
-			<state id="NoSurfaceWaterSink" />
-			<parents>EvapotranspirationClass SoilInfiltrationClass</parents>
-			<probabilities>0.9 0.1 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.2 0.05 0 0 0.7 0.2 0.1 0 0 0.75 0.2 0.05 0 0 0.65 0.25 0.1 0 0 0.6000000000000001 0.3 0.1 0 0 0.55 0.35 0.1 0 0 0.5 0.3 0.2 0 0 0.5 0.4 0.1 0 0 0.4 0.4 0.2 0 0 0.3 0.4 0.3 0 0 0.2 0.4 0.4 0 0 0.1 0.4 0.5 0 0 0 0.45 0.4 0.15 0 0 0.35 0.4 0.25 0 0 0.3 0.4 0.3 0 0 0.25 0.4 0.35 0 0 0.15 0.4 0.45 0 0.1 0.1 0.3 0.5 0 0 0.2 0.2 0.6 0 0 0.15 0.2 0.65 0 0 0.1 0.2 0.7 0 0 0.05 0.1 0.85 0</probabilities>
-			<property id="ActualRunoff">ActualRunoff = PotentialRunoff-GreenInfrastructureInfluence-GrayInfrastructureInfluence</property>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
-			<node id="SurfaceWaterSinkClass">
-				<name>SurfaceWaterSinkClass</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>457 89 567 136</position>
-				<comment>Equivalent to absorbed/detained runoff\n\nBasically the amount of water than can be absorbed over the time period of interest (day, month, etc.)</comment>
-				<barchart active="true" width="303" height="108" />
-			</node>
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>345 251 434 286</position>
+				<position>939 473 1028 508</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
-				<barchart active="true" width="190" height="108" />
+				<barchart active="true" width="190" height="72" />
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>567 251 783 285</position>
-				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
-				<barchart active="true" width="330" height="108" />
+				<position>856 157 1072 191</position>
+				<barchart active="true" width="330" height="72" />
 			</node>
 			<node id="PercentVegetationCoverClass">
 				<name>PercentVegetationCoverClass</name>
-				<interior color="ffcc99" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>481 432 593 466</position>
+				<position>902 306 1014 340</position>
 				<barchart active="true" width="279" height="108" />
 			</node>
-			<node id="EvapotranspirationVegetationType">
-				<name>EvapotranspirationVegetationType</name>
-				<interior color="ffcc99" />
+			<node id="VegetationType">
+				<name>VegetationType</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>821 462 916 492</position>
-				<comment>Cloud forest &gt; Selva &gt; (Dry) Forest &gt; Grassland &amp; shrubland\n\n&quot;Entidad&quot; coarser than &quot;Tipo&quot;\nCloud forest MUCH higher than all other vegetation types.\n\nCloud forest = Bosque mesofilo de montana\nRainforest = Selva baja &amp; mediana\nDryForest = All other bosque, plus selva altas subperennifolia\nGrasslandShrubland = Mattoiral, Pradera, Vegetacion de dunas and halofila, Popal\nDevelopedCultivated = Pastizal cultivado, Pastizal inducido, Zona urbana, riego, temporal</comment>
+				<position>1242 336 1337 366</position>
 				<barchart active="true" width="365" height="162" />
 			</node>
-			<node id="SlopeClass">
-				<name>SlopeClass</name>
-				<interior color="ffcc99" />
+			<node id="AnnualMaximumTemperature">
+				<name>AnnualMaximumTemperature</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>102 319 147 347</position>
-				<barchart active="true" width="195" height="90" />
+				<position>600 290 648 320</position>
+				<barchart active="true" width="382" height="72" />
 			</node>
-			<node id="HydrologicSoilsGroup">
-				<name>HydrologicSoilsGroup</name>
-				<interior color="ffcc99" />
+			<node id="StreamChannel">
+				<name>StreamChannel</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>30 222 153 252</position>
-				<barchart active="true" width="128" height="90" />
+				<position>1063 570 1147 622</position>
+				<barchart active="true" width="236" height="64" />
 			</node>
-			<node id="PercentImperviousCoverClass">
-				<name>PercentImperviousCoverClass</name>
-				<interior color="ffcc99" />
+			<node id="MountainFront">
+				<name>MountainFront</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>115 439 263 471</position>
-				<barchart active="true" width="326" height="126" />
+				<position>820 571 900 621</position>
+				<comment>To create mountain front recharge layer, I: 1) removed all alluvial deposits and areas capped by quaternary surfacial deposits, 2) kept all areas of limestone, 3) converted all other rocks to line features, dissolved them, and created a 1.6-km buffer around them to represent the mountain front recharge zone.  This leaves us with a 1.6 km band around the base of impermeable rocks, plus limestone areas, as the mountainfront recharge zone.</comment>
+				<barchart active="true" width="242" height="64" />
 			</node>
 		</genie>
 	</extensions>

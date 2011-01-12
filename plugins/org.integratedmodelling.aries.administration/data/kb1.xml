@@ -1568,6 +1568,30 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
+<measurement:BinaryCoding id="sanPedro_mountainfront_recharge">
+	<observation:hasObservable>
+		<geofeatures:MountainFront />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:mountainfront_recharge</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3458793.942177963</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>129238.24756357557</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4107844.5773443757</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>700107.3186365173</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
 <measurement:NumericCoding id="mourning_240">
 	<observation:hasObservable>
 		<sanPedro:MourningDoveHabitat />
