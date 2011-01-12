@@ -48,7 +48,7 @@
                                     get-neighbors
                                     find-point-at-dist-in-m
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ _+_ rv-fn rv-above?)]))
+        [clj-misc.randvars   :only (_0_ _+_ *_ rv-fn rv-above?)]))
 
 (defn handle-sink-effects
   [current-id possible-weight actual-weight eco-sink-layer geo-sink-layer]
@@ -202,7 +202,8 @@
           get-next-orientation (p get-storm-orientation on-track? rows cols)
           storm-orientation    (get-next-orientation storm-source-point *initial-storm-orientation*)
           wave-line            (find-wave-line storm-source-point storm-orientation *wave-width* cell-width cell-height rows cols)
-          wave-height          (get-in source-layer storm-source-point)
+          km2-per-cell         (* cell-width cell-height (Math/pow 10.0 -6.0))
+          wave-height          (*_ km2-per-cell (get-in source-layer storm-source-point))
           storm-carriers       (map #(struct-map service-carrier
                                        :source-id       %
                                        :route           [%]
@@ -215,8 +216,8 @@
                                storm-orientation
                                storm-carriers
                                get-next-orientation
-                               eco-sink-layer
-                               geo-sink-layer
+                               (map-matrix (p *_ km2-per-cell) eco-sink-layer)
+                               (map-matrix (p *_ km2-per-cell) geo-sink-layer)
                                use-layer
                                cache-layer
                                possible-flow-layer
