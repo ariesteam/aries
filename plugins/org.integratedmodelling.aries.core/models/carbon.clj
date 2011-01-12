@@ -1,7 +1,26 @@
 (ns core.models.carbon
 	(:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel model measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer modelling :only (defscenario defmodel model measurement classification 
+                            categorization ranking numeric-coding binary-coding 
+                            identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
+
+;; defines the ontology associated with this namespace, which may or may not exist. Concepts
+;; that are not defined can be created here instead of using the $ syntax.
+;; 
+;; if not given, each namespace gets its own ontology - this one would get coreModelsCarbon
+(namespace-ontology 'carbonService
+;;
+;; this can be used to create an ontology or add to an existing one
+;; example of definition of concept hierarchy. List forms specify concepts to be created or properties according to
+;; the case of the first letter. Parents are the enclosing concept but any symbol passed after the main concept is
+;; also set as a parent and must exist.
+;; 
+;  (CarbonSequestration 'thinklab-core:OrdinalRanking
+;    (HighCarbonSequestration)
+;    (MediumCarbonSequestration)
+;    (LowCarbonSequestration))
+)
 
 ;;This model is for western Washington State
 
