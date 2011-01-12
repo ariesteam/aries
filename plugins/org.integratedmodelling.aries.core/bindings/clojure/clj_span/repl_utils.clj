@@ -35,11 +35,11 @@
 (defn test-run-storm
   []
   (run-span {:source-layer source-layer
-             :source-threshold 0.0
+             :source-threshold nil
              :sink-layer sink-layer
-             :sink-threshold 0.0
+             :sink-threshold nil
              :use-layer use-layer
-             :use-threshold 0.0
+             :use-threshold nil
              :flow-layers flow-layers
              :trans-threshold 0.1
              :cell-width    2610.403605972515
@@ -51,14 +51,17 @@
              :use-type :infinite
              :benefit-type :non-rival
              :flow-model "CoastalStormMovement"
-             :result-type :closure-map}))
+             :result-type :closure-map
+             :animation? true}))
 
 (defn test-run-fishing
   []
   (run-span {:source-layer source-layer
-             :source-threshold 0.0
+             :source-threshold nil
+             :sink-layer nil
+             :sink-threshold nil
              :use-layer use-layer
-             :use-threshold 0.0
+             :use-threshold nil
              :flow-layers flow-layers
              :trans-threshold 0.1
              :cell-width    2610.403605972515
@@ -70,4 +73,5 @@
              :use-type :finite
              :benefit-type :rival
              :flow-model "SubsistenceFishAccessibility"
-             :result-type :closure-map}))
+             :result-type :closure-map
+             :animation? false}))

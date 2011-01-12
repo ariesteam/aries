@@ -28,7 +28,8 @@
   :route          ; byte array of directions from source-id to use-id or nil
   :possible-weight; amount of source-weight which reaches (and is used by) this use location disregarding sink-effects
   :actual-weight  ; amount of source-weight which reaches (and is used by) this use location including sink-effects
-  :sink-effects)  ; map of sink-ids to sink-effects on this flow path (decayed as necessary)
+  :sink-effects   ; map of sink-ids to sink-effects on this flow path (decayed as necessary)
+  :use-effects)   ; map of use-ids to rival use-effects on this flow path (decayed as necessary)
 
 (defmulti distribute-flow!
   ;;"Service-specific flow distribution functions.")
@@ -46,10 +47,10 @@
   ;; the service weight transmitted along these routes.  When the
   ;; simulation completes, a sequence of the locations in the network is
   ;; returned."
-  (fn [flow-model cell-width cell-height source-layer sink-layer use-layer flow-layers] flow-model))
+  (fn [flow-model animation? cell-width cell-height source-layer sink-layer use-layer flow-layers] flow-model))
 
 (defmethod distribute-flow :default
-  [flow-model _ _ _ _ _ _]
+  [flow-model _ _ _ _ _ _ _]
   (throw (Exception. (str "distribute-flow is undefined for flow type: " flow-model))))
 
 (defmulti decay

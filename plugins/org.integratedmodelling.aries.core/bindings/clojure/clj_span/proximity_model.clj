@@ -130,14 +130,18 @@
     (dorun (map (p store-carrier! flow-model cache-layer source-layer use-layer) frontier))))
 
 (defmethod distribute-flow "Proximity"
-  [flow-model cell-width cell-height source-layer sink-layer use-layer _]
+  [flow-model animation? cell-width cell-height source-layer sink-layer use-layer _]
   (println "Running Proximity flow model.")
-  (let [rows          (get-rows source-layer)
-        cols          (get-cols source-layer)
-        cache-layer   (make-matrix rows cols (constantly (atom {})))
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (atom {})))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         source-points (filter-matrix-for-coords (p not= _0_) source-layer)]
     (println "Source points:" (count source-points))
     (dorun (pmap
             (p distribute-gaussian! flow-model cache-layer source-layer sink-layer use-layer rows cols)
             source-points))
-    (map-matrix (& vals deref) cache-layer)))
+    [(map-matrix (& vals deref) cache-layer)
+     (map-matrix deref possible-flow-layer)
+     (map-matrix deref actual-flow-layer)]))

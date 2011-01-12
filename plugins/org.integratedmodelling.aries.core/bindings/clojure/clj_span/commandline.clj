@@ -51,7 +51,8 @@
    "            -sink-type          <finite|infinite> \\ \n"
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection|subsistence-fisheries>\n"))
+   "            -animation?         <true|false>      \\ \n"
+   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection|subsistence-fisheries> \n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -83,6 +84,7 @@
    ["-sink-type"          #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
+   ["-animation?"         #{"true" "false"}         " must be one of true or false."]
    ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment" "coastal-storm-protection" "subsistence-fisheries"}
     " must be one of line-of-sight, proximity, carbon, flood, surface-water, sediment, coastal-storm-protection, or subsistence-fisheries."]])
 
@@ -129,6 +131,7 @@
       (assoc :sink-type          (keyword (params "-sink-type")))
       (assoc :use-type           (keyword (params "-use-type")))
       (assoc :benefit-type       (keyword (params "-benefit-type")))
+      (assoc :animation?         (read-string (params "-animation?")))
       (assoc :flow-model         ({"line-of-sight"            "LineOfSight"
                                    "proximity"                "Proximity"
                                    "carbon"                   "CO2Removed"

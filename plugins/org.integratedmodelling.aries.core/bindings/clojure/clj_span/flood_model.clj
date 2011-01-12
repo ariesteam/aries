@@ -248,14 +248,16 @@
   (println "\nAll done."))
 
 (defmethod distribute-flow "FloodWaterMovement"
-  [_ cell-width cell-height source-layer sink-layer use-layer
+  [_ animation? cell-width cell-height source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "River", elevation-layer "Altitude"
     floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
   (println "Running Flood flow model for" (if floodplain-layer500 "500" "100") "year floodplain.")
   (let [floodplain-layer (or floodplain-layer500 floodplain-layer100)
-        rows             (get-rows source-layer)
-        cols             (get-cols source-layer)
-        cache-layer      (make-matrix rows cols (constantly (atom ())))
+        rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (atom ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         [source-points sink-points use-points] (pmap (p filter-matrix-for-coords (p not= _0_))
                                                      [source-layer sink-layer use-layer])]
     (println "Source points:" (count source-points))
@@ -280,4 +282,6 @@
       (time (distribute-downstream! cache-layer step-downstream in-stream? unsaturated-sink? source-layer
                                     source-points sink-map use-map sink-AFs use-AFs sink-caps))
       (println "Simulation complete. Returning the cache-layer.")
-      (map-matrix (& seq deref) cache-layer))))
+      [(map-matrix (& seq deref) cache-layer)
+       (map-matrix deref possible-flow-layer)
+       (map-matrix deref actual-flow-layer)])))

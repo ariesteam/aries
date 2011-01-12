@@ -107,13 +107,19 @@
 ;; Detects all sources and sinks visible from the use-point and stores
 ;; their utility contributions in the cache-layer."
 (defmethod distribute-flow "LineOfSight"
-  [flow-model cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
+  [flow-model animation? cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
   (println "Running LineOfSight flow model.")
-  (let [cache-layer   (make-matrix (get-rows source-layer) (get-cols source-layer) (constantly (atom ())))
-        source-points (filter-matrix-for-coords (p not= _0_) source-layer)
-        use-points    (filter-matrix-for-coords (p not= _0_) use-layer)]
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (atom ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
+        source-points       (filter-matrix-for-coords (p not= _0_) source-layer)
+        use-points          (filter-matrix-for-coords (p not= _0_) use-layer)]
     (println "Source points:" (count source-points))
     (println "Use points:   " (count use-points))
     (dorun (pmap (p raycast! flow-model cache-layer source-layer sink-layer elev-layer)
                  (for [source-point source-points use-point use-points] [source-point use-point])))
-    (map-matrix (& seq deref) cache-layer)))
+    [(map-matrix (& seq deref) cache-layer)
+     (map-matrix deref possible-flow-layer)
+     (map-matrix deref actual-flow-layer)]))

@@ -23,7 +23,7 @@
 (ns clj-span.surface-water-model
   (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
         [clj-misc.utils         :only (seq2map mapmap p &)]
-        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix find-bounding-box
+        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix find-bounding-box
                                        filter-matrix-for-coords get-neighbors on-bounds?)]
         [clj-misc.randvars      :only (_0_ _+_ rv-convolutions rv-resample rv-min rv-max)]
         [clj-misc.point-algebra :only (nearest-point-where)]))
@@ -362,11 +362,13 @@
     in-stream-carriers))
 
 (defmethod distribute-flow "SurfaceWaterMovement"
-  [_ cell-width cell-height source-layer sink-layer use-layer
+  [_ animation? cell-width cell-height source-layer sink-layer use-layer
    {stream-layer "River", elevation-layer "Altitude"}]
   (println "Running Surface Water flow model.")
-  (let [rows (get-rows source-layer)
-        cols (get-cols source-layer)
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         [source-points sink-points use-points stream-points] (pmap (p filter-matrix-for-coords (p not= _0_))
                                                                    [source-layer sink-layer use-layer stream-layer])]
     (println "Source points:" (count source-points))
@@ -386,4 +388,6 @@
           stream-roots       (find-nearest-stream-points in-stream-carriers rows cols use-points)
           carrier-caches     (search-upstream elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?)]
       (println "Simulation complete. Returning the cache-layer.")
-      (make-matrix rows cols carrier-caches))))
+      [(make-matrix rows cols carrier-caches)
+       (map-matrix deref possible-flow-layer)
+       (map-matrix deref actual-flow-layer)])))

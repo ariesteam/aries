@@ -50,9 +50,7 @@
                                         possible-use
                                         blocked-use
                                         actual-use
-                                        possible-flow
-                                        blocked-flow
-                                        actual-flow)])
+                                        blocked-flow)])
   (:require clj-span.flood-model
             clj-span.carbon-model
             clj-span.sediment-model
@@ -82,7 +80,10 @@
         scaled-rows      (int (/ rows downscaling-factor))
         scaled-cols      (int (/ cols downscaling-factor))
         preprocess-layer (fn [l t] (if l
-                                     (zero-layer-below-threshold t (resample-matrix scaled-rows scaled-cols rv-average l))
+                                     (let [scaled-layer (resample-matrix scaled-rows scaled-cols rv-average l)]
+                                       (if t
+                                         (zero-layer-below-threshold t scaled-layer)
+                                         scaled-layer))
                                      (make-matrix scaled-rows scaled-cols (constantly _0_))))
         [scaled-source-layer scaled-sink-layer scaled-use-layer] (map preprocess-layer
                                                                       [source-layer     sink-layer     use-layer]
@@ -97,14 +98,16 @@
 
 (defn generate-results-map
   "Run flow model and return the results as a map of layer names to closures."
-  [flow-model orig-rows orig-cols cell-width cell-height scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]
-  (let [cache-layer (distribute-flow flow-model
-                                     cell-width
-                                     cell-height
-                                     scaled-source-layer
-                                     scaled-sink-layer
-                                     scaled-use-layer
-                                     scaled-flow-layers)]
+  [flow-model animation? orig-rows orig-cols cell-width cell-height
+   scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]
+  (let [[cache-layer possible-flow-layer actual-flow-layer] (distribute-flow flow-model
+                                                                             animation?
+                                                                             cell-width
+                                                                             cell-height
+                                                                             scaled-source-layer
+                                                                             scaled-sink-layer
+                                                                             scaled-use-layer
+                                                                             scaled-flow-layers)]
     (apply array-map
            (mapcat (fn [[name f]] [name (& (p resample-matrix orig-rows orig-cols rv-average) f)])
                    (array-map
@@ -121,49 +124,47 @@
                     "Use    - Possible"     #(possible-use        cache-layer)
                     "Use    - Blocked"      #(blocked-use         cache-layer)
                     "Use    - Actual"       #(actual-use          cache-layer)
-                    "Flow   - Possible"     #(possible-flow       cache-layer flow-model)
-                    "Flow   - Blocked"      #(blocked-flow        cache-layer flow-model)
-                    "Flow   - Actual"       #(actual-flow         cache-layer flow-model))))))
+                    "Flow   - Possible"     (constantly possible-flow-layer)
+                    "Flow   - Blocked"      #(blocked-flow possible-flow-layer actual-flow-layer)
+                    "Flow   - Actual"       (constantly actual-flow-layer))))))
 
-(def double>0?      #(and (float?   %) (pos? %)))
-(def double>=0?     #(and (float?   %) (>= % 0)))
-(def integer>=1?    #(and (integer? %) (>= % 1)))
-(def number>=1?     #(and (number?  %) (>= % 1)))
-(def nil-or-matrix? #(or  (nil?     %) (is-matrix? %)))
+(def double>0?         #(and (float?   %) (pos? %)))
+(def nil-or-double>=0? #(or  (nil?     %) (and (float? %) (>= % 0))))
+(def integer>=1?       #(and (integer? %) (>= % 1)))
+(def number>=1?        #(and (number?  %) (>= % 1)))
+(def nil-or-matrix?    #(or  (nil?     %) (is-matrix? %)))
 
 (defn run-span
   [{:keys [source-layer source-threshold sink-layer    sink-threshold
            use-layer    use-threshold    flow-layers   trans-threshold
            cell-width   cell-height      rv-max-states downscaling-factor
            source-type  sink-type        use-type      benefit-type
-           flow-model   result-type]
-    :or {source-threshold   0.0
-         sink-threshold     0.0
-         use-threshold      0.0
-         trans-threshold    0.01
-         rv-max-states      10
+           flow-model   result-type      animation?]
+    :or {rv-max-states      10
          downscaling-factor 1}}]
   ;; Validate the inputs
   (constraints-1.0
-   {:pre [(every? is-matrix?     [source-layer use-layer])
-          (every? nil-or-matrix? (cons sink-layer (vals flow-layers)))
-          (apply  grids-align?   (remove nil? (list* source-layer sink-layer use-layer (vals flow-layers))))
-          (every? double>=0?     [source-threshold sink-threshold use-threshold])
-          (every? double>0?      [trans-threshold cell-width cell-height])
+   {:pre [(every? is-matrix?        [source-layer use-layer])
+          (every? nil-or-matrix?    (cons sink-layer (vals flow-layers)))
+          (apply  grids-align?      (remove nil? (list* source-layer sink-layer use-layer (vals flow-layers))))
+          (every? nil-or-double>=0? [source-threshold sink-threshold use-threshold])
+          (every? double>0?         [trans-threshold cell-width cell-height])
           (integer>=1? rv-max-states)
           (number>=1?  downscaling-factor)
           (every? #{:finite :infinite} [source-type use-type])
           (contains? #{:finite :infinite nil} sink-type)
-          (#{:rival :non-rival} benefit-type)
-          (#{"LineOfSight"
-             "Proximity"
-             "CO2Removed"
-             "FloodWaterMovement"
-             "SurfaceWaterMovement"
-             "Sediment"
-             "CoastalStormMovement"
-             "SubsistenceFishAccessibility"} flow-model)
-          (#{:cli-menu :closure-map} result-type)]})
+          (contains? #{:rival :non-rival} benefit-type)
+          (contains? #{"LineOfSight"
+                       "Proximity"
+                       "CO2Removed"
+                       "FloodWaterMovement"
+                       "SurfaceWaterMovement"
+                       "Sediment"
+                       "CoastalStormMovement"
+                       "SubsistenceFishAccessibility"}
+                     flow-model)
+          (contains? #{:cli-menu :closure-map} result-type)
+          (contains? #{true false nil} animation?)]})
   ;; Initialize global parameters
   (set-global-params! {:rv-max-states      rv-max-states
                        :trans-threshold    trans-threshold
@@ -179,6 +180,7 @@
                    flow-layers
                    (apply generate-results-map
                           flow-model
+                          animation?
                           (get-rows source-layer)
                           (get-cols source-layer)
                           cell-width

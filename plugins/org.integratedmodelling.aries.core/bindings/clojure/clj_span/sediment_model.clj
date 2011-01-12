@@ -182,13 +182,15 @@
 ;;
 
 (defmethod distribute-flow "Sediment"
-  [_ cell-width cell-height source-layer sink-layer use-layer
+  [_ animation? cell-width cell-height source-layer sink-layer use-layer
    {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",
     floodplain-layer "FloodPlainPresence", elevation-layer "Altitude"}]
   (println "Running Sediment flow model.")
-  (let [rows        (get-rows source-layer)
-        cols        (get-cols source-layer)
-        cache-layer (make-matrix rows cols (constantly (atom ())))
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (atom ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         [source-map sink-map use-map] (pmap (& (p move-points-into-stream-channel hydrosheds-layer stream-layer)
                                                (p filter-matrix-for-coords (p not= _0_)))
                                             [source-layer sink-layer use-layer])
@@ -199,4 +201,6 @@
     (println "Sink points:  " (count (concat (vals sink-map))))
     (println "Use points:   " (count (concat (vals use-map))))
     (distribute-downstream! cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols)
-    (map-matrix (& seq deref) cache-layer)))
+    [(map-matrix (& seq deref) cache-layer)
+     (map-matrix deref possible-flow-layer)
+     (map-matrix deref actual-flow-layer)]))

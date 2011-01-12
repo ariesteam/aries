@@ -16,14 +16,13 @@
 
 (defn get-cell-color [type alpha]
   (cond
-      (= type :source)        (Color. 255   0   0 (int (* 255 alpha)))
-      (= type :sink)          (Color.   0 255   0 (int (* 255 alpha)))
-      (= type :use)           (Color.   0   0 255 (int (* 255 alpha)))
-      (= type :possible-flow) (Color. 255   0 255 (int (* 255 alpha)))
-      (= type :actual-flow)   (Color.   0 255 255 (int (* 255 alpha)))))
+      (= type :source) (Color. 255   0   0 (int (* 255 alpha)))
+      (= type :sink)   (Color.   0 255   0 (int (* 255 alpha)))
+      (= type :use)    (Color.   0   0 255 (int (* 255 alpha)))
+      (= type :flow)   (Color. 255   0 255 (int (* 255 alpha)))))
 
 (defn render [g layer type scale x-dim y-dim]
-  (let [normalized-layer (normalize-matrix (map-matrix (& rv-mean deref) layer))
+  (let [normalized-layer (normalize-matrix (map-matrix rv-mean layer))
         img              (BufferedImage. (* scale x-dim) (* scale y-dim) BufferedImage/TYPE_INT_ARGB)
         bg               (.getGraphics img)]
     (doto bg
@@ -39,6 +38,15 @@
   (let [y-dim (get-rows layer)
         x-dim (get-cols layer)
         panel (doto (proxy [JPanel] [] (paint [g] (render g layer type scale x-dim y-dim)))
+                (.setPreferredSize (Dimension. (* scale x-dim) (* scale y-dim))))]
+    (doto (JFrame. title) (.add panel) .pack .show)
+    panel))
+
+(defn draw-ref-layer [title ref-layer type scale]
+  (let [y-dim (get-rows ref-layer)
+        x-dim (get-cols ref-layer)
+        panel (doto (proxy [JPanel] [] (paint [g] (let [layer (map-matrix deref ref-layer)]
+                                                    (render g layer type scale x-dim y-dim))))
                 (.setPreferredSize (Dimension. (* scale x-dim) (* scale y-dim))))]
     (doto (JFrame. title) (.add panel) .pack .show)
     panel))

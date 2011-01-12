@@ -261,7 +261,7 @@
   [observation-or-model-spec source-concept sink-concept use-concept flow-concepts
    {:keys [source-threshold sink-threshold use-threshold trans-threshold
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
-           result-type save-file]
+           result-type animation? save-file]
     :or {result-type :closure-map}}]
   (println "Running model to get observation if this wasn't already done.")
   (let [observation (if (vector? observation-or-model-spec)
@@ -298,6 +298,7 @@
       (println "use-type           =" use-type)
       (println "benefit-type       =" benefit-type)
       (println "result-type        =" result-type)
+      (println "animation?         =" animation?)
       (println "save-file          =" save-file)
       (println "(Pausing 10 seconds)")
       (Thread/sleep 10000)
@@ -322,4 +323,5 @@
                     :use-type           use-type
                     :benefit-type       benefit-type
                     :flow-model         flow-model
+                    :animation?         animation?
                     :result-type        result-type}))))))

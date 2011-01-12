@@ -30,7 +30,7 @@
 ;;;  Exit when all carriers have finished moving.
 
 (ns clj-span.coastal-storm-protection-model
-  (:use [clj-span.gui        :only (draw-layer)]
+  (:use [clj-span.gui        :only (draw-ref-layer)]
         [clj-span.params     :only (*trans-threshold*)]
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-misc.utils      :only (seq2map p & angular-distance)]
@@ -43,6 +43,7 @@
                                     subtract-ids
                                     in-bounds?
                                     on-bounds?
+                                    bitpack-route
                                     filter-matrix-for-coords
                                     get-neighbors
                                     find-point-at-dist-in-m
@@ -65,34 +66,37 @@
                                    (rv-fn (fn [a e] (- a (min a e))) post-geo-actual-weight eco-sink-cap)
                                    post-geo-actual-weight)
         eco-sink-effects         (if (and eco-sink? (not= _0_ post-geo-actual-weight))
-                                   {current-id (rv-fn min post-geo-actual-weight eco-sink-cap)})]
-    [post-geo-possible-weight post-eco-actual-weight eco-sink-effects]))
+                                   {current-id (rv-fn min post-geo-actual-weight eco-sink-cap)})
+        geo-sink-effects         (if geo-sink?
+                                   {current-id (rv-fn min possible-weight geo-sink-cap)})]
+    [post-geo-possible-weight post-eco-actual-weight eco-sink-effects geo-sink-effects]))
 
 (defn apply-local-effects!
   [storm-orientation eco-sink-layer geo-sink-layer use-layer cache-layer
    possible-flow-layer actual-flow-layer rows cols
-   {:keys [route possible-weight actual-weight sink-effects] :as storm-carrier}]
+   {:keys [route possible-weight actual-weight sink-effects use-effects] :as storm-carrier}]
   (let [current-location (peek route)
         next-location    (add-ids current-location storm-orientation)
-        [new-possible-weight new-actual-weight new-sink-effects] (handle-sink-effects current-location
-                                                                                      possible-weight
-                                                                                      actual-weight
-                                                                                      eco-sink-layer
-                                                                                      geo-sink-layer)
+        [new-possible-weight new-actual-weight new-sink-effects new-use-effects] (handle-sink-effects current-location
+                                                                                                      possible-weight
+                                                                                                      actual-weight
+                                                                                                      eco-sink-layer
+                                                                                                      geo-sink-layer)
         post-sink-carrier (assoc storm-carrier
                             :possible-weight new-possible-weight
                             :actual-weight   new-actual-weight
-                            :sink-effects    (merge-with _+_ sink-effects new-sink-effects))]
+                            :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
+                            :use-effects     (merge-with _+_ use-effects  new-use-effects))]
     (dosync
      (alter (get-in possible-flow-layer current-location) _+_ possible-weight)
      (alter (get-in actual-flow-layer   current-location) _+_ actual-weight))
     (if (not= _0_ (get-in use-layer current-location))
-      (dosync (alter (get-in cache-layer current-location) conj post-sink-carrier)))
+      (dosync (alter (get-in cache-layer current-location) conj (assoc post-sink-carrier :route (bitpack-route route)))))
     (if (and (in-bounds? rows cols next-location)
              (rv-above? new-possible-weight *trans-threshold*))
       (assoc post-sink-carrier :route (conj route next-location)))))
 
-(def *animation-sleep-ms* 1000)
+(def *animation-sleep-ms* 100)
 
 (defn run-animation [panel]
   (send-off *agent* run-animation)
@@ -102,15 +106,14 @@
 (defn end-animation [panel] panel)
 
 (defn distribute-wave-energy!
-  [storm-source-point storm-orientation storm-carriers get-next-orientation
-   eco-sink-layer geo-sink-layer use-layer cache-layer rows cols]
+  [storm-source-point storm-orientation storm-carriers get-next-orientation eco-sink-layer
+   geo-sink-layer use-layer cache-layer possible-flow-layer actual-flow-layer animation? rows cols]
   (println "Moving the wave energy toward the coast...")
-  (let [possible-flow-layer    (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
-        possible-flow-animator (agent (draw-layer "Possible Flow" possible-flow-layer :possible-flow 1))
-        actual-flow-animator   (agent (draw-layer "Actual Flow"   actual-flow-layer   :actual-flow   1))]
-    (send-off possible-flow-animator run-animation)
-    (send-off actual-flow-animator   run-animation)
+  (let [possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow 1)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow 1)))]
+    (when animation?
+      (send-off possible-flow-animator run-animation)
+      (send-off actual-flow-animator   run-animation))
     (doseq [_ (take-while (& seq last)
                           (iterate
                            (fn [[storm-centerpoint storm-orientation storm-carriers]]
@@ -133,8 +136,9 @@
                                  (println "Location-dependent termination:" next-storm-orientation storm-centerpoint))))
                            [storm-source-point storm-orientation storm-carriers]))]
       (print "*") (flush))
-    (send-off possible-flow-animator end-animation)
-    (send-off actual-flow-animator   end-animation))
+    (when animation?
+      (send-off possible-flow-animator end-animation)
+      (send-off actual-flow-animator   end-animation)))
   (println "\nAll done."))
 
 (def storm-to-wave-orientations
@@ -183,12 +187,14 @@
 ;;        make the waves die down faster (since the sinks will be
 ;;        doubled).
 (defmethod distribute-flow "CoastalStormMovement"
-  [_ cell-width cell-height source-layer eco-sink-layer use-layer
+  [_ animation? cell-width cell-height source-layer eco-sink-layer use-layer
    {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicFloodProtection"}]
   (println "Running Coastal Storm Protection flow model.")
-  (let [rows          (get-rows source-layer)
-        cols          (get-cols source-layer)
-        cache-layer   (make-matrix rows cols (fn [_] (ref ())))
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         source-points (filter-matrix-for-coords (p not= _0_) source-layer)]
     (println "Source points:" (count source-points))
     (let [storm-source-point   (first source-points) ;; we are only going to use one source point in this model
@@ -202,7 +208,8 @@
                                        :route           [%]
                                        :possible-weight wave-height
                                        :actual-weight   wave-height
-                                       :sink-effects    {})
+                                       :sink-effects    {}
+                                       :use-effects     {})
                                     wave-line)]
       (distribute-wave-energy! storm-source-point
                                storm-orientation
@@ -212,8 +219,13 @@
                                geo-sink-layer
                                use-layer
                                cache-layer
+                               possible-flow-layer
+                               actual-flow-layer
+                               animation?
                                rows
                                cols)
       (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
       (println "Simulation complete. Returning the cache-layer.")
-      (map-matrix (& seq deref) cache-layer))))
+      [(map-matrix (& seq deref) cache-layer)
+       (map-matrix deref possible-flow-layer)
+       (map-matrix deref actual-flow-layer)])))

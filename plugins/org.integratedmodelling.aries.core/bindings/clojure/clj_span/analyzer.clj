@@ -23,12 +23,12 @@
 ;;; generate its result matrix.
 
 (ns clj-span.analyzer
-  (:use [clj-misc.utils      :only (p)]
+  (:use [clj-misc.utils      :only (p with-progress-bar)]
         [clj-span.model-api  :only (undecay)]
         [clj-span.params     :only (*source-type*
                                     *sink-type*
                                     *use-type*)]
-        [clj-misc.randvars   :only (_0_ _+_ _d *_ rv-fn rv-min)]
+        [clj-misc.randvars   :only (_0_ _+_ _* *_ rv-fn rv-min)]
         [clj-misc.matrix-ops :only (get-rows
                                     get-cols
                                     matrix2seq
@@ -80,14 +80,14 @@
     (make-matrix (get-rows source-layer) (get-cols source-layer) (constantly _0_))
     (if (= *sink-type* :finite)
       sink-layer
-      (let [num-sources   (count (remove (p = _0_) (matrix2seq source-layer)))
-            num-users     (count (remove (p = _0_) (matrix2seq use-layer)))
-            max-flowpaths (* num-sources num-users)
-            sink-amount   (if (*source-type* :finite)
-                            (let [total-source (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))]
-                              #(rv-min (*_ max-flowpaths %) total-source))
-                            (p *_ max-flowpaths))]
-        (map-matrix #(if (not= _0_ %) (sink-amount %) _0_) sink-layer)))))
+      (let [num-sources    (count (remove (p = _0_) (matrix2seq source-layer)))
+            num-users      (count (remove (p = _0_) (matrix2seq use-layer)))
+            max-flowpaths  (* num-sources num-users)
+            total-source   (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))
+            per-sink-limit (if (*source-type* :finite)
+                             total-source
+                             (_* total-source num-users))]
+        (map-matrix #(if (= _0_ %) _0_ (rv-min (*_ max-flowpaths %) per-sink-limit)) sink-layer)))))
 (def theoretical-sink (memoize theoretical-sink))
 
 (defn actual-sink
@@ -95,8 +95,9 @@
    of its theoretical sink that impacts a user along any flow path."
   [cache-layer]
   (let [coord-map (apply merge-with _+_ {}
-                         (for [cache (remove nil? (matrix2seq cache-layer))]
-                           (:sink-effects cache)))]
+                         (for [cache (remove nil? (matrix2seq cache-layer))
+                               {:keys [sink-effects]} cache]
+                           sink-effects))]
     (make-matrix (get-rows cache-layer) (get-cols cache-layer) #(get coord-map % _0_))))
 (def actual-sink (memoize actual-sink))
 
@@ -108,12 +109,8 @@
   [source-layer use-layer]
   (if (= *use-type* :finite)
     use-layer
-    (let [total-source (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))
-          use-amount   (if (= *source-type* :finite)
-                         (let [num-users (count (remove (p = _0_) (matrix2seq use-layer)))]
-                           (_d total-source num-users))
-                         total-source)]
-      (map-matrix #(if (not= _0_ %) use-amount _0_) use-layer))))
+    (let [total-source (reduce _+_ _0_ (remove (p = _0_) (matrix2seq source-layer)))]
+      (map-matrix #(if (not= _0_ %) total-source _0_) use-layer))))
 (def theoretical-use (memoize theoretical-use))
 
 (defn possible-use
@@ -132,62 +129,63 @@
   (map-matrix #(reduce _+_ _0_ (map :actual-weight %)) cache-layer))
 (def actual-use (memoize actual-use))
 
-(defn- rerun-possible-route
-  [flow-model {:keys [source-id route possible-weight use-effects]}]
-  (let [route-ids (rseq (unbitpack-route source-id route))]
-    (zipmap route-ids
-            (map (p undecay flow-model)
-                 (if (empty? use-effects)
-                   (repeat possible-weight)
-                   ;;         (reductions
-                   ;;          #(_+_ %1 (get use-effects %2 _0_))
-                   ;;          possible-weight
-                   ;;          route-ids)
-                   (reduce
-                    #(conj %1 (_+_ (peek %1) (get use-effects %2 _0_)))
-                    [possible-weight]
-                    route-ids))
-                 (iterate inc 0)))))
-
-(defn- rerun-actual-route
-  [flow-model {:keys [source-id route actual-weight sink-effects use-effects] :or {use-effects {}} :as carrier}]
-  (if (empty? sink-effects)
-    (rerun-possible-route flow-model carrier)
-    (let [route-ids (rseq (unbitpack-route source-id route))]
-      (zipmap route-ids
-              (map (p undecay flow-model)
-                   ;;         (reductions
-                   ;;          #(reduce _+_ %1 (remove nil? ((juxt sink-effects use-effects) %2)))
-                   ;;          actual-weight
-                   ;;          route-ids)
-                   (reduce
-                    #(conj %1 (reduce _+_ (peek %1) (remove nil? [(sink-effects %2) (use-effects %2)])))
-                    ;;          #(conj %1 (reduce _+_ (peek %1) (remove nil? ((juxt sink-effects use-effects) %2))))
-                    [actual-weight]
-                    route-ids)
-                   (iterate inc 0))))))
-
-(defn possible-flow
-  [cache-layer flow-model]
-  (let [rows (get-rows cache-layer)
-        cols (get-cols cache-layer)]
-    (if-let [carriers-with-routes (seq (filter :route (apply concat (matrix2seq cache-layer))))]
-      (let [coord-map (apply merge-with _+_
-                             (map (p rerun-possible-route flow-model) carriers-with-routes))]
-        (make-matrix rows cols #(get coord-map % _0_)))
-      (possible-source cache-layer))))
-(def possible-flow (memoize possible-flow))
-
-(defn actual-flow
-  [cache-layer flow-model]
-  (let [rows (get-rows cache-layer)
-        cols (get-cols cache-layer)]
-    (if-let [carriers-with-routes (seq (filter :route (apply concat (matrix2seq cache-layer))))]
-      (let [coord-map (apply merge-with _+_
-                             (map (p rerun-actual-route flow-model) carriers-with-routes))]
-        (make-matrix rows cols #(get coord-map % _0_)))
-      (actual-source cache-layer))))
-(def actual-flow (memoize actual-flow))
+;;(defn- rerun-possible-route
+;;  [flow-model {:keys [source-id route possible-weight use-effects]}]
+;;  (let [route-ids (rseq (unbitpack-route source-id route))]
+;;    (zipmap route-ids
+;;            (map (p undecay flow-model)
+;;                 (if (empty? use-effects)
+;;                   (repeat possible-weight)
+;;                   ;;         (reductions
+;;                   ;;          #(_+_ %1 (get use-effects %2 _0_))
+;;                   ;;          possible-weight
+;;                   ;;          route-ids)
+;;                   (reduce
+;;                    ;;#(conj %1 (_+_ (peek %1) (get use-effects %2 _0_)))
+;;                    #(conj %1 (if-let [u (get use-effects %2)] (_+_ (peek %1) u) (peek %1)))
+;;                    [possible-weight]
+;;                    route-ids))
+;;                 (iterate inc 0)))))
+;;
+;;(defn- rerun-actual-route
+;;  [flow-model {:keys [source-id route actual-weight sink-effects use-effects] :or {use-effects {}} :as carrier}]
+;;  (if (empty? sink-effects)
+;;    (rerun-possible-route flow-model carrier)
+;;    (let [route-ids (rseq (unbitpack-route source-id route))]
+;;      (zipmap route-ids
+;;              (map (p undecay flow-model)
+;;                   ;;         (reductions
+;;                   ;;          #(reduce _+_ %1 (remove nil? ((juxt sink-effects use-effects) %2)))
+;;                   ;;          actual-weight
+;;                   ;;          route-ids)
+;;                   (reduce
+;;                    #(conj %1 (reduce _+_ (peek %1) (remove nil? [(sink-effects %2) (use-effects %2)])))
+;;                    ;;          #(conj %1 (reduce _+_ (peek %1) (remove nil? ((juxt sink-effects use-effects) %2))))
+;;                    [actual-weight]
+;;                    route-ids)
+;;                   (iterate inc 0))))))
+;;
+;;(defn possible-flow
+;;  [cache-layer flow-model]
+;;  (let [rows (get-rows cache-layer)
+;;        cols (get-cols cache-layer)]
+;;    (if-let [carriers-with-routes (seq (filter :route (apply concat (matrix2seq cache-layer))))]
+;;      (let [coord-map (apply merge-with _+_
+;;                             (with-progress-bar (pmap (p rerun-possible-route flow-model) (take 10 carriers-with-routes))))]
+;;        (make-matrix rows cols #(get coord-map % _0_)))
+;;      (possible-source cache-layer))))
+;;(def possible-flow (memoize possible-flow))
+;;
+;;(defn actual-flow
+;;  [cache-layer flow-model]
+;;  (let [rows (get-rows cache-layer)
+;;        cols (get-cols cache-layer)]
+;;    (if-let [carriers-with-routes (seq (filter :route (apply concat (matrix2seq cache-layer))))]
+;;      (let [coord-map (apply merge-with _+_
+;;                             (with-progress-bar (pmap (p rerun-actual-route flow-model) carriers-with-routes)))]
+;;        (make-matrix rows cols #(get coord-map % _0_)))
+;;      (actual-source cache-layer))))
+;;(def actual-flow (memoize actual-flow))
 
 (defn inaccessible-source
   "Returns a map of {location-id -> inaccessible-source}.
@@ -241,7 +239,7 @@
   "Returns a map of {location-id -> blocked-flow}.
    Blocked-flow is the amount of the possible-flow which cannot be
    realized due to upstream sinks or uses."
-  [cache-layer flow-model]
+  [possible-flow-layer actual-flow-layer]
   (map-matrix (p rv-fn (fn [p a] (max (- p a) 0.0)))
-              (possible-flow cache-layer flow-model)
-              (actual-flow   cache-layer flow-model)))
+              possible-flow-layer
+              actual-flow-layer))

@@ -146,12 +146,14 @@
     fishing-routes))
 
 (defmethod distribute-flow "SubsistenceFishAccessibility"
-  [_ cell-width cell-height source-layer _ use-layer
+  [_ animation? cell-width cell-height source-layer _ use-layer
    {path-layer "Path", population-density-layer "PopulationDensity"}]
   (println "Running Subsistence Fisheries flow model.")
-  (let [rows        (get-rows source-layer)
-        cols        (get-cols source-layer)
-        cache-layer (make-matrix rows cols (fn [_] (ref ())))
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         [source-points use-points path-points] (pmap (p filter-matrix-for-coords (p not= _0_))
                                                      [source-layer use-layer path-layer])]
     (println "Source points: " (count source-points))
@@ -171,4 +173,6 @@
       (send-forth-fishermen! fishermen fish-supply)
       (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
       (println "Simulation complete. Returning the cache-layer.")
-      (map-matrix (& seq deref) cache-layer))))
+      [(map-matrix (& seq deref) cache-layer)
+       (map-matrix deref possible-flow-layer)
+       (map-matrix deref actual-flow-layer)])))
