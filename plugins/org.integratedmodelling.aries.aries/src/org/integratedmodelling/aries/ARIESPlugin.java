@@ -3,7 +3,7 @@ package org.integratedmodelling.aries;
 import java.io.File;
 
 import org.integratedmodelling.geospace.Geospace;
-import org.integratedmodelling.modelling.visualization.presentation.PresentationFactory;
+import org.integratedmodelling.modelling.storyline.StorylineFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
@@ -32,7 +32,7 @@ public class ARIESPlugin extends ThinklabPlugin {
 		/*
 		 * storylines - may change after the whole namespace thing is sorted out.
 		 */
-		PresentationFactory.scanDirectory(
+		StorylineFactory.scanDirectory(
 				new File(this.getLoadDirectory() + File.separator + "storylines"));
 	}
 
