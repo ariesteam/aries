@@ -3,7 +3,6 @@ package org.integratedmodelling.aries;
 import java.io.File;
 
 import org.integratedmodelling.geospace.Geospace;
-import org.integratedmodelling.modelling.storyline.StorylineFactory;
 import org.integratedmodelling.thinklab.KnowledgeManager;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
 import org.integratedmodelling.thinklab.plugin.ThinklabPlugin;
@@ -24,16 +23,12 @@ public class ARIESPlugin extends ThinklabPlugin {
 		 * official gazetteers
 		 */
 		Geospace.get().loadGazetteersFromDirectory(getScratchPath());
+		
 		/*
 		 * load any personal gazetteers
 		 */
 		Geospace.get().loadGazetteersFromDirectory(new File(System.getProperty("user.home")));
 		
-		/*
-		 * storylines - may change after the whole namespace thing is sorted out.
-		 */
-		StorylineFactory.scanDirectory(
-				new File(this.getLoadDirectory() + File.separator + "storylines"));
 	}
 
 	@Override
