@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.HashMap;
 
 import org.integratedmodelling.aries.core.ARIESCorePlugin;
-import org.integratedmodelling.aries.core.exceptions.ARIESRuntimeException;
 import org.integratedmodelling.riskwiz.bn.BeliefNetwork;
 import org.integratedmodelling.riskwiz.inference.ls.JoinTreeCompiler;
 import org.integratedmodelling.riskwiz.io.genie.GenieReader;
 import org.integratedmodelling.riskwiz.io.riskwiz.RiskWizReader;
 import org.integratedmodelling.riskwiz.jtree.JTInference;
 import org.integratedmodelling.thinklab.exception.ThinklabException;
+import org.integratedmodelling.thinklab.exception.ThinklabRuntimeException;
 import org.integratedmodelling.thinklab.interfaces.annotations.TaskNamespace;
 import org.integratedmodelling.thinklab.interfaces.applications.ISession;
 import org.integratedmodelling.thinklab.interfaces.applications.ITask;
@@ -34,7 +34,7 @@ public class MakeBnInference implements ITask {
 			new File(ARIESCorePlugin.get().getLoadDirectory() + "/demo/bn");
 		
 		if (!dataDir.exists() || !dataDir.isDirectory() || !dataDir.canRead())
-			throw new ARIESRuntimeException(
+			throw new ThinklabRuntimeException(
 					"aries: demo data directory " +
 					dataDir +
 					" is not readable");
@@ -60,11 +60,11 @@ public class MakeBnInference implements ITask {
 					ret = gReader.loadFromFile(dataDir + "/" + fname + ".rwz");
 				}
 			} catch (Exception e) {
-				throw new ARIESRuntimeException(e);
+				throw new ThinklabRuntimeException(e);
 			}
 			
 			if (ret == null)
-				throw new ARIESRuntimeException(
+				throw new ThinklabRuntimeException(
 						"aries: cannot find a network model for " + 
 						concept +
 						" in " +
@@ -84,7 +84,7 @@ public class MakeBnInference implements ITask {
 		try {
 			result.initialize(nw, new JoinTreeCompiler());
 		} catch (Exception e) {
-			throw new ARIESRuntimeException(e);
+			throw new ThinklabRuntimeException(e);
 		}
 	}
 	

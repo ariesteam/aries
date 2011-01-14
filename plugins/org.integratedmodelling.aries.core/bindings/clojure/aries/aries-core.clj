@@ -6,7 +6,7 @@
 
 (ns aries
   (:use [clj-span.aries-span-bridge :only (span-driver)]))
-(refer 'tl        :only '(listp))
+(refer 'tl        :only '(listp get-new-session))
 (refer 'modelling :only '(transform-model))
 
 (defn j-make-span
@@ -21,7 +21,7 @@
   (proxy [org.integratedmodelling.aries.core.span.SPANProxy] []
     (runSPAN [observation source-concept use-concept sink-concept flow-concepts flow-params]
              (println "We are inside runSPAN!")
-             (binding [tl/*session* (tl/get-new-session)]
+             (binding [tl/*session* (get-new-session)]
                (time (span-driver observation source-concept sink-concept use-concept flow-concepts flow-params))))))
 
 ;; a static object will suffice, this is thread-safe to the point of boredom
