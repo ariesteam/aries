@@ -1,6 +1,6 @@
 (ns clj-span.repl-utils
   (:use (clj-span core commandline aries-span-bridge analyzer gui)
-        (clj-misc utils matrix-ops randvars)
+        (clj-misc utils matrix-ops randvars stats)
         clojure.contrib.pprint))
 
 (defn load-layers
@@ -52,7 +52,51 @@
              :benefit-type :non-rival
              :flow-model "CoastalStormMovement"
              :result-type :closure-map
-             :animation? true}))
+             :animation? false}))
+
+(defn test-run-storm-lowres
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold nil
+             :sink-layer sink-layer
+             :sink-threshold nil
+             :use-layer use-layer
+             :use-threshold nil
+             :flow-layers flow-layers
+             :trans-threshold 0.1
+             :cell-width    5220.80721194503
+             :cell-height   1472.7485100467268
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type :infinite
+             :use-type :infinite
+             :benefit-type :non-rival
+             :flow-model "CoastalStormMovement"
+             :result-type :closure-map
+             :animation? false}))
+
+(defn test-run-storm-hires
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold nil
+             :sink-layer sink-layer
+             :sink-threshold nil
+             :use-layer use-layer
+             :use-threshold nil
+             :flow-layers flow-layers
+             :trans-threshold 0.1
+             :cell-width    1305.2018029862575
+             :cell-height   366.7084643489842
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type :infinite
+             :use-type :infinite
+             :benefit-type :non-rival
+             :flow-model "CoastalStormMovement"
+             :result-type :closure-map
+             :animation? false}))
 
 (defn test-run-fishing
   []

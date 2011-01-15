@@ -1,9 +1,10 @@
 (ns clj-span.gui
   (:use [clj-misc.utils      :only (&)]
-        [clj-misc.randvars   :only (rv-mean)]
+        [clj-misc.randvars   :only (rv-mean make-randvar _0_)]
         [clj-misc.matrix-ops :only (get-rows
                                     get-cols
                                     map-matrix
+                                    make-matrix
                                     normalize-matrix)])
   (:import (java.awt Color Graphics Dimension)
            (java.awt.image BufferedImage)
@@ -37,7 +38,7 @@
 (defn draw-layer [title layer type scale]
   (let [y-dim (get-rows layer)
         x-dim (get-cols layer)
-        panel (doto (proxy [JPanel] [] (paint [g] (render g layer type scale x-dim y-dim)))
+        panel (doto (proxy [JPanel] [] (paint [g] (time (render g layer type scale x-dim y-dim))))
                 (.setPreferredSize (Dimension. (* scale x-dim) (* scale y-dim))))]
     (doto (JFrame. title) (.add panel) .pack .show)
     panel))
@@ -45,8 +46,15 @@
 (defn draw-ref-layer [title ref-layer type scale]
   (let [y-dim (get-rows ref-layer)
         x-dim (get-cols ref-layer)
-        panel (doto (proxy [JPanel] [] (paint [g] (let [layer (map-matrix deref ref-layer)]
-                                                    (render g layer type scale x-dim y-dim))))
+        panel (doto (proxy [JPanel] [] (paint [g] (time (let [layer (map-matrix deref ref-layer)]
+                                                          (render g layer type scale x-dim y-dim)))))
                 (.setPreferredSize (Dimension. (* scale x-dim) (* scale y-dim))))]
     (doto (JFrame. title) (.add panel) .pack .show)
     panel))
+
+(defn draw-points [ids type scale]
+  (let [max-y       (apply max (map first  ids))
+        max-x       (apply max (map second ids))
+        point-vals  (zipmap ids (repeat (make-randvar :discrete 1 [1])))
+        point-layer (make-matrix (inc max-y) (inc max-x) #(get point-vals % _0_))]
+    (draw-layer "Points" point-layer type scale)))

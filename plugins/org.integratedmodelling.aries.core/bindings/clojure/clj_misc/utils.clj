@@ -238,7 +238,7 @@
                   this-node
                   (recur (concat (successors this-node) (rest open-list)))))))
 
-(defn between [val low high] (and (>= val low) (< val high)))
+(defn between? [low high val] (and (>= val low) (<= val high)))
 
 (defn manhattan-distance-2
   "Returns the manhattan distance between two 2-dimensional points."
@@ -276,13 +276,9 @@
   (if (= A (map - B))
     ;; 180 degree turn
     Math/PI
-    (let [a2 (square-distance [0 0] B) ;; side a^2
-          b2 (square-distance [0 0] A) ;; side b^2
-          c2 (square-distance A B)]    ;; side c^2
-      ;; Solve for angle C (angle opposite to side c):
-      ;;   c^2 = a^2 + b^2 - 2ab*cosC
-      ;;   C   = acos((a^2 + b^2 - c^2)/2ab)
-      (Math/acos (/ (- (+ a2 b2) c2) (Math/sqrt (* 4 a2 b2)))))))
+    ;; Solve for angle C (angle opposite to side c):
+    ;;   C   = acos(x.y/a2*b2)
+    (Math/acos (/ (inner-product A B) (* (magnitude A) (magnitude B))))))
 
 (defn angular-distance2
   "Given two vectors A and B, returns the angle between them."
@@ -290,9 +286,13 @@
   (if (= A (map - B))
     ;; 180 degree turn
     Math/PI
-    ;; Solve for angle C (angle opposite to side c):
-    ;;   C   = acos(x.y/a2*b2)
-    (Math/acos (/ (inner-product A B) (* (magnitude A) (magnitude B))))))
+    (let [a2 (square-distance [0 0] B) ;; side a^2
+          b2 (square-distance [0 0] A) ;; side b^2
+          c2 (square-distance A B)]    ;; side c^2
+      ;; Solve for angle C (angle opposite to side c):
+      ;;   c^2 = a^2 + b^2 - 2ab*cosC
+      ;;   C   = acos((a^2 + b^2 - c^2)/2ab)
+      (Math/acos (/ (- (+ a2 b2) c2) (Math/sqrt (* 4 a2 b2)))))))
 
 (defn count-distinct
   "Returns a map of {distinct-val -> num-instances, ...} for all the
