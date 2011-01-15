@@ -7,11 +7,30 @@
 	<concept>carbonService:CarbonSourceValue</concept>
 	
 	<!-- all the models that apply and in which context -->
-	<model id="core.models.carbon/identification-carbon" context="core.contexts.beta/chehalis" />
-	<model id="core.models.carbon-mark/identification-carbon" context="core.contexts.beta/ca_mark_watershed" />
-	<model id="core.models.carbon-sam/identification-carbon" context="core.contexts.beta/vt" />
-	<model id="core.models.carbon-san-pedro/identification-carbon" context="core.contexts.beta/san_pedro_us" />
-	<model id="core.models.carbon-mg/identification-carbon" context="core.contexts.beta/mg" />
+	<model>
+		<id>core.models.carbon/identification-carbon</id>
+		<context>core.contexts.beta/chehalis</context>
+	</model>	
+
+	<model>
+		<id>core.models.carbon-mark/identification-carbon</id>
+		<context>core.contexts.beta/ca_mark_watershed</context>
+	</model>
+
+	<model>
+		<id>core.models.carbon-sam/identification-carbon</id>
+		<context>core.contexts.beta/vt</context>
+	</model>	
+
+	<model>	
+		<id>core.models.carbon-san-pedro/identification-carbon</id>
+		<context>core.contexts.beta/san_pedro_us</context>
+	</model>	
+
+	<model>
+		<id>core.models.carbon-mg/identification-carbon</id>
+		<context>core.contexts.beta/mg</context>
+	</model>	
 	
 	<page>
 		<id>info</id>
