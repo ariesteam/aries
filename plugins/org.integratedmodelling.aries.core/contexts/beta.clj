@@ -112,6 +112,12 @@
     256
     "EPSG:4326 POLYGON ((47.0 -16.4, 50.9 -16.4, 50.9 -20.2, 47.0 -20.2, 47.0 -16.4))"))  
 
+(defcontext mg_coastal_lowres
+  ""
+   (grid
+    128
+    "EPSG:4326 POLYGON ((47.0 -16.4, 50.9 -16.4, 50.9 -20.2, 47.0 -20.2, 47.0 -16.4))"))
+
 (defcontext mg_coastal_hires
   ""
    (grid
