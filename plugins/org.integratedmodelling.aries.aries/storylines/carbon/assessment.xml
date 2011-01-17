@@ -38,7 +38,7 @@
 		<name>CO2 assessment</name>
 		<concept></concept>
 		<title>General description</title>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>This storyline computes statistics of carbon sequestration by 
 			terrestrial ecosystems, intended as the net
 			removal of carbon dioxide (CO2) from the atmosphere or the
@@ -101,7 +101,7 @@
 		<title>Total Sequestration</title>
 		<name>C removed</name>
 		<units>tonnes C/ha.year</units>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>Total CO2 sequestered. The amount of carbon taken up by vegetation and soils and added
 			to biotic and soil carbon stocks. This is the quantity available for
 			mitigating anthropogenic carbon emissions.</p>
@@ -141,7 +141,7 @@
 		<name> C Released</name>
 		<title>Release of stored carbon</title>
 		<group>sink</group>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, 
 			   or other land use-land cover change. </p>
 			<h1>Role in models</h1>
@@ -170,7 +170,7 @@
 		<name>C Emitted</name>
 		<title>CO2 emission from human activity</title>
 		<group>use</group>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>The beneficiaries of carbon sequestration and storage are greenhouse
 			   gas emitters who release CO2 into the atmosphere, relying on ecosystems 
 			   to absorb and store carbon in order to avoid even larger rises in 
@@ -198,7 +198,7 @@
 		<concept>carbonService:SoilCNRatio</concept>
 		<title>C/N ratio in soil</title>
 		<name>C/N ratio</name>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>The ratio of carbon to nitrogen in soils influences the rate of sequestration
 			of carbon from the vegetation, along with temperature ranges, land cover, vegetation
 			types and evapotranspiration.</p>
@@ -230,7 +230,7 @@
 		<name>Temp range</name>
 		<title>Summer - Winter temperature range</title>
 		<group />
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>The difference between mean summer high and winter low
 				temperatures can be a meaningful predictor of net primary production.</p>
 			<h1>Role in models</h1>
@@ -255,7 +255,7 @@
 		<title>Successional Stage</title>
 		<name>Succession</name>
 		<group />
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>The stage of vegetation regrowth following a major
 			disturbance event. The rate succession will vary widely in different
 			plant communities and regions of the world.</p>
@@ -285,7 +285,7 @@
 		<name>Veg Cover</name>
 		<title>Percent vegetative cover</title>
 		<group />
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>Tree canopy data are used to estimate the total percent vegetative cover in
 			an area. This variable influences both total carbon sequestration and 
 			soil carbon storage in most environments through
@@ -300,12 +300,12 @@
 			<h1>Source</h1>
 			<p>NLCD 2001 data; GLCF (University of Maryland) data used where NLCD database coverage is absent.</p>
 		]]></description>
-		<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -318,7 +318,7 @@
 		<concept>carbonService:HardwoodSoftwoodRatio</concept>
 		<title>Hardwood/Softwood ratio</title>
 		<name>Hardwood</name>
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>Softwood and hardwood tree species grow at different rates, so they sequester and
 			store atmospheric carbon in different ways. Data
 			about the ratio of hardwood to softwood species can be extracted from vegetation records
@@ -330,12 +330,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-		<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
@@ -350,21 +350,17 @@
 		<name>Precipitation</name>
 		<title>Mean annual precipitation</title>
 		<group />
-		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+			h1. Role in models
+			h1. Representation
+			h1. Source
+		</description>
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -378,23 +374,25 @@
 		<name>Fire</name>
 		<title>Fire Frequency</title>
 		<group />
-		<description><![CDATA[
-			<p>Fires, when they happen frequently, are an important and predictable variable in
+		<description>
+			
+			Fires, when they happen frequently, are an important and predictable variable in
 			determining release of carbon from biomass. This variable is included only when the
-			fire variable is expected to be a factor in the C balance.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-				<see-also><![CDATA[
+			fire variable is expected to be a factor in the C balance.
+			
+			h1. Role in models
+			
+			h1. Representation
+			
+			h1. Source
+
+		</description>
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -408,21 +406,17 @@
 		<name>Soil pH</name>
 		<title>Soil pH</title>
 		<group />
-		<description><![CDATA[
-			<p>.</p>
-			<h1>Role in models</h1>
-			<p>.</p>
-			<h1>Representation</h1>
-			<p>.</p>
-			<h1>Source</h1>
-			<p>.</p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+			h1. Role in models
+			h1. Representation
+			h1. Source
+		</description>
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -436,7 +430,7 @@
 		<name>Population</name>
 		<title>Population density</title>
 		<group />
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>Population density influences carbon storage in the ARIES sink model used for
 			this storyline. This influence is only relevant in tropical environments due to
 			the uses being made of the forests.</p>
@@ -449,7 +443,7 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-		<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			Gaston, G., S. Brown, M. Lorenzini, and K.D. Singh. 1998.  State and change in 
 			carbon pools in the forests of tropical Africa.  Global Change Biology
@@ -457,7 +451,7 @@
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: LANDSCAN 30m coverages produced by Oak Ridge Natl.Labs.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -484,12 +478,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-				<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -512,12 +506,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-				<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -540,12 +534,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-				<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -559,7 +553,7 @@
 		<name>Vegetation</name>
 		<title>Vegetation type</title>
 		<group />
-		<description><![CDATA[
+		<description language="html"><![CDATA[
 			<p>Different species and groups of plant species have
 			different carbon sequestration rates and different capacity to store
 			carbon.</p>
@@ -570,12 +564,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-				<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -602,12 +596,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-		<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
@@ -631,12 +625,12 @@
 			<h1>Source</h1>
 			<p>.</p>
 		]]></description>
-				<see-also><![CDATA[
+		<see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[
+		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
