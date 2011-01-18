@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<storyline>
+  <id>aries.coastal.litanne-assets</id>
+  <concept>coastalProtection:CoastalStormProtection</concept>
+  <title>Coastal Assets - Litanne</title>
+  <runninghead>Avoided property cost of Litanne storm</runninghead>
+  <description>litanne-assets</description>
+  <page>
+    <id>info</id>
+    <name>Coastal Storm Protection</name>
+    <title>Coastal Storm Protection</title>
+    <disabled>false</disabled>
+    <description>No description given</description>
+    <runninghead>Coastal Storm Protection</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+  </page>
+  <model>
+    <id>marine.models.coastal/coastal-protection-flow-litanne-assets</id>
+    <context>core.contexts.beta/mg_coastal</context>
+  </model>
+  <page id="mangrove-presence-class">
+    <concept>coastalProtection:MangrovePresenceClass</concept>
+    <name>Mangrove Presence Class</name>
+    <title>Mangrove Presence Class</title>
+    <description>No description given</description>
+    <runninghead>Mangrove Presence Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="wind-speed-class">
+    <concept>coastalProtection:WindSpeedClass</concept>
+    <name>Wind Speed Class</name>
+    <title>Wind Speed Class</title>
+    <description>No description given</description>
+    <runninghead>Wind Speed Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="seagrass-presence-class">
+    <concept>coastalProtection:SeagrassPresenceClass</concept>
+    <name>Seagrass Presence Class</name>
+    <title>Seagrass Presence Class</title>
+    <description>No description given</description>
+    <runninghead>Seagrass Presence Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="cyclone-sensitive-economic-value">
+    <concept>coastalProtection:CycloneSensitiveEconomicValue</concept>
+    <name>Assets at risk for tropical storms</name>
+    <title>Assets at risk for tropical storms</title>
+    <description>No description given</description>
+    <runninghead>Assets at risk for tropical storms</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="buffer-mg100km">
+    <concept>coastalProtection:BufferMg100km</concept>
+    <name>Buffer Mg100km</name>
+    <title>Buffer Mg100km</title>
+    <description>No description given</description>
+    <runninghead>Buffer Mg100km</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="total-coastal-flood-protection">
+    <concept>coastalProtection:TotalCoastalFloodProtection</concept>
+    <name>Total Coastal Flood Protection</name>
+    <title>Total Coastal Flood Protection</title>
+    <description>No description given</description>
+    <runninghead>Total Coastal Flood Protection</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="bathymetric-slope">
+    <concept>coastalProtection:BathymetricSlope</concept>
+    <name>Bathymetric Slope</name>
+    <title>Bathymetric Slope</title>
+    <description>Undersea slope</description>
+    <runninghead>Bathymetric Slope</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="atmospheric-pressure-class">
+    <concept>coastalProtection:AtmosphericPressureClass</concept>
+    <name>Atmospheric Pressure Class</name>
+    <title>Atmospheric Pressure Class</title>
+    <description>No description given</description>
+    <runninghead>Atmospheric Pressure Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="geomorphic-flood-protection">
+    <concept>coastalProtection:GeomorphicFloodProtection</concept>
+    <name>Geomorphic Flood Protection</name>
+    <title>Geomorphic Flood Protection</title>
+    <description>No description given</description>
+    <runninghead>Geomorphic Flood Protection</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="potential-wave-damage-received">
+    <concept>coastalProtection:PotentialWaveDamageReceived</concept>
+    <name>Potential Wave Damage Received</name>
+    <title>Potential Wave Damage Received</title>
+    <description>Populations vulnerable to floods (i.e., being located in coastal flood zones), but without yet accounting for the effects of sinks that reduce the energy of coastal flood waters.</description>
+    <runninghead>Potential Wave Damage Received</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="mitigated-wave-source">
+    <concept>coastalProtection:MitigatedWaveSource</concept>
+    <name>Mitigated Wave Source</name>
+    <title>Mitigated Wave Source</title>
+    <description>A source of coastal flooding that is mitigated through the action of sinks.</description>
+    <runninghead>Mitigated Wave Source</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="utilized-wave-mitigation">
+    <concept>coastalProtection:UtilizedWaveMitigation</concept>
+    <name>Utilized Wave Mitigation</name>
+    <title>Utilized Wave Mitigation</title>
+    <description>Sinks that actively absorb flood water (i.e., have enough sink strength to reduce energy from coastal flood waters.</description>
+    <runninghead>Utilized Wave Mitigation</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="actual-wave-flow">
+    <concept>coastalProtection:ActualWaveFlow</concept>
+    <name>Actual Wave Flow</name>
+    <title>Actual Wave Flow</title>
+    <description>Actual coastal flood flows when accounting for water flow direction and sink effects</description>
+    <runninghead>Actual Wave Flow</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="potential-wave-mitigation">
+    <concept>coastalProtection:PotentialWaveMitigation</concept>
+    <name>Potential Wave Mitigation</name>
+    <title>Potential Wave Mitigation</title>
+    <description>Areas capable of reducing the energy of coastal flood waters, whether or not they receive enough flood water to perform this function.</description>
+    <runninghead>Potential Wave Mitigation</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="litanne-presence">
+    <concept>coastalProtection:LitannePresence</concept>
+    <name>Litanne Presence</name>
+    <title>Litanne Presence</title>
+    <description>No description given</description>
+    <runninghead>Litanne Presence</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="coastal-wave-source">
+    <concept>coastalProtection:CoastalWaveSource</concept>
+    <name>Coastal Wave Source</name>
+    <title>Coastal Wave Source</title>
+    <description>Areas generating coastal flood water that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have coastal or inland populations vulnerable to flooding, or have strong sinks capable of reducing the energy of coastal flood waters.</description>
+    <runninghead>Coastal Wave Source</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="storm-track">
+    <concept>coastalProtection:StormTrack</concept>
+    <name>Storm Track</name>
+    <title>Storm Track</title>
+    <description>No description given</description>
+    <runninghead>Storm Track</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="ocean-depth-and-land-elevation">
+    <concept>coastalProtection:OceanDepthAndLandElevation</concept>
+    <name>Ocean Depth And Land Elevation</name>
+    <title>Ocean Depth And Land Elevation</title>
+    <description>No description given</description>
+    <runninghead>Ocean Depth And Land Elevation</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="absorbed-wave-flow">
+    <concept>coastalProtection:AbsorbedWaveFlow</concept>
+    <name>Absorbed Wave Flow</name>
+    <title>Absorbed Wave Flow</title>
+    <description>The coastal flood flow whose energy is reduced by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</description>
+    <runninghead>Absorbed Wave Flow</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="unutilized-wave-mitigation">
+    <concept>coastalProtection:UnutilizedWaveMitigation</concept>
+    <name>Unutilized Wave Mitigation</name>
+    <title>Unutilized Wave Mitigation</title>
+    <description>A flood sink region capable of reducing the energy of coastal flood water that does not perform this function due to inadequate size of coastal waves typical to the area.</description>
+    <runninghead>Unutilized Wave Mitigation</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="bathymetry-class">
+    <concept>coastalProtection:BathymetryClass</concept>
+    <name>Bathymetry Class</name>
+    <title>Bathymetry Class</title>
+    <description>No description given</description>
+    <runninghead>Bathymetry Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="potentially-damaging-wave-source">
+    <concept>coastalProtection:PotentiallyDamagingWaveSource</concept>
+    <name>Potentially Damaging Wave Source</name>
+    <title>Potentially Damaging Wave Source</title>
+    <description>Sources of coastal floodwater when accounting for flow topology (flow directions) and the presence of coastal or inland users but not accounting for the action of flood sinks that reduce the energy of coastal flood waters.</description>
+    <runninghead>Potentially Damaging Wave Source</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="benign-wave-source">
+    <concept>coastalProtection:BenignWaveSource</concept>
+    <name>Benign Wave Source</name>
+    <title>Benign Wave Source</title>
+    <description>Potential sources of flood water that do not cause flooding to human populations due to a lack of coastal or inland beneficiaries or a lack of a flow toplogy connecting flood sources to vulnerable populations.</description>
+    <runninghead>Benign Wave Source</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="wave-damage-received">
+    <concept>coastalProtection:WaveDamageReceived</concept>
+    <name>Wave Damage Received</name>
+    <title>Wave Damage Received</title>
+    <description>Potential coastal or inland beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength.</description>
+    <runninghead>Wave Damage Received</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="storm-surge-class">
+    <concept>coastalProtection:StormSurgeClass</concept>
+    <name>Storm Surge Class</name>
+    <title>Storm Surge Class</title>
+    <description>No description given</description>
+    <runninghead>Storm Surge Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="wave-mitigation-benefits-accrued">
+    <concept>coastalProtection:WaveMitigationBenefitsAccrued</concept>
+    <name>Wave Mitigation Benefits Accrued</name>
+    <title>Wave Mitigation Benefits Accrued</title>
+    <description>Populations that actually receive coastal flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</description>
+    <runninghead>Wave Mitigation Benefits Accrued</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="flood-damaging-wave-source">
+    <concept>coastalProtection:FloodDamagingWaveSource</concept>
+    <name>Flood Damaging Wave Source</name>
+    <title>Flood Damaging Wave Source</title>
+    <description>Areas susceptible to coastal flooding  that have coastal or inland populations vulnerable to flooding.  These coastal or inland populations do get hit with flood waters due to either inadequate sink strengths or too large a quantity of flood water relative to the sink.</description>
+    <runninghead>Flood Damaging Wave Source</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="artificial-coastal-protection">
+    <concept>coastalProtection:ArtificialCoastalProtection</concept>
+    <name>Artificial Coastal Protection</name>
+    <title>Artificial Coastal Protection</title>
+    <description>No description given</description>
+    <runninghead>Artificial Coastal Protection</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="potentially-wave-vulnerable-populations">
+    <concept>coastalProtection:PotentiallyWaveVulnerablePopulations</concept>
+    <name>Potentially Wave Vulnerable Populations</name>
+    <title>Potentially Wave Vulnerable Populations</title>
+    <description>Potential beneficiaries of coastal flood control, including both actually vulnerable populations and those in areas that are of low or irregular flood risk or who are protected from flooding by strong sinks (i.e., are unlikely to flood).</description>
+    <runninghead>Potentially Wave Vulnerable Populations</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="potentially-damaging-wave-flow">
+    <concept>coastalProtection:PotentiallyDamagingWaveFlow</concept>
+    <name>Potentially Damaging Wave Flow</name>
+    <title>Potentially Damaging Wave Flow</title>
+    <description>Flood flows when accounting for flow topology (i.e., coastal floodwater movement directions) but not accounting for sinks.</description>
+    <runninghead>Potentially Damaging Wave Flow</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="coral-quality">
+    <concept>coastalProtection:CoralQuality</concept>
+    <name>Coral Quality</name>
+    <title>Coral Quality</title>
+    <description>No description given</description>
+    <runninghead>Coral Quality</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="terrestrial-vegetation-type">
+    <concept>coastalProtection:TerrestrialVegetationType</concept>
+    <name>Terrestrial Vegetation Type</name>
+    <title>Terrestrial Vegetation Type</title>
+    <description>No description given</description>
+    <runninghead>Terrestrial Vegetation Type</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="dune-presence-class">
+    <concept>coastalProtection:DunePresenceClass</concept>
+    <name>Dune Presence Class</name>
+    <title>Dune Presence Class</title>
+    <description>No description given</description>
+    <runninghead>Dune Presence Class</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="storm-tracks">
+    <concept>coastalProtection:StormTracks</concept>
+    <name>Storm Tracks</name>
+    <title>Storm Tracks</title>
+    <description>No description given</description>
+    <runninghead>Storm Tracks</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  <page id="protection-presence">
+    <concept>coastalProtection:ProtectionPresence</concept>
+    <name>Protection Presence</name>
+    <title>Protection Presence</title>
+    <description>No description given</description>
+    <runninghead>Protection Presence</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+</storyline>
