@@ -119,7 +119,7 @@
 
 ;;GARY: any problem having 2 uses of geofeatures:River in the same model??
 (defmodel stream-channel 'waterSupplyService:StreamChannel
-  (classification (binary-coding 'geofeatures:River) 
+  (classification (binary-coding 'sanPedro:HydrographySimple) 
         1           'waterSupplyService:StreamChannelPresent
         :otherwise  'waterSupplyService:StreamChannelAbsent))
 
@@ -295,12 +295,15 @@
 (defmodel flow-direction 'geophysics:FlowDirection
   (ranking 'geophysics:FlowDirection))
 
-(defmodel streams 'geofeatures:River
+(defmodel streams 'geofeatures:River ;;Too high a resolution to be practical, plus has display problems.
   (binary-coding 'geofeatures:River))
+
+(defmodel streams-simple 'sanPedro:HydrographySimple ;;This could be rasterized to speed the process, though probably not critical.
+  (binary-coding 'sanPedro:HydrographySimple))
 
 (defmodel surface-water-flow-data 'waterSupplyService:TempSurfaceWaterData$
   (identification 'waterSupplyService:TempSurfaceWaterData
-                  :context (altitude streams)))
+                  :context (altitude streams-simple stream-channel)))
 
 ;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
 
@@ -314,14 +317,24 @@
   :context (precipitation-wet-year 
             surface-water-sink       
             surface-diversions
-            streams)))
+            streams-simple)))
 
-(defmodel data-dry-year 'waterSupplyService:WaterSupplyDryYear
+;;(defmodel data-dry-year 'waterSupplyService:WaterSupplyDryYear
+;;  (identification 'waterSupplyService:WaterSupplyDryYear
+;;  :context (precipitation-dry-year 
+;;            surface-water-sink       
+;;            surface-diversions
+;;            streams-simple)))
+
+(defmodel data-big-test 'waterSupplyService:WaterSupplyDryYear
   (identification 'waterSupplyService:WaterSupplyDryYear
-  :context (precipitation-dry-year 
-            surface-water-sink       
+  :context (precipitation-wet-year
+            precipitation-dry-year
             surface-diversions
-            streams)))
+            et-sink
+            infiltration-sink
+            streams-simple
+            altitude)))
 
 ;; other elements for export to NetCDF, that will eventually go into groundwater models.
 (defmodel other-data 'waterSupplyService:GroundwaterSupply 
