@@ -69,7 +69,8 @@
                   #{4 5 6}        'aestheticService:LowFireThreat))
 
 ;;This uses the WDPA data - need to double check that the numbers correspond to protected/not protected (see what's getting output).
-;; Might be worthwhile to replace with local data
+;; Might be worthwhile to replace with local data.
+;; Should also change unprotected land to state & private land only: other BLM for instance isn't going to be developed.
 (defmodel formal-protection 'aestheticService:FormalProtection
   (classification (binary-coding 'conservation:ProtectedStatus)
                   1            'aestheticService:Protected
@@ -118,6 +119,9 @@
   (classification (ranking 'economics:AppraisedPropertyValue)
                   0               'aestheticService:HousingAbsent
                   :otherwise      'aestheticService:HousingPresent))
+;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+;;        :otherwise   'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking 'economics:AppraisedPropertyValue)
@@ -183,9 +187,9 @@
         :downscaling-factor 2
         :rv-max-states      10
         :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand
-               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximiateHomeowners
+               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximateHomeowners
                'aestheticService:AccessibleProximity 'aestheticService:EnjoyedOpenSpace 'aestheticService:BlockingProximitySink
-               'aestheticService:HomeownersWithProximiateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
+               'aestheticService:HomeownersWithProximateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
                'aestheticService:HomeownersWithoutProximateOpenSpace 'aestheticService:BlockedProximity 'aestheticService:BlockedOpenSpace
                'aestheticService:HomeownersWithBlockedProximity)
         :context (source homeowners sink)))

@@ -199,6 +199,7 @@
     :otherwise 'coastalProtection:ArtificialCoastalProtectionAbsent))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
+;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel coastal-flood-protection 'coastalProtection:TotalCoastalFloodProtection
   (classification 'coastalProtection:TotalCoastalFloodProtection
                   :units      "m"
@@ -265,6 +266,7 @@
     [:< -2000]          'coastalProtection:DeepWater))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
+;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel geomorphic-flood-protection 'coastalProtection:GeomorphicFloodProtection
   (classification 'coastalProtection:GeomorphicFloodProtection
                   :units      "m"

@@ -145,7 +145,7 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [12 1200]   'carbonService:VeryHighRelease ;;Need to check this ceiling; values of 1000 can be found in the Pacific NW rainforests, need to see how this compares to Madagascar's rainforests.
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease

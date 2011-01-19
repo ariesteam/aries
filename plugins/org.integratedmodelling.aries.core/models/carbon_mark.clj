@@ -94,8 +94,8 @@
                   [12 30]     'carbonService:VeryHighSequestration
                   [9 12]      'carbonService:HighSequestration
                   [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [1.5 6]     'carbonService:LowSequestration
+                  [0.01 1.5]  'carbonService:VeryLowSequestration
                   [0 0.01]    'carbonService:NoSequestration))
 
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
@@ -156,7 +156,7 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease
+                  [12 300]    'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease

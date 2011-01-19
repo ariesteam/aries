@@ -31,8 +31,8 @@
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
   (classification 'aestheticService:TheoreticalNaturalBeauty
-                  [0    5] 'aestheticService:NoNaturalBeauty 
-                  [5   25] 'aestheticService:LowNaturalBeauty 
+                  [0   10] 'aestheticService:NoNaturalBeauty 
+                  [10  25] 'aestheticService:LowNaturalBeauty 
                   [25  50] 'aestheticService:ModerateNaturalBeauty 
                   [50 100] 'aestheticService:HighNaturalBeauty))
 
@@ -62,8 +62,8 @@
 
 (defmodel highway 'aestheticService:Highways 
   (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
+                  1          'aestheticService:HighwaysPresent
+                  :otherwise 'aestheticService:HighwaysAbsent))
 
 ;; Insert correct concepts for Mexico
 (defmodel developed-land 'aestheticService:DevelopedLand
@@ -95,6 +95,9 @@
   (classification (ranking 'economics:AppraisedPropertyValue)
                   0               'aestheticService:HousingAbsent
                   :otherwise      'aestheticService:HousingPresent))
+;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+;;        :otherwise   'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking 'economics:AppraisedPropertyValue)

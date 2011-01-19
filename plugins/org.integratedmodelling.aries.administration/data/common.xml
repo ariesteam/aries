@@ -222,9 +222,9 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:Ranking id="NLCD92_Project">
+	<measurement:NumericCoding id="NLCD92_Project">
 		<observation:hasObservable>
-			<aestheticService:CommercialIndustrialTransportation />
+			<nlcd:NLCD1992Typology />
 		</observation:hasObservable>
 			<rdfs:comment>Data source: NLCD 1992</rdfs:comment>
 			<metadata:hasPriority>5</metadata:hasPriority> 
@@ -246,7 +246,7 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 				<geospace:hasCoordinateReferenceSystem>EPSG:2855</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:NumericCoding>
 
 <!-- For use in USLE/RUSLE -->	
 	

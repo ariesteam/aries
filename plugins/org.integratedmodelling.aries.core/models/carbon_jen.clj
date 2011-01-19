@@ -107,7 +107,7 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [12 300]    'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease

@@ -113,6 +113,9 @@
   (classification (ranking 'aestheticService:PresenceOfHousing)
         [0 :>]        'aestheticService:HousingPresent  
         :otherwise    'aestheticService:HousingAbsent))
+;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+;;        :otherwise   'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -175,9 +178,9 @@
         :downscaling-factor 2
         :rv-max-states      10
         :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand
-               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximiateHomeowners
+               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximateHomeowners
                'aestheticService:AccessibleProximity 'aestheticService:EnjoyedOpenSpace 'aestheticService:BlockingProximitySink
-               'aestheticService:HomeownersWithProximiateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
+               'aestheticService:HomeownersWithProximateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
                'aestheticService:HomeownersWithoutProximateOpenSpace 'aestheticService:BlockedProximity 'aestheticService:BlockedOpenSpace
                'aestheticService:HomeownersWithBlockedProximity)
         :context (source homeowners sink)))

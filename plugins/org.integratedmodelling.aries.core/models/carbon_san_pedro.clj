@@ -93,8 +93,8 @@
                   [12 30]     'carbonService:VeryHighSequestration
                   [9 12]      'carbonService:HighSequestration
                   [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
+                  [1 6]       'carbonService:LowSequestration
+                  [0.01 1]    'carbonService:VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008)
                   [0 0.01]    'carbonService:NoSequestration))
 
 ;; Bayesian source model
@@ -150,7 +150,7 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 3200]   'carbonService:VeryHighRelease ;;may need to lower this number so the calculations work out.
+                  [12 200]   'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      'carbonService:HighRelease
                   [6 9]       'carbonService:ModerateRelease
                   [3 6]       'carbonService:LowRelease

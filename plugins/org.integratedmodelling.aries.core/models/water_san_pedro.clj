@@ -114,7 +114,7 @@
 
 (defmodel mountain-front 'waterSupplyService:MountainFront
     (classification (binary-coding 'geofeatures:MountainFront)
-        1           'waterSupplyService:MountainFrontPresent
+        0           'waterSupplyService:MountainFrontPresent ;;tried both 0 & 1 here and get messy results both ways.
         :otherwise  'waterSupplyService:MountainFrontAbsent))
 
 ;;GARY: any problem having 2 uses of geofeatures:River in the same model??

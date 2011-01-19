@@ -30,10 +30,10 @@
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
   (classification 'aestheticService:TheoreticalNaturalBeauty
-                  [0   25] 'aestheticService:NoNaturalBeauty 
-                  [25  50] 'aestheticService:LowNaturalBeauty 
-                  [50  75] 'aestheticService:ModerateNaturalBeauty 
-                  [75 100] 'aestheticService:HighNaturalBeauty))
+                  [0   5]  'aestheticService:NoNaturalBeauty 
+                  [5  25]  'aestheticService:LowNaturalBeauty 
+                  [25  50] 'aestheticService:ModerateNaturalBeauty 
+                  [50 100] 'aestheticService:HighNaturalBeauty))
 
 ;; source bayesian model	    		 
 (defmodel source 'aestheticService:AestheticViewProvision
@@ -56,7 +56,7 @@
 
 ; NLCD 1992 for Commercial/Industrial/Transportation land use
 (defmodel commercial-transportation 'aestheticService:CommercialIndustrialTransportation 
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
+  (classification (numeric-coding 'nlcd:NLCD1992Typology)
                   23         'aestheticService:TransportationInfrastructurePresent
                   :otherwise 'aestheticService:TransportationInfrastructureAbsent))
 
@@ -89,6 +89,9 @@
   (classification (ranking 'aestheticService:PresenceOfHousing)
         [0 :>]        'aestheticService:HousingPresent  
         :otherwise    'aestheticService:HousingAbsent))
+;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+;;        :otherwise   'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
