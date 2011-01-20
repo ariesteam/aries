@@ -1,6 +1,8 @@
 (ns core.models.water-san-pedro
   (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer modelling :only (defscenario defmodel measurement classification 
+                            categorization ranking numeric-coding binary-coding 
+                            identification bayesian count probabilistic-measurement))
   (:refer aries :only (span)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -161,15 +163,15 @@
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-(defmodel evapotranspiration 'floodService:EvapotranspirationClass
-  (classification 'floodService:EvapotranspirationClass 
+(defmodel evapotranspiration 'waterSupplyService:EvapotranspirationClass
+  (probabilistic-measurement 'waterSupplyService:EvapotranspirationClass 
                   :units "mm"
-                  [60 120]   'floodService:HighEvapotranspiration
-                  [30 60]    'floodService:ModerateEvapotranspiration
-                  [0 30]     'floodService:LowEvapotranspiration))
+                  [60 120]   'waterSupplyService:HighEvapotranspiration
+                  [30 60]    'waterSupplyService:ModerateEvapotranspiration
+                  [0 30]     'waterSupplyService:LowEvapotranspiration))
 
-(defmodel infiltration 'waterSupplyService:SoilInfiltrationClass
-  (classification 'waterSupplyService:SoilInfiltrationClass 
+(defmodel infiltration 'waterSupplyService:SoilInfiltration
+  (probabilistic-measurement 'waterSupplyService:SoilInfiltrationClass 
                   :units "mm"
                   [60 120]   'waterSupplyService:HighInfiltration
                   [30 60]    'waterSupplyService:ModerateInfiltration
@@ -179,21 +181,22 @@
     (bayesian 'waterSupplyService:Evapotranspiration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (annual-temperature vegetation-type percent-vegetation-cover)
-      :keep     ('floodService:EvapotranspirationClass)
-      :observed (evapotranspiration)))
+      :keep     ('waterSupplyService:EvapotranspirationClass)
+      :result    evapotranspiration))
 
 (defmodel infiltration-sink 'waterSupplyService:SoilInfiltration
     (bayesian 'waterSupplyService:SoilInfiltration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (stream-channel mountain-front)
       :keep     ('waterSupplyService:SoilInfiltrationClass)
-      :observed (infiltration)))
+      :result   infiltration))
 
 (defmodel surface-water-sink 'waterSupplyService:SurfaceWaterSink
   (measurement 'waterSupplyService:SurfaceWaterSink "mm/year"
-    :context (infiltration-sink :as infiltration-sink et-sink :as et-sink) 
-    :state #(+ (:infiltration-sink %)
-               (:et-sink           %))))
+    :context (infiltration-sink :as infiltration et-sink :as evapotranspiration) 
+    :state #(+ 
+              (if (nil? (:infiltration %)) 0.0 (.getMean (:infiltration %)))
+              (if (nil? (:evapotranspiration %)) 0.0 (.getMean (:evapotranspiration %))))))
 
 ;; Add artificial recharge as a sink of surface water.  Can sum with the natural surface-sink to get total surface
 ;;  water sink.
