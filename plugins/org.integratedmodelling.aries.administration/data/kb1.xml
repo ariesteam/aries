@@ -483,31 +483,31 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 </measurement:Measurement>
 
 <!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, 2010. -->
-	<measurement:Ranking id="pinal_pima_value">
-		<observation:hasObservable>
-			<economics:AppraisedPropertyValue />
-		</observation:hasObservable>
-		<rdfs:comment>Data source: Derived from Pima and Pinal Co., AZ parcel data. Calculated property value/ac.</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>sanPedro:pinal_pima_value</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>8374</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>6731</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-112.925</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>33.467</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-109.872</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Ranking>
+<measurement:Ranking id="housing_value_san_pedro3">
+	<observation:hasObservable>
+		<economics:AppraisedPropertyValue />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from Pima and Pinal Co., AZ parcel data. Calculated property value/ac.</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:housing_value_san_pedro3</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>9867</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>6938</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>31.4055856</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-113.371172</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>33.4672157</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-110.439439</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:Ranking>
 
 <!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, variable by county, 2005-2008. -->
 <measurement:Ranking id="housing_value_puget2">
@@ -1257,30 +1257,6 @@ cross-boundary data handling features are enabled.
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
-
-<measurement:BinaryCoding id="sanPedro_hydrography_simple_az">
-	<observation:hasObservable>
-		<sanPedro:HydrographySimple />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
-	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:hydrography_simple_az</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3466167.0595307318</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>533050.5962748814</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>3592355.959438759</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>609153.22257686</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
-	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
 
 <measurement:Ranking id="oc_hsg">
 	<observation:hasObservable>
@@ -3233,32 +3209,6 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<measurement:BinaryCoding id="hydrography_az">
-	<observation:hasObservable>
-		<geofeatures:River />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: National Hydrography Dataset</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:hydrography_az</geospace:hasCoverageId>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>26584</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>21712</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>30.86800158030866</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-115.330344</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>37.846517</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-107.354544</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
 <measurement:BinaryCoding id="sanPedro_mex_hydrography">
 	<observation:hasObservable>
 		<geofeatures:River />
@@ -3305,6 +3255,180 @@ we could discuss integrating those at some point.-->
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="global_hydrography_europe">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+	<metadata:hasPriority>10</metadata:hasPriority>
+	<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+	<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>global:hydrography_europe</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>12.6046094894409</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-21.7620868682861</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>79.7840194702148</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>66.7019119262695</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="global_hydrography_namerica">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_namerica</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>7.85668897628784</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-166.383560180664</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.1898727416992</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-53.9646644592285</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="global_hydrography_africa">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_africa</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-34.7510871887207</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-17.0239601135254</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.227466583252</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>51.189136505127</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="global_hydrography_australia">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_australia</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-46.5708618164062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>95.3060760498047</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>18.4474067687988</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>178.571899414062</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="global_hydrography_asia">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_asia</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>1.62845921516418</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>79.7836303710938</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+	<measurement:BinaryCoding id="global_hydrography_samerica">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global hydrography</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_samerica</geospace:hasCoverageId>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-54.5574569702148</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-81.288948059082</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>11.5741453170776</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-34.8422622680664</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="sanPedro_hydrography_az_2">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>sanPedro:hydrography_az_2</geospace:hasCoverageId>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>3460316.9198390865</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>116430.37599796552</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4106928.2415295388</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>698532.9688473609</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 	<!-- This one is just a presence/absence of roads -->
 <measurement:BinaryCoding id="sanPedro_az_roads">
@@ -3996,6 +4120,165 @@ we could discuss integrating those at some point.-->
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+
+<!-- The following 6 global stream gradient layers are not in degrees, like the locally calculated ones, but are a ratio of 
+elevation drop over distance for each stream segment.  They should be used in national & global scale cases but will 
+require re-discretization, likely by comparing their values to places where we also have stream gradient measured in degrees. -->
+	<measurement:Ranking id="global_hydrography_europe">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_europe</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>12.6046094894409</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-21.7620868682861</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>79.7840194702148</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>66.7019119262695</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="global_hydrography_africa">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_africa</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-34.7510871887207</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-17.0239601135254</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>37.227466583252</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>51.189136505127</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="global_hydrography_australia">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_australia</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-46.5708618164062</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>95.3060760498047</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>18.4474067687988</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>178.571899414062</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="global_hydrography_namerica">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_namerica</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>7.85668897628784</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-166.383560180664</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>83.1898727416992</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-53.9646644592285</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="global_hydrography_asia">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_asia</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>1.62845921516418</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>79.7836303710938</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
+
+	<measurement:Ranking id="global_hydrography_samerica">
+		<observation:hasObservable>
+			<habitat:StreamGradientRatio />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: USGS HYDRO1k Elevation Derivative Database</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/gtopo30/hydro</metadata:hasURL>
+		<metadata:belongsToDataset>USGS HYDRO1k global stream gradient</metadata:belongsToDataset>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>global:hydrography_samerica</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>gradient</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>-54.5574569702148</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-81.288948059082</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>11.5741453170776</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-34.8422622680664</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 <measurement:Measurement id="Diversions">
 	<observation:hasObservable>

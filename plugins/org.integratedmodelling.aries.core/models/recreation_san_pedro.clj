@@ -24,8 +24,8 @@
 ;; and for human preferences to recreate in riparian areas in the desert.
 ;;Hydrography-simple currently covers only the Upper San Pedro, so need to get full
 ;; layer from Bill Kepner.  Check syntax on the statements with Gary.
-(defmodel streams 'sanPedro:HydrographySimple  ;;A simplified hydrography layer: NHD is too much here (get it into Geoserver)
-  (binary-coding 'sanPedro:HydrographySimple))
+(defmodel streams 'geofeatures:River  ;;A simplified hydrography layer: NHD is too much here
+  (binary-coding 'geofeatures:River))
 (defmodel springs 'waterSupplyService:Springs
   (binary-coding 'waterSupplyService:Springs))
 (defmodel water-presence 'sanPedro:WaterPresence
@@ -57,6 +57,21 @@
                   2 'sanPedro:ModerateQualityRiparianSpringWetland
                   1 'sanPedro:LowQualityRiparianSpringWetland
                   0 'sanPedro:RiparianSpringWetlandAbsent))
+
+;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
+;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
+;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
+;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
+;;(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
+;;  (numeric-coding 'sanPedro:RiparianAndWetlandCode
+;;                  :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
+;;                            (ranking 'sanPedro:RiparianConditionClass :as condition))
+;;                  :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:lulc %))
+;;                                (let [condition (:condition %)]
+;;                                  (if (or (nil? condition) (Double/isNaN condition))
+;;                                    1
+;;                                    condition))
+;;                                0)))
 
 ;;(defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
 ;;  (numeric-coding 'sanPedro:RiparianAndWetlandCode

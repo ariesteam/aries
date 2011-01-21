@@ -32,24 +32,20 @@
                   #{40 44 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 66 67 82 94 96 97 105 108}  'aestheticService:DesertScrubPresent                  
                   :otherwise                                                                          'aestheticService:DesertScrubAbsent))
 
+;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
+;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
+;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
 (defmodel riparian-wetland-code 'sanPedro:RiparianAndWetlandCode
   (numeric-coding 'sanPedro:RiparianAndWetlandCode
                   :context ((numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
                             (ranking 'sanPedro:RiparianConditionClass :as condition))
-                  :state   #(cond (and (== (:condition %) 1)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-                                  1 ;;'sanPedro:LowQualityRiparianOrWetlandPresent
+                  :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:lulc %))
+                                (let [condition (:condition %)]
+                                  (if (or (nil? condition) (Double/isNaN condition))
+                                    1
+                                    condition))
+                                0)))
 
-                                  (and (== (:condition %) 2)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-                                  2 ;;'sanPedro:ModerateQualityRiparianOrWetlandPresent
-
-                                  (and (== (:condition %) 3)
-                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
-                                  3 ;;'sanPedro:HighQualityRiparianOrWetlandPresent
-
-                                  :otherwise 0 ;;'sanPedro:RiparianOrWetlandAbsent
-                                  )))
 (defmodel riparian-wetland 'sanPedro:RiparianAndWetland
   (classification riparian-wetland-code
                   3 'sanPedro:HighQualityRiparianOrWetlandPresent
@@ -117,15 +113,15 @@
 
 (defmodel housing 'aestheticService:PresenceOfHousing
   (classification (ranking 'economics:AppraisedPropertyValue)
-                  0               'aestheticService:HousingAbsent
-                  :otherwise      'aestheticService:HousingPresent))
+        [1 :>]            'aestheticService:HousingPresent
+        :otherwise        'aestheticService:HousingAbsent))
 ;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
 ;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
 ;;        :otherwise   'aestheticService:HousingAbsent))
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking 'economics:AppraisedPropertyValue)
-                  [:<        50000] 'aestheticService:VeryLowHousingValue
+                  [0         50000] 'aestheticService:VeryLowHousingValue
                   [50000    100000] 'aestheticService:LowHousingValue
                   [100000   350000] 'aestheticService:ModerateHousingValue
                   [350000  1000000] 'aestheticService:HighHousingValue
@@ -141,8 +137,8 @@
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse
   (classification 'aestheticService:HomeownerProximityUse
-                  [0 5]   'aestheticService:HomeownerProximityUseAbsent 
-                  [5 100] 'aestheticService:HomeownerProximityUsePresent))
+                  [0 0.05]   'aestheticService:HomeownerProximityUseAbsent 
+                  [0.05 1] 'aestheticService:HomeownerProximityUsePresent))
 
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ProximityUse

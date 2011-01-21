@@ -93,15 +93,15 @@
 
 (defmodel housing 'aestheticService:PresenceOfHousing
   (classification (ranking 'economics:AppraisedPropertyValue)
-                  0               'aestheticService:HousingAbsent
-                  :otherwise      'aestheticService:HousingPresent))
-;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
-;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
-;;        :otherwise   'aestheticService:HousingAbsent))
+        [1 :>]       'aestheticService:HousingPresent
+        :otherwise   'aestheticService:HousingAbsent))
+  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+        :otherwise   'aestheticService:HousingAbsent)
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking 'economics:AppraisedPropertyValue)
-                  [:<        50000] 'aestheticService:VeryLowHousingValue
+                  [0         50000] 'aestheticService:VeryLowHousingValue
                   [50000    100000] 'aestheticService:LowHousingValue
                   [100000   350000] 'aestheticService:ModerateHousingValue
                   [350000  1000000] 'aestheticService:HighHousingValue
@@ -114,10 +114,11 @@
                 :otherwise    'aestheticService:ScenicDrivesAbsent))
 
 ;;undiscretizer for view use
+;;  This needs to be a range (high-mod-low)
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
   (classification 'aestheticService:HomeownerViewUse
-                  [0 5]   'aestheticService:HomeownerViewUseAbsent 
-                  [5 100] 'aestheticService:HomeownerViewUsePresent))
+                  [0 0.05]   'aestheticService:HomeownerViewUseAbsent 
+                  [0.05 1]   'aestheticService:HomeownerViewUsePresent))
 
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ViewUse
