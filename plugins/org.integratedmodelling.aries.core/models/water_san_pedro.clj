@@ -114,14 +114,13 @@
 ;;                  [30 60]    'floodService:ModerateEvapotranspiration
 ;;                  [0 30]    'floodService:LowEvapotranspiration)) 
 
-(defmodel mountain-front 'waterSupplyService:MountainFront
+(defmodel mountain-front 'waterSupplyService:MountainFront 
     (classification (binary-coding 'geofeatures:MountainFront)
-        0           'waterSupplyService:MountainFrontPresent ;;tried both 0 & 1 here and get messy results both ways.
+        1           'waterSupplyService:MountainFrontPresent
         :otherwise  'waterSupplyService:MountainFrontAbsent))
 
-;;GARY: any problem having 2 uses of geofeatures:River in the same model??
 (defmodel stream-channel 'waterSupplyService:StreamChannel
-  (classification (binary-coding 'sanPedro:HydrographySimple) 
+  (classification (binary-coding 'geofeatures:River) 
         1           'waterSupplyService:StreamChannelPresent
         :otherwise  'waterSupplyService:StreamChannelAbsent))
 
@@ -298,11 +297,8 @@
 (defmodel flow-direction 'geophysics:FlowDirection
   (ranking 'geophysics:FlowDirection))
 
-(defmodel streams 'geofeatures:River ;;Too high a resolution to be practical, plus has display problems.
+(defmodel streams-simple 'geofeatures:River ;;This could be rasterized to speed the process, though probably not critical.
   (binary-coding 'geofeatures:River))
-
-(defmodel streams-simple 'sanPedro:HydrographySimple ;;This could be rasterized to speed the process, though probably not critical.
-  (binary-coding 'sanPedro:HydrographySimple))
 
 (defmodel surface-water-flow-data 'waterSupplyService:TempSurfaceWaterData$
   (identification 'waterSupplyService:TempSurfaceWaterData
