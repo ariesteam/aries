@@ -116,7 +116,7 @@
 
 (defmodel mountain-front 'waterSupplyService:MountainFront 
     (classification (binary-coding 'geofeatures:MountainFront)
-        1           'waterSupplyService:MountainFrontPresent
+        0           'waterSupplyService:MountainFrontPresent
         :otherwise  'waterSupplyService:MountainFrontAbsent))
 
 (defmodel stream-channel 'waterSupplyService:StreamChannel

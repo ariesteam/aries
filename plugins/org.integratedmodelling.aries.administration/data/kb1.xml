@@ -1544,7 +1544,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
-<measurement:BinaryCoding id="sanPedro_mountainfront_recharge">
+<measurement:BinaryCoding id="mountainfront_recharge">
 	<observation:hasObservable>
 		<geofeatures:MountainFront />
 	</observation:hasObservable>
@@ -1552,19 +1552,21 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<metadata:hasPriority>0</metadata:hasPriority>
 	<metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
 	<observation:hasDataSource>
-		<geospace:WFSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>sanPedro:mountainfront_recharge</geospace:hasCoverageId>
-		</geospace:WFSDataSource>
+		</geospace:WCSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
-		<geospace:ArealFeatureSet>
-			<geospace:hasLatLowerBound>3458793.942177963</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>129238.24756357557</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>4107844.5773443757</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>700107.3186365173</geospace:hasLonUpperBound>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>5333</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>6361</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>3464504.4</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>153487.996</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>4100804.4</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>686987.996</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-		</geospace:ArealFeatureSet>
+		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
@@ -3209,7 +3211,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<measurement:BinaryCoding id="sanPedro_mex_hydrography">
+<!--  <measurement:BinaryCoding id="sanPedro_mex_hydrography">
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
@@ -3231,7 +3233,7 @@ we could discuss integrating those at some point.-->
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
+</measurement:BinaryCoding> -->
 
 	<measurement:BinaryCoding id="california_hydro">
 		<observation:hasObservable>
