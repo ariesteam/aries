@@ -162,8 +162,8 @@
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-(defmodel evapotranspiration 'waterSupplyService:EvapotranspirationClass
-  (probabilistic-measurement 'waterSupplyService:EvapotranspirationClass 
+(defmodel evapotranspiration 'waterSupplyService:Evapotranspiration
+  (probabilistic-measurement 'waterSupplyService:EvapotranspirationClass
                   :units "mm"
                   [60 120]   'waterSupplyService:HighEvapotranspiration
                   [30 60]    'waterSupplyService:ModerateEvapotranspiration
@@ -181,7 +181,7 @@
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (annual-temperature vegetation-type percent-vegetation-cover)
       :keep     ('waterSupplyService:EvapotranspirationClass)
-      :result    evapotranspiration))
+      :result   evapotranspiration))
 
 (defmodel infiltration-sink 'waterSupplyService:SoilInfiltration
     (bayesian 'waterSupplyService:SoilInfiltration
