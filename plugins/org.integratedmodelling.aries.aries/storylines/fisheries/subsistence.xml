@@ -335,13 +335,11 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-
-<!-- these to be reactivated when habitat suitability is included in the flow model
-
 	<page id="estuary-area">
 		<concept>fisheries:EstuaryArea</concept>
 		<name> Estuary Area</name>
 		<title> Estuary Area</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -363,6 +361,7 @@
 		<concept>fisheries:ReefQuality</concept>
 		<name> Reef Quality</name>
 		<title> Reef Quality</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -384,6 +383,7 @@
 		<concept>fisheries:CoralReefArea</concept>
 		<name> Coral Reef Area</name>
 		<title> Coral Reef Area</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -406,6 +406,7 @@
 		<concept>fisheries:NitrogenRunoff</concept>
 		<name> Nitrogen Runoff</name>
 		<title> Nitrogen Runoff</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -428,6 +429,7 @@
 		<concept>fisheries:EstuaryQuality</concept>
 		<name> Estuary Quality</name>
 		<title>Estuary Quality</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -451,6 +453,7 @@
 		<concept>fisheries:CoralBleaching</concept>
 		<name> Coral Bleaching</name>
 		<title> Coral Bleaching</title>
+		<disabled>true</disabled>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -468,38 +471,37 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
- -->
 
 	<page>
 		<concept>infrastructure:Path</concept>
 		<name>Paths</name>
 		<title>Pathways to shore</title>
 		<group />
-		<description><![CDATA[
-			<p>We have computed both the amount of need (benefitshed) and the amount of potential
+		<description>
+			We have computed both the amount of need (benefitshed) and the amount of potential
 			provision (provisionshed) of fish. The last step of the analysis is modelling the
 			flow of this ecosystem service to the beneficiaries we have identified, which allows us
 			to understand the actual value of this resource in this context, as well as pointing 
-			out areas of unmet need and inefficiencies in the use of the resource.</p>
+			out areas of unmet need and inefficiencies in the use of the resource.
 			
-			<p>The subsistence fisheries flow model shows the expected spatial dependence of 
+			The subsistence fisheries flow model shows the expected spatial dependence of 
 			specific fisheries users on particular fisheries areas. Users are assumed to move from a 
 			point of origin (their homes) to an oceanic fishery, harvest fish, and return 
-			to their homes, where fish are consumed, via road or path networks.</p>  
+			to their homes, where fish are consumed, via road or path networks.  
 			
-			<p>This map shows the paths and road network that determines the accessibility 
+			This map shows the paths and road network that determines the accessibility 
 			of the locations where fish are provided. The flow model moves a given quantity 
 			of fish (in kg) from the ocean to areas of demand along these roads or paths.  
 			Each coastal ocean point has an estimated potential source of fish, computed as
 			our provisionshed model.  Each point on land has an estimated potential use for oceanic 
-			fish, computed in our benefitshed model.</p>
+			fish, computed in our benefitshed model.
 
-			<p>We assume that the use of oceanic subsistence fisheries is greatest close to 
+			We assume that the use of oceanic subsistence fisheries is greatest close to 
 			the coast and declines relatively quickly moving inland.  We model this distance 
 			decay as a Gaussian curve with high subsistence use within 1 km of the coast, 
 			steep decline at distances of 2-3 km of the coast, and slowly declining 
-			subsistence use out to a distance of 5 km of the coast.</p>
-		]]></description>
+			subsistence use out to a distance of 5 km of the coast.
+		</description>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -515,18 +517,17 @@
 	</page>
 
 	
-<!-- disabling temporarily
-
 	<page>
 		<concept>fisheries:SubsistenceFishFlow</concept>
 		<name>Fish flow</name>
 		<title>Actual subsistence fish flow</title>
 		<group />
-		<description><![CDATA[
-		<p>The movement of fish from areas where they are caught to communities where 
-			they are consumed, based on transportation networks, supply, demand, and 
-			distance decay.</p>
-		]]></description>
+		<disabled>true</disabled>
+		<description>
+		The movement of fish from areas where they are caught to communities where 
+		they are consumed, based on transportation networks, supply, demand, and 
+		distance decay.
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -539,16 +540,24 @@
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
- -->
  
 	<page>
 		<concept>fisheries:UtilizedSubsistenceFish</concept>
 		<name>Actual value</name>
+		<units>kg</units>
 		<title>Actually utilized subsistence fish</title>
 		<group />
-		<description><![CDATA[
-		<p>The quantity of fish harvested for subsistence use.</p>
-		]]></description>
+		<description>
+		The *actual source map* shows the portion of the source map that is actually
+		relevant to the provision of a service after accounting for sinks and flow
+		dynamics. In provisioning services, this is the part of the benefitshed that
+		is actually providing benefits to the users. In preventative services, it shows
+		where the actual damage came from. Those parts of the provisionshed that could be
+		damaging but have been neutralized by sinks are not shown.
+		
+		In this model, the actual use map is the quantity of fish harvested for 
+		subsistence use.
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -566,11 +575,16 @@
 		<concept>fisheries:SatisfiedSubsistenceFishDemand</concept>
 		<name>Satisfied need</name>
 		<title>Satisfied subsistence fish demand</title>
+		<units>kg</units>
 		<group />
-		<description><![CDATA[
-		<p>The portion of demand for fish satisfied by flows of fish to people 
-		from a fishery area.</p>
-		]]></description>
+		<description>
+		The *actual use map* represents the portion of the benefitshed whose needs have been
+		satisfied by the flow of services, taking into account the availability of the resource,
+		the dynamics of flow, and the depletion by sinks.
+
+		In this model, the map shows the portion of demand for fish satisfied by flows of fish to people 
+		from a fishery area.
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
@@ -584,17 +598,20 @@
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
 	
-		<page>
+	<page>
 		<concept>fisheries:UnutilizedSubsistenceFish</concept>
 		<name>Unused fish</name>
 		<title>Unutilized subsistence fish</title>
 		<group />
-		<description><![CDATA[
-		<p>Fisheries that are not used due to lack of proximity or pathways to users.  
-			This value may also be positive if some of the fish supply remains after 
-			all demand is satiatied.</p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *inaccessible source map* shows the part of the source value that did not
+		reach the users due to the dynamics of flow.
+			
+		In this case, the map showes fisheries that are not used due to lack of proximity or pathways to users.  
+		This value may also be positive if some of the fish supply remains after 
+		all demand is satiatied.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>
@@ -612,13 +629,13 @@
 		<name>Unmet need</name>
 		<title>Unsatisfied subsistence fish demand</title>
 		<group />
-		<description><![CDATA[
-		<p>The portion of demand for fish not satisfied due to inadequate size of the 
-		   fishery or a lack of proximity to a fishery.  If this is zero, some unutilized 
-		   fish may be a result of a true surplus and not just a lack of proximity.  
-		   If this is greater than zero, there is no surplus within range.</p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The portion of demand for fish not satisfied due to inadequate size of the 
+		fishery or a lack of proximity to a fishery.  If this is zero, some unutilized 
+		fish may be a result of a true surplus and not just a lack of proximity.  
+		If this is greater than zero, there is no surplus within range.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/fish.html" target="_blank">The fisheries section of the ARIES web site</a><br/>
 		</p>

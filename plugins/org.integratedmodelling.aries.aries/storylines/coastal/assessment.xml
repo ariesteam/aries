@@ -1,9 +1,10 @@
 <presentation>
 
 	<title>Coastal Protection in MG</title>
-	<runninghead>Values resulting from natural protecting of coasts in Madagascar</runninghead>
-	<description>The values resulting from ecosystems protecting coastal
-	environments</description>
+	<runninghead>Values resulting from natural protecting of coasts in Madagascar (no flows)</runninghead>
+	<description>Assessment of potential source, use and sinks related to
+	ecosystems protecting coastal environments in Madagascar. This fast-running model does 
+	not include ecosystem service flow analysis.</description>
 	<!-- the concept of the main observation (the top-level model) -->
 	<concept>coastalProtection:CoastalStormProtection</concept>
 
@@ -60,7 +61,6 @@
 		]]></see-also>
 		<credits><![CDATA[
 		<b>Model development</b>: Ken Bagstad, Gary Johnson, Brian Voigt, Ferdinando Villa.<br/>
-		<b>Additional contributors</b>: Silvia Silvestri, Kristian Teleki, Nicola Barnard, Louisa Woods.<br/> 	    
 	    <b>Funding and data support</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead></runninghead>
@@ -71,56 +71,77 @@
 		<name>Lives At Risk Storm</name>
 		<title>Lives At Risk Storm</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		This model considers the populations that live directly on the coasts as the
+		beneficiaries of coastal storm protection. As such, the population density in
+		coastal areas is identified as the use model and there is no requirement for
+		a probabilistic model.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: CIESIN Columbia University</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 				<runninghead>No description given</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
-	</page><page id="assets-at-risk-storm">
+	</page>
+	
+	<page id="assets-at-risk-storm">
 		<concept>policytarget:AssetsAtRiskStorm</concept>
 		<name>Storm-sensitive assets</name>
 		<title>Storm-sensitive assets</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+				
+		This model considers economically valuable assets as the
+		beneficiaries of coastal storm protection. Such data are available directly and
+		there is no requirement for a probabilistic model.
+		
+		Data about economic value put directly at risk by coastal storms is
+		published by CIESIN and is used directly.
+		
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: CIESIN Columbia University</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
-	</page><page id="cyclone-sensitive-economic-value">
+	</page>
+	
+	<page id="cyclone-sensitive-economic-value">
 		<concept>coastalProtection:CycloneSensitiveEconomicValue</concept>
-		<name>Storm-sensitive assets</name>
-		<title>Storm-sensitive assets</title>
+		<name>Sensitive value</name>
+		<title>Storm-sensitive economic value</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		
+		This model considers economically valuable assets as the
+		beneficiaries of coastal storm protection. Such data are available directly and
+		there is no requirement for a probabilistic model.
+		
+		Data about economic value put directly at risk by coastal storms is
+		published by CIESIN and is used directly.
+		
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data provided by</b>: CIESIN Columbia University</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead>Assets at risk for tropical storms</runninghead>
@@ -130,19 +151,24 @@
 	
 	<page id="cyclone-dependent-lives-at-risk">
 		<concept>coastalProtection:CycloneDependentLivesAtRisk</concept>
-		<name>Lives at risk for tropical storms</name>
+		<name>Lives at risk</name>
 		<title>Lives at risk for tropical storms</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		This model considers the populations that live directly on the coasts as the
+		beneficiaries of coastal storm protection. As such, the population density in
+		coastal areas is identified as the use model and there is no requirement for
+		a probabilistic model.
+		
+		Data about the number of lives put directly at risk by coastal storms is
+		published by CIESIN and is used directly.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<runninghead>No description given</runninghead>
@@ -155,10 +181,13 @@
 		<name>Wind Speed</name>
 		<title>Wind Speed</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Wind speed, obtained here from historical storm records, is proportional to the
+		total potential damage inflicted by wind and waves and is used in the flow model
+		to quantify the amount of damaging energy reaching coastal population or prevented
+		from doing so by natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -177,10 +206,14 @@
 		<name>Seagrass</name>
 		<title>Seagrass Presence</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Seagrass beds, along with other vegetational and geomorphological features, are
+		valuable in intercepting the wave front and capturing energy that would otherwise
+		inflict damage to the coast. When present, such features are used in the
+		sink model to determine the total potential of the natural environment to 
+		mitigate damage inflicted to humans by storms and tsunamis. 
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -199,10 +232,14 @@
 		<name>Mangroves Presence</name>
 		<title>Mangroves Presence</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Mangroves, along with other vegetational and geomorphological features, are
+		extremely valuable in capturing wave and wind energy and therefore reducing
+		the damage from coastal storms. When present, such features are used in the
+		sink model to determine the total potential of the natural environment to 
+		mitigate damage inflicted to humans by storms and tsunamis. 
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -221,10 +258,10 @@
 		<name>Bathymetric Slope</name>
 		<title>Bathymetric Slope</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<disabled>true</disabled>
+		<description>
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -243,10 +280,10 @@
 		<name>Storm Surge</name>
 		<title>Storm Surge</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<disabled>true</disabled>
+		<description>
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -265,9 +302,9 @@
 		<name>Artificial Coastal Protection</name>
 		<title>Artificial Coastal Protection</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
+		<disabled>true</disabled>
+		<description>
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
@@ -287,10 +324,10 @@
 		<name>Coral Quality</name>
 		<title>Coral Quality</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<disabled>true</disabled>
+		<description>
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -309,10 +346,19 @@
 		<name>Geomorphic Protection</name>
 		<title>Geomorphic Flood Protection</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The amount of the total wind and wave energy that is generate by storms and
+		reaches the coast depends on many factors, including the geomorphology of 
+		the area. This map is a probabilistic assessment of the total protection 
+		provided by geomorphic features such as sea floor depth, slope, or terrestrial
+		elevation.
+		
+		These data are used as input to the sink 
+		model, which establishes the total protection potential determined by natural features.
+		The sink model, in turn, is used by the flow model to determine actual damage 
+		inflicted by storms and intercepted by natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -331,10 +377,17 @@
 		<name>Vegetation</name>
 		<title>Terrestrial Vegetation</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The type of terrestrial vegetation encountered on the coast is an important
+		determinant of how much wave and wind energy can be absorbed by the ecosystem
+		before it reaches humans assets and settlements. 
+		
+		These data are used as input to the sink 
+		model, which establishes the total protection potential determined by natural features.
+		The sink model, in turn, is used by the flow model to determine actual damage 
+		inflicted by storms and intercepted by natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -353,10 +406,14 @@
 		<name>Dunes</name>
 		<title>Dune Presence</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Dunes and bathymetric configuration account for the bulk of natural coastal protection in areas
+		where mangroves and seagrass are scarce. These data are used as input to the sink 
+		model, which establishes the total protection potential determined by natural features.
+		The sink model, in turn, is used by the flow model to determine actual damage 
+		inflicted by storms and intercepted by natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -365,7 +422,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -375,10 +432,17 @@
 		<name>Flood Protection</name>
 		<title>Total Storm Protection</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		This map is the probabilistic assessment of the *sink* model, which puts together
+		all the potentially preventative features of the landscape into a single map. Each
+		point of the map details the likely amount of damaging energy that can be 
+		intercepted by such features. 
+		
+		The flow model uses this map to determine whether each point can deplete the
+		energy coming from the storm front, thereby reducing the total amount of damage
+		that reaches the users. 
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -395,11 +459,21 @@
 	<page id="coastal-wave-source">
 		<concept>coastalProtection:CoastalWaveSource</concept>
 		<name>Wave source</name>
-		<title>Ocean Depth And Land Elevation</title>
+		<title>Coastal wave source</title>
+		<disabled>true</disabled>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
+		<description>
+		The quantity of coastal waves generated at a certain part of the land 
+		or seascape. This is the main source of the wave threat created by storms and
+		tsunamis and intercepted by natural features along the coasts. It is computed
+		by processing historical storm records along recorded storm tracks.
+		
+		The source data are used as input to the flow model that computes how much
+		wave energy is dissipated by ecosystems and green infrastructure, and how much
+		protection benefit is accrued by humans in the process. Therefore, these source
+		data do not account for flows.
+		
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
@@ -409,7 +483,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>Coastal wave source</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -419,10 +493,20 @@
 		<name>Wave mitigation</name>
 		<title>Potential wave mitigation</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		 The *sink* model computes the amount of service carrier intercepted along the 
+		 flow paths. In all preventative services like coastal flood protection, the
+		 sink model represents the source of actual benefit to humans, as it reduces
+		 the amount of damaging carrier (in this case, wave energy) capable of 
+		 inflicting damage to the users. 
+		 
+		 This map of potential wave mitigation is a probabilistic compendium of all
+		 ecosystem-related factors likely to intercept wave energy alogn their damaging
+		 path towards the coast. As all maps of "potential", it is used as an input to
+		 the flow model and therefore does not account for flows.
+		 
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -441,9 +525,17 @@
 		<name>Vulnerable groups</name>
 		<title>Potentially wave-vulnerable populations</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
+		<description>
+		The use model, in preventative services like coastal flood protection, is used as
+		an input to the flow models to identify the areas of need for the service and 
+		quantify the need and its probability. This map identifies all the potential users
+		of coastal flood protection, and is computed by determining the probability that 
+		people or economically valuable assets are located in flood zones.
+		
+		This map, like all "potential" maps, is used as input and does not account for
+		flows.
+		
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
@@ -463,9 +555,17 @@
 		<name>Potential damage</name>
 		<title>Potentially damaging wave flow</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
+		<description>
+		Potential flow maps represent the path that the carrier of the service would take
+		if it was not intercepted by sinks.  As such it considers source and use models and
+		shows the maximum amount of flow. In provisioning services, this corresponds to the
+		maximum potential benefit; in preventative services, the maximum potential damage.
+		
+		This specific map shows the flow route of wave energy across the land and seascape 
+		in the absence of sinks. Therefore it computes the maximum damage that would happen
+		if natural features did not intercept it, and provides a baseline that allows 
+		computing the actual value of those features.
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
@@ -485,9 +585,22 @@
 		<name>Potential waves</name>
 		<title>Source of potentially damaging waves</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
+		<description>
+		Even in the absence of sinks, not all the source component actually has the
+		ability of flowing to the users, because of the details of how the carrier
+		moves across the landscape. Flow analysis allows to identify which particular portion of the total source
+		field is actually generating carriers that reach the users, independent of the
+		existence of sinks but taking into account the result of use analysis, 
+		the structure of the landscape and the
+		modalities of transmission of the carrier. In provisioning services, this 
+		corresponds to the source of benefits that has the potential of being actually
+		useful. In preventative services, this corresponds to the portion of the source
+		field that needs to be worried about. The configuration of sinks will decide
+		how much of this source actually reaches the users.
+		
+		This specific map represents what specific sources of waves are capable of harming 
+		people or damaging  property when accounting for flow paths but not sinks.
+		</description>
 				<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
@@ -507,10 +620,12 @@
 		<name>Potential damage</name>
 		<title>Potential wave damage</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		People and property receiving damage when accounting for sources of wind or waves 
+		and their flow paths but not accounting for the action of sinks that reduce 
+		potential damage from wind or waves.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -529,10 +644,21 @@
 		<name>Actual waves</name>
 		<title>Actual wave flow</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *actual flow density* map depicts the trajectories that deliver actual services to
+		humans. These are selected among the total flow density to only show these trajectories
+		that are not depleted by sinks and actually reach users.
+		
+		In provisioning services, these trajectories deliver valuable benefits to the
+		users and the density is proportional to the value accrued. In preventative services,
+		the trajectories show how much of the carrier gets to users, delivering actual
+		damage.
+		
+		In this specific case, the density of actual flows represent the wave 
+		energy that hits users and assets, after accounting for their routing due to
+		winds, geophysics, and natural features that deplete their magnitude.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -551,10 +677,18 @@
 		<name>Flood source</name>
 		<title>Flood damaging wave source</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *actual source map* shows the portion of the source map that is actually
+		relevant to the provision of a service after accounting for sinks and flow
+		dynamics. In provisioning services, this is the part of the benefitshed that
+		is actually providing benefits to the users. In preventative services, it shows
+		where the actual damage came from. Those parts of the provisionshed that could be
+		damaging but have been neutralized by sinks are not shown.
+		 
+		In this case, the map shows the source of those waves that actually harm people 
+		or damage property when accounting for flow paths and sinks.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -573,10 +707,11 @@
 		<name>Actual mitigation</name>
 		<title>Utilized wave mitigation</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Utilized wind mitigation: Sinks that actively reduce wind or waves, providing 
+		the benefit of reduced flood or wind damage for people.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -585,7 +720,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -595,10 +730,11 @@
 		<name>Actual damage</name>
 		<title>Wave damage received</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		Actual damage received by people and property when accounting for sources of 
+		wind or waves and their sinks and flow paths.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -607,7 +743,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -616,11 +752,21 @@
 		<concept>coastalProtection:BenignWaveSource</concept>
 		<name>Benign waves</name>
 		<title>Benign wave source</title>
+		<disabled>true</disabled>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *unused source map" reveals those areas of the source map whose values do not
+		influence the delivery of the service, because of the impossibility of reaching
+		users given the dynamics of ecosystem services flow. In provisioning services, this
+		is the portion of the value that must be subtracted from the total source map to
+		define a maximum potential benefit for the users. In preventative services, it
+		shows those areas that have no potential of producing damage because of the 
+		flow dynamics prevents the carrier from reaching any significant user.
+		
+		In this specific case, the map shows wind or waves that do not have people or 
+		economically valuable assets lying in their path.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -629,7 +775,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -639,10 +785,17 @@
 		<name>Unused protection</name>
 		<title>Unutilized wave mitigation</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *actual sink map* shows the portion of the sink map that actually contributes
+		to depleting the carrier of the service given its patterns of flow. In provisioning
+		services, such sinks are responsible of reducing the benefits compared to their
+		possible value. In preventative services, such sinks are responsible for the actual
+		service because they prevent a damaging carrier from reaching the users. 
+		
+		In this case, the image shows those sinks that actively reduce wind or waves, 
+		providing the benefit of reduced flood or wind damage for people.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -651,7 +804,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -661,10 +814,22 @@
 		<name>Absorbed waves</name>
 		<title>Absorbed wave flow</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *blocked flow map* depicts the trajectories that could have delivered the 
+		service carrier to humans based on the flow dynamics and the source and user
+		configuration, but did not because of the action of sinks. These are 
+		selected among the total flow density.
+		
+		In provisioning services, these trajectories show the loss in possible flow of
+		services to the
+		users, and their density is proportional to the value lost. In preventative services,
+		the trajectories show the amount of the total flow that was prevented by natural
+		features to produce damage.
+		
+		In this specific case, the map shows flood or wind flows that are absorbed by 
+		natural features prior to reaching human beneficiaries of wind or wave regulation.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -673,7 +838,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -683,10 +848,18 @@
 		<name>Mitigated waves</name>
 		<title>Mitigated wave source</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *blocked source map* shows the part of the source map that had the possibility
+		of reaching users given the location of the users and the dynamic of flow, but
+		was blocked from doing so because of the action of sinks. In provisioning services,
+		this corresponds to value produced by the environment but lost before it reaches
+		the users. In preventative services, it corresponds to damage that could have been
+		inflicted to users but was blocked by natural features.
+		
+		In this specific case, the map shows the portion of coastal wind and wave front 
+		whose damage is reduced or nullified by the action of natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -695,7 +868,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -705,10 +878,22 @@
 		<name>Total benefit</name>
 		<title>Wave mitigation benefits accrued</title>
 		<group>source</group>
-		<description><![CDATA[
-			<p></p>
-		]]></description>
-				<see-also><![CDATA[
+		<description>
+		The *blocked use map* shows those users that would have been reached by the 
+		carrier of the services based only on the source and the flow dynamics, but were
+		not reached because of the action of sinks. In provisioning services, the map
+		shows possible value that has not been accrued by users because of sinks; in 
+		preventative services, it shows actual value being accrued by users thanks to
+		sink configuration. 
+		
+		In preventative services, therefore, this map is the ultimate quantification of
+		value given the configuration of users and natural features.
+		
+		In this case, the map shows people or economically valuable assets who are 
+		spared from coastal flood or wind damage due to the flood or wind regulation 
+		activity of natural features.
+		</description>
+		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal protection section of the ARIES web site</a><br/>
 		</p>
@@ -717,7 +902,7 @@
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-				<runninghead>No description given</runninghead>
+		<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>

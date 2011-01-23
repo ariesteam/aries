@@ -303,6 +303,9 @@
     :context (storm-tracks)
     :state  #(if (= (:storm-tracks %) "litanne") 1 0)))
 
+(defmodel storm-track-all 'coastalProtection:StormTrack
+  (binary-coding 'coastalProtection:StormTrack))
+
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection
                     :context (coastal-wave-source-daisy
@@ -311,9 +314,7 @@
                               risk-to-life
                               risk-to-assets
                               coastal-flood-sink
-                              storm-track-daisy
-                              storm-track-geralda
-                              storm-track-litanne
+                              storm-track-all
                               geomorphic-flood-sink)))
 
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
@@ -334,7 +335,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+;;        :animation?         true
         ;;:save-file          "coastal-protection-flow-daisy-lives-data.clj"
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
@@ -371,7 +372,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+;;        :animation?         true
         ;;:save-file          "coastal-protection-flow-geralda-lives-data.clj"
         :context            (coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
@@ -408,7 +409,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+ ;;       :animation?         true
         ;;:save-file          "coastal-protection-flow-litanne-lives-data.clj"
         :context            (coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
@@ -445,7 +446,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+ ;;       :animation?         true
         ;;:save-file          "coastal-protection-flow-daisy-assets-data.clj"
         :context            (coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
@@ -482,7 +483,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+;;        :animation?         true
         ;;:save-file          "coastal-protection-flow-geralda-assets-data.clj"
         :context            (coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
@@ -519,7 +520,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+;;        :animation?         true
         ;;:save-file          "coastal-protection-flow-litanne-assets-data.clj"
         :context            (coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               ('coastalProtection:CoastalWaveSource
