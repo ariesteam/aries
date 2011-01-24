@@ -137,8 +137,8 @@
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse
   (classification 'aestheticService:HomeownerProximityUse
-                  [0 5]   'aestheticService:HomeownerProximityUseAbsent 
-                  [5 100] 'aestheticService:HomeownerProximityUsePresent))
+                  [0 0.05]   'aestheticService:HomeownerProximityUseAbsent 
+                  [0.05 1]   'aestheticService:HomeownerProximityUsePresent))
 
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ProximityUse

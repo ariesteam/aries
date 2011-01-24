@@ -55,11 +55,11 @@
 
 (defmodel mean-annual-precip 'carbonService:MeanAnnualPrecipitation
 			(classification (measurement 'habitat:AnnualPrecipitation "mm")
-					[70 :>]				'carbonService:VeryHighMeanAnnualPrecipitation
-					[60 70]				'carbonService:HighMeanAnnualPrecipitation
-					[50 60]				'carbonService:ModerateMeanAnnualPrecipitation
-					[40 50]				'carbonService:LowMeanAnnualPrecipitation
-					[:< 40]				'carbonService:VeryLowMeanAnnualPrecipitation))
+					[2500 :>]				  'carbonService:VeryHighMeanAnnualPrecipitation
+					[1500 2500]				'carbonService:HighMeanAnnualPrecipitation
+					[1000 1500]				'carbonService:ModerateMeanAnnualPrecipitation
+					[700 1000]				'carbonService:LowMeanAnnualPrecipitation
+					[:< 700]			   	'carbonService:VeryLowMeanAnnualPrecipitation))
 						
 (defmodel soil-CN-ratio 'carbonService:SoilCNRatio
 			(classification (ranking 'habitat:SoilCNRatio)
@@ -74,7 +74,8 @@
 					#{36 37 62}		'carbonService:GrasslandHerbaceous
 					63					  'carbonService:Forest
 					87						'carbonService:Wetland
-					#{61 82}			'carbonService:NoVegetation))
+					#{61 82}			'carbonService:NoVegetation
+          111           'carbonService:OpenWater))
 
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration

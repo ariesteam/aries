@@ -52,11 +52,12 @@
 
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
   (classification (ranking 'habitat:PercentVegetationCover :units "%")
-                  [80 :>] 'carbonService:VeryHighVegetationCover
-                  [60 80] 'carbonService:HighVegetationCover
-                  [40 60] 'carbonService:ModerateVegetationCover
-                  [20 40] 'carbonService:LowVegetationCover
-                  [0 20]  'carbonService:VeryLowVegetationCover))
+                  [80 :>]            'carbonService:VeryHighVegetationCover
+                  [60 80]            'carbonService:HighVegetationCover
+                  [40 60]            'carbonService:ModerateVegetationCover
+                  [20 40]            'carbonService:LowVegetationCover
+                  [:exclusive 0 20]  'carbonService:VeryLowVegetationCover
+                  [0]                'carbonService:NoVegetationCover))
 
 ;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
 ;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
@@ -80,7 +81,8 @@
 ;;"Reclass of the NLCD land use for the purposes of carbon modeling"
 (defmodel land-use 'southernCalifornia:LandCover
   (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{11 90 95}         'southernCalifornia:WetlandOpenWaterLandCover
+                  11                  'southernCalifornia:OpenWaterLandCover
+                  #{90 95}            'southernCalifornia:WetlandLandCover
                   #{41 42 43 51 52}   'southernCalifornia:ScrubAndForestLandCover
                   #{71 81 82}         'southernCalifornia:GrasslandAndCultivatedLandCover
                   21                  'southernCalifornia:OpenSpaceLandCover

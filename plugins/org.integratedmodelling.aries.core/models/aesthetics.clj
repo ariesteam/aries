@@ -104,7 +104,7 @@
                   [1000000 :>]      'aestheticService:VeryHighHousingValue))
 
 ;;Training data for King County: actual housing with views.  
-;; (GARY: is this OK to use, obviously not now, but in the future when we can use training data?)
+;; Do not use until BNs can be properly trained.
 (defmodel view-use-king 'aestheticService:HomeownerViewUse
    (classification (binary-coding 'aestheticService:HomeownerViewUse)
                   [0 5]   'aestheticService:HomeownerViewUsePresent  ;;CHANGE TO "IF ZERO OR GREATER" view use present, otherwise not.
@@ -113,8 +113,8 @@
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
   (classification 'aestheticService:HomeownerViewUse
-                  [0 5]   'aestheticService:HomeownerViewUseAbsent 
-                  [5 100] 'aestheticService:HomeownerViewUsePresent))
+                  [0 0.05]   'aestheticService:HomeownerProximityUseAbsent 
+                  [0.05 1]   'aestheticService:HomeownerViewUsePresent))
 
 ;; bayesian model
 (defmodel homeowners 'aestheticService:ViewUse

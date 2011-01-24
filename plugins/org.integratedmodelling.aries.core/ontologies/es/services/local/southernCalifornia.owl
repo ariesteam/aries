@@ -30,7 +30,7 @@
   <owl:Class rdf:ID="LandCover">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat"/>
   </owl:Class>
-  <owl:Class rdf:ID="WetlandOpenWaterLandCover">
+  <owl:Class rdf:ID="WetlandLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="OpenSpaceLandCover">
@@ -57,6 +57,9 @@
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="GrasslandAndCultivatedLandCover">
+    <rdfs:subClassOf rdf:resource="#LandCover"/>
+  </owl:Class>
+  <owl:Class rdf:ID="OpenWaterLandCover">
     <rdfs:subClassOf rdf:resource="#LandCover"/>
   </owl:Class>
   <owl:Class rdf:about="#VegetationTypeSoCalFlood">
