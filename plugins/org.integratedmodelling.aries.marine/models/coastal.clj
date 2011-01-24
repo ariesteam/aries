@@ -308,9 +308,7 @@
 
 (defmodel coastal-protection-data 'coastalProtection:CoastalStormProtection
 	(identification 'coastalProtection:CoastalStormProtection
-                    :context (coastal-wave-source-daisy
-                              coastal-wave-source-geralda
-                              coastal-wave-source-litanne
+                    :context (coastal-wave-source-litanne ;; TODO should sum up the storms
                               risk-to-life
                               risk-to-assets
                               coastal-flood-sink
