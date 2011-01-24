@@ -13,12 +13,17 @@
       (shape 'san_pedro_us))  
 ;    (transform 'sanPedro:VegetationType 'sanPedro:UrbanBarrenWater
 ;      (shape 'san_pedro_us))  
-;; Changes to aesthetic proximity & view models
+;; Changes to aesthetic view models
 ;    (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
 ;      (shape 'san_pedro_us))  
 ;    (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
 ;      (shape 'san_pedro_us))  
     (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+      (shape 'san_pedro_us))  
+    (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+      (shape 'san_pedro_us))  
+;; Changes to aesthetic proximity models
+     (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
       (shape 'san_pedro_us))  
     (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
       (shape 'san_pedro_us))  
@@ -33,7 +38,7 @@
 ;     (transform 'sanPedro:RiparianAndWetland 'sanPedro:RiparianOrWetlandAbsent
 ;      (shape 'san_pedro_us))  
     (transform 'aestheticService:Park 'aestheticService:ParkAbsent
-      (shape 'san_pedro_us))  
+      (shape 'san_pedro_us)) 
 ;; Changes to surface carbon models
     (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
       (shape 'san_pedro_us))  

@@ -34,12 +34,12 @@
 (defmodel soil-storage 'carbonService:SoilCarbonStorage
   (classification 'carbonService:SoilCarbonStorage
                   :units      "t/ha" 
-                  [680 820]      'carbonService:VeryHighSoilStorage
-                  [440 680]      'carbonService:HighSoilStorage
-                  [200 440]      'carbonService:ModerateSoilStorage
-                  [50 200]       'carbonService:LowSoilStorage
-                  [0.01 50]      'carbonService:VeryLowSoilStorage
-                  [0 0.01]       'carbonService:NoSoilStorage))
+                  [680 820]          'carbonService:VeryHighSoilStorage
+                  [440 680]          'carbonService:HighSoilStorage
+                  [200 440]          'carbonService:ModerateSoilStorage
+                  [50 200]           'carbonService:LowSoilStorage
+                  [:exclusive 0 50]  'carbonService:VeryLowSoilStorage
+                  [0]                'carbonService:NoSoilStorage))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -93,12 +93,12 @@
 (defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
   (classification 'carbonService:VegetationAndSoilCarbonSequestration
                   :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [1.5 6]     'carbonService:LowSequestration
-                  [0.01 1.5]  'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
+                  [12 30]             'carbonService:VeryHighSequestration
+                  [9 12]              'carbonService:HighSequestration
+                  [6 9]               'carbonService:ModerateSequestration
+                  [1.5 6]             'carbonService:LowSequestration
+                  [:exclusive 0 1.5]  'carbonService:VeryLowSequestration
+                  [0]                 'carbonService:NoSequestration))
 
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
 (defmodel source 'carbonService:CarbonSourceValue   
@@ -158,12 +158,12 @@
 (defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
   (classification 'carbonService:StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 300]    'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
+                  [12 300]           'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                  [9 12]             'carbonService:HighRelease
+                  [6 9]              'carbonService:ModerateRelease
+                  [3 6]              'carbonService:LowRelease
+                  [:exclusive  3]    'carbonService:VeryLowRelease
+                  [0]                'carbonService:NoRelease))
 
 (defmodel sink 'carbonService:CarbonSinkValue   
   (bayesian 'carbonService:CarbonSinkValue 
