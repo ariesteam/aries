@@ -510,7 +510,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 </measurement:Ranking>
 
 <!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, variable by county, 2005-2008. -->
-<measurement:Ranking id="housing_value_puget2">
+<measurement:Ranking id="housing_value_puget3">
 	<observation:hasObservable>
 		<economics:AppraisedPropertyValue />
 	</observation:hasObservable>
@@ -519,7 +519,7 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:housing_value_puget2</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:housing_value_puget3</geospace:hasCoverageId>
 			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
@@ -2868,7 +2868,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-<measurement:Ranking id="parcels_puget">
+  <measurement:Ranking id="parcels_puget">
 	<observation:hasObservable>
 		<aestheticService:PresenceOfHousing />
 	</observation:hasObservable>
@@ -2877,7 +2877,7 @@ we could discuss integrating those at some point.-->
 	<observation:hasDataSource>
 		<geospace:WCSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:parcels_puget</geospace:hasCoverageId>
+			<geospace:hasCoverageId>puget:parcels_puget2</geospace:hasCoverageId>
 			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
 		</geospace:WCSDataSource>
 	</observation:hasDataSource>
