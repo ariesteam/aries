@@ -7,7 +7,7 @@
 ;; Using a variable for the resolution, so you can change it here and it gets
 ;; changed in all contexts. 
 ;; ---------------------------------------------------------------------------
-(def resolution 256)
+(def resolution 512)
 
 ;; -----------------------------------------------------------------------------
 ;; FV pre-defining the inline WKT-specified shapes as variables to keep the context
@@ -54,7 +54,7 @@
   "Just testing gazetteer shapes"
   (grid resolution san-pedro-bsr)
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentImperviousCoverClass 'waterSupplyService:ModeratelyHighImperviousCover
+  (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_1)  
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_1)  
@@ -65,15 +65,16 @@
      bsr_sc_1)  
   (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
      bsr_sc_1)  
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_1)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_1)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_1)  
+;; (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_1)  
+
 ;; Changes to aesthetic proximity models
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_1)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_1)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_1)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_1)  
   (transform 'sanPedro:ForestAndWoodland 'sanPedro:ForestOrWoodlandAbsent
      bsr_sc_1)  
   (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
@@ -89,14 +90,15 @@
 ;; Changes to surface carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_1)  
+  (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
+     bsr_sc_1) 
 )
-
 
 (defcontext bsr-development-2
   "Just testing gazetteer shapes"
   (grid resolution san-pedro-bsr)
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentImperviousCoverClass 'waterSupplyService:ModeratelyHighImperviousCover
+  (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_2)  
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_2)  
@@ -107,15 +109,15 @@
      bsr_sc_2)  
   (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
      bsr_sc_2)  
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_2)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_2)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_2)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_2)  
 ;; Changes to aesthetic proximity models
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_2)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_2)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_2)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_2)  
   (transform 'sanPedro:ForestAndWoodland 'sanPedro:ForestOrWoodlandAbsent
      bsr_sc_2)  
   (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
@@ -130,15 +132,16 @@
      bsr_sc_2) 
 ;; Changes to surface carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+     bsr_sc_2) 
+  (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_2)  
 )
-
 
 (defcontext bsr-development-3
   "Just testing gazetteer shapes"
   (grid resolution san-pedro-bsr)
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentImperviousCoverClass 'waterSupplyService:ModeratelyHighImperviousCover
+  (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_3)  
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_3)  
@@ -149,15 +152,15 @@
      bsr_sc_3)  
   (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
      bsr_sc_3)  
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_3)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_3)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_3)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_3)  
 ;; Changes to aesthetic proximity models
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_3)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_3)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_3)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_3)  
   (transform 'sanPedro:ForestAndWoodland 'sanPedro:ForestOrWoodlandAbsent
      bsr_sc_3)  
   (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
@@ -173,14 +176,15 @@
 ;; Changes to surface carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_3)  
+  (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
+     bsr_sc_3) 
 )
-
 
 (defcontext bsr-development-4
   "Just testing gazetteer shapes"
   (grid resolution san-pedro-bsr)
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentImperviousCoverClass 'waterSupplyService:ModeratelyHighImperviousCover
+  (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_4)  
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_4)  
@@ -191,15 +195,15 @@
      bsr_sc_4)  
   (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
      bsr_sc_4)  
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_4)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_4)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_4)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_4)  
 ;; Changes to aesthetic proximity models
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_4)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_4)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_4)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_4)  
   (transform 'sanPedro:ForestAndWoodland 'sanPedro:ForestOrWoodlandAbsent
      bsr_sc_4)  
   (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
@@ -215,14 +219,15 @@
 ;; Changes to surface carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_4)  
+  (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
+     bsr_sc_4) 
 )
-
 
 (defcontext bsr-development-5
   "Just testing gazetteer shapes"
   (grid resolution san-pedro-bsr)
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentImperviousCoverClass 'waterSupplyService:ModeratelyHighImperviousCover
+  (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_5)  
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_5)  
@@ -233,15 +238,15 @@
      bsr_sc_5)  
   (transform 'aestheticService:DevelopedLand 'aestheticService:LowDensityDevelopment
      bsr_sc_5)  
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_5)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_5)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_5)  
+;;  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_5)  
 ;; Changes to aesthetic proximity models
-  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
-     bsr_sc_5)  
-  (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
-     bsr_sc_5)  
+;;  (transform 'aestheticService:PresenceOfHousing 'aestheticService:HousingPresent
+;;     bsr_sc_5)  
+;; (transform 'aestheticService:HousingValue 'aestheticService:ModerateHousingValue
+;;     bsr_sc_5)  
   (transform 'sanPedro:ForestAndWoodland 'sanPedro:ForestOrWoodlandAbsent
      bsr_sc_5)  
   (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
@@ -257,4 +262,6 @@
 ;; Changes to surface carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_5)  
+  (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
+     bsr_sc_5) 
 )

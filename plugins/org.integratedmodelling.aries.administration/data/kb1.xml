@@ -509,32 +509,33 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- $/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement.  Values in US $, variable by county, 2005-2008. -->
-<measurement:Ranking id="housing_value_puget3">
-	<observation:hasObservable>
-		<economics:AppraisedPropertyValue />
-	</observation:hasObservable>
-	<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<observation:hasDataSource>
-		<geospace:WCSDataSource>
-			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>puget:housing_value_puget3</geospace:hasCoverageId>
-			<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-		</geospace:WCSDataSource>
-	</observation:hasDataSource>
-	<observation:hasObservationExtent>
-		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>8819</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>4685</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>46.7515983</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-124.243488</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>48.3061989</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-121.3177078</geospace:hasLonUpperBound>
-			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-		</geospace:RasterGrid>
-	</observation:hasObservationExtent>
-</measurement:Ranking>
+<!--$/ac not supported in Thinklab as a unit, so this remains a ranking rather than a measurement. Values in US $,
+ variable by county, 2005-2008.-->
+	<measurement:Ranking id="housing_value_puget3">
+		<observation:hasObservable>
+			<economics:AppraisedPropertyValue />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:housing_value_puget3</geospace:hasCoverageId>
+				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>8819</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>4633</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>46.7618805</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.243488</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>48.2992335</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-121.3177078</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Ranking>
 
 <measurement:Ranking id="sanPedro_bird_rich">
 	<observation:hasObservable>
@@ -2868,7 +2869,7 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-  <measurement:Ranking id="parcels_puget">
+<measurement:Ranking id="parcels_puget2">
 	<observation:hasObservable>
 		<aestheticService:PresenceOfHousing />
 	</observation:hasObservable>
@@ -2883,12 +2884,12 @@ we could discuss integrating those at some point.-->
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
 		<geospace:RasterGrid>
-			<geospace:hasXRangeMax>558</geospace:hasXRangeMax>
-			<geospace:hasYRangeMax>250</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>46.763</geospace:hasLatLowerBound>
-			<geospace:hasLonLowerBound>-124.615</geospace:hasLonLowerBound>
-			<geospace:hasLatUpperBound>48.351</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-121.087</geospace:hasLonUpperBound>
+			<geospace:hasXRangeMax>9991</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>4808</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>46.7619066</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.615382</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>48.3492066</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-121.317692</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
