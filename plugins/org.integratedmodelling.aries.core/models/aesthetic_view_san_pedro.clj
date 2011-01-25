@@ -101,11 +101,11 @@
 
 (defmodel property-value 'aestheticService:HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking 'economics:AppraisedPropertyValue)
-                  [0         50000] 'aestheticService:VeryLowHousingValue
-                  [50000    100000] 'aestheticService:LowHousingValue
-                  [100000   350000] 'aestheticService:ModerateHousingValue
-                  [350000  1000000] 'aestheticService:HighHousingValue
-                  [1000000 :>]      'aestheticService:VeryHighHousingValue))
+                  [0         10000] 'aestheticService:VeryLowHousingValue
+                  [10000    25000]  'aestheticService:LowHousingValue
+                  [25000   50000]   'aestheticService:ModerateHousingValue
+                  [50000  200000]   'aestheticService:HighHousingValue
+                  [200000 :>]       'aestheticService:VeryHighHousingValue))
 
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
 (defmodel scenic-highways 'aestheticService:ScenicDrivePresence

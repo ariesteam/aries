@@ -11,18 +11,18 @@
 
 (defmodel lake-front 'aestheticService:LakeFront
   (classification (binary-coding 'aestheticService:LakeFrontPresence)
-                  0          'aestheticService:LakeFrontAbsent
-                  :otherwise 'aestheticService:LakeFrontPresent))
+                  1          'aestheticService:LakeFrontPresent
+                  :otherwise 'aestheticService:LakeFrontAbsent))
 
 (defmodel river-front 'aestheticService:RiverFront
   (classification (binary-coding 'aestheticService:RiverFrontPresence)
-                  0          'aestheticService:RiverFrontAbsent
-                  :otherwise 'aestheticService:RiverFrontPresent))
+                  1          'aestheticService:RiverFrontPresent
+                  :otherwise 'aestheticService:RiverFrontAbsent))
 
 (defmodel beach 'aestheticService:Beach
   (classification (binary-coding 'aestheticService:BeachPresence)
-                  0          'aestheticService:BeachAbsent
-                  :otherwise 'aestheticService:BeachPresent))
+                  1          'aestheticService:BeachPresent
+                  :otherwise 'aestheticService:BeachAbsent))
 
 (defmodel forest 'aestheticService:Forest
   (classification (numeric-coding 'nlcd:NLCDNumeric)
@@ -46,8 +46,8 @@
 
 (defmodel park 'aestheticService:Park
   (classification (binary-coding 'aestheticService:ParkPresence)
-                  0          'aestheticService:ParkAbsent
-                  :otherwise 'aestheticService:ParkPresent))
+                  1          'aestheticService:ParkPresent
+                  :otherwise 'aestheticService:ParkAbsent))
 
 (defmodel crime-potential 'aestheticService:CrimePotential
   (classification (categorization 'geofeatures:City)
@@ -111,8 +111,8 @@
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
   (classification (ranking 'aestheticService:PresenceOfHousing)
-        [0 :>]        'aestheticService:HousingPresent  
-        :otherwise    'aestheticService:HousingAbsent))
+        [:exclusive 0 255]   'aestheticService:HousingPresent  
+        :otherwise               'aestheticService:HousingAbsent))
 ;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
 ;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
 ;;        :otherwise   'aestheticService:HousingAbsent))
@@ -121,11 +121,11 @@
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
   ;; turn any values into these dollars
   (classification (ranking  'economics:AppraisedPropertyValue)
-                  [:<       100000] 'aestheticService:VeryLowHousingValue
-                  [100000   200000] 'aestheticService:LowHousingValue
-                  [200000   400000] 'aestheticService:ModerateHousingValue
-                  [400000  1000000] 'aestheticService:HighHousingValue
-                  [1000000 :>]      'aestheticService:VeryHighHousingValue))
+                  [:exclusive 0 50000]  'aestheticService:VeryLowHousingValue
+                  [50000       150000]  'aestheticService:LowHousingValue
+                  [150000       300000] 'aestheticService:ModerateHousingValue
+                  [300000      500000]  'aestheticService:HighHousingValue
+                  [500000     :>]       'aestheticService:VeryHighHousingValue))
 
 ;;Urban proximity proxied by year 2007 population density for Washington
 (defmodel urban-proximity 'aestheticService:UrbanProximity

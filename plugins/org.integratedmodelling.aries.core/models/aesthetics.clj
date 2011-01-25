@@ -12,20 +12,20 @@
 (defmodel lake 'aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding 'geofeatures:Lake)
-                  0          'aestheticService:LakeAbsent
-                  :otherwise 'aestheticService:LakePresent))
+                  1          'aestheticService:LakePresent
+                  :otherwise 'aestheticService:LakeAbsent))
 
 (defmodel ocean 'aestheticService:Ocean
   "Just being there."
   (classification (binary-coding 'geofeatures:Ocean)
-                  0          'aestheticService:OceanAbsent
-                  :otherwise 'aestheticService:OceanPresent))
+                  1          'aestheticService:OceanPresent
+                  :otherwise 'aestheticService:OceanAbsent))
 
 (defmodel mountain 'aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement 'geophysics:Altitude "m")
-                  [1000 2750]  'aestheticService:SmallMountain  
-                  [2750 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
+                  [1000 2500]  'aestheticService:SmallMountain  
+                  [2500 8850]  'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
                   :otherwise   'aestheticService:NoMountain))  ;; catches low artifacts
 
 (defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
@@ -62,8 +62,8 @@
 
 (defmodel highway 'aestheticService:Highways 
   (classification (binary-coding 'infrastructure:Highway)
-                  0          'aestheticService:HighwaysAbsent
-                  :otherwise 'aestheticService:HighwaysPresent))
+                  1          'aestheticService:HighwaysPresent
+                  :otherwise 'aestheticService:HighwaysAbsent))
 
 (defmodel view-sink-undiscretizer 'aestheticService:VisualBlight
   (classification 'aestheticService:VisualBlight
@@ -87,8 +87,8 @@
 (defmodel housing 'aestheticService:PresenceOfHousing
   "Classifies land use from property data."
   (classification (ranking 'aestheticService:PresenceOfHousing)
-        [0 :>]        'aestheticService:HousingPresent  
-        :otherwise    'aestheticService:HousingAbsent))
+        [:exclusive 0 255]   'aestheticService:HousingPresent  
+        :otherwise               'aestheticService:HousingAbsent))
 ;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
 ;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
 ;;        :otherwise   'aestheticService:HousingAbsent))
@@ -97,11 +97,11 @@
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
   ;; turn any values into these dollars
   (classification (ranking  'economics:AppraisedPropertyValue)
-                  [:<       100000] 'aestheticService:VeryLowHousingValue
-                  [100000   200000] 'aestheticService:LowHousingValue
-                  [200000   400000] 'aestheticService:ModerateHousingValue
-                  [400000  1000000] 'aestheticService:HighHousingValue
-                  [1000000 :>]      'aestheticService:VeryHighHousingValue))
+                  [:exclusive 0 50000]  'aestheticService:VeryLowHousingValue
+                  [50000       150000]  'aestheticService:LowHousingValue
+                  [150000       300000] 'aestheticService:ModerateHousingValue
+                  [300000      500000]  'aestheticService:HighHousingValue
+                  [500000     :>]       'aestheticService:VeryHighHousingValue))
 
 ;;Training data for King County: actual housing with views.  
 ;; Do not use until BNs can be properly trained.
@@ -113,7 +113,7 @@
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer 'aestheticService:HomeownerViewUse
   (classification 'aestheticService:HomeownerViewUse
-                  [0 0.05]   'aestheticService:HomeownerProximityUseAbsent 
+                  [0 0.05]   'aestheticService:HomeownerViewUseAbsent 
                   [0.05 1]   'aestheticService:HomeownerViewUsePresent))
 
 ;; bayesian model

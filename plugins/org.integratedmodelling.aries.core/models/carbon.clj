@@ -78,11 +78,11 @@
 	 		  
 (defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
 	(classification (ranking 'habitat:PercentVegetationCover :units "%")
-		[80 :>] 'carbonService:VeryHighVegetationCover
-		[60 80] 'carbonService:HighVegetationCover
-		[40 60] 'carbonService:ModerateVegetationCover
-		[20 40] 'carbonService:LowVegetationCover
-		[1 20]  'carbonService:VeryLowVegetationCover))
+		[80 100] 'carbonService:VeryHighVegetationCover
+		[60 80]  'carbonService:HighVegetationCover
+		[40 60]  'carbonService:ModerateVegetationCover
+		[20 40]  'carbonService:LowVegetationCover
+		[1 20]   'carbonService:VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
 		 (classification (ranking 'habitat:SummerHighWinterLow)
@@ -146,9 +146,9 @@
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
 (defmodel soil-ph 'carbonService:Soilph
   (classification (ranking 'habitat:SoilPhShallow)
-                  [7.3 :>]       'carbonService:HighPh
-                  [5.5 7.3]      'carbonService:ModeratePh
-                  [:< 5.5]       'carbonService:LowPh))
+                  [7.3 :>]                 'carbonService:HighPh
+                  [5.5 7.3]                'carbonService:ModeratePh
+                  [:exclusive 0 5.5]       'carbonService:LowPh))
 
 ; use NLCD layers to infer anoxic vs. oxic
 (defmodel oxygen 'carbonService:SoilOxygenConditions 

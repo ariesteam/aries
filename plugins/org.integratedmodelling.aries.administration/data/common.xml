@@ -222,31 +222,31 @@ Yang, D., et al. 2003. Global potential soil erosion with reference to land use 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-	<measurement:NumericCoding id="NLCD92_Project">
-		<observation:hasObservable>
-			<nlcd:NLCD1992Typology />
-		</observation:hasObservable>
-			<rdfs:comment>Data source: NLCD 1992</rdfs:comment>
-			<metadata:hasPriority>5</metadata:hasPriority> 
-			<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>puget:comm_ind_trans_puget</geospace:hasCoverageId>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>13988</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>14016</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>-377992.25</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>420470.943</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>1001729.4</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>1797436.693</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:2855</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:NumericCoding>
+<measurement:NumericCoding id="comm_ind_trans_puget">
+	<observation:hasObservable>
+		<nlcd:NLCD1992Typology />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: NLCD 1992</rdfs:comment>
+	<metadata:hasPriority>5</metadata:hasPriority>
+	<metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:comm_ind_trans_puget</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>23234</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>20021</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>4958500.48</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>335717.398</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>5559190.48</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>1032797.398</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+</measurement:NumericCoding>
 
 <!-- For use in USLE/RUSLE -->	
 	
@@ -1282,6 +1282,7 @@ Assume values of "SmallDamStorage" where there are reservoirs, zero otherwise --
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
 				<geospace:hasCoverageId>global:soil_cn_global</geospace:hasCoverageId>
+				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
@@ -1644,6 +1645,7 @@ for grasslands and deserts and soil_ph1 for all other ecosystem types -->
 					<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 					<geospace:hasCoverageId>puget:pugetwaterquality</geospace:hasCoverageId>
 					<geospace:hasValueAttribute>quality</geospace:hasValueAttribute>
+					<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
 				</geospace:WFSDataSource>
 			</observation:hasDataSource>
 			<observation:hasObservationExtent>
