@@ -5,8 +5,10 @@
 ;; --------------------------------------------------------------------------------------------------
 (ns test.models
   (:refer-clojure :rename {count length})
-  (:refer modelling :only (defmodel defagent defscenario numeric-coding binary-coding count
-			    measurement classification categorization ranking identification bayesian)))
+  (:refer modelling :only (defmodel defagent defscenario numeric-coding 
+                            binary-coding count model
+                            measurement classification categorization 
+                            ranking identification bayesian)))
 
 ;; self-annotating model
 (defmodel farmland-self 'test:Farmland$
@@ -14,8 +16,8 @@
 			82	       'test:FarmlandPresent$test:Farmland&test:Sprozza
 			:otherwise 'test:FarmlandAbsent$test:Farmland))
 
-(defmodel altitude-mm 'geophysics:Altitude
-	(measurement 'geophysics:Altitude "mm"))
+;(defmodel altitude-mm Altitude
+;	(measurement geophysics:Altitude "mm"))
 
 (defmodel conservation-status 'conservation:ProtectedStatus
 	(ranking 'conservation:ProtectedStatus))
@@ -123,9 +125,10 @@
 
 (defscenario eroded 'geophysics:Altitude 
   "Altitude is eroded by 100 m. Try it anywhere altitude is needed."
-  (measurement 'geophysics:Altitude "m"
-    :as    altitude 
-    :state #(- (:altitude %) 100.0))) 
+  (model 'geophysics:Altitude
+    (measurement 'geophysics:Altitude "m"
+      :as    altitude 
+      :state #(- (:altitude %) 100.0))))
 
 ;; -------------------------------------------------------------------------
 ;; bayesian node - sample specs
