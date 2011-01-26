@@ -145,7 +145,7 @@
   "Property owners who can afford to pay for proximity to open space"
   (bayesian 'aestheticService:ProximityUse 
             :import  "aries.core::ProximityUseSanPedro.xdsl"
-            :context (property-value urban-proximity housing)
+            :context (urban-proximity) ;;property-value housing
             :observed (proximity-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerProximityUse)))						
 

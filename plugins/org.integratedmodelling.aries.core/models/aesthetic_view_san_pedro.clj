@@ -125,7 +125,7 @@
   "Property owners who can afford to pay for the view"
   (bayesian 'aestheticService:ViewUse 
             :import  "aries.core::ViewUseSanPedro.xdsl"
-            :context (property-value housing)
+            :context (housing property-value) 
             :observed (view-use-undiscretizer) 
             :keep    ('aestheticService:HomeownerViewUse)))
 
@@ -147,6 +147,11 @@
                             homeowners      :as use 
                             sink            :as sink
                             altitude        :as altitude)))
+
+(defmodel data-bsr 'aestheticService:LineOfSight
+  (identification 'aestheticService:LineOfSight
+                  :context (source          :as source
+                            sink            :as sink)))
 
 (defmodel data-scenic-highways 'aestheticService:LineOfSight
   (identification 'aestheticService:LineOfSight
