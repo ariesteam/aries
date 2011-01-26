@@ -1518,7 +1518,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
-	<measurement:NumericCoding id="os3">
+  	<measurement:NumericCoding id="os3">
 		<observation:hasObservable>
 			<mglulc:MGLULCNumeric />
 		</observation:hasObservable>
@@ -1528,7 +1528,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mg:os3</geospace:hasCoverageId>
+				<geospace:hasCoverageId>mg:lulc_mg</geospace:hasCoverageId>
 				<geospace:hasNodataValue>255.0</geospace:hasNodataValue>
 			</geospace:WCSDataSource>
 		</observation:hasDataSource>
@@ -1543,7 +1543,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:NumericCoding>
+	</measurement:NumericCoding> 
 
 <measurement:BinaryCoding id="mountainfront_recharge">
 	<observation:hasObservable>
