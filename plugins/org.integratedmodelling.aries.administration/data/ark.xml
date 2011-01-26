@@ -25,6 +25,8 @@
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
 
+<!--  Commenting this out as it's out of sync with the geoserver and we're allegedly not using hydroSHEDS anyway for water routing.
+
 	<measurement:Ranking id="hydrosheds">
 		<observation:hasObservable>
 			<geophysics:FlowDirection />
@@ -49,7 +51,7 @@
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking>  -->
 
 	<measurement:NumericCoding id="corine2000">
 		<observation:hasObservable>
