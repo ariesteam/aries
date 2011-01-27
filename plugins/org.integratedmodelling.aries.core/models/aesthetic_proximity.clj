@@ -1,106 +1,109 @@
 ;;Proximity model for Western Washington
 (ns core.models.aesthetic-proximity
   (:refer-clojure :rename {count length})
-  (:refer modelling :only [defscenario defmodel measurement classification categorization ranking
+  (:refer modelling :only [defscenario defmodel measurement classification categorization 
+                           namespace-ontology ranking
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
+
+(namespace-ontology aestheticService)
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel lake-front 'aestheticService:LakeFront
-  (classification (binary-coding 'aestheticService:LakeFrontPresence)
-                  1          'aestheticService:LakeFrontPresent
-                  :otherwise 'aestheticService:LakeFrontAbsent))
+(defmodel lake-front LakeFront
+  (classification (binary-coding LakeFrontPresence)
+                  1          LakeFrontPresent
+                  :otherwise LakeFrontAbsent))
 
-(defmodel river-front 'aestheticService:RiverFront
-  (classification (binary-coding 'aestheticService:RiverFrontPresence)
-                  1          'aestheticService:RiverFrontPresent
-                  :otherwise 'aestheticService:RiverFrontAbsent))
+(defmodel river-front RiverFront
+  (classification (binary-coding RiverFrontPresence)
+                  1          RiverFrontPresent
+                  :otherwise RiverFrontAbsent))
 
-(defmodel beach 'aestheticService:Beach
-  (classification (binary-coding 'aestheticService:BeachPresence)
-                  1          'aestheticService:BeachPresent
-                  :otherwise 'aestheticService:BeachAbsent))
+(defmodel beach Beach
+  (classification (binary-coding BeachPresence)
+                  1          BeachPresent
+                  :otherwise BeachAbsent))
 
-(defmodel forest 'aestheticService:Forest
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{41 42 43}  'aestheticService:ForestPresent                  
-                  :otherwise   'aestheticService:ForestAbsent))
+(defmodel forest Forest
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  #{41 42 43}  ForestPresent                  
+                  :otherwise   ForestAbsent))
 
-(defmodel woody-wetland 'aestheticService:WoodyWetland
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  90           'aestheticService:WoodyWetlandPresent                  
-                  :otherwise   'aestheticService:WoodyWetlandAbsent))
+(defmodel woody-wetland WoodyWetland
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  90           WoodyWetlandPresent                  
+                  :otherwise   WoodyWetlandAbsent))
 
-(defmodel emergent-wetland 'aestheticService:EmergentWetland
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  95           'aestheticService:EmergentWetlandPresent                  
-                  :otherwise   'aestheticService:EmergentWetlandAbsent))
+(defmodel emergent-wetland EmergentWetland
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  95           EmergentWetlandPresent                  
+                  :otherwise   EmergentWetlandAbsent))
 
-(defmodel farmland 'aestheticService:Farmland
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-                  #{81 82}     'aestheticService:FarmlandPresent                  
-                  :otherwise   'aestheticService:FarmlandAbsent))
+(defmodel farmland Farmland
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  #{81 82}     FarmlandPresent                  
+                  :otherwise   FarmlandAbsent))
 
-(defmodel park 'aestheticService:Park
-  (classification (binary-coding 'aestheticService:ParkPresence)
-                  1          'aestheticService:ParkPresent
-                  :otherwise 'aestheticService:ParkAbsent))
+(defmodel park Park
+  (classification (binary-coding ParkPresence)
+                  1          ParkPresent
+                  :otherwise ParkAbsent))
 
-(defmodel crime-potential 'aestheticService:CrimePotential
-  (classification (categorization 'geofeatures:City)
-                  #{"Seattle" "Tacoma"} 'aestheticService:HighCrimePotential
-                  :otherwise            'aestheticService:LowCrimePotential))
+(defmodel crime-potential CrimePotential
+  (classification (categorization geofeatures:City)
+                  #{"Seattle" "Tacoma"} HighCrimePotential
+                  :otherwise            LowCrimePotential))
 
-(defmodel water-quality 'aestheticService:WaterQuality
-  (classification (ranking 'aestheticService:WaterQualityAssessment)
-                  1            'aestheticService:MeetsStandards
-                  #{2 4 24}    'aestheticService:OfConcern
-                  5            'aestheticService:RequiringTMDL
-                  :otherwise   'aestheticService:NoSurfaceWater))
+(defmodel water-quality WaterQuality
+  (classification (ranking WaterQualityAssessment)
+                  1            MeetsStandards
+                  #{2 4 24}    OfConcern
+                  5            RequiringTMDL
+                  :otherwise   NoSurfaceWater))
 
 ;;This is set as a Puget-specific concept since it's a binary coding rather than a ranking like the global
 ;; conservation status dataset.
-(defmodel formal-protection 'aestheticService:FormalProtection
-  (classification (binary-coding 'puget:ProtectedStatus)
-                  1            'aestheticService:Protected
-                  :otherwise   'aestheticService:NotProtected)) 
+(defmodel formal-protection FormalProtection
+  (classification (binary-coding puget:ProtectedStatus)
+                  1            Protected
+                  :otherwise   NotProtected)) 
 
 ;; Computes area of open space polygons as a GIS operation and stores this value in each pixel
-(defmodel area 'aestheticService:OpenSpaceAreaClass
-  (classification (measurement 'aestheticService:OpenSpaceArea "ha")
-                  [40 :>] 'aestheticService:VeryLargeArea
-                  [10 40] 'aestheticService:LargeArea
-                  [2 10]  'aestheticService:SmallArea
-                  [:< 2]  'aestheticService:VerySmallArea))
+(defmodel area OpenSpaceAreaClass
+  (classification (measurement OpenSpaceArea "ha")
+                  [40 :>] VeryLargeArea
+                  [10 40] LargeArea
+                  [2 10]  SmallArea
+                  [:< 2]  VerySmallArea))
 
-(defmodel theoretical-open-space 'aestheticService:TheoreticalProximitySource
-  (classification 'aestheticService:TheoreticalProximitySource
-                  [0   10] 'aestheticService:NoProximityPotential 
-                  [10  40] 'aestheticService:LowProximityPotential
-                  [40  75] 'aestheticService:ModerateProximityPotential 
-                  [75 100] 'aestheticService:HighProximityPotential))
+(defmodel theoretical-open-space TheoreticalProximitySource
+  (classification TheoreticalProximitySource
+                  [0   10] NoProximityPotential 
+                  [10  40] LowProximityPotential
+                  [40  75] ModerateProximityPotential 
+                  [75 100] HighProximityPotential))
 
 ;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticProximityProvision
+(defmodel source AestheticProximityProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticProximityProvision
+  (bayesian AestheticProximityProvision
             :import   "aries.core::ProximitySource.xdsl"
             :context  (lake-front river-front beach forest woody-wetland emergent-wetland farmland park
                        crime-potential water-quality formal-protection area)
             :observed (theoretical-open-space)
-            :keep     ('aestheticService:TheoreticalProximitySource)))
+            :keep     (TheoreticalProximitySource)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel sink 'aestheticService:ProximitySink
-  (ranking 'aestheticService:ProximitySink
-           :context ((binary-coding 'infrastructure:Highway :as highway))
+(defmodel sink ProximitySink
+  (ranking ProximitySink
+           :context ((binary-coding infrastructure:Highway :as highway))
            :state #(cond (== (:highway %) 1) 50   ;;50 units of proximity value are depleted by the sink if highways are present
                          :otherwise          0))) ;;Otherwise zero sink
 
@@ -108,63 +111,63 @@
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel housing 'aestheticService:PresenceOfHousing
+(defmodel housing PresenceOfHousing
   "Classifies land use from property data."
-  (classification (ranking 'aestheticService:PresenceOfHousing)
-        [:exclusive 0 255]   'aestheticService:HousingPresent  
-        :otherwise               'aestheticService:HousingAbsent))
+  (classification (ranking PresenceOfHousing)
+        [:exclusive 0 255]   HousingPresent  
+        :otherwise               HousingAbsent))
 ;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
-;;        [22 23 24]   'aestheticService:HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
-;;        :otherwise   'aestheticService:HousingAbsent))
+;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+;;        :otherwise   HousingAbsent))
 
-(defmodel property-value 'aestheticService:HousingValue
+(defmodel property-value HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
   ;; turn any values into these dollars
-  (classification (ranking  'economics:AppraisedPropertyValue)
-                  [:exclusive 0 50000]  'aestheticService:VeryLowHousingValue
-                  [50000       150000]  'aestheticService:LowHousingValue
-                  [150000       300000] 'aestheticService:ModerateHousingValue
-                  [300000      500000]  'aestheticService:HighHousingValue
-                  [500000     :>]       'aestheticService:VeryHighHousingValue))
+  (classification (ranking  economics:AppraisedPropertyValue)
+                  [:exclusive 0 50000]  VeryLowHousingValue
+                  [50000       150000]  LowHousingValue
+                  [150000       300000] ModerateHousingValue
+                  [300000      500000]  HighHousingValue
+                  [500000     :>]       VeryHighHousingValue))
 
 ;;Urban proximity proxied by year 2007 population density for Washington
-(defmodel urban-proximity 'aestheticService:UrbanProximity
-  (classification (count 'policytarget:PopulationDensity "/km^2")
-                  [309 :>] 'aestheticService:Urban
-                  [77 309] 'aestheticService:Suburban
-                  [:< 77]  'aestheticService:Rural))
+(defmodel urban-proximity UrbanProximity
+  (classification (count policytarget:PopulationDensity "/km^2")
+                  [309 :>] Urban
+                  [77 309] Suburban
+                  [:< 77]  Rural))
 
 ;;undiscretizer for proximty use
-(defmodel proximity-use-undiscretizer 'aestheticService:HomeownerProximityUse
-  (classification 'aestheticService:HomeownerProximityUse
-                  [0 0.05]   'aestheticService:HomeownerProximityUseAbsent 
-                  [0.05 1]   'aestheticService:HomeownerProximityUsePresent))
+(defmodel proximity-use-undiscretizer HomeownerProximityUse
+  (classification HomeownerProximityUse
+                  [0 0.05]   HomeownerProximityUseAbsent 
+                  [0.05 1]   HomeownerProximityUsePresent))
 
 ;; bayesian model
-(defmodel homeowners 'aestheticService:ProximityUse
+(defmodel homeowners ProximityUse
   "Property owners who can afford to pay for proximity to open space"
-  (bayesian 'aestheticService:ProximityUse 
+  (bayesian ProximityUse 
             :import  "aries.core::ProximityUse.xdsl"
             :context (property-value urban-proximity housing)
             :observed (proximity-use-undiscretizer) 
-            :keep    ('aestheticService:HomeownerProximityUse)))
+            :keep    (HomeownerProximityUse)))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-(defmodel data 'aestheticService:Proximity
-  (identification 'aestheticService:Proximity
+(defmodel data Proximity
+  (identification Proximity
                   :context (source     :as source
                             homeowners :as use
                             sink       :as sink)))
 
-(defmodel proximity 'aestheticService:AestheticProximity
-  (span 'aestheticService:Proximity
-        'aestheticService:TheoreticalProximitySource
-        'aestheticService:HomeownerProximityUse
-        'aestheticService:ProximitySink
+(defmodel proximity AestheticProximity
+  (span Proximity
+        TheoreticalProximitySource
+        HomeownerProximityUse
+        ProximitySink
         nil
         nil
         :source-threshold   5.0  ;;Initially set as the midpoint of the lowest bin
@@ -177,10 +180,10 @@
         :benefit-type       :non-rival
         :downscaling-factor 2
         :rv-max-states      10
-        :keep ('aestheticService:PotentialProximateOpenSpace 'aestheticService:PotentialProximitySink 'aestheticService:HomeownersWithOpenSpaceDemand
-               'aestheticService:PossibleProximateOpenSpace 'aestheticService:AccessibleOpenSpace 'aestheticService:OpenSpaceProximateHomeowners
-               'aestheticService:AccessibleProximity 'aestheticService:EnjoyedOpenSpace 'aestheticService:BlockingProximitySink
-               'aestheticService:HomeownersWithProximateOpenSpace 'aestheticService:UnaccessedOpenSpace 'aestheticService:InaccessibleProximitySink
-               'aestheticService:HomeownersWithoutProximateOpenSpace 'aestheticService:BlockedProximity 'aestheticService:BlockedOpenSpace
-               'aestheticService:HomeownersWithBlockedProximity)
+        :keep (PotentialProximateOpenSpace PotentialProximitySink HomeownersWithOpenSpaceDemand
+               PossibleProximateOpenSpace AccessibleOpenSpace OpenSpaceProximateHomeowners
+               AccessibleProximity EnjoyedOpenSpace BlockingProximitySink
+               HomeownersWithProximateOpenSpace UnaccessedOpenSpace InaccessibleProximitySink
+               HomeownersWithoutProximateOpenSpace BlockedProximity BlockedOpenSpace
+               HomeownersWithBlockedProximity)
         :context (source homeowners sink)))

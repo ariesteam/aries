@@ -2,8 +2,13 @@
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification 
                             categorization ranking numeric-coding binary-coding 
+                            namespace-ontology
                             identification bayesian count probabilistic-measurement))
   (:refer aries :only (span)))
+
+(namespace-ontology waterSupplyService
+  (representation:GenericObservable
+    (TempSurfaceWaterData)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Surface water source model
@@ -21,20 +26,20 @@
 ;; be groundwater sources if incoming water is directly used to recharge groundwater).
 
 
-(defmodel precipitation-annual 'waterSupplyService:AnnualPrecipitation
-  (measurement 'habitat:AnnualPrecipitation "mm"))
+(defmodel precipitation-annual AnnualPrecipitation
+  (measurement habitat:AnnualPrecipitation "mm"))
 
-(defmodel precipitation-dry-year 'waterSupplyService:AnnualPrecipitationDryYear
-  (measurement 'habitat:AnnualPrecipitation2002 "mm"))
+(defmodel precipitation-dry-year AnnualPrecipitationDryYear
+  (measurement habitat:AnnualPrecipitation2002 "mm"))
 
-(defmodel precipitation-wet-year 'waterSupplyService:AnnualPrecipitationWetYear
-  (measurement 'habitat:AnnualPrecipitation2007 "mm"))
+(defmodel precipitation-wet-year AnnualPrecipitationWetYear
+  (measurement habitat:AnnualPrecipitation2007 "mm"))
 
 ;;Springs can be a source of surface water or a sink for groundwater.
 ;; At least for arid regions, springs are likely not a net source - 
-(defmodel spring-discharge 'waterSupplyService:SpringDischarge
-  (measurement 'waterSupplyService:SpringDischarge "mm"
-    :context ((binary-coding 'waterSupplyService:Springs :as spring-presence))
+(defmodel spring-discharge SpringDischarge
+  (measurement SpringDischarge "mm"
+    :context ((binary-coding Springs :as spring-presence))
     :state #(cond (== (:spring-presence %) 0) 0
                   (== (:spring-presence %) 1) 100)))
 
@@ -43,8 +48,8 @@
 
 ;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
 ;; Runoff as a sum of precip, snowmelt, spring discharge, baseflow, incoming interbasin water transfers.
-(defmodel runoff 'soilretentionEcology:AnnualRunoffSummed
-  (measurement 'soilretentionEcology:AnnualRunoffSummed "mm/year"
+(defmodel runoff soilretentionEcology:AnnualRunoffSummed
+  (measurement soilretentionEcology:AnnualRunoffSummed "mm/year"
     :context (precipitation-annual :as precipitation-annual spring-discharge :as spring-discharge) 
     :state #(+ (:precipitation-annual %)
                (:spring-discharge     %))))
@@ -54,10 +59,10 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Consider using percolation data here instead if more appropriate?
-(defmodel recharge 'habitat:AnnualRecharge
-  (measurement 'habitat:AnnualRecharge "mm"))
+(defmodel recharge habitat:AnnualRecharge
+  (measurement habitat:AnnualRecharge "mm"))
 
-;;(defmodel artificial-recharge 'waterSupplyService:ArtificialRecharge (artificial recharge can be added to natural recharge
+;;(defmodel artificial-recharge ArtificialRecharge (artificial recharge can be added to natural recharge
 ;;  as a source of groundwater)
 
 ;; No incoming interbasin water transfers to the San Pedro at this point (nb: incoming interbasin water transfers could be 
@@ -70,128 +75,128 @@
 ;;Ad hoc sink model adapted from the ad hoc flood sink model.  Includes infiltration & evapotranspiration
 ;;processes.  Deterministic models could be used to replace this as appropriate.
 
-;;(defmodel slope 'waterSupplyService:SlopeClass
-;;    (classification (measurement 'geophysics:DegreeSlope "\u00B0")
-;;       [0 1.15]               'waterSupplyService:Level
-;;       [1.15 4.57]            'waterSupplyService:GentlyUndulating
-;;       [4.57 16.70]           'waterSupplyService:RollingToHilly
-;;       [16.70 90 :inclusive]  'waterSupplyService:SteeplyDissectedToMountainous))
+;;(defmodel slope SlopeClass
+;;    (classification (measurement geophysics:DegreeSlope "\u00B0")
+;;       [0 1.15]               Level
+;;       [1.15 4.57]            GentlyUndulating
+;;       [4.57 16.70]           RollingToHilly
+;;       [16.70 90 :inclusive]  SteeplyDissectedToMountainous))
 
-;;(defmodel soil-group 'waterSupplyService:HydrologicSoilsGroup
-;;  (classification (ranking 'habitat:HydrologicSoilsGroup)
-;;      1       'waterSupplyService:SoilGroupA
-;;      2       'waterSupplyService:SoilGroupB
-;;      3       'waterSupplyService:SoilGroupC
-;;      4       'waterSupplyService:SoilGroupD))
+;;(defmodel soil-group HydrologicSoilsGroup
+;;  (classification (ranking habitat:HydrologicSoilsGroup)
+;;      1       SoilGroupA
+;;      2       SoilGroupB
+;;      3       SoilGroupC
+;;      4       SoilGroupD))
 
-;;(defmodel imperviousness 'waterSupplyService:PercentImperviousCoverClass
-;;   (classification (ranking 'habitat:PercentImperviousness)
-;;       [80 100 :inclusive]   'waterSupplyService:VeryHighImperviousCover
-;;       [50 80]               'waterSupplyService:HighImperviousCover
-;;       [20 50]               'waterSupplyService:ModeratelyHighImperviousCover
-;;       [10 20]               'waterSupplyService:ModeratelyLowImperviousCover
-;;       [5 10]                'waterSupplyService:LowImperviousCover
-;;       [0 5]                 'waterSupplyService:VeryLowImperviousCover))
+;;(defmodel imperviousness PercentImperviousCoverClass
+;;   (classification (ranking habitat:PercentImperviousness)
+;;       [80 100 :inclusive]   VeryHighImperviousCover
+;;       [50 80]               HighImperviousCover
+;;       [20 50]               ModeratelyHighImperviousCover
+;;       [10 20]               ModeratelyLowImperviousCover
+;;       [5 10]                LowImperviousCover
+;;       [0 5]                 VeryLowImperviousCover))
 
 ;; TIE TO RUNOFF?
-;;(defmodel sink-undiscretizer 'waterSupplyService:SurfaceWaterSinkClass
-;;  (classification 'waterSupplyService:SurfaceWaterSinkClass 
-;;    [180 :>]           'waterSupplyService:VeryHighSurfaceWaterSink
-;;    [180 260]            'waterSupplyService:VeryHighSurfaceWaterSink
-;;    [100 180]            'waterSupplyService:HighSurfaceWaterSink
-;;    [50 100]             'waterSupplyService:ModerateSurfaceWaterSink
-;;    [1 50]               'waterSupplyService:LowSurfaceWaterSink
-;;    [0 1]                'waterSupplyService:NoSurfaceWaterSink))
-;;    [:exclusive 0 50]  'waterSupplyService:LowSurfaceWaterSink
-;;    0                  'waterSupplyService:NoSurfaceWaterSink))
+;;(defmodel sink-undiscretizer SurfaceWaterSinkClass
+;;  (classification SurfaceWaterSinkClass 
+;;    [180 :>]           VeryHighSurfaceWaterSink
+;;    [180 260]            VeryHighSurfaceWaterSink
+;;    [100 180]            HighSurfaceWaterSink
+;;    [50 100]             ModerateSurfaceWaterSink
+;;    [1 50]               LowSurfaceWaterSink
+;;    [0 1]                NoSurfaceWaterSink))
+;;    [:exclusive 0 50]  LowSurfaceWaterSink
+;;    0                  NoSurfaceWaterSink))
 
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-;;(defmodel evapotranspiration 'floodService:EvapotranspirationClass
-;;  (classification (measurement 'habitat:ActualEvapotranspiration "mm")
-;;                  [60 :>]    'floodService:HighEvapotranspiration
-;;                  [30 60]    'floodService:ModerateEvapotranspiration
-;;                  [0 30]    'floodService:LowEvapotranspiration)) 
+;;(defmodel evapotranspiration floodService:EvapotranspirationClass
+;;  (classification (measurement habitat:ActualEvapotranspiration "mm")
+;;                  [60 :>]    floodService:HighEvapotranspiration
+;;                  [30 60]    floodService:ModerateEvapotranspiration
+;;                  [0 30]    floodService:LowEvapotranspiration)) 
 
-(defmodel mountain-front 'waterSupplyService:MountainFront 
-    (classification (binary-coding 'geofeatures:MountainFront)
-        0           'waterSupplyService:MountainFrontPresent
-        :otherwise  'waterSupplyService:MountainFrontAbsent))
+(defmodel mountain-front MountainFront 
+    (classification (binary-coding geofeatures:MountainFront)
+        0           MountainFrontPresent
+        :otherwise  MountainFrontAbsent))
 
-(defmodel stream-channel 'waterSupplyService:StreamChannel
-  (classification (binary-coding 'geofeatures:River) 
-        1           'waterSupplyService:StreamChannelPresent
-        :otherwise  'waterSupplyService:StreamChannelAbsent))
+(defmodel stream-channel StreamChannel
+  (classification (binary-coding geofeatures:River) 
+        1           StreamChannelPresent
+        :otherwise  StreamChannelAbsent))
 
 ;; Global layer looks funny - discretization should be something like >38, 34-38, <34.  Clearly these don't refer to identical concepts.
-(defmodel annual-temperature 'waterSupplyService:AnnualMaximumTemperature
-    (classification (measurement 'geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
-       [28 :>]   'waterSupplyService:VeryHighAnnualMaximumTemperature
-       [22 28]    'waterSupplyService:HighAnnualMaximumTemperature
-       [:< 22]   'waterSupplyService:ModerateAnnualMaximumTemperature)) 
+(defmodel annual-temperature AnnualMaximumTemperature
+    (classification (measurement geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
+       [28 :>]   VeryHighAnnualMaximumTemperature
+       [22 28]    HighAnnualMaximumTemperature
+       [:< 22]   ModerateAnnualMaximumTemperature)) 
 
-(defmodel vegetation-type 'sanPedro:EvapotranspirationVegetationType
+(defmodel vegetation-type sanPedro:EvapotranspirationVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
-  (classification (numeric-coding 'sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           'sanPedro:Forest
-    #{33 41 91}                                                                        'sanPedro:OakWoodland
-    #{52 109}                                                                          'sanPedro:MesquiteWoodland
-    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              'sanPedro:Grassland
-    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} 'sanPedro:DesertScrub
-    #{77 78 79 80 81 83 84 85 98 109 110 118}                                          'sanPedro:Riparian
-    114                                                                                'sanPedro:Agriculture
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  'sanPedro:UrbanBarrenWater))
-;;   (classification (categorization 'mexico:CONABIOLULCCategory)
-;;     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  'sanPedro:Forest
-;;     #{"Bosque de encino" "Vegetacion de galeria"}                                'sanPedro:OakWoodland
-;;     #{"Mezquital-huizachal"}                                                     'sanPedro:MesquiteWoodland
-;;     #{"Pastizal natural"}                                                        'sanPedro:Grassland
-;;     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} 'sanPedro:DesertScrub
-;;     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     'sanPedro:Riparian
-;;     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  'sanPedro:UrbanBarrenWater))
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           sanPedro:Forest
+    #{33 41 91}                                                                        sanPedro:OakWoodland
+    #{52 109}                                                                          sanPedro:MesquiteWoodland
+    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              sanPedro:Grassland
+    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
+    #{77 78 79 80 81 83 84 85 98 109 110 118}                                          sanPedro:Riparian
+    114                                                                                sanPedro:Agriculture
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  sanPedro:UrbanBarrenWater))
+;;   (classification (categorization mexico:CONABIOLULCCategory)
+;;     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
+;;     #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
+;;     #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
+;;     #{"Pastizal natural"}                                                        sanPedro:Grassland
+;;     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
+;;     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
+;;     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
 
-(defmodel percent-vegetation-cover 'waterSupplyService:PercentVegetationCoverClass
-  (classification (ranking 'habitat:PercentVegetationCover)
-    [80 100] 'waterSupplyService:VeryHighVegetationCover
-    [60 80]  'waterSupplyService:HighVegetationCover
-    [40 60]  'waterSupplyService:ModerateVegetationCover
-    [20 40]  'waterSupplyService:LowVegetationCover
-    [0 20]   'waterSupplyService:VeryLowVegetationCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [80 100] VeryHighVegetationCover
+    [60 80]  HighVegetationCover
+    [40 60]  ModerateVegetationCover
+    [20 40]  LowVegetationCover
+    [0 20]   VeryLowVegetationCover))
 
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-(defmodel evapotranspiration 'waterSupplyService:Evapotranspiration
-  (probabilistic-measurement 'waterSupplyService:EvapotranspirationClass
+(defmodel evapotranspiration Evapotranspiration
+  (probabilistic-measurement EvapotranspirationClass
                   :units "mm"
-                  [60 120]   'waterSupplyService:HighEvapotranspiration
-                  [30 60]    'waterSupplyService:ModerateEvapotranspiration
-                  [0 30]     'waterSupplyService:LowEvapotranspiration))
+                  [60 120]   HighEvapotranspiration
+                  [30 60]    ModerateEvapotranspiration
+                  [0 30]     LowEvapotranspiration))
 
-(defmodel infiltration 'waterSupplyService:SoilInfiltration
-  (probabilistic-measurement 'waterSupplyService:SoilInfiltrationClass 
+(defmodel infiltration SoilInfiltration
+  (probabilistic-measurement SoilInfiltrationClass 
                   :units "mm"
-                  [60 120]   'waterSupplyService:HighInfiltration
-                  [30 60]    'waterSupplyService:ModerateInfiltration
-                  [0 30]     'waterSupplyService:LowInfiltration))
+                  [60 120]   HighInfiltration
+                  [30 60]    ModerateInfiltration
+                  [0 30]     LowInfiltration))
 
-(defmodel et-sink 'waterSupplyService:Evapotranspiration
-    (bayesian 'waterSupplyService:Evapotranspiration
+(defmodel et-sink Evapotranspiration
+    (bayesian Evapotranspiration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (annual-temperature vegetation-type percent-vegetation-cover)
-      :keep     ('waterSupplyService:EvapotranspirationClass)
+      :keep     (EvapotranspirationClass)
       :result   evapotranspiration))
 
-(defmodel infiltration-sink 'waterSupplyService:SoilInfiltration
-    (bayesian 'waterSupplyService:SoilInfiltration
+(defmodel infiltration-sink SoilInfiltration
+    (bayesian SoilInfiltration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (stream-channel mountain-front)
-      :keep     ('waterSupplyService:SoilInfiltrationClass)
+      :keep     (SoilInfiltrationClass)
       :result   infiltration))
 
-(defmodel surface-water-sink 'waterSupplyService:SurfaceWaterSink
-  (measurement 'waterSupplyService:SurfaceWaterSink "mm/year"
+(defmodel surface-water-sink SurfaceWaterSink
+  (measurement SurfaceWaterSink "mm/year"
     :context (infiltration-sink :as infiltration et-sink :as evapotranspiration) 
     :state #(+ 
               (if (nil? (:infiltration %)) 0.0 (.getMean (:infiltration %)))
@@ -207,8 +212,8 @@
 ;;(defmodel baseflow -> this is complex and requires MODFLOW outputs to identify contributions to gaining reaches.  
 ;; Give it a closer look when we've gotten a better handle on whether MODFLOW integration is possible.
 
-;;(defmodel groundwater-sink 'soilretentionEcology:GroundwaterSink
-;;  (measurement 'soilretentionEcology:GroundwaterSink "mm/year"
+;;(defmodel groundwater-sink soilretentionEcology:GroundwaterSink
+;;  (measurement soilretentionEcology:GroundwaterSink "mm/year"
 ;;    :context (spring-discharge :as spring-discharge baseflow :as baseflow) 
 ;;    :state #(+ (:baseflow %)
 ;;               (:spring-discharge     %))))
@@ -231,26 +236,26 @@
 ;; hydrography network), and converted ac-ft/yr from acres to ha and from ft to mm.  This gives values of 511,521 mm
 ;; for the St. David Diversion and 155,680 mm for the Pomerene Diversion.
 
-(defmodel surface-diversions 'waterSupplyService:SurfaceDiversionCapacity
- (measurement 'waterSupplyService:SurfaceDiversionCapacity "mm"))
+(defmodel surface-diversions SurfaceDiversionCapacity
+ (measurement SurfaceDiversionCapacity "mm"))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Groundwater use model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;USPP Tech Committee has some recent docs on rural well water use (see email from Susan Bronson)
-(defmodel well-presence 'waterSupplyService:Wells 
- (binary-coding 'waterSupplyService:Wells
-    :context ((measurement 'waterSupplyService:AnnualWellCapacity "mm" :as well-capacity))
+(defmodel well-presence Wells 
+ (binary-coding Wells
+    :context ((measurement AnnualWellCapacity "mm" :as well-capacity))
     :state   #(if (nil? (:well-capacity %)) 0 1))) 
 
-(defmodel well-presence2 'waterSupplyService:Wells
-  [(categorization 'geofeatures:Country :as country)]
-  (binary-coding 'waterSupplyService:Wells
-    :context ((measurement 'waterSupplyService:AnnualWellCapacity "mm" :as well-capacity))
+(defmodel well-presence2 Wells
+  [(categorization geofeatures:Country :as country)]
+  (binary-coding Wells
+    :context ((measurement AnnualWellCapacity "mm" :as well-capacity))
     :state   #(if (nil? (:well-capacity %)) 0 1) 
     :when    #(= (:country %) "United States"))
-  (binary-coding 'waterSupplyService:Wells))
+  (binary-coding Wells))
 
 ;;Have data on well locations/depths/capacities/ownership.  To use well depth in the model you'd need to
 ;; pair it with a groundwater surface contour map (which we don't have but may be able to get).  Use
@@ -266,24 +271,24 @@
 ;;Currently setting wells in Sonora to 35 gallons per minute (conversion below is to start with the "1" from 
 ;; presence absence, multiply by 35, then convert from GPM to mm/yr.  Talk with Gary on how to turn this into a 
 ;; probability distribution.
-;;(defmodel well-extraction2 'waterSupplyService:AnnualWellCapacity
-;;  [(categorization 'geofeatures:Country :as country)]
-;;  (measurement 'waterSupplyService:AnnualWellCapacity "mm"
+;;(defmodel well-extraction2 AnnualWellCapacity
+;;  [(categorization geofeatures:Country :as country)]
+;;  (measurement AnnualWellCapacity "mm"
 ;;               :when #(= (:country %) "United States"))
-;;  (measurement 'waterSupplyService:AnnualWellCapacity "mm"
-;;               :context ((binary-coding 'infrastructure:Well :as well-presence))
+;;  (measurement AnnualWellCapacity "mm"
+;;               :context ((binary-coding infrastructure:Well :as well-presence))
 ;;               :state   #(* (:well-presence %) 17407215)))
 
-;;(defmodel well-extraction 'waterSupplyService:AnnualWellCapacity
-;; (measurement 'waterSupplyService:AnnualWellCapacity "mm")) 
+;;(defmodel well-extraction AnnualWellCapacity
+;; (measurement AnnualWellCapacity "mm")) 
 
 ;;Use "OWNER_NAME" attribute
-;;(defmodel well-ownership 'waterSupplyService:WellOwnership
-      ;;'waterSupplyService:Agricultural ;;Name includes "ranch," "farms"
-      ;;'waterSupplyService:Domestic
-      ;;'waterSupplyService:Military ;;US ARMY FT HUACHUCA,,
-      ;;'waterSupplyService:Mining  ;;ASARCO INC, ASARCO INCORPORATED-RAY COMPLEX, ASARCO INC,, BHP COPPER INC,, BHP MINERALS, BHP BILLITON, PHELPS DODGE CORP,, PHELPS DODGE CORPORATION
-      ;;'waterSupplyService:Other
+;;(defmodel well-ownership WellOwnership
+      ;;Agricultural ;;Name includes "ranch," "farms"
+      ;;Domestic
+      ;;Military ;;US ARMY FT HUACHUCA,,
+      ;;Mining  ;;ASARCO INC, ASARCO INCORPORATED-RAY COMPLEX, ASARCO INC,, BHP COPPER INC,, BHP MINERALS, BHP BILLITON, PHELPS DODGE CORP,, PHELPS DODGE CORPORATION
+      ;;Other
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model
@@ -291,42 +296,42 @@
 
 ;;Update below for water.
  	 								
-(defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))
 
-(defmodel flow-direction 'geophysics:FlowDirection
-  (ranking 'geophysics:FlowDirection))
+(defmodel flow-direction geophysics:FlowDirection
+  (ranking geophysics:FlowDirection))
 
-(defmodel streams-simple 'geofeatures:River ;;This could be rasterized to speed the process, though probably not critical.
-  (binary-coding 'geofeatures:River))
+(defmodel streams-simple geofeatures:River ;;This could be rasterized to speed the process, though probably not critical.
+  (binary-coding geofeatures:River))
 
-(defmodel surface-water-flow-data 'waterSupplyService:TempSurfaceWaterData$
-  (identification 'waterSupplyService:TempSurfaceWaterData
+(defmodel surface-water-flow-data TempSurfaceWaterData
+  (identification TempSurfaceWaterData
                   :context (altitude streams-simple stream-channel)))
 
-;;(defmodel groundwater-elevation 'waterSupplyService:GroundwaterElevation
+;;(defmodel groundwater-elevation GroundwaterElevation
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;;Identifications for wet year surface water flow
-(defmodel data-wet-year 'waterSupplyService:WaterSupplyWetYear
-  (identification 'waterSupplyService:WaterSupplyWetYear
+(defmodel data-wet-year WaterSupplyWetYear
+  (identification WaterSupplyWetYear
   :context (precipitation-wet-year 
             surface-water-sink       
             surface-diversions
             streams-simple)))
 
-;;(defmodel data-dry-year 'waterSupplyService:WaterSupplyDryYear
-;;  (identification 'waterSupplyService:WaterSupplyDryYear
+;;(defmodel data-dry-year WaterSupplyDryYear
+;;  (identification WaterSupplyDryYear
 ;;  :context (precipitation-dry-year 
 ;;            surface-water-sink       
 ;;            surface-diversions
 ;;            streams-simple)))
 
-(defmodel data-big-test 'waterSupplyService:WaterSupplyDryYear
-  (identification 'waterSupplyService:WaterSupplyDryYear
+(defmodel data-big-test WaterSupplyDryYear
+  (identification WaterSupplyDryYear
   :context (precipitation-wet-year
             precipitation-dry-year
             surface-diversions
@@ -336,20 +341,20 @@
             altitude)))
 
 ;; other elements for export to NetCDF, that will eventually go into groundwater models.
-(defmodel other-data 'waterSupplyService:GroundwaterSupply 
-  (identification 'waterSupplyService:GroundwaterSupply 
+(defmodel other-data GroundwaterSupply 
+  (identification GroundwaterSupply 
   :context (precipitation-annual
             recharge
             well-presence)))
 
 ;; flow model for surface water in a dry year
-(defmodel surface-flow-dry 'waterSupplyService:SurfaceWaterMovement
-  (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
-        'waterSupplyService:AnnualPrecipitationDryYear
-        'waterSupplyService:SurfaceDiversionCapacity
-        'waterSupplyService:SurfaceWaterSink
+(defmodel surface-flow-dry SurfaceWaterMovement
+  (span SurfaceWaterMovement ;;Can this be the same as the above concept?
+        AnnualPrecipitationDryYear
+        SurfaceDiversionCapacity
+        SurfaceWaterSink
         nil
-        ('geophysics:Altitude 'geofeatures:River)
+        (geophysics:Altitude geofeatures:River)
         :source-threshold   5.0
         :sink-threshold     5.0
         :use-threshold      1.0
@@ -361,35 +366,35 @@
         :downscaling-factor 1
         :rv-max-states      10
         :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_dry_year_data.clj"
-        :keep               ('waterSupplyService:SurfaceWaterSupply
-                             'waterSupplyService:MaximumSurfaceWaterSink
-                             'waterSupplyService:SurfaceWaterDemand
-                             'waterSupplyService:PossibleSurfaceWaterFlow
-                             'waterSupplyService:PossibleSurfaceWaterSupply
-                             'waterSupplyService:PossibleSurfaceWaterUse
-                             'waterSupplyService:ActualSurfaceWaterFlow
-                             'waterSupplyService:UsedSurfaceWaterSupply
-                             'waterSupplyService:ActualSurfaceWaterSink
-                             'waterSupplyService:SatisfiedSurfaceWaterDemand
-                             'waterSupplyService:UnusableSurfaceWaterSupply
-                             'waterSupplyService:UnusableSurfaceWaterSink
-                             'waterSupplyService:InaccessibleSurfaceWaterDemand
-                             'waterSupplyService:SunkSurfaceWaterFlow
-                             'waterSupplyService:SunkSurfaceWaterSupply
-                             'waterSupplyService:BlockedSurfaceWaterDemand)
+        :keep               (SurfaceWaterSupply
+                             MaximumSurfaceWaterSink
+                             SurfaceWaterDemand
+                             PossibleSurfaceWaterFlow
+                             PossibleSurfaceWaterSupply
+                             PossibleSurfaceWaterUse
+                             ActualSurfaceWaterFlow
+                             UsedSurfaceWaterSupply
+                             ActualSurfaceWaterSink
+                             SatisfiedSurfaceWaterDemand
+                             UnusableSurfaceWaterSupply
+                             UnusableSurfaceWaterSink
+                             InaccessibleSurfaceWaterDemand
+                             SunkSurfaceWaterFlow
+                             SunkSurfaceWaterSupply
+                             BlockedSurfaceWaterDemand)
         :context            (precipitation-dry-year
                              surface-water-sink
                              surface-diversions
                              surface-water-flow-data)))
 
 ;; flow model for surface water in a wet year
-(defmodel surface-flow-wet 'waterSupplyService:SurfaceWaterMovement
-  (span 'waterSupplyService:SurfaceWaterMovement ;;Can this be the same as the above concept?
-        'waterSupplyService:AnnualPrecipitationWetYear
-        'waterSupplyService:SurfaceDiversionCapacity
-        'waterSupplyService:SurfaceWaterSink
+(defmodel surface-flow-wet SurfaceWaterMovement
+  (span SurfaceWaterMovement ;;Can this be the same as the above concept?
+        AnnualPrecipitationWetYear
+        SurfaceDiversionCapacity
+        SurfaceWaterSink
         nil
-        ('geophysics:Altitude 'geofeatures:River)
+        (geophysics:Altitude geofeatures:River)
         :source-threshold   5.0
         :sink-threshold     5.0
         :use-threshold      1.0
@@ -401,35 +406,35 @@
         :downscaling-factor 1
         :rv-max-states      10
         :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_wet_year_data.clj"
-        :keep               ('waterSupplyService:SurfaceWaterSupply
-                             'waterSupplyService:MaximumSurfaceWaterSink
-                             'waterSupplyService:SurfaceWaterDemand
-                             'waterSupplyService:PossibleSurfaceWaterFlow
-                             'waterSupplyService:PossibleSurfaceWaterSupply
-                             'waterSupplyService:PossibleSurfaceWaterUse
-                             'waterSupplyService:ActualSurfaceWaterFlow
-                             'waterSupplyService:UsedSurfaceWaterSupply
-                             'waterSupplyService:ActualSurfaceWaterSink
-                             'waterSupplyService:SatisfiedSurfaceWaterDemand
-                             'waterSupplyService:UnusableSurfaceWaterSupply
-                             'waterSupplyService:UnusableSurfaceWaterSink
-                             'waterSupplyService:InaccessibleSurfaceWaterDemand
-                             'waterSupplyService:SunkSurfaceWaterFlow
-                             'waterSupplyService:SunkSurfaceWaterSupply
-                             'waterSupplyService:BlockedSurfaceWaterDemand)
+        :keep               (SurfaceWaterSupply
+                             MaximumSurfaceWaterSink
+                             SurfaceWaterDemand
+                             PossibleSurfaceWaterFlow
+                             PossibleSurfaceWaterSupply
+                             PossibleSurfaceWaterUse
+                             ActualSurfaceWaterFlow
+                             UsedSurfaceWaterSupply
+                             ActualSurfaceWaterSink
+                             SatisfiedSurfaceWaterDemand
+                             UnusableSurfaceWaterSupply
+                             UnusableSurfaceWaterSink
+                             InaccessibleSurfaceWaterDemand
+                             SunkSurfaceWaterFlow
+                             SunkSurfaceWaterSupply
+                             BlockedSurfaceWaterDemand)
         :context            (precipitation-wet-year
                              surface-water-sink
                              surface-diversions
                              surface-water-flow-data)))
 
 ;; flow model for groundwater
-;;(defmodel groundwater-flow 'waterSupplyService:GroundwaterMovement
- ;; (span 'waterSupplyService:GroundwaterMovement  ;;Can this be the same as the above concept?
-    ;;    'habitat:AnnualRecharge   
-    ;;    'waterSupplyService:Wells
-    ;;    'waterSupplyService:SurfaceWaterSinkClass ;;replace with proper GW sink class when it's ready
+;;(defmodel groundwater-flow GroundwaterMovement
+ ;; (span GroundwaterMovement  ;;Can this be the same as the above concept?
+    ;;    habitat:AnnualRecharge   
+    ;;    Wells
+    ;;    SurfaceWaterSinkClass ;;replace with proper GW sink class when it's ready
     ;;    nil
-    ;;    'geophysics:Altitude     ;;uncertain of dependencies here
+    ;;    geophysics:Altitude     ;;uncertain of dependencies here
   ;;      :source-threshold   1.0  ;;Tough to define without further consideration of GW flow model
   ;;      :sink-threshold     1.0  ;;Tough to define without further consideration of GW flow model
   ;;      :use-threshold      10.0 ;;Tough to define without further consideration of GW flow model
@@ -440,11 +445,11 @@
   ;;      :benefit-type     :rival
   ;;      :downscaling-factor 3
   ;;      :rv-max-states      10 
-  ;;      :keep ('waterSupplyService:GroundwaterRecharge        'waterSupplyService:MaximumGroundwaterSink      'waterSupplyService:GroundwaterDemand
-  ;;             'waterSupplyService:PossibleGroundwaterFlow    'waterSupplyService:PossibleGroundwaterRecharge 'waterSupplyService:PossibleGroundwaterUse
-  ;;             'waterSupplyService:ActualGroundwaterFlow      'waterSupplyService:UsedGroundwaterRechage      'waterSupplyService:ActualGroundwaterSink          'waterSupplyService:SatisfiedGroundwaterDemand
-  ;;             'waterSupplyService:UnusableGroundwaterRechage 'waterSupplyService:UnusableGroundwaterSink     'waterSupplyService:InaccessibleGroundwaterDemand
-  ;;             'waterSupplyService:SunkGroundwaterFlow        'waterSupplyService:SunkSurfaceWaterSupply      'waterSupplyService:BlockedGroundwaterDemand)   
+  ;;      :keep (GroundwaterRecharge        MaximumGroundwaterSink      GroundwaterDemand
+  ;;             PossibleGroundwaterFlow    PossibleGroundwaterRecharge PossibleGroundwaterUse
+  ;;             ActualGroundwaterFlow      UsedGroundwaterRechage      ActualGroundwaterSink          SatisfiedGroundwaterDemand
+  ;;             UnusableGroundwaterRechage UnusableGroundwaterSink     InaccessibleGroundwaterDemand
+  ;;             SunkGroundwaterFlow        SunkSurfaceWaterSupply      BlockedGroundwaterDemand)   
   ;;      :context (recharge groundwater-sink well-presence)))))
 
 
@@ -455,16 +460,16 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management 'sanPedro:MesquiteManagement): Change veg type (to sanPedro:Grassland) & cover 
+;;(defscenario mesquite-management sanPedro:MesquiteManagement): Change veg type (to sanPedro:Grassland) & cover 
 ;;  (to VeryLowVegetationCover) within polygons in sink model.
       
-;;(defscenario urban-growth 'sanPedro:UrbanGrowth: New users based on new growth areas (demand up 10.4% in constrained, 56.8% in open).  
+;;(defscenario urban-growth sanPedro:UrbanGrowth: New users based on new growth areas (demand up 10.4% in constrained, 56.8% in open).  
 ;;   Change veg type, veg cover (VeryLow for 10, 11, 12, 19, 22, 25), impervious (ModeratelyHighImperviousCover for 11, 12, 22; 
 ;;   HighImperviousCover for 10, 19, 25) within new development areas in sink model.
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
       
-;;(defscenario bsr-development 'sanPedro:BSRDevelopment: New users based on polygon (545 mm within each polygon).  
+;;(defscenario bsr-development sanPedro:BSRDevelopment: New users based on polygon (545 mm within each polygon).  
 ;; Change veg cover (VeryLow, veg type (UrbanBarrenWater), impervious (ModeratelyHigh) within polygons in sink model.
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2

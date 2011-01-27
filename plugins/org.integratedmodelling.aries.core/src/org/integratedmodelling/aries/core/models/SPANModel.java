@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.interfaces.IContext;
-import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.modelling.model.DefaultAbstractModel;
 import org.integratedmodelling.modelling.model.DefaultStatefulAbstractModel;
@@ -23,7 +22,12 @@ import clojure.lang.PersistentHashMap;
 
 public class SPANModel extends DefaultAbstractModel {
 
-    public static final String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
+    public SPANModel(String namespace) {
+		super(namespace);
+		// TODO Auto-generated constructor stub
+	}
+
+	public static final String DOWNSCALE_PROPERTY_PREFIX = "aries.model.downsample.";
 
     /**
      * these are reclassified in the context of the main observable, so that the
@@ -48,7 +52,6 @@ public class SPANModel extends DefaultAbstractModel {
     Collection<IConcept> flowDataObservables = null;
     private PersistentHashMap flowParams = PersistentHashMap.create(new Object[]{});
     
-	ArrayList<String> keeperIds = new ArrayList<String>();
 	ArrayList<IConcept> keepers = new ArrayList<IConcept>();
 
     
@@ -72,7 +75,7 @@ public class SPANModel extends DefaultAbstractModel {
         flowDataObservables = ((SPANModel)model).flowDataObservables;
         flowParams = ((SPANModel)model).flowParams;
         parameters = ((SPANModel)model).parameters;
-		keeperIds = ((SPANModel)model).keeperIds;
+//		keeperIds = ((SPANModel)model).keeperIds;
 		keepers = ((SPANModel)model).keepers;
     }
 
@@ -100,7 +103,7 @@ public class SPANModel extends DefaultAbstractModel {
     @Override
     public IModel getConfigurableClone() {
         
-        SPANModel ret = new SPANModel();
+        SPANModel ret = new SPANModel(namespace);
         ret.copy(this);
         return ret; 
     }
@@ -138,7 +141,7 @@ public class SPANModel extends DefaultAbstractModel {
 			
 			Collection<?> p = (Collection<?>) argument;
 			for (Object c : p)
-				keeperIds.add(c.toString());
+				keepers.add(ModelFactory.annotateConcept(namespace, c.toString()));
 
 		} else {
             super.applyClause(keyword, argument);
@@ -223,9 +226,9 @@ public class SPANModel extends DefaultAbstractModel {
         // concepts themselves should actually be observables of dependents, so
         // the whole thing needs attention.
 		
-		for (String s : keeperIds) {
-			keepers.add(annotateConcept(s,session, null));
-		}
+//		for (String s : keeperIds) {
+//			keepers.add(annotateConcept(s,session, null));
+//		}
     }
 
 }

@@ -5,58 +5,44 @@
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
-;; defines the ontology associated with this namespace, which may or may not exist. Concepts
-;; that are not defined can be created here instead of using the $ syntax.
-;; 
-;; if not given, each namespace gets its own ontology - this one would get coreModelsCarbon
-(namespace-ontology 'carbonService
-;;
-;; this can be used to create an ontology or add to an existing one
-;; example of definition of concept hierarchy. List forms specify concepts to be created or properties according to
-;; the case of the first letter. Parents are the enclosing concept but any symbol passed after the main concept is
-;; also set as a parent and must exist.
-;; 
-;  (CarbonSequestration 'thinklab-core:OrdinalRanking
-;    (HighCarbonSequestration)
-;    (MediumCarbonSequestration)
-;    (LowCarbonSequestration))
-)
+;; defines the ontology associated with this namespace, which may or may not exist.
+(namespace-ontology carbonService)
 
 ;;This model is for western Washington State
 
 ;; these are the undiscretization statements, necessary for training purposes.
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
-(defmodel veg-soil-storage 'carbonService:VegetationAndSoilCarbonStorage
-	(classification 'carbonService:VegetationAndSoilCarbonStorage
+(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
+	(classification VegetationAndSoilCarbonStorage
 						:units "t/ha" 
-	  				[1000 3200]   'carbonService:VeryHighStorage
-            [600 1000]    'carbonService:HighStorage
-            [300 600]     'carbonService:ModerateStorage
-            [100 300]     'carbonService:LowStorage
-            [0.01 100]    'carbonService:VeryLowStorage
-            [0 0.01]      'carbonService:NoStorage))
+	  				[1000 3200]   VeryHighStorage
+            [600 1000]    HighStorage
+            [300 600]     ModerateStorage
+            [100 300]     LowStorage
+            [0.01 100]    VeryLowStorage
+            [0 0.01]      NoStorage))
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now
-(defmodel veg-storage 'carbonService:VegetationCarbonStorage
-	(classification 'carbonService:VegetationCarbonStorage
+(defmodel veg-storage VegetationCarbonStorage
+	(classification VegetationCarbonStorage
 						:units "t/ha" 
-	  				[900 2301]     'carbonService:VeryHighVegetationStorage
-            [500 900]      'carbonService:HighVegetationStorage
-            [250 500]      'carbonService:ModerateVegetationStorage
-            [75 250]       'carbonService:LowVegetationStorage
-            [0.01 75]      'carbonService:VeryLowVegetationStorage
-            [0 0.01]       'carbonService:NoVegetationStorage)) 			
+	  				[900 2301]     VeryHighVegetationStorage
+            [500 900]      HighVegetationStorage
+            [250 500]      ModerateVegetationStorage
+            [75 250]       LowVegetationStorage
+            [0.01 75]      VeryLowVegetationStorage
+            [0 0.01]       NoVegetationStorage)) 			
 
 ;; output and training TODO make it classify the appropriate measurement - buggy for now				
-(defmodel soil-storage 'carbonService:SoilCarbonStorage
-		(classification 'carbonService:SoilCarbonStorage
+(defmodel soil-storage SoilCarbonStorage
+		(classification SoilCarbonStorage
 						:units    "t/ha" 
-	  				[680 820]      'carbonService:VeryHighSoilStorage
-            [440 680]      'carbonService:HighSoilStorage
-            [200 440]      'carbonService:ModerateSoilStorage
-            [50 200]       'carbonService:LowSoilStorage
-            [0.01 50]      'carbonService:VeryLowSoilStorage
-            [0 0.01]       'carbonService:NoSoilStorage))
+	  				[680 820]      VeryHighSoilStorage
+            [440 680]      HighSoilStorage
+            [200 440]      ModerateSoilStorage
+            [50 200]       LowSoilStorage
+            [0.01 50]      VeryLowSoilStorage
+            [0 0.01]       NoSoilStorage))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -67,63 +53,63 @@
 ;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
 ;; areas at risk of deforestation or fire.
     
-(defmodel successional-stage 'carbonService:SuccessionalStage
-	 (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6}                         'carbonService:OldGrowth
-	 		4                              'carbonService:LateSuccession
-	 		3                              'carbonService:MidSuccession
-	 		2                              'carbonService:PoleSuccession
-	 		1                              'carbonService:EarlySuccession
-	 		#{22 23 24 25 26 27 28 40 41}  'carbonService:NoSuccession))
+(defmodel successional-stage SuccessionalStage
+	 (classification (ranking ecology:SuccessionalStage)
+	 		#{5 6}                         OldGrowth
+	 		4                              LateSuccession
+	 		3                              MidSuccession
+	 		2                              PoleSuccession
+	 		1                              EarlySuccession
+	 		#{22 23 24 25 26 27 28 40 41}  NoSuccession))
 	 		  
-(defmodel percent-vegetation-cover 'carbonService:PercentVegetationCover
-	(classification (ranking 'habitat:PercentVegetationCover :units "%")
-		[80 100] 'carbonService:VeryHighVegetationCover
-		[60 80]  'carbonService:HighVegetationCover
-		[40 60]  'carbonService:ModerateVegetationCover
-		[20 40]  'carbonService:LowVegetationCover
-		[1 20]   'carbonService:VeryLowVegetationCover))
+(defmodel percent-vegetation-cover PercentVegetationCover
+	(classification (ranking habitat:PercentVegetationCover :units "%")
+		[80 100] VeryHighVegetationCover
+		[60 80]  HighVegetationCover
+		[40 60]  ModerateVegetationCover
+		[20 40]  LowVegetationCover
+		[1 20]   VeryLowVegetationCover))
 
-(defmodel summer-high-winter-low 'carbonService:SummerHighWinterLow
-		 (classification (ranking 'habitat:SummerHighWinterLow)
-        [:< 24]       'carbonService:VeryLowSOL
-        [24 30]       'carbonService:LowSOL
-        [30 35]       'carbonService:ModerateSOL
-        [35 40]       'carbonService:HighSOL
-        [40 :>]       'carbonService:VeryHighSOL))
+(defmodel summer-high-winter-low SummerHighWinterLow
+		 (classification (ranking habitat:SummerHighWinterLow)
+        [:< 24]       VeryLowSOL
+        [24 30]       LowSOL
+        [30 35]       ModerateSOL
+        [35 40]       HighSOL
+        [40 :>]       VeryHighSOL))
 
-(defmodel soil-cn-ratio 'carbonService:SoilCNRatio
-  (classification (ranking 'habitat:SoilCNRatio)
-       [35 :>]   'carbonService:VeryHighCNRatio
-       [20 35]   'carbonService:HighCNRatio
-       [10 20]   'carbonService:LowCNRatio
-       [:< 10]   'carbonService:VeryLowCNRatio)) 
+(defmodel soil-cn-ratio SoilCNRatio
+  (classification (ranking habitat:SoilCNRatio)
+       [35 :>]   VeryHighCNRatio
+       [20 35]   HighCNRatio
+       [10 20]   LowCNRatio
+       [:< 10]   VeryLowCNRatio)) 
 
-(defmodel hardwood-softwood-ratio 'carbonService:HardwoodSoftwoodRatio
-		 (classification (ranking 'habitat:HardwoodSoftwoodRatio)
-        [8 10] 'carbonService:VeryLowHardness
-        [6 8]  'carbonService:LowHardness
-        [4 6]  'carbonService:ModerateHardness
-        [2 4]  'carbonService:HighHardness
-        [1 2]  'carbonService:VeryHighHardness))
+(defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
+		 (classification (ranking habitat:HardwoodSoftwoodRatio)
+        [8 10] VeryLowHardness
+        [6 8]  LowHardness
+        [4 6]  ModerateHardness
+        [2 4]  HighHardness
+        [1 2]  VeryHighHardness))
 
-(defmodel veg-soil-sequestration 'carbonService:VegetationAndSoilCarbonSequestration
-  (classification 'carbonService:VegetationAndSoilCarbonSequestration
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (classification VegetationAndSoilCarbonSequestration
                   :units      "t/ha*year"
-                  [12 30]     'carbonService:VeryHighSequestration
-                  [9 12]      'carbonService:HighSequestration
-                  [6 9]       'carbonService:ModerateSequestration
-                  [3 6]       'carbonService:LowSequestration
-                  [0.01 3]    'carbonService:VeryLowSequestration
-                  [0 0.01]    'carbonService:NoSequestration))
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [3 6]       LowSequestration
+                  [0.01 3]    VeryLowSequestration
+                  [0 0.01]    NoSequestration))
 
 ;; Bayesian source model
-(defmodel source 'carbonService:CarbonSourceValue   
-  (bayesian 'carbonService:CarbonSourceValue 
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
             :import   "aries.core::CarbonSequestration.xdsl"
-            :keep     ('carbonService:VegetationAndSoilCarbonSequestration)
+            :keep     (VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
-            :required ('carbonService:SuccessionalStage)
+            :required (SuccessionalStage)
             :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                        percent-vegetation-cover successional-stage)))
 
@@ -136,48 +122,48 @@
 ;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
 ;; areas at risk of deforestation or fire.
 
-(defmodel slope 'carbonService:Slope
-    (classification (measurement 'geophysics:DegreeSlope "\u00b0")
-       [:< 1.15]    'carbonService:Level
-       [1.15 4.57]  'carbonService:GentlyUndulating
-       [4.57 16.70] 'carbonService:RollingToHilly
-       [16.70 :>]   'carbonService:SteeplyDissectedToMountainous))
+(defmodel slope Slope
+    (classification (measurement geophysics:DegreeSlope "\u00b0")
+       [:< 1.15]    Level
+       [1.15 4.57]  GentlyUndulating
+       [4.57 16.70] RollingToHilly
+       [16.70 :>]   SteeplyDissectedToMountainous))
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph 'carbonService:Soilph
-  (classification (ranking 'habitat:SoilPhShallow)
-                  [7.3 :>]                 'carbonService:HighPh
-                  [5.5 7.3]                'carbonService:ModeratePh
-                  [:exclusive 0 5.5]       'carbonService:LowPh))
+(defmodel soil-ph Soilph
+  (classification (ranking habitat:SoilPhShallow)
+                  [7.3 :>]                 HighPh
+                  [5.5 7.3]                ModeratePh
+                  [:exclusive 0 5.5]       LowPh))
 
 ; use NLCD layers to infer anoxic vs. oxic
-(defmodel oxygen 'carbonService:SoilOxygenConditions 
- (classification (numeric-coding 'nlcd:NLCDNumeric)
-      #{90 95}   'carbonService:AnoxicSoils
-      :otherwise 'carbonService:OxicSoils))
+(defmodel oxygen SoilOxygenConditions 
+ (classification (numeric-coding nlcd:NLCDNumeric)
+      #{90 95}   AnoxicSoils
+      :otherwise OxicSoils))
 
-(defmodel fire-frequency 'carbonService:FireFrequency
-     (classification (measurement 'habitat:FireFrequency "/km^2") 
-          [:< 0.25]  'carbonService:LowFireFrequency
-          [0.25 0.9] 'carbonService:ModerateFireFrequency
-          [0.9 :>]   'carbonService:HighFireFrequency))
+(defmodel fire-frequency FireFrequency
+     (classification (measurement habitat:FireFrequency "/km^2") 
+          [:< 0.25]  LowFireFrequency
+          [0.25 0.9] ModerateFireFrequency
+          [0.9 :>]   HighFireFrequency))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release 'carbonService:StoredCarbonRelease
-  (classification 'carbonService:StoredCarbonRelease
+(defmodel stored-carbon-release StoredCarbonRelease
+  (classification StoredCarbonRelease
                   :units      "t/ha*year"
-                  [12 1000]   'carbonService:VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      'carbonService:HighRelease
-                  [6 9]       'carbonService:ModerateRelease
-                  [3 6]       'carbonService:LowRelease
-                  [0.01 3]    'carbonService:VeryLowRelease
-                  [0 0.01]    'carbonService:NoRelease))
+                  [12 1000]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                  [9 12]      HighRelease
+                  [6 9]       ModerateRelease
+                  [3 6]       LowRelease
+                  [0.01 3]    VeryLowRelease
+                  [0 0.01]    NoRelease))
 
-(defmodel sink 'carbonService:CarbonSinkValue   
-  (bayesian 'carbonService:CarbonSinkValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonRelease.xdsl"
-            :keep     ('carbonService:StoredCarbonRelease)
-            :required ('carbonService:SuccessionalStage)
+            :keep     (StoredCarbonRelease)
+            :required (SuccessionalStage)
             :observed (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage soil-cn-ratio summer-high-winter-low fire-frequency)))
@@ -186,24 +172,24 @@
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel use-simple 'carbonService:GreenhouseGasEmissions
-  (measurement 'carbonService:GreenhouseGasEmissions "t/ha*year"))
+(defmodel use-simple GreenhouseGasEmissions
+  (measurement GreenhouseGasEmissions "t/ha*year"))
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel identification-carbon 'carbonService:ClimateStability
-  (identification 'carbonService:ClimateStability
+(defmodel identification-carbon ClimateStability
+  (identification ClimateStability
                   :context (source :as source
                             sink :as sink
                             use-simple :as use)))
 
-(defmodel carbon-flow 'carbonService:ClimateStability
-  (span 'carbonService:CO2Removed
-        'carbonService:VegetationAndSoilCarbonSequestration 
-        'carbonService:GreenhouseGasEmissions
-        'carbonService:StoredCarbonRelease 
+(defmodel carbon-flow ClimateStability
+  (span CO2Removed
+        VegetationAndSoilCarbonSequestration 
+        GreenhouseGasEmissions
+        StoredCarbonRelease 
         nil
         nil
         :source-threshold   1.0
@@ -217,12 +203,12 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :keep ('carbonService:CarbonSequestration 'carbonService:StoredCarbonRelease 
-               'carbonService:GreenhouseGasEmissions 'carbonService:PotentialCarbonMitigationProvision
-               'carbonService:PotentialCarbonMitigationUse 'carbonService:UsedCarbonMitigation
-               'carbonService:UsedCarbonSink 'carbonService:SatisfiedCarbonMitigationDemand
-               'carbonService:CarbonMitigationSurplus 'carbonService:CarbonMitigationDeficit
-               'carbonService:DepletedCarbonMitigation 'carbonService:DepletedCarbonMitigationDemand)
+        :keep (CarbonSequestration StoredCarbonRelease 
+               GreenhouseGasEmissions PotentialCarbonMitigationProvision
+               PotentialCarbonMitigationUse UsedCarbonMitigation
+               UsedCarbonSink SatisfiedCarbonMitigationDemand
+               CarbonMitigationSurplus CarbonMitigationDeficit
+               DepletedCarbonMitigation DepletedCarbonMitigationDemand)
         :context (source use-simple sink)))
 		
 ;; ----------------------------------------------------------------------------------------------
@@ -231,44 +217,43 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-(defscenario ipcc-hadley-a2-incentivized 'carbonService:IPCCHadleyA2Incentivized
+(defscenario ipcc-hadley-a2-incentivized IPCCHadleyA2Incentivized
   "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 
   represents a future world of very rapid economic growth, global population that peaks 
   in mid-century and declines thereafter, and rapid introduction of new and more efficient 
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
-  
-  (model 'carbonService:SuccessionalStage
-    (classification (ranking 'ecology:SuccessionalStage)
-	 		#{5 6 4}    'carbonService:OldGrowth
-	 		3           'carbonService:MidSuccession
-	 		2           'carbonService:EarlySuccession
-	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession))) 
+  (model SuccessionalStage
+    (classification (ranking ecology:SuccessionalStage)
+	 		#{5 6 4}    OldGrowth
+	 		3           MidSuccession
+	 		2           EarlySuccession
+	 		1           PoleSuccession
+	 		:otherwise  NoSuccession))) 
 
-(defscenario ipcc-hadley-b2-incentivized 'carbonService:IPCCHadleyB2Incentivized
+(defscenario ipcc-hadley-b2-incentivized IPCCHadleyB2Incentivized
   "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 
   world is a convergent world with the same global population as in the A1 storyline but 
   with rapid changes in economic structures toward a service and information economy, with 
   reductions in material intensity, and the introduction of clean and resource-efficient 
   technologies." 
   ;; old growth has been incentivized, so what was late succession is now old growth
-  (model 'carbonService:SuccessionalStage
-    (classification (ranking 'ecology:SuccessionalStage)
-      #{5 6 4}    'carbonService:OldGrowth
-	 		3           'carbonService:MidSuccession
-	 		2           'carbonService:EarlySuccession
-	 		1           'carbonService:PoleSuccession
-	 		:otherwise  'carbonService:NoSuccession)))  
+  (model SuccessionalStage
+    (classification (ranking ecology:SuccessionalStage)
+      #{5 6 4}    OldGrowth
+	 		3           MidSuccession
+	 		2           EarlySuccession
+	 		1           PoleSuccession
+	 		:otherwise  NoSuccession)))  
        
-(defscenario ipcc-hadley-a2 'carbonService:IPCCHadleyA2
+(defscenario ipcc-hadley-a2 IPCCHadleyA2
 	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2
      represents a very heterogeneous world with continuously increasing global population 
      and regionally oriented economic growth that is more fragmented and slower than in
      other storylines." 
 ) 
 
-(defscenario ipcc-hadley-b2 'carbonService:IPCCHadleyB2
+(defscenario ipcc-hadley-b2 IPCCHadleyB2
 	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario. B2 
      is a world in which the emphasis is on local solutions to economic, social, and 
      environmental sustainability, with continuously increasing population (lower than A2)

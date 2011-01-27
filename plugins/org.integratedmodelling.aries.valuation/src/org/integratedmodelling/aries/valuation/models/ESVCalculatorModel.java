@@ -1,12 +1,10 @@
 package org.integratedmodelling.aries.valuation.models;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.integratedmodelling.corescience.CoreScience;
 import org.integratedmodelling.corescience.interfaces.IContext;
-import org.integratedmodelling.corescience.interfaces.internal.Topology;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.modelling.model.DefaultAbstractModel;
 import org.integratedmodelling.thinklab.KnowledgeManager;
@@ -21,6 +19,11 @@ import clojure.lang.PersistentList;
 
 public class ESVCalculatorModel extends DefaultAbstractModel {
 	
+	public ESVCalculatorModel(String namespace) {
+		super(namespace);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Array of these is passed to the transformer to modify the values if required. 
 	 * 
@@ -125,7 +128,7 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 	@Override
 	public IModel getConfigurableClone() {
 		
-		ESVCalculatorModel ret = new ESVCalculatorModel();
+		ESVCalculatorModel ret = new ESVCalculatorModel(namespace);
 		ret.copy(this);
 		return ret;
 	}

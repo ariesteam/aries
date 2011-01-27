@@ -7,13 +7,13 @@
 (ns aries
   (:use [clj-span.aries-span-bridge :only (span-driver)]))
 (refer 'tl        :only '(listp get-new-session))
-(refer 'modelling :only '(transform-model))
+(refer 'modelling :only '(transform-model process-observable annotate-concept))
 
 (defn j-make-span
 	"Make a new instance of a GSSM model and return it. Should be private, but must be public to work 
 	within the gssm macro. We need a compiled proxy because the Java classes aren't visible at runtime."
 	[]
-	(new org.integratedmodelling.aries.core.models.SPANModel))
+	(new org.integratedmodelling.aries.core.models.SPANModel (str *ns*)))
 	
 (defn get-span-proxy
   "Create a Java object to handle a SPAN run."
@@ -36,15 +36,13 @@
    model."
   [observable source-obs use-obs sink-obs flow-obs flow-data-obs-seq & body]
   `(let [model# (j-make-span)] 
-     (.setObservable model# (if (seq? ~observable)
-                              (listp ~observable)
-                              ~observable))
+ 	   (.setObservable model# (process-observable '~observable))
      (.setFlowObservables model#
-                          (tl/conc ~source-obs)
-                          (tl/conc ~use-obs)
-                          (tl/conc ~sink-obs)
-                          (tl/conc ~flow-obs)
-                          (map tl/conc '~(map eval flow-data-obs-seq)))
+                          (annotate-concept '~source-obs)
+                          (annotate-concept '~use-obs)
+                          (annotate-concept '~sink-obs)
+                          (annotate-concept '~flow-obs)
+                          (map annotate-concept '~flow-data-obs-seq))
      (if (not (nil? '~body))
        (doseq [classifier# (partition 2 '~body)]
          (if  (keyword? (first classifier#))

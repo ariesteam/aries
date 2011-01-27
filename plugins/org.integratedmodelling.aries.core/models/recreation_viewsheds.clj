@@ -1,54 +1,66 @@
 (ns core.models.recreation-viewsheds
   (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization ranking numeric-coding binary-coding identification bayesian count))
+  (:refer modelling :only (defscenario defmodel measurement classification categorization 
+                            namespace-ontology ranking numeric-coding binary-coding 
+                            identification bayesian count))
   (:refer aries :only (span)))
+
+(namespace-ontology recreationService
+  (representation:GenericObservable
+    (Lake
+      (LakeAbsent)
+      (LakePresent))
+    (Mountain
+      (NoMountain)
+      (SmallMountain)
+      (LargeMountain))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
 ;;Need a new defmodel statement combining lake & river into "waterview"
-(defmodel lake 'aestheticService:Lake
+(defmodel lake Lake
   "Just being a lake. We may want to reclass lake area instead"
-  (classification (binary-coding 'geofeatures:Lake)
-		  0          'aestheticService:LakeAbsent
-		  :otherwise 'aestheticService:LakePresent))
+  (classification (binary-coding geofeatures:Lake)
+		  0          LakeAbsent
+		  :otherwise LakePresent))
 
-(defmodel river-stream 'recreationService:RiverStream
+(defmodel river-stream RiverStream
   "Presence of a river or stream."
-  (classification (binary-coding 'geofeatures:River)
-		  0          'recreationService:RiverStreamAbsent
-		  :otherwise 'recreationService:RiverStreamPresent))
+  (classification (binary-coding geofeatures:River)
+		  0          RiverStreamAbsent
+		  :otherwise RiverStreamPresent))
 
-(defmodel mountain 'aestheticService:Mountain
+(defmodel mountain Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
-  (classification (measurement 'geophysics:Altitude "m")
-		  [457 914]  'aestheticService:SmallMountain ; 
-		  [914 8850] 'aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
-		  :otherwise 'aestheticService:NoMountain)) ; will catch artifacts too		  
+  (classification (measurement geophysics:Altitude "m")
+		  [457 914]  SmallMountain ; 
+		  [914 8850] LargeMountain ;; no higher than Mt. Everest, catches artifacts
+		  :otherwise NoMountain)) ; will catch artifacts too		  
 		  
-(defmodel open-space 'recreationService:OpenSpaceClass
+(defmodel open-space OpenSpaceClass
   "Classifies an area as open space according to NLCD 2001 data"
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-      #{81 82}       'recreationService:AgriculturalLand
-      #{41 42 43}    'recreationService:ForestedLand
-      #{31 90 95 52} 'recreationService:OtherOpenLand
-      :otherwise     'recreationService:NotOpenLand))
+  (classification (numeric-coding nlcd:NLCDNumeric)
+      #{81 82}       AgriculturalLand
+      #{41 42 43}    ForestedLand
+      #{31 90 95 52} OtherOpenLand
+      :otherwise     NotOpenLand))
 
-(defmodel theoretical-beauty 'aestheticService:TheoreticalNaturalBeauty
-	(classification 'aestheticService:TheoreticalNaturalBeauty
-  		[0 25]   'aestheticService:NoNaturalBeauty 
-  		[25 50]  'aestheticService:LowNaturalBeauty 
-  		[50 75]  'aestheticService:ModerateNaturalBeauty 
-  		[75 100] 'aestheticService:HighNaturalBeauty))
+(defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
+	(classification aestheticService:TheoreticalNaturalBeauty
+  		[0 25]   aestheticService:NoNaturalBeauty 
+  		[25 50]  aestheticService:LowNaturalBeauty 
+  		[50 75]  aestheticService:ModerateNaturalBeauty 
+  		[75 100] aestheticService:HighNaturalBeauty))
 
 ;; source bayesian model	    		 
-(defmodel source 'aestheticService:AestheticEnjoymentProvision
+(defmodel source aestheticService:AestheticEnjoymentProvision
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian 'aestheticService:AestheticEnjoymentProvision 
+  (bayesian aestheticService:AestheticEnjoymentProvision 
     :import   "aries.core::RecreationViewSource.xdsl"
-    :keep     ('aestheticService:TheoreticalNaturalBeauty)
+    :keep     (aestheticService:TheoreticalNaturalBeauty)
     :context  (lake river-stream mountain open-space)
     :observed (theoretical-beauty)))
 
@@ -56,39 +68,39 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 ;;development, clearcuts, roads, energy infrastructure
-(defmodel development 'recreationService:Development
+(defmodel development Development
   "Development as defined by the NLCD 2001"
-  (classification (numeric-coding 'nlcd:NLCDNumeric)
-      22          'recreationService:LowIntensityDevelopment
-      23          'recreationService:MediumIntensityDevelopment
-      24          'recreationService:HighIntensityDevelopment
-      :otherwise  'recreationService:NotDeveloped)) 
+  (classification (numeric-coding nlcd:NLCDNumeric)
+      22          LowIntensityDevelopment
+      23          MediumIntensityDevelopment
+      24          HighIntensityDevelopment
+      :otherwise  NotDeveloped)) 
 
-(defmodel transportation-energy-infrastructure-code 'recreationService:TransportationEnergyInfrastructureCode
-   (binary-coding 'recreationService:TransportationEnergyInfrastructureCode
-        :context ((binary-coding 'infrastructure:Road                  :as road)
-                  (binary-coding 'infrastructure:EnergyInfrastructure  :as energy-infrastructure)) 
+(defmodel transportation-energy-infrastructure-code TransportationEnergyInfrastructureCode
+   (binary-coding TransportationEnergyInfrastructureCode
+        :context ((binary-coding infrastructure:Road                  :as road)
+                  (binary-coding infrastructure:EnergyInfrastructure  :as energy-infrastructure)) 
         :state   #(if (or (= (:road %) 1)
                           (= (:energy-infrastructure %) 1))
                       1
                       0))) 
-(defmodel transportation-energy-infrastructure 'recreationService:TransportationEnergyInfrastructure
+(defmodel transportation-energy-infrastructure TransportationEnergyInfrastructure
    (classification transportation-energy-infrastructure-code
-             1  'recreationService:TransportationEnergyInfrastructurePresent 
-             0  'recreationService:TransportationEnergyInfrastructureAbsent))                        
+             1  TransportationEnergyInfrastructurePresent 
+             0  TransportationEnergyInfrastructureAbsent))                        
 
-(defmodel visual-blight 'aestheticService:VisualBlight
-  (classification 'aestheticService:VisualBlight
-      [0 10]   'aestheticService:NoBlight
-      [10 50]  'aestheticService:LowBlight
-      [50 90]  'aestheticService:ModerateBlight
-      [90 100] 'aestheticService:HighBlight))
+(defmodel visual-blight aestheticService:VisualBlight
+  (classification aestheticService:VisualBlight
+      [0 10]   aestheticService:NoBlight
+      [10 50]  aestheticService:LowBlight
+      [50 90]  aestheticService:ModerateBlight
+      [90 100] aestheticService:HighBlight))
       
-(defmodel sink 'aestheticService:ViewSink
+(defmodel sink aestheticService:ViewSink
   "Whatever is ugly enough to absorb our enjoyment"
-  (bayesian 'aestheticService:ViewSink 
+  (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationViewSink.xdsl"
-    :keep    ('aestheticService:VisualBlight)
+    :keep    (aestheticService:VisualBlight)
     :context (development transportation-energy-infrastructure)
     :observed (visual-blight)))
 
@@ -97,73 +109,73 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; ViewPosition, TravelTime, PublicAccess, HikingDistance, HikingSlope
 
-(defmodel view-position 'recreationService:ViewPositionClass
+(defmodel view-position ViewPositionClass
   "Location of a view point, a function of elevation."
-  (classification (measurement 'recreationService:ViewPosition "m")
-		  [0 457]   'recreationService:LowViewPosition
-		  [457 914] 'recreationService:MediumViewPosition
-		  [914 :>]  'recreationService:HighViewPosition))
+  (classification (measurement ViewPosition "m")
+		  [0 457]   LowViewPosition
+		  [457 914] MediumViewPosition
+		  [914 :>]  HighViewPosition))
 		  
-(defmodel travel-time 'recreationService:TravelTimeClass
+(defmodel travel-time TravelTimeClass
 	"Travel time to hiking resources"
-	(classification (ranking 'recreationService:TravelTime)
-			1  'recreationService:ShortTravelTime
-			2  'recreationService:ModerateTravelTime
-			3  'recreationService:LongTravelTime))
+	(classification (ranking TravelTime)
+			1  ShortTravelTime
+			2  ModerateTravelTime
+			3  LongTravelTime))
 			
-(defmodel public-access 'recreationService:PublicAccessClass
+(defmodel public-access PublicAccessClass
 	"describes access constraints to a particular parcel"
-	(classification (ranking 'recreationService:PublicAccess)
-		  0   'recreationService:PublicLand
-		  1		'recreationService:PrivateLandWithAccess
-		  2		'recreationService:NoPublicAccess)) 
+	(classification (ranking PublicAccess)
+		  0   PublicLand
+		  1		PrivateLandWithAccess
+		  2		NoPublicAccess)) 
 	
-(defmodel hiking-distance 'recreationService:HikingDistanceClass
+(defmodel hiking-distance HikingDistanceClass
 	"Refers to trail distance between the starting point and the view point"
-	(classification (ranking 'recreationService:HikingDistance)
-			1   'recreationService:ShortHikingDistance
-			2   'recreationService:ModerateHikingDistance
-			3   'recreationService:LongHikingDistance))
+	(classification (ranking HikingDistance)
+			1   ShortHikingDistance
+			2   ModerateHikingDistance
+			3   LongHikingDistance))
 	
-(defmodel hiking-slope 'recreationService:HikingSlopeClass
+(defmodel hiking-slope HikingSlopeClass
 	"describes the steepness of the hiking trail"
-	(classification (measurement 'recreationService:HikingSlope "\u00b0")
-			[:< 10] 'recreationService:LowSlope
-			[10 45] 'recreationService:ModerateSlope
-			[45 :>]	'recreationService:SteepSlope))
+	(classification (measurement HikingSlope "\u00b0")
+			[:< 10] LowSlope
+			[10 45] ModerateSlope
+			[45 :>]	SteepSlope))
 			
-(defmodel viewer-enjoyment 'recreationService:ViewerEnjoyment
-	(classification 'recreationService:ViewerEnjoyment
-  		[0 33]  'recreationService:LowViewerEnjoyment 
-  		[33 67]  'recreationService:ModerateViewerEnjoyment 
-  		[67 100] 'recreationService:HighViewerEnjoyment))
+(defmodel viewer-enjoyment ViewerEnjoyment
+	(classification ViewerEnjoyment
+  		[0 33]  LowViewerEnjoyment 
+  		[33 67]  ModerateViewerEnjoyment 
+  		[67 100] HighViewerEnjoyment))
 
 ;; bayesian model
-(defmodel user 'recreationService:ViewerEnjoyment
+(defmodel user ViewerEnjoyment
   "Views afforded to recreational users"
-  (bayesian 'recreationService:ViewerEnjoyment
+  (bayesian ViewerEnjoyment
     :import   "aries.core::RecreationViewUse.xdsl"
-    :keep     ('recreationService:ViewerEnjoyment)
+    :keep     (ViewerEnjoyment)
     :context  (view-position travel-time public-access hiking-distance hiking-slope)
     :observed (viewer-enjoyment)))
 
-(defmodel population-density 'policytarget:PopulationDensity
-  (count 'policytarget:PopulationDensity "/km^2"))
+(defmodel population-density policytarget:PopulationDensity
+  (count policytarget:PopulationDensity "/km^2"))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
  	 								
-(defmodel altitude 'geophysics:Altitude
-  (measurement 'geophysics:Altitude "m"))	 								
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))	 								
  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 
 ;; all data, for testing and storage
-(defmodel data 'aestheticService:AestheticEnjoyment 
-	(identification 'aestheticService:AestheticEnjoyment
+(defmodel data aestheticService:AestheticEnjoyment 
+	(identification aestheticService:AestheticEnjoyment
 		:context (
 			source :as source
 			user :as use
@@ -171,13 +183,13 @@
 			altitude :as altitude)))
 			
 ;; the real enchilada
-;;(defmodel view 'aestheticService:AestheticView
-  ;;(span 'aestheticService:LineOfSight 
-  	    ;;'aestheticService:TheoreticalNaturalBeauty
-  	    ;;'aestheticService:HomeownerViewUse
-      	;;'aestheticService:TotalVisualBlight
-      	;;'aestheticService:View
-  	    ;;'geophysics:Altitude
+;;(defmodel view aestheticService:AestheticView
+  ;;(span aestheticService:LineOfSight 
+  	    ;;aestheticService:TheoreticalNaturalBeauty
+  	    ;;aestheticService:HomeownerViewUse
+      	;;aestheticService:TotalVisualBlight
+      	;;aestheticService:View
+  	    ;;geophysics:Altitude
    	;;:sink-type        :relative
    	;;:use-type         :relative
    	;;:benefit-type     :non-rival
@@ -185,8 +197,8 @@
    	;;:rv-max-states    10 
     ;;:context
       ;;   (source homeowners sink altitude)
-        ;;  (ranking 'eserv:SourceThreshold :value 50)
-          ;;(ranking 'eserv:SinkThreshold :value 0.3)
-          ;;(ranking 'eserv:UseThreshold :value 0.1)
-          ;;(ranking 'eserv:TransitionThreshold :value 1.0))
+        ;;  (ranking eserv:SourceThreshold :value 50)
+          ;;(ranking eserv:SinkThreshold :value 0.3)
+          ;;(ranking eserv:UseThreshold :value 0.1)
+          ;;(ranking eserv:TransitionThreshold :value 1.0))
 ;;))

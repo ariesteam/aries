@@ -10,12 +10,6 @@
                             measurement classification categorization 
                             ranking identification bayesian)))
 
-;; self-annotating model
-(defmodel farmland-self 'test:Farmland$
-	(classification (numeric-coding 'nlcd:NLCDNumeric)
-			82	       'test:FarmlandPresent$test:Farmland&test:Sprozza
-			:otherwise 'test:FarmlandAbsent$test:Farmland))
-
 ;(defmodel altitude-mm Altitude
 ;	(measurement geophysics:Altitude "mm"))
 
