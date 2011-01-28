@@ -42,7 +42,7 @@
                           (annotate-concept '~use-obs)
                           (annotate-concept '~sink-obs)
                           (annotate-concept '~flow-obs)
-                          (map annotate-concept '~flow-data-obs-seq))
+                          '~flow-data-obs-seq)
      (if (not (nil? '~body))
        (doseq [classifier# (partition 2 '~body)]
          (if  (keyword? (first classifier#))

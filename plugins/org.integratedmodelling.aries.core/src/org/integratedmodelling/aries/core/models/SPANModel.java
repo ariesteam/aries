@@ -49,7 +49,7 @@ public class SPANModel extends DefaultAbstractModel {
     IConcept sinkObservable = null;
     IConcept useObservable = null;
     IConcept flowObservable = null;
-    Collection<IConcept> flowDataObservables = null;
+    Collection<IConcept> flowDataObservables = new ArrayList<IConcept>();
     private PersistentHashMap flowParams = PersistentHashMap.create(new Object[]{});
     
 	ArrayList<IConcept> keepers = new ArrayList<IConcept>();
@@ -92,12 +92,16 @@ public class SPANModel extends DefaultAbstractModel {
         return CoreScience.Observation();
     }
 
-    public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, Collection<IConcept> flowData) {
+    public void setFlowObservables(IConcept source, IConcept use, IConcept sink, IConcept flow, Collection<Object> flowData) throws ThinklabException {
         this.sourceObservable = source;
         this.useObservable = use;
         this.sinkObservable = sink;
         this.flowObservable = flow;
-        this.flowDataObservables = flowData;
+        if (flowData != null) {
+        	for (Object o : flowData)
+        		this.flowDataObservables.add(
+        			ModelFactory.annotateConcept(namespace, o.toString()));
+        }
     }
     
     @Override

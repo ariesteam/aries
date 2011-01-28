@@ -168,7 +168,7 @@
                   [6 9]              ModerateRelease
                   [3 6]              LowRelease
                   [:exclusive 0 3]   VeryLowRelease
-                  [0]                NoRelease))
+                  0                  NoRelease))
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
