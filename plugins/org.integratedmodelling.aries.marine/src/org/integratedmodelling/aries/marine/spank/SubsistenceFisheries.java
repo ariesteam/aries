@@ -20,10 +20,10 @@ public class SubsistenceFisheries extends SPANK {
 	 * kg/ha/year necessary for an agent to exist. This is tailored to MG data, I have no idea about
 	 * how much sense these numbers make.
 	 */
-	double source_threshold = 100000.0;
-	double shore_fishing_range_m = 1000.0;
-	double max_distance_traveled = 5000.0;
-	double use_threshold = 100.0;
+	double source_threshold = 70000.0;
+	double shore_fishing_range_m = 1400.0;
+	double max_distance_traveled = 7000.0;
+	double use_threshold = 10.0;
 	int max_paths_bifurcations = 24;
 	
 	private IState flowState;

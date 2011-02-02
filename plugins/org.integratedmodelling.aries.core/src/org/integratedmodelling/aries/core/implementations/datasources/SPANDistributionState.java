@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.implementations.datasources.MemDoubleContextualizedDatasource;
+import org.integratedmodelling.corescience.interfaces.IContext;
 import org.integratedmodelling.corescience.interfaces.IState;
 import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.thinklab.exception.ThinklabRuntimeException;
@@ -30,7 +31,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 	public SPANDistributionState() {
 	}
 	
-	public SPANDistributionState(IConcept type, int rows, int cols, IFn clojure, ObservationContext context) {
+	public SPANDistributionState(IConcept type, int rows, int cols, IFn clojure, IContext context) {
 		super(type, rows*cols, context);
 		this.closure  = clojure;
 		this.rows = rows;
@@ -49,7 +50,7 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
 			Map<?,?> map = (Map<?, ?>) closure.invoke();
 
 			ITransformation transformation = 
-				TransformationFactory.get().getTransformation(getType());
+				TransformationFactory.get().getTransformation(getObservableClass());
 			
 			/*
 			 * we get a different distribution than the one we originally set in,
