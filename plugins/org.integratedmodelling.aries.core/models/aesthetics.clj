@@ -89,7 +89,7 @@
 (defmodel housing PresenceOfHousing
   "Classifies land use from property data."
   (classification (ranking PresenceOfHousing)
-        [:exclusive 0 255]   HousingPresent  
+        [1 :>]               HousingPresent  
         :otherwise           HousingAbsent))
 ;;  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
 ;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.

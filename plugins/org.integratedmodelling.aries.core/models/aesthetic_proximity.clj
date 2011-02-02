@@ -71,13 +71,13 @@
                   1            Protected
                   :otherwise   NotProtected)) 
 
-;; Computes area of open space polygons as a GIS operation and stores this value in each pixel
+;; Computed area of open space polygons as a GIS operation and stored this value in each pixel
 (defmodel area OpenSpaceAreaClass
   (classification (measurement OpenSpaceArea "ha")
-                  [40 :>] VeryLargeArea
-                  [10 40] LargeArea
-                  [2 10]  SmallArea
-                  [:< 2]  VerySmallArea))
+                  [40 :>]           VeryLargeArea
+                  [10 40]           LargeArea
+                  [2 10]            SmallArea
+                  [:exclusive 0 2]  VerySmallArea))
 
 (defmodel theoretical-open-space TheoreticalProximitySource
   (classification TheoreticalProximitySource
@@ -114,7 +114,7 @@
 (defmodel housing PresenceOfHousing
   "Classifies land use from property data."
   (classification (ranking PresenceOfHousing)
-        [:exclusive 0 255]   HousingPresent  
+        [1 :>]                   HousingPresent  
         :otherwise               HousingAbsent))
 ;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
 ;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.

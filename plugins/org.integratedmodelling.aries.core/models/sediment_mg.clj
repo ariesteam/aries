@@ -53,9 +53,10 @@
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability TropicalStormProbabilityClass
  (classification (numeric-coding habitat:TropicalStormProbability)
-        0     NoTropicalStormProbability
-      [1 5]   ModerateTropicalStormProbability
-      [6 10]  HighTropicalStormProbability)) 
+      [5 :>]  HighTropicalStormProbability   
+      [1 5]   ModerateTropicalStormProbability     
+      :otherwise       NoTropicalStormProbability)) 
+
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
@@ -79,9 +80,10 @@
 ;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (numeric-coding habitat:PercentVegetationCover)
-    [70 100]  HighVegetationCover
-    [30 70]  ModerateVegetationCover
-    [0 30]  LowVegetationCover))
+    [70 100]           HighVegetationCover
+    [30 70]            ModerateVegetationCover
+    [:exclusive 0 30]  LowVegetationCover))
+
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
@@ -113,17 +115,17 @@
 
 (defmodel stream-gradient StreamGradientClass 
   (classification (measurement habitat:StreamGradient "\u00b0")
-    [:<   1.15]  LowStreamGradient
-    [1.15 2.86]  ModerateStreamGradient
-    [2.86 :>]    HighStreamGradient))
+    [:exclusive 0   1.15]  LowStreamGradient
+    [1.15 2.86]            ModerateStreamGradient
+    [2.86 :>]              HighStreamGradient))
 
 (defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
   (classification (ranking habitat:PercentFloodplainVegetationCover)
-    [0 20]   VeryLowFloodplainVegetationCover
-    [20 40]  LowFloodplainVegetationCover
-    [40 60]  ModerateVegetationCover
-    [60 80]  HighFloodplainVegetationCover
-    [80 100] VeryHighFloodplainVegetationCover))
+    [:exclusive 0 20]   VeryLowFloodplainVegetationCover
+    [20 40]             LowFloodplainVegetationCover
+    [40 60]             ModerateVegetationCover
+    [60 80]             HighFloodplainVegetationCover
+    [80 100]            VeryHighFloodplainVegetationCover))
 
 ;;Having problems generating this layer from Dartmouth Flood Observatory data
 ;;(defmodel floodplain-width FloodplainWidthClass 
@@ -156,8 +158,8 @@
 
 (defmodel floodplains Floodplains
 	(classification (binary-coding geofeatures:Floodplain)
-			0 NotInFloodplain
-			1 InFloodplain))
+			1          InFloodplain
+      :otherwise NotInFloodplain))
 
 (defmodel farmland Farmland
   (classification (numeric-coding mglulc:MGLULCNumeric)
@@ -226,14 +228,18 @@
      :context (
        source-mg
        sediment-sink-mg
-       farmers-deposition-use-mg)))
+       farmers-deposition-use-mg
+       altitude
+       streams)))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
    (identification ReservoirSoilDeposition 
      :context (
        source-mg
        sediment-sink-mg
-       hydroelectric-use-level)))
+       hydroelectric-use-level
+       streams
+       altitude)))
 			
 ;;Sediment flow model for recipients of beneficial sedimentation
 (defmodel sediment-beneficial BeneficialSedimentTransport

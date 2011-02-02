@@ -55,9 +55,10 @@
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability TropicalStormProbabilityClass
  (classification (ranking habitat:TropicalStormProbability)
-        0     NoTropicalStormProbability
-      [1 5]   ModerateTropicalStormProbability
-      [6 10]  HighTropicalStormProbability)) 
+      [5 :>]         HighTropicalStormProbability 
+      [1 5]          ModerateTropicalStormProbability
+      :otherwise     NoTropicalStormProbability)) 
+
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously its not evenly distributed throughout the year.

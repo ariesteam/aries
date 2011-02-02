@@ -143,6 +143,7 @@
                   15         AnoxicSoils
                   :otherwise OxicSoils))
 
+;;Per Schussman et al. (2006), the middle of each of these ranges is around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs for low.
 (defmodel fire-frequency FireFrequency
   (classification (numeric-coding habitat:FireReturnInterval) 
                   1        HighFireFrequency
