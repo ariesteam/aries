@@ -2,6 +2,7 @@
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
                             categorization ranking numeric-coding binary-coding 
+                            probabilistic-measurement probabilistic-classification
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
@@ -11,33 +12,27 @@
 ;;This model is for western Washington State
 
 ;; these are the undiscretization statements, necessary for training purposes.
-;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(classification VegetationAndSoilCarbonStorage
-						:units "t/ha" 
-	  				[1000 3200]   VeryHighStorage
+	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha*year" 
+	  		[1000 3200]   VeryHighStorage
             [600 1000]    HighStorage
             [300 600]     ModerateStorage
             [100 300]     LowStorage
             [0.01 100]    VeryLowStorage
             [0 0.01]      NoStorage))
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage VegetationCarbonStorage
-	(classification VegetationCarbonStorage
-						:units "t/ha" 
-	  				[900 2301]     VeryHighVegetationStorage
+	(probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+	  		[900 2301]     VeryHighVegetationStorage
             [500 900]      HighVegetationStorage
             [250 500]      ModerateVegetationStorage
             [75 250]       LowVegetationStorage
             [0.01 75]      VeryLowVegetationStorage
             [0 0.01]       NoVegetationStorage)) 			
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage SoilCarbonStorage
-		(classification SoilCarbonStorage
-						:units    "t/ha" 
-	  				[680 820]      VeryHighSoilStorage
+		(probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+	  		[680 820]      VeryHighSoilStorage
             [440 680]      HighSoilStorage
             [200 440]      ModerateSoilStorage
             [50 200]       LowSoilStorage
@@ -108,8 +103,8 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::CarbonSequestration.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :observed (veg-soil-sequestration)
             :required (SuccessionalStage)
+            :result   veg-soil-sequestration
             :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                        percent-vegetation-cover successional-stage)))
 

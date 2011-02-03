@@ -168,15 +168,13 @@
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
 (defmodel evapotranspiration Evapotranspiration
-  (probabilistic-measurement EvapotranspirationClass
-                  :units "mm"
+  (probabilistic-measurement EvapotranspirationClass "mm"
                   [60 120]   HighEvapotranspiration
                   [30 60]    ModerateEvapotranspiration
                   [0 30]     LowEvapotranspiration))
 
 (defmodel infiltration SoilInfiltration
-  (probabilistic-measurement SoilInfiltrationClass 
-                  :units "mm"
+  (probabilistic-measurement SoilInfiltrationClass  "mm"
                   [60 120]   HighInfiltration
                   [30 60]    ModerateInfiltration
                   [0 30]     LowInfiltration))

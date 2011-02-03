@@ -113,7 +113,7 @@ public class ESVCalculatorTransformer
 			
 			IState state = new MemDoubleContextualizedDatasource(observable, size, 
 					(ObservationContext)context); 
-			state.getMetadata().put(Metadata.UNITS, "$@2004/ac.yr");
+			state.getMetadata().put(Metadata.UNIT_SPECS, "$@2004/ac.yr");
 			state.getMetadata().put(Metadata.CONTINUOUS, Boolean.TRUE);
 			state.getMetadata().put(Metadata.RANGE_MIN, new double[size]);
 			state.getMetadata().put(Metadata.RANGE_MAX, new double[size]);
