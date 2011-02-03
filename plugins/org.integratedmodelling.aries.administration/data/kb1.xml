@@ -1495,7 +1495,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	</observation:hasObservationExtent>
 </measurement:NumericCoding>
 
-<measurement:BinaryCoding id="sanPedro_mesquite_management">
+<measurement:BinaryCoding id="sanPedro_mesquite_management2">
 	<observation:hasObservable>
 		<sanPedro:MesquiteManagement />
 	</observation:hasObservable>
@@ -1504,7 +1504,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-			<geospace:hasCoverageId>sanPedro:mesquite_management</geospace:hasCoverageId>
+			<geospace:hasCoverageId>sanPedro:mesquite_management2</geospace:hasCoverageId>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
@@ -4527,6 +4527,56 @@ require re-discretization, likely by comparing their values to places where we a
 				<geospace:hasLonUpperBound>-117.657713</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:NumericCoding>
+
+<observation:Categorization id="usa_watersheds_us">
+	<observation:hasObservable>
+		<geofeatures:Watershed />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: USGS Water Resources of the United States</rdfs:comment>
+		<metadata:hasPriority>5</metadata:hasPriority>
+		<metadata:hasURL>http://water.usgs.gov/GIS/metadata/usgswrd/XML/huc250k.xml</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>usa:watersheds_us</geospace:hasCoverageId>
+			<geospace:hasValueAttribute>huc_name</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>24.5233192443848</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.756942749023</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.3838691711426</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-66.9395599365234</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
+
+	<measurement:NumericCoding id="puget_wria_watersheds">
+		<observation:hasObservable>
+			<geofeatures:Watershed />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: Washington Department of Ecology</rdfs:comment>
+		<metadata:hasPriority>0</metadata:hasPriority>
+		<metadata:hasURL>http://www.ecy.wa.gov/services/gis/maps/wria/wria.htm</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WFSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:wria_watersheds</geospace:hasCoverageId>
+				<geospace:hasValueAttribute>wria_nr</geospace:hasValueAttribute>
+			</geospace:WFSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:ArealFeatureSet>
+				<geospace:hasLatLowerBound>45.5437240600586</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.860824584961</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>49.0024337768555</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-116.915229797363</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:NumericCoding>
 
