@@ -211,16 +211,6 @@ public class ESVCalculatorTransformer
 			}
 		}
 	
-		/*
-		 * set aggregate totals in metadata for display
-		 */
-		int stt = 0;
-		for (Pair<IConcept, IState> cs : states) {
-			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_MIN, totals.get(stt).getFirst());
-			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_MAX, totals.get(stt).getSecond());
-			cs.getSecond().getMetadata().put(Metadata.AGGREGATED_TOTAL, totals.get(stt).getThird());
-			stt++;
-		}
 		
 		ObservationContext ret = new ObservationContext(context.getExtents());
 		ret.setObservation(this);
