@@ -214,7 +214,7 @@ public class SPANModel extends DefaultAbstractModel {
         arr.add(Polylist.list(":flowConcept",   flowObservable));
         arr.add(Polylist.list(":flowDataConcepts",   flowDataObservables));
 
-        return Polylist.PolylistFromArrayList(arr);
+        return addDefaultFields(Polylist.PolylistFromArrayList(arr));
     }
 
     @Override

@@ -104,13 +104,15 @@ public class ESVCalculatorModel extends DefaultAbstractModel {
 	@Override
 	public Polylist buildDefinition(IKBox kbox, ISession session, IContext context, int flags) throws ThinklabException {
 
-		return Polylist.list(
+		Polylist ret = Polylist.list(
 			"esvaluation:ESVCalculator",
 			Polylist.list(":normalize", new Boolean(this.normalize)),
 			Polylist.list(":influences", this.influences),
 			Polylist.list(
 				CoreScience.HAS_OBSERVABLE,
 				Polylist.list(getObservableClass())));
+		
+		return addDefaultFields(ret);
 		
 	}
 
