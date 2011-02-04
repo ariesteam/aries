@@ -89,8 +89,7 @@
         [1 2]  VeryHighHardness))
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (classification VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
                   [12 30]     VeryHighSequestration
                   [9 12]      HighSequestration
                   [6 9]       ModerateSequestration
@@ -104,7 +103,7 @@
             :import   "aries.core::CarbonSequestration.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (SuccessionalStage)
-            :result   veg-soil-sequestration
+            :result    veg-soil-sequestration
             :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                        percent-vegetation-cover successional-stage)))
 
