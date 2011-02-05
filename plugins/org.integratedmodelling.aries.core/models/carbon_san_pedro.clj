@@ -1,7 +1,8 @@
 (ns core.models.carbon-san-pedro
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
-                            categorization ranking numeric-coding binary-coding 
+                            categorization ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
@@ -9,10 +10,8 @@
 (namespace-ontology carbonService)
 
 ;; output and training
-;; TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-  (classification VegetationAndSoilCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
                   [500 3200]    VeryHighStorage
                   [300 500]     HighStorage
                   [150 300]     ModerateStorage
@@ -20,21 +19,17 @@
                   [0.01 75]     VeryLowStorage
                   [0 0.01]      NoStorage))
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage VegetationCarbonStorage
-  (classification VegetationCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
                   [325 2301]      VeryHighVegetationStorage
                   [190 325]       HighVegetationStorage
                   [105 190]       ModerateVegetationStorage
                   [40 105]        LowVegetationStorage
                   [0.01 40]       VeryLowVegetationStorage
                   [0 0.01]        NoVegetationStorage)) 			
-
-;; output and training TODO make it classify the appropriate measurement - buggy for now        
+      
 (defmodel soil-storage SoilCarbonStorage
-  (classification SoilCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
                   [680 820]      VeryHighSoilStorage
                   [440 680]      HighSoilStorage
                   [200 440]      ModerateSoilStorage
@@ -92,8 +87,7 @@
         [:< 400]        LowMeanAnnualPrecipitation))
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (classification VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
                   [12 30]     VeryHighSequestration
                   [9 12]      HighSequestration
                   [6 9]       ModerateSequestration
@@ -153,8 +147,7 @@
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
-  (classification StoredCarbonRelease
-                  :units      "t/ha*year"
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
                   [12 200]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      HighRelease
                   [6 9]       ModerateRelease

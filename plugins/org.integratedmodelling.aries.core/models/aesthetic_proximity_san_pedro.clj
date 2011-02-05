@@ -3,6 +3,7 @@
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario defmodel measurement classification categorization 
                            namespace-ontology ranking
+                           probabilistic-measurement probabilistic-classification probabilistic-ranking
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
@@ -84,7 +85,7 @@
                   [:< 2]  VerySmallArea))
 
 (defmodel theoretical-open-space TheoreticalProximitySource
-  (classification TheoreticalProximitySource
+  (probabilistic-ranking TheoreticalProximitySource
                   [0   10] NoProximityPotential 
                   [10  40] LowProximityPotential 
                   [40  75] ModerateProximityPotential 
@@ -139,7 +140,7 @@
 
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer HomeownerProximityUse
-  (classification HomeownerProximityUse
+  (probabilistic-ranking HomeownerProximityUse
                   [0 0.05]   HomeownerProximityUseAbsent 
                   [0.05 1] HomeownerProximityUsePresent))
 

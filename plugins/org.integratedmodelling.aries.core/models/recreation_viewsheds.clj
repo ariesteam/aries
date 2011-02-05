@@ -1,7 +1,8 @@
 (ns core.models.recreation-viewsheds
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
-                            namespace-ontology ranking numeric-coding binary-coding 
+                            namespace-ontology ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking 
                             identification bayesian count))
   (:refer aries :only (span)))
 
@@ -48,7 +49,7 @@
       :otherwise     NotOpenLand))
 
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
-	(classification aestheticService:TheoreticalNaturalBeauty
+	(probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
   		[0 25]   aestheticService:NoNaturalBeauty 
   		[25 50]  aestheticService:LowNaturalBeauty 
   		[50 75]  aestheticService:ModerateNaturalBeauty 
@@ -90,7 +91,7 @@
              0  TransportationEnergyInfrastructureAbsent))                        
 
 (defmodel visual-blight aestheticService:VisualBlight
-  (classification aestheticService:VisualBlight
+  (probabilistic-ranking aestheticService:VisualBlight
       [0 10]   aestheticService:NoBlight
       [10 50]  aestheticService:LowBlight
       [50 90]  aestheticService:ModerateBlight
@@ -145,7 +146,7 @@
 			[45 :>]	SteepSlope))
 			
 (defmodel viewer-enjoyment ViewerEnjoyment
-	(classification ViewerEnjoyment
+	(probabilistic-ranking ViewerEnjoyment
   		[0 33]  LowViewerEnjoyment 
   		[33 67]  ModerateViewerEnjoyment 
   		[67 100] HighViewerEnjoyment))

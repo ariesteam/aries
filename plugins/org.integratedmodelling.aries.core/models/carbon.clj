@@ -13,8 +13,8 @@
 
 ;; these are the undiscretization statements, necessary for training purposes.
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha*year" 
-	  		[1000 3200]   VeryHighStorage
+	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
+	  		    [1000 3200]   VeryHighStorage
             [600 1000]    HighStorage
             [300 600]     ModerateStorage
             [100 300]     LowStorage
@@ -22,8 +22,8 @@
             [0 0.01]      NoStorage))
 
 (defmodel veg-storage VegetationCarbonStorage
-	(probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
-	  		[900 2301]     VeryHighVegetationStorage
+	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
+	  		    [900 2301]     VeryHighVegetationStorage
             [500 900]      HighVegetationStorage
             [250 500]      ModerateVegetationStorage
             [75 250]       LowVegetationStorage
@@ -31,8 +31,8 @@
             [0 0.01]       NoVegetationStorage)) 			
 
 (defmodel soil-storage SoilCarbonStorage
-		(probabilistic-measurement SoilCarbonStorage "t/ha*year" 
-	  		[680 820]      VeryHighSoilStorage
+		(probabilistic-measurement SoilCarbonStorage "t/ha" 
+	  		    [680 820]      VeryHighSoilStorage
             [440 680]      HighSoilStorage
             [200 440]      ModerateSoilStorage
             [50 200]       LowSoilStorage

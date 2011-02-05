@@ -1,7 +1,8 @@
 (ns core.models.flood-ca
   (:refer-clojure :rename {count length})
   (:refer modelling :only (defagent defscenario defmodel measurement classification
-                            namespace-ontology categorization ranking numeric-coding binary-coding 
+                            namespace-ontology categorization ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification
                             identification bayesian count))
   (:refer aries :only (span)))
 
@@ -64,7 +65,7 @@
                   [2400 :>]   VeryHighFloodSource))
 
 (defmodel flood-source-value FloodSourceValue
-  (classification FloodSourceValue
+  (probabilistic-measurement FloodSourceValue "mm"
                   [0 200]        VeryLowFloodSource
                   [200 600]      LowFloodSource
                   [600 1200]     ModerateFloodSource
@@ -74,7 +75,7 @@
 ;; Flood source probability, ad hoc method
 (defmodel source FloodSource
   (bayesian FloodSource 
-            :import   "aries.core::FloodSourceValueAdHocMark.xdsl"
+            :import   "aries.core::FloodSourceValueAdHocCa.xdsl"
             :context  (precipitation imperviousness)
             :keep     (FloodSourceValue)
             :observed (flood-source-value)))
@@ -159,8 +160,7 @@
 
 ;;Undiscretizer for FloodSink
 (defmodel flood-sink AnnualFloodSink
-  (classification AnnualFloodSink
-                  :units      "mm" 
+  (probabilistic-measurement AnnualFloodSink "mm" 
                   [30000 90000]     VeryHighFloodSink
                   [10000 30000]     HighFloodSink
                   [3000 10000]      ModerateFloodSink
@@ -169,8 +169,7 @@
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
-  (classification GreenInfrastructureStorage
-                  :units      "mm" 
+  (probabilistic-measurement GreenInfrastructureStorage "mm" 
                   [115 320]    VeryHighGreenStorage
                   [72 115]     HighGreenStorage
                   [40 72]      ModerateGreenStorage
@@ -179,8 +178,7 @@
 
 ;;Undiscretizer for GrayInfrastructureStorage
 (defmodel gray-infrastructure-storage GrayInfrastructureStorage
-  (classification GrayInfrastructureStorage
-                  :units      "mm" 
+  (probabilistic-measurement GrayInfrastructureStorage "mm" 
                   [30000 90000]     VeryHighGrayStorage
                   [10000 30000]     HighGrayStorage
                   [3000 10000]      ModerateGrayStorage
@@ -192,7 +190,7 @@
 (defmodel sink FloodSink
   "Interface to Flood resident use bayesian network"
   (bayesian FloodSink 
-            :import   "aries.core::FloodSinkMark.xdsl"
+            :import   "aries.core::FloodSinkCa.xdsl"
             :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage vegetation-type)
             :observed (flood-sink) 
             :keep     (AnnualFloodSink)))

@@ -7,6 +7,7 @@
   (:refer-clojure :rename {count length})
   (:refer modelling :only (defscenario defmodel measurement classification categorization
                            ranking numeric-coding binary-coding identification bayesian
+                           probabilistic-measurement
                            namespace-ontology count get-data))
   (:refer aries :only (span)))
 
@@ -52,8 +53,7 @@
 
 ;;Undiscretization & BN statements
 (defmodel storm-surge StormSurgeClass
-  (classification StormSurgeClass
-                  :units      "m"
+  (probabilistic-measurement StormSurgeClass "m"
                   [5 6]      VeryHighStormSurge
                   [4 5]      HighStormSurge
                   [3 4]      ModerateStormSurge
@@ -204,8 +204,7 @@
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
 ;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel coastal-flood-protection TotalCoastalFloodProtection
-  (classification TotalCoastalFloodProtection
-                  :units      "m"
+  (probabilistic-measurement TotalCoastalFloodProtection "m"
 ;;                  [1 :>]        HighCoastalFloodProtection
 ;;                  [1 2]        HighCoastalFloodProtection
 ;;                  [0.5 1]       ModerateCoastalFloodProtection
@@ -271,8 +270,7 @@
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
 ;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel geomorphic-flood-protection GeomorphicFloodProtection
-  (classification GeomorphicFloodProtection
-                  :units      "m"
+  (probabilistic-measurement GeomorphicFloodProtection "m"
 ;;                  [1 :>]        HighGeomorphicProtection
 ;;                  [1   2]       HighGeomorphicProtection
 ;;                  [0.5 1]       ModerateGeomorphicProtection

@@ -1,7 +1,8 @@
-(ns core.models.carbon-ca
+(ns core.models.carbon-ca  ;;Model is for Southern California (Mark Casias' model for Orange County)
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
-                            categorization ranking numeric-coding binary-coding 
+                            categorization ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
@@ -9,10 +10,8 @@
 (namespace-ontology carbonService)
 
 ;; output and training
-;; TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-  (classification VegetationAndSoilCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
                   [500 3200]    VeryHighStorage
                   [300 500]     HighStorage
                   [150 300]     ModerateStorage
@@ -22,11 +21,8 @@
 
 ;;Note: 500 t/ha is the max sum of vegetation and soil carbon storage in Mark's study area.  
 ;; Could change the upper bound discretization on that one for veg C storage, stored C release, net C uptake...
-;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
-;; output and training TODO make it classify the appropriate measurement - buggy for now
 (defmodel veg-storage VegetationCarbonStorage
-  (classification VegetationCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
                   [325 2301]      VeryHighVegetationStorage
                   [190 325]       HighVegetationStorage
                   [105 190]       ModerateVegetationStorage
@@ -34,11 +30,8 @@
                   [0.01 40]       VeryLowVegetationStorage
                   [0 0.01]        NoVegetationStorage)) 				
 
-;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
-;; output and training TODO make it classify the appropriate measurement - buggy for now				
 (defmodel soil-storage SoilCarbonStorage
-  (classification SoilCarbonStorage
-                  :units      "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
                   [680 820]          VeryHighSoilStorage
                   [440 680]          HighSoilStorage
                   [200 440]          ModerateSoilStorage
@@ -96,8 +89,7 @@
 
 ;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (classification VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
                   [12 30]             VeryHighSequestration
                   [9 12]              HighSequestration
                   [6 9]               ModerateSequestration
@@ -108,7 +100,7 @@
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationMark.xdsl"
+            :import   "aries.core::CarbonSequestrationCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
 	 	 	      :context  (percent-vegetation-cover vegetation-type land-use)))
@@ -161,8 +153,7 @@
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
-  (classification StoredCarbonRelease
-                  :units      "t/ha*year"
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
                   [12 300]           VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]             HighRelease
                   [6 9]              ModerateRelease
@@ -172,7 +163,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseMark.xdsl"
+            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
             :keep     (StoredCarbonRelease)
             :observed (stored-carbon-release)
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))

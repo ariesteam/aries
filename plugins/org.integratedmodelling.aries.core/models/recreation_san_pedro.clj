@@ -2,6 +2,7 @@
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization
                             namespace-ontology ranking numeric-coding binary-coding 
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking
                             identification bayesian count))
   (:refer aries :only (span)))
 
@@ -115,7 +116,7 @@
 
 ;;Undiscretization statements to be use in BNs
 (defmodel birding-quality SiteBirdingQuality
-  (classification SiteBirdingQuality
+  (probabilistic-ranking SiteBirdingQuality
       [0 10]   VeryLowBirdingQuality 
       [10 33]  LowBirdingQuality 
       [33 67]  ModerateBirdingQuality 
@@ -149,7 +150,7 @@
 ;;      [0 4]  LowWildlifeSpeciesRichness)) 
 
 (defmodel wildlife-quality SiteWildlifeQuality
-  (classification SiteWildlifeQuality
+  (probabilistic-ranking SiteWildlifeQuality
       [0 10]   VeryLowWildlifeQuality 
       [10 33]  LowWildlifeQuality 
       [33 67]  ModerateWildlifeQuality 
@@ -236,28 +237,28 @@
 
 ;;Undiscretization statements to be use in BNs
 (defmodel deer-hunting-quality SiteDeerHuntingQuality
-  (classification SiteDeerHuntingQuality
+  (probabilistic-ranking SiteDeerHuntingQuality
       [0 5]    VeryLowDeerHuntingQuality 
       [5 33]   LowDeerHuntingQuality 
       [33 67]  ModerateDeerHuntingQuality 
       [67 100] HighDeerHuntingQuality))
 
 (defmodel javelina-hunting-quality SiteJavelinaHuntingQuality
-  (classification SiteJavelinaHuntingQuality
+  (probabilistic-ranking SiteJavelinaHuntingQuality
       [0 5]    VeryLowJavelinaHuntingQuality 
       [5 33]   LowJavelinaHuntingQuality 
       [33 67]  ModerateJavelinaHuntingQuality 
       [67 100] HighJavelinaHuntingQuality))
 
 (defmodel dove-hunting-quality SiteDoveHuntingQuality
-  (classification SiteDoveHuntingQuality
+  (probabilistic-ranking SiteDoveHuntingQuality
       [0 5]    VeryLowDoveHuntingQuality 
       [5 33]   LowDoveHuntingQuality 
       [33 67]  ModerateDoveHuntingQuality 
       [67 100] HighDoveHuntingQuality))
 
 (defmodel quail-hunting-quality SiteQuailHuntingQuality
-  (classification SiteQuailHuntingQuality
+  (probabilistic-ranking SiteQuailHuntingQuality
       [0 5]    VeryLowQuailHuntingQuality 
       [5 33]   LowQuailHuntingQuality 
       [33 67]  ModerateQuailHuntingQuality 

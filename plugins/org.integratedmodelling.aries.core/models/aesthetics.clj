@@ -2,6 +2,7 @@
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario namespace-ontology
                            defmodel measurement classification categorization ranking numeric-coding
+                           probabilistic-measurement probabilistic-classification probabilistic-ranking
                            binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
@@ -31,7 +32,7 @@
                   :otherwise   NoMountain))  ;; catches low artifacts
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
-  (classification TheoreticalNaturalBeauty
+  (probabilistic-ranking TheoreticalNaturalBeauty
                   [0   5]  NoNaturalBeauty 
                   [5  25]  LowNaturalBeauty 
                   [25  50] ModerateNaturalBeauty 
@@ -68,7 +69,7 @@
                   :otherwise HighwaysAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
-  (classification VisualBlight
+  (probabilistic-ranking VisualBlight
                   [0    5]  NoBlight 
                   [5   25]  LowBlight 
                   [25  50]  ModerateBlight 
@@ -114,7 +115,7 @@
 
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer HomeownerViewUse
-  (classification HomeownerViewUse
+  (probabilistic-ranking HomeownerViewUse
                   [0 0.05]   HomeownerViewUseAbsent 
                   [0.05 1]   HomeownerViewUsePresent))
 

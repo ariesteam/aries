@@ -2,6 +2,7 @@
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario defmodel measurement classification categorization 
                            namespace-ontology ranking
+                           probabilistic-measurement probabilistic-classification probabilistic-ranking
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
@@ -33,7 +34,7 @@
 ;;                  :otherwise                                                                     sanPedro:Other))
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
-  (classification TheoreticalNaturalBeauty
+  (probabilistic-ranking TheoreticalNaturalBeauty
                   [0   10] NoNaturalBeauty 
                   [10  25] LowNaturalBeauty 
                   [25  50] ModerateNaturalBeauty 
@@ -76,7 +77,7 @@
                   :otherwise NoDevelopment))
 
 (defmodel view-sink-undiscretizer VisualBlight
-  (classification VisualBlight
+  (probabilistic-ranking VisualBlight
                   [0    5]  NoBlight 
                   [5   25]  LowBlight 
                   [25  50]  ModerateBlight 
@@ -119,7 +120,7 @@
 ;;undiscretizer for view use
 ;;  This needs to be a range (high-mod-low)
 (defmodel view-use-undiscretizer HomeownerViewUse
-  (classification HomeownerViewUse
+  (probabilistic-ranking HomeownerViewUse
                   [0 0.05]   HomeownerViewUseAbsent 
                   [0.05 1]   HomeownerViewUsePresent))
 

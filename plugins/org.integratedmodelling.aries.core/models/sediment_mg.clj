@@ -1,7 +1,8 @@
 (ns core.models.sediment-mg
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization
-                            namespace-ontology ranking numeric-coding binary-coding 
+                            namespace-ontology ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking
                             identification bayesian count))
   (:refer aries :only (span)))
 
@@ -85,19 +86,28 @@
     [:exclusive 0 30]  LowVegetationCover))
 
 
-;;Sediment source value
+;;Sediment source value - we have evidence for this but can't yet train so keep this commented out for now and use the
+;; undiscretization statement below (?)
+;;(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
+;;	(classification (measurement SedimentSourceValueAnnualClass "t/ha")
+;;      0                     NoAnnualSedimentSource
+;;  		[:exclusive 0 15]     LowAnnualSedimentSource 
+;;  		[15 40]               ModerateAnnualSedimentSource
+;;  		[40 :>]               HighAnnualSedimentSource))
+
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-	(classification (measurement SedimentSourceValueAnnualClass "t/ha")
+  (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
       0                     NoAnnualSedimentSource
-  		[:exclusive 0 15]     LowAnnualSedimentSource 
-  		[15 40]               ModerateAnnualSedimentSource
-  		[40 :>]               HighAnnualSedimentSource))
+      [:exclusive 0 15]     LowAnnualSedimentSource 
+      [15 40]               ModerateAnnualSedimentSource
+      [40 100]              HighAnnualSedimentSource))
 
 ;; source bayesian model for Madagascar   	 
 (defmodel source-mg SedimentSourceValueAnnual
   (bayesian SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
+    :required (Slope)
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
               storm-probability runoff vegetation-type percent-vegetation-cover))) 
@@ -138,7 +148,7 @@
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual AnnualSedimentSinkClass 
-  (classification (measurement AnnualSedimentSinkClass "t/ha")
+  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
        [10 15]              HighAnnualSedimentSink
        [5 10]               ModerateAnnualSedimentSink
        [:exclusive 0 5]     LowAnnualSedimentSink
@@ -149,6 +159,7 @@
   (bayesian AnnualSedimentSink 
     :import  "aries.core::SedimentSinkMg.xdsl"
     :keep    (AnnualSedimentSinkClass)
+    :required (FloodplainVegetationCoverClass)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 

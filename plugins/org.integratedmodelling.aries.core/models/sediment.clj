@@ -1,7 +1,8 @@
 (ns core.models.sediment
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
-                            namespace-ontology ranking numeric-coding binary-coding 
+                            namespace-ontology ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking 
                             identification bayesian count))
   (:refer aries :only (span)))
 
@@ -95,13 +96,21 @@
 	 		1           EarlySuccession
 	 		:otherwise  NoSuccession))
 
-;;Sediment source value
+;;Sediment source value - we have evidence for this but can't yet train so keep this commented out for now and use the
+;; undiscretization statement below (?)
+;;(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
+;; (classification (measurement SedimentSourceValueAnnualClass "kg/ha")
+;;  		0                          NoAnnualSedimentSource
+;;  		[:exclusive 0 30000]       LowAnnualSedimentSource 
+;;  		[30000 100000]             ModerateAnnualSedimentSource
+;;  		[100000 :>]                HighAnnualSedimentSource))
+
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
- (classification (measurement SedimentSourceValueAnnualClass "kg/ha")
-  		0                          NoAnnualSedimentSource
-  		[:exclusive 0 30000]       LowAnnualSedimentSource 
-  		[30000 100000]             ModerateAnnualSedimentSource
-  		[100000 :>]                HighAnnualSedimentSource))
+ (probabilistic-measurement SedimentSourceValueAnnualClass "kg/ha"
+      0                          NoAnnualSedimentSource
+      [:exclusive 0 30000]       LowAnnualSedimentSource 
+      [30000 100000]             ModerateAnnualSedimentSource
+      [100000 :>]                HighAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound   	 
 (defmodel source-puget SedimentSourceValueAnnual
@@ -147,7 +156,7 @@
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual AnnualSedimentSinkClass 
-  (classification (measurement AnnualSedimentSink "kg/ha")
+  (probabilistic-measurement AnnualSedimentSink "kg/ha"
        [20000 30000]          HighAnnualSedimentSink
        [10000 20000]          ModerateAnnualSedimentSink
        [:exclusive 0 10000]   LowAnnualSedimentSink

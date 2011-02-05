@@ -1,7 +1,8 @@
 (ns core.models.flood
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defagent defscenario defmodel measurement classification 
-                            namespace-ontology categorization ranking numeric-coding 
+                            namespace-ontology categorization ranking numeric-coding
+                            probabilistic-measurement probabilistic-classification
                             binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
@@ -231,8 +232,7 @@
 
 ;;Undiscretizer for FloodSink
 (defmodel flood-sink AnnualFloodSink
-  (classification AnnualFloodSink
-                  :units      "mm" 
+  (probabilistic-measurement AnnualFloodSink "mm" 
                   [30000 90000]     VeryHighFloodSink
                   [10000 30000]     HighFloodSink
                   [3000 10000]      ModerateFloodSink
@@ -241,8 +241,7 @@
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
-  (classification GreenInfrastructureStorage
-                  :units      "mm" 
+  (probabilistic-measurement GreenInfrastructureStorage "mm" 
                   [115 320]    VeryHighGreenStorage
                   [72 115]     HighGreenStorage
                   [40 72]      ModerateGreenStorage
@@ -251,8 +250,7 @@
 
 ;;Undiscretizer for GrayInfrastructureStorage
 (defmodel gray-infrastructure-storage GrayInfrastructureStorage
-  (classification GrayInfrastructureStorage
-                  :units      "mm" 
+  (probabilistic-measurement GrayInfrastructureStorage "mm" 
                   [30000 90000]     VeryHighGrayStorage
                   [10000 30000]     HighGrayStorage
                   [3000 10000]      ModerateGrayStorage

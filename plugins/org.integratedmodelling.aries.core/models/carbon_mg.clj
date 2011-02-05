@@ -1,21 +1,17 @@
 (ns core.models.carbon-mg
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
-                            categorization ranking numeric-coding binary-coding 
+                            categorization ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification 
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService)
 
-
-;; these are the undiscretization statements, necessary for training purposes.
-;; output and training TODO make it classify the appropriate measurement - buggy for now
-;;KB: Should this actually be sequestration?  And should discretization on the two 
-;; below defmodels be updated?
+;; output and training 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(classification VegetationAndSoilCarbonStorage
-						:units "t/ha" 
+	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
 	  				[1000 3200]   VeryHighStorage
             [600 1000]    HighStorage
             [300 600]     ModerateStorage
@@ -23,22 +19,18 @@
             [0.01 100]    VeryLowStorage
             [0 0.01]      NoStorage))
 
-;; output and training TODO make it classify the appropriate measurement - buggy for now
 ;;These values may be a bit high - compare to the mg data for veg C storage.
 (defmodel veg-storage VegetationCarbonStorage
-	(classification VegetationCarbonStorage
-						:units "t/ha" 
+	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
 	  				[900 2301]     VeryHighVegetationStorage
             [500 900]      HighVegetationStorage
             [250 500]      ModerateVegetationStorage
             [75 250]       LowVegetationStorage
             [0.01 75]      VeryLowVegetationStorage
             [0 0.01]       NoVegetationStorage)) 			
-
-;; output and training TODO make it classify the appropriate measurement - buggy for now				
+		
 (defmodel soil-storage SoilCarbonStorage
-		(classification SoilCarbonStorage
-						:units    "t/ha" 
+		(probabilistic-measurement SoilCarbonStorage "t/ha" 
 	  				[680 820]      VeryHighSoilStorage
             [440 680]      HighSoilStorage
             [200 440]      ModerateSoilStorage
@@ -84,8 +76,7 @@
          :otherwise       NotDegraded)) 
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (classification VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
                   [12 30]     VeryHighSequestration
                   [9 12]      HighSequestration
                   [6 9]       ModerateSequestration
@@ -149,8 +140,7 @@
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
-  (classification StoredCarbonRelease
-                  :units      "t/ha*year"
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
                   [12 1200]   VeryHighRelease ;;Need to check this ceiling; values of 1000 can be found in the Pacific NW rainforests, need to see how this compares to Madagascar's rainforests.
                   [9 12]      HighRelease
                   [6 9]       ModerateRelease

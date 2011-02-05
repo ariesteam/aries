@@ -1,7 +1,8 @@
 (ns core.models.sediment-dr
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification 
-                            namespace-ontology categorization ranking numeric-coding 
+                            namespace-ontology categorization ranking numeric-coding
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking 
                             binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
@@ -110,12 +111,12 @@
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
   ;; FV - sorry, my bad - theres a bug so the right way doesn't work as a prototype obs. Will be fixed asap.
   ;; please leave as is for now or the BN won't compile.
-	(classification SedimentSourceValueAnnualClass
+	(probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
 ;	(classification (measurement SedimentSourceValueAnnual "t/ha")
       0                     NoAnnualSedimentSource
   		[:exclusive 0 15]     LowAnnualSedimentSource 
   		[15 40]               ModerateAnnualSedimentSource
-  		[40 :>]               HighAnnualSedimentSource))
+  		[40 100]              HighAnnualSedimentSource))
   		
 ;; source bayesian model for Dominican Republic
 ;; FV there is much evidence setting for intermediate nodes here - those should be used for
@@ -161,7 +162,7 @@
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual AnnualSedimentSinkClass 
   ;; FV temporarily subst with dumb classification - see comment for sediment-source-value-annual
-  (classification AnnualSedimentSinkClass 
+  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
 ;;  (classification (measurement AnnualSedimentSink "t/ha")
        [10 15]              HighAnnualSedimentSink
        [5 10]               ModerateAnnualSedimentSink

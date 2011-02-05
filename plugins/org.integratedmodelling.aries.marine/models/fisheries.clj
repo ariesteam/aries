@@ -6,7 +6,7 @@
 (ns marine.models.fisheries
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization ranking 
-                            namespace-ontology numeric-coding binary-coding identification 
+                            namespace-ontology numeric-coding binary-coding identification probabilistic-measurement
                             bayesian count))
   (:refer aries :only (span)))
 
@@ -123,8 +123,7 @@
 ;; Assume high subsistence use = per capita demand of 6.8 kg fish/yr, moderate use = 4.6 kg fish/yr
 ;; low use = 2.3 kg fish/yr.  This calculates total demand.
 (defmodel subsistence-fishing-undiscretized SubsistenceUse
-  (classification SubsistenceUse
-    :units "kg/km^2*year" ; per person, multiply by population density.
+  (probabilistic-measurement SubsistenceUse "kg/km^2*year" ; per person, multiply by population density.
     ;; FIXME: Evil hack warning! Ferd doesnt have any way in his
     ;; modelling API for CategoricalDistributionDatasource to extract
     ;; the undiscretized values of a deterministic distribution.

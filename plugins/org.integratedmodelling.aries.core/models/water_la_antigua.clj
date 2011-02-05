@@ -1,7 +1,8 @@
 (ns core.models.water-la-antigua
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
-                            namespace-ontology ranking numeric-coding binary-coding identification bayesian count))
+                            namespace-ontology ranking numeric-coding binary-coding identification 
+                            probabilistic-measurement probabilistic-classification probabilistic-ranking bayesian count))
   (:refer aries :only (span)))
 
 (namespace-ontology waterSupplyService
@@ -90,7 +91,7 @@
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
 (defmodel sink-undiscretizer SurfaceWaterSinkClass
-  (classification SurfaceWaterSinkClass 
+  (probabilistic-measurement SurfaceWaterSinkClass "mm" 
 ;;    [180 :>]           VeryHighSurfaceWaterSink
     [180 260]            VeryHighSurfaceWaterSink
     [100 180]            HighSurfaceWaterSink
@@ -199,7 +200,7 @@
 
 ;;Undiscretization of agricultural surface water use
 (defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
-  (classification AgriculturalSurfaceWaterUseClass 
+  (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
 ;;    [2000 :>]    HighAgriculturalSurfaceWaterUse
     [2000 3000]    HighAgriculturalSurfaceWaterUse
     [1000 2000]  ModerateAgriculturalSurfaceWaterUse

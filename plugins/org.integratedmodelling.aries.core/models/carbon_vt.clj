@@ -1,22 +1,41 @@
-(ns core.models.carbon-lyebrook
+(ns core.models.carbon-vt ;;Model is for Vermont agriculture (Sam Gorton's model)
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
-                            categorization ranking numeric-coding binary-coding 
+                            categorization ranking numeric-coding binary-coding
+                            probabilistic-measurement probabilistic-classification
                             identification bayesian namespace-ontology count))
   (:refer aries :only (span)))
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService)
 
+;; output and training
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-  (classification VegetationAndSoilCarbonStorage
-                  :units      "t/ha" 
-                  [500 3200]    VeryHighStorage
-                  [300 500]     HighStorage
-                  [150 300]     ModerateStorage
-                  [75 150]      LowStorage
-                  [0.01 75]     VeryLowStorage
-                  [0 0.01]      NoStorage))
+	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
+	  				[300 3200]  VeryHighStorage
+	  				[220 300]   HighStorage
+	  				[140 220]   ModerateStorage
+	  				[70 140]    LowStorage
+	  				[0 70]      VeryLowStorage
+	  				0           NoStorage))
+
+(defmodel veg-storage VegetationCarbonStorage
+	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
+	  				[100 2301] VeryHighVegetationStorage
+	  				[80 100]   HighVegetationStorage
+	  				[60 80]    ModerateVegetationStorage
+	  				[30 60]    LowVegetationStorage
+	  				[0 30]     VeryLowVegetationStorage
+	  				0          NoVegetationStorage)) 				
+
+(defmodel soil-storage SoilCarbonStorage
+		(probabilistic-measurement SoilCarbonStorage "t/ha" 
+	  				[200 820]  VeryHighSoilStorage
+	  				[140 200]  HighSoilStorage
+	  				[80 140]   ModerateSoilStorage
+	  				[40 80]    LowSoilStorage
+	  				[0 40]     VeryLowSoilStorage
+	  				0          NoSoilStorage))	  			
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -29,36 +48,38 @@
 
 (defmodel summer-high-winter-low SummerHighWinterLow
 		 (classification (ranking habitat:SummerHighWinterLow)
-        [40 :>]       VeryHighSOL
-        [34 40]       HighSOL
-        [29 34]       ModerateSOL
-        [24 29]       LowSOL
-        [:< 24]       VeryLowSOL))
+        [44 :>]       VeryHighSOL
+        [42 44]       HighSOL
+        [40 42]       ModerateSOL
+        [38 40]       LowSOL
+        [:< 38]       VeryLowSOL))
 
-(defmodel stand-condition StandCondition
-			(classification (ranking habitat:StandCondition) 
-					#{4 5 6}			HighStandCondition
-					#{7 8 9}			ModerateStandCondition
-					#{1 2 3}			LowStandCondition
-					:otherwise		NoStandCondition))
-
-(defmodel stand-size-density StandSizeDensity
-			(classification (ranking habitat:StandSizeDensity) 
-					#{5 6 8 9}		HighStandSizeDensity
-					#{3 4 7}	  	ModerateStandSizeDensity
-					#{1 2}				LowStandSizeDensity
-					0							NoStandSizeDensity))
-					
+(defmodel mean-annual-precip MeanAnnualPrecipitation
+			(classification (measurement habitat:AnnualPrecipitation "mm")
+					[2500 :>]				  VeryHighMeanAnnualPrecipitation
+					[1500 2500]				HighMeanAnnualPrecipitation
+					[1000 1500]				ModerateMeanAnnualPrecipitation
+					[700 1000]				LowMeanAnnualPrecipitation
+					[:< 700]			   	VeryLowMeanAnnualPrecipitation))
+						
 (defmodel soil-CN-ratio SoilCNRatio
 			(classification (ranking habitat:SoilCNRatio)
-					[35 :>]					VeryHighCNRatio
-					[20 35]					HighCNRatio
-					[10 20]					LowCNRatio
-					[:< 10]					VeryLowCNRatio)) 
+					[25 :>]				VeryHighCNRatio
+					[17.5 25]			HighCNRatio
+					[10 17.5]			LowCNRatio
+					[:< 10]				VeryLowCNRatio))
+
+(defmodel veg-type VegetationType
+			(classification (ranking VegType)
+					#{1 5 25}			RowCrops
+					#{36 37 62}		GrasslandHerbaceous
+					63					  Forest
+					87						Wetland
+					#{61 82}			NoVegetation
+          111           OpenWater))
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (classification VegetationAndSoilCarbonSequestration
-                  :units      "t/ha*year"
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
                   [12 30]     VeryHighSequestration
                   [9 12]      HighSequestration
                   [6 9]       ModerateSequestration
@@ -69,11 +90,11 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationJen.xdsl"
+            :import   "aries.core::CarbonSequestrationVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
-            :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
- 	    
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
+
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
@@ -83,36 +104,21 @@
 ;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
 ;; areas at risk of deforestation or fire.
 
-(defmodel fire-frequency FireFrequency
-     (classification (ranking habitat:FireFrequency) 
-          [0.9 :>]    HighFireFrequency
-          [0.25 0.9]  ModerateFireFrequency 
-          [0.05 0.25] LowFireFrequency
-          [:< 0.05]   NoFireFrequency))
+;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer.  Assume the below discretization
+;; is in percentages?
+;;(defmodel biomass-removal-rate BiomassRemovalRate
+;;      (classification (ranking habitat:BiomassRemovalRate)  
+;;          [90 :>]       VeryHighRemovalRate
+;;          [66 90]       HighRemovalRate
+;;          [10 66]       LowRemovalRate
+;;          [:< 10]       VeryLowRemovalRate)) 
 
-(defmodel veg-storage VegetationCarbonStorage
-  (classification (measurement habitat:VegetationCarbonStorage "t/ha")
-            [80 :>]    VeryHighVegetationStorage
-            [70 80]    HighVegetationStorage
-            [50 70]    ModerateVegetationStorage
-            [0 50]     LowVegetationStorage
-            0          NoVegetationStorage))         
-
-(defmodel soil-storage SoilCarbonStorage
-    (classification (measurement habitat:SoilCarbonStorage "t/ha") 
-            [210 :>]   VeryHighSoilStorage
-            [140 210]  HighSoilStorage
-            [70 140]   ModerateSoilStorage
-            [0 70]     LowSoilStorage
-            0          NoSoilStorage))
-
-;;Use Bayesian priors for insect & blowdown frequencies
+;;No data here for "biomass residue input," "soil tillage" "biomass removal rate"- use priors
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
-  (classification StoredCarbonRelease
-                  :units      "t/ha*year"
-                  [12 300]    VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+                  [12 300]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      HighRelease
                   [6 9]       ModerateRelease
                   [3 6]       LowRelease
@@ -121,11 +127,11 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseJen.xdsl"
+            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
             :keep     (StoredCarbonRelease)
             :observed (stored-carbon-release)
-            :context  (fire-frequency veg-storage soil-storage)))
-
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
+   	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
@@ -135,7 +141,7 @@
  	 					
 ;; ----------------------------------------------------------------------------------------------
 ;; Top-level service models
-;; ----------------------------------------------------------------------------------------------	
+;; ----------------------------------------------------------------------------------------------
 
 (defmodel identification-carbon ClimateStability
   (identification ClimateStability
@@ -168,9 +174,9 @@
                CarbonMitigationSurplus CarbonMitigationDeficit
                DepletedCarbonMitigation DepletedCarbonMitigationDemand)
         :context (source use-simple sink)))
-
+		
 ;; ----------------------------------------------------------------------------------------------
-;; Scenarios (evolving)
+;; scenarios (evolving)
 ;; observations that are specifically tagged for a scenario will be picked up automatically
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
