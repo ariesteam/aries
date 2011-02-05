@@ -144,8 +144,7 @@
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
-  (classification StoredCarbonRelease
-                  :units      "t/ha*year"
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
                   [12 1000]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [9 12]      HighRelease
                   [6 9]       ModerateRelease
