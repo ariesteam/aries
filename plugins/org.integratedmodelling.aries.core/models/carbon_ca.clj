@@ -39,14 +39,35 @@
                   [:exclusive 0 50]  VeryLowSoilStorage
                   [0]                NoSoilStorage))
 
+
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
+
+;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
+(defmodel soil-ph Soilph
+  (classification (ranking habitat:SoilPhDeep)
+                  [7.3 :>]             HighPh
+                  [5.5 7.3]            ModeratePh
+                  [:exclusive 0 5.5]   LowPh))
+
+;; use NLCD layers to infer anoxic vs. oxic
+(defmodel soil-oxygen-conditions SoilOxygenConditions 
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  #{90 95}   AnoxicSoils
+                  :otherwise OxicSoils))
+        
+(defmodel fire-threat FireThreatClass
+  (classification (ranking habitat:FireThreat) 
+                  4  VeryHighFireThreat
+                  3  HighFireThreat
+                  2  ModerateFireThreat
+                  1  LowFireThreat))
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
@@ -87,6 +108,32 @@
                   22                  southernCalifornia:LowDevelopedLandCover
                   #{23 24}            southernCalifornia:HighAndMedDevelopedLandCover))
 
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release StoredCarbonRelease
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+                  [12 300]           VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                  [9 12]             HighRelease
+                  [6 9]              ModerateRelease
+                  [3 6]              LowRelease
+                  [:exclusive 0 3]   VeryLowRelease
+                  0                  NoRelease))
+
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
+            :keep     (StoredCarbonRelease)
+            :observed (stored-carbon-release)
+            :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
+
 ;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -98,8 +145,8 @@
                   [0]                 NoSequestration))
 
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :observed (veg-soil-sequestration)
@@ -123,52 +170,6 @@
            :state    #(/ (:mean-annual-precipitation %) (:potential-evapotranspiration %))))
 
 ;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
-
-;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph Soilph
-  (classification (ranking habitat:SoilPhDeep)
-                  [7.3 :>]             HighPh
-                  [5.5 7.3]            ModeratePh
-                  [:exclusive 0 5.5]   LowPh))
-
-;; use NLCD layers to infer anoxic vs. oxic
-(defmodel soil-oxygen-conditions SoilOxygenConditions 
-  (classification (numeric-coding nlcd:NLCDNumeric)
-                  #{90 95}   AnoxicSoils
-                  :otherwise OxicSoils))
-        
-(defmodel fire-threat FireThreatClass
-  (classification (ranking habitat:FireThreat) 
-                  4  VeryHighFireThreat
-                  3  HighFireThreat
-                  2  ModerateFireThreat
-                  1  LowFireThreat))
-
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release StoredCarbonRelease
-  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                  [12 300]           VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]             HighRelease
-                  [6 9]              ModerateRelease
-                  [3 6]              LowRelease
-                  [:exclusive 0 3]   VeryLowRelease
-                  0                  NoRelease))
-
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
-            :keep     (StoredCarbonRelease)
-            :observed (stored-carbon-release)
-            :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
-
-;; ----------------------------------------------------------------------------------------------
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
  	 					
@@ -187,9 +188,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        VegetationAndSoilCarbonSequestration 
+        StoredCarbonRelease
         GreenhouseGasEmissions
-        StoredCarbonRelease 
+        VegetationAndSoilCarbonSequestration
         nil
         nil
         :source-threshold   1.0
@@ -203,9 +204,9 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :keep (CarbonSequestration StoredCarbonRelease 
+        :keep (StoredCarbonRelease CarbonSequestration 
                GreenhouseGasEmissions PotentialCarbonMitigationProvision
-               PotentialCarbonMitigationUse UsedCarbonMitigation
+               PotentialCarbonMitigationUse DetrimentalCarbonSource
                UsedCarbonSink SatisfiedCarbonMitigationDemand
                CarbonMitigationSurplus CarbonMitigationDeficit
                DepletedCarbonMitigation DepletedCarbonMitigationDemand)

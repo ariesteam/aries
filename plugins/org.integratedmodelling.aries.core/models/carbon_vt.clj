@@ -41,68 +41,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
-
-(defmodel summer-high-winter-low SummerHighWinterLow
-		 (classification (ranking habitat:SummerHighWinterLow)
-        [44 :>]       VeryHighSOL
-        [42 44]       HighSOL
-        [40 42]       ModerateSOL
-        [38 40]       LowSOL
-        [:< 38]       VeryLowSOL))
-
-(defmodel mean-annual-precip MeanAnnualPrecipitation
-			(classification (measurement habitat:AnnualPrecipitation "mm")
-					[2500 :>]				  VeryHighMeanAnnualPrecipitation
-					[1500 2500]				HighMeanAnnualPrecipitation
-					[1000 1500]				ModerateMeanAnnualPrecipitation
-					[700 1000]				LowMeanAnnualPrecipitation
-					[:< 700]			   	VeryLowMeanAnnualPrecipitation))
-						
-(defmodel soil-CN-ratio SoilCNRatio
-			(classification (ranking habitat:SoilCNRatio)
-					[25 :>]				VeryHighCNRatio
-					[17.5 25]			HighCNRatio
-					[10 17.5]			LowCNRatio
-					[:< 10]				VeryLowCNRatio))
-
-(defmodel veg-type VegetationType
-			(classification (ranking VegType)
-					#{1 5 25}			RowCrops
-					#{36 37 62}		GrasslandHerbaceous
-					63					  Forest
-					87						Wetland
-					#{61 82}			NoVegetation
-          111           OpenWater))
-
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
-
-;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationVt.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :observed (veg-soil-sequestration)
-            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
 
 ;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer.  Assume the below discretization
 ;; is in percentages?
@@ -115,6 +57,38 @@
 
 ;;No data here for "biomass residue input," "soil tillage" "biomass removal rate"- use priors
 
+(defmodel summer-high-winter-low SummerHighWinterLow
+     (classification (ranking habitat:SummerHighWinterLow)
+        [44 :>]       VeryHighSOL
+        [42 44]       HighSOL
+        [40 42]       ModerateSOL
+        [38 40]       LowSOL
+        [:< 38]       VeryLowSOL))
+
+(defmodel mean-annual-precip MeanAnnualPrecipitation
+      (classification (measurement habitat:AnnualPrecipitation "mm")
+          [2500 :>]         VeryHighMeanAnnualPrecipitation
+          [1500 2500]       HighMeanAnnualPrecipitation
+          [1000 1500]       ModerateMeanAnnualPrecipitation
+          [700 1000]        LowMeanAnnualPrecipitation
+          [:< 700]          VeryLowMeanAnnualPrecipitation))
+            
+(defmodel soil-CN-ratio SoilCNRatio
+      (classification (ranking habitat:SoilCNRatio)
+          [25 :>]       VeryHighCNRatio
+          [17.5 25]     HighCNRatio
+          [10 17.5]     LowCNRatio
+          [:< 10]       VeryLowCNRatio))
+
+(defmodel veg-type VegetationType
+      (classification (ranking VegType)
+          #{1 5 25}     RowCrops
+          #{36 37 62}   GrasslandHerbaceous
+          63            Forest
+          87            Wetland
+          #{61 82}      NoVegetation
+          111           OpenWater))
+
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
@@ -125,13 +99,40 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseVt.xdsl"
             :keep     (StoredCarbonRelease)
             :observed (stored-carbon-release)
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
-   	 		
+ 
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
+
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [3 6]       LowSequestration
+                  [0.01 3]    VeryLowSequestration
+                  [0 0.01]    NoSequestration))
+
+;; Bayesian source model
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
+            :import   "aries.core::CarbonSequestrationVt.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :observed (veg-soil-sequestration)
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
+  	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
@@ -151,9 +152,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        VegetationAndSoilCarbonSequestration 
-        GreenhouseGasEmissions
-        StoredCarbonRelease 
+        StoredCarbonRelease
+        GreenhouseGasEmissions  
+        VegetationAndSoilCarbonSequestration
         nil
         nil
         :source-threshold   1.0
@@ -167,9 +168,9 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :keep (CarbonSequestration StoredCarbonRelease 
+        :keep (StoredCarbonRelease CarbonSequestration 
                GreenhouseGasEmissions PotentialCarbonMitigationProvision
-               PotentialCarbonMitigationUse UsedCarbonMitigation
+               PotentialCarbonMitigationUse DetrimentalCarbonSource
                UsedCarbonSink SatisfiedCarbonMitigationDemand
                CarbonMitigationSurplus CarbonMitigationDeficit
                DepletedCarbonMitigation DepletedCarbonMitigationDemand)

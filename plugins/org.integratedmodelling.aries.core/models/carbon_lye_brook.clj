@@ -22,65 +22,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
-
-(defmodel summer-high-winter-low SummerHighWinterLow
-		 (classification (ranking habitat:SummerHighWinterLow)
-        [40 :>]       VeryHighSOL
-        [34 40]       HighSOL
-        [29 34]       ModerateSOL
-        [24 29]       LowSOL
-        [:< 24]       VeryLowSOL))
-
-(defmodel stand-condition StandCondition
-			(classification (ranking habitat:StandCondition) 
-					#{4 5 6}			HighStandCondition
-					#{7 8 9}			ModerateStandCondition
-					#{1 2 3}			LowStandCondition
-					:otherwise		NoStandCondition))
-
-(defmodel stand-size-density StandSizeDensity
-			(classification (ranking habitat:StandSizeDensity) 
-					#{5 6 8 9}		HighStandSizeDensity
-					#{3 4 7}	  	ModerateStandSizeDensity
-					#{1 2}				LowStandSizeDensity
-					0							NoStandSizeDensity))
-					
-(defmodel soil-CN-ratio SoilCNRatio
-			(classification (ranking habitat:SoilCNRatio)
-					[35 :>]					VeryHighCNRatio
-					[20 35]					HighCNRatio
-					[10 20]					LowCNRatio
-					[:< 10]					VeryLowCNRatio)) 
-
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
-
-;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :observed (veg-soil-sequestration)
-            :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
- 	    
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines the "source" of carbon sequestration as areas that are sequestering carbon (traditionally referred
-;; to as "sinks" in the field of carbon research).  "Sinks" in ARIES refer to landscape features that deplete the
-;; quantity of a carrier (in this case, sequestered CO2) from being available for human use.  These sinks include
-;; areas at risk of deforestation or fire.
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
 
 (defmodel fire-frequency FireFrequency
      (classification (ranking habitat:FireFrequency) 
@@ -105,6 +50,35 @@
             [0 70]     LowSoilStorage
             0          NoSoilStorage))
 
+(defmodel summer-high-winter-low SummerHighWinterLow
+     (classification (ranking habitat:SummerHighWinterLow)
+        [40 :>]       VeryHighSOL
+        [34 40]       HighSOL
+        [29 34]       ModerateSOL
+        [24 29]       LowSOL
+        [:< 24]       VeryLowSOL))
+
+(defmodel stand-condition StandCondition
+      (classification (ranking habitat:StandCondition) 
+          #{4 5 6}      HighStandCondition
+          #{7 8 9}      ModerateStandCondition
+          #{1 2 3}      LowStandCondition
+          :otherwise    NoStandCondition))
+
+(defmodel stand-size-density StandSizeDensity
+      (classification (ranking habitat:StandSizeDensity) 
+          #{5 6 8 9}    HighStandSizeDensity
+          #{3 4 7}      ModerateStandSizeDensity
+          #{1 2}        LowStandSizeDensity
+          0             NoStandSizeDensity))
+          
+(defmodel soil-CN-ratio SoilCNRatio
+      (classification (ranking habitat:SoilCNRatio)
+          [35 :>]         VeryHighCNRatio
+          [20 35]         HighCNRatio
+          [10 20]         LowCNRatio
+          [:< 10]         VeryLowCNRatio)) 
+
 ;;Use Bayesian priors for insect & blowdown frequencies
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
@@ -117,12 +91,38 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseLyeBrook.xdsl"
             :keep     (StoredCarbonRelease)
             :observed (stored-carbon-release)
             :context  (fire-frequency veg-storage soil-storage)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
+;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
+;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
+;; and fire).
+
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [3 6]       LowSequestration
+                  [0.01 3]    VeryLowSequestration
+                  [0 0.01]    NoSequestration))
+
+;; Bayesian source model
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
+            :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :observed (veg-soil-sequestration)
+            :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -143,9 +143,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        VegetationAndSoilCarbonSequestration 
+        StoredCarbonRelease
         GreenhouseGasEmissions
-        StoredCarbonRelease 
+        VegetationAndSoilCarbonSequestration
         nil
         nil
         :source-threshold   1.0
@@ -159,9 +159,9 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :keep (CarbonSequestration StoredCarbonRelease 
+        :keep (StoredCarbonRelease CarbonSequestration 
                GreenhouseGasEmissions PotentialCarbonMitigationProvision
-               PotentialCarbonMitigationUse UsedCarbonMitigation
+               PotentialCarbonMitigationUse DetrimentalCarbonSource
                UsedCarbonSink SatisfiedCarbonMitigationDemand
                CarbonMitigationSurplus CarbonMitigationDeficit
                DepletedCarbonMitigation DepletedCarbonMitigationDemand)
