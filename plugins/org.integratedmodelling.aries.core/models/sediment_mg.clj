@@ -36,11 +36,11 @@
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass
      (classification (numeric-coding habitat:SoilErodibility)
-       [:< 0.1]    VeryLowSoilErodibility
-       [0.1 0.225]   LowSoilErodibility
-       [0.225 0.3]   ModerateSoilErodibility
-       [0.3 0.375]   HighSoilErodibility
-       [0.375 :>]     VeryHighSoilErodibility))
+       [:< 0.02]         VeryLowSoilErodibility
+       [0.02 0.0275]     LowSoilErodibility
+       [0.0275 0.0325]   ModerateSoilErodibility
+       [0.0325 0.0375]   HighSoilErodibility
+       [0.0375 :>]       VeryHighSoilErodibility))
 
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-annual AnnualPrecipitationClass
@@ -54,8 +54,8 @@
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability TropicalStormProbabilityClass
  (classification (numeric-coding habitat:TropicalStormProbability)
-      [5 :>]  HighTropicalStormProbability   
-      [1 5]   ModerateTropicalStormProbability     
+      [6 :>]           HighTropicalStormProbability   
+      [1 6]            ModerateTropicalStormProbability     
       :otherwise       NoTropicalStormProbability)) 
 
 
@@ -97,8 +97,8 @@
 
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
   (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
-      0                     NoAnnualSedimentSource
-      [:exclusive 0 15]     LowAnnualSedimentSource 
+      [0 0.01]              NoAnnualSedimentSource
+      [0.01 15]             LowAnnualSedimentSource 
       [15 40]               ModerateAnnualSedimentSource
       [40 100]              HighAnnualSedimentSource))
 
@@ -107,7 +107,7 @@
   (bayesian SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
-    :required (Slope)
+    :required (SlopeClass)
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
               storm-probability runoff vegetation-type percent-vegetation-cover))) 
@@ -151,8 +151,8 @@
   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
        [10 15]              HighAnnualSedimentSink
        [5 10]               ModerateAnnualSedimentSink
-       [:exclusive 0 5]     LowAnnualSedimentSink
-       0                    NoAnnualSedimentSink)) 
+       [0.01 5]             LowAnnualSedimentSink
+       [0 0.01]             NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
 (defmodel sediment-sink-mg AnnualSedimentSink

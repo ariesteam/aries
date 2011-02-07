@@ -37,11 +37,11 @@
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass
      (classification (ranking habitat:SoilErodibility)
-       [:< 0.1]    VeryLowSoilErodibility
-       [0.1 0.225] LowSoilErodibility
-       [0.225 0.3] ModerateSoilErodibility
-       [0.3 0.375] HighSoilErodibility
-       [0.375 :>]  VeryHighSoilErodibility))
+       [:< 0.02]         VeryLowSoilErodibility
+       [0.02 0.0275]     LowSoilErodibility
+       [0.0275 0.0325]   ModerateSoilErodibility
+       [0.0325 0.0375]   HighSoilErodibility
+       [0.0375 :>]       VeryHighSoilErodibility))
 
 ;;Annual precipitation for Mg & DR
 (defmodel precipitation-annual AnnualPrecipitationClass
@@ -113,10 +113,10 @@
   ;; please leave as is for now or the BN won't compile.
 	(probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
 ;	(classification (measurement SedimentSourceValueAnnual "t/ha")
-      0                     NoAnnualSedimentSource
-  		[:exclusive 0 15]     LowAnnualSedimentSource 
-  		[15 40]               ModerateAnnualSedimentSource
-  		[40 100]              HighAnnualSedimentSource))
+      [0 0.01]              NoAnnualSedimentSource
+      [0.01 15]             LowAnnualSedimentSource 
+      [15 40]               ModerateAnnualSedimentSource
+      [40 100]              HighAnnualSedimentSource))
   		
 ;; source bayesian model for Dominican Republic
 ;; FV there is much evidence setting for intermediate nodes here - those should be used for
@@ -166,8 +166,8 @@
 ;;  (classification (measurement AnnualSedimentSink "t/ha")
        [10 15]              HighAnnualSedimentSink
        [5 10]               ModerateAnnualSedimentSink
-       [:exclusive 0 5]     LowAnnualSedimentSink
-       0                    NoAnnualSedimentSink)) 
+       [0.01 5]             LowAnnualSedimentSink
+       [0 0.01]             NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
 (defmodel sediment-sink-dr AnnualSedimentSink
