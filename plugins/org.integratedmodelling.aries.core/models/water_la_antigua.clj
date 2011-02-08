@@ -83,10 +83,10 @@
                   [12 30]    floodService:LowEvapotranspiration
                   [0 12]     floodService:VeryLowEvapotranspiration))
 
-(defmodel dam-presence Dams
-  (classification (binary-coding NonRivalWaterUseCode)
-      1         DamPresent
-     :otherwise DamAbsent))
+;;(defmodel dam-presence Dams
+;;  (classification (binary-coding NonRivalWaterUseCode)
+;;      1         DamPresent
+;;     :otherwise DamAbsent))
 
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
