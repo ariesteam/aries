@@ -56,7 +56,7 @@
 ;;Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability TropicalStormProbabilityClass
  (classification (ranking habitat:TropicalStormProbability)
-      [5 :>]         HighTropicalStormProbability 
+      [5 :>]         HighTropicalStormProbability  ;;In Madagascar this is set as >5, but in DR the
       [1 5]          ModerateTropicalStormProbability
       :otherwise     NoTropicalStormProbability)) 
 
@@ -90,7 +90,7 @@
 ;    #{11 12 13 16 17}                          CroplandDeveloped)
   (classification (numeric-coding domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} ForestAndShrubland
-    #{22 24 62 63}          WaterWetlandsMangroves
+    #{22 24 62}             WaterWetlandsMangroves
 	 	#{41 45 53}             ShadeCoffeeCocoa
     #{23 36 38 40 59}       IntensiveCroplandAndPasture
     #{42}                   UrbanAndRoads)
@@ -104,8 +104,8 @@
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
 	(classification (numeric-coding habitat:PercentVegetationCover)
 		[70 100]  HighVegetationCover
-		[30 70]  ModerateVegetationCover
-		[0 30]  LowVegetationCover))
+		[30 70]   ModerateVegetationCover
+		[1 30]    LowVegetationCover))
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
@@ -125,6 +125,7 @@
   (bayesian SedimentSourceValueAnnual
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
+    :required (SlopeClass)
     :observed (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture 
               (comment  soil-erodibility)
@@ -158,6 +159,11 @@
     [60 80]  HighFloodplainVegetationCover
     [80 100] VeryHighFloodplainVegetationCover))
 
+(defmodel floodplains Floodplains
+  (classification (binary-coding geofeatures:Floodplain)
+      0 NotInFloodplain
+      1 InFloodplain))
+
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
 (defmodel sediment-sink-annual AnnualSedimentSinkClass 
@@ -174,18 +180,13 @@
   (bayesian AnnualSedimentSink 
     :import  "aries.core::SedimentSinkDR.xdsl"
     :keep    (AnnualSedimentSinkClass)
+    :required (StreamGradientClass)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
-
-;;FROM MG MODEL: UPDATED GLOBAL FLOODPLAINS LAYER - but what's below seems to work...
-(defmodel floodplains Floodplains
-  (classification (binary-coding geofeatures:Floodplain)
-      0 NotInFloodplain
-      1 InFloodplain))
 
 ;;(defmodel floodplains FloodplainsClass
 ;;	(classification (binary-coding geofeatures:Floodplain)
@@ -199,7 +200,7 @@
 ;;    0          FarmlandAbsent))
 ;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
 ;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
-(defmodel farmland Farmland
+(defmodel farmland FarmlandCode
   (classification (numeric-coding domlulc:DOMLULCNumeric)
 	  	#{23 36 38 40 41 45 53 59}	FarmlandPresent
 		  :otherwise                  FarmlandAbsent))
@@ -218,7 +219,7 @@
                     1
                     0)
        :context (
-          (binary-coding FarmlandCode  :as farmlandpresent)
+          (binary-coding FarmlandCode           :as farmlandpresent)
           (binary-coding geofeatures:Floodplain :as floodplains)))) 
 
 ;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
@@ -271,14 +272,18 @@
      :context (
        source-dr
        sediment-sink-dr
-       farmers-deposition-use-dr)))
+       farmers-deposition-use-dr
+       altitude
+       streams)))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
    (identification ReservoirSoilDeposition 
      :context (
        source-dr
        sediment-sink-dr
-       hydroelectric-use-presence)))
+       hydroelectric-use-presence
+       altitude
+       streams)))
 
 ;;Sediment flow model for recipients of beneficial sedimentation
 (defmodel sediment-beneficial BeneficialSedimentTransport
@@ -310,7 +315,7 @@
         :context (source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams))) 
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation
-(defmodel sediment-detrimental DetrimentalSedimentTransport
+(defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnual 
         DepositionProneFarmers ;;change the beneficiary group as needed
@@ -336,6 +341,35 @@
                NegatedSedimentSource BlockedHarmfulSediment)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams))) ;;change the beneficiary group as needed
+
+;;Sediment flow model for recipients of avoided detrimental sedimentation
+(defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
+  (span SedimentTransport
+        SedimentSourceValueAnnualClass 
+        HydroelectricUsePresenceClass  ;;change the beneficiary group as needed
+        AnnualSedimentSinkClass 
+        nil
+        (geophysics:Altitude Floodplains geofeatures:River)
+        :source-threshold   2.0
+        :sink-threshold     1.0
+        :use-threshold      0.5
+        :trans-threshold    0.25
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :non-rival
+        :rv-max-states      10
+        :downscaling-factor 2
+        :keep (MaximumSedimentSource MaximumPotentialDeposition 
+               PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
+               PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
+               ActualSedimentFlow ActualSedimentSource
+               UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
+               UnutilizedDeposition AbsorbedSedimentFlow
+               NegatedSedimentSource BlockedHarmfulSediment)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-dr hydroelectric-use-presence sediment-sink-dr altitude floodplains streams))) ;;change the beneficiary group as needed
+
 
 ;;Sediment flow model for recipients of reduced turbidity
 (defmodel sediment-turbidity DetrimentalTurbidity

@@ -115,8 +115,8 @@
                   [9 12]             HighRelease
                   [6 9]              ModerateRelease
                   [3 6]              LowRelease
-                  [:exclusive 0 3]   VeryLowRelease
-                  0                  NoRelease))
+                  [0.01 3]           VeryLowRelease
+                  [0 0.01]           NoRelease))
 
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 

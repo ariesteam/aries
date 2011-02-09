@@ -137,6 +137,11 @@
     [60 80]             HighFloodplainVegetationCover
     [80 100]            VeryHighFloodplainVegetationCover))
 
+(defmodel floodplains Floodplains
+  (classification (binary-coding geofeatures:Floodplain)
+      1          InFloodplain
+      :otherwise NotInFloodplain))
+
 ;;Having problems generating this layer from Dartmouth Flood Observatory data
 ;;(defmodel floodplain-width FloodplainWidthClass 
 ;;  (classification (measurement habitat:FloodplainWidth "m")
@@ -159,18 +164,13 @@
   (bayesian AnnualSedimentSink 
     :import  "aries.core::SedimentSinkMg.xdsl"
     :keep    (AnnualSedimentSinkClass)
-    :required (FloodplainVegetationCoverClass)
+    :required (StreamGradientClass)
     :observed (sediment-sink-annual) 
     :context (reservoirs stream-gradient floodplain-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
-
-(defmodel floodplains Floodplains
-	(classification (binary-coding geofeatures:Floodplain)
-			1          InFloodplain
-      :otherwise NotInFloodplain))
 
 (defmodel farmland Farmland
   (classification (numeric-coding mglulc:MGLULCNumeric)
@@ -252,7 +252,8 @@
        streams
        altitude)))
 			
-;;Sediment flow model for recipients of beneficial sedimentation
+;;Sediment flow model for recipients of beneficial sedimentation.  Sediment is generally considered detrimental for 
+;; rice farmers in Madagsacar so should probably run the detrimental span model (next one below).
 (defmodel sediment-beneficial BeneficialSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
@@ -282,7 +283,7 @@
         :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams)))
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation
-(defmodel sediment-detrimental DetrimentalSedimentTransport
+(defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
         DepositionProneFarmers ;;change the beneficiary group as needed
@@ -308,6 +309,34 @@
                NegatedSedimentSource BlockedHarmfulSediment)
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams))) ;;change the beneficiary group as needed
+
+;;Sediment flow model for recipients of avoided detrimental sedimentation
+(defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
+  (span SedimentTransport
+        SedimentSourceValueAnnualClass 
+        HydroelectricUseLevel  ;;change the beneficiary group as needed
+        AnnualSedimentSinkClass 
+        nil
+        (geophysics:Altitude Floodplains geofeatures:River)
+        :source-threshold   2.0
+        :sink-threshold     1.0
+        :use-threshold      0.5
+        :trans-threshold    0.25
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :non-rival
+        :rv-max-states      10
+        :downscaling-factor 2
+        :keep (MaximumSedimentSource MaximumPotentialDeposition 
+               PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
+               PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
+               ActualSedimentFlow ActualSedimentSource
+               UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
+               UnutilizedDeposition AbsorbedSedimentFlow
+               NegatedSedimentSource BlockedHarmfulSediment)
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :context (source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains streams))) ;;change the beneficiary group as needed
 
 ;;Sediment flow model for recipients of reduced turbidity; 
 (defmodel sediment-turbidity DetrimentalTurbidity
