@@ -89,6 +89,14 @@
           #{61 82}      NoVegetation
           111           OpenWater))
 
+;;Not used in the model but masks out carbon over open water
+(defmodel slope Slope
+    (classification (measurement geophysics:DegreeSlope "\u00b0")
+       [:< 1.15]    Level
+       [1.15 4.57]  GentlyUndulating
+       [4.57 16.70] RollingToHilly
+       [16.70 :>]   SteeplyDissectedToMountainous))
+
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
@@ -102,7 +110,8 @@
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseVt.xdsl"
-            :keep     (StoredCarbonRelease)
+            :keep     (StoredCarbonRelease)            
+            :required (Slope)
             :observed (stored-carbon-release)
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
  
@@ -130,6 +139,7 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
+            :required (Slope)
             :observed (veg-soil-sequestration)
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
   	 		

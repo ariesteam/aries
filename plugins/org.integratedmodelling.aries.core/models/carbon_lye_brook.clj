@@ -79,6 +79,14 @@
           [10 20]         LowCNRatio
           [:< 10]         VeryLowCNRatio)) 
 
+;;Not used in the model but masks out carbon over open water
+(defmodel slope Slope
+    (classification (measurement geophysics:DegreeSlope "\u00b0")
+       [:< 1.15]    Level
+       [1.15 4.57]  GentlyUndulating
+       [4.57 16.70] RollingToHilly
+       [16.70 :>]   SteeplyDissectedToMountainous))
+
 ;;Use Bayesian priors for insect & blowdown frequencies
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
@@ -95,6 +103,7 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseLyeBrook.xdsl"
             :keep     (StoredCarbonRelease)
+            :required (Slope)
             :observed (stored-carbon-release)
             :context  (fire-frequency veg-storage soil-storage)))
 
@@ -121,6 +130,7 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
+            :required (Slope)
             :observed (veg-soil-sequestration)
             :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
 

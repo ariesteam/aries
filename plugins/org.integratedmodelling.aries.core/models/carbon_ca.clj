@@ -108,6 +108,14 @@
                   22                  southernCalifornia:LowDevelopedLandCover
                   #{23 24}            southernCalifornia:HighAndMedDevelopedLandCover))
 
+;;Not used in the model but masks out carbon over open water
+(defmodel slope Slope
+    (classification (measurement geophysics:DegreeSlope "\u00b0")
+       [:< 1.15]    Level
+       [1.15 4.57]  GentlyUndulating
+       [4.57 16.70] RollingToHilly
+       [16.70 :>]   SteeplyDissectedToMountainous))
+
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
@@ -122,6 +130,7 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseCa.xdsl"
             :keep     (StoredCarbonRelease)
+            :required (Slope)
             :observed (stored-carbon-release)
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
 
@@ -149,6 +158,7 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
+            :required (Slope)
             :observed (veg-soil-sequestration)
 	 	 	      :context  (percent-vegetation-cover vegetation-type land-use)))
 
