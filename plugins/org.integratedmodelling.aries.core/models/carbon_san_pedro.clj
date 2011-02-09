@@ -61,11 +61,11 @@
      (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
         #{14 34 35 83 92}                   LowHardness
         #{33 45 51 91}                      ModerateHardness
-        #{52 55 56 57 59 60 84 96 105 118}  HighHardness))
-;;     (classification (categorization mexico:CONABIOLULCCategory)
-;;        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} LowHardness
-;;        #{"Chaparral"}                                              ModerateHardness
-;;        #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
+        #{52 55 56 57 59 60 84 96 105 118}  HighHardness)
+     (classification (categorization mexico:CONABIOLULCCategory)
+        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} LowHardness
+        #{"Chaparral"}                                              ModerateHardness
+        #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
 
 ;;Have removed this from the model and replaced it with annual precip.  This is probably a better variable to include
 ;; in carbon models in wetter regions, while annual precip is far more important in water-limited regions.
