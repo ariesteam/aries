@@ -383,7 +383,8 @@
         :context            (precipitation-dry-year
                              surface-water-sink
                              surface-diversions
-                             surface-water-flow-data)))
+                             altitude
+                             streams-simple)))
 
 ;; flow model for surface water in a wet year
 (defmodel surface-flow-wet SurfaceWaterMovement
@@ -423,7 +424,8 @@
         :context            (precipitation-wet-year
                              surface-water-sink
                              surface-diversions
-                             surface-water-flow-data)))
+                             altitude
+                             streams-simple)))
 
 ;; flow model for groundwater
 ;;(defmodel groundwater-flow GroundwaterMovement

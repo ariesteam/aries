@@ -184,7 +184,8 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        ;;:downscaling-factor 2
+        :downscaling-factor 1
         :rv-max-states      10
         :keep (PotentialProximateOpenSpace PotentialProximitySink HomeownersWithOpenSpaceDemand
                PossibleProximateOpenSpace AccessibleOpenSpace OpenSpaceProximateHomeowners
@@ -192,6 +193,7 @@
                HomeownersWithProximateOpenSpace UnaccessedOpenSpace InaccessibleProximitySink
                HomeownersWithoutProximateOpenSpace BlockedProximity BlockedOpenSpace
                HomeownersWithBlockedProximity)
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_proximity_san_pedro_data.clj"
         :context (source homeowners sink)))
 
 ;; ----------------------------------------------------------------------------------------------

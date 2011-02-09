@@ -211,8 +211,10 @@
         :use-type           :finite
         :benefit-type       :rival
         :rv-max-states      10
-        :downscaling-factor 2
+        ;;:downscaling-factor 2
+        :downscaling-factor 1
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        :save-file          "/home/gjohnson/code/java/imt/identifications/carbon_san_pedro_data.clj"
         :keep (StoredCarbonRelease CarbonSequestration 
                GreenhouseGasEmissions PotentialCarbonMitigationProvision
                PotentialCarbonMitigationUse DetrimentalCarbonSource

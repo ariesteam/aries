@@ -179,7 +179,8 @@
         :sink-type        :infinite
         :use-type         :infinite
         :benefit-type     :non-rival
-        :downscaling-factor 2
+        ;;:downscaling-factor 2
+        :downscaling-factor 1
         :rv-max-states      10
         :keep (PotentialViews PotentialVisualBlight HomeownersWithViewDemand
                PossibleViews VisibleNaturalBeauty HomeownersWithPossibleViews
@@ -187,6 +188,7 @@
                HomeownersWithViews UnseenViews InaccessibleVisualBlight
                HomeownersWithoutViews BlockedViews DegradedNaturalBeauty
                HomeownersWithDegradedViews)
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_view_san_pedro_data.clj"
         :context (source homeowners sink altitude)))
 
 ;;Develop another one of these to account for scenic drives.
