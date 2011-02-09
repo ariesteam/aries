@@ -28,7 +28,7 @@
                   #{77 78 79 80 81 83 84 85 98 109 110 118}               sanPedro:RiparianAndWater
                   :otherwise                                              sanPedro:Other)
   (classification (categorization mexico:CONABIOLULCCategory)
-                  #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} sanPedro:Forest
+                  #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} sanPedro:Forests
                   #{"Vegetacion de galeria"}                                                     sanPedro:Woodland
                   #{"Cuerpos de agua"}                                                           sanPedro:RiparianAndWater
                   :otherwise                                                                     sanPedro:Other))
