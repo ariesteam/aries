@@ -109,7 +109,7 @@
 (defmodel degradation-status DegradationStatus
   (classification (numeric-coding mglulc:MGLULCNumeric)
          #{3 7 23}         Degraded
-         :otherwise       NotDegraded))
+         :otherwise        NotDegraded))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
