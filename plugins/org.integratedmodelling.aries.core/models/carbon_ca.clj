@@ -132,7 +132,8 @@
             :keep     (StoredCarbonRelease)
             :required (Slope)
             :observed (stored-carbon-release)
-            :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions fire-threat vegetation-type land-use)))
+            :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions 
+                       fire-threat vegetation-type land-use slope)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -160,7 +161,7 @@
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (Slope)
             :observed (veg-soil-sequestration)
-	 	 	      :context  (percent-vegetation-cover vegetation-type land-use)))
+	 	 	      :context  (percent-vegetation-cover vegetation-type land-use slope)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Carbon model accuracy check
