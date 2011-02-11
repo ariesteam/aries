@@ -10,6 +10,18 @@
     256 
     "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
 
+(defcontext chehalis_med_res
+  "Chehalis watershed @ 256 linear. Just the square bounding box."
+  (grid 
+    512 
+    "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
+
+(defcontext chehalis_hi_res
+  "Chehalis watershed @ 256 linear. Just the square bounding box."
+  (grid 
+    1024 
+    "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
+
 (defcontext raven_ridge 
   "" 
   (grid  

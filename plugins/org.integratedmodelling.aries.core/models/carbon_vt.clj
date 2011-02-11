@@ -111,9 +111,9 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseVt.xdsl"
             :keep     (StoredCarbonRelease)            
-            :required (SummerHighWinterLow)
+            :required (Slope)
             :observed (stored-carbon-release)
-            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))  ;; add biomass-removal-rate if there's supporting data
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))  ;; add biomass-removal-rate if there's supporting data
  
 
 ;; ----------------------------------------------------------------------------------------------
@@ -139,9 +139,9 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :required (SummerHighWinterLow)
+            :required (Slope)
             :observed (veg-soil-sequestration)
-            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type)))
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))
   	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model

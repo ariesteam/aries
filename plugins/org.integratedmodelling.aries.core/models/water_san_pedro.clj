@@ -48,8 +48,8 @@
 
 ;;Incorporate actual runoff data in the future once we've done a better job with the hydro modeling.
 ;; Runoff as a sum of precip, snowmelt, spring discharge, baseflow, incoming interbasin water transfers.
-(defmodel runoff soilretentionEcology:AnnualRunoffSummed
-  (measurement soilretentionEcology:AnnualRunoffSummed "mm/year"
+(defmodel runoff AnnualRunoffSummed
+  (measurement AnnualRunoffSummed "mm"
     :context (precipitation-annual :as precipitation-annual spring-discharge :as spring-discharge) 
     :state #(+ (:precipitation-annual %)
                (:spring-discharge     %))))
@@ -194,7 +194,7 @@
       :result   infiltration))
 
 (defmodel surface-water-sink SurfaceWaterSink
-  (measurement SurfaceWaterSink "mm/year"
+  (measurement SurfaceWaterSink "mm"
     :context (infiltration-sink :as infiltration et-sink :as evapotranspiration) 
     :state #(+ 
               (if (nil? (:infiltration %)) 0.0 (.getMean (:infiltration %)))
@@ -210,8 +210,8 @@
 ;;(defmodel baseflow -> this is complex and requires MODFLOW outputs to identify contributions to gaining reaches.  
 ;; Give it a closer look when we've gotten a better handle on whether MODFLOW integration is possible.
 
-;;(defmodel groundwater-sink soilretentionEcology:GroundwaterSink
-;;  (measurement soilretentionEcology:GroundwaterSink "mm/year"
+;;(defmodel groundwater-sink GroundwaterSink
+;;  (measurement GroundwaterSink "mm"
 ;;    :context (spring-discharge :as spring-discharge baseflow :as baseflow) 
 ;;    :state #(+ (:baseflow %)
 ;;               (:spring-discharge     %))))

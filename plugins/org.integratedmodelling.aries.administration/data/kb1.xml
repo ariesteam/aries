@@ -3143,6 +3143,8 @@ we could discuss integrating those at some point.-->
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
+<!--  This hydrography dataset is at too ridiculously high a spatial resolution to support flow modeling.
+Testing the two below to see which is more appropriate. 
 <measurement:BinaryCoding id="PugetStreams3">
 	<observation:hasObservable>
 		<geofeatures:River />
@@ -3167,7 +3169,59 @@ we could discuss integrating those at some point.-->
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
+</measurement:BinaryCoding>  -->
+
+ <measurement:BinaryCoding id="hydrography_puget_mid_res">
+	<observation:hasObservable>
+		<geofeatures:River />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Washington DOT hydrography data</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.wsdot.wa.gov/mapsdata/geodatacatalog/default.htm</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>puget:hydrography_puget_mid_res</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>4071</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>3147</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>45.8540155</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-124.762584</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>49.0030155</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>-120.689584</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
 </measurement:BinaryCoding>
+
+<!--  	<measurement:BinaryCoding id="hydrography_puget_hi_res">
+		<observation:hasObservable>
+			<geofeatures:River />
+		</observation:hasObservable>
+		<rdfs:comment>Data source: StreamNet hydrography data</rdfs:comment>
+		<metadata:hasPriority>10</metadata:hasPriority>
+		<metadata:hasURL>http://www.streamnet.org/mapping_apps.cfm</metadata:hasURL>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+				<geospace:hasCoverageId>puget:hydrography_puget_hi_res</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>14914</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>19626</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>32.4942894</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>-124.7239686</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>52.1222894</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>-109.8079686</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent> 
+	</measurement:BinaryCoding> 
 
 	<measurement:BinaryCoding id="dominicanRepublic_drrivers">
 		<observation:hasObservable>
@@ -3188,7 +3242,7 @@ we could discuss integrating those at some point.-->
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
-	</measurement:BinaryCoding>
+	</measurement:BinaryCoding>  -->
 
 	<measurement:BinaryCoding id="mexico_lastreams">
 		<observation:hasObservable>

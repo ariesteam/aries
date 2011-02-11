@@ -12,7 +12,7 @@
 		<cpt id="LandCover">
 			<state id="HighAndMedDevelopedLandCover" />
 			<state id="LowDevelopedLandCover" />
-			<state id="OpenSpacelandLandCover" />
+			<state id="OpenSpaceLandCover" />
 			<state id="CultivatedLandCover" />
 			<state id="ScrubAndForestLandCover" />
 			<state id="WetlandLandCover" />
@@ -25,7 +25,8 @@
 			<state id="ModerateVegetationCover" />
 			<state id="LowVegetationCover" />
 			<state id="VeryLowVegetationCover" />
-			<probabilities>0.05 0.05 0.2 0.3 0.4</probabilities>
+			<state id="NoVegetationCover" />
+			<probabilities>0.05 0.05 0.2 0.3 0.35 0.05</probabilities>
 		</cpt>
 		<cpt id="VegetationTypeSoCalCarbon">
 			<state id="HardwoodForestVegetationType" />
@@ -52,8 +53,8 @@
 			<state id="LowSequestration" />
 			<state id="VeryLowSequestration" />
 			<state id="NoSequestration" />
-			<parents>PercentVegetationCover SequestrationRate</parents>
-			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1</probabilities>
+			<parents>SequestrationRate PercentVegetationCover</parents>
+			<probabilities>0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0 0 0 0 0 1 0.45 0.45 0.1 0 0 0 0.45 0.45 0.1 0 0 0 0.45 0.45 0.1 0 0 0 0.45 0.45 0.1 0 0 0 0.45 0.45 0.1 0 0 0 0 0 0 0 0 1 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0 0 1 0.05 0.3 0.3 0.3 0.05 0 0 0.1 0.4 0.4 0.1 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0 0 0.25 0.5 0.25 0 0 0 0.2 0.4 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
 		</cpt>
 	</nodes>

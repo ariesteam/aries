@@ -7,7 +7,10 @@
   (:refer aries :only (span)))
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
-(namespace-ontology carbonService)
+(namespace-ontology carbonService
+    (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; output and training
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorage
@@ -108,13 +111,10 @@
                   22                  southernCalifornia:LowDevelopedLandCover
                   #{23 24}            southernCalifornia:HighAndMedDevelopedLandCover))
 
-;;Not used in the model but masks out carbon over open water
-(defmodel slope Slope
-    (classification (measurement geophysics:DegreeSlope "\u00b0")
-       [:< 1.15]    Level
-       [1.15 4.57]  GentlyUndulating
-       [4.57 16.70] RollingToHilly
-       [16.70 :>]   SteeplyDissectedToMountainous))
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
@@ -126,14 +126,16 @@
                   [0.01 3]           VeryLowRelease
                   [0 0.01]           NoRelease))
 
+;;Source and sink values are still calculated over the ocean, though they're set to almost-zero, so it's a temporary fix.
+;; For some reason slope has value here in the ocean and using elevation as a mask made the whole model disappear.
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseCa.xdsl"
             :keep     (StoredCarbonRelease)
-            :required (Slope)
+            :required (LandOrSea)
             :observed (stored-carbon-release)
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions 
-                       fire-threat vegetation-type land-use slope)))
+                       fire-threat vegetation-type land-use land-selector)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -159,9 +161,9 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :required (Slope)
+            :required (LandOrSea)
             :observed (veg-soil-sequestration)
-	 	 	      :context  (percent-vegetation-cover vegetation-type land-use slope)))
+	 	 	      :context  (percent-vegetation-cover vegetation-type land-use land-selector)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Carbon model accuracy check
