@@ -7,7 +7,11 @@
   (:refer aries :only (span)))
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
-(namespace-ontology carbonService)
+(namespace-ontology carbonService
+  (PercentVegetationCover :editable "true")
+  (FireFrequency :editable "true")
+  (GreenhouseGasEmissions :editable "true")
+)
 
 ;;This model is for western Washington State
 
