@@ -56,33 +56,30 @@
        [20 50]               ModeratelyHighImperviousCover
        [10 20]               ModeratelyLowImperviousCover
        [5 10]                LowImperviousCover
-       [1 5]                 VeryLowImperviousCover))
+       [0 5]                 VeryLowImperviousCover))
 
+;; these classes do not show up in the classification statement, but are present in the data layer
+;; Cuerpo de agua, Manglar, humedad
 (defmodel vegetation-type VegetationType
   "Just a reclass of the Veracruz land use layer"
   (classification (categorization veracruz-lulc:VeracruzLULCCategory)
     "Bosque mesofilo de montana"                                                 CloudForest
     #{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"} DevelopedCultivated
-    #{"Selva alta subperennifolia" "Bosque cultivado" "Bosque de encino" "Bosque de encino-pino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino" "Bosque de tascate"} DryForest
-    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras" "Vegetacion halofila" "Popal"} GrasslandShrubland
+    #{"Bosque cultivado" "Bosque de encino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino"} DryForest
+    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras"} GrasslandShrubland
     #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                   Rainforest))
-    
+ 
+;; there are values of 254 and 255 in the source data set and we're not sure what that means
+;; so we're treating them as No Data along with the other No Data values
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover)
-    [80 100] VeryHighVegetationCover
+    [80 100 :inclusive] VeryHighVegetationCover
     [60 80]  HighVegetationCover
     [40 60]  ModerateVegetationCover
     [20 40]  LowVegetationCover
-    [1 20]   VeryLowVegetationCover))
+    [0 20]   VeryLowVegetationCover))
 
-(defmodel evapotranspiration floodService:EvapotranspirationClass
-  (classification (measurement habitat:ActualEvapotranspiration "mm")
-                  [90 :>]    floodService:VeryHighEvapotranspiration
-                  [60 90]    floodService:HighEvapotranspiration
-                  [30 60]    floodService:ModerateEvapotranspiration
-                  [12 30]    floodService:LowEvapotranspiration
-                  [0 12]     floodService:VeryLowEvapotranspiration))
-
+;; see e-mail from Octavio regarding the fact that there are no major dams to consider in the La Antigua watershed
 ;;(defmodel dam-presence Dams
 ;;  (classification (binary-coding NonRivalWaterUseCode)
 ;;      1         DamPresent
@@ -90,42 +87,70 @@
 
 ;;Undiscretization values based on evapotranspiration layer (which could be included in this BN)
 ;; but with breakpoint values doubled to account for the effects of soil infiltration, dams, etc.
-(defmodel sink-undiscretizer SurfaceWaterSinkClass
-  (probabilistic-measurement SurfaceWaterSinkClass "mm" 
-;;    [180 :>]           VeryHighSurfaceWaterSink
-    [180 260]            VeryHighSurfaceWaterSink
-    [100 180]            HighSurfaceWaterSink
-    [50 100]             ModerateSurfaceWaterSink
-    [1 50]               LowSurfaceWaterSink
-    [0 1]                NoSurfaceWaterSink))
-;;    [:exclusive 0 50]  LowSurfaceWaterSink
-;;    0                  NoSurfaceWaterSink))
+(defmodel evapotranspiration EvapotranspirationClass
+  (probabilistic-measurement EvapotranspirationClass "mm" 
+    [180 260]            VeryHighEvapotranspiration
+    [100 180]            HighEvapotranspiration
+    [50 100]             ModerateEvapotranspiration
+    [0 50]               LowEvapotranspiration
+    [0 0]                VeryLowEvapotranspiration))
 
-(defmodel sink SurfaceWaterSinkClass
-    (bayesian SurfaceWaterSinkClass
-      :import   "aries.core::SurfaceWaterSupplySink.xdsl"
-      ;;:context  (soil-group vegetation-type slope imperviousness dam-presence percent-vegetation-cover)
-      :context  (soil-group vegetation-type slope imperviousness percent-vegetation-cover) 
-      :keep     (SurfaceWaterSinkClass)
-      :observed (sink-undiscretizer)))
+(defmodel et-sink EvapotranspirationClass
+    (bayesian EvapotranspirationClass
+      :import   "aries.core::SurfaceWaterSupplySinkLA.xdsl"
+      :context  (vegetation-type percent-vegetation-cover) 
+      :keep     (EvapotranspirationClass)
+      :result   evapotranspiration))
+
+(defmodel soil-infiltration SoilInfiltrationClass
+  (probabilistic-measurement SoilInfiltrationClass "mm" 
+    [180 260]            VeryHighInfiltration
+    [100 180]            HighInfiltration
+    [50 100]             ModerateInfiltration
+    [0 50]               LowInfiltration
+    [0 0]                VeryLowInfiltration))
+
+(defmodel soil-sink SoilInfiltrationClass
+    (bayesian SoilInfiltrationClass
+      :import   "aries.core::SurfaceWaterSupplySinkLA.xdsl"
+      :context  (soil-group slope imperviousness) 
+      :keep     (SoilInfiltrationClass)
+      :result   soil-infiltration))
+
+(defmodel surface-water-sink SurfaceWaterSink
+  (measurement SurfaceWaterSink "mm/year"
+    :context (soil-sink :as soil-infiltration et-sink :as evapotranspiration) 
+    :state #(let [si (:soil-infiltration  %)
+                  et (:evapotranspiration %)]
+              (+ 
+                (if (nil? si) 0.0 (.getMean si))
+                (if (nil? et) 0.0 (.getMean et))))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
+;; The models for the La Antigua watershed are for SURFACE WATER ONLY
+;; Following the February 2011 workshop we will determine if the inclusion 
+;; of a groundwater model is possible
 ;; ----------------------------------------------------------------------------------------------
 
-;;Industrial surface water use
+;;INDUSTRIAL
 ;;This is all we have to model industrial use right now: presence/absence of an industrial
 ;;user and whether they use ground or surface water. 
 ;;Current extraction is unknown.  Values below are 100% guesses - need information from local plants.
 ;;2 & 3 are zeros because they represent groundwater use, which we're not yet modeling.
+;;(defmodel industrial-users IndustrialWaterUse
+;;  (measurement IndustrialWaterUse "mm" ;;This is an annual value.
+;;    :context ((numeric-coding IndustrialWaterUseCode :as industrial-water-use))
+;;    :state #(cond (== (:industrial-water-use %) 0) 50   ;;Paper factory, using surface water
+;;                  (== (:industrial-water-use %) 1) 100  ;;Bottled water plant, using surface water
+;;                  (== (:industrial-water-use %) 2)  0   ;;Nestle plant, using groundwater
+;;                  (== (:industrial-water-use %) 3)  0   ;;Coca-Cola plant, using groundwater
+;;                  :otherwise                        0)))
+
+;; Revamped industrial water use model
+;; Relies on the data provided by Octavio
 (defmodel industrial-users IndustrialWaterUse
-  (measurement IndustrialWaterUse "mm" ;;This is an annual value.
-    :context ((numeric-coding IndustrialWaterUseCode :as industrial-water-use))
-    :state #(cond (== (:industrial-water-use %) 0) 50   ;;Paper factory, using surface water
-                  (== (:industrial-water-use %) 1) 100  ;;Bottled water plant, using surface water
-                  (== (:industrial-water-use %) 2)  0   ;;Nestle plant, using groundwater
-                  (== (:industrial-water-use %) 3)  0   ;;Coca-Cola plant, using groundwater
-                  :otherwise                        0)))
+  (measurement IndustrialWaterUse "mm")) 
 
 ;;Nonrival surface water use: Hydropower plus rafting
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
@@ -138,7 +163,7 @@
                   (== (:non-rival-water-users %) 1) 1  ;;Hydropower use
                   :otherwise                        0)))
 
-;;Residential surface water use
+;;RESIDENTIAL
 ;;The ranking model should really be a count with spatial ctx (data are persons/30 arc-second pixel)
 ;;The first example is for a probability distribution function (discrete values of the probability states)
 ;;The second example, used, is for a cumulative distribution function (ranges)
@@ -146,13 +171,25 @@
 ;;Residential surface water use: currently only looking at surface water use (80% of the total, per Rowan's BN. 
 ;;Top node discretization for water use is from Alberta: worth asking about better local sources.
 ;;www1.agric.gov.ab.ca/$department/deptdocs.nsf/all/agdex1349
-(defmodel residential-surface-water-use ResidentialSurfaceWaterUse
-  (measurement ResidentialSurfaceWaterUse "mm" ;;This is an annual value
-    :context ((count policytarget:PopulationDensity "/km^2" :as population-density))
-    :state   #(* 0.8 0.082855 (:population-density %))))
+;;(defmodel residential-surface-water-use ResidentialSurfaceWaterUse
+;;  (measurement ResidentialSurfaceWaterUse "mm" ;;This is an annual value
+;;    :context ((count policytarget:PopulationDensity "/km^2" :as population-density))
+;;    :state   #(* 0.8 0.082855 (:population-density %))))
 ;;  :state   #(rv-scalar-multiply {10 25/100, 20 50/100, 30 25/100} (* 0.8 (:population-density %))) 
-;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %))))) 
+;;  :state   #(rv-scalar-multiply {70.81 0, 78.84 25/100, 86.87 75/100, 94.9 1} (* 0.8 (:population-density %)))))
 
+;; Revamped residential water use model
+;; Relies on the data provided by Octavio
+(defmodel residential-surface-water-use ResidentialSurfaceWaterUse
+  (measurement ResidentialSurfaceWaterUse "mm"))
+
+;; AQUACULTURE
+;; this model is aquaculture use of surface water and is based entirely on the
+;; water rights spreadsheets provided by Octavio
+(defmodel aquaculture-water-use AquaculturalSurfaceWaterUse
+  (measurement AquaculturalSurfaceWaterUse "mm")) 
+
+;; AGRICULTURE
 ;;Agricultural surface water use. Step 1: Estimate total livestock water needs.
 ;;Livestock use below is from different sources for pigs and other livestock: its unlikely
 ;; that pigs should use more water per capita than cattle (Rowan to check on this)
@@ -181,35 +218,38 @@
     [:< 250]     HighSurfaceWaterProximity))
 
 ;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
-(defmodel irrigation-water-use IrrigationWaterUseClass
-  (measurement IrrigationWaterUse "mm"  ;;This is an annual value
-     :context ((categorization veracruz-lulc:VeracruzLULCCategory :as lulc))
-     :state   #(if (= (:lulc %) "riego")
-                  2000
-                  0)))
+;; Need better irrigation water estimates OR should we only rely on the water rights data???
+;; for the workshop we will present the results using only the water rights data. This can obviously
+;; be changed based on workshop inputs
+;;(defmodel irrigation-water-use IrrigationWaterUseClass
+;;  (measurement IrrigationWaterUse "mm"  ;;This is an annual value
+;;     :context ((categorization veracruz-lulc:VeracruzLULCCategory :as lulc))
+;;     :state   #(if (= (:lulc %) "riego")
+;;                  2000
+;;                  0)))
 
 ;;Classification of irrigationWaterUse into 6 classes.
-(defmodel irrigation-water-use-discretized IrrigationWaterUseClass
-  (classification irrigation-water-use
-    0           NoIrrigationUse
-    [:< 1600]   VeryLowIrrigationUse
-    [1600 1850] LowIrrigationUse
-    [1850 2150] ModerateIrrigationUse
-    [2150 2400] HighIrrigationUse
-    [2400 :>]   VeryHighIrrigationUse))
+;;(defmodel irrigation-water-use-discretized IrrigationWaterUseClass
+;;  (classification irrigation-water-use
+;;    0           NoIrrigationUse
+;;    [:< 1600]   VeryLowIrrigationUse
+;;    [1600 1850] LowIrrigationUse
+;;    [1850 2150] ModerateIrrigationUse
+;;    [2150 2400] HighIrrigationUse
+;;    [2400 :>]   VeryHighIrrigationUse))
 
 ;;Undiscretization of agricultural surface water use
 (defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
   (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
-;;    [2000 :>]    HighAgriculturalSurfaceWaterUse
     [2000 3000]    HighAgriculturalSurfaceWaterUse
-    [1000 2000]  ModerateAgriculturalSurfaceWaterUse
-    [0 1000]    LowAgriculturalSurfaceWaterUse)) 
+    [1000 2000]    ModerateAgriculturalSurfaceWaterUse
+    [0 1000]       LowAgriculturalSurfaceWaterUse)) 
 
 (defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUseClass
   (bayesian AgriculturalSurfaceWaterUseClass  
     :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
-    :context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
+    ;;:context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
+    :context  (surface-water-proximity livestock-total-water-use-discretized)
     :keep     (AgriculturalSurfaceWaterUseClass)
     :observed (use-undiscretizer))) 
 
@@ -229,17 +269,10 @@
  	 								
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
-
-(defmodel flow-direction geophysics:FlowDirection
-  (ranking geophysics:FlowDirection)) 
-
+  
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))	
-
-(defmodel surface-water-flow-data TempSurfaceWaterData
-  (identification TempSurfaceWaterData
-    :context (altitude streams))) 								
- 
+  (binary-coding geofeatures:River))
+  
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
@@ -247,11 +280,10 @@
 ;; all data, for testing and storage
 (defmodel data WaterSupply 
   (identification WaterSupply 
-  :context (irrigation-water-use
-            agricultural-surface-water-use
+  :context (agricultural-surface-water-use
             industrial-users
             non-rival-water-users
-            sink
+            surface-water-sink
             precipitation-annual
             streams)))
 
@@ -291,6 +323,5 @@
                              SunkSurfaceWaterSupply
                              BlockedSurfaceWaterDemand)
         :context            (precipitation-annual
-                             sink
-                             agricultural-surface-water-use
-                             surface-water-flow-data)))
+                             surface-water-sink
+                             agricultural-surface-water-use)))

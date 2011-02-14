@@ -21,7 +21,8 @@
 	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
-	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#">
+	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+	xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/services/waterSupplyService.owl#">
 
 <!-- This layer should go, and I'm not including it in the spreadsheet to restore Geoserver.  It's just PRISM mean annual
 precip clipped to Vermont, and we've already got a nationwide PRISM mean annual precip layer ready to go.
@@ -297,4 +298,126 @@ precip clipped to Vermont, and we've already got a nationwide PRISM mean annual 
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
 	</measurement:Measurement>
+	
+	<measurement:Measurement id="agricultural_use_la">
+		<observation:hasObservable>
+			<waterSupplyService:AgriculturalWaterUse />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:agricultural_use_la</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>2633</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>1276</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>2123628.508</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>703069.19</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2161968.508</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>782119.19</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+	<measurement:Measurement id="aquacultural_use_la">
+		<observation:hasObservable>
+			<waterSupplyService:AquaculturalSurfaceWaterUse />
+		</observation:hasObservable>
+		<measurement:unit>mm</measurement:unit>
+		<observation:hasDataSource>
+			<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:aquacultural_use_la</geospace:hasCoverageId>
+			</geospace:WCSDataSource>
+		</observation:hasDataSource>
+		<observation:hasObservationExtent>
+			<geospace:RasterGrid>
+				<geospace:hasXRangeMax>1233</geospace:hasXRangeMax>
+				<geospace:hasYRangeMax>700</geospace:hasYRangeMax>
+				<geospace:hasLatLowerBound>2138771.579</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>699370.239</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2159831.579</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>736420.239</geospace:hasLonUpperBound>
+				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+			</geospace:RasterGrid>
+		</observation:hasObservationExtent>
+	</measurement:Measurement>
+
+<measurement:Measurement id="industrial_use_la">
+<observation:hasObservable>
+<waterSupplyService:IndustrialWaterUse />
+</observation:hasObservable>
+<measurement:unit>mm</measurement:unit>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:industrial_use_la</geospace:hasCoverageId>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>393</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>1158</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>2124592.458</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>708731.021</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>2159392.458</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>720581.021</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="residential_use_la">
+<observation:hasObservable>
+<waterSupplyService:ResidentialWaterUse />
+</observation:hasObservable>
+<measurement:unit>mm</measurement:unit>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:residential_use_la</geospace:hasCoverageId>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>2976</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>1538</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>2119221.498</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>684259.002</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>2165421.498</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>773599.002</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="surface_water_prox_la">
+<observation:hasObservable>
+<waterSupplyService:ProximityToSurfaceWater />
+</observation:hasObservable>
+<measurement:unit>m</measurement:unit>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mexico:surface_water_prox_la</geospace:hasCoverageId>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>3473</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>1555</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>2118784.042</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>681448.0</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>2165494.042</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>785698.0</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:Measurement>
+
+
 </kbox>

@@ -1313,30 +1313,6 @@ cross-boundary data handling features are enabled. -->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-	<measurement:NumericCoding id="Industry">
-		<observation:hasObservable>
-			<waterSupplyService:IndustrialWaterUseCode />
-		</observation:hasObservable>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:industrial_use_la</geospace:hasCoverageId>
-				<geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>43</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>15</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>19.142240226562222</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>-97.2746372601786</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>19.576122241899572</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>-96.27930746109703</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:NumericCoding>
-
 <!-- KINEROS model data, uncalibrated, run through AGWA using default inputs and a 10-year, 1-hour design storm 
 and 1997 land cover, for the Sierra Vista subwatershed only
 <measurement:Measurement id="sanPedro_sp_kineros_97">
@@ -2895,31 +2871,6 @@ we could discuss integrating those at some point.-->
 	</observation:hasObservationExtent>
 </measurement:Ranking>
 
-	<measurement:Measurement id="Proximity_SurfaceWater1">
-		<observation:hasObservable>
-			<waterSupplyService:ProximityToSurfaceWater />
-		</observation:hasObservable>
-		<measurement:unit>m</measurement:unit>
-		<observation:hasDataSource>
-			<geospace:WCSDataSource>
-				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-				<geospace:hasCoverageId>mexico:surface_water_prox_la</geospace:hasCoverageId>
-				<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-			</geospace:WCSDataSource>
-		</observation:hasDataSource>
-		<observation:hasObservationExtent>
-			<geospace:RasterGrid>
-				<geospace:hasXRangeMax>3465</geospace:hasXRangeMax>
-				<geospace:hasYRangeMax>1555</geospace:hasYRangeMax>
-				<geospace:hasLatLowerBound>2118784.041</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>681448.0</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2165494.041</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>785458.0</geospace:hasLonUpperBound>
-				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
-			</geospace:RasterGrid>
-		</observation:hasObservationExtent>
-	</measurement:Measurement>
-
 	<measurement:BinaryCoding id="usa_railroads">
 		<observation:hasObservable>
 			<infrastructure:Railway />
@@ -3257,10 +3208,10 @@ Testing the two below to see which is more appropriate.
 		</observation:hasDataSource>
 		<observation:hasObservationExtent>
 			<geospace:ArealFeatureSet>
-				<geospace:hasLatLowerBound>2117436.3283869727</geospace:hasLatLowerBound>
-				<geospace:hasLonLowerBound>681048.4948232571</geospace:hasLonLowerBound>
-				<geospace:hasLatUpperBound>2166833.2994848895</geospace:hasLatUpperBound>
-				<geospace:hasLonUpperBound>786120.9303294052</geospace:hasLonUpperBound>
+				<geospace:hasLatLowerBound>2117477.7108847196</geospace:hasLatLowerBound>
+				<geospace:hasLonLowerBound>680996.7578990177</geospace:hasLonLowerBound>
+				<geospace:hasLatUpperBound>2166832.4263504064</geospace:hasLatUpperBound>
+				<geospace:hasLonUpperBound>786169.8761946879</geospace:hasLonUpperBound>
 				<geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
