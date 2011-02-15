@@ -118,7 +118,7 @@
       :result   soil-infiltration))
 
 (defmodel surface-water-sink SurfaceWaterSink
-  (measurement SurfaceWaterSink "mm/year"
+  (measurement SurfaceWaterSink "mm"
     :context (soil-sink :as soil-infiltration et-sink :as evapotranspiration) 
     :state #(let [si (:soil-infiltration  %)
                   et (:evapotranspiration %)]
@@ -149,14 +149,14 @@
 
 ;; Revamped industrial water use model
 ;; Relies on the data provided by Octavio
-(defmodel industrial-users IndustrialWaterUse
-  (measurement IndustrialWaterUse "mm")) 
+(defmodel industrial-surface-water-use IndustrialSurfaceWaterUse
+  (measurement IndustrialSurfaceWaterUse "mm")) 
 
 ;;Nonrival surface water use: Hydropower plus rafting
 ;;This is all we have to model rafting and hydropower use right now: presence/absence of a user
 ;;user. It's a little strange to lump hydro and rafting together, but we'll
 ;;do it for now.
-(defmodel non-rival-water-users NonRivalWaterUse
+(defmodel non-rival-surface-water-use NonRivalWaterUse
   (binary-coding NonRivalWaterUse
     :context ((binary-coding NonRivalWaterUseCode :as non-rival-water-users))
     :state #(cond (== (:non-rival-water-users %) 0) 1  ;;Rafting use
@@ -180,45 +180,45 @@
 
 ;; Revamped residential water use model
 ;; Relies on the data provided by Octavio
-(defmodel residential-surface-water-use ResidentialWaterUse
-  (measurement ResidentialWaterUse "mm"))
+(defmodel residential-surface-water-use ResidentialSurfaceWaterUse
+  (measurement ResidentialSurfaceWaterUse "mm"))
 
 ;; AQUACULTURE
 ;; this model is aquaculture use of surface water and is based entirely on the
 ;; water rights spreadsheets provided by Octavio
-(defmodel aquaculture-water-use AquaculturalSurfaceWaterUse
+(defmodel aquacultural-surface-water-use AquaculturalSurfaceWaterUse
   (measurement AquaculturalSurfaceWaterUse "mm")) 
 
 ;; AGRICULTURE
 ;;Agricultural surface water use. Step 1: Estimate total livestock water needs.
 ;;Livestock use below is from different sources for pigs and other livestock: its unlikely
 ;; that pigs should use more water per capita than cattle (Rowan to check on this)
-(defmodel livestock-total-water-use LivestockWaterUse
-  (measurement LivestockWaterUse "mm"  ;;This is an annual value
-    :context ((count CattlePopulation "/km^2" :as cattle-population)
-              (count SheepPopulation  "/km^2" :as sheep-population)
-              (count PigsPopulation   "/km^2" :as pigs-population)
-              (count GoatsPopulation  "/km^2" :as goats-population))
-    :state    #(+ (* (:sheep-population  %) 0.002745) ;;this is in m^3/1000 animals, the conversion ultimately giving mm
-                  (* (:goats-population  %) 0.002745)
-                  (* (:cattle-population %) 0.011032)
-                  (* (:pigs-population   %) 0.013310))))
+;;(defmodel livestock-total-water-use LivestockWaterUse
+;;  (measurement LivestockWaterUse "mm"  ;;This is an annual value
+;;    :context ((count CattlePopulation "/km^2" :as cattle-population)
+;;              (count SheepPopulation  "/km^2" :as sheep-population)
+;;             (count PigsPopulation   "/km^2" :as pigs-population)
+;;              (count GoatsPopulation  "/km^2" :as goats-population))
+;;    :state    #(+ (* (:sheep-population  %) 0.002745) ;;this is in m^3/1000 animals, the conversion ultimately giving mm
+;;                  (* (:goats-population  %) 0.002745)
+;;                  (* (:cattle-population %) 0.011032)
+;;                  (* (:pigs-population   %) 0.013310))))
 
-(defmodel agricultural-water-use AgriculturalWaterUse
-  (measurement AgriculturalWaterUse "mm")) 
+(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUse
+  (measurement AgriculturalSurfaceWaterUse "mm")) 
 
-(defmodel livestock-total-water-use-discretized LivestockTotalWaterUseClass
-  (classification livestock-total-water-use
-    [1.15 :>]  HighLivestockTotalWaterUse
-    [0.5 1.15] ModerateLivestockTotalWaterUse
-    [:<  0.5]  LowLivestockTotalWaterUse))
+;;(defmodel livestock-total-water-use-discretized LivestockTotalWaterUseClass
+;;  (classification livestock-total-water-use
+;;    [1.15 :>]  HighLivestockTotalWaterUse
+;;    [0.5 1.15] ModerateLivestockTotalWaterUse
+;;    [:<  0.5]  LowLivestockTotalWaterUse))
 
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
-(defmodel surface-water-proximity ProximityToSurfaceWaterClass
-  (classification (measurement ProximityToSurfaceWater "m")
-    [500 :>]     LowSurfaceWaterProximity
-    [250 500]    ModerateSurfaceWaterProximity
-    [:< 250]     HighSurfaceWaterProximity))
+;;(defmodel surface-water-proximity ProximityToSurfaceWaterClass
+;;  (classification (measurement ProximityToSurfaceWater "m")
+;;    [500 :>]     LowSurfaceWaterProximity
+;;    [250 500]    ModerateSurfaceWaterProximity
+;;    [:< 250]     HighSurfaceWaterProximity))
 
 ;;Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 ;; Need better irrigation water estimates OR should we only rely on the water rights data???
@@ -242,27 +242,34 @@
 ;;    [2400 :>]   VeryHighIrrigationUse))
 
 ;;Undiscretization of agricultural surface water use
-(defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
-  (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
-    [2000 3000]    HighAgriculturalSurfaceWaterUse
-    [1000 2000]    ModerateAgriculturalSurfaceWaterUse
-    [0 1000]       LowAgriculturalSurfaceWaterUse)) 
+;;(defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
+;;  (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
+;;    [2000 3000]    HighAgriculturalSurfaceWaterUse
+;;    [1000 2000]    ModerateAgriculturalSurfaceWaterUse
+;;    [0 1000]       LowAgriculturalSurfaceWaterUse)) 
 
-(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUseClass
-  (bayesian AgriculturalSurfaceWaterUseClass  
-    :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
-    ;;:context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
-    :context  (surface-water-proximity livestock-total-water-use-discretized)
-    :keep     (AgriculturalSurfaceWaterUseClass)
-    :observed (use-undiscretizer))) 
+;;(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUseClass
+;;  (bayesian AgriculturalSurfaceWaterUseClass  
+;;    :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
+;;    ;;:context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
+;;    :context  (surface-water-proximity livestock-total-water-use-discretized)
+;;    :keep     (AgriculturalSurfaceWaterUseClass)
+;;    :observed (use-undiscretizer))) 
 
 ;;Below would be the logical and simple way to do things.  However these features are not yet enabled.
 
-;;Agricultural surface water use. Step 5: Add crop irrigation and livestock surface water use.
- ;;(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUse
-  ;;(measurement AgriculturalSurfaceWaterUse "mm"  ;;This is an annual value
-    ;;  :context (irrigation-water-use livestock-surface-water-use)
-    ;;  :state    #(+ (:irrigation-water-use %) (:livestock-surface-water-use %))))
+;;Total surface water use. Step 5: Add the four rival user groups
+(defmodel total-surface-water-use TotalSurfaceWaterUse
+  (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
+      :context (agricultural-surface-water-use aquacultural-surface-water-use residential-surface-water-use industrial-surface-water-use)
+      :state    #(let [a (:agricultural-surface-water-use %)
+                       q (:aquacultural-surface-water-use %)
+                       r (:residential-surface-water-use  %)
+                       i (:industrial-surface-water-use   %)]
+                    (+ (or a 0)
+                       (or q 0)
+                       (or r 0)
+                       (or i 0)))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model
@@ -285,11 +292,8 @@
   (identification WaterSupply 
   :context (precipitation-annual
             surface-water-sink
-            industrial-users
-            agricultural-surface-water-use
-            non-rival-water-users
-            residential-surface-water-use
-            aquaculture-water-use
+            non-rival-surface-water-use
+            total-surface-water-use
             altitude
             streams)))
 
@@ -297,21 +301,21 @@
 (defmodel surface-flow SurfaceWaterMovement
   (span SurfaceWaterMovement
         AnnualPrecipitation
-        AgriculturalSurfaceWaterUseClass
-        SurfaceWaterSinkClass
+        TotalSurfaceWaterUse
+        SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   1500.0
+        :source-threshold   100.0
         :sink-threshold     25.0
-        :use-threshold      500.0
-        :trans-threshold    10.0
+        :use-threshold      5.0
+        :trans-threshold    5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/water_la_antigua_data.clj"
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_la_antigua_data.clj"
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand
@@ -330,4 +334,6 @@
                              BlockedSurfaceWaterDemand)
         :context            (precipitation-annual
                              surface-water-sink
-                             agricultural-surface-water-use)))
+                             total-surface-water-use
+                             altitude
+                             streams)))

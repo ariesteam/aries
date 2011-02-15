@@ -1087,7 +1087,9 @@
   </owl:Class>
   <owl:Class rdf:ID="AquaculturalSurfaceWaterUse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AquaculturalWaterUse"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="UnusableGroundwaterRecharge">
     <rdfs:subClassOf>
@@ -1306,6 +1308,7 @@
     <rdfs:subClassOf rdf:resource="#CropTypeWaterUse"/>
   </owl:Class>
   <owl:Class rdf:ID="IndustrialSurfaceWaterUse">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf rdf:resource="#IndustrialWaterUseCode"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateLivestockTotalWaterUse">
@@ -1837,6 +1840,10 @@
   </owl:Class>
   <owl:Class rdf:ID="IndustrialGroundwaterUse">
     <rdfs:subClassOf rdf:resource="#IndustrialWaterUseCode"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AquaculturalWaterUse">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="AgriculturalSurfaceWaterUse">
     <rdfs:subClassOf rdf:resource="#AgriculturalWaterUse"/>
