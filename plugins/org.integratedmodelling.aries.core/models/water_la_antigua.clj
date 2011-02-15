@@ -180,8 +180,8 @@
 
 ;; Revamped residential water use model
 ;; Relies on the data provided by Octavio
-(defmodel residential-surface-water-use ResidentialSurfaceWaterUse
-  (measurement ResidentialSurfaceWaterUse "mm"))
+(defmodel residential-surface-water-use ResidentialWaterUse
+  (measurement ResidentialWaterUse "mm"))
 
 ;; AQUACULTURE
 ;; this model is aquaculture use of surface water and is based entirely on the
@@ -203,6 +203,9 @@
                   (* (:goats-population  %) 0.002745)
                   (* (:cattle-population %) 0.011032)
                   (* (:pigs-population   %) 0.013310))))
+
+(defmodel agricultural-water-use AgriculturalWaterUse
+  (measurement AgriculturalWaterUse "mm")) 
 
 (defmodel livestock-total-water-use-discretized LivestockTotalWaterUseClass
   (classification livestock-total-water-use
@@ -280,11 +283,14 @@
 ;; all data, for testing and storage
 (defmodel data WaterSupply 
   (identification WaterSupply 
-  :context (agricultural-surface-water-use
-            industrial-users
-            non-rival-water-users
+  :context (precipitation-annual
             surface-water-sink
-            precipitation-annual
+            industrial-users
+            agricultural-surface-water-use
+            non-rival-water-users
+            residential-surface-water-use
+            aquaculture-water-use
+            altitude
             streams)))
 
 ;; flow model for surface water
