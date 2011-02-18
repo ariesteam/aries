@@ -198,8 +198,8 @@
             ;; source, sink, and use distributions.  The result of
             ;; each sample is a sequence of carrier-lists (one per use
             ;; point).
-            world-samples (apply pcalls (repeat *num-world-samples*
-                                                #(sample-world source-dists sink-dists use-dists get-carrier-list)))
+            world-samples (pmap sample-world (repeat *num-world-samples*
+                                                     [source-dists sink-dists use-dists get-carrier-list]))
 
             ;; Now we compress these samples into a single sequence of
             ;; carrier-lists which summarize the sample results using
