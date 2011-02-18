@@ -22,233 +22,192 @@
 
 (ns clj-span.surface-water-model
   (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
-        [clj-misc.utils         :only (seq2map mapmap p &)]
+        [clj-span.gui           :only (draw-ref-layer)]
+        [clj-span.params        :only (*trans-threshold*)]
+        [clj-misc.utils         :only (seq2map mapmap with-progress-bar iterate-while-seq p &)]
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix find-bounding-box
-                                       filter-matrix-for-coords get-neighbors on-bounds?)]
-        [clj-misc.randvars      :only (_0_ _+_ rv-convolutions rv-resample rv-min rv-max)]
-        [clj-misc.point-algebra :only (nearest-point-where)]))
+                                       filter-matrix-for-coords get-neighbors on-bounds? matrix2seq)]
+        [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min rv-above?)]))
 
-(defn- step-upstream
-  [closed-set in-stream? elevation-layer rows cols id]
-  (if-let [in-stream-neighbors (seq (filter #(and (in-stream? %) (not (closed-set %)))
-                                            (get-neighbors rows cols id)))]
-    (let [neighbor-elevs      (map (p get-in elevation-layer) in-stream-neighbors)
+;; FIXME: What happens on flat stretches of stream?
+(defn step-downstream
+  [in-stream? elevation-layer rows cols id]
+  (if-not (on-bounds? rows cols id)
+    (let [in-stream-neighbors (filter in-stream? (get-neighbors rows cols id))
+          neighbor-elevs      (map (p get-in elevation-layer) in-stream-neighbors)
           local-elev          (get-in elevation-layer id)
-          max-elev            (reduce rv-max (cons local-elev neighbor-elevs))]
-      (filter #(= max-elev (get-in elevation-layer %)) in-stream-neighbors))))
+          min-elev            (reduce rv-min local-elev neighbor-elevs)]
+      (first (filter #(= min-elev (get-in elevation-layer %)) in-stream-neighbors)))))
+(def step-downstream (memoize step-downstream))
 
-(defn- claim-locations-and-step-upstream!
-  [in-stream-carriers closed-set claimant-list downstream-users
-   captured-carriers elevation-layer rows cols [seeker search-list]]
-  [seeker
-   (apply concat
-          (for [location search-list]
-            (if (seq @(in-stream-carriers location))
-              ;; Carriers are stored at this location.
-              (if-let [claimant (@claimant-list location)]
-                ;; Some other seeker claimed this location first
-                (if (= location (first (@captured-carriers claimant)))
-                  ;; This is the head of the claimant's
-                  ;; captured-carriers list.  This seeker shares
-                  ;; all their carriers.
-                  (do
-                    (dosync (alter downstream-users (p merge-with concat) {location [seeker]}))
-                    nil)
-                  ;; This location occurs partway through the
-                  ;; claimant's captured-carriers list.  This
-                  ;; seeker shares the subsequence of the
-                  ;; claimant's carriers starting with this
-                  ;; location.
-                  (do
-                    (dosync (alter captured-carriers assoc location nil)
-                            (alter downstream-users (p merge-with concat) {location [seeker claimant]}))
-                    nil))
-                ;; This location has not yet been claimed. Let's
-                ;; grab it, then continue upstream.
-                (do
-                  (dosync (alter closed-set conj location)
-                          (alter claimant-list assoc location seeker)
-                          (alter captured-carriers update-in [seeker] conj location))
-                  (step-upstream closed-set in-stream-carriers elevation-layer rows cols location)))
-              ;; No carriers are stored at this location. Mark it as
-              ;; seen and continue upstream.
-              (do
-                (dosync (alter closed-set conj location))
-                (step-upstream closed-set in-stream-carriers elevation-layer rows cols location)))))])
+;; FIXME: What happens on flat stretches of ground?
+(defn step-downhill
+  "Returns the steepest downhill neighboring cell from id within the
+   bounds [[0 rows] [0 cols]].  If id is lower than all of its
+   neighbors, returns nil.  If more than one neighbor shares the
+   steepest downhill slope, returns the first one found.  If the
+   current id is located on the bounds [[0 rows][0 cols]], returns
+   nil."
+  [elevation-layer rows cols id]
+  (if-not (on-bounds? rows cols id)
+    (let [neighbors      (get-neighbors rows cols id)
+          neighbor-elevs (map (p get-in elevation-layer) neighbors)
+          local-elev     (get-in elevation-layer id)
+          min-elev       (reduce rv-min local-elev neighbor-elevs)]
+      (first (filter #(= min-elev (get-in elevation-layer %)) neighbors)))))
+(def step-downhill (memoize step-downhill))
 
-(defn- handle-sink-effects!
+(defn handle-use-effects!
+  "Computes the amount sunk by each sink encountered along an
+   out-of-stream flow path. Reduces the sink-caps for each sink which
+   captures some of the service medium. Returns remaining
+   actual-weight and the local sink effects."
+  [current-id possible-weight actual-weight stream-intakes possible-use-caps
+   actual-use-caps cache-layer mm2-per-cell surface-water-carrier]
+  (if-let [use-id (stream-intakes current-id)]
+    (let [possible-use-cap-ref (possible-use-caps use-id)
+          actual-use-cap-ref   (actual-use-caps   use-id)]
+      (dosync
+       (let [possible-use-cap    (deref possible-use-cap-ref)
+             actual-use-cap      (deref actual-use-cap-ref)
+             new-possible-weight (rv-fn (fn [p u] (max (- p u) 0)) possible-weight possible-use-cap)
+             new-actual-weight   (rv-fn (fn [a u] (max (- a u) 0)) actual-weight   actual-use-cap)
+             possible-use        (rv-fn (fn [p u] (min p u))       possible-weight possible-use-cap)
+             actual-use          (rv-fn (fn [a u] (min a u))       actual-weight   actual-use-cap)
+             possible-use-left   (rv-fn (fn [p u] (max (- u p) 0)) possible-weight possible-use-cap)
+             actual-use-left     (rv-fn (fn [a u] (max (- u a) 0)) actual-weight   actual-use-cap)]
+         (if (not= _0_ possible-use-cap)
+           (alter possible-use-cap-ref (constantly possible-use-left)))
+         (if (and (not= _0_ actual-use-cap)
+                  (not= _0_ actual-weight))
+           (alter actual-use-cap-ref   (constantly actual-use-left)))
+         (if (or (not= _0_ possible-use)
+                 (not= _0_ actual-use))
+           (alter (get-in cache-layer use-id) conj (assoc surface-water-carrier
+                                                     :possible-weight (_d possible-use mm2-per-cell)
+                                                     :actual-weight   (_d actual-use   mm2-per-cell)
+                                                     :sink-effects    (mapmap identity #(_d % mm2-per-cell)
+                                                                              (:sink-effects surface-water-carrier)))))
+         [new-possible-weight new-actual-weight])))
+    [possible-weight actual-weight]))
+
+(defn handle-sink-effects!
   "Computes the amount sunk by each sink encountered along an
    out-of-stream flow path. Reduces the sink-caps for each sink which
    captures some of the service medium. Returns remaining
    actual-weight and the local sink effects."
   [current-id actual-weight sink-caps]
-  (dosync
-   (let [sink-cap-ref (sink-caps current-id)]
-     (let [convolutions      (rv-convolutions actual-weight (deref sink-cap-ref))
-           result-rv-type    (meta convolutions)
-           new-sink-effects  (apply merge-with + (map (fn [[[x k] pxk]] {(min x k)       pxk}) convolutions))
-           new-actual-weight (apply merge-with + (map (fn [[[x k] pxk]] {(- x (min x k)) pxk}) convolutions))
-           new-sink-cap      (apply merge-with + (map (fn [[[x k] pxk]] {(- k (min x k)) pxk}) convolutions))]
-       (alter sink-cap-ref (constantly (rv-resample (with-meta new-sink-cap result-rv-type))))
-       (map #(rv-resample (with-meta % result-rv-type)) [new-actual-weight new-sink-effects])))))
+  (if-let [sink-cap-ref (sink-caps current-id)]
+    (dosync
+     (let [sink-cap (deref sink-cap-ref)]
+       (if (and (not= _0_ actual-weight)
+                (not= _0_ sink-cap))
+         (do
+           (alter sink-cap-ref (p rv-fn (fn [a s] (max (- s a) 0)) actual-weight))
+           [(rv-fn (fn [a s] (max (- a s) 0)) actual-weight sink-cap)
+            {current-id (rv-fn (fn [a s] (min a s)) actual-weight sink-cap)}])
+         [actual-weight {}])))
+    [actual-weight {}]))
 
-(defn- search-upstream
-  [elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?]
-  (let [seekers           (keys stream-roots)
-        closed-set        (ref #{})
-        claimant-list     (ref {})
-        downstream-users  (ref {})
-        captured-carriers (ref (zipmap seekers (repeat [])))]
-    (println "Searching upstream from stream-roots along" (count seekers) "paths...")
-    (doseq [_ (take-while seq (iterate
-                               (fn [seekers-and-search-lists]
-                                 (filter (& seq second)
-                                         (pmap
-                                          (p claim-locations-and-step-upstream!
-                                             in-stream-carriers
-                                             closed-set
-                                             claimant-list
-                                             downstream-users
-                                             captured-carriers
-                                             elevation-layer
-                                             rows
-                                             cols)
-                                          seekers-and-search-lists)))
-                               (map #(vector % (list %)) seekers)))]
-      (print "*") (flush))
-    (println "\nSorting out inter-user dependencies...")
-    ;; All entries in captured-carriers whose vals are nil are
-    ;; placeholders for intersection locations between two seekers'
-    ;; paths.  Extract all carriers upstream from this location from
-    ;; its original claimant's carrier list and assign them to the
-    ;; intersection location in captured-carriers.
-    (doseq [id (map first (remove val @captured-carriers))]
-      (let [claimant          (@claimant-list id)
-            claimant-carriers (@captured-carriers claimant)]
-        (dosync (alter captured-carriers assoc
-                       id       (drop-while (p not= id) claimant-carriers)
-                       claimant (take-while (p not= id) claimant-carriers)))))
-    ;; Need to create a map of use-points (vals of stream-roots) to carriers.
+;; FIXME: Make sure carriers can hop from stream to stream as necessary.
+(defn to-the-ocean!
+  "Computes the state of the surface-water-carrier after it takes
+   another step downhill.  If it encounters a sink location, it drops
+   some water according to the remaining sink capacity at this
+   location."
+  [cache-layer possible-flow-layer actual-flow-layer sink-caps possible-use-caps actual-use-caps
+   in-stream? stream-intakes mm2-per-cell trans-threshold-volume elevation-layer rows cols
+   {:keys [route possible-weight actual-weight sink-effects stream-bound?] :as surface-water-carrier}]
+  (let [current-id (peek route)]
+    (dosync
+     (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
+     (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
+    (if stream-bound?
+      (let [[new-possible-weight new-actual-weight] (handle-use-effects! current-id
+                                                                         possible-weight
+                                                                         actual-weight
+                                                                         stream-intakes
+                                                                         possible-use-caps
+                                                                         actual-use-caps
+                                                                         cache-layer
+                                                                         mm2-per-cell
+                                                                         surface-water-carrier)]
+        (if (rv-above? new-possible-weight trans-threshold-volume)
+          (if-let [next-id (step-downstream in-stream? elevation-layer rows cols current-id)]
+            (assoc surface-water-carrier
+              :route           (conj route next-id)
+              :possible-weight new-possible-weight
+              :actual-weight   new-actual-weight))))
+      (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
+                                                                       actual-weight
+                                                                       sink-caps)]
+        (if-let [next-id (step-downhill elevation-layer rows cols current-id)]
+          (assoc surface-water-carrier
+            :route           (conj route next-id)
+            :actual-weight   new-actual-weight
+            :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
+            :stream-bound?   (in-stream? next-id)))))))
 
-    ;; Step 1: I need six pieces of information to make this work:
-    ;;         1) {seekers -> acquired-actual-carriers}
-    ;;         2) {seekers -> acquired-possible-carriers}
-    ;;         3) {seekers -> remaining-actual-carriers}
-    ;;         4) {seekers -> remaining-possible-carriers}
-    ;;         5) {seekers -> actual-use-caps}
-    ;;         6) {seekers -> possible-use-caps}
-    ;;
-    ;; Step 2: Wait! Upstream seekers should always get the first
-    ;;         crack at water resources.  So, do this...
-    ;;         
-    ;;         For every seeker location:
-    ;;           Lookup its users in stream-roots.
-    ;;           Lookup its carriers in captured-carriers.
-    ;;           Run a function with these carriers as the source
-    ;;             inputs and the users as the beneficiaries.
-    ;;           The function should deplete the actual-use-caps and
-    ;;             possible-use-caps values in the maps created in
-    ;;
-    ;;             Step 1.  It should also reduce the possible and
-    ;;             actual carrier weights in remaining-actual-carriers
-    ;;             and remaining-possible-carriers and attach
-    ;;             use-effects values to these carriers representing
-    ;;             the amount lost.  Finally, it should create new
-    ;;             carriers with the acquired actual and possible
-    ;;             weights and the full routes to their users.
-    ;;
-    ;;           The order that this has to happen is:
-    ;;
-    ;;           1) All locations in downstream-users which are not
-    ;;              seekers (i.e. not in stream-roots).  After
-    ;;              depleting the carriers, attach any which are not
-    ;;              _0_ to the ends of the captured-carriers sequences
-    ;;              for both downstream-users and remove the
-    ;;              captured-carriers entry for this shared location.
-    ;;              Finally, remove this entry from downstream-users.
-    ;;
-    ;;           2) Now run all seekers.  Any who have greater than
-    ;;              _0_ actual-use-cap or possible-use-cap can absorb
-    ;;              everything they can get from their
-    ;;              captured-carriers.
-    ;;
-    ;;           3) Finally, look at downstream users, and let them 
-    ;;
-    ;;         with no downstream seekers and let it absorbs all it
-    ;;         wants from its privately claimed carriers.  Create an
-    ;;         actual-use-caps and possible-use-caps map and update it
-    ;;         during this option to contain the remaining actual and
-    ;;         possible use capacity of each seeker.  Also update
-    ;;         captured-carriers to reflect the new values of
-    ;;
-    ;;       Damnit, start over.
-    ;;
-    ;;       Downstream-users needs to be built as a proper directed
-    ;;       graph.  Then, we just do this:
-    ;;
-    ;;       Update all seekers whose downstream-users value is nil
-    ;;       (they have no downstream users, so they get everything in
-    ;;       their captured-carriers list).  Next, start with a seeker
-    ;;       with a non-nil value in downstream-users and check if it
-    ;;       is a seeker.  If so, let it deplete its captured-carriers
-    ;;       list.  Then proceed down the graph to its children,
-    ;;       passing a sequence to each, which contains the list of
-    ;;       ids back to the root.  Let each of these deplete their
-    ;;       subsequences using sharing.  Then let each capture all of
-    ;;       its own...
-    ;;
-    ;;       
+(def *animation-sleep-ms* 100)
 
-    (comment
-    (let [actual-use-caps    use-caps
-          possible-use-caps  (mapmap identity #(ref @%) use-caps)
-          carriers-by-seeker (zipmap seekers (repeat (ref {})))
-          foo-map            (zipmap seekers (repeat (ref {})))
-          (doseq [id (remove downstream-users seekers)]
-            (let [unshared-carriers     (@captured-carriers id)
-                  total-actual-weight   (reduce _+_ _0_ (map :actual-weight   unshared-carriers))
-                  total-possible-weight (reduce _+_ _0_ (map :possible-weight unshared-carriers))
-                  [new-actual-weight   actual-use-effects]   (handle-sink-effects! id
-                                                                                   total-actual-weight
-                                                                                   actual-use-caps)
-                  [new-possible-weight possible-use-effects] (handle-sink-effects! id
-                                                                                   total-possible-weight
-                                                                                   possible-use-caps)]
-              
+;; FIXME: This is really slow. Speed it up.
+(defn run-animation [panel]
+  (send-off *agent* run-animation)
+  (Thread/sleep *animation-sleep-ms*)
+  (doto panel (.repaint)))
 
-                                 "Resume here. I need to assign
-                                  captured-carriers for these seekers
-                                  to a cache for them
-                                  somewhere (should make another map
-                                  of refs per seeker id).  I should
-                                  also store the remaining
-                                  actual-weight and possible-weight
-                                  values for each of these carriers in
-                                  another map.  Then I need to get the
-                                  algorithm that returns carriers per
-                                  user for a combination of
-                                  use-capacities and
-                                  source-weights (in carbon-model or
-                                  flood-model).  For each such user in
-                                  these groupings, add the new
-                                  carriers to their carrier caches.
-                                  This will ultimately give me a map
-                                  of seeker-ids to carrier-caches
-                                  containing both their unshared
-                                  carriers and the fractional carriers
-                                  which they captured from the shared
-                                  carrier sets.  This map should be
-                                  returned as the final result and
-                                  packed into the cache-layer."))]))
-    (println "\nAll done.")
-    (println
-        "\nseekers"              (count seekers)
-        "\nclosed-set"           (count @closed-set)
-        "\nopen-set"             (count (clojure.set/difference (set (keys in-stream-carriers)) @closed-set))
-        "\nclaimant-list"        claimant-list
-        "\ndownstream-users"     downstream-users
-        "\ncaptured-carriers"    captured-carriers)
-    {}))
+(defn end-animation [panel] panel)
+
+(defn propagate-runoff!
+  "Constructs a sequence of surface-water-carrier objects (one per
+   source point) and then iteratively propagates them downhill until
+   they reach a stream location, get stuck in a low elevation point,
+   or fall off the map bounds.  Once they reach a stream location, the
+   carriers will attempt to continue downhill while staying in a
+   stream course.  Sinks affect carriers overland.  Users affect
+   carriers in stream channels.  All the carriers are moved together
+   in timesteps (more or less)."
+  [cache-layer possible-flow-layer actual-flow-layer animation?
+   source-points source-layer mm2-per-cell sink-caps possible-use-caps
+   actual-use-caps in-stream? stream-intakes elevation-layer rows
+   cols]
+  (println "Moving the surface water carriers downhill and downstream...")
+  (let [possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow 1)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow 1)))]
+    (when animation?
+      (send-off possible-flow-animator run-animation)
+      (send-off actual-flow-animator   run-animation))
+    (with-progress-bar
+      (iterate-while-seq
+       (fn [surface-water-carriers]
+         (pmap (p to-the-ocean!
+                  cache-layer
+                  possible-flow-layer
+                  actual-flow-layer
+                  sink-caps
+                  possible-use-caps
+                  actual-use-caps
+                  in-stream?
+                  stream-intakes
+                  mm2-per-cell
+                  (* mm2-per-cell *trans-threshold*)
+                  elevation-layer
+                  rows
+                  cols)
+               surface-water-carriers))
+       (map
+        #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
+           (struct-map service-carrier
+             :source-id       %
+             :route           [%]
+             :possible-weight source-weight
+             :actual-weight   source-weight
+             :sink-effects    {}
+             :stream-bound?   (in-stream? %)))
+        source-points)))
+    (when animation?
+      (send-off possible-flow-animator end-animation)
+      (send-off actual-flow-animator   end-animation))))
 
 (defn find-nearest-stream-point-lazily
   [in-stream? rows cols id]
@@ -261,105 +220,28 @@
                                (find-bounding-box rows cols (list id))))))))
 
 (defn find-nearest-stream-point
-  [in-stream? rows cols id]
-  (if (in-stream? id)
-    id
-    (loop [bounding-box (find-bounding-box rows cols (list id))]
-      (if (seq bounding-box)
-        (if-let [stream-point (first (filter in-stream? bounding-box))]
-          stream-point
-          (recur (find-bounding-box rows cols bounding-box)))))))
+  [in-stream? claimed-intakes rows cols id]
+  (dosync
+   (if (in-stream? id)
+     id
+     (loop [bounding-box (find-bounding-box rows cols (list id))]
+       (if (seq bounding-box)
+         (if-let [stream-point (first (filter #(and (in-stream? %)
+                                                    (not (contains? @claimed-intakes %)))
+                                              bounding-box))]
+           (do
+             (alter claimed-intakes conj stream-point)
+             stream-point)
+           (recur (find-bounding-box rows cols bounding-box))))))))
 
 (defn find-nearest-stream-points
   [in-stream? rows cols use-points]
   (println "Finding nearest stream points to all users...")
-;;  (let [stream-intakes (pmap (p nearest-point-where in-stream? [[0 rows][0 cols]]) use-points)]
-  (let [stream-intakes (pmap (p find-nearest-stream-point in-stream? rows cols) use-points)]
-    (doseq [_ (take-nth 100 stream-intakes)]
-      (print "*") (flush))
-    (println "\nAll done.")
-    (dissoc (apply merge-with concat (map array-map stream-intakes (map list use-points))) nil)))
-
-(defn- step-downhill
-  "Returns the steepest downhill neighboring cell from id within the
-   bounds [[0 rows] [0 cols]].  If id is lower than all of its
-   neighbors, returns nil.  If more than one neighbor shares the
-   steepest downhill slope, returns the first one found.  If
-   exit-on-bounds? is true and the current id is located on the bounds
-   [[0 rows][0 cols]], returns nil."
-  [elevation-layer rows cols id]
-  (if (not (on-bounds? rows cols id))
-    (let [neighbors      (get-neighbors rows cols id)
-          neighbor-elevs (map (p get-in elevation-layer) neighbors)
-          local-elev     (get-in elevation-layer id)
-          min-elev       (reduce rv-min (cons local-elev neighbor-elevs))]
-      (first (filter #(= min-elev (get-in elevation-layer %)) neighbors)))))
-(def step-downhill (memoize step-downhill))
-
-(defn- head-streamward!
-  "Computes the state of the surface-water-carrier after it takes
-   another step downhill.  If it encounters a sink location, it drops
-   some water according to the remaining sink capacity at this
-   location."
-  [in-stream-carriers sink-caps elevation-layer rows cols
-   {:keys [route actual-weight sink-effects] :as surface-water-carrier}]
-  (let [current-id (peek route)]
-    (if-let [local-carrier-seq (in-stream-carriers current-id)]
-      ;; We've reached a stream. Store the carrier in the local-carrier-seq.
-      (do
-        (dosync (alter local-carrier-seq conj surface-water-carrier))
-        nil)
-      ;; Continue until we get stuck in a low point or fall off the map.
-      (if-let [new-id (step-downhill elevation-layer rows cols current-id)]
-        ;; Compute the local sink-effects and the remaining
-        ;; actual-weight.
-        (if (or (= actual-weight _0_)
-                (nil? (sink-caps current-id)))
-          (assoc surface-water-carrier
-            :route         (conj route new-id)
-            :actual-weight actual-weight
-            :sink-effects  sink-effects)
-          (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
-                                                                           actual-weight
-                                                                           sink-caps)]
-            (assoc surface-water-carrier
-              :route         (conj route new-id)
-              :actual-weight new-actual-weight
-              :sink-effects  (assoc sink-effects current-id new-sink-effects))))))))
-
-(defn- shift-source-to-stream
-  "Constructs a sequence of surface-water-carrier objects (one per
-   source point) and then iteratively propagates them downhill until
-   they reach a stream location, get stuck in a low elevation point,
-   or fall off the map bounds.  All the carriers are moved together in
-   timesteps (more or less).  When the simulation is complete, a map
-   of in-stream-ids to refs of vectors of carriers in each location is
-   returned."
-  [source-points source-layer sink-caps stream-points elevation-layer rows cols]
-  (println "Moving the surface-water-carriers downhill to streams...")
-  (let [in-stream-carriers (zipmap stream-points (repeatedly #(ref [])))]
-    (doseq [_ (take-while seq (iterate
-                               (fn [surface-water-carriers]
-                                 (remove nil?
-                                         (pmap (p head-streamward!
-                                                  in-stream-carriers
-                                                  sink-caps
-                                                  elevation-layer
-                                                  rows
-                                                  cols)
-                                               surface-water-carriers)))
-                               (map
-                                #(let [source-weight (get-in source-layer %)]
-                                   (struct-map service-carrier
-                                     :source-id       %
-                                     :route           [%]
-                                     :possible-weight source-weight
-                                     :actual-weight   source-weight
-                                     :sink-effects    {}))
-                                source-points)))]
-      (print "*") (flush))
-    (println "\nAll done.")
-    in-stream-carriers))
+  (let [claimed-intakes (ref (set (map in-stream? use-points)))
+        stream-intakes  (with-progress-bar
+                          (pmap (p find-nearest-stream-point in-stream? claimed-intakes rows cols)
+                                use-points))]
+    (dissoc (zipmap stream-intakes use-points) nil)))
 
 (defmethod distribute-flow "SurfaceWaterMovement"
   [_ animation? cell-width cell-height source-layer sink-layer use-layer
@@ -367,6 +249,7 @@
   (println "Running Surface Water flow model.")
   (let [rows                (get-rows source-layer)
         cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
         possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
         actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
         [source-points sink-points use-points stream-points] (pmap (p filter-matrix-for-coords (p not= _0_))
@@ -375,19 +258,29 @@
     (println "Sink points:  " (count sink-points))
     (println "Use points:   " (count use-points))
     (println "Stream points:" (count stream-points))
-    (let [sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
-          use-caps           (seq2map use-points  (fn [id] [id (ref (get-in use-layer  id))]))
-          unsaturated-use?   (fn [id] (not= _0_ (deref (use-caps id))))
-          in-stream-carriers (shift-source-to-stream source-points
-                                                     source-layer
-                                                     sink-caps
-                                                     stream-points
-                                                     elevation-layer
-                                                     rows
-                                                     cols)
-          stream-roots       (find-nearest-stream-points in-stream-carriers rows cols use-points)
-          carrier-caches     (search-upstream elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?)]
+    (let [mm2-per-cell       (* cell-width cell-height 1000000)
+          sink-caps          (seq2map sink-points (fn [id] [id (ref (*_ mm2-per-cell (get-in sink-layer id)))]))
+          possible-use-caps  (seq2map use-points  (fn [id] [id (ref (*_ mm2-per-cell (get-in use-layer  id)))]))
+          actual-use-caps    (seq2map use-points  (fn [id] [id (ref (*_ mm2-per-cell (get-in use-layer  id)))]))
+          in-stream?         (& not nil? (set stream-points))
+          stream-intakes     (find-nearest-stream-points in-stream? rows cols use-points)]
+      (propagate-runoff! cache-layer
+                         possible-flow-layer
+                         actual-flow-layer
+                         animation?
+                         source-points
+                         source-layer
+                         mm2-per-cell
+                         sink-caps
+                         possible-use-caps
+                         actual-use-caps
+                         in-stream?
+                         stream-intakes
+                         elevation-layer
+                         rows
+                         cols)
+      (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
       (println "Simulation complete. Returning the cache-layer.")
-      [(make-matrix rows cols carrier-caches)
+      [(map-matrix (& seq deref) cache-layer)
        (map-matrix deref possible-flow-layer)
        (map-matrix deref actual-flow-layer)])))
