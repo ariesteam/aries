@@ -305,16 +305,17 @@
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   100.0
-        :sink-threshold     25.0
-        :use-threshold      5.0
-        :trans-threshold    5.0
+        :source-threshold   1500.0 ;; 500.0 ;; 100.0
+        :sink-threshold       25.0 ;; 25.0
+        :use-threshold         5.0 ;; 5.0
+        :trans-threshold       5.0 ;; 5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
+        :animation?         false
         ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_la_antigua_data.clj"
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink

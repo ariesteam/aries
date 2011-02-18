@@ -35,11 +35,11 @@
 (defn test-run-storm
   []
   (run-span {:source-layer source-layer
-             :source-threshold nil
+             :source-threshold 0.0
              :sink-layer sink-layer
-             :sink-threshold nil
+             :sink-threshold 0.0
              :use-layer use-layer
-             :use-threshold nil
+             :use-threshold 0.0
              :flow-layers flow-layers
              :trans-threshold 0.1
              :cell-width    2610.403605972515
@@ -117,5 +117,27 @@
              :use-type :finite
              :benefit-type :rival
              :flow-model "SubsistenceFishAccessibility"
+             :result-type :closure-map
+             :animation? false}))
+
+(defn test-run-water
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 2000.0 ;; 100.0
+             :sink-layer sink-layer
+             :sink-threshold 25.0 ;; 25.0
+             :use-layer use-layer
+             :use-threshold 5.0 ;; 5.0
+             :flow-layers flow-layers
+             :trans-threshold 5.0 ;; 5.0
+             :cell-width 87.91982676339558
+             :cell-height 192.9827169105322
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type :finite
+             :use-type :finite
+             :benefit-type :rival
+             :flow-model "SurfaceWaterMovement"
              :result-type :closure-map
              :animation? false}))

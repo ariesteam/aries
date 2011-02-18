@@ -116,23 +116,50 @@
         total-use       (do (println "Total Use")       (time (sum use-samples)))
 
         source-percents (do (println "Source Percents") (time (doall (map #(/ % total-source) source-samples))))
+        use-percents    (do (println "Use    Percents") (time (doall (map #(/ % total-use)    use-samples))))
 
         [source-unsunk actual-sinks]  (split-source source-samples sink-samples total-source        total-sink)
         [source-unused possible-uses] (split-source source-samples use-samples  total-source        total-use)
-        [source-excess actual-uses]   (split-source source-unsunk  use-samples  (sum source-unsunk) total-use)]
+        [source-excess actual-uses]   (split-source source-unsunk  use-samples  (sum source-unsunk) total-use)
+
+        actual-sinks-by-source (for [s source-percents]
+                                 (for [a actual-sinks]
+                                   (* a s)))]
 
     ;; Construct the service carrier lists for each use location and return them.
     (println "Computing" (count use-dists) "carrier lists...")
     (time
-     (let [carrier-lists (map (p get-carrier-list source-percents actual-sinks) possible-uses actual-uses)]
+     (let [carrier-lists (map (p get-carrier-list source-percents actual-sinks-by-source) possible-uses actual-uses use-percents)]
        (doseq [_ carrier-lists] (print "*") (flush))
        (println "\nAll done.")
        carrier-lists))))
 
+(defn- combine-worlds
+  "Each world is a sequence of carrier-lists (which are themselves
+   sequences of maps), one per use point.  Each of these carrier-lists
+   represents a distribution of triplets (possible-use, actual-use,
+   sink-effects) over the source points.  This function collapses two
+   such carrier-lists into one, by generating a probability
+   distribution for the triplet values associated with each source
+   point."
+  [sample-prob world1 world2]
+  (map (fn [carrier-list1 carrier-list2]
+         (map (fn [[possible-weight1 actual-weight1 sink-effects1]
+                   [possible-weight2 actual-weight2 sink-effects2]]
+                [(merge-with + possible-weight1 {possible-weight2 sample-prob})
+                 (merge-with + actual-weight1   {actual-weight2   sample-prob})
+                 (map #(merge-with + %1 %2)
+                      sink-effects1
+                      (map #(array-map % sample-prob) sink-effects2))])
+              carrier-list1
+              carrier-list2))
+       world1
+       world2))
+
 (def- *num-world-samples* 10)
 
 (defmethod distribute-flow "CO2Removed"
-  [_ cell-width cell-height source-layer sink-layer use-layer _]
+  [_ animation? cell-width cell-height source-layer sink-layer use-layer _]
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative use
    values after being initially reduced by the sink values."
@@ -156,77 +183,61 @@
             sink-dists   (map (p get-in sink-layer)   sink-points)
             use-dists    (map (p get-in use-layer)    use-points)
 
-            get-carrier-list (fn [source-percents actual-sinks possible-use actual-use]
-                               (doall (map (fn [source-id source-percent]
-                                             [(* source-percent possible-use)                    ;; possible-weight
-                                              (* source-percent actual-use)                      ;; actual-weight
-                                              (doall (map #(* source-percent %) actual-sinks))]) ;; sink-effects
+            get-carrier-list (fn [source-percents actual-sinks-by-source possible-use actual-use use-percent]
+                               (doall (map (fn [source-id source-percent actual-sinks-for-this-source]
+                                             [(* source-percent possible-use)                                 ;; possible-weight
+                                              (* source-percent actual-use)                                   ;; actual-weight
+                                              (doall (map #(* use-percent %) actual-sinks-for-this-source))]) ;; sink-effects
                                            source-points
-                                           source-percents)))
+                                           source-percents
+                                           actual-sinks-by-source)))
 
             sample-prob  (/ 1.0 *num-world-samples*)
 
             ;; Collect some samples of the world defined by the
             ;; source, sink, and use distributions.  The result of
-            ;; each sample is a sequence of carrier-lists for all the
-            ;; use points.  Using the scary-looking code below, we
-            ;; will compress these samples into a single sequence of
-            ;; carrier lists which summarize the sample results using
+            ;; each sample is a sequence of carrier-lists (one per use
+            ;; point).
+            world-samples (apply pcalls (repeat *num-world-samples*
+                                                #(sample-world source-dists sink-dists use-dists get-carrier-list)))
+
+            ;; Now we compress these samples into a single sequence of
+            ;; carrier-lists which summarize the sample results using
             ;; discrete probability distributions.
-            partial-randvar-carrier-lists
-            (apply map (fn [& carrier-list-samples]
-                         ;; carrier-list-samples is a sequence of
-                         ;; sequences of maps.  These are, in fact,
-                         ;; all sample values for the same use
-                         ;; location.  Each element of the toplevel
-                         ;; sequence represents a distribution of
-                         ;; triplets (possible-use, actual-use,
-                         ;; sink-effects) over the source points. Our
-                         ;; goal is to collapse the samples into a
-                         ;; single carrier list, which provides a
-                         ;; probability distribution for the triplet
-                         ;; values as distributed over the same source
-                         ;; points.
-                         (println "Aggregating samples...")
-                         (time
-                          (reduce (fn [carrier-list1 carrier-list2]
-                                    (map (fn [[possible-weight1 actual-weight1 sink-effects1]
-                                              [possible-weight2 actual-weight2 sink-effects2]]
-                                           [(merge-with + possible-weight1 {possible-weight2 sample-prob})
-                                            (merge-with + actual-weight1   {actual-weight2   sample-prob})
-                                            (map #(merge-with + %1 %2)
-                                                 sink-effects1
-                                                 (map #(array-map % sample-prob) sink-effects2))])
-                                         carrier-list1
-                                         carrier-list2))
-                                  (repeat (count source-points) [(make-randvar :discrete 0 ())
-                                                                 (make-randvar :discrete 0 ())
-                                                                 (repeat (count sink-points) (make-randvar :discrete 0 ()))])
-                                  carrier-list-samples)))
-                   ;;(apply pcalls (repeat *num-world-samples* #(sample-world source-dists sink-dists use-dists get-carrier-list))))
-                   (pmap #(%) (repeat *num-world-samples* #(sample-world source-dists sink-dists use-dists get-carrier-list))))
+            partial-randvar-carrier-lists (do
+                                            (println "Aggregating samples...")
+                                            (time
+                                             (reduce (p combine-worlds sample-prob)
+                                                     (repeat (count source-points) [(make-randvar :discrete 0 ())
+                                                                                    (make-randvar :discrete 0 ())
+                                                                                    (repeat (count sink-points)
+                                                                                            (make-randvar :discrete 0 ()))])
+                                                     world-samples)))
 
             ;; Convert our results to sequences of proper service-carrier structs.
-            complete-randvar-carrier-lists
-            (do
-              (println "Packing the results into proper service-carrier structs.")
-              (time
-               (for [carrier-list partial-randvar-carrier-lists]
-                 (map (fn [source-id [possible-weight actual-weight sink-effects]]
-                        (struct-map service-carrier
-                          :source-id       source-id
-                          :route           nil
-                          :possible-weight possible-weight
-                          :actual-weight   actual-weight
-                          :sink-effects    (zipmap sink-points sink-effects)))
-                      source-points
-                      carrier-list))))]
+            complete-randvar-carrier-lists (do
+                                             (println "Packing the results into proper service-carrier structs.")
+                                             (time
+                                              (for [carrier-list partial-randvar-carrier-lists]
+                                                (map (fn [source-id [possible-weight actual-weight sink-effects]]
+                                                       (struct-map service-carrier
+                                                         :source-id       source-id
+                                                         :route           nil
+                                                         :possible-weight possible-weight
+                                                         :actual-weight   actual-weight
+                                                         :sink-effects    (zipmap sink-points sink-effects)))
+                                                     source-points
+                                                     carrier-list))))]
 
         ;; Pack the results into a 2D matrix for analysis and resampling.
         (println "Simulation complete. Returning the cache-layer.")
-        (coord-map2matrix rows cols nil (zipmap use-points complete-randvar-carrier-lists)))
+        [(coord-map2matrix rows cols nil (zipmap use-points complete-randvar-carrier-lists))
+         (make-matrix rows cols (constantly _0_))
+         (make-matrix rows cols (constantly _0_))])
 
       ;; Either source or use points are lacking, so no service is provided.
       (do
         (println "Either Source or Use is zero everywhere. Therefore no service flow will occur.")
-        (make-matrix rows cols (constantly nil))))))
+        [(make-matrix rows cols (constantly nil))
+         (make-matrix rows cols (constantly _0_))
+         (make-matrix rows cols (constantly _0_))]))))

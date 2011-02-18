@@ -411,14 +411,53 @@
        (when (and (<  right cols) (<  top rows)) (list [top right]))
        (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
 
-(defn get-line-fn
+(defn get-slope
   [[x1 y1] [x2 y2]]
   (let [dx (- x2 x1)]
     (if-not (zero? dx)
-      (let [m (/ (- y2 y1) dx)
-            b (- y1 (* m x1))]
-        (fn [x] (+ (* m x) b)))
-      (fn [x] nil))))
+      (/ (- y2 y1) dx))))
+
+(defn get-y-intercept
+  [m [x1 y1]]
+  (if m (- y1 (* m x1))))
+
+(defstruct line :slope :intercept)
+
+(defn get-line
+  [[x1 y1 :as A] B]
+  (let [m (get-slope A B)]
+    (struct-map line
+      :slope     m
+      :intercept (if m
+                   (get-y-intercept m A)
+                   x1))))
+
+(defn get-line-fn
+  ([{m :slope, b :intercept}]
+     (if m
+       (fn [x] (+ (* m x) b))
+       (fn [x] nil)))
+  ([A B]
+     (if-let [m (get-slope A B)]
+       (let [b (get-y-intercept m A)]
+         (fn [x] (+ (* m x) b)))
+       (fn [x] nil))))
+
+(defn normal-slope
+  [m]
+  (cond (nil? m)   0
+        (zero? m)  nil
+        :otherwise (- (/ m))))
+
+(defn project-onto-line
+  [{m :slope, b :intercept} [x1 y1 :as A]]
+  (cond (nil? m)   [b y1]
+        (zero? m)  [x1 b]
+        :otherwise (let [m*          (normal-slope m)
+                         b*          (get-y-intercept m* A)
+                         x-intersect (/ (- b b*) (- m* m))
+                         y-intersect (+ (* m x-intersect) b)]
+                     [x-intersect y-intersect])))
 
 (defn find-points-within-box
   "Points must be specified in either clockwise or counterclockwise order."
@@ -439,6 +478,11 @@
                                                 (distinct (remove nil?
                                                                   [(f1 x) (f2 x) (f3 x) (f4 x)])))))]
                (for [y (range low-y (inc (or high-y low-y)))] [x y]))))))
+
+;; FIXME: stub
+(defn find-cells-along-arc
+  [theta [x y :as A]]
+  (list A))
 
 (defn find-nearest
   [test? rows cols id]
