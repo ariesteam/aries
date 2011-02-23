@@ -16,10 +16,16 @@
     xmlns:floodService="http://www.integratedmodelling.org/ks/es/floodService.owl#"
   xml:base="http://www.integratedmodelling.org/ks/es/floodService.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
   </owl:Ontology>
+  <owl:Class rdf:ID="GrayInfrastructureSink">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="VeryHighImperviousCover">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PercentImperviousCover"/>
@@ -31,11 +37,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Beach">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A coastal area with sandy or rocky substrate and biota adapted to flood and wind disturbance.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="CoastalHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A coastal area with sandy or rocky substrate and biota adapted to flood and wind disturbance.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighGrayStorage">
     <rdfs:subClassOf>
@@ -43,10 +49,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FloodSourceAnnual">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FloodSource"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateAnnualFloodSink">
     <rdfs:subClassOf>
@@ -54,52 +60,50 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="GreenInfrastructureStorage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+      <owl:Class rdf:ID="FloodStorage"/>
     </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The sum of storage of floodwater in soils, vegetation, and floodplains.</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="FloodStorage"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="RisingSeaLevel">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ClimateChange"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="leadsToLess"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="CoastalEcosystemWidth"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rising sea level will submerge coastal ecosystems, reducing their capability of providing storm protection.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToLess"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="VegetationHeight"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="leadsToLess"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Rising sea level will submerge coastal ecosystems, reducing their capability of providing storm protection.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="CoastalEcosystemWidth"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#leadsToLess"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ClimateChange"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="DetentionBasinStorage">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Storage of flood waters in detention basins.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodStorage"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Storage of flood waters in detention basins.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="LowHazardFarmers">
     <rdfs:subClassOf>
@@ -124,25 +128,25 @@
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Precipitation"/>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
   <owl:Class rdf:ID="MidSuccessionalPlantation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plantation dominated by middle aged trees.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Plantation"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantation dominated by middle aged trees.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Rainfall">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Liquid precipitation, capable of generating flood events.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PrecipitationType"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Liquid precipitation, capable of generating flood events.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="NaturallyConstrainedFloodplain">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some floodplain reaches may be naturally constrained by gorges or canyons.  These areas speed water flow.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ConstrainedFloodplainHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Some floodplain reaches may be naturally constrained by gorges or canyons.  These areas speed water flow.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="HighAnnualMaximumTemperature">
     <rdfs:subClassOf>
@@ -150,11 +154,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#CoastalHabitat">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas proximate to the coast.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FloodControllingHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Areas proximate to the coast.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="HighHazardFarmers">
     <rdfs:subClassOf>
@@ -192,11 +196,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="RowCrops">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Typical cultivation of annual crops requires annual plowing.  These crops typically promote much less rainfall interception and infiltration than natural forest or shrubland ecosystems, though they allow substantially greater infiltration than impervious surfaces.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="UplandAgriculture"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Typical cultivation of annual crops requires annual plowing.  These crops typically promote much less rainfall interception and infiltration than natural forest or shrubland ecosystems, though they allow substantially greater infiltration than impervious surfaces.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="ModerateGrayStorage">
     <rdfs:subClassOf>
@@ -204,45 +208,45 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="SoilInfiltration">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="FloodMitigationProcesses"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetativeMaturity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The infiltration process absorbs rainfall, snowmelt, or overland flow into the soil and subsurface water, usually ocurring downstream and especially in the floodplain depending on its width and cover type.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="HydrologicSoilsGroup"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="SoilSaturation"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The infiltration process absorbs rainfall, snowmelt, or overland flow into the soil and subsurface water, usually ocurring downstream and especially in the floodplain depending on its width and cover type.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="HydrologicSoilsGroup"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VegetativeMaturity"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FloodMitigationProcesses"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
   <owl:Class rdf:ID="LowGreenStorage">
@@ -255,18 +259,18 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#IntensivePhysicalProperty"/>
   <owl:Class rdf:ID="HydrologicallyImmature">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Forests generally less than 30 years old.  Corresponds to early successional and "pole" forests, in the Pacific Northwest generally less than 10" DBH.  Hydrologically immature forests may not yet have fully developed multi-layer canopies that can provide greater interception of rainfall.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="UplandForest"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Forests generally less than 30 years old.  Corresponds to early successional and "pole" forests, in the Pacific Northwest generally less than 10" DBH.  Hydrologically immature forests may not yet have fully developed multi-layer canopies that can provide greater interception of rainfall.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="CoastalStorms">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Storm events that can generate potentially damaging wind and wave activity.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="FloodCausingProcesses"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Storm events that can generate potentially damaging wind and wave activity.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="In500YrFloodplain">
     <rdfs:subClassOf>
@@ -274,12 +278,12 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FarmersInFloodHazardZones">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Have crops growing in a flood zone, potentially at risk of destruction or damage from a flood.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="PeopleInFloodZones"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Have crops growing in a flood zone, potentially at risk of destruction or damage from a flood.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
   <owl:Class rdf:ID="AvoidedDamageToPublicAssets100">
@@ -292,28 +296,28 @@
   </owl:Class>
   <owl:Class rdf:ID="PublicAsset">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="UnconstrainedFloodplainHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#FloodControllingHabitat"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Floodplain not constrained by levees.  The surface next to a stream channel that is inundated during a given flood return period (adapted from Graf 1988).</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
-        </owl:onProperty>
         <owl:allValuesFrom>
           <owl:Class rdf:ID="Floodplains100"/>
         </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Floodplain not constrained by levees.  The surface next to a stream channel that is inundated during a given flood return period (adapted from Graf 1988).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FloodControllingHabitat"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ModerateVegetationHeight">
     <rdfs:subClassOf>
@@ -326,20 +330,20 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FloodCausingProcesses">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hydrologic and tectonic processes capable of generating flood events.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Hydrologic and tectonic processes capable of generating flood events.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="PublicAssetNotPresent">
     <rdfs:subClassOf rdf:resource="#PublicAsset"/>
   </owl:Class>
   <owl:Class rdf:ID="AssetsAtRisk">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSourceTrait">
@@ -348,9 +352,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Dams">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Dams can provide flood control as long as reservoir capacity is not exceeded, but they alter the natural hydrologic flow regime.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
   <owl:Class rdf:ID="LowVegetationHeight">
     <rdfs:subClassOf>
@@ -369,31 +373,31 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="IncreasedStormEnergy">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ClimateChange"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Oceans are expected to warm, providing more energy for coastal storms that can impact the mainland.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CoastalStorms"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="leadsToMore"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#CoastalStorms"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Oceans are expected to warm, providing more energy for coastal storms that can impact the mainland.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ClimateChange"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainEmergentWetland">
-    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Permanently or periodically saturated systems characterized by shallow water tables and biota adapted to dealing with semi-aquatic conditions (adapted from Krohne 1998).  Emergent wetlands dominated by herbaceous vegetation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="ConstrainedFloodplainEmergentWetland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >While land cover types "behind" the river levees provide zero to minimal flood control benefits, these areas can potentially provide this service when flood control districts buy out floodplain land and remove or set back the levees, restoring floodplain connectivity.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ConstrainedFloodplainHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >While land cover types "behind" the river levees provide zero to minimal flood control benefits, these areas can potentially provide this service when flood control districts buy out floodplain land and remove or set back the levees, restoring floodplain connectivity.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="LowAnnualMeanTemperature">
     <rdfs:subClassOf>
@@ -402,21 +406,21 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AtmosphericTemperature"/>
   <owl:Class rdf:ID="AbsorbedFloodFlow">
+    <thinklab-core:AbstractClass>The flood flow that is absorbed, detained, or slowed by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</thinklab-core:AbstractClass>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedFlow"/>
     </rdfs:subClassOf>
-    <thinklab-core:AbstractClass>The flood flow that is absorbed, detained, or slowed by flood sinks (i.e., the difference between a possible flow routed using the correct topology and the same flow when accounting for the activity of flood sinks).</thinklab-core:AbstractClass>
   </owl:Class>
   <owl:Class rdf:ID="ModerateGreenStorage">
     <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
   <owl:Class rdf:ID="AtRiskOfCatastrophicFlooding">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Floods are increasingly reaching areas beyond the traditionally mapped 100-year floodplain.  Climate change and increasing watershed impervious surface are interacting to cause this.  As such, floodplains must be remapped and expanded.  For instance, in western Washington State, recent climate change predictions suggest that 25-year floods may occur every two years.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="In100YrFloodplain"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Floods are increasingly reaching areas beyond the traditionally mapped 100-year floodplain.  Climate change and increasing watershed impervious surface are interacting to cause this.  As such, floodplains must be remapped and expanded.  For instance, in western Washington State, recent climate change predictions suggest that 25-year floods may occur every two years.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighRainfallErosivity">
     <rdfs:subClassOf>
@@ -424,48 +428,48 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="FloodDamageReceived">
+    <rdfs:seeAlso>Potential downstream beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength to absorb, detain, or slow flood waters.</rdfs:seeAlso>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualUse"/>
     </rdfs:subClassOf>
-    <rdfs:seeAlso>Potential downstream beneficiaries of flood mitigation that are flooded out due to too large a flood source or inadequate sink strength to absorb, detain, or slow flood waters.</rdfs:seeAlso>
   </owl:Class>
   <owl:Class rdf:ID="Runoff">
+    <rdfs:comment>Areas generating runoff that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have downstream populations vulnerable to flooding, or have strong downstream sinks capable of absorbing, detaining, or slowing flood water.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSource"/>
     </rdfs:subClassOf>
-    <rdfs:comment>Areas generating runoff that could contribute to flooding, regardless of whether or not they create enough quantity to contribute to substantial flooding, have downstream populations vulnerable to flooding, or have strong downstream sinks capable of absorbing, detaining, or slowing flood water.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="WetlandOrTerrestrialEcosystemProximate">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Coastal levees immediately adjacent to coastal wetlands, mangroves, or other systems will face less wind and wave energy than levees adjacent to open water.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="CoastalLevee"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Coastal levees immediately adjacent to coastal wetlands, mangroves, or other systems will face less wind and wave energy than levees adjacent to open water.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodReduction">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="FloodControllingEcosystem"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Absorbing, slowing, and/or harmlessly redirecting water flow that would otherwise damage economically valuable resources.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#FloodControllingHabitat"/>
         </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Absorbing, slowing, and/or harmlessly redirecting water flow that would otherwise damage economically valuable resources.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="FloodControllingEcosystem"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse"/>
   <owl:Class rdf:ID="StructuresPresent">
@@ -474,9 +478,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Rail">
-    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Rail lines at risk of damage or inundation due to flood waters.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
   </owl:Class>
   <owl:Class rdf:ID="WatershedPosition">
     <rdfs:subClassOf>
@@ -484,8 +488,8 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="PotentiallyVulnerablePopulations">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
     <rdfs:seeAlso>Potential beneficiaries of flood control, including both actually vulnerable populations and those in areas that are of low or irregular flood risk or who are protected from flooding by strong sinks (i.e., are unlikely to flood).</rdfs:seeAlso>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalUse"/>
   </owl:Class>
   <owl:Class rdf:ID="LowlandAndHighland">
     <rdfs:subClassOf>
@@ -493,18 +497,18 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="DepthToBedrock">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Soil depth relative to bedrock.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soil depth relative to bedrock.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Wetland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Permanently or periodically saturated systems characterized by shallow water tables and biota adapted to dealing with semi-aquatic conditions (adapted from Krohne 1998)</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="UplandHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Permanently or periodically saturated systems characterized by shallow water tables and biota adapted to dealing with semi-aquatic conditions (adapted from Krohne 1998)</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -521,25 +525,25 @@
     the Core Science ontologies.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainConveyance">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A channel's ability to move water downstream.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#FloodplainWidth"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="InstreamDebris"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A channel's ability to move water downstream.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#FloodplainWidth"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="DevelopedCultivatedVegetation">
     <rdfs:subClassOf>
@@ -552,16 +556,16 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#UplandAgriculture">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Typical cultivation of annual crops requires annual plowing.  These crops typically promote much less rainfall interception and infiltration than natural forest or shrubland ecosystems, though they allow substantially greater infiltration than impervious surfaces.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UplandHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Typical cultivation of annual crops requires annual plowing.  These crops typically promote much less rainfall interception and infiltration than natural forest or shrubland ecosystems, though they allow substantially greater infiltration than impervious surfaces.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#HydrologicSoilsGroup">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Different soil types have different infiltration capacities.  See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToPrivateAssets">
     <rdfs:subClassOf>
@@ -594,18 +598,18 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="CanopyLayering">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Multi-layer vegetative canopies provide greater interception of rainfall and reduce the energy of falling water that does reach the soil.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Multi-layer vegetative canopies provide greater interception of rainfall and reduce the energy of falling water that does reach the soil.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="NotIn100YrFloodplain">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Upland areas that are not susceptible to inundation by flood waters.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Floodplains100"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Upland areas that are not susceptible to inundation by flood waters.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="ForestGrasslandShrublandVegetation">
     <rdfs:subClassOf>
@@ -618,17 +622,17 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LateSuccessionalPlantation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plantation dominated by older trees.  Often harvested before spending too long in this successional state.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Plantation"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Plantation dominated by older trees.  Often harvested before spending too long in this successional state.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="UnutilizedRunoffMitigation">
+    <thinklab-core:AbstractClass>A flood sink region capable of absorbing, detaining, or slowing flood water that does not perform this function due to inadequate size of upstream areas contributing runoff or quantity of the runoff itself.</thinklab-core:AbstractClass>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSink"/>
     </rdfs:subClassOf>
-    <thinklab-core:AbstractClass>A flood sink region capable of absorbing, detaining, or slowing flood water that does not perform this function due to inadequate size of upstream areas contributing runoff or quantity of the runoff itself.</thinklab-core:AbstractClass>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToResidents500">
     <rdfs:subClassOf>
@@ -674,9 +678,9 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Precipitation"/>
   </owl:Class>
   <owl:Class rdf:about="#SuccessionalStage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Forest successional stage is an important determinant of hydrologic balance, surface flow disruption, and sediment trapping capacity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighMonthlyFloodSink">
     <rdfs:subClassOf>
@@ -721,14 +725,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="RiverFlood">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Precipitation and/or runoff exceeding the normal interception/infiltration capacity of the watershed and its normal conveyance.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="is-caused-by"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -739,25 +739,27 @@
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is-caused-by"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Precipitation and/or runoff exceeding the normal interception/infiltration capacity of the watershed and its normal conveyance.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#AnnualFloodSink">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sum of green and gray infrastructure influences, e.g., all rainwater and floodwater detained and infiltrated.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodStorage"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The sum of green and gray infrastructure influences, e.g., all rainwater and floodwater detained and infiltrated.</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="HighHazardResident">
     <rdfs:subClassOf>
@@ -771,11 +773,11 @@
     <rdfs:subClassOf rdf:resource="#AnnualFloodSink"/>
   </owl:Class>
   <owl:Class rdf:about="#MonthlySnowmelt">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
   <owl:Class rdf:ID="LowImperviousCover">
@@ -794,9 +796,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="MeanDaysOfPrecipitation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >e.g., per month: A proxy for the relative amount of soil saturation, existing storage in dams and detention basins, etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateVegetativeMaturity">
     <rdfs:subClassOf>
@@ -809,11 +811,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LandUseLandCover">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Habitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -825,9 +827,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Farmland">
-    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Farmland at risk of flood damage to crops.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
   </owl:Class>
   <owl:Class rdf:ID="DevelopedLowIntensity">
     <rdfs:subClassOf>
@@ -841,20 +843,20 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#IntensivePhysicalProperty"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodSourceValue">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AnnualInfiltration"/>
   <owl:Class rdf:about="#Floodplains100">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#spatio-temporal-region"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
   </owl:Class>
   <owl:Class rdf:ID="LeveesPresent">
     <rdfs:subClassOf>
@@ -865,16 +867,16 @@
     <rdfs:subClassOf rdf:resource="#FloodPrivateAssetsUse"/>
   </owl:Class>
   <owl:Class rdf:about="#MonthlyFloodSink">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateMonthlySnowmelt">
     <rdfs:subClassOf rdf:resource="#MonthlySnowmelt"/>
   </owl:Class>
   <owl:Class rdf:ID="Temperature">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#ElectricalResistance">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#IntensivePhysicalProperty"/>
@@ -883,11 +885,11 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteUse"/>
   </owl:Class>
   <owl:Class rdf:ID="HydrologicallyMature">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Forests generally greater than 30 years old.  Corresponds to mid-successional, late-successional, and old growth forests, in the Pacific Northwest, generally greater than 10" DBH.  Hydrologically mature forests have multi-layer canopies, allowing greater interception of rainfall.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UplandForest"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Forests generally greater than 30 years old.  Corresponds to mid-successional, late-successional, and old growth forests, in the Pacific Northwest, generally greater than 10" DBH.  Hydrologically mature forests have multi-layer canopies, allowing greater interception of rainfall.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#PercentImperviousCover">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
@@ -896,39 +898,41 @@
     <rdfs:subClassOf rdf:resource="#AnnualFloodSink"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilInfiltrationClass">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AnnualInfiltration"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Length"/>
   </owl:Class>
   <owl:Class rdf:about="#ConstrainedFloodplainHabitat">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Floodplains can be naturally constrained by geomorphic features (i.e., gorges).  Floodplain can also be artifically cut off from the river by levees.  The cover type behind the levees is much less important, since the floodplain is not in hydrologic contact with the river.  Levees defined as embankments built along the stream edge or coasts to limit flooding into adjacent low-lying land.  Levees reduce conveyance by preventing dispersion and infiltration of flood waters across the floodplain, and also speed the flow of water downstream, adding potentially destructive energy to the flood waters.  The size and type (i.e., earthen, riprap, concrete, floodwall) of levee will also matter for flood control purposes.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Floodplains100"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodControllingHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
-        <owl:allValuesFrom rdf:resource="#Floodplains100"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Floodplains can be naturally constrained by geomorphic features (i.e., gorges).  Floodplain can also be artifically cut off from the river by levees.  The cover type behind the levees is much less important, since the floodplain is not in hydrologic contact with the river.  Levees defined as embankments built along the stream edge or coasts to limit flooding into adjacent low-lying land.  Levees reduce conveyance by preventing dispersion and infiltration of flood waters across the floodplain, and also speed the flow of water downstream, adding potentially destructive energy to the flood waters.  The size and type (i.e., earthen, riprap, concrete, floodwall) of levee will also matter for flood control purposes.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainAgriculture">
-    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Typical cultivation of annual crops requires annual plowing.  These crops typically promote much less rainfall interception and infiltration than natural forest or shrubland ecosystems, though they allow substantially greater infiltration than impervious surfaces.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="PotentialRunoffMitigation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink"/>
     <rdfs:seeAlso>Areas capable of absorbing, detaining, or slowing flood waters, whether or not they receive enough flood water to perform this function.</rdfs:seeAlso>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#TheoreticalSink"/>
   </owl:Class>
   <owl:Class rdf:ID="PublicAssetPresent">
     <rdfs:subClassOf rdf:resource="#PublicAsset"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
   <owl:Class rdf:about="#Snowmelt">
-    <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Melting of snow into water, either slowly due to seasonal warming or quickly due to rain on snow.  Snowmelt can be 30-100% greater in forest openings (i.e., clearcuts) than forests, due largely to increased exposure of snow to sun, wind, and rain (Moore and Wondzell 2005).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighPrecipitation">
     <rdfs:subClassOf>
@@ -939,11 +943,11 @@
     <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:about="#AvoidedDamageToResidents">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Avoided flood damage to residents</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AvoidedFloodDamage"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Avoided flood damage to residents</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#AnnualMeanTemperature">
     <rdfs:subClassOf rdf:resource="#AnnualTemperature"/>
@@ -957,22 +961,25 @@
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
   </owl:Class>
   <owl:Class rdf:about="#CoastalLevee">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Embankments built along the stream edge or coasts to limit flooding into adjacent low-lying land.  Levees prevent dispersion and infiltration of flood waters across the floodplain, and also speed the flow of water downstream.  The size and type (i.e., earthen, riprap, concrete, floodwall) of levee will also matter for flood control purposes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="DetentionBasinStoragePresent">
     <rdfs:subClassOf rdf:resource="#DetentionBasinStorage"/>
   </owl:Class>
+  <owl:Class rdf:ID="GreenInfrastructureSink">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
+  </owl:Class>
   <owl:Class rdf:about="#PeopleInFloodZones">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Vulnerable groups with economically valuable resources at risk of flood damage due to their location in flood zones.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#Use"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Vulnerable groups with economically valuable resources at risk of flood damage due to their location in flood zones.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighMonthlyMeanTemperature">
     <rdfs:subClassOf>
@@ -980,9 +987,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FloodMitigationProcesses">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Ecological processes that reduce the potential damaging impacts from flooding.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodPublicAssetsUse100">
     <rdfs:subClassOf>
@@ -995,11 +1002,11 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="EarthquakeUnderOcean">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Oceanic tectonic events can trigger tsunamis, causing coastal flooding.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="TectonicEvent"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Oceanic tectonic events can trigger tsunamis, causing coastal flooding.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighVegetationHeight">
     <rdfs:subClassOf>
@@ -1007,37 +1014,37 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#SnowPresence">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The presence of snow on the ground when a rain or melt event occurs.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SnowPresence"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The presence of snow on the ground when a rain or melt event occurs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="IncreasedStormRainfall">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ClimateChange"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Larger storms with more precipitation will increase the intensity of flood events.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Rainfall"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#leadsToMore"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Rainfall"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Larger storms with more precipitation will increase the intensity of flood events.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ClimateChange"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#PrivateAsset">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ContingentPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:about="#PresenceOfHousing">
-    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Housing at risk of damage due to flood waters.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateRunoff">
     <rdfs:subClassOf rdf:resource="#Runoff"/>
@@ -1048,17 +1055,17 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#RainfallErosivityClass">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Rainfall Erosivity</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rainfall Erosivity</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#Levees">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Levees disconnect floodplains from rivers and coastal zones, and can provide flood control, though they disturb natural hydrologic processes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
   </owl:Class>
   <owl:Class rdf:ID="NoSuccession">
     <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
@@ -1083,25 +1090,25 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToFarms">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Avoided flood damage to farmers</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#AvoidedFloodDamage"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Avoided flood damage to farmers</rdfs:label>
   </owl:Class>
   <owl:Class rdf:ID="PotentiallyDamagingFloodFlow">
+    <rdfs:comment>Flood flows when accounting for flow topology (i.e., flow directions and stream networks) but not accounting for sinks.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleFlow"/>
     </rdfs:subClassOf>
-    <rdfs:comment>Flood flows when accounting for flow topology (i.e., flow directions and stream networks) but not accounting for sinks.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateFloodSink">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodSink"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#UseTrait">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
   <owl:Class rdf:ID="HighHazardPrivateOwners">
     <rdfs:subClassOf>
@@ -1113,51 +1120,51 @@
     <rdfs:subClassOf rdf:resource="#FloodSourceValue"/>
   </owl:Class>
   <owl:Class rdf:ID="WindWaveEnergyReduction">
-    <rdfs:subClassOf rdf:resource="#FloodMitigationProcesses"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Substrate and vegetation can reduce wind and wave energy generated during potential coastal flooding events.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CoastalEcosystemWidth"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#VegetationHeight"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="PercentVegetationCover"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Substrate and vegetation can reduce wind and wave energy generated during potential coastal flooding events.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#VegetationHeight"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#CoastalEcosystemWidth"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#FloodMitigationProcesses"/>
   </owl:Class>
   <owl:Class rdf:about="#PrivateAssetOwnersAndUsersInFloodHazardZones">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Privately owned infrastructure (i.e., factories, businesses, residences) located in flood zones.  When these are damaged, individuals or firms (or their insurance carrier) must pay for their repair or replacement.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="EconomicAssetOwners"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Privately owned infrastructure (i.e., factories, businesses, residences) located in flood zones.  When these are damaged, individuals or firms (or their insurance carrier) must pay for their repair or replacement.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="PrivateAssetNotPresent">
     <rdfs:subClassOf rdf:resource="#PrivateAsset"/>
   </owl:Class>
   <owl:Class rdf:about="#VolcanicEruption">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Eruptions can cause lahars, potentially devastating flows of rock, soil, and water due to the rapid melting of mountain glaciers by lava combined with the flow of mud due to the energy produced during an eruption.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#TectonicEvent"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Eruptions can cause lahars, potentially devastating flows of rock, soil, and water due to the rapid melting of mountain glaciers by lava combined with the flow of mud due to the energy produced during an eruption.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="HighFloodplainWidth">
     <rdfs:subClassOf>
@@ -1168,15 +1175,15 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
   <owl:Class rdf:ID="BenignRunoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource"/>
     <rdfs:comment>Potential sources of flood water that do not cause flooding to human populations due to a lack of downstream beneficiaries or a lack of a flow toplogy connecting flood sources to downstream vulnerable populations.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#InaccessibleSource"/>
   </owl:Class>
   <owl:Class rdf:ID="UplandShrubland">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Shrubland can facilitate rainfall interception and infiltration, though possibly at lower rates than forests, due to the shorter canopy height.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UplandHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Shrubland can facilitate rainfall interception and infiltration, though possibly at lower rates than forests, due to the shorter canopy height.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FarmlandFlooding">
     <rdfs:subClassOf>
@@ -1192,28 +1199,28 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#VegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Different vegetation types will promote or reduce infiltration of water.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#EarthquakeOnLand">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Earthquakes can trigger landslides or building collapses, which can displace land or debris into the channel, causing flooding or backup of flood waters.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#TectonicEvent"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Earthquakes can trigger landslides or building collapses, which can displace land or debris into the channel, causing flooding or backup of flood waters.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="UtilizedRunoffMitigation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
     <rdfs:seeAlso>Sinks that actively absorb flood water (i.e., have enough upstream runoff and sink strength to detain, infiltrate, or otherwise store and slow flood waters</rdfs:seeAlso>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSink"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
   <owl:Class rdf:about="#ClimateChange">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#DirectedInteraction"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="HighDaysPrecipitationPerYear">
     <rdfs:subClassOf rdf:resource="#MeanDaysPrecipitationPerYear"/>
@@ -1230,97 +1237,97 @@
     <rdfs:subClassOf rdf:resource="#AnnualTemperature"/>
   </owl:Class>
   <owl:Class rdf:about="#PublicAssetOwnersAndUsersInFloodHazardZones">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Publicly owned infrastructure (i.e., roads, utilities) located in flood zones.  When these are damaged, the government (i.e., taxpayers) must pay for their repair or replacement.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EconomicAssetOwners"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Publicly owned infrastructure (i.e., roads, utilities) located in flood zones.  When these are damaged, the government (i.e., taxpayers) must pay for their repair or replacement.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainForest">
-    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An floodplain area with tree cover greater than 5 m tall on average with canopy cover greater than 25% (adapted from MRLC 2006)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodControlCapacity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The ability of a FloodControllingEcosystem to provide the service of flood prevention.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#FloodplainConveyance"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="is-provided-through"/>
         </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="VegetationInfiltrationAndInterception"/>
-        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#WindWaveEnergyReduction"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="matters-in-event-of"/>
+          <owl:ObjectProperty rdf:about="#is-provided-through"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#RiverFlood"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#matters-in-event-of"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="CoastFlood"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="matters-in-event-of"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RiverFlood"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#is-provided-through"/>
+          <owl:ObjectProperty rdf:about="#matters-in-event-of"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#WindWaveEnergyReduction"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="VegetationInfiltrationAndInterception"/>
+        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#is-provided-through"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#SoilInfiltration"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The ability of a FloodControllingEcosystem to provide the service of flood prevention.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#FloodplainConveyance"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="FarmlandPresent">
     <rdfs:subClassOf rdf:resource="#Farmland"/>
   </owl:Class>
   <owl:Class rdf:ID="Snowfall">
-    <rdfs:subClassOf rdf:resource="#PrecipitationType"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Snowfall creates and replenishes mountain glaciers, which provide fresh water but also a source of flood waters.  In western Washington State, for example, mountain glaciers can hold 80% of the region's water.  Snow accumulation can be 30-50% greater in forest openings (i.e., clearcuts) than forest in the Pacific Northwest (Moore and Wondzell 2005).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#PrecipitationType"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowGreenStorage">
     <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:about="#UplandForest">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An upland area with tree cover greater than 5 m tall on average with canopy cover greater than 25% (adapted from MRLC 2006).</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UplandHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An upland area with tree cover greater than 5 m tall on average with canopy cover greater than 25% (adapted from MRLC 2006).</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="ModerateSoilInfiltration">
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodMitigatedRunoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
     <dc:relation>Runoff absorbed, detained, or slowed by sinks</dc:relation>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedSource"/>
   </owl:Class>
   <owl:Class rdf:ID="RollingToHilly">
     <rdfs:subClassOf>
@@ -1328,62 +1335,62 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#FloodResidentsUse">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The use of a FloodControllingEcosystem to infiltrate, slow, or harmlessly redirect potentially damaging flood waters.  Human use for FloodMitigation does not directly change the system, though flood processes may change the geomorphology and/or biota of the system.  Under most conditions, the FloodControllingEcosystem will be able to provide FloodMitigation from future floods.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#PeopleInFloodZones"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#PeopleInFloodZones"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The use of a FloodControllingEcosystem to infiltrate, slow, or harmlessly redirect potentially damaging flood waters.  Human use for FloodMitigation does not directly change the system, though flood processes may change the geomorphology and/or biota of the system.  Under most conditions, the FloodControllingEcosystem will be able to provide FloodMitigation from future floods.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToPrivateAssets500">
     <rdfs:subClassOf rdf:resource="#AvoidedDamageToPrivateAssets"/>
   </owl:Class>
   <owl:Class rdf:ID="BarrierIslands">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Barrier islands can greatly reduce wind and wave energy.  Kemp and Mashriqui have done work on the importance of vegetation in reducing wind and wave energy on barrier islands.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="FrozenSoil">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Infiltration will not occur on frozen soils.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="IncreasedRainOnSnowPotential">
-    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Warmer winters will lead to more winter rainfall than snowfall, potentially leading to more rain-on-snow events.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#leadsToMore"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="RainOnSnow"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#leadsToMore"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Warmer winters will lead to more winter rainfall than snowfall, potentially leading to more rain-on-snow events.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
   </owl:Class>
   <owl:Class rdf:ID="PotentialFloodDamageReceived">
+    <rdfs:comment>Populations vulnerable to floods (i.e., being located in flood-prone regions, having upstream sources of runoff and flood water, and connected to these upstream sources of runoff via flood flow routes), but without yet accounting for the effects of sinks that absorb, detain, or slow flood water.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleUse"/>
     </rdfs:subClassOf>
-    <rdfs:comment>Populations vulnerable to floods (i.e., being located in flood-prone regions, having upstream sources of runoff and flood water, and connected to these upstream sources of runoff via flood flow routes), but without yet accounting for the effects of sinks that absorb, detain, or slow flood water.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodMitigationBenefitsAccrued">
+    <thinklab-core:AbstractClass>Populations that actually receive flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</thinklab-core:AbstractClass>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#BlockedUse"/>
     </rdfs:subClassOf>
-    <thinklab-core:AbstractClass>Populations that actually receive flood regulation: they are vulnerable to flooding, but have a sink located between them and the source of flood water that prevents them from being impacted by flooding.</thinklab-core:AbstractClass>
   </owl:Class>
   <owl:Class rdf:about="#VegetativeMaturity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <thinklab-core:AbstractClass rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Vegetation composition  beyond which more or less full hydrologic services are provided.</thinklab-core:AbstractClass>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="ResidencesFlooding">
     <rdfs:subClassOf>
@@ -1405,10 +1412,10 @@
     <rdfs:subClassOf rdf:resource="#AvoidedDamageToPrivateAssets"/>
   </owl:Class>
   <owl:Class rdf:about="#MonthlyPrecipitation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Precipitation"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Precipitation"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateRainfallErosivity">
     <rdfs:subClassOf rdf:resource="#RainfallErosivityClass"/>
@@ -1417,9 +1424,9 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilGroupD">
-    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Least infiltration capacity, including clay loams, silty clay loams, sandy clay, silty clay, or clay, with "high runoff potential.  They have very low infiltration rates when thoroughly wetted and consist chiefly of clay soils with a high swelling potential, soils with a permanent high water table, soils with a claypan or clay layer at or near the surface, and shallow soils over nearly impervious material.  These soils have a very low rate of water transmission (0-0.05 in/hr)." (USDA-NRCS)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
   </owl:Class>
   <owl:Class rdf:ID="LowVegetationCover">
     <rdfs:subClassOf>
@@ -1431,24 +1438,24 @@
     ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Pasture">
-    <rdfs:subClassOf rdf:resource="#UplandAgriculture"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Pasture land can potentially facilitate infiltration, assuming the pasture is not overgrazed and soils are not overly compacted by grazing animals.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UplandAgriculture"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateMonthlyFloodSink">
     <rdfs:subClassOf rdf:resource="#MonthlyFloodSink"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilGroupC">
-    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Generally sandy clay loams, with "low infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr)." (USDA-NRCS)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
   </owl:Class>
   <owl:Class rdf:ID="SaturatedSoils">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SoilSaturation"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighAnnualFloodSink">
     <rdfs:subClassOf rdf:resource="#AnnualFloodSink"/>
@@ -1489,14 +1496,14 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilGroupB">
-    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Generally silt loam or loam, with "moderate infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr )." (USDA-NRCS)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
   </owl:Class>
   <owl:Class rdf:ID="KelpBed">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Kelp beds can reduce wave energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowImperviousCover">
     <rdfs:subClassOf rdf:resource="#PercentImperviousCover"/>
@@ -1508,17 +1515,17 @@
     <rdfs:subClassOf rdf:resource="#FloodSourceValue"/>
   </owl:Class>
   <owl:Class rdf:ID="ConstrainedFloodplainImpervious">
-    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >While land cover types "behind" the river levees provide zero to minimal flood control benefits, these areas can potentially provide this service when flood control districts buy out floodplain land and remove or set back the levees, restoring floodplain connectivity.  See Booth and Jackson (1997) for effects of impervious surface on flooding.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="HighRainfallErosivity">
     <rdfs:subClassOf rdf:resource="#RainfallErosivityClass"/>
   </owl:Class>
   <owl:Class rdf:ID="SeasonalMelt">
-    <rdfs:subClassOf rdf:resource="#Snowmelt"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The slow spring melting due to seasonally rising temperatures.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Snowmelt"/>
   </owl:Class>
   <owl:Class rdf:ID="LowPrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
@@ -1529,18 +1536,18 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#VegetationHeight">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Taller vegetation can provide greater reduction of winds from coastal storms.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToResidents100">
     <rdfs:subClassOf rdf:resource="#AvoidedDamageToResidents"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodSourceMonthly">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodSource"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource">
     <rdfs:subClassOf>
@@ -1551,13 +1558,13 @@
     <rdfs:subClassOf rdf:resource="#RainfallErosivityClass"/>
   </owl:Class>
   <owl:Class rdf:ID="SoilGroupA">
-    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Greatest infiltration capacity; generally sand, loamy sand, or sandy loam, with "low runoff potential and high infiltration rates even when thoroughly wetted.  They consist chiefly of deep, well to excessively drained sand or gravel and have a high rate of water transmission (greater than 0.30 in/hr)." (USDA-NRCS)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#HydrologicSoilsGroup"/>
   </owl:Class>
   <owl:Class rdf:about="#EvapotranspirationClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodWaterMovement">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Flow"/>
@@ -1576,8 +1583,8 @@
     <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodSourceCurveNumberMethod">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodPublicAssetsUse">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
@@ -1597,17 +1604,17 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
   </owl:Class>
   <owl:Class rdf:ID="NoFloodplainWidth">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >No Floodplain</rdfs:label>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#FloodplainWidth"/>
     </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >No Floodplain</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="#FloodSource">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Runoff source</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#NegativeSource"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Source"/>
   </owl:Class>
   <owl:Class rdf:ID="HighAnnualSnowmelt">
     <rdfs:subClassOf>
@@ -1615,13 +1622,13 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#AnnualSnowmelt">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Snowmelt"/>
   </owl:Class>
   <owl:Class rdf:ID="CoralReef">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Coral reefs can reduce wave energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="GentlyUndulating">
     <rdfs:subClassOf>
@@ -1629,12 +1636,12 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#SimplifiedFloodControllingHabitat">
-    <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
     <rdfs:comment>A simpler classification to map directly to NLCD for the initial models</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="PotentiallyDamagingRunoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
     <rdfs:comment>Sources of runoff when accounting for flow topology (flow directions and stream networks) and the presence of downstream users but not accounting for the action of flood sinks that detain, absorb, or slow flood waters.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PossibleSource"/>
   </owl:Class>
   <owl:Class rdf:ID="HighMonthlyMaximumTemperature">
     <rdfs:subClassOf>
@@ -1668,15 +1675,15 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Bridges">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Bridges constrict a stream and can enable formation of debris dams under certain flow conditions.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
   </owl:Class>
   <owl:Class rdf:ID="UpperWatershed">
-    <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This breakdown is commonly though not always used in describing rivers.  It is used in Puget Sound, at least for the Green River.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WatershedPosition"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateHazardResident">
     <rdfs:subClassOf>
@@ -1684,12 +1691,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#CoastFlood">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Potentially damaging waves generated by storms or tectonic activity.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#is-caused-by"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -1698,55 +1703,57 @@
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is-caused-by"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Potentially damaging waves generated by storms or tectonic activity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
   </owl:Class>
   <owl:Class rdf:about="#MonthlyMaximumTemperature">
     <rdfs:subClassOf rdf:resource="#MonthlyTemperature"/>
   </owl:Class>
   <owl:Class rdf:ID="OpenWaterProximate">
-    <rdfs:subClassOf rdf:resource="#CoastalLevee"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Coastal levees immediately adjacent to open water will face greater wind and wave energy than levees adjacent to coastal wetlands, mangroves, or other systems.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalLevee"/>
   </owl:Class>
   <owl:Class rdf:about="#AvoidedFloodDamage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a FloodControllingEcosystem.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a Flood Controlling Ecosystem.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#FloodReduction"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-        </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#FloodResidentsUse"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#PeopleInFloodZones"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a Flood Controlling Ecosystem.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Prevention of the loss of built, human, and/or social capital by co-location of a flood event, built, human, and/or social capital at risk, and a FloodControllingEcosystem.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#FloodResidentsUse"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#FloodReduction"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
   </owl:Class>
   <owl:Class rdf:about="#Slope">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryLowFloodSink">
     <rdfs:subClassOf>
@@ -1770,9 +1777,9 @@
     <rdfs:subClassOf rdf:resource="#SuccessionalStage"/>
   </owl:Class>
   <owl:Class rdf:about="#CoastalEcosystemWidth">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The wider a coastal ecosystem is, the more wind and wave reduction it can provide.  For example, the U.S. Army Corps of Engineers estimates that every 2.75 miles of coastal wetlands in Louisiana reduce storm surge wave height by 1 foot.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="ModeratePrecipitation">
     <rdfs:subClassOf rdf:resource="#MonthlyPrecipitation"/>
@@ -1787,45 +1794,45 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
   </owl:Class>
   <owl:Class rdf:about="#SoilSaturation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#DepthToBedrock"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#Rainfall"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#HydrologicSoilsGroup"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Infiltration capacity depends on how saturated soils are when additional water comes into contact with the soil surface.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HydrologicSoilsGroup"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Rainfall"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#DepthToBedrock"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="SafetyAndSecurity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Protection of lives and economically valuable property from potentially damaging flood flows.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
   </owl:Class>
   <owl:Class rdf:about="#In100YrFloodplain">
-    <rdfs:subClassOf rdf:resource="#Floodplains100"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Area next to a stream that is inundated by water from a flood.  An X year floodplain has a (1/X)% chance each year of being equaled or exceeded.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Floodplains100"/>
   </owl:Class>
   <owl:Class rdf:ID="HighHazardPublicOwners">
     <rdfs:subClassOf rdf:resource="#PublicAssetOwnersAndUsersInFloodHazardZones"/>
   </owl:Class>
   <owl:Class rdf:ID="CoastalWetland">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Permanently or periodically saturated systems characterized by shallow water tables and biota adapted to dealing with semi-aquatic conditions (adapted from Krohne 1998)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:about="#AvoidedDamageToPublicAssets">
     <rdfs:subClassOf rdf:resource="#AvoidedFloodDamage"/>
@@ -1834,15 +1841,15 @@
     <rdfs:subClassOf rdf:resource="#VegetationHeight"/>
   </owl:Class>
   <owl:Class rdf:ID="UplandImpervious">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Buildings, pavement, or heavily compacted soils that limit infiltration processes and increase runoff rates</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#UplandHabitat"/>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Buildings, pavement, or heavily compacted soils that limit infiltration processes and increase runoff rates</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="FloodDamagingRunoff">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource"/>
     <rdfs:seeAlso>Areas of runoff that have downstream populations vulnerable to flooding.  These downstream populations do get hit with flood waters due to either inadequate sink strengths or too large a quantity of flood water relative to the sink.</rdfs:seeAlso>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualSource"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateDamStorage">
     <rdfs:subClassOf>
@@ -1864,27 +1871,27 @@
     <rdfs:subClassOf rdf:resource="#AvoidedDamageToPublicAssets"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodSinkType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
-    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#PositiveSink"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#AbsoluteSink"/>
   </owl:Class>
   <owl:Class rdf:ID="UnsaturatedSoils">
     <rdfs:subClassOf rdf:resource="#SoilSaturation"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodControllingHabitat">
-    <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An ecosystem possessing the emergent property to control flooding.  Alternatively, human-generated land cover change can intensify the effects of flooding.  Can be considered a cover type providing an 'anti-ecosystem service' for flood control</rdfs:comment>
+    <owl:disjointWith rdf:resource="#SimplifiedFloodControllingHabitat"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#FloodControlCapacity"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#has-quality"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#FloodControlCapacity"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#SimplifiedFloodControllingHabitat"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem possessing the emergent property to control flooding.  Alternatively, human-generated land cover change can intensify the effects of flooding.  Can be considered a cover type providing an 'anti-ecosystem service' for flood control</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LandUseLandCover"/>
   </owl:Class>
   <owl:Class rdf:ID="ModeratelyLowImperviousCover">
     <rdfs:subClassOf rdf:resource="#PercentImperviousCover"/>
@@ -1913,9 +1920,9 @@
     <rdfs:subClassOf rdf:resource="#GreenInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:about="#TectonicEvent">
-    <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An earthquake or other tectonic event generating potentially damaging oceanic/coastal wave activity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
   </owl:Class>
   <owl:Class rdf:ID="DevelopedHighIntensity">
     <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
@@ -1924,9 +1931,9 @@
     <rdfs:subClassOf rdf:resource="#VegetativeMaturity"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodControllingEcosystem">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ecosystem possessing the emergent property to control flooding.  Alternatively, human-generated land cover change can intensify the effects of flooding.  Can be considered a cover type providing an 'anti-ecosystem service' for flood control.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
   </owl:Class>
   <owl:Class rdf:ID="Agriculture">
     <rdfs:subClassOf rdf:resource="#SimplifiedFloodControllingHabitat"/>
@@ -1935,25 +1942,25 @@
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodplainImpervious">
-    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Buildings, pavement, or heavily compacted soils that limit infiltration processes and increase runoff rates.  See Booth and Jackson (1997) for effects of impervious surface on flooding.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UnconstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="EarlySuccessionalPlantation">
-    <rdfs:subClassOf rdf:resource="#Plantation"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Plantation dominated by young trees.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Plantation"/>
   </owl:Class>
   <owl:Class rdf:ID="IncreasedForestDroughtDiseaseRisk">
-    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#leadsToLess"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
   </owl:Class>
   <owl:Class rdf:ID="Retention">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialFlow"/>
@@ -1963,14 +1970,14 @@
     <rdfs:subClassOf rdf:resource="#PercentImperviousCover"/>
   </owl:Class>
   <owl:Class rdf:ID="ConstrainedFloodplainAgriculture">
-    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >While land cover types "behind" the river levees provide zero to minimal flood control benefits, these areas can potentially provide this service when flood control districts buy out floodplain land and remove or set back the levees, restoring floodplain connectivity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:about="#EconomicAssetOwners">
-    <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Own infrastructure, buildings, or other property located in a flood zone, potentially at risk of destruction or damage from a flood.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
   </owl:Class>
   <owl:Class rdf:ID="LowFloodSink">
     <rdfs:subClassOf rdf:resource="#FloodSink"/>
@@ -1999,8 +2006,8 @@
     <rdfs:subClassOf rdf:resource="#FloodFarmersUse"/>
   </owl:Class>
   <owl:Class rdf:ID="Precipitation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
     <rdfs:subClassOf rdf:resource="#FloodCausingProcesses"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedSinkTrait">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#FlowRelatedTrait"/>
@@ -2015,9 +2022,9 @@
     <rdfs:subClassOf rdf:resource="#AnnualSnowmelt"/>
   </owl:Class>
   <owl:Class rdf:ID="ConstrainedFloodplainForest">
-    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >While land cover types "behind" the river levees provide zero to minimal flood control benefits, these areas can potentially provide this service when flood control districts buy out floodplain land and remove or set back the levees, restoring floodplain connectivity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ConstrainedFloodplainHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="VerySmallDamStorage">
     <rdfs:subClassOf>
@@ -2025,115 +2032,115 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#DamStorageClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="DamStorage"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Structures">
-    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Structures, excluding or including housing, at risk of flood damage.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#GrayInfrastructureStorage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#FloodStorage"/>
   </owl:Class>
+  <owl:Class rdf:about="#Structures">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Structures, excluding or including housing, at risk of flood damage.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#BooleanRanking"/>
+    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
+  </owl:Class>
+  <owl:Class rdf:about="#GrayInfrastructureStorage">
+    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
+  </owl:Class>
   <owl:Class rdf:about="#VegetationInfiltrationAndInterception">
-    <rdfs:subClassOf rdf:resource="#FloodMitigationProcesses"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Upstream vegetation intercepts, holds, and slowly releases precipitation as water.  An aerial process, before water hits the soil.  10-30% of rainfall is intercepted by the conifer forest canopy in the Pacific Northwest, depending on weather conditions and canopy characteristics (Moore and Wondzell 2005).</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
-        <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#PercentVegetationCover"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Upstream vegetation intercepts, holds, and slowly releases precipitation as water.  An aerial process, before water hits the soil.  10-30% of rainfall is intercepted by the conifer forest canopy in the Pacific Northwest, depending on weather conditions and canopy characteristics (Moore and Wondzell 2005).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CanopyLayering"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#FloodMitigationProcesses"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatMatrix">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A habitat made up of one or more habitats.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="IncreasedForestFirePotential">
-    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >More frequent forest fires will reduce the hydrologic maturity of watersheds, leaving them less able to absorb rainfall.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#leadsToLess"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#VegetativeMaturity"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >More frequent forest fires will reduce the hydrologic maturity of watersheds, leaving them less able to absorb rainfall.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ClimateChange"/>
   </owl:Class>
-  <owl:Class rdf:about="#DamStorage">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
-    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+  <owl:Class rdf:ID="DamStorage">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Storage of flood waters in reservoirs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#Volume"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateMonthlyMaximumTemperature">
     <rdfs:subClassOf rdf:resource="#MonthlyMaximumTemperature"/>
   </owl:Class>
   <owl:Class rdf:ID="RecentClearcut">
-    <rdfs:subClassOf rdf:resource="#UplandForest"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A recent clearcut provides minimal flood control capacity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#UplandForest"/>
   </owl:Class>
   <owl:Class rdf:ID="AvoidedDamageToFarms500">
     <rdfs:subClassOf rdf:resource="#AvoidedDamageToFarms"/>
   </owl:Class>
   <owl:Class rdf:ID="Highways">
-    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Highways at risk of damage or innundation from flood waters.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AssetsAtRisk"/>
   </owl:Class>
   <owl:Class rdf:ID="NotIn500YrFloodplain">
     <rdfs:subClassOf rdf:resource="#Floodplains500"/>
   </owl:Class>
   <owl:Class rdf:about="#PercentVegetationCover">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Percent vegetative cover.  IVMP makes notes of areas with &gt;70% cover vs. &lt;70% cover.  Ask Paula if this is a useful threshold.  Note that different vegetation types also have different rooting depths, root densities, and transpiration rates, affecting their ability to aid in infiltration of water and/or slowing of wind and wave energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:about="#UplandHabitat">
-    <rdfs:subClassOf rdf:resource="#FloodControllingHabitat"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Areas lying outside the floodplain.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:complementOf rdf:resource="#Floodplains100"/>
           </owl:Class>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-location"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Areas lying outside the floodplain.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FloodControllingHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="Mudflat">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Mudflats can reduce wave energy before waves come into contact with vegetated areas.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DamStoragePresence">
+    <rdfs:subClassOf rdf:resource="#FloodStorage"/>
   </owl:Class>
   <owl:Class rdf:ID="HighRunoff">
     <rdfs:subClassOf rdf:resource="#Runoff"/>
@@ -2142,23 +2149,39 @@
     <rdfs:subClassOf rdf:resource="#EvapotranspirationClass"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Slope">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#IntensivePhysicalProperty"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Slope affects runoff speed and length of time that infiltration is possible.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/representation.owl#IntensivePhysicalProperty"/>
   </owl:Class>
   <owl:Class rdf:ID="FloodPreventionService">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prevention of damage to economically valuable resources due to the provisioning of FloodReduction by an EcologicalPolicyTarget (???)</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prevention of damage to economically valuable resources due to the provisioning of FloodReduction by a flood controlling ecosystem.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#AvoidedFloodDamage"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#CoastFlood"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+        <owl:someValuesFrom rdf:resource="#RiverFlood"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#SafetyAndSecurity"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -2167,64 +2190,48 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#SafetyAndSecurity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-        <owl:someValuesFrom rdf:resource="#RiverFlood"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        <owl:allValuesFrom rdf:resource="#AvoidedFloodDamage"/>
+        <owl:someValuesFrom rdf:resource="#CoastFlood"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Prevention of damage to economically valuable resources due to the provisioning of FloodReduction by a flood controlling ecosystem.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Prevention of damage to economically valuable resources due to the provisioning of FloodReduction by an EcologicalPolicyTarget (???)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
   </owl:Class>
   <owl:Class rdf:about="#FloodplainWidth">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The width of a floodplain, which can be artificially narrowed by levees.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Levees"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#dependsOnEntity"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Levees"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The width of a floodplain, which can be artificially narrowed by levees.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="HighMonthlyFloodSink">
     <rdfs:subClassOf rdf:resource="#MonthlyFloodSink"/>
   </owl:Class>
   <owl:Class rdf:about="#RainOnSnow">
-    <rdfs:subClassOf rdf:resource="#Snowmelt"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Rain falling on snowpack, which causes quick melting and potentially worse flooding.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Snowmelt"/>
   </owl:Class>
   <owl:Class rdf:about="#ResidentsInFloodHazardZones">
-    <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >People living in a flood zone, potentially at risk in the event of a flood.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking"/>
+    <rdfs:subClassOf rdf:resource="#PeopleInFloodZones"/>
   </owl:Class>
   <owl:Class rdf:about="#InstreamDebris">
-    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Instream debris can include natural woody material or artificial obstructions that partly impede flow but do not fully dam a river.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#dependent-place"/>
   </owl:Class>
   <owl:Class rdf:ID="LowEvapotranspiration">
     <rdfs:subClassOf rdf:resource="#EvapotranspirationClass"/>
@@ -2239,16 +2246,16 @@
     <rdfs:subClassOf rdf:resource="#GrayInfrastructureStorage"/>
   </owl:Class>
   <owl:Class rdf:ID="Mangrove">
-    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tropical and subtropical coastal areas dominated by salt-tolerant trees and shrubs that can reduce wind and wave energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CoastalHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="VeryHighFloodSink">
     <rdfs:subClassOf rdf:resource="#FloodSink"/>
   </owl:Class>
   <owl:Class rdf:ID="ActualFloodFlow">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
     <rdfs:comment>Actual flood flows when accounting for water flow directions and sink effects</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ActualFlow"/>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#is-caused-by">
     <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredPerdurant"/>
@@ -2257,18 +2264,18 @@
     <rdfs:domain rdf:resource="#FloodControlCapacity"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isBeneficialFor">
+    <rdfs:range rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
+    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Identifies the beneficiary for each benefit.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:range rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="ObjectProperty_3">
     <rdfs:domain rdf:resource="#CoastFlood"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#leadsToMore">
+    <rdfs:domain rdf:resource="#ClimateChange"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Climate change results in more of this certain condition</rdfs:comment>
-    <rdfs:domain rdf:resource="#ClimateChange"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#matters-in-event-of">
     <rdfs:domain rdf:resource="#FloodControlCapacity"/>
@@ -2286,15 +2293,6 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighFloodSource"/>
-      <owl:Class rdf:about="#LowFloodSource"/>
-      <owl:Class rdf:about="#ModerateFloodSource"/>
-      <owl:Class rdf:about="#VeryHighFloodSource"/>
-      <owl:Class rdf:about="#VeryLowFloodSource"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="#HighRunoff"/>
       <owl:Class rdf:about="#LowRunoff"/>
       <owl:Class rdf:about="#ModerateRunoff"/>
@@ -2304,44 +2302,22 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighHazardPublicOwners"/>
-      <owl:Class rdf:about="#LowHazardPublicOwners"/>
-      <owl:Class rdf:about="#ModerateHazardPublicOwners"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighVegetationHeight"/>
-      <owl:Class rdf:about="#LowVegetationHeight"/>
-      <owl:Class rdf:about="#ModerateVegetationHeight"/>
-      <owl:Class rdf:about="#VeryHighVegetationHeight"/>
-      <owl:Class rdf:about="#VeryLowVegetationHeight"/>
+      <owl:Class rdf:about="#HighGrayStorage"/>
+      <owl:Class rdf:about="#LowGrayStorage"/>
+      <owl:Class rdf:about="#ModerateGrayStorage"/>
+      <owl:Class rdf:about="#VeryHighGrayStorage"/>
+      <owl:Class rdf:about="#VeryLowGrayStorage"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AnnotationProperty rdf:about="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#AbstractClass"/>
   <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/relation"/>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighMonthlyMeanTemperature"/>
-      <owl:Class rdf:about="#LowMonthlyMeanTemperature"/>
-      <owl:Class rdf:about="#ModerateMonthlyMeanTemperature"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighDaysPrecipitationPerMonth"/>
-      <owl:Class rdf:about="#LowDaysPrecipitationPerMonth"/>
-      <owl:Class rdf:about="#VeryHighDaysPrecipitationPerMonth"/>
-      <owl:Class rdf:about="#VeryLowDaysPrecipitationPerMonth"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighAnnualFloodSink"/>
-      <owl:Class rdf:about="#LowAnnualFloodSink"/>
-      <owl:Class rdf:about="#ModerateAnnualFloodSink"/>
-      <owl:Class rdf:about="#VeryHighAnnualFloodSink"/>
-      <owl:Class rdf:about="#VeryLowAnnualFloodSink"/>
+      <owl:Class rdf:about="#HighVegetationCover"/>
+      <owl:Class rdf:about="#LowVegetationCover"/>
+      <owl:Class rdf:about="#ModerateVegetationCover"/>
+      <owl:Class rdf:about="#VeryHighVegetationCover"/>
+      <owl:Class rdf:about="#VeryLowVegetationCover"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -2365,29 +2341,18 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighPrecipitation"/>
-      <owl:Class rdf:about="#LowPrecipitation"/>
-      <owl:Class rdf:about="#ModeratePrecipitation"/>
-      <owl:Class rdf:about="#VeryHighPrecipitation"/>
-      <owl:Class rdf:about="#VeryLowPrecipitation"/>
+      <owl:Class rdf:about="#HighHazardPublicOwners"/>
+      <owl:Class rdf:about="#LowHazardPublicOwners"/>
+      <owl:Class rdf:about="#ModerateHazardPublicOwners"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighGreenStorage"/>
-      <owl:Class rdf:about="#LowGreenStorage"/>
-      <owl:Class rdf:about="#ModerateGreenStorage"/>
-      <owl:Class rdf:about="#VeryHighGreenStorage"/>
-      <owl:Class rdf:about="#VeryLowGreenStorage"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighVegetationCover"/>
-      <owl:Class rdf:about="#LowVegetationCover"/>
-      <owl:Class rdf:about="#ModerateVegetationCover"/>
-      <owl:Class rdf:about="#VeryHighVegetationCover"/>
-      <owl:Class rdf:about="#VeryLowVegetationCover"/>
+      <owl:Class rdf:about="#HighFloodSource"/>
+      <owl:Class rdf:about="#LowFloodSource"/>
+      <owl:Class rdf:about="#ModerateFloodSource"/>
+      <owl:Class rdf:about="#VeryHighFloodSource"/>
+      <owl:Class rdf:about="#VeryLowFloodSource"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
@@ -2402,11 +2367,53 @@
   </owl:AllDisjointClasses>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="#HighGrayStorage"/>
-      <owl:Class rdf:about="#LowGrayStorage"/>
-      <owl:Class rdf:about="#ModerateGrayStorage"/>
-      <owl:Class rdf:about="#VeryHighGrayStorage"/>
-      <owl:Class rdf:about="#VeryLowGrayStorage"/>
+      <owl:Class rdf:about="#HighDaysPrecipitationPerMonth"/>
+      <owl:Class rdf:about="#LowDaysPrecipitationPerMonth"/>
+      <owl:Class rdf:about="#VeryHighDaysPrecipitationPerMonth"/>
+      <owl:Class rdf:about="#VeryLowDaysPrecipitationPerMonth"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighGreenStorage"/>
+      <owl:Class rdf:about="#LowGreenStorage"/>
+      <owl:Class rdf:about="#ModerateGreenStorage"/>
+      <owl:Class rdf:about="#VeryHighGreenStorage"/>
+      <owl:Class rdf:about="#VeryLowGreenStorage"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighAnnualFloodSink"/>
+      <owl:Class rdf:about="#LowAnnualFloodSink"/>
+      <owl:Class rdf:about="#ModerateAnnualFloodSink"/>
+      <owl:Class rdf:about="#VeryHighAnnualFloodSink"/>
+      <owl:Class rdf:about="#VeryLowAnnualFloodSink"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighMonthlyMeanTemperature"/>
+      <owl:Class rdf:about="#LowMonthlyMeanTemperature"/>
+      <owl:Class rdf:about="#ModerateMonthlyMeanTemperature"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighVegetationHeight"/>
+      <owl:Class rdf:about="#LowVegetationHeight"/>
+      <owl:Class rdf:about="#ModerateVegetationHeight"/>
+      <owl:Class rdf:about="#VeryHighVegetationHeight"/>
+      <owl:Class rdf:about="#VeryLowVegetationHeight"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="#HighPrecipitation"/>
+      <owl:Class rdf:about="#LowPrecipitation"/>
+      <owl:Class rdf:about="#ModeratePrecipitation"/>
+      <owl:Class rdf:about="#VeryHighPrecipitation"/>
+      <owl:Class rdf:about="#VeryLowPrecipitation"/>
     </owl:members>
   </owl:AllDisjointClasses>
 </rdf:RDF>
