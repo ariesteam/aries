@@ -133,7 +133,7 @@
 (defmodel annual-temperature AnnualMaximumTemperature
     (classification (measurement geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
        [28 :>]   VeryHighAnnualMaximumTemperature
-       [22 28]    HighAnnualMaximumTemperature
+       [22 28]   HighAnnualMaximumTemperature
        [:< 22]   ModerateAnnualMaximumTemperature)) 
 
 (defmodel vegetation-type sanPedro:EvapotranspirationVegetationType
@@ -158,7 +158,7 @@
 
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover)
-    [80 100] VeryHighVegetationCover
+    [80 100 :inclusive] VeryHighVegetationCover
     [60 80]  HighVegetationCover
     [40 60]  ModerateVegetationCover
     [20 40]  LowVegetationCover
@@ -167,13 +167,13 @@
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-(defmodel evapotranspiration Evapotranspiration
+(defmodel evapotranspiration EvapotranspirationClass
   (probabilistic-measurement EvapotranspirationClass "mm"
                   [60 120]   HighEvapotranspiration
                   [30 60]    ModerateEvapotranspiration
                   [0 30]     LowEvapotranspiration))
 
-(defmodel infiltration SoilInfiltration
+(defmodel infiltration SoilInfiltrationClass
   (probabilistic-measurement SoilInfiltrationClass  "mm"
                   [60 120]   HighInfiltration
                   [30 60]    ModerateInfiltration
@@ -197,7 +197,7 @@
   (measurement SurfaceWaterSink "mm"
     :context (infiltration-sink :as infiltration et-sink :as evapotranspiration) 
     :state #(+ 
-              (if (nil? (:infiltration %)) 0.0 (.getMean (:infiltration %)))
+              (if (nil? (:infiltration       %)) 0.0 (.getMean (:infiltration       %)))
               (if (nil? (:evapotranspiration %)) 0.0 (.getMean (:evapotranspiration %))))))
 
 ;; Add artificial recharge as a sink of surface water.  Can sum with the natural surface-sink to get total surface
@@ -303,10 +303,6 @@
 (defmodel streams-simple geofeatures:River ;;This could be rasterized to speed the process, though probably not critical.
   (binary-coding geofeatures:River))
 
-(defmodel surface-water-flow-data TempSurfaceWaterData
-  (identification TempSurfaceWaterData
-                  :context (altitude streams-simple stream-channel)))
-
 ;;(defmodel groundwater-elevation GroundwaterElevation
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
@@ -319,24 +315,25 @@
   :context (precipitation-wet-year 
             surface-water-sink       
             surface-diversions
+            altitude
             streams-simple)))
 
-;;(defmodel data-dry-year WaterSupplyDryYear
-;;  (identification WaterSupplyDryYear
-;;  :context (precipitation-dry-year 
-;;            surface-water-sink       
-;;            surface-diversions
-;;            streams-simple)))
+(defmodel data-dry-year WaterSupplyDryYear
+  (identification WaterSupplyDryYear
+  :context (precipitation-dry-year
+            surface-water-sink
+            surface-diversions
+            altitude
+            streams-simple)))
 
 (defmodel data-big-test WaterSupplyDryYear
   (identification WaterSupplyDryYear
   :context (precipitation-wet-year
             precipitation-dry-year
+            surface-water-sink
             surface-diversions
-            et-sink
-            infiltration-sink
-            streams-simple
-            altitude)))
+            altitude
+            streams-simple)))
 
 ;; other elements for export to NetCDF, that will eventually go into groundwater models.
 (defmodel other-data GroundwaterSupply 

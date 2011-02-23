@@ -184,6 +184,10 @@
 
 (defn end-animation [panel] panel)
 
+(defn stop-unless-reducing
+  [n coll]
+  (take-while (fn [[p c]] (not= p c)) (partition 2 1 (map count (take-nth n coll)))))
+
 (defn propagate-runoff!
   "Constructs a sequence of surface-water-carrier objects (one per
    source point) and then iteratively propagates them downhill until
@@ -204,12 +208,13 @@
     ;;      (send-off possible-flow-animator run-animation)
     ;;      (send-off actual-flow-animator   run-animation))
     (with-progress-bar
-      (iterate-while-seq
-       (fn [surface-water-carriers]
-         (println "Carriers:" (count surface-water-carriers))
-         ;;(.repaint @possible-flow-animator)
-         ;;(.repaint @actual-flow-animator)
-         (time
+      (stop-unless-reducing
+       10
+       (iterate-while-seq
+        (fn [surface-water-carriers]
+          (println "Carriers:" (count surface-water-carriers))
+          ;;(.repaint @possible-flow-animator)
+          ;;(.repaint @actual-flow-animator)
           (pmap (p to-the-ocean!
                    cache-layer
                    possible-flow-layer
@@ -224,17 +229,17 @@
                    elevation-layer
                    rows
                    cols)
-                surface-water-carriers)))
-       (map
-        #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
-           (struct-map service-carrier
-             :source-id       %
-             :route           [%]
-             :possible-weight source-weight
-             :actual-weight   source-weight
-             :sink-effects    {}
-             :stream-bound?   (in-stream? %)))
-        (filter-matrix-for-coords (p not= _0_) source-layer))))))
+                surface-water-carriers))
+        (map
+         #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
+            (struct-map service-carrier
+              :source-id       %
+              :route           [%]
+              :possible-weight source-weight
+              :actual-weight   source-weight
+              :sink-effects    {}
+              :stream-bound?   (in-stream? %)))
+         (filter-matrix-for-coords (p not= _0_) source-layer)))))))
 ;;    (when animation?
 ;;      (send-off possible-flow-animator end-animation)
 ;;      (send-off actual-flow-animator   end-animation))))
