@@ -214,7 +214,7 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-(defscenario ipcc-hadley-a2-incentivized IPCCHadleyA2Incentivized
+(defscenario ipcc-hadley-a2-incentivized 
   "This scenario represents the effects of the Hadley A1 IPCC climate scenario. A12 
   represents a future world of very rapid economic growth, global population that peaks 
   in mid-century and declines thereafter, and rapid introduction of new and more efficient 
@@ -228,7 +228,7 @@
 	 		1           PoleSuccession
 	 		:otherwise  NoSuccession))) 
 
-(defscenario ipcc-hadley-b2-incentivized IPCCHadleyB2Incentivized
+(defscenario ipcc-hadley-b2-incentivized 
   "This scenario represents the effects of the Hadley B1 IPCC climate scenario. The B1 
   world is a convergent world with the same global population as in the A1 storyline but 
   with rapid changes in economic structures toward a service and information economy, with 
@@ -243,14 +243,14 @@
 	 		1           PoleSuccession
 	 		:otherwise  NoSuccession)))  
        
-(defscenario ipcc-hadley-a2 IPCCHadleyA2
+(defscenario ipcc-hadley-a2 
 	  "This scenario represents the effects of the Hadley A2 IPCC climate scenario. A2
      represents a very heterogeneous world with continuously increasing global population 
      and regionally oriented economic growth that is more fragmented and slower than in
      other storylines." 
 ) 
 
-(defscenario ipcc-hadley-b2 IPCCHadleyB2
+(defscenario ipcc-hadley-b2 
 	  "This scenario represents the effects of the Hadley B2 IPCC climate scenario. B2 
      is a world in which the emphasis is on local solutions to economic, social, and 
      environmental sustainability, with continuously increasing population (lower than A2)

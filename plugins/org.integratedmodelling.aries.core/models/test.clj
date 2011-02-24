@@ -116,7 +116,7 @@
   (measurement geophysics:Altitude "m" :value (corescience/gaussian 150.0 3.75))
 )
 
-(defscenario eroded geophysics:Altitude 
+(defscenario eroded 
   "Altitude is eroded by 100 m. Try it anywhere altitude is needed."
   (model geophysics:Altitude
     (measurement geophysics:Altitude "m"
