@@ -311,10 +311,10 @@
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
-    :context (green-infrastructure-sink :as green-infrastructure gray-infrastructure-sink :as evapotranspiration) ;;Change ET to gray
+    :context (green-infrastructure-sink :as green-infrastructure gray-infrastructure-sink :as gray-infrastructure) 
     :state #(+ 
               (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
-              (if (nil? (:evapotranspiration %)) 0.0 (.getMean (:evapotranspiration %)))))) ;;This should be gray
+              (if (nil? (:gray-infrastructure %)) 0.0 (.getMean (:gray-infrastructure %)))))) ;;This should be gray
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models

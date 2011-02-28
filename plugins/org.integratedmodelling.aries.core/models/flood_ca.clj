@@ -206,7 +206,7 @@
   (bayesian GreenInfrastructureSink 
             :import   "aries.core::FloodSinkCaSimple.xdsl"
             :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type)
-            :result   (green-infrastructure-storage)
+            :result    green-infrastructure-storage
             :required (LandOrSea)
             :keep     (GreenInfrastructureStorage)))
 
@@ -215,7 +215,7 @@
     :context (green-infrastructure-sink :as green-infrastructure dam-storage :as gray-infrastructure) 
     :state #(+ 
               (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
-              (if (nil? (:gray-infrastructure %)) 0.0 (.getMean (:gray-infrastructure %))))))
+              (or       (:gray-infrastructure %)   0.0))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
