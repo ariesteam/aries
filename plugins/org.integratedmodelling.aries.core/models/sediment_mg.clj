@@ -108,7 +108,7 @@
     :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
     :required (SlopeClass)
-    :observed (sediment-source-value-annual) 
+    :result   (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture soil-erodibility precipitation-annual  
               storm-probability runoff vegetation-type percent-vegetation-cover))) 
 
@@ -165,8 +165,8 @@
     :import  "aries.core::SedimentSinkMg.xdsl"
     :keep    (AnnualSedimentSinkClass)
     :required (StreamGradientClass)
-    :observed (sediment-sink-annual) 
-    :context (reservoirs stream-gradient floodplain-vegetation-cover)))
+    :result   (sediment-sink-annual) 
+    :context  (reservoirs stream-gradient floodplain-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models

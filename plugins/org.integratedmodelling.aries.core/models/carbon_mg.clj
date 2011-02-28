@@ -126,7 +126,7 @@
             :import   "aries.core::StoredCarbonReleaseMg.xdsl"
             :keep     (StoredCarbonRelease)
             :required (SummerHighWinterLow)
-            :observed (stored-carbon-release)
+            :result   (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover summer-high-winter-low soil-cn-ratio
                          degradation-status population-density deforestation-risk)))
 
@@ -154,7 +154,7 @@
             :import   "aries.core::CarbonSequestrationMg.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (SummerHighWinterLow)
-            :observed (veg-soil-sequestration)
+            :result   (veg-soil-sequestration)
             :context  (percent-vegetation-cover summer-high-winter-low soil-cn-ratio degradation-status)))
 
 ;; ----------------------------------------------------------------------------------------------

@@ -112,7 +112,7 @@
             :import   "aries.core::StoredCarbonReleaseVt.xdsl"
             :keep     (StoredCarbonRelease)            
             :required (Slope)
-            :observed (stored-carbon-release)
+            :result   (stored-carbon-release)
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))  ;; add biomass-removal-rate if there's supporting data
  
 
@@ -140,7 +140,7 @@
             :import   "aries.core::CarbonSequestrationVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (Slope)
-            :observed (veg-soil-sequestration)
+            :result   (veg-soil-sequestration)
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))
   	 		
 ;; ----------------------------------------------------------------------------------------------

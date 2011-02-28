@@ -9,7 +9,10 @@
 (namespace-ontology floodService
   (representation:GenericObservable
     (TempFloodData100)
-    (TempFloodData500)))
+    (TempFloodData500))
+  (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; common models
@@ -153,19 +156,31 @@
                   [0 3]     VeryLowSoilInfiltration))
 
 ;;This only presence/absence data as data are lacking for southern California.
-(defmodel dam-storage DamStorageClass
-  (classification (binary-coding DamStorage)
-                  0  NoDamStorage
-                  1  SmallDamStorage))
+;;(defmodel dam-storage DamStorageClass
+;;  (classification (binary-coding DamStorage)
+;;                  0  NoDamStorage
+;;                  1  SmallDamStorage))
+
+;;Doing this one like the detention basin model for Puget Sound.
+(defmodel dam-storage DamStorage
+  (measurement DamStorage "mm" 
+    :context ((binary-coding DamStoragePresence :as dam-storage))
+    :state #(cond (== (:dam-storage %) 0) 0
+                  (== (:dam-storage %) 1) 10000)))
+
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
 
 ;;Undiscretizer for FloodSink
-(defmodel flood-sink AnnualFloodSink
-  (probabilistic-measurement AnnualFloodSink "mm" 
-                  [30000 90000]     VeryHighFloodSink
-                  [10000 30000]     HighFloodSink
-                  [3000 10000]      ModerateFloodSink
-                  [900 3000]        LowFloodSink
-                  [0 900]           VeryLowFloodSink))
+;;(defmodel flood-sink AnnualFloodSink
+;;  (probabilistic-measurement AnnualFloodSink "mm" 
+;;                  [30000 90000]     VeryHighFloodSink
+;;                  [10000 30000]     HighFloodSink
+;;                  [3000 10000]      ModerateFloodSink
+;;                  [900 3000]        LowFloodSink
+;;                  [0 900]           VeryLowFloodSink))
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
@@ -177,23 +192,30 @@
                   [0 15]       VeryLowGreenStorage))
 
 ;;Undiscretizer for GrayInfrastructureStorage
-(defmodel gray-infrastructure-storage GrayInfrastructureStorage
-  (probabilistic-measurement GrayInfrastructureStorage "mm" 
-                  [30000 90000]     VeryHighGrayStorage
-                  [10000 30000]     HighGrayStorage
-                  [3000 10000]      ModerateGrayStorage
-                  [900 3000]        LowGrayStorage
-                  [0 900]           VeryLowGrayStorage))
+;;(defmodel gray-infrastructure-storage GrayInfrastructureStorage
+;;  (probabilistic-measurement GrayInfrastructureStorage "mm" 
+;;                  [30000 90000]     VeryHighGrayStorage
+;;                  [10000 30000]     HighGrayStorage
+;;                  [3000 10000]      ModerateGrayStorage
+;;                  [900 3000]        LowGrayStorage
+;;                  [0 900]           VeryLowGrayStorage))
 
 ;; Flood sink probability
 ;; TODO missing data
-(defmodel sink FloodSink
-  "Interface to Flood resident use bayesian network"
-  (bayesian FloodSink 
-            :import   "aries.core::FloodSinkCa.xdsl"
-            :context  (soil-group slope imperviousness percent-vegetation-cover dam-storage vegetation-type)
-            :observed (flood-sink) 
-            :keep     (AnnualFloodSink)))
+(defmodel green-infrastructure-sink GreenInfrastructureSink
+  (bayesian GreenInfrastructureSink 
+            :import   "aries.core::FloodSinkCaSimple.xdsl"
+            :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type)
+            :result   (green-infrastructure-storage)
+            :required (LandOrSea)
+            :keep     (GreenInfrastructureStorage)))
+
+(defmodel sink-annual FloodSink
+  (measurement FloodSink "mm"
+    :context (green-infrastructure-sink :as green-infrastructure dam-storage :as gray-infrastructure) 
+    :state #(+ 
+              (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
+              (if (nil? (:gray-infrastructure %)) 0.0 (.getMean (:gray-infrastructure %))))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models

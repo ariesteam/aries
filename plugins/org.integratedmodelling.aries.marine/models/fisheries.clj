@@ -165,7 +165,7 @@
             :keep     (SubsistenceUse)
 ;; FIXME substitute below with distance to coast when it's correctly written and based on decent data
             :required (ProximityBuffer)
-            :observed (subsistence-fishing-undiscretized)
+            :result   (subsistence-fishing-undiscretized)
             :context  (poverty population-density-class coastal-proximity subsistence-selector)))
 
 ;; --------------------------------------------------------------------------------------

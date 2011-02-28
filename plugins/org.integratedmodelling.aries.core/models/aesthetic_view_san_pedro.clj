@@ -47,7 +47,7 @@
   (bayesian AestheticViewProvision 
             :import   "aries.core::ViewSourceSanPedro.xdsl"
             :context  (mountain scenic-vegetation)
-            :observed (theoretical-beauty)
+            :result   (theoretical-beauty)
             :keep     (TheoreticalNaturalBeauty)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@
   (bayesian ViewSink 
             :import  "aries.core::ViewSinkSanPedro.xdsl"
             :context  (mine highway transmission-line developed-land)
-            :observed (view-sink-undiscretizer) 
+            :result   (view-sink-undiscretizer) 
             :keep     (VisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@
   (bayesian ViewUse 
             :import  "aries.core::ViewUseSanPedro.xdsl"
             :context (housing property-value) 
-            :observed (view-use-undiscretizer) 
+            :result  (view-use-undiscretizer) 
             :keep    (HomeownerViewUse)))
 
 ;; ----------------------------------------------------------------------------------------------

@@ -121,7 +121,7 @@
       :import   "aries.marine::CoastalFloodSource.xdsl"
       :keep     (StormSurgeClass)
       :required (LitannePresence)
-      :observed (storm-surge)
+      :result   (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-litanne-selector)))
 
 ;; Daisy
@@ -139,7 +139,7 @@
       :import   "aries.marine::CoastalFloodSource.xdsl"
       :keep     (StormSurgeClass)
       :required (DaisyPresence)
-      :observed (storm-surge)
+      :result   (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-daisy-selector)))
 
 ;; Geralda
@@ -157,7 +157,7 @@
       :import   "aries.marine::CoastalFloodSource.xdsl"
       :keep     (StormSurgeClass)
       :required (GeraldaPresence)
-      :observed (storm-surge)
+      :result   (storm-surge)
       :context  (wind-speed atmospheric-pressure bathymetry-class source-100km-geralda-selector)))
 
 ;; end of alternative strategies
@@ -226,7 +226,7 @@
 	  (bayesian CoastalFloodSink 
 	  	:import   "aries.marine::CoastalFloodSink.xdsl"
 	  	:keep     (TotalCoastalFloodProtection)
-        :observed (coastal-flood-protection)
+        :result   (coastal-flood-protection)
         :required (ProtectionPresence)
         :context  (mangrove coral-quality seagrass terrestrial-vegetation protection-selector artificial-coastal-protection)))
 
@@ -286,7 +286,7 @@
     (bayesian GeomorphicWaveReduction 
       :import   "aries.marine::CoastalFloodSink.xdsl"
       :keep     (GeomorphicFloodProtection)
-      :observed (geomorphic-flood-protection)
+      :result   (geomorphic-flood-protection)
       :context  (dune depth-elevation slope)))
 
 (defmodel storm-track-daisy StormTrack

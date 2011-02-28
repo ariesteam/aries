@@ -98,7 +98,7 @@
   (bayesian AestheticProximityProvision
             :import   "aries.core::ProximitySourceSanPedro.xdsl"
             :context  (forest farmland grassland desert-scrub park fire-threat formal-protection riparian-wetland area) 
-            :observed (theoretical-open-space)
+            :result   (theoretical-open-space)
             :keep     (TheoreticalProximitySource)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@
   (bayesian ProximityUse 
             :import  "aries.core::ProximityUseSanPedro.xdsl"
             :context (urban-proximity property-value housing) 
-            :observed (proximity-use-undiscretizer) 
+            :result  (proximity-use-undiscretizer) 
             :keep    (HomeownerProximityUse)))						
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	

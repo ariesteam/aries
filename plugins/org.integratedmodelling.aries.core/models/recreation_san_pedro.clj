@@ -127,7 +127,7 @@
   (bayesian BirdingSourceValue                
             :import   "aries.core::RecreationBirdingSourceSanPedro.xdsl"
             :keep     (SiteBirdingQuality)
-            :observed (birding-quality)
+            :result   (birding-quality)
             :context  (bird-richness bird-rarity riparian-wetland public-lands)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@
   (bayesian WildlifeViewingSourceValue
           :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
             :keep     (SiteWildlifeQuality)
-            :observed (wildlife-quality)
+            :result   (wildlife-quality)
             :context  (riparian-wetland public-lands))) ;;add wildlife-richness when statement's OK'd
 
 ;; ----------------------------------------------------------------------------------------------
@@ -269,28 +269,28 @@
   (bayesian DeerHuntingSourceValue                
             :import   "aries.core::RecreationHuntingDeerSourceSanPedro.xdsl"
             :keep     (SiteDeerHuntingQuality)
-            :observed (deer-hunting-quality)
+            :result   (deer-hunting-quality)
             :context  (riparian-wetland public-lands deer-habitat)))
 
 (defmodel source-javelina-hunting JavelinaHuntingSourceValue  
   (bayesian JavelinaHuntingSourceValue                
             :import   "aries.core::RecreationHuntingJavelinaSourceSanPedro.xdsl"
             :keep     (SiteJavelinaHuntingQuality)
-            :observed (javelina-hunting-quality)
+            :result   (javelina-hunting-quality)
             :context  (riparian-wetland public-lands javelina-habitat)))
 
 (defmodel source-dove-hunting DoveHuntingSourceValue
   (bayesian DoveHuntingSourceValue
             :import   "aries.core::RecreationHuntingDoveSourceSanPedro.xdsl"
             :keep     (SiteDoveHuntingQuality)
-            :observed (dove-hunting-quality)
+            :result   (dove-hunting-quality)
             :context  (riparian-wetland public-lands dove-habitat)))
 
 (defmodel source-quail-hunting QuailHuntingSourceValue
   (bayesian QuailHuntingSourceValue                
             :import   "aries.core::RecreationHuntingQuailSourceSanPedro.xdsl"
             :keep     (SiteQuailHuntingQuality)
-            :observed (quail-hunting-quality)
+            :result   (quail-hunting-quality)
             :context  (riparian-wetland public-lands quail-habitat)))
 
 ;; ----------------------------------------------------------------------------------------------

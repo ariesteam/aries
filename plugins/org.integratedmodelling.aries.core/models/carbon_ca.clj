@@ -133,7 +133,7 @@
             :import   "aries.core::StoredCarbonReleaseCa.xdsl"
             :keep     (StoredCarbonRelease)
             :required (LandOrSea)
-            :observed (stored-carbon-release)
+            :result   (stored-carbon-release)
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions 
                        fire-threat vegetation-type land-use land-selector)))
 
@@ -162,7 +162,7 @@
             :import   "aries.core::CarbonSequestrationCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (LandOrSea)
-            :observed (veg-soil-sequestration)
+            :result   (veg-soil-sequestration)
 	 	 	      :context  (percent-vegetation-cover vegetation-type land-use land-selector)))
 
 ;; ----------------------------------------------------------------------------------------------

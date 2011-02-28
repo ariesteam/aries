@@ -10,7 +10,10 @@
 (namespace-ontology floodService
   (representation:GenericObservable
     (TempFloodData100)
-    (TempFloodData500)))
+    (TempFloodData500))
+  (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; common models
@@ -191,14 +194,14 @@
                   [12 30]    LowEvapotranspiration
                   [0 12]     VeryLowEvapotranspiration))
 
-(defmodel dam-storage DamStorageClass
-  (classification (measurement DamStorage "mm")
-                  [30000 :>]      VeryLargeDamStorage
-                  [9000 30000]    LargeDamStorage
-                  [3000 9000]     ModerateDamStorage
-                  [900 3000]      SmallDamStorage
-                  [0 900]         VerySmallDamStorage
-                   :otherwise     NoDamStorage))
+;;(defmodel dam-storage DamStorageClass
+;;  (classification (measurement DamStorage "mm")
+;;                  [30000 :>]      VeryLargeDamStorage
+;;                  [9000 30000]    LargeDamStorage
+;;                  [3000 9000]     ModerateDamStorage
+;;                  [900 3000]      SmallDamStorage
+;;                  [0 900]         VerySmallDamStorage
+;;                   :otherwise     NoDamStorage))
 			
 (defmodel mean-days-precipitation-monthly MeanDaysPrecipitationPerMonth
 	(classification (ranking habitat:JanuaryDaysOfPrecipitation)
@@ -225,19 +228,24 @@
 ;;                  (== (:detention-basin-storage %) 1) 3000)))
 
 ;;Use this one for the time being so the sink model will run.  Then review which one to use with Gary.
-(defmodel detention-basin-storage DetentionBasinStorage
-  (classification (binary-coding infrastructure:DetentionBasin)
-    0    DetentionBasinStorageNotPresent
-    1    DetentionBasinStoragePresent))
+;;(defmodel detention-basin-storage DetentionBasinStorage
+;;  (classification (binary-coding infrastructure:DetentionBasin)
+;;    0    DetentionBasinStorageNotPresent
+;;    1    DetentionBasinStoragePresent))
+
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
 
 ;;Undiscretizer for FloodSink
-(defmodel flood-sink AnnualFloodSink
-  (probabilistic-measurement AnnualFloodSink "mm" 
-                  [30000 90000]     VeryHighFloodSink
-                  [10000 30000]     HighFloodSink
-                  [3000 10000]      ModerateFloodSink
-                  [900 3000]        LowFloodSink
-                  [0 900]           VeryLowFloodSink))
+;;(defmodel flood-sink AnnualFloodSink
+;;  (probabilistic-measurement AnnualFloodSink "mm" 
+;;                  [30000 90000]     VeryHighFloodSink
+;;                  [10000 30000]     HighFloodSink
+;;                  [3000 10000]      ModerateFloodSink
+;;                  [900 3000]        LowFloodSink
+;;                  [0 900]           VeryLowFloodSink))
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
@@ -249,49 +257,64 @@
                   [0 15]       VeryLowGreenStorage))
 
 ;;Undiscretizer for GrayInfrastructureStorage
-(defmodel gray-infrastructure-storage GrayInfrastructureStorage
-  (probabilistic-measurement GrayInfrastructureStorage "mm" 
-                  [30000 90000]     VeryHighGrayStorage
-                  [10000 30000]     HighGrayStorage
-                  [3000 10000]      ModerateGrayStorage
-                  [900 3000]        LowGrayStorage
-                  [0 900]           VeryLowGrayStorage))
+;;(defmodel gray-infrastructure-storage GrayInfrastructureStorage
+;;  (probabilistic-measurement GrayInfrastructureStorage "mm" 
+;;                  [30000 90000]     VeryHighGrayStorage
+;;                  [10000 30000]     HighGrayStorage
+;;                  [3000 10000]      ModerateGrayStorage
+;;                  [900 3000]        LowGrayStorage
+;;                  [0 900]           VeryLowGrayStorage))
 
 ;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
 ;;  empty.  Can alter this as appropriate.
-;;(defmodel detention-basin-storage DetentionBasinStorage
-;;  (measurement DetentionBasinStorage "mm" 
-;;    :context ((binary-coding infrastructure:DetentionBasin :as detention-basin-storage))
-;;    :state #(cond (== (:detention-basin-storage %) 0) 0
-;;                  (== (:detention-basin-storage %) 1) 3000)))
+(defmodel detention-basin-storage DetentionBasinStorage
+  (measurement DetentionBasinStorage "mm" 
+    :context ((binary-coding infrastructure:DetentionBasin) :as detention-basin-storage)
+    :state #(cond (== (:detention-basin-storage %) 0) 0
+                  (== (:detention-basin-storage %) 1) 3000)))
+
+(defmodel dam-storage DamStorage
+  (measurement DamStorage "mm"))
+
+(defmodel gray-infrastructure-sink GrayInfrastructureSink 
+  (measurement GrayInfrastructureSink "mm"
+    :context (dam-storage :as dam-storage detention-basin-storage :as detention-basin-storage)
+    :state   #(+ (:dam-storage :detention-basin-storage)))) 
 
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
-(defmodel sink-monthly MonthlyFloodSink
-	  (bayesian MonthlyFloodSink
-	  	:import   "aries.core::FloodSinkMonthly.xdsl"
-	  	:keep     (
-	  			MonthlyFloodSink 
-	  			GreenInfrastructureStorage
-	  			GrayInfrastructureStorage)
-	 	 	:context  (
-	 	 			soil-group-puget vegetation-type slope monthly-temperature vegetation-height
-	 	 			successional-stage imperviousness dam-storage detention-basin-storage
-	 	 			percent-vegetation-cover mean-days-precipitation-monthly)))
+;;(defmodel sink-monthly MonthlyFloodSink
+;;	  (bayesian MonthlyFloodSink
+;;  	:import   "aries.core::FloodSinkMonthly.xdsl"
+;;	  	:keep     (
+;;	  			MonthlyFloodSink 
+;;	  			GreenInfrastructureStorage
+;;	  			GrayInfrastructureStorage)
+;;      :required (LandOrSea)
+;;	 	 	:context  (
+;;	 	 			soil-group-puget vegetation-type slope monthly-temperature vegetation-height
+;;	 	 			successional-stage imperviousness dam-storage detention-basin-storage
+;;	 	 			percent-vegetation-cover mean-days-precipitation-monthly land-selector)))
 
 ;; Flood sink probability, annual
 ;; COMMENT veg height back in once the layers been expanded to a meaningful extent OR Ferd's enabled coexistence of
 ;;  small layers + priors for areas without evidence.
-(defmodel sink-annual FloodSink
-    (bayesian FloodSink
-      :import   "aries.core::FloodSinkAnnual.xdsl"
-      :keep   (
-              AnnualFloodSink 
-              GreenInfrastructureStorage 
-              GrayInfrastructureStorage) 
+(defmodel green-infrastructure-sink GreenInfrastructureSink 
+    (bayesian GreenInfrastructureSink
+      :import   "aries.core::FloodSinkAnnualSimple.xdsl"
+      :keep     (GreenInfrastructureStorage)
+      :required (LandOrSea) 
       :context (soil-group-puget vegetation-type slope annual-temperature  
-          successional-stage imperviousness dam-storage 
-          (comment vegetation-height) detention-basin-storage  
-          percent-vegetation-cover mean-days-precipitation-annual)))
+          successional-stage imperviousness (comment vegetation-height)   
+          percent-vegetation-cover mean-days-precipitation-annual land-selector)
+      :result green-infrastructure-storage) ;; THIS NEEDS TO BE AN 'UNDISCRETIZER' MODEL THAT IS NOT THERE
+)
+
+(defmodel sink-annual FloodSink
+  (measurement FloodSink "mm"
+    :context (green-infrastructure-sink :as green-infrastructure gray-infrastructure-sink :as evapotranspiration) ;;Change ET to gray
+    :state #(+ 
+              (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
+              (if (nil? (:evapotranspiration %)) 0.0 (.getMean (:evapotranspiration %)))))) ;;This should be gray
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models

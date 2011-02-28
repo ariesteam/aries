@@ -45,7 +45,7 @@
   (bayesian AestheticViewProvision 
             :import   "aries.core::ViewSource.xdsl"
             :context  (mountain lake ocean)
-            :observed (theoretical-beauty)
+            :result   (theoretical-beauty)
             :keep     (TheoreticalNaturalBeauty)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@
   (bayesian ViewSink 
             :import  "aries.core::ViewSink.xdsl"
             :context (commercial-transportation clearcut highway)
-            :observed (view-sink-undiscretizer)
+            :result  (view-sink-undiscretizer)
             :keep    (VisualBlight)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@
   (bayesian ViewUse 
             :import  "aries.core::ViewUse.xdsl"
             :context (property-value housing)
-            :observed (view-use-undiscretizer) 
+            :result  (view-use-undiscretizer) 
             :keep    (HomeownerViewUse)))
 
 ;;Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.

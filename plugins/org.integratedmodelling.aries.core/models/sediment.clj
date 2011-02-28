@@ -118,7 +118,7 @@
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass) 
     :required (SlopeClass)
-    :observed (sediment-source-value-annual) 
+    :result   (sediment-source-value-annual) 
     :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
               successional-stage slope-stability)))
 
@@ -168,7 +168,7 @@
     :import  "aries.core::SedimentSink.xdsl"
     :keep     (AnnualSedimentSinkClass)
     :required (FloodplainWidthClass)
-    :observed (sediment-sink-annual) 
+    :result   (sediment-sink-annual) 
     :context  (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width)))
 
 ;; ----------------------------------------------------------------------------------------------

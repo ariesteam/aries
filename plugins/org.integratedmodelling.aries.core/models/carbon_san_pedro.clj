@@ -136,7 +136,7 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
-            :observed (stored-carbon-release)
+            :result   (stored-carbon-release)
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                         annual-precipitation fire-frequency)))
 
@@ -163,7 +163,7 @@
   (bayesian CarbonSinkValue 
             :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :observed (veg-soil-sequestration)
+            :result   (veg-soil-sequestration)
             :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
 
 ;; ----------------------------------------------------------------------------------------------
