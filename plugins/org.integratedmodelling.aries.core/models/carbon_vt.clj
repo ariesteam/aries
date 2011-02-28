@@ -41,10 +41,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
 ;; No data here (at least apparently, see what Sam has to say) - use priors unless there's a layer.  Assume the below discretization
 ;; is in percentages?
@@ -97,33 +97,6 @@
        [4.57 16.70] RollingToHilly
        [16.70 :>]   SteeplyDissectedToMountainous))
 
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
-(defmodel stored-carbon-release StoredCarbonRelease
-  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                  [12 300]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      HighRelease
-                  [6 9]       ModerateRelease
-                  [3 6]       LowRelease
-                  [0.01 3]    VeryLowRelease
-                  [0 0.01]    NoRelease))
-
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
-            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
-            :keep     (StoredCarbonRelease)            
-            :required (Slope)
-            :result   stored-carbon-release
-            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))  ;; add biomass-removal-rate if there's supporting data
- 
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -135,13 +108,40 @@
                   [0 0.01]    NoSequestration))
 
 ;; Bayesian source model
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
             :import   "aries.core::CarbonSequestrationVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (Slope)
             :result   veg-soil-sequestration
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
+;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel stored-carbon-release StoredCarbonRelease
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+                  [12 300]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                  [9 12]      HighRelease
+                  [6 9]       ModerateRelease
+                  [3 6]       LowRelease
+                  [0.01 3]    VeryLowRelease
+                  [0 0.01]    NoRelease))
+
+(defmodel source CarbonSinkValue   
+  (bayesian CarbonSinkValue 
+            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :keep     (StoredCarbonRelease)            
+            :required (Slope)
+            :result   stored-carbon-release
+            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))  ;; add biomass-removal-rate if there's supporting data
   	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -162,9 +162,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        StoredCarbonRelease
-        GreenhouseGasEmissions  
         VegetationAndSoilCarbonSequestration
+        GreenhouseGasEmissions  
+        StoredCarbonRelease
         nil
         nil
         :source-threshold   1.0

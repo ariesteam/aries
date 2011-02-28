@@ -41,10 +41,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
@@ -67,6 +67,41 @@
         #{"Chaparral"}                                              ModerateHardness
         #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
 
+;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their discretization for rangeland carbon modeling.
+;; For the San Pedro, the entire valley floor would be in the 230-460 range and the surrounding mountains as >460.
+;; For now, keep the below discretization, though strongly consider using it.
+(defmodel annual-precipitation MeanAnnualPrecipitation
+     (classification (measurement habitat:AnnualPrecipitation "mm")
+        [500 :>]        HighMeanAnnualPrecipitation
+        [400 500]       ModerateMeanAnnualPrecipitation
+        [:< 400]        LowMeanAnnualPrecipitation))
+
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [1 6]       LowSequestration
+                  [0.01 1]    VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008)
+                  [0 0.01]    NoSequestration))
+
+;; Bayesian source model
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :result   veg-soil-sequestration
+            :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
 ;;Have removed this from the model and replaced it with annual precip.  This is probably a better variable to include
 ;; in carbon models in wetter regions, while annual precip is far more important in water-limited regions.
 (defmodel summer-high-winter-low SummerHighWinterLow
@@ -76,15 +111,6 @@
         [30 35]       ModerateSOL
         [35 40]       HighSOL
         [40 :>]       VeryHighSOL))
-
-;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their discretization for rangeland carbon modeling.
-;; For the San Pedro, the entire valley floor would be in the 230-460 range and the surrounding mountains as >460.
-;; For now, keep the below discretization, though strongly consider using it.
-(defmodel annual-precipitation MeanAnnualPrecipitation
-     (classification (measurement habitat:AnnualPrecipitation "mm")
-        [500 :>]        HighMeanAnnualPrecipitation
-        [400 500]       ModerateMeanAnnualPrecipitation
-        [:< 400]        LowMeanAnnualPrecipitation))
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
 ;;This should work OK with both global & SSURGO data, but check to make sure.
@@ -132,39 +158,13 @@
 ;;Consider reworking the soil carbon storage part of the model based on Martens et al. 2005 - soil texture, precip, 
 ;; temperature as most important correlates of high soil carbon storage.
 
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
             :result   stored-carbon-release
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                         annual-precipitation fire-frequency)))
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [1 6]       LowSequestration
-                  [0.01 1]    VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008)
-                  [0 0.01]    NoSequestration))
-
-;; Bayesian source model
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
-            :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :result   veg-soil-sequestration
-            :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -197,9 +197,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        StoredCarbonRelease
-        GreenhouseGasEmissions
         VegetationAndSoilCarbonSequestration
+        GreenhouseGasEmissions  
+        StoredCarbonRelease
         nil
         nil
         :source-threshold   1.0

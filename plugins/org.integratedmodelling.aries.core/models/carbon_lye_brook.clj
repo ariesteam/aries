@@ -22,17 +22,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-(defmodel fire-frequency FireFrequency
-     (classification (ranking habitat:FireFrequency) 
-          [0.9 :>]    HighFireFrequency
-          [0.25 0.9]  ModerateFireFrequency 
-          [0.05 0.25] LowFireFrequency
-          [:< 0.05]   NoFireFrequency))
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
 (defmodel veg-storage VegetationCarbonStorage
   (classification (measurement habitat:VegetationCarbonStorage "t/ha")
@@ -87,7 +80,41 @@
        [4.57 16.70] RollingToHilly
        [16.70 :>]   SteeplyDissectedToMountainous))
 
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [3 6]       LowSequestration
+                  [0.01 3]    VeryLowSequestration
+                  [0 0.01]    NoSequestration))
+
+;; Bayesian source model
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :required (Slope)
+            :result   veg-soil-sequestration
+            :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
 ;;Use Bayesian priors for insect & blowdown frequencies
+
+(defmodel fire-frequency FireFrequency
+     (classification (ranking habitat:FireFrequency) 
+          [0.9 :>]    HighFireFrequency
+          [0.25 0.9]  ModerateFireFrequency 
+          [0.05 0.25] LowFireFrequency
+          [:< 0.05]   NoFireFrequency))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
@@ -99,40 +126,13 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseLyeBrook.xdsl"
             :keep     (StoredCarbonRelease)
             :required (Slope)
             :result   stored-carbon-release
             :context  (fire-frequency veg-storage soil-storage)))
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
-
-;; Bayesian source model
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
-            :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :required (Slope)
-            :result   veg-soil-sequestration
-            :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -153,9 +153,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        StoredCarbonRelease
-        GreenhouseGasEmissions
         VegetationAndSoilCarbonSequestration
+        GreenhouseGasEmissions  
+        StoredCarbonRelease
         nil
         nil
         :source-threshold   1.0

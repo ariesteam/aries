@@ -47,30 +47,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph Soilph
-  (classification (ranking habitat:SoilPhDeep)
-                  [7.3 :>]             HighPh
-                  [5.5 7.3]            ModeratePh
-                  [:exclusive 0 5.5]   LowPh))
-
-;; use NLCD layers to infer anoxic vs. oxic
-(defmodel soil-oxygen-conditions SoilOxygenConditions 
-  (classification (numeric-coding nlcd:NLCDNumeric)
-                  #{90 95}   AnoxicSoils
-                  :otherwise OxicSoils))
-        
-(defmodel fire-threat FireThreatClass
-  (classification (ranking habitat:FireThreat) 
-                  4  VeryHighFireThreat
-                  3  HighFireThreat
-                  2  ModerateFireThreat
-                  1  LowFireThreat))
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
@@ -80,17 +60,6 @@
                   [20 40]            LowVegetationCover
                   [:exclusive 0 20]  VeryLowVegetationCover
                   [0]                NoVegetationCover))
-
-;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
-;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
-;; WCH but change if you ran it again for Southern California.
-(defmodel actual-evapotranspiration ActualEvapotranspirationClass
-  (classification (measurement habitat:ActualEvapotranspiration "mm")
-                  [92 :>]   VeryHighActualEvapotranspiration
-                  [58 92]   HighActualEvapotranspiration
-                  [32 58]   ModerateActualEvapotranspiration
-                  [12 32]   LowActualEvapotranspiration
-                  [:< 12]   VeryLowActualEvapotranspiration))
 
 ;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
 (defmodel vegetation-type southernCalifornia:VegetationTypeSoCalCarbon
@@ -116,6 +85,65 @@
     (classification  (measurement geophysics:Altitude "m")
        [:exclusive 0 :>] OnLand))
 
+;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]             VeryHighSequestration
+                  [9 12]              HighSequestration
+                  [6 9]               ModerateSequestration
+                  [1.5 6]             LowSequestration
+                  [:exclusive 0 1.5]  VeryLowSequestration
+                  [0]                 NoSequestration))
+
+;;See above statement for AET: Add back in if you use it for wider extents of Southern California
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationCa.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :required (LandOrSea)
+            :result   veg-soil-sequestration
+            :context  (percent-vegetation-cover vegetation-type land-use land-selector)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
+;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
+(defmodel soil-ph Soilph
+  (classification (ranking habitat:SoilPhDeep)
+                  [7.3 :>]             HighPh
+                  [5.5 7.3]            ModeratePh
+                  [:exclusive 0 5.5]   LowPh))
+
+;; use NLCD layers to infer anoxic vs. oxic
+(defmodel soil-oxygen-conditions SoilOxygenConditions 
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  #{90 95}   AnoxicSoils
+                  :otherwise OxicSoils))
+        
+(defmodel fire-threat FireThreatClass
+  (classification (ranking habitat:FireThreat) 
+                  4  VeryHighFireThreat
+                  3  HighFireThreat
+                  2  ModerateFireThreat
+                  1  LowFireThreat))
+
+;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
+;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for
+;; WCH but change if you ran it again for Southern California.
+(defmodel actual-evapotranspiration ActualEvapotranspirationClass
+  (classification (measurement habitat:ActualEvapotranspiration "mm")
+                  [92 :>]   VeryHighActualEvapotranspiration
+                  [58 92]   HighActualEvapotranspiration
+                  [32 58]   ModerateActualEvapotranspiration
+                  [12 32]   LowActualEvapotranspiration
+                  [:< 12]   VeryLowActualEvapotranspiration))
+
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
@@ -128,42 +156,14 @@
 
 ;;Source and sink values are still calculated over the ocean, though they're set to almost-zero, so it's a temporary fix.
 ;; For some reason slope has value here in the ocean and using elevation as a mask made the whole model disappear.
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseCa.xdsl"
             :keep     (StoredCarbonRelease)
             :required (LandOrSea)
             :result   stored-carbon-release
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions 
                        fire-threat vegetation-type land-use land-selector)))
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]             VeryHighSequestration
-                  [9 12]              HighSequestration
-                  [6 9]               ModerateSequestration
-                  [1.5 6]             LowSequestration
-                  [:exclusive 0 1.5]  VeryLowSequestration
-                  [0]                 NoSequestration))
-
-;;See above statement for AET: Add back in if you use it for wider extents of Southern California
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
-            :import   "aries.core::CarbonSequestrationCa.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :required (LandOrSea)
-            :result   veg-soil-sequestration
-	 	 	      :context  (percent-vegetation-cover vegetation-type land-use land-selector)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Carbon model accuracy check
@@ -201,9 +201,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        StoredCarbonRelease
-        GreenhouseGasEmissions
         VegetationAndSoilCarbonSequestration
+        GreenhouseGasEmissions  
+        StoredCarbonRelease
         nil
         nil
         :source-threshold   1.0

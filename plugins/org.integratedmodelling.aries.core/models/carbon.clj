@@ -47,10 +47,10 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
 (defmodel successional-stage SuccessionalStage
    (classification (ranking ecology:SuccessionalStage)
@@ -92,6 +92,34 @@
         [2 4]  HighHardness
         [1 2]  VeryHighHardness))
 
+(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+                  [12 30]     VeryHighSequestration
+                  [9 12]      HighSequestration
+                  [6 9]       ModerateSequestration
+                  [3 6]       LowSequestration
+                  [0.01 3]    VeryLowSequestration
+                  [0 0.01]    NoSequestration))
+
+;; Bayesian sink model
+(defmodel source CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::CarbonSequestration.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :required (SuccessionalStage)
+            :result    veg-soil-sequestration
+            :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
+                       percent-vegetation-cover successional-stage)))
+
+;; ----------------------------------------------------------------------------------------------
+;; Sink model
+;; ----------------------------------------------------------------------------------------------
+
+;;NB: ARIES defines sources of carbon areas that are sequester carbon in vegetation and soils.  
+;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
+;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
+;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
 (defmodel slope Slope
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
@@ -128,43 +156,14 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel sink CarbonSinkValue   
+  (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonRelease.xdsl"
             :keep     (StoredCarbonRelease)
             :required (SuccessionalStage)
-            :result   stored-carbon-release
+            :result    stored-carbon-release
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage soil-cn-ratio summer-high-winter-low fire-frequency)))
-
-;; ----------------------------------------------------------------------------------------------
-;; Sink model
-;; ----------------------------------------------------------------------------------------------
-
-;;NB: ARIES defines sources of carbon emissions as areas at risk of deforestation or fire, which can release carbon
-;; into the atmosphere.  Sinks are areas that are sequester carbon in vegetation and soils.  The difference between 
-;; carbon sinks and sources is the amount remaining to mitigate direct anthropogenic emissions (aside from land conversion
-;; and fire).
-
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
-
-;; Bayesian sink model
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
-            :import   "aries.core::CarbonSequestration.xdsl"
-            :keep     (VegetationAndSoilCarbonSequestration)
-            :required (SuccessionalStage)
-            :result    veg-soil-sequestration
-            :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
-                       percent-vegetation-cover successional-stage)))
-
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
@@ -184,9 +183,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        StoredCarbonRelease
-        GreenhouseGasEmissions
         VegetationAndSoilCarbonSequestration
+        GreenhouseGasEmissions  
+        StoredCarbonRelease
         nil
         nil
         :source-threshold   1.0
