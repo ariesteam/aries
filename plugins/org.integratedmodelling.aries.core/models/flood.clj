@@ -279,7 +279,7 @@
 (defmodel gray-infrastructure-sink GrayInfrastructureSink 
   (measurement GrayInfrastructureSink "mm"
     :context (dam-storage :as dam-storage detention-basin-storage :as detention-basin-storage)
-    :state   #(+ (:dam-storage :detention-basin-storage)))) 
+    :state   #(+ (or (:dam-storage %) 0.0) (or (:detention-basin-storage %) 0.0))))
 
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 ;;(defmodel sink-monthly MonthlyFloodSink
@@ -303,18 +303,17 @@
       :import   "aries.core::FloodSinkAnnualSimple.xdsl"
       :keep     (GreenInfrastructureStorage)
       :required (LandOrSea) 
-      :context (soil-group-puget vegetation-type slope annual-temperature  
-          successional-stage imperviousness (comment vegetation-height)   
-          percent-vegetation-cover mean-days-precipitation-annual land-selector)
-      :result green-infrastructure-storage) ;; THIS NEEDS TO BE AN 'UNDISCRETIZER' MODEL THAT IS NOT THERE
-)
+      :context (soil-group-puget vegetation-type slope annual-temperature  ;;vegetation-height
+                successional-stage imperviousness percent-vegetation-cover 
+                mean-days-precipitation-annual land-selector)
+      :result green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
     :context (green-infrastructure-sink :as green-infrastructure gray-infrastructure-sink :as gray-infrastructure) 
     :state #(+ 
               (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
-              (if (nil? (:gray-infrastructure %)) 0.0 (.getMean (:gray-infrastructure %)))))) ;;This should be gray
+              (or       (:gray-infrastructure %)   0.0))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models

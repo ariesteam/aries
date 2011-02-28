@@ -126,7 +126,7 @@
     :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
     :required (SlopeClass)
-    :result   (sediment-source-value-annual) 
+    :result   sediment-source-value-annual 
     :context  (soil-group slope soil-texture 
               (comment  soil-erodibility)
               precipitation-annual  
@@ -181,7 +181,7 @@
     :import  "aries.core::SedimentSinkDR.xdsl"
     :keep    (AnnualSedimentSinkClass)
     :required (StreamGradientClass)
-    :result   (sediment-sink-annual) 
+    :result   sediment-sink-annual 
     :context  (reservoirs stream-gradient floodplain-vegetation-cover)))
 
 ;; ----------------------------------------------------------------------------------------------

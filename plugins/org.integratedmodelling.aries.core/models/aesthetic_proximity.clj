@@ -95,7 +95,7 @@
             :import   "aries.core::ProximitySource.xdsl"
             :context  (lake-front river-front beach forest woody-wetland emergent-wetland farmland park
                        crime-potential water-quality formal-protection area)
-            :result   (theoretical-open-space)
+            :result   theoretical-open-space
             :keep     (TheoreticalProximitySource)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@
   (bayesian ProximityUse 
             :import  "aries.core::ProximityUse.xdsl"
             :context (property-value urban-proximity housing)
-            :result  (proximity-use-undiscretizer) 
+            :result  proximity-use-undiscretizer 
             :keep    (HomeownerProximityUse)))
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	

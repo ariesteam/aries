@@ -63,7 +63,7 @@
     :import   "aries.core::RecreationViewSource.xdsl"
     :keep     (aestheticService:TheoreticalNaturalBeauty)
     :context  (lake river-stream mountain open-space)
-    :result   (theoretical-beauty)))
+    :result   theoretical-beauty))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -103,7 +103,7 @@
     :import  "aries.core::RecreationViewSink.xdsl"
     :keep    (aestheticService:VisualBlight)
     :context (development transportation-energy-infrastructure)
-    :result  (visual-blight)))
+    :result  visual-blight))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -158,7 +158,7 @@
     :import   "aries.core::RecreationViewUse.xdsl"
     :keep     (ViewerEnjoyment)
     :context  (view-position travel-time public-access hiking-distance hiking-slope)
-    :result   (viewer-enjoyment)))
+    :result   viewer-enjoyment))
 
 (defmodel population-density policytarget:PopulationDensity
   (count policytarget:PopulationDensity "/km^2"))

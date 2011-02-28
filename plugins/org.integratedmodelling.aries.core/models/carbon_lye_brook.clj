@@ -104,7 +104,7 @@
             :import   "aries.core::StoredCarbonReleaseLyeBrook.xdsl"
             :keep     (StoredCarbonRelease)
             :required (Slope)
-            :result   (stored-carbon-release)
+            :result   stored-carbon-release
             :context  (fire-frequency veg-storage soil-storage)))
 
 ;; ----------------------------------------------------------------------------------------------
@@ -131,7 +131,7 @@
             :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (Slope)
-            :result   (veg-soil-sequestration)
+            :result   veg-soil-sequestration
             :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
 
 ;; ----------------------------------------------------------------------------------------------

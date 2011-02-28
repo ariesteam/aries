@@ -304,41 +304,41 @@
 (defmodel data-farmers-100 AvoidedDamageToFarms100
   (identification AvoidedDamageToFarms100
                   :context (source :as source
-                            sink :as sink
+                            sink-annual :as sink
                             farmers-use-100 :as use
                             flood-flow-data100 :as flow)))
 
 (defmodel data-farmers-500 AvoidedDamageToFarms500
   (identification AvoidedDamageToFarms500
                   :context (source :as source
-                            sink :as sink
+                            sink-annual :as sink
                             farmers-use-500 :as use
                             flood-flow-data500 :as flow)))
 
 (defmodel data-public-100 AvoidedDamageToPublicAssets100
   (identification AvoidedDamageToPublicAssets100
                   :context (source :as source
-                            sink :as sink
+                            sink-annual :as sink
                             public-use-100 :as use
                             flood-flow-data100 :as flow)))
 
 (defmodel data-public-500 AvoidedDamageToPublicAssets500
   (identification AvoidedDamageToPublicAssets500
                   :context (source :as source
-                            sink :as sink
+                            sink-annual :as sink
                             public-use-500 :as use
                             flood-flow-data500 :as flow)))
 
 ;;(defmodel data-private AvoidedDamageToPrivateAssets 
   ;;(identification AvoidedDamageToPrivateAssets 
     ;;              :context (source :as source
-    ;;                        sink :as sink
+    ;;                        sink-annual :as sink
     ;;                        private-use :as use)))
 
 ;;(defmodel data-residents AvoidedDamageToResidents 
   ;;(identification AvoidedDamageToResidents 
     ;;              :context (source :as source
-      ;;                      sink :as sink
+      ;;                      sink-annual :as sink
       ;;                      residents-use :as use)))
 
 ;; flow model for farmers in the 100-year floodplain   
@@ -369,7 +369,7 @@
 =======
         :save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
 >>>>>>> Stashed changes
-        :context (source farmers-use-100 sink flood-flow-data100)))
+        :context (source farmers-use-100 sink-annual flood-flow-data100)))
 
 ;; flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
@@ -390,7 +390,7 @@
         :downscaling-factor 8
         :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers500.clj")
-        :context (source farmers-use-500 sink flood-flow-data500)))
+        :context (source farmers-use-500 sink-annual flood-flow-data500)))
 
 ;; flow model for public-assets in the 100-year floodplain
 (defmodel flood-regulation-public-assets-100 AvoidedDamageToFarms100
@@ -411,7 +411,7 @@
         :downscaling-factor 8
         :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_public100.clj")
-        :context (source public-use-100 sink flood-flow-data100)))
+        :context (source public-use-100 sink-annual flood-flow-data100)))
 
 ;; flow model for public-assets in the 500-year floodplain
 (defmodel flood-regulation-public-assets-500 AvoidedDamageToFarms500
@@ -432,7 +432,7 @@
         :downscaling-factor 8
         :rv-max-states      10
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data_public500.clj")
-        :context (source public-use-500 sink flood-flow-data500)))
+        :context (source public-use-500 sink-annual flood-flow-data500)))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.     

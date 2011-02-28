@@ -133,7 +133,7 @@
             :import   "aries.core::StoredCarbonRelease.xdsl"
             :keep     (StoredCarbonRelease)
             :required (SuccessionalStage)
-            :result   (stored-carbon-release)
+            :result   stored-carbon-release
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage soil-cn-ratio summer-high-winter-low fire-frequency)))
 
