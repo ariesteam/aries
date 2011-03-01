@@ -130,11 +130,11 @@
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover)
-                  [80 100] VeryHighVegetationCover
-                  [60 80]  HighVegetationCover
-                  [40 60]  ModerateVegetationCover
-                  [20 40]  LowVegetationCover
-                  [0 20]   VeryLowVegetationCover))
+                  [80 100 :inclusive] VeryHighVegetationCover
+                  [60 80]             HighVegetationCover
+                  [40 60]             ModerateVegetationCover
+                  [20 40]             LowVegetationCover
+                  [0 20]              VeryLowVegetationCover))
 
 ;;Problems with coarse-grain pixels; removed this from the bayesian statement and set the prior
 ;; to its actual value from the data (LowActualEvapotranspiration) - a good temporary solution for

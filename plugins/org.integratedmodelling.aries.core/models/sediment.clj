@@ -83,9 +83,9 @@
 ;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (numeric-coding habitat:PercentVegetationCover)
-    [70 100]  HighVegetationCover
-    [30 70]  ModerateVegetationCover
-    [0 30]  LowVegetationCover))
+    [70 100 :inclusive]  HighVegetationCover
+    [30 70]              ModerateVegetationCover
+    [0 30]               LowVegetationCover))
 
 (defmodel successional-stage SuccessionalStageClass
 	 (classification (numeric-coding ecology:SuccessionalStage)  
@@ -141,11 +141,11 @@
 
 (defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
   (classification (ranking habitat:PercentFloodplainVegetationCover)
-    [0 20]   VeryLowFloodplainVegetationCover
-    [20 40]  LowFloodplainVegetationCover
-    [40 60]  ModerateVegetationCover
-    [60 80]  HighFloodplainVegetationCover
-    [80 100] VeryHighFloodplainVegetationCover))
+    [0 20]              VeryLowFloodplainVegetationCover
+    [20 40]             LowFloodplainVegetationCover
+    [40 60]             ModerateVegetationCover
+    [60 80]             HighFloodplainVegetationCover
+    [80 100 :inclusive] VeryHighFloodplainVegetationCover))
 
 (defmodel floodplain-width FloodplainWidthClass 
   (classification (measurement habitat:FloodplainWidth "m")

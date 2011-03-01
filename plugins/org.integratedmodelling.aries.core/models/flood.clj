@@ -162,11 +162,11 @@
 		
 (defmodel percent-vegetation-cover PercentVegetationCover
 	(classification (ranking habitat:PercentVegetationCover)
-		[80 100] VeryHighVegetationCover
-		[60 80] HighVegetationCover
-		[40 60] ModerateVegetationCover
-		[20 40] LowVegetationCover
-		[0 20]  VeryLowVegetationCover))
+		[80 100 :inclusive] VeryHighVegetationCover
+		[60 80]             HighVegetationCover
+		[40 60]             ModerateVegetationCover
+		[20 40]             LowVegetationCover
+		[0 20]              VeryLowVegetationCover))
 
 (defmodel successional-stage SuccessionalStage
 	 (classification (ranking ecology:SuccessionalStage)

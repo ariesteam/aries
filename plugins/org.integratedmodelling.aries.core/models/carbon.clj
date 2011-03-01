@@ -63,11 +63,11 @@
         
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
-    [80 100] VeryHighVegetationCover
-    [60 80]  HighVegetationCover
-    [40 60]  ModerateVegetationCover
-    [20 40]  LowVegetationCover
-    [1 20]   VeryLowVegetationCover))
+    [80 100 :inclusive] VeryHighVegetationCover
+    [60 80]             HighVegetationCover
+    [40 60]             ModerateVegetationCover
+    [20 40]             LowVegetationCover
+    [1 20]              VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low SummerHighWinterLow
      (classification (ranking habitat:SummerHighWinterLow)
@@ -86,11 +86,11 @@
 
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
      (classification (ranking habitat:HardwoodSoftwoodRatio)
-        [8 10] VeryLowHardness
-        [6 8]  LowHardness
-        [4 6]  ModerateHardness
-        [2 4]  HighHardness
-        [1 2]  VeryHighHardness))
+        [8 10 :inclusive] VeryLowHardness
+        [6 8]             LowHardness
+        [4 6]             ModerateHardness
+        [2 4]             HighHardness
+        [1 2]             VeryHighHardness))
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"

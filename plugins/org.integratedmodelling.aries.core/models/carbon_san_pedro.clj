@@ -48,11 +48,11 @@
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
-                  [80 100] VeryHighVegetationCover
-                  [60 80]  HighVegetationCover
-                  [40 60]  ModerateVegetationCover
-                  [20 40]  LowVegetationCover
-                  [0 20]   VeryLowVegetationCover))
+                  [80 100 :inclusive] VeryHighVegetationCover
+                  [60 80]             HighVegetationCover
+                  [40 60]             ModerateVegetationCover
+                  [20 40]             LowVegetationCover
+                  [0 20]              VeryLowVegetationCover))
 
 ;;ARE WE OK HAVING SOME CLASSES IN THE DATA WITH NO CORRESPONDING DISCRETE STATES (i.e., ag, developed, barren)?
 ;; Not considered but in the area: 5 9 15 16 17 18 19 20 21 65 93 110 111 112 114 117 (could set these to hard, indicating slower sequestration)

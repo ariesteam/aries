@@ -81,9 +81,9 @@
 ;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (numeric-coding habitat:PercentVegetationCover)
-    [70 100]           HighVegetationCover
-    [30 70]            ModerateVegetationCover
-    [:exclusive 0 30]  LowVegetationCover))
+    [70 100 :inclusive]           HighVegetationCover
+    [30 70]                       ModerateVegetationCover
+    [:exclusive 0 30]             LowVegetationCover))
 
 
 ;;Sediment source value - we have evidence for this but can't yet train so keep this commented out for now and use the
@@ -131,11 +131,11 @@
 
 (defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
   (classification (ranking habitat:PercentFloodplainVegetationCover)
-    [:exclusive 0 20]   VeryLowFloodplainVegetationCover
-    [20 40]             LowFloodplainVegetationCover
-    [40 60]             ModerateVegetationCover
-    [60 80]             HighFloodplainVegetationCover
-    [80 100]            VeryHighFloodplainVegetationCover))
+    [:exclusive 0 20]              VeryLowFloodplainVegetationCover
+    [20 40]                        LowFloodplainVegetationCover
+    [40 60]                        ModerateVegetationCover
+    [60 80]                        HighFloodplainVegetationCover
+    [80 100 :inclusive]            VeryHighFloodplainVegetationCover))
 
 (defmodel floodplains Floodplains
   (classification (binary-coding geofeatures:Floodplain)

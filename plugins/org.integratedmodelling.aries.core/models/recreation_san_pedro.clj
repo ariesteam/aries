@@ -14,10 +14,10 @@
 
 (defmodel bird-richness BirdSpeciesRichness
    (classification (ranking habitat:AvianRichness)
-       [8 10]       VeryHighBirdSpeciesRichness
-       [6 8]        HighBirdSpeciesRichness
-       [4 6]        ModerateBirdSpeciesRichness
-       [0 4]        LowBirdSpeciesRichness))
+       [8 10 :inclusive]       VeryHighBirdSpeciesRichness
+       [6 8]                   HighBirdSpeciesRichness
+       [4 6]                   ModerateBirdSpeciesRichness
+       [0 4]                   LowBirdSpeciesRichness))
 
 (defmodel bird-rarity RareCharismaticBirdHabitat
     (classification (ranking habitat:RareBirdHabitat)
