@@ -135,7 +135,7 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-(defmodel source CarbonSinkValue   
+(defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseVt.xdsl"
             :keep     (StoredCarbonRelease)            
