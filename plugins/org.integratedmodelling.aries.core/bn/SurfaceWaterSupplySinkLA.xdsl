@@ -65,7 +65,7 @@
 		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>462 126 551 161</position>
@@ -74,16 +74,16 @@
 			</node>
 			<node id="EvapotranspirationClass">
 				<name>EvapotranspirationClass</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>577 648 793 682</position>
+				<position>676 644 892 678</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.\n\nWhat about agriculture? I am pretty sure it is possible to find data on different types of cultivated plants. Octavio\n</comment>
 				<barchart active="true" width="330" height="108" />
 			</node>
 			<node id="PercentVegetationCoverClass">
 				<name>PercentVegetationCoverClass</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>578 812 690 846</position>
@@ -91,53 +91,53 @@
 			</node>
 			<node id="VegetationType">
 				<name>VegetationType</name>
-				<interior color="ff9900" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>925 812 1020 842</position>
+				<position>880 812 975 842</position>
 				<comment>Cloud forest &gt; Selva &gt; (Dry) Forest &gt; Grassland &amp; shrubland\n\n&quot;Entidad&quot; coarser than &quot;Tipo&quot;\nCloud forest MUCH higher than all other vegetation types.\n\nCloud forest = Bosque mesofilo de montana\nRainforest = Selva baja &amp; mediana\nDryForest = All other bosque, plus selva altas subperennifolia\nGrasslandShrubland = Mattoiral, Pradera, Vegetacion de dunas and halofila, Popal\nDevelopedCultivated = Pastizal cultivado, Pastizal inducido, Zona urbana, riego, temporal\n\nWhat data do we use for this? Brian</comment>
-				<barchart active="true" width="365" height="108" />
+				<barchart active="true" width="275" height="108" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
-				<interior color="ff9900" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>283 278 328 306</position>
+				<position>485 416 530 444</position>
 				<comment>See folder C:\\GIS\\new data La Atigua\\DEM there you can find digital elevation model for the whole country.\n\nThis is not a DEM. Not sure what it is. Will default to global data unless other data is specified. Brian</comment>
-				<barchart active="true" width="191" height="90" />
+				<barchart active="true" width="285" height="100" />
 			</node>
 			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
-				<interior color="ff9900" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>117 139 240 169</position>
+				<position>288 266 411 296</position>
 				<comment>Mexico uses a different soil classification, so we need to figure out how to deal with this. \n\nIn file: new data La Atigua\\CONAFOR\\INEGI TIPOS SUELO\\LATLONG there is information at the national scale on soils tuxture that I think can help on this.Octavio\n\nNeed more detail on the different attributes, which one to use, and some translation help. Brian\n\nSee Table 1-1 in Jimena&apos;s thesis (page 17) for soil classification information. The available data will support a three class breakdown (coarse, medium, fine) so we should probably just use that. See CLA_TEX in the soil data for the correct attribute to use. Brian</comment>
 				<barchart active="true" width="128" height="90" />
 			</node>
 			<node id="PercentImperviousCoverClass">
 				<name>PercentImperviousCoverClass</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>535 295 683 327</position>
-				<barchart active="true" width="338" height="126" />
+				<position>637 275 785 307</position>
+				<barchart active="true" width="326" height="126" />
 			</node>
 			<textbox>
 				<caption>NOTE: For the lower 48 US states, I&apos;ve got a groundwater recharge layer which could be quite useful for the water models.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>745 46 1340 60</position>
+				<position>926 46 1521 60</position>
 			</textbox>
 			<textbox>
 				<caption>For the flow model I  added a folder named: new data La Atigua\\microwatersheds where you can find data on microwatersheds. These shape files also contain information on localities, roads rivers  and limits for the states of Veracruz and Puebla.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>802 85 1039 169</position>
+				<position>992 87 1229 171</position>
 			</textbox>
 			<textbox>
 				<caption>I think you would need data on precipitation. I put data related on this in the next folder: \\new data La Atigua\\climate. There you can find a shape file with locations and excel spreadsheets with information on temperature, rain etc. </caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>825 203 1015 301</position>
+				<position>981 204 1171 302</position>
 			</textbox>
 		</genie>
 	</extensions>
