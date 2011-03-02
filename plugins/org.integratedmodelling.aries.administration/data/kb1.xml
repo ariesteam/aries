@@ -1127,16 +1127,14 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		</observation:hasObservationExtent>
 	</measurement:Count>
 
-<!--  Commenting this out as it causes the US highways layer to be ignored.  Comment back in once Ferd's model switching and
-cross-boundary data handling features are enabled. 
-
 <measurement:BinaryCoding id="sanPedro_mex_highway">
 	<observation:hasObservable>
 		<infrastructure:Highway />
 	</observation:hasObservable>
-		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
-		<metadata:hasPriority>0</metadata:hasPriority>
-		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+	<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
+	<metadata:hasPriority>0</metadata:hasPriority>
+	<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+ 	<metadata:belongsToDataset>highway-presence</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1152,13 +1150,14 @@ cross-boundary data handling features are enabled.
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>  -->
+</measurement:BinaryCoding>
 
 	<measurement:BinaryCoding id="usa_highways">
 		<observation:hasObservable>
 			<infrastructure:Highway />
 		</observation:hasObservable>
 		<rdfs:comment>Data source: TIGER/Line 2000 Streets</rdfs:comment>
+	 	<metadata:belongsToDataset>highway-presence</metadata:belongsToDataset>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<observation:hasDataSource>
 			<geospace:WFSDataSource>
