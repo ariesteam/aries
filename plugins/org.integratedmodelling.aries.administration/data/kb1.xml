@@ -500,10 +500,10 @@ convert m to mm, and convert minutes to year. This gives an overall conversion f
 		<geospace:RasterGrid>
 			<geospace:hasXRangeMax>9867</geospace:hasXRangeMax>
 			<geospace:hasYRangeMax>6938</geospace:hasYRangeMax>
-			<geospace:hasLatLowerBound>31.4055856</geospace:hasLatLowerBound>
+			<geospace:hasLatLowerBound>30.869</geospace:hasLatLowerBound>
 			<geospace:hasLonLowerBound>-113.371172</geospace:hasLonLowerBound>
 			<geospace:hasLatUpperBound>33.4672157</geospace:hasLatUpperBound>
-			<geospace:hasLonUpperBound>-110.439439</geospace:hasLonUpperBound>
+			<geospace:hasLonUpperBound>-109.872</geospace:hasLonUpperBound>
 			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
@@ -2298,7 +2298,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-	<measurement:Ranking id="canopy5_Project">
+  	<measurement:Ranking id="canopy5_Project">
 		<observation:hasObservable>
 			<habitat:PercentVegetationCover />
 		</observation:hasObservable>
@@ -2325,7 +2325,7 @@ and 1997 land cover, for the Sierra Vista subwatershed only
 				<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 			</geospace:RasterGrid>
 		</observation:hasObservationExtent>
-	</measurement:Ranking>
+	</measurement:Ranking> 
 
 	<measurement:Ranking id="canopy10_Project">
 		<observation:hasObservable>
@@ -3216,13 +3216,14 @@ Testing the two below to see which is more appropriate.
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<!--  <measurement:BinaryCoding id="sanPedro_mex_hydrography">
+ <measurement:BinaryCoding id="sanPedro_mex_hydrography">
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
 		<rdfs:comment>Data source: U.S. EPA San Pedro Data Browser</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/san_pedro/</metadata:hasURL>
+		<metadata:belongsToDataset>san-pedro-hydrography</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -3238,7 +3239,7 @@ Testing the two below to see which is more appropriate.
 			<geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
+</measurement:BinaryCoding> 
 
 	<measurement:BinaryCoding id="california_hydro">
 		<observation:hasObservable>
@@ -3413,13 +3414,14 @@ Testing the two below to see which is more appropriate.
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>
 
-<measurement:BinaryCoding id="sanPedro_hydrography_az_2">
+  <measurement:BinaryCoding id="sanPedro_hydrography_az_2">
 	<observation:hasObservable>
 		<geofeatures:River />
 	</observation:hasObservable>
 	<rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
 		<metadata:hasPriority>0</metadata:hasPriority>
 		<metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+		<metadata:belongsToDataset>san-pedro-hydrography</metadata:belongsToDataset>
 	<observation:hasDataSource>
 		<geospace:WFSDataSource>
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -3435,7 +3437,7 @@ Testing the two below to see which is more appropriate.
 			<geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
 		</geospace:ArealFeatureSet>
 	</observation:hasObservationExtent>
-</measurement:BinaryCoding>
+</measurement:BinaryCoding> 
 
 	<!-- This one is just a presence/absence of roads -->
 <measurement:BinaryCoding id="sanPedro_az_roads">

@@ -116,9 +116,9 @@
 ;;This should work OK with both global & SSURGO data, but check to make sure.
 (defmodel soil-ph Soilph
   (classification (ranking habitat:SoilPhDeep)
-                  [7.3 :>]       HighPh
-                  [5.5 7.3]      ModeratePh
-                  [:< 5.5]       LowPh))
+                  [7.3 :>]                 HighPh
+                  [5.5 7.3]                ModeratePh
+                  [:exclusive 0 5.5]       LowPh))
 
 (defmodel slope Slope
     (classification (measurement geophysics:DegreeSlope "\u00b0")
@@ -130,9 +130,9 @@
 ;;Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC data (i.e., CONABIO) 
 ;; denote wetlands at least for Sonora.
 (defmodel oxygen SoilOxygenConditions 
-  (classification (numeric-coding nlcd:NLCDNumeric)
-                  #{90 95}   AnoxicSoils
-                  :otherwise OxicSoils)
+;;  (classification (numeric-coding nlcd:NLCDNumeric)
+;;                  #{90 95}   AnoxicSoils
+;;                  :otherwise OxicSoils)
   (classification (numeric-coding glc:GLCNumeric)
                   15         AnoxicSoils
                   :otherwise OxicSoils))
@@ -174,16 +174,16 @@
 ;; by per capita emissions for that country from EIA.  2006 data used as this corresponds to current population
 ;; density layer: 4.05 tonnes CO2/capita for Mexico in 2006, which is equivalent to 1.105 tonnes C/capita
 
-(defmodel use-simple GreenhouseGasEmissions
-  (measurement GreenhouseGasEmissions "t/ha*year"))
+;;(defmodel use-simple GreenhouseGasEmissions
+;;  (measurement GreenhouseGasEmissions "t/ha*year"))
 
-;;(defmodel use-simple GreenhouseGasEmitters
-;;  [(categorization geofeatures:Country :as country)]
-;;  (measurement GreenhouseGasEmissions "t/ha*year"
-;;               :when #(= (:country %) "United States"))
-;;  (measurement GreenhouseGasEmissions "t/ha*year"
-;;               :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
-;;               :state   #(* (:population-density-count %) 1.105)))
+(defmodel use-simple GreenhouseGasEmitters
+  [(categorization geofeatures:Country :as country)]
+  (measurement GreenhouseGasEmissions "t/ha*year"
+               :when #(= (:country %) "United States"))
+  (measurement GreenhouseGasEmissions "t/ha*year"
+               :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
+               :state   #(* (:population-density-count %) 1.105)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Top-level service models

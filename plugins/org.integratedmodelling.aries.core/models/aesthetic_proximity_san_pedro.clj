@@ -118,10 +118,10 @@
 (defmodel housing PresenceOfHousing
   (classification (ranking economics:AppraisedPropertyValue)
         [1 :>]            HousingPresent
-        :otherwise        HousingAbsent))
-;;  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
-;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
-;;        :otherwise   HousingAbsent))
+        :otherwise        HousingAbsent)
+  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+        :otherwise   HousingAbsent))
 
 (defmodel property-value HousingValue  ;; value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking economics:AppraisedPropertyValue)

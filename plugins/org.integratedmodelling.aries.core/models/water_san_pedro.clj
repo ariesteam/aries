@@ -146,15 +146,15 @@
     #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
     #{77 78 79 80 81 83 84 85 98 109 110 118}                                          sanPedro:Riparian
     114                                                                                sanPedro:Agriculture
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  sanPedro:UrbanBarrenWater))
-;;   (classification (categorization mexico:CONABIOLULCCategory)
-;;     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
-;;     #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
-;;     #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
-;;     #{"Pastizal natural"}                                                        sanPedro:Grassland
-;;     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
-;;     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
-;;     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112}                  sanPedro:UrbanBarrenWater)
+   (classification (categorization mexico:CONABIOLULCCategory)
+     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
+     #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
+     #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
+     #{"Pastizal natural"}                                                        sanPedro:Grassland
+     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
+     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
+     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
 
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover)
