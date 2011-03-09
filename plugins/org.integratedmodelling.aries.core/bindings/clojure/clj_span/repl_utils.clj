@@ -141,3 +141,25 @@
              :flow-model "SurfaceWaterMovement"
              :result-type :closure-map
              :animation? false}))
+
+(defn test-run-carbon
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 9.0
+             :sink-layer sink-layer
+             :sink-threshold 9.0
+             :use-layer use-layer
+             :use-threshold 9.0
+             :flow-layers flow-layers
+             :trans-threshold 0.1
+             :cell-width  100.0
+             :cell-height 100.0
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :finite
+             :sink-type :finite
+             :use-type :finite
+             :benefit-type :rival
+             :flow-model "CO2Removed"
+             :result-type :closure-map
+             :animation? false}))

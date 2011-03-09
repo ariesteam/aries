@@ -45,8 +45,8 @@
   ;; greater than 0.  These carriers propagate child carriers through
   ;; the network which collect information about the routes traveled and
   ;; the service weight transmitted along these routes.  When the
-  ;; simulation completes, a sequence of the locations in the network is
-  ;; returned."
+  ;; simulation completes, a vector containing three matrices is
+  ;; returned: [cache-layer possible-flow-layer actual-flow-layer]."
   (fn [flow-model animation? cell-width cell-height source-layer sink-layer use-layer flow-layers] flow-model))
 
 (defmethod distribute-flow :default
