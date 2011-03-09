@@ -87,13 +87,16 @@
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-misc.matrix-ops :only (filter-matrix-for-coords make-matrix coord-map2matrix get-rows get-cols)]))
 
+(def- *num-world-samples* 10)
+(def- *sample-prob*       (/ 1.0 *num-world-samples*))
+
 (defn- get-carrier-cache
   [source-percents actual-sinks-by-source possible-use actual-use use-percent]
   (doall
    (map (fn [source-percent actual-sinks-for-this-source]
           [(* source-percent possible-use) ;; possible-weight
            (* source-percent actual-use)   ;; actual-weight
-           (map #(* use-percent %) actual-sinks-for-this-source)]) ;; sink-effects
+           (doall (map #(* use-percent %) actual-sinks-for-this-source))]) ;; sink-effects
         source-percents
         actual-sinks-by-source)))
 
@@ -113,8 +116,9 @@
       [source-left sink-gained])))
 
 (defn- sample-world
-  [[source-dists sink-dists use-dists]]
+  [source-dists sink-dists use-dists]
   ;; Draw a sample world.
+  (println "Drawing a sample world...")
   (let [source-samples  (map draw source-dists)
         sink-samples    (map draw sink-dists)
         use-samples     (map draw use-dists)
@@ -138,13 +142,26 @@
     ;; Construct the service carrier lists for each use location and return them.
     (println "Computing" (count use-dists) "carrier lists...")
     (with-progress-bar
-      (map (p get-carrier-cache source-percents actual-sinks-by-source)
-           possible-uses
-           actual-uses
-           use-percents))))
+      (pmap (p get-carrier-cache source-percents actual-sinks-by-source)
+            possible-uses
+            actual-uses
+            use-percents))))
 
-(def- *num-world-samples* 10)
-(def- *sample-prob*       (/ 1.0 *num-world-samples*))
+(defn- draw-sample-worlds
+  "Collect some samples of the world defined by the source, sink, and
+   use distributions.  Each sample is represented as a sequence of
+   carrier-caches (one per use point).  To save time and memory, these
+   caches do not contain complete carriers but rather triplets
+   [possible-weight actual-weight sink-effects-seq] (one per source
+   point)."
+  [source-layer sink-layer use-layer source-points sink-points use-points ha-per-cell]
+  (println "Setting up the world distributions...")
+  ;; Extract the above-threshold values from the layers and scale by their cell sizes.
+  (let [source-dists (map #(*_ ha-per-cell (get-in source-layer %)) source-points) ;; t/yr
+        sink-dists   (map #(*_ ha-per-cell (get-in sink-layer   %)) sink-points)   ;; t/yr
+        use-dists    (map #(*_ ha-per-cell (get-in use-layer    %)) use-points)]   ;; t/yr
+    (for [_ (range *num-world-samples*)]
+      (sample-world source-dists sink-dists use-dists))))
 
 (defn- combine-worlds
   "Each sample world is represented as a sequence of
@@ -155,22 +172,59 @@
    by generating a probability distribution for the triplet values
    associated with each source point."
   [world1 world2]
+  (println "Next merge...")
   (doall
-   (map (fn [carrier-cache1 carrier-cache2]
-          ;; Per use point.  Generate a combined carrier-cache.
-          (doall
-           (map (fn [[possible-weight1 actual-weight1 sink-effects-seq1]
-                     [possible-weight2 actual-weight2 sink-effects-seq2]]
-                  ;; Per source point.  Generate a combined triplet.
-                  [(merge-with + possible-weight1 {possible-weight2 *sample-prob*})
-                   (merge-with + actual-weight1   {actual-weight2   *sample-prob*})
-                   (map #(merge-with + %1 %2)
-                        sink-effects-seq1
-                        (map #(array-map % *sample-prob*) sink-effects-seq2))])
-                carrier-cache1
-                carrier-cache2)))
-        world1
-        world2)))
+   (pmap (fn [carrier-cache1 carrier-cache2]
+           ;; Per use point.  Generate a combined carrier-cache.
+           (doall
+            (map (fn [[possible-weight1 actual-weight1 sink-effects-seq1]
+                      [possible-weight2 actual-weight2 sink-effects-seq2]]
+                   ;; Per source point.  Generate a combined triplet.
+                   [(merge-with + possible-weight1 {possible-weight2 *sample-prob*})
+                    (merge-with + actual-weight1   {actual-weight2   *sample-prob*})
+                    (doall (map #(merge-with + %1 %2)
+                                sink-effects-seq1
+                                (map #(array-map % *sample-prob*) sink-effects-seq2)))])
+                 carrier-cache1
+                 carrier-cache2)))
+         world1
+         world2)))
+
+(defn- combine-sample-worlds
+  "Now we compress these samples into a single sequence of
+   carrier-caches which summarize the sample results using discrete
+   probability distributions."
+  [source-points sink-points use-points world-samples]
+  (println "Combining sample worlds...")
+  (reduce combine-worlds
+          (for [_ use-points]
+            (for [_ source-points]
+              [(make-randvar :discrete 0 ())
+               (make-randvar :discrete 0 ())
+               (repeat (count sink-points)
+                       (make-randvar :discrete 0 ()))]))
+          world-samples))
+
+(defn- cacheify-world
+  "Convert a sample world representation into a sequence of
+   service-carrier structs by use-point."
+  [ha-per-cell source-points sink-points use-points world-sample]
+  (println "Packing the results into proper service-carrier structs...")
+  (zipmap use-points
+          (pmap (fn [carrier-cache]
+                  (doall
+                   (map (fn [source-id [possible-weight actual-weight sink-effects-seq]]
+                          (struct-map service-carrier
+                            :source-id       source-id
+                            :route           nil
+                            :possible-weight (_d possible-weight ha-per-cell) ;; t/ha*yr
+                            :actual-weight   (_d actual-weight   ha-per-cell) ;; t/ha*yr
+                            :sink-effects    (zipmap sink-points ;; t/ha*yr
+                                                     (map #(_d % ha-per-cell)
+                                                          sink-effects-seq))))
+                        source-points
+                        carrier-cache)))
+                world-sample)))
 
 ;; FIXME: This algorithm eats up too much memory (related to storing
 ;; the sink-effects-seq, I believe).  Do something more intelligent.
@@ -183,10 +237,11 @@
 
   (println "Running Carbon flow model.")
 
-  (let [rows (get-rows source-layer)
-        cols (get-cols source-layer)
-        [source-points sink-points use-points] (pmap (p filter-matrix-for-coords (p not= _0_))
-                                                     [source-layer sink-layer use-layer])]
+  (let [rows          (get-rows source-layer)
+        cols          (get-cols source-layer)
+        source-points (filter-matrix-for-coords (p not= _0_) source-layer)
+        sink-points   (filter-matrix-for-coords (p not= _0_) sink-layer)
+        use-points    (filter-matrix-for-coords (p not= _0_) use-layer)]
 
     (println "Source points:" (count source-points))
     (println "Sink points:  " (count sink-points))
@@ -194,56 +249,25 @@
 
     (if (and (seq source-points) (seq use-points))
 
-      ;; Extract the above-threshold values from the layers and scale by their cell sizes.
-      (let [ha-per-cell  (* cell-width cell-height (Math/pow 10.0 -4.0))
-            source-dists (map #(*_ ha-per-cell (get-in source-layer %)) source-points) ;; t/yr
-            sink-dists   (map #(*_ ha-per-cell (get-in sink-layer   %)) sink-points)   ;; t/yr
-            use-dists    (map #(*_ ha-per-cell (get-in use-layer    %)) use-points)    ;; t/yr
-
-            ;; Collect some samples of the world defined by the
-            ;; source, sink, and use distributions.  Each sample is
-            ;; represented as a sequence of carrier-caches (one per
-            ;; use point).  To save time and memory, these caches do
-            ;; not contain complete carriers but rather triplets
-            ;; [possible-weight actual-weight sink-effects-seq] (one
-            ;; per source point).
-            world-samples (do
-                            (println "Drawing sample worlds...")
-                            (pmap sample-world (repeat *num-world-samples* [source-dists sink-dists use-dists])))
-
-            ;; Now we compress these samples into a single sequence of
-            ;; carrier-caches which summarize the sample results using
-            ;; discrete probability distributions.
-            combined-world-samples  (do
-                                      (println "Aggregating samples...")
-                                      (reduce combine-worlds
-                                              (for [_ use-points]
-                                                (for [_ source-points]
-                                                  [(make-randvar :discrete 0 ())
-                                                   (make-randvar :discrete 0 ())
-                                                   (repeat (count sink-points)
-                                                           (make-randvar :discrete 0 ()))]))
-                                              world-samples))
-
-            ;; Convert our results to sequences of service-carrier structs per use-point.
-            use-caches-by-use-point (do
-                                      (println "Packing the results into proper service-carrier structs.")
-                                      (for [carrier-cache combined-world-samples]
-                                        (map (fn [source-id [possible-weight actual-weight sink-effects-seq]]
-                                               (struct-map service-carrier
-                                                 :source-id       source-id
-                                                 :route           nil
-                                                 :possible-weight (_d possible-weight ha-per-cell) ;; t/ha*yr
-                                                 :actual-weight   (_d actual-weight   ha-per-cell) ;; t/ha*yr
-                                                 :sink-effects    (zipmap sink-points ;; t/ha*yr
-                                                                          (map #(_d % ha-per-cell)
-                                                                               sink-effects-seq))))
-                                             source-points
-                                             carrier-cache)))]
+      (let [ha-per-cell (* cell-width cell-height (Math/pow 10.0 -4.0))
+            use-caches  (cacheify-world ha-per-cell
+                                        source-points
+                                        sink-points
+                                        use-points
+                                        (combine-sample-worlds source-points
+                                                               sink-points
+                                                               use-points
+                                                               (draw-sample-worlds source-layer
+                                                                                   sink-layer
+                                                                                   use-layer
+                                                                                   source-points
+                                                                                   sink-points
+                                                                                   use-points
+                                                                                   ha-per-cell)))]
 
         ;; Pack the results into a 2D matrix for analysis and resampling.
         (println "Simulation complete. Returning the cache-layer.")
-        [(coord-map2matrix rows cols nil (zipmap use-points use-caches-by-use-point))
+        [(coord-map2matrix rows cols nil use-caches)
          (make-matrix rows cols (constantly _0_))
          (make-matrix rows cols (constantly _0_))])
 
