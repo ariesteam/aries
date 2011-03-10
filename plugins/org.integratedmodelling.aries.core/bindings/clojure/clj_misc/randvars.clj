@@ -419,12 +419,15 @@
 
 (defn rv-sum
   [Xs]
-  (if (< (count Xs) 10)
-    (reduce rv-add Xs)
-    (recur (pmap #(apply rv-add %)
-                 (partition 2 (if (even? (count Xs))
-                                Xs
-                                (cons _0_ Xs)))))))
+  (cond (== (count Xs) 1)
+        (first Xs)
+
+        (<= (count Xs) 20)
+        (reduce rv-add Xs)
+
+        :otherwise
+        (recur (pmap rv-sum
+                     (my-partition-all 20 Xs)))))
 
 (defn rv-subtract
   [X Y]
@@ -570,6 +573,15 @@
                                  (assoc probs zero-pos (+ (probs zero-pos) (- 1.0 scale-factor)))
                                  (concat (take pos-pos probs) [(- 1.0 scale-factor)] (drop pos-pos probs)))))
       cont-type)))
+
+(defn rv-extensive-sampler
+  [coverage]
+  (rv-sum (map (fn [[val frac]] (_* val frac)) coverage)))
+
+(defn rv-intensive-sampler
+  [coverage]
+  (let [frac-sum (reduce + (map second coverage))]
+    (rv-sum (map (fn [[val frac]] (_* val (/ frac frac-sum))) coverage))))
 
 (defn draw
   "Extracts a value from X using a uniform distribution."

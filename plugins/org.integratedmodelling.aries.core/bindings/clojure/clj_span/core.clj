@@ -27,7 +27,7 @@
         [clj-span.model-api      :only (distribute-flow)]
         [clj-span.params         :only (set-global-params!)]
         [clj-span.interface      :only (provide-results)]
-        [clj-misc.randvars       :only (_0_ rv-mean rv-average rv-below?)]
+        [clj-misc.randvars       :only (_0_ rv-mean rv-below? rv-intensive-sampler)]
         [clj-span.sediment-model :only (aggregate-flow-dirs)]
         [clj-misc.matrix-ops     :only (map-matrix
                                         make-matrix
@@ -80,7 +80,7 @@
         scaled-rows      (int (/ rows downscaling-factor))
         scaled-cols      (int (/ cols downscaling-factor))
         preprocess-layer (fn [l t] (if l
-                                     (let [scaled-layer (resample-matrix scaled-rows scaled-cols rv-average l)]
+                                     (let [scaled-layer (resample-matrix scaled-rows scaled-cols rv-intensive-sampler l)]
                                        (if t
                                          (zero-layer-below-threshold t scaled-layer)
                                          scaled-layer))
@@ -92,7 +92,7 @@
                                                   [name (resample-matrix
                                                          scaled-rows
                                                          scaled-cols
-                                                         (if (= name "Hydrosheds") aggregate-flow-dirs rv-average)
+                                                         (if (= name "Hydrosheds") aggregate-flow-dirs rv-intensive-sampler)
                                                          layer)]))]
     [scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]))
 
@@ -109,7 +109,7 @@
                                                                              scaled-use-layer
                                                                              scaled-flow-layers)]
     (apply array-map
-           (mapcat (fn [[name f]] [name (& (p resample-matrix orig-rows orig-cols rv-average) f)])
+           (mapcat (fn [[name f]] [name (& (p resample-matrix orig-rows orig-cols rv-intensive-sampler) f)])
                    (array-map
                     "Source - Theoretical"  #(theoretical-source  scaled-source-layer scaled-use-layer)
                     "Source - Inaccessible" #(inaccessible-source scaled-source-layer scaled-use-layer cache-layer)

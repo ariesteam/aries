@@ -202,18 +202,19 @@
         StoredCarbonRelease
         nil
         nil
-        :source-threshold   9.0
-        :sink-threshold     9.0
-        :use-threshold      9.0
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
         :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
         :rv-max-states      10
-        :downscaling-factor 1
+        :downscaling-factor 20
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :save-file          "/home/gjohnson/code/java/imt/identifications/carbon_san_pedro_data.clj"
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/carbon_san_pedro_data.clj"
         :keep (StoredCarbonRelease
                CarbonSequestration
                GreenhouseGasEmissions

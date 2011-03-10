@@ -141,36 +141,61 @@
        (make-matrix (get-rows matrix) (get-cols matrix)
                     (fn [coords] (apply f (map #(get-in % coords) matrices)))))))
 
+(defn numeric-extensive-sampler
+  [coverage]
+  (reduce + (map (fn [[val frac]] (* val frac)) coverage)))
+
+(defn numeric-intensive-sampler
+  [coverage]
+  (let [frac-sum (reduce + (map second coverage))]
+    (reduce + (map (fn [[val frac]] (* val (/ frac frac-sum))) coverage))))
+
 (defn cell-fractions-covered
   [i l]
-  (loop [low  (* i l)
-         high (+ low l)
-         next (Math/ceil low)
-         fractions ()]
-    (cond (== low next) ;; we started on a whole number (since l >= 1, we capture the entire cell)
-          (recur (inc next)
-                 high
-                 (inc (inc next))
-                 (conj fractions [(int low) 1.0]))
+  (if (< l 1.0)
+    ;; upsampling
+    (let [low  (* i l)
+          high (+ low l)
+          next (Math/ceil low)]
+      (cond (== low next)  ;; starting on a whole number
+            (list [(int low) l])
 
-          (>= next high) ;; we're done (grab this cell and return fractions)
-          (conj fractions [(int (Math/floor low)) (- high low)])
+            (== high next) ;; ending on a whole number
+            (list [(int low) l])
 
-          :otherwise ;; still scanning (grab this cell and go on to the next)
-          (recur next
-                 high
-                 (inc next)
-                 (conj fractions [(int (Math/floor low)) (- next low)])))))
+            (> high next)  ;; we are spanning a number boundary
+            (list [(int low) (- next low)] [(int high) (- high next)])
 
-(defn get-downsampled-matrix-vals
+            :otherwise     ;; just grabbing a sample from the middle somewhere
+            (list [(int low) l])))
+    ;; downsampling
+    (loop [low  (* i l)
+           high (+ low l)
+           next (Math/ceil low)
+           fractions ()]
+      (cond (== low next) ;; we started on a whole number (since l >= 1, we capture the entire cell)
+            (recur (inc next)
+                   high
+                   (inc (inc next))
+                   (conj fractions [(int low) 1.0]))
+
+            (>= next high) ;; we're done (grab this cell and return fractions)
+            (conj fractions [(int (Math/floor low)) (- high low)])
+
+            :otherwise ;; still scanning (grab this cell and go on to the next)
+            (recur next
+                   high
+                   (inc next)
+                   (conj fractions [(int (Math/floor low)) (- next low)]))))))
+
+(defn get-matrix-coverage
   [matrix l w i j]
-  (/ (reduce + (for [[i* l*] (cell-fractions-covered i l)
-                     [j* w*] (cell-fractions-covered j w)]
-                 (* (get-in matrix [i* j*]) l* w*)))
-     (* l w)))
+  (for [[i* l*] (cell-fractions-covered i l)
+        [j* w*] (cell-fractions-covered j w)]
+    [(get-in matrix [i* j*]) (* l* w*)]))
 
-(defn downsample-matrix
-  [new-rows new-cols aggregator-fn matrix]
+(defn resample-matrix
+  [new-rows new-cols sampling-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
   (newline)
   (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
@@ -179,12 +204,13 @@
     (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
     (if (and (== orig-rows new-rows) (== orig-cols new-cols))
       matrix
-      (if (or (< orig-rows new-rows) (< orig-cols new-cols))
-        (throw (Exception. (str "Cannot downsample to dimensions larger than those of the original matrix: "
-                                [orig-rows orig-cols] "->" [new-rows new-cols])))
-        (let [cell-length (/ orig-rows new-rows)
-              cell-width  (/ orig-cols new-cols)]
-          (make-matrix new-rows new-cols (fn [[i j]] (get-downsampled-matrix-vals matrix cell-length cell-width i j))))))))
+      (let [cell-length (float (/ orig-rows new-rows))
+            cell-width  (float (/ orig-cols new-cols))]
+        (make-matrix new-rows new-cols (fn [[i j]] (sampling-fn (get-matrix-coverage matrix
+                                                                                     cell-length
+                                                                                     cell-width
+                                                                                     i
+                                                                                     j))))))))
 
 (defn divides?
   "Is y divisible by x? (i.e. x is the denominator)"
@@ -196,7 +222,7 @@
   (first (filter (p divides? x) (iterate (p + y) y))))
 
 (defn resample-matrix-slow
-  [new-rows new-cols aggregator-fn matrix]
+  [new-rows new-cols sampling-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
   (newline)
   (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
@@ -232,21 +258,8 @@
             (make-matrix new-rows new-cols 
                          (fn [[i j]] (let [i-base (* i downscale-factor-rows)
                                            j-base (* j downscale-factor-cols)]
-                                       (aggregator-fn (for [i-offset offset-range-rows j-offset offset-range-cols]
-                                                        (get-in lcm-matrix [(+ i-base i-offset) (+ j-base j-offset)]))))))))))))
-
-(defn resample-matrix
-  [new-rows new-cols aggregator-fn matrix]
-  (let [orig-rows (get-rows matrix)
-        orig-cols (get-cols matrix)]
-    (cond (and (== orig-rows new-rows) (== orig-cols new-cols))
-          matrix
-
-          (and (<= new-rows orig-rows) (new-cols orig-cols))
-          (downsample-matrix new-rows new-cols aggregator-fn matrix)
-
-          :otherwise
-          (resample-matrix-slow new-rows new-cols aggregator-fn matrix))))
+                                       (sampling-fn (for [i-offset offset-range-rows j-offset offset-range-cols]
+                                                      [(get-in lcm-matrix [(+ i-base i-offset) (+ j-base j-offset)]) 1.0])))))))))))
 
 (defn in-bounds?
   "Returns true if the point is within the map bounds defined by

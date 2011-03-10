@@ -145,16 +145,16 @@
 (defn test-run-carbon
   []
   (run-span {:source-layer source-layer
-             :source-threshold 9.0
+             :source-threshold 0.0
              :sink-layer sink-layer
-             :sink-threshold 9.0
+             :sink-threshold 0.0
              :use-layer use-layer
-             :use-threshold 9.0
+             :use-threshold 0.0
              :flow-layers flow-layers
              :trans-threshold 0.1
              :cell-width  100.0
              :cell-height 100.0
-             :downscaling-factor 1
+             :downscaling-factor 20
              :rv-max-states 10
              :source-type :finite
              :sink-type :finite

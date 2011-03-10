@@ -37,16 +37,17 @@
 
 ;; try out (vecfoo (floor (/ (atan2 x y) 45))) or approximate by checking quadrant of vector-direction
 (defn aggregate-flow-dirs
-  [hydrocodes]
-  (if-let [exit-code (some #{{-1.0 1.0} {0.0 1.0}} hydrocodes)]
-    exit-code
-    (let [vector-direction (reduce (p map +) (map hydrosheds-delta-codes hydrocodes))]
-      (if (= vector-direction [0 0])
-        {-1.0 1.0} ; since we don't know where to go, we'll just terminate this path by saying we hit an inland sink
-        (let [vector-magnitude  (euclidean-distance [0 0] vector-direction)
-              unit-vector       (map #(/ % vector-magnitude) vector-direction)
-              distances-to-dirs (seq2map hydrosheds-delta-codes (fn [[code v]] [(square-distance unit-vector v) code]))]
-          (distances-to-dirs (apply min (keys distances-to-dirs))))))))
+  [hydrocodes-coverage]
+  (let [hydrocodes (map first hydrocodes-coverage)]
+    (if-let [exit-code (some #{{-1.0 1.0} {0.0 1.0}} hydrocodes)]
+      exit-code
+      (let [vector-direction (reduce (p map +) (map hydrosheds-delta-codes hydrocodes))]
+        (if (= vector-direction [0 0])
+          {-1.0 1.0} ; since we don't know where to go, we'll just terminate this path by saying we hit an inland sink
+          (let [vector-magnitude  (euclidean-distance [0 0] vector-direction)
+                unit-vector       (map #(/ % vector-magnitude) vector-direction)
+                distances-to-dirs (seq2map hydrosheds-delta-codes (fn [[code v]] [(square-distance unit-vector v) code]))]
+            (distances-to-dirs (apply min (keys distances-to-dirs)))))))))
 
 (defn- move-points-into-stream-channel
   "Returns a map of in-stream-ids to lists of the out-of-stream-ids
