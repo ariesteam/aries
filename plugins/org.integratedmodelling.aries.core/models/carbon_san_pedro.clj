@@ -197,9 +197,9 @@
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
-        VegetationAndSoilCarbonSequestration
-        GreenhouseGasEmissions  
-        StoredCarbonRelease
+        CarbonSourceValue
+        GreenhouseGasEmitters
+        CarbonSinkValue
         nil
         nil
         :source-threshold   0.0

@@ -104,7 +104,7 @@
   [source-values sink-capacities total-source total-sink]
   (if (or (zero? total-source)
           (zero? total-sink))
-    [source-values (repeat (count sink-capacities) 0.0)]
+    [source-values (take (count sink-capacities) (repeat 0.0))]
     (let [source-sink-ratio (/ total-source total-sink)
           sink-source-ratio (/ source-sink-ratio)
 
@@ -201,8 +201,8 @@
             (for [_ source-points]
               [(make-randvar :discrete 0 ())
                (make-randvar :discrete 0 ())
-               (repeat (count sink-points)
-                       (make-randvar :discrete 0 ()))]))
+               (take (count sink-points)
+                     (repeat (make-randvar :discrete 0 ())))]))
           world-samples))
 
 (defn- cacheify-world
