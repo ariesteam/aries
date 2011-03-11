@@ -185,6 +185,13 @@
                :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
                :state   #(* (:population-density-count %) 1.105)))
 
+(defmodel use-simple-pop GreenhouseGasEmitters
+  (measurement GreenhouseGasEmissions "t/ha*year"
+               :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
+               :state   #(* (:population-density-count %) 1.105)))
+
+(defmodel use-simple-us GreenhouseGasEmitters
+  (measurement GreenhouseGasEmissions "t/ha*year"))
 ;; ----------------------------------------------------------------------------------------------
 ;; Top-level service models
 ;; ----------------------------------------------------------------------------------------------
