@@ -178,9 +178,9 @@
 ;;  (measurement GreenhouseGasEmissions "t/ha*year"))
 
 (defmodel use-simple GreenhouseGasEmitters
-  [(categorization geofeatures:Country :as country)]
-  (measurement GreenhouseGasEmissions "t/ha*year"
-               :when #(= (:country %) "United States"))
+  [(categorization geofeatures:Country) :as country]
+  (measurement GreenhouseGasEmissions "t/ha*year")
+               :when #(= (:country %) "United States")
   (measurement GreenhouseGasEmissions "t/ha*year"
                :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
                :state   #(* (:population-density-count %) 1.105)))
