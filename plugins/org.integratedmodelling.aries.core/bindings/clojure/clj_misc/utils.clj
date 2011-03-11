@@ -340,6 +340,12 @@
      (newline)
      (force result-seq#)))
 
+(defmacro with-progress-bar*
+  [step body]
+  `(do
+     (dorun (map (fn [v#] (print "*") (flush) v#) (take-nth ~step ~body)))
+     (newline)))
+
 (defn iterate-while-seq
   [f x]
   ;;(take-while seq (iterate (& (p remove nil?) f) x)))

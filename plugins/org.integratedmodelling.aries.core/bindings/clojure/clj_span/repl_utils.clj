@@ -163,3 +163,25 @@
              :flow-model "CO2Removed"
              :result-type :closure-map
              :animation? false}))
+
+(defn test-run-view
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 50.0 ;; 25.0 ;; 10.0
+             :sink-layer sink-layer
+             :sink-threshold 50.0 ;; 25.0 ;; 5.0
+             :use-layer use-layer
+             :use-threshold 0.05
+             :flow-layers flow-layers
+             :trans-threshold 10.0
+             :cell-width  1000.0
+             :cell-height 1000.0
+             :downscaling-factor 2
+             :rv-max-states 10
+             :source-type :infinite
+             :sink-type :infinite
+             :use-type :infinite
+             :benefit-type :non-rival
+             :flow-model "LineOfSight"
+             :result-type :closure-map
+             :animation? false}))

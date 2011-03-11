@@ -126,7 +126,7 @@
   [rv-type num-states valid-states]
   (constraints-1.0 {:pre [(#{:discrete :continuous} rv-type)]})
   (let [discrete-RV (with-meta
-                      (zipmap (map float (select-n-distinct num-states valid-states))
+                      (zipmap (map double (select-n-distinct num-states valid-states))
                               (map #(/ % 100.0) (select-n-summands num-states 100 1)))
                       disc-type)]
     (if (= rv-type :discrete)
@@ -522,12 +522,12 @@
 (defn rv-zero-above-scalar
   "Sets all values greater than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (> %2 %1) 0.0 %2) {y 1.0} X))
+  (rv-convolute #(if (> %2 %1) 0.0 %2) (make-randvar :discrete 1 [y]) X))
 
 (defn rv-zero-below-scalar
   "Sets all values less than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (< %2 %1) 0.0 %2) {y 1.0} X))
+  (rv-convolute #(if (< %2 %1) 0.0 %2) (make-randvar :discrete 1 [y]) X))
 
 (defn rv-pos
   "Sets all negative values in X to 0."

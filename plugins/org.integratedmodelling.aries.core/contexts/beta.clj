@@ -52,10 +52,16 @@
     256 
     "EPSG:4326 POLYGON((-110.401 32.037, -110.193 32.037, -110.193 31.855, -110.401 31.855, -110.401 32.037))"))
 
-(defcontext san_pedro_us 
+(defcontext san_pedro_us
   "" 
   (grid  
     256 
+    "EPSG:4326 POLYGON((-111.012 33.281, -109.872 33.281, -109.872 31.338, -111.012 31.338, -111.012 33.281))"))
+
+(defcontext san_pedro_us_low_res
+  "" 
+  (grid  
+    128
     "EPSG:4326 POLYGON((-111.012 33.281, -109.872 33.281, -109.872 31.338, -111.012 31.338, -111.012 33.281))"))
 
 (defcontext san_pedro_us_med_res
@@ -64,13 +70,13 @@
     512 
     "EPSG:4326 POLYGON((-111.012 33.281, -109.872 33.281, -109.872 31.338, -111.012 31.338, -111.012 33.281))"))
 
-(defcontext san_pedro_us_hi_res 
+(defcontext san_pedro_us_hi_res
   "" 
   (grid  
     1024 
     "EPSG:4326 POLYGON((-111.012 33.281, -109.872 33.281, -109.872 31.338, -111.012 31.338, -111.012 33.281))"))
 
-(defcontext san_pedro_us_super_hi_res 
+(defcontext san_pedro_us_super_hi_res
   "" 
   (grid  
     2048 
