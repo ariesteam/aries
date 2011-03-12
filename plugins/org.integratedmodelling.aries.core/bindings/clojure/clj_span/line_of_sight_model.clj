@@ -44,7 +44,7 @@
                                     ;;bitpack-route
                                     find-line-between
                                     get-line-fn)]
-        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ rv-max rv-pos rv-above?)]
+        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ rv-max rv-pos rv-above?)]
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-span.gui        :only (draw-ref-layer)]))
 
@@ -97,9 +97,16 @@
 
 (defn- compute-view-impact
   [scenic-value scenic-elev use-elev slope distance]
-  (let [projected-elev   (rv-pos (_+_ use-elev (_* slope distance)))
-        visible-fraction (rv-pos (-_ 1.0 (_d_ projected-elev scenic-elev)))]
-    (_*_ scenic-value visible-fraction)))
+  (let [projected-elev (rv-pos (_+_ use-elev (_* slope distance)))]
+    (if (_>_ slope _0_)
+      ;; We are looking up, so only count the visible part of the feature.
+      (let [visible-fraction (rv-pos (-_ 1.0 (_d_ projected-elev scenic-elev)))]
+        (_*_ scenic-value visible-fraction))
+      ;; We are looking straight ahead or down, so count the whole
+      ;; feature if we can see any part of it.
+      (if (_>_ projected-elev scenic-elev)
+        _0_
+        scenic-value))))
 
 (defn- raycast!
   "Finds a line of sight path between source and use points, checks
