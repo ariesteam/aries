@@ -79,6 +79,8 @@
         cols             (get-cols source-layer)
         scaled-rows      (int (/ rows downscaling-factor))
         scaled-cols      (int (/ cols downscaling-factor))
+        row-scale-factor (float (/ scaled-rows rows))
+        col-scale-factor (float (/ scaled-cols cols))
         preprocess-layer (fn [l t] (if l
                                      (let [scaled-layer (resample-matrix scaled-rows scaled-cols rv-intensive-sampler l)]
                                        (if t
@@ -94,16 +96,17 @@
                                                          scaled-cols
                                                          (if (= name "Hydrosheds") aggregate-flow-dirs rv-intensive-sampler)
                                                          layer)]))]
-    [scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]))
+    [scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers row-scale-factor col-scale-factor]))
 
 (defn generate-results-map
   "Run flow model and return the results as a map of layer names to closures."
   [flow-model animation? orig-rows orig-cols cell-width cell-height
-   scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers]
+   scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers
+   row-scale-factor col-scale-factor]
   (let [[cache-layer possible-flow-layer actual-flow-layer] (distribute-flow flow-model
                                                                              animation?
-                                                                             cell-width
-                                                                             cell-height
+                                                                             (* cell-width  col-scale-factor)
+                                                                             (* cell-height row-scale-factor)
                                                                              scaled-source-layer
                                                                              scaled-sink-layer
                                                                              scaled-use-layer

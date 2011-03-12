@@ -34,9 +34,10 @@
 
 (ns clj-span.line-of-sight-model
   (:use [clj-span.params     :only (*trans-threshold*)]
-        [clj-misc.utils      :only (euclidean-distance p & def- between? with-progress-bar*)]
+        [clj-misc.utils      :only (euclidean-distance p & def- between? with-progress-bar-cool)]
         [clj-misc.matrix-ops :only (make-matrix
                                     map-matrix
+                                    matrix2seq
                                     get-rows
                                     get-cols
                                     filter-matrix-for-coords
@@ -48,13 +49,13 @@
         [clj-span.gui        :only (draw-ref-layer)]))
 
 ;; in meters
-(def- half-mile   805)
-(def- mile       1610)
-(def- _4-miles    6440)
-(def- _5-miles    8050)
-(def- _15-miles  24150)
-(def- _20-miles  32200)
-(def- _40-miles  64400)
+(def- half-mile    805.0)
+(def- mile        1610.0)
+(def- _4-miles    6440.0)
+(def- _5-miles    8050.0)
+(def- _15-miles  24150.0)
+(def- _20-miles  32200.0)
+(def- _40-miles  64400.0)
 
 (def- source-ramp-up        (get-line-fn {:slope (/  1.0  mile)     :intercept 0.0}))
 (def- slow-source-decay     (get-line-fn {:slope (/ -0.25 _4-miles)  :intercept 1.0625}))
@@ -67,7 +68,10 @@
 ;; source decay = ramp up in 1 mile, slow decay to 5 miles, fast decay to 20 miles, moderate decay to 40 miles, then gone
 (defn- source-decay
   [distance]
-  (cond (< distance mile)
+  (cond (> distance _40-miles)
+        0.0
+
+        (< distance mile)
         (source-ramp-up distance)
 
         (between? mile _5-miles distance)
@@ -76,33 +80,26 @@
         (between? _5-miles _20-miles distance)
         (fast-source-decay distance)
 
-        (between? _20-miles _40-miles distance)
-        (moderate-source-decay distance)
-
         :otherwise
-        0.0))
+        (moderate-source-decay distance)))
 
 ;; sink decay   = slow decay to 1/2 mile, fast decay to 1 mile, gone after 1 mile
 (defn- sink-decay
   [distance]
-  (cond (< distance half-mile)
+  (cond (> distance mile)
+        0.0
+
+        (< distance half-mile)
         (slow-sink-decay distance)
 
-        (between? half-mile mile distance)
-        (fast-sink-decay distance)
-
         :otherwise
-        0.0))
+        (fast-sink-decay distance)))
 
 (defn- compute-view-impact
-  [view-type use-value source-value slope distance elev use-elev]
+  [scenic-value scenic-elev use-elev slope distance]
   (let [projected-elev   (rv-pos (_+_ use-elev (_* slope distance)))
-        visible-fraction (rv-pos (-_ 1.0 (_d_ projected-elev elev)))
-        view-impact      (reduce _*_ [source-value visible-fraction use-value])]
-    (_* view-impact
-        (if (= view-type :sink)
-          (sink-decay   distance)
-          (source-decay distance)))))
+        visible-fraction (rv-pos (-_ 1.0 (_d_ projected-elev scenic-elev)))]
+    (_*_ scenic-value visible-fraction)))
 
 (defn- raycast!
   "Finds a line of sight path between source and use points, checks
@@ -110,52 +107,58 @@
    the source element can be seen from the use point.  A distance
    decay function is applied to the results to compute the visual
    utility originating from the source point."
-  [scaled-source-layer scaled-sink-layer scaled-use-layer elev-layer cache-layer
-   possible-flow-layer actual-flow-layer to-meters [source-point use-point]]
+  [source-layer sink-layer elev-layer cache-layer possible-flow-layer
+   actual-flow-layer to-meters [source-point use-point]]
   (when (not= source-point use-point) ;; no in-situ use
-    (let [sight-line      (rest (find-line-between use-point source-point))
-          use-elev        (get-in elev-layer use-point)
-          elevs           (map (p get-in elev-layer) sight-line)
-          rises           (map #(_-_ % use-elev) elevs)
-          use-loc-in-m    (to-meters use-point)
-          runs            (map (p euclidean-distance use-loc-in-m)
-                               (map to-meters sight-line))
-          slopes          (map _d rises runs)
-          sight-slopes    (cons _0_
-                                (butlast
-                                 ;;(reductions rv-max slopes)
-                                 (reduce #(conj %1 (rv-max (peek %1) %2))
-                                         [(first slopes)]
-                                         (rest slopes))))
-          use-value       (get-in scaled-use-layer use-point)
-          possible-weight (compute-view-impact :source
-                                               use-value
-                                               (get-in scaled-source-layer source-point)
-                                               (last sight-slopes)
-                                               (last runs)
-                                               (last elevs)
-                                               use-elev)]
-      (when (rv-above? possible-weight *trans-threshold*)
-        (let [sink-effects  (into {}
-                                  (map #(let [sink-value (get-in scaled-sink-layer %1)]
-                                          (if (not= sink-value _0_)
-                                            (vector %1 (compute-view-impact :sink use-value sink-value %2 %3 %4 use-elev))))
-                                       sight-line
-                                       sight-slopes
-                                       runs
-                                       elevs))
-              actual-weight (rv-pos (reduce _-_ possible-weight (vals sink-effects)))
-              carrier       (struct-map service-carrier
-                              :source-id       source-point
-                              ;;:route           (bitpack-route (reverse (cons use-point sight-line))) ;; Temporary efficiency hack
-                              :possible-weight possible-weight
-                              :actual-weight   actual-weight
-                              :sink-effects    sink-effects)]
-          (dosync
-           (doseq [id (cons use-point sight-line)]
-             (alter (get-in possible-flow-layer id) _+_ possible-weight)
-             (alter (get-in actual-flow-layer   id) _+_ actual-weight))
-           (alter (get-in cache-layer use-point) conj carrier)))))))
+    (let [use-loc-in-m    (to-meters use-point)
+          source-loc-in-m (to-meters source-point)
+          view-distance   (euclidean-distance use-loc-in-m source-loc-in-m)
+          distance-decay  (source-decay view-distance)]
+      (if (pos? distance-decay) ;; are we in range?
+        (let [sight-line      (rest (find-line-between use-point source-point))
+              use-elev        (get-in elev-layer use-point)
+              elevs           (map (p get-in elev-layer) sight-line)
+              rises           (map #(_-_ % use-elev) elevs)
+              runs            (map (p euclidean-distance use-loc-in-m)
+                                   (map to-meters sight-line))
+              slopes          (map _d rises runs)
+              sight-slopes    (cons _0_
+                                    (butlast
+                                     ;;(reductions rv-max slopes)
+                                     (reduce #(conj %1 (rv-max (peek %1) %2))
+                                             [(first slopes)]
+                                             (rest slopes))))
+              possible-weight (*_ distance-decay
+                                  (compute-view-impact (get-in source-layer source-point)
+                                                       (last elevs)
+                                                       use-elev
+                                                       (last sight-slopes)
+                                                       (last runs)))]
+          (when (rv-above? possible-weight *trans-threshold*)
+            (let [sink-effects  (into {}
+                                      (map #(let [sink-value (get-in sink-layer %1)]
+                                              (if (not= sink-value _0_)
+                                                (let [view-impact (compute-view-impact sink-value %2 use-elev %3 %4)]
+                                                  (if (not= view-impact _0_)
+                                                    (vector %1 (*_ %5 view-impact))))))
+                                           sight-line
+                                           elevs
+                                           sight-slopes
+                                           runs
+                                           (take-while pos? (map sink-decay runs))))
+                  actual-weight (rv-pos (reduce _-_ possible-weight (vals sink-effects)))
+                  carrier       (struct-map service-carrier
+                                  :source-id       source-point
+                                  ;;:route           (bitpack-route (reverse (cons use-point sight-line))) ;; Temporary efficiency hack
+                                  :possible-weight possible-weight
+                                  :actual-weight   actual-weight
+                                  :sink-effects    sink-effects)]
+              (dosync
+               (doseq [id (cons use-point sight-line)]
+                 (alter (get-in possible-flow-layer id) _+_ possible-weight)
+                 (if (not= _0_ actual-weight)
+                   (alter (get-in actual-flow-layer id) _+_ actual-weight)))
+               (alter (get-in cache-layer use-point) conj carrier)))))))))
 
 (def *animation-sleep-ms* 100)
 
@@ -179,22 +182,22 @@
         actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
         source-points          (filter-matrix-for-coords (p not= _0_) source-layer)
         use-points             (filter-matrix-for-coords (p not= _0_) use-layer)
-        km2-per-cell           (* cell-width cell-height (Math/pow 10.0 -6.0))
+        num-view-lines         (* (count source-points) (count use-points))
         to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
-        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow 1)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow 1)))]
+        animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
+        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow animation-pixel-size)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow animation-pixel-size)))]
     (when animation?
       (send-off possible-flow-animator run-animation)
       (send-off actual-flow-animator   run-animation))
     (println "Source points:" (count source-points))
     (println "Use points:   " (count use-points))
-    (println "Scanning view lines...")
-    (with-progress-bar*
-      1000
+    (println "Scanning" num-view-lines "view lines...")
+    (with-progress-bar-cool
+      num-view-lines
       (pmap (p raycast!
-               (map-matrix #(*_ km2-per-cell %) source-layer)
-               (map-matrix #(*_ km2-per-cell %) sink-layer)
-               (map-matrix #(*_ km2-per-cell %) use-layer)
+               source-layer
+               sink-layer
                elev-layer
                cache-layer
                possible-flow-layer
@@ -202,10 +205,11 @@
                to-meters)
             (for [source-point source-points use-point use-points]
               [source-point use-point])))
-    (println "All done.")
+    (println "\nAll done.")
     (when animation?
       (send-off possible-flow-animator end-animation)
       (send-off actual-flow-animator   end-animation))
+    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
     (println "Simulation complete. Returning the cache-layer.")
     [(map-matrix (& seq deref) cache-layer)
      (map-matrix deref possible-flow-layer)

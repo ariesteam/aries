@@ -173,15 +173,16 @@
         (geophysics:Altitude)
         :source-threshold   25.0  ;; Excludes LowNaturalBeauty
         :sink-threshold     25.0  ;; Excludes LowBlight
-        :use-threshold       0.05 ;; Excludes HomeownerViewUseAbsent
-        :trans-threshold    25.0  ;; Minimum simulated source value
+        :use-threshold       0.2  ;; Excludes HomeownerViewUseAbsent
+        :trans-threshold     1.0
         :source-type        :infinite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_view_san_pedro_data.clj"
+        :animation?         true
+        :save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_view_san_pedro_data_lowres.clj"
         :keep (PotentialViews
                PotentialVisualBlight
                HomeownersWithViewDemand

@@ -171,12 +171,12 @@
              :sink-layer sink-layer
              :sink-threshold 50.0 ;; 25.0 ;; 5.0
              :use-layer use-layer
-             :use-threshold 0.05
+             :use-threshold 0.2
              :flow-layers flow-layers
-             :trans-threshold 10.0
-             :cell-width  1000.0
-             :cell-height 1000.0
-             :downscaling-factor 2
+             :trans-threshold 1.0
+             :cell-width  859.1806361599898
+             :cell-height 1756.317853798546
+             :downscaling-factor 1
              :rv-max-states 10
              :source-type :infinite
              :sink-type :infinite
@@ -184,4 +184,4 @@
              :benefit-type :non-rival
              :flow-model "LineOfSight"
              :result-type :closure-map
-             :animation? false}))
+             :animation? true}))

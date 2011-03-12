@@ -346,6 +346,27 @@
      (dorun (map (fn [v#] (print "*") (flush) v#) (take-nth ~step ~body)))
      (newline)))
 
+;; Ex: (dotimes [i 100] (progress-bar (inc i) 100 25 \=) (Thread/sleep 500))
+(defn progress-bar
+  [got total width char]
+  (let [width     (or width 25)
+        char      (or char \=)
+        num-width (count (str total))
+        frac-done (/ got total)
+        num-chars (Math/round (* (- width 1.0) frac-done))]
+    (printf (str "|%-" width "s| Completed %" num-width "s of %s (%.1f%%)\r")
+            (str (apply str (take num-chars (repeat char))) \>) got total (* 100.0 frac-done))
+    (flush)))
+
+(defmacro with-progress-bar-cool
+  [total body]
+  `(let [step# (max 1 (int (* 0.001 ~total)))]
+     (reduce (fn [done# _#]
+               (progress-bar done# ~total 25 \=)
+               (+ done# step#))
+             0
+             (take-nth step# ~body))))
+
 (defn iterate-while-seq
   [f x]
   ;;(take-while seq (iterate (& (p remove nil?) f) x)))
