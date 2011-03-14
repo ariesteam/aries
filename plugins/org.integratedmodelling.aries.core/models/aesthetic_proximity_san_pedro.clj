@@ -108,8 +108,8 @@
 (defmodel sink ProximitySink
   (ranking ProximitySink
            :context ((binary-coding infrastructure:Highway :as highway))
-           :state #(cond (== (:highway %) 1) 50   ;;50 units of proximity value are depleted by the sink if highways are present
-                         :otherwise          0))) ;;Otherwise zero sink
+           :state #(cond (== (:highway %) 1) 50   ;; 50 units of proximity value are depleted by the sink if highways are present
+                         :otherwise          0))) ;; Otherwise zero sink
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
@@ -141,7 +141,7 @@
 ;;undiscretizer for proximty use
 (defmodel proximity-use-undiscretizer HomeownerProximityUse
   (probabilistic-ranking HomeownerProximityUse
-                  [0 0.05]   HomeownerProximityUseAbsent 
+                  [0 0.05] HomeownerProximityUseAbsent
                   [0.05 1] HomeownerProximityUsePresent))
 
 ;; bayesian model
@@ -171,29 +171,39 @@
 
 (defmodel proximity AestheticProximity
   (span Proximity
-        TheoreticalProximitySource
-        HomeownerProximityUse
+        AestheticProximityProvision
+        ProximityUse
       	ProximitySink
       	nil
         nil
-        :source-threshold   5.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     0.0  
-        :use-threshold      4.0   ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
-        :trans-threshold    4.0   ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
+        :source-threshold   40.0  ;; Excludes LowProximityPotential
+        :sink-threshold     0.0   ;; Deterministic as 0.0 or 50.0 based on presence of highways
+        :use-threshold      0.2   ;; Excludes HomeownerProximityUseAbsent
+        :trans-threshold    1.0
         :source-type        :infinite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        ;;:downscaling-factor 2
         :downscaling-factor 1
         :rv-max-states      10
-        :keep (PotentialProximateOpenSpace PotentialProximitySink HomeownersWithOpenSpaceDemand
-               PossibleProximateOpenSpace AccessibleOpenSpace OpenSpaceProximateHomeowners
-               AccessibleProximity EnjoyedOpenSpace BlockingProximitySink
-               HomeownersWithProximateOpenSpace UnaccessedOpenSpace InaccessibleProximitySink
-               HomeownersWithoutProximateOpenSpace BlockedProximity BlockedOpenSpace
-               HomeownersWithBlockedProximity)
+        :animation?         true
         ;;:save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_proximity_san_pedro_data.clj"
+        :keep (PotentialProximateOpenSpace
+               PotentialProximitySink
+               HomeownersWithOpenSpaceDemand
+               PossibleProximateOpenSpace
+               AccessibleOpenSpace
+               OpenSpaceProximateHomeowners
+               AccessibleProximity
+               EnjoyedOpenSpace
+               BlockingProximitySink
+               HomeownersWithProximateOpenSpace
+               UnaccessedOpenSpace
+               InaccessibleProximitySink
+               HomeownersWithoutProximateOpenSpace
+               BlockedProximity
+               BlockedOpenSpace
+               HomeownersWithBlockedProximity)
         :context (source homeowners sink)))
 
 ;; ----------------------------------------------------------------------------------------------
