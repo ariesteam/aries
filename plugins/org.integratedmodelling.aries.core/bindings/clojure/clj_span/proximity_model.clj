@@ -27,121 +27,181 @@
 ;;;   block the frontier's progress
 
 (ns clj-span.proximity-model
-  (:use [clj-misc.utils      :only (p & my->>)]
+  (:use [clj-misc.utils      :only (def- p & my->> mapmap euclidean-distance with-progress-bar-cool remove-nil-val-entries)]
         [clj-span.params     :only (*trans-threshold*)]
-        [clj-span.model-api  :only (distribute-flow decay undecay service-carrier)]
-        [clj-misc.randvars   :only (_0_ _-_ _* _d _>_ rv-pos rv-mean rv-cdf-lookup)]
+        [clj-span.model-api  :only (distribute-flow service-carrier)]
+        [clj-misc.randvars   :only (_0_ _+_ _* _>_ rv-fn rv-above?)]
+        [clj-span.gui        :only (draw-ref-layer)]
         [clj-misc.matrix-ops :only (get-neighbors
                                     make-matrix
                                     map-matrix
+                                    matrix2seq
                                     get-rows
                                     get-cols
+                                    get-line-fn
                                     filter-matrix-for-coords
-                                    bitpack-route
                                     find-bounding-box)]))
 
-;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
-(defmethod decay "Proximity"
-  [_ weight step] (if (> step 1) (_d weight (* step step)) weight))
+;; in meters
+(def- half-mile    805.0)
+(def- mile        1610.0)
 
-;; FIXME convert step to distance metric based on map resolution and make this gaussian to 1/2 mile
-(defmethod undecay "Proximity"
-  [_ weight step] (if (> step 1) (_* weight (* step step)) weight))
+(def- fast-source-decay (get-line-fn {:slope (/ -0.75 half-mile) :intercept 1.0}))
+(def- slow-source-decay (get-line-fn {:slope (/ -0.25 half-mile) :intercept 0.5}))
 
-(defstruct frontier-option :utility :route :sink-effects)
+;; source decay = fast decay to 1/2 mile, slow decay to 1 mile, gone after 1 mile
+(defn- source-decay
+  [distance]
+  (cond (> distance mile)
+        0.0
 
-(defn- make-frontier-option
-  "If the location is a sink, its id and sink-value are saved on the
-   sink-effects map and its sink-value is subtracted from the current
-   utility along this path.  Whether a sink or not, the current
-   location's id is appended to the route."
-  [location-id sink-layer {:keys [utility route sink-effects] :as last-frontier-option}]
-  (let [sink-value (get-in sink-layer location-id)]
-    (if (not= _0_ sink-value)
-      (struct-map frontier-option
-        :utility      (rv-pos (_-_ utility sink-value))
-        :route        (conj route location-id)
-        :sink-effects (conj sink-effects [location-id sink-value]))
-      (update-in last-frontier-option [:route] conj location-id))))
+        (< distance half-mile)
+        (fast-source-decay distance)
 
-(defn- too-little-utility?
-  "Returns true if the probability that this frontier-option's
-   distance-decayed utility is less than *trans-threshold* is greater
-   than 0.5."
-  [flow-model {:keys [utility route]}]
-  (> (rv-cdf-lookup (decay flow-model utility (dec (count route)))
-                    *trans-threshold*)
-     0.5))
+        :otherwise
+        (slow-source-decay distance)))
 
-(defn- expand-frontier
-  "Returns a new frontier which surrounds the one passed in and
-   contains only those frontier-options which have a decayed utility
-   greater than *trans-threshold*. A frontier is here defined to be a
-   map of location ids [i j] to frontier-option structs."
-  [flow-model sink-layer rows cols frontier]
-  (my->> (for [boundary-id (find-bounding-box rows cols (keys frontier))]
-           (when-let [frontier-options (my->> boundary-id
-                                              (get-neighbors rows cols)
-                                              (map frontier)
-                                              (remove nil?)
-                                              seq)]
-             (my->> frontier-options
-                    (apply max-key (& rv-mean :utility))
-                    (make-frontier-option boundary-id sink-layer)
-                    (array-map boundary-id))))
-         (remove #(or (nil? %) (too-little-utility? flow-model (val %))))
-         (apply merge)))
+(defn- distance-decay
+  [to-meters A B]
+  (let [distance (euclidean-distance (to-meters A) (to-meters B))]
+    (source-decay distance)))
 
 (defn- store-carrier!
   "If the location is a use point, a service-carrier is stored in its
    carrier-cache containing the highest utility route that
    expand-frontier found from the source-point to this one."
-  [flow-model cache-layer source-layer use-layer
-   [location-id {:keys [utility route sink-effects]}]]
-  (when (not= _0_ (get-in use-layer location-id))
-    (let [carrier-cache      (get-in cache-layer location-id)
-          source-id          (first route)
-          steps              (dec (count route))
-          possible-weight    (decay flow-model (get-in source-layer source-id) steps)
-          actual-weight      (decay flow-model utility steps)
-          last-actual-weight (:actual-weight (@carrier-cache source-id))]
-      (if (or (nil? last-actual-weight) (_>_ actual-weight last-actual-weight))
-        (swap! carrier-cache assoc source-id
-               (struct-map service-carrier
-                 :source-id       source-id
-                 :route           (bitpack-route route)
-                 :possible-weight possible-weight
-                 :actual-weight   actual-weight
-                 :sink-effects    sink-effects))))))
+  [use-layer cache-layer possible-flow-layer actual-flow-layer
+   [boundary-id {:keys [source-id route possible-weight actual-weight sink-effects decay-value]}]]
+  (if (not= _0_ (get-in use-layer boundary-id))
+    (let [decayed-pweight (_* possible-weight decay-value)
+          decayed-aweight (_* actual-weight   decay-value)
+          decayed-carrier (struct-map service-carrier
+                            :source-id       source-id
+                            :route           nil
+                            :possible-weight decayed-pweight
+                            :actual-weight   decayed-aweight
+                            :sink-effects    (mapmap identity #(_* % decay-value) sink-effects))]
+      (dosync
+       (doseq [id route]
+         (alter (get-in possible-flow-layer id) _+_ decayed-pweight)
+         (if (not= _0_ decayed-aweight)
+           (alter (get-in actual-flow-layer id) _+_ decayed-aweight)))
+       (alter (get-in cache-layer boundary-id) conj decayed-carrier)))))
+
+(defn- progress-carrier
+  "If the location is a sink, its id and sink-value are saved on the
+   sink-effects map and its sink-value is subtracted from the current
+   utility along this path.  Whether a sink or not, the current
+   location's id is appended to the route."
+  [boundary-id sink-layer to-meters {:keys [source-id route possible-weight actual-weight sink-effects] :as prev-carrier}]
+  (let [decay-value (distance-decay to-meters source-id boundary-id)]
+    (if (rv-above? (_* possible-weight decay-value) *trans-threshold*)
+      (let [sink-value (get-in sink-layer boundary-id)]
+        (if (or (= _0_ sink-value)
+                (= _0_ actual-weight))
+          (assoc prev-carrier
+            :decay-value decay-value
+            :route       (conj route boundary-id))
+          (assoc prev-carrier
+            :decay-value   decay-value
+            :route         (conj route boundary-id)
+            :actual-weight (rv-fn (fn [a s] (max 0.0 (- a s))) actual-weight sink-value)
+            :sink-effects  (conj sink-effects [boundary-id (rv-fn (fn [a s] (min a s)) actual-weight sink-value)])))))))
+
+(defn- expand-frontier
+  "Returns a new frontier which surrounds the one passed in and
+   contains only those frontier-options which have a decayed
+   possible-weight greater than *trans-threshold*. A frontier is here
+   defined to be a map of location ids [i j] to service-carrier
+   structs."
+  [sink-layer to-meters rows cols frontier]
+  (into {}
+        (for [boundary-id (find-bounding-box rows cols (keys frontier))]
+          [boundary-id
+           (if-let [frontier-options (my->> boundary-id
+                                            (get-neighbors rows cols)
+                                            (map frontier)
+                                            (remove nil?)
+                                            seq)]
+             (if-let [best-path-carrier (my->> frontier-options
+                                               (reduce (fn [c1 c2] (if (_>_ (:actual-weight c1) (:actual-weight c2)) c1 c2)))
+                                               (progress-carrier boundary-id sink-layer to-meters))]
+               best-path-carrier))])))
 
 (defn- distribute-gaussian!
-  "Creates a frontier struct for the source location and then expands
-   the frontier in all directions until no further utility can be
-   distributed (due to distance decay or sinks).  Stores a
-   service-carrier in every use location it encounters."
-  [flow-model cache-layer source-layer sink-layer use-layer rows cols source-id]
-  (doseq [frontier (take-while seq (iterate (p expand-frontier flow-model sink-layer rows cols)
-                                            {source-id (make-frontier-option source-id
-                                                                             sink-layer
-                                                                             (struct-map frontier-option
-                                                                               :utility      (get-in source-layer source-id)
-                                                                               :route        []
-                                                                               :sink-effects {}))}))]
-    (dorun (map (p store-carrier! flow-model cache-layer source-layer use-layer) frontier))))
+  "Creates a service-carrier struct for the source location and then
+   expands the frontier in all directions until no further utility can
+   be distributed (due to distance decay).  Stores a service-carrier
+   in every use location it encounters."
+  [source-layer sink-layer use-layer cache-layer possible-flow-layer
+   actual-flow-layer to-meters rows cols source-id]
+  (let [source-value (get-in source-layer source-id)]
+    (doseq [frontier (take-while seq
+                                 (map remove-nil-val-entries
+                                      (iterate (p expand-frontier sink-layer to-meters rows cols)
+                                               {source-id (progress-carrier source-id
+                                                                            sink-layer
+                                                                            to-meters
+                                                                            (struct-map service-carrier
+                                                                              :source-id       source-id
+                                                                              :route           []
+                                                                              :possible-weight source-value
+                                                                              :actual-weight   source-value
+                                                                              :sink-effects    {}))})))]
+      (doseq [frontier-element frontier]
+        (store-carrier! use-layer
+                        cache-layer
+                        possible-flow-layer
+                        actual-flow-layer
+                        frontier-element)))))
+
+(def *animation-sleep-ms* 100)
+
+;; FIXME: This is really slow. Speed it up.
+(defn run-animation [panel]
+  (send-off *agent* run-animation)
+  (Thread/sleep *animation-sleep-ms*)
+  (doto panel (.repaint)))
+
+(defn end-animation [panel] panel)
 
 (defmethod distribute-flow "Proximity"
-  [flow-model animation? cell-width cell-height source-layer sink-layer use-layer _]
+  [_ animation? cell-width cell-height source-layer sink-layer use-layer _]
   (println "Running Proximity flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (atom {})))
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        source-points (filter-matrix-for-coords (p not= _0_) source-layer)]
+  (let [rows                   (get-rows source-layer)
+        cols                   (get-cols source-layer)
+        cache-layer            (make-matrix rows cols (fn [_] (ref ())))
+        possible-flow-layer    (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
+        source-points          (filter-matrix-for-coords (p not= _0_) source-layer)
+        to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
+        animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
+        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow animation-pixel-size)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow animation-pixel-size)))]
     (println "Source points:" (count source-points))
-    (dorun (pmap
-            (p distribute-gaussian! flow-model cache-layer source-layer sink-layer use-layer rows cols)
+    (when animation?
+      (send-off possible-flow-animator run-animation)
+      (send-off actual-flow-animator   run-animation))
+    (println "Projecting" (count source-points) "search bubbles...")
+    (with-progress-bar-cool
+      (count source-points)
+      (pmap (p distribute-gaussian!
+               source-layer
+               sink-layer
+               use-layer
+               cache-layer
+               possible-flow-layer
+               actual-flow-layer
+               to-meters
+               rows
+               cols)
             source-points))
-    [(map-matrix (& vals deref) cache-layer)
+    (println "\nAll done.")
+    (when animation?
+      (send-off possible-flow-animator end-animation)
+      (send-off actual-flow-animator   end-animation))
+    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
+    (println "Simulation complete. Returning the cache-layer.")
+    [(map-matrix (& seq deref) cache-layer)
      (map-matrix deref possible-flow-layer)
      (map-matrix deref actual-flow-layer)]))

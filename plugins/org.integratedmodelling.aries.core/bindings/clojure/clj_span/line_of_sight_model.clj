@@ -41,7 +41,6 @@
                                     get-rows
                                     get-cols
                                     filter-matrix-for-coords
-                                    ;;bitpack-route
                                     find-line-between
                                     get-line-fn)]
         [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ rv-max rv-pos rv-above?)]
@@ -57,7 +56,7 @@
 (def- _20-miles  32200.0)
 (def- _40-miles  64400.0)
 
-(def- source-ramp-up        (get-line-fn {:slope (/  1.0  mile)     :intercept 0.0}))
+(def- source-ramp-up        (get-line-fn {:slope (/  1.0  mile)      :intercept 0.0}))
 (def- slow-source-decay     (get-line-fn {:slope (/ -0.25 _4-miles)  :intercept 1.0625}))
 (def- fast-source-decay     (get-line-fn {:slope (/ -0.5  _15-miles) :intercept 0.9166667}))
 (def- moderate-source-decay (get-line-fn {:slope (/ -0.25 _20-miles) :intercept 0.5}))
@@ -83,7 +82,7 @@
         :otherwise
         (moderate-source-decay distance)))
 
-;; sink decay   = slow decay to 1/2 mile, fast decay to 1 mile, gone after 1 mile
+;; sink decay = slow decay to 1/2 mile, fast decay to 1 mile, gone after 1 mile
 (defn- sink-decay
   [distance]
   (cond (> distance mile)
@@ -177,8 +176,6 @@
 
 (defn end-animation [panel] panel)
 
-;; Detects all sources and sinks visible from the use-point and stores
-;; their utility contributions in the cache-layer."
 (defmethod distribute-flow "LineOfSight"
   [_ animation? cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
   (println "Running LineOfSight flow model.")
@@ -194,11 +191,11 @@
         animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
         possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow animation-pixel-size)))
         actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow animation-pixel-size)))]
+    (println "Source points:" (count source-points))
+    (println "Use points:   " (count use-points))
     (when animation?
       (send-off possible-flow-animator run-animation)
       (send-off actual-flow-animator   run-animation))
-    (println "Source points:" (count source-points))
-    (println "Use points:   " (count use-points))
     (println "Scanning" num-view-lines "view lines...")
     (with-progress-bar-cool
       num-view-lines

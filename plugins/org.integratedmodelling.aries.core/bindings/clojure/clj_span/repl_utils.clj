@@ -185,3 +185,25 @@
              :flow-model "LineOfSight"
              :result-type :closure-map
              :animation? true}))
+
+(defn test-run-proximity
+  []
+  (run-span {:source-layer source-layer
+             :source-threshold 40.0
+             :sink-layer sink-layer
+             :sink-threshold 0.0
+             :use-layer use-layer
+             :use-threshold 0.2
+             :flow-layers flow-layers
+             :trans-threshold 1.0
+             :cell-width  859.1806361599898
+             :cell-height 1756.317853798546
+             :downscaling-factor 1
+             :rv-max-states 10
+             :source-type :infinite
+             :sink-type :infinite
+             :use-type :infinite
+             :benefit-type :non-rival
+             :flow-model "Proximity"
+             :result-type :closure-map
+             :animation? true}))
