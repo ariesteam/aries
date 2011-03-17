@@ -25,9 +25,15 @@ public class ARIESPlugin extends ThinklabPlugin {
 		Geospace.get().loadGazetteersFromDirectory(getScratchPath());
 		
 		/*
-		 * load any personal gazetteers
+		 * load any personal gazetteers. Use env variable THINKLAB_GAZETTEERS_HOME to change default
+		 * of user home.
 		 */
-		Geospace.get().loadGazetteersFromDirectory(new File(System.getProperty("user.home")));
+		String ghome = System.getenv("ARIES_GAZETTEERS_HOME");
+		String gdir  = System.getProperty("user.home");
+		if (ghome != null)
+			gdir = ghome;
+		
+		Geospace.get().loadGazetteersFromDirectory(new File(gdir));
 		
 	}
 
