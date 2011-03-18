@@ -167,17 +167,17 @@
 ;;Global dataset values are in the range of 25-30 mm for the San Pedro but SWAT model results say 99-482.
 ;; Need to resolve which is correct.
 ;; Later on this should be used for training, but not yet.
-(defmodel evapotranspiration EvapotranspirationClass
-  (probabilistic-measurement EvapotranspirationClass "mm"
-                  [60 120]   HighEvapotranspiration
-                  [30 60]    ModerateEvapotranspiration
-                  [0 30]     LowEvapotranspiration))
+(defmodel evapotranspiration sanPedro:EvapotranspirationClass
+  (probabilistic-measurement sanPedro:EvapotranspirationClass "mm"
+                  [60 120]   sanPedro:HighEvapotranspiration
+                  [30 60]    sanPedro:ModerateEvapotranspiration
+                  [0 30]     sanPedro:LowEvapotranspiration))
 
-(defmodel infiltration SoilInfiltrationClass
-  (probabilistic-measurement SoilInfiltrationClass  "mm"
-                  [60 120]   HighInfiltration
-                  [30 60]    ModerateInfiltration
-                  [0 30]     LowInfiltration))
+(defmodel infiltration sanPedro:SoilInfiltrationClass
+  (probabilistic-measurement sanPedro:SoilInfiltrationClass  "mm"
+                  [60 120]   sanPedro:HighInfiltration
+                  [30 60]    sanPedro:ModerateInfiltration
+                  [0 30]     sanPedro:LowInfiltration))
 
 (defmodel et-sink Evapotranspiration
     (bayesian Evapotranspiration
@@ -190,7 +190,7 @@
     (bayesian SoilInfiltration
       :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
       :context  (stream-channel mountain-front)
-      :keep     (SoilInfiltrationClass)
+      :keep     (sanPedro:SoilInfiltrationClass)
       :result   infiltration))
 
 (defmodel surface-water-sink SurfaceWaterSink

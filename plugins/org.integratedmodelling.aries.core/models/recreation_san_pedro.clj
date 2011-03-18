@@ -31,77 +31,63 @@
 ;; layer from Bill Kepner.  Check syntax on the statements with Gary.
 (defmodel streams geofeatures:River  ;;A simplified hydrography layer: NHD is too much here
   (binary-coding geofeatures:River))
+
 (defmodel springs waterSupplyService:Springs
   (binary-coding waterSupplyService:Springs))
+
 (defmodel water-presence sanPedro:WaterPresence
   (binary-coding sanPedro:WaterPresence
     :context (streams :as streams springs :as springs) 
     :state #(+ (:streams %)
                (:springs %))))
+
+;;(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
+;;  (numeric-coding sanPedro:RiparianAndWetlandCode
+;;                  :context ((binary-coding sanPedro:WaterPresence :as water-presence)
+;;                            (ranking sanPedro:RiparianConditionClass :as condition))
+;;                  :state   #(cond (and (== (:condition %) 1) ;;NEED TO SET AS "OTHERWISE" also.
+;;                                       (contains? #{1} (:water-presence %)))
+;;                                  1 ;;sanPedro:LowQualityRiparianOrWetlandPresent
+;;
+;;                                  (and (== (:condition %) 2)
+;;                                       (contains? #{1} (:water-presence %)))
+;;                                  2 ;;sanPedro:ModerateQualityRiparianOrWetlandPresent
+;;
+;;                                  (and (== (:condition %) 3)
+;;                                       (contains? #{1} (:water-presence %)))
+;;                                  3 ;;sanPedro:HighQualityRiparianOrWetlandPresent
+;;
+;;                                  :otherwise 0 ;;sanPedro:NoRiparianOrWetlandPresentHig
+;;                                  )))
+
+;;(defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
+;;  (classification riparian-wetland-code
+;;                  3 sanPedro:HighQualityRiparianSpringWetland
+;;                  2 sanPedro:ModerateQualityRiparianSpringWetland
+;;                  1 sanPedro:LowQualityRiparianSpringWetland
+;;                  0 sanPedro:RiparianSpringWetlandAbsent))
+
+;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
+;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
+;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
+;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
 (defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
   (numeric-coding sanPedro:RiparianAndWetlandCode
                   :context ((binary-coding sanPedro:WaterPresence :as water-presence)
                             (ranking sanPedro:RiparianConditionClass :as condition))
-                  :state   #(cond (and (== (:condition %) 1) ;;NEED TO SET AS "OTHERWISE" also.
-                                       (contains? #{1} (:water-presence %)))
-                                  1 ;;sanPedro:LowQualityRiparianOrWetlandPresent
+                  :state   #(if (contains? #{1} (:water-presence %))
+                                (let [condition (:condition %)]
+                                  (if (or (nil? condition) (Double/isNaN condition))
+                                    1
+                                    condition))
+                                0)))
 
-                                  (and (== (:condition %) 2)
-                                       (contains? #{1} (:water-presence %)))
-                                  2 ;;sanPedro:ModerateQualityRiparianOrWetlandPresent
-
-                                  (and (== (:condition %) 3)
-                                       (contains? #{1} (:water-presence %)))
-                                  3 ;;sanPedro:HighQualityRiparianOrWetlandPresent
-
-                                  :otherwise 0 ;;sanPedro:NoRiparianOrWetlandPresentHig
-                                  )))
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification riparian-wetland-code
                   3 sanPedro:HighQualityRiparianSpringWetland
                   2 sanPedro:ModerateQualityRiparianSpringWetland
                   1 sanPedro:LowQualityRiparianSpringWetland
                   0 sanPedro:RiparianSpringWetlandAbsent))
-
-;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
-;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
-;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
-;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
-;;(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
-;;  (numeric-coding sanPedro:RiparianAndWetlandCode
-;;                  :context ((numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
-;;                            (ranking sanPedro:RiparianConditionClass :as condition))
-;;                  :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:lulc %))
-;;                                (let [condition (:condition %)]
-;;                                  (if (or (nil? condition) (Double/isNaN condition))
-;;                                    1
-;;                                    condition))
-;;                                0)))
-
-;;(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
-;;  (numeric-coding sanPedro:RiparianAndWetlandCode
-;;                  :context ((numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
-;;                            (ranking sanPedro:RiparianConditionClass :as condition))
-;;                  :state   #(cond (and (== (:condition %) 1)
-;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-;;                                  1 ;;sanPedro:LowQualityRiparianOrWetlandPresent
-
-;;                                  (and (== (:condition %) 2)
-;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110 118} (:lulc %)))
-;;                                  2 ;;sanPedro:ModerateQualityRiparianOrWetlandPresent
-
-;;                                  (and (== (:condition %) 3)
-;;                                       (contains? #{77 78 79 80 81 83 84 85 98 109 110} (:lulc %)))
-;;                                 3 ;;sanPedro:HighQualityRiparianOrWetlandPresent
-
-;;                                  :otherwise 0 ;;sanPedro:NoRiparianOrWetlandPresentHig
-;;                                  )))
-;;(defmodel riparian-wetland sanPedro:RiparianAndWetland
-;;  (classification riparian-wetland-code
-;;                  3 sanPedro:HighQualityRiparianOrWetlandPresent
-;;                  2 sanPedro:ModerateQualityRiparianOrWetlandPresent
-;;                  1 sanPedro:LowQualityRiparianOrWetlandPresent
-;;                  0 sanPedro:RiparianOrWetlandAbsent))
 
 ;;No public access includes private land, Native American reservations, military land.
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
@@ -134,20 +120,28 @@
 ;;  Wildlife viewing source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Check syntax with Gary: stuck commeting this out for now as its throwing errors.
-;;(defmodel wildlife-richness :WildlifeSpeciesRichness
-;;    (classification (ranking :WildlifeSpeciesRichness)
-;;      :context ((ranking habitat:AvianRichness      :as bird-species-richness)
-;;                (ranking habitat:MammalRichness     :as mammal-species-richness)
-;;                (ranking habitat:ReptileRichness    :as reptile-species-richness)
-;;                (ranking habitat:AmphibianRichness  :as amphibian-species-richness))
-;;      :state   #(* (+ (bird-species-richness mammal-species-richness reptile-species-richness amphibian-species-richness)) 0.25))) 
-;;(defmodel wildlife-species-richness WildlifeSpeciesRichnessClass
-;;    (classification (ranking WildlifeSpeciesRichness)
-;;      [8 10] VeryHighWildlifeSpeciesRichness
-;;      [6 8]  HighWildlifeSpeciesRichness
-;;      [4 6]  ModerateWildlifeSpeciesRichness
-;;      [0 4]  LowWildlifeSpeciesRichness)) 
+(defmodel wildlife-species-richness WildlifeSpeciesRichness
+    (ranking WildlifeSpeciesRichness
+      :context ((ranking habitat:AvianRichness      :as bird-species-richness)
+                (ranking habitat:MammalRichness     :as mammal-species-richness)
+                (ranking habitat:ReptileRichness    :as reptile-species-richness)
+                (ranking habitat:AmphibianRichness  :as amphibian-species-richness))
+      :state   #(Math/round (* (+ (or (:bird-species-richness %) 0)  
+                                  (or (:mammal-species-richness %) 0) 
+                                  (or (:reptile-species-richness %) 0) 
+                                  (or (:amphibian-species-richness %) 0)) 
+                            0.25))))
+;;#(let [b (:bird-species-richness %)                     alternative code for the above state statement
+;;                      m (:mammal-species-richness %) 
+;;                      r (:reptile-species-richness %)
+;;                      a (:amphibian-species-richness %)] 
+;;                  (Math/round (* 0.25 (reduce + 0 (remove nil? [b m r a])))))))
+(defmodel wildlife-species-richness-class WildlifeSpeciesRichnessClass
+    (classification wildlife-species-richness
+      [8 10] VeryHighWildlifeSpeciesRichness
+      [6 8]  HighWildlifeSpeciesRichness
+      [4 6]  ModerateWildlifeSpeciesRichness
+      [0 4]  LowWildlifeSpeciesRichness)) 
 
 (defmodel wildlife-quality SiteWildlifeQuality
   (probabilistic-ranking SiteWildlifeQuality
@@ -161,7 +155,7 @@
           :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
             :keep     (SiteWildlifeQuality)
             :result   wildlife-quality
-            :context  (riparian-wetland public-lands))) ;;add wildlife-richness when statement's OK'd
+            :context  (riparian-wetland public-lands wildlife-species-richness-class)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;;  Hunting source model

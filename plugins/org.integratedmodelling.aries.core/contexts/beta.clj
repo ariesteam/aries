@@ -61,7 +61,7 @@
 (defcontext san_pedro_us_low_res
   "" 
   (grid  
-    128
+    400
     "EPSG:4326 POLYGON((-111.012 33.281, -109.872 33.281, -109.872 31.338, -111.012 31.338, -111.012 33.281))"))
 
 (defcontext san_pedro_us_med_res
