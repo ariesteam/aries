@@ -20,7 +20,9 @@
       (= type :source) (Color. 255   0   0 (int (* 255 alpha)))
       (= type :sink)   (Color.   0 255   0 (int (* 255 alpha)))
       (= type :use)    (Color.   0   0 255 (int (* 255 alpha)))
-      (= type :flow)   (Color. 255   0 255 (int (* 255 alpha)))))
+      (= type :flow)   (Color. 255   0 255 (int (* 255 alpha)))
+      (= type :pflow)  (Color.   0 255 255 (int (* 255 alpha)))
+      (= type :aflow)  (Color. 255 255   0 (int (* 255 alpha)))))
 
 (defn render [g layer type scale x-dim y-dim]
   (let [normalized-layer (normalize-matrix (map-matrix rv-mean layer))

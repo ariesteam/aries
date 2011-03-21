@@ -82,7 +82,7 @@
 ;;;   within some epsilon of one another.
 
 (ns clj-span.carbon-model
-  (:use [clj-misc.utils      :only (p sum def- with-progress-bar)]
+  (:use [clj-misc.utils      :only (p sum def- with-progress-bar-cool)]
         [clj-misc.randvars   :only (_0_ *_ _d draw make-randvar)]
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-misc.matrix-ops :only (filter-matrix-for-coords make-matrix coord-map2matrix get-rows get-cols)]))
@@ -141,7 +141,9 @@
 
     ;; Construct the service carrier lists for each use location and return them.
     (println "Computing" (count use-dists) "carrier lists...")
-    (with-progress-bar
+    (with-progress-bar-cool
+      :keep
+      (count use-dists)
       (pmap (p get-carrier-cache source-percents actual-sinks-by-source)
             possible-uses
             actual-uses
@@ -235,7 +237,7 @@
    values after being initially reduced by the sink values due to
    landscape emissions."
 
-  (println "Running Carbon flow model.")
+  (println "\nRunning Carbon flow model.")
 
   (let [rows          (get-rows source-layer)
         cols          (get-cols source-layer)

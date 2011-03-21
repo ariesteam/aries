@@ -167,7 +167,7 @@
 
 (defmethod distribute-flow "Proximity"
   [_ animation? cell-width cell-height source-layer sink-layer use-layer _]
-  (println "Running Proximity flow model.")
+  (println "\nRunning Proximity flow model.")
   (let [rows                   (get-rows source-layer)
         cols                   (get-cols source-layer)
         cache-layer            (make-matrix rows cols (fn [_] (ref ())))
@@ -176,14 +176,21 @@
         source-points          (filter-matrix-for-coords (p not= _0_) source-layer)
         to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
         animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow animation-pixel-size)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow animation-pixel-size)))]
+        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
+                                                                     possible-flow-layer
+                                                                     :pflow
+                                                                     animation-pixel-size)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
+                                                                     actual-flow-layer
+                                                                     :aflow
+                                                                     animation-pixel-size)))]
     (println "Source points:" (count source-points))
     (when animation?
       (send-off possible-flow-animator run-animation)
       (send-off actual-flow-animator   run-animation))
     (println "Projecting" (count source-points) "search bubbles...")
     (with-progress-bar-cool
+      :drop
       (count source-points)
       (pmap (p distribute-gaussian!
                source-layer

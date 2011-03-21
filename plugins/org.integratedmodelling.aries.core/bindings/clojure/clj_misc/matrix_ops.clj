@@ -197,20 +197,23 @@
 (defn resample-matrix
   [new-rows new-cols sampling-fn matrix]
   (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
-  (newline)
-  (println "Distinct Layer Values (pre-resampling):" (count (distinct (matrix2seq matrix))))
   (let [orig-rows (get-rows matrix)
         orig-cols (get-cols matrix)]
-    (println "Resampling matrix from" orig-rows "x" orig-cols "to" new-rows "x" new-cols)
-    (if (and (== orig-rows new-rows) (== orig-cols new-cols))
-      matrix
-      (let [cell-length (float (/ orig-rows new-rows))
-            cell-width  (float (/ orig-cols new-cols))]
-        (make-matrix new-rows new-cols (fn [[i j]] (sampling-fn (get-matrix-coverage matrix
-                                                                                     cell-length
-                                                                                     cell-width
-                                                                                     i
-                                                                                     j))))))))
+    (println (str "Resampling matrix from " orig-rows " x " orig-cols " to " new-rows " x " new-cols "..."))
+    (let [new-matrix (if (and (== orig-rows new-rows)
+                              (== orig-cols new-cols))
+                       matrix
+                       (let [cell-length (float (/ orig-rows new-rows))
+                             cell-width  (float (/ orig-cols new-cols))]
+                         (make-matrix new-rows new-cols (fn [[i j]] (sampling-fn (get-matrix-coverage matrix
+                                                                                                      cell-length
+                                                                                                      cell-width
+                                                                                                      i
+                                                                                                      j))))))]
+      (printf "  Distinct Layer Values: [Pre] %d [Post] %d\n"
+              (count (distinct (matrix2seq matrix)))
+              (count (distinct (matrix2seq new-matrix))))
+      new-matrix)))
 
 (defn divides?
   "Is y divisible by x? (i.e. x is the denominator)"
@@ -498,6 +501,10 @@
   (list A))
 
 (defn find-nearest
+  [test? rows cols id]
+  (some first (map (p filter test?) (take-while seq (iterate (p find-bounding-box rows cols) (list id))))))
+
+(defn find-nearest-boring
   [test? rows cols id]
   (if (test? id)
     id

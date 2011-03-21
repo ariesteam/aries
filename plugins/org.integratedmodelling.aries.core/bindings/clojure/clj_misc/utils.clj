@@ -359,13 +359,28 @@
     (flush)))
 
 (defmacro with-progress-bar-cool
-  [total body]
-  `(let [step# (max 1 (int (* 0.001 ~total)))]
-     (reduce (fn [done# _#]
-               (progress-bar done# ~total 25 \=)
-               (+ done# step#))
-             0
-             (take-nth step# ~body))))
+  [return-behavior total body]
+  (cond (= return-behavior :keep)
+        `(let [step#       (max 1 (int (* 0.001 ~total)))
+               result-seq# (delay ~body)]
+           (progress-bar 0 ~total 25 \=)
+           (reduce (fn [done# _#]
+                     (progress-bar done# ~total 25 \=)
+                     (+ done# step#))
+                   step#
+                   (take-nth step# (force result-seq#)))
+           (force result-seq#))
+        (= return-behavior :drop)
+        `(let [step#       (max 1 (int (* 0.001 ~total)))]
+           (progress-bar 0 ~total 25 \=)
+           (reduce (fn [done# _#]
+                     (progress-bar done# ~total 25 \=)
+                     (+ done# step#))
+                   step#
+                   (take-nth step# ~body))
+           nil)
+        :otherwise
+        (throw (Exception. "First input to with-progress-bar-cool must be one of :keep or :drop."))))
 
 (defn iterate-while-seq
   [f x]

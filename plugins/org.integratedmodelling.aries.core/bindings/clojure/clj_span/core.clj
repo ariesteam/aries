@@ -64,9 +64,9 @@
   "Takes a two dimensional array of RVs and replaces all values which
    have a >50% likelihood of being below the threshold with _0_."
   [threshold layer]
-  (println "Zeroing layer...")
-  (let [result (time (map-matrix #(if (rv-below? % threshold) _0_ %) layer))]
-    (printf "Distinct Layer Values: [Pre] %d [Post] %d\n"
+  (println (str "Zeroing layer below " threshold "..."))
+  (let [result (map-matrix #(if (rv-below? % threshold) _0_ %) layer)]
+    (printf "  Distinct Layer Values: [Pre] %d [Post] %d\n"
             (count (distinct (matrix2seq layer)))
             (count (distinct (matrix2seq result))))
     result))

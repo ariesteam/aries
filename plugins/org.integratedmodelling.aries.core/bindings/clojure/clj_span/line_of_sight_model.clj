@@ -178,7 +178,7 @@
 
 (defmethod distribute-flow "LineOfSight"
   [_ animation? cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
-  (println "Running LineOfSight flow model.")
+  (println "\nRunning LineOfSight flow model.")
   (let [rows                   (get-rows source-layer)
         cols                   (get-cols source-layer)
         cache-layer            (make-matrix rows cols (fn [_] (ref ())))
@@ -189,8 +189,14 @@
         num-view-lines         (* (count source-points) (count use-points))
         to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
         animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow animation-pixel-size)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow animation-pixel-size)))]
+        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
+                                                                     possible-flow-layer
+                                                                     :pflow
+                                                                     animation-pixel-size)))
+        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
+                                                                     actual-flow-layer
+                                                                     :aflow
+                                                                     animation-pixel-size)))]
     (println "Source points:" (count source-points))
     (println "Use points:   " (count use-points))
     (when animation?
@@ -198,6 +204,7 @@
       (send-off actual-flow-animator   run-animation))
     (println "Scanning" num-view-lines "view lines...")
     (with-progress-bar-cool
+      :drop
       num-view-lines
       (pmap (p raycast!
                source-layer
