@@ -5,11 +5,13 @@
 
 (defn load-layers
   [filename]
-  (let [[s k u f] (read-span-layers filename)]
+  (let [[s k u f cell-w cell-h] (read-span-layers filename)]
     (def source-layer s)
     (def sink-layer   k)
     (def use-layer    u)
-    (def flow-layers  f)))
+    (def flow-layers  f)
+    (def cell-width   cell-w)
+    (def cell-height  cell-h)))
 
 (defn test-run-flood
   []
@@ -18,8 +20,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         1
-             :cell-height        1
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   600.0   ;; excludes all but >50% ModerateFloodSource
              :sink-threshold     30000.0 ;; excludes all but >50% VeryHighFloodSink
              :use-threshold      0.1
@@ -40,8 +42,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         2610.403605972515
-             :cell-height        733.4169286979684
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   0.0
              :sink-threshold     0.0
              :use-threshold      0.0
@@ -63,8 +65,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         5220.80721194503
-             :cell-height        1472.7485100467268
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   nil
              :sink-threshold     nil
              :use-threshold      nil
@@ -85,8 +87,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         1305.2018029862575
-             :cell-height        366.7084643489842
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   nil
              :sink-threshold     nil
              :use-threshold      nil
@@ -107,8 +109,8 @@
              :sink-layer         nil
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         2610.403605972515
-             :cell-height        733.4169286979684
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   nil
              :sink-threshold     nil
              :use-threshold      nil
@@ -129,8 +131,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         351.6793070535823
-             :cell-height        770.2078076697134
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   1500.0
              :sink-threshold     300.0
              :use-threshold      0.0
@@ -151,8 +153,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         100.0
-             :cell-height        100.0
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   0.0
              :sink-threshold     0.0
              :use-threshold      0.0
@@ -173,8 +175,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         859.1806361599898
-             :cell-height        1756.317853798546
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   50.0
              :sink-threshold     50.0
              :use-threshold      0.2
@@ -195,8 +197,8 @@
              :sink-layer         sink-layer
              :use-layer          use-layer
              :flow-layers        flow-layers
-             :cell-width         859.1806361599898
-             :cell-height        1756.317853798546
+             :cell-width         cell-width
+             :cell-height        cell-height
              :source-threshold   40.0
              :sink-threshold     0.0
              :use-threshold      0.2
