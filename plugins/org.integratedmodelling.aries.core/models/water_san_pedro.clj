@@ -360,7 +360,8 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_dry_year_data.clj"
+        :animation?         true
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_dry_year_data.clj"
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand
@@ -401,7 +402,8 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_wet_year_data.clj"
+        :animation?         true
+        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_wet_year_data.clj"
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand
