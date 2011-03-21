@@ -316,7 +316,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_la_antigua_data.clj"
+        ;;:save-file          (str (System/getProperty "user.home") "/water_la_antigua_data.clj")
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand

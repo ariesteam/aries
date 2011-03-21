@@ -165,12 +165,13 @@
         :sink-threshold     4.0  ;;Initially set within the lowest bin
         :use-threshold      4.0  ;;Initially set within the lowest bin
         :trans-threshold    4.0  ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
-        :source-type      :infinite
-        :sink-type        :infinite
-        :use-type         :infinite
-        :benefit-type     :non-rival
+        :source-type        :infinite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
         :downscaling-factor 2
         :rv-max-states      10
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetics_data.clj")
         :keep (PotentialViews PotentialVisualBlight HomeownersWithViewDemand
                PossibleViews VisibleNaturalBeauty HomeownersWithPossibleViews
                ActualViews EnjoyedViews RelevantVisualBlight

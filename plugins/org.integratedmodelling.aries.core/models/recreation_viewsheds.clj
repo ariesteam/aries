@@ -185,21 +185,21 @@
 			
 ;; the real enchilada
 ;;(defmodel view aestheticService:AestheticView
-  ;;(span aestheticService:LineOfSight 
-  	    ;;aestheticService:TheoreticalNaturalBeauty
-  	    ;;aestheticService:HomeownerViewUse
-      	;;aestheticService:TotalVisualBlight
-      	;;aestheticService:View
-  	    ;;geophysics:Altitude
-   	;;:sink-type        :relative
-   	;;:use-type         :relative
-   	;;:benefit-type     :non-rival
-   	;;:downscaling-factor 3
-   	;;:rv-max-states    10 
-    ;;:context
-      ;;   (source homeowners sink altitude)
-        ;;  (ranking eserv:SourceThreshold :value 50)
-          ;;(ranking eserv:SinkThreshold :value 0.3)
-          ;;(ranking eserv:UseThreshold :value 0.1)
-          ;;(ranking eserv:TransitionThreshold :value 1.0))
-;;))
+;;  (span aestheticService:LineOfSight 
+;;        aestheticService:TheoreticalNaturalBeauty
+;;        aestheticService:HomeownerViewUse
+;;        aestheticService:TotalVisualBlight
+;;        nil
+;;        (geophysics:Altitude)
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    0.1
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :rv-max-states      10 
+;;        :downscaling-factor 1
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_viewsheds_data.clj")
+;;        :context (source homeowners sink altitude)))

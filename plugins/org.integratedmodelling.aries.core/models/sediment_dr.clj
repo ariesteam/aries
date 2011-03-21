@@ -303,6 +303,7 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_dr_data_beneficial.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleSedimentDepositionBeneficiaries
@@ -311,7 +312,6 @@
                UnutilizedSedimentSource InaccessibleSedimentDepositionBeneficiaries
                AbsorbedSedimentFlow NegatedSedimentSource
                LostValuableSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams))) 
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation
@@ -332,6 +332,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_farmers.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
@@ -339,7 +340,6 @@
                UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow
                NegatedSedimentSource BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams))) ;;change the beneficiary group as needed
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation
@@ -360,6 +360,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_reservoirs.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
@@ -367,7 +368,6 @@
                UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow
                NegatedSedimentSource BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-dr hydroelectric-use-presence sediment-sink-dr altitude floodplains streams))) ;;change the beneficiary group as needed
 
 
@@ -389,6 +389,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_dr_data_turbidity.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedTurbidityBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedTurbidityBeneficiaries
@@ -396,5 +397,4 @@
                UtilizedDeposition ActualReducedTurbidityBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow 
                NegatedSedimentSource ReducedTurbidity)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams))) ;;change the beneficiary group as needed

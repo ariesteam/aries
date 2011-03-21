@@ -359,16 +359,22 @@
         :benefit-type       :non-rival
         :downscaling-factor 1  ;; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
         :rv-max-states      10
-<<<<<<< Updated upstream
-        :keep (Runoff PotentialRunoffMitigation PotentiallyVulnerablePopulations
-              PotentiallyDamagingFloodFlow PotentiallyDamagingRunoff PotentialFloodDamageReceived
-              ActualFloodFlow FloodDamagingRunoff UtilizedRunoffMitigation
-              FloodDamageReceived BenignRunoff UnutilizedRunoffMitigation
-              AbsorbedFloodFlow FloodMitigatedRunoff FloodMitigationBenefitsAccrued) 
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
-=======
-        :save-file          (str (System/getProperty "user.home") "/flood_data_farmers100.clj")
->>>>>>> Stashed changes
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
+        :keep (Runoff
+               PotentialRunoffMitigation
+               PotentiallyVulnerablePopulations
+               PotentiallyDamagingFloodFlow
+               PotentiallyDamagingRunoff
+               PotentialFloodDamageReceived
+               ActualFloodFlow
+               FloodDamagingRunoff
+               UtilizedRunoffMitigation
+               FloodDamageReceived
+               BenignRunoff
+               UnutilizedRunoffMitigation
+               AbsorbedFloodFlow
+               FloodMitigatedRunoff
+               FloodMitigationBenefitsAccrued)
         :context (source farmers-use-100 sink-annual flood-flow-data100)))
 
 ;; flow model for farmers in the 500-year floodplain  
@@ -389,7 +395,22 @@
         :benefit-type       :non-rival
         :downscaling-factor 8
         :rv-max-states      10
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_farmers500.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
+        :keep (Runoff
+               PotentialRunoffMitigation
+               PotentiallyVulnerablePopulations
+               PotentiallyDamagingFloodFlow
+               PotentiallyDamagingRunoff
+               PotentialFloodDamageReceived
+               ActualFloodFlow
+               FloodDamagingRunoff
+               UtilizedRunoffMitigation
+               FloodDamageReceived
+               BenignRunoff
+               UnutilizedRunoffMitigation
+               AbsorbedFloodFlow
+               FloodMitigatedRunoff
+               FloodMitigationBenefitsAccrued)
         :context (source farmers-use-500 sink-annual flood-flow-data500)))
 
 ;; flow model for public-assets in the 100-year floodplain
@@ -410,7 +431,22 @@
         :benefit-type       :non-rival
         :downscaling-factor 8
         :rv-max-states      10
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_public100.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
+        :keep (Runoff
+               PotentialRunoffMitigation
+               PotentiallyVulnerablePopulations
+               PotentiallyDamagingFloodFlow
+               PotentiallyDamagingRunoff
+               PotentialFloodDamageReceived
+               ActualFloodFlow
+               FloodDamagingRunoff
+               UtilizedRunoffMitigation
+               FloodDamageReceived
+               BenignRunoff
+               UnutilizedRunoffMitigation
+               AbsorbedFloodFlow
+               FloodMitigatedRunoff
+               FloodMitigationBenefitsAccrued)
         :context (source public-use-100 sink-annual flood-flow-data100)))
 
 ;; flow model for public-assets in the 500-year floodplain
@@ -431,7 +467,22 @@
         :benefit-type       :non-rival
         :downscaling-factor 8
         :rv-max-states      10
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data_public500.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
+        :keep (Runoff
+               PotentialRunoffMitigation
+               PotentiallyVulnerablePopulations
+               PotentiallyDamagingFloodFlow
+               PotentiallyDamagingRunoff
+               PotentialFloodDamageReceived
+               ActualFloodFlow
+               FloodDamagingRunoff
+               UtilizedRunoffMitigation
+               FloodDamageReceived
+               BenignRunoff
+               UnutilizedRunoffMitigation
+               AbsorbedFloodFlow
+               FloodMitigatedRunoff
+               FloodMitigationBenefitsAccrued)
         :context (source public-use-500 sink-annual flood-flow-data500)))
 
 ;;Levees and floodplain width: used in the flow model

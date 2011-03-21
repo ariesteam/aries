@@ -187,7 +187,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         true
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/aesthetic_proximity_san_pedro_data_low_res.clj"
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
         :keep (PotentialProximateOpenSpace
                PotentialProximitySink
                HomeownersWithOpenSpaceDemand

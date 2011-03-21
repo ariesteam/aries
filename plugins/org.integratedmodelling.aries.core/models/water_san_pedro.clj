@@ -361,7 +361,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         true
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_dry_year_data.clj"
+        ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand
@@ -403,7 +403,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         true
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/water_san_pedro_wet_year_data.clj"
+        ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_wet_year.clj")
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
                              SurfaceWaterDemand
@@ -444,6 +444,7 @@
   ;;      :benefit-type     :rival
   ;;      :downscaling-factor 3
   ;;      :rv-max-states      10 
+  ;;      :save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_groundwater.clj")
   ;;      :keep (GroundwaterRecharge        MaximumGroundwaterSink      GroundwaterDemand
   ;;             PossibleGroundwaterFlow    PossibleGroundwaterRecharge PossibleGroundwaterUse
   ;;             ActualGroundwaterFlow      UsedGroundwaterRechage      ActualGroundwaterSink          SatisfiedGroundwaterDemand

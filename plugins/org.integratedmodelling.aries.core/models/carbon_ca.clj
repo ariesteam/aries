@@ -216,7 +216,7 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 2
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_ca_data.clj")
         :keep (StoredCarbonRelease CarbonSequestration 
                GreenhouseGasEmissions PotentialCarbonMitigationProvision
                PotentialCarbonMitigationUse DetrimentalCarbonSource

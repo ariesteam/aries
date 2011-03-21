@@ -220,8 +220,7 @@
         :rv-max-states      10
         :downscaling-factor 20
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        ;;:save-file          "/home/gjohnson/code/java/imt/identifications/carbon_san_pedro_data.clj"
+        ;;:save-file          (str (System/getProperty "user.home") "/carbon_san_pedro_data.clj")
         :keep (StoredCarbonRelease
                CarbonSequestration
                GreenhouseGasEmissions

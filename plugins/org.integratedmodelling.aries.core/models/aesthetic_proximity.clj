@@ -181,6 +181,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 2
         :rv-max-states      10
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_data.clj")
         :keep (PotentialProximateOpenSpace PotentialProximitySink HomeownersWithOpenSpaceDemand
                PossibleProximateOpenSpace AccessibleOpenSpace OpenSpaceProximateHomeowners
                AccessibleProximity EnjoyedOpenSpace BlockingProximitySink

@@ -351,11 +351,14 @@
 ;;        :benefit-type       :rival
 ;;        :rv-max-states      10
 ;;        :downscaling-factor 8
-;;        :keep (RecreationalAttractiveness PotentialRecreationalUsers 
-;;               RecreationalUserFlow       RecreationalUse
-;;               ActualRecreationalUsers    TransportationRestrictedRecreationalUse
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness
+;;               PotentialRecreationalUsers
+;;               RecreationalUserFlow
+;;               RecreationalUse
+;;               ActualRecreationalUsers
+;;               TransportationRestrictedRecreationalUse
 ;;               TransportationRestrictedRecreationalUsers)
-;;        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
 ;;        :context (source-birding use-simple sink)))
 
 ;; ----------------------------------------------------------------------------------------------

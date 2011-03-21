@@ -280,6 +280,7 @@
         :benefit-type       :rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_data_beneficial.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleSedimentDepositionBeneficiaries
@@ -288,7 +289,6 @@
                UnutilizedSedimentSource InaccessibleSedimentDepositionBeneficiaries
                AbsorbedSedimentFlow NegatedSedimentSource
                LostValuableSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains)))
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation: farmers
@@ -309,6 +309,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_data_detrimental_farmers.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
@@ -316,7 +317,6 @@
                UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow
                NegatedSedimentSource BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
 
 ;;Sediment flow model for recipients of avoided detrimental sedimentation: hydro reservoirs
@@ -337,6 +337,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_data_detrimental_hydro.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
@@ -344,7 +345,6 @@
                UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow
                NegatedSedimentSource BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-puget hydroelectric-use-level sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
 
 ;;Sediment flow model for recipients of reduced turbidity
@@ -357,7 +357,7 @@
         (geophysics:Altitude Floodplains LeveesClass geofeatures:River)
         :source-threshold   1000.0
         :sink-threshold     500.0
-        :use-threshold       10.0
+        :use-threshold      10.0
         :trans-threshold    nil
         :source-type        :finite
         :sink-type          :finite
@@ -365,6 +365,7 @@
         :benefit-type       :non-rival
         :rv-max-states      10
         :downscaling-factor 2
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_data_turbidity.clj")
         :keep (MaximumSedimentSource MaximumPotentialDeposition 
                PotentialReducedTurbidityBeneficiaries PossibleSedimentFlow
                PossibleSedimentSource PossibleReducedTurbidityBeneficiaries
@@ -372,5 +373,4 @@
                UtilizedDeposition ActualReducedTurbidityBeneficiaries
                UnutilizedDeposition AbsorbedSedimentFlow 
                NegatedSedimentSource ReducedTurbidity)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
