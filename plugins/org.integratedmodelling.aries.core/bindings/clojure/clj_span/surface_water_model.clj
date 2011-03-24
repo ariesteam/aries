@@ -195,6 +195,7 @@
                  (+ on-land-carriers in-stream-carriers)
                  on-land-carriers
                  in-stream-carriers)
+         (flush)
          (pmap (p to-the-ocean!
                   cache-layer
                   possible-flow-layer
