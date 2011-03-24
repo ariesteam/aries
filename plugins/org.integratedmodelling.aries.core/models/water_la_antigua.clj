@@ -305,10 +305,10 @@
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   1500.0 ;; 500.0 ;; 100.0
-        :sink-threshold       25.0 ;; 25.0
-        :use-threshold         5.0 ;; 5.0
-        :trans-threshold       5.0 ;; 5.0
+        :source-threshold      nil
+        :sink-threshold        nil
+        :use-threshold         nil
+        :trans-threshold      10.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
