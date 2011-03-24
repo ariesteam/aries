@@ -16,13 +16,13 @@
     (.fillRect (* x scale) (* y scale) scale scale)))
 
 (defn get-cell-color [type alpha]
-  (cond
-      (= type :source) (Color. 255   0   0 (int (* 255 alpha)))
-      (= type :sink)   (Color.   0 255   0 (int (* 255 alpha)))
-      (= type :use)    (Color.   0   0 255 (int (* 255 alpha)))
-      (= type :flow)   (Color. 255   0 255 (int (* 255 alpha)))
-      (= type :pflow)  (Color.   0 255 255 (int (* 255 alpha)))
-      (= type :aflow)  (Color. 255 255   0 (int (* 255 alpha)))))
+  (cond (= type :source) (Color. 255   0   0 (int (* 255.0 alpha)))
+        (= type :sink)   (Color.   0 255   0 (int (* 255.0 alpha)))
+        (= type :use)    (Color.   0   0 255 (int (* 255.0 alpha)))
+        (= type :flow)   (Color. 255   0 255 (int (* 255.0 alpha)))
+        (= type :pflow)  (Color.   0 255 255 (int (* 255.0 alpha)))
+        (= type :aflow)  (Color. 255 255   0 (int (* 255.0 alpha)))
+        (= type :gray)   (let [val (int (* 255.0 (- 1.0 alpha)))] (Color. val val val 255))))
 
 (defn render [g layer type scale x-dim y-dim]
   (let [normalized-layer (normalize-matrix (map-matrix rv-mean layer))

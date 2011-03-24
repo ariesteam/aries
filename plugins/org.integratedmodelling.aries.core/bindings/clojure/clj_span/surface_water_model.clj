@@ -189,22 +189,27 @@
     100
     (iterate-while-seq
      (fn [surface-water-carriers]
-       (println "Carriers:" (count surface-water-carriers))
-       (pmap (p to-the-ocean!
-                cache-layer
-                possible-flow-layer
-                actual-flow-layer
-                sink-caps
-                possible-use-caps
-                actual-use-caps
-                in-stream?
-                stream-intakes
-                mm2-per-cell
-                (* mm2-per-cell *trans-threshold*)
-                elevation-layer
-                rows
-                cols)
-             surface-water-carriers))
+       (let [on-land-carriers   (count (remove :stream-bound? surface-water-carriers))
+             in-stream-carriers (count (filter :stream-bound? surface-water-carriers))]
+         (printf "Carriers: %10d | On Land: %10d | In Stream: %10d%n"
+                 (+ on-land-carriers in-stream-carriers)
+                 on-land-carriers
+                 in-stream-carriers)
+         (pmap (p to-the-ocean!
+                  cache-layer
+                  possible-flow-layer
+                  actual-flow-layer
+                  sink-caps
+                  possible-use-caps
+                  actual-use-caps
+                  in-stream?
+                  stream-intakes
+                  mm2-per-cell
+                  (* mm2-per-cell *trans-threshold*)
+                  elevation-layer
+                  rows
+                  cols)
+               surface-water-carriers)))
      (map
       #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
          (struct-map service-carrier

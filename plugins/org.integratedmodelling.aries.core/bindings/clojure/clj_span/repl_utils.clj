@@ -133,9 +133,9 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   1500.0
-             :sink-threshold     300.0
-             :use-threshold      0.0
+             :source-threshold   nil ;; 1500.0
+             :sink-threshold     nil ;; 300.0
+             :use-threshold      nil ;; 500.0
              :trans-threshold    10.0
              :source-type        :finite
              :sink-type          :finite
