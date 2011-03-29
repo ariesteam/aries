@@ -166,25 +166,37 @@
 
 (defmodel proximity AestheticProximity
   (span Proximity
-        TheoreticalProximitySource
-        HomeownerProximityUse
+        AestheticProximityProvision
+        ProximityUse
         ProximitySink
         nil
         nil
-        :source-threshold   5.0  ;;Initially set as the midpoint of the lowest bin
-        :sink-threshold     0.0  
-        :use-threshold      4.0   ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
-        :trans-threshold    4.0   ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
+        :source-threshold   40.0  ;; Excludes LowProximityPotential
+        :sink-threshold     0.0   ;; Deterministic as 0.0 or 50.0 based on presence of highways
+        :use-threshold      0.2   ;; Excludes HomeownerProximityUseAbsent
+        :trans-threshold    1.0
         :source-type        :infinite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        :downscaling-factor 1
         :rv-max-states      10
-        :keep (PotentialProximateOpenSpace PotentialProximitySink HomeownersWithOpenSpaceDemand
-               PossibleProximateOpenSpace AccessibleOpenSpace OpenSpaceProximateHomeowners
-               AccessibleProximity EnjoyedOpenSpace BlockingProximitySink
-               HomeownersWithProximateOpenSpace UnaccessedOpenSpace InaccessibleProximitySink
-               HomeownersWithoutProximateOpenSpace BlockedProximity BlockedOpenSpace
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
+        :keep (PotentialProximateOpenSpace
+               PotentialProximitySink
+               HomeownersWithOpenSpaceDemand
+               PossibleProximateOpenSpace
+               AccessibleOpenSpace
+               OpenSpaceProximateHomeowners
+               AccessibleProximity
+               EnjoyedOpenSpace
+               BlockingProximitySink
+               HomeownersWithProximateOpenSpace
+               UnaccessedOpenSpace
+               InaccessibleProximitySink
+               HomeownersWithoutProximateOpenSpace
+               BlockedProximity
+               BlockedOpenSpace
                HomeownersWithBlockedProximity)
         :context (source homeowners sink)))

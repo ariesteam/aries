@@ -61,11 +61,11 @@
      (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
         #{14 34 35 83 92}                   LowHardness
         #{33 45 51 91}                      ModerateHardness
-        #{52 55 56 57 59 60 84 96 105 118}  HighHardness)
-     (classification (categorization mexico:CONABIOLULCCategory)
-        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} LowHardness
-        #{"Chaparral"}                                              ModerateHardness
-        #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
+        #{52 55 56 57 59 60 84 96 105 118}  HighHardness))
+;;     (classification (categorization mexico:CONABIOLULCCategory)
+;;        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} LowHardness
+;;        #{"Chaparral"}                                              ModerateHardness
+;;        #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
 
 ;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their discretization for rangeland carbon modeling.
 ;; For the San Pedro, the entire valley floor would be in the 230-460 range and the surrounding mountains as >460.
@@ -130,9 +130,9 @@
 ;;Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC data (i.e., CONABIO) 
 ;; denote wetlands at least for Sonora.
 (defmodel oxygen SoilOxygenConditions 
-;;  (classification (numeric-coding nlcd:NLCDNumeric)
-;;                  #{90 95}   AnoxicSoils
-;;                  :otherwise OxicSoils)
+  (classification (numeric-coding nlcd:NLCDNumeric)
+                  #{90 95}   AnoxicSoils
+                  :otherwise OxicSoils)
   (classification (numeric-coding glc:GLCNumeric)
                   15         AnoxicSoils
                   :otherwise OxicSoils))
