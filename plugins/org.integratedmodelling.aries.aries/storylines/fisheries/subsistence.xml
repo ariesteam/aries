@@ -23,7 +23,7 @@
 		<description>
 		
 			This storyline demonstrates the use of ARIES in quantifying
-			specific values fisheries resources to coastal population 
+			specific values of fisheries resources to coastal populations 
 			that depend on these resources as critical sources of nutrition
 			and protein.
 			
@@ -33,8 +33,8 @@
 			since they provide employment and livelihoods for many of the 
 			world’s poor while not being monetized in traditional economic 
 			accounts like GDP. Societal dependence on subsistence fisheries, 
-			combined with overfishing, pollution, and climate change, 
-			demands sustainable management of aquatic resources.
+			combined with overfishing, pollution, and climate change, adds to
+			the importance of sustainably managing aquatic resources.
 
 			Thanks to the support of the 
 			"UNEP World Conservation Monitoring Centre":http://www.unep-wcmc.org
@@ -42,7 +42,7 @@
 			because of its high rate of poverty, dependence on fisheries
 			as a key protein source in rural communities, and prevalent
 			deforestation-driven sedimentation and erosion, which
-			strongly impact its coastal and marine systems.
+			impact its coastal and marine systems.
 			
 		</description>
 		<see-also><![CDATA[
@@ -64,12 +64,12 @@
 		<title>Distance To Coast</title>
 		<group />
 		<description>
-		Populations that live in the coastal area in poor countries depend on fish stocks for 
+		Populations that live in coastal areas in developing nations often depend on local fisheries for 
 		their daily subsistence. This analysis was therefore restricted to populations living
-		close to the coast. In this storyline, we used a coastal buffer of 5km, assuming that
-		the likely beneficiaries of subsistence fisheries need to be able to reach the coast walking
-		or biking. Distance to the coast was categorized in three classes of distance, and this
-		variable entered the probabilistic calculation of the benefitshed.
+		near the coast. In this storyline, we used a coastal buffer of 5km, assuming that the 
+		likely beneficiaries of subsistence fisheries need to be able to reach the coast by walking. 
+		Distance to the coast was categorized in three classes of distance, and this variable entered 
+		the probabilistic calculation to identify actual use of subsistence fisheries.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -91,13 +91,12 @@
 		<title>Population Density</title>
 		<group />
 		<description>
-			In order to determine the need for subsistence fisheries, population density data
-			were used as a first step to determine the initial multiplier for the amount of 
-			need. The data were intersected them with the
-			chosen coastal distance layer to start determininig how many people are likely
-			to need subsistence fishing in the area. This
-			map shows population for all of Madagascar, and is used as an input in the 
-			probabilistic benefitshed calculations.
+			To estimate demand for subsistence fisheries, population density data
+			were used as a first step to determine demand levels. These data were 
+			intersected with the coastal proximity layer to estimate how many people 
+			are likely to depend on subsistence fisheries in an area. This map 
+			shows population density for all of Madagascar, and is used as an input 
+			in the probabilistic demand calculations.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -120,7 +119,7 @@
 		<title>Poverty level</title>
 		<group />
 		<description>
-			People are more likely to access fisheries for subsistence purposes 
+			People are more likely to rely on fisheries for subsistence use 
 			when they lack other sources of nutrition. Poverty rates estimated by
 			Elvidge et al. (2009) were used as part of the probabilistic determination
 			of the degree of subsistence fisheries use. The map shows reclassified
@@ -145,18 +144,18 @@
 	
 	<page>
 		<concept>fisheries:SubsistenceUse</concept>
-		<name>Subsistence Use</name>
-		<title>Subsistence Use</title>
+		<name>Subsistence Demand</name>
+		<title>Subsistence Demand</title>
 		<group />
 		<description>
-			h1. Benefitshed map
+			h1. Subsistence fishery demand
 			
-			This map depicts our *benefitshed*, the result of the probabilistic modelling of the need for fish to support the livelihoods of coastal
-			populations. Darker blues indicate a need that is higher in poorer populations that live closer to the coast. The map you are seeing is a 
-			probabilistic one, illustrating the probability of needing fish for subsistence. You can click on the map and visualize the
-			probability distribution in each point. The flow model you will see later determines the actual value of the
-			fish resource, depending on the need, the quality and abundance of the resource, and the ability of accessing
-			it by walking to the shoreline.
+			This map depicts the result of a probabilistic models estimating the need for fish to support the 
+			livelihoods of coastal populations. Darker blues indicate greater need - among poorer populations that live 
+			closer to the coast. This map is a probabilistic one, illustrating the probability of needing fish 
+			for subsistence. You can click on the map and visualize the probability distribution in each point. The flow model 
+			you will see later determines the actual value of the fish resource, depending on the need, the quality and abundance 
+			of the resource, and the ability to access it by walking to the shoreline.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -177,16 +176,16 @@
 		<title>Sky emperor abundance</title>
 		<group />
 		<description>
-			Now that we have quantified the need for fish, we must model the likely provision of fish. Data about abundance of
-			different species of fish are hard to find, but some are available from The Sea Around Us project
-			and can be used as a starting point in modeling the likely 
-			availability. We have chosen the three most important species for subsistence in Madagascar. What you are looking at 
-			here is the relative abundance of _Lethrinus mahsena_ (sky emperor). The numbers here have relative significance, as
-			the actual harvest data are shown later by intersecting with catch data from FAO.
+			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
+			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
+			which relative abundance data are available.  This maps shows relative abundance of _Lethrinus mahsena_ (sky emperor). 
+			The numbers here have relative significance, as the actual harvest data are shown later by intersecting with catch 
+			data from FAO.
 			
-			The data have 0.5 degree resolution, so we must use
-			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
-			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.
+			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
+ 			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
+ 			that no information is lost.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -198,7 +197,7 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus Mahsena abundance</runninghead>
+		<runninghead> Lethrinus mahsena abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -209,16 +208,16 @@
 		<title>Snubnose emperor abundance</title>
 		<group />
 		<description>
-			Data about abundance of
-			different species of fish are hard to find, but some are available from The Sea Around Us project
-			and can be used as a starting point in modeling the likely 
-			availability. What you are looking at 
-			here is the relative abundance of _Lethrinus borbonicus_ (snubnose emperor). The numbers here have relative significance, as
-			the actual harvest data are shown later by intersecting with catch data from FAO.
+			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
+			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
+			which relative abundance data are available.  This maps shows relative abundance of _Lethrinus borbonicus_ (snubnose emperor). 
+			The numbers here have relative significance, as the actual harvest data are shown later by intersecting with catch 
+			data from FAO.
 			
-			The data have 0.5 degree resolution, so we must use
-			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
-			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.	
+			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
+ 			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
+ 			that no information is lost.	
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -230,7 +229,7 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus Borbonicus Abundance Mg</runninghead>
+		<runninghead> Lethrinus borbonicus abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -241,16 +240,16 @@
 		<title>Mangrove red snapper abundance</title>
 		<group />
 		<description>
-			Data about abundance of
-			different species of fish are hard to find, but some are available from The Sea Around Us project
-			and can be used as a starting point in modeling the likely 
-			availability. What you are looking at 
-			here is the relative abundance of _Lutjanus argentimaculatus_ (mangrove red snapper). The numbers here have relative significance, as
-			the actual harvest data are shown later by intersecting with catch data from FAO.
+			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
+			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
+			which relative abundance data are available.  This maps shows relative abundance of _Lutjanus argentimaculatus_ (mangrove red snapper). 
+			The numbers here have relative significance, as the actual harvest data are shown later by intersecting with catch 
+			data from FAO.
 			
-			The data have 0.5 degree resolution, so we must use
-			a coarse grid. Yet, ARIES can automatically interpolate with the result of other models to provide better
-			looking maps, and will compute the uncertainty related to the interpolation so that no information gets lost.
+			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
+ 			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
+ 			that no information is lost.	
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -262,7 +261,7 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lutjanus Argentimaculatus Abundance Mg</runninghead>
+		<runninghead> Lutjanus argentimaculatus abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -273,19 +272,20 @@
 		<title>Total potential subsistence harvest</title>
 		<group />
 		<description language="html"><![CDATA[
-		<h1>Provisionshed map</h1>
+		<h1>Subsistence fisheries provision map</h1>
 		<p>The source of benefits for this storyline is the total amount of potential fish 
 		harvestable by coastal populations. Only a small fraction of this potential is usable
-		by the beneficiaries; the computation of the actually used potential is shown later in
+		by the beneficiaries; the computation of the actual use is shown later in
 		the flow model output.</p>
+		
 		<p>Historical catch data are published by the FAO (2008).  These data do not explicitly 
 		describe subsistence catch and do not contain catch records specific to any of the species 
 		for which we have relative abundance data. Despite these limitations, we can use assumptions 
-		to estimate the likely supply or source value for each species.  These assumptions can be adjusted 
-		should more refined fisheries information become available. This map shows estimated source
-		values for the mangrove red snapper (<em>Lutjanus argentimaculatus</em>). A similar process was
-		used to estimate source values for the other species considered. The sum of these maps constitutes
-		our <b>source model</b>.</p>  
+		to estimate the likely supply or source value for the three species of interest.  These 
+		assumptions can be adjusted should more refined fisheries information become available. 
+		This map shows estimated source values for the mangrove red snapper 
+		(<em>Lutjanus argentimaculatus</em>). A similar process was used to estimate source values 
+		for the other species considered. The sum of these maps constitutes our <b>source model</b>.</p>  
 		
 		<p>Historical catch data from The Sea Around Us Project shows that 71.6% of the total 
 		catch for Madagascar from 1950-2004 is “non-identified marine pelagic fishes.”  
@@ -296,11 +296,10 @@
 		total catch leaves 60,841 tonnes of fish which we assume goes toward 
 		local consumption.  Assuming 71.6% of the locally consumed fish are 
 		“non-identified marine pelagic fishes,” these account for 43,562 tonnes.
-		Assuming that each of the fish species for which 
-		we have distribution data accounted for 20% of that total,
-		this would give 8,712 tonnes of fish caught for each of these species.  
-		We then divide the total catch for each species according to their 
-		relative abundance along the Madagascar coast in order to produce a map
+		Assuming that each of the fish species for which we have distribution data 
+		accounted for 20% of that total, this would give 8,712 tonnes of fish caught 
+		for each of these species.  We then divide the total catch for each species according 
+		to their relative abundance along the Madagascar coast in order to produce a map
 		of subsistence fish production for each species under the above assumptions (Equation 1).  
 		A similar equation holds for subsistence fisheries use (Equation 2).</p>
 		
@@ -316,11 +315,11 @@
 			 <dt>Sn</dt> <dd>the total mass of species n caught (kg)</dd>
 		</dl>
 
-		<p>We make a series of simplifying assumptions based on limited data regarding 
-		the magnitude of supply and demand in Madagascar’s subsistence fishery and the 
-		distribution of valuable species.  Given better data and/or expert knowledge of 
-		the relative use of different species, ARIES can adjust the model coefficients 
-		to more accurately quantify human dependence on Madagascar’s fisheries.</p>
+		<p>These simplifying assumptions reflect limited data for supply and demand in 
+		Madagascar’s subsistence fishery and the distribution of valuable species.  
+		Given better data and/or expert knowledge of the relative use of different species, 
+		we can easily adjust the model coefficients to more accurately quantify human 
+		dependence on local subsistence fisheries in Madagascar or elsewhere.</p>
 
 		]]></description>
 		<see-also><![CDATA[
@@ -333,7 +332,7 @@
 	    <b>Data provided by</b>: FAO 2008</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lutjanus Argentimaculatus harvest</runninghead>
+		<runninghead> Subsistence harvest</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -353,7 +352,7 @@
 		]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Estuary Area</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -376,7 +375,7 @@
 			]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Reef Quality</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -398,7 +397,7 @@
 			]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Coral Reef Area</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -421,7 +420,7 @@
 			]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Nitrogen Runoff</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -444,7 +443,7 @@
 			]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Estuary Quality</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -468,7 +467,7 @@
 		]]></credits>
 		<group>groupname</group>
 		<description><![CDATA[
-			No description given
+			No description given; not used in the current generation of ARIES subsistence fisheries models.
 		]]></description>
 		<runninghead> Coral Bleaching</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -481,11 +480,11 @@
 		<title>Pathways to shore</title>
 		<group />
 		<description>
-			We have computed both the amount of need (benefitshed) and the amount of potential
-			provision (provisionshed) of fish. The last step of the analysis is modelling the
+			We have computed both the amount of need (demand) and the amount of potential
+			provision (supply) of fish. The last step of the analysis is to model the
 			flow of this ecosystem service to the beneficiaries we have identified, which allows us
-			to understand the actual value of this resource in this context, as well as pointing 
-			out areas of unmet need and inefficiencies in the use of the resource.
+			to understand the actual value of this resource used in this context, as well as pointing 
+			out areas of unmet demand and inefficiencies in the use of the resource.
 			
 			The subsistence fisheries flow model shows the expected spatial dependence of 
 			specific fisheries users on particular fisheries areas. Users are assumed to move from a 
@@ -495,9 +494,9 @@
 			This map shows the paths and road network that determines the accessibility 
 			of the locations where fish are provided. The flow model moves a given quantity 
 			of fish (in kg) from the ocean to areas of demand along these roads or paths.  
-			Each coastal ocean point has an estimated potential source of fish, computed as
-			our provisionshed model.  Each point on land has an estimated potential use for oceanic 
-			fish, computed in our benefitshed model.
+			Each coastal ocean point has an estimated potential source of fish, computed in the
+			source or supply model.  Each point on land has an estimated potential use for oceanic 
+			fish, computed in our demand model.
 
 			We assume that the use of oceanic subsistence fisheries is greatest close to 
 			the coast and declines relatively quickly moving inland.  We model this distance 
@@ -552,11 +551,9 @@
 		<group />
 		<description>
 		The *actual source map* shows the portion of the source map that is actually
-		relevant to the provision of a service after accounting for sinks and flow
-		dynamics. In provisioning services, this is the part of the benefitshed that
-		is actually providing benefits to the users. In preventative services, it shows
-		where the actual damage came from. Those parts of the provisionshed that could be
-		damaging but have been neutralized by sinks are not shown.
+		relevant to the provision of a service after accounting for flow dynamics. 
+		This map shows the part of the source or supply region that is actually 
+		providing benefits to the users.
 		
 		In this model, the actual use map is the quantity of fish harvested for 
 		subsistence use.
@@ -581,12 +578,12 @@
 		<units>kg</units>
 		<group />
 		<description>
-		The *actual use map* represents the portion of the benefitshed whose needs have been
-		satisfied by the flow of services, taking into account the availability of the resource,
-		the dynamics of flow, and the depletion by sinks.
+		The *actual use map* represents the portion of the demand map or potential users  whose needs 
+		have been satisfied by the flow of services, taking into account the availability of the resource,
+		and flow dynamics.
 
 		In this model, the map shows the portion of demand for fish satisfied by flows of fish to people 
-		from a fishery area.
+		from a fishery.
 		</description>
 				<see-also><![CDATA[
 		<p>
@@ -608,11 +605,11 @@
 		<group />
 		<description>
 		The *inaccessible source map* shows the part of the source value that did not
-		reach the users due to the dynamics of flow.
+		reach the users due to flow dynamics.
 			
-		In this case, the map showes fisheries that are not used due to lack of proximity or pathways to users.  
-		This value may also be positive if some of the fish supply remains after 
-		all demand is satiatied.
+		In this case, the map showes fisheries that are not used due to lack of proximity 
+		or pathways to users.  This value may also be positive if some of the fish supply 
+		remains after all user demand is satiatied.
 		</description>
 		<see-also><![CDATA[
 		<p>
