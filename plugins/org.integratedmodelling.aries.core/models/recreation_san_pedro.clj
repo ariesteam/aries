@@ -13,17 +13,17 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel bird-richness BirdSpeciesRichness
-   (classification (ranking habitat:AvianRichness)
-       [8 10 :inclusive]       VeryHighBirdSpeciesRichness
-       [6 8]                   HighBirdSpeciesRichness
-       [4 6]                   ModerateBirdSpeciesRichness
-       [0 4]                   LowBirdSpeciesRichness))
+  (classification (ranking habitat:AvianRichness)
+                  [8 10 :inclusive]       VeryHighBirdSpeciesRichness
+                  [6 8]                   HighBirdSpeciesRichness
+                  [4 6]                   ModerateBirdSpeciesRichness
+                  [0 4]                   LowBirdSpeciesRichness))
 
 (defmodel bird-rarity RareCharismaticBirdHabitat
-    (classification (ranking habitat:RareBirdHabitat)
-      #{4 5}   HighRareCharismaticBirdHabitat
-      #{1 2 3} ModerateRareCharismaticBirdHabitat
-      0        LowRareCharismaticBirdHabitat)) 
+  (classification (ranking habitat:RareBirdHabitat)
+                  #{4 5}   HighRareCharismaticBirdHabitat
+                  #{1 2 3} ModerateRareCharismaticBirdHabitat
+                  0        LowRareCharismaticBirdHabitat)) 
 
 ;;Riparian zones as important to birding and hunting because of their importance to valued animal species
 ;; and for human preferences to recreate in riparian areas in the desert.
@@ -37,9 +37,9 @@
 
 (defmodel water-presence sanPedro:WaterPresence
   (binary-coding sanPedro:WaterPresence
-    :context (streams :as streams springs :as springs) 
-    :state #(or (:streams %)
-                (:springs %))))
+                 :context (streams :as streams springs :as springs) 
+                 :state #(or (:streams %)
+                             (:springs %))))
 
 ;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
 ;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
@@ -48,7 +48,7 @@
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
                   :context (water-presence :as water-presence
-                            (ranking sanPedro:RiparianConditionClass :as condition))
+                                           (ranking sanPedro:RiparianConditionClass :as condition))
                   :state   #(if (nil? (:water-presence %))
                               (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
                               (cond (= (:condition %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
@@ -60,20 +60,20 @@
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
 ;; Ft. Huachucha currently is accessible to the public and birdwatching and hunting occur on-base
 (defmodel public-lands PublicAccessClass
-    (classification (numeric-coding habitat:LandOwnership)
-     #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
-       68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
-       117 118 119 120 121 122 123 124 125 126 127}   PublicLand
-     #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
-       78 79 84 87 88 89 90}                          NoPublicAccess))
+  (classification (numeric-coding habitat:LandOwnership)
+                  #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
+                    68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
+                    117 118 119 120 121 122 123 124 125 126 127}   PublicLand
+                  #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
+                    78 79 84 87 88 89 90}                          NoPublicAccess))
 
 ;;Undiscretization statements to be use in BNs
 (defmodel birding-quality SiteBirdingQuality
   (probabilistic-ranking SiteBirdingQuality
-      [0 10]   VeryLowBirdingQuality 
-      [10 33]  LowBirdingQuality 
-      [33 67]  ModerateBirdingQuality 
-      [67 100] HighBirdingQuality))
+                         [0 10]   VeryLowBirdingQuality 
+                         [10 33]  LowBirdingQuality 
+                         [33 67]  ModerateBirdingQuality 
+                         [67 100] HighBirdingQuality))
 
 ;; Bayesian source models
 (defmodel source-birding BirdingSourceValue   
@@ -88,38 +88,38 @@
 ;; ----------------------------------------------------------------------------------------------
 
 (defmodel wildlife-species-richness WildlifeSpeciesRichness
-    (ranking WildlifeSpeciesRichness
-      :context ((ranking habitat:AvianRichness      :as bird-species-richness)
-                (ranking habitat:MammalRichness     :as mammal-species-richness)
-                (ranking habitat:ReptileRichness    :as reptile-species-richness)
-                (ranking habitat:AmphibianRichness  :as amphibian-species-richness))
-      :state   #(Math/round (* (+ (or (:bird-species-richness %) 0)  
-                                  (or (:mammal-species-richness %) 0) 
-                                  (or (:reptile-species-richness %) 0) 
-                                  (or (:amphibian-species-richness %) 0)) 
-                            0.25))))
+  (ranking WildlifeSpeciesRichness
+           :context ((ranking habitat:AvianRichness      :as bird-species-richness)
+                     (ranking habitat:MammalRichness     :as mammal-species-richness)
+                     (ranking habitat:ReptileRichness    :as reptile-species-richness)
+                     (ranking habitat:AmphibianRichness  :as amphibian-species-richness))
+           :state   #(Math/round (* (+ (or (:bird-species-richness %) 0)  
+                                       (or (:mammal-species-richness %) 0) 
+                                       (or (:reptile-species-richness %) 0) 
+                                       (or (:amphibian-species-richness %) 0)) 
+                                    0.25))))
 ;;#(let [b (:bird-species-richness %)                     alternative code for the above state statement
 ;;                      m (:mammal-species-richness %) 
 ;;                      r (:reptile-species-richness %)
 ;;                      a (:amphibian-species-richness %)] 
 ;;                  (Math/round (* 0.25 (reduce + 0 (remove nil? [b m r a])))))))
 (defmodel wildlife-species-richness-class WildlifeSpeciesRichnessClass
-    (classification wildlife-species-richness
-      [8 10] VeryHighWildlifeSpeciesRichness
-      [6 8]  HighWildlifeSpeciesRichness
-      [4 6]  ModerateWildlifeSpeciesRichness
-      [0 4]  LowWildlifeSpeciesRichness)) 
+  (classification wildlife-species-richness
+                  [8 10] VeryHighWildlifeSpeciesRichness
+                  [6 8]  HighWildlifeSpeciesRichness
+                  [4 6]  ModerateWildlifeSpeciesRichness
+                  [0 4]  LowWildlifeSpeciesRichness)) 
 
 (defmodel wildlife-quality SiteWildlifeQuality
   (probabilistic-ranking SiteWildlifeQuality
-      [0 10]   VeryLowWildlifeQuality 
-      [10 33]  LowWildlifeQuality 
-      [33 67]  ModerateWildlifeQuality 
-      [67 100] HighWildlifeQuality))
+                         [0 10]   VeryLowWildlifeQuality 
+                         [10 33]  LowWildlifeQuality 
+                         [33 67]  ModerateWildlifeQuality 
+                         [67 100] HighWildlifeQuality))
 
 (defmodel source-wildlife WildlifeViewingSourceValue
   (bayesian WildlifeViewingSourceValue
-          :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
             :keep     (SiteWildlifeQuality)
             :result   wildlife-quality
             :context  (riparian-wetland public-lands wildlife-species-richness-class)))
@@ -188,31 +188,31 @@
 ;;Undiscretization statements to be use in BNs
 (defmodel deer-hunting-quality SiteDeerHuntingQuality
   (probabilistic-ranking SiteDeerHuntingQuality
-      [0 5]    VeryLowDeerHuntingQuality 
-      [5 33]   LowDeerHuntingQuality 
-      [33 67]  ModerateDeerHuntingQuality 
-      [67 100] HighDeerHuntingQuality))
+                         [0 5]    VeryLowDeerHuntingQuality 
+                         [5 33]   LowDeerHuntingQuality 
+                         [33 67]  ModerateDeerHuntingQuality 
+                         [67 100] HighDeerHuntingQuality))
 
 (defmodel javelina-hunting-quality SiteJavelinaHuntingQuality
   (probabilistic-ranking SiteJavelinaHuntingQuality
-      [0 5]    VeryLowJavelinaHuntingQuality 
-      [5 33]   LowJavelinaHuntingQuality 
-      [33 67]  ModerateJavelinaHuntingQuality 
-      [67 100] HighJavelinaHuntingQuality))
+                         [0 5]    VeryLowJavelinaHuntingQuality 
+                         [5 33]   LowJavelinaHuntingQuality 
+                         [33 67]  ModerateJavelinaHuntingQuality 
+                         [67 100] HighJavelinaHuntingQuality))
 
 (defmodel dove-hunting-quality SiteDoveHuntingQuality
   (probabilistic-ranking SiteDoveHuntingQuality
-      [0 5]    VeryLowDoveHuntingQuality 
-      [5 33]   LowDoveHuntingQuality 
-      [33 67]  ModerateDoveHuntingQuality 
-      [67 100] HighDoveHuntingQuality))
+                         [0 5]    VeryLowDoveHuntingQuality 
+                         [5 33]   LowDoveHuntingQuality 
+                         [33 67]  ModerateDoveHuntingQuality 
+                         [67 100] HighDoveHuntingQuality))
 
 (defmodel quail-hunting-quality SiteQuailHuntingQuality
   (probabilistic-ranking SiteQuailHuntingQuality
-      [0 5]    VeryLowQuailHuntingQuality 
-      [5 33]   LowQuailHuntingQuality 
-      [33 67]  ModerateQuailHuntingQuality 
-      [67 100] HighQuailHuntingQuality))
+                         [0 5]    VeryLowQuailHuntingQuality 
+                         [5 33]   LowQuailHuntingQuality 
+                         [33 67]  ModerateQuailHuntingQuality 
+                         [67 100] HighQuailHuntingQuality))
 
 ;; Bayesian source models
 (defmodel source-deer-hunting DeerHuntingSourceValue
@@ -262,8 +262,8 @@
 
 (defmodel roads Roads                   
   (classification (binary-coding infrastructure:Road)
-                 1          RoadsPresent
-                 :otherwise RoadsAbsent))
+                  1          RoadsPresent
+                  :otherwise RoadsAbsent))
 
 ;;SPRNCA trails: need to expand bounding box so it doesn't throw errors.
 ;;(defmodel trails Trails 
@@ -281,13 +281,13 @@
 ;;Identifications for recreation: flow models are not yet ready but concepts will be exported to NetCDF.
 (defmodel recreation-data OutdoorRecreation
   (identification OutdoorRecreation
-  :context (source-birding 
-            source-deer-hunting       
-            source-quail-hunting 
-            source-dove-hunting 
-            source-javelina-hunting 
-            population-density
-            roads)))                ;;add trails data once its bounding box has been adjusted
+                  :context (source-birding
+                            source-deer-hunting
+                            source-quail-hunting
+                            source-dove-hunting
+                            source-javelina-hunting
+                            population-density
+                            roads))) ;;add trails data once its bounding box has been adjusted
 
 ;; the real enchilada
 ;;(defmodel recreation-flow carbonService:ClimateStability
