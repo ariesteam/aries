@@ -149,7 +149,7 @@
                                     :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
 
 
-(defmodel quail-habitat-foo sanPedro:QuailHabitat
+(defmodel quail-habitat sanPedro:QuailHabitat
   (classification sanPedro:QuailHabitat
                   :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
                             (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail)
