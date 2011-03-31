@@ -169,54 +169,43 @@
 ;;  Hunting source model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel dove-habitat-code sanPedro:DoveHabitatCode
-   (numeric-coding sanPedro:DoveHabitatCode
-        :context ((numeric-coding sanPedro:MourningDoveHabitat     :as mourning-dove)
-                  (numeric-coding sanPedro:WhiteWingedDoveHabitat  :as white-winged-dove)) 
-       :state    #(let [num-dove (Math/ceil (/ (+ (:mourning-dove  %)
-                                                   (:white-winged-dove %)) 
-                                              29.0))]
-                        num-dove)))
 (defmodel dove-habitat sanPedro:DoveHabitat
-    (classification dove-habitat-code
-             2 sanPedro:MultipleDoveSpeciesPresent
-             1 sanPedro:SingleDoveSpeciesPresent
-             0 sanPedro:DoveSpeciesAbsent))
+  (classification sanPedro:DoveHabitat
+                  :context ((numeric-coding sanPedro:MourningDoveHabitat    :as mourning-dove)
+                            (numeric-coding sanPedro:WhiteWingedDoveHabitat :as white-winged-dove))
+                  :state   #(let [num-dove (+ (if (Double/isNaN (:mourning-dove %))     0 1)
+                                              (if (Double/isNaN (:white-winged-dove %)) 0 1))]
+                              (cond (= num-dove 2) (tl/conc 'sanPedro:MultipleDoveSpeciesPresent)
+                                    (= num-dove 1) (tl/conc 'sanPedro:SingleDoveSpeciesPresent)
+                                    :otherwise     (tl/conc 'sanPedro:DoveSpeciesAbsent)))))
 
-(defmodel deer-habitat-code sanPedro:DeerHabitatCode
-   (numeric-coding sanPedro:DeerHabitatCode
-        :context ((numeric-coding sanPedro:MuleDeerHabitat       :as mule-deer)
-                  (numeric-coding sanPedro:WhiteTailDeerHabitat  :as white-tail-deer)) 
-        :state    #(let [num-deer (Math/ceil (/ (+ (:mule-deer  %)
-                                                   (:white-tail-deer %)) 
-                                              29.0))]
-                        num-deer)))
 (defmodel deer-habitat sanPedro:DeerHabitat
-    (classification deer-habitat-code
-             2 sanPedro:MultipleDeerSpeciesPresent
-             1 sanPedro:SingleDeerSpeciesPresent
-             0 sanPedro:DeerSpeciesAbsent))
+  (classification sanPedro:DeerHabitat
+                  :context ((numeric-coding sanPedro:MuleDeerHabitat      :as mule-deer)
+                            (numeric-coding sanPedro:WhiteTailDeerHabitat :as white-tail-deer))
+                  :state   #(let [num-deer (+ (if (Double/isNaN (:mule-deer %))       0 1)
+                                              (if (Double/isNaN (:white-tail-deer %)) 0 1))]
+                              (cond (= num-deer 2) (tl/conc 'sanPedro:MultipleDeerSpeciesPresent)
+                                    (= num-deer 1) (tl/conc 'sanPedro:SingleDeerSpeciesPresent)
+                                    :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
 
-(defmodel quail-habitat-code sanPedro:QuailHabitatCode
-   (numeric-coding sanPedro:QuailHabitatCode
-        :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
-                  (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail) 
-                  (numeric-coding sanPedro:GambelsQuailHabitat :as gambels-quail)) 
-        :state    #(let [num-quail (Math/floor (/ (+ (:scaled-quail %)
-                                                     (:mearns-quail %)
-                                                     (:gambels-quail %)) 
-                                                29.0))]
-                      (min num-quail 2)))) 
-(defmodel quail-habitat sanPedro:QuailHabitat
-    (classification quail-habitat-code
-             2 sanPedro:MultipleQuailSpeciesPresent
-             1 sanPedro:SingleQuailSpeciesPresent
-             0 sanPedro:QuailSpeciesAbsent))
+
+(defmodel quail-habitat-foo sanPedro:QuailHabitat
+  (classification sanPedro:QuailHabitat
+                  :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
+                            (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail)
+                            (numeric-coding sanPedro:GambelsQuailHabitat :as gambels-quail))
+                  :state   #(let [num-quail (+ (if (Double/isNaN (:scaled-quail  %)) 0 1)
+                                               (if (Double/isNaN (:mearns-quail  %)) 0 1)
+                                               (if (Double/isNaN (:gambels-quail %)) 0 1))]
+                              (cond (> num-quail 1) (tl/conc 'sanPedro:MultipleQuailSpeciesPresent)
+                                    (= num-quail 1) (tl/conc 'sanPedro:SingleQuailSpeciesPresent)
+                                    :otherwise      (tl/conc 'sanPedro:QuailSpeciesAbsent)))))
 
 (defmodel javelina-habitat sanPedro:JavelinaHabitat
-    (classification (numeric-coding sanPedro:JavelinaHabitat)
-     29            sanPedro:JavelinaHabitatPresent
-     :otherwise    sanPedro:JavelinaHabitatAbsent)) 
+  (classification (numeric-coding sanPedro:JavelinaHabitat)
+                  29            sanPedro:JavelinaHabitatPresent
+                  :otherwise    sanPedro:JavelinaHabitatAbsent))
 
 ;;TRANSITION ZONES?  CONVERT RASTER LULC TO VECTOR & BUFFER.  WHAT TRANSITION ZONES MATTER TO WHAT SPECIES
 ;; IS IMPORTANT.  ASK BILL K & KEN BOYKIN ABOUT IMPORTANT HABITAT TYPES/TRANSITION ZONES FOR OUR 8 SPP. OF 
