@@ -29,7 +29,7 @@
 ;; and for human preferences to recreate in riparian areas in the desert.
 ;;Hydrography-simple currently covers only the Upper San Pedro, so need to get full
 ;; layer from Bill Kepner.  Check syntax on the statements with Gary.
-(defmodel streams geofeatures:River  ;;A simplified hydrography layer: NHD is too much here
+(defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
 
 (defmodel springs waterSupplyService:Springs
@@ -41,52 +41,11 @@
     :state #(or (:streams %)
                 (:springs %))))
 
-;;(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
-;;  (numeric-coding sanPedro:RiparianAndWetlandCode
-;;                  :context ((binary-coding sanPedro:WaterPresence :as water-presence)
-;;                            (ranking sanPedro:RiparianConditionClass :as condition))
-;;                  :state   #(cond (and (== (:condition %) 1) ;;NEED TO SET AS "OTHERWISE" also.
-;;                                       (contains? #{1} (:water-presence %)))
-;;                                  1 ;;sanPedro:LowQualityRiparianOrWetlandPresent
-;;
-;;                                  (and (== (:condition %) 2)
-;;                                       (contains? #{1} (:water-presence %)))
-;;                                  2 ;;sanPedro:ModerateQualityRiparianOrWetlandPresent
-;;
-;;                                  (and (== (:condition %) 3)
-;;                                       (contains? #{1} (:water-presence %)))
-;;                                  3 ;;sanPedro:HighQualityRiparianOrWetlandPresent
-;;
-;;                                  :otherwise 0 ;;sanPedro:NoRiparianOrWetlandPresentHig
-;;                                  )))
-
-;;(defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
-;;  (classification riparian-wetland-code
-;;                  3 sanPedro:HighQualityRiparianSpringWetland
-;;                  2 sanPedro:ModerateQualityRiparianSpringWetland
-;;                  1 sanPedro:LowQualityRiparianSpringWetland
-;;                  0 sanPedro:RiparianSpringWetlandAbsent))
-
 ;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
 ;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
 ;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
 ;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
-(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
-  (numeric-coding sanPedro:RiparianAndWetlandCode
-                  :context (water-presence :as water-presence
-                            (ranking sanPedro:RiparianConditionClass :as condition))
-                  :state   #(cond (nil? (:water-presence %)) 0
-                                  (nil? (:condition %))      1
-                                  :otherwise                 (:condition %))))
-
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
-  (classification riparian-wetland-code
-                  3 sanPedro:HighQualityRiparianSpringWetland
-                  2 sanPedro:ModerateQualityRiparianSpringWetland
-                  1 sanPedro:LowQualityRiparianSpringWetland
-                  0 sanPedro:RiparianSpringWetlandAbsent))
-
-(defmodel riparian-wetland-foo sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
                   :context (water-presence :as water-presence
                             (ranking sanPedro:RiparianConditionClass :as condition))
@@ -215,7 +174,7 @@
 ;; HUNTING SEASONS INFO.
 
 ;;(defmodel elevation (high elevation areas may be more attractive for recreation, especially as an escape from 
-;;  summer heat).  People do recreate in teh mountains but this might already be accounted for by presense & biodiversity?
+;;  summer heat).  People do recreate in the mountains but this might already be accounted for by presense & biodiversity?
 ;;(defmodel mountain aestheticService:Mountain
 ;;  (classification (measurement geophysics:Altitude "m")
 ;;                  [1400 1800]  aestheticService:SmallMountain  
