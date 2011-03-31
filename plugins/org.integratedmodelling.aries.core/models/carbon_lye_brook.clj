@@ -1,4 +1,4 @@
-(ns core.models.carbon-lyebrook ;;Model is for Vermont forests (Jennifer Wright's model)
+(ns core.models.carbon-lye-brook ;;Model is for Vermont forests (Jennifer Wright's model)
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
                             categorization ranking numeric-coding binary-coding 

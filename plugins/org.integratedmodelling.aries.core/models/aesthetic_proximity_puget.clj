@@ -1,5 +1,5 @@
 ;;Proximity model for Western Washington
-(ns core.models.aesthetic-proximity
+(ns core.models.aesthetic-proximity-puget
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario defmodel measurement classification categorization 
                            namespace-ontology ranking

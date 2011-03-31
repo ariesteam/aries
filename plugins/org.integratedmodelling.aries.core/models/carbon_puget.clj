@@ -1,4 +1,4 @@
-(ns core.models.carbon
+(ns core.models.carbon-puget
 	(:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel model measurement classification 
                             categorization ranking numeric-coding binary-coding 

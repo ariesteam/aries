@@ -1,4 +1,4 @@
-(ns core.models.sediment
+(ns core.models.sediment-puget
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
                             namespace-ontology ranking numeric-coding binary-coding
