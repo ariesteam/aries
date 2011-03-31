@@ -9,34 +9,6 @@
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService)
 
-;; output and training
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-  (probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
-                  [500 3200]    VeryHighStorage
-                  [300 500]     HighStorage
-                  [150 300]     ModerateStorage
-                  [75 150]      LowStorage
-                  [0.01 75]     VeryLowStorage
-                  [0 0.01]      NoStorage))
-
-(defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
-                  [325 2301]      VeryHighVegetationStorage
-                  [190 325]       HighVegetationStorage
-                  [105 190]       ModerateVegetationStorage
-                  [40 105]        LowVegetationStorage
-                  [0.01 40]       VeryLowVegetationStorage
-                  [0 0.01]        NoVegetationStorage)) 			
-      
-(defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
-                  [680 820]      VeryHighSoilStorage
-                  [440 680]      HighSoilStorage
-                  [200 440]      ModerateSoilStorage
-                  [50 200]       LowSoilStorage
-                  [0.01 50]      VeryLowSoilStorage
-                  [0 0.01]       NoSoilStorage))
-
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
@@ -145,7 +117,59 @@
                   4        LowFireFrequency
                   #{5 6}   NoFireFrequency))
 
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
+                  [75 100]        VeryHighVegetationStorage
+                  [20 75]         HighVegetationStorage
+                  [5 20]          ModerateVegetationStorage
+                  [2 5]           LowVegetationStorage
+                  [0.01 2]        VeryLowVegetationStorage
+                  [0 0.01]        NoVegetationStorage)) 
+
+(defmodel vegetation-carbon-storage VegetationCStorage 
+  (bayesian VegetationCStorage 
+            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :context  (annual-precipitation percent-vegetation-cover hardwood-softwood-ratio)
+            :result    veg-storage
+            :keep     (VegetationCarbonStorage)))
+
+(defmodel soil-storage SoilCarbonStorage
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+                  [40 80]        VeryHighSoilStorage
+                  [20 40]        HighSoilStorage
+                  [5 20]         ModerateSoilStorage
+                  [2 5]          LowSoilStorage
+                  [0.01 2]       VeryLowSoilStorage
+                  [0 0.01]       NoSoilStorage))
+
+(defmodel soil-carbon-storage SoilCStorage 
+  (bayesian SoilCStorage 
+            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio)
+            :result    soil-storage
+            :keep     (SoilCarbonStorage)))
+
+;;Consider reworking the soil carbon storage part of the model based on Martens et al. 2005 - soil texture, precip, 
+;; temperature as most important correlates of high soil carbon storage.
+
+;;GET HELP FROM GARY ON SYNTAX
+(defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
+  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+    :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+    :state #(+ 
+              (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+              (or       (:soil-c-storage %)   0.0))))
+
+;;THIS CAN COME OUT, RIGHT, IF WE USE THE DETERMINISTIC FUNCTION ABOVE??
+;;(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
+;;  (probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
+;;                  [50 200]      VeryHighStorage
+;;                  [15 50]       HighStorage
+;;                  [6 15]        ModerateStorage
+;;                  [3 6]         LowStorage
+;;                  [0.01 3]      VeryLowStorage
+;;                  [0 0.01]      NoStorage))
+
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
                   [12 200]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
@@ -155,16 +179,12 @@
                   [0.01 3]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
-;;Consider reworking the soil carbon storage part of the model based on Martens et al. 2005 - soil texture, precip, 
-;; temperature as most important correlates of high soil carbon storage.
-
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
             :result   stored-carbon-release
-            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
-                        annual-precipitation fire-frequency)))
+            :context  (vegetation-soil-storage fire-frequency)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
