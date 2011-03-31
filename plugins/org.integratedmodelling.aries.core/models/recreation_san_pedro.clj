@@ -38,8 +38,8 @@
 (defmodel water-presence sanPedro:WaterPresence
   (binary-coding sanPedro:WaterPresence
     :context (streams :as streams springs :as springs) 
-    :state #(+ (:streams %)
-               (:springs %))))
+    :state #(or (:streams %)
+                (:springs %))))
 
 ;;(defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
 ;;  (numeric-coding sanPedro:RiparianAndWetlandCode
@@ -73,14 +73,11 @@
 ;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
 (defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
   (numeric-coding sanPedro:RiparianAndWetlandCode
-                  :context ((binary-coding sanPedro:WaterPresence :as water-presence)
+                  :context (water-presence :as water-presence
                             (ranking sanPedro:RiparianConditionClass :as condition))
-                  :state   #(if (contains? #{1} (:water-presence %))
-                                (let [condition (:condition %)]
-                                  (if (or (nil? condition) (Double/isNaN condition))
-                                    1
-                                    condition))
-                                0)))
+                  :state   #(cond (nil? (:water-presence %)) 0
+                                  (nil? (:condition %))      1
+                                  :otherwise                 (:condition %))))
 
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification riparian-wetland-code
@@ -88,6 +85,17 @@
                   2 sanPedro:ModerateQualityRiparianSpringWetland
                   1 sanPedro:LowQualityRiparianSpringWetland
                   0 sanPedro:RiparianSpringWetlandAbsent))
+
+(defmodel riparian-wetland-foo sanPedro:RiparianSpringWetlandQuality
+  (classification sanPedro:RiparianSpringWetlandQuality
+                  :context (water-presence :as water-presence
+                            (ranking sanPedro:RiparianConditionClass :as condition))
+                  :state   #(if (nil? (:water-presence %))
+                              (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
+                              (cond (= (:condition %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
+                                    (= (:condition %) 2) (tl/conc 'sanPedro:ModerateQualityRiparianSpringWetland)
+                                    (= (:condition %) 1) (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)
+                                    :otherwise           (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)))))
 
 ;;No public access includes private land, Native American reservations, military land.
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
