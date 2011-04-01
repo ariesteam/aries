@@ -207,7 +207,7 @@
             :import   "aries.core::FloodSinkCaSimple.xdsl"
             :keep     (GreenInfrastructureStorage)
             :required (LandOrSea)
-            :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type)
+            :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type land-selector)
             :result    green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink

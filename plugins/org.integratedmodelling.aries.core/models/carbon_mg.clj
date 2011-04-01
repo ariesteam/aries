@@ -9,35 +9,6 @@
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService)
 
-;; output and training 
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
-	  				[1000 3200]   VeryHighStorage
-            [600 1000]    HighStorage
-            [300 600]     ModerateStorage
-            [100 300]     LowStorage
-            [0.01 100]    VeryLowStorage
-            [0 0.01]      NoStorage))
-
-;;These values may be a bit high - compare to the mg data for veg C storage.
-(defmodel veg-storage VegetationCarbonStorage
-	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
-	  				[900 2301]     VeryHighVegetationStorage
-            [500 900]      HighVegetationStorage
-            [250 500]      ModerateVegetationStorage
-            [75 250]       LowVegetationStorage
-            [0.01 75]      VeryLowVegetationStorage
-            [0 0.01]       NoVegetationStorage)) 			
-		
-(defmodel soil-storage SoilCarbonStorage
-		(probabilistic-measurement SoilCarbonStorage "t/ha" 
-	  				[680 820]      VeryHighSoilStorage
-            [440 680]      HighSoilStorage
-            [200 440]      ModerateSoilStorage
-            [50 200]       LowSoilStorage
-            [0.01 50]      VeryLowSoilStorage
-            [0 0.01]       NoSoilStorage))
-
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
@@ -138,6 +109,56 @@
        "Low"                 LowDeforestationRisk
        :otherwise            NoDeforestationRisk)) 
 
+;;These values may be a bit high - compare to the mg data for veg C storage.
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+            [900 2301]     VeryHighVegetationStorage
+            [500 900]      HighVegetationStorage
+            [250 500]      ModerateVegetationStorage
+            [75 250]       LowVegetationStorage
+            [0.01 75]      VeryLowVegetationStorage
+            [0 0.01]       NoVegetationStorage))      
+
+(defmodel vegetation-carbon-storage VegetationCStorage 
+  (bayesian VegetationCStorage 
+            :import   "aries.core::StoredCarbonReleaseMg.xdsl"
+            :context  (percent-vegetation-cover summer-high-winter-low degradation-status population-density)
+            :required (SummerHighWinterLow)
+            :result    veg-storage
+            :keep     (VegetationCarbonStorage)))
+
+(defmodel soil-storage SoilCarbonStorage
+    (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+            [680 820]      VeryHighSoilStorage
+            [440 680]      HighSoilStorage
+            [200 440]      ModerateSoilStorage
+            [50 200]       LowSoilStorage
+            [0.01 50]      VeryLowSoilStorage
+            [0 0.01]       NoSoilStorage))
+
+(defmodel soil-carbon-storage SoilCStorage 
+  (bayesian SoilCStorage 
+            :import   "aries.core::StoredCarbonReleaseMg.xdsl"
+            :context  (soil-cn-ratio degradation-status soil-ph slope oxygen percent-vegetation-cover)
+            :required (SummerHighWinterLow)
+            :result    soil-storage
+            :keep     (SoilCarbonStorage)))
+
+(defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
+  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+               :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+               :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                          (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
+
+(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+  (classification vegetation-soil-storage
+            [1000 3200]   VeryHighStorage
+            [600 1000]    HighStorage
+            [300 600]     ModerateStorage
+            [100 300]     LowStorage
+            [0.01 100]    VeryLowStorage
+            [0 0.01]      NoStorage))
+
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
@@ -154,8 +175,7 @@
             :keep     (StoredCarbonRelease)
             :required (SummerHighWinterLow)
             :result   stored-carbon-release
-            :context  (soil-ph slope oxygen percent-vegetation-cover summer-high-winter-low soil-cn-ratio
-                         degradation-status population-density deforestation-risk)))
+            :context  (veg-soil-storage degradation-status)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model

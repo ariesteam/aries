@@ -11,37 +11,9 @@
   (PercentVegetationCover :editable "true")
   (FireFrequency :editable "true")
   (GreenhouseGasEmissions :editable "true")
-)
-
-;;This model is for western Washington State
-
-;; these are the undiscretization statements, necessary for training purposes.
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
-	  		    [1000 3200]   VeryHighStorage
-            [600 1000]    HighStorage
-            [300 600]     ModerateStorage
-            [100 300]     LowStorage
-            [0.01 100]    VeryLowStorage
-            [0 0.01]      NoStorage))
-
-(defmodel veg-storage VegetationCarbonStorage
-	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
-	  		    [900 2301]     VeryHighVegetationStorage
-            [500 900]      HighVegetationStorage
-            [250 500]      ModerateVegetationStorage
-            [75 250]       LowVegetationStorage
-            [0.01 75]      VeryLowVegetationStorage
-            [0 0.01]       NoVegetationStorage)) 			
-
-(defmodel soil-storage SoilCarbonStorage
-		(probabilistic-measurement SoilCarbonStorage "t/ha" 
-	  		    [680 820]      VeryHighSoilStorage
-            [440 680]      HighSoilStorage
-            [200 440]      ModerateSoilStorage
-            [50 200]       LowSoilStorage
-            [0.01 50]      VeryLowSoilStorage
-            [0 0.01]       NoSoilStorage))
+  (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -51,6 +23,14 @@
 ;;.  Sinks are emissions from areas at risk of deforestation or fire, which can release carbon
 ;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
 ;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
+
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))  
+
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
 
 (defmodel successional-stage SuccessionalStage
    (classification (ranking ecology:SuccessionalStage)
@@ -106,10 +86,10 @@
   (bayesian CarbonSourceValue 
             :import   "aries.core::CarbonSequestration.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :required (SuccessionalStage)
+            :required (LandOrSea)
             :result    veg-soil-sequestration
             :context  (hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
-                       percent-vegetation-cover successional-stage)))
+                       percent-vegetation-cover successional-stage land-selector)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -146,24 +126,73 @@
           [0.25 0.9] ModerateFireFrequency
           [0.9 :>]   HighFireFrequency))
 
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+            [500 900]      VeryHighVegetationStorage ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+            [200 500]      HighVegetationStorage
+            [75 200]       ModerateVegetationStorage
+            [25 75]        LowVegetationStorage
+            [0.01 25]      VeryLowVegetationStorage
+            [0 0.01]       NoVegetationStorage)) 
+
+(defmodel vegetation-carbon-storage VegetationCStorage 
+  (bayesian VegetationCStorage 
+            :import   "aries.core::StoredCarbonRelease.xdsl"
+            :context  (percent-vegetation-cover hardwood-softwood-ratio 
+                       successional-stage summer-high-winter-low land-selector)
+            :required (LandOrSea)
+            :result    veg-storage
+            :keep     (VegetationCarbonStorage)))
+
+(defmodel soil-storage SoilCarbonStorage
+    (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+            [60 115]       VeryHighSoilStorage ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+            [30 60]        HighSoilStorage
+            [15 30]        ModerateSoilStorage
+            [5 15]         LowSoilStorage
+            [0.01 5]       VeryLowSoilStorage
+            [0 0.01]       NoSoilStorage))
+
+(defmodel soil-carbon-storage SoilCStorage 
+  (bayesian SoilCStorage 
+            :import   "aries.core::StoredCarbonRelease.xdsl"
+            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
+                       successional-stage soil-cn-ratio land-selector)
+            :required (LandOrSea)
+            :result    soil-storage
+            :keep     (SoilCarbonStorage)))
+
+(defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
+  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+               :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+               :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                          (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
+
+(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+  (classification vegetation-soil-storage
+            [550 1015]    VeryHighStorage
+            [250 550]     HighStorage
+            [100 250]     ModerateStorage
+            [30 100]      LowStorage
+            [0.01 30]     VeryLowStorage
+            [0 0.01]      NoStorage))
+
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                  [12 1000]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      HighRelease
-                  [6 9]       ModerateRelease
-                  [3 6]       LowRelease
-                  [0.01 3]    VeryLowRelease
-                  [0 0.01]    NoRelease))
+                  [200 500]     VeryHighRelease ;;Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+                  [100 200]     HighRelease
+                  [50 100]      ModerateRelease
+                  [20 50]       LowRelease
+                  [0.01 20]     VeryLowRelease
+                  [0 0.01]      NoRelease))
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonRelease.xdsl"
             :keep     (StoredCarbonRelease)
-            :required (SuccessionalStage)
+            :required (LandOrSea)
             :result    stored-carbon-release
-            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
-                       successional-stage soil-cn-ratio summer-high-winter-low fire-frequency)))
+            :context  (veg-soil-storage fire-frequency land-selector)))
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------

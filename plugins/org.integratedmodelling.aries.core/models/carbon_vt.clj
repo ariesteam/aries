@@ -9,34 +9,6 @@
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService)
 
-;; output and training
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-	(probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
-	  				[300 3200]  VeryHighStorage
-	  				[220 300]   HighStorage
-	  				[140 220]   ModerateStorage
-	  				[70 140]    LowStorage
-	  				[0 70]      VeryLowStorage
-	  				0           NoStorage))
-
-(defmodel veg-storage VegetationCarbonStorage
-	(probabilistic-measurement VegetationCarbonStorage "t/ha" 
-	  				[100 2301] VeryHighVegetationStorage
-	  				[80 100]   HighVegetationStorage
-	  				[60 80]    ModerateVegetationStorage
-	  				[30 60]    LowVegetationStorage
-	  				[0 30]     VeryLowVegetationStorage
-	  				0          NoVegetationStorage)) 				
-
-(defmodel soil-storage SoilCarbonStorage
-		(probabilistic-measurement SoilCarbonStorage "t/ha" 
-	  				[200 820]  VeryHighSoilStorage
-	  				[140 200]  HighSoilStorage
-	  				[80 140]   ModerateSoilStorage
-	  				[40 80]    LowSoilStorage
-	  				[0 40]     VeryLowSoilStorage
-	  				0          NoSoilStorage))	  			
-
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
@@ -125,14 +97,60 @@
 ;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
 ;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
-;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+            [100 300]         VeryHighVegetationStorage ;; High value bound from Smith et al. (2006); check with local experts.
+            [50 100]          HighVegetationStorage
+            [25 50]           ModerateVegetationStorage
+            [10 25]           LowVegetationStorage
+            [0.01 10]         VeryLowVegetationStorage
+            [0 0.01]          NoVegetationStorage))   
+
+(defmodel vegetation-carbon-storage VegetationCStorage 
+  (bayesian VegetationCStorage 
+            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :context  (veg-type summer-high-winter-low mean-annual-precip)
+            :result    veg-storage
+            :keep     (VegetationCarbonStorage)))
+
+(defmodel soil-storage SoilCarbonStorage
+    (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+            [60 100]          VeryHighSoilStorage  ;; High value bound from Smith et al. (2006); check with local experts.
+            [35 60]           HighSoilStorage
+            [10 35]           ModerateSoilStorage
+            [5 10]            LowSoilStorage
+            [0.01 5]          VeryLowSoilStorage
+            [0 0.01]          NoSoilStorage))   
+
+(defmodel soil-carbon-storage SoilCStorage 
+  (bayesian SoilCStorage 
+            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :context  (veg-type soil-CN-ratio)
+            :result    soil-storage
+            :keep     (SoilCarbonStorage)))
+
+(defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
+  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+               :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+               :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                          (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
+
+(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+  (classification vegetation-soil-storage 
+            [150 400]          VeryHighStorage
+            [75 150]           HighStorage
+            [40 75]            ModerateStorage
+            [20 40]            LowStorage
+            [0.02 20]          VeryLowStorage
+            [0 0.02]           NoStorage))
+
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                  [12 300]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      HighRelease
-                  [6 9]       ModerateRelease
-                  [3 6]       LowRelease
-                  [0.01 3]    VeryLowRelease
+                  [75 200]    VeryHighRelease ;;Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+                  [30 75]     HighRelease
+                  [15 30]     ModerateRelease
+                  [5 15]      LowRelease
+                  [0.01 5]    VeryLowRelease
                   [0 0.01]    NoRelease))
 
 (defmodel sink CarbonSinkValue   
@@ -141,7 +159,7 @@
             :keep     (StoredCarbonRelease)            
             :required (Slope)
             :result   stored-carbon-release
-            :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))  ;; add biomass-removal-rate if there's supporting data
+            :context  (veg-soil-storage)))  ;; add biomass-removal-rate if there's supporting data
   	 		
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
