@@ -54,7 +54,7 @@
                   [9 12]      HighSequestration
                   [6 9]       ModerateSequestration
                   [1 6]       LowSequestration
-                  [0.01 1]    VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008)
+                  [0.01 1]    VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
                   [0 0.01]    NoSequestration))
 
 ;; Bayesian source model
@@ -152,7 +152,6 @@
 ;;Consider reworking the soil carbon storage part of the model based on Martens et al. 2005 - soil texture, precip, 
 ;; temperature as most important correlates of high soil carbon storage.
 
-;;GET HELP FROM GARY ON SYNTAX
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
                :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
@@ -161,7 +160,7 @@
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
   (classification VegetationAndSoilCarbonStorageClass
-                  [50 180]    VeryHighStorage
+                  [50 180]    VeryHighStorage ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [15 50]     HighStorage
                   [6 15]      ModerateStorage
                   [3 6]       LowStorage
@@ -170,7 +169,7 @@
 
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                             [12 180]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                             [12 90]     VeryHighRelease ;;Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
                              [9 12]      HighRelease
                              [6 9]       ModerateRelease
                              [3 6]       LowRelease

@@ -205,10 +205,10 @@
 (defmodel green-infrastructure-sink GreenInfrastructureSink
   (bayesian GreenInfrastructureSink 
             :import   "aries.core::FloodSinkCaSimple.xdsl"
-            :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type)
-            :result    green-infrastructure-storage
+            :keep     (GreenInfrastructureStorage)
             :required (LandOrSea)
-            :keep     (GreenInfrastructureStorage)))
+            :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type)
+            :result    green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
