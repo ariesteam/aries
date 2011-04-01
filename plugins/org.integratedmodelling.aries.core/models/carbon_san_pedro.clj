@@ -118,7 +118,7 @@
                   #{5 6}   NoFireFrequency))
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
                   [75 100]        VeryHighVegetationStorage
                   [20 75]         HighVegetationStorage
                   [5 20]          ModerateVegetationStorage
@@ -134,7 +134,7 @@
             :keep     (VegetationCarbonStorage)))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
                   [40 80]        VeryHighSoilStorage
                   [20 40]        HighSoilStorage
                   [5 20]         ModerateSoilStorage

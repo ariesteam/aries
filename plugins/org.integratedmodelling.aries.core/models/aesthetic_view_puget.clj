@@ -1,4 +1,4 @@
-(ns core.models.aesthetics-view-puget
+(ns core.models.aesthetic-view-puget
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario namespace-ontology
                            defmodel measurement classification categorization ranking numeric-coding
