@@ -159,7 +159,7 @@
                           (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
-  (classification VegetationAndSoilCarbonStorageClass
+  (classification vegetation-soil-storage
                   [50 180]    VeryHighStorage ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
                   [15 50]     HighStorage
                   [6 15]      ModerateStorage
