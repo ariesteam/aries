@@ -155,36 +155,34 @@
 ;;GET HELP FROM GARY ON SYNTAX
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
-    :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
-    :state #(+ 
-              (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
-              (or       (:soil-c-storage %)   0.0))))
+               :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+               :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                          (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
-;;THIS CAN COME OUT, RIGHT, IF WE USE THE DETERMINISTIC FUNCTION ABOVE??
-;;(defmodel veg-soil-storage VegetationAndSoilCarbonStorage
-;;  (probabilistic-measurement VegetationAndSoilCarbonStorage "t/ha" 
-;;                  [50 200]      VeryHighStorage
-;;                  [15 50]       HighStorage
-;;                  [6 15]        ModerateStorage
-;;                  [3 6]         LowStorage
-;;                  [0.01 3]      VeryLowStorage
-;;                  [0 0.01]      NoStorage))
+(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+  (classification VegetationAndSoilCarbonStorageClass
+                  [50 180]    VeryHighStorage
+                  [15 50]     HighStorage
+                  [6 15]      ModerateStorage
+                  [3 6]       LowStorage
+                  [0.02 3]    VeryLowStorage
+                  [0 0.02]    NoStorage))
 
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-                  [12 200]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-                  [9 12]      HighRelease
-                  [6 9]       ModerateRelease
-                  [3 6]       LowRelease
-                  [0.01 3]    VeryLowRelease
-                  [0 0.01]    NoRelease))
+                             [12 180]   VeryHighRelease ;;Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+                             [9 12]      HighRelease
+                             [6 9]       ModerateRelease
+                             [3 6]       LowRelease
+                             [0.02 3]    VeryLowRelease
+                             [0 0.02]    NoRelease))
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
             :result   stored-carbon-release
-            :context  (vegetation-soil-storage fire-frequency)))
+            :context  (veg-soil-storage fire-frequency)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use model
