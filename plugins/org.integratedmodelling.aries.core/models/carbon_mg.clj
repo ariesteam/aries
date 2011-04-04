@@ -109,14 +109,18 @@
        "Low"                 LowDeforestationRisk
        :otherwise            NoDeforestationRisk)) 
 
-;;These values may be a bit high - compare to the mg data for veg C storage.
+;;This discretization is based off comparison with Reusch & Gibbs' global vegetation carbon storage layer, with maximum values from \
+;; Madagascar being slightly over half of that in Puget Sound.  Need to run this by folks familiar with carbon data/forestry in Madagascar.
+;; Note that using spatial data to determine these magnitudes (versus published literature estimates like Smith et al. 2006 for the United
+;; States) gives different relative magnitudes and that for San Pedro, Puget Sound, California, and Vermont we used Smith et al. 2006 for
+;; discretization.
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
-            [900 2301]     VeryHighVegetationStorage
-            [500 900]      HighVegetationStorage
-            [250 500]      ModerateVegetationStorage
-            [75 250]       LowVegetationStorage
-            [0.01 75]      VeryLowVegetationStorage
+            [300 500]      VeryHighVegetationStorage  
+            [100 300]      HighVegetationStorage
+            [25 100]       ModerateVegetationStorage
+            [10 25]        LowVegetationStorage
+            [0.01 10]      VeryLowVegetationStorage
             [0 0.01]       NoVegetationStorage))      
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
@@ -127,13 +131,18 @@
             :result    veg-storage
             :keep     (VegetationCarbonStorage)))
 
+;;This discretization is based off comparison with Reusch & Gibbs' global vegetation carbon storage layer, with maximum values from 
+;; Madagascar being 133% of that in Puget Sound.  Need to run this by folks familiar with carbon data in Madagascar.
+;; Note that using spatial data to determine these magnitudes (versus published literature estimates like Smith et al. 2006 for the United
+;; States) gives different relative magnitudes and that for San Pedro, Puget Sound, California, and Vermont we used Smith et al. 2006 for
+;; discretization.
 (defmodel soil-storage SoilCarbonStorage
     (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
-            [680 820]      VeryHighSoilStorage
-            [440 680]      HighSoilStorage
-            [200 440]      ModerateSoilStorage
-            [50 200]       LowSoilStorage
-            [0.01 50]      VeryLowSoilStorage
+            [75 150]       VeryHighSoilStorage
+            [40 75]        HighSoilStorage
+            [20 40]        ModerateSoilStorage
+            [10 20]        LowSoilStorage
+            [0.01 10]      VeryLowSoilStorage
             [0 0.01]       NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
@@ -152,11 +161,11 @@
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-            [1000 3200]   VeryHighStorage
-            [600 1000]    HighStorage
-            [300 600]     ModerateStorage
-            [100 300]     LowStorage
-            [0.01 100]    VeryLowStorage
+            [300 650]     VeryHighStorage
+            [100 300]     HighStorage
+            [50 100]      ModerateStorage
+            [10 50]       LowStorage
+            [0.01 10]     VeryLowStorage
             [0 0.01]      NoStorage))
 
 ;; no numbers included in the discretization worksheet so the same numbers as the other concepts are used
