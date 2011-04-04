@@ -50,12 +50,12 @@
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [1 6]       LowSequestration
-                  [0.01 1]    VeryLowSequestration  ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
-                  [0 0.01]    NoSequestration))
+                  [3 4.6]       VeryHighSequestration
+                  [2 3]         HighSequestration
+                  [1.5 2]       ModerateSequestration
+                  [1 1.5]       LowSequestration
+                  [0.01 1]      VeryLowSequestration ;;Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
+                  [0 0.01]      NoSequestration))
 
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   

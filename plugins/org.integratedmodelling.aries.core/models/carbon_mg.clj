@@ -46,13 +46,14 @@
          #{3 7 23}         Degraded
          :otherwise        NotDegraded))
 
+;;Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
+                  [13 23]     VeryHighSequestration
+                  [9 13]      HighSequestration
                   [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
+                  [4 6]       LowSequestration
+                  [0.01 4]    VeryLowSequestration
                   [0 0.01]    NoSequestration))
 
 ;; Bayesian source model

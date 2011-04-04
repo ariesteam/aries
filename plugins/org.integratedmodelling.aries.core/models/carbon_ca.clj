@@ -54,13 +54,13 @@
     (classification  (measurement geophysics:Altitude "m")
        [:exclusive 0 :>] OnLand))
 
-;;Need a regular defmodel statement for the below data - for training purposes (not yet, but soon)
+;;Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]             VeryHighSequestration
-                  [9 12]              HighSequestration
-                  [6 9]               ModerateSequestration
-                  [1.5 6]             LowSequestration
+                  [6 13]              VeryHighSequestration
+                  [4 6]               HighSequestration
+                  [3 4]               ModerateSequestration
+                  [1.5 3]             LowSequestration
                   [:exclusive 0 1.5]  VeryLowSequestration
                   [0]                 NoSequestration))
 

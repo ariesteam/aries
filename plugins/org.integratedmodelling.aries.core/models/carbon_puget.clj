@@ -72,14 +72,15 @@
         [2 4]             HighHardness
         [1 2]             VeryHighHardness))
 
+;;Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
+                  [9 14]     VeryHighSequestration
+                  [6.5 9]    HighSequestration
+                  [4 6.5]    ModerateSequestration
+                  [2 4]      LowSequestration
+                  [0.01 2]   VeryLowSequestration
+                  [0 0.01]   NoSequestration))
 
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   

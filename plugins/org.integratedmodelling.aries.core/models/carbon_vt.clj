@@ -69,15 +69,15 @@
        [4.57 16.70] RollingToHilly
        [16.70 :>]   SteeplyDissectedToMountainous))
 
-
+;;Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-                  [12 30]     VeryHighSequestration
-                  [9 12]      HighSequestration
-                  [6 9]       ModerateSequestration
-                  [3 6]       LowSequestration
-                  [0.01 3]    VeryLowSequestration
-                  [0 0.01]    NoSequestration))
+                  [5 9]         VeryHighSequestration
+                  [4 5]         HighSequestration
+                  [3 4]         ModerateSequestration
+                  [1.5 3]       LowSequestration
+                  [0.01 1.5]    VeryLowSequestration
+                  [0 0.01]      NoSequestration))
 
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
