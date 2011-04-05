@@ -1,6 +1,6 @@
 (ns core.models.recreation-san-pedro
   (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel measurement classification categorization
+  (:refer modelling :only (defscenario defmodel model measurement classification categorization
                             namespace-ontology ranking numeric-coding binary-coding 
                             probabilistic-measurement probabilistic-classification probabilistic-ranking
                             identification bayesian count))
@@ -324,10 +324,14 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario cap-water-augmentation sanPedro:CAPWaterAugmentation (change RiparianWetlandQuality)
-      ;;sanPedro:CAPWaterAugmentationHalfMeterRise
-      ;;sanPedro:CAPWaterAugmentationAllPerennial
-      
+(defscenario cap-water-augmentation-hmr
+  (model sanPedro:RiparianConditionClass
+         (ranking sanPedro:CAPWaterAugmentationHalfMeterRise)))
+
+(defscenario cap-water-augmentation-ap
+  (model sanPedro:RiparianConditionClass
+         (ranking sanPedro:CAPWaterAugmentationAllPerennial)))
+
 ;;(defscenario urban-growth sanPedro:UrbanGrowth (add new users, up 10.4% in constrained, 56.8% in open)
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
