@@ -173,8 +173,8 @@
   (span Proximity
         AestheticProximityProvision
         ProximityUse
-      	ProximitySink
-      	nil
+        ProximitySink
+        nil
         nil
         :source-threshold   40.0  ;; Excludes LowProximityPotential
         :sink-threshold     0.0   ;; Deterministic as 0.0 or 50.0 based on presence of highways
@@ -213,21 +213,17 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management sanPedro:MesquiteManagement: change woodland to grassland in source model.
+(defscenario cap-water-augmentation-half-meter-rise
+"Water augmentation leading to a 0.5 meter rise across the San Pedro Riparian National Conservation Area" 
+  (model sanPedro:RiparianConditionClass
+         (ranking sanPedro:RiparianConditionClassHalfMeterRise)))
 
-;;(defscenario cap-water-augmentation sanPedro:CAPWaterAugmentation: Change riparianandwetlandquality in source model.
-      ;;sanPedro:CAPWaterAugmentationHalfMeterRise
-      ;;sanPedro:CAPWaterAugmentationAllPerennial
+(defscenario cap-water-augmentation-all-perennial
+"Water augmentation leading to perennial flow conditions across the San Pedro Riparian National Conservation Area" 
+  (model sanPedro:RiparianConditionClass
+         (ranking sanPedro:RiparianConditionClassAllWet)))
       
 ;;(defscenario urban-growth sanPedro:UrbanGrowth: change open space type to developed in source model.  Add more users to the
 ;;  landscape.
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
-      
-;;(defscenario bsr-development sanPedro:BSRDevelopment: change open space type to developed in source model.  Add more users to the
-;;  landscape.
-      ;;sanPedro:BSRDevelopmentSite1
-      ;;sanPedro:BSRDevelopmentSite2
-      ;;sanPedro:BSRDevelopmentSite3
-      ;;sanPedro:BSRDevelopmentSite4
-      ;;sanPedro:BSRDevelopmentSite5

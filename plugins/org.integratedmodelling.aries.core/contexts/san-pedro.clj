@@ -27,6 +27,8 @@
 (def bsr_sc_4 (shape "EPSG:4326 MULTIPOLYGON (((-110.366569861928 31.9193647796888, -110.350439103892 31.919409860843, -110.350305559464 31.907356191067, -110.366439477234 31.9074869550588, -110.366569861928 31.9193647796888)))"))
 (def bsr_sc_5 (shape "EPSG:4326 MULTIPOLYGON (((-110.265784494403 31.8898768239616, -110.24965961121 31.8899074512999, -110.249541234801 31.8778530299868, -110.265669056878 31.8779982601507, -110.265784494403 31.8898768239616)))"))
 
+(def san_pedro_sprnca (shape "EPSG:4326 POLYGON((-110.377 31.881, -109.987 31.881, -109.987 31.328, -110.377 31.328, -110.377 31.881))"))
+
 (def mesquite_sc_0 (shape "EPSG:4326 MULTIPOLYGON (((-110.115251587022 31.4414812540477, -110.124974867076 31.4415480387707, -110.12939332953 31.4585788198904, -110.123804032171 31.4649159391071, -110.116937300786 31.4650322363513, -110.112694547234 31.4498004271717, -110.115251587022 31.4414812540477)))"))
 (def mesquite_sc_1 (shape "EPSG:4326 MULTIPOLYGON (((-110.115251587022 31.4414812540477, -110.124974867076 31.4415480387707, -110.12939332953 31.4585788198904, -110.123804032171 31.4649159391071, -110.116937300786 31.4650322363513, -110.112694547234 31.4498004271717, -110.115251587022 31.4414812540477)))"))
 (def mesquite_sc_2 (shape "EPSG:4326 MULTIPOLYGON (((-110.150838301384 31.5123401764918, -110.148335693696 31.5147755447128, -110.13918317873 31.5140604240515, -110.135036758247 31.5084745931603, -110.135089440028 31.5027536123243, -110.130922581568 31.4994560448879, -110.130981541552 31.4930812352977, -110.142668478016 31.4876021665283, -110.150838301384 31.5123401764918)))"))
@@ -87,12 +89,11 @@
      bsr_sc_1)  
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_1) 
-;; Changes to surface carbon models
+;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_1)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
-     bsr_sc_1) 
-)
+     bsr_sc_1))
 
 (defcontext bsr-development-2
   "Just testing gazetteer shapes"
@@ -130,12 +131,11 @@
      bsr_sc_2)  
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_2) 
-;; Changes to surface carbon models
+;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_2) 
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
-     bsr_sc_2)  
-)
+     bsr_sc_2))
 
 (defcontext bsr-development-3
   "Just testing gazetteer shapes"
@@ -173,12 +173,11 @@
      bsr_sc_3)  
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_3) 
-;; Changes to surface carbon models
+;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_3)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
-     bsr_sc_3) 
-)
+     bsr_sc_3))
 
 (defcontext bsr-development-4
   "Just testing gazetteer shapes"
@@ -216,12 +215,11 @@
      bsr_sc_4)  
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_4) 
-;; Changes to surface carbon models
+;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_4)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
-     bsr_sc_4) 
-)
+     bsr_sc_4))
 
 (defcontext bsr-development-5
   "Just testing gazetteer shapes"
@@ -259,9 +257,38 @@
      bsr_sc_5)  
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_5) 
-;; Changes to surface carbon models
+;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
      bsr_sc_5)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
-     bsr_sc_5) 
-)
+     bsr_sc_5))
+
+(defcontext mesquite
+  "Just testing gazetteer shapes"
+  (grid resolution san_pedro_sprnca)
+;; Changes to surface water model
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:Grassland
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+;; Changes to aesthetic view models
+  (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
+;; Changes to aesthetic proximity models
+  (transform 'aestheticService:Grassland 'aestheticService:GrasslandPresent
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+  (transform 'sanPedro:RiparianAndWetland 'sanPedro:RiparianOrWetlandAbsent
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+  (transform 'aestheticService:Farmland 'aestheticService:FarmlandAbsent
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+  (transform 'aestheticService:DesertScrub 'aestheticService:DesertScrubAbsent
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
+  (transform 'aestheticService:Park 'aestheticService:ParkAbsent
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3) 
+;; Changes to carbon models
+  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
+  (transform 'carbonService:HardwoodSoftwoodRatio 'carbonService:LowHardness
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
+
+;;CAP water augmentation scenarios handeled entirely through defscenario statements.

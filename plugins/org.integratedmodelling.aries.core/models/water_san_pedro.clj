@@ -121,7 +121,7 @@
 
 (defmodel mountain-front MountainFront 
     (classification (binary-coding geofeatures:MountainFront)
-        0           MountainFrontPresent
+        1           MountainFrontPresent
         :otherwise  MountainFrontAbsent))
 
 (defmodel stream-channel StreamChannel
@@ -326,7 +326,7 @@
             altitude
             streams-simple)))
 
-(defmodel data-big-test WaterSupplyDryYear
+(defmodel data-full-test WaterSupplyDryYear
   (identification WaterSupplyDryYear
   :context (precipitation-wet-year
             precipitation-dry-year

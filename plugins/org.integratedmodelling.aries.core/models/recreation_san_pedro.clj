@@ -324,18 +324,22 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-(defscenario cap-water-augmentation-hmr
+(defscenario cap-water-augmentation-half-meter-rise
+"Water augmentation leading to a 0.5 meter rise across the San Pedro Riparian National Conservation Area" 
   (model sanPedro:RiparianConditionClass
-         (ranking sanPedro:CAPWaterAugmentationHalfMeterRise)))
+         (ranking sanPedro:RiparianConditionClassHalfMeterRise)))
 
-(defscenario cap-water-augmentation-ap
+(defscenario cap-water-augmentation-all-perennial
+"Water augmentation leading to perennial flow conditions across the San Pedro Riparian National Conservation Area" 
   (model sanPedro:RiparianConditionClass
-         (ranking sanPedro:CAPWaterAugmentationAllPerennial)))
+         (ranking sanPedro:RiparianConditionClassAllWet)))
 
 ;;(defscenario urban-growth sanPedro:UrbanGrowth (add new users, up 10.4% in constrained, 56.8% in open)
       ;;sanPedro:UrbanGrowth2020Open
       ;;sanPedro:UrbanGrowth2020Constrained
-      
+      ;;sanPedro:Steinitz30ClassUrbanGrowthLULCOpen
+      ;;sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained
+
 ;;(defscenario bsr-development sanPedro:BSRDevelopment (add new users, up 3.6% in BSR scenarios)
       ;;sanPedro:BSRDevelopmentSite1
       ;;sanPedro:BSRDevelopmentSite2
