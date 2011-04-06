@@ -2,7 +2,7 @@
 (ns core.models.aesthetic-proximity-san-pedro
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario defmodel measurement classification categorization 
-                           namespace-ontology ranking
+                           namespace-ontology ranking model
                            probabilistic-measurement probabilistic-classification probabilistic-ranking
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))

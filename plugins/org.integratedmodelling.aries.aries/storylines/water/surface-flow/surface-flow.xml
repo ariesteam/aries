@@ -19,6 +19,19 @@
     <id>core.models.water-la-antigua/surface-flow</id>
     <context>core.contexts.beta/la_antigua</context>
   </model>
+  <page id="vegetation-type">
+    <concept>waterSupplyService:VegetationType</concept>
+    <name>Vegetation Type</name>
+    <title>Vegetation Type</title>
+    <description>No description given</description>
+    <runninghead>Vegetation Type</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
   <page id="unusable-surface-water-sink">
     <concept>waterSupplyService:UnusableSurfaceWaterSink</concept>
     <name>Unusable Surface Water Sink</name>
@@ -125,19 +138,7 @@
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  <page id="vegetation-type">
-    <concept>waterSupplyService:VegetationType</concept>
-    <name>Vegetation Type</name>
-    <title>Vegetation Type</title>
-    <description>No description given</description>
-    <runninghead>Vegetation Type</runninghead>
-    <see-also></see-also>
-    <credits></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
+  
   <page id="percent-impervious-cover-class">
     <concept>waterSupplyService:PercentImperviousCoverClass</concept>
     <name>Percent Impervious Cover</name>
@@ -201,8 +202,8 @@
     <credits></credits>
     <group></group>
     <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
+    <plot-type >geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
     <units>mm</units>
   </page>
   <page id="sunk-surface-water-supply">
@@ -241,7 +242,7 @@
     <see-also></see-also>
     <credits></credits>
     <group></group>
-    <disabled>false</disabled>
+    <disabled>true</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
