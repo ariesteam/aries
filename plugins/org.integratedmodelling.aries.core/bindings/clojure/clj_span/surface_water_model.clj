@@ -264,14 +264,14 @@
         cache-layer         (make-matrix rows cols (fn [_] (ref ())))
         possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
         actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        mm2-per-cell        (* cell-width cell-height 1000000)
+        mm2-per-cell        (* cell-width cell-height (Math/pow 10.0 6.0))
         sink-caps           (make-buckets mm2-per-cell sink-layer)
         possible-use-caps   (make-buckets mm2-per-cell use-layer)
         actual-use-caps     (mapmap identity (& ref deref) possible-use-caps)
         use-points          (keys possible-use-caps)]
     (println "Use points:" (count use-points))
     (if (seq use-points)
-      (let [in-stream?             #(not= _0_ (get-in stream-layer %))
+      (let [in-stream?             (memoize #(not= _0_ (get-in stream-layer %)))
             stream-intakes         (find-nearest-stream-points in-stream? rows cols use-points)
             animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
             possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
