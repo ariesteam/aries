@@ -270,29 +270,43 @@
       #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
 
 (defscenario open-development-carbon
+  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (ranking ModifiedVegetationCover
-        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:percent-vegetation-cover %) (VeryLowVegetationCover)))
+    (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedOpen) (:open-development %))) 
+                                                           (tl/conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                                                           (:percent-vegetation-cover %)))
   (model FireFrequency
-    (ranking ModifiedFireFrequency
-        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:fire-frequency %) (NoFireFrequency)))
+    (classification ModifiedFireFrequency
         :context (open-development-scenario fire-frequency)
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedOpen) (:open-development %))) 
+                                                           (tl/conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency                                               
+                                                           (:fire-frequency %)))      
   (model GreenhouseGasEmitters
-    (ranking ModifiedGreenhouseGasEmitters
-        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:use-simple %) (* 1.568 (:use-simple %))))
-        :context (open-development-scenario use-simple))
+    (measurement ModifiedGreenhouseGasEmitters "t/ha*year"
+        :context (open-development-scenario use-simple)
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedOpen) (:open-development %))) 
+                                                           (* 1.568 (:greenhouse-gas-emitters %))
+                                                           (:greenhouse-gas-emitters %))))
 
 (defscenario constrained-development-carbon
+  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (ranking ModifiedVegetationCover
-        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:percent-vegetation-cover %) (VeryLowVegetationCover)))
+    (classification ModifiedVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedConstrained) (:constrained-development %))) 
+                                                                  (tl/conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                                                                  (:percent-vegetation-cover %)))       
   (model FireFrequency
-    (ranking ModifiedFireFrequency
-        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:fire-frequency %) (NoFireFrequency)))
+    (classification ModifiedFireFrequency
         :context (constrained-development-scenario fire-frequency)
-  (model GreenhouseGasEmitters
-    (ranking ModifiedGreenhouseGasEmitters
-        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:use-simple %) (* 1.104 (:use-simple %))))
-        :context (constrained-development-scenario use-simple))
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedConstrained) (:constrained-development %))) 
+                                                                  (tl/conc 'NoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                                                                  (:fire-frequency %))) 
+  (model GreenhouseGasEmitter
+    (measurement ModifiedGreenhouseGasEmitters "t/ha*year"\
+        :context (constrained-development-scenario use-simple)
+        :state #(if (is? (tl/conc 'sanPedro:DevelopedConstrained) (:constrained-development %))) 
+                                                                  (* 1.104 (:greenhouse-gas-emitters %))
+                                                                  (:greenhouse-gas-emitters %))))
