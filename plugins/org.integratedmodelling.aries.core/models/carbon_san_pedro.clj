@@ -288,7 +288,7 @@
         :context (open-development-scenario use-simple)
         :state #(if (is? (:open-development %) (tl/conc 'sanPedro:DevelopedOpen))
                   (* 1.568 (:greenhouse-gas-emitters %))
-                  (:greenhouse-gas-emitters %))))
+                  (:greenhouse-gas-emitters %)))))
 
 (defscenario constrained-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
@@ -309,4 +309,4 @@
         :context (constrained-development-scenario use-simple)
         :state #(if (is? (:constrained-development %) (tl/conc 'sanPedro:DevelopedConstrained))
                   (* 1.104 (:greenhouse-gas-emitters %))
-                  (:greenhouse-gas-emitters %))))
+                  (:greenhouse-gas-emitters %)))))
