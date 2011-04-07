@@ -1,9 +1,10 @@
 (ns core.models.carbon-san-pedro
-	(:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defscenario defmodel model measurement classification 
-                            categorization ranking numeric-coding binary-coding
-                            probabilistic-measurement probabilistic-classification
-                            identification bayesian namespace-ontology count))
+  (:refer-clojure :rename {count length})
+  (:refer tl        :only [is? conc])
+  (:refer modelling :only [defscenario defmodel model measurement classification
+                           categorization ranking numeric-coding binary-coding
+                           probabilistic-measurement probabilistic-classification
+                           identification bayesian namespace-ontology count])
   (:refer aries :only (span)))
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
@@ -274,19 +275,19 @@
   (model PercentVegetationCover
     (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
-        :state #(if (is? (:open-development %) (tl/conc 'sanPedro:DevelopedOpen))
-                  (tl/conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (open-development-scenario fire-frequency)
-        :state #(if (is? (:open-development %) (tl/conc 'sanPedro:DevelopedOpen))
-                  (tl/conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
   (model GreenhouseGasEmitters
     (measurement ModifiedGreenhouseGasEmitters "t/ha*year"
         :context (open-development-scenario use-simple)
-        :state #(if (is? (:open-development %) (tl/conc 'sanPedro:DevelopedOpen))
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (* 1.568 (:greenhouse-gas-emitters %))
                   (:greenhouse-gas-emitters %)))))
 
@@ -295,18 +296,18 @@
   (model PercentVegetationCover
     (classification ModifiedVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
-        :state #(if (is? (:constrained-development %) (tl/conc 'sanPedro:DevelopedConstrained))
-                  (tl/conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (constrained-development-scenario fire-frequency)
-        :state #(if (is? (:constrained-development %) (tl/conc 'sanPedro:DevelopedConstrained))
-                  (tl/conc 'NoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'NoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
-  (model GreenhouseGasEmitter
+  (model GreenhouseGasEmitters
     (measurement ModifiedGreenhouseGasEmitters "t/ha*year"
         :context (constrained-development-scenario use-simple)
-        :state #(if (is? (:constrained-development %) (tl/conc 'sanPedro:DevelopedConstrained))
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (* 1.104 (:greenhouse-gas-emitters %))
                   (:greenhouse-gas-emitters %)))))
