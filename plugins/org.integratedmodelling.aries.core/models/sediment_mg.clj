@@ -252,8 +252,9 @@
        streams
        altitude)))
 			
-;;Sediment flow model for recipients of beneficial sedimentation.  Sediment is generally considered detrimental for 
-;; rice farmers in Madagsacar so should probably run the detrimental span model (next one below).
+;;Sediment flow model for recipients of beneficial sedimentation.  We're assuming for now that sediment is detrimental
+;; to rice farmers in Madagascar, so DON'T run this flow model for now, run the next two below (farmers and hydro).
+;; It should be able to be easily implemented in the future, however.
 (defmodel sediment-beneficial BeneficialSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
@@ -261,7 +262,7 @@
         AnnualSedimentSinkClass 
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
-        :source-threshold   2.0
+        :source-threshold   2.0 ;;Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
         :sink-threshold     1.0
         :use-threshold      0.5
         :trans-threshold    0.25
@@ -272,21 +273,22 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_beneficial.clj")
-        :keep (MaximumSedimentSource MaximumPotentialDeposition 
-               PotentialSedimentDepositionBeneficiaries PossibleSedimentFlow
-               PossibleSedimentSource PossibleSedimentDepositionBeneficiaries
-               ActualSedimentFlow ActualSedimentSource
-               UtilizedDeposition ActualSedimentDepositionBeneficiaries
-               UnutilizedSedimentSource InaccessibleSedimentDepositionBeneficiaries
-               AbsorbedSedimentFlow NegatedSedimentSource
+        :keep (MaximumSedimentSource                       MaximumPotentialDeposition 
+               PotentialSedimentDepositionBeneficiaries    PossibleSedimentFlow
+               PossibleSedimentSource                      PossibleSedimentDepositionBeneficiaries
+               ActualSedimentFlow                          ActualSedimentSource
+               UtilizedDeposition                          ActualSedimentDepositionBeneficiaries
+               UnutilizedSedimentSource                    InaccessibleSedimentDepositionBeneficiaries
+               AbsorbedSedimentFlow                        NegatedSedimentSource
                LostValuableSediment)
         :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams)))
 
-;;Sediment flow model for recipients of avoided detrimental sedimentation
+;;Sediment flow model for recipients of avoided detrimental sedimentation: farmers.  This is one of two beneficiary models
+;; currently designed to be run.
 (defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
-        DepositionProneFarmers ;;change the beneficiary group as needed
+        DepositionProneFarmers
         AnnualSedimentSinkClass 
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
@@ -301,20 +303,21 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_farmers.clj")
-        :keep (MaximumSedimentSource MaximumPotentialDeposition 
-               PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
-               PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
-               ActualSedimentFlow ActualSedimentSource
-               UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
-               UnutilizedDeposition AbsorbedSedimentFlow
-               NegatedSedimentSource BlockedHarmfulSediment)
-        :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams))) ;;change the beneficiary group as needed
+        :keep (MaximumSedimentSource                                MaximumPotentialDeposition 
+               PotentialReducedSedimentDepositionBeneficiaries      PossibleSedimentFlow
+               PossibleSedimentSource                               PossibleReducedSedimentDepositionBeneficiaries
+               ActualSedimentFlow                                   ActualSedimentSource
+               UtilizedDeposition                                   ActualReducedSedimentDepositionBeneficiaries
+               UnutilizedDeposition                                 AbsorbedSedimentFlow
+               NegatedSedimentSource                                BlockedHarmfulSediment)
+        :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams)))
 
-;;Sediment flow model for recipients of avoided detrimental sedimentation
+;;Sediment flow model for recipients of avoided detrimental sedimentation: hydro reservoirs.  This is one of two beneficiary 
+;; models currently designed to be run.
 (defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
-        HydroelectricUseLevel  ;;change the beneficiary group as needed
+        HydroelectricUseLevel
         AnnualSedimentSinkClass 
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
@@ -329,20 +332,21 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_reservoirs.clj")
-        :keep (MaximumSedimentSource MaximumPotentialDeposition 
-               PotentialReducedSedimentDepositionBeneficiaries PossibleSedimentFlow
-               PossibleSedimentSource PossibleReducedSedimentDepositionBeneficiaries
-               ActualSedimentFlow ActualSedimentSource
-               UtilizedDeposition ActualReducedSedimentDepositionBeneficiaries
-               UnutilizedDeposition AbsorbedSedimentFlow
-               NegatedSedimentSource BlockedHarmfulSediment)
-        :context (source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains streams))) ;;change the beneficiary group as needed
+        :keep (MaximumSedimentSource                                MaximumPotentialDeposition 
+               PotentialReducedSedimentDepositionBeneficiaries      PossibleSedimentFlow
+               PossibleSedimentSource                               PossibleReducedSedimentDepositionBeneficiaries
+               ActualSedimentFlow                                   ActualSedimentSource
+               UtilizedDeposition                                   ActualReducedSedimentDepositionBeneficiaries
+               UnutilizedDeposition                                 AbsorbedSedimentFlow
+               NegatedSedimentSource                                BlockedHarmfulSediment)
+        :context (source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains streams)))
 
-;;Sediment flow model for recipients of reduced turbidity; 
+;;Sediment flow model for recipients of reduced turbidity.  This SPAN statement is not currently set up to run as we
+;; lack data on beneficiary groups for reduced turbidity.  It should be able to be easily implemented in the future, however.
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
         SedimentSourceValueAnnualClass 
-        DepositionProneFarmers ;;change the beneficiary group as needed
+        WaterIntakeUse  ;;change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSinkClass 
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
@@ -357,11 +361,11 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_turbidity.clj")
-        :keep (MaximumSedimentSource MaximumPotentialDeposition 
-               PotentialReducedTurbidityBeneficiaries PossibleSedimentFlow
-               PossibleSedimentSource PossibleReducedTurbidityBeneficiaries
-               ActualSedimentFlow ActualSedimentSource
-               UtilizedDeposition ActualReducedTurbidityBeneficiaries
-               UnutilizedDeposition AbsorbedSedimentFlow 
-               NegatedSedimentSource ReducedTurbidity)
+        :keep (MaximumSedimentSource                        MaximumPotentialDeposition 
+               PotentialReducedTurbidityBeneficiaries       PossibleSedimentFlow
+               PossibleSedimentSource                       PossibleReducedTurbidityBeneficiaries
+               ActualSedimentFlow                           ActualSedimentSource
+               UtilizedDeposition                           ActualReducedTurbidityBeneficiaries
+               UnutilizedDeposition                         AbsorbedSedimentFlow 
+               NegatedSedimentSource                        ReducedTurbidity)
         :context (source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams))) ;;change the beneficiary group as needed

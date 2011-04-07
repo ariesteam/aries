@@ -289,33 +289,156 @@
                             population-density
                             roads))) ;;add trails data once its bounding box has been adjusted
 
-;; the real enchilada
-;;(defmodel recreation-flow carbonService:ClimateStability
-;;  (span carbonService:CO2Removed
-;;        BirdingSourceValue   ;;and corresponding hunting/wildlife viewing models 
-;;        carbonService:GreenhouseGasEmissions
+;;SPAN statements written but recreational flow models are not yet developed.
+;;(defmodel recreation-flow-birding BirdingUse
+;;  (span BirdingAccessAndUse
+;;        BirdingSourceValue
+;;        BirdingDemand        ;;Need to create this model
 ;;        nil
 ;;        nil
-;;        nil
+;;        nil                  ;;May need concepts here
 ;;        :source-threshold   10.0
 ;;        :sink-threshold     10.0
-;;        :use-threshold       1.0
+;;        :use-threshold      1.0
 ;;        :trans-threshold    nil
-;;        :source-type        :finite
-;;        :sink-type          :finite
-;;        :use-type           :finite
-;;        :benefit-type       :rival
-;;        :rv-max-states      10
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
 ;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
-;;        :keep (RecreationalAttractiveness
-;;               PotentialRecreationalUsers
-;;               RecreationalUserFlow
-;;               RecreationalUse
-;;               ActualRecreationalUsers
-;;               TransportationRestrictedRecreationalUse
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
 ;;               TransportationRestrictedRecreationalUsers)
-;;        :context (source-birding use-simple sink)))
+;;        :context (source-birding population-density roads))) ;;replace with final use concept
+
+;;(defmodel recreation-flow-wildlife WildlifeViewingUse
+;;  (span WildlifeViewingAccessAndUse
+;;        WildlifeViewingSourceValue
+;;        WildlifeViewingDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;       :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;              ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-wildlife population-density roads))) ;;replace with final use concept
+
+;;(defmodel recreation-flow-javelina-hunting JavelinaHuntingUse
+;;  (span JavelinaHuntingAccessAndUse
+;;        JavelinaHuntingSourceValue
+;;        JavelinaHuntingDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-javelina-hunting population-density roads))) ;;replace with final use concept
+
+;;(defmodel recreation-flow-dove-hunting DoveHuntingUse
+;;  (span DoveHuntingAccessAndUse
+;;        DoveHuntingSourceValue
+;;        DoveHuntingDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-dove-hunting population-density roads))) ;;replace with final use concept
+
+;;(defmodel recreation-flow-quail-hunting QuailHuntingUse
+;;  (span QuailHuntingAccessAndUse
+;;        QuailHuntingSourceValue
+;;        QuailHuntingDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-quail-hunting population-density roads))) ;;replace with final use concept
+
+;;(defmodel recreation-flow-deer-hunting DeerHuntingUse
+;; (span DeerHuntingAccessAndUse
+;;        DeerHuntingSourceValue
+;;        DeerHuntingDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-deer-hunting population-density roads))) ;;replace with final use concept
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Scenarios 
@@ -339,10 +462,3 @@
       ;;sanPedro:UrbanGrowth2020Constrained
       ;;sanPedro:Steinitz30ClassUrbanGrowthLULCOpen
       ;;sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained
-
-;;(defscenario bsr-development sanPedro:BSRDevelopment (add new users, up 3.6% in BSR scenarios)
-      ;;sanPedro:BSRDevelopmentSite1
-      ;;sanPedro:BSRDevelopmentSite2
-      ;;sanPedro:BSRDevelopmentSite3
-      ;;sanPedro:BSRDevelopmentSite4
-      ;;sanPedro:BSRDevelopmentSite5

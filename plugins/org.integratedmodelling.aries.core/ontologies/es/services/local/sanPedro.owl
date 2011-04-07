@@ -7,10 +7,10 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="RiparianAndWetland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -60,6 +60,9 @@
       <owl:Class rdf:ID="RiparianSpringWetlandQuality"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModifiedEvapotranspirationVegetationType">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+  </owl:Class>
   <owl:Class rdf:ID="BSRDevelopmentSite5">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#BSRDevelopment"/>
@@ -81,6 +84,9 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="AlpineAndCliff">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ModifiedScenicVegetationType"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ScenicVegetationType"/>
     </rdfs:subClassOf>
@@ -139,6 +145,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="DesertScrub">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
@@ -158,6 +165,9 @@
   </owl:Class>
   <owl:Class rdf:ID="RiparianAndWater">
     <rdfs:subClassOf>
+      <owl:Class rdf:about="#ModifiedScenicVegetationType"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="#ScenicVegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
@@ -171,10 +181,17 @@
       <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#ModifiedScenicVegetationType">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+  </owl:Class>
   <owl:Class rdf:ID="ForestOrWoodlandAbsent">
     <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ModifiedForestAndWoodland"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="UrbanBarrenWater">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
@@ -201,6 +218,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OakWoodland">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
@@ -215,6 +233,9 @@
       <owl:Class rdf:about="#DoveHabitat"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#ModifiedForestAndWoodland">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
+  </owl:Class>
   <owl:Class rdf:about="#EvapotranspirationVegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
@@ -223,6 +244,9 @@
   </owl:Class>
   <owl:Class rdf:ID="RiparianOrWetlandAbsent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ModifiedRiparianAndWetland"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCPlans">
     <rdfs:subClassOf>
@@ -230,6 +254,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Other">
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ScenicVegetationType"/>
     </rdfs:subClassOf>
@@ -244,6 +269,7 @@
     <rdfs:subClassOf rdf:resource="#QuailHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="MesquiteWoodland">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="LowQualityRiparianSpringWetland">
@@ -255,6 +281,7 @@
     <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="Riparian">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanGrowthBaseline">
@@ -295,6 +322,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Woodland">
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#DeerHabitat">
@@ -332,6 +360,9 @@
   </owl:Class>
   <owl:Class rdf:ID="LowQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="HighInfiltration">
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
@@ -349,6 +380,7 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
   </owl:Class>
   <owl:Class rdf:ID="Grassland">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="MuleDeerHabitat">
@@ -369,9 +401,13 @@
   </owl:Class>
   <owl:Class rdf:ID="ForestOrWoodlandPresent">
     <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedForestAndWoodland"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCConstrained">
     <rdfs:subClassOf rdf:resource="#Steinitz30ClassUrbanGrowthLULC"/>
@@ -386,6 +422,7 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
   </owl:Class>
   <owl:Class rdf:ID="Forests">
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="WetRiparianCondition">
@@ -395,7 +432,11 @@
     <rdfs:subClassOf rdf:resource="#BSRDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="Forest">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ModifiedRiparianAndWetland">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:about="#RiparianSpringWetlandQuality">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -408,8 +449,10 @@
   </owl:Class>
   <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedRiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="Agriculture">
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="IntermediateRiparianCondition">

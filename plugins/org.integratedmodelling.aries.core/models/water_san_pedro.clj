@@ -1,8 +1,9 @@
 (ns core.models.water-san-pedro
   (:refer-clojure :rename {count length}) 
+  (:refer tl        :only [is? conc])
   (:refer modelling :only (defscenario defmodel measurement classification 
                             categorization ranking numeric-coding binary-coding 
-                            namespace-ontology
+                            namespace-ontology model
                             identification bayesian count probabilistic-measurement))
   (:refer aries :only (span)))
 
@@ -460,19 +461,54 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management sanPedro:MesquiteManagement): Change veg type (to sanPedro:Grassland) & cover 
-;;  (to VeryLowVegetationCover) within polygons in sink model.
-      
-;;(defscenario urban-growth sanPedro:UrbanGrowth: New users based on new growth areas (demand up 10.4% in constrained, 56.8% in open).  
-;;   Change veg type, veg cover (VeryLow for 10, 11, 12, 19, 22, 25), impervious (ModeratelyHighImperviousCover for 11, 12, 22; 
-;;   HighImperviousCover for 10, 19, 25) within new development areas in sink model.
-      ;;sanPedro:UrbanGrowth2020Open
-      ;;sanPedro:UrbanGrowth2020Constrained
-      
-;;(defscenario bsr-development sanPedro:BSRDevelopment: New users based on polygon (545 mm within each polygon).  
-;; Change veg cover (VeryLow, veg type (UrbanBarrenWater), impervious (ModeratelyHigh) within polygons in sink model.
-      ;;sanPedro:BSRDevelopmentSite1
-      ;;sanPedro:BSRDevelopmentSite2
-      ;;sanPedro:BSRDevelopmentSite3
-      ;;sanPedro:BSRDevelopmentSite4
-      ;;sanPedro:BSRDevelopmentSite5
+(defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedConstrained
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28}         sanPedro:NotDevelopedConstrained))
+
+(defmodel open-development-scenario sanPedro:OpenDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
+
+(defscenario open-development-water
+  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCoverClass
+    (classification ModifiedVegetationCoverClass
+        :context (open-development-scenario percent-vegetation-cover)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
+                  (:percent-vegetation-cover-class %))))
+  (model sanPedro:EvapotranspirationVegetationType
+    (classification sanPedro:ModifiedEvapotranspirationVegetationType
+        :context (open-development-scenario vegetation-type)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'sanPedro:UrbanBarrenWater)
+                  (:evapotranspiration-vegetation-type %))))
+  (model MountainFront
+    (classification ModifiedMountainFront
+        :context (open-development-scenario mountain-front)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'MountainFrontAbsent)
+                  (:mountain-front %)))))
+
+(defscenario constrained-development-water
+  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCoverClass
+    (classification ModifiedVegetationCoverClass
+        :context (constrained-development-scenario percent-vegetation-cover)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
+                  (:percent-vegetation-cover-class %))))
+  (model sanPedro:EvapotranspirationVegetationType
+    (classification sanPedro:ModifiedEvapotranspirationVegetationType
+        :context (constrained-development-scenario vegetation-type)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:UrbanBarrenWater)
+                  (:evapotranspiration-vegetation-type %))))
+  (model MountainFront
+    (classification ModifiedMountainFront
+        :context (constrained-development-scenario mountain-front)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'MountainFrontAbsent)
+                  (:mountain-front %)))))

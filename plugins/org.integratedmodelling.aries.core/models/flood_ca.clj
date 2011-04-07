@@ -301,29 +301,29 @@
 ;; ---------------------------------------------------------------------------------------------------          
 
 ;; all data, for testing and storage
-(defmodel data-farmers-100 AvoidedDamageToFarms100
-  (identification AvoidedDamageToFarms100
+(defmodel data-farmers-100 AvoidedFarmDamage100
+  (identification AvoidedFarmDamage100
                   :context (source :as source
                             sink-annual :as sink
                             farmers-use-100 :as use
                             flood-flow-data100 :as flow)))
 
-(defmodel data-farmers-500 AvoidedDamageToFarms500
-  (identification AvoidedDamageToFarms500
+(defmodel data-farmers-500 AvoidedFarmDamage500
+  (identification AvoidedFarmDamage500
                   :context (source :as source
                             sink-annual :as sink
                             farmers-use-500 :as use
                             flood-flow-data500 :as flow)))
 
-(defmodel data-public-100 AvoidedDamageToPublicAssets100
-  (identification AvoidedDamageToPublicAssets100
+(defmodel data-public-100 AvoidedPublicAssetDamage100
+  (identification AvoidedPublicAssetDamage100
                   :context (source :as source
                             sink-annual :as sink
                             public-use-100 :as use
                             flood-flow-data100 :as flow)))
 
-(defmodel data-public-500 AvoidedDamageToPublicAssets500
-  (identification AvoidedDamageToPublicAssets500
+(defmodel data-public-500 AvoidedPublicAssetDamage500
+  (identification AvoidedPublicAssetDamage500
                   :context (source :as source
                             sink-annual :as sink
                             public-use-500 :as use
@@ -414,7 +414,7 @@
         :context (source farmers-use-500 sink-annual flood-flow-data500)))
 
 ;; flow model for public-assets in the 100-year floodplain
-(defmodel flood-regulation-public-assets-100 AvoidedDamageToFarms100
+(defmodel flood-regulation-public-assets-100 AvoidedDamageToPublicAssets100
   (span FloodWaterMovement
         Precipitation
         FloodPublicAssetsUse100
@@ -450,7 +450,7 @@
         :context (source public-use-100 sink-annual flood-flow-data100)))
 
 ;; flow model for public-assets in the 500-year floodplain
-(defmodel flood-regulation-public-assets-500 AvoidedDamageToFarms500
+(defmodel flood-regulation-public-assets-500 AvoidedDamageToPublicAssets500
   (span FloodWaterMovement
         Precipitation
         FloodPublicAssetsUse500

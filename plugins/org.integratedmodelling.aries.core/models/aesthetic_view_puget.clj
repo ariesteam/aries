@@ -156,26 +156,28 @@
 
 (defmodel view AestheticView
   (span LineOfSight 
-        TheoreticalNaturalBeauty
-        HomeownerViewUse
-        VisualBlight
+        AestheticViewProvision
+        ViewUse
+        ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold   4.0  ;;Initially set within the lowest bin
-        :sink-threshold     4.0  ;;Initially set within the lowest bin
-        :use-threshold      4.0  ;;Initially set within the lowest bin
-        :trans-threshold    4.0  ;;Set just below the "no use" threshold in the use model; run sensitivity analysis on this
-        :source-type      :infinite
-        :sink-type        :infinite
-        :use-type         :infinite
-        :benefit-type     :non-rival
-        :downscaling-factor 2
+        :source-threshold   25.0  ;; Excludes LowNaturalBeauty
+        :sink-threshold     25.0  ;; Excludes LowBlight
+        :use-threshold       0.2  ;; Excludes HomeownerViewUseAbsent
+        :trans-threshold     1.0
+        :source-type        :infinite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
         :rv-max-states      10
-        :keep (PotentialViews PotentialVisualBlight HomeownersWithViewDemand
-               PossibleViews VisibleNaturalBeauty HomeownersWithPossibleViews
-               ActualViews EnjoyedViews RelevantVisualBlight
-               HomeownersWithViews UnseenViews InaccessibleVisualBlight
-               HomeownersWithoutViews BlockedViews DegradedNaturalBeauty
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
+        :keep (PotentialViews               PotentialVisualBlight   HomeownersWithViewDemand
+               PossibleViews                VisibleNaturalBeauty    HomeownersWithPossibleViews
+               ActualViews                  EnjoyedViews            RelevantVisualBlight
+               HomeownersWithViews          UnseenViews             InaccessibleVisualBlight
+               HomeownersWithoutViews       BlockedViews            DegradedNaturalBeauty
                HomeownersWithDegradedViews)
         :context (source homeowners sink altitude)))
 

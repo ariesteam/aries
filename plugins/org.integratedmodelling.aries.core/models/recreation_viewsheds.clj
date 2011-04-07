@@ -182,24 +182,54 @@
 			user :as use
 			sink :as sink
 			altitude :as altitude)))
-			
-;; the real enchilada
+
+;; The "first stage" flow model calculates view quality from view points, and passes results to the recreation
+;;   flow model, which moves people toward those points.	
 ;;(defmodel view aestheticService:AestheticView
 ;;  (span aestheticService:LineOfSight 
-;;        aestheticService:TheoreticalNaturalBeauty
-;;        aestheticService:HomeownerViewUse
-;;        aestheticService:TotalVisualBlight
+;;        aestheticService:AestheticViewProvision
+;;        aestheticService:ViewUse
+;;        aestheticService:ViewSink
 ;;        nil
 ;;        (geophysics:Altitude)
-;;        :source-threshold   10.0
-;;        :sink-threshold     10.0
-;;        :use-threshold      1.0
-;;        :trans-threshold    0.1
+;;        :source-threshold   25.0  ;; Excludes LowNaturalBeauty
+;;        :sink-threshold     25.0  ;; Excludes LowBlight
+;;        :use-threshold       0.2  ;; Excludes HomeownerViewUseAbsent
+;;        :trans-threshold     1.0
 ;;        :source-type        :infinite
 ;;        :sink-type          :infinite
 ;;        :use-type           :infinite
 ;;        :benefit-type       :non-rival
-;;        :rv-max-states      10 
 ;;        :downscaling-factor 1
-;;        :save-file          (str (System/getProperty "user.home") "/recreation_viewsheds_data.clj")
-;;        :context (source homeowners sink altitude)))
+;;        :rv-max-states      10
+;;        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
+;;        :keep (aestheticService:ActualViews            aestheticService:EnjoyedViews
+;;               aestheticService:RelevantVisualBlight   aestheticService:HomeownersWithViews)
+;;        :context (source viewpoints sink altitude)))  ;;Need to create the viewpoints layer, showing mountain views.
+
+;; The "second stage" flow model moves people to mountain summits with views.
+;;(defmodel recreation-flow-mountain-view MountainViewUse
+;;  (span MountainViewAccessAndUse
+;;        MountainViewSourceValue
+;;        MountainViewDemand        ;;Need to create this model
+;;        nil
+;;        nil
+;;        nil                  ;;May need concepts here
+;;        :source-threshold   10.0
+;;        :sink-threshold     10.0
+;;        :use-threshold      1.0
+;;        :trans-threshold    nil
+;;        :source-type        :infinite
+;;        :sink-type          :infinite
+;;        :use-type           :infinite
+;;        :benefit-type       :non-rival
+;;        :downscaling-factor 8
+;;        :rv-max-states      10
+;;        :animation?         true
+;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
+;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
+;;               RecreationalUserFlow                        RecreationalUse
+;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
+;;               TransportationRestrictedRecreationalUsers)
+;;        :context (source-mountain-view population-density roads))) ;;replace with final use concept

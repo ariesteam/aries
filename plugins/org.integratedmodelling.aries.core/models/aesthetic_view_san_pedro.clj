@@ -1,7 +1,8 @@
 (ns core.models.aesthetic-view-san-pedro
   (:refer-clojure :rename {count length})
+  (:refer tl        :only [is? conc])
   (:refer modelling :only [defscenario defmodel measurement classification categorization 
-                           namespace-ontology ranking
+                           namespace-ontology ranking model
                            probabilistic-measurement probabilistic-classification probabilistic-ranking
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
@@ -210,17 +211,66 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management sanPedro:MesquiteManagement): change scenic-vegetation to sanPedro:Other within polygons in the source model.
-      
-;;(defscenario urban-growth sanPedro:UrbanGrowth: change scenic-vegetation to sanPedro:Other within polygons in the source model.  
-;;  Add new developed-land as aestheticService:LowDensityDevelopment in the sink model.  Add more users in the developed areas in the use model.
-      ;;sanPedro:UrbanGrowth2020Open
-      ;;sanPedro:UrbanGrowth2020Constrained
-      
-;;(defscenario bsr-development sanPedro:BSRDevelopment: change scenic-vegetation to sanPedro:Other within polygons in the source model.
-;;  Add new developed-land as aestheticService:LowDensityDevelopment in the sink model.  Add more users in the developed areas in the use model.
-      ;;sanPedro:BSRDevelopmentSite1
-      ;;sanPedro:BSRDevelopmentSite2
-      ;;sanPedro:BSRDevelopmentSite3
-      ;;sanPedro:BSRDevelopmentSite4
-      ;;sanPedro:BSRDevelopmentSite5
+(defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedConstrained
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28}         sanPedro:NotDevelopedConstrained))
+
+(defmodel open-development-scenario sanPedro:OpenDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
+
+(defscenario open-development-viewshed
+  "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
+  (model sanPedro:ScenicVegetationType
+    (classification sanPedro:ModifiedScenicVegetationType
+        :context (open-development-scenario scenic-vegetation)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'sanPedro:Other)
+                  (:scenic-vegetation-type %))))
+  (model DevelopedLand
+    (classification ModifiedDevelopedLand
+        :context (open-development-scenario developed-land)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
+                  (:developed-land %))))
+  (model PresenceOfHousing
+    (classification ModifiedPresenceOfHousing
+        :context (open-development-scenario housing)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (:presence-of-housing %))))
+  (model HousingValue
+    (classification ModifiedHousingValue
+        :context (open-development-scenario property-value)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (:housing-value %)))))
+
+(defscenario constrained-development-viewshed
+  "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
+  (model sanPedro:ScenicVegetationType
+    (classification sanPedro:ModifiedScenicVegetationType
+        :context (constrained-development-scenario scenic-vegetation)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:Other)
+                  (:scenic-vegetation-type %))))
+  (model DevelopedLand
+    (classification ModifiedDevelopedLand
+        :context (constrained-development-scenario developed-land)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
+                  (:developed-land %))))
+  (model PresenceOfHousing
+    (classification ModifiedPresenceOfHousing
+        :context (constrained-development-scenario housing)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (:presence-of-housing %))))
+  (model HousingValue
+    (classification ModifiedHousingValue
+        :context (constrained-development-scenario property-value)
+        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (:housing-value %)))))
