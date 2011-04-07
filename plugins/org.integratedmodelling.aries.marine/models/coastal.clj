@@ -319,11 +319,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-daisy-lives CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneDependentLivesAtRisk
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -334,8 +334,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-;;        :animation?         true
-        ;;:save-file          "coastal-protection-flow-daisy-lives-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-lives-data.clj")
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
@@ -356,11 +356,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-geralda-lives CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneDependentLivesAtRisk
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -371,8 +371,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-;;        :animation?         true
-        ;;:save-file          "coastal-protection-flow-geralda-lives-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-lives-data.clj")
         :context            (coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
@@ -393,11 +393,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-litanne-lives CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneDependentLivesAtRisk
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -408,8 +408,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
- ;;       :animation?         true
-        ;;:save-file          "coastal-protection-flow-litanne-lives-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-lives-data.clj")
         :context            (coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
@@ -430,11 +430,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-daisy-assets CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneSensitiveEconomicValue
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -445,8 +445,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
- ;;       :animation?         true
-        ;;:save-file          "coastal-protection-flow-daisy-assets-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-assets-data.clj")
         :context            (coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
@@ -467,11 +467,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-geralda-assets CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneSensitiveEconomicValue
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -482,8 +482,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-;;        :animation?         true
-        ;;:save-file          "coastal-protection-flow-geralda-assets-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-assets-data.clj")
         :context            (coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
@@ -504,11 +504,11 @@
 ;;Could have as many as 6 SPAN statements: one each for risk-to-life & risk-to-assets, 1 each for 3 storm events.
 (defmodel coastal-protection-flow-litanne-assets CoastalStormProtection
   (span CoastalStormMovement
-        StormSurgeClass             ;; CoastalWaveSource
+        CoastalWaveSource
         CycloneSensitiveEconomicValue
-        TotalCoastalFloodProtection ;;CoastalFloodSink
-        nil 
-        (StormTrack GeomorphicFloodProtection)
+        CoastalFloodSink
+        nil
+        (StormTrack GeomorphicWaveReduction)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -519,8 +519,8 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-;;        :animation?         true
-        ;;:save-file          "coastal-protection-flow-litanne-assets-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-assets-data.clj")
         :context            (coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               (CoastalWaveSource
                              PotentialWaveMitigation
