@@ -7,10 +7,10 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="RiparianAndWetland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -95,6 +95,11 @@
       <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="OpenDevelopment">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCOpen"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="DeerSpeciesAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#DeerHabitat"/>
@@ -161,7 +166,7 @@
       <owl:Class rdf:about="#CAPWaterAugmentation"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCOpen">
+  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCOpen">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC"/>
     </rdfs:subClassOf>
@@ -177,19 +182,27 @@
   <owl:Class rdf:ID="RiparianConditionClassAllWet">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
+  <owl:Class rdf:ID="DevelopedOpen">
+    <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
+  </owl:Class>
   <owl:Class rdf:ID="SingleDeerSpeciesPresent">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#DeerHabitat"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="OakWoodland">
+  <owl:Class rdf:ID="ConstrainedDevelopment">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
+      <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCConstrained"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="JavelinaHabitat">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="HarvestableSpeciesHabitat"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OakWoodland">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#QuailHabitat">
@@ -224,6 +237,9 @@
   <owl:Class rdf:about="#ScenicVegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
+  <owl:Class rdf:ID="NotDevelopedConstrained">
+    <rdfs:subClassOf rdf:resource="#ConstrainedDevelopment"/>
+  </owl:Class>
   <owl:Class rdf:ID="SingleQuailSpeciesPresent">
     <rdfs:subClassOf rdf:resource="#QuailHabitat"/>
   </owl:Class>
@@ -234,6 +250,9 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NotDevelopedOpen">
+    <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="Riparian">
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
@@ -354,7 +373,7 @@
   <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
-  <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCConstrained">
+  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCConstrained">
     <rdfs:subClassOf rdf:resource="#Steinitz30ClassUrbanGrowthLULC"/>
   </owl:Class>
   <owl:Class rdf:ID="DoveHabitatCode">
@@ -383,6 +402,9 @@
   </owl:Class>
   <owl:Class rdf:ID="LowInfiltration">
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
+  </owl:Class>
+  <owl:Class rdf:ID="DevelopedConstrained">
+    <rdfs:subClassOf rdf:resource="#ConstrainedDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
     <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>

@@ -1,36 +1,80 @@
 <presentation>
 
-	<title>Carbon sequestration and storage</title>
-	<runninghead>The values accrued by any beneficiary of CO<sub>2</sub> sequestration and storage</runninghead>
-	<description>The values accrued by any beneficiary of CO<sub>2</sub> sequestration and storage</description>
+	<title>Flood regulation</title>
+	<runninghead>Values resulting from flood regulation by ecosystems</runninghead>
+	<description>Values resulting from flood regulation by ecosystems, including precipitation, ecosystems capable
+	of providing infiltration or detention of flood waters, and housing, infrastructure, or farmland at
+	risk of flooding.  Flow models are used to connect beneficiaries to potential sources of flood water and 
+	quantify the action of natural "sinks" that slow, detain, or infiltrate flood water.</description>
 	<!-- the concept of the main observation (the top-level model) -->
 	<concept>carbonService:CarbonSourceValue</concept>
 	
-	<!-- all the models that apply and in which context -->
+	<!-- all the models that apply and in which context.  Puget model needs to have SPAN statements written for all 8 
+	possible beneficiary groups - right now they're only written for one. -->
 	<model>
-		<id>core.models.carbon-puget/carbon-flow</id>
+		<id>core.models.flood-puget/data-farmers-100</id>
 		<context>core.contexts.beta/western_wa</context>
 	</model>	
 
 	<model>
-		<id>core.models.carbon-ca/carbon-flow</id>
+		<id>core.models.flood-puget/data-farmers-500</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-public-100</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-public-500</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-private-100</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-private-500</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-residents-100</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-residents-500</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+	
+		<model>
+		<id>core.models.flood-puget/data-farmers-100</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+
+	<model>
+		<id>core.models.flood-ca/flood-regulation-farmers-100</id>
 		<context>core.contexts.beta/ca_mark_watershed</context>
 	</model>
-
-	<model>
-		<id>core.models.carbon-vt/carbon-flow</id>
-		<context>core.contexts.beta/vt</context>
+	
+		<model>
+		<id>core.models.flood-ca/flood-regulation-farmers-500</id>
+		<context>core.contexts.beta/ca_mark_watershed</context>
 	</model>
-
-	<model>	
-		<id>core.models.carbon-san-pedro/carbon-flow</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
-	</model>	
-
-	<model>
-		<id>core.models.carbon-mg/carbon-flow</id>
-		<context>core.contexts.beta/mg</context>
-	</model>	
+	
+		<model>
+		<id>core.models.flood-ca/flood-regulation-public-assets-100</id>
+		<context>core.contexts.beta/ca_mark_watershed</context>
+	</model>
+	
+		<model>
+		<id>core.models.flood-ca/flood-regulation-public-assets-500</id>
+		<context>core.contexts.beta/ca_mark_watershed</context>
+	</model>
 	
 	<page>
 		<id>info</id>

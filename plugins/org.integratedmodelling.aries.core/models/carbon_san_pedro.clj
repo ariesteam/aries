@@ -259,19 +259,40 @@
 ;; instead of the baseline ones.
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defscenario mesquite-management sanPedro:MesquiteManagement: change to VeryLowVegetationCover in source & sink models
-;;  within mesquite management polygons)
-      
-;;(defscenario urban-growth sanPedro:UrbanGrowth: change developed areas to VeryLowVegetationCover in source & sink
-      ;; models; change fire-frequency to NoFireFrequency; bump up use by 10.4% in constrained and 56.8% in open development scenarios)
-      ;;sanPedro:UrbanGrowth2020Open
-      ;;sanPedro:UrbanGrowth2020Constrained
-      
-;;(defscenario bsr-development sanPedro:BSRDevelopment: change developed areas to VeryLowVegetationCover in source & sink
-      ;; models; change fire-frequency to NoFireFrequency; bump up use by 3.6%)
-      ;;sanPedro:BSRDevelopmentSite1
-      ;;sanPedro:BSRDevelopmentSite2
-      ;;sanPedro:BSRDevelopmentSite3
-      ;;sanPedro:BSRDevelopmentSite4
-      ;;sanPedro:BSRDevelopmentSite5
+(defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedConstrained
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28}         sanPedro:NotDevelopedConstrained))
 
+(defmodel open-development-scenario sanPedro:OpenDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
+
+(defscenario open-development-carbon
+  (model PercentVegetationCover
+    (ranking ModifiedVegetationCover
+        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:percent-vegetation-cover %) (VeryLowVegetationCover)))
+        :context (open-development-scenario percent-vegetation-cover)
+  (model FireFrequency
+    (ranking ModifiedFireFrequency
+        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:fire-frequency %) (NoFireFrequency)))
+        :context (open-development-scenario fire-frequency)
+  (model GreenhouseGasEmitters
+    (ranking ModifiedGreenhouseGasEmitters
+        :state #(if (is? (tl/conc sanPedro:DevelopedOpen) (:open-development-scenario %))) (:use-simple %) (* 1.568 (:use-simple %))))
+        :context (open-development-scenario use-simple))
+
+(defscenario constrained-development-carbon
+  (model PercentVegetationCover
+    (ranking ModifiedVegetationCover
+        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:percent-vegetation-cover %) (VeryLowVegetationCover)))
+        :context (constrained-development-scenario percent-vegetation-cover)
+  (model FireFrequency
+    (ranking ModifiedFireFrequency
+        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:fire-frequency %) (NoFireFrequency)))
+        :context (constrained-development-scenario fire-frequency)
+  (model GreenhouseGasEmitters
+    (ranking ModifiedGreenhouseGasEmitters
+        :state #(if (is? (tl/conc sanPedro:DevelopedConstrained) (:constrained-development-scenario %))) (:use-simple %) (* 1.104 (:use-simple %))))
+        :context (constrained-development-scenario use-simple))
