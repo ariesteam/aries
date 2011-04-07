@@ -319,9 +319,10 @@
       (newline))))
 
 (defn rotate-2d-vec
-  [[x y] theta]
-  [(- (* x (Math/cos theta)) (* y (Math/sin theta)))
-   (+ (* x (Math/sin theta)) (* y (Math/cos theta)))])
+  [theta [y x]]
+  (let [t (- theta)]
+    [(- (* y (Math/cos t)) (* x (Math/sin t)))
+     (+ (* y (Math/sin t)) (* x (Math/cos t)))]))
 
 (defn matrix-mult
   "Returns a new matrix whose values are the element-by-element
@@ -428,13 +429,13 @@
        (when (and (<  right cols) (>= bottom 0)) (list [bottom right]))))))
 
 (defn get-slope
-  [[x1 y1] [x2 y2]]
+  [[y1 x1] [y2 x2]]
   (let [dx (- x2 x1)]
     (if-not (zero? dx)
       (/ (- y2 y1) dx))))
 
 (defn get-y-intercept
-  [m [x1 y1]]
+  [m [y1 x1]]
   (if m (- y1 (* m x1))))
 
 (defstruct line :slope :intercept)
@@ -466,18 +467,18 @@
         :otherwise (- (/ m))))
 
 (defn project-onto-line
-  [{m :slope, b :intercept} [x1 y1 :as A]]
-  (cond (nil? m)   [b y1]
-        (zero? m)  [x1 b]
+  [{m :slope, b :intercept} [y1 x1 :as A]]
+  (cond (nil? m)   [y1 b]
+        (zero? m)  [b x1]
         :otherwise (let [m*          (normal-slope m)
                          b*          (get-y-intercept m* A)
                          x-intersect (/ (- b b*) (- m* m))
                          y-intersect (+ (* m x-intersect) b)]
-                     [x-intersect y-intersect])))
+                     [y-intersect x-intersect])))
 
 (defn find-points-within-box
   "Points must be specified in either clockwise or counterclockwise order."
-  [[x1 y1 :as A] [x2 y2 :as B] [x3 y3 :as C] [x4 y4 :as D]]
+  [[y1 x1 :as A] [y2 x2 :as B] [y3 x3 :as C] [y4 x4 :as D]]
   (let [min-x (min x1 x2 x3 x4)
         max-x (max x1 x2 x3 x4)
         min-y (min y1 y2 y3 y4)
@@ -493,12 +494,7 @@
                                         (filter (p between? min-y max-y)
                                                 (distinct (remove nil?
                                                                   [(f1 x) (f2 x) (f3 x) (f4 x)])))))]
-               (for [y (range low-y (inc (or high-y low-y)))] [x y]))))))
-
-;; FIXME: stub
-(defn find-cells-along-arc
-  [theta [x y :as A]]
-  (list A))
+               (for [y (range low-y (inc (or high-y low-y)))] [y x]))))))
 
 (defn find-nearest
   [test? rows cols id]

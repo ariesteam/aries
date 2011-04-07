@@ -54,52 +54,7 @@
              :benefit-type       :non-rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         false
-             :result-type        :closure-map}))
-
-
-(defn test-run-storm-lowres
-  []
-  (run-span {:flow-model         "CoastalStormMovement"
-             :source-layer       source-layer
-             :sink-layer         sink-layer
-             :use-layer          use-layer
-             :flow-layers        flow-layers
-             :cell-width         cell-width
-             :cell-height        cell-height
-             :source-threshold   nil
-             :sink-threshold     nil
-             :use-threshold      nil
-             :trans-threshold    0.1
-             :source-type        :finite
-             :sink-type          :infinite
-             :use-type           :infinite
-             :benefit-type       :non-rival
-             :downscaling-factor 1
-             :rv-max-states      10
-             :animation?         false
-             :result-type        :closure-map}))
-
-(defn test-run-storm-hires
-  []
-  (run-span {:flow-model         "CoastalStormMovement"
-             :source-layer       source-layer
-             :sink-layer         sink-layer
-             :use-layer          use-layer
-             :flow-layers        flow-layers
-             :cell-width         cell-width
-             :cell-height        cell-height
-             :source-threshold   nil
-             :sink-threshold     nil
-             :use-threshold      nil
-             :trans-threshold    0.1
-             :source-type        :finite
-             :sink-type          :infinite
-             :use-type           :infinite
-             :benefit-type       :non-rival
-             :downscaling-factor 1
-             :rv-max-states      10
-             :animation?         false
+             :animation?         true
              :result-type        :closure-map}))
 
 (defn test-run-fishing

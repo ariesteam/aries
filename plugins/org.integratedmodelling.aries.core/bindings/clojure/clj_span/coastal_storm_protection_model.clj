@@ -52,10 +52,14 @@
         [clj-span.model-api  :only (distribute-flow service-carrier)]
         [clj-misc.utils      :only (&
                                     p
+                                    my->>
                                     seq2map
                                     angular-distance
-                                    euclidean-distance
-                                    magnitude)]
+                                    angular-rotation
+                                    to-radians
+                                    reduce-true
+                                    with-progress-bar*
+                                    with-message)]
         [clj-misc.matrix-ops :only (get-rows
                                     get-cols
                                     make-matrix
@@ -65,27 +69,23 @@
                                     subtract-ids
                                     in-bounds?
                                     on-bounds?
-                                    get-line
-                                    project-onto-line
-                                    bitpack-route
                                     rotate-2d-vec
                                     filter-matrix-for-coords
                                     get-bearing
                                     get-neighbors
                                     dist-to-steps
                                     find-point-at-dist-in-m
-                                    find-cells-along-arc
                                     find-line-between)]
         [clj-misc.randvars   :only (_0_ _+_ _*_ *_ _d rv-fn rv-above?)]))
 
 (defn handle-sink-effects
-  [current-id possible-weight actual-weight eco-sink-layer geo-sink-layer km2-per-cell]
+  [current-id possible-weight actual-weight eco-sink-layer geo-sink-layer m2-per-cell]
   (let [eco-sink-height  (get-in eco-sink-layer current-id)
         geo-sink-height  (get-in geo-sink-layer current-id)
         eco-sink?        (not= _0_ eco-sink-height)
         geo-sink?        (not= _0_ geo-sink-height)
-        eco-sink-cap     (if eco-sink? (*_ km2-per-cell eco-sink-height))
-        geo-sink-cap     (if geo-sink? (*_ km2-per-cell geo-sink-height))
+        eco-sink-cap     (if eco-sink? (*_ m2-per-cell eco-sink-height))
+        geo-sink-cap     (if geo-sink? (*_ m2-per-cell geo-sink-height))
         post-geo-possible-weight (if geo-sink?
                                    (rv-fn (fn [p g] (- p (min p g))) possible-weight geo-sink-cap)
                                    possible-weight)
@@ -100,76 +100,283 @@
     [post-geo-possible-weight post-eco-actual-weight eco-sink-effects]))
 
 (defn handle-local-users!
-  [current-location use-layer cache-layer wave-cell-depth
+  [current-location use-layer cache-layer storm-surge-cell-depth
    {:keys [route possible-weight actual-weight] :as post-sink-carrier}]
   (let [vulnerability-unscaled (get-in use-layer current-location)]
     (if (not= _0_ vulnerability-unscaled)
-      (let [vulnerability             (_d vulnerability-unscaled wave-cell-depth)
+      (let [vulnerability             (_d vulnerability-unscaled storm-surge-cell-depth)
             possible-damage-inflicted (_*_ possible-weight vulnerability)
             actual-damage-inflicted   (_*_ actual-weight   vulnerability)]
         (dosync (alter (get-in cache-layer current-location) conj
                        (assoc post-sink-carrier
-                         :route           (bitpack-route route)
+                         ;;:route           (bitpack-route route) ;; Deprecated
+                         :route           nil
                          :possible-weight possible-damage-inflicted
                          :actual-weight   actual-damage-inflicted)))))))
 
-;; FIXME: Resume here. Write find-cells-along-arc. Then make this
-;;        thing update possible-flow-layer, actual-flow-layer,
-;;        cache-layer for each step along the arc, and return the next
-;;        storm carrier or nil if carrier terminates.
-(defn explore-next-segment!
-  [eco-sink-layer geo-sink-layer use-layer cache-layer possible-flow-layer actual-flow-layer
-   km2-per-cell wave-cell-depth rows cols wave-turning-angle {:keys [route centerpoint-offset] :as storm-carrier}]
-  (let [next-storm-segment (find-cells-along-arc wave-turning-angle centerpoint-offset (peek route))]
-    (reduce (fn [{:keys [route possible-weight actual-weight sink-effects] :as storm-carrier} current-location]
-              (if (in-bounds? rows cols current-location)
-                (let [[new-possible-weight new-actual-weight new-sink-effects] (handle-sink-effects current-location
-                                                                                                    possible-weight
-                                                                                                    actual-weight
-                                                                                                    eco-sink-layer
-                                                                                                    geo-sink-layer
-                                                                                                    km2-per-cell)
-                      post-sink-carrier (assoc storm-carrier
-                                          :route           (conj route current-location)
-                                          :possible-weight new-possible-weight
-                                          :actual-weight   new-actual-weight
-                                          :sink-effects    (merge-with _+_ sink-effects new-sink-effects))]
-                  (dosync
-                   (alter (get-in possible-flow-layer current-location) _+_ possible-weight)
-                   (alter (get-in actual-flow-layer   current-location) _+_ actual-weight))
-                  (handle-local-users! current-location use-layer cache-layer wave-cell-depth post-sink-carrier)
-                  (if (rv-above? new-possible-weight *trans-threshold*)
-                    post-sink-carrier))))
-            storm-carrier
-            next-storm-segment)))
+(defn get-bearing-seq
+  [get-next-bearing source-id initial-bearing]
+  (take-while (fn [[id bearing]] bearing)
+              (iterate
+               (fn [[id bearing]] (let [next-id (add-ids id bearing)]
+                                    [next-id (get-next-bearing next-id bearing)]))
+               [source-id initial-bearing])))
+
+(defstruct storm-surge :carriers :path :cell-depth)
+
+(defn find-storm-surge-cells
+  [storm-centerpoint sample-bearing storm-surge-width cell-width cell-height rows cols]
+  (let [storm-surge-orientation (rotate-2d-vec (to-radians 90.0) sample-bearing) ;; rotate 90 degrees left
+        storm-surge-reach       (* storm-surge-width 0.5)
+        storm-surge-left-edge   (find-point-at-dist-in-m storm-centerpoint
+                                                         storm-surge-orientation
+                                                         storm-surge-reach
+                                                         cell-width
+                                                         cell-height)
+        storm-surge-right-edge  (find-point-at-dist-in-m storm-centerpoint
+                                                         (map - storm-surge-orientation)
+                                                         storm-surge-reach
+                                                         cell-width
+                                                         cell-height)
+        left-storm-surge-cells  (filter (p in-bounds? rows cols)
+                                        (find-line-between storm-surge-left-edge storm-centerpoint))
+        right-storm-surge-cells (filter (p in-bounds? rows cols)
+                                        (rest (find-line-between storm-centerpoint storm-surge-right-edge)))]
+    (concat
+     (map (fn [id] [id :left  (subtract-ids id storm-centerpoint)]) left-storm-surge-cells)
+     (map (fn [id] [id :right (subtract-ids id storm-centerpoint)]) right-storm-surge-cells))))
+
+(def *storm-surge-width* 100000.0) ;; in meters
+(def *storm-surge-depth* 5000.0)   ;; in meters
+
+(defn make-storm-surge
+  [source-layer get-next-bearing storm-centerpoint storm-bearing sample-bearing m2-per-cell cell-width cell-height rows cols]
+  (with-message "Constructing storm surge..."
+    #(let [n (count (:carriers %))] (str "done. (" n (if (== n 1) " carrier)" " carriers)")))
+    (let [storm-surge-cell-depth (dist-to-steps sample-bearing
+                                                *storm-surge-depth*
+                                                cell-width
+                                                cell-height)
+          storm-surge-volume     (*_ (* m2-per-cell storm-surge-cell-depth)
+                                     (get-in source-layer storm-centerpoint))
+          storm-surge-cells      (find-storm-surge-cells storm-centerpoint
+                                                         sample-bearing
+                                                         *storm-surge-width*
+                                                         cell-width
+                                                         cell-height
+                                                         rows
+                                                         cols)
+          storm-carriers         (map (fn [[id side offset]]
+                                        (struct-map service-carrier
+                                          :source-id          id
+                                          :route              [id]
+                                          :possible-weight    storm-surge-volume ;; m^3 of storm surge
+                                          :actual-weight      storm-surge-volume ;; m^3 of storm surge
+                                          :sink-effects       {}
+                                          :side               side
+                                          :offset             offset))
+                                      storm-surge-cells)]
+      (struct-map storm-surge
+        :carriers   storm-carriers
+        :path       (map first (rest (get-bearing-seq get-next-bearing storm-centerpoint storm-bearing)))
+        :cell-depth storm-surge-cell-depth))))
 
 (defn mean-bearing
   [bearings]
-  (let [bearing-sum       (reduce (fn [[x1 y1] [x2 y2]] [(+ x1 x2) (+ y1 y2)]) bearings)
-        bearing-magnitude (magnitude bearing-sum)]
-    (map #(/ % bearing-magnitude) bearing-sum)))
+  (let [[x-total y-total] (reduce (fn [[x1 y1] [x2 y2]] [(+ x1 x2) (+ y1 y2)]) bearings)
+        num-bearings      (count bearings)]
+    [(/ x-total num-bearings) (/ y-total num-bearings)]))
 
-(defn advance-wave
-  [get-next-bearing explore-next-segment! rows cols
-   [storm-carriers storm-centerpoint storm-bearing mean-storm-bearing storm-track-sample lead-id]]
-  (let [next-storm-centerpoint  (add-ids storm-centerpoint storm-bearing)
-        next-storm-bearing      (get-next-bearing next-storm-centerpoint storm-bearing)
-        lead-bearing            (first storm-track-sample)
-        next-lead-id            (add-ids lead-id lead-bearing)
-        next-lead-bearing       (get-next-bearing next-lead-id lead-bearing)
-        next-storm-track-sample (cons next-lead-bearing (butlast storm-track-sample))
-        next-mean-storm-bearing (mean-bearing next-storm-track-sample)
-        wave-turning-angle      (angular-distance mean-storm-bearing next-mean-storm-bearing)
-        next-storm-carriers     (doall (pmap (p explore-next-segment! wave-turning-angle)
-                                             storm-carriers))]
-    (cond (on-bounds? rows cols storm-centerpoint)
-          (println "Early termination: storm centerpoint" storm-centerpoint "has reached map bounds.")
+(defstruct storm-track-sample :head :bearing :length)
 
-          (nil? next-storm-bearing)
-          (println "Early termination: next-storm-bearing is nil.")
+(defn advance-storm-track-sample
+  [{:keys [head bearing length]}]
+  (if-let [new-head (seq (rest head))]
+    (let [samples    (take length new-head)
+          new-length (count samples)]
+      (if (< new-length length)
+        ;; The window is shrinking, so balance it on both sides.
+        (struct-map storm-track-sample
+          :head    (rest new-head)
+          :bearing (mean-bearing (map second (rest samples)))
+          :length  (- length 2))
+        ;; The sample window simply slides forward by one step.
+        (struct-map storm-track-sample
+          :head    new-head
+          :bearing (mean-bearing (map second samples))
+          :length  length)))))
 
-          :otherwise
-          [next-storm-carriers next-storm-centerpoint next-storm-bearing next-mean-storm-bearing next-storm-track-sample next-lead-id])))
+(def *max-sample-window-size* 10000.0) ; in meters
+
+(defn make-storm-track-sample
+  [get-next-bearing storm-centerpoint storm-bearing cell-width cell-height rows cols]
+  (with-message "Constructing storm track sample..."
+    #(let [n (:length %) b (:bearing %)]
+       (str "done. (Bearing " b " from " n (if (== n 1) " sample)" " samples)")))
+    (if-let [storm-bearing-reversed (get-next-bearing storm-centerpoint (map - storm-bearing))]
+      (let [num-samples      (dist-to-steps storm-bearing-reversed (* 0.5 *max-sample-window-size*) cell-width cell-height)
+            reversed-samples (my->> storm-bearing-reversed
+                                    (get-bearing-seq get-next-bearing storm-centerpoint)
+                                    (take num-samples))
+            num-behind       (count reversed-samples)
+            sample-head      (my->> (last reversed-samples)
+                                    ((fn [[id next-bearing]] [(add-ids id next-bearing) (map - next-bearing)]))
+                                    (apply get-bearing-seq get-next-bearing))
+            expected-samples (inc (* num-behind 2))
+            samples          (take expected-samples sample-head)
+            acquired-samples (count samples)
+            sample-head      (drop (- expected-samples acquired-samples) sample-head)
+            samples          (drop (- expected-samples acquired-samples) samples)
+            bearing          (mean-bearing (map second samples))]
+        (struct-map storm-track-sample
+          :head    sample-head
+          :bearing bearing
+          :length  (count samples)))
+      (struct-map storm-track-sample
+        :head    (get-bearing-seq get-next-bearing storm-centerpoint storm-bearing)
+        :bearing storm-bearing
+        :length  1))))
+
+(defn find-cells-along-arc
+  [origin theta {:keys [side offset route]}]
+  ;;(if (or (and (pos? theta) (= side :right)) ;; left turn: only advance right-side cells
+  ;;        (and (neg? theta) (= side :left))) ;; right turn: only advance left-side cells
+  (if (zero? theta)
+    ;; Take a step forward in the direction of the storm bearing.
+    [nil (list (add-ids origin offset))]
+    ;; Rotate around to catch up to the new storm surge front.
+    (let [new-offset (let [[dy dx] (rotate-2d-vec theta offset)]
+                       [(int (Math/round dy)) (int (Math/round dx))])]
+      [new-offset (rest (find-line-between (peek route) (add-ids origin new-offset)))])))
+
+(defn explore-next-segment!
+  [next-storm-centerpoint storm-surge-turning-angle eco-sink-layer use-layer
+   geo-sink-layer cache-layer possible-flow-layer actual-flow-layer
+   m2-per-cell rows cols trans-threshold-volume cell-depth storm-carrier]
+  (let [[new-offset next-storm-segment] (find-cells-along-arc next-storm-centerpoint
+                                                              storm-surge-turning-angle
+                                                              storm-carrier)]
+    (reduce-true (fn [{:keys [route possible-weight actual-weight sink-effects] :as storm-carrier} current-location]
+                   (if (in-bounds? rows cols current-location)
+                     (let [[new-possible-weight new-actual-weight new-sink-effects] (handle-sink-effects current-location
+                                                                                                         possible-weight
+                                                                                                         actual-weight
+                                                                                                         eco-sink-layer
+                                                                                                         geo-sink-layer
+                                                                                                         m2-per-cell)
+                           post-sink-carrier (assoc storm-carrier
+                                               :route           (conj route current-location)
+                                               :possible-weight new-possible-weight
+                                               :actual-weight   new-actual-weight
+                                               :sink-effects    (merge-with _+_ sink-effects new-sink-effects))]
+                       (dosync
+                        (alter (get-in possible-flow-layer current-location) _+_ possible-weight)
+                        (alter (get-in actual-flow-layer   current-location) _+_ actual-weight))
+                       (handle-local-users! current-location use-layer cache-layer cell-depth post-sink-carrier)
+                       (if (rv-above? new-possible-weight trans-threshold-volume)
+                         post-sink-carrier))))
+                 (if new-offset (assoc storm-carrier :offset new-offset) storm-carrier)
+                 next-storm-segment)))
+
+;; Logic for advance-storm!:
+;;
+;; To move the carriers from the first wave position to the new wave position, do this:
+;; 0) Terminate and return nil if the storm-track-sample cannot be advanced.
+;; 1) For each carrier in the wave (in parallel):
+;;    1) Find its new location by using its offset and side as well as the storm-surge-turning-angle.
+;;    2) Find the cells that it will pass through from its current location to its new one (again possible using the turning angle).
+;;    3) Push the carrier through each of those locations, updating sinks, uses, and the possible-flow, actual-flow, and cache layers.
+;;    4) If a carrier runs out of possible-weight or hits the map bounds, return nil.
+;; 2) Collect up the new carriers and remove the nils.
+;; 3) If there are no carriers left, terminate and return nil.
+;; 4) Otherwise, construct a new storm-surge object.
+;; 5) Return [new-storm-track-sample new-storm-surge].
+(defn advance-storm!
+  [eco-sink-layer use-layer geo-sink-layer cache-layer possible-flow-layer actual-flow-layer
+   m2-per-cell rows cols trans-threshold-volume [storm-track-sample {:keys [carriers path cell-depth]}]]
+  (if-let [next-storm-track-sample (advance-storm-track-sample storm-track-sample)]
+    (let [next-storm-centerpoint    (first path)
+          storm-surge-turning-angle (angular-rotation (:bearing storm-track-sample)
+                                                      (:bearing next-storm-track-sample))]
+      (if-let [new-carriers (seq (doall (remove nil? (pmap (p explore-next-segment!
+                                                              next-storm-centerpoint
+                                                              storm-surge-turning-angle
+                                                              eco-sink-layer
+                                                              use-layer
+                                                              geo-sink-layer
+                                                              cache-layer
+                                                              possible-flow-layer
+                                                              actual-flow-layer
+                                                              m2-per-cell
+                                                              rows
+                                                              cols
+                                                              trans-threshold-volume
+                                                              cell-depth)
+                                                           carriers))))]
+        [next-storm-track-sample
+         (struct-map storm-surge
+           :carriers   new-carriers
+           :path       (rest path)
+           :cell-depth cell-depth)]))))
+
+(defn run-storm-surge-simulation!
+  [source-layer eco-sink-layer use-layer geo-sink-layer cache-layer
+   possible-flow-layer actual-flow-layer cell-width cell-height rows
+   cols storm-centerpoint storm-bearing get-next-bearing]
+  (let [m2-per-cell        (* cell-width cell-height)
+        storm-track-sample (make-storm-track-sample get-next-bearing
+                                                    storm-centerpoint
+                                                    storm-bearing
+                                                    cell-width
+                                                    cell-height
+                                                    rows
+                                                    cols)
+        storm-surge        (make-storm-surge source-layer
+                                             get-next-bearing
+                                             storm-centerpoint
+                                             storm-bearing
+                                             (:bearing storm-track-sample)
+                                             m2-per-cell
+                                             cell-width
+                                             cell-height
+                                             rows
+                                             cols)]
+    (with-message "Moving the storm surge toward the coast...\n" "All done."
+      (with-progress-bar*
+        10 ;; show a * every 10 iterations
+        (take-while seq (iterate (p advance-storm!
+                                    eco-sink-layer
+                                    use-layer
+                                    geo-sink-layer
+                                    cache-layer
+                                    possible-flow-layer
+                                    actual-flow-layer
+                                    m2-per-cell
+                                    rows
+                                    cols
+                                    (* *trans-threshold* m2-per-cell))
+                                 [storm-track-sample storm-surge]))))))
+
+;; FIXME: It would be good to have a faster way to compute
+;;        this. Perhaps a sampling method?
+(defn find-bearing-to-users
+  [storm-centerpoint use-points]
+  (with-message "Computing direction to users..."
+    (fn [[dy dx]] (format "done. (Bearing [%.2f %.2f])" dy dx))
+    (mean-bearing (map (p get-bearing storm-centerpoint) use-points))))
+
+(defn get-next-bearing
+  [on-track? rows cols curr-id prev-bearing]
+  (if-not (on-bounds? rows cols curr-id)
+    (let [prev-id            (subtract-ids curr-id prev-bearing)
+          on-track-neighbors (filter #(and (on-track? %) (not= prev-id %))
+                                     (get-neighbors rows cols curr-id))]
+      (if (seq on-track-neighbors)
+        (let [bearing-changes (seq2map (map #(subtract-ids % curr-id) on-track-neighbors)
+                                       (fn [bearing-to-neighbor]
+                                         [(angular-distance prev-bearing bearing-to-neighbor)
+                                          bearing-to-neighbor]))]
+          (bearing-changes (apply min (keys bearing-changes))))))))
 
 (def *animation-sleep-ms* 100)
 
@@ -181,171 +388,60 @@
 
 (defn end-animation [panel] panel)
 
-(defn distribute-wave-energy!
-  [storm-carriers storm-centerpoint storm-bearing mean-storm-bearing storm-track-sample lead-id
-   animation? possible-flow-layer actual-flow-layer get-next-bearing explore-next-segment! rows cols]
-  (println "Moving the wave energy toward the coast...")
-  (let [possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow" possible-flow-layer :flow 1)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"   actual-flow-layer   :flow 1)))]
-    (when animation?
-      (send-off possible-flow-animator run-animation)
-      (send-off actual-flow-animator   run-animation))
-    (doseq [_ (take-while (& seq first)
-                          (iterate (p advance-wave
-                                      get-next-bearing
-                                      explore-next-segment!
-                                      rows
-                                      cols)
-                                   [storm-carriers
-                                    storm-centerpoint
-                                    storm-bearing
-                                    mean-storm-bearing
-                                    storm-track-sample
-                                    lead-id]))]
-      (print "*") (flush))
-    (when animation?
-      (send-off possible-flow-animator end-animation)
-      (send-off actual-flow-animator   end-animation)))
-  ;;(shutdown-agents)))
-  (println "\nAll done."))
-
-(defn get-wave-cell-depth
-  [mean-storm-bearing wave-depth cell-width cell-height]
-  (let [wave-cell-depth (dist-to-steps mean-storm-bearing wave-depth cell-width cell-height)]
-    (println "Wave Cell Depth:" wave-cell-depth)
-    wave-cell-depth))
-
-(defn find-wave-cells
-  [storm-centerpoint mean-storm-bearing wave-width cell-width cell-height rows cols]
-  (print "Constructing the wave...") (flush)
-  (let [wave-orientation    (rotate-2d-vec mean-storm-bearing (/ Math/PI -2)) ;; rotate 90 degrees left
-        wave-reach          (/ wave-width 2)
-        wave-left-edge      (find-point-at-dist-in-m storm-centerpoint
-                                                     wave-orientation
-                                                     wave-reach
-                                                     cell-width
-                                                     cell-height)
-        wave-right-edge     (find-point-at-dist-in-m storm-centerpoint
-                                                     (map - wave-orientation)
-                                                     wave-reach
-                                                     cell-width
-                                                     cell-height)
-        left-wave-cells     (filter (p in-bounds? rows cols)
-                                    (find-line-between wave-left-edge storm-centerpoint))
-        right-wave-cells    (filter (p in-bounds? rows cols)
-                                    (find-line-between storm-centerpoint wave-right-edge))
-        wave-line           (get-line wave-left-edge wave-right-edge)
-        dist-to-centerpoint #(euclidean-distance storm-centerpoint (project-onto-line wave-line %))
-        left-distances      (map dist-to-centerpoint left-wave-cells)
-        right-distances     (map dist-to-centerpoint right-wave-cells)
-        wave-cells          (map vec
-                                 (concat left-wave-cells (rest right-wave-cells))
-                                 (concat left-distances  (rest right-distances)))]
-    (println "done." (str "[" (count wave-cells) " cells]"))
-    wave-cells))
-
-(defn get-bearing-seq
-  [get-next-bearing source-id initial-bearing]
-  (iterate
-   (fn [[id bearing]] (let [next-id (add-ids id bearing)]
-                        [next-id (get-next-bearing next-id bearing)]))
-   [source-id initial-bearing]))
-
-(defn sample-storm-track
-  [get-next-bearing storm-centerpoint storm-bearing rows cols]
-  (print "Sampling storm track...") (flush)
-  (let [search-distance        (int (/ (magnitude [rows cols]) 10.0)) ;; 1/10 # of cells on a diag across the matrix
-        storm-bearing-reversed (get-next-bearing storm-centerpoint (map - storm-bearing))
-        bearings-forward       (take search-distance (get-bearing-seq get-next-bearing storm-centerpoint storm-bearing))
-        bearings-behind        (take search-distance (get-bearing-seq get-next-bearing storm-centerpoint storm-bearing-reversed))
-        storm-track-sample     (concat (reverse (map second bearings-forward)) (map (& (p map -) second) bearings-behind))]
-    (println "done." (str "[" (count storm-track-sample) " samples]"))
-    [storm-track-sample (first (last bearings-forward))]))
-
-;; FIXME: It would be good to have a faster way to compute
-;;        this. Perhaps a sampling method?
-(defn find-bearing-to-users
-  [storm-centerpoint use-points]
-  (print "Determining storm direction...") (flush)
-  (let [bearing-to-users (mean-bearing
-                          (map (p get-bearing storm-centerpoint) use-points))]
-    (println "done.")
-    bearing-to-users))
-
-(defn get-next-bearing
-  [on-track? rows cols curr-id prev-bearing]
-  (let [prev-id            (subtract-ids curr-id prev-bearing)
-        on-track-neighbors (filter #(and (on-track? %) (not= prev-id %))
-                                   (get-neighbors rows cols curr-id))]
-    (if (seq on-track-neighbors)
-      (let [bearing-changes (seq2map (map #(subtract-ids % curr-id) on-track-neighbors)
-                                     (fn [bearing-to-neighbor]
-                                       [(angular-distance prev-bearing bearing-to-neighbor)
-                                        bearing-to-neighbor]))]
-        (bearing-changes (apply min (keys bearing-changes)))))))
-
-;; FIXME: Make these a function of the source value.
-(def *wave-width* 100000) ;; in meters
-(def *wave-depth* 5000)   ;; in meters
-
+;; FIXME: Theoretical source is a point, but we generate a storm surge
+;;        as a line of cells.  This makes the Theoretical and
+;;        Inacessible Source maps looks wrong in the result dataset.
 (defmethod distribute-flow "CoastalStormMovement"
   [_ animation? cell-width cell-height source-layer eco-sink-layer use-layer
-   {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicFloodProtection"}]
-  (println "Running Coastal Storm Protection flow model.")
+   {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicWaveReduction"}]
+  (println "\nRunning CoastalStormMovement flow model.")
   (let [rows                (get-rows source-layer)
         cols                (get-cols source-layer)
         cache-layer         (make-matrix rows cols (fn [_] (ref ())))
         possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
         actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        [source-points use-points] (pmap (p filter-matrix-for-coords (p not= _0_))
-                                         [source-layer use-layer])]
+        source-points       (filter-matrix-for-coords (p not= _0_) source-layer)
+        use-points          (filter-matrix-for-coords (p not= _0_) use-layer)]
     (println "Source points:" (count source-points))
     (println "Use points:   " (count use-points))
-    (let [storm-centerpoint  (first source-points)
-          on-track?          #(not= _0_ (get-in storm-track-layer %))
-          get-next-bearing   (p get-next-bearing on-track? rows cols)
-          storm-bearing      (get-next-bearing storm-centerpoint (find-bearing-to-users storm-centerpoint use-points))
-          [storm-track-sample lead-id] (sample-storm-track get-next-bearing storm-centerpoint storm-bearing rows cols)
-          mean-storm-bearing (mean-bearing storm-track-sample)
-          wave-cells         (find-wave-cells storm-centerpoint mean-storm-bearing *wave-width* cell-width cell-height rows cols)
-          wave-cell-depth    (get-wave-cell-depth mean-storm-bearing *wave-depth* cell-width cell-height)
-          km2-per-cell       (* cell-width cell-height (Math/pow 10.0 -6.0))
-          wave-energy        (*_ (* km2-per-cell wave-cell-depth) (get-in source-layer storm-centerpoint))
-          storm-carriers     (map (fn [[id dist]]
-                                    (struct-map service-carrier
-                                      :source-id          id
-                                      :route              [id]
-                                      :possible-weight    wave-energy
-                                      :actual-weight      wave-energy
-                                      :sink-effects       {}
-                                      :centerpoint-offset dist))
-                                  wave-cells)
-          explore-next-segment! (p explore-next-segment!
-                                   eco-sink-layer
-                                   geo-sink-layer
-                                   use-layer
-                                   cache-layer
-                                   possible-flow-layer
-                                   actual-flow-layer
-                                   km2-per-cell
-                                   wave-cell-depth
-                                   rows
-                                   cols)]
-      (distribute-wave-energy! storm-carriers
-                               storm-centerpoint
-                               storm-bearing
-                               mean-storm-bearing
-                               storm-track-sample
-                               lead-id
-                               animation?
-                               possible-flow-layer
-                               actual-flow-layer
-                               get-next-bearing
-                               explore-next-segment!
-                               rows
-                               cols)
-      (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
-      (println "Simulation complete. Returning the cache-layer.")
-      [(map-matrix (& seq deref) cache-layer)
-       (map-matrix deref possible-flow-layer)
-       (map-matrix deref actual-flow-layer)])))
+    (if (and (seq source-points) (seq use-points))
+      (let [storm-centerpoint (first source-points)
+            on-track?         #(not= _0_ (get-in storm-track-layer %))
+            get-next-bearing  (p get-next-bearing on-track? rows cols)]
+        (if-let [storm-bearing (get-next-bearing storm-centerpoint (find-bearing-to-users storm-centerpoint use-points))]
+          (let [animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
+                possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
+                                                                             possible-flow-layer
+                                                                             :pflow
+                                                                             animation-pixel-size)))
+                actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
+                                                                             actual-flow-layer
+                                                                             :aflow
+                                                                             animation-pixel-size)))]
+            (when animation?
+              (send-off possible-flow-animator run-animation)
+              (send-off actual-flow-animator   run-animation))
+            (run-storm-surge-simulation! source-layer
+                                         eco-sink-layer
+                                         use-layer
+                                         geo-sink-layer
+                                         cache-layer
+                                         possible-flow-layer
+                                         actual-flow-layer
+                                         cell-width
+                                         cell-height
+                                         rows
+                                         cols
+                                         storm-centerpoint
+                                         storm-bearing
+                                         get-next-bearing)
+            (when animation?
+              (send-off possible-flow-animator end-animation)
+              (send-off actual-flow-animator   end-animation)))
+          (println "Either the storm source point" storm-centerpoint "is on the map boundary or no storm tracks lead away from it.")))
+      (println "Either source or use is zero everywhere. Therefore, there can be no service flow."))
+    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
+    (println "Simulation complete. Returning the cache-layer.")
+    [(map-matrix (& seq deref) cache-layer)
+     (map-matrix deref possible-flow-layer)
+     (map-matrix deref actual-flow-layer)]))

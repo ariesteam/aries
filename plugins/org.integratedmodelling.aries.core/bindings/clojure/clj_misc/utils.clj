@@ -270,6 +270,15 @@
   (constraints-1.0 {:pre [A B (== (count A) (count B))]})
   (reduce + (map * A B)))
 
+(defn to-degrees [r] (* r (/ 180.0 Math/PI)))
+
+(defn to-radians [d] (* d (/ Math/PI 180.0)))
+
+(defn angular-rotation
+  "Given two vectors A and B, returns the directed angle between them."
+  [[dy1 dx1 :as A] [dy2 dx2 :as B]]
+  (- (Math/atan2 dy2 dx2) (Math/atan2 dy1 dx1)))
+
 (defn angular-distance
   "Given two vectors A and B, returns the angle between them."
   [[dy1 dx1 :as A] [dy2 dx2 :as B]]
@@ -386,3 +395,24 @@
   [f x]
   ;;(take-while seq (iterate (& (p remove nil?) f) x)))
   (take-while seq (iterate #(remove nil? (f %)) x)))
+
+(defmacro with-message
+  [msg msg-done body]
+  `(do (print ~msg)
+       (flush)
+       (let [result# ~body]
+         (println
+          (if (fn? ~msg-done)
+            (~msg-done result#)
+            ~msg-done))
+         result#)))
+
+(defn reduce-true
+  "Like reduce but short-circuits upon logical false"
+  [f val coll]
+  (when val
+    (loop [val val, coll coll]
+      (if (empty? coll)
+        val
+        (when-let [val* (f val (first coll))]
+          (recur val* (rest coll)))))))
