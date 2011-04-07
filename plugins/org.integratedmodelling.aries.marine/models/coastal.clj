@@ -21,10 +21,10 @@
 ;;  (ranking habitat:TropicalStormProbability))
 
 (defmodel storm-tracks StormTracks
-  (categorization StormTracks)) 
+  (categorization StormTracks))
 
 (defmodel buffer BufferMg100km
-  (binary-coding BufferMg100km)) 
+  (binary-coding BufferMg100km))
 
 (defmodel bathymetry-class BathymetryClass
   (classification (measurement geophysics:Bathymetry "m")
@@ -43,7 +43,7 @@
 ;;Discretization based on the Southwest Indian Ocean Tropical Cyclone Scale. May need a different
 ;; scale for other parts of the world.
 (defmodel wind-speed WindSpeedClass
-  (classification (measurement geophysics:WindSpeed "km/h") 
+  (classification (measurement geophysics:WindSpeed "km/h")
      [165 :>]    VeryHighWindSpeed
      [117 165]   HighWindSpeed
      [88 117]    ModeratelyHighWindSpeed
@@ -178,13 +178,13 @@
          #{"HIgh" "High"}     HighlyBleachedCoralPresent
          #{"Moderate" ""}     ModeratelyBleachedCoralPresent
          :otherwise           NoCoralPresent))
- 
-;; TODO only two classes represented from presence/absence; no idea how to 
+
+;; TODO only two classes represented from presence/absence; no idea how to
 ;; model density based on existing data.
 (defmodel seagrass SeagrassPresenceClass
-	(classification (binary-coding SeagrassPresence)
-		0 SeagrassAbsent
-		1 SeagrassPresent))
+    (classification (binary-coding SeagrassPresence)
+        0 SeagrassAbsent
+        1 SeagrassPresent))
 
 ;;Terrestrial vegetation types from Mg LULC layer
 (defmodel terrestrial-vegetation TerrestrialVegetationType
@@ -193,7 +193,7 @@
          #{6 7}                                   Shrubland
          #{14}                                    Wetland
          #{9 11 12 13 18 22 24 25 26 28 29 32 33} Herbaceous ;;Includes agriculture, grass-dominated savannas
-         #{16 17 19 27}                           Other)) 
+         #{16 17 19 27}                           Other))
 
 ;;Assumes some artificial flood protection near Toamasina, the main port city in Madagascar.  Development around the small ports is minimal.
 (defmodel artificial-coastal-protection ArtificialCoastalProtection
@@ -222,10 +222,10 @@
 
 ;; Wave mitigation by ecosystems, i.e., the ecosystem service.
 (defmodel coastal-flood-sink CoastalFloodSink
-  	"Interface to Flood public asset use bayesian network"
-	  (bayesian CoastalFloodSink 
-	  	:import   "aries.marine::CoastalFloodSink.xdsl"
-	  	:keep     (TotalCoastalFloodProtection)
+    "Interface to Flood public asset use bayesian network"
+      (bayesian CoastalFloodSink
+        :import   "aries.marine::CoastalFloodSink.xdsl"
+        :keep     (TotalCoastalFloodProtection)
         :result   coastal-flood-protection
         :required (ProtectionPresence)
         :context  (mangrove coral-quality seagrass terrestrial-vegetation protection-selector artificial-coastal-protection)))
@@ -236,10 +236,10 @@
 
 ;;Returns the deciles of risk to life and property
 (defmodel risk-to-life CycloneDependentLivesAtRisk
-	(ranking policytarget:LivesAtRiskStorm))
+    (ranking policytarget:LivesAtRiskStorm))
 
 (defmodel risk-to-assets CycloneSensitiveEconomicValue
-	(ranking policytarget:AssetsAtRiskStorm))
+    (ranking policytarget:AssetsAtRiskStorm))
 
 ;; --------------------------------------------------------------------------------------
 ;; Flow models
@@ -247,7 +247,7 @@
 
 (defmodel dune DunePresenceClass
   (classification (binary-coding geofeatures:Dune)
-    #{"dune"}   DunePresent    
+    #{"dune"}   DunePresent
     :otherwise  DuneAbsent))
 
 (defmodel slope BathymetricSlope
@@ -283,7 +283,7 @@
 ;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
 (defmodel geomorphic-flood-sink GeomorphicWaveReduction
     "Interface to Flood public asset use bayesian network"
-    (bayesian GeomorphicWaveReduction 
+    (bayesian GeomorphicWaveReduction
       :import   "aries.marine::CoastalFloodSink.xdsl"
       :keep     (GeomorphicFloodProtection)
       :result   geomorphic-flood-protection
@@ -308,7 +308,7 @@
   (binary-coding StormTrack))
 
 (defmodel coastal-protection-data CoastalStormProtection
-	(identification CoastalStormProtection
+    (identification CoastalStormProtection
                     :context (coastal-wave-source-litanne ;; TODO should sum up the storms
                               risk-to-life
                               risk-to-assets
