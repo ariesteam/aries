@@ -202,14 +202,8 @@
     :otherwise ArtificialCoastalProtectionAbsent))
 
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
-;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel coastal-flood-protection TotalCoastalFloodProtection
   (probabilistic-measurement TotalCoastalFloodProtection "m"
-;;                  [1 :>]        HighCoastalFloodProtection
-;;                  [1 2]        HighCoastalFloodProtection
-;;                  [0.5 1]       ModerateCoastalFloodProtection
-;;                  [0.1 0.5]     LowCoastalFloodProtection
-;;                  [0 0.1]       NoCoastalFloodProtection))
                   [0.07 0.1]      HighCoastalFloodProtection
                   [0.03 0.07]     ModerateCoastalFloodProtection
                   [0 0.03]        LowCoastalFloodProtection
@@ -271,14 +265,10 @@
 ;; These numbers need to be adjusted: the waves move too far inland.
 (defmodel geomorphic-flood-protection GeomorphicFloodProtection
   (probabilistic-measurement GeomorphicFloodProtection "m"
-;;                  [1 :>]        HighGeomorphicProtection
-;;                  [1   2]       HighGeomorphicProtection
-;;                  [0.5 1]       ModerateGeomorphicProtection
-;;                  [0 0.5]       LowGeomorphicProtection))
-                  [0.07 0.1]    HighGeomorphicProtection
-                  [0.03 0.07]   ModerateGeomorphicProtection
-                  [0 0.03]      LowGeomorphicProtection
-                  [0 0]         NoGeomorphicProtection))
+                  [0.001 0.002]    HighGeomorphicProtection
+                  [0.0005 0.001]   ModerateGeomorphicProtection
+                  [0 0.0005]       LowGeomorphicProtection
+                  [0 0]            NoGeomorphicProtection))
 
 ;; Wave mitigation by geomorphic features (i.e., baseline wave mitigation in the absence of ecosystems)
 (defmodel geomorphic-flood-sink GeomorphicWaveReduction
