@@ -150,7 +150,7 @@
 		<description>
 			h1. Subsistence fishery demand
 			
-			This map depicts the result of a probabilistic models estimating the need for fish to support the 
+			This map shows the result of a probabilistic models estimating the need for fish to support the 
 			livelihoods of coastal populations. Darker blues indicate greater need - among poorer populations that live 
 			closer to the coast. This map is a probabilistic one, illustrating the probability of needing fish 
 			for subsistence. You can click on the map and visualize the probability distribution in each point. The flow model 
@@ -337,6 +337,8 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
+<!-- Concepts not used in the current generation of fisheries models.  Could be used in the future to map and model
+habitat quality as part of mapping species abudnance. 
 	<page id="estuary-area">
 		<concept>fisheries:EstuaryArea</concept>
 		<name> Estuary Area</name>
@@ -472,7 +474,7 @@
 		<runninghead> Coral Bleaching</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
-	</page>
+	</page>  -->
 
 	<page>
 		<concept>infrastructure:Path</concept>
@@ -526,7 +528,11 @@
 		<group />
 		<disabled>true</disabled>
 		<description>
-		The movement of fish from areas where they are caught to communities where 
+		The *actual flow density* map shows the flow paths that deliver actual services to
+		humans. These are selected from the total flow density to only show these flow paths
+		that are not depleted by sinks and actually reach users.
+		
+		This map shows the movement of fish from areas where they are caught to communities where 
 		they are consumed, based on transportation networks, supply, demand, and 
 		distance decay.
 		</description>
@@ -604,8 +610,9 @@
 		<title>Unutilized subsistence fish</title>
 		<group />
 		<description>
-		The *inaccessible source map* shows the part of the source value that did not
-		reach the users due to flow dynamics.
+		The *inaccessible source map* shows the part of the source value that cannot 
+		deliver a service carrier to humans based on the flow routes and the source 
+		and user locations.
 			
 		In this case, the map showes fisheries that are not used due to lack of proximity 
 		or pathways to users.  This value may also be positive if some of the fish supply 
@@ -630,6 +637,12 @@
 		<title>Unsatisfied subsistence fish demand</title>
 		<group />
 		<description>
+		The *inaccessible use map* shows the potential users that cannot receive a service
+		carrier due to flow routes and the source and user locations. For provisioning services,
+		this corresponds to value produced by the environment but that cannot be reached by
+		users. For preventive services, it corresponds to damage that could have been
+		inflicted on users but is not due to a lack of flow connections to users.
+		
 		The portion of demand for fish not satisfied due to inadequate size of the 
 		fishery or a lack of proximity to a fishery.  If this is zero, some unutilized 
 		fish may be a result of a true surplus and not just a lack of proximity.  

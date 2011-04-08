@@ -1,0 +1,1173 @@
+<presentation>
+
+	<title>Recreation</title>
+	<runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
+	<description>Values resulting from ecosystem contributions toward recreational activities, as opposed to the
+	infrastructure, skills, and preferences of individuals participating in a given activity.  Source models map
+	the potential recreational quality of a given part of the landscape for a particular activity.  Flow models 
+	can be used to connect beneficiaries to areas where recreation occurs.</description>
+	<!-- the concept of the main observation (the top-level model) -->
+	<concept>carbonService:CarbonSourceValue</concept>  <!-- NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
+
+	<!-- all the models that apply and in which context.-->
+	<model>
+		<id>core.models.recreation-san-pedro/recreation-data</id>
+		<context>core.contexts.beta/san_pedro_us512</context>
+	</model>	
+
+<!-- The Vermont viewsheds model needs to have its use model replaced.  While we should eventually incorporate it into the 
+online interface we should hold off on doing so for now. 
+	<model>
+		<id>core.models.recreation-viewsheds/data</id>
+		<context>core.contexts.beta/vt512</context> 
+	</model> 
+
+	<page id="viewer-enjoyment">
+		<concept>recreationService:ViewerEnjoyment</concept>
+		<name>Enjoyment of views from mountain summits and overlooks</name>
+		<title>Enjoyment of views</title>
+		<group></group>
+		<description>
+		This model considers the value of views from mountain summits and overlooks for hikers.  View quality and obstructions are
+		modeled using a line-of-sight model, which identifies viewshed quality at alternative mountain summits.  A transportation
+		model using road networks and recreational preferences will be developed in the future to identify spatial connections between
+		people and their preferred recreational sites.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+				<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>  -->
+	
+	<page id="birding-use">
+		<concept>recreationService:BirdingUse</concept>
+		<name>Enjoyment of natural areas for bird watching</name>
+		<title>Enjoyment for birding</title>
+		<group></group>
+		<description>	
+		This model considers protection of public infrastructure as a potential beneficiary of flood regulation.  Public infrastructure (e.g.,
+		transportation, energy, or water infrastructure) can be damaged by floodwater or the use of such infrastructure can be impaired 
+		by inudation (e.g., roads being impassable due to flooding).  These models map flows from flood sources (precipitation), sinks (areas
+		whose topography, vegetation, and soils promote detention and infiltration of flood water), and beneficiary groups and link these
+		via a flow model accounting for the downstream movement of floodwater.  To map public infrastructure at risk of flooding, 
+		we simply intersect roads, railways, or other infrastructure with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="wildlife-viewing-use">
+		<concept>recreationService:WildlifeViewingUse</concept>
+		<name>Enjoyment of natural areas for wildlife viewing</name>
+		<title>Enjoyment for wildlife viewing</title>
+		<group></group>
+		<description>	
+		This model considers protection of human life and housing as a potential beneficiary of flood regulation.  For people living in flood
+		zones, floodwater can destroy housing and personal property and pose a risk to human lives.  These models map flows from flood sources 
+		(precipitation), sinks (areas whose topography, vegetation, and soils promote detention and infiltration of flood water), and 
+		beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.  To map housing at risk of 
+		flooding, we simply housing data (where available) or NLCD developed land with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+	<page id="javelina-hunting-use">
+		<concept>recreationService:JavelinaHuntingUse</concept>
+		<name>Enjoyment of natural areas for javelina hunting</name>
+		<title>Enjoyment for javelina hunting</title>
+		<group></group>
+		<description>	
+		This model considers protection of human life and housing as a potential beneficiary of flood regulation.  For people living in flood
+		zones, floodwater can destroy housing and personal property and pose a risk to human lives.  These models map flows from flood sources 
+		(precipitation), sinks (areas whose topography, vegetation, and soils promote detention and infiltration of flood water), and 
+		beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.  To map housing at risk of 
+		flooding, we simply housing data (where available) or NLCD developed land with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="deer-hunting-use">
+		<concept>recreationService:DeerHuntingUse</concept>
+		<name>Enjoyment of natural areas for deer hunting</name>
+		<title>Enjoyment for deer hunting</title>
+		<group></group>
+		<description>	
+		This model considers protection of human life and housing as a potential beneficiary of flood regulation.  For people living in flood
+		zones, floodwater can destroy housing and personal property and pose a risk to human lives.  These models map flows from flood sources 
+		(precipitation), sinks (areas whose topography, vegetation, and soils promote detention and infiltration of flood water), and 
+		beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.  To map housing at risk of 
+		flooding, we simply housing data (where available) or NLCD developed land with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="javelina-hunting-use">
+		<concept>recreationService:QuailHuntingUse</concept>
+		<name>Enjoyment of natural areas for quail hunting</name>
+		<title>Enjoyment for quail hunting</title>
+		<group></group>
+		<description>	
+		This model considers protection of human life and housing as a potential beneficiary of flood regulation.  For people living in flood
+		zones, floodwater can destroy housing and personal property and pose a risk to human lives.  These models map flows from flood sources 
+		(precipitation), sinks (areas whose topography, vegetation, and soils promote detention and infiltration of flood water), and 
+		beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.  To map housing at risk of 
+		flooding, we simply housing data (where available) or NLCD developed land with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="javelina-hunting-use">
+		<concept>recreationService:DoveHuntingUse</concept>
+		<name>Enjoyment of natural areas for dove hunting</name>
+		<title>Enjoyment for dove hunting</title>
+		<group></group>
+		<description>	
+		This model considers protection of human life and housing as a potential beneficiary of flood regulation.  For people living in flood
+		zones, floodwater can destroy housing and personal property and pose a risk to human lives.  These models map flows from flood sources 
+		(precipitation), sinks (areas whose topography, vegetation, and soils promote detention and infiltration of flood water), and 
+		beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.  To map housing at risk of 
+		flooding, we simply housing data (where available) or NLCD developed land with data delimiting the 100 or 500-year floodplain.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+
+<!-- Need to add concepts for bird-richness, bird-rarity, streams, springs, water-presence, riparian condition class, riparian & wetland
+quality, public lands, birding source value, wildlife species richness, wildlife source value, dove, deer, quail, javelina habitat, dove, deer
+quail, javelina hunting source value, population density, roads & travel capacity, trails, mountain summits, view use.  
+Finally, annotate all recreation concepts correctly.  -->
+
+  <page id="lake">
+    <concept>recreationService:Lake</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>recreationService:RiverStream</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:Mountain</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:OpenSpaceClass</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+    <page id="lake">
+    <concept>aestheticService:AestheticEnjoymentProvision</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+    <page id="lake">
+    <concept>recreationService:Development</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>recreationService:TransportationEnergyInfrastructure</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="visual-blight">
+    <concept>aestheticService:ViewSink</concept>
+    <name>Visual blight</name>
+    <title>Visual blight</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>recreationService:PublicAccessClass</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:BirdSpeciesRichness</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:RareCharismaticBirdHabitat</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:WaterPresence</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:RiparianConditionClass</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:RiparianSpringWetlandQuality</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:BirdingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>recreationService:WildlifeSpeciesRichness</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:WildlifeViewingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>sanPedro:DoveHabitat</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:DeerHabitat</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:QuailHabitat</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:JavelinaHabitat</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="lake">
+    <concept>sanPedro:DoveHuntingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:DeerHuntingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:QuailHuntingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>sanPedro:JavelinaHuntingSourceValue</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>policytarget:PopulationDensity</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:Roads</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:RoadTravelCapacity</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="lake">
+    <concept>recreationService:Trails</concept>
+    <name>Lake</name>
+    <title>Presence of lakes</title>
+    <group></group>
+    <description><![CDATA[
+			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<h1>Role in models</h1>
+			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
+			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
+			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>GLCF (University of Maryland).</p>
+		]]></description>
+    <runninghead>Lake</runninghead>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <!-- Flow models and maps are not yet active for recreation.  Concepts are described below so that they
+ can be included once recreational flow models have been implemented.  The flow concepts below currently 
+ including only actual and inaccessible flow concepts, since theoretical concepts are already included as 
+ source and use model outputs and there are no sinks for recreation.-->
+  
+  <page id="recreational-user-flow">
+		<concept>recreationService:RecreationalUserFlow</concept>
+		<name>Recreation flow</name>
+		<title>Recreational user flow</title>
+		<group>source</group>
+		<description>
+		The *actual flow density* map shows the flow paths that deliver actual services to
+		humans. These are selected from the total flow density to only show these flow paths
+		that are not depleted by sinks and actually reach users.
+		
+		For provisioning services, these flow paths deliver valuable benefits to the
+		users and the density is proportional to the value accrued. For preventive services,
+		the flow paths show how much of the carrier reaches users, delivering actual
+		damage.
+		
+		In this case, this map shows the movement of people toward recreation areas, based on 
+		transportation networks, recreational preferences, site quality, and a distance decay 
+		function.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+				<runninghead>No description given</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+	
+ 	<page id="recreational-use">
+		<concept>recreationService:RecreationalUse</concept>
+		<name>Recreational use</name>
+		<title>Recreational use</title>
+		<group>source</group>
+		<description>
+		The *actual source map* shows the portion of the source map that is relevant to 
+		the provision of a service after accounting for sinks and flow dynamics. 
+		For provisioning services, this is the amount and location of a benefit that 
+		actually provides benefits to the users. For preventive services, it shows
+		where the actual damage came from. Source regions that provided a damaging carrier
+		were neutralized by sinks are not shown.
+		 
+		This map shows the amount of recreational use actually seen at a recreation area 
+		when accounting for demand and spatial flows of visitors.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+				<runninghead>No description given</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+	
+ 	<page id="actual-recreational-users">
+		<concept>recreationService:ActualRecreationalUsers</concept>
+		<name>Actual recreational users</name>
+		<title>Actual recreational users</title>
+		<group>source</group>
+		<description>
+		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+		service or damage caused by a detrimental carrier for a preventive service, for 
+		users located across the landscape.
+		
+		This map shows the residential location of users who actually travel to sites 
+		via “recreation flows” to engage in recreational activities at source areas.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+  
+  <page id="transportation-restricted-recreational-use">
+		<concept>recreationService:TransportationRestrictedRecreationalUse</concept>
+		<name>Transportation restricted use</name>
+		<title>Transportation restricted use</title>
+		<group>source</group>
+		<description>
+		The *inaccessible source map* shows the flow paths that cannot deliver a 
+		service carrier to humans based on the flow routes and the source and user
+		locations.
+		
+		For provisioning services, these flow paths show areas that could provide a benefit,
+		but do not due to a lack of flow connections to potential users.  For preventive services, 
+		the flow paths show potential sources of a damaging carrier that do not impact people.
+		
+		This map shows recreational areas whose current accessibility via transportation 
+		networks makes their use level more limited than their attractiveness alone would 
+		dictate.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+ 	<page id="transportation-restricted-recreational-users">
+		<concept>recreationService:TransportationRestrictedRecreationalUsers</concept>
+		<name>Transportation restricted users</name>
+		<title>Transportation restricted users</title>
+		<group>source</group>
+		<description>
+		The *inaccessible use map* shows the potential users that cannot receive a service
+		carrier due to flow routes and the source and user locations. For provisioning services,
+		this corresponds to value produced by the environment but that cannot be reached by
+		users. For preventive services, it corresponds to damage that could have been
+		inflicted on users but is not due to a lack of flow connections to users.
+		
+		This map shows users too distant from a recreational resource to benefit from it.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]></credits>
+		<runninghead>No description given</runninghead>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+</presentation>

@@ -706,6 +706,9 @@
                FloodMitigationBenefitsAccrued) 
         :context (source-annual residents-use-500 sink-annual flood-flow-data500 levees)))
 
+;; DO NOT use these flow models for now.  We don't have a way of explicitly mapping private assests, aside from housing, which 
+;;  is treated elsewhere.  So for now, just run housing, public infrastructure, and farmland as the 3 classes of flow models (each
+;;  modeled for the 100- and 500-year floodplain).
 (defmodel flood-regulation-private-100 AvoidedDamageToPrivateAssets100
   (span FloodWaterMovement
         Precipitation
