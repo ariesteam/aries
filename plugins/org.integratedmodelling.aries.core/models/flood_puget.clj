@@ -159,7 +159,7 @@
 		[50 80]  ModerateVegetationHeight
 		[20 50]  LowVegetationHeight
 		[:< 20]  VeryLowVegetationHeight))
-		
+
 (defmodel percent-vegetation-cover PercentVegetationCover
 	(classification (ranking habitat:PercentVegetationCover)
 		[80 100 :inclusive] VeryHighVegetationCover
@@ -176,7 +176,7 @@
 	 		2                               PoleSuccession
 	 		1                               EarlySuccession
 	 		#{22 23 24 25 26 27 28 40 41}   NoSuccession))
-	 		
+
 (defmodel imperviousness PercentImperviousCover
 	 (classification (ranking habitat:PercentImperviousness)
 	 	   [80 100 :inclusive]   VeryHighImperviousCover
@@ -355,7 +355,8 @@
 		:otherwise HousingNotPresent))
 	
 (defmodel public-asset PublicAsset
-	"Public assets are defined as presence of highways, railways or both."
+	"Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could
+be added to this list if desired."
 	(classification PublicAsset 
 		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
@@ -454,7 +455,6 @@
 
 ;;Levees and floodplain width: used in the flow model
 (defmodel levees Levees
-  "Presence of a levee in given context"
   (classification (binary-coding infrastructure:Levee)
       0 LeveesNotPresent
       1 LeveesPresent

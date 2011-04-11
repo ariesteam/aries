@@ -20,7 +20,8 @@
 ;; Source model
 ;; ----------------------------------------------------------------------------------------------
 
-;;Need a new defmodel statement combining lake & river into "waterview"
+;;Need a new defmodel statement combining lake & river into "waterview," with rivers as low quality and
+;; lakes as high.
 (defmodel lake Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding geofeatures:Lake)

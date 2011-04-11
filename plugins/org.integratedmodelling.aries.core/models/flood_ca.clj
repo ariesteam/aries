@@ -234,7 +234,8 @@
                   #{"A" "AO" "X500"} In500YrFloodplain))
 
 (defmodel public-asset PublicAsset
-  "Public assets are defined as presence of highways, railways or both."
+  "Public assets are defined as presence of highways, railways or both.  Other classes of public infrastructure could
+be added to this list if desired."
   (classification PublicAsset 
                   :state   #(if (> (+ (:highway %) (:railway %)) 0) 
                               (tl/conc 'floodService:PublicAssetPresent) 

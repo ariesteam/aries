@@ -184,74 +184,69 @@ online interface we should hold off on doing so for now.
 	</page>
 
 
-<!-- Need to add concepts for bird-richness, bird-rarity, streams, springs, water-presence, riparian condition class, riparian & wetland
-quality, public lands, birding source value, wildlife species richness, wildlife source value, dove, deer, quail, javelina habitat, dove, deer
-quail, javelina hunting source value, population density, roads & travel capacity, trails, mountain summits, view use.  
-Finally, annotate all recreation concepts correctly.  -->
+<!-- Need to add concepts for streams, springs, water-presence, public lands, mountain summits, view use.  
+Annotate all recreation concepts correctly.  -->
 
   <page id="lake">
     <concept>recreationService:Lake</concept>
     <name>Lake</name>
     <title>Presence of lakes</title>
-    <group></group>
+    <runninghead>Lake</runninghead> 
     <description><![CDATA[
-			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<p>The presence of lakes as aesthetically beautiful natural features to view from mountain summits.</p>
 			<h1>Role in models</h1>
-			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
-			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
-			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
-			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<p>Lake presence is defined as a high-quality water view and used as an input to a probabilistic model
+			to estimate view quality.</p>
 			<h1>Representation</h1>
-			<p>Data are categorical.</p>
+			<p>Data are represented as a presence or absence map showing the location of lakes.</p>
 			<h1>Source</h1>
-			<p>GLCF (University of Maryland).</p>
+			<p>National Hydrography Dataset.</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="river-stream">
     <concept>recreationService:RiverStream</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
+    <name>Rivers and Streams</name>
+    <title>Presence of Rivers or Streams</title>
+    <runninghead>Rivers and Streams</runninghead>
     <group></group>
     <description><![CDATA[
-			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+			<p>The presence of rivers and streams as aesthetically beautiful natural features to view from mountain summits.</p>
 			<h1>Role in models</h1>
-			<p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
-			ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
-			Deforestation acts as a particularly strong influence in the model in tropical nations with higher
-			deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+			<p>Rivers and streams, which are less prominent water features on the landscape than lakes, are defined 
+			as a lower-quality water view and used as an input to a probabilistic model to estimate view quality.</p>
 			<h1>Representation</h1>
-			<p>Data are categorical.</p>
+			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
 			<h1>Source</h1>
-			<p>GLCF (University of Maryland).</p>
+			<p>National Hydrography Dataset.</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="mountain">
     <concept>recreationService:Mountain</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Mountain</name>
+    <title>Presence of mountains</title>
+    <runninghead>Mountain</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -264,23 +259,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
-    <see-also language="html"><![CDATA[
+        <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="open-space-class">
     <concept>recreationService:OpenSpaceClass</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Open Space Class</name>
+    <title>Open Space Class</title>
+    <runninghead>Open Space Class</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -293,23 +288,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-    <page id="lake">
+    <page id="aesthetic-enjoyment-provision">
     <concept>aestheticService:AestheticEnjoymentProvision</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Aesthetic View Quality</name>
+    <title>Potential Aesthetic View Quality</title>
+    <runninghead>Potential Aesthetic View Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -322,23 +317,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-    <page id="lake">
+  <page id="development">
     <concept>recreationService:Development</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Development</name>
+    <title>Presence of Developed Land</title>
+    <runninghead>Development</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -351,23 +346,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="transportation-energy-infrastructure">
     <concept>recreationService:TransportationEnergyInfrastructure</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Transportation and Energy Infrastructure</name>
+    <title>Presence of Transportation and Energy Infrastructure</title>
+    <runninghead>Transportation and Energy Infrastructure</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -380,13 +375,13 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -394,9 +389,9 @@ Finally, annotate all recreation concepts correctly.  -->
 
   <page id="visual-blight">
     <concept>aestheticService:ViewSink</concept>
-    <name>Visual blight</name>
-    <title>Visual blight</title>
-    <group></group>
+    <name>Visual Blight</name>
+    <title>Visual Blight</title>
+    <runninghead>Visual Blight</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -409,23 +404,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="public-access-class">
     <concept>recreationService:PublicAccessClass</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Public Access</name>
+    <title>Public Access</title>
+    <runninghead>Public Access</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -438,23 +433,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="bird-species-richness">
     <concept>recreationService:BirdSpeciesRichness</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Bird Species Richness</name>
+    <title>Bird Species Richness</title>
+    <runninghead>Bird Species Richness</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -467,23 +462,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="rare-charismatic-bird-habitat">
     <concept>recreationService:RareCharismaticBirdHabitat</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Rare and Charismatic Bird Habitat</name>
+    <title>Rare and Charismatic Bird Habitat</title>
+    <runninghead>Rare and Charismatic Bird Habitat</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -496,23 +491,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="water-presence">
     <concept>sanPedro:WaterPresence</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Presence of Surface Water</name>
+    <title>Presence of Surface Water</title>
+    <runninghead>Presence of Surface Water</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -525,23 +520,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="riparian-condition-class">
     <concept>sanPedro:RiparianConditionClass</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Riparian Condition Class</name>
+    <title>Riparian Condition Class</title>
+    <runninghead>Riparian Condition Class</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -554,23 +549,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="riparian-spring-wetland-quality">
     <concept>sanPedro:RiparianSpringWetlandQuality</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Riparian, Spring, or Wetland Quality</name>
+    <title>Riparian, Spring, or Wetland Quality</title>
+    <runninghead>Riparian, Spring, or Wetland Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -583,23 +578,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="birding-source-value">
     <concept>recreationService:BirdingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Birding Quality</name>
+    <title>Potential Birding Quality</title>
+    <runninghead>Potential Birding Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -612,23 +607,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="wildlife-species-richness">
     <concept>recreationService:WildlifeSpeciesRichness</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Wildlife Species Richness</name>
+    <title>Wildlife Species Richness</title>
+    <runninghead>Wildlife Species Richness</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -641,23 +636,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="wildlife-viewing-source-value">
     <concept>recreationService:WildlifeViewingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Wildlife Viewing Quality</name>
+    <title>Potential Wildlife Viewing Quality</title>
+    <runninghead>Potential Wildlife Viewing Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -670,23 +665,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="dove-habitat">
     <concept>sanPedro:DoveHabitat</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Dove Habitat</name>
+    <title>Dove Habitat</title>
+    <runninghead>Dove Habitat</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -699,23 +694,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="deer-habitat">
     <concept>sanPedro:DeerHabitat</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Deer Habitat</name>
+    <title>Deer Habitat</title>
+    <runninghead>Deer Habitat</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -728,23 +723,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="quail-habitat">
     <concept>sanPedro:QuailHabitat</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Quail Habitat</name>
+    <title>Quail Habitat</title>
+    <runninghead>Quail Habitat</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -757,23 +752,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="javelina-habitat">
     <concept>sanPedro:JavelinaHabitat</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Javelina Habitat</name>
+    <title>Javelina Habitat</title>
+    <runninghead>Javelina Habitat</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -786,23 +781,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="lake">
+  <page id="dove-hunting-source-value">
     <concept>sanPedro:DoveHuntingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Dove Hunting Quality</name>
+    <title>Potential Dove Hunting Quality</title>
+    <runninghead>Potential Dove Hunting Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -815,23 +810,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="deer-hunting-source-value">
     <concept>sanPedro:DeerHuntingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Deer Hunting Quality</name>
+    <title>Potential Deer Hunting Quality</title>
+    <runninghead>Potential Deer Hunting Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -844,23 +839,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="quail-hunting-source-value">
     <concept>sanPedro:QuailHuntingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Quail Hunting Quality</name>
+    <title>Potential Quail Hunting Quality</title>
+    <runninghead>Potential Quail Hunting Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -873,23 +868,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="javelina-hunting-source-value">
     <concept>sanPedro:JavelinaHuntingSourceValue</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Potential Javelina Hunting Quality</name>
+    <title>Potential Javelina Hunting Quality</title>
+    <runninghead>Potential Javelina Hunting Quality</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -902,23 +897,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="population-density">
     <concept>policytarget:PopulationDensity</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Population Density</name>
+    <title>Population Density</title>
+    <runninghead>Population Density</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -931,23 +926,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="roads">
     <concept>recreationService:Roads</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Roads</name>
+    <title>Presence of Roads</title>
+    <runninghead>Roads</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -960,23 +955,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="road-travel-capacity">
     <concept>recreationService:RoadTravelCapacity</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Road Travel Capacity</name>
+    <title>Road Travel Capacity</title>
+    <runninghead>Road Travel Capacity</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -989,23 +984,23 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="lake">
+  <page id="trails">
     <concept>recreationService:Trails</concept>
-    <name>Lake</name>
-    <title>Presence of lakes</title>
-    <group></group>
+    <name>Trails</name>
+    <title>Presence of Trails</title>
+    <runninghead>Trails</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -1018,13 +1013,13 @@ Finally, annotate all recreation concepts correctly.  -->
 			<h1>Source</h1>
 			<p>GLCF (University of Maryland).</p>
 		]]></description>
-    <runninghead>Lake</runninghead>
     <see-also language="html"><![CDATA[
 		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
     <credits></credits>
+    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>

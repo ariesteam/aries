@@ -7,10 +7,10 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="RiparianAndWetland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -55,6 +55,9 @@
       <owl:Class rdf:about="#DoveHabitat"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="HardwoodSoftwoodRatio">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#CommunityQuality"/>
+  </owl:Class>
   <owl:Class rdf:ID="RiparianSpringWetlandAbsent">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="RiparianSpringWetlandQuality"/>
@@ -85,10 +88,10 @@
   </owl:Class>
   <owl:Class rdf:ID="AlpineAndCliff">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="ModifiedScenicVegetationType"/>
+      <owl:Class rdf:ID="ScenicVegetationType"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="ScenicVegetationType"/>
+      <owl:Class rdf:ID="ModifiedScenicVegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="MultipleDeerSpeciesPresent">
@@ -134,6 +137,9 @@
       <owl:Class rdf:ID="EvapotranspirationClass"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="ModerateHardness">
+    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
+  </owl:Class>
   <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCConstrained">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULC"/>
@@ -145,10 +151,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="DesertScrub">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="HydrographySimple">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#RunningWater"/>
@@ -165,10 +171,10 @@
   </owl:Class>
   <owl:Class rdf:ID="RiparianAndWater">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#ModifiedScenicVegetationType"/>
+      <owl:Class rdf:about="#ScenicVegetationType"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#ScenicVegetationType"/>
+      <owl:Class rdf:about="#ModifiedScenicVegetationType"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="CAPWaterAugmentationHalfMeterRise">
@@ -185,16 +191,16 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
   </owl:Class>
   <owl:Class rdf:ID="ForestOrWoodlandAbsent">
-    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ModifiedForestAndWoodland"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanBarrenWater">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="RiparianConditionClassAllWet">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
@@ -218,10 +224,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="OakWoodland">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#QuailHabitat">
     <rdfs:subClassOf>
@@ -243,21 +249,24 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
   </owl:Class>
   <owl:Class rdf:ID="RiparianOrWetlandAbsent">
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="ModifiedRiparianAndWetland"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCPlans">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="LowHardness">
+    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
+  </owl:Class>
   <owl:Class rdf:ID="Other">
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ScenicVegetationType"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#ScenicVegetationType">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -269,8 +278,8 @@
     <rdfs:subClassOf rdf:resource="#QuailHabitat"/>
   </owl:Class>
   <owl:Class rdf:ID="MesquiteWoodland">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="LowQualityRiparianSpringWetland">
     <rdfs:subClassOf>
@@ -281,8 +290,8 @@
     <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="Riparian">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanGrowthBaseline">
     <rdfs:subClassOf>
@@ -296,6 +305,9 @@
   </owl:Class>
   <owl:Class rdf:ID="JavelinaHabitatAbsent">
     <rdfs:subClassOf rdf:resource="#JavelinaHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HighHardness">
+    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
   </owl:Class>
   <owl:Class rdf:about="#CAPWaterAugmentation">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
@@ -322,16 +334,16 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Woodland">
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SoilInfiltrationClass">
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Infiltration"/>
   </owl:Class>
   <owl:Class rdf:about="#DeerHabitat">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilInfiltrationClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Infiltration"/>
   </owl:Class>
   <owl:Class rdf:ID="UrbanGrowth2020Open">
     <rdfs:subClassOf rdf:resource="#UrbanGrowth"/>
@@ -359,10 +371,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LowQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="HighInfiltration">
     <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
@@ -380,8 +392,8 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
   </owl:Class>
   <owl:Class rdf:ID="Grassland">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="MuleDeerHabitat">
     <rdfs:subClassOf rdf:resource="#DeerHabitat"/>
@@ -400,20 +412,20 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ForestOrWoodlandPresent">
-    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
     <rdfs:subClassOf rdf:resource="#ModifiedForestAndWoodland"/>
+    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
   </owl:Class>
   <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCConstrained">
-    <rdfs:subClassOf rdf:resource="#Steinitz30ClassUrbanGrowthLULC"/>
+    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="DoveHabitatCode">
     <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCConstrained">
+    <rdfs:subClassOf rdf:resource="#Steinitz30ClassUrbanGrowthLULC"/>
   </owl:Class>
   <owl:Class rdf:ID="QuailHabitatCode">
     <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
@@ -422,8 +434,8 @@
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
   </owl:Class>
   <owl:Class rdf:ID="Forests">
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
     <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="WetRiparianCondition">
     <rdfs:subClassOf rdf:resource="#RiparianConditionClass"/>
@@ -432,8 +444,8 @@
     <rdfs:subClassOf rdf:resource="#BSRDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="Forest">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:about="#ModifiedRiparianAndWetland">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
@@ -448,12 +460,12 @@
     <rdfs:subClassOf rdf:resource="#ConstrainedDevelopment"/>
   </owl:Class>
   <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
     <rdfs:subClassOf rdf:resource="#ModifiedRiparianAndWetland"/>
+    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
   </owl:Class>
   <owl:Class rdf:ID="Agriculture">
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
     <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
+    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
   </owl:Class>
   <owl:Class rdf:ID="IntermediateRiparianCondition">
     <rdfs:subClassOf rdf:resource="#RiparianConditionClass"/>
