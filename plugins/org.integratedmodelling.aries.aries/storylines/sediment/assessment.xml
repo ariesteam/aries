@@ -1,7 +1,7 @@
 <presentation>
 
-	<title>Flood regulation</title>
-	<runninghead>Values resulting from flood regulation by ecosystems</runninghead>
+	<title>Sediment regulation</title>
+	<runninghead>Values resulting from sediment regulation by ecosystems</runninghead>
 	<description>Values resulting from flood regulation by ecosystems, including precipitation, ecosystems capable
 	of providing infiltration or detention of flood waters, and housing, infrastructure, or farmland at
 	risk of flooding.  Flow models are used to connect beneficiaries to potential sources of flood water and 
@@ -11,58 +11,33 @@
 
 	<!-- all the models that apply and in which context.-->
 	<model>
-		<id>core.models.flood-puget/flood-regulation-farmers-100</id>
+		<id>core.models.sediment-puget/sediment-detrimental-farmers</id>
 		<context>core.contexts.beta/western_wa</context>
 	</model>	
 
 	<model>
-		<id>core.models.flood-puget/flood-regulation-farmers-500</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>	
-	
-	<model>
-		<id>core.models.flood-puget/flood-regulation-public-assets-100</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>	
-	
-	<model>
-		<id>core.models.flood-puget/flood-regulation-public-assets-500</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>	
-	
-	<model>
-		<id>core.models.flood-puget/flood-regulation-residents-100</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>	
-	
-	<model>
-		<id>core.models.flood-puget/flood-regulation-residents-500</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>	
-	
-	<model>
-		<id>core.models.flood-puget/data-farmers-100</id>
+		<id>core.models.sediment-puget/sediment-detrimental-hydro</id>
 		<context>core.contexts.beta/western_wa</context>
 	</model>	
 
 	<model>
-		<id>core.models.flood-ca/flood-regulation-farmers-100</id>
-		<context>core.contexts.beta/ca_mark_watershed</context>
-	</model>
-	
-		<model>
-		<id>core.models.flood-ca/flood-regulation-farmers-500</id>
-		<context>core.contexts.beta/ca_mark_watershed</context>
-	</model>
-	
-		<model>
-		<id>core.models.flood-ca/flood-regulation-public-assets-100</id>
-		<context>core.contexts.beta/ca_mark_watershed</context>
-	</model>
-	
-		<model>
-		<id>core.models.flood-ca/flood-regulation-public-assets-500</id>
-		<context>core.contexts.beta/ca_mark_watershed</context>
+		<id>core.models.sediment-mg/sediment-detrimental-farmers</id>
+		<context>core.contexts.beta/mg</context>
+	</model>	
+
+	<model>
+		<id>core.models.sediment-mg/sediment-detrimental-reservoirs</id>
+		<context>core.contexts.beta/mg</context>
+	</model>	
+
+	<model>
+		<id>core.models.sediment-dr/sediment-detrimental-farmers</id>
+		<context>core.contexts.beta/western_wa</context>
+	</model>	
+
+	<model>
+		<id>core.models.sediment-dr/sediment-detrimental-reservoirs</id>
+		<context>core.contexts.beta/western_wa</context>
 	</model>
 
 	<page id="farmland-at-risk-flood">

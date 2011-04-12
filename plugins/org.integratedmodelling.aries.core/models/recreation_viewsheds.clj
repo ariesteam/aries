@@ -70,6 +70,8 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 ;;development, clearcuts, roads, energy infrastructure
+;;SHOULD we remove low-density development from this list?  Can we really call views of small towns from mountain summits
+;; visually displeasing?
 (defmodel development Development
   "Development as defined by the NLCD 2001"
   (classification (numeric-coding nlcd:NLCDNumeric)

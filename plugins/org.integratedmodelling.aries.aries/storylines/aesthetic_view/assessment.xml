@@ -1,7 +1,7 @@
 <presentation>
 
-	<title>Recreation</title>
-	<runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
+	<title>Aesthetic viewsheds</title>
+	<runninghead>Values resulting from scenic views of ecosystems</runninghead>
 	<description>Values resulting from ecosystem contributions toward recreational activities, as opposed to the
 	infrastructure, skills, and preferences of individuals participating in a given activity.  Source models map
 	the potential recreational quality of a given part of the landscape for a particular activity.  Flow models 
@@ -9,41 +9,17 @@
 	<!-- the concept of the main observation (the top-level model) -->
 	<concept>carbonService:CarbonSourceValue</concept>  <!-- NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
 
-	<!-- All the models that apply and in which context.  Probably better to separate out the different San
-	Pedro rec models eventually, but I'll keep it like this for now.-->
+	<!-- All the models that apply and in which context.-->
 	<model>
-		<id>core.models.recreation-san-pedro/recreation-data</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
+		<id>core.models.aesthetic-view-puget/view</id>
+		<context>core.contexts.beta/western_wa</context>
 	</model>	
 
-<!-- The Vermont viewsheds model needs to have its use model replaced.  While we should eventually incorporate it into the 
-online interface we should hold off on doing so for now. 
 	<model>
-		<id>core.models.recreation-viewsheds/data</id>
-		<context>core.contexts.beta/vt512</context> 
-	</model> 
+		<id>core.models.aesthetic-view-san-pedro/view</id>
+		<context>core.contexts.beta/san_pedro_us512</context>
+	</model>
 
-	<page id="viewer-enjoyment">
-		<concept>recreationService:ViewerEnjoyment</concept>
-		<name>Enjoyment of views from mountain summits and overlooks</name>
-		<title>Enjoyment of views</title>
-		<group></group>
-		<description>
-		This model considers the value of views from mountain summits and overlooks for hikers.  View quality and obstructions are
-		modeled using a line-of-sight model, which identifies viewshed quality at alternative mountain summits.  A transportation
-		model using road networks and recreational preferences will be developed in the future to identify spatial connections between
-		people and their preferred recreational sites.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>  -->
 	
 	<page id="birding-use">
 		<concept>recreationService:BirdingUse</concept>
