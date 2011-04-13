@@ -13,6 +13,7 @@
 	xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
 	xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
 	xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
+	xmlns:weather="http://www.integratedmodelling.org/ks/science/weather.owl#"
 	xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
 	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
@@ -138,6 +139,7 @@ are better expressed as values from 0 to 1, hence the conversion by a factor of 
 			</geospace:ArealFeatureSet>
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
+	
 	
 <!-- FV: this is still the BS layer so I reverted to a ranking. The models are in sync
 with the BS numbers. KB: This layer still has major issues.  Commenting it out and using the mg layer until global is needed.
@@ -823,6 +825,31 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
 			<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
 			<geospace:hasValueAttribute>name2</geospace:hasValueAttribute>
+		</geospace:WFSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:ArealFeatureSet>
+			<geospace:hasLatLowerBound>-40.2000007629395</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>18.6999988555908</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>-7.5</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>96.9000015258789</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:ArealFeatureSet>
+	</observation:hasObservationExtent>
+</observation:Categorization>
+
+<observation:Categorization id="mg_storm_tracks_cumulated_mg">
+	<observation:hasObservable>
+		<weather:Storm />
+	</observation:hasObservable>
+	<rdfs:comment>Data source: UNEP Division of Early Warning and Assessment Global Resource Information Database</rdfs:comment>
+	<metadata:hasPriority>10</metadata:hasPriority>
+	<metadata:hasURL>http://www.grid.unep.ch/data/gnv199.php</metadata:hasURL>
+	<observation:hasDataSource>
+		<geospace:WFSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>mg:storm_tracks2_mg</geospace:hasCoverageId>
+			<geospace:hasValueExpression>self == null ? name2 : (self + "," + name2)</geospace:hasValueExpression>
 		</geospace:WFSDataSource>
 	</observation:hasDataSource>
 	<observation:hasObservationExtent>
