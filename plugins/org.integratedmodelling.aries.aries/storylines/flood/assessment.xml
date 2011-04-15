@@ -139,11 +139,44 @@
 be added to this list, but both are intermediate nodes that could be used in Bayesian network training when this
 comes online.  -->
 
+  <page id="precipitation">
+    <concept>floodService:Precipitation</concept>
+    <name>Annual precipitation</name>
+    <title>Annual precipitation</title>
+    <runninghead>Annual precipitation</runninghead>
+    <description><![CDATA[
+			<p>Annual precipitation.</p>
+			<h1>Role in models</h1>
+			<p>Precipitation data are used as the "source" of floodwater.  Data are currently at an annual time
+			scale; event-based models may be added to the ARIES system as we better integrate external data and 
+			models to allow flood modeling at finer time scales.  These data are passed to the flow model to 
+			estimate actual flood mitigation given the location of sources of floodwater and beneficiaries at 
+			risk of flooding.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of precipitation per year.</p>
+			<h1>Source</h1>
+			<p>PRISM Climate Group.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="successional-stage">
     <concept>floodService:SuccessionalStage</concept>
-    <name>Successional Stage</name>
-    <title>Successional Stage</title>
-    <runninghead>Successional Stage</runninghead>
+    <name>Successional stage</name>
+    <title>Successional stage</title>
+    <runninghead>Successional stage</runninghead>
 		<description><![CDATA[
 			<p>Forest successional stage is an important determinant of hydrologic balance, surface flow disruption, 
 			and sediment trapping capacity.</p>
@@ -173,9 +206,9 @@ comes online.  -->
 
   <page id="mean-days-precipitation-per-year">
     <concept>floodService:MeanDaysPrecipitationPerYear</concept>
-    <name>Mean Days Precipitation Per Year</name>
-    <title>Mean Days Precipitation Per Year</title>
-    <runninghead>Mean Days Precipitation Per Year</runninghead>
+    <name>Mean days precipitation per year</name>
+    <title>Mean days precipitation per year</title>
+    <runninghead>Mean days precipitation per year</runninghead>
 		<description><![CDATA[
 			<p>The number of days of precipitation per year across the landscape.</p>
 			<h1>Role in models</h1>
@@ -207,9 +240,9 @@ comes online.  -->
   
   <page id="hydrologic-soils-group">
     <concept>floodService:HydrologicSoilsGroup</concept>
-    <name>Hydrologic Soils Group</name>
-    <title>Hydrologic Soils Group</title>
-    <runninghead>Hydrologic Soils Group</runninghead>
+    <name>Hydrologic soils group</name>
+    <title>Hydrologic soils group</title>
+    <runninghead>Hydrologic soils group</runninghead>
 		<description><![CDATA[
 			<p>Different soil types have different infiltration capacities.  
 			See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
@@ -244,8 +277,7 @@ comes online.  -->
     <title>Slope</title>
     <runninghead>Slope</runninghead>
 		<description><![CDATA[
-			<p>Different soil types have different infiltration capacities.  
-			See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
+			<p>Slope strongly affects runoff by influencing potential infiltration.</p>
 			<h1>Role in models</h1>
 			<p>Since hydrologic soils group classifications do not account for slope, we use slope data along with HSG 
 			and impervious surface data to estimate the soil infiltration component of flood control in the flood sink 
@@ -270,11 +302,336 @@ comes online.  -->
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="percent-impervious-cover">
+    <concept>floodService:PercentImperviousCover</concept>
+    <name>Percent impervious cover</name>
+    <title>Percent impervious cover</title>
+    <runninghead>Percent impervious cover</runninghead>
+  <description><![CDATA[
+			<p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
+			<h1>Role in models</h1>
+			<p>We use impervious surface along with slope and hydrologic soils group to estimate the soil infiltration
+			component of flood control in the flood sink models.  Zero infiltration is expected on impervious surfaces.</p>
+			<h1>Representation</h1>
+			<p>Data represent the percentage of the land surface under impervious cover.</p>
+			<h1>Source</h1>
+			<p>2001 National Land Cover Dataset.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-maximum-temperature">
+    <concept>floodService:AnnualMaximumTemperature</concept>
+    <name>Annual maximum temperature</name>
+    <title>Annual maximum temperature</title>
+    <runninghead>Annual maximum temperature</runninghead>
+    <description><![CDATA[
+			<p>Maximum air surface temperature.</p>
+			<h1>Role in models</h1>
+			<p>Maximum temperature determines the extent and rate of snowmelt and the presence of frozen soils.
+			This is used as an input to the probabilistic model estimating infiltration of floodwater, with no
+			infiltration occurring on frozen soils.  While this variable is of minimal relevance at an annual
+			time scale, the presence of frozen soils is highly important in the case of spring flood events where
+			snowmelt occurs and soils may still be frozen.  Temperature data at finer temporal scales will thus
+			be highly important in event-based flood models.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of degrees celsius.</p>
+			<h1>Source</h1>
+			<p>PRISM Climate Group.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-height">
+    <concept>floodService:VegetationHeight</concept>
+    <name>Vegetation height</name>
+    <title>Vegetation height</title>
+    <runninghead>Vegetation height</runninghead>
+		<description><![CDATA[
+			<p>Height of the tree canopy above the ground surface.</p>
+			<h1>Role in models</h1>
+			<p>Vegetation height is used as input into a probabilistic model estimating the contribution of vegetation
+			and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect taller tree
+			canopies to intercept more precipitation, leading to greater mitigation of floodwater than forests of shorter
+			stature.</p>
+			<h1>Representation</h1>
+			<p>Data are in physical units of meters, representing height of the tree canopy above the ground surface.</p>
+			<h1>Source</h1>
+			<p>Puget Sound LIDAR Consortium.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-vegetation-cover">
+    <concept>floodService:PercentVegetationCover</concept>
+    <name>Percent tree canopy cover</name>
+    <title>Percent tree canopy cover</title>
+    <runninghead>Percent tree canopy cover</runninghead>
+    <description><![CDATA[
+			<p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and 
+			transpiration rates, affecting their ability to aid in infiltration of floodwater.</p>
+			<h1>Role in models</h1>
+			<p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
+			and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect greater 
+			infiltration and evapotranspiration (under longer time scales), leading to greater mitigation of floodwater 
+			under higher tree canopy cover.</p>
+			<h1>Representation</h1>
+			<p>Data represent the percentage of the land surface under tree canopy cover.</p>
+			<h1>Source</h1>
+			<p>)2001 National Land Cover Dataset.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <page id="vegetation-type">
+    <concept>floodService:VegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type</runninghead>
+		<description><![CDATA[
+			<p>Different vegetation types will promote or reduce infiltration of water.</p>
+			<h1>Role in models</h1>
+			<p>Vegetation type is used as an input to the probabilistic model of the "green infrastructure" 
+			component of flood regulation.  Certain land cover types, such as wetlands, forests, and grasslands
+			are likely to have greater capacity for flood regulation than developed or cultivated land cover types.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, derived from NLCD land cover classes.</p>
+			<h1>Source</h1>
+			<p>2001 National Land Cover Dataset.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="green-infrastructure-storage">
+    <concept>floodService:GreenInfrastructureStorage</concept>
+    <name>Green infrastructure storage</name>
+    <title>Green infrastructure storage</title>
+    <runninghead>Green infrastructure storage</runninghead>
+    <description><![CDATA[
+			<p>The total floodwater absorption and detention capacity in soils, vegetation, and floodplains.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of a probabilistic model accounting for the influence of soil, vegetation, 
+			and their saturation on floodwater absorption and detention capacity.  Results are summed with 
+			"gray infrastructure" storage to give total flood regulation values, and then passed to the flow 
+			model to estimate actual flood mitigation given the location of sources of floodwater and 
+			beneficiaries at risk of flooding.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year. 
+			As the output of the models is probabilistic, each point contains the probability distribution 
+			of the amount of floodwater regulated. The distribution can be visualized by clicking on the 
+			map; the mean value and the coefficient of variation are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server when the area was selected.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="dam-storage-class">
+    <concept>floodService:DamStorageClass</concept>
+    <name>Dam storage</name>
+    <title>Dam storage</title>
+    <runninghead>Dam storage</runninghead>
+	<description><![CDATA[
+			<p>The storage capacity of floodwater by dams.</p>
+			<h1>Role in models</h1>
+			<p>Where dams are present, we can use data on typical storage capacity to estimate their contribution toward
+			flood regulation.  This storage is summed with detention basin storage to give total "gray infrastructure" 
+			storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
+			flood regulation capacity.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of floodwater detention capacity by reservoir.</p>
+			<h1>Source</h1>
+			<p>National Atlas of the United States, Major Dams of the United States.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="detention-basin-storage">
+    <concept>floodService:DetentionBasinStorage</concept>
+    <name>Detention basin storage</name>
+    <title>Detention basin storage</title>
+    <runninghead>Detention basin storage</runninghead>
+    <description><![CDATA[
+			<p>Storage of flood waters in detention basins.</p>
+			<h1>Role in models</h1>
+			<p>Where detention basins are present, we assume a given level of flood regulation due to storage of
+			floodwater in basins.  This storage is summed with storage behind dams to give total "gray infrastructure" 
+			storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
+			flood regulation capacity.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of detention basins.</p>
+			<h1>Source</h1>
+			<p>County stormwater managment data (where available).</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="gray-infrastructure-storage">
+    <concept>floodService:GrayInfrastructureStorage</concept>
+    <name>Gray infrastructure storage</name>
+    <title>Gray infrastructure storage</title>
+    <runninghead>Gray infrastructure storage</runninghead>
+		<description><![CDATA[
+			<p>The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</p>
+			<h1>Role in models</h1>
+			<p>Results are summed with "green infrastructure" storage to give total flood regulation values, and then
+			passed to the flow model to estimate actual flood mitigation given the location of sources of floodwater
+			and beneficiaries at risk of flooding.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
+			<h1>Source</h1>
+			<p>Calculated deterministically as the sum of dam and detention basin storage.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-flood-sink">
+    <concept>floodService:AnnualFloodSink</concept>
+    <name>Annual flood sink</name>
+    <title>Annual flood sink</title>
+    <runninghead>Annual flood sink</runninghead>
+		<description><![CDATA[
+			<p>The sum of "green" and "gray" infrastructure influences, e.g., all rainwater and floodwater detained and 
+			infiltrated by natural features and engineered infrastructure.</p>
+			<h1>Role in models</h1>
+			<p>The annual flood sink is the total potential flood regulation by both natural and artificial flood control
+			features.  These data are passed to the flood flow model, which calculates actual flood risk, given precipitation 
+			levels and the location of lives and property at risk from flood flows.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
+			<h1>Source</h1>
+			<p>Calculated as the sum of outputs from a probabilistic model of "green infrastructure" storage plus
+			storage capacity of artificial detention basins and dams.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="floodplains100">
     <concept>floodService:Floodplains100</concept>
-    <name>100-year Floodplain Extent</name>
-    <title>100-year Floodplain</title>
-    <runninghead>100-year Floodplain</runninghead>
+    <name>100-year floodplain extent</name>
+    <title>100-year floodplain</title>
+    <runninghead>100-year floodplain</runninghead>
 		<description><![CDATA[
 			<p>The extent of the mapped 100-year floodplain.</p>
 			<h1>Role in models</h1>
@@ -304,9 +661,9 @@ comes online.  -->
 
   <page id="floodplains500">
     <concept>floodService:Floodplains500</concept>
-    <name>500-year Floodplain Extent</name>
-    <title>500-year Floodplain</title>
-    <runninghead>500-year Floodplain</runninghead>
+    <name>500-year floodplain extent</name>
+    <title>500-year floodplain</title>
+    <runninghead>500-year floodplain</runninghead>
 		<description><![CDATA[
 			<p>The extent of the mapped 500-year floodplain.</p>
 			<h1>Role in models</h1>
@@ -333,352 +690,22 @@ comes online.  -->
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
-  <page id="annual-flood-sink">
-    <concept>floodService:AnnualFloodSink</concept>
-    <name>Annual Flood Sink</name>
-    <title>Annual Flood Sink</title>
-    <runninghead>Annual Flood Sink</runninghead>
-		<description><![CDATA[
-			<p>The sum of "green" and "gray" infrastructure influences, e.g., all rainwater and floodwater detained and 
-			infiltrated by natural features and engineered infrastructure.</p>
-			<h1>Role in models</h1>
-			<p>The annual flood sink is the total potential flood regulation by both natural and artificial flood control
-			features.  These data are passed to the flood flow model, which calculates actual flood risk, given precipitation 
-			levels and the location of lives and property at risk from flood flows.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
-			<h1>Source</h1>
-			<p>Calculated as the sum of outputs from a probabilistic model of "green infrastructure" storage plus
-			storage capacity of artificial detention basins and dams.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="vegetation-type">
-    <concept>floodService:VegetationType</concept>
-    <name>Vegetation Type</name>
-    <title>Vegetation Type</title>
-    <runninghead>Vegetation Type</runninghead>
-		<description><![CDATA[
-			<p>Different vegetation types will promote or reduce infiltration of water.</p>
-			<h1>Role in models</h1>
-			<p>Vegetation type is used as an input to the probabilistic model of the "green infrastructure" 
-			component of flood regulation.  Certain land cover types, such as wetlands, forests, and grasslands
-			are likely to have greater capacity for flood regulation than developed or cultivated land cover types.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from NLCD land cover classes.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
 
-  <page id="flood-residents-use100">
-    <concept>floodService:FloodResidentsUse100</concept>
-    <name>Residents In 100-Year Floodplain</name>
-    <title>Residents In 100-Year Floodplain</title>
-    <runninghead>Residents In 100-Year Floodplain</runninghead>
+  <page id="housing">
+    <concept>aestheticService:PresenceOfHousing</concept>
+    <name>Housing</name>
+    <title>Housing</title>
+    <runninghead>Housing</runninghead>
 		<description><![CDATA[
-			<p>Residents with housing located in the 100-year floodplain are a beneficiary group who may have
-			life and property protected by ecosystems and engineered flood control infrastructure.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of residences at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of residences in the 100-year
-			floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 100-year floodplain data and housing locations from county assessors' offices 
-			(where available) or NLCD developed land (otherwise).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="flood-residents-use500">
-    <concept>floodService:FloodResidentsUse500</concept>
-    <name>Residents In 500-Year Floodplain</name>
-    <title>Residents In 500-Year Floodplain</title>
-    <runninghead>Residents In 500-Year Floodplain</runninghead>
-		<description><![CDATA[
-			<p>Residents with housing located in the 500-year floodplain are a beneficiary group who may have
-			life and property protected by ecosystems and engineered flood control infrastructure.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of residences at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of residences in the 500-year
-			floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 500-year floodplain data and housing locations from county assessors' offices 
-			(where available) or NLCD developed land (otherwise).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="flood-public-assets-use100">
-    <concept>floodService:FloodPublicAssetsUse100</concept>
-    <name>Public Assets In 100-Year Floodplain</name>
-    <title>Public Assets In 100-Year Floodplain</title>
-    <runninghead>Public Assets In 100-Year Floodplain</runninghead>
-		<description><![CDATA[
-			<p>Roads and railways located in the 100-year floodplain are a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid public replacement and repair costs
-			and maximize access during high precipitation events.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of public assets at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of public infrastructure 
-			in the 100-year floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 100-year floodplain data and TIGER road and rail data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="flood-public-assets-use500">
-    <concept>floodService:FloodPublicAssetsUse500</concept>
-    <name>Public Assets In 500-Year Floodplain</name>
-    <title>Public Assets In 500-Year Floodplain</title>
-    <runninghead>Public Assets In 500-Year Floodplain</runninghead>
-		<description><![CDATA[
-			<p>Roads and railways located in the 500-year floodplain are a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid public replacement and repair costs
-			and maximize access during high precipitation events.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of public assets at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of public infrastructure 
-			in the 500-year floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 500-year floodplain data and TIGER road and rail data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="flood-farmers-use100">
-    <concept>floodService:FloodFarmersUse100</concept>
-    <name>Farmland In 100-Year Floodplain</name>
-    <title>Farmland In 100-Year Floodplain</title>
-    <runninghead>Farmland In 100-Year Floodplain</runninghead>
-		<description><![CDATA[
-			<p>Farmland located in the 100-year floodplain is a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
+			<p>Residences at risk of flood damage or inundation, potentially leading to loss of life or property 
 			during flood events.</p>
 			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
+			<p>Housing locations are intersected with floodplain extents data to map the potential beneficiaries
+			of flood regulation.  The flood flow model is then used to estimate actual flood regulation values.</p>
 			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland in the 100-year
-			floodplain.</p>
+			<p>Data are represented as a presence or absence map showing the location of housing.</p>
 			<h1>Source</h1>
-			<p>Intersection of FEMA 100-year floodplain data and NLCD farmland cover data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="flood-farmers-use500">
-    <concept>floodService:FloodFarmersUse500</concept>
-    <name>Farmland In 500-Year Floodplain</name>
-    <title>Farmland In 500-Year Floodplain</title>
-    <runninghead>Farmland In 500-Year Floodplain</runninghead>
-		<description><![CDATA[
-			<p>Farmland located in the 500-year floodplain is a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
-			during flood events.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland in the 500-year
-			floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 500-year floodplain data and NLCD farmland cover data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="river">
-    <concept>geofeatures:River</concept>
-    <name>River</name>
-    <title>River</title>
-    <runninghead>River</runninghead>
-		<description><![CDATA[
-			<p>River and stream locations.</p>
-			<h1>Role in models</h1>
-			<p>River and stream locations, or hydrography data, are used to route floodwater across the land surface.
-			The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
-			floodwater then follows, spreading across the floodplain as it moves downstream.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
-			<h1>Source</h1>
-			<p>Washington Department of Natural Resources.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="altitude">
-    <concept>geophysics:Altitude</concept>
-    <name>Elevation</name>
-    <title>Elevation</title>
-    <runninghead>Elevation</runninghead>
-		<description><![CDATA[
-			<p>Elevation above sea level.</p>
-			<h1>Role in models</h1>
-			<p>A digital elevation model, is used along with hydrography data to route floodwater across the land surface.
-			The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
-			floodwater then follows, spreading across the floodplain as it moves downstream.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of meters above sea level.</p>
-			<h1>Source</h1>
-			<p>Global 90-m SRTM digital elevation model.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="levees">
-    <concept>floodService:Levees</concept>
-    <name>Levees</name>
-    <title>Levees</title>
-    <runninghead>Levees</runninghead>
-		<description><![CDATA[
-			<p>Levees restrict floodwater to the river channel, protecting lives and property immediately behind the
-			levee as long as it is not breached, but speeding the flow of floodwater downstream.</p>
-			<h1>Role in models</h1>
-			<p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
-			levees are present.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of levees.</p>
-			<h1>Source</h1>
-			<p>County GIS offices (where available).</p>
+			<p>County assessors' offices (where available) or NLCD developed land (otherwise).</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -759,9 +786,9 @@ comes online.  -->
 
   <page id="public-asset">
     <concept>floodService:PublicAsset</concept>
-    <name>Public Assets</name>
-    <title>Public Assets</title>
-    <runninghead>Public Assets</runninghead>
+    <name>Public assets</name>
+    <title>Public assets</title>
+    <runninghead>Public assets</runninghead>
 		<description><![CDATA[
 			<p>Public assets at risk of flood damage or inundation, limiting their use during flood events.</p>
 			<h1>Role in models</h1>
@@ -790,195 +817,6 @@ comes online.  -->
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="housing">
-    <concept>aestheticService:PresenceOfHousing</concept>
-    <name>Housing</name>
-    <title>Housing</title>
-    <runninghead>Housing</runninghead>
-		<description><![CDATA[
-			<p>Residences at risk of flood damage or inundation, potentially leading to loss of life or property 
-			during flood events.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations are intersected with floodplain extents data to map the potential beneficiaries
-			of flood regulation.  The flood flow model is then used to estimate actual flood regulation values.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of housing.</p>
-			<h1>Source</h1>
-			<p>County assessors' offices (where available) or NLCD developed land (otherwise).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="vegetation-height">
-    <concept>floodService:VegetationHeight</concept>
-    <name>Vegetation Height</name>
-    <title>Vegetation Height</title>
-    <runninghead>Vegetation Height</runninghead>
-		<description><![CDATA[
-			<p>Height of the tree canopy above the ground surface.</p>
-			<h1>Role in models</h1>
-			<p>Vegetation height is used as input into a probabilistic model estimating the contribution of vegetation
-			and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect taller tree
-			canopies to intercept more precipitation, leading to greater mitigation of floodwater than forests of shorter
-			stature.</p>
-			<h1>Representation</h1>
-			<p>Data are in physical units of meters, representing height of the tree canopy above the ground surface.</p>
-			<h1>Source</h1>
-			<p>Puget Sound LIDAR Consortium.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="gray-infrastructure-storage">
-    <concept>floodService:GrayInfrastructureStorage</concept>
-    <name>Gray Infrastructure Storage</name>
-    <title>Gray Infrastructure Storage</title>
-    <runninghead>Gray Infrastructure Storage</runninghead>
-		<description><![CDATA[
-			<p>The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</p>
-			<h1>Role in models</h1>
-			<p>Results are summed with "green infrastructure" storage to give total flood regulation values, and then
-			passed to the flow model to estimate actual flood mitigation given the location of sources of floodwater
-			and beneficiaries at risk of flooding.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
-			<h1>Source</h1>
-			<p>Calculated deterministically as the sum of dam and detention basin storage.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="percent-impervious-cover">
-    <concept>floodService:PercentImperviousCover</concept>
-    <name>Percent Impervious Cover</name>
-    <title>Percent Impervious Cover</title>
-    <runninghead>Percent Impervious Cover</runninghead>
-  <description><![CDATA[
-			<p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
-			<h1>Role in models</h1>
-			<p>We use impervious surface along with slope and hydrologic soils group to estimate the soil infiltration
-			component of flood control in the flood sink models.  Zero infiltration is expected on impervious surfaces.</p>
-			<h1>Representation</h1>
-			<p>Data represent the percentage of the land surface under impervious cover.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="dam-storage-class">
-    <concept>floodService:DamStorageClass</concept>
-    <name>Dam Storage Class</name>
-    <title>Dam Storage Class</title>
-    <runninghead>Dam Storage Class</runninghead>
-	<description><![CDATA[
-			<p>The storage capacity of floodwater by dams.</p>
-			<h1>Role in models</h1>
-			<p>Where dams are present, we can use data on typical storage capacity to estimate their contribution toward
-			flood regulation.  This storage is summed with detention basin storage to give total "gray infrastructure" 
-			storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
-			flood regulation capacity.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of floodwater detention capacity by reservoir.</p>
-			<h1>Source</h1>
-			<p>National Atlas of the United States, Major Dams of the United States.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="precipitation">
-    <concept>floodService:Precipitation</concept>
-    <name>Annual Precipitation</name>
-    <title>Annual Precipitation</title>
-    <runninghead>Annual Precipitation</runninghead>
-    <description><![CDATA[
-			<p>Annual precipitation.</p>
-			<h1>Role in models</h1>
-			<p>Precipitation data are used as the "source" of floodwater.  Data are currently at an annual time
-			scale; event-based models may be added to the ARIES system as we better integrate external data and 
-			models to allow flood modeling at finer time scales.  These data are passed to the flow model to 
-			estimate actual flood mitigation given the location of sources of floodwater and beneficiaries at 
-			risk of flooding.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of precipitation per year.</p>
-			<h1>Source</h1>
-			<p>PRISM Climate Group.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-    <group></group>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
   <page id="farmland">
     <concept>floodService:Farmland</concept>
     <name>Farmland</name>
@@ -1008,28 +846,161 @@ comes online.  -->
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
-  <page id="green-infrastructure-storage">
-    <concept>floodService:GreenInfrastructureStorage</concept>
-    <name>Green Infrastructure Storage</name>
-    <title>Green Infrastructure Storage</title>
-    <runninghead>Green Infrastructure Storage</runninghead>
-    <description><![CDATA[
-			<p>The total floodwater absorption and detention capacity in soils, vegetation, and floodplains.</p>
+
+  <page id="flood-residents-use100">
+    <concept>floodService:FloodResidentsUse100</concept>
+    <name>Residents in 100-year floodplain</name>
+    <title>Residents in 100-year floodplain</title>
+    <runninghead>Residents in 100-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Residents with housing located in the 100-year floodplain are a beneficiary group who may have
+			life and property protected by ecosystems and engineered flood control infrastructure.</p>
 			<h1>Role in models</h1>
-			<p>This is the output of a probabilistic model accounting for the influence of soil, vegetation, 
-			and their saturation on floodwater absorption and detention capacity.  Results are summed with 
-			"gray infrastructure" storage to give total flood regulation values, and then passed to the flow 
-			model to estimate actual flood mitigation given the location of sources of floodwater and \
-			beneficiaries at risk of flooding</p>
+			<p>This is one beneficiary group for flood regulation.  The location of residences at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
 			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of floodwater absorbed or detained per year. 
-			As the output of the models is probabilistic, each point contains the probability distribution 
-			of the amount of floodwater regulated. The distribution can be visualized by clicking on the 
-			map; the mean value and the coefficient of variation are reported along with the probabilities.</p>
+			<p>Data are represented as a presence or absence map showing the location of residences in the 100-year
+			floodplain.</p>
 			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and 
-			   calibrated by the ARIES server when the area was selected.</p>
+			<p>Intersection of FEMA 100-year floodplain data and housing locations from county assessors' offices 
+			(where available) or NLCD developed land (otherwise).</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="flood-residents-use500">
+    <concept>floodService:FloodResidentsUse500</concept>
+    <name>Residents in 500-year floodplain</name>
+    <title>Residents in 500-year floodplain</title>
+    <runninghead>Residents in 500-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Residents with housing located in the 500-year floodplain are a beneficiary group who may have
+			life and property protected by ecosystems and engineered flood control infrastructure.</p>
+			<h1>Role in models</h1>
+			<p>This is one beneficiary group for flood regulation.  The location of residences at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of residences in the 500-year
+			floodplain.</p>
+			<h1>Source</h1>
+			<p>Intersection of FEMA 500-year floodplain data and housing locations from county assessors' offices 
+			(where available) or NLCD developed land (otherwise).</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="flood-public-assets-use100">
+    <concept>floodService:FloodPublicAssetsUse100</concept>
+    <name>Public assets in 100-year floodplain</name>
+    <title>Public assets in 100-year floodplain</title>
+    <runninghead>Public assets in 100-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Roads and railways located in the 100-year floodplain are a beneficiary group whose protection 
+			by ecosystems and engineered flood control infrastructure helps avoid public replacement and repair costs
+			and maximize access during high precipitation events.</p>
+			<h1>Role in models</h1>
+			<p>This is one beneficiary group for flood regulation.  The location of public assets at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of public infrastructure 
+			in the 100-year floodplain.</p>
+			<h1>Source</h1>
+			<p>Intersection of FEMA 100-year floodplain data and TIGER road and rail data.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="flood-public-assets-use500">
+    <concept>floodService:FloodPublicAssetsUse500</concept>
+    <name>Public assets in 500-year floodplain</name>
+    <title>Public assets in 500-year floodplain</title>
+    <runninghead>Public assets in 500-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Roads and railways located in the 500-year floodplain are a beneficiary group whose protection 
+			by ecosystems and engineered flood control infrastructure helps avoid public replacement and repair costs
+			and maximize access during high precipitation events.</p>
+			<h1>Role in models</h1>
+			<p>This is one beneficiary group for flood regulation.  The location of public assets at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of public infrastructure 
+			in the 500-year floodplain.</p>
+			<h1>Source</h1>
+			<p>Intersection of FEMA 500-year floodplain data and TIGER road and rail data.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="flood-farmers-use100">
+    <concept>floodService:FloodFarmersUse100</concept>
+    <name>Farmland in 100-year floodplain</name>
+    <title>Farmland in 100-year floodplain</title>
+    <runninghead>Farmland in 100-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Farmland located in the 100-year floodplain is a beneficiary group whose protection 
+			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
+			during flood events.</p>
+			<h1>Role in models</h1>
+			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of farmland in the 100-year
+			floodplain.</p>
+			<h1>Source</h1>
+			<p>Intersection of FEMA 100-year floodplain data and NLCD farmland cover data.</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -1046,23 +1017,24 @@ comes online.  -->
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="percent-vegetation-cover">
-    <concept>floodService:PercentVegetationCover</concept>
-    <name>Percent Tree Canopy Cover</name>
-    <title>Percent Tree Canopy Cover</title>
-    <runninghead>Percent Tree Canopy Cover</runninghead>
-    <description><![CDATA[
-			<p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and 
-			transpiration rates, affecting their ability to aid in infiltration of floodwater.</p>
+  <page id="flood-farmers-use500">
+    <concept>floodService:FloodFarmersUse500</concept>
+    <name>Farmland in 500-year floodplain</name>
+    <title>Farmland in 500-year floodplain</title>
+    <runninghead>Farmland in 500-year floodplain</runninghead>
+		<description><![CDATA[
+			<p>Farmland located in the 500-year floodplain is a beneficiary group whose protection 
+			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
+			during flood events.</p>
 			<h1>Role in models</h1>
-			<p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-			and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect greater 
-			infiltration and evapotranspiration (under longer time scales), leading to greater mitigation of floodwater 
-			under higher tree canopy cover.</p>
+			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
+			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
+			location of sinks that reduce flood flows.</p>
 			<h1>Representation</h1>
-			<p>Data represent the percentage of the land surface under tree canopy cover.</p>
+			<p>Data are represented as a presence or absence map showing the location of farmland in the 500-year
+			floodplain.</p>
 			<h1>Source</h1>
-			<p>)2001 National Land Cover Dataset.</p>
+			<p>Intersection of FEMA 500-year floodplain data and NLCD farmland cover data.</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -1079,22 +1051,21 @@ comes online.  -->
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="detention-basin-storage">
-    <concept>floodService:DetentionBasinStorage</concept>
-    <name>Detention Basin Storage</name>
-    <title>Detention Basin Storage</title>
-    <runninghead>Detention Basin Storage</runninghead>
-    <description><![CDATA[
-			<p>Storage of flood waters in detention basins.</p>
+  <page id="river">
+    <concept>geofeatures:River</concept>
+    <name>River</name>
+    <title>River</title>
+    <runninghead>River</runninghead>
+		<description><![CDATA[
+			<p>River and stream locations.</p>
 			<h1>Role in models</h1>
-			<p>Where detention basins are present, we assume a given level of flood regulation due to storage of
-			floodwater in basins.  This storage is summed with storage behind dams to give total "gray infrastructure" 
-			storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
-			flood regulation capacity.</p>
+			<p>River and stream locations, or hydrography data, are used to route floodwater across the land surface.
+			The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
+			floodwater then follows, spreading across the floodplain as it moves downstream.</p>
 			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of detention basins.</p>
+			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
 			<h1>Source</h1>
-			<p>County stormwater managment data (where available).</p>
+			<p>Washington Department of Natural Resources.</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -1111,24 +1082,52 @@ comes online.  -->
     <plot-type>geocontour-2d</plot-type>
   </page>
   
-  <page id="annual-maximum-temperature">
-    <concept>floodService:AnnualMaximumTemperature</concept>
-    <name>Annual Maximum Temperature</name>
-    <title>Annual Maximum Temperature</title>
-    <runninghead>Annual Maximum Temperature</runninghead>
-    <description><![CDATA[
-			<p>Maximum air surface temperature.</p>
+  <page id="altitude">
+    <concept>geophysics:Altitude</concept>
+    <name>Elevation</name>
+    <title>Elevation</title>
+    <runninghead>Elevation</runninghead>
+		<description><![CDATA[
+			<p>Elevation above sea level.</p>
 			<h1>Role in models</h1>
-			<p>Maximum temperature determines the extent and rate of snowmelt and the presence of frozen soils.
-			This is used as an input to the probabilistic model estimating infiltration of floodwater, with no
-			infiltration occurring on frozen soils.  While this variable is of minimal relevance at an annual
-			time scale, the presence of frozen soils is highly important in the case of spring flood events where
-			snowmelt occurs and soils may still be frozen.  Temperature data at finer temporal scales will thus
-			be highly important in event-based flood models.</p>
+			<p>A digital elevation model is used along with hydrography data to route floodwater across the land surface.
+			The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
+			floodwater then follows, spreading across the floodplain as it moves downstream.</p>
 			<h1>Representation</h1>
-			<p>The data are in physical units of degrees celsius.</p>
+			<p>The data are in physical units of meters above sea level.</p>
 			<h1>Source</h1>
-			<p>PRISM Climate Group.</p>
+			<p>Global 90-m SRTM digital elevation model.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="levees">
+    <concept>floodService:Levees</concept>
+    <name>Levees</name>
+    <title>Levees</title>
+    <runninghead>Levees</runninghead>
+		<description><![CDATA[
+			<p>Levees restrict floodwater to the river channel, protecting lives and property immediately behind the
+			levee as long as it is not breached, but speeding the flow of floodwater downstream.</p>
+			<h1>Role in models</h1>
+			<p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
+			levees are present.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of levees.</p>
+			<h1>Source</h1>
+			<p>County GIS offices (where available).</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -1213,6 +1212,13 @@ comes online.  -->
 		<title>Potential flood damage</title>
 		<group>source</group>
 		<description>
+		*Possible use maps* show the locations of users on the landscape that can receive a
+		benefit due to flow connections with a source of an ecosystem service carrier, but may
+		or may not actually receive the carrier due to the action of sinks.  For provisioning 
+		services, potential use identifies areas where it is physically possible for a benefit to 
+		be received.  For preventive services, potential use identifies areas that may be damaged
+		by a detrimental carrier if sinks do not prevent such damage. 
+		
 		This map shows people and property receiving damage when accounting for sources 
 		of floodwater and its flow path but not accounting for the action of sinks that 
 		reduce potential damage from floodwater.

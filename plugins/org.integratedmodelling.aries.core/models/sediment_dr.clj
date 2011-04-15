@@ -7,6 +7,9 @@
   (:refer aries :only (span)))
 
 ;; fv - shouldn't this be soilretentionService?
+;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
+;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
+;; and "ecology" ontologies that should be merged)
 (namespace-ontology soilretentionEcology)
 
 ;; ----------------------------------------------------------------------------------------------
@@ -59,7 +62,6 @@
       [5 :>]         HighTropicalStormProbability  ;;In Madagascar this is set as >5, but in DR the
       [1 5]          ModerateTropicalStormProbability
       :otherwise     NoTropicalStormProbability)) 
-
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously its not evenly distributed throughout the year.
@@ -187,11 +189,6 @@
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
-
-;;(defmodel floodplains FloodplainsClass
-;;	(classification (binary-coding geofeatures:Floodplain)
-;;			0          InFloodplain
-;;			:otherwise NotInFloodplain))
 
 ;;(defmodel farmland Farmland
 ;;	"Just a reclass of the regionally appropriate LULC layer"

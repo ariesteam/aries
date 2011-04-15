@@ -206,7 +206,33 @@ for storm surge class. -->
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
-	
+
+	<page id="storm-surge-class">
+		<concept>coastalProtection:StormSurgeClass</concept>
+		<name>Storm surge</name>
+		<title>Storm surge</title>
+		<group>source</group>
+		<disabled>true</disabled>
+		<description>
+		This map shows results of a Bayesian model estimating the height of a potential storm surge based on wind speed
+		and atmospheric pressure for a historic storm, as well as the ocean depth at a given location.  Greater wind 
+		speeds, lower atmospheric pressure, and shallower ocean depths are more likely to lead to greater storm surge 
+		heights.  Height of the storm surge is in meters.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
+		]]></credits>
+				<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
 	<page id="seagrass-presence-class">
 		<concept>coastalProtection:SeagrassPresenceClass</concept>
 		<name>Seagrass</name>
@@ -259,57 +285,6 @@ for storm surge class. -->
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-	<page id="bathymetric-slope">
-		<concept>coastalProtection:BathymetricSlope</concept>
-		<name>Land and bathymetric slope</name>
-		<title>Land and bathymetric slope</title>
-		<group>source</group>
-		<disabled>true</disabled>
-		<description>
-		Slope data, calculated both on land and for the ocean floor, are used to model the behavoir of waves as they
-		move toward land.  In the ocean, steep slopes cause more rapid wave buildup while over land, steep slopes cause 
-		more rapid dissipation of wave energy.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-				<runninghead>Undersea slope</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-		 	
-	<page id="storm-surge-class">
-		<concept>coastalProtection:StormSurgeClass</concept>
-		<name>Storm surge</name>
-		<title>Storm surge</title>
-		<group>source</group>
-		<disabled>true</disabled>
-		<description>
-		This map shows results of a Bayesian model estimating the height of a potential storm surge based on wind speed
-		and atmospheric pressure for a historic storm, as well as the ocean depth at a given location.  Greater wind 
-		speeds, lower atmospheric pressure, and shallower ocean depths are more likely to lead to greater storm surge 
-		heights.  Height of the storm surge is in meters.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-				<runninghead>No description given</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
 	<page id="artificial-coastal-protection">
 		<concept>coastalProtection:ArtificialCoastalProtection</concept>
 		<name>Artificial coastal protection</name>
@@ -365,38 +340,7 @@ for storm surge class. -->
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
-	<page id="geomorphic-flood-protection">
-		<concept>coastalProtection:GeomorphicFloodProtection</concept>
-		<name>Geomorphic protection</name>
-		<title>Geomorphic flood protection</title>
-		<group>source</group>
-		<description>
-		The amount of the storm-generated wave energy that reaches the coast depends 
-		on several factors, including the geomorphology on land and underwater. 
-		This map is a probabilistic assessment of the total protection provided by 
-		geomorphic features including sea floor depth, slope, terrestrial elevation, 
-		and the presence of dunes.
-		
-		These data are used in the flow model to determine actual damage inflicted 
-		by storms and separate the influences of geomorphic wave mitigation (which 
-		would occur with or without ecosystems that provide wave mitigation) and the
-		contribution of ecosystems in mitigating wave energy.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
-		]]></credits>
-				<runninghead>No description given</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
+
 	<page id="terrestrial-vegetation-type">
 		<concept>coastalProtection:TerrestrialVegetationType</concept>
 		<name>Vegetation type</name>
@@ -430,7 +374,63 @@ for storm surge class. -->
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
+
+	<page id="bathymetric-slope">
+		<concept>coastalProtection:BathymetricSlope</concept>
+		<name>Land and bathymetric slope</name>
+		<title>Land and bathymetric slope</title>
+		<group>source</group>
+		<disabled>true</disabled>
+		<description>
+		Slope data, calculated both on land and for the ocean floor, are used to model the behavoir of waves as they
+		move toward land.  In the ocean, steep slopes cause more rapid wave buildup while over land, steep slopes cause 
+		more rapid dissipation of wave energy.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
+		]]></credits>
+				<runninghead>Undersea slope</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+	<page id="geomorphic-flood-protection">
+		<concept>coastalProtection:GeomorphicFloodProtection</concept>
+		<name>Geomorphic protection</name>
+		<title>Geomorphic flood protection</title>
+		<group>source</group>
+		<description>
+		The amount of the storm-generated wave energy that reaches the coast depends 
+		on several factors, including the geomorphology on land and underwater. 
+		This map is a probabilistic assessment of the total protection provided by 
+		geomorphic features including sea floor depth, slope, terrestrial elevation, 
+		and the presence of dunes.
+		
+		These data are used in the flow model to determine actual damage inflicted 
+		by storms and separate the influences of geomorphic wave mitigation (which 
+		would occur with or without ecosystems that provide wave mitigation) and the
+		contribution of ecosystems in mitigating wave energy.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/coast.html" target="_blank">The coastal flood regulation of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
+		]]></credits>
+				<runninghead>No description given</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
 	<page id="dune-presence-class">
 		<concept>coastalProtection:DunePresenceClass</concept>
 		<name>Dunes</name>
@@ -461,8 +461,8 @@ for storm surge class. -->
 
 	<page id="total-coastal-flood-protection">
 		<concept>coastalProtection:TotalCoastalFloodProtection</concept>
-		<name>Potential coastal flood regulation</name>
-		<title>Potential coastal flood regulation</title>
+		<name>Potential Coastal Flood Regulation</name>
+		<title>Potential Coastal Flood Regulation</title>
 		<group>source</group>
 		<description>
 		This map is the probabilistic output of the *sink* model, which puts together
@@ -488,7 +488,7 @@ for storm surge class. -->
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-<!-- Seems redundant to include both the source, sink, and use output model results and the theoretical concepts, which
+<!-- Flow model concepts.  Seems redundant to include both the source, sink, and use output model results and the theoretical concepts, which
 are the same thing.  Commenting them out of the storyline for now. 
 
 	<page id="coastal-wave-source">
