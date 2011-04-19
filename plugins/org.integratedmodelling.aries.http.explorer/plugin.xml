@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.webapp" version="0.8.0" class="org.integratedmodelling.aries.webapp.ARIESWebappPlugin">
+<plugin id="org.integratedmodelling.aries.http.explorer" version="0.8.0" class="org.integratedmodelling.aries.webapp.ARIESWebappPlugin">
 	<requires>
 		<import plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="true"/>
 		<import plugin-id="org.integratedmodelling.thinklab.searchengine" reverse-lookup="true"/>
@@ -8,6 +8,7 @@
 		<import plugin-id="org.integratedmodelling.thinklab.mca" reverse-lookup="true"/>
 		<import plugin-id="org.integratedmodelling.aries.aries" />
 		<import plugin-id="org.integratedmodelling.thinklab.http"/>
+		<import plugin-id="org.integratedmodelling.thinklab.http.geospace"/>
 <!--		<import plugin-id="org.integratedmodelling.thinklab.http.authentication" reverse-lookup="true"/>
 		<import plugin-id="org.integratedmodelling.thinklab.http.geospace" reverse-lookup="true"/> -->
 	</requires>	
@@ -19,7 +20,7 @@
 		<library type="resources" path="config/" id="config" />
 	</runtime>
 	
-	<!-- application -->
+	<!-- application 
 	<extension plugin-id="org.integratedmodelling.thinkcap.core" point-id="thinkcap-application" id="aries">
 		<parameter id="name" value="aries"/>
 		<parameter id="location" value="web_aries" />
@@ -31,5 +32,5 @@
 		<parameter id="short-description" value="Artificial Intelligence for Ecosystem Services"/>
 		<parameter id="running-head" value="Ecosystem Services Explorer"/>
 		<parameter id="long-description" value="Artificial Intelligence for Ecosystem Services: Ecosystem services explorer (general edition)."/>
-	</extension> 
+	</extension>  -->
 </plugin>

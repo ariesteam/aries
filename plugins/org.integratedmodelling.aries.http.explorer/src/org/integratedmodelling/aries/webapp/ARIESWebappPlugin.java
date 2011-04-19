@@ -22,7 +22,8 @@ import org.opengis.referencing.operation.MathTransform;
 public class ARIESWebappPlugin extends ThinklabPlugin {
 
 	public static final String PLUGIN_ID = 
-		"org.integratedmodelling.aries.webapp";
+		"org.integratedmodelling.aries.http.explorer";
+	
 	public static final String WMS_SERVER_PROPERTY = 
 		"aries.wms.server";
 	public static final String GOOGLE_MAPS_KEY =

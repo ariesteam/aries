@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ARIES ecosystem services explorer v1.0</title>
+<link href="/aries/css/zkcore.css" rel="stylesheet" type="text/css" />
+<link href="/aries/css/aries.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body 		
+	xmlns:zul="http://www.zkoss.org/2005/zul">
+	<zul:script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAHxQPsBaW3O6K4FpJ99XlORRUEx9MJJ3prrf7TuXqNIz_vEIA4xRhoMzNSy4lTMbf70TkD-YQ8DXoqA"></zul:script>  
+	<zul:script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></zul:script>  
+	<zul:vbox
+		xmlns:xhtml="http://www.w3.org/1999/xhtml"
+		xmlns:native="http://www.zkoss.org/2005/zk/native"
+		id="seamkb" width="100%" spacing="0">		
+		<zul:window id="top" width="100%" use="org.integratedmodelling.aries.webapp.view.AriesBanner"/>
+		<zul:window id="workspace" width="100%" height="100%" 
+					use="org.integratedmodelling.aries.webapp.view.AriesBrowser" />
+		<zul:separator bar="true"/>
+		<div align="center" class="copyright">Copyright (C) 2009 The ARIES Consortium. All rights reserved.</div>
+	</zul:vbox>
+</body>
+</html>
