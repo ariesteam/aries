@@ -391,6 +391,8 @@
 ;; FIXME: Theoretical source is a point, but we generate a storm surge
 ;;        as a line of cells.  This makes the Theoretical and
 ;;        Inacessible Source maps looks wrong in the result dataset.
+;; FIXME: Try a sphere or circle instead of a wave line.
+;; FIXME: Try accounting for rotational cyclone dynamics.
 (defmethod distribute-flow "CoastalStormMovement"
   [_ animation? cell-width cell-height source-layer eco-sink-layer use-layer
    {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicWaveReduction"}]

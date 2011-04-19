@@ -197,7 +197,10 @@
     ;;       subsequences using sharing.  Then let each capture all of
     ;;       its own...
     ;;
-    ;;       
+    ;;       ======================================================
+    ;;       Here's a note I found from my ACES scribblings:
+    ;;
+    ;;       ...
 
     (comment
     (let [actual-use-caps    use-caps

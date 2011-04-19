@@ -405,7 +405,7 @@
 (defn find-bounding-box
   "Returns a new list of points which completely bounds the
    rectangular region defined by points and remains within the bounds
-   [0-rows],[0-cols]."
+   [0-rows],[0-cols], inclusive below, exclusive above."
   [rows cols points]
   (when (seq points)
     (let [row-coords (map first  points)
