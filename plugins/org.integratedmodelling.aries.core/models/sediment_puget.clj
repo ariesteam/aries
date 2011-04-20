@@ -9,6 +9,9 @@
 ;; This is the model for Puget Sound.
 
 ;; fv - shouldn't this be soilretentionService?
+;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
+;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
+;; and "ecology" ontologies that should be merged)
 (namespace-ontology soilretentionEcology)
 
 ;; ----------------------------------------------------------------------------------------------
@@ -42,7 +45,6 @@
       #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105} CoarseSoilTexture
       #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104} MediumSoilTexture
       #{7 16 23 41 44 45 46 51 52 53 54 56 58 100 101} FineSoilTexture))
-
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass

@@ -17,7 +17,8 @@
 	</model>	
 
 <!-- The Vermont viewsheds model needs to have its use model replaced.  While we should eventually incorporate it into the 
-online interface we should hold off on doing so for now. 
+online interface we should hold off on doing so for now.  We also have data & defmodel statements for scenic drives that I 
+think should go in the rec models vs. viewsheds - if we do so, need to add the concepts to the right storylines.
 	<model>
 		<id>core.models.recreation-viewsheds/data</id>
 		<context>core.contexts.beta/vt512</context> 
@@ -223,9 +224,9 @@ online interface we should hold off on doing so for now.
   
   <page id="river-stream">
     <concept>recreationService:RiverStream</concept>
-    <name>Rivers and Streams</name>
-    <title>Presence of Rivers or Streams</title>
-    <runninghead>Rivers and Streams</runninghead>
+    <name>Rivers and streams</name>
+    <title>Presence of rivers or streams</title>
+    <runninghead>Rivers and streams</runninghead>
     <group></group>
     <description><![CDATA[
 			<p>The presence of rivers and streams as aesthetically beautiful natural features to view from mountain summits.</p>
@@ -278,9 +279,9 @@ online interface we should hold off on doing so for now.
 
   <page id="open-space-class">
     <concept>recreationService:OpenSpaceClass</concept>
-    <name>Open Space Class</name>
-    <title>Open Space Class</title>
-    <runninghead>Open Space Class</runninghead>
+    <name>Open space class</name>
+    <title>Open space class</title>
+    <runninghead>Open space class</runninghead>
     <description><![CDATA[
 			<p>The presence of aesthetically pleasing land cover types as viewed from mountain summits, such as forests or farmland.</p>
 			<h1>Role in models</h1>
@@ -305,9 +306,9 @@ online interface we should hold off on doing so for now.
   
     <page id="aesthetic-enjoyment-provision">
     <concept>aestheticService:AestheticEnjoymentProvision</concept>
-    <name>Potential Aesthetic View Quality</name>
-    <title>Potential Aesthetic View Quality</title>
-    <runninghead>Potential Aesthetic View Quality</runninghead>
+    <name>Potential view quality</name>
+    <title>Potential view quality</title>
+    <runninghead>Potential view quality</runninghead>
     <description><![CDATA[
 			<p>The quality of a potential view from a mountain summit.</p>
 			<h1>Role in models</h1>
@@ -338,7 +339,7 @@ online interface we should hold off on doing so for now.
   <page id="development">
     <concept>recreationService:Development</concept>
     <name>Development</name>
-    <title>Presence of Developed Land</title>
+    <title>Presence of developed land</title>
     <runninghead>Development</runninghead>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land cover types as viewed from mountain summits, such as 
@@ -365,9 +366,9 @@ online interface we should hold off on doing so for now.
 
   <page id="transportation-energy-infrastructure">
     <concept>recreationService:TransportationEnergyInfrastructure</concept>
-    <name>Transportation and Energy Infrastructure</name>
-    <title>Presence of Transportation and Energy Infrastructure</title>
-    <runninghead>Transportation and Energy Infrastructure</runninghead>
+    <name>Transportation and energy infrastructure</name>
+    <title>Presence of transportation and energy infrastructure</title>
+    <runninghead>Transportation and energy infrastructure</runninghead>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types as viewed from mountain summits, such as 
 			highways or transmission lines.</p>
@@ -393,9 +394,9 @@ online interface we should hold off on doing so for now.
 
   <page id="visual-blight">
     <concept>aestheticService:ViewSink</concept>
-    <name>Visual Blight</name>
-    <title>Visual Blight</title>
-    <runninghead>Visual Blight</runninghead>
+    <name>Visual blight</name>
+    <title>Visual blight</title>
+    <runninghead>Visual blight</runninghead>
     <description><![CDATA[
 			<p>The ability of parts of the landscape to degrade views, based on the presence of visually 
 			unappealing features.</p>
@@ -425,10 +426,10 @@ online interface we should hold off on doing so for now.
   </page>
 
   <page id="mountain-summits-with-views">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept>
-    <name>Summits With Views</name>
-    <title>Mountain Summits and Overlooks With Views</title>
-    <runninghead>Summits With Views</runninghead>
+    <concept>recreationService:TransportationEnergyInfrastructure</concept> <!-- REPLACE WITH CORRECT CONCEPT -->
+    <name>Summits with views</name>
+    <title>Mountain summits and overlooks with views</title>
+    <runninghead>Summits with views</runninghead>
     <description><![CDATA[
 			<p>The presence of mountain summits or overlooks with views of the surrounding landscape, as opposed to forested
 			summits with limited views.</p>
@@ -455,10 +456,10 @@ online interface we should hold off on doing so for now.
   </page>
 
   <page id="actual-view-quality">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept>
-    <name>Actual View Quality</name>
-    <title>Actual View Quality From Summits and Overlooks</title>
-    <runninghead>Actual View Quality</runninghead>
+    <concept>recreationService:TransportationEnergyInfrastructure</concept> <!-- REPLACE WITH CORRECT CONCEPT -->
+    <name>Actual view quality</name>
+    <title>Actual view quality from summits and overlooks</title>
+    <runninghead>Actual view quality</runninghead>
     <description><![CDATA[
 			<p>The actual quality of views from mountain summits and overlooks, when accounting for the source of high quality 
 			views, visual blight that degrades views, and distance decay in viewsheds.  The viewshed flow model accounts for these
@@ -487,9 +488,9 @@ online interface we should hold off on doing so for now.
 
   <page id="public-access-class">
     <concept>recreationService:PublicAccessClass</concept>
-    <name>Public Access</name>
-    <title>Public Access</title>
-    <runninghead>Public Access</runninghead>
+    <name>Public access</name>
+    <title>Public access</title>
+    <runninghead>Public access</runninghead>
     <description><![CDATA[
 			<p>Areas with public access for recreational activities.</p>
 			<h1>Role in models</h1>
@@ -516,9 +517,9 @@ online interface we should hold off on doing so for now.
 
   <page id="bird-species-richness">
     <concept>recreationService:BirdSpeciesRichness</concept>
-    <name>Bird Species Richness</name>
-    <title>Bird Species Richness</title>
-    <runninghead>Bird Species Richness</runninghead>
+    <name>Bird species richness</name>
+    <title>Bird species richness</title>
+    <runninghead>Bird species richness</runninghead>
     <description><![CDATA[
 			<p>Bird species richness, used to estimate an area's quality for bird watching.</p>
 			<h1>Role in models</h1>
@@ -544,9 +545,9 @@ online interface we should hold off on doing so for now.
 
   <page id="rare-charismatic-bird-habitat">
     <concept>recreationService:RareCharismaticBirdHabitat</concept>
-    <name>Rare and Charismatic Bird Habitat</name>
-    <title>Rare and Charismatic Bird Habitat</title>
-    <runninghead>Rare and Charismatic Bird Habitat</runninghead>
+    <name>Rare and charismatic bird habitat</name>
+    <title>Rare and charismatic bird habitat</title>
+    <runninghead>Rare and charismatic bird habitat</runninghead>
     <description><![CDATA[
 			<p>The presence of ten rare or charismatic bird species identified as important by birding tour guides
 			for southeast Arizona.  The ten species included are: elegant trogon (_Trogon elegans_), red-faced warbler 
@@ -577,9 +578,9 @@ online interface we should hold off on doing so for now.
 
   <page id="water-presence">
     <concept>sanPedro:WaterPresence</concept>
-    <name>Presence of Surface Water</name>
-    <title>Presence of Surface Water</title>
-    <runninghead>Presence of Surface Water</runninghead>
+    <name>Presence of surface water</name>
+    <title>Presence of surface water</title>
+    <runninghead>Presence of surface water</runninghead>
     <description><![CDATA[
 			<p>The presence of surface water from streams and springs.</p>
 			<h1>Role in models</h1>
@@ -607,9 +608,9 @@ online interface we should hold off on doing so for now.
 
   <page id="riparian-condition-class">
     <concept>sanPedro:RiparianConditionClass</concept>
-    <name>Riparian Condition Class</name>
-    <title>Riparian Condition Class</title>
-    <runninghead>Riparian Condition Class</runninghead>
+    <name>Riparian condition class</name>
+    <title>Riparian condition class</title>
+    <runninghead>Riparian condition class</runninghead>
     <description><![CDATA[
 			<p>Riparian quality, rated from dry to wet, based on nine vegetation bioindicators sensitive to surface and 
 			groundwater conditions.</p>
@@ -637,13 +638,13 @@ online interface we should hold off on doing so for now.
 
   <page id="riparian-spring-wetland-quality">
     <concept>sanPedro:RiparianSpringWetlandQuality</concept>
-    <name>Riparian, Spring, or Wetland Quality</name>
-    <title>Riparian, Spring, or Wetland Quality</title>
-    <runninghead>Riparian, Spring, or Wetland Quality</runninghead>
+    <name>Riparian, spring, or wetland quality</name>
+    <title>Riparian, spring, or wetland quality</title>
+    <runninghead>Riparian, spring, or wetland quality</runninghead>
     <description><![CDATA[
 			<p>Presence of high, moderate, low quality, or no springs or surface water.</p>
 			<h1>Role in models</h1>
-			<p>Surface water presence data is combined with data on riparian quality (where available) to further estimate the
+			<p>Surface water presence data are combined with data on riparian quality (where available) to further estimate the
 			quality of the surface water resource.  These data are combined with public access data and species presence
 			or richness in relevant source models for wildlife-based recreation.  Where no condition class data are available the
 			model currently assumes surface water to be ephemerally flowing.</p>
@@ -666,9 +667,9 @@ online interface we should hold off on doing so for now.
 
   <page id="birding-source-value">
     <concept>recreationService:BirdingSourceValue</concept>
-    <name>Potential Birding Quality</name>
-    <title>Potential Birding Quality</title>
-    <runninghead>Potential Birding Quality</runninghead>
+    <name>Potential birding quality</name>
+    <title>Potential birding quality</title>
+    <runninghead>Potential birding quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support bird watching.</p>
 			<h1>Role in models</h1>
@@ -698,9 +699,9 @@ online interface we should hold off on doing so for now.
   
   <page id="wildlife-species-richness">
     <concept>recreationService:WildlifeSpeciesRichness</concept>
-    <name>Wildlife Species Richness</name>
-    <title>Wildlife Species Richness</title>
-    <runninghead>Wildlife Species Richness</runninghead>
+    <name>Wildlife species richness</name>
+    <title>Wildlife species richness</title>
+    <runninghead>Wildlife species richness</runninghead>
     <description><![CDATA[
 			<p>Weighted average biodiversity values for amphibians, birds, mammals, and reptiles.</p>
 			<h1>Role in models</h1>
@@ -727,9 +728,9 @@ online interface we should hold off on doing so for now.
 
   <page id="wildlife-viewing-source-value">
     <concept>recreationService:WildlifeViewingSourceValue</concept>
-    <name>Potential Wildlife Viewing Quality</name>
-    <title>Potential Wildlife Viewing Quality</title>
-    <runninghead>Potential Wildlife Viewing Quality</runninghead>
+    <name>Potential wildlife viewing quality</name>
+    <title>Potential wildlife viewing quality</title>
+    <runninghead>Potential wildlife viewing quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support wildlife viewing.</p>
 			<h1>Role in models</h1>
@@ -759,9 +760,9 @@ online interface we should hold off on doing so for now.
   
   <page id="dove-habitat">
     <concept>sanPedro:DoveHabitat</concept>
-    <name>Dove Habitat</name>
-    <title>Dove Habitat</title>
-    <runninghead>Dove Habitat</runninghead>
+    <name>Dove habitat</name>
+    <title>Dove habitat</title>
+    <runninghead>Dove habitat</runninghead>
     <description><![CDATA[
 			<p>Areas where mourning and/or white-winged dove (_Zenaida macroura_, _Z. asiatica_) are known or predicted 
 			to occur in the southwestern United States.</p>
@@ -789,9 +790,9 @@ online interface we should hold off on doing so for now.
 
   <page id="deer-habitat">
     <concept>sanPedro:DeerHabitat</concept>
-    <name>Deer Habitat</name>
-    <title>Deer Habitat</title>
-    <runninghead>Deer Habitat</runninghead>
+    <name>Deer habitat</name>
+    <title>Deer habitat</title>
+    <runninghead>Deer habitat</runninghead>
     <description><![CDATA[
 			<p>Areas where mule and/or white-tailed deer (_Odocoileus hemionus_, _O. virginianus_) are known or predicted 
 			to occur in the southwestern United States.</p>
@@ -819,9 +820,9 @@ online interface we should hold off on doing so for now.
 
   <page id="quail-habitat">
     <concept>sanPedro:QuailHabitat</concept>
-    <name>Quail Habitat</name>
-    <title>Quail Habitat</title>
-    <runninghead>Quail Habitat</runninghead>
+    <name>Quail habitat</name>
+    <title>Quail habitat</title>
+    <runninghead>Quail habitat</runninghead>
     <description><![CDATA[
 			<p>Areas where Gambels', Mearns', and/or scaled quail (_Callipepla gambelii_, _C. montezumae_, _C. squamata_) are 
 			known or predicted to occur in the southwestern United States.</p>
@@ -849,9 +850,9 @@ online interface we should hold off on doing so for now.
 
   <page id="javelina-habitat">
     <concept>sanPedro:JavelinaHabitat</concept>
-    <name>Javelina Habitat</name>
-    <title>Javelina Habitat</title>
-    <runninghead>Javelina Habitat</runninghead>
+    <name>Javelina habitat</name>
+    <title>Javelina habitat</title>
+    <runninghead>Javelina habitat</runninghead>
     <description><![CDATA[
 			<p>Areas where javelina (_Pecari tajacu_) are known or predicted to occur in the southwestern United States.</p>
 			<h1>Role in models</h1>
@@ -877,9 +878,9 @@ online interface we should hold off on doing so for now.
   
   <page id="dove-hunting-source-value">
     <concept>sanPedro:DoveHuntingSourceValue</concept>
-    <name>Potential Dove Hunting Quality</name>
-    <title>Potential Dove Hunting Quality</title>
-    <runninghead>Potential Dove Hunting Quality</runninghead>
+    <name>Potential Dove hunting quality</name>
+    <title>Potential Dove hunting quality</title>
+    <runninghead>Potential Dove hunting quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support dove hunting.</p>
 			<h1>Role in models</h1>
@@ -909,9 +910,9 @@ online interface we should hold off on doing so for now.
 
   <page id="deer-hunting-source-value">
     <concept>sanPedro:DeerHuntingSourceValue</concept>
-    <name>Potential Deer Hunting Quality</name>
-    <title>Potential Deer Hunting Quality</title>
-    <runninghead>Potential Deer Hunting Quality</runninghead>
+    <name>Potential deer hunting quality</name>
+    <title>Potential deer hunting quality</title>
+    <runninghead>Potential deer hunting quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support deer hunting.</p>
 			<h1>Role in models</h1>
@@ -941,9 +942,9 @@ online interface we should hold off on doing so for now.
 
   <page id="quail-hunting-source-value">
     <concept>sanPedro:QuailHuntingSourceValue</concept>
-    <name>Potential Quail Hunting Quality</name>
-    <title>Potential Quail Hunting Quality</title>
-    <runninghead>Potential Quail Hunting Quality</runninghead>
+    <name>Potential quail hunting quality</name>
+    <title>Potential quail hunting quality</title>
+    <runninghead>Potential quail hunting quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support quail hunting.</p>
 			<h1>Role in models</h1>
@@ -973,9 +974,9 @@ online interface we should hold off on doing so for now.
 
   <page id="javelina-hunting-source-value">
     <concept>sanPedro:JavelinaHuntingSourceValue</concept>
-    <name>Potential Javelina Hunting Quality</name>
-    <title>Potential Javelina Hunting Quality</title>
-    <runninghead>Potential Javelina Hunting Quality</runninghead>
+    <name>Potential javelina hunting quality</name>
+    <title>Potential javelina hunting quality</title>
+    <runninghead>Potential javelina hunting quality</runninghead>
     <description><![CDATA[
 			<p>Suitability of different areas to support javelina hunting.</p>
 			<h1>Role in models</h1>
@@ -1005,9 +1006,9 @@ online interface we should hold off on doing so for now.
 
   <page id="population-density">
     <concept>policytarget:PopulationDensity</concept>
-    <name>Population Density</name>
-    <title>Population Density</title>
-    <runninghead>Population Density</runninghead>
+    <name>Population density</name>
+    <title>Population density</title>
+    <runninghead>Population density</runninghead>
     <description><![CDATA[
 			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
 			<h1>Role in models</h1>
@@ -1034,7 +1035,7 @@ online interface we should hold off on doing so for now.
   <page id="roads">
     <concept>recreationService:Roads</concept>
     <name>Roads</name>
-    <title>Presence of Roads</title>
+    <title>Presence of roads</title>
     <runninghead>Roads</runninghead>
     <description><![CDATA[
 			<p>Roads used to travel to recreational areas.</p>
@@ -1060,9 +1061,9 @@ online interface we should hold off on doing so for now.
 
   <page id="road-travel-capacity">
     <concept>recreationService:RoadTravelCapacity</concept>
-    <name>Road Travel Capacity</name>
-    <title>Road Travel Capacity</title>
-    <runninghead>Road Travel Capacity</runninghead>
+    <name>Road travel capacity</name>
+    <title>Road travel capacity</title>
+    <runninghead>Road travel capacity</runninghead>
     <description><![CDATA[
 			<p>The type of road, which determines how quickly users can travel to potential recreation areas.</p>
 			<h1>Role in models</h1>
@@ -1089,7 +1090,7 @@ online interface we should hold off on doing so for now.
   <page id="trails">
     <concept>recreationService:Trails</concept>
     <name>Trails</name>
-    <title>Presence of Trails</title>
+    <title>Presence of trails</title>
     <runninghead>Trails</runninghead>
     <description><![CDATA[
 			<p>Trails used by hikers, campers, and other recreational users.</p>

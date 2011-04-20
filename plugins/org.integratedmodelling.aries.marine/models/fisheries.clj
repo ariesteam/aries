@@ -194,7 +194,7 @@
 (defmodel fisheries-subsistence-flow SubsistenceFishProvision
   (span SubsistenceFishAccessibility
         TotalSubsistenceHarvest
-        SubsistenceUse ;; SubsistenceFishing
+        SubsistenceFishing
         nil
         nil
         (infrastructure:Path PopulationDensity)
@@ -208,7 +208,8 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        ;;:save-file          "subsistence-fisheries-data.clj"
+        :animation?         true
+        ;;:save-file          (str (System/getProperty "user.home") "/subsistence-fisheries-data.clj")
         :context            (total-pelagic-subsistence-harvest subsistence-fishing paths population-density)
         :keep               (SubsistenceFishSupply
                              SubsistenceFishDemand

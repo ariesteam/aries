@@ -93,104 +93,9 @@
 		]]></credits>
 		<runninghead></runninghead>
 	</page>
-	<page>
-		<concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
-		<title>Carbon Sequestration</title>
-		<name>Atmospheric CO<sub>2</sub> removed</name>
-		<units>tonnes C/ha.year</units>
-		<description language="html"><![CDATA[
-			<p>CO<sub>2</sub> sequestered. The amount of carbon taken up by vegetation and soils and added
-			to biotic and soil carbon stocks. This is the quantity available for
-			mitigating anthropogenic carbon emissions.</p>
-			<h1>Role in models</h1>
-			<p>This map is the most relevant output of the ARIES carbon model. 
-				The value of the area in mitigating the adverse effects of rising 
-				atmospheric CO<sub>2</sub> is indicated by the amount of carbon sequestered
-				by vegetation and soil.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of tonnes of carbon sequestered per hectare per
-			year. As the output of the models is probabilistic, each point contains the probability 
-			distribution of the amount of carbon. The distribution can be visualized by clicking
-			on the map; the mean value and the coefficient of variation are reported along with
-			the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and 
-			   calibrated by the ARIES server when the area was selected.</p>
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-			<a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-		<runninghead>Tonnes of C sequestered by vegetation and soils</runninghead>
-		<group>source</group>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-		<plot-type>uncertainty-2d</plot-type>
-		<!-- <statistics>totals</statistics> -->	
-	</page>
-	<page>
-		<concept>carbonService:StoredCarbonRelease</concept>
-		<name> Stored carbon release</name>
-		<title>Release of stored carbon</title>
-		<group>sink</group>
-		<description language="html"><![CDATA[
-			<p>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, 
-			   or other land use-land cover change, excluding emissions from fossil fuel combustion. </p>
-			<h1>Role in models</h1>
-			<p>This map is an output of the ARIES carbon model. The value of the 
-				area in mitigating the adverse effects of climate change 
-				is reduced when stored carbon in vegetation or soils is released.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of tonnes of carbon released per hectare per
-			year. As the output of the models is probabilistic, each point contains the distribution
-			probability of the amount of carbon released, based on the amount of stored carbon and 
-			the probability of fire and/or deforestation. The distribution can be visualized by clicking
-			on the map; the mean value and the coefficient of variation are reported along with
-			the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and 
-			   calibrated by the ARIES server when the area was selected.</p>
-		]]></description>
-		<runninghead>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, or other land use-land cover change.</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-		<plot-type>uncertainty-2d</plot-type>
-		<!-- <statistics>totals</statistics> -->	
-		<units>tonnes C/ha.year</units>
-	</page>
-	<page>
-		<concept>carbonService:GreenhouseGasEmitters</concept>
-		<name>Carbon emitted</name>
-		<title>CO<sub>2</sub> emission from human activity</title>
-		<group>use</group>
-		<description language="html"><![CDATA[
-			<p>The beneficiaries of carbon sequestration and storage are greenhouse
-			   gas emitters who release CO<sub>2</sub> into the atmosphere, relying on ecosystems 
-			   to absorb and store carbon in order to avoid even larger rises in 
-			   atmospheric CO<sub>2</sub> than are currently seen.  Our carbon use models 
-			   thus display greenhouse gas emissions.</p>
-			<h1>Role in models</h1>
-			<p>This map is used to identify the beneficiaries of CO<sub>2</sub> sequestration in 
-			   this storyline.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of tonnes of carbon released each year due to fossil
-			fuel combustion.</p>
-			<h1>Source</h1>
-			<p>  Spatially explicit data on greenhouse gas emissions exist for the United States.  
-				Globally, we use population density data multiplied by per capita emissions
-			    for the country or sub-national region of interest.</p>
-		]]></description>
-		<runninghead>Emitters benefit under a scenario of compensation</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-		<units>tonnes C/ha.year</units>
-		<!-- <statistics>totals</statistics> -->	
-	</page>
+
+<!-- Source, sink, and use concepts -->
+	
 	<page>
 		<concept>carbonService:SoilCNRatio</concept>
 		<title>Soil C:N ratio</title>
@@ -225,7 +130,7 @@
 	<page>
 		<concept>carbonService:SummerHighWinterLow</concept>
 		<name>Seasonality</name>
-		<title>Summer - Winter temperature range</title>
+		<title>Summer - winter temperature range</title>
 		<group />
 		<description language="html"><![CDATA[
 			<p>The difference between mean summer high and winter low
@@ -249,8 +154,8 @@
 	
 	<page>
 		<concept>carbonService:SuccessionalStage</concept>
-		<title>Successional Stage</title>
-		<name>Succession</name>
+		<title>Successional stage</title>
+		<name>Successional stage</name>
 		<group />
 		<description language="html"><![CDATA[
 			<p>The stage of vegetation regrowth following a disturbance event. 
@@ -296,7 +201,7 @@
 			<h1>Representation</h1>
 			<p>Data are the percentage of the ground surface covered by tree canopy.</p>
 			<h1>Source</h1>
-			<p>NLCD 2001 data in the United States; GLCF (University of Maryland) data used globally.</p>
+			<p>NLCD 2001 data (U.S. data); GLCF (University of Maryland, global data).</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -314,8 +219,8 @@
 	
 	<page>
 		<concept>carbonService:HardwoodSoftwoodRatio</concept>
-		<title>Hardwood:Softwood ratio</title>
-		<name>Hardwood:Softwood</name>
+		<title>Hardwood:softwood ratio</title>
+		<name>Hardwood:softwood</name>
 		<description language="html"><![CDATA[
 			<p>Softwood and hardwood tree species grow at different rates, so they sequester and
 			store atmospheric carbon in different ways. Generally, we assume softwoods will grow
@@ -343,7 +248,7 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
+
 	<page>
 	<concept>carbonService:MeanAnnualPrecipitation</concept>
 		<name>Precipitation</name>
@@ -358,7 +263,7 @@
 			<h1>Representation</h1>
 			<p>The data are in physical units of millimeters of precipitation.</p>
 			<h1>Source</h1>
-			<p>Global or national-scale mean annual precipitation data.</p>
+			<p>PRISM Climate Group (U.S. data); WorldClim (global data).</p>
 		</description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -373,11 +278,114 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
+
+	<page>
+		<concept>carbonService:VegetationType</concept>
+		<name>Vegetation</name>
+		<title>Vegetation type</title>
+		<group />
+		<description language="html"><![CDATA[
+			<p>Different plant community or land cover types have different carbon 
+			sequestration rates and different capacity to store carbon.</p>
+			<h1>Role in models</h1>
+			<p>Data are used in some models to estimate differential carbon sequestration and/or
+			storage in ecosystems such as forests, grasslands, and urban areas.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>NLCD or other land use/land cover data.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Vegetation type is a factor in defining sequestration and storage capacities.</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+	<page>
+		<concept>carbonService:DegradationStatus</concept>
+		<title>Level of forest degradation</title>
+		<name>Degradation</name>
+		<group />
+		<description><![CDATA[
+			<p>Where forest degradation data are available, it can be used to train 
+			probabilistic models so that its effect is taken into consideration in 
+			predicting carbon sequestration and storage.</p>
+			<h1>Role in models</h1>
+			<p>Forest degradation data are available for Madagascar, a nation with high deforestation rates
+			and levels of forest degradation.  In degraded forests, we expect lower levels of carbon sequestration
+			and storage.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, and identify degraded forest and savanna ecosystems.</p>
+			<h1>Source</h1>
+			<p>Foiben-Taosarintanini Madagasikara (FTM), Madagsacar national land cover.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data provided by</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Degradation of forests can influence sequestration.</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+	<page>
+		<concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
+		<title>Carbon sequestration</title>
+		<name>Atmospheric CO<sub>2</sub> removed</name>
+		<units>tonnes C/ha.year</units>
+		<description language="html"><![CDATA[
+			<p>CO<sub>2</sub> sequestered. The amount of carbon taken up by vegetation and soils and added
+			to biotic and soil carbon stocks. This is the quantity available for
+			mitigating anthropogenic carbon emissions.</p>
+			<h1>Role in models</h1>
+			<p>This map is one of the most relevant outputs of the ARIES carbon model. 
+				The value of the area in mitigating the adverse effects of rising 
+				atmospheric CO<sub>2</sub> is indicated by the amount of carbon sequestered
+				by vegetation and soil.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of tonnes of carbon sequestered per hectare per
+			year. As the output of the models is probabilistic, each point contains the probability 
+			distribution of the amount of carbon. The distribution can be visualized by clicking
+			on the map; the mean value and the coefficient of variation are reported along with
+			the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server when the area was selected.</p>
+		]]></description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+			<a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+		<runninghead>Tonnes of C sequestered by vegetation and soils</runninghead>
+		<group>source</group>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+		<plot-type>uncertainty-2d</plot-type>
+		<!-- <statistics>totals</statistics> -->	
+	</page>
+
 	<page>
 		<concept>carbonService:FireFrequency</concept>
 		<name>Fire</name>
-		<title>Fire Frequency</title>
+		<title>Fire frequency</title>
 		<group />
 		<description>
 			<p>Fires are an important and in some cases predictable variable in
@@ -420,7 +428,7 @@
 			<h1>Representation</h1>
 			<p>The data are in physical units on the pH scale.</p>
 			<h1>Sources</h1>
-			<p>FAO data at the global scale, SSURGO soils data for the United States.</p>
+			<p>SSURGO soils data (U.S. data); FAO data (global data)</p>
 		</description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -463,7 +471,7 @@
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: LANDSCAN 30m coverages produced by Oak Ridge Natl.Labs.</br>
+	    <b>Data provided by</b>: LANDSCAN coverage produced by Oak Ridge Natl.Labs.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
 		<units>people/km2</units>
@@ -471,43 +479,11 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
-	<page>
-		<concept>carbonService:DegradationStatus</concept>
-		<title>Level of forest degradation</title>
-		<name>Degradation</name>
-		<group />
-		<description><![CDATA[
-			<p>Where forest degradation data are available, it can be used to train 
-			probabilistic models so that its effect is taken into consideration in 
-			predicting carbon sequestration and storage.</p>
-			<h1>Role in models</h1>
-			<p>Forest degradation data are available for Madagascar, a nation with high deforestation rates
-			and levels of forest degradation.  In degraded forests, we expect lower levels of carbon sequestration
-			and storage.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and identify degraded forest and savanna ecosystems.</p>
-			<h1>Source</h1>
-			<p>Foiben-Taosarintanini Madagasikara (FTM), Madagsacar national land cover.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-		<runninghead>Degradation of forests can influence sequestration.</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
+
 	<page>
 		<concept>carbonService:Slope</concept>
 		<name>Slope</name>
-		<title>Slope class</title>
+		<title>Slope</title>
 		<group />
 		<description><![CDATA[
 			<p>Soil on slopes can be more easily washed away, particularly in the absence of protective
@@ -533,11 +509,11 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
+
 	<page>
 	<concept>carbonService:FireThreatClass</concept>
-		<name>Fire Risk</name>
-		<title>Class of fire threat</title>
+		<name>Fire risk</name>
+		<title>Fire threat class</title>
 		<group />
 		<description><![CDATA[
 			<p>Fires are an important and in some cases predictable variable in
@@ -565,37 +541,7 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-	
-	<page>
-		<concept>carbonService:VegetationType</concept>
-		<name>Vegetation</name>
-		<title>Vegetation type</title>
-		<group />
-		<description language="html"><![CDATA[
-			<p>Different plant community or land cover types have different carbon 
-			sequestration rates and different capacity to store carbon.</p>
-			<h1>Role in models</h1>
-			<p>Data are used in some models to estimate differential carbon sequestration and/or
-			storage in ecosystems such as forests, grasslands, and urban areas.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>NLCD or other land use/land cover data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-		<runninghead>Vegetation type is a factor in defining sequestration and storage capacities.</runninghead>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
+
 	<page>
 		<concept>carbonService:SoilOxygenConditions</concept>
 		<name>Soil oxygen</name>
@@ -660,6 +606,68 @@
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
+
+	<page>
+		<concept>carbonService:StoredCarbonRelease</concept>
+		<name> Stored carbon release</name>
+		<title>Release of stored carbon</title>
+		<group>sink</group>
+		<description language="html"><![CDATA[
+			<p>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, 
+			   or other land use-land cover change, excluding emissions from fossil fuel combustion. </p>
+			<h1>Role in models</h1>
+			<p>This map is an output of the ARIES carbon model. The value of the 
+				area in mitigating the adverse effects of climate change 
+				is reduced when stored carbon in vegetation or soils is released.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of tonnes of carbon released per hectare per
+			year. As the output of the models is probabilistic, each point contains the distribution
+			probability of the amount of carbon released, based on the amount of stored carbon and 
+			the probability of fire and/or deforestation. The distribution can be visualized by clicking
+			on the map; the mean value and the coefficient of variation are reported along with
+			the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server when the area was selected.</p>
+		]]></description>
+		<runninghead>The total emissions of carbon from the landscape, i.e., due to fire, deforestation, or other land use-land cover change.</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+		<plot-type>uncertainty-2d</plot-type>
+		<!-- <statistics>totals</statistics> -->	
+		<units>tonnes C/ha.year</units>
+	</page>
+
+<page>
+		<concept>carbonService:GreenhouseGasEmitters</concept>
+		<name>Carbon emitted</name>
+		<title>CO<sub>2</sub> emission from human activity</title>
+		<group>use</group>
+		<description language="html"><![CDATA[
+			<p>The beneficiaries of carbon sequestration and storage are greenhouse
+			   gas emitters who release CO<sub>2</sub> into the atmosphere, relying on ecosystems 
+			   to absorb and store carbon in order to avoid even larger rises in 
+			   atmospheric CO<sub>2</sub> than are currently seen.  Our carbon use models 
+			   thus display greenhouse gas emissions.</p>
+			<h1>Role in models</h1>
+			<p>This map is used to identify the beneficiaries of CO<sub>2</sub> sequestration in 
+			   this storyline.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of tonnes of carbon released each year due to fossil
+			fuel combustion.</p>
+			<h1>Source</h1>
+			<p> Vulcan Project (U.S. data); LANDSCAN population density data multiplied by per capita 
+				emissions for the country or sub-national region of interest (global data).</p>
+		]]></description>
+		<runninghead>Emitters benefit under a scenario of compensation</runninghead>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+		<units>tonnes C/ha.year</units>
+		<!-- <statistics>totals</statistics> -->	
+	</page>
+	
+<!-- Flow concepts for carbon.  These two seem like by far the most relevant ones, in addition to the theoretical 
+values produced by probabilistic or deterministic models. -->
 
 	<page>
 		<concept>carbonService:CarbonMitigationSurplus</concept>
@@ -735,5 +743,4 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-	
 </presentation>

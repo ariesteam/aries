@@ -76,7 +76,7 @@
              :benefit-type       :rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         false
+             :animation?         true
              :result-type        :closure-map}))
 
 (defn test-run-water

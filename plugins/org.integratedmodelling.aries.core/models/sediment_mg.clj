@@ -6,6 +6,10 @@
                             identification bayesian count))
   (:refer aries :only (span)))
 
+;; fv - shouldn't this be soilretentionService?
+;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
+;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
+;; and "ecology" ontologies that should be merged)
 (namespace-ontology soilretentionEcology)
 
 ;; ----------------------------------------------------------------------------------------------
@@ -57,7 +61,6 @@
       [6 :>]           HighTropicalStormProbability   
       [1 6]            ModerateTropicalStormProbability     
       :otherwise       NoTropicalStormProbability)) 
-
 
 ;;Annual runoff, whereas snowmelt, precipitation, and temperature are monnthly, so this is problematic.
 ;;Could divide yearly runoff by 12 but obviously it's not evenly distributed throughout the year.
