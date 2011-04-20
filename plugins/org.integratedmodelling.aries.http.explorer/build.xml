@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.integratedmodelling.thinkcap.core plug-in build file"
+<project name="org.integratedmodelling.thinklab.core plug-in build file"
          default="help"
          basedir=".">
 	<jpf-info manifest="${basedir}/plugin.xml"
@@ -20,12 +20,9 @@
 		<fileset dir="${env.THINKLAB_HOME}/plugins"
 		         includes="*/plugin*.xml"
 		         excludes="${plugin.id}/**" />
-		<fileset dir="${env.THINKCAP_HOME}/plugins"
+<!--		<fileset dir="${env.ARIES_HOME}/plugins"
 		         includes="*/plugin*.xml"
-		         excludes="${plugin.id}/**" />
-		<fileset dir="${env.ARIES_HOME}/plugins"
-		         includes="*/plugin*.xml"
-		         excludes="${plugin.id}/**" />
+		         excludes="${plugin.id}/**" /> -->
 		<fileset file="plugin.xml" />		
 	</jpf-path>
 
@@ -44,7 +41,7 @@ Use top-level project build file to build application.
 		<javac destdir="${plugin.home}/classes"
 		       srcdir="${basedir}/src"
 			   classpathref="plugin.classpath"
-			   classpath="${thinklab.inst}/plugins/org.integratedmodelling.thinklab.core/classes;${thinkcap.inst}/plugins/org.integratedmodelling.thinklab.core/classes;${plugin.home}/webapp/WEB-INF/classes"
+			   classpath="${thinklab.inst}/plugins/org.integratedmodelling.thinklab.core/classes;${thinklab.inst}/plugins/org.integratedmodelling.thinklab.core/classes;${plugin.home}/webapp/WEB-INF/classes"
 		       excludes=""
 		       target="1.5"
 		       debug="true"
