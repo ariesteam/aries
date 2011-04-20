@@ -196,7 +196,7 @@ public abstract class StorylineView extends ThinkcapComponent implements IPresen
 		ZKComponent ret = null;
 		if (storyline.getTemplate().getPagesCount() > 0) {
 			ret = ZK.hbox(
-					ZK.imagebutton("aries/tc/images/icons/information_grey.png").
+					ZK.imagebutton("/images/icons/information_grey.png").
 						tooltip("Show the information page").
 						listener("onClick", new EventListener() {
 							
@@ -209,8 +209,8 @@ public abstract class StorylineView extends ThinkcapComponent implements IPresen
 					ZK.bar(),
 					ZK.imagebutton(
 							(showSequence && currentPage > 0) ?
-									"aries/tc/images/icons/arrow_left.png" :
-									"aries/tc/images/icons/arrow_left_grey.png").
+									"/images/icons/arrow_left.png" :
+									"/images/icons/arrow_left_grey.png").
 						tooltip("Back to previous slide").
 						listener("onClick", new EventListener() {
 							
@@ -223,8 +223,8 @@ public abstract class StorylineView extends ThinkcapComponent implements IPresen
 							}
 						}),
 					ZK.imagebutton((showSequence && currentPage < sequence.size() - 1) ?
-								"aries/tc/images/icons/arrow_right.png" :
-								"aries/tc/images/icons/arrow_right_grey.png").
+								"/images/icons/arrow_right.png" :
+								"/images/icons/arrow_right_grey.png").
 						tooltip("Forward to next slide").
 						listener("onClick", new EventListener() {
 							

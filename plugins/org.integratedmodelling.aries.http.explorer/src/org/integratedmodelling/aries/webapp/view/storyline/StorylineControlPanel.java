@@ -149,7 +149,7 @@ public class StorylineControlPanel extends ThinkcapComponent {
 			pos = 1;
 		}
 			
-		String butImage = "aries/tc/images/icons/play48.png";
+		String butImage = "/images/icons/play48.png";
 		String tooltip  = "Start computation of this storyline.";
 		String mainttp  = storyline.getTemplate().get("description");
 		if (mainttp == null)
@@ -158,20 +158,20 @@ public class StorylineControlPanel extends ThinkcapComponent {
 			mainttp = StringUtils.pack(mainttp);
 			
 		if (storyline.getStatus() == ModelStoryline.COMPUTING) {
-			butImage = "aries/tc/images/icons/spinner48.gif";
+			butImage = "/images/icons/spinner48.gif";
 			tooltip = "The storyline is computing. Please wait for it to finish.";
 		} else if (storyline.getStatus() == ModelStoryline.PENDING) {
 			// TODO a different wait icon would be nice
-			butImage = "aries/tc/images/icons/spinner48.gif";
+			butImage = "/images/icons/spinner48.gif";
 			tooltip = "The storyline is waiting for its turn to be computed.";
 		} else if (storyline.getStatus() == ModelStoryline.ERROR) {
-			butImage = "aries/tc/images/icons/warning48.png";
+			butImage = "/images/icons/warning48.png";
 			tooltip = "The computation completed with errors.";
 		}  else if (storyline.getStatus() == ModelStoryline.COMPUTED) {
-			butImage = "aries/tc/images/icons/check48_green.png";
+			butImage = "/images/icons/check48_green.png";
 			tooltip = "The storyline has been successfully computed.";
 		} else if (storyline.getStatus() == ModelStoryline.DISABLED) {
-			butImage = "aries/tc/images/icons/boh48.png";
+			butImage = "/images/icons/boh48.png";
 			tooltip = "This storyline cannot be computed in this region.";
 		}	
 		
@@ -207,7 +207,7 @@ public class StorylineControlPanel extends ThinkcapComponent {
 													ModelStorylineView.vx, ModelStorylineView.vy,
 													browser.getSession(), zr.getFirst(), zr.getSecond()));
 						 			
-						 			((Toolbarbutton)arg0.getTarget()).setImage("aries/tc/images/icons/spinner48.gif");
+						 			((Toolbarbutton)arg0.getTarget()).setImage("/images/icons/spinner48.gif");
 						 			browser.showStoryline(storyline, null);
 						 		}
 						 	})).align("center").width(48)),
@@ -237,7 +237,7 @@ public class StorylineControlPanel extends ThinkcapComponent {
 					 */
 					ZK.div(
 						ZK.vbox(
-								ZK.imagebutton("aries/tc/images/icons/plus24.png").
+								ZK.imagebutton("/images/icons/plus24.png").
 									tooltip("Create and compute a scenario derived from this storyline\n\nAt the moment scenario definition is not accessible to unprivileged users.").
 									listener("onClick", new EventListener() {
 										@Override
@@ -245,7 +245,7 @@ public class StorylineControlPanel extends ThinkcapComponent {
 											browser.createScenario(storyline);
 										}
 									}),
-								ZK.imagebutton("aries/tc/images/icons/minus24.png").
+								ZK.imagebutton("/images/icons/minus24.png").
 									tooltip("Remove this storyline from the case study. \n\nAt the moment this feature is not accessible by unprivileged users."),
 								ZK.div().height(30)
 						).height(64)).height(64).align("right")).fillx());

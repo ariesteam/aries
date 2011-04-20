@@ -50,7 +50,7 @@ public class AriesBanner extends ThinkcapComponent {
 											sclass(STYLE.TEXT_VERYSMALL),
 										storyline == null ?
 											null : 
-											ZK.imagebutton("/aries/tc/images/icons/home.png").
+											ZK.imagebutton("/images/icons/home.png").
 												tooltip("Show case study information page").
 												listener("onClick", new EventListener() {
 													@Override
@@ -60,7 +60,7 @@ public class AriesBanner extends ThinkcapComponent {
 											}),
 											storyline == null ?
 													null : 
-													ZK.imagebutton("/aries/tc/images/icons/delete.png").
+													ZK.imagebutton("/images/icons/delete.png").
 														tooltip("Delete this case study and start over").
 														listener("onClick", new EventListener() {
 															@Override

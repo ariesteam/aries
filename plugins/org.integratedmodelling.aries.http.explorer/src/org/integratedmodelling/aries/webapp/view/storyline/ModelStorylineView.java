@@ -309,7 +309,7 @@ public class ModelStorylineView extends StorylineView {
 										ZK.vbox(
 											ZK.spacer(8),
 											ZK.hbox(
-												ZK.imagebutton("/aries/tc/images/icons/camera_go.png").
+												ZK.imagebutton("/images/icons/camera_go.png").
 													listener("onClick", new EventListener() {
 											
 														@Override
@@ -318,7 +318,7 @@ public class ModelStorylineView extends StorylineView {
 														}
 													}).
 													tooltip("Export the selected layer as a PNG image"),
-												ZK.imagebutton("/aries/tc/images/icons/folder_go.png").
+												ZK.imagebutton("/images/icons/folder_go.png").
 													listener("onClick", new EventListener() {
 											
 														@Override
