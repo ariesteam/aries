@@ -8,16 +8,12 @@ import org.apache.commons.lang.StringUtils;
 import org.geotools.geometry.jts.JTS;
 import org.integratedmodelling.aries.webapp.ARIESWebappPlugin;
 import org.integratedmodelling.aries.webapp.visualization.WebZKVisualization;
-import org.integratedmodelling.corescience.context.ObservationContext;
 import org.integratedmodelling.corescience.interfaces.IContext;
 import org.integratedmodelling.corescience.interfaces.IState;
-import org.integratedmodelling.corescience.interfaces.internal.IContextTransformation;
-import org.integratedmodelling.corescience.interfaces.internal.IDatasourceTransformation;
 import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.geospace.extents.ArealExtent;
 import org.integratedmodelling.geospace.literals.ShapeValue;
 import org.integratedmodelling.modelling.ModellingPlugin;
-import org.integratedmodelling.modelling.context.Context;
 import org.integratedmodelling.modelling.context.FilteredTransformation;
 import org.integratedmodelling.modelling.interfaces.IModel;
 import org.integratedmodelling.modelling.model.Model;
@@ -37,7 +33,6 @@ import org.integratedmodelling.thinklab.http.application.ThinklabWebApplication;
 import org.integratedmodelling.thinklab.http.geospace.zk.OLMAPS;
 import org.integratedmodelling.thinklab.interfaces.knowledge.IConcept;
 import org.integratedmodelling.thinklab.literals.BooleanValue;
-import org.integratedmodelling.thinklab.webapp.TC;
 import org.integratedmodelling.thinklab.webapp.ZK;
 import org.integratedmodelling.thinklab.webapp.ZK.ZKComponent;
 import org.integratedmodelling.thinklab.webapp.view.components.Ribbon;
@@ -437,7 +432,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 		 			).align("left"),
 		 			ZK.div(
 		 				ZK.hbox(
-							ZK.imagebutton(TC.url(application, "/images/icons/edit.png"))
+							ZK.imagebutton("/images/icons/edit.png")
 								.id("scaddpolyg").
 								listener("onClick", new EventListener() {
 									@Override
@@ -448,7 +443,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Draw a shape and add it to the selection"),
-							ZK.imagebutton(TC.url(application, "/images/icons/cut_disabled.png"))
+							ZK.imagebutton("/images/icons/cut_disabled.png")
 								.enable(false)
 								.id("scsubpolyg").
 								listener("onClick", new EventListener() {
@@ -460,7 +455,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Draw a shape and subtract it from the selection"),
-							ZK.imagebutton(TC.url(application, "/images/icons/delete_disabled.png"))
+							ZK.imagebutton("/images/icons/delete_disabled.png")
 								.enable(false)
 								.id("scresetdraw").
 								listener("onClick", new EventListener() {
@@ -473,8 +468,8 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Clear all selections made so far"),
-							ZK.image(TC.url(application, "/images/icons/separator.png")),
-							ZK.imagebutton(TC.url(application, "/images/icons/world.png")).
+							ZK.image("/images/icons/separator.png"),
+							ZK.imagebutton("/images/icons/world.png").
 								listener("onClick", new EventListener() {
 									@Override
 									public void onEvent(Event arg0) throws Exception {
@@ -659,26 +654,23 @@ public class ScenarioEditor extends ThinkcapComponent {
 	// set the icons in "painting" mode
 	void painting(boolean isScissors) {
 		
-		scaddpolyg.setImage(TC.url(_browser.application, 
-				isScissors ? 
+		scaddpolyg.setImage(isScissors ? 
 						"/images/icons/edit.png" :
-						"/images/icons/edit_active.png"));
-		scsubpolyg.setImage(TC.url(_browser.application, 
-				isScissors ? 
+						"/images/icons/edit_active.png");
+		scsubpolyg.setImage(isScissors ? 
 						"/images/icons/cut_active.png" :
-						"/images/icons/cut_disabled.png"));
+						"/images/icons/cut_disabled.png");
 		
-		scresetdraw.setImage(TC.url(_browser.application, 
-				"/images/icons/cancel_disabled.png"));
+		scresetdraw.setImage("/images/icons/cancel_disabled.png");
 	}
 	
 	void idle(boolean hasSelection) {
 
-		scaddpolyg.setImage(TC.url(_browser.application, "/images/icons/edit.png"));
-		scsubpolyg.setImage(TC.url(_browser.application, 
-				hasSelection? "/images/icons/cut.png" : "/images/icons/cut_disabled.png"));
-		scresetdraw.setImage(TC.url(_browser.application, 
-				hasSelection? "/images/icons/delete.png" : "/images/icons/delete_disabled.png"));
+		scaddpolyg.setImage("/images/icons/edit.png");
+		scsubpolyg.setImage(hasSelection? 
+				"/images/icons/cut.png" : "/images/icons/cut_disabled.png");
+		scresetdraw.setImage(hasSelection? 
+				"/images/icons/delete.png" : "/images/icons/delete_disabled.png");
 				
 		scsubpolyg.setDisabled(!hasSelection);
 		scresetdraw.setDisabled(!hasSelection);

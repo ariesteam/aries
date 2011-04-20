@@ -3,7 +3,6 @@ package org.integratedmodelling.aries.webapp.view;
 import java.util.Hashtable;
 
 import org.integratedmodelling.aries.webapp.scheduler.ARIESScheduler;
-import org.integratedmodelling.thinklab.webapp.TC;
 import org.integratedmodelling.thinklab.webapp.ZK;
 import org.integratedmodelling.utils.Pair;
 import org.integratedmodelling.utils.exec.ITaskScheduler;
@@ -93,10 +92,9 @@ public class ARIESStatusBar extends Window {
 						"Users: " +
 						browser.getApplication().getCurrentUserCount()),
 					ZK.separator().width(2),
-					ZK.image(TC.url(browser.getApplication(), 
-							(ex > 0 ? 
-									"/images/icons/bullet_red.png" : 
-									"/images/icons/bullet_green.png"))).tmargin(4),
+					ZK.image(ex > 0 ? 
+								"/images/icons/bullet_red.png" : 
+								"/images/icons/bullet_green.png").tmargin(4),
 					ZK.separator().width(2),
 					ZK.label(
 						"Running " +
@@ -104,10 +102,9 @@ public class ARIESStatusBar extends Window {
 						"/" + 
 						ARIESScheduler.get().getMaxRunningModelsCount()),
 					ZK.separator().width(2),
-					ZK.image(TC.url(browser.getApplication(), 
-								(wa > 0 ? 
-										"/images/icons/bullet_red.png" : 
-										"/images/icons/bullet_green.png"))).tmargin(4),
+					ZK.image(wa > 0 ? 
+								"/images/icons/bullet_red.png" : 
+								"/images/icons/bullet_green.png").tmargin(4),
 					ZK.separator().width(2),
 					ZK.label("Waiting " + wa)
 				).sclass(STYLE.BORDERED_TEXT)

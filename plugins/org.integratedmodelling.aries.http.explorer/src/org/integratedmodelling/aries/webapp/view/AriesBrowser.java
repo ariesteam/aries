@@ -38,7 +38,6 @@ import org.integratedmodelling.thinklab.http.ThinklabWebSession;
 import org.integratedmodelling.thinklab.http.application.ThinklabWebApplication;
 import org.integratedmodelling.thinklab.http.geospace.zk.OLMAPS;
 import org.integratedmodelling.thinklab.interfaces.query.IQueryResult;
-import org.integratedmodelling.thinklab.webapp.TC;
 import org.integratedmodelling.thinklab.webapp.ZK;
 import org.integratedmodelling.thinklab.webapp.view.components.Sidebar;
 import org.integratedmodelling.thinklab.webapp.view.components.SidebarModule;
@@ -229,28 +228,28 @@ public class AriesBrowser extends ThinkcapCometComponent {
 							 * TODO
 							 * these should be re-enabled when they work.
 							 * 
-							ZK.imagebutton(TC.url(application, "/images/icons/folder_open.png"))
+							ZK.imagebutton("/images/icons/folder_open.png")
 								.tooltip("load a previously saved configuration"),
-							ZK.imagebutton(TC.url(application, "/images/icons/save.png"))
+							ZK.imagebutton("/images/icons/save.png")
 								.tooltip("save the current selection for future reference") */
 						)
 					).align("left"),	
 					ZK.div(
 						ZK.hbox(
-							ZK.image(TC.url(application, "/images/icons/separator.png")),
-							ZK.imagebutton(TC.url(application, "/images/icons/edit.png"))
+							ZK.image("/images/icons/separator.png"),
+							ZK.imagebutton("/images/icons/edit.png")
 								.id("addpolyg")
 								.tooltip("Draw a shape and add it to the selection"),
-							ZK.imagebutton(TC.url(application, "/images/icons/cut_disabled.png"))
+							ZK.imagebutton("/images/icons/cut_disabled.png")
 								.enable(false)
 								.id("subpolyg")
 								.tooltip("Draw a shape and subtract it from the selection"),
-							ZK.imagebutton(TC.url(application, "/images/icons/delete_disabled.png"))
+							ZK.imagebutton("/images/icons/delete_disabled.png")
 								.enable(false)
 								.id("resetdraw")
 								.tooltip("Clear all selections made so far"),
-								ZK.image(TC.url(application, "/images/icons/separator.png")),
-							ZK.imagebutton(TC.url(application, "/images/icons/play_disabled.png"))
+								ZK.image("/images/icons/separator.png"),
+							ZK.imagebutton("/images/icons/play_disabled.png")
 								.enable(false)
 								.id("run")
 								.tooltip("Accept selection and continue to assessment"))
@@ -261,31 +260,31 @@ public class AriesBrowser extends ThinkcapCometComponent {
 		// set the icons in "painting" mode
 		void painting(boolean isScissors) {
 			
-			addpolyg.setImage(TC.url(application, 
+			addpolyg.setImage( 
 					isScissors ? 
 							"/images/icons/edit.png" :
-							"/images/icons/edit_active.png"));
-			subpolyg.setImage(TC.url(application, 
+							"/images/icons/edit_active.png");
+			subpolyg.setImage(
 					isScissors ? 
 							"/images/icons/cut_active.png" :
-							"/images/icons/cut_disabled.png"));
+							"/images/icons/cut_disabled.png");
 			
-			resetdraw.setImage(TC.url(application, "/images/icons/cancel_disabled.png"));
+			resetdraw.setImage("/images/icons/cancel_disabled.png");
 			
 		}
 		
 		void idle(boolean hasSelection) {
 
-			addpolyg.setImage(TC.url(application, "/images/icons/edit.png"));
-			subpolyg.setImage(TC.url(application, 
-					hasSelection? "/images/icons/cut.png" : "/images/icons/cut_disabled.png"));
-			resetdraw.setImage(TC.url(application, 
-					hasSelection? "/images/icons/delete.png" : "/images/icons/delete_disabled.png"));
+			addpolyg.setImage("/images/icons/edit.png");
+			subpolyg.setImage(
+					hasSelection? "/images/icons/cut.png" : "/images/icons/cut_disabled.png");
+			resetdraw.setImage( 
+					hasSelection? "/images/icons/delete.png" : "/images/icons/delete_disabled.png");
 			
-			run.setImage(TC.url(application, 
+			run.setImage(
 					(hasSelection) ? 
 							"/images/icons/play.png" : 
-							"/images/icons/play_disabled.png"));
+							"/images/icons/play_disabled.png");
 			
 			subpolyg.setDisabled(!hasSelection);
 			resetdraw.setDisabled(!hasSelection);

@@ -60,7 +60,7 @@ public class AriesModuleView extends SidebarModule {
 					ZK.hbox(
 							ZK.spacer(4),
 							(browser.isContextSet() ? 
-								ZK.imagebutton("/aries/tc/images/icons/home.png").
+								ZK.imagebutton("/images/icons/home.png").
 									tooltip("Show the storyline for this module in this region.").
 										listener("onClick", new EventListener() {
 											
@@ -73,8 +73,8 @@ public class AriesModuleView extends SidebarModule {
 								(browser.isContextSet() ? 
 									null : 
 										ZK.imagebutton(covShown ? 
-												"/aries/tc/images/icons/redeye.png" : 
-												"/aries/tc/images/icons/grayeye.png").
+												"/images/icons/redeye.png" : 
+												"/images/icons/grayeye.png").
 											tooltip(covShown ? 
 												"Hide the spatial coverage of this storyline." : 
 												"Show the spatial coverage of this storyline.").
@@ -84,11 +84,11 @@ public class AriesModuleView extends SidebarModule {
 												public void onEvent(Event arg0) throws Exception {
 													if (covShown) {
 														browser.showCoverage(null);
-														((Toolbarbutton)(arg0.getTarget())).setImage("/aries/tc/images/icons/grayeye.png");
+														((Toolbarbutton)(arg0.getTarget())).setImage("/images/icons/grayeye.png");
 														((Toolbarbutton)(arg0.getTarget())).setTooltiptext("Show where this storyline can be computed.");
 													} else {
 														browser.showCoverage(module.getCoverage());
-														((Toolbarbutton)(arg0.getTarget())).setImage("/aries/tc/images/icons/redeye.png");
+														((Toolbarbutton)(arg0.getTarget())).setImage("/images/icons/redeye.png");
 														((Toolbarbutton)(arg0.getTarget())).setTooltiptext("Hide the spatial coverage of this storyline.");
 													}
 													covShown = !covShown;
