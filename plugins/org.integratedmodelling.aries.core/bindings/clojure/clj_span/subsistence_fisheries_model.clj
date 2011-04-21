@@ -131,7 +131,7 @@
     (with-progress-bar-cool
       :keep
       (count use-points)
-      (pmap
+      (map
        #(let [path-root      (find-nearest path?         rows cols %)
               fishing-spot   (find-nearest fishing-spot? rows cols %)
               bearing        (get-bearing path-root fishing-spot)
