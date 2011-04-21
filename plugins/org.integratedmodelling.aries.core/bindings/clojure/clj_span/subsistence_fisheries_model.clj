@@ -39,7 +39,6 @@
                                     count-distinct
                                     angular-distance
                                     with-message
-                                    with-progress-bar*
                                     with-progress-bar-cool
                                     iterate-while-seq
                                     shortest-path)]
@@ -55,33 +54,35 @@
                                     find-nearest
                                     find-in-range
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ *_ _*_ _+_ rv-fn rv-zero-ish?)]))
+        [clj-misc.randvars   :only (_0_ *_ _d _*_ _+_ rv-fn rv-zero-ish?)]))
 
 (defstruct fisherman :need :route :cache :fishing-area)
 
 (defn go-fish!
-  [fish-supply fish-left? possible-flow-layer actual-flow-layer {:keys [need route cache fishing-area] :as fisherman}]
+  [fish-supply fish-left? possible-flow-layer actual-flow-layer km2-per-cell
+   {:keys [need route cache fishing-area] :as fisherman}]
   (dosync
    (let [current-id       (peek route)
          local-supply-ref (fish-supply current-id)
          local-supply     (deref local-supply-ref)
          need-remaining   (if-not (rv-zero-ish? 0.05 local-supply) ;; Check for fish locally.
                             ;; There are fish here. Let's get some.
-                            (let [fish-caught    (rv-fn min local-supply need)
-                                  fish-remaining (rv-fn (fn [s n] (- s (min s n))) local-supply need)
-                                  need-remaining (rv-fn (fn [s n] (- n (min s n))) local-supply need)]
+                            (let [fish-caught         (rv-fn min local-supply need)
+                                  fish-remaining      (rv-fn (fn [s n] (- s (min s n))) local-supply need)
+                                  need-remaining      (rv-fn (fn [s n] (- n (min s n))) local-supply need)
+                                  fish-caught-per-km2 (_d fish-caught km2-per-cell)]
                               ;; Reduce the local-supply-ref by this amount.
                               (alter local-supply-ref (constantly fish-remaining))
                               ;; Update the possible and actual flow layers.
                               (doseq [id route]
-                                (alter (get-in possible-flow-layer id) _+_ fish-caught)
-                                (alter (get-in actual-flow-layer   id) _+_ fish-caught))
+                                (alter (get-in possible-flow-layer id) _+_ fish-caught-per-km2)
+                                (alter (get-in actual-flow-layer   id) _+_ fish-caught-per-km2))
                               ;; Store a service-carrier in your cache.
                               (alter cache conj (struct-map service-carrier
                                                   :source-id       current-id
                                                   ;;:route           (rseq route) ;; Deprecated
-                                                  :possible-weight fish-caught
-                                                  :actual-weight   fish-caught))
+                                                  :possible-weight fish-caught-per-km2
+                                                  :actual-weight   fish-caught-per-km2))
                               need-remaining)
                             need)]
      ;; On to the next.
@@ -93,46 +94,40 @@
            :fishing-area (rest fishing-area-remaining)))))))
 
 (defn send-forth-fishermen!
-  [fishermen fish-supply possible-flow-layer actual-flow-layer]
-  (with-message "Fishing time...\n" "All done."
+  [fishermen fish-supply possible-flow-layer actual-flow-layer km2-per-cell]
+  (with-message "Let's go fishing...\n" "All done."
     (let [fish-left? #(if-let [supply-ref (fish-supply %)] (not (rv-zero-ish? 0.05 (deref supply-ref))))]
-      (with-progress-bar*
-        1 ;; print a * after every iteration
-        (iterate-while-seq
-         ;;       #(let [fishermen-remaining (map (p go-fish! fish-supply fish-left?) %)]
-         ;;          (println "Fishermen:" (count fishermen-remaining))
-         ;;          fishermen-remaining)
-         #(dorun (pmap (p go-fish! fish-supply fish-left? possible-flow-layer actual-flow-layer) %))
-         fishermen)))))
+      (dorun (iterate-while-seq
+              #(with-message "Fishermen: " count
+                 (doall (pmap (p go-fish! fish-supply fish-left? possible-flow-layer actual-flow-layer km2-per-cell) %)))
+              fishermen)))))
 
 (def *fishing-range* 5000.0) ;; max distance in meters that a fisherman can sail from shore
 
-;; FIXME: Perhaps I should sort the fishing-area ids by distance to launch point.
+;; FIXME: Use locations with no path to the coast will not create fishermen agents.
 (defn make-fishermen
-  [fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height]
-  (println "Distinct route lengths:" (count-distinct (map count fishing-routes)))
-  (println "Distinct launch points:" (count (distinct (map peek fishing-routes))))
-  (let [dx (int (/ *fishing-range* cell-width))
-        dy (int (/ *fishing-range* cell-height))]
-    (map (fn [use-val route]
-           (let [[launch-row launch-col] (peek route)
-                 min-row  (- launch-row dy)
-                 max-row  (+ launch-row dy 1)
-                 min-col  (- launch-col dx)
-                 max-col  (+ launch-col dx 1)]
-             (struct-map fisherman
-               :need         use-val
-               :route        route
-               :cache        (get-in cache-layer (first route))
-               :fishing-area (find-in-range fishing-spot? min-row max-row min-col max-col))))
-         use-vals
-         fishing-routes)))
+  [fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height rows cols]
+  (with-message
+    "Creating fishermen agents...\n"
+    #(str
+      "Total fishermen agents:      " (count %) "\n"
+      "Distinct launch points:      " (count (distinct (map (& peek :route) %))) "\n"
+      "Distinct route lengths:      " (count-distinct (map (& count :route) %)) "\n"
+      "Distinct fishing area sizes: " (count-distinct (map (& count :fishing-area) %)))
+    (remove nil?
+            (map (fn [use-val route]
+                   (if route
+                     (struct-map fisherman
+                       :need         use-val
+                       :route        route
+                       :cache        (get-in cache-layer (first route))
+                       :fishing-area (find-in-range fishing-spot? *fishing-range* cell-width cell-height rows cols (peek route)))))
+                 use-vals
+                 fishing-routes))))
 
-;; FIXME: A fisherman whose nearest path doesn't reach the coast will
-;; throw an Agent error exception.
 (defn find-shortest-paths-to-coast
   [path? fishing-spot? rows cols use-points]
-  (with-message "Finding paths to coast...\n" "All done."
+  (with-message "Finding paths to coast...\n" "\nAll done."
     (with-progress-bar-cool
       :keep
       (count use-points)
@@ -141,13 +136,15 @@
               fishing-spot   (find-nearest fishing-spot? rows cols %)
               bearing        (get-bearing path-root fishing-spot)
               follow-path    (fn [id] (filter path? (get-neighbors rows cols id)))
-              follow-bearing (fn [id neighbors] (let [neighbor-bearings  (map (fn [nid] (subtract-ids nid id)) neighbors)
-                                                      bearing-deviations (map (p angular-distance bearing) neighbor-bearings)
-                                                      min-deviation      (apply min bearing-deviations)]
-                                                  (keys (filter (fn [[_ dev]] (== dev min-deviation))
-                                                                (zipmap neighbors bearing-deviations)))))]
-          (vec (concat (find-line-between % path-root)
-                       (rest (shortest-path path-root follow-path fishing-spot? follow-bearing)))))
+              follow-bearing (fn [id neighbors] (if (seq neighbors)
+                                                  (let [neighbor-bearings  (map (fn [nid] (subtract-ids nid id)) neighbors)
+                                                        bearing-deviations (map (p angular-distance bearing) neighbor-bearings)
+                                                        min-deviation      (apply min bearing-deviations)]
+                                                    (keys (filter (fn [[_ dev]] (== dev min-deviation))
+                                                                  (zipmap neighbors bearing-deviations))))))
+              path-ids       (shortest-path path-root follow-path fishing-spot? follow-bearing)]
+          (if (seq path-ids)
+            (vec (concat (find-line-between % path-root) (rest path-ids)))))
        use-points))))
 
 (def *animation-sleep-ms* 100)
@@ -160,6 +157,9 @@
 
 (defn end-animation [panel] panel)
 
+;; FIXME: Because Theoretical Use is in kg/person*year and
+;;        Possible/Actual Use are in kg/km^2*year, Inaccessible Use
+;;        will not make sense.
 (defmethod distribute-flow "SubsistenceFishAccessibility"
   [_ animation? cell-width cell-height source-layer _ use-layer
    {path-layer "Path", population-density-layer "PopulationDensity"}]
@@ -186,7 +186,7 @@
             path?                  (set path-points)
             fishing-spot?          (set source-points)
             fishing-routes         (find-shortest-paths-to-coast path? fishing-spot? rows cols use-points)
-            fishermen              (make-fishermen fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height)
+            fishermen              (make-fishermen fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height rows cols)
             animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
             possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
                                                                          possible-flow-layer
@@ -199,7 +199,7 @@
         (when animation?
           (send-off possible-flow-animator run-animation)
           (send-off actual-flow-animator   run-animation))
-        (send-forth-fishermen! fishermen fish-supply possible-flow-layer actual-flow-layer)
+        (send-forth-fishermen! fishermen fish-supply possible-flow-layer actual-flow-layer km2-per-cell)
         (when animation?
           (send-off possible-flow-animator end-animation)
           (send-off actual-flow-animator   end-animation)))

@@ -261,6 +261,11 @@
   [pointA pointB]
   (Math/sqrt (square-distance pointA pointB)))
 
+(defn metric-distance
+  [cell-width cell-height [i1 j1] [i2 j2]]
+  (euclidean-distance [(* cell-height i1) (* cell-width j1)]
+                      [(* cell-height i2) (* cell-width j2)]))
+
 (defn magnitude
   [A]
   (Math/sqrt (reduce + (map #(* % %) A))))
