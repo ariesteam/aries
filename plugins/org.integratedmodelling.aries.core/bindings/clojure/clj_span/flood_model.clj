@@ -24,10 +24,9 @@
 ;;;  2) find a smarter way to compute the out of stream case in handle-sink-effects!
 
 (ns clj-span.flood-model
-  (:use [clj-span.model-api      :only (distribute-flow service-carrier)]
+  (:use [clj-span.core           :only (distribute-flow! service-carrier)]
         [clj-misc.utils          :only (seq2map seq2redundant-map euclidean-distance p & my->>)]
-        [clj-misc.matrix-ops     :only (get-rows get-cols make-matrix filter-matrix-for-coords
-                                        in-bounds? find-line-between map-matrix bitpack-route)]
+        [clj-misc.matrix-ops     :only (in-bounds? find-line-between bitpack-route)]
         [clj-misc.randvars       :only (_0_ _+_ _-_ _* *_ _d rv-lt? rv-convolutions rv-resample)]
         [clj-span.sediment-model :only (hydrosheds-delta-codes)]))
 
@@ -188,10 +187,10 @@
         (let [bitpacked-carrier (assoc flood-carrier :route (bitpack-route route))]
           (doseq [use-id affected-users]
             (let [use-AF (use-AFs use-id)]
-              (swap! (get-in cache-layer use-id) conj
-                     (assoc bitpacked-carrier
-                       :possible-weight (*_ use-AF possible-weight)
-                       :actual-weight   (*_ use-AF actual-weight))))))))
+              (dosync (alter (get-in cache-layer use-id) conj
+                             (assoc bitpacked-carrier
+                               :possible-weight (*_ use-AF possible-weight)
+                               :actual-weight   (*_ use-AF actual-weight)))))))))
     ;; Compute the local sink-effects and the remaining
     ;; actual-weight.  new-actual-weight and new-sink-effects will
     ;; be nil if there are no sinks associated with this location.
@@ -247,41 +246,28 @@
     (print "*") (flush))
   (println "\nAll done."))
 
-(defmethod distribute-flow "FloodWaterMovement"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer
+(defmethod distribute-flow! "FloodWaterMovement"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
+   source-layer sink-layer use-layer source-points sink-points use-points
    {hydrosheds-layer "Hydrosheds", stream-layer "River", elevation-layer "Altitude"
     floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
-  (println "Running Flood flow model for" (if floodplain-layer500 "500" "100") "year floodplain.")
-  (let [floodplain-layer (or floodplain-layer500 floodplain-layer100)
-        rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (atom ())))
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        [source-points sink-points use-points] (pmap (p filter-matrix-for-coords (p not= _0_))
-                                                     [source-layer sink-layer use-layer])]
-    (println "Source points:" (count source-points))
-    (println "Sink points:  " (count sink-points))
-    (println "Use points:   " (count use-points))
-    (let [flow-delta         (fn [id] (hydrosheds-delta-codes (get-in hydrosheds-layer id)))
-          step-downstream    (memoize
-                              (fn [id] (if-let [dir (flow-delta id)] ; if nil, we've hit 0.0 (ocean) or -1.0 (inland sink)
-                                         (let [next-id (map + id dir)]
-                                           (if (in-bounds? rows cols next-id)
-                                             next-id)))))
-          in-stream?         (fn [id] (not= _0_ (get-in stream-layer id)))
-          in-floodplain?     (fn [id] (not= _0_ (get-in floodplain-layer id)))
-          [sink-map use-map] (do (println "Shifting sink and use points into the nearest stream channel...")
-                                 (time (pmap (p move-points-into-stream-channel step-downstream in-stream?)
-                                             [sink-points use-points])))
-          [sink-AFs use-AFs] (do (println "Computing sink and use flood-activation-factors...")
-                                 (time (pmap (p flood-activation-factors in-floodplain? elevation-layer)
-                                             [sink-map use-map])))
-          sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
-          unsaturated-sink?  (fn [id] (not= _0_ (deref (sink-caps id))))]
-      (time (distribute-downstream! cache-layer step-downstream in-stream? unsaturated-sink? source-layer
-                                    source-points sink-map use-map sink-AFs use-AFs sink-caps))
-      (println "Simulation complete. Returning the cache-layer.")
-      [(map-matrix (& seq deref) cache-layer)
-       (map-matrix deref possible-flow-layer)
-       (map-matrix deref actual-flow-layer)])))
+  (println "Operating in" (if floodplain-layer500 "500" "100") "year floodplain.")
+  (let [floodplain-layer   (or floodplain-layer500 floodplain-layer100)
+        flow-delta         (fn [id] (hydrosheds-delta-codes (get-in hydrosheds-layer id)))
+        step-downstream    (memoize
+                            (fn [id] (if-let [dir (flow-delta id)] ; if nil, we've hit 0.0 (ocean) or -1.0 (inland sink)
+                                       (let [next-id (map + id dir)]
+                                         (if (in-bounds? rows cols next-id)
+                                           next-id)))))
+        in-stream?         (fn [id] (not= _0_ (get-in stream-layer id)))
+        in-floodplain?     (fn [id] (not= _0_ (get-in floodplain-layer id)))
+        [sink-map use-map] (do (println "Shifting sink and use points into the nearest stream channel...")
+                               (time (pmap (p move-points-into-stream-channel step-downstream in-stream?)
+                                           [sink-points use-points])))
+        [sink-AFs use-AFs] (do (println "Computing sink and use flood-activation-factors...")
+                               (time (pmap (p flood-activation-factors in-floodplain? elevation-layer)
+                                           [sink-map use-map])))
+        sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
+        unsaturated-sink?  (fn [id] (not= _0_ (deref (sink-caps id))))]
+    (distribute-downstream! cache-layer step-downstream in-stream? unsaturated-sink? source-layer
+                            source-points sink-map use-map sink-AFs use-AFs sink-caps)))

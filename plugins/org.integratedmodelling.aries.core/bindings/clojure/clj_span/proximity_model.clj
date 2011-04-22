@@ -27,20 +27,11 @@
 ;;;   block the frontier's progress
 
 (ns clj-span.proximity-model
-  (:use [clj-misc.utils      :only (def- p & my->> mapmap euclidean-distance with-progress-bar-cool remove-nil-val-entries)]
+  (:use [clj-misc.utils      :only (def- p my->> mapmap euclidean-distance with-progress-bar-cool with-message remove-nil-val-entries)]
         [clj-span.params     :only (*trans-threshold*)]
-        [clj-span.model-api  :only (distribute-flow service-carrier)]
+        [clj-span.core       :only (distribute-flow! service-carrier)]
         [clj-misc.randvars   :only (_0_ _+_ _* _>_ rv-fn rv-above?)]
-        [clj-span.gui        :only (draw-ref-layer)]
-        [clj-misc.matrix-ops :only (get-neighbors
-                                    make-matrix
-                                    map-matrix
-                                    matrix2seq
-                                    get-rows
-                                    get-cols
-                                    get-line-fn
-                                    filter-matrix-for-coords
-                                    find-bounding-box)]))
+        [clj-misc.matrix-ops :only (get-neighbors get-line-fn find-bounding-box)]))
 
 ;; in meters
 (def- half-mile    805.0)
@@ -155,60 +146,22 @@
                         actual-flow-layer
                         frontier-element)))))
 
-(def *animation-sleep-ms* 100)
-
-;; FIXME: This is really slow. Speed it up.
-(defn run-animation [panel]
-  (send-off *agent* run-animation)
-  (Thread/sleep *animation-sleep-ms*)
-  (doto panel (.repaint)))
-
-(defn end-animation [panel] panel)
-
-(defmethod distribute-flow "Proximity"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer _]
-  (println "\nRunning Proximity flow model.")
-  (let [rows                   (get-rows source-layer)
-        cols                   (get-cols source-layer)
-        cache-layer            (make-matrix rows cols (fn [_] (ref ())))
-        possible-flow-layer    (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
-        source-points          (filter-matrix-for-coords (p not= _0_) source-layer)
-        to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
-        animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
-                                                                     possible-flow-layer
-                                                                     :pflow
-                                                                     animation-pixel-size)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
-                                                                     actual-flow-layer
-                                                                     :aflow
-                                                                     animation-pixel-size)))]
-    (println "Source points:" (count source-points))
-    (when animation?
-      (send-off possible-flow-animator run-animation)
-      (send-off actual-flow-animator   run-animation))
-    (println "Projecting" (count source-points) "search bubbles...")
-    (with-progress-bar-cool
-      :drop
-      (count source-points)
-      (pmap (p distribute-gaussian!
-               source-layer
-               sink-layer
-               use-layer
-               cache-layer
-               possible-flow-layer
-               actual-flow-layer
-               to-meters
-               rows
-               cols)
-            source-points))
-    (println "\nAll done.")
-    (when animation?
-      (send-off possible-flow-animator end-animation)
-      (send-off actual-flow-animator   end-animation))
-    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
-    (println "Simulation complete. Returning the cache-layer.")
-    [(map-matrix (& seq deref) cache-layer)
-     (map-matrix deref possible-flow-layer)
-     (map-matrix deref actual-flow-layer)]))
+(defmethod distribute-flow! "Proximity"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
+   actual-flow-layer source-layer sink-layer use-layer source-points _ _ _]
+  (let [to-meters (fn [[i j]] [(* i cell-height) (* j cell-width)])]
+    (with-message (str "Projecting " (count source-points) " search bubbles...\n") "\nAll done."
+      (with-progress-bar-cool
+        :drop
+        (count source-points)
+        (pmap (p distribute-gaussian!
+                 source-layer
+                 sink-layer
+                 use-layer
+                 cache-layer
+                 possible-flow-layer
+                 actual-flow-layer
+                 to-meters
+                 rows
+                 cols)
+              source-points)))))

@@ -21,14 +21,11 @@
 ;;;
 
 (ns clj-span.surface-water-model
-  (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
-        [clj-span.gui           :only (draw-ref-layer)]
+  (:use [clj-span.core          :only (distribute-flow! service-carrier)]
         [clj-span.params        :only (*trans-threshold*)]
         [clj-misc.utils         :only (seq2map mapmap iterate-while-seq
                                        memoize-by-first-arg angular-distance p & def-)]
-        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix
-                                       filter-matrix-for-coords get-neighbors on-bounds? matrix2seq
-                                       subtract-ids find-nearest)]
+        [clj-misc.matrix-ops    :only (get-neighbors on-bounds? subtract-ids find-nearest)]
         [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min rv-above?)]))
 
 (defn- lowest-neighbors
@@ -181,8 +178,8 @@
    carriers in stream channels.  All the carriers are moved together
    in timesteps (more or less)."
   [cache-layer possible-flow-layer actual-flow-layer source-layer
-   mm2-per-cell sink-caps possible-use-caps actual-use-caps in-stream?
-   stream-intakes elevation-layer rows cols]
+   source-points mm2-per-cell sink-caps possible-use-caps actual-use-caps
+   in-stream? stream-intakes elevation-layer rows cols]
   (println "\nMoving the surface water carriers downhill and downstream...")
   (dorun
    (stop-unless-reducing
@@ -220,7 +217,7 @@
            :actual-weight   source-weight
            :sink-effects    {}
            :stream-bound?   (in-stream? %)))
-      (filter-matrix-for-coords (p not= _0_) source-layer))))))
+      source-points)))))
 
 (defn find-nearest-stream-point!
   [in-stream? claimed-intakes rows cols id]
@@ -241,69 +238,30 @@
     @claimed-intakes))
 
 (defn- make-buckets
-  [mm2-per-cell layer]
-  (let [active-points (filter-matrix-for-coords (p not= _0_) layer)]
-    (seq2map active-points (fn [id] [id (ref (*_ mm2-per-cell (get-in layer id)))]))))
+  [mm2-per-cell layer active-points]
+  (seq2map active-points (fn [id] [id (ref (*_ mm2-per-cell (get-in layer id)))])))
 
-(def *animation-sleep-ms* 100)
-
-;; FIXME: This is really slow. Speed it up.
-(defn run-animation [panel]
-  (send-off *agent* run-animation)
-  (Thread/sleep *animation-sleep-ms*)
-  (doto panel (.repaint)))
-
-(defn end-animation [panel] panel)
-
-(defmethod distribute-flow "SurfaceWaterMovement"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer
-   {stream-layer "River", elevation-layer "Altitude"}]
-  (println "\nRunning SurfaceWaterMovement flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        mm2-per-cell        (* cell-width cell-height (Math/pow 10.0 6.0))
-        sink-caps           (make-buckets mm2-per-cell sink-layer)
-        possible-use-caps   (make-buckets mm2-per-cell use-layer)
-        actual-use-caps     (mapmap identity (& ref deref) possible-use-caps)
-        use-points          (keys possible-use-caps)]
-    (println "Use points:" (count use-points))
-    (if (seq use-points)
-      (let [in-stream?             (memoize #(not= _0_ (get-in stream-layer %)))
-            stream-intakes         (find-nearest-stream-points in-stream? rows cols use-points)
-            animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-            possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
-                                                                         possible-flow-layer
-                                                                         :pflow
-                                                                         animation-pixel-size)))
-            actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
-                                                                         actual-flow-layer
-                                                                         :aflow
-                                                                         animation-pixel-size)))]
-        (when animation?
-          (send-off possible-flow-animator run-animation)
-          (send-off actual-flow-animator   run-animation))
-        (propagate-runoff! cache-layer
-                           possible-flow-layer
-                           actual-flow-layer
-                           source-layer
-                           mm2-per-cell
-                           sink-caps
-                           possible-use-caps
-                           actual-use-caps
-                           in-stream?
-                           stream-intakes
-                           elevation-layer
-                           rows
-                           cols)
-        (when animation?
-          (send-off possible-flow-animator end-animation)
-          (send-off actual-flow-animator   end-animation)))
-      (println "No use points detected. Therefore, there can be no service flow."))
-    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
-    (println "Simulation complete. Returning the cache-layer.")
-    [(map-matrix (& seq deref) cache-layer)
-     (map-matrix deref possible-flow-layer)
-     (map-matrix deref actual-flow-layer)]))
+(defmethod distribute-flow! "SurfaceWaterMovement"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
+   actual-flow-layer source-layer sink-layer use-layer source-points
+   sink-points use-points {stream-layer "River", elevation-layer "Altitude"}]
+  (let [mm2-per-cell           (* cell-width cell-height (Math/pow 10.0 6.0))
+        sink-caps              (make-buckets mm2-per-cell sink-layer sink-points)
+        possible-use-caps      (make-buckets mm2-per-cell use-layer  use-points)
+        actual-use-caps        (mapmap identity (& ref deref) possible-use-caps)
+        in-stream?             (memoize #(not= _0_ (get-in stream-layer %)))
+        stream-intakes         (find-nearest-stream-points in-stream? rows cols use-points)]
+    (propagate-runoff! cache-layer
+                       possible-flow-layer
+                       actual-flow-layer
+                       source-layer
+                       source-points
+                       mm2-per-cell
+                       sink-caps
+                       possible-use-caps
+                       actual-use-caps
+                       in-stream?
+                       stream-intakes
+                       elevation-layer
+                       rows
+                       cols)))

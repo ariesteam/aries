@@ -23,12 +23,11 @@
 ;;; different options specifying the form of its results.
 
 (ns clj-span.core
-  (:use [clj-misc.utils          :only (seq2map constraints-1.0 def- p &)]
-        [clj-span.model-api      :only (distribute-flow)]
+  (:use [clj-misc.utils          :only (seq2map constraints-1.0 p &)]
         [clj-span.params         :only (set-global-params!)]
         [clj-span.interface      :only (provide-results)]
-        [clj-misc.randvars       :only (_0_ rv-mean rv-below? rv-intensive-sampler)]
-        [clj-span.sediment-model :only (aggregate-flow-dirs)]
+        [clj-span.gui            :only (draw-ref-layer run-animation end-animation)]
+        [clj-misc.randvars       :only (_0_ rv-below? rv-intensive-sampler)]
         [clj-misc.matrix-ops     :only (map-matrix
                                         make-matrix
                                         resample-matrix
@@ -36,7 +35,8 @@
                                         get-rows
                                         get-cols
                                         grids-align?
-                                        is-matrix?)]
+                                        is-matrix?
+                                        filter-matrix-for-coords)]
         [clj-span.analyzer       :only (theoretical-source
                                         inaccessible-source
                                         possible-source
@@ -50,15 +50,7 @@
                                         possible-use
                                         blocked-use
                                         actual-use
-                                        blocked-flow)])
-  (:require clj-span.flood-model
-            clj-span.carbon-model
-            clj-span.sediment-model
-            clj-span.proximity-model
-            clj-span.line-of-sight-model
-            clj-span.surface-water-model
-            clj-span.coastal-storm-protection-model
-            clj-span.subsistence-fisheries-model))
+                                        blocked-flow)]))
 
 (defn zero-layer-below-threshold
   "Takes a two dimensional array of RVs and replaces all values which
@@ -94,23 +86,113 @@
                                                   [name (resample-matrix
                                                          scaled-rows
                                                          scaled-cols
-                                                         (if (= name "Hydrosheds") aggregate-flow-dirs rv-intensive-sampler)
+                                                         rv-intensive-sampler
                                                          layer)]))]
     [scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers row-scale-factor col-scale-factor]))
+
+(defstruct service-carrier
+  :source-id      ; starting id of this flow path
+  :route          ; byte array of directions from source-id to use-id or nil
+  :possible-weight; amount of source-weight which reaches (and is used by) this use location disregarding sink-effects
+  :actual-weight  ; amount of source-weight which reaches (and is used by) this use location including sink-effects
+  :sink-effects   ; map of sink-ids to sink-effects on this flow path (decayed as necessary)
+  :use-effects)   ; map of use-ids to rival use-effects on this flow path (decayed as necessary)
+
+(defmulti distribute-flow!
+  ;;"Creates a network of interconnected locations, and starts a
+  ;; service-carrier propagating in every location whose source value is
+  ;; greater than 0.  These carriers propagate child carriers through
+  ;; the network which collect information about the routes traveled and
+  ;; the service weight transmitted along these routes.  Over the course
+  ;; of the simulation, this function will update the passed in
+  ;; cache-layer, possible-flow-layer, and actual-flow-layer.  Its
+  ;; return result is ignored."
+  (fn [flow-model cell-width cell-height rows cols
+       cache-layer possible-flow-layer actual-flow-layer
+       source-layer sink-layer use-layer source-points
+       sink-points use-points flow-layers] flow-model))
+
+(defmethod distribute-flow! :default
+  [flow-model _ _ _ _ _ _ _ _ _ _ _ _ _ _]
+  (throw (Exception. (str "distribute-flow! is undefined for flow type: " flow-model))))
+
+(defn run-simulation
+  [flow-model animation? cell-width cell-height source-layer sink-layer use-layer flow-layers]
+  (println "\nRunning" flow-model "flow model.")
+  (let [rows                (get-rows source-layer)
+        cols                (get-cols source-layer)
+        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
+        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
+        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
+        source-points       (filter-matrix-for-coords (p not= _0_) source-layer)
+        sink-points         (filter-matrix-for-coords (p not= _0_) sink-layer)
+        use-points          (filter-matrix-for-coords (p not= _0_) use-layer)]
+    (println "Source points:" (count source-points))
+    (println "Sink points:  " (count sink-points))
+    (println "Use points:   " (count use-points))
+    (if (and (seq source-points) (seq use-points))
+      (let [animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
+            possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
+                                                                         possible-flow-layer
+                                                                         :pflow
+                                                                         animation-pixel-size)))
+            actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
+                                                                         actual-flow-layer
+                                                                         :aflow
+                                                                         animation-pixel-size)))]
+        (when animation?
+          (send-off possible-flow-animator run-animation)
+          (send-off actual-flow-animator   run-animation))
+        (distribute-flow! flow-model
+                          cell-width
+                          cell-height
+                          rows
+                          cols
+                          cache-layer
+                          possible-flow-layer
+                          actual-flow-layer
+                          source-layer
+                          sink-layer
+                          use-layer
+                          source-points
+                          sink-points
+                          use-points
+                          flow-layers)
+        (when animation?
+          (send-off possible-flow-animator end-animation)
+          (send-off actual-flow-animator   end-animation))
+        (println "Simulation complete.\nUsers affected:" (count (filter (& seq deref) (matrix2seq cache-layer)))))
+      ;; Either source or use points are lacking, so no service is provided.
+      ;; Note that in this case, the final results will show up like so:
+      ;;
+      ;; Theoretical Source = Inaccessible Source
+      ;; Theoretical Sink = Inaccessible Sink
+      ;; Theoretical Use = Inaccessible Use
+      ;;
+      ;; All of the remaining maps will be _0_ everywhere:
+      ;;
+      ;; Possible/Actual/Blocked Source
+      ;; Actual Sink
+      ;; Possible/Actual/Blocked Use
+      ;; Possible/Actual/Blocked Flow
+      (println "Either source or use is zero everywhere. Therefore, there can be no service flow."))
+    [(map-matrix (& seq deref) cache-layer)
+     (map-matrix deref possible-flow-layer)
+     (map-matrix deref actual-flow-layer)]))
 
 (defn generate-results-map
   "Run flow model and return the results as a map of layer names to closures."
   [flow-model animation? orig-rows orig-cols cell-width cell-height
    scaled-source-layer scaled-sink-layer scaled-use-layer scaled-flow-layers
    row-scale-factor col-scale-factor]
-  (let [[cache-layer possible-flow-layer actual-flow-layer] (distribute-flow flow-model
-                                                                             animation?
-                                                                             (* cell-width  col-scale-factor)
-                                                                             (* cell-height row-scale-factor)
-                                                                             scaled-source-layer
-                                                                             scaled-sink-layer
-                                                                             scaled-use-layer
-                                                                             scaled-flow-layers)]
+  (let [[cache-layer possible-flow-layer actual-flow-layer] (run-simulation flow-model
+                                                                            animation?
+                                                                            (* cell-width  col-scale-factor)
+                                                                            (* cell-height row-scale-factor)
+                                                                            scaled-source-layer
+                                                                            scaled-sink-layer
+                                                                            scaled-use-layer
+                                                                            scaled-flow-layers)]
     (apply array-map
            (mapcat (fn [[name f]] [name (& (p resample-matrix orig-rows orig-cols rv-intensive-sampler) f)])
                    (array-map
@@ -192,3 +274,13 @@
                                                   sink-layer   sink-threshold
                                                   use-layer    use-threshold
                                                   flow-layers  downscaling-factor))))
+
+;; Now we can import our SPAN model implementations.
+(require '(clj-span carbon-model
+                    proximity-model
+                    line-of-sight-model
+                    surface-water-model
+                    subsistence-fisheries-model
+                    coastal-storm-protection-model
+                    flood-model
+                    sediment-model))

@@ -20,11 +20,11 @@
 ;;; This namespace defines the sediment model.
 
 (ns clj-span.sediment-model
-  (:use [clj-span.params        :only (*trans-threshold*)]
-        [clj-span.model-api     :only (distribute-flow service-carrier)]
-        [clj-misc.utils         :only (mapmap seq2map seq2redundant-map euclidean-distance square-distance def- p &)]
-        [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix filter-matrix-for-coords in-bounds? find-line-between map-matrix)]
-        [clj-misc.randvars      :only (_0_ _+_ _-_ _*_ _d_ -_ _* _d rv-min rv-mean rv-cdf-lookup)]))
+  (:use [clj-span.params     :only (*trans-threshold*)]
+        [clj-span.core       :only (distribute-flow! service-carrier)]
+        [clj-misc.utils      :only (mapmap seq2map seq2redundant-map euclidean-distance square-distance p &)]
+        [clj-misc.matrix-ops :only (in-bounds? find-line-between)]
+        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ -_ _* _d rv-min rv-mean rv-cdf-lookup)]))
 
 (def hydrosheds-delta-codes {{  1.0 1.0} [ 0  1]    ; e
                              {  2.0 1.0} [-1  1]    ; se
@@ -122,17 +122,17 @@
                                          (map (p _*_ out-fraction) incoming-utilities)))
                                      incoming-utilities)]
             (doseq [cache (map (p get-in cache-layer) (if (seq affected-sinks) (use-map new-id)))]
-              (swap! cache concat
-                     (map (fn [sid sfrac utility]
-                            (struct-map service-carrier
-                              :source-id       sid
-                              :route           nil
-                              :possible-weight _0_
-                              :actual-weight   utility
-                              :sink-effects    (mapmap identity (p _*_ sfrac) sink-effects)))
-                          source-ids
-                          source-fractions
-                          incoming-utilities)))
+              (dosync (alter cache concat
+                             (map (fn [sid sfrac utility]
+                                    (struct-map service-carrier
+                                      :source-id       sid
+                                      :route           nil
+                                      :possible-weight _0_
+                                      :actual-weight   utility
+                                      :sink-effects    (mapmap identity (p _*_ sfrac) sink-effects)))
+                                  source-ids
+                                  source-fractions
+                                  incoming-utilities))))
             (when (< (rv-cdf-lookup (reduce _+_ _0_ outgoing-utilities) *trans-threshold*) 0.5)
               [new-id source-ids source-fractions outgoing-utilities sink-effects])))))))
 
@@ -182,26 +182,14 @@
 ;; statement.
 ;;
 
-(defmethod distribute-flow "Sediment"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer
+(defmethod distribute-flow! "Sediment"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
+   source-layer sink-layer use-layer source-points sink-points use-points
    {hydrosheds-layer "Hydrosheds", stream-layer "RiverStream",
     floodplain-layer "FloodPlainPresence", elevation-layer "Altitude"}]
-  (println "Running Sediment flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (atom ())))
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        [source-map sink-map use-map] (pmap (& (p move-points-into-stream-channel hydrosheds-layer stream-layer)
-                                               (p filter-matrix-for-coords (p not= _0_)))
-                                            [source-layer sink-layer use-layer])
+  (let [[source-map sink-map use-map] (pmap (p move-points-into-stream-channel hydrosheds-layer stream-layer)
+                                            [source-points sink-points use-points])
         [scaled-sources scaled-sinks] (pmap (p scale-by-stream-proximity floodplain-layer elevation-layer)
                                             [source-map   sink-map]
                                             [source-layer sink-layer])]
-    (println "Source points:" (count (concat (vals source-map))))
-    (println "Sink points:  " (count (concat (vals sink-map))))
-    (println "Use points:   " (count (concat (vals use-map))))
-    (distribute-downstream! cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols)
-    [(map-matrix (& seq deref) cache-layer)
-     (map-matrix deref possible-flow-layer)
-     (map-matrix deref actual-flow-layer)]))
+    (distribute-downstream! cache-layer hydrosheds-layer source-map sink-map use-map scaled-sources scaled-sinks rows cols)))
