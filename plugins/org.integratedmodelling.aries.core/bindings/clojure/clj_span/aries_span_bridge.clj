@@ -26,28 +26,19 @@
 
 (ns clj-span.aries-span-bridge
   (:use [clj-span.core           :only (run-span)]
-        [clj-span.sediment-model :only (aggregate-flow-dirs)]
-        [clj-misc.matrix-ops     :only (seq2matrix resample-matrix map-matrix)]
-        [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0)]
+        [clj-misc.matrix-ops     :only (seq2matrix map-matrix)]
+        [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0 with-message)]
         [clj-misc.randvars       :only (cont-type disc-type successive-sums)])
   (:import (java.io File FileWriter FileReader PushbackReader)))
 
 ;;(comment
-  (refer 'tl :only '(conc))
-
   (refer 'geospace :only '(grid-rows
                            grid-columns
                            grid-extent?
-                           get-shape
-                           get-spatial-extent
                            cell-dimensions))
 
   (refer 'corescience :only '(find-state
-                              ;;find-observation
-                              ;; TODO remove this when it's not needed anymore
                               collect-states
-                              get-state-map
-                              get-dependent-states-map
                               get-observable-class))
 
   (refer 'modelling   :only '(probabilistic?
@@ -57,23 +48,16 @@
                               get-possible-states
                               get-probabilities
                               get-data
-                              run-at-shape
                               run-at-location))
 ;;  )
 
 (comment
-(declare conc
-         grid-rows
+(declare grid-rows
          grid-columns
          grid-extent?
-         get-shape
-         get-spatial-extent
          cell-dimensions
          find-state
-         ;;find-observation
          collect-states
-         get-state-map
-         get-dependent-states-map
          get-observable-class
          probabilistic?
          binary?
@@ -82,7 +66,6 @@
          get-possible-states
          get-probabilities
          get-data
-         run-at-shape
          run-at-location)
 )
 
@@ -234,23 +217,6 @@
           (map (fn [c] [(.getLocalName c)
                         (seq2matrix rows cols (unpack-datasource (find-state observation c) rows cols))])
                concepts))))
-;;    (let [concept-set (set concepts)]
-;;      (mapmap (memfn getLocalName)
-;;              #(seq2matrix rows cols (unpack-datasource % rows cols))
-;;              (filter (fn [[concept ds]] (contains? concept-set concept))
-;;                      (get-state-map observation))))))
-
-(defn- get-hydrosheds-layer
-  [observation rows cols]
-  (let [hydrosheds-observation  (run-at-shape "core.models.flood/flow-direction"
-                                              (get-shape (get-spatial-extent observation)))
-        hydrosheds-native-rows  (grid-rows    hydrosheds-observation)
-        hydrosheds-native-cols  (grid-columns hydrosheds-observation)
-        hydrosheds-native-layer (layer-from-observation hydrosheds-observation
-                                                        (conc 'geophysics:FlowDirection)
-                                                        hydrosheds-native-rows
-                                                        hydrosheds-native-cols)]
-    (resample-matrix rows cols aggregate-flow-dirs hydrosheds-native-layer)))
 
 (defn span-driver
   "Takes the source, sink, use, and flow concepts along with the
@@ -267,9 +233,9 @@
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
            result-type animation? save-file]
     :or {result-type :closure-map}}]
-  (println "Running model to get observation if this wasn't already done.")
   (let [observation (if (vector? observation-or-model-spec)
-                      (apply run-at-location observation-or-model-spec)
+                      (with-message "Running model to get observation..." "done."
+                        (apply run-at-location observation-or-model-spec))
                       observation-or-model-spec)]
     ;; This version of SPAN only works for grid-based observations (i.e. raster maps).
     (assert (grid-extent? observation))
@@ -280,13 +246,10 @@
           cols            (grid-columns    observation)
           [cell-w cell-h] (cell-dimensions observation) ;; in meters
           flow-model      (.getLocalName (get-observable-class observation))
-          source-layer    (layer-from-observation observation source-concept rows cols)
-          sink-layer      (layer-from-observation observation sink-concept   rows cols)
-          use-layer       (layer-from-observation observation use-concept    rows cols)
-          flow-layers     (let [layer-map (layer-map-from-observation observation flow-concepts rows cols)]
-                            (if (#{"Sediment" "FloodWaterMovement"} flow-model)
-                              (assoc layer-map "Hydrosheds" (get-hydrosheds-layer observation rows cols))
-                              layer-map))]
+          source-layer    (layer-from-observation     observation source-concept rows cols)
+          sink-layer      (layer-from-observation     observation sink-concept   rows cols)
+          use-layer       (layer-from-observation     observation use-concept    rows cols)
+          flow-layers     (layer-map-from-observation observation flow-concepts  rows cols)]
       (println "Flow Parameters:")
       (println "flow-model         =" flow-model)
       (println "downscaling-factor =" downscaling-factor)
