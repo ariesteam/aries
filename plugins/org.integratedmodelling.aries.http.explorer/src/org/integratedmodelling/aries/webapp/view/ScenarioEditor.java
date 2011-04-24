@@ -152,7 +152,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 		return new Triple<String, Scenario,IContext>(this.scenarioId, this.scenario, ret);
 	}
 	
-	public void setStoryline(ModelStoryline storyline) {
+	public void setStoryline(ModelStoryline storyline) throws ThinklabException {
 		
 		if (storyline.getStatus() == Storyline.COMPUTED) {
 			
@@ -173,7 +173,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 			}
 			
 			this.scenarios  =
-				ModelFactory.get().getApplicableScenarios((Model) storyline.getModel());
+				ModelFactory.get().getApplicableScenarios((Model) storyline.getModel(), context, true);
 			
 		}
 		
@@ -297,7 +297,14 @@ public class ScenarioEditor extends ThinkcapComponent {
 				components.add(
 					ZK.div(
 						ZK.vbox(
-							ZK.image(img).width(xy.getFirst()).height(xy.getSecond()),
+							ZK.image(img).width(xy.getFirst()).height(xy.getSecond()).
+								listener("onClick", new EventListener() {
+									
+									@Override
+									public void onEvent(Event arg0) throws Exception {
+										// setup value chooser and filter editor
+									}
+								}),
 							ZK.label(StringUtils.abbreviate(p.getName(),24)).sclass(STYLE.TEXT_VERYSMALL).align("center").fillx())).
 						align("center").
 						width(120).

@@ -823,7 +823,7 @@ public class AriesBrowser extends ThinkcapCometComponent {
 		}
 	}
 	
-	public void createScenario(ModelStoryline storyline) {
+	public void createScenario(ModelStoryline storyline) throws ThinklabException {
 		
 		browser.setVisible(false);
 		sceditor.setVisible(true);
