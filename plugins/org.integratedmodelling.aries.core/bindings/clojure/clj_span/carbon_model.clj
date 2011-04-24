@@ -83,9 +83,8 @@
 
 (ns clj-span.carbon-model
   (:use [clj-misc.utils      :only (p sum def- with-progress-bar-cool)]
-        [clj-misc.randvars   :only (_0_ *_ _d draw make-randvar)]
-        [clj-span.model-api  :only (distribute-flow service-carrier)]
-        [clj-misc.matrix-ops :only (filter-matrix-for-coords make-matrix coord-map2matrix get-rows get-cols)]))
+        [clj-misc.randvars   :only (*_ _d draw make-randvar)]
+        [clj-span.core       :only (distribute-flow! service-carrier)]))
 
 (def- *num-world-samples* 10)
 (def- *sample-prob*       (/ 1.0 *num-world-samples*))
@@ -230,64 +229,29 @@
 
 ;; FIXME: This algorithm eats up too much memory (related to storing
 ;; the sink-effects-seq, I believe).  Do something more intelligent.
-(defmethod distribute-flow "CO2Removed"
-  [_ _ cell-width cell-height source-layer sink-layer use-layer _]
+(defmethod distribute-flow! "CO2Removed"
+  [_ cell-width cell-height _ _ cache-layer _ _ source-layer
+   sink-layer use-layer source-points sink-points use-points _]
   "The amount of carbon sequestration produced is distributed among
    the consumers (carbon emitters) according to their relative use
    values after being initially reduced by the sink values due to
    landscape emissions."
-
-  (println "\nRunning Carbon flow model.")
-
-  (let [rows          (get-rows source-layer)
-        cols          (get-cols source-layer)
-        source-points (filter-matrix-for-coords (p not= _0_) source-layer)
-        sink-points   (filter-matrix-for-coords (p not= _0_) sink-layer)
-        use-points    (filter-matrix-for-coords (p not= _0_) use-layer)]
-
-    (println "Source points:" (count source-points))
-    (println "Sink points:  " (count sink-points))
-    (println "Use points:   " (count use-points))
-
-    (if (and (seq source-points) (seq use-points))
-
-      (let [ha-per-cell (* cell-width cell-height (Math/pow 10.0 -4.0))
-            use-caches  (cacheify-world ha-per-cell
-                                        source-points
-                                        sink-points
-                                        use-points
-                                        (combine-sample-worlds source-points
-                                                               sink-points
-                                                               use-points
-                                                               (draw-sample-worlds source-layer
-                                                                                   sink-layer
-                                                                                   use-layer
-                                                                                   source-points
-                                                                                   sink-points
-                                                                                   use-points
-                                                                                   ha-per-cell)))]
-
-        ;; Pack the results into a 2D matrix for analysis and resampling.
-        (println "Simulation complete. Returning the cache-layer.")
-        [(coord-map2matrix rows cols nil use-caches)
-         (make-matrix rows cols (constantly _0_))
-         (make-matrix rows cols (constantly _0_))])
-
-      ;; Either source or use points are lacking, so no service is provided.
-      ;; Note that in this case, the final results will show up like so:
-      ;;
-      ;; Theoretical Source = Inaccessible Source
-      ;; Theoretical Sink = Inaccessible Sink
-      ;; Theoretical Use = Inaccessible Use
-      ;;
-      ;; All of the remaining maps will be _0_ everywhere:
-      ;;
-      ;; Possible/Actual/Blocked Source
-      ;; Actual Sink
-      ;; Possible/Actual/Blocked Use
-      ;; Possible/Actual/Blocked Flow
-      (do
-        (println "Either Source or Use is zero everywhere. Therefore no service flow will occur.")
-        [(make-matrix rows cols (constantly nil))
-         (make-matrix rows cols (constantly _0_))
-         (make-matrix rows cols (constantly _0_))]))))
+  (let [ha-per-cell (* cell-width cell-height (Math/pow 10.0 -4.0))
+        use-caches  (cacheify-world ha-per-cell
+                                    source-points
+                                    sink-points
+                                    use-points
+                                    (combine-sample-worlds source-points
+                                                           sink-points
+                                                           use-points
+                                                           (draw-sample-worlds source-layer
+                                                                               sink-layer
+                                                                               use-layer
+                                                                               source-points
+                                                                               sink-points
+                                                                               use-points
+                                                                               ha-per-cell)))]
+    ;; Update the cache-layer.
+    (dosync
+     (doseq [[id cache] use-caches]
+       (alter (get-in cache-layer id) (constantly cache))))))

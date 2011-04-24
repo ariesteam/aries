@@ -11,7 +11,28 @@
     (def use-layer    u)
     (def flow-layers  f)
     (def cell-width   cell-w)
-    (def cell-height  cell-h)))
+    (def cell-height  cell-h)
+    (def rows (get-rows s))
+    (def cols (get-cols s))))
+
+(defn extract-results
+  [result-map]
+  (def tsrc  (let [rmap ((:theoretical-source  result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def isrc  (let [rmap ((:inaccessible-source result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def psrc  (let [rmap ((:possible-source     result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def bsrc  (let [rmap ((:blocked-source      result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def asrc  (let [rmap ((:actual-source       result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def tsnk  (let [rmap ((:theoretical-sink    result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def isnk  (let [rmap ((:inaccessible-sink   result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def asnk  (let [rmap ((:actual-sink         result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def tuse  (let [rmap ((:theoretical-use     result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def iuse  (let [rmap ((:inaccessible-use    result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def puse  (let [rmap ((:possible-use        result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def buse  (let [rmap ((:blocked-use         result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def ause  (let [rmap ((:actual-use          result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def pflow (let [rmap ((:possible-flow       result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def bflow (let [rmap ((:blocked-flow        result-map))] (make-matrix rows cols #(get rmap % _0_))))
+  (def aflow (let [rmap ((:actual-flow         result-map))] (make-matrix rows cols #(get rmap % _0_)))))
 
 (defn test-run-flood
   []

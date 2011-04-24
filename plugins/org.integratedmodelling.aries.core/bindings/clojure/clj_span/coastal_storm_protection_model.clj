@@ -47,11 +47,9 @@
 ;;; requirements with the number of cells analyzed.
 
 (ns clj-span.coastal-storm-protection-model
-  (:use [clj-span.gui        :only (draw-ref-layer)]
-        [clj-span.params     :only (*trans-threshold*)]
-        [clj-span.model-api  :only (distribute-flow service-carrier)]
-        [clj-misc.utils      :only (&
-                                    p
+  (:use [clj-span.params     :only (*trans-threshold*)]
+        [clj-span.core       :only (distribute-flow! service-carrier)]
+        [clj-misc.utils      :only (p
                                     my->>
                                     seq2map
                                     angular-distance
@@ -60,17 +58,11 @@
                                     reduce-true
                                     with-progress-bar*
                                     with-message)]
-        [clj-misc.matrix-ops :only (get-rows
-                                    get-cols
-                                    make-matrix
-                                    map-matrix
-                                    matrix2seq
-                                    add-ids
+        [clj-misc.matrix-ops :only (add-ids
                                     subtract-ids
                                     in-bounds?
                                     on-bounds?
                                     rotate-2d-vec
-                                    filter-matrix-for-coords
                                     get-bearing
                                     get-neighbors
                                     dist-to-steps
@@ -378,72 +370,31 @@
                                           bearing-to-neighbor]))]
           (bearing-changes (apply min (keys bearing-changes))))))))
 
-(def *animation-sleep-ms* 100)
-
-;; FIXME: This is really slow. Speed it up.
-(defn run-animation [panel]
-  (send-off *agent* run-animation)
-  (Thread/sleep *animation-sleep-ms*)
-  (doto panel (.repaint)))
-
-(defn end-animation [panel] panel)
-
 ;; FIXME: Theoretical source is a point, but we generate a storm surge
 ;;        as a line of cells.  This makes the Theoretical and
 ;;        Inacessible Source maps looks wrong in the result dataset.
 ;; FIXME: Try a sphere or circle instead of a wave line.
 ;; FIXME: Try accounting for rotational cyclone dynamics.
-(defmethod distribute-flow "CoastalStormMovement"
-  [_ animation? cell-width cell-height source-layer eco-sink-layer use-layer
-   {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicWaveReduction"}]
-  (println "\nRunning CoastalStormMovement flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        cache-layer         (make-matrix rows cols (fn [_] (ref ())))
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        source-points       (filter-matrix-for-coords (p not= _0_) source-layer)
-        use-points          (filter-matrix-for-coords (p not= _0_) use-layer)]
-    (println "Source points:" (count source-points))
-    (println "Use points:   " (count use-points))
-    (if (and (seq source-points) (seq use-points))
-      (let [storm-centerpoint (first source-points)
-            on-track?         #(not= _0_ (get-in storm-track-layer %))
-            get-next-bearing  (p get-next-bearing on-track? rows cols)]
-        (if-let [storm-bearing (get-next-bearing storm-centerpoint (find-bearing-to-users storm-centerpoint use-points))]
-          (let [animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-                possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
-                                                                             possible-flow-layer
-                                                                             :pflow
-                                                                             animation-pixel-size)))
-                actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
-                                                                             actual-flow-layer
-                                                                             :aflow
-                                                                             animation-pixel-size)))]
-            (when animation?
-              (send-off possible-flow-animator run-animation)
-              (send-off actual-flow-animator   run-animation))
-            (run-storm-surge-simulation! source-layer
-                                         eco-sink-layer
-                                         use-layer
-                                         geo-sink-layer
-                                         cache-layer
-                                         possible-flow-layer
-                                         actual-flow-layer
-                                         cell-width
-                                         cell-height
-                                         rows
-                                         cols
-                                         storm-centerpoint
-                                         storm-bearing
-                                         get-next-bearing)
-            (when animation?
-              (send-off possible-flow-animator end-animation)
-              (send-off actual-flow-animator   end-animation)))
-          (println "Either the storm source point" storm-centerpoint "is on the map boundary or no storm tracks lead away from it.")))
-      (println "Either source or use is zero everywhere. Therefore, there can be no service flow."))
-    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
-    (println "Simulation complete. Returning the cache-layer.")
-    [(map-matrix (& seq deref) cache-layer)
-     (map-matrix deref possible-flow-layer)
-     (map-matrix deref actual-flow-layer)]))
+(defmethod distribute-flow! "CoastalStormMovement"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
+   actual-flow-layer source-layer eco-sink-layer use-layer source-points
+   _ use-points {storm-track-layer "StormTrack", geo-sink-layer "GeomorphicWaveReduction"}]
+  (let [storm-centerpoint (first source-points)
+        on-track?         #(not= _0_ (get-in storm-track-layer %))
+        get-next-bearing  (p get-next-bearing on-track? rows cols)]
+    (if-let [storm-bearing (get-next-bearing storm-centerpoint (find-bearing-to-users storm-centerpoint use-points))]
+      (run-storm-surge-simulation! source-layer
+                                   eco-sink-layer
+                                   use-layer
+                                   geo-sink-layer
+                                   cache-layer
+                                   possible-flow-layer
+                                   actual-flow-layer
+                                   cell-width
+                                   cell-height
+                                   rows
+                                   cols
+                                   storm-centerpoint
+                                   storm-bearing
+                                   get-next-bearing)
+      (println "Either the storm source point" storm-centerpoint "is on the map boundary or no storm tracks lead away from it."))))

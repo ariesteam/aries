@@ -32,7 +32,7 @@
   :use-effects)   ; map of use-ids to rival use-effects on this flow path (decayed as necessary)
 
 (defmulti distribute-flow!
-  ;;"Service-specific flow distribution functions.")
+  ;;"Service-specific flow distribution functions."
   (fn [flow-model location-map rows cols] flow-model))
 
 (defmethod distribute-flow! :default

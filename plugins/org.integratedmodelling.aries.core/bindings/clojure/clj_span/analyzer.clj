@@ -24,7 +24,6 @@
 
 (ns clj-span.analyzer
   (:use [clj-misc.utils      :only (p with-progress-bar)]
-        [clj-span.model-api  :only (undecay)]
         [clj-span.params     :only (*source-type*
                                     *sink-type*
                                     *use-type*)]

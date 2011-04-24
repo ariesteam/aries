@@ -23,7 +23,7 @@
 
 (ns clj-misc.matrix-ops
   (:use [clojure.set    :only (map-invert)]
-        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries magnitude between?)]))
+        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries magnitude between? metric-distance)]))
 
 (defn get-rows [matrix] (count matrix))
 (defn get-cols [matrix] (count (first matrix)))
@@ -510,12 +510,19 @@
           goal-point
           (recur (find-bounding-box rows cols bounding-box)))))))
 
+(defn within-range?
+  [dist-in-m cell-width cell-height origin id]
+  (<= (metric-distance cell-width cell-height origin id) dist-in-m))
+
 (defn find-in-range
-  [test? min-row max-row min-col max-col]
-  (filter test?
-          (for [i (range min-row max-row)
-                j (range min-col max-col)]
-            [i j])))
+  [test? dist-in-m cell-width cell-height rows cols origin]
+  (let [iters (inc (int (/ dist-in-m (min cell-width cell-height))))]
+    (filter #(and (within-range? dist-in-m cell-width cell-height origin %)
+                  (test? %))
+            (apply concat
+                   (take iters
+                         (iterate (p find-bounding-box rows cols)
+                                  (list origin)))))))
 
 (defn get-bearing
   [source destination]

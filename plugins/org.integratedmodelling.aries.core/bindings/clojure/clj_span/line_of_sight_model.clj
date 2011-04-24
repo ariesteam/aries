@@ -34,18 +34,10 @@
 
 (ns clj-span.line-of-sight-model
   (:use [clj-span.params     :only (*trans-threshold*)]
-        [clj-misc.utils      :only (euclidean-distance p & def- between? with-progress-bar-cool)]
-        [clj-misc.matrix-ops :only (make-matrix
-                                    map-matrix
-                                    matrix2seq
-                                    get-rows
-                                    get-cols
-                                    filter-matrix-for-coords
-                                    find-line-between
-                                    get-line-fn)]
+        [clj-misc.utils      :only (euclidean-distance p def- between? with-progress-bar-cool with-message)]
+        [clj-misc.matrix-ops :only (find-line-between get-line-fn)]
         [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ rv-max rv-pos rv-above?)]
-        [clj-span.model-api  :only (distribute-flow service-carrier)]
-        [clj-span.gui        :only (draw-ref-layer)]))
+        [clj-span.core       :only (distribute-flow! service-carrier)]))
 
 ;; in meters
 (def- half-mile    805.0)
@@ -166,62 +158,23 @@
                    (alter (get-in actual-flow-layer id) _+_ actual-weight)))
                (alter (get-in cache-layer use-point) conj carrier)))))))))
 
-(def *animation-sleep-ms* 100)
-
-;; FIXME: This is really slow. Speed it up.
-(defn run-animation [panel]
-  (send-off *agent* run-animation)
-  (Thread/sleep *animation-sleep-ms*)
-  (doto panel (.repaint)))
-
-(defn end-animation [panel] panel)
-
-(defmethod distribute-flow "LineOfSight"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer {elev-layer "Altitude"}]
-  (println "\nRunning LineOfSight flow model.")
-  (let [rows                   (get-rows source-layer)
-        cols                   (get-cols source-layer)
-        cache-layer            (make-matrix rows cols (fn [_] (ref ())))
-        possible-flow-layer    (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer      (make-matrix rows cols (fn [_] (ref _0_)))
-        source-points          (filter-matrix-for-coords (p not= _0_) source-layer)
-        use-points             (filter-matrix-for-coords (p not= _0_) use-layer)
-        num-view-lines         (* (count source-points) (count use-points))
-        to-meters              (fn [[i j]] [(* i cell-height) (* j cell-width)])
-        animation-pixel-size   (Math/round (/ 600.0 (max rows cols)))
-        possible-flow-animator (if animation? (agent (draw-ref-layer "Possible Flow"
-                                                                     possible-flow-layer
-                                                                     :pflow
-                                                                     animation-pixel-size)))
-        actual-flow-animator   (if animation? (agent (draw-ref-layer "Actual Flow"
-                                                                     actual-flow-layer
-                                                                     :aflow
-                                                                     animation-pixel-size)))]
-    (println "Source points:" (count source-points))
-    (println "Use points:   " (count use-points))
-    (when animation?
-      (send-off possible-flow-animator run-animation)
-      (send-off actual-flow-animator   run-animation))
-    (println "Scanning" num-view-lines "view lines...")
-    (with-progress-bar-cool
-      :drop
-      num-view-lines
-      (pmap (p raycast!
-               source-layer
-               sink-layer
-               elev-layer
-               cache-layer
-               possible-flow-layer
-               actual-flow-layer
-               to-meters)
-            (for [source-point source-points use-point use-points]
-              [source-point use-point])))
-    (println "\nAll done.")
-    (when animation?
-      (send-off possible-flow-animator end-animation)
-      (send-off actual-flow-animator   end-animation))
-    (println "Users affected:" (count (filter (& seq deref) (matrix2seq cache-layer))))
-    (println "Simulation complete. Returning the cache-layer.")
-    [(map-matrix (& seq deref) cache-layer)
-     (map-matrix deref possible-flow-layer)
-     (map-matrix deref actual-flow-layer)]))
+(defmethod distribute-flow! "LineOfSight"
+  [_ cell-width cell-height _ _ cache-layer possible-flow-layer
+   actual-flow-layer source-layer sink-layer _ source-points
+   _ use-points {elev-layer "Altitude"}]
+  (let [num-view-lines (* (count source-points) (count use-points))
+        to-meters      (fn [[i j]] [(* i cell-height) (* j cell-width)])]
+    (with-message (str "Scanning " num-view-lines " view lines...\n") "\nAll done."
+      (with-progress-bar-cool
+        :drop
+        num-view-lines
+        (pmap (p raycast!
+                 source-layer
+                 sink-layer
+                 elev-layer
+                 cache-layer
+                 possible-flow-layer
+                 actual-flow-layer
+                 to-meters)
+              (for [source-point source-points use-point use-points]
+                [source-point use-point]))))))
