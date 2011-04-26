@@ -43,17 +43,17 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   600.0   ;; excludes all but >50% ModerateFloodSource
-             :sink-threshold     30000.0 ;; excludes all but >50% VeryHighFloodSink
-             :use-threshold      0.1
-             :trans-threshold    10.0
+             :source-threshold   50.0
+             :sink-threshold     3000.0
+             :use-threshold      0.0
+             :trans-threshold    5.0
              :source-type        :finite
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :non-rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         false
+             :animation?         true
              :result-type        :closure-map}))
 
 (defn test-run-storm
