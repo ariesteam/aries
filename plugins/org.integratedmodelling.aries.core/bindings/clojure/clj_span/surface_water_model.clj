@@ -23,7 +23,7 @@
 (ns clj-span.surface-water-model
   (:use [clj-span.core          :only (distribute-flow! service-carrier)]
         [clj-span.params        :only (*trans-threshold*)]
-        [clj-misc.utils         :only (seq2map mapmap iterate-while-seq
+        [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message
                                        memoize-by-first-arg angular-distance p & def-)]
         [clj-misc.matrix-ops    :only (get-neighbors on-bounds? subtract-ids find-nearest)]
         [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min rv-above?)]))
@@ -180,44 +180,44 @@
   [cache-layer possible-flow-layer actual-flow-layer source-layer
    source-points mm2-per-cell sink-caps possible-use-caps actual-use-caps
    in-stream? stream-intakes elevation-layer rows cols]
-  (println "\nMoving the surface water carriers downhill and downstream...")
-  (dorun
-   (stop-unless-reducing
-    100
-    (iterate-while-seq
-     (fn [surface-water-carriers]
-       (let [on-land-carriers   (count (remove :stream-bound? surface-water-carriers))
-             in-stream-carriers (count (filter :stream-bound? surface-water-carriers))]
-         (printf "Carriers: %10d | On Land: %10d | In Stream: %10d%n"
-                 (+ on-land-carriers in-stream-carriers)
-                 on-land-carriers
-                 in-stream-carriers)
-         (flush)
-         (pmap (p to-the-ocean!
-                  cache-layer
-                  possible-flow-layer
-                  actual-flow-layer
-                  sink-caps
-                  possible-use-caps
-                  actual-use-caps
-                  in-stream?
-                  stream-intakes
-                  mm2-per-cell
-                  (* mm2-per-cell *trans-threshold*)
-                  elevation-layer
-                  rows
-                  cols)
-               surface-water-carriers)))
-     (map
-      #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
-         (struct-map service-carrier
-           :source-id       %
-           :route           [%]
-           :possible-weight source-weight
-           :actual-weight   source-weight
-           :sink-effects    {}
-           :stream-bound?   (in-stream? %)))
-      source-points)))))
+  (with-message "Moving the surface water carriers downhill and downstream...\n" "All done."
+    (dorun
+     (stop-unless-reducing
+      100
+      (iterate-while-seq
+       (fn [surface-water-carriers]
+         (let [on-land-carriers   (count (remove :stream-bound? surface-water-carriers))
+               in-stream-carriers (- (count surface-water-carriers) on-land-carriers)]
+           (printf "Carriers: %10d | On Land: %10d | In Stream: %10d%n"
+                   (+ on-land-carriers in-stream-carriers)
+                   on-land-carriers
+                   in-stream-carriers)
+           (flush)
+           (pmap (p to-the-ocean!
+                    cache-layer
+                    possible-flow-layer
+                    actual-flow-layer
+                    sink-caps
+                    possible-use-caps
+                    actual-use-caps
+                    in-stream?
+                    stream-intakes
+                    mm2-per-cell
+                    (* mm2-per-cell *trans-threshold*)
+                    elevation-layer
+                    rows
+                    cols)
+                 surface-water-carriers)))
+       (map
+        #(let [source-weight (*_ mm2-per-cell (get-in source-layer %))]
+           (struct-map service-carrier
+             :source-id       %
+             :route           [%]
+             :possible-weight source-weight
+             :actual-weight   source-weight
+             :sink-effects    {}
+             :stream-bound?   (in-stream? %)))
+        source-points))))))
 
 (defn find-nearest-stream-point!
   [in-stream? claimed-intakes rows cols id]
@@ -228,14 +228,15 @@
 
 (defn find-nearest-stream-points
   [in-stream? rows cols use-points]
-  (println "\nFinding nearest stream points to all users...")
-  (let [in-stream-users (filter in-stream? use-points)
-        claimed-intakes (ref (zipmap in-stream-users in-stream-users))]
-    (dorun
-     (pmap (p find-nearest-stream-point! in-stream? claimed-intakes rows cols)
-           (remove in-stream? use-points)))
-    (println "Claimed intakes:" (count @claimed-intakes))
-    @claimed-intakes))
+  (with-message
+    "Finding nearest stream points to all users..."
+    #(str "done. [Claimed intakes: " (count %) "]")
+    (let [in-stream-users (filter in-stream? use-points)
+          claimed-intakes (ref (zipmap in-stream-users in-stream-users))]
+      (dorun
+       (pmap (p find-nearest-stream-point! in-stream? claimed-intakes rows cols)
+             (remove in-stream? use-points)))
+      @claimed-intakes)))
 
 (defn- make-buckets
   [mm2-per-cell layer active-points]
@@ -245,12 +246,12 @@
   [_ cell-width cell-height rows cols cache-layer possible-flow-layer
    actual-flow-layer source-layer sink-layer use-layer source-points
    sink-points use-points {stream-layer "River", elevation-layer "Altitude"}]
-  (let [mm2-per-cell           (* cell-width cell-height (Math/pow 10.0 6.0))
-        sink-caps              (make-buckets mm2-per-cell sink-layer sink-points)
-        possible-use-caps      (make-buckets mm2-per-cell use-layer  use-points)
-        actual-use-caps        (mapmap identity (& ref deref) possible-use-caps)
-        in-stream?             (memoize #(not= _0_ (get-in stream-layer %)))
-        stream-intakes         (find-nearest-stream-points in-stream? rows cols use-points)]
+  (let [mm2-per-cell      (* cell-width cell-height (Math/pow 10.0 6.0))
+        sink-caps         (make-buckets mm2-per-cell sink-layer sink-points)
+        possible-use-caps (make-buckets mm2-per-cell use-layer  use-points)
+        actual-use-caps   (mapmap identity (& ref deref) possible-use-caps)
+        in-stream?        (memoize #(not= _0_ (get-in stream-layer %)))
+        stream-intakes    (find-nearest-stream-points in-stream? rows cols use-points)]
     (propagate-runoff! cache-layer
                        possible-flow-layer
                        actual-flow-layer
