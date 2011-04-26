@@ -25,7 +25,8 @@
         [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message
                                                memoize-by-first-arg angular-distance
                                                p def- with-progress-bar-cool euclidean-distance)]
-        [clj-misc.matrix-ops    :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest find-line-between)]
+        [clj-misc.matrix-ops    :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest
+                                                     find-line-between rotate-2d-vec find-point-at-dist-in-m)]
         [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min)]))
 
 (defn- lowest-neighbors
@@ -121,7 +122,21 @@
                 {current-id (rv-fn (fn [a s] (min a s)) actual-weight sink-cap)}]))))
         [actual-weight {}]))))
 
+(def- *max-levee-distance* 100.0) ;; in meters
+
+(defn- nearby-levees
+  [origin bearing levee? cell-width cell-height]
+  (let [left-dir     (rotate-2d-vec (/ Math/PI 2.0) bearing)
+        right-dir    (map - left-dir)
+        left-bounds  (find-point-at-dist-in-m origin left-dir  *max-levee-distance* cell-width cell-height)
+        right-bounds (find-point-at-dist-in-m origin right-dir *max-levee-distance* cell-width cell-height)]
+    (seq (filter levee? (find-line-between left-bounds right-bounds)))))
+(def- nearby-levees (memoize-by-first-arg nearby-levees))
+
 ;; FIXME: Make sure carriers can hop from stream to stream as necessary.
+;; FIXME: Add possible-weight and actual-weight to the entire
+;; latitudinal floodplain stripe around a stream-bound carrier's
+;; location.
 (defn- to-the-ocean!
   "Computes the state of the flood-water-carrier after it takes
    another step downhill.  If it encounters a sink location, it drops
@@ -129,8 +144,8 @@
    location.  If it encounters a use location, a service-carrier is
    stored in the user's carrier-cache."
   [cache-layer possible-flow-layer actual-flow-layer mm2-per-cell
-   sink-caps in-stream? sink-stream-intakes use-stream-intakes
-   sink-AFs use-AFs elevation-layer rows cols
+   sink-caps levee? in-stream? sink-stream-intakes use-stream-intakes
+   sink-AFs use-AFs elevation-layer cell-width cell-height rows cols
    {:keys [route possible-weight actual-weight sink-effects stream-bound?] :as flood-water-carrier}]
   (let [current-id (peek route)
         prev-id    (peek (pop route))
@@ -138,26 +153,35 @@
     (dosync
      (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
      (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
-    (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
-                                                                     stream-bound?
-                                                                     sink-stream-intakes
-                                                                     sink-AFs
-                                                                     actual-weight
-                                                                     sink-caps)
-          post-sink-carrier (assoc flood-water-carrier
-                              :actual-weight new-actual-weight
-                              :sink-effects  (merge-with _+_ sink-effects new-sink-effects))]
-      (if stream-bound?
-        (handle-use-effects! current-id
-                             use-stream-intakes
-                             use-AFs
-                             cache-layer
-                             mm2-per-cell
-                             post-sink-carrier))
+    (if (and stream-bound? (nearby-levees current-id bearing levee? cell-width cell-height))
+      ;; Levees channel the water, so floodplain sinks and users will
+      ;; not be affected.
       (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
-        (assoc post-sink-carrier
-          :route           (conj route next-id)
-          :stream-bound?   (in-stream? next-id))))))
+        (assoc flood-water-carrier
+          :route         (conj route next-id)
+          :stream-bound? (in-stream? next-id)))
+      ;; Either we're over-land or there are no levees nearby, so we
+      ;; may proceed with the local checks.
+      (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
+                                                                       stream-bound?
+                                                                       sink-stream-intakes
+                                                                       sink-AFs
+                                                                       actual-weight
+                                                                       sink-caps)
+            post-sink-carrier (assoc flood-water-carrier
+                                :actual-weight new-actual-weight
+                                :sink-effects  (merge-with _+_ sink-effects new-sink-effects))]
+        (if stream-bound?
+          (handle-use-effects! current-id
+                               use-stream-intakes
+                               use-AFs
+                               cache-layer
+                               mm2-per-cell
+                               post-sink-carrier))
+        (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
+          (assoc post-sink-carrier
+            :route           (conj route next-id)
+            :stream-bound?   (in-stream? next-id)))))))
 
 (defn- stop-unless-reducing
   [n coll]
@@ -172,9 +196,9 @@
    stream course.  Sinks affect carriers overland.  Users affect
    carriers in stream channels.  All the carriers are moved together
    in timesteps (more or less)."
-  [cache-layer possible-flow-layer actual-flow-layer source-layer
-   source-points mm2-per-cell sink-caps in-stream? sink-stream-intakes
-   use-stream-intakes sink-AFs use-AFs elevation-layer rows cols]
+  [cache-layer possible-flow-layer actual-flow-layer source-layer source-points
+   mm2-per-cell sink-caps levee? in-stream? sink-stream-intakes use-stream-intakes
+   sink-AFs use-AFs elevation-layer cell-width cell-height rows cols]
   (with-message "Moving the flood water carriers downhill and downstream...\n" "All done."
     (dorun
      (stop-unless-reducing
@@ -194,12 +218,15 @@
                     actual-flow-layer
                     mm2-per-cell
                     sink-caps
+                    levee?
                     in-stream?
                     sink-stream-intakes
                     use-stream-intakes
                     sink-AFs
                     use-AFs
                     elevation-layer
+                    cell-width
+                    cell-height
                     rows
                     cols)
                  flood-water-carriers)))
@@ -267,10 +294,11 @@
 (defmethod distribute-flow! "FloodWaterMovement"
   [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
    source-layer sink-layer _ source-points sink-points use-points
-   {stream-layer "River", elevation-layer "Altitude",
+   {stream-layer "River", elevation-layer "Altitude", levees-layer "Levees",
     floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
   (println "Operating in" (if floodplain-layer500 "500" "100") "year floodplain.")
   (let [floodplain-layer    (or floodplain-layer500 floodplain-layer100)
+        levee?              (memoize #(not= _0_ (get-in levees-layer     %)))
         in-stream?          (memoize #(not= _0_ (get-in stream-layer     %)))
         in-floodplain?      (memoize #(not= _0_ (get-in floodplain-layer %)))
         floodplain-sinks    (filter in-floodplain? sink-points)
@@ -288,11 +316,14 @@
                        source-points
                        mm2-per-cell
                        sink-caps
+                       levee?
                        in-stream?
                        sink-stream-intakes
                        use-stream-intakes
                        sink-AFs
                        use-AFs
                        elevation-layer
+                       cell-width
+                       cell-height
                        rows
                        cols)))
