@@ -194,7 +194,7 @@
 ;:GHG emissions map for Madagascar: use global population density layer multiplied by per capita emissions
 ;; for that country from EIA.  2006 data used as this corresponds to current population density layer: 
 ;; 0.14 tonnes CO2/capita for Madagascar in 2006, which is equivalent to 0.04 tonnes C/capita
-(defmodel use-simple GreenhouseGasEmitters
+(defmodel use-simple GreenhouseGasEmissions
   (measurement GreenhouseGasEmissions "t/ha*year"
                :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
                :state   #(* (:population-density-count %) 0.04)))
@@ -212,7 +212,7 @@
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
         CarbonSourceValue
-        GreenhouseGasEmitters
+        GreenhouseGasEmissions
         CarbonSinkValue
         nil
         nil

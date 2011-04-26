@@ -195,7 +195,7 @@
 ;;(defmodel use-simple GreenhouseGasEmissions
 ;;  (measurement GreenhouseGasEmissions "t/ha*year"))
 
-(defmodel use-simple GreenhouseGasEmitters
+(defmodel use-simple GreenhouseGasEmissions
   [(categorization geofeatures:Country) :as country]
   (measurement GreenhouseGasEmissions "t/ha*year")
                :when #(= (:country %) "United States")
@@ -203,12 +203,12 @@
                :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
                :state   #(* (:population-density-count %) 1.105)))
 
-(defmodel use-simple-pop GreenhouseGasEmitters
+(defmodel use-simple-pop GreenhouseGasEmissions
   (measurement GreenhouseGasEmissions "t/ha*year"
                :context ((count policytarget:PopulationDensity "/km^2" :as population-density-count))
                :state   #(* (:population-density-count %) 1.105)))
 
-(defmodel use-simple-us GreenhouseGasEmitters
+(defmodel use-simple-us GreenhouseGasEmissions
   (measurement GreenhouseGasEmissions "t/ha*year"))
 ;; ----------------------------------------------------------------------------------------------
 ;; Top-level service models
@@ -223,7 +223,7 @@
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
         CarbonSourceValue
-        GreenhouseGasEmitters
+        GreenhouseGasEmissions
         CarbonSinkValue
         nil
         nil
@@ -284,12 +284,12 @@
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
-  (model GreenhouseGasEmitters
-    (measurement ModifiedGreenhouseGasEmitters "t/ha*year"
+  (model GreenhouseGasEmissions
+    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
         :context (open-development-scenario use-simple)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (* 1.568 (:greenhouse-gas-emitters %))
-                  (:greenhouse-gas-emitters %)))))
+                  (* 1.568 (:greenhouse-gas-emissions %))
+                  (:greenhouse-gas-emissions %)))))
 
 (defscenario constrained-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
@@ -305,9 +305,9 @@
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'NoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
-  (model GreenhouseGasEmitters
-    (measurement ModifiedGreenhouseGasEmitters "t/ha*year"
+  (model GreenhouseGasEmissions
+    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
         :context (constrained-development-scenario use-simple)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (* 1.104 (:greenhouse-gas-emitters %))
-                  (:greenhouse-gas-emitters %)))))
+                  (* 1.104 (:greenhouse-gas-emissions %))
+                  (:greenhouse-gas-emissions %)))))

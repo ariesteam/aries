@@ -214,7 +214,7 @@
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
         CarbonSourceValue
-        GreenhouseGasEmitters
+        GreenhouseGasEmissions
         CarbonSinkValue
         nil
         nil
