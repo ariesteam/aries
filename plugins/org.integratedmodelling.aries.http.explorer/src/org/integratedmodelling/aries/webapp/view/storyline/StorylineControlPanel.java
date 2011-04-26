@@ -116,6 +116,20 @@ public class StorylineControlPanel extends ThinkcapComponent {
 		public ISession getSession() {
 			return session;
 		}
+
+		@Override
+		public void notifyVisualization(Storyline modelStoryline, IModel model,
+				IVisualization visualization) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void notifyError(ModelStoryline modelStoryline, IModel model,
+				Exception e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	
 	@Override
