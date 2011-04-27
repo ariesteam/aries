@@ -18,6 +18,7 @@
 ;;;-------------------------------------------------------------------
 ;;;
 ;;; This namespace defines the sediment model.
+;;;
 
 (ns clj-span.sediment-model
   (:use [clj-span.params     :only (*trans-threshold*)]
