@@ -234,5 +234,12 @@ public class SPANModel extends DefaultAbstractModel {
 //			keepers.add(annotateConcept(s,session, null));
 //		}
     }
+    
+    @Override
+    public String toString() {
+    	return "SPAN [" +
+    			getObservableClass() + 
+    			"]";
+    }
 
 }
