@@ -276,11 +276,11 @@
                                                   flow-layers  downscaling-factor))))
 
 ;; Now we can import our SPAN model implementations.
-(require '(clj-span carbon-model
-                    proximity-model
-                    line-of-sight-model
-                    surface-water-model
-                    subsistence-fisheries-model
-                    coastal-storm-protection-model
-                    flood-water-model
-                    sediment-model))
+(require '(clj-span.models carbon
+                           proximity
+                           line-of-sight
+                           surface-water
+                           subsistence-fisheries
+                           coastal-storm-protection
+                           flood-water
+                           sediment))

@@ -20,7 +20,7 @@
 ;;; This namespace defines the flood-water model.
 ;;;
 
-(ns clj-span.flood-water-model
+(ns clj-span.models.flood-water
   (:use [clj-span.core       :only (distribute-flow! service-carrier)]
         [clj-misc.utils      :only (seq2map mapmap iterate-while-seq with-message
                                     memoize-by-first-arg angular-distance p def-

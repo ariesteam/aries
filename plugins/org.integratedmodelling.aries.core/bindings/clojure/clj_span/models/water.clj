@@ -15,7 +15,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with clj-span.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns clj-span.water-model
+(ns clj-span.models.water
   (:use [clj-misc.utils     :only (memoize-by-first-arg depth-first-tree-search def-)]
         [clj-misc.randvars  :only (rv-lt _d rv-scale rv-zero-below-scalar rv-mean rv-cdf-lookup)]
         [clj-span.model-api :only (distribute-flow! service-carrier)]

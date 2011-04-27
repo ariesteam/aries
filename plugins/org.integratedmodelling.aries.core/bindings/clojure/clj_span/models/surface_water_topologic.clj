@@ -17,10 +17,10 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; This namespace defines the surface-water model.
+;;; This namespace defines the surface-water-topologic model.
 ;;;
 
-(ns clj-span.surface-water-model-topologic
+(ns clj-span.models.surface-water-topologic
   (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
         [clj-misc.utils         :only (seq2map mapmap p &)]
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix find-bounding-box
