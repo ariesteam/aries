@@ -84,7 +84,7 @@ public class StorylineControlPanel extends ThinkcapComponent {
  		}
 		
 		@Override
-		public void onStatusChange(Storyline storyline, int original, int newstatus) {
+		public void onStatusChange(Storyline storyline, IModel model, IContext context, int original, int newstatus) {
 			
 			browser.send(browser, "refreshStoryline", storyline.getTemplateSignature());
 			if (original == Storyline.COMPUTING && newstatus == Storyline.COMPUTED) {
@@ -119,14 +119,14 @@ public class StorylineControlPanel extends ThinkcapComponent {
 
 		@Override
 		public void notifyVisualization(Storyline modelStoryline, IModel model,
-				IVisualization visualization) {
+				IContext context, IVisualization visualization) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void notifyError(ModelStoryline modelStoryline, IModel model,
-				Exception e) {
+				IContext context, Exception e) {
 			// TODO Auto-generated method stub
 			
 		}
