@@ -1,21 +1,21 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.core" version="0.8.0" class="org.integratedmodelling.aries.core.ARIESCorePlugin">
+<plugin class="org.integratedmodelling.aries.core.ARIESCorePlugin" id="org.integratedmodelling.aries.core" version="0.8.1.20110428103919">
 
 	<requires>
-		<import plugin-id="org.integratedmodelling.thinklab.core"/>
-		<import plugin-id="org.integratedmodelling.thinklab.opal"/>
-		<import plugin-id="org.integratedmodelling.thinklab.clojure"/>
-		<import plugin-id="org.integratedmodelling.thinklab.corescience" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.dolce"/>
-		<import plugin-id="org.integratedmodelling.thinklab.ecology"/>
-		<import plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.time"/>
-		<import plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
-		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
-		<import plugin-id="org.integratedmodelling.thinklab.currency"/>
-		<import plugin-id="org.integratedmodelling.thinklab.riskwiz" reverse-lookup="true" />
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.opal" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.clojure" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.corescience" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.dolce" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.ecology" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.time" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.sql" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.metadata" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.currency" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.riskwiz" reverse-lookup="true"/>
 	</requires>
 
 	<runtime>
@@ -23,96 +23,96 @@
 			<export prefix="*"/>
 		</library>
 		
-		<library type="resources" path="ontologies/" id="ontologies" />
-		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
-		<library type="resources" path="models/" id="models" />
-		<library type="resources" path="config/" id="config" />
-		<library type="resources" path="contexts/" id="contexts" />
-		<library type="resources" path="scenarios/" id="scenarios" />
-		<library type="resources" path="bn/" id="bn" />
+		<library id="ontologies" path="ontologies/" type="resources"/>
+		<library id="clojure-bindings" path="bindings/clojure/" type="resources"/>
+		<library id="models" path="models/" type="resources"/>
+		<library id="config" path="config/" type="resources"/>
+		<library id="contexts" path="contexts/" type="resources"/>
+		<library id="scenarios" path="scenarios/" type="resources"/>
+		<library id="bn" path="bn/" type="resources"/>
 		
 	</runtime>
 	
 	<!-- ontologies -->
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="aries">
+	<extension id="aries" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="aries/aries.owl"/>
-		<parameter id="concept-space" value="aries" />
+		<parameter id="concept-space" value="aries"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="conservation">
+	<extension id="conservation" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="policy/conservation.owl"/>
-		<parameter id="concept-space" value="conservation" />
+		<parameter id="concept-space" value="conservation"/>
 	</extension>
-		<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="policytarget">
+		<extension id="policytarget" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="policy/policytarget.owl"/>
-		<parameter id="concept-space" value="policytarget" />
+		<parameter id="concept-space" value="policytarget"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="eserv">
+	<extension id="eserv" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/eserv.owl"/>
-		<parameter id="concept-space" value="eserv" />
+		<parameter id="concept-space" value="eserv"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="esclass">
+	<extension id="esclass" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/esclass.owl"/>
-		<parameter id="concept-space" value="esclass" />
+		<parameter id="concept-space" value="esclass"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="climateChange">
+	<extension id="climateChange" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/climateChange.owl"/>
 		<parameter id="concept-space" value="climateChange"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="carbonService">
+	<extension id="carbonService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/carbonService.owl"/>
 		<parameter id="concept-space" value="carbonService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="floodService">
+	<extension id="floodService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/floodService.owl"/>
 		<parameter id="concept-space" value="floodService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="soilretentionService">
+	<extension id="soilretentionService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/soilretentionService.owl"/>
 		<parameter id="concept-space" value="soilretentionService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="soilretentionEcology">
+	<extension id="soilretentionEcology" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/soilretentionEcology.owl"/>
 		<parameter id="concept-space" value="soilretentionEcology"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="rawMaterialsService">
+	<extension id="rawMaterialsService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/rawMaterialsService.owl"/>
 		<parameter id="concept-space" value="rawMaterialsService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="aestheticService">
+	<extension id="aestheticService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/aestheticService.owl"/>
 		<parameter id="concept-space" value="aestheticService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="puget">
+	<extension id="puget" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/local/puget.owl"/>
 		<parameter id="concept-space" value="puget"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="wildfireService">
+	<extension id="wildfireService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/wildfireService.owl"/>
 		<parameter id="concept-space" value="wildfireService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="recreationService">
+	<extension id="recreationService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/recreationService.owl"/>
 		<parameter id="concept-space" value="recreationService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="waterSupplyService">
+	<extension id="waterSupplyService" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/waterSupplyService.owl"/>
 		<parameter id="concept-space" value="waterSupplyService"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="southernCalifornia">
+	<extension id="southernCalifornia" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/local/southernCalifornia.owl"/>
 		<parameter id="concept-space" value="southernCalifornia"/>
 	</extension>
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="sanPedro">
+	<extension id="sanPedro" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/local/sanPedro.owl"/>
 		<parameter id="concept-space" value="sanPedro"/>
  	</extension> 
-		<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="mexico">
+		<extension id="mexico" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="es/services/local/mexico.owl"/>
 		<parameter id="concept-space" value="mexico"/>
     </extension>
 
 	<!-- bindings  -->
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
+	<extension id="clj" plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding">
 		<parameter id="language" value="clojure"/>
 		<parameter id="classpath" value="bindings/clojure/"/>
 		<parameter id="task-package" value="org.integratedmodelling.aries.core.tasks"/>
@@ -149,7 +149,7 @@
 		-->
 	</extension> 
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="demo">
+	<extension id="demo" plugin-id="org.integratedmodelling.thinklab.core" point-id="application">
 		<parameter id="id" value="demo"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
@@ -157,7 +157,7 @@
 		</parameter>
 	</extension>
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="batch">
+	<extension id="batch" plugin-id="org.integratedmodelling.thinklab.core" point-id="application">
 		<parameter id="id" value="batch"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
@@ -165,7 +165,7 @@
 		</parameter>
 	</extension>
 
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="spantest">
+	<extension id="spantest" plugin-id="org.integratedmodelling.thinklab.core" point-id="application">
 		<parameter id="id" value="spantest"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>

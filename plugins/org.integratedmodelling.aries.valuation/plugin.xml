@@ -1,14 +1,14 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.valuation" version="0.8.0" class="org.integratedmodelling.aries.valuation.ARIESValuationPlugin">
+<plugin class="org.integratedmodelling.aries.valuation.ARIESValuationPlugin" id="org.integratedmodelling.aries.valuation" version="0.8.1.20110428103923">
 
 	<requires>
-		<import plugin-id="org.integratedmodelling.thinklab.core"/>
-		<import plugin-id="org.integratedmodelling.thinklab.modelling"/>
-		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
-		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
-		<import plugin-id="org.integratedmodelling.thinklab.currency"/>
-		<import plugin-id="org.integratedmodelling.aries.core"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.metadata" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.sql" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.currency" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.core" reverse-lookup="false"/>
 	</requires>
 
 	<runtime>
@@ -16,16 +16,16 @@
 			<export prefix="*"/>
 		</library>
 		
-		<library type="resources" path="ontologies/" id="ontologies" />
-		<library type="resources" path="bindings/clojure/" id="clojure-bindings" />
-		<library type="resources" path="models/" id="models" />
-		<library type="resources" path="etc/" id="etc" />
-		<library type="resources" path="data/" id="data" />
-		<library type="resources" path="config/" id="config" />
+		<library id="ontologies" path="ontologies/" type="resources"/>
+		<library id="clojure-bindings" path="bindings/clojure/" type="resources"/>
+		<library id="models" path="models/" type="resources"/>
+		<library id="etc" path="etc/" type="resources"/>
+		<library id="data" path="data/" type="resources"/>
+		<library id="config" path="config/" type="resources"/>
 	</runtime>
 	
 	<!-- create kboxes if necessary; must have pg installed  -->
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="application" id="import-esd">
+	<extension id="import-esd" plugin-id="org.integratedmodelling.thinklab.core" point-id="application">
 		<parameter id="id" value="import-esd"/>
 		<parameter id="declaration">
 			<parameter id="language" value="clojure"/>
@@ -35,13 +35,13 @@
 	</extension>
 	
 	<!-- ontologies -->
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="esvaluation">
+	<extension id="esvaluation" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="esvaluation.owl"/>
 		<parameter id="concept-space" value="esvaluation"/>
 	</extension>
 	
 	<!-- bindings -->
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding" id="clj">
+	<extension id="clj" plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding">
 		<parameter id="language" value="clojure"/>
 		<parameter id="resource" value="valuation.clj"/>
 		<!-- <parameter id="resource" value="calculator.clj"/> -->
