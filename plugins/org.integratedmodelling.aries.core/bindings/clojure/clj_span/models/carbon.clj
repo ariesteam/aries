@@ -81,7 +81,7 @@
 ;;;   and terminate the sampling procedure when the results converge
 ;;;   within some epsilon of one another.
 
-(ns clj-span.carbon-model
+(ns clj-span.models.carbon
   (:use [clj-misc.utils      :only (p sum def- with-progress-bar-cool)]
         [clj-misc.randvars   :only (*_ _d draw make-randvar)]
         [clj-span.core       :only (distribute-flow! service-carrier)]))

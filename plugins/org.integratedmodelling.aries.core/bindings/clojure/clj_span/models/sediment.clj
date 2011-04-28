@@ -18,8 +18,9 @@
 ;;;-------------------------------------------------------------------
 ;;;
 ;;; This namespace defines the sediment model.
+;;;
 
-(ns clj-span.sediment-model
+(ns clj-span.models.sediment
   (:use [clj-span.params     :only (*trans-threshold*)]
         [clj-span.core       :only (distribute-flow! service-carrier)]
         [clj-misc.utils      :only (mapmap seq2map seq2redundant-map euclidean-distance square-distance p &)]

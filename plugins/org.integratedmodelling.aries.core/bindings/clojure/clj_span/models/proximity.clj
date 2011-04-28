@@ -26,7 +26,7 @@
 ;;; * Searches outward from Source points until decay and sink effects
 ;;;   block the frontier's progress
 
-(ns clj-span.proximity-model
+(ns clj-span.models.proximity
   (:use [clj-misc.utils      :only (def- p my->> mapmap euclidean-distance with-progress-bar-cool with-message remove-nil-val-entries)]
         [clj-span.params     :only (*trans-threshold*)]
         [clj-span.core       :only (distribute-flow! service-carrier)]

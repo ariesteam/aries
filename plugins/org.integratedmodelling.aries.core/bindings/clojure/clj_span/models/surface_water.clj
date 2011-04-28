@@ -20,7 +20,7 @@
 ;;; This namespace defines the surface-water model.
 ;;;
 
-(ns clj-span.surface-water-model
+(ns clj-span.models.surface-water
   (:use [clj-span.core          :only (distribute-flow! service-carrier)]
         [clj-span.params        :only (*trans-threshold*)]
         [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message

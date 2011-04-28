@@ -30,7 +30,7 @@
 ;;;    radiate into all neighboring, fish-producing pixels, split the demand evenly (naive, I know), and continue.
 ;;; 7. Once all demand is met, end the simulation and return the cache-layer.
 
-(ns clj-span.subsistence-fisheries-model
+(ns clj-span.models.subsistence-fisheries
   (:use [clj-span.core       :only (distribute-flow! service-carrier)]
         [clj-misc.utils      :only (p
                                     &

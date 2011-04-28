@@ -46,7 +46,7 @@
 ;;; Thus, this algorithm scales linearly in time and space
 ;;; requirements with the number of cells analyzed.
 
-(ns clj-span.coastal-storm-protection-model
+(ns clj-span.models.coastal-storm-protection
   (:use [clj-span.params     :only (*trans-threshold*)]
         [clj-span.core       :only (distribute-flow! service-carrier)]
         [clj-misc.utils      :only (p

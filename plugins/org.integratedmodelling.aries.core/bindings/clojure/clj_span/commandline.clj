@@ -52,7 +52,7 @@
    "            -use-type           <finite|infinite> \\ \n"
    "            -benefit-type       <rival|non-rival> \\ \n"
    "            -animation?         <true|false>      \\ \n"
-   "            -flow-model         <line-of-sight|proximity|carbon|flood|surface-water|sediment|coastal-storm-protection|subsistence-fisheries> \n"))
+   "            -flow-model         <line-of-sight|proximity|carbon|flood-water|surface-water|sediment|coastal-storm-protection|subsistence-fisheries> \n"))
 
 (defmulti- print-usage (fn [error-type extra-info] error-type))
 
@@ -85,8 +85,8 @@
    ["-use-type"           #{"finite" "infinite"}    " must be one of finite or infinite."]
    ["-benefit-type"       #{"rival" "non-rival"}    " must be one of rival or non-rival."]
    ["-animation?"         #{"true" "false"}         " must be one of true or false."]
-   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood" "surface-water" "sediment" "coastal-storm-protection" "subsistence-fisheries"}
-    " must be one of line-of-sight, proximity, carbon, flood, surface-water, sediment, coastal-storm-protection, or subsistence-fisheries."]])
+   ["-flow-model"         #{"line-of-sight" "proximity" "carbon" "flood-water" "surface-water" "sediment" "coastal-storm-protection" "subsistence-fisheries"}
+    " must be one of line-of-sight, proximity, carbon, flood-water, surface-water, sediment, coastal-storm-protection, or subsistence-fisheries."]])
 
 (defn- valid-params?
   "Returns true if the params map:
@@ -135,7 +135,7 @@
       (assoc :flow-model         ({"line-of-sight"            "LineOfSight"
                                    "proximity"                "Proximity"
                                    "carbon"                   "CO2Removed"
-                                   "flood"                    "FloodWaterMovement"
+                                   "flood-water"              "FloodWaterMovement"
                                    "surface-water"            "SurfaceWaterMovement"
                                    "sediment"                 "Sediment"
                                    "coastal-storm-protection" "CoastalStormMovement"

@@ -32,7 +32,7 @@
 ;;;   value) received from any sink location along a view path to a
 ;;;   source point.
 
-(ns clj-span.line-of-sight-model
+(ns clj-span.models.line-of-sight
   (:use [clj-span.params     :only (*trans-threshold*)]
         [clj-misc.utils      :only (euclidean-distance p def- between? with-progress-bar-cool with-message)]
         [clj-misc.matrix-ops :only (find-line-between get-line-fn)]

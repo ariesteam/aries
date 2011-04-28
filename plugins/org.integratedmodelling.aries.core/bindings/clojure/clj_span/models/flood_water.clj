@@ -20,14 +20,14 @@
 ;;; This namespace defines the flood-water model.
 ;;;
 
-(ns clj-span.flood-water-model
-  (:use [clj-span.core          :only (distribute-flow! service-carrier)]
-        [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message
-                                               memoize-by-first-arg angular-distance
-                                               p def- with-progress-bar-cool euclidean-distance)]
-        [clj-misc.matrix-ops    :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest
-                                                     find-line-between rotate-2d-vec find-point-at-dist-in-m)]
-        [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min)]))
+(ns clj-span.models.flood-water
+  (:use [clj-span.core       :only (distribute-flow! service-carrier)]
+        [clj-misc.utils      :only (seq2map mapmap iterate-while-seq with-message
+                                    memoize-by-first-arg angular-distance p def-
+                                    with-progress-bar-cool euclidean-distance)]
+        [clj-misc.matrix-ops :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest
+                                    find-line-between rotate-2d-vec find-point-at-dist-in-m)]
+        [clj-misc.randvars   :only (_0_ _+_ *_ _d rv-fn rv-min)]))
 
 (defn- lowest-neighbors
   [id in-stream? elevation-layer rows cols]
