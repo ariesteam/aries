@@ -1,32 +1,32 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.marine" version="0.8.0" class="org.integratedmodelling.aries.marine.ARIESMarinePlugin">
+<plugin class="org.integratedmodelling.aries.marine.ARIESMarinePlugin" id="org.integratedmodelling.aries.marine" version="0.8.1.20110428103921">
 
 	<requires>
-		<import plugin-id="org.integratedmodelling.thinklab.core"/>
-		<import plugin-id="org.integratedmodelling.thinklab.modelling"/>
-		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
-		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
-		<import plugin-id="org.integratedmodelling.aries.core"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.metadata" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.sql" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.core" reverse-lookup="false"/>
 	</requires>
 
 	<runtime>
 		<library id="core" path="classes/" type="code">
 			<export prefix="*"/>
 		</library>
-		<library type="resources" path="ontologies/" id="ontologies" />
-		<library type="resources" path="models/" id="models" /> 
-		<library type="resources" path="data/" id="data" />
-		<library type="resources" path="config/" id="config" />
-		<library type="resources" path="bn/" id="bn" />
+		<library id="ontologies" path="ontologies/" type="resources"/>
+		<library id="models" path="models/" type="resources"/> 
+		<library id="data" path="data/" type="resources"/>
+		<library id="config" path="config/" type="resources"/>
+		<library id="bn" path="bn/" type="resources"/>
 	</runtime>
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="coastalProtection">
+	<extension id="coastalProtection" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="coastalProtection.owl"/>
 		<parameter id="concept-space" value="coastalProtection"/>
 	</extension>
 	
-	<extension plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology" id="fisheries">
+	<extension id="fisheries" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
 		<parameter id="url" value="fisheries.owl"/>
 		<parameter id="concept-space" value="fisheries"/>
 	</extension>

@@ -1,23 +1,23 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.http.explorer" version="0.8.0" class="org.integratedmodelling.aries.webapp.ARIESWebappPlugin">
+<plugin class="org.integratedmodelling.aries.webapp.ARIESWebappPlugin" id="org.integratedmodelling.aries.http.explorer" version="0.8.1.20110428103932">
 	
 	<requires>
-		<import plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="true"/>
-		<import plugin-id="org.integratedmodelling.thinklab.searchengine" reverse-lookup="true"/>
-		<import plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true"/>
-		<import plugin-id="org.integratedmodelling.thinklab.mca" reverse-lookup="true"/>
-		<import plugin-id="org.integratedmodelling.aries.aries" />
-		<import plugin-id="org.integratedmodelling.thinklab.http"/>
-		<import plugin-id="org.integratedmodelling.thinklab.http.geospace"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.searchengine" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.mca" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.aries" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.http" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.http.geospace" reverse-lookup="false"/>
 	</requires>	
 	
 	<runtime>
 		<library id="plugin" path="classes/" type="code"> 
 			<export prefix="*"/>
 		</library> 
-		<library type="resources" path="/" id="web" />
-		<library type="resources" path="config/" id="config" />
+		<library id="web" path="/" type="resources"/>
+		<library id="config" path="config/" type="resources"/>
 	</runtime>
 
 </plugin>

@@ -1,32 +1,32 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
-<plugin id="org.integratedmodelling.aries.aries" version="0.8.0" class="org.integratedmodelling.aries.ARIESPlugin">
+<plugin class="org.integratedmodelling.aries.ARIESPlugin" id="org.integratedmodelling.aries.aries" version="0.8.1.20110428103925">
 
 	<requires>
-		<import plugin-id="org.integratedmodelling.aries.core"/>
-		<import plugin-id="org.integratedmodelling.aries.marine"/>
-		<import plugin-id="org.integratedmodelling.aries.valuation"/>
-		<import plugin-id="org.integratedmodelling.thinklab.core"/>
-		<import plugin-id="org.integratedmodelling.thinklab.mca"/>
-		<import plugin-id="org.integratedmodelling.thinklab.opal"/>
-		<import plugin-id="org.integratedmodelling.thinklab.clojure"/>
-		<import plugin-id="org.integratedmodelling.thinklab.corescience" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.dolce"/>
-		<import plugin-id="org.integratedmodelling.thinklab.ecology"/>
-		<import plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.time"/>
-		<import plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true" />
-		<import plugin-id="org.integratedmodelling.thinklab.sql"/>
-		<import plugin-id="org.integratedmodelling.thinklab.metadata"/>
-		<import plugin-id="org.integratedmodelling.thinklab.currency"/>
-		<import plugin-id="org.integratedmodelling.thinklab.riskwiz" reverse-lookup="true" />
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.core" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.marine" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.aries.valuation" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.core" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.mca" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.opal" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.clojure" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.corescience" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.dolce" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.ecology" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.geospace" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.time" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.modelling" reverse-lookup="true"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.sql" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.metadata" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.currency" reverse-lookup="false"/>
+		<import exported="false" match="compatible" optional="false" plugin-id="org.integratedmodelling.thinklab.riskwiz" reverse-lookup="true"/>
 	</requires>
 
 	<runtime>
 		<library id="core" path="classes/" type="code">
 			<export prefix="*"/>
 		</library>		
-		<library type="resources" path="config/" id="config" />
+		<library id="config" path="config/" type="resources"/>
 	</runtime>
 		
 </plugin>
