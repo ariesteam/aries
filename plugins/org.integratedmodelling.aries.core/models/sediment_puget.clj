@@ -130,7 +130,7 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel reservoirs ReservoirsClass 
+(defmodel reservoirs-class ReservoirsClass 
   (classification (binary-coding geofeatures:Reservoir)
       1          ReservoirPresent
       :otherwise ReservoirAbsent))
@@ -171,11 +171,14 @@
     :keep     (AnnualSedimentSinkClass)
     :required (FloodplainWidthClass)
     :result   sediment-sink-annual
-    :context  (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width)))
+    :context  (reservoirs-class stream-gradient floodplain-vegetation-cover floodplain-width)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
+
+(defmodel reservoirs geofeatures:Reservoir
+  (binary-coding geofeatures:Reservoir))
 
 (defmodel floodplains Floodplains
 	(classification (categorization geofeatures:Floodplain)
@@ -194,11 +197,11 @@
 
 ;; Need to insert different discretizations for the US and global models
 (defmodel hydroelectric-use-level HydroelectricUseLevel
-  (measurement HydroelectricUseLevel "m^3"))
+  (measurement HydroelectricUseLevel "m^3" :as hydro-use-level))
 
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget DepositionProneFarmers 
-  (ranking DepositionProneFarmers
+  (binary-coding DepositionProneFarmers
        :context ((ranking nlcd:NLCDNumeric :as farmlandpresent)
                  (ranking geofeatures:Floodplain :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
@@ -236,10 +239,8 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))	 								
 
-(defmodel levees LeveesClass 
-  (classification (binary-coding infrastructure:Levee)
-      1          LeveePresent
-      :otherwise LeveeAbsent))
+(defmodel levees infrastructure:Levee
+  (binary-coding infrastructure:Levee))
 
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
@@ -264,26 +265,25 @@
        farmers-deposition-use-puget
        levees)))
 
-;;Sediment flow model for recipients of beneficial sedimentation.  We're assuming for now that sediment is detrimental
-;; to farmers, so DON'T run this flow model for now, run the next two below (farmers and hydro).
-;; It should be able to be easily implemented in the future, however.
-(defmodel sediment-beneficial BeneficialSedimentTransport
+;; Sediment flow model for farmers in floodplains
+(defmodel sediment-farmers BeneficialSedimentTransport ;; or DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual
         DepositionProneFarmers
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains LeveesClass geofeatures:River) 
+        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River) 
         :source-threshold   1000.0 ;;Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
-        :sink-threshold     500.0
-        :use-threshold      10.0
-        :trans-threshold    100.0
+        :sink-threshold      500.0
+        :use-threshold         0.0
+        :trans-threshold     100.0
         :source-type        :finite
         :sink-type          :finite
-        :use-type           :finite
+        :use-type           :infinite
         :benefit-type       :rival
+        :downscaling-factor 1
         :rv-max-states      10
-        :downscaling-factor 2
+        :animation?         true
         :keep (MaximumSedimentSource                       MaximumPotentialDeposition 
                PotentialSedimentDepositionBeneficiaries    PossibleSedimentFlow
                PossibleSedimentSource                      PossibleSedimentDepositionBeneficiaries
@@ -292,57 +292,28 @@
                UnutilizedSedimentSource                    InaccessibleSedimentDepositionBeneficiaries
                AbsorbedSedimentFlow                        NegatedSedimentSource
                LostValuableSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains)))
 
-;;Sediment flow model for recipients of avoided detrimental sedimentation: farmers.  This is one of two beneficiary models
-;; currently designed to be run.
-(defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
+;; Sediment flow model for deposition in hydro reservoirs
+(defmodel sediment-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
-        DepositionProneFarmers
-        AnnualSedimentSinkClass 
+        SedimentSourceValueAnnual
+        Reservoirs
+        AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains LeveesClass geofeatures:River)
+        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River)
         :source-threshold   1000.0
-        :sink-threshold     500.0
-        :use-threshold      10.0
-        :trans-threshold    100.0
+        :sink-threshold      500.0
+        :use-threshold         0.0
+        :trans-threshold     100.0
         :source-type        :finite
         :sink-type          :finite
-        :use-type           :finite
-        :benefit-type       :non-rival
+        :use-type           :infinite
+        :benefit-type       :rival
+        :downscaling-factor 1
         :rv-max-states      10
-        :downscaling-factor 2
-        :keep (MaximumSedimentSource                              MaximumPotentialDeposition 
-               PotentialReducedSedimentDepositionBeneficiaries    PossibleSedimentFlow
-               PossibleSedimentSource                             PossibleReducedSedimentDepositionBeneficiaries
-               ActualSedimentFlow                                 ActualSedimentSource
-               UtilizedDeposition                                 ActualReducedSedimentDepositionBeneficiaries
-               UnutilizedDeposition                               AbsorbedSedimentFlow
-               NegatedSedimentSource                              BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
-
-;;Sediment flow model for recipients of avoided detrimental sedimentation: hydro reservoirs.  This is one of two beneficiary 
-;; models currently designed to be run.
-(defmodel sediment-detrimental-hydro DetrimentalSedimentTransport
-  (span SedimentTransport
-        SedimentSourceValueAnnualClass 
-        HydroelectricUseLevel
-        AnnualSedimentSinkClass 
-        nil
-        (geophysics:Altitude Floodplains LeveesClass geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold     500.0
-        :use-threshold      10.0
-        :trans-threshold    100.0
-        :source-type        :finite
-        :sink-type          :finite
-        :use-type           :finite
-        :benefit-type       :non-rival
-        :rv-max-states      10
-        :downscaling-factor 2
+        :animation?         true
         :keep (MaximumSedimentSource                                MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries      PossibleSedimentFlow
                PossibleSedimentSource                               PossibleReducedSedimentDepositionBeneficiaries
@@ -350,28 +321,29 @@
                UtilizedDeposition                                   ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition                                 AbsorbedSedimentFlow
                NegatedSedimentSource                                BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-puget hydroelectric-use-level sediment-sink-us altitude levees streams floodplains)))
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_data.clj")
+        :context (source-puget reservoirs sediment-sink-us altitude levees streams floodplains)))
 
-;;Sediment flow model for recipients of reduced turbidity.  This SPAN statement is not currently set up to run as we
-;; lack data on beneficiary groups for reduced turbidity.  It should be able to be easily implemented in the future, however.
+;; FIXME: There is no WaterIntakeUse observation defined above.
+;; Sediment flow model for assessing turbidity
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual
         WaterIntakeUse  ;;change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink 
         nil
-        (geophysics:Altitude Floodplains LeveesClass geofeatures:River)
+        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River)
         :source-threshold   1000.0
-        :sink-threshold     500.0
-        :use-threshold       10.0
-        :trans-threshold    nil
+        :sink-threshold      500.0
+        :use-threshold         0.0
+        :trans-threshold     100.0
         :source-type        :finite
         :sink-type          :finite
-        :use-type           :finite
-        :benefit-type       :non-rival
+        :use-type           :infinite
+        :benefit-type       :non-rival ;; this will cause the model to store sediment values on users who are not co-located with sinks
+        :downscaling-factor 1
         :rv-max-states      10
-        :downscaling-factor 2
+        :animation?         true
         :keep (MaximumSedimentSource                            MaximumPotentialDeposition 
                PotentialReducedTurbidityBeneficiaries           PossibleSedimentFlow
                PossibleSedimentSource                           PossibleReducedTurbidityBeneficiaries
@@ -379,5 +351,5 @@
                UtilizedDeposition                               ActualReducedTurbidityBeneficiaries
                UnutilizedDeposition                             AbsorbedSedimentFlow 
                NegatedSedimentSource                            ReducedTurbidity)
-        ;;:save-file          (str (System/getProperty "user.home") "/carbon_data.clj")
-        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_turbidity_data.clj")
+        :context (source-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
