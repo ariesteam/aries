@@ -7,7 +7,10 @@
                            numeric-coding binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology aestheticService)
+(namespace-ontology aestheticService
+  (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -112,14 +115,21 @@
 ;; Use model
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))  
+
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
+
 (defmodel housing PresenceOfHousing
-  "Classifies land use from property data."
   (classification (ranking PresenceOfHousing)
-        [1 :>]                   HousingPresent  
-        :otherwise               HousingAbsent))
-;;  (classification (numeric-coding 'nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
-;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
-;;        :otherwise   HousingAbsent))
+        [1 :>]       HousingPresent  
+        :otherwise   HousingAbsent)
+  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+        :otherwise   HousingAbsent))
 
 (defmodel property-value HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -149,7 +159,8 @@
   "Property owners who can afford to pay for proximity to open space"
   (bayesian ProximityUse 
             :import  "aries.core::ProximityUse.xdsl"
-            :context (property-value urban-proximity housing)
+            :context (property-value urban-proximity housing land-selector)
+            :required (LandOrSea)
             :result  proximity-use-undiscretizer 
             :keep    (HomeownerProximityUse)))
 

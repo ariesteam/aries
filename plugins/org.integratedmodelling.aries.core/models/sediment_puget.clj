@@ -202,8 +202,8 @@
 ;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel farmers-deposition-use-puget DepositionProneFarmers 
   (binary-coding DepositionProneFarmers
-       :context ((ranking nlcd:NLCDNumeric :as farmlandpresent)
-                 (ranking geofeatures:Floodplain :as floodplains))
+       :context ((ranking        nlcd:NLCDNumeric       :as farmlandpresent)
+                 (categorization geofeatures:Floodplain :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
                         (= (:farmlandpresent %) 82.0))
                     1
