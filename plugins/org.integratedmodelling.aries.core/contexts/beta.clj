@@ -10,14 +10,14 @@
    256
    "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
 
-(defcontext chehalis_med_res
-  "Chehalis watershed @ 256 linear. Just the square bounding box."
+(defcontext chehalis512
+  "Chehalis watershed @ 512 linear. Just the square bounding box."
   (grid
    512
    "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
 
-(defcontext chehalis_hi_res
-  "Chehalis watershed @ 256 linear. Just the square bounding box."
+(defcontext chehalis1024
+  "Chehalis watershed @ 1024 linear. Just the square bounding box."
   (grid
    1024
    "EPSG:4326 POLYGON ((-124.27 46.763, -124.27 47.55, -122.42 47.55, -122.42 46.763, -124.27 46.763))"))
@@ -118,7 +118,7 @@
    512
    "EPSG:4326 POLYGON ((-97.2746372601786 19.142240226562222, -96.27930746109703 19.142240226562222, -96.27930746109703 19.576122241899572, -97.2746372601786 19.576122241899572,-97.2746372601786 19.142240226562222))"))
 
-(defcontext vt
+(defcontext vt256
   ""
   (grid
    256
@@ -136,19 +136,13 @@
    256
    "EPSG:4326 POLYGON ((-73.151 44.27 ,-73.144  44.27 ,-73.144  44.286 , -73.151 44.286 ,-73.151  44.27 ))"))
 
-(defcontext DR
+(defcontext DR256
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-71.7 19.9, -70.5 19.9, -70.5 18.85, -71.7 18.85, -71.7 19.9))"))
 
-(defcontext DRsm
-  ""
-  (grid
-   256
-   "EPSG:4326 POLYGON((-71.7 19.9, -70.5 19.9, -70.5 18.85, -71.7 18.85, -71.7 19.9))"))
-
-(defcontext DR_hi_res
+(defcontext DR512
   ""
   (grid
    512
@@ -160,40 +154,52 @@
                                         ;    256
                                         ;    "EPSG:4326 POLYGON((-124.27 47.55, -124.27 46.33, -122.42 46.33, -122.42 47.55, -124.27 47.55))"))
 
-(defcontext viewshed
+(defcontext viewshed256
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-122.420446 47.464349, -121.759593 47.464349, -121.759593 46.85382, -122.420446 46.85382, -122.420446 47.464349))"))
 
-(defcontext viewshed_med_res
+(defcontext viewshed512
   ""
   (grid
    512
    "EPSG:4326 POLYGON((-122.420446 47.464349, -121.759593 47.464349, -121.759593 46.85382, -122.420446 46.85382, -122.420446 47.464349))"))
 
-(defcontext viewshed_hi_res
+(defcontext viewshed1024
   ""
   (grid
    1024
    "EPSG:4326 POLYGON((-122.420446 47.464349, -121.759593 47.464349, -121.759593 46.85382, -122.420446 46.85382, -122.420446 47.464349))"))
 
-(defcontext western_wa
+(defcontext western_wa256
   ""
   (grid
    256
    "EPSG:4326 POLYGON ((-124.88 46.3, -124.88 49.11, -120.6 49.11, -120.6 46.3, -124.88 46.3))"))
 
-(defcontext western_wa_hi_res
+(defcontext western_wa
+  ""
+  (grid
+   512
+   "EPSG:4326 POLYGON ((-124.88 46.3, -124.88 49.11, -120.6 49.11, -120.6 46.3, -124.88 46.3))"))
+
+(defcontext western_wa2048
   ""
   (grid
    2048
    "EPSG:4326 POLYGON ((-124.88 46.3, -124.88 49.11, -120.6 49.11, -120.6 46.3, -124.88 46.3))"))
 
-(defcontext mg
+(defcontext mg256
   ""
   (grid
    256
+   "EPSG:4326 POLYGON((41.352539056744014 -27.644606378394307, 52.778320305152796 -27.644606378394307, 52.778320305152796 -10.488, 41.352539056744014 -10.488, 41.352539056744014 -27.644606378394307))"))
+
+(defcontext mg512
+  ""
+  (grid
+   512
    "EPSG:4326 POLYGON((41.352539056744014 -27.644606378394307, 52.778320305152796 -27.644606378394307, 52.778320305152796 -10.488, 41.352539056744014 -10.488, 41.352539056744014 -27.644606378394307))"))
 
 (defcontext mg_coastal128
@@ -255,13 +261,13 @@
    256
    "EPSG:4326 POLYGON((-117.976828 33.907017, -117.976828  33.89560825, -117.940320  33.89560825, -117.940320 33.907017, -117.976828 33.907017))"))
 
-(defcontext ca_mark_watershed
+(defcontext ca_mark_watershed256
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-118.2 34.03787, -117.724 34.03787, -117.724 33.739, -118.2 33.739, -118.2 34.03787))"))
 
-(defcontext ca_mark_watershed_hi_res
+(defcontext ca_mark_watershed512
   ""
   (grid
    512
