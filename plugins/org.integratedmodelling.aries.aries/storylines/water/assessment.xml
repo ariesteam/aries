@@ -10,19 +10,25 @@
 
 	<!-- all the models that apply and in which context.-->
 	<model>
-		<id>core.models.water-la-antigua/surface-flow</id>
+		<id>core.models.water-la-antigua/data</id> <!--This changes to surface-flow once flow models are enabled-->
 		<context>core.contexts.beta/la_antigua512</context> <!-- Change this if necessary, not sure which context you're running it on these days. -->
 	</model>	
 
 	<model>
-		<id>core.models.water-san-pedro/surface-flow-dry</id>
+		<id>core.models.water-san-pedro/data-full-test</id>
 		<context>core.contexts.beta/san_pedro_us256</context> <!-- Terrible resolution but all we've got until we get a 64-bit jave VM. -->
+	</model>
+
+<!-- Can't run flow models without a 64-bit JVM.  Just use above source, sink, use models.
+	<model>
+		<id>core.models.water-san-pedro/surface-flow-dry</id>
+		<context>core.contexts.beta/san_pedro_us256</context>  Terrible resolution but all we've got until we get a 64-bit jave VM.>
 	</model>	
 	
 	<model>
 		<id>core.models.water-san-pedro/surface-flow-wet</id>
-		<context>core.contexts.beta/san_pedro_us256</context> <!-- Terrible resolution but all we've got until we get a 64-bit jave VM. -->
-	</model>
+		<context>core.contexts.beta/san_pedro_us256</context>  Terrible resolution but all we've got until we get a 64-bit jave VM. 
+	</model> -->
 
 	<page id="info">
 		<id>info</id>

@@ -6,7 +6,10 @@
                            binary-coding identification bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology aestheticService)
+(namespace-ontology aestheticService
+  (thinklab-core:BooleanRanking
+        (LandOrSea
+            (OnLand) (NotOnLand))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -87,14 +90,21 @@
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))  
+
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+    (classification  (measurement geophysics:Altitude "m")
+       [:exclusive 0 :>] OnLand))
+
 (defmodel housing PresenceOfHousing
-  "Classifies land use from property data."
   (classification (ranking PresenceOfHousing)
-        [1 :>]               HousingPresent  
-        :otherwise           HousingAbsent))
-;;  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
-;;        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
-;;        :otherwise   HousingAbsent))
+        [1 :>]       HousingPresent  
+        :otherwise   HousingAbsent)
+  (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+        [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+        :otherwise   HousingAbsent))
 
 (defmodel property-value HousingValue
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
@@ -124,7 +134,8 @@
   "Property owners who can afford to pay for the view"
   (bayesian ViewUse 
             :import  "aries.core::ViewUse.xdsl"
-            :context (property-value housing)
+            :context (property-value housing land-selector)
+            :required (LandOrSea)
             :result  view-use-undiscretizer 
             :keep    (HomeownerViewUse)))
 
@@ -138,8 +149,7 @@
 ;; Dependencies for the flow model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))	 								
+;; Altitude already called on above for land-selector, so not included here.
 
 ;; ---------------------------------------------------------------------------------------------------	 	 	
 ;; Top-level service models

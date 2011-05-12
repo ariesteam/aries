@@ -117,8 +117,8 @@
 
 (defmodel housing PresenceOfHousing
   (classification (ranking economics:AppraisedPropertyValue)
-        [1 :>]            HousingPresent
-        :otherwise        HousingAbsent)
+        [1 :>]       HousingPresent
+        :otherwise   HousingAbsent)
   (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
         [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
         :otherwise   HousingAbsent))
