@@ -48,7 +48,6 @@
     [40 60]             ModerateVegetationCover
     [20 40]             LowVegetationCover
     [1 20]              VeryLowVegetationCover))
-
 (defmodel summer-high-winter-low SummerHighWinterLow
      (classification (ranking habitat:SummerHighWinterLow)
         [:< 24]       VeryLowSOL
