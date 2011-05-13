@@ -3,7 +3,7 @@
   (:refer modelling :only (defscenario defmodel model measurement classification categorization
                             namespace-ontology ranking numeric-coding binary-coding 
                             probabilistic-measurement probabilistic-classification probabilistic-ranking
-                            identification bayesian count))
+                            identification bayesian no-data? count))
   (:refer aries :only (span)))
 
 (namespace-ontology recreationService)
@@ -145,8 +145,8 @@
   (classification sanPedro:DoveHabitat
                   :context ((numeric-coding sanPedro:MourningDoveHabitat    :as mourning-dove)
                             (numeric-coding sanPedro:WhiteWingedDoveHabitat :as white-winged-dove))
-                  :state   #(let [num-dove (+ (if (or (nil? (:mourning-dove %))     (Double/isNaN (:mourning-dove %)))  0 1)
-                                              (if (or (nil? (:white-winged-dove %)) (Double/isNaN (:white-winged-dove %))) 0 1))]
+                  :state   #(let [num-dove (+ (if (no-data? (:mourning-dove %)) 0 1)
+                                              (if (no-data? (:white-winged-dove %)) 0 1))]
                               (cond (= num-dove 2) (tl/conc 'sanPedro:MultipleDoveSpeciesPresent)
                                     (= num-dove 1) (tl/conc 'sanPedro:SingleDoveSpeciesPresent)
                                     :otherwise     (tl/conc 'sanPedro:DoveSpeciesAbsent)))))
@@ -155,8 +155,8 @@
   (classification sanPedro:DeerHabitat
                   :context ((numeric-coding sanPedro:MuleDeerHabitat      :as mule-deer)
                             (numeric-coding sanPedro:WhiteTailDeerHabitat :as white-tail-deer))
-                  :state   #(let [num-deer (+ (if (or (nil? (:mule-deer %))         (Double/isNaN (:mule-deer %)))       0 1)
-                                              (if (or (nil? (:white-tailed-deer %)) (Double/isNaN (:white-tail-deer %))) 0 1))]
+                  :state   #(let [num-deer (+ (if (no-data? (:mule-deer %)) 0 1)
+                                              (if (no-data? (:white-tail-deer %)) 0 1))]
                               (cond (= num-deer 2) (tl/conc 'sanPedro:MultipleDeerSpeciesPresent)
                                     (= num-deer 1) (tl/conc 'sanPedro:SingleDeerSpeciesPresent)
                                     :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
@@ -166,9 +166,9 @@
                   :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
                             (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail)
                             (numeric-coding sanPedro:GambelsQuailHabitat :as gambels-quail))
-                  :state   #(let [num-quail (+ (if (or (nil? (:scaled-quail %))  (Double/isNaN (:scaled-quail  %))) 0 1)
-                                               (if (or (nil? (:mearns-quail %))  (Double/isNaN (:mearns-quail  %))) 0 1)
-                                               (if (or (nil? (:gambels-quail %)) (Double/isNaN (:gambels-quail %))) 0 1))]
+                  :state   #(let [num-quail (+ (if (no-data? (:scaled-quail %)) 0 1)
+                                               (if (no-data? (:mearns-quail %)) 0 1)
+                                               (if (no-data? (:gambels-quail %)) 0 1))]
                               (cond (> num-quail 1) (tl/conc 'sanPedro:MultipleQuailSpeciesPresent)
                                     (= num-quail 1) (tl/conc 'sanPedro:SingleQuailSpeciesPresent)
                                     :otherwise      (tl/conc 'sanPedro:QuailSpeciesAbsent)))))
