@@ -137,7 +137,7 @@
                                    "carbon"                   "CO2Removed"
                                    "flood-water"              "FloodWaterMovement"
                                    "surface-water"            "SurfaceWaterMovement"
-                                   "sediment"                 "Sediment"
+                                   "sediment"                 "SedimentTransport"
                                    "coastal-storm-protection" "CoastalStormMovement"
                                    "subsistence-fisheries"    "SubsistenceFishAccessibility"}
                                   (params "-flow-model")))))

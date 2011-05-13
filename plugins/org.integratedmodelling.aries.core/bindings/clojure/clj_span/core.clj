@@ -244,7 +244,7 @@
                        "CO2Removed"
                        "FloodWaterMovement"
                        "SurfaceWaterMovement"
-                       "Sediment"
+                       "SedimentTransport"
                        "CoastalStormMovement"
                        "SubsistenceFishAccessibility"}
                      flow-model)

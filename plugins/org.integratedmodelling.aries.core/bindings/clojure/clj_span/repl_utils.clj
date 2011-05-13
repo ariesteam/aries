@@ -34,6 +34,28 @@
   (def bflow (let [rmap ((:blocked-flow        result-map))] (make-matrix rows cols #(get rmap % _0_))))
   (def aflow (let [rmap ((:actual-flow         result-map))] (make-matrix rows cols #(get rmap % _0_)))))
 
+(defn test-run-sediment
+  []
+  (run-span {:flow-model         "SedimentTransport"
+             :source-layer       source-layer
+             :sink-layer         sink-layer
+             :use-layer          use-layer
+             :flow-layers        flow-layers
+             :cell-width         cell-width
+             :cell-height        cell-height
+             :source-threshold   1000.0
+             :sink-threshold     500.0
+             :use-threshold      0.0
+             :trans-threshold    100.0
+             :source-type        :finite
+             :sink-type          :finite
+             :use-type           :infinite
+             :benefit-type       :rival ;; or :non-rival for turbidity
+             :downscaling-factor 1
+             :rv-max-states      10
+             :animation?         true
+             :result-type        :closure-map}))
+
 (defn test-run-flood
   []
   (run-span {:flow-model         "FloodWaterMovement"

@@ -84,6 +84,7 @@
                        :actual-weight   (*_ scale-factor actual-weight)
                        :sink-effects    (mapmap identity #(*_ scale-factor %) sink-effects)))))))
 
+;; FIXME: Must merge sink-AFs with sink-caps or our math is wrong.
 (defn- handle-sink-effects!
   "Computes the amount sunk by each sink encountered along an
    out-of-stream flow path. Reduces the sink-caps for each sink which
@@ -153,7 +154,7 @@
     (dosync
      (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
      (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
-    (if (and stream-bound? (nearby-levees current-id bearing levee? cell-width cell-height))
+    (if (and stream-bound? bearing (nearby-levees current-id bearing levee? cell-width cell-height))
       ;; Levees channel the water, so floodplain sinks and users will
       ;; not be affected.
       (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
@@ -239,7 +240,7 @@
              :actual-weight   source-weight
              :sink-effects    {}
              :stream-bound?   (in-stream? %)))
-        source-points))))))
+        (remove on-bounds? source-points)))))))
 
 (defn- make-buckets
   [mm2-per-cell layer active-points]
