@@ -1,475 +1,973 @@
 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
-  <owl:Ontology rdf:about="">
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
-  </owl:Ontology>
-  <owl:Class rdf:ID="RiparianAndWetland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SouthwestRegionalGapAnalysisLULC">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
-  </owl:Class>
-  <owl:Class rdf:ID="WhiteTailDeerHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="DeerHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="BSRDevelopmentSite4">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="BSRDevelopment"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ForestAndWoodland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianAndWetlandCode">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MesquiteManagement">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SingleDoveSpeciesPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="DoveHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianConditionClassHalfMeterRise">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CAPWaterAugmentationAllPerennial">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="CAPWaterAugmentation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="MultipleDoveSpeciesPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DoveHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HardwoodSoftwoodRatio">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#CommunityQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianSpringWetlandAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="RiparianSpringWetlandQuality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ModifiedEvapotranspirationVegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="BSRDevelopmentSite5">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#BSRDevelopment"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="MultipleQuailSpeciesPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="QuailHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="QuailSpeciesAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#QuailHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCPlans">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="AlpineAndCliff">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ScenicVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ModifiedScenicVegetationType"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="MultipleDeerSpeciesPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DeerHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HighQualityRiparianSpringWetland">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="OpenDevelopment">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCOpen"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DeerSpeciesAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DeerHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#BSRDevelopment">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
-  </owl:Class>
-  <owl:Class rdf:ID="GambelsQuailHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#QuailHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DryRiparianCondition">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="RiparianConditionClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="UrbanGrowth2020Constrained">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="UrbanGrowth"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="HighEvapotranspiration">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="EvapotranspirationClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateHardness">
-    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCConstrained">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCBase">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DesertScrub">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="EvapotranspirationVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HydrographySimple">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#RunningWater"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ScaledQuailHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#QuailHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateInfiltration">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="SoilInfiltrationClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianAndWater">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ScenicVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ModifiedScenicVegetationType"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="CAPWaterAugmentationHalfMeterRise">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#CAPWaterAugmentation"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCOpen">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#ModifiedScenicVegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ForestOrWoodlandAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ModifiedForestAndWoodland"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="UrbanBarrenWater">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianConditionClassAllWet">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="DevelopedOpen">
-    <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SingleDeerSpeciesPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DeerHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ConstrainedDevelopment">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Steinitz30ClassUrbanGrowthLULCConstrained"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="JavelinaHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="HarvestableSpeciesHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="OakWoodland">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#EvapotranspirationVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:about="#QuailHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="WhiteWingedDoveHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DoveHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#ModifiedForestAndWoodland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:about="#EvapotranspirationVegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:about="#RiparianConditionClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="RiparianOrWetlandAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ModifiedRiparianAndWetland"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCPlans">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="LowHardness">
-    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Other">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ScenicVegetationType"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:about="#ScenicVegetationType">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="NotDevelopedConstrained">
-    <rdfs:subClassOf rdf:resource="#ConstrainedDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SingleQuailSpeciesPresent">
-    <rdfs:subClassOf rdf:resource="#QuailHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MesquiteWoodland">
-    <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="LowQualityRiparianSpringWetland">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="NotDevelopedOpen">
-    <rdfs:subClassOf rdf:resource="#OpenDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Riparian">
-    <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="UrbanGrowthBaseline">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#UrbanGrowth"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DoveSpeciesAbsent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DoveHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="JavelinaHabitatAbsent">
-    <rdfs:subClassOf rdf:resource="#JavelinaHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HighHardness">
-    <rdfs:subClassOf rdf:resource="#HardwoodSoftwoodRatio"/>
-  </owl:Class>
-  <owl:Class rdf:about="#CAPWaterAugmentation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MourningDoveHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#DoveHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#UrbanGrowth">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/science/observation.owl#Scenario"/>
-  </owl:Class>
-  <owl:Class rdf:ID="BSRDevelopmentSite1">
-    <rdfs:subClassOf rdf:resource="#BSRDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateEvapotranspiration">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#EvapotranspirationClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="DeerHabitatCode">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Woodland">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SoilInfiltrationClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Infiltration"/>
-  </owl:Class>
-  <owl:Class rdf:about="#DeerHabitat">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#HarvestableSpeciesHabitat"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="UrbanGrowth2020Open">
-    <rdfs:subClassOf rdf:resource="#UrbanGrowth"/>
-  </owl:Class>
-  <owl:Class rdf:ID="JavelinaHabitatPresent">
-    <rdfs:subClassOf rdf:resource="#JavelinaHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MearnsQuailHabitat">
-    <rdfs:subClassOf rdf:resource="#QuailHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateQualityRiparianSpringWetland">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#RiparianSpringWetlandQuality"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#HarvestableSpeciesHabitat">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CAPWaterAugmentationBaseline">
-    <rdfs:subClassOf rdf:resource="#CAPWaterAugmentation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="LowEvapotranspiration">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#EvapotranspirationClass"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="LowQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HighInfiltration">
-    <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
-  </owl:Class>
-  <owl:Class rdf:ID="BSRDevelopmentSite2">
-    <rdfs:subClassOf rdf:resource="#BSRDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:about="#DoveHabitat">
-    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:ID="WaterPresence">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#CompleteWaterCoverage"/>
-  </owl:Class>
-  <owl:Class rdf:about="#EvapotranspirationClass">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Evapotranspiration"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Grassland">
-    <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MuleDeerHabitat">
-    <rdfs:subClassOf rdf:resource="#DeerHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULC">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCOpen">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Steinitz10ClassUrbanGrowthLULCBase">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ForestOrWoodlandPresent">
-    <rdfs:subClassOf rdf:resource="#ModifiedForestAndWoodland"/>
-    <rdfs:subClassOf rdf:resource="#ForestAndWoodland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ModerateQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#ModifiedRiparianAndWetland"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="DoveHabitatCode">
-    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Steinitz30ClassUrbanGrowthLULCConstrained">
-    <rdfs:subClassOf rdf:resource="#Steinitz30ClassUrbanGrowthLULC"/>
-  </owl:Class>
-  <owl:Class rdf:ID="QuailHabitatCode">
-    <rdfs:subClassOf rdf:resource="#HarvestableSpeciesHabitat"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Steinitz10ClassUrbanGrowthLULC">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#LandClassificationNumericMapping"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Forests">
-    <rdfs:subClassOf rdf:resource="#ScenicVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedScenicVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="WetRiparianCondition">
-    <rdfs:subClassOf rdf:resource="#RiparianConditionClass"/>
-  </owl:Class>
-  <owl:Class rdf:ID="BSRDevelopmentSite3">
-    <rdfs:subClassOf rdf:resource="#BSRDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Forest">
-    <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:about="#ModifiedRiparianAndWetland">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:about="#RiparianSpringWetlandQuality">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="LowInfiltration">
-    <rdfs:subClassOf rdf:resource="#SoilInfiltrationClass"/>
-  </owl:Class>
-  <owl:Class rdf:ID="DevelopedConstrained">
-    <rdfs:subClassOf rdf:resource="#ConstrainedDevelopment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="HighQualityRiparianOrWetlandPresent">
-    <rdfs:subClassOf rdf:resource="#ModifiedRiparianAndWetland"/>
-    <rdfs:subClassOf rdf:resource="#RiparianAndWetland"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Agriculture">
-    <rdfs:subClassOf rdf:resource="#EvapotranspirationVegetationType"/>
-    <rdfs:subClassOf rdf:resource="#ModifiedEvapotranspirationVegetationType"/>
-  </owl:Class>
-  <owl:Class rdf:ID="IntermediateRiparianCondition">
-    <rdfs:subClassOf rdf:resource="#RiparianConditionClass"/>
-  </owl:Class>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY lulc "http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#" >
+    <!ENTITY observation "http://www.integratedmodelling.org/ks/science/observation.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
+     xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
+     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#">
+    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
+        <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#Infiltration -->
+
+    <owl:Class rdf:about="&habitat;Infiltration"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Agriculture -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Agriculture">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#AlpineAndCliff -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AlpineAndCliff">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment">
+        <rdfs:subClassOf rdf:resource="&observation;Scenario"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite1 -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite1">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite2 -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite2">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite3 -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite3">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite4 -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite4">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite5 -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopmentSite5">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BSRDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation">
+        <rdfs:subClassOf rdf:resource="&observation;Scenario"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationAllPerennial -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationAllPerennial">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationBaseline -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationBaseline">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationHalfMeterRise -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationHalfMeterRise">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ConstrainedDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ConstrainedDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCConstrained"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitatCode -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitatCode">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerSpeciesAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerSpeciesAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DesertScrub -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DesertScrub">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitatCode -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitatCode">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveSpeciesAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveSpeciesAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DryRiparianCondition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DryRiparianCondition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Evapotranspiration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestAndWoodland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestAndWoodland">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestOrWoodlandAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestOrWoodlandAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestAndWoodland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedForestAndWoodland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestOrWoodlandPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestOrWoodlandPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ForestAndWoodland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedForestAndWoodland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forests -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forests">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#GambelsQuailHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#GambelsQuailHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Grassland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Grassland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HardwoodSoftwoodRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HardwoodSoftwoodRatio">
+        <rdfs:subClassOf rdf:resource="&habitat;CommunityQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighEvapotranspiration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighHardness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighHardness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HardwoodSoftwoodRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianSpringWetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianSpringWetland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HydrographySimple -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HydrographySimple">
+        <rdfs:subClassOf rdf:resource="&habitat;RunningWater"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#IntermediateRiparianCondition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#IntermediateRiparianCondition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitatAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitatAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitatPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitatPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowEvapotranspiration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowHardness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowHardness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HardwoodSoftwoodRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianSpringWetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianSpringWetland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MearnsQuailHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MearnsQuailHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MesquiteManagement -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MesquiteManagement">
+        <rdfs:subClassOf rdf:resource="&observation;Scenario"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MesquiteWoodland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MesquiteWoodland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateEvapotranspiration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateHardness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateHardness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HardwoodSoftwoodRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianSpringWetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianSpringWetland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedForestAndWoodland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedForestAndWoodland">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MourningDoveHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MourningDoveHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MuleDeerHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MuleDeerHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleDeerSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleDeerSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleDoveSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleDoveSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleQuailSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MultipleQuailSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#OakWoodland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OakWoodland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#OpenDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OpenDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCOpen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Other -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Other">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitatCode -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitatCode">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailSpeciesAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailSpeciesAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Riparian -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Riparian">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWater -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWater">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetlandCode -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetlandCode">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClassAllWet -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClassAllWet">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClassHalfMeterRise -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClassHalfMeterRise">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianOrWetlandAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianOrWetlandAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedRiparianAndWetland"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianAndWetland"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScaledQuailHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScaledQuailHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleDeerSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleDeerSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleDoveSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleDoveSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleQuailSpeciesPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleQuailSpeciesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltrationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltrationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Infiltration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SouthwestRegionalGapAnalysisLULC -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SouthwestRegionalGapAnalysisLULC">
+        <rdfs:subClassOf rdf:resource="&lulc;LandClassificationNumericMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC">
+        <rdfs:subClassOf rdf:resource="&lulc;LandClassificationNumericMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCBase -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCBase">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULCPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz10ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC">
+        <rdfs:subClassOf rdf:resource="&lulc;LandClassificationNumericMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCBase -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCBase">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedEvapotranspirationVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth">
+        <rdfs:subClassOf rdf:resource="&observation;Scenario"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth2020Constrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth2020Constrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth2020Open -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth2020Open">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowthBaseline -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowthBaseline">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterPresence -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterPresence">
+        <rdfs:subClassOf rdf:resource="&habitat;CompleteWaterCoverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WetRiparianCondition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WetRiparianCondition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianConditionClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WhiteTailDeerHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WhiteTailDeerHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WhiteWingedDoveHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WhiteWingedDoveHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Woodland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Woodland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModifiedScenicVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
 </rdf:RDF>
 
-<!-- Created with TopBraid -->
+
+
+<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+
