@@ -4289,7 +4289,34 @@ require re-discretization, likely by comparing their values to places where we a
 		</observation:hasObservationExtent>
 	</measurement:Ranking>
 
-<!-- This is a high-res version; diversions got lost in the upsampling process.  Replacing with the low-res version below.
+    <measurement:Measurement id="Diversions2">
+      <observation:hasObservable>
+        <waterSupplyService:SurfaceDiversionCapacity/>
+      </observation:hasObservable>
+      <rdfs:comment>Data source: Digitized locations of St. David and Pomerene diversions</rdfs:comment>
+      <metadata:hasPriority>0</metadata:hasPriority>
+      <measurement:unit>mm</measurement:unit>
+      <observation:hasDataSource>
+        <geospace:WCSDataSource>
+          <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+          <geospace:hasCoverageId>sanPedro:Diversions2</geospace:hasCoverageId>
+          <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+        </geospace:WCSDataSource>
+      </observation:hasDataSource>
+      <observation:hasObservationExtent>
+        <geospace:RasterGrid>
+          <geospace:hasXRangeMax>3</geospace:hasXRangeMax>
+          <geospace:hasYRangeMax>10</geospace:hasYRangeMax>
+          <geospace:hasLatLowerBound>31.803</geospace:hasLatLowerBound>
+          <geospace:hasLonLowerBound>-110.255</geospace:hasLonLowerBound>
+          <geospace:hasLatUpperBound>31.923</geospace:hasLatUpperBound>
+          <geospace:hasLonUpperBound>-110.205</geospace:hasLonUpperBound>
+          <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+        </geospace:RasterGrid>
+      </observation:hasObservationExtent>
+    </measurement:Measurement>
+
+<!-- Old version with pixels too small
 <measurement:Measurement id="Diversions">
 	<observation:hasObservable>
 		<waterSupplyService:SurfaceDiversionCapacity />
@@ -4316,33 +4343,6 @@ require re-discretization, likely by comparing their values to places where we a
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
 </measurement:Measurement> -->
-
-<measurement:Measurement id="Diversions2">
-<observation:hasObservable>
-<waterSupplyService:SurfaceDiversionCapacity/>
-</observation:hasObservable>
-	<rdfs:comment>Data source: Digitized locations of St. David and Pomerene diversions</rdfs:comment>
-	<metadata:hasPriority>0</metadata:hasPriority>
-	<measurement:unit>mm</measurement:unit>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>sanPedro:Diversions2</geospace:hasCoverageId>
-<geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>3</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>10</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>31.803</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-110.255</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>31.923</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-110.205</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:Measurement>
 
 	<measurement:Ranking id="global_terrestrialecoregions">
 		<observation:hasObservable>
