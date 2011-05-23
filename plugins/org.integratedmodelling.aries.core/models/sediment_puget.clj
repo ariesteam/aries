@@ -35,16 +35,16 @@
 
 (defmodel slope-stability SlopeStabilityClass
     (classification (numeric-coding habitat:SlopeStability)	 		
-      1           HighSlopeStability
+            1           HighSlopeStability
 	 		2           ModerateSlopeStability
 	 		3           LowSlopeStability))
 
 ;;This discretization is for SSURGO/STATSGO, paying attention to texture over inclusion of various sized rock fragments.
 (defmodel soil-texture SoilTextureClass
     (classification (numeric-coding habitat:SoilTexture)
-      #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105} CoarseSoilTexture
-      #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104} MediumSoilTexture
-      #{7 16 23 41 44 45 46 51 52 53 54 56 58 100 101} FineSoilTexture))
+      #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 51 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105 107 108 109 110 111 112 114 115 117 118 121 123 125 127 128 129 130 132 133 134 137 139 141 142 143 144 147 150 152 153 154 155 157 159 160 161 162 164 165 167 172 173 175 176 180 184 185 187 190 191 192 195} CoarseSoilTexture
+      #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104 116 124 126 140 151 163 166 168 169 179 181 189} MediumSoilTexture
+      #{7 16 23 41 44 45 46 52 53 54 56 58 100 101 106 113 119 120 122 131 135 136 138 145 146 148 149 156 170 171 174 177 182 183 186 188 193 194} FineSoilTexture))
 
 ;;Soil erodibility factor from USLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass
