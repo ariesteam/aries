@@ -8,7 +8,7 @@
 			<state id="VeryLowVegetationHeight" />
 			<probabilities>0.2 0.2 0.3 0.3</probabilities>
 		</cpt>
-		<cpt id="VegetationCover">
+		<cpt id="VegetationCoverClass">
 			<state id="VeryHighVegetationCover" />
 			<state id="HighVegetationCover" />
 			<state id="ModerateVegetationCover" />
@@ -21,12 +21,12 @@
 			<state id="ModerateWindMitigation" />
 			<state id="LowWindMitigation" />
 			<state id="VeryLowWindMitigation" />
-			<parents>VegetationHeight VegetationCover</parents>
+			<parents>VegetationHeight VegetationCoverClass</parents>
 			<probabilities>0.7000000000000001 0.2000000000000001 0.1 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.4 0.3 0.3 0 0.3 0.4 0.3 0 0.2 0.3 0.3 0.2 0.1 0.35 0.35 0.2 0.05 0.3 0.45 0.2 0.05 0.2 0.35 0.4 0.05 0.1 0.3 0.55 0 0.3 0.3 0.4 0 0.2 0.4 0.4 0 0.1 0.4 0.5 0 0.05 0.35 0.6 0 0.05 0.25 0.7 0 0 0.15 0.85 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.05 0.95 0 0 0.05 0.95</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network2" faultnameformat="nodestate">
 			<node id="VegetationHeight">
 				<name>VegetationHeight</name>
 				<interior color="ffffff" />
@@ -43,8 +43,8 @@
 				<position>441 87 529 120</position>
 				<barchart active="true" width="229" height="108" />
 			</node>
-			<node id="VegetationCover">
-				<name>VegetationCover</name>
+			<node id="VegetationCoverClass">
+				<name>VegetationCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
