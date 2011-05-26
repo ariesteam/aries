@@ -4,12 +4,12 @@
   (:refer modelling :only (defscenario defmodel measurement classification 
                             categorization ranking numeric-coding binary-coding 
                             namespace-ontology model
-                            identification bayesian count probabilistic-measurement))
+                            identification bayesian no-data? count probabilistic-measurement))
   (:refer aries :only (span)))
 
 (namespace-ontology waterSupplyService
   (representation:GenericObservable
-    (TempSurfaceWaterData)))
+    (TempSurfaceWaterData SurfaceDiversionCapacityCode)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Surface water source model
@@ -237,6 +237,13 @@
 
 (defmodel surface-diversions SurfaceDiversionCapacity
  (measurement SurfaceDiversionCapacity "mm"))
+
+(defmodel sdwrapper SurfaceDiversionCapacityCode
+  (binary-coding SurfaceDiversionCapacityCode
+                 :context (surface-diversions)
+                 :state   #(cond (no-data? (:surface-diversion-capacity %)) 0
+                                 (zero?    (:surface-diversion-capacity %)) 0
+                                 :otherwise                                 1)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Groundwater use model
