@@ -833,7 +833,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject puget_dam_storage_puget geofeatures:Reservoir
+(defobject puget_reservoir_storage_puget geofeatures:Reservoir
 
   "Data source: Derived from National Atlas of the United States, Major Dams of the United States"
 
