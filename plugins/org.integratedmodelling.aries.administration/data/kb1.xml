@@ -34,9 +34,11 @@
 	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
 
 <!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
+Bolte, J., et al. 2010. Envisioning Puget Sound Alternative Futures: PSNERP Final Report. Prepared for the Puget Sound Nearshore Ecosystem Restoration Partnership.
+Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A framework for preserving semi-arid regions in the Southwest. Journal of Contemporary Water Research and Education 114: 60-74.
 Steinitz, C., et al. 2003. Alternative futures for changing landscapes: The Upper San Pedro River Basin in Arizona and Sonora. Island Press: Wsahington, DC.
 Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona: Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173. 
-Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A framework for preserving semi-arid regions in the Southwest. Journal of Contemporary Water Research and Education 114: 60-74.-->
+-->
 
 <!--SWAT model data, uncalibrated, run through AGWA using default inputs and a 12-year precipitation record 
 (1960-1972) from 7 rain gages in the Upper San Pedro watershed. These are average annual values.
@@ -870,6 +872,226 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
   </observation:hasObservationExtent>
 </measurement:NumericCoding>
 
+<measurement:Ranking id="00imperv">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthImperviousBase/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      <geospace:hasTransformation>self * 100</geospace:hasTransformation>
+      <geospace:hasCoverageId>puget:00imperv</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="c60imperv">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthImperviousConstrained2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      <geospace:hasTransformation>self * 100</geospace:hasTransformation>
+      <geospace:hasCoverageId>puget:c60imperv</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="o60imperv">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthImperviousOpen2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      <geospace:hasTransformation>self * 100</geospace:hasTransformation>
+      <geospace:hasCoverageId>puget:o60imperv</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="p60imperv">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthImperviousPlans2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      <geospace:hasTransformation>self * 100</geospace:hasTransformation>
+      <geospace:hasCoverageId>puget:p60imperv</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:NumericCoding id="CLULC60">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthLULCConstrained2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+      <geospace:hasCoverageId>puget:CLULC60</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:NumericCoding id="LULC00">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthLULCBase/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+      <geospace:hasCoverageId>puget:LULC00</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:NumericCoding id="OLULC60">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthLULCOpen2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+      <geospace:hasCoverageId>puget:OLULC60</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:NumericCoding id="PLULC60">
+  <observation:hasObservable>
+    <puget:ENVISIONUrbanGrowthLULCPlans2060/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Bolte et al. (2010)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://envision.bioe.orst.edu/StudyAreas/PugetSound/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+      <geospace:hasCoverageId>puget:PLULC60</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>10060</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>9214</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>5160382.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>370703.312</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5436862.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>672563.312</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
 <measurement:BinaryCoding id="dominicanRepublic_coffee_farms">
   <observation:hasObservable>
     <soilretentionEcology:FarmlandCode />
@@ -1126,6 +1348,54 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Count>
+
+<observation:Categorization id="sanPedro_grassland_quality_az">
+  <observation:hasObservable>
+    <habitat:GrasslandQuality/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: The Nature Conservancy - Arizona</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://azconservation.org/downloads/grasslands_assessment_gis_data</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>sanPedro:grassland_quality_az</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>3372453.535609444</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>165613.64288706274</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4102654.9781968</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>779348.8916769708</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</observation:Categorization>
+
+<measurement:BinaryCoding id="sanPedro_grazing_land_az">
+  <observation:hasObservable>
+    <habitat:PastureLand/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: BLM Grazing Allotments and Arizona State Trust Land</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>sanPedro:grazing_land_az</geospace:hasCoverageId>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>3460635.309193411</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>119493.20265665092</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4106671.988379051</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>698577.6979459908</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
 <measurement:BinaryCoding id="sanPedro_mex_highway">
   <observation:hasObservable>
@@ -3697,6 +3967,34 @@ Brookshire, D.S., et al. 2010. Ecosystem services and reallocation choices: A fr
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
 </measurement:Ranking>
+
+<measurement:Measurement id="soil_depth">
+  <observation:hasObservable>
+    <habitat:SoilDepth/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS STATSGO soils data</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/statsgo</metadata:hasURL>
+  <measurement:unit>cm</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:soil_depth</geospace:hasCoverageId>
+      <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>57786</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>24837</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>24.546</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-124.737</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>49.385</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-66.949</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
 
 <measurement:Ranking id="puget_pugeterosionmetrics">
   <observation:hasObservable>
