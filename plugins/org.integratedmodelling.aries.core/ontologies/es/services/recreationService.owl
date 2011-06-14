@@ -301,6 +301,7 @@
 
     <owl:Class rdf:about="&recreationService;Congestion">
         <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -341,7 +342,7 @@
 
     <owl:Class rdf:about="&recreationService;Development">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -544,6 +545,7 @@
 
     <owl:Class rdf:about="&recreationService;HikingDifficulty">
         <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -561,6 +563,7 @@
 
     <owl:Class rdf:about="&recreationService;HikingDistanceClass">
         <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -578,6 +581,7 @@
     <owl:Class rdf:about="&recreationService;HikingSlopeClass">
         <rdfs:label rdf:datatype="&xsd;string">HikingSlope</rdfs:label>
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1045,6 +1049,24 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;NonrenewableHuntingFishingGathering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;NaturalFeatures"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;SpeciesOrEcosystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
                 <owl:someValuesFrom rdf:resource="&recreationService;NatureWatching"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1056,20 +1078,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;RenewableHuntingFishingGathering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;NonrenewableHuntingFishingGathering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;SpeciesOrEcosystems"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;ProductionOfPlantsOrAnimals"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1080,14 +1090,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;ProductionOfPlantsOrAnimals"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;NaturalFeatures"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;RenewableHuntingFishingGathering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The enjoyment of nature through various outdoor activities.</rdfs:comment>
@@ -1148,7 +1152,6 @@
     <owl:Class rdf:about="&recreationService;PublicAccessClass">
         <rdfs:label rdf:datatype="&xsd;string">PublicAccess</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
     
 
@@ -1217,8 +1220,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;VisuallySignificantLanscapes"/>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;OutdoorRecreation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1230,7 +1233,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;PlantsOrAnimalsForRecreationalHarvest"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;VisuallySignificantLanscapes"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1247,8 +1250,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;OutdoorRecreation"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="&recreationService;PlantsOrAnimalsForRecreationalHarvest"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The use of nature as a place for rest, relaxation, or contemplation.</rdfs:comment>
@@ -1447,6 +1450,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteBirdingQuality">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1455,6 +1459,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteDeerHuntingQuality">
         <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1463,6 +1468,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteDoveHuntingQuality">
         <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1479,6 +1485,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteJavelinaHuntingQuality">
         <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1487,6 +1494,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteQuailHuntingQuality">
         <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1495,6 +1503,7 @@
 
     <owl:Class rdf:about="&recreationService;SiteWildlifeQuality">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1616,6 +1625,7 @@
     <owl:Class rdf:about="&recreationService;TravelTimeClass">
         <rdfs:label rdf:datatype="&xsd;string">TravelTime</rdfs:label>
         <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1726,6 +1736,7 @@
         <rdfs:label rdf:datatype="&xsd;string">ViewPosition</rdfs:label>
         <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1734,6 +1745,7 @@
 
     <owl:Class rdf:about="&recreationService;ViewerEnjoyment">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1751,6 +1763,7 @@
 
     <owl:Class rdf:about="&recreationService;WaterView">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1767,6 +1780,7 @@
 
     <owl:Class rdf:about="&recreationService;WildlifeSpeciesRichnessClass">
         <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
