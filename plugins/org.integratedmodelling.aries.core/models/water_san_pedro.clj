@@ -484,7 +484,7 @@
     (classification ModifiedVegetationCoverClass
         :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
+                  (conc 'waterSupplyService:VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover-class %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:ModifiedEvapotranspirationVegetationType
@@ -496,7 +496,7 @@
     (classification ModifiedMountainFront
         :context (open-development-scenario mountain-front)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'MountainFrontAbsent)
+                  (conc 'waterSupplyService:MountainFrontAbsent)
                   (:mountain-front %)))))
 
 (defscenario constrained-development-water
@@ -505,7 +505,7 @@
     (classification ModifiedVegetationCoverClass
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
+                  (conc 'waterSupplyService:VeryLowVegetationCover) ;;Might have to add "waterSupplyService:" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover-class %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:ModifiedEvapotranspirationVegetationType
@@ -517,5 +517,5 @@
     (classification ModifiedMountainFront
         :context (constrained-development-scenario mountain-front)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'MountainFrontAbsent)
+                  (conc 'waterSupplyService:MountainFrontAbsent)
                   (:mountain-front %)))))

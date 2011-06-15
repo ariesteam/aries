@@ -276,13 +276,13 @@
     (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                  (conc 'carbonService:VeryLowVegetationCover) ;;Might have to add (or delete!) "carbonService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (open-development-scenario fire-frequency)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                  (conc 'carbonService:NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
@@ -297,13 +297,13 @@
     (classification ModifiedVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                  (conc 'carbonService:VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (constrained-development-scenario fire-frequency)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'NoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                  (conc 'carbonService:exNoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement ModifiedGreenhouseGasEmissions "t/ha*year"

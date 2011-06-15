@@ -233,19 +233,19 @@
     (classification ModifiedDevelopedLand
         :context (open-development-scenario developed-land)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
+                  (conc 'aestheticService:LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
                   (:developed-land %))))
   (model PresenceOfHousing
     (classification ModifiedPresenceOfHousing
         :context (open-development-scenario housing)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
                   (:presence-of-housing %))))
   (model HousingValue
     (classification ModifiedHousingValue
         :context (open-development-scenario property-value)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
                   (:housing-value %)))))
 
 (defscenario constrained-development-viewshed
@@ -260,17 +260,17 @@
     (classification ModifiedDevelopedLand
         :context (constrained-development-scenario developed-land)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
+                  (conc 'aestheticService:LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
                   (:developed-land %))))
   (model PresenceOfHousing
     (classification ModifiedPresenceOfHousing
         :context (constrained-development-scenario housing)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
                   (:presence-of-housing %))))
   (model HousingValue
     (classification ModifiedHousingValue
         :context (constrained-development-scenario property-value)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
                   (:housing-value %)))))
