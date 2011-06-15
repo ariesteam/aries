@@ -291,7 +291,42 @@
      is a world in which the emphasis is on local solutions to economic, social, and 
      environmental sustainability, with continuously increasing population (lower than A2)
      and intermediate economic development. " 
-) 
-		 			
+      )
 
+(defmodel constrained-development-scenario puget:ConstrainedDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCConstrained2060) 
+      4                                     puget:HighDensityDevelopedConstrained
+      6                                     puget:ModerateDensityDevelopedConstrained
+      5                                     puget:LowDensityDevelopedConstrained
+      7                                     puget:UrbanOpenSpaceConstrained
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedConstrained))
+
+(defmodel open-development-scenario puget:OpenDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCOpen2060) 
+      4                                     puget:HighDensityDevelopedOpen
+      6                                     puget:ModerateDensityDevelopedOpen
+      5                                     puget:LowDensityDevelopedOpen
+      7                                     puget:UrbanOpenSpaceOpen
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedOpen))
+		 			
+(defscenario open-development-carbon
+  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCover
+    (classification ModifiedVegetationCover
+        :context (open-development-scenario percent-vegetation-cover)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                  (:percent-vegetation-cover %))))
+  (model FireFrequency
+    (classification ModifiedFireFrequency
+        :context (open-development-scenario fire-frequency)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                  (:fire-frequency %))))
+  (model GreenhouseGasEmissions
+    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+        :context (open-development-scenario use-simple)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (* 1.568 (:greenhouse-gas-emissions %))
+                  (:greenhouse-gas-emissions %)))))
 		 			
