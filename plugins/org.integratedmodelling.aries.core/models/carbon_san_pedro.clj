@@ -276,19 +276,19 @@
     (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:VeryLowVegetationCover) ;;Might have to add (or delete!) "carbonService" in between the tick and VeryLowVegetationCover
+                  (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (open-development-scenario fire-frequency)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                  (conc 'carbonService:NoFireFrequency)    
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
         :context (open-development-scenario use-simple)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (* 1.568 (:greenhouse-gas-emissions %))
+                  (* 1.568 (:greenhouse-gas-emissions %)) ;;Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
 
 (defscenario constrained-development-carbon
@@ -297,17 +297,17 @@
     (classification ModifiedVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+                  (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (constrained-development-scenario fire-frequency)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:exNoFireFrequency) ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+                  (conc 'carbonService:exNoFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
         :context (constrained-development-scenario use-simple)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (* 1.104 (:greenhouse-gas-emissions %))
+                  (* 1.104 (:greenhouse-gas-emissions %)) ;;Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))

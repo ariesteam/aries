@@ -308,25 +308,105 @@
       5                                     puget:LowDensityDevelopedOpen
       7                                     puget:UrbanOpenSpaceOpen
       #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedOpen))
-		 			
+
 (defscenario open-development-carbon
-  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+ "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
     (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
-        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'VeryLowVegetationCover) ;;Might have to add "carbonService" in between the tick and VeryLowVegetationCover
+        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen)
+                                               (conc 'puget:ModerateDensityDevelopedOpen))
+                  (conc 'carbonService:VeryLowVegetationCover)
+                  (:percent-vegetation-cover %))
+                (if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                  (conc 'carbonService:LowVegetationCover)
+                  (:percent-vegetation-cover %))
+                (if (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
+                  (conc 'carbonService:ModerateVegetationCover)
                   (:percent-vegetation-cover %))))
+  (model HardwoodSoftwoodRatio
+    (classification ModifiedHardwoodSoftwoodRatio
+        :context (open-development-scenario hardwood-softwood-ratio)
+        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedOpen)
+                                               (conc 'puget:LowDensityDevelopedOpen)
+                                               (conc 'puget:UrbanOpenSpaceOpen))
+                  (conc 'carbonService:ModerateHardness)
+                  (:hardwood-softwood-ratio %))))
+  (model SuccessionalStage
+    (classification ModifiedSuccessionalStage
+        :context (open-development-scenario successional-stage)
+        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedOpen)
+                                               (conc 'puget:LowDensityDevelopedOpen)
+                                               (conc 'puget:UrbanOpenSpaceOpen))
+                  (conc 'carbonService:NoSuccession)
+                  (:successional-stage %))))
   (model FireFrequency
     (classification ModifiedFireFrequency
         :context (open-development-scenario fire-frequency)
-        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'NoFireFrequency)     ;;Might have to add "carbonService" in between the tick and NoFireFrequency
+        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedOpen)
+                                               (conc 'puget:LowDensityDevelopedOpen)
+                                               (conc 'puget:UrbanOpenSpaceOpen))
+                  (conc 'carbonService:LowFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
         :context (open-development-scenario use-simple)
-        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (* 1.568 (:greenhouse-gas-emissions %))
+        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedOpen)
+                                               (conc 'puget:LowDensityDevelopedOpen))
+                  (* 1.871 (:greenhouse-gas-emissions %)) ;;Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
-		 			
+
+(defscenario constrained-development-carbon
+ "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCover
+    (classification ModifiedVegetationCover
+        :context (constrained-development-scenario percent-vegetation-cover)
+        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained)
+                                                      (conc 'puget:ModerateDensityDevelopedConstrained))
+                  (conc 'carbonService:VeryLowVegetationCover)
+                  (:percent-vegetation-cover %))
+                (if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                  (conc 'carbonService:LowVegetationCover)
+                  (:percent-vegetation-cover %))
+                (if (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
+                  (conc 'carbonService:ModerateVegetationCover)
+                  (:percent-vegetation-cover %))))
+  (model HardwoodSoftwoodRatio
+    (classification ModifiedHardwoodSoftwoodRatio
+        :context (constrained-development-scenario hardwood-softwood-ratio)
+        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedConstrained)
+                                               (conc 'puget:LowDensityDevelopedConstrained)
+                                               (conc 'puget:UrbanOpenSpaceConstrained))
+                  (conc 'carbonService:ModerateHardness)
+                  (:hardwood-softwood-ratio %))))
+  (model SuccessionalStage
+    (classification ModifiedSuccessionalStage
+        :context (constrained-development-scenario successional-stage)
+        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedConstrained)
+                                               (conc 'puget:LowDensityDevelopedConstrained)
+                                               (conc 'puget:UrbanOpenSpaceConstrained))
+                  (conc 'carbonService:NoSuccession)
+                  (:successional-stage %))))
+  (model FireFrequency
+    (classification ModifiedFireFrequency
+        :context (constrained-development-scenario fire-frequency)
+        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedConstrained)
+                                               (conc 'puget:LowDensityDevelopedConstrained)
+                                               (conc 'puget:UrbanOpenSpaceConstrained))
+                  (conc 'carbonService:LowFireFrequency)
+                  (:fire-frequency %))))
+  (model GreenhouseGasEmissions
+    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+        :context (constrained-development-scenario use-simple)
+        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
+                                               (conc 'puget:ModerateDensityDevelopedConstrained)
+                                               (conc 'puget:LowDensityDevelopedConstrained))
+                  (* 1.871 (:greenhouse-gas-emissions %)) ;;Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
+                  (:greenhouse-gas-emissions %)))))

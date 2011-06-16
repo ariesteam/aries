@@ -192,3 +192,56 @@
         :context (source homeowners sink altitude)))
 
 ;;Develop another one of these to account for scenic drives.
+
+;; ----------------------------------------------------------------------------------------------
+;; Scenarios
+
+;; Observations that are specifically tagged for a scenario will be picked up automatically
+;; instead of the baseline ones.
+;; ----------------------------------------------------------------------------------------------
+
+(defmodel constrained-development-scenario puget:ConstrainedDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCConstrained2060) 
+      4                                     puget:HighDensityDevelopedConstrained
+      6                                     puget:ModerateDensityDevelopedConstrained
+      5                                     puget:LowDensityDevelopedConstrained
+      7                                     puget:UrbanOpenSpaceConstrained
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedConstrained))
+
+(defmodel open-development-scenario puget:OpenDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCOpen2060) 
+      4                                     puget:HighDensityDevelopedOpen
+      6                                     puget:ModerateDensityDevelopedOpen
+      5                                     puget:LowDensityDevelopedOpen
+      7                                     puget:UrbanOpenSpaceOpen
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedOpen))
+
+(defscenario open-development-viewshed
+  "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
+  (model PresenceOfHousing
+    (classification ModifiedPresenceOfHousing
+        :context (open-development-scenario housing)
+        :state #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                  (conc 'aestheticService:HousingPresent)  
+                  (:presence-of-housing %))))
+  (model HousingValue
+    (classification ModifiedHousingValue
+        :context (open-development-scenario property-value)
+        :state #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                  (conc 'aestheticService:ModerateHousingValue) 
+                  (:housing-value %)))))
+
+(defscenario constrained-development-viewshed
+  "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
+  (model PresenceOfHousing
+    (classification ModifiedPresenceOfHousing
+        :context (constrained-development-scenario housing)
+        :state #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                  (conc 'aestheticService:HousingPresent) 
+                  (:presence-of-housing %))))
+  (model HousingValue
+    (classification ModifiedHousingValue
+        :context (constrained-development-scenario property-value)
+        :state #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                  (conc 'aestheticService:ModerateHousingValue)  
+                  (:housing-value %)))))
