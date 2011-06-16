@@ -116,7 +116,7 @@
 (defmodel scenic-highways ScenicDrivePresence
   (classification (binary-coding ScenicDrives)
                 1             ScenicDrivesPresent
-ploa                :otherwise    ScenicDrivesAbsent))
+                :otherwise    ScenicDrivesAbsent))
 
 ;;undiscretizer for view use
 ;;  This needs to be a range (high-mod-low)
