@@ -382,51 +382,54 @@
   (model PercentVegetationCover
     (classification ModifiedVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
-        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen)
-                                               (conc 'puget:ModerateDensityDevelopedOpen))
-                  (conc 'soilretentionEcology:VeryLowVegetationCover)
-                  (:percent-vegetation-cover %))
-                (if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
-                  (conc 'soilretentionEcology:LowVegetationCover)
-                  (:percent-vegetation-cover %))
-                (if (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
-                  (conc 'soilretentionEcology:ModerateVegetationCover)
-                  (:percent-vegetation-cover %))))
+        :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                          (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                      
+                      (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                      (conc 'carbonService:LowVegetationCover)
+
+                      (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
+                      (conc 'carbonService:ModerateVegetationCover)
+
+                      :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStageClass
     (classification ModifiedSuccessionalStageClass
         :context (open-development-scenario successional-stage)
-        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
-                                               (conc 'puget:ModerateDensityDevelopedOpen)
-                                               (conc 'puget:LowDensityDevelopedOpen)
-                                               (conc 'puget:UrbanOpenSpaceOpen))
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'soilretentionEcology:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
     (classification ModifiedHydrologicSoilsGroup
         :context (open-development-scenario soil-group)
-        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;Check with Gary on this syntax: it's very likely to be wrong
-                                               (conc 'puget:ModerateDensityDevelopedOpen)
-                                               (conc 'puget:LowDensityDevelopedOpen)
-                                               (conc 'puget:UrbanOpenSpaceOpen))
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
   (model VegetationType
     (classification ModifiedVegetationType
         :context (open-development-scenario vegetation-type)
-        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen) ;;More coarsely hacked syntax to check with Gary
-                                               (conc 'puget:ModerateDensityDevelopedOpen)
-                                               (conc 'puget:LowDensityDevelopedOpen))
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
                   (conc 'soilretentionEcology:CropsBarrenDeveloped)
-                  #(if (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
+
+                  (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
                   (conc 'soilretentionEcology:ForestGrasslandWetland)
-                  (:vegetation-type %)))))
+
+                  :otherwise (:vegetation-type %))))
   (model Farmland
     (classification ModifiedFarmland
         :context (open-development-scenario farmland)
-        :state #(if (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen)
-                                               (conc 'puget:ModerateDensityDevelopedOpen)
-                                               (conc 'puget:LowDensityDevelopedOpen)
-                                               (conc 'puget:UrbanOpenSpaceOpen))
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'soilretentionEcology:FarmlandAbsent) 
                   (:farmland %)))))
 
@@ -435,50 +438,53 @@
   (model PercentVegetationCover
     (classification ModifiedVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
-        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained)
-                                                      (conc 'puget:ModerateDensityDevelopedConstrained))
-                  (conc 'soilretentionEcology:VeryLowVegetationCover)
-                  (:percent-vegetation-cover %))
-                (if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
-                  (conc 'soilretentionEcology:LowVegetationCover)
-                  (:percent-vegetation-cover %))
-                (if (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
-                  (conc 'soilretentionEcology:ModerateVegetationCover)
-                  (:percent-vegetation-cover %))))
+        :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                          (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                      
+                      (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                      (conc 'carbonService:LowVegetationCover)
+
+                      (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
+                      (conc 'carbonService:ModerateVegetationCover)
+
+                      :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStageClass
     (classification ModifiedSuccessionalStageClass
         :context (constrained-development-scenario successional-stage)
-        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
-                                                      (conc 'puget:ModerateDensityDevelopedConstrained)
-                                                      (conc 'puget:LowDensityDevelopedConstrained)
-                                                      (conc 'puget:UrbanOpenSpaceConstrained))
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'soilretentionEcology:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
     (classification ModifiedHydrologicSoilsGroup
         :context (constrained-development-scenario soil-group)
-        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;Check with Gary on this syntax: it's very likely to be wrong
-                                                      (conc 'puget:ModerateDensityDevelopedConstrained)
-                                                      (conc 'puget:LowDensityDevelopedConstrained)
-                                                      (conc 'puget:UrbanOpenSpaceConstrained))
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
   (model VegetationType
     (classification ModifiedVegetationType
         :context (constrained-development-scenario vegetation-type)
-        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained) ;;More coarsely hacked syntax to check with Gary
-                                                      (conc 'puget:ModerateDensityDevelopedConstrained)
-                                                      (conc 'puget:LowDensityDevelopedConstrained))
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
                   (conc 'soilretentionEcology:CropsBarrenDeveloped)
-                  #(if (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
+
+                  (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
                   (conc 'soilretentionEcology:ForestGrasslandWetland)
-                  (:vegetation-type %)))))
+                     
+                  :otherwise (:vegetation-type %))))
   (model Farmland
     (classification ModifiedFarmland
         :context (constrained-development-scenario farmland)
-        :state #(if (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained)
-                                                      (conc 'puget:ModerateDensityDevelopedConstrained)
-                                                      (conc 'puget:LowDensityDevelopedConstrained)
-                                                      (conc 'puget:UrbanOpenSpaceConstrained))
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'soilretentionEcology:FarmlandAbsent) 
                   (:farmland %)))))
