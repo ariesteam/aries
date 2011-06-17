@@ -264,7 +264,7 @@
      bsr_sc_5))
 
 (defcontext mesquite
-  "Just testing gazetteer shapes"
+  "San Pedro mesquite removal"
   (grid resolution san_pedro_sprnca)
 ;; Changes to surface water model
   (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
@@ -290,5 +290,9 @@
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
   (transform 'carbonService:HardwoodSoftwoodRatio 'carbonService:LowHardness
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
+
+(defcontext mesquite-base
+   "Baseline to compare mesquite results at the same spatial extent and resolution"
+   (grid resolution san_pedro_sprnca))
 
 ;;CAP water augmentation scenarios handeled entirely through defscenario statements.
