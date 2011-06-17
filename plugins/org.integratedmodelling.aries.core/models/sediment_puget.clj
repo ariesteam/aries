@@ -1,7 +1,8 @@
 (ns core.models.sediment-puget
   (:refer-clojure :rename {count length}) 
+  (:refer tl :only [is? conc])
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
-                            namespace-ontology ranking numeric-coding binary-coding
+                            namespace-ontology ranking numeric-coding binary-coding model
                             probabilistic-measurement probabilistic-classification probabilistic-ranking 
                             identification bayesian count))
   (:refer aries :only (span)))
@@ -380,7 +381,7 @@
 (defscenario open-development-sediment
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
@@ -394,7 +395,7 @@
 
                       :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStageClass
-    (classification ModifiedSuccessionalStageClass
+    (classification SuccessionalStageClass
         :context (open-development-scenario successional-stage)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -403,7 +404,7 @@
                   (conc 'soilretentionEcology:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
-    (classification ModifiedHydrologicSoilsGroup
+    (classification HydrologicSoilsGroup
         :context (open-development-scenario soil-group)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -412,9 +413,9 @@
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
   (model VegetationType
-    (classification ModifiedVegetationType
+    (classification VegetationType
         :context (open-development-scenario vegetation-type)
-        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+        :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
                   (conc 'soilretentionEcology:CropsBarrenDeveloped)
@@ -424,7 +425,7 @@
 
                   :otherwise (:vegetation-type %))))
   (model Farmland
-    (classification ModifiedFarmland
+    (classification Farmland
         :context (open-development-scenario farmland)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -436,7 +437,7 @@
 (defscenario constrained-development-sediment
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))
@@ -450,7 +451,7 @@
 
                       :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStageClass
-    (classification ModifiedSuccessionalStageClass
+    (classification SuccessionalStageClass
         :context (constrained-development-scenario successional-stage)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -459,7 +460,7 @@
                   (conc 'soilretentionEcology:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
-    (classification ModifiedHydrologicSoilsGroup
+    (classification HydrologicSoilsGroup
         :context (constrained-development-scenario soil-group)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -468,9 +469,9 @@
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
   (model VegetationType
-    (classification ModifiedVegetationType
+    (classification VegetationType
         :context (constrained-development-scenario vegetation-type)
-        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+        :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
                   (conc 'soilretentionEcology:CropsBarrenDeveloped)
@@ -480,7 +481,7 @@
                      
                   :otherwise (:vegetation-type %))))
   (model Farmland
-    (classification ModifiedFarmland
+    (classification Farmland
         :context (constrained-development-scenario farmland)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))

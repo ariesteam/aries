@@ -1,5 +1,6 @@
 (ns core.models.carbon-puget
 	(:refer-clojure :rename {count length}) 
+  (:refer tl :only [is? conc])
   (:refer modelling :only (defscenario defmodel model measurement classification 
                             categorization ranking numeric-coding binary-coding 
                             probabilistic-measurement probabilistic-classification
@@ -312,7 +313,7 @@
 (defscenario open-development-carbon
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
@@ -326,7 +327,7 @@
                       
                       :otherwise (:percent-vegetation-cover %))))
   (model HardwoodSoftwoodRatio
-    (classification ModifiedHardwoodSoftwoodRatio
+    (classification HardwoodSoftwoodRatio
         :context (open-development-scenario hardwood-softwood-ratio)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -335,7 +336,7 @@
                   (conc 'carbonService:ModerateHardness)
                   (:hardwood-softwood-ratio %))))
   (model SuccessionalStage                              
-    (classification ModifiedSuccessionalStage
+    (classification SuccessionalStage
         :context (open-development-scenario successional-stage)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -344,7 +345,7 @@
                   (conc 'carbonService:NoSuccession)
                   (:successional-stage %))))
   (model FireFrequency
-    (classification ModifiedFireFrequency
+    (classification FireFrequency
         :context (open-development-scenario fire-frequency)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -353,7 +354,7 @@
                   (conc 'carbonService:LowFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
-    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+    (measurement GreenhouseGasEmissions "t/ha*year"
         :context (open-development-scenario use-simple)
         :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -364,7 +365,7 @@
 (defscenario constrained-development-carbon
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))
@@ -378,7 +379,7 @@
                   
                   :otherwise (:percent-vegetation-cover %))))
   (model HardwoodSoftwoodRatio
-    (classification ModifiedHardwoodSoftwoodRatio
+    (classification HardwoodSoftwoodRatio
         :context (constrained-development-scenario hardwood-softwood-ratio)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -387,7 +388,7 @@
                   (conc 'carbonService:ModerateHardness)
                   (:hardwood-softwood-ratio %))))
   (model SuccessionalStage
-    (classification ModifiedSuccessionalStage
+    (classification SuccessionalStage
         :context (constrained-development-scenario successional-stage)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -396,7 +397,7 @@
                   (conc 'carbonService:NoSuccession)
                   (:successional-stage %))))
   (model FireFrequency
-    (classification ModifiedFireFrequency
+    (classification FireFrequency
         :context (constrained-development-scenario fire-frequency)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -405,7 +406,7 @@
                   (conc 'carbonService:LowFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
-    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+    (measurement GreenhouseGasEmissions "t/ha*year"
         :context (constrained-development-scenario use-simple)
         :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))

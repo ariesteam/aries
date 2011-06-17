@@ -1,6 +1,7 @@
 (ns core.models.flood-puget
   (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defagent defscenario defmodel measurement classification 
+  (:refer tl :only [is? conc])
+  (:refer modelling :only (defagent defscenario defmodel measurement classification model
                             namespace-ontology categorization ranking numeric-coding
                             probabilistic-measurement probabilistic-classification
                             binary-coding identification bayesian count))
@@ -798,7 +799,7 @@ be added to this list if desired."
 (defscenario open-development-flood
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
@@ -812,7 +813,7 @@ be added to this list if desired."
                       
                       :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStage
-    (classification ModifiedSuccessionalStage
+    (classification SuccessionalStage
           :context (open-development-scenario successional-stage)
           :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -821,18 +822,18 @@ be added to this list if desired."
                   (conc 'floodService:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
-    (classification ModifiedHydrologicSoilsGroup
-         :context (open-development-scenario soil-group-puget
+    (classification HydrologicSoilsGroup
+         :context (open-development-scenario soil-group-puget)
          :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                          (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                          (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                          (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))                                    
                   (conc 'floodService:SoilGroupD)
-                  (:soil-group-puget)))))
+                  (:soil-group-puget))))
   (model VegetationType
-    (classification ModifiedVegetationType
+    (classification VegetationType
         :context (open-development-scenario vegetation-type)
-        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+        :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
                   (conc 'floodService:DevelopedCultivatedVegetation)
@@ -853,7 +854,7 @@ be added to this list if desired."
 (defscenario constrained-development-flood
  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))
@@ -867,7 +868,7 @@ be added to this list if desired."
 
                 :otherwise (:percent-vegetation-cover %))))
   (model SuccessionalStage
-    (classification ModifiedSuccessionalStage
+    (classification SuccessionalStage
        :context (constrained-development-scenario successional-stage)
        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
@@ -876,18 +877,18 @@ be added to this list if desired."
                   (conc 'floodService:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
-    (classification ModifiedHydrologicSoilsGroup
-       :context (constrained-development-scenario soil-group-puget
+    (classification HydrologicSoilsGroup
+       :context (constrained-development-scenario soil-group-puget)
        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'floodService:SoilGroupD)
-                  (:soil-group-puget)))))
+                  (:soil-group-puget))))
   (model VegetationType
-    (classification ModifiedVegetationType
+    (classification VegetationType
         :context (constrained-development-scenario vegetation-type)
-        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+        :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
                   (conc 'floodService:DevelopedCultivatedVegetation)

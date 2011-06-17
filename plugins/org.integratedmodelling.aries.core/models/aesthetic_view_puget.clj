@@ -1,6 +1,7 @@
 (ns core.models.aesthetic-view-puget
   (:refer-clojure :rename {count length})
-  (:refer modelling :only [defscenario namespace-ontology
+  (:refer tl :only [is? conc])
+  (:refer modelling :only [defscenario namespace-ontology model
                            defmodel measurement classification categorization ranking numeric-coding
                            probabilistic-measurement probabilistic-classification probabilistic-ranking
                            binary-coding identification bayesian count])
@@ -219,13 +220,13 @@
 (defscenario open-development-viewshed
   "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (open-development-scenario housing)
         :state #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:HousingPresent)  
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (open-development-scenario property-value)
         :state #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:ModerateHousingValue) 
@@ -234,13 +235,13 @@
 (defscenario constrained-development-viewshed
   "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (constrained-development-scenario housing)
         :state #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:HousingPresent) 
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (constrained-development-scenario property-value)
         :state #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:ModerateHousingValue)  

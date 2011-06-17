@@ -61,8 +61,7 @@
 
   (measurement geophysics:Altitude "m"
     :as    altitude 
-    :state #(+ 100000000 (:altitude %))
-   )) 
+    :state #(+ 100000000 (:altitude %)))) 
 
 ;; simple test of dynamic updating
 (defmodel dynamic representation:GenericQuantifiable 
@@ -71,8 +70,7 @@
     :as     self
     :update #(do  
                 (println "time is " (:time %) ", value was " (:self %))
-                (+ (:self %) 1.0)) 
-   )) 
+                (+ (:self %) 1.0)))) 
 
 
 ;; simple test of ODE integration. This should grow exponentially.
@@ -83,8 +81,7 @@
     :rate #(do  
               (println (:time %) ": value was " (:self %) 
                        " at " (:time#now %) " = tstep " (:time#index %))
-              (* (:self %) 0.03)) 
-)) 
+              (* (:self %) 0.03)))) 
 
 (defmodel farmland floodService:Farmland
 	(classification (numeric-coding nlcd:NLCDNumeric)
