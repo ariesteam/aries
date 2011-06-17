@@ -273,19 +273,19 @@
 (defscenario open-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
   (model FireFrequency
-    (classification ModifiedFireFrequency
+    (classification FireFrequency
         :context (open-development-scenario fire-frequency)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:NoFireFrequency)    
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
-    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+    (measurement GreenhouseGasEmissions "t/ha*year"
         :context (open-development-scenario use-simple)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (* 1.568 (:greenhouse-gas-emissions %)) ;;Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
@@ -294,19 +294,19 @@
 (defscenario constrained-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
-    (classification ModifiedVegetationCover
+    (classification PercentVegetationCover
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
   (model FireFrequency
-    (classification ModifiedFireFrequency
+    (classification FireFrequency
         :context (constrained-development-scenario fire-frequency)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:exNoFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
-    (measurement ModifiedGreenhouseGasEmissions "t/ha*year"
+    (measurement GreenhouseGasEmissions "t/ha*year"
         :context (constrained-development-scenario use-simple)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (* 1.104 (:greenhouse-gas-emissions %)) ;;Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels

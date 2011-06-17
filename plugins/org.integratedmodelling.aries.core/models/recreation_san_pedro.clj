@@ -176,6 +176,7 @@
 (defmodel javelina-habitat sanPedro:JavelinaHabitat
   (classification (numeric-coding sanPedro:JavelinaHabitat)
                   29            sanPedro:JavelinaHabitatPresent
+                  0             nil
                   :otherwise    sanPedro:JavelinaHabitatAbsent))
 
 ;;TRANSITION ZONES?  CONVERT RASTER LULC TO VECTOR & BUFFER.  WHAT TRANSITION ZONES MATTER TO WHAT SPECIES
