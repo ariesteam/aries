@@ -50,8 +50,8 @@
 
 (defmodel water-presence sanPedro:WaterPresence
   (binary-coding sanPedro:WaterPresence
-                 :context (streams :as streams springs :as springs) 
-                 :state #(or (:streams %)
+                 :context (streams springs) 
+                 :state #(or (:river %)
                              (:springs %))))
 
 ;; THIS IS THE CODE FROM THE AESTHETIC PROXIMITY MODEL AND SHOULD BE USED HERE AS WELL, PENDING REVIEW W GARY
@@ -63,8 +63,7 @@
 
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
-                  :context (water-presence :as water-presence
-                            condition-class)
+                  :context (water-presence condition-class)
                   :state   #(if (nil? (:water-presence %))
                               (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
                               (cond (= (:riparian-condition-class %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)

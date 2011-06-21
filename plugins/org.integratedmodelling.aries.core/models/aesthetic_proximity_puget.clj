@@ -106,9 +106,12 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel highway infrastructure:Highway
+  (binary-coding infrastructure:Highway))
+
 (defmodel sink ProximitySink
   (ranking ProximitySink
-           :context ((binary-coding infrastructure:Highway :as highway))
+           :context (highway)
            :state #(cond (== (:highway %) 1) 50   ;;50 units of proximity value are depleted by the sink if highways are present
                          :otherwise          0))) ;;Otherwise zero sink
 

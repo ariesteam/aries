@@ -196,9 +196,9 @@
 
 (defmodel surface-water-sink SurfaceWaterSink
   (measurement SurfaceWaterSink "mm"
-    :context (infiltration-sink :as infiltration et-sink :as evapotranspiration) 
+    :context (infiltration-sink et-sink) 
     :state #(+ 
-              (if (nil? (:infiltration       %)) 0.0 (.getMean (:infiltration       %)))
+              (if (nil? (:soil-infiltration  %)) 0.0 (.getMean (:soil-infiltration  %)))
               (if (nil? (:evapotranspiration %)) 0.0 (.getMean (:evapotranspiration %))))))
 
 ;; Add artificial recharge as a sink of surface water.  Can sum with the natural surface-sink to get total surface
@@ -250,16 +250,19 @@
 ;; ----------------------------------------------------------------------------------------------
 
 ;;USPP Tech Committee has some recent docs on rural well water use (see email from Susan Bronson)
+(defmodel annual-well-capacity AnnualWellCapacity
+  (measurement AnnualWellCapacity "mm"))
+
 (defmodel well-presence Wells 
  (binary-coding Wells
-    :context ((measurement AnnualWellCapacity "mm" :as well-capacity))
-    :state   #(if (nil? (:well-capacity %)) 0 1))) 
+    :context (annual-well-capacity)
+    :state   #(if (nil? (:annual-well-capacity %)) 0 1))) 
 
 (defmodel well-presence2 Wells
   [(categorization geofeatures:Country :as country)]
   (binary-coding Wells
-    :context ((measurement AnnualWellCapacity "mm" :as well-capacity))
-    :state   #(if (nil? (:well-capacity %)) 0 1) 
+    :context (annual-well-capacity)
+    :state   #(if (nil? (:annual-well-capacity %)) 0 1) 
     :when    #(= (:country %) "United States"))
   (binary-coding Wells))
 

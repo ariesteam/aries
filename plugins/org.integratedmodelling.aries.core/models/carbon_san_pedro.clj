@@ -155,7 +155,7 @@
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
-               :context (vegetation-carbon-storage :as vegetation-c-storage soil-carbon-storage :as soil-c-storage) 
+               :context (vegetation-carbon-storage soil-carbon-storage)
                :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                           (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 

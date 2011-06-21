@@ -267,18 +267,20 @@
 
 ;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
 ;;  empty.  Can alter this as appropriate.
+(defmodel detention-basin infrastructure:DetentionBasin
+  binary-coding infrastructure:DetentionBasin))
 (defmodel detention-basin-storage DetentionBasinStorage
   (measurement DetentionBasinStorage "mm" 
-    :context ((binary-coding infrastructure:DetentionBasin) :as detention-basin-storage)
-    :state #(cond (== (:detention-basin-storage %) 0) 0
-                  (== (:detention-basin-storage %) 1) 3000)))
+    :context (detention-basin)
+    :state #(cond (== (:detention-basin %) 0) 0
+                  (== (:detention-basin %) 1) 3000)))
 
 (defmodel dam-storage DamStorage
   (measurement DamStorage "mm"))
 
 (defmodel gray-infrastructure-sink GrayInfrastructureSink 
   (measurement GrayInfrastructureSink "mm"
-    :context (dam-storage :as dam-storage detention-basin-storage :as detention-basin-storage)
+    :context (dam-storage detention-basin-storage)
     :state   #(+ (or (:dam-storage %) 0.0) (or (:detention-basin-storage %) 0.0))))
 
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
@@ -310,10 +312,10 @@
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
-    :context (green-infrastructure-sink :as green-infrastructure gray-infrastructure-sink :as gray-infrastructure) 
+    :context (green-infrastructure-sink gray-infrastructure-sink) 
     :state #(+ 
-              (if (nil? (:green-infrastructure %)) 0.0 (.getMean (:green-infrastructure %)))
-              (or       (:gray-infrastructure %)   0.0))))
+              (if (nil? (:green-infrastructure-sink %)) 0.0 (.getMean (:green-infrastructure-sink %)))
+              (or       (:gray-infrastructure-sink %)   0.0))))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Use models
@@ -353,7 +355,11 @@
 	(classification (numeric-coding nlcd:NLCDNumeric)
 		24	       HousingPresent
 		:otherwise HousingNotPresent))
-	
+
+(defmodel highway infrastructure:Highway
+  binary-coding infrastructure:Highway))
+(defmodel railway infrastructure:Railway
+  binary-coding infrastructure:Railway))
 (defmodel public-asset PublicAsset
 	"Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could
 be added to this list if desired."
@@ -361,9 +367,7 @@ be added to this list if desired."
 		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
 								(tl/conc 'floodService:PublicAssetNotPresent))
-		:context (
-			(ranking infrastructure:Highway) :as highway
-			(ranking infrastructure:Railway) :as railway)))
+		:context (highway railway)))
 
 (defmodel farmland Farmland
 	"Just a reclass of the NLCD land use layer"

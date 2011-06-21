@@ -40,12 +40,17 @@
 ;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
 ;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
 ;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
+(defmodel condition-class sanPedro:RiparianConditionClass
+  (ranking sanPedro:RiparianConditionClass))
+
+(defmodel lulc sanPedro:SouthwestRegionalGapAnalysisLULC
+  (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC))
+
 (defmodel riparian-wetland-code sanPedro:RiparianAndWetlandCode
   (numeric-coding sanPedro:RiparianAndWetlandCode
-                  :context ((numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC :as lulc)
-                            (ranking sanPedro:RiparianConditionClass :as condition))
-                  :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:lulc %))
-                                (let [condition (:condition %)]
+                  :context (lulc condition-class)
+                  :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:southwest-regional-gap-analysis-lulc %))
+                                (let [condition (:riparian-condition-class %)]
                                   (if (or (nil? condition) (Double/isNaN condition))
                                     1
                                     condition))
@@ -105,9 +110,12 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
+(defmodel highway infrastructure:Highway
+  (binary-coding infrastructure:Highway))
+
 (defmodel sink ProximitySink
   (ranking ProximitySink
-           :context ((binary-coding infrastructure:Highway :as highway))
+           :context (highway)
            :state #(cond (== (:highway %) 1) 50   ;; 50 units of proximity value are depleted by the sink if highways are present
                          :otherwise          0))) ;; Otherwise zero sink
 
