@@ -35,12 +35,12 @@
 
 (defmodel successional-stage SuccessionalStage
    (classification (ranking ecology:SuccessionalStage)
-      #{5 6}       OldGrowth
-      4            LateSuccession
-      3            MidSuccession
-      2            PoleSuccession
-      1            EarlySuccession
-      :otherwise   NoSuccession))
+      #{5 6}                             OldGrowth
+      4                                  LateSuccession
+      3                                  MidSuccession
+      2                                  PoleSuccession
+      1                                  EarlySuccession
+      #{21 22 23 24 25 26 27 28 40 41}   NoSuccession))
         
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
