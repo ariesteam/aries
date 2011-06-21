@@ -58,10 +58,13 @@
 ;;This model assumes that all riparian areas that are not mapped within the SPRNCA are low quality.  This is a poor assumption -
 ;; moderate quality might also be appropriate and it would be better to run these as a simple BN for presence and quality like
 ;; the housing presence and value BNs, incoprorating priors for quality when we lack data.
+(defmodel condition-class sanPedro:RiparianConditionClass
+  (ranking sanPedro:RiparianConditionClass))
+
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
                   :context (water-presence :as water-presence
-                                           (ranking sanPedro:RiparianConditionClass :as condition))
+                                           (ranking condition-class :as condition))
                   :state   #(if (nil? (:water-presence %))
                               (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
                               (cond (= (:condition %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
