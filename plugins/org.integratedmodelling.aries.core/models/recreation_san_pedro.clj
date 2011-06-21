@@ -64,7 +64,7 @@
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
                   :context (water-presence :as water-presence
-                                           (ranking condition-class :as condition))
+                            condition-class :as condition)
                   :state   #(if (nil? (:water-presence %))
                               (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
                               (cond (= (:condition %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
