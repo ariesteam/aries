@@ -31,14 +31,14 @@
 			<state id="ModerateSOL" />
 			<state id="LowSOL" />
 			<state id="VeryLowSOL" />
-			<probabilities>0 0 0 0.05 0.95</probabilities>
+			<probabilities>0.01 0.01 0.01 0.05 0.92</probabilities>
 		</cpt>
 		<cpt id="SoilCNRatio">
 			<state id="VeryHighCNRatio" />
 			<state id="HighCNRatio" />
 			<state id="LowCNRatio" />
 			<state id="VeryLowCNRatio" />
-			<probabilities>0 0 0.2 0.8</probabilities>
+			<probabilities>0.01 0.01 0.18 0.8</probabilities>
 			<property id="SoilInfluence">SoilInfluence=((ObservedSoilTexture/MaxSoilTexture)/2)+((ObservedSoilDepth/MaxSoilDepth)/2)</property>
 		</cpt>
 		<cpt id="SequestrationRate">
@@ -64,7 +64,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
 			<node id="VegetationAndSoilCarbonSequestration">
 				<name>VegetationAndSoilCarbonSequestration</name>
 				<interior color="ffffff" />
