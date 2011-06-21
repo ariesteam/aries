@@ -356,10 +356,6 @@
 		24	       HousingPresent
 		:otherwise HousingNotPresent))
 
-(defmodel highway infrastructure:Highway
-  binary-coding infrastructure:Highway))
-(defmodel railway infrastructure:Railway
-  binary-coding infrastructure:Railway))
 (defmodel public-asset PublicAsset
 	"Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could
 be added to this list if desired."
@@ -367,7 +363,8 @@ be added to this list if desired."
 		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
 								(tl/conc 'floodService:PublicAssetNotPresent))
-		:context (highway railway)))
+		:context ((ranking infrastructure:Highway) :as highway
+                  (ranking infrastructure:Railway) :as railway)))
 
 (defmodel farmland Farmland
 	"Just a reclass of the NLCD land use layer"
