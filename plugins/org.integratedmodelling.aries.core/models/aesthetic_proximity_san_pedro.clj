@@ -186,7 +186,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
         :keep (PotentialProximateOpenSpace
                PotentialProximitySink
@@ -236,113 +236,113 @@
 (defscenario open-development-proximity
   "Changes values in developed areas to no valuable open space type, fire threat to low, high housing value present."
   (model sanPedro:ForestAndWoodland
-    (classification sanPedro:ModifiedForestAndWoodland
+    (classification sanPedro:ForestAndWoodland
         :context (open-development-scenario forest)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:ForestOrWoodlandAbsent)
-                  (:forest-and-woodland %))))
+                  (:forest-and-woodland %))))  ;;Not sure if this is correct or if it should just be "forest"
   (model Farmland
-    (classification ModifiedFarmland
+    (classification Farmland
         :context (open-development-scenario farmland)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:FarmlandAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:FarmlandAbsent) 
                   (:farmland %))))
   (model Grassland
-    (classification ModifiedGrassland
+    (classification Grassland
         :context (open-development-scenario grassland)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:GrasslandAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:GrasslandAbsent)
                   (:grassland %))))
   (model DesertScrub
-    (classification ModifiedDesertScrub
+    (classification DesertScrub
         :context (open-development-scenario desert-scrub)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:DesertScrubAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:DesertScrubAbsent)
                   (:desert-scrub %))))
   (model Park
-    (classification ModifiedPark
+    (classification Park
         :context (open-development-scenario park)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:ParkAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:ParkAbsent) 
                   (:park %))))
   (model sanPedro:RiparianAndWetland
-    (classification sanPedro:ModifiedRiparianAndWetland
+    (classification sanPedro:RiparianAndWetland
         :context (open-development-scenario riparian-wetland)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:RiparianOrWetlandAbsent)
                   (:riparian-and-wetland %))))
   (model FireThreat
-    (classification ModifiedFireThreat
+    (classification FireThreat
         :context (open-development-scenario fire-threat)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:LowFireThreat)     ;;Might have to add "aestheticService" in between the tick and LowFireThreat
+                  (conc 'aestheticService:LowFireThreat) 
                   (:fire-threat %))))
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (open-development-scenario housing)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (conc 'aestheticService:HousingPresent)           
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (open-development-scenario property-value)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (conc 'aestheticService:HighHousingValue)           
                   (:housing-value %)))))
 
 (defscenario constrained-development-proximity
   "Changes values in developed areas to no valuable open space type, fire threat to low, high housing value present."
   (model sanPedro:ForestAndWoodland
-    (classification sanPedro:ModifiedForestAndWoodland
+    (classification sanPedro:ForestAndWoodland
         :context (constrained-development-scenario forest)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:ForestOrWoodlandAbsent)
                   (:forest-and-woodland %))))
   (model Farmland
-    (classification ModifiedFarmland
+    (classification Farmland
         :context (constrained-development-scenario farmland)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:FarmlandAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:FarmlandAbsent)
                   (:farmland %))))
   (model Grassland
-    (classification ModifiedGrassland
+    (classification Grassland
         :context (constrained-development-scenario grassland)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:GrasslandAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:GrasslandAbsent)  
                   (:grassland %))))
   (model DesertScrub
-    (classification ModifiedDesertScrub
+    (classification DesertScrub
         :context (constrained-development-scenario desert-scrub)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:DesertScrubAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:DesertScrubAbsent) 
                   (:desert-scrub %))))
   (model Park
-    (classification ModifiedPark
+    (classification Park
         :context (constrained-development-scenario park)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:ParkAbsent)  ;;Might have to add "aestheticService"
+                  (conc 'aestheticService:ParkAbsent) 
                   (:park %))))
   (model sanPedro:RiparianAndWetland
-    (classification sanPedro:ModifiedRiparianAndWetland
+    (classification sanPedro:RiparianAndWetland
         :context (constrained-development-scenario riparian-wetland)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:RiparianOrWetlandAbsent)
                   (:riparian-and-wetland %))))
   (model FireThreat
-    (classification ModifiedFireThreat
+    (classification FireThreat
         :context (constrained-development-scenario fire-threat)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:LowFireThreat)     ;;Might have to add "aestheticService" in between the tick and LowFireThreat
+                  (conc 'aestheticService:LowFireThreat)     
                   (:fire-threat %))))
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (constrained-development-scenario housing)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
+                  (conc 'aestheticService:HousingPresent)          
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (constrained-development-scenario property-value)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
+                  (conc 'aestheticService:HighHousingValue)            
                   (:housing-value %)))))

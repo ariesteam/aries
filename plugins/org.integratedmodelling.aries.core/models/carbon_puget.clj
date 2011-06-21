@@ -1,5 +1,6 @@
 (ns core.models.carbon-puget
 	(:refer-clojure :rename {count length}) 
+  (:refer tl :only [is? conc])
   (:refer modelling :only (defscenario defmodel model measurement classification 
                             categorization ranking numeric-coding binary-coding 
                             probabilistic-measurement probabilistic-classification
@@ -291,7 +292,124 @@
      is a world in which the emphasis is on local solutions to economic, social, and 
      environmental sustainability, with continuously increasing population (lower than A2)
      and intermediate economic development. " 
-) 
-		 			
+      )
 
-		 			
+(defmodel constrained-development-scenario puget:ConstrainedDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCConstrained2060) 
+      4                                     puget:HighDensityDevelopedConstrained
+      6                                     puget:ModerateDensityDevelopedConstrained
+      5                                     puget:LowDensityDevelopedConstrained
+      7                                     puget:UrbanOpenSpaceConstrained
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedConstrained))
+
+(defmodel open-development-scenario puget:OpenDevelopment
+  (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCOpen2060) 
+      4                                     puget:HighDensityDevelopedOpen
+      6                                     puget:ModerateDensityDevelopedOpen
+      5                                     puget:LowDensityDevelopedOpen
+      7                                     puget:UrbanOpenSpaceOpen
+      #{0 1 2 3 8 9 10 11 12 13 14 15 16}   puget:NotDevelopedOpen))
+
+(defscenario open-development-carbon
+ "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCover
+    (classification PercentVegetationCover
+        :context (open-development-scenario percent-vegetation-cover)
+        :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                          (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                      
+                      (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                      (conc 'carbonService:LowVegetationCover)
+
+                      (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
+                      (conc 'carbonService:ModerateVegetationCover)
+                      
+                      :otherwise (:percent-vegetation-cover %))))
+  (model HardwoodSoftwoodRatio
+    (classification HardwoodSoftwoodRatio
+        :context (open-development-scenario hardwood-softwood-ratio)
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+                  (conc 'carbonService:ModerateHardness)
+                  (:hardwood-softwood-ratio %))))
+  (model SuccessionalStage                              
+    (classification SuccessionalStage
+        :context (open-development-scenario successional-stage)
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+                  (conc 'carbonService:NoSuccession)
+                  (:successional-stage %))))
+  (model FireFrequency
+    (classification FireFrequency
+        :context (open-development-scenario fire-frequency)
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+                  (conc 'carbonService:LowFireFrequency)
+                  (:fire-frequency %))))
+  (model GreenhouseGasEmissions
+    (measurement GreenhouseGasEmissions "t/ha*year"
+        :context (open-development-scenario use-simple)
+        :state #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
+                  (* 1.871 (:greenhouse-gas-emissions %)) ;;Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
+                  (:greenhouse-gas-emissions %)))))
+
+(defscenario constrained-development-carbon
+ "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCover
+    (classification PercentVegetationCover
+        :context (constrained-development-scenario percent-vegetation-cover)
+        :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                          (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                      
+                      (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                      (conc 'carbonService:LowVegetationCover)
+
+                      (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
+                      (conc 'carbonService:ModerateVegetationCover)
+                  
+                  :otherwise (:percent-vegetation-cover %))))
+  (model HardwoodSoftwoodRatio
+    (classification HardwoodSoftwoodRatio
+        :context (constrained-development-scenario hardwood-softwood-ratio)
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+                  (conc 'carbonService:ModerateHardness)
+                  (:hardwood-softwood-ratio %))))
+  (model SuccessionalStage
+    (classification SuccessionalStage
+        :context (constrained-development-scenario successional-stage)
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+                  (conc 'carbonService:NoSuccession)
+                  (:successional-stage %))))
+  (model FireFrequency
+    (classification FireFrequency
+        :context (constrained-development-scenario fire-frequency)
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+                  (conc 'carbonService:LowFireFrequency)
+                  (:fire-frequency %))))
+  (model GreenhouseGasEmissions
+    (measurement GreenhouseGasEmissions "t/ha*year"
+        :context (constrained-development-scenario use-simple)
+        :state #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
+                  (* 1.871 (:greenhouse-gas-emissions %)) ;;Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
+                  (:greenhouse-gas-emissions %)))))

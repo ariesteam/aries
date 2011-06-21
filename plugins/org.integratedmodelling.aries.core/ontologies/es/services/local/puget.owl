@@ -7,7 +7,6 @@
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY puget "http://www.integratedmodelling.org/ks/aries/local/puget.owl#" >
     <!ENTITY lulc "http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
 ]>
@@ -16,7 +15,6 @@
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/aries/local/puget.owl#"
      xml:base="http://www.integratedmodelling.org/ks/aries/local/puget.owl"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-     xmlns:puget="http://www.integratedmodelling.org/ks/aries/local/puget.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -63,9 +61,17 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCConstrained2060"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#DaysOfPrecipitationGridcode -->
 
-    <owl:Class rdf:about="&puget;DaysOfPrecipitationGridcode">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#DaysOfPrecipitationGridcode">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
     </owl:Class>
     
@@ -73,7 +79,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthImpervious">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious">
         <rdfs:subClassOf rdf:resource="&habitat;PercentImperviousness"/>
     </owl:Class>
     
@@ -81,39 +87,39 @@
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousBase -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthImperviousBase">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthImpervious"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousBase">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousConstrained2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthImperviousConstrained2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthImpervious"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousConstrained2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousOpen2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthImperviousOpen2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthImpervious"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousOpen2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousPlans2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthImperviousPlans2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthImpervious"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImperviousPlans2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthLULC">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC">
         <rdfs:subClassOf rdf:resource="&lulc;LandClassificationNumericMapping"/>
     </owl:Class>
     
@@ -121,39 +127,143 @@
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCBase -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthLULCBase">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthLULC"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCBase">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCConstrained2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthLULCConstrained2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthLULC"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCConstrained2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCOpen2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthLULCOpen2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthLULC"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCOpen2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCPlans2060 -->
 
-    <owl:Class rdf:about="&puget;ENVISIONUrbanGrowthLULCPlans2060">
-        <rdfs:subClassOf rdf:resource="&puget;ENVISIONUrbanGrowthLULC"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCPlans2060">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDensityDevelopedPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateDensityDevelopedPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedPlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedPlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCOpen2060"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategory -->
 
-    <owl:Class rdf:about="&puget;ParcelUseCategory">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategory">
         <rdfs:subClassOf rdf:resource="&habitat;UsageType"/>
         <rdfs:comment>Specific categorization to handle the land use field of WA property data</rdfs:comment>
     </owl:Class>
@@ -162,23 +272,31 @@
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategoryGraysHarbor -->
 
-    <owl:Class rdf:about="&puget;ParcelUseCategoryGraysHarbor">
-        <rdfs:subClassOf rdf:resource="&puget;ParcelUseCategory"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategoryGraysHarbor">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategory"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategoryKing -->
 
-    <owl:Class rdf:about="&puget;ParcelUseCategoryKing">
-        <rdfs:subClassOf rdf:resource="&puget;ParcelUseCategory"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategoryKing">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ParcelUseCategory"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCPlans2060"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ProtectedStatus -->
 
-    <owl:Class rdf:about="&puget;ProtectedStatus">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ProtectedStatus">
         <rdfs:subClassOf rdf:resource="&habitat;OwnershipQuality"/>
     </owl:Class>
     
@@ -186,9 +304,33 @@
 
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory -->
 
-    <owl:Class rdf:about="&puget;SnowPrecipitationCategory">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
         <rdfs:comment>Categorization to handle rain-on-snow attributes in WA data</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpaceConstrained -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpaceConstrained">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpaceOpen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpaceOpen">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OpenDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpacePlans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpacePlans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
     </owl:Class>
     
 

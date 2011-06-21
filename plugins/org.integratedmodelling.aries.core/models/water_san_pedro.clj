@@ -368,7 +368,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
@@ -410,7 +410,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_wet_year.clj")
         :keep               (SurfaceWaterSupply
                              MaximumSurfaceWaterSink
@@ -481,19 +481,19 @@
 (defscenario open-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
-    (classification ModifiedVegetationCoverClass
+    (classification PercentVegetationCoverClass
         :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'waterSupplyService:VeryLowVegetationCover) ;;Might have to add "waterSupplyService" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover-class %))))
   (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:ModifiedEvapotranspirationVegetationType
+    (classification sanPedro:EvapotranspirationVegetationType
         :context (open-development-scenario vegetation-type)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:UrbanBarrenWater)
                   (:evapotranspiration-vegetation-type %))))
   (model MountainFront
-    (classification ModifiedMountainFront
+    (classification MountainFront
         :context (open-development-scenario mountain-front)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'waterSupplyService:MountainFrontAbsent)
@@ -502,19 +502,19 @@
 (defscenario constrained-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
-    (classification ModifiedVegetationCoverClass
+    (classification PercentVegetationCoverClass
         :context (constrained-development-scenario percent-vegetation-cover)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'waterSupplyService:VeryLowVegetationCover) ;;Might have to add "waterSupplyService:" in between the tick and VeryLowVegetationCover
                   (:percent-vegetation-cover-class %))))
   (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:ModifiedEvapotranspirationVegetationType
+    (classification sanPedro:EvapotranspirationVegetationType
         :context (constrained-development-scenario vegetation-type)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:UrbanBarrenWater)
                   (:evapotranspiration-vegetation-type %))))
   (model MountainFront
-    (classification ModifiedMountainFront
+    (classification MountainFront
         :context (constrained-development-scenario mountain-front)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'waterSupplyService:MountainFrontAbsent)

@@ -182,7 +182,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
         :keep (PotentialViews
                PotentialVisualBlight
@@ -224,25 +224,25 @@
 (defscenario open-development-viewshed
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
   (model sanPedro:ScenicVegetationType
-    (classification sanPedro:ModifiedScenicVegetationType
+    (classification sanPedro:ScenicVegetationType
         :context (open-development-scenario scenic-vegetation)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:Other)
                   (:scenic-vegetation-type %))))
   (model DevelopedLand
-    (classification ModifiedDevelopedLand
+    (classification DevelopedLand
         :context (open-development-scenario developed-land)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
                   (:developed-land %))))
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (open-development-scenario housing)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (open-development-scenario property-value)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
@@ -251,25 +251,25 @@
 (defscenario constrained-development-viewshed
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
   (model sanPedro:ScenicVegetationType
-    (classification sanPedro:ModifiedScenicVegetationType
+    (classification sanPedro:ScenicVegetationType
         :context (constrained-development-scenario scenic-vegetation)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:Other)
                   (:scenic-vegetation-type %))))
   (model DevelopedLand
-    (classification ModifiedDevelopedLand
+    (classification DevelopedLand
         :context (constrained-development-scenario developed-land)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
                   (:developed-land %))))
   (model PresenceOfHousing
-    (classification ModifiedPresenceOfHousing
+    (classification PresenceOfHousing
         :context (constrained-development-scenario housing)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
                   (:presence-of-housing %))))
   (model HousingValue
-    (classification ModifiedHousingValue
+    (classification HousingValue
         :context (constrained-development-scenario property-value)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
