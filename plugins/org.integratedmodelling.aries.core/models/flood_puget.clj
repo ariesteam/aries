@@ -267,13 +267,11 @@
 
 ;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
 ;;  empty.  Can alter this as appropriate.
-(defmodel detention-basin infrastructure:DetentionBasin
-  binary-coding infrastructure:DetentionBasin))
 (defmodel detention-basin-storage DetentionBasinStorage
   (measurement DetentionBasinStorage "mm" 
-    :context (detention-basin)
-    :state #(cond (== (:detention-basin %) 0) 0
-                  (== (:detention-basin %) 1) 3000)))
+    :context ((binary-coding infrastructure:DetentionBasin) :as detention-basin-storage)
+    :state #(cond (== (:detention-basin-storage %) 0) 0
+                  (== (:detention-basin-storage %) 1) 3000)))
 
 (defmodel dam-storage DamStorage
   (measurement DamStorage "mm"))
