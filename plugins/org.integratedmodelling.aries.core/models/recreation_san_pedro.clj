@@ -64,13 +64,13 @@
 (defmodel riparian-wetland sanPedro:RiparianSpringWetlandQuality
   (classification sanPedro:RiparianSpringWetlandQuality
                   :context (water-presence :as water-presence
-                            condition-class :as condition)
+                            condition-class)
                   :state   #(if (nil? (:water-presence %))
                               (tl/conc 'sanPedro:RiparianSpringWetlandAbsent)
-                              (cond (= (:condition %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
-                                    (= (:condition %) 2) (tl/conc 'sanPedro:ModerateQualityRiparianSpringWetland)
-                                    (= (:condition %) 1) (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)
-                                    :otherwise           (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)))))
+                              (cond (= (:riparian-condition-class %) 3) (tl/conc 'sanPedro:HighQualityRiparianSpringWetland)
+                                    (= (:riparian-condition-class %) 2) (tl/conc 'sanPedro:ModerateQualityRiparianSpringWetland)
+                                    (= (:riparian-condition-class %) 1) (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)
+                                    :otherwise                          (tl/conc 'sanPedro:LowQualityRiparianSpringWetland)))))
 
 ;;No public access includes private land, Native American reservations, military land.
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
