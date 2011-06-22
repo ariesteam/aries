@@ -287,9 +287,9 @@
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3) 
 ;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
-     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
-  (transform 'carbonService:HardwoodSoftwoodRatio 'carbonService:LowHardness
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
+;;  (transform 'carbonService:HardwoodSoftwoodRatio 'carbonService:LowHardness
+;;     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
 
 (defcontext mesquite-base
    "Baseline to compare mesquite results at the same spatial extent and resolution"
