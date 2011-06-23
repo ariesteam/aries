@@ -169,7 +169,7 @@
 		[0 20]              VeryLowVegetationCover))
 
 (defmodel successional-stage SuccessionalStage
-	 (classification (numeric-coding ecology:SuccessionalStage)
+	 (classification (ranking ecology:SuccessionalStage)
 	 		#{5 6}                             OldGrowth
 	 		4                                  LateSuccession
 	 		3                                  MidSuccession
