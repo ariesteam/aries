@@ -86,10 +86,10 @@
 
 (defmodel theoretical-open-space TheoreticalProximitySource
   (probabilistic-ranking TheoreticalProximitySource
-                  [0   10] NoProximityPotential 
-                  [10  40] LowProximityPotential
-                  [40  75] ModerateProximityPotential 
-                  [75 100] HighProximityPotential))
+                  [0   5]  NoProximityPotential 
+                  [5  25]  LowProximityPotential
+                  [25  50] ModerateProximityPotential 
+                  [50 100] HighProximityPotential))
 
 ;; source bayesian model	    		 
 (defmodel source AestheticProximityProvision

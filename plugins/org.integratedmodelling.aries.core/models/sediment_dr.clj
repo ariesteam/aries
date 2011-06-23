@@ -104,7 +104,7 @@
 
 ;;Discretization based on Quinton et al. (1997)
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
-	(classification (numeric-coding habitat:PercentVegetationCover)
+	(classification (ranking habitat:PercentVegetationCover)
 		[70 100 :inclusive]  HighVegetationCover
 		[30 70]              ModerateVegetationCover
 		[1 30]               LowVegetationCover))
