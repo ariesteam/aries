@@ -483,32 +483,32 @@
       #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
       #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
 
-(defscenario constrained-development-recreation
+;;(defscenario constrained-development-recreation
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species richness."
-  (model BirdSpeciesRichness
-    (classification BirdSpeciesRichness
-        :context (constrained-development-scenario bird-richness)
-        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'recreationService:LowBirdSpeciesRichness)
-                  (:bird-richness %))))
-  (model RareCharismaticBirdHabitat
-    (classification RareCharismaticBirdHabitat
-        :context (constrained-development-scenario bird-rarity)
-        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'recreationService:LowRareCharismaticBirdHabitat)    
-                  (:bird-rarity %))))
-  (model PublicAccessClass
-    (classification PublicAccessClass
-        :context (constrained-development-scenario public-lands)
-        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'recreationService:NoPublicAccess)    
-                  (:public-lands %))))
-  (model WildlifeSpeciesRichnessClass
-    (classification WildlifeSpeciesRichnessClass
-        :context (constrained-development-scenario wildlife-species-richness-class)
-        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'recreationService:LowWildlifeSpeciesRichness)    
-                  (:wildlife-species-richness-class %)))))
+;;  (model BirdSpeciesRichness
+;;    (classification BirdSpeciesRichness
+;;        :context (constrained-development-scenario bird-richness)
+;;        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                  (conc 'recreationService:LowBirdSpeciesRichness)
+;;                  (:bird-richness %))))
+;;  (model RareCharismaticBirdHabitat
+;;    (classification RareCharismaticBirdHabitat
+;;        :context (constrained-development-scenario bird-rarity)
+;;        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                  (conc 'recreationService:LowRareCharismaticBirdHabitat)    
+;;                  (:bird-rarity %))))
+;;  (model PublicAccessClass
+;;    (classification PublicAccessClass
+;;        :context (constrained-development-scenario public-lands)
+;;        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                  (conc 'recreationService:NoPublicAccess)    
+;;                  (:public-lands %))))
+;;  (model WildlifeSpeciesRichnessClass
+;;    (classification WildlifeSpeciesRichnessClass
+;;        :context (constrained-development-scenario wildlife-species-richness-class)
+;;        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                  (conc 'recreationService:LowWildlifeSpeciesRichness)    
+;;                  (:wildlife-species-richness-class %))))
 ;;  (model sanPedro:DoveHabitat
 ;;    (classification sanPedro:DoveHabitat
 ;;        :context (constrained-development-scenario dove-habitat)
