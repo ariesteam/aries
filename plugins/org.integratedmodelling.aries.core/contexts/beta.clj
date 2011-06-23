@@ -38,7 +38,7 @@
   "Green-Duwamish watershed @ 1024 linear. Just the square bounding box."
   (grid
    1024
-   "EPSG:4326 POLYGON ((-122.6 47.63, -122.6 46.75, -121.27 46.75, -121.27 47.63, -122.47 47.63))"))
+   "EPSG:4326 POLYGON ((-122.6 47.63, -122.6 46.75, -121.27 46.75, -121.27 47.63, -122.6 47.63))"))
 
 (defcontext raven_ridge
   ""
