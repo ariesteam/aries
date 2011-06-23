@@ -216,9 +216,7 @@
 
 (defmodel identification-carbon ClimateStability
   (identification ClimateStability
-                  :context (source :as source
-                            sink :as sink
-                            use-simple :as use)))
+                  :context (source sink use-simple)))
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
@@ -270,24 +268,34 @@
       #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
       #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
 
-(defmodel PercentVegetationCoverNew
-    (classification PercentVegetationCoverNew
-        :context (open-development-scenario-new percent-vegetation-cover)
+(defmodel percent-vegetation-cover-new PercentVegetationCover
+    (classification PercentVegetationCover
+        :context (open-development-scenario percent-vegetation-cover)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
 
-(defmodel FireFrequencyNew
-    (classification FireFrequencyNew
-        :context (open-development-scenario-new fire-frequency)
+(defmodel fire-frequency-new FireFrequency
+    (classification FireFrequency
+        :context (open-development-scenario fire-frequency)
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:NoFireFrequency)    
                   (:fire-frequency %))))
 
-(defmodel open-development-scenario-new sanPedro:OpenDevelopment
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
-      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
-      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
+;; Bayesian source model
+(defmodel source-new CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+            :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
+            :keep     (VegetationAndSoilCarbonSequestration)
+            :result   veg-soil-sequestration
+            :context  (hardwood-softwood-ratio percent-vegetation-cover-new annual-precipitation)))
+
+(defmodel sink-new CarbonSinkValue   
+  (bayesian CarbonSinkValue 
+            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :keep     (StoredCarbonRelease)
+            :result   stored-carbon-release
+            :context  (veg-soil-storage fire-frequency-new)))
 
 (defscenario open-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
