@@ -662,22 +662,22 @@ public class ScenarioEditor extends ThinkcapComponent {
 	void painting(boolean isScissors) {
 		
 		scaddpolyg.setImage(isScissors ? 
-						"/images/icons/edit.png" :
-						"/images/icons/edit_active.png");
+				ZK.fixUrl("/images/icons/edit.png") :
+				ZK.fixUrl("/images/icons/edit_active.png"));
 		scsubpolyg.setImage(isScissors ? 
-						"/images/icons/cut_active.png" :
-						"/images/icons/cut_disabled.png");
+				ZK.fixUrl("/images/icons/cut_active.png") :
+				ZK.fixUrl("/images/icons/cut_disabled.png"));
 		
-		scresetdraw.setImage("/images/icons/cancel_disabled.png");
+		scresetdraw.setImage(ZK.fixUrl("/images/icons/cancel_disabled.png"));
 	}
 	
 	void idle(boolean hasSelection) {
 
-		scaddpolyg.setImage("/images/icons/edit.png");
+		scaddpolyg.setImage(ZK.fixUrl("/images/icons/edit.png"));
 		scsubpolyg.setImage(hasSelection? 
-				"/images/icons/cut.png" : "/images/icons/cut_disabled.png");
+				ZK.fixUrl("/images/icons/cut.png") : ZK.fixUrl("/images/icons/cut_disabled.png"));
 		scresetdraw.setImage(hasSelection? 
-				"/images/icons/delete.png" : "/images/icons/delete_disabled.png");
+				ZK.fixUrl("/images/icons/delete.png") : ZK.fixUrl("/images/icons/delete_disabled.png"));
 				
 		scsubpolyg.setDisabled(!hasSelection);
 		scresetdraw.setDisabled(!hasSelection);

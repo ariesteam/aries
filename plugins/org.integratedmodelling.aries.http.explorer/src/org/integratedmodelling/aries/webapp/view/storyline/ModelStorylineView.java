@@ -190,6 +190,9 @@ public class ModelStorylineView extends StorylineView {
 			WebVisualization visualization = 
 				(WebZKVisualization)(storyline.getVisualization());
 			
+			if (visualization == null)
+				return null;
+			
 			Pair<Integer, Integer> xy = 
 				VisualizationFactory.get().getPlotSize(110, 64, storyline.getContext());
 			

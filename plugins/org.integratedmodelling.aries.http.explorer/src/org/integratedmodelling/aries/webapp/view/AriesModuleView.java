@@ -84,11 +84,11 @@ public class AriesModuleView extends SidebarModule {
 												public void onEvent(Event arg0) throws Exception {
 													if (covShown) {
 														browser.showCoverage(null);
-														((Toolbarbutton)(arg0.getTarget())).setImage("/images/icons/grayeye.png");
+														((Toolbarbutton)(arg0.getTarget())).setImage(ZK.fixUrl("/images/icons/grayeye.png"));
 														((Toolbarbutton)(arg0.getTarget())).setTooltiptext("Show where this storyline can be computed.");
 													} else {
 														browser.showCoverage(module.getCoverage());
-														((Toolbarbutton)(arg0.getTarget())).setImage("/images/icons/redeye.png");
+														((Toolbarbutton)(arg0.getTarget())).setImage(ZK.fixUrl("/images/icons/redeye.png"));
 														((Toolbarbutton)(arg0.getTarget())).setTooltiptext("Hide the spatial coverage of this storyline.");
 													}
 													covShown = !covShown;

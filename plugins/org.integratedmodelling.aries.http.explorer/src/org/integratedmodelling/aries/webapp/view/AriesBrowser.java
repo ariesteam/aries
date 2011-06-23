@@ -262,29 +262,33 @@ public class AriesBrowser extends ThinkcapCometComponent {
 			
 			addpolyg.setImage( 
 					isScissors ? 
-							"/images/icons/edit.png" :
-							"/images/icons/edit_active.png");
+							ZK.fixUrl("/images/icons/edit.png") :
+							ZK.fixUrl("/images/icons/edit_active.png"));
 			subpolyg.setImage(
 					isScissors ? 
-							"/images/icons/cut_active.png" :
-							"/images/icons/cut_disabled.png");
+							ZK.fixUrl("/images/icons/cut_active.png") :
+							ZK.fixUrl("/images/icons/cut_disabled.png"));
 			
-			resetdraw.setImage("/images/icons/cancel_disabled.png");
+			resetdraw.setImage(ZK.fixUrl("/images/icons/cancel_disabled.png"));
 			
 		}
 		
 		void idle(boolean hasSelection) {
 
-			addpolyg.setImage("/images/icons/edit.png");
+			addpolyg.setImage(ZK.fixUrl("/images/icons/edit.png"));
 			subpolyg.setImage(
-					hasSelection? "/images/icons/cut.png" : "/images/icons/cut_disabled.png");
+					hasSelection? 
+							ZK.fixUrl("/images/icons/cut.png") : 
+							ZK.fixUrl("/images/icons/cut_disabled.png"));
 			resetdraw.setImage( 
-					hasSelection? "/images/icons/delete.png" : "/images/icons/delete_disabled.png");
+					hasSelection? 
+							ZK.fixUrl("/images/icons/delete.png") : 
+							ZK.fixUrl("/images/icons/delete_disabled.png"));
 			
 			run.setImage(
 					(hasSelection) ? 
-							"/images/icons/play.png" : 
-							"/images/icons/play_disabled.png");
+							ZK.fixUrl("/images/icons/play.png") : 
+							ZK.fixUrl("/images/icons/play_disabled.png"));
 			
 			subpolyg.setDisabled(!hasSelection);
 			resetdraw.setDisabled(!hasSelection);

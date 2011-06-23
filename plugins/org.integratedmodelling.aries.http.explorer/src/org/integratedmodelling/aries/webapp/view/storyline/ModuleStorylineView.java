@@ -44,7 +44,7 @@ public class ModuleStorylineView extends StorylineView {
 			final Storyline m = (Storyline) storyline.getChildAt(i);
 			if (m.getStatus() == Storyline.IDLE) {
 				badges.add(getBadge(220,
-						"/images/icons/check48.png", 
+						ZK.fixUrl("/images/icons/check48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
@@ -59,7 +59,7 @@ public class ModuleStorylineView extends StorylineView {
 						}));
 			} else if (m.getStatus() == Storyline.COMPUTING) {
 				badges.add(getBadge(220,
-						"/images/icons/spinner48.png", 
+						ZK.fixUrl("/images/icons/spinner48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
@@ -74,7 +74,7 @@ public class ModuleStorylineView extends StorylineView {
 						}));
 			}  else if (m.getStatus() == Storyline.PENDING) {
 				badges.add(getBadge(220,
-						"/images/icons/spinner48.png", 
+						ZK.fixUrl("/images/icons/spinner48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
@@ -89,7 +89,7 @@ public class ModuleStorylineView extends StorylineView {
 						}));
 			} else if (m.getStatus() == Storyline.ERROR) {
 				badges.add(getBadge(220,
-						"/images/icons/warning48.png", 
+						ZK.fixUrl("/images/icons/warning48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
@@ -98,7 +98,7 @@ public class ModuleStorylineView extends StorylineView {
 						null));
 			} else if (m.getStatus() == Storyline.DISABLED) {
 				badges.add(getBadge(220,
-						"/images/icons/boh48.png", 
+						ZK.fixUrl("/images/icons/boh48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
@@ -107,7 +107,7 @@ public class ModuleStorylineView extends StorylineView {
 						null));
 			}  else if (m.getStatus() == Storyline.COMPUTED) {
 				badges.add(getBadge(220,
-						"/images/icons/check48_green.png", 
+						ZK.fixUrl("/images/icons/check48_green.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"The " +
