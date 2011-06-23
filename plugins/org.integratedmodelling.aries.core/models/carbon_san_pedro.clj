@@ -270,6 +270,25 @@
       #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
       #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
 
+(defmodel PercentVegetationCoverNew
+    (classification PercentVegetationCoverNew
+        :context (open-development-scenario-new percent-vegetation-cover)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'carbonService:VeryLowVegetationCover)
+                  (:percent-vegetation-cover %))))
+
+(defmodel FireFrequencyNew
+    (classification FireFrequencyNew
+        :context (open-development-scenario-new fire-frequency)
+        :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'carbonService:NoFireFrequency)    
+                  (:fire-frequency %))))
+
+(defmodel open-development-scenario-new sanPedro:OpenDevelopment
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
+      #{10 11 12 13 19 22 25}                      sanPedro:DevelopedOpen
+      #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29}      sanPedro:NotDevelopedOpen))
+
 (defscenario open-development-carbon
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
