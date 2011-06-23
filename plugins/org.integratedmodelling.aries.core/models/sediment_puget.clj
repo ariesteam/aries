@@ -252,19 +252,11 @@
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
    (identification ReservoirSoilDeposition 
-     :context (
-       source-puget
-       sediment-sink-us
-       hydroelectric-use-level
-       levees)))
+     :context (source-puget sediment-sink-us hydroelectric-use-level levees)))
 
 (defmodel farmland-soil-deposition-data FarmlandSoilDeposition
    (identification FarmlandSoilDeposition 
-     :context (
-       source-puget
-       sediment-sink-us
-       farmers-deposition-use-puget
-       levees)))
+     :context (source-puget sediment-sink-us farmers-deposition-use-puget levees)))
 
 ;; Sediment flow model for farmers in floodplains
 (defmodel sediment-farmers BeneficialSedimentTransport ;; or DetrimentalSedimentTransport
@@ -284,7 +276,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         :keep (MaximumSedimentSource                       MaximumPotentialDeposition 
                PotentialSedimentDepositionBeneficiaries    PossibleSedimentFlow
                PossibleSedimentSource                      PossibleSedimentDepositionBeneficiaries
@@ -314,7 +306,7 @@
         :benefit-type       :rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         :keep (MaximumSedimentSource                                MaximumPotentialDeposition 
                PotentialReducedSedimentDepositionBeneficiaries      PossibleSedimentFlow
                PossibleSedimentSource                               PossibleReducedSedimentDepositionBeneficiaries
@@ -344,7 +336,7 @@
         :benefit-type       :non-rival ;; this will cause the model to store sediment values on users who are not co-located with sinks
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         :keep (MaximumSedimentSource                            MaximumPotentialDeposition 
                PotentialReducedTurbidityBeneficiaries           PossibleSedimentFlow
                PossibleSedimentSource                           PossibleReducedTurbidityBeneficiaries

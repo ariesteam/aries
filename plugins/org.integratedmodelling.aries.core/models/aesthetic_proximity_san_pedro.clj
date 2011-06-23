@@ -173,9 +173,7 @@
 ;; all data, for testing and storage
 (defmodel data Proximity
   (identification Proximity
-                  :context (source     :as source
-                            homeowners :as use
-                            sink       :as sink)))
+                  :context (source homeowners sink)))
 
 (defmodel proximity AestheticProximity
   (span Proximity

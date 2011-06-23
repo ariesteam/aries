@@ -159,11 +159,8 @@
 ;; all data, for testing and storage
 (defmodel data LineOfSight
   (identification LineOfSight
-                  :context (source :as source
-                                   homeowners :as use
-                                   ;;scenic-highways :as use (once wfs is working)
-                                   sink       :as sink
-                                   altitude   :as altitude)))
+                  :context (source homeowners sink altitude)))
+                                   ;;add scenic-highways when there's time to test
 
 (defmodel view AestheticView
   (span LineOfSight 
@@ -182,7 +179,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
         :keep (PotentialViews               PotentialVisualBlight   HomeownersWithViewDemand
                PossibleViews                VisibleNaturalBeauty    HomeownersWithPossibleViews

@@ -175,9 +175,7 @@
 ;; all data, for testing and storage
 (defmodel data Proximity
   (identification Proximity
-                  :context (source     :as source
-                            homeowners :as use
-                            sink       :as sink)))
+                  :context (source homeowners sink)))
 
 (defmodel proximity AestheticProximity
   (span Proximity
@@ -196,7 +194,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
         :keep (PotentialProximateOpenSpace
                PotentialProximitySink
