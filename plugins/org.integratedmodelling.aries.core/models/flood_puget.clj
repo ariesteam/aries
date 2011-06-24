@@ -319,12 +319,6 @@
 ;; Use models
 ;; ----------------------------------------------------------------------------------------------
 
-;;(defmodel floodplains Floodplains
-;;	"Presence of a floodplain in given context"
-;;	(classification (binary-coding geofeatures:Floodplain)
-;;			0 NotInFloodplain
-;;			1 InFloodplain))
-
 (defmodel floodplains-100 Floodplains100
   (classification (categorization geofeatures:Floodplain)
                   "A"            In100YrFloodplain
@@ -348,7 +342,7 @@
   (classification (ranking aestheticService:PresenceOfHousing)
         [1 :>]        aestheticService:HousingPresent  
         :otherwise    aestheticService:HousingAbsent)
-  ;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
+;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
 	(classification (numeric-coding nlcd:NLCDNumeric)
 		[22 23 24]	  aestheticService:HousingPresent
 		:otherwise    aestheticService:HousingAbsent))
@@ -360,8 +354,7 @@ be added to this list if desired."
 		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
 								(tl/conc 'floodService:PublicAssetNotPresent))
-		:context ((ranking infrastructure:Highway) :as highway
-                  (ranking infrastructure:Railway) :as railway)))
+		:context ((ranking infrastructure:Highway) (ranking infrastructure:Railway))))
 
 (defmodel farmland Farmland
 	"Just a reclass of the NLCD land use layer"
@@ -371,7 +364,7 @@ be added to this list if desired."
 ;    :agent     "aries/flood/farm"
     :editable  true))
 
-;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in the floodplain via basic spatial overlap.
 (defmodel farmers-use-100 FloodFarmersUse100
   (binary-coding FloodFarmersUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains100 %))
@@ -388,11 +381,11 @@ be added to this list if desired."
                     0)
        :context (farmland floodplains-500)))
 
-;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models public infrastructure in the floodplain via basic spatial overlap.
 (defmodel public-use-100 FloodPublicAssetsUse100
   (binary-coding FloodPublicAssetsUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains100 %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                     1
                     0)
        :context  (public-asset floodplains-100)))
@@ -400,29 +393,29 @@ be added to this list if desired."
 (defmodel public-use-500 FloodPublicAssetsUse500
   (binary-coding FloodPublicAssetsUse500
        :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains500 %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                         1
                         0))
        :context  (public-asset floodplains-500))
 
-;; Models housing in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models housing in the floodplain via basic spatial overlap.
 (defmodel residents-use-100 FloodResidentsUse100
   (binary-coding FloodResidentsUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)       (:floodplains100 %))
-                        (= (tl/conc 'aestheticService:HousingPresent)      (:housing %)))
+                        (= (tl/conc 'aestheticService:HousingPresent)      (:presence-of-housing %)))
                     1
                     0)
        :context (housing floodplains-100)))
 
 (defmodel residents-use-500 FloodResidentsUse500
   (binary-coding FloodResidentsUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)       (:floodplains500 %))
-                        (= (tl/conc 'aestheticService:HousingPresent)      (:housing %)))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)       (:floodplains-500 %))
+                        (= (tl/conc 'aestheticService:HousingPresent)      (:presence-of-housing %)))
                     1
                     0)
        :context (housing floodplains-500)))
 
-;; Models other private structures in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models other private structures in the floodplain via basic spatial overlap.
 (defmodel private-use-100 FloodPrivateAssetsUse100
   (binary-coding FloodPrivateAssetsUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)      (:floodplains100 %))

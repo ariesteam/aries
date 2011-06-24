@@ -240,8 +240,8 @@ be added to this list if desired."
                   :state   #(if (> (+ (:highway %) (:railway %)) 0) 
                               (tl/conc 'floodService:PublicAssetPresent) 
                               (tl/conc 'floodService:PublicAssetNotPresent))
-                  :context ((ranking infrastructure:Highway) :as highway
-                            (ranking infrastructure:Railway) :as railway)))
+                  :context ((ranking infrastructure:Highway)
+                            (ranking infrastructure:Railway))))
 
 (defmodel farmland Farmland
   "Just a reclass of the NLCD land use layer"
@@ -251,7 +251,7 @@ be added to this list if desired."
                                         ;    :agent     "aries/flood/farm"
                   :editable  true))
 
-;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in the floodplain via basic spatial overlap.
 (defmodel farmers-use-100 FloodFarmersUse100
   (binary-coding FloodFarmersUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains100 %))
@@ -268,11 +268,11 @@ be added to this list if desired."
                     0)
        :context (farmland floodplains-500)))
 
-;; Models public infrastructure in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models public infrastructure in the floodplain via basic spatial overlap.
 (defmodel public-use-100 FloodPublicAssetsUse100
   (binary-coding FloodPublicAssetsUse100
        :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains100 %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                     1
                     0)
        :context  (public-asset floodplains-100)))
@@ -280,7 +280,7 @@ be added to this list if desired."
 (defmodel public-use-500 FloodPublicAssetsUse500
   (binary-coding FloodPublicAssetsUse500
        :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains500 %))
-                        (= (tl/conc 'floodService:PublicAssetPresent) (:publicasset %)))
+                        (= (tl/conc 'floodService:PublicAssetPresent) (:public-asset %)))
                    1
                    0)
        :context  (public-asset floodplains-500)))

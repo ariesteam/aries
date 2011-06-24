@@ -206,7 +206,7 @@
        :context ((ranking        nlcd:NLCDNumeric       :as farmlandpresent)
                  (categorization geofeatures:Floodplain :as floodplains))
        :state #(if (and (= (:floodplains %) 1.0)
-                        (= (:farmlandpresent %) 82.0))
+                        (= (:farmland-present %) 82.0))
                     1
                     0))) 
 
