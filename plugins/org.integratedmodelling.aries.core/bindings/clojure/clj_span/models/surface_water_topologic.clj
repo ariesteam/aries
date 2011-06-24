@@ -85,11 +85,11 @@
   (dosync
    (let [sink-cap-ref      (sink-caps current-id)
          sink-cap          (deref sink-cap-ref)
-         new-sink-effects  (rv-fn min                 actual-weight sink-cap)
-         new-actual-weight (rv-fn #(- %1 (min %1 %2)) actual-weight sink-cap)
-         new-sink-cap      (rv-fn #(- %2 (min %1 %2)) actual-weight sink-cap)]
-       (alter sink-cap-ref (constantly new-sink-cap))
-       [new-actual-weight new-sink-effects])))
+         new-sink-effects  (rv-fn min                        actual-weight sink-cap)
+         new-actual-weight (rv-fn (fn [a s] (- a (min a s))) actual-weight sink-cap)
+         new-sink-cap      (rv-fn (fn [a s] (- s (min a s))) actual-weight sink-cap)]
+     (alter sink-cap-ref (constantly new-sink-cap))
+     [new-actual-weight new-sink-effects])))
 
 (defn- search-upstream
   [elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?]

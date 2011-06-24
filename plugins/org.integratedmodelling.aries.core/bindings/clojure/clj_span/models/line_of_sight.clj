@@ -88,10 +88,10 @@
 
 (defn- compute-view-impact
   [scenic-value scenic-elev use-elev slope distance]
-  (let [projected-elev (rv-fn #(max 0.0 (+ %1 %2)) use-elev (_* slope distance))]
+  (let [projected-elev (rv-fn (fn [e r] (max 0.0 (+ e r))) use-elev (_* slope distance))]
     (if (_>_ slope _0_)
       ;; We are looking up, so only count the visible part of the feature.
-      (let [visible-fraction (-_ 1.0 (rv-fn #(min 1.0 (/ %1 %2)) projected-elev scenic-elev))]
+      (let [visible-fraction (-_ 1.0 (rv-fn (fn [p s] (min 1.0 (/ p s))) projected-elev scenic-elev))]
         (_*_ scenic-value visible-fraction))
       ;; We are looking straight ahead or down, so count the whole
       ;; feature if we can see any part of it.
@@ -144,7 +144,7 @@
                                            sight-slopes
                                            runs
                                            (take-while pos? (map sink-decay runs))))
-                  actual-weight (rv-fn #(max 0.0 (- %1 %2)) possible-weight (reduce _+_ (vals sink-effects)))
+                  actual-weight (rv-fn (fn [p s] (max 0.0 (- p s))) possible-weight (reduce _+_ (vals sink-effects)))
                   carrier       (struct-map service-carrier
                                   :source-id       source-point
                                   ;;:route           (bitpack-route (reverse (cons use-point sight-line))) ;; Temporary efficiency hack

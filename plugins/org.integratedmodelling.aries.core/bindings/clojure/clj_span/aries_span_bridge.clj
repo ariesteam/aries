@@ -115,8 +115,8 @@
         [source-layer sink-layer use-layer flow-layers cell-width cell-height]))))
 
 (defmulti unpack-datasource
-  "Returns a seq of length n of the values in ds, where their
-   representations are determined by value-type."
+  ;;"Returns a seq of length n of the values in ds, where their
+  ;; representations are determined by value-type."
   (fn [value-type ds rows cols] value-type))
 
 (defmethod unpack-datasource :default

@@ -429,7 +429,7 @@
 ;; -------------------- Begin arithmetic functions --------------------
 
 (defmulti rv-mean
-  "Returns the mean value of a random variable X."
+  ;;"Returns the mean value of a random variable X."
   type)
 
 (defmethod rv-mean ::discrete-distribution

@@ -59,7 +59,7 @@
         var           (- second-moment (* mean mean))]
     (fuzzy-number mean var)))
 
-(def ^{:doc "A fuzzy number with mean and variance of 0."} _0_ (fuzzy-number 0.0 0.0))
+(def #^{:doc "A fuzzy number with mean and variance of 0."} _0_ (fuzzy-number 0.0 0.0))
 
 (defn _+_
   "Returns the sum of two or more FuzzyNumbers."
@@ -242,10 +242,10 @@
      (max_ x (reduce _max_ Y more))))
 
 (defmulti ?+?
-  "Returns the sum of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the sum of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?+? [FuzzyNumber FuzzyNumber] [X Y & _] (_+_ X Y))
 (defmethod ?+? [FuzzyNumber Number]      [X Y & _] (_+  X Y))
@@ -254,10 +254,10 @@
 (defmethod ?+? :more [X Y & more] (reduce ?+? (?+? X Y) more))
 
 (defmulti ?-?
-  "Returns the difference of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the difference of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?-? [FuzzyNumber FuzzyNumber] [X Y & _] (_-_ X Y))
 (defmethod ?-? [FuzzyNumber Number]      [X Y & _] (_-  X Y))
@@ -266,10 +266,10 @@
 (defmethod ?-? :more [X Y & more] (reduce ?-? (?-? X Y) more))
 
 (defmulti ?*?
-  "Returns the product of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the product of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?*? [FuzzyNumber FuzzyNumber] [X Y & _] (_*_ X Y))
 (defmethod ?*? [FuzzyNumber Number]      [X Y & _] (_*  X Y))
@@ -278,10 +278,10 @@
 (defmethod ?*? :more [X Y & more] (reduce ?*? (?*? X Y) more))
 
 (defmulti ?d?
-  "Returns the quotient of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the quotient of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?d? [FuzzyNumber FuzzyNumber] [X Y & _] (_d_ X Y))
 (defmethod ?d? [FuzzyNumber Number]      [X Y & _] (_d  X Y))
@@ -290,12 +290,12 @@
 (defmethod ?d? :more [X Y & more] (reduce ?d? (?d? X Y) more))
 
 (defmulti ?<?
-  "Compares two or more values, which may be FuzzyNumbers or
-   scalars, and returns true if X_i < X_i+1 for all i in [1,n]. Uses
-   reflection."
+  ;;"Compares two or more values, which may be FuzzyNumbers or
+  ;; scalars, and returns true if X_i < X_i+1 for all i in [1,n]. Uses
+  ;; reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?<? [FuzzyNumber FuzzyNumber] [X Y & _] (_<_ X Y))
 (defmethod ?<? [FuzzyNumber Number]      [X Y & _] (_<  X Y))
@@ -304,12 +304,12 @@
 (defmethod ?<? :more [X Y & more] (every? (fn [[X Y]] (?<? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?>?
-  "Compares two or more values, which may be FuzzyNumbers or
-   scalars, and returns true if X_i > X_i+1 for all i in [1,n]. Uses
-   reflection."
+  ;;"Compares two or more values, which may be FuzzyNumbers or
+  ;; scalars, and returns true if X_i > X_i+1 for all i in [1,n]. Uses
+  ;; reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?>? [FuzzyNumber FuzzyNumber] [X Y & _] (_>_ X Y))
 (defmethod ?>? [FuzzyNumber Number]      [X Y & _] (_>  X Y))
@@ -318,10 +318,10 @@
 (defmethod ?>? :more [X Y & more] (every? (fn [[X Y]] (?>? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?min?
-  "Returns the smallest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the smallest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?min? [FuzzyNumber FuzzyNumber] [X Y & _] (_min_ X Y))
 (defmethod ?min? [FuzzyNumber Number]      [X Y & _] (_min  X Y))
@@ -330,10 +330,10 @@
 (defmethod ?min? :more [X Y & more] (reduce ?min? (?min? X Y) more))
 
 (defmulti ?max?
-  "Returns the largest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;;"Returns the largest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
-                     [(type X) (type Y)])))
+                     [(class X) (class Y)])))
 
 (defmethod ?max? [FuzzyNumber FuzzyNumber] [X Y & _] (_max_ X Y))
 (defmethod ?max? [FuzzyNumber Number]      [X Y & _] (_max  X Y))
@@ -413,14 +413,14 @@
      even calls."
     []
     (when-let [normal-val @stored-val]
-      (reset! stored-val nil)
+      (swap! stored-val (constantly nil))
       normal-val)
     (let [v1 (dec (* 2.0 (rand)))
           v2 (dec (* 2.0 (rand)))
           s  (+ (* v1 v1) (* v2 v2))]
       (if (and (not= s 0.0) (< s 1.0))
         (let [theta (Math/sqrt (/ (* -2.0 (Math/log s)) s))]
-          (reset! stored-val (* v1 theta))
+          (swap! stored-val (constantly (* v1 theta)))
           (* v2 theta))
         (recur)))))
 
@@ -431,7 +431,7 @@
      even calls."
     []
     (when-let [normal-val @stored-val]
-      (reset! stored-val nil)
+      (swap! stored-val (constantly nil))
       normal-val)
     (let [u1    (+ (rand) 1e-6) ;; adding delta=1e-6 to prevent computing log(0) below
           u2    (rand)
@@ -439,7 +439,7 @@
           theta (* 2.0 Math/PI u2)
           n1    (* r (Math/cos theta))
           n2    (* r (Math/sin theta))]
-      (reset! stored-val n1)
+      (swap! stored-val (constantly n1))
       n2)))
 
 (defn draw

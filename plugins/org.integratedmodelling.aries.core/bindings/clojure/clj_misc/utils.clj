@@ -430,7 +430,7 @@
   ([total nums]
      (if (empty? nums)
        (list total)
-       (lazy-seq (cons total (successive-sums (+ total (first nums)) (rest nums)))))))
+       (lazy-cons total (successive-sums (+ total (first nums)) (rest nums))))))
 
 (defn successive-differences
   [nums]
