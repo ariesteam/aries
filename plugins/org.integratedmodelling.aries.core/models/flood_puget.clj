@@ -408,16 +408,16 @@ be added to this list if desired."
 ;; Models housing in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
 (defmodel residents-use-100 FloodResidentsUse100
   (binary-coding FloodResidentsUse100
-       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)   (:floodplains100 %))
-                        (= (tl/conc 'floodService:HousingPresent)      (:housing %)))
+       :state #(if (and (= (tl/conc 'floodService:In100YrFloodplain)       (:floodplains100 %))
+                        (= (tl/conc 'aestheticService:HousingPresent)      (:housing %)))
                     1
                     0)
        :context (housing floodplains-100)))
 
 (defmodel residents-use-500 FloodResidentsUse500
   (binary-coding FloodResidentsUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)   (:floodplains500 %))
-                        (= (tl/conc 'floodService:HousingPresent)      (:housing %)))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)       (:floodplains500 %))
+                        (= (tl/conc 'aestheticService:HousingPresent)      (:housing %)))
                     1
                     0)
        :context (housing floodplains-500)))

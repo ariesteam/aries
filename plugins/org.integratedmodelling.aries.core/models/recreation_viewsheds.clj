@@ -180,11 +180,7 @@
 ;; all data, for testing and storage
 (defmodel data aestheticService:AestheticEnjoyment 
 	(identification aestheticService:AestheticEnjoyment
-		:context (
-			source :as source
-			user :as use
-			sink :as sink
-			altitude :as altitude)))
+		:context (source user sink altitude)))
 
 ;; The "first stage" flow model calculates view quality from view points, and passes results to the recreation
 ;;   flow model, which moves people toward those points.	

@@ -174,9 +174,7 @@
 
 (defmodel identification-carbon ClimateStability
   (identification ClimateStability
-                  :context (source :as source
-                            sink :as sink
-                            use-simple :as use)))
+                  :context (source sink use-simple)))
 
 (defmodel carbon-flow ClimateStability
   (span CO2Removed
