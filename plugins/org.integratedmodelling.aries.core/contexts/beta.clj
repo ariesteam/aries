@@ -34,6 +34,12 @@
    1024
    "EPSG:4326 POLYGON ((-122.47 47.63, -122.47 47.08, -121.27 47.08, -121.27 47.63, -122.47 47.63))"))
 
+(defcontext wria9_2048
+  "Green-Duwamish watershed @ 2048 linear. Just the square bounding box."
+  (grid
+   2048
+   "EPSG:4326 POLYGON ((-122.47 47.63, -122.47 47.08, -121.27 47.08, -121.27 47.63, -122.47 47.63))"))
+
 (defcontext wria9_views1024
   "Green-Duwamish watershed @ 1024 linear. Just the square bounding box."
   (grid
