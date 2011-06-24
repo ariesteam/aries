@@ -1,5 +1,6 @@
 package org.integratedmodelling.aries.core;
 
+import org.integratedmodelling.corescience.metadata.Metadata;
 import org.integratedmodelling.geospace.Geospace;
 import org.integratedmodelling.geospace.gazetteers.SimpleGazetteer;
 import org.integratedmodelling.modelling.visualization.VisualizationFactory;
@@ -34,6 +35,7 @@ public class ARIESCorePlugin extends ThinklabPlugin {
 	protected void load(KnowledgeManager km) throws ThinklabException {
 
 		VisualizationFactory.get().loadColormapDefinitions(getProperties());
+		Metadata.loadPredefinedOrderings(getProperties());
 		TransformationFactory.get().loadTransformationMappings(getProperties());
 	}
 
