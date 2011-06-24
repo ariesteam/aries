@@ -116,7 +116,9 @@
   [aseq keyvalfn mergefn]
   (reduce (fn [amap x]
             (let [[key val] (keyvalfn x)]
-              (update-in amap [key] mergefn val)))
+              (if-let [old-val (amap key)]
+                (assoc amap key (mergefn old-val val))
+                (assoc amap key val))))
           {}
           aseq))
 
@@ -421,3 +423,55 @@
         val
         (when-let [val* (f val (first coll))]
           (recur val* (rest coll)))))))
+
+(defn successive-sums
+  ([nums]
+     (successive-sums (first nums) (rest nums)))
+  ([total nums]
+     (if (empty? nums)
+       (list total)
+       (lazy-seq (cons total (successive-sums (+ total (first nums)) (rest nums)))))))
+
+(defn successive-differences
+  [nums]
+  (if (< (count nums) 2)
+    nums
+    (cons (first nums) (map - (rest nums) nums))))
+
+(defn replace-all
+  [smap form]
+  (if (coll? form)
+    (let [new-form (map (p replace-all smap) form)]
+      (cond (list?   form) new-form
+            (vector? form) (vec new-form)
+            (map?    form) (into {} new-form)
+            (set?    form) (set new-form)))
+    (if-let [new-val (smap form)]
+      new-val
+      form)))
+
+(defn select-n-distinct
+  [n coll]
+  (if (>= n (count coll))
+    (vec coll)
+    (first
+     (nth (iterate (fn [[picks opts]]
+                     (let [idx (rand-int (count opts))]
+                       [(conj picks (opts idx))
+                        (dissoc-vec idx opts)]))
+                   [[] (vec coll)])
+          n))))
+
+(defn select-n-summands
+  "Returns a list of n numbers >= min-value, which add up to total.
+   If total is a double, the summands will be doubles.  The same goes
+   for integers."
+  [n total min-value]
+  (if (< n 2)
+    (list total)
+    (let [rand-fn   (if (integer? total) rand-int rand)
+          min-value (if (integer? total) (int min-value) min-value)
+          total     (- total (* n min-value))
+          leftovers (take n (iterate rand-fn total))
+          diffs     (map - leftovers (rest leftovers))]
+      (map (p + min-value) (cons (reduce - total diffs) diffs)))))

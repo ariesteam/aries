@@ -26,7 +26,7 @@
         [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message
                                        memoize-by-first-arg angular-distance p & def-)]
         [clj-misc.matrix-ops    :only (get-neighbors on-bounds? subtract-ids find-nearest)]
-        [clj-misc.randvars      :only (_0_ _+_ *_ _d rv-fn rv-min rv-above?)]))
+        [clj-misc.varprop       :only (_0_ _+_ *_ _d rv-fn _min_ _>)]))
 
 (defn- lowest-neighbors
   [id in-stream? elevation-layer rows cols]
@@ -38,7 +38,7 @@
                            (get-neighbors rows cols id))
           local-elev     (get-in elevation-layer id)
           neighbor-elevs (map (p get-in elevation-layer) neighbors)
-          min-elev       (reduce rv-min local-elev neighbor-elevs)]
+          min-elev       (reduce _min_ local-elev neighbor-elevs)]
       (filter #(= min-elev (get-in elevation-layer %)) neighbors))))
 (def- lowest-neighbors (memoize-by-first-arg lowest-neighbors))
 
@@ -84,7 +84,7 @@
            (if (= _0_ possible-use-cap)
              [possible-weight _0_]
              (do
-               (alter possible-use-cap-ref (p rv-fn (fn [p u] (max (- u p) 0.0)) possible-weight))
+               (alter possible-use-cap-ref #(rv-fn (fn [p u] (max (- u p) 0.0)) possible-weight %))
                [(rv-fn (fn [p u] (max (- p u) 0.0)) possible-weight possible-use-cap)
                 (rv-fn (fn [p u] (min p u))         possible-weight possible-use-cap)]))
            [new-actual-weight actual-use]
@@ -92,7 +92,7 @@
                    (= _0_ actual-weight))
              [actual-weight _0_]
              (do
-               (alter actual-use-cap-ref (p rv-fn (fn [a u] (max (- u a) 0.0)) actual-weight))
+               (alter actual-use-cap-ref #(rv-fn (fn [a u] (max (- u a) 0.0)) actual-weight %))
                [(rv-fn (fn [a u] (max (- a u) 0.0)) actual-weight actual-use-cap)
                 (rv-fn (fn [a u] (min a u))         actual-weight actual-use-cap)]))]
        (if (or (not= _0_ possible-use)
@@ -118,7 +118,7 @@
                (= _0_ sink-cap))
          [actual-weight {}]
          (do
-           (alter sink-cap-ref (p rv-fn (fn [a s] (max (- s a) 0.0)) actual-weight))
+           (alter sink-cap-ref #(rv-fn (fn [a s] (max (- s a) 0.0)) actual-weight %))
            [(rv-fn (fn [a s] (max (- a s) 0.0)) actual-weight sink-cap)
             {current-id (rv-fn (fn [a s] (min a s)) actual-weight sink-cap)}]))))
     [actual-weight {}]))
@@ -148,7 +148,7 @@
                                                                          cache-layer
                                                                          mm2-per-cell
                                                                          surface-water-carrier)]
-        (if (rv-above? new-possible-weight trans-threshold-volume)
+        (if (_> new-possible-weight trans-threshold-volume)
           (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
             (assoc surface-water-carrier
               :route           (conj route next-id)

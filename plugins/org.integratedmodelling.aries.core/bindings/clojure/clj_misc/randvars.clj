@@ -22,88 +22,44 @@
 ;;; {state -> probability}.  Both discrete and continuous random
 ;;; variables are supported.  Continuous RVs are represented using
 ;;; samples from their cumulative distribution functions (CDFs).
-;;;
-;;; This library also provides some shorthand abbreviations for many
-;;; of the arithmetic functions:
-;;;
-;;; _0_ rv-zero
-;;; _+_ rv-add
-;;; _-_ rv-subtract
-;;; _*_ rv-multiply
-;;; _d_ rv-divide
-;;; _<_ rv-lt?
-;;; _>_ rv-gt?
-;;;  +_ scalar-rv-add
-;;;  -_ scalar-rv-subtract
-;;;  *_ scalar-rv-multiply
-;;;  d_ scalar-rv-divide
-;;; _+  rv-scalar-add
-;;; _-  rv-scalar-subtract
-;;; _*  rv-scalar-multiply
-;;; _d  rv-scalar-divide
 
 (ns clj-misc.randvars
   (:refer-clojure :exclude (type))
-  (:use [clj-misc.utils :only (p my-partition-all constraints-1.0 mapmap seq2map dissoc-vec)]))
+  (:use [clj-misc.utils :only [p my-partition-all constraints-1.0
+                               seq2map dissoc-vec seq2redundant-map
+                               successive-sums successive-differences
+                               select-n-distinct select-n-summands]]))
 
 (def type (comp :type meta))
+;; -------------------- Begin utility functions --------------------
 
-(def *rv-max-states* 10)
+;; (defrecord ContinuousRV [])
+
+;; (defrecord DiscreteRV [])
+
+;; (defn continuous-rv []
+;;   (ContinuousRV. ))
+
+;; (defn discrete-rv []
+;;   (DiscreteRV. ))
+
+(def *rv-max-states* 10) ;; sensible default
+
 (defn reset-rv-max-states!
   [new-val]
-  (if (and (pos? new-val) (integer? new-val))
-    (alter-var-root #'*rv-max-states* (constantly new-val))))
+  (constraints-1.0 {:pre [(and (pos? new-val) (integer? new-val))]})
+  (alter-var-root #'*rv-max-states* (constantly new-val)))
 
 (def cont-type {:type ::continuous-distribution})
+
 (def disc-type {:type ::discrete-distribution})
-
-(defn successive-sums
-  ([nums]
-     (successive-sums (first nums) (rest nums)))
-  ([total nums]
-     (if (empty? nums)
-       (list total)
-;;       (lazy-seq (cons total (successive-sums (+ total (first nums)) (rest nums)))))))
-       (lazy-cons total (successive-sums (+ total (first nums)) (rest nums))))))
-
-(defn successive-differences
-  [nums]
-  (if (< (count nums) 2)
-    nums
-    (cons (first nums) (map - (rest nums) nums))))
-
-(defn select-n-distinct
-  [n coll]
-  (if (>= n (count coll))
-    (vec coll)
-    (first
-     (nth (iterate (fn [[picks opts]]
-                     (let [idx (rand-int (count opts))]
-                       [(conj picks (opts idx))
-                        (dissoc-vec idx opts)]))
-                   [[] (vec coll)])
-          n))))
-
-(defn select-n-summands
-  "Returns a list of n numbers >= min-value, which add up to total.
-   If total is a double, the summands will be doubles.  The same goes
-   for integers."
-  [n total min-value]
-  (if (< n 2)
-    (list total)
-    (let [rand-fn   (if (integer? total) rand-int rand)
-          min-value (if (integer? total) (int min-value) min-value)
-          total     (- total (* n min-value))
-          leftovers (take n (iterate rand-fn total))
-          diffs     (map - leftovers (rest leftovers))]
-      (map (p + min-value) (cons (reduce - total diffs) diffs)))))
 
 (defmulti to-discrete-randvar type)
 
 (defmethod to-discrete-randvar ::continuous-distribution
   [continuous-RV]
   (with-meta
-    (let [sorted-RV (sort-by key continuous-RV)]
+    (let [sorted-RV (sort continuous-RV)]
       (zipmap (keys sorted-RV)
               (successive-differences (vals sorted-RV))))
     disc-type))
@@ -115,44 +71,16 @@
 (defmethod to-continuous-randvar ::discrete-distribution
   [discrete-RV]
   (with-meta
-    (let [sorted-RV (sort-by key discrete-RV)]
+    (let [sorted-RV (sort discrete-RV)]
       (zipmap (keys sorted-RV)
               (successive-sums (vals sorted-RV))))
     cont-type))
 
 (defmethod to-continuous-randvar ::continuous-distribution [continuous-RV] continuous-RV)
-  
-(defn make-randvar
-  [rv-type num-states valid-states]
-  (constraints-1.0 {:pre [(#{:discrete :continuous} rv-type)]})
-  (let [discrete-RV (with-meta
-                      (zipmap (map double (select-n-distinct num-states valid-states))
-                              (map #(/ % 100.0) (select-n-summands num-states 100 1)))
-                      disc-type)]
-    (if (= rv-type :discrete)
-      discrete-RV
-      (to-continuous-randvar discrete-RV))))
 
-(defmulti rv-cdf-lookup
-  ;;"Return F_X(x) = P(X<x)."
-  (fn [X x] (type X)))
+(def _0_ (with-meta {0.0 1.0} disc-type))
 
-(defmethod rv-cdf-lookup ::discrete-distribution
-  [X x]
-  (rv-cdf-lookup (to-continuous-randvar X) x))
-
-(defmethod rv-cdf-lookup ::continuous-distribution
-  [X x]
-  (or (X x)
-      (if-let [below-x (seq (filter #(< % x) (keys X)))]
-        (X (apply max below-x))
-        0.0)))
-
-(defn rv-below?
-  [X x]
-  (> (rv-cdf-lookup X x) 0.5))
-
-(def rv-above? (complement rv-below?))
+;; -------------------- Begin rv-resample functions --------------------
 
 (defn- sum-discrepancy
   ([[p1 p2]]
@@ -193,7 +121,7 @@
     ;; (NPP), which is NP-complete. Scheisse.  I'll apply the
     ;; differencing algorithm repeatedly to successively smaller
     ;; partitions until the total number is reached.
-    (let [X*           (sort-by key X)
+    (let [X*           (sort X)
           search-depth (int (/ (Math/log max-partitions) (Math/log 2)))]
       ;;(nth (iterate #(mapcat (fn [p] (minimum-discrepancy-partition val p)) %)
       (nth (iterate (p mapcat (p minimum-discrepancy-partition val))
@@ -220,7 +148,7 @@
 ;;    X
 ;;    (let [partition-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
 ;;      (with-meta
-;;        (seq2map (my-partition-all partition-size (sort-by key X))
+;;        (seq2map (my-partition-all partition-size (sort X))
 ;;                 #(vector (/ (apply + (keys %)) (count %))
 ;;                          (apply + (vals %))))
 ;;        (meta X)))))
@@ -230,38 +158,9 @@
   (if-not (> (count X) *rv-max-states*)
     X
     (let [step-size (Math/ceil (/ (dec (count X)) (dec *rv-max-states*)))]
-      (with-meta (into {} (take-nth step-size (sort-by key X))) (meta X)))))
+      (with-meta (into {} (take-nth step-size (sort X))) (meta X)))))
 
-(defmulti rv-mean
-  ;;"Returns the mean value of a random variable X."
-  type)
-
-(defmethod rv-mean ::discrete-distribution
-  [X]
-  (reduce + (map (p apply *) X)))
-
-;; This returns the average of the upper and lower bounds for the mean
-(defmethod rv-mean ::continuous-distribution
-  [X]
-  (let [X*     (sort-by key X)
-        states (keys X*)
-        probs  (successive-differences (vals X*))
-        upper  (reduce + (map * states probs))
-        lower  (reduce + (map * states (rest probs)))]
-    (/ (+ upper lower) 2)))
-
-(def rv-zero (with-meta (array-map 0.0 1.0) disc-type))
-(def _0_ rv-zero)
-
-(defn rv-zero-ish?
-  [delta X]
-  (<= (- 1.0 (X 0.0 0.0)) delta))
-
-(defn rv=ish?
-  [delta X Y]
-  (every? (fn [[x px]] (if-let [py (Y x)] (<= (Math/abs (- py px)) delta))) X))
-
-;;; testing functions below here
+;; -------------------- Begin rv-convolute functions --------------------
 
 ;; FIXME: Continuous convolutions always assume the lower bound
 ;; interpretation of the stepwise CDFs. We should probably average all
@@ -337,7 +236,7 @@
 
 (defn rv-convolute-4
   [f X Y]
-  (let [convolution (sort-by key (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
+  (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
         all-unique  (reduce (fn [acc [v2 p2 :as n]]
                               (let [[v1 p1] (peek acc)]
                                 (if (== v1 v2)
@@ -350,7 +249,7 @@
 (comment
   (defn rv-convolute-5
     [f X Y]
-    (let [convolution (sort-by key (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
+    (let [convolution (sort (for [[v1 p1] X [v2 p2] Y] [(f v1 v2) (* p1 p2)]))
           all-unique  (reduce (fn [acc [v2 p2 :as n]]
                                 (let [last-idx (dec (count acc))
                                       [v1 p1]  (acc last-idx)]
@@ -401,21 +300,151 @@
   "Returns the distribution of f of two random variables X and Y."
   [f X Y]
   (with-meta
-    (into {} (filter (fn [[x p]] (> p 0.0)) (rv-convolute* f X Y)))
+    (into {} (filter (fn [[_ p]] (pos? p)) (rv-convolute* f X Y)))
     (if (or (= ::continuous-distribution (type X))
             (= ::continuous-distribution (type Y)))
       cont-type
       disc-type)))
 
+;; -------------------- Begin arithmetic functions --------------------
+
 (defn rv-fn
   [f X Y]
   (rv-resample (rv-convolute f X Y)))
 
-(defn rv-add
+(defn _+_
   [X Y]
-  ;;(println "Adding" (count X) "by" (count Y) "RVs (" (type X) (type Y) ")")
-  (rv-resample (rv-convolute + X Y)))
-(def _+_ rv-add)
+  (rv-fn + X Y))
+
+(defn _-_
+  [X Y]
+  (rv-fn - X Y))
+
+(defn _*_
+  [X Y]
+  (rv-fn * X Y))
+
+(defn _d_
+  [X Y]
+  (rv-fn / X Y))
+
+(defn _<_
+  [X Y]
+  (> (get (rv-convolute < X Y) true 0.0) 0.5))
+
+(defn _>_
+  [X Y]
+  (> (get (rv-convolute > X Y) true 0.0) 0.5))
+
+(defn _min_
+  [X Y]
+  (if (_<_ X Y) X Y))
+
+(defn _max_
+  [X Y]
+  (if (_>_ X Y) X Y))
+
+(defn- rv-map
+  "Returns the distribution of the random variable X with f applied to its states."
+  [f X]
+  (with-meta (seq2redundant-map X (fn [[x p]] [(f x) p]) +) (meta X)))
+
+(defn _+
+  [X y]
+  (rv-map #(+ % y) X))
+
+(defn _-
+  [X y]
+  (rv-map #(- % y) X))
+
+(defn _*
+  [X y]
+  (rv-map #(* % y) X))
+
+(defn _d
+  [X y]
+  (rv-map #(/ % y) X))
+
+(defmulti rv-cdf-lookup
+  ;;"Return F_X(x) = P(X<x)."
+  (fn [X y] (type X)))
+
+(defmethod rv-cdf-lookup ::discrete-distribution
+  [X y]
+  (reduce + (map second (filter #(< (first %) y) X))))
+
+;;; FIXME: stub
+(defmethod rv-cdf-lookup ::continuous-distribution
+  [X y]
+  0.5)
+
+(defn _<
+  [X y]
+  (> (rv-cdf-lookup X y) 0.5))
+
+(defn _>
+  [X y]
+  (< (rv-cdf-lookup X y) 0.5))
+
+(defn _min
+  [X y]
+  (if (_< X y) X y))
+
+(defn _max
+  [X y]
+  (if (_> X y) X y))
+
+(defn +_
+  [x Y]
+  (rv-map #(+ x %) Y))
+
+(defn -_
+  [x Y]
+  (rv-map #(- x %) Y))
+
+(defn *_
+  [x Y]
+  (rv-map #(* x %) Y))
+
+(defn d_
+  [x Y]
+  (rv-map #(/ x %) Y))
+
+(defn <_
+  [x Y]
+  (< (rv-cdf-lookup Y x) 0.5))
+
+(defn >_
+  [x Y]
+  (> (rv-cdf-lookup Y x) 0.5))
+
+(defn min_
+  [x Y]
+  (if (<_ x Y) x Y))
+
+(defn max_
+  [x Y]
+  (if (>_ x Y) x Y))
+
+;; -------------------- Begin arithmetic functions --------------------
+
+(defmulti rv-mean
+  "Returns the mean value of a random variable X."
+  type)
+
+(defmethod rv-mean ::discrete-distribution
+  [X]
+  (reduce + (map (p apply *) X)))
+
+;; This returns the average of the upper and lower bounds for the mean
+(defmethod rv-mean ::continuous-distribution
+  [X]
+  (let [X*     (sort X)
+        states (keys X*)
+        probs  (successive-differences (vals X*))
+        upper  (reduce + (map * states probs))
+        lower  (reduce + (map * states (rest probs)))]
+    (/ (+ upper lower) 2)))
 
 (defn rv-sum
   [Xs]
@@ -423,111 +452,59 @@
         (first Xs)
 
         (<= (count Xs) 20)
-        (reduce rv-add Xs)
+        (reduce _+_ Xs)
 
         :otherwise
         (recur (pmap rv-sum
                      (my-partition-all 20 Xs)))))
 
-(defn rv-subtract
-  [X Y]
-  (rv-resample (rv-convolute - X Y)))
-(def _-_ rv-subtract)
+(defn rv-extensive-sampler
+  [coverage]
+  (rv-sum (map (fn [[val frac]] (_* val frac)) coverage)))
 
-(defn rv-multiply
-  [X Y]
-  (rv-resample (rv-convolute * X Y)))
-(def _*_ rv-multiply)
+(defn rv-intensive-sampler
+  [coverage]
+  (let [frac-sum (reduce + (map second coverage))]
+    (rv-sum (map (fn [[val frac]] (_* val (/ frac frac-sum))) coverage))))
 
-(defn rv-divide
-  [X Y]
-  (rv-resample (rv-convolute / X (dissoc Y 0.0))))
-(def _d_ rv-divide)
+(defn draw-repeatedly
+  "Extracts values from X using a uniform distribution."
+  ([X]
+     (repeatedly #(loop [r (rand), X* X]
+                    (let [[x p] (first X*)]
+                      (if (<= r p)
+                        x
+                        (recur (- r p)
+                               (rest X*)))))))
+  ([n X]
+     (take n (draw-repeatedly X))))
 
-(defn rv-lt
-  [X Y]
-  (get (rv-convolute < X Y) true 0.0))
+(defn draw
+  [X]
+  (first (draw-repeatedly X)))
 
-(defn rv-gt
-  [X Y]
-  (get (rv-convolute > X Y) true 0.0))
+;; -------------------- Begin unused functions --------------------
 
-(defn rv-lt?
-  [X Y]
-  (> (rv-lt X Y) 0.5))
-(def _<_ rv-lt?)
-
-(defn rv-gt?
-  [X Y]
-  (> (rv-gt X Y) 0.5))
-(def _>_ rv-gt?)
-
-(defn rv-max
-  [X Y]
-  (if (rv-gt? X Y) X Y))
-
-(defn rv-min
-  [X Y]
-  (if (rv-lt? X Y) X Y))
-
-(defn- rv-map
-  "Returns the distribution of the random variable X with f applied to its range values."
-  [f X]
-  (with-meta (mapmap f identity X) (meta X)))
-
-(defn scalar-rv-add
-  [x Y]
-  (rv-map #(+ x %) Y))
-(def +_ scalar-rv-add)
-
-(defn scalar-rv-subtract
-  [x Y]
-  (rv-map #(- x %) Y))
-(def -_ scalar-rv-subtract)
-
-(defn scalar-rv-multiply
-  [x Y]
-  (rv-map #(* x %) Y))
-(def *_ scalar-rv-multiply)
-
-;; Throws an exception if the RV has a 0 state (Snapp thinks this is a good idea).
-;; FIXME: Consider the case with continuous RVs (no finite probability
-;; of actually Y=0, so maybe we can fudge it somehow.
-
-(defn scalar-rv-divide
-  [x Y]
-  (rv-map #(/ x %) Y))
-(def d_ scalar-rv-divide)
-
-(defn rv-scalar-add
-  [X y]
-  (rv-map #(+ % y) X))
-(def _+ rv-scalar-add)
-
-(defn rv-scalar-subtract
-  [X y]
-  (rv-map #(- % y) X))
-(def _- rv-scalar-subtract)
-
-(defn rv-scalar-multiply
-  [X y]
-  (rv-map #(* % y) X))
-(def _* rv-scalar-multiply)
-
-(defn rv-scalar-divide
-  [X y]
-  (rv-map #(/ % y) X))
-(def _d rv-scalar-divide)
+(defn make-randvar
+  [rv-type num-states valid-states]
+  (constraints-1.0 {:pre [(#{:discrete :continuous} rv-type)]})
+  (let [discrete-RV (with-meta
+                      (zipmap (map double (select-n-distinct num-states valid-states))
+                              (map #(/ % 100.0) (select-n-summands num-states 100 1)))
+                      disc-type)]
+    (if (= rv-type :discrete)
+      discrete-RV
+      (to-continuous-randvar discrete-RV))))
 
 (defn rv-zero-above-scalar
   "Sets all values greater than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (> %2 %1) 0.0 %2) (make-randvar :discrete 1 [y]) X))
+  (rv-map #(if (> %1 y) 0.0 %1) X))
 
 (defn rv-zero-below-scalar
   "Sets all values less than y in the random variable X to 0."
   [X y]
-  (rv-convolute #(if (< %2 %1) 0.0 %2) (make-randvar :discrete 1 [y]) X))
+  (rv-map #(if (< %1 y) 0.0 %1) X))
 
 (defn rv-pos
   "Sets all negative values in X to 0."
@@ -537,9 +514,9 @@
 (defn rv-average
   [RVs]
   (if (seq RVs)
-;;    (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs))))
+;;    (_d (reduce _+_ _0_ RVs) (count RVs))))
     (do (println "Averaging" (count RVs) (type (first RVs)) "RVs...")
-        (time (rv-scalar-divide (reduce rv-add rv-zero RVs) (count RVs))))))
+        (time (_d (reduce _+_ _0_ RVs) (count RVs))))))
 
 (defn rv-convolutions
   [& Xs]
@@ -562,7 +539,7 @@
 
 (defmethod rv-scale ::continuous-distribution
   [X scale-factor]
-  (let [X*           (sort-by key X)
+  (let [X*           (sort X)
         states       (vec (keys X*))
         probs        (vec (map (p * scale-factor) (successive-differences (vals X*))))
         zero-pos     (first (filter #(zero? (states %)) (range (count states))))
@@ -574,21 +551,15 @@
                                  (concat (take pos-pos probs) [(- 1.0 scale-factor)] (drop pos-pos probs)))))
       cont-type)))
 
-(defn rv-extensive-sampler
-  [coverage]
-  (rv-sum (map (fn [[val frac]] (_* val frac)) coverage)))
+(defn rv-zero-ish?
+  [delta X]
+  (<= (- 1.0 (X 0.0 0.0)) delta))
 
-(defn rv-intensive-sampler
-  [coverage]
-  (let [frac-sum (reduce + (map second coverage))]
-    (rv-sum (map (fn [[val frac]] (_* val (/ frac frac-sum))) coverage))))
+(defn rv=ish?
+  [delta X Y]
+  (every? (fn [[x px]] (if-let [py (Y x)] (<= (Math/abs (- py px)) delta))) X))
 
-(defn draw
-  "Extracts a value from X using a uniform distribution."
-  [X]
-  (let [roll (rand)
-        X*   (to-continuous-randvar X)]
-    (apply min (filter #(< roll (X* %)) (keys X*)))))
+
 
 ;; Example profiling code
 ;;(use 'clj-misc.memtest)

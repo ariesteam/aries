@@ -21,11 +21,11 @@
 ;;;
 
 (ns clj-span.models.surface-water-topologic
-  (:use [clj-span.model-api     :only (distribute-flow service-carrier)]
+  (:use [clj-span.core          :only (distribute-flow! service-carrier)]
         [clj-misc.utils         :only (seq2map mapmap p &)]
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix find-bounding-box
                                        filter-matrix-for-coords get-neighbors on-bounds?)]
-        [clj-misc.randvars      :only (_0_ _+_ rv-convolutions rv-resample rv-min rv-max)]
+        [clj-misc.varprop       :only (_0_ _+_ rv-fn _min_ _max_)]
         [clj-misc.point-algebra :only (nearest-point-where)]))
 
 (defn- step-upstream
@@ -34,7 +34,7 @@
                                             (get-neighbors rows cols id)))]
     (let [neighbor-elevs      (map (p get-in elevation-layer) in-stream-neighbors)
           local-elev          (get-in elevation-layer id)
-          max-elev            (reduce rv-max (cons local-elev neighbor-elevs))]
+          max-elev            (reduce _max_ (cons local-elev neighbor-elevs))]
       (filter #(= max-elev (get-in elevation-layer %)) in-stream-neighbors))))
 
 (defn- claim-locations-and-step-upstream!
@@ -83,14 +83,13 @@
    actual-weight and the local sink effects."
   [current-id actual-weight sink-caps]
   (dosync
-   (let [sink-cap-ref (sink-caps current-id)]
-     (let [convolutions      (rv-convolutions actual-weight (deref sink-cap-ref))
-           result-rv-type    (meta convolutions)
-           new-sink-effects  (apply merge-with + (map (fn [[[x k] pxk]] {(min x k)       pxk}) convolutions))
-           new-actual-weight (apply merge-with + (map (fn [[[x k] pxk]] {(- x (min x k)) pxk}) convolutions))
-           new-sink-cap      (apply merge-with + (map (fn [[[x k] pxk]] {(- k (min x k)) pxk}) convolutions))]
-       (alter sink-cap-ref (constantly (rv-resample (with-meta new-sink-cap result-rv-type))))
-       (map #(rv-resample (with-meta % result-rv-type)) [new-actual-weight new-sink-effects])))))
+   (let [sink-cap-ref      (sink-caps current-id)
+         sink-cap          (deref sink-cap-ref)
+         new-sink-effects  (rv-fn min                 actual-weight sink-cap)
+         new-actual-weight (rv-fn #(- %1 (min %1 %2)) actual-weight sink-cap)
+         new-sink-cap      (rv-fn #(- %2 (min %1 %2)) actual-weight sink-cap)]
+       (alter sink-cap-ref (constantly new-sink-cap))
+       [new-actual-weight new-sink-effects])))
 
 (defn- search-upstream
   [elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?]
@@ -295,7 +294,7 @@
     (let [neighbors      (get-neighbors rows cols id)
           neighbor-elevs (map (p get-in elevation-layer) neighbors)
           local-elev     (get-in elevation-layer id)
-          min-elev       (reduce rv-min (cons local-elev neighbor-elevs))]
+          min-elev       (reduce _min_ (cons local-elev neighbor-elevs))]
       (first (filter #(= min-elev (get-in elevation-layer %)) neighbors)))))
 (def step-downhill (memoize step-downhill))
 
@@ -364,19 +363,11 @@
     (println "\nAll done.")
     in-stream-carriers))
 
-(defmethod distribute-flow "SurfaceWaterMovement"
-  [_ animation? cell-width cell-height source-layer sink-layer use-layer
-   {stream-layer "River", elevation-layer "Altitude"}]
-  (println "Running Surface Water flow model.")
-  (let [rows                (get-rows source-layer)
-        cols                (get-cols source-layer)
-        possible-flow-layer (make-matrix rows cols (fn [_] (ref _0_)))
-        actual-flow-layer   (make-matrix rows cols (fn [_] (ref _0_)))
-        [source-points sink-points use-points stream-points] (pmap (p filter-matrix-for-coords (p not= _0_))
-                                                                   [source-layer sink-layer use-layer stream-layer])]
-    (println "Source points:" (count source-points))
-    (println "Sink points:  " (count sink-points))
-    (println "Use points:   " (count use-points))
+(defmethod distribute-flow! "SurfaceWaterMovement"
+  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
+   actual-flow-layer source-layer sink-layer use-layer source-points
+   sink-points use-points {stream-layer "River", elevation-layer "Altitude"}]
+  (let [stream-points (filter-matrix-for-coords (p not= _0_) stream-layer)]
     (println "Stream points:" (count stream-points))
     (let [sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
           use-caps           (seq2map use-points  (fn [id] [id (ref (get-in use-layer  id))]))
@@ -390,7 +381,7 @@
                                                      cols)
           stream-roots       (find-nearest-stream-points in-stream-carriers rows cols use-points)
           carrier-caches     (search-upstream elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?)]
-      (println "Simulation complete. Returning the cache-layer.")
-      [(make-matrix rows cols carrier-caches)
-       (map-matrix deref possible-flow-layer)
-       (map-matrix deref actual-flow-layer)])))
+      ;; Update the cache-layer.
+      (dosync
+       (doseq [[id cache] carrier-caches]
+         (alter (get-in cache-layer id) (constantly cache)))))))

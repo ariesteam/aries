@@ -83,7 +83,7 @@
 
 (ns clj-span.models.carbon
   (:use [clj-misc.utils      :only (p sum def- with-progress-bar-cool)]
-        [clj-misc.randvars   :only (*_ _d draw make-randvar)]
+        [clj-misc.varprop    :only (*_ _d draw fuzzy-number-from-states)]
         [clj-span.core       :only (distribute-flow! service-carrier)]))
 
 (def- *num-world-samples* 10)
@@ -200,10 +200,7 @@
   (reduce combine-worlds
           (for [_ use-points]
             (for [_ source-points]
-              [(make-randvar :discrete 0 ())
-               (make-randvar :discrete 0 ())
-               (take (count sink-points)
-                     (repeat (make-randvar :discrete 0 ())))]))
+              [{} {} (take (count sink-points) (repeat {}))]))
           world-samples))
 
 (defn- cacheify-world
@@ -211,21 +208,22 @@
    service-carrier structs by use-point."
   [ha-per-cell source-points sink-points use-points world-sample]
   (println "Packing the results into proper service-carrier structs...")
-  (zipmap use-points
-          (pmap (fn [carrier-cache]
-                  (doall
-                   (map (fn [source-id [possible-weight actual-weight sink-effects-seq]]
-                          (struct-map service-carrier
-                            :source-id       source-id
-                            :route           nil
-                            :possible-weight (_d possible-weight ha-per-cell) ;; t/ha*yr
-                            :actual-weight   (_d actual-weight   ha-per-cell) ;; t/ha*yr
-                            :sink-effects    (zipmap sink-points ;; t/ha*yr
-                                                     (map #(_d % ha-per-cell)
-                                                          sink-effects-seq))))
-                        source-points
-                        carrier-cache)))
-                world-sample)))
+  (let [to-fuzzy-number #(fuzzy-number-from-states (keys %) (vals %))]
+    (zipmap use-points
+            (pmap (fn [carrier-cache]
+                    (doall
+                     (map (fn [source-id [possible-weight actual-weight sink-effects-seq]]
+                            (struct-map service-carrier
+                              :source-id       source-id
+                              :route           nil
+                              :possible-weight (_d (to-fuzzy-number possible-weight) ha-per-cell) ;; t/ha*yr
+                              :actual-weight   (_d (to-fuzzy-number actual-weight)   ha-per-cell) ;; t/ha*yr
+                              :sink-effects    (zipmap sink-points ;; t/ha*yr
+                                                       (map #(_d (to-fuzzy-number %) ha-per-cell)
+                                                            sink-effects-seq))))
+                          source-points
+                          carrier-cache)))
+                  world-sample))))
 
 ;; FIXME: This algorithm eats up too much memory (related to storing
 ;; the sink-effects-seq, I believe).  Do something more intelligent.

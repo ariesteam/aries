@@ -22,7 +22,7 @@
 ;;; functions.
 
 (ns clj-span.interface
-  (:use [clj-misc.randvars   :only (_0_)]
+  (:use [clj-misc.varprop    :only (_0_)]
         [clj-misc.utils      :only (& p mapmap)]
         [clj-misc.matrix-ops :only (matrix2seq matrix2coord-map print-matrix get-rows get-cols in-bounds?)]))
 

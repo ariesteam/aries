@@ -1,6 +1,6 @@
 (ns clj-span.gui
   (:use [clj-misc.utils      :only (&)]
-        [clj-misc.randvars   :only (rv-mean make-randvar _0_)]
+        [clj-misc.varprop    :only (rv-mean _+ _0_)]
         [clj-misc.matrix-ops :only (get-rows
                                     get-cols
                                     map-matrix
@@ -58,7 +58,7 @@
 (defn draw-points [ids type scale]
   (let [max-y       (apply max (map first  ids))
         max-x       (apply max (map second ids))
-        point-vals  (zipmap ids (repeat (make-randvar :discrete 1 [1])))
+        point-vals  (zipmap ids (repeat (_+ _0_ 1.0)))
         point-layer (make-matrix (inc max-y) (inc max-x) #(get point-vals % _0_))]
     (draw-layer "Points" point-layer type scale)))
 

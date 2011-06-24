@@ -36,7 +36,7 @@
   (:use [clj-span.params     :only (*trans-threshold*)]
         [clj-misc.utils      :only (euclidean-distance p def- between? with-progress-bar-cool with-message)]
         [clj-misc.matrix-ops :only (find-line-between get-line-fn)]
-        [clj-misc.randvars   :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ rv-max rv-pos rv-above?)]
+        [clj-misc.varprop    :only (_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ _max_ rv-fn _>)]
         [clj-span.core       :only (distribute-flow! service-carrier)]))
 
 ;; in meters
@@ -88,10 +88,10 @@
 
 (defn- compute-view-impact
   [scenic-value scenic-elev use-elev slope distance]
-  (let [projected-elev (rv-pos (_+_ use-elev (_* slope distance)))]
+  (let [projected-elev (rv-fn #(max 0.0 (+ %1 %2)) use-elev (_* slope distance))]
     (if (_>_ slope _0_)
       ;; We are looking up, so only count the visible part of the feature.
-      (let [visible-fraction (rv-pos (-_ 1.0 (_d_ projected-elev scenic-elev)))]
+      (let [visible-fraction (-_ 1.0 (rv-fn #(min 1.0 (/ %1 %2)) projected-elev scenic-elev))]
         (_*_ scenic-value visible-fraction))
       ;; We are looking straight ahead or down, so count the whole
       ;; feature if we can see any part of it.
@@ -122,8 +122,8 @@
               slopes          (map _d rises runs)
               sight-slopes    (cons _0_
                                     (butlast
-                                     ;;(reductions rv-max slopes)
-                                     (reduce #(conj %1 (rv-max (peek %1) %2))
+                                     ;;(reductions _max_ slopes)
+                                     (reduce #(conj %1 (_max_ (peek %1) %2))
                                              [(first slopes)]
                                              (rest slopes))))
               possible-weight (*_ distance-decay
@@ -132,7 +132,7 @@
                                                        use-elev
                                                        (last sight-slopes)
                                                        (last runs)))]
-          (when (rv-above? possible-weight *trans-threshold*)
+          (when (_> possible-weight *trans-threshold*)
             (let [sink-effects  (into {}
                                       (map #(let [sink-value (get-in sink-layer %1)]
                                               (if (not= sink-value _0_)
@@ -144,7 +144,7 @@
                                            sight-slopes
                                            runs
                                            (take-while pos? (map sink-decay runs))))
-                  actual-weight (rv-pos (reduce _-_ possible-weight (vals sink-effects)))
+                  actual-weight (rv-fn #(max 0.0 (- %1 %2)) possible-weight (reduce _+_ (vals sink-effects)))
                   carrier       (struct-map service-carrier
                                   :source-id       source-point
                                   ;;:route           (bitpack-route (reverse (cons use-point sight-line))) ;; Temporary efficiency hack

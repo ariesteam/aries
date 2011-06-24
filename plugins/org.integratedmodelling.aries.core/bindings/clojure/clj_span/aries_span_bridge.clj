@@ -27,8 +27,9 @@
 (ns clj-span.aries-span-bridge
   (:use [clj-span.core           :only (run-span)]
         [clj-misc.matrix-ops     :only (seq2matrix map-matrix)]
-        [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0 with-message)]
-        [clj-misc.randvars       :only (cont-type disc-type successive-sums)])
+        [clj-misc.utils          :only (mapmap remove-nil-val-entries p & constraints-1.0 with-message successive-sums)]
+        [clj-misc.randvars       :only (cont-type disc-type)]
+        [clj-misc.varprop        :only (fuzzy-number fuzzy-number-from-states fuzzy-number-from-ranges _0_)])
   (:import (java.io File FileWriter FileReader PushbackReader)))
 
 ;;(comment
@@ -70,30 +71,32 @@
 )
 
 (defn save-span-layers
-  [filename source-layer sink-layer use-layer flow-layers cell-width cell-height]
-  (let [dummy-map   {:theoretical-source  (constantly {})
-                     :inaccessible-source (constantly {})
-                     :possible-source     (constantly {})
-                     :blocked-source      (constantly {})
-                     :actual-source       (constantly {})
-                     :theoretical-sink    (constantly {})
-                     :inaccessible-sink   (constantly {})
-                     :actual-sink         (constantly {})
-                     :theoretical-use     (constantly {})
-                     :inaccessible-use    (constantly {})
-                     :possible-use        (constantly {})
-                     :blocked-use         (constantly {})
-                     :actual-use          (constantly {})
-                     :possible-flow       (constantly {})
-                     :blocked-flow        (constantly {})
-                     :actual-flow         (constantly {})}
-        to-hash-map #(with-meta (into {} %) (meta %))]
+  [filename source-layer sink-layer use-layer flow-layers cell-width cell-height value-type]
+  (let [dummy-map    {:theoretical-source  (constantly {})
+                      :inaccessible-source (constantly {})
+                      :possible-source     (constantly {})
+                      :blocked-source      (constantly {})
+                      :actual-source       (constantly {})
+                      :theoretical-sink    (constantly {})
+                      :inaccessible-sink   (constantly {})
+                      :actual-sink         (constantly {})
+                      :theoretical-use     (constantly {})
+                      :inaccessible-use    (constantly {})
+                      :possible-use        (constantly {})
+                      :blocked-use         (constantly {})
+                      :actual-use          (constantly {})
+                      :possible-flow       (constantly {})
+                      :blocked-flow        (constantly {})
+                      :actual-flow         (constantly {})}
+        to-printable (if (= value-type :randvars)
+                       #(with-meta (into {} %) (meta %))
+                       identity)]
     (with-open [outstream (FileWriter. filename)]
       (binding [*out*       outstream
                 *print-dup* true]
         (doseq [layer [source-layer sink-layer use-layer]]
-          (prn (if layer (map-matrix to-hash-map layer))))
-        (prn (mapmap identity #(map-matrix to-hash-map %) flow-layers))
+          (prn (if layer (map-matrix to-printable layer))))
+        (prn (mapmap identity #(map-matrix to-printable %) flow-layers))
         (prn cell-width)
         (prn cell-height)))
     dummy-map))
@@ -111,11 +114,17 @@
             cell-height  (read)]
         [source-layer sink-layer use-layer flow-layers cell-width cell-height]))))
 
-(defn- unpack-datasource
-  "Returns a seq of length n of the values in ds,
-   represented as probability distributions {doubles -> doubles}.
-   NaN state values are converted to 0s."
-  [ds rows cols]
+(defmulti unpack-datasource
+  "Returns a seq of length n of the values in ds, where their
+   representations are determined by value-type."
+  (fn [value-type ds rows cols] value-type))
+
+(defmethod unpack-datasource :default
+  [value-type _ _ _]
+  (throw (Exception. (str "unpack-datasource is undefined for value-type: " value-type))))
+
+(defmethod unpack-datasource :randvars
+  [_ ds rows cols]
   (println "Inside unpack-datasource!" rows cols)
   (let [n             (* rows cols)
         NaNs-to-zero  (p map #(if (Double/isNaN %) 0.0 %))
@@ -160,6 +169,41 @@
           (for [value (NaNs-to-zero (get-data ds))]
             (with-meta (array-map value 1.0) disc-type))))))
 
+(defmethod unpack-datasource :varprop
+  [_ ds rows cols]
+  (println "Inside unpack-datasource!" rows cols)
+  (let [n             (* rows cols)
+        NaNs-to-zero  (p map #(if (Double/isNaN %) 0.0 %))]
+    (println "Checking datasource type..." ds)
+    (if (and (probabilistic? ds) (not (binary? ds)))
+      (do (print "It's probabilistic...")
+          (flush)
+          (if (encodes-continuous-distribution? ds)
+            ;; sampled continuous distributions
+            (do
+              (println "and continuous.")
+              (let [bounds                (get-dist-breakpoints ds)
+                    unbounded-from-below? (== Double/NEGATIVE_INFINITY (first bounds))
+                    unbounded-from-above? (== Double/POSITIVE_INFINITY (last bounds))]
+                (if (or unbounded-from-below? unbounded-from-above?)
+                  (throw (Exception. "All undiscretized bounds must be closed above and below.")))
+                (for [idx (range n)]
+                  (if-let [probs (get-probabilities ds idx)]
+                    (fuzzy-number-from-ranges bounds probs)
+                    _0_))))
+            ;; discrete distributions
+            (do
+              (println "and discrete.")
+              (let [states (get-possible-states ds)]
+                (for [idx (range n)]
+                  (if-let [probs (get-probabilities ds idx)]
+                    (fuzzy-number-from-states states probs)
+                    _0_))))))
+      ;; binary distributions and deterministic values
+      (do (println "It's deterministic.")
+          (for [value (NaNs-to-zero (get-data ds))]
+            (fuzzy-number value 0.0))))))
+
 (defn- unpack-datasource-orig
   "Returns a seq of length n of the values in ds,
    represented as probability distributions {rationals -> doubles}.
@@ -201,21 +245,21 @@
 (defn- layer-from-observation
   "Builds a rows x cols matrix (vector of vectors) of the concept's
    state values in the observation."
-  [observation concept rows cols]
+  [observation concept rows cols value-type]
   (when concept
     (println "Extracting" (.getLocalName concept) "layer.")
-    (seq2matrix rows cols (unpack-datasource (find-state observation concept) rows cols))))
+    (seq2matrix rows cols (unpack-datasource value-type (find-state observation concept) rows cols))))
 
 (defn- layer-map-from-observation
   "Builds a map of {concept-names -> matrices}, where each concept's
    matrix is a rows x cols vector of vectors of the concept's state
    values in the observation."
-  [observation concepts rows cols]
+  [observation concepts rows cols value-type]
   (when (seq concepts)
     (println "Extracting flow layers:" (map (memfn getLocalName) concepts))
     (into {}
           (map (fn [c] [(.getLocalName c)
-                        (seq2matrix rows cols (unpack-datasource (find-state observation c) rows cols))])
+                        (seq2matrix rows cols (unpack-datasource value-type (find-state observation c) rows cols))])
                concepts))))
 
 (defn span-driver
@@ -231,8 +275,9 @@
   [observation-or-model-spec source-concept sink-concept use-concept flow-concepts
    {:keys [source-threshold sink-threshold use-threshold trans-threshold
            rv-max-states downscaling-factor source-type sink-type use-type benefit-type
-           result-type animation? save-file]
-    :or {result-type :closure-map}}]
+           result-type value-type animation? save-file]
+    :or {result-type :closure-map
+         value-type  :randvars}}]
   (let [observation (if (vector? observation-or-model-spec)
                       (with-message "Running model to get observation..." "done."
                         (apply run-at-location observation-or-model-spec))
@@ -246,10 +291,10 @@
           cols            (grid-columns    observation)
           [cell-w cell-h] (cell-dimensions observation) ;; in meters
           flow-model      (.getLocalName (get-observable-class observation))
-          source-layer    (layer-from-observation     observation source-concept rows cols)
-          sink-layer      (layer-from-observation     observation sink-concept   rows cols)
-          use-layer       (layer-from-observation     observation use-concept    rows cols)
-          flow-layers     (layer-map-from-observation observation flow-concepts  rows cols)]
+          source-layer    (layer-from-observation     observation source-concept rows cols value-type)
+          sink-layer      (layer-from-observation     observation sink-concept   rows cols value-type)
+          use-layer       (layer-from-observation     observation use-concept    rows cols value-type)
+          flow-layers     (layer-map-from-observation observation flow-concepts  rows cols value-type)]
       (println "Flow Parameters:")
       (println "flow-model         =" flow-model)
       (println "downscaling-factor =" downscaling-factor)
@@ -271,7 +316,7 @@
       (Thread/sleep 10000)
       (if (string? save-file)
         (do (println "Writing extracted SPAN layers to" save-file "and exiting early.")
-            (save-span-layers save-file source-layer sink-layer use-layer flow-layers cell-w cell-h))
+            (save-span-layers save-file source-layer sink-layer use-layer flow-layers cell-w cell-h value-type))
         (run-span (remove-nil-val-entries
                    {:source-layer       source-layer
                     :source-threshold   source-threshold

@@ -68,7 +68,7 @@
                                     dist-to-steps
                                     find-point-at-dist-in-m
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ _+_ _*_ *_ _d rv-fn rv-above?)]))
+        [clj-misc.varprop    :only (_0_ _+_ _*_ *_ _d rv-fn _>)]))
 
 (defn handle-sink-effects
   [current-id possible-weight actual-weight eco-sink-layer geo-sink-layer m2-per-cell]
@@ -265,7 +265,7 @@
                         (alter (get-in possible-flow-layer current-location) _+_ possible-weight)
                         (alter (get-in actual-flow-layer   current-location) _+_ actual-weight))
                        (handle-local-users! current-location use-layer cache-layer cell-depth post-sink-carrier)
-                       (if (rv-above? new-possible-weight trans-threshold-volume)
+                       (if (_> new-possible-weight trans-threshold-volume)
                          post-sink-carrier))))
                  (if new-offset (assoc storm-carrier :offset new-offset) storm-carrier)
                  next-storm-segment)))

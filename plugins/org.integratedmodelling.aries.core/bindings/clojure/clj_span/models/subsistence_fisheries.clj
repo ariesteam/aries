@@ -48,7 +48,7 @@
                                     find-nearest
                                     find-in-range
                                     find-line-between)]
-        [clj-misc.randvars   :only (_0_ *_ _d _*_ _+_ rv-fn rv-zero-ish?)]))
+        [clj-misc.varprop    :only (_0_ *_ _d _*_ _+_ _> rv-fn)]))
 
 (defstruct fisherman :need :route :cache :fishing-area)
 
@@ -59,7 +59,7 @@
    (let [current-id       (peek route)
          local-supply-ref (fish-supply current-id)
          local-supply     (deref local-supply-ref)
-         need-remaining   (if-not (rv-zero-ish? 0.05 local-supply) ;; Check for fish locally.
+         need-remaining   (if (_> local-supply 0.0) ;; Check for fish locally.
                             ;; There are fish here. Let's get some.
                             (let [fish-caught         (rv-fn min local-supply need)
                                   fish-remaining      (rv-fn (fn [s n] (- s (min s n))) local-supply need)
@@ -80,7 +80,7 @@
                               need-remaining)
                             need)]
      ;; On to the next.
-     (if-not (rv-zero-ish? 0.05 need-remaining) ;; to catch those pesky floating-point rounding errors
+     (if (_> need-remaining 0.0)
        (if-let [fishing-area-remaining (seq (filter fish-left? fishing-area))]
          (assoc fisherman
            :need         need-remaining
@@ -90,7 +90,7 @@
 (defn send-forth-fishermen!
   [fishermen fish-supply possible-flow-layer actual-flow-layer km2-per-cell]
   (with-message "Let's go fishing...\n" "All done."
-    (let [fish-left? #(if-let [supply-ref (fish-supply %)] (not (rv-zero-ish? 0.05 (deref supply-ref))))]
+    (let [fish-left? #(if-let [supply-ref (fish-supply %)] (_> (deref supply-ref) 0.0))]
       (dorun (iterate-while-seq
               #(with-message "Fishermen: " count
                  (doall (pmap (p go-fish! fish-supply fish-left? possible-flow-layer actual-flow-layer km2-per-cell) %)))

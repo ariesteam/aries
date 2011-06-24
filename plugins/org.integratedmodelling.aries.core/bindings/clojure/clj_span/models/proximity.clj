@@ -30,7 +30,7 @@
   (:use [clj-misc.utils      :only (def- p my->> mapmap euclidean-distance with-progress-bar-cool with-message remove-nil-val-entries)]
         [clj-span.params     :only (*trans-threshold*)]
         [clj-span.core       :only (distribute-flow! service-carrier)]
-        [clj-misc.randvars   :only (_0_ _+_ _* _>_ rv-fn rv-above?)]
+        [clj-misc.varprop    :only (_0_ _+_ _* _>_ rv-fn _>)]
         [clj-misc.matrix-ops :only (get-neighbors get-line-fn find-bounding-box)]))
 
 ;; in meters
@@ -86,7 +86,7 @@
    location's id is appended to the route."
   [boundary-id sink-layer to-meters {:keys [source-id route possible-weight actual-weight sink-effects] :as prev-carrier}]
   (let [decay-value (distance-decay to-meters source-id boundary-id)]
-    (if (rv-above? (_* possible-weight decay-value) *trans-threshold*)
+    (if (_> (_* possible-weight decay-value) *trans-threshold*)
       (let [sink-value (get-in sink-layer boundary-id)]
         (if (or (= _0_ sink-value)
                 (= _0_ actual-weight))

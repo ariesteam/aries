@@ -37,7 +37,7 @@
                                     with-progress-bar-cool euclidean-distance)]
         [clj-misc.matrix-ops :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest
                                     find-line-between rotate-2d-vec find-point-at-dist-in-m)]
-        [clj-misc.randvars   :only (_0_ _+_ *_ _d rv-fn rv-min)]))
+        [clj-misc.varprop    :only (_0_ _+_ *_ _d rv-fn _min_)]))
 
 (defn- lowest-neighbors
   [id in-stream? elevation-layer rows cols]
@@ -49,7 +49,7 @@
                            (get-neighbors rows cols id))
           local-elev     (get-in elevation-layer id)
           neighbor-elevs (map (p get-in elevation-layer) neighbors)
-          min-elev       (reduce rv-min local-elev neighbor-elevs)]
+          min-elev       (reduce _min_ local-elev neighbor-elevs)]
       (filter #(= min-elev (get-in elevation-layer %)) neighbors))))
 (def- lowest-neighbors (memoize-by-first-arg lowest-neighbors))
 
@@ -103,7 +103,7 @@
                [actual-weight {}]
                (let [amount-sunk              (rv-fn (fn [a s] (min a s))         actual-weight sink-cap)
                      carrier-weight-remaining (rv-fn (fn [a s] (max (- a s) 0.0)) actual-weight sink-cap)]
-                 (alter sink-cap-ref (p rv-fn (fn [a s] (- s (min a (* sink-AF s)))) actual-weight))
+                 (alter sink-cap-ref #(rv-fn (fn [a s] (- s (min a (* sink-AF s)))) actual-weight %))
                  (if (use-id? affected-sink)
                    ;; A user is co-located with this sink in the
                    ;; floodplain.  This user receives as actual-weight
@@ -125,7 +125,7 @@
            (if (= _0_ sink-cap)
              [actual-weight {}]
              (do
-               (alter sink-cap-ref (p rv-fn (fn [a s] (max (- s a) 0.0)) actual-weight))
+               (alter sink-cap-ref #(rv-fn (fn [a s] (max (- s a) 0.0)) actual-weight %))
                [(rv-fn (fn [a s] (max (- a s) 0.0)) actual-weight sink-cap)
                 {current-id (rv-fn (fn [a s] (min a s)) actual-weight sink-cap)}]))))
         [actual-weight {}]))))
