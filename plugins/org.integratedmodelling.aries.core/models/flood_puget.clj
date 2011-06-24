@@ -409,7 +409,7 @@ be added to this list if desired."
 
 (defmodel residents-use-500 FloodResidentsUse500
   (binary-coding FloodResidentsUse500
-       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)       (:floodplains-500 %))
+       :state #(if (and (= (tl/conc 'floodService:In500YrFloodplain)       (:floodplains500 %))
                         (= (tl/conc 'aestheticService:HousingPresent)      (:presence-of-housing %)))
                     1
                     0)
