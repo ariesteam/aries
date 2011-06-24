@@ -304,43 +304,27 @@ be added to this list if desired."
 ;; all data, for testing and storage
 (defmodel data-farmers-100 AvoidedFarmDamage100
   (identification AvoidedFarmDamage100
-                  :context (source :as source
-                            sink-annual :as sink
-                            farmers-use-100 :as use
-                            flood-flow-data100 :as flow)))
+                  :context (source sink-annual farmers-use-100 flood-flow-data100)))
 
 (defmodel data-farmers-500 AvoidedFarmDamage500
   (identification AvoidedFarmDamage500
-                  :context (source :as source
-                            sink-annual :as sink
-                            farmers-use-500 :as use
-                            flood-flow-data500 :as flow)))
+                  :context (source sink-annual farmers-use-500 flood-flow-data500)))
 
 (defmodel data-public-100 AvoidedPublicAssetDamage100
   (identification AvoidedPublicAssetDamage100
-                  :context (source :as source
-                            sink-annual :as sink
-                            public-use-100 :as use
-                            flood-flow-data100 :as flow)))
+                  :context (source sink-annual public-use-100 flood-flow-data100)))
 
 (defmodel data-public-500 AvoidedPublicAssetDamage500
   (identification AvoidedPublicAssetDamage500
-                  :context (source :as source
-                            sink-annual :as sink
-                            public-use-500 :as use
-                            flood-flow-data500 :as flow)))
+                  :context (source sink-annual public-use-500 flood-flow-data500)))
 
 ;;(defmodel data-private AvoidedDamageToPrivateAssets 
   ;;(identification AvoidedDamageToPrivateAssets 
-    ;;              :context (source :as source
-    ;;                        sink-annual :as sink
-    ;;                        private-use :as use)))
+    ;;              :context (source sink-annual private-use)))
 
 ;;(defmodel data-residents AvoidedDamageToResidents 
   ;;(identification AvoidedDamageToResidents 
-    ;;              :context (source :as source
-      ;;                      sink-annual :as sink
-      ;;                      residents-use :as use)))
+    ;;              :context (source sink-annual residents-use)))
 
 ;; flow model for farmers in the 100-year floodplain   
 (defmodel flood-regulation-farmers-100 AvoidedDamageToFarms100

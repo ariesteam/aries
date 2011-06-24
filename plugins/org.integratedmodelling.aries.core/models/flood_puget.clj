@@ -346,13 +346,12 @@
 (defmodel housing aestheticService:PresenceOfHousing
   "Classifies land use from property data."
   (classification (ranking aestheticService:PresenceOfHousing)
-        [0 :>]        aestheticService:HousingPresent  
+        [1 :>]        aestheticService:HousingPresent  
         :otherwise    aestheticService:HousingAbsent)
-  ;; fall-back: if no data in the ones above, use NLCD high-intensity development category
-	;; TODO check if that's ok
+  ;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
 	(classification (numeric-coding nlcd:NLCDNumeric)
-		24	       HousingPresent
-		:otherwise HousingNotPresent))
+		[22 23 24]	  aestheticService:HousingPresent
+		:otherwise    aestheticService:HousingAbsent))
 
 (defmodel public-asset PublicAsset
 	"Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could
@@ -475,67 +474,35 @@ be added to this list if desired."
 ;; tested for "source-monthly"
 (defmodel data-farmers-100 AvoidedDamageToFarms100 
 	(identification AvoidedDamageToFarms100 
-		:context (
-			source-annual :as source
-			sink-annual :as sink
-			farmers-use-100 :as use
-      flood-flow-data100 :as flow)))
+		:context (source-annual sink-annual farmers-use-100 flood-flow-data100)))
 
 (defmodel data-farmers-500 AvoidedDamageToFarms500 
   (identification AvoidedDamageToFarms500 
-    :context (
-      source-annual :as source
-      sink-annual :as sink
-      farmers-use-500 :as use
-      flood-flow-data500 :as flow)))
+    :context (source-annual sink-annual farmers-use-500 flood-flow-data500)))
 
 (defmodel data-public-100 AvoidedDamageToPublicAssets100 
 	(identification AvoidedDamageToPublicAssets100 
-		:context (
-			source-annual :as source
-			sink-annual :as sink
-			public-use-100 :as use
-      flood-flow-data100 :as flow)))
+		:context (source-annual sink-annual public-use-100 flood-flow-data100)))
 
 (defmodel data-public-500 AvoidedDamageToPublicAssets500 
   (identification AvoidedDamageToPublicAssets500 
-    :context (
-      source-annual :as source
-      sink-annual :as sink
-      public-use-500 :as use
-      flood-flow-data500 :as flow)))
+    :context (source-annual sink-annual public-use-500 flood-flow-data500)))
 
 (defmodel data-private-100 AvoidedDamageToPrivateAssets100 
 	(identification AvoidedDamageToPrivateAssets100 
-		:context (
-			source-annual :as source
-			sink-annual :as sink
-			private-use-100 :as use
-      flood-flow-data100 :as flow)))
+		:context (source-annual sink-annual private-use-100 flood-flow-data100)))
 
 (defmodel data-private-500 AvoidedDamageToPrivateAssets500 
   (identification AvoidedDamageToPrivateAssets500 
-    :context (
-      source-annual :as source
-      sink-annual :as sink
-      private-use-500 :as use
-      flood-flow-data500 :as flow)))
+    :context (source-annual sink-annual private-use-500 flood-flow-data500)))
 
 (defmodel data-residents-100 AvoidedDamageToResidents100 
 	(identification AvoidedDamageToResidents100 
-		:context (
-			source-annual :as source
-			sink-annual :as sink
-			residents-use-100 :as use
-      flood-flow-data100 :as flow)))
+		:context (source-annual sink-annual residents-use-100 flood-flow-data100)))
 
 (defmodel data-residents-500 AvoidedDamageToResidents500 
   (identification AvoidedDamageToResidents500 
-    :context (
-      source-annual :as source
-      sink-annual :as sink
-      residents-use-500 :as use
-      flood-flow-data500 :as flow)))
+    :context (source-annual sink-annual residents-use-500 flood-flow-data500)))
 
 (defmodel flood-regulation-farmers-100 AvoidedDamageToFarms100
   (span FloodWaterMovement
