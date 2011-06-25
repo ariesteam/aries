@@ -136,7 +136,7 @@
   (classification (ranking habitat:PercentFloodplainVegetationCover)
     [:exclusive 0 20]              VeryLowFloodplainVegetationCover
     [20 40]                        LowFloodplainVegetationCover
-    [40 60]                        ModerateVegetationCover
+    [40 60]                        ModerateFloodplainVegetationCover
     [60 80]                        HighFloodplainVegetationCover
     [80 100 :inclusive]            VeryHighFloodplainVegetationCover))
 
