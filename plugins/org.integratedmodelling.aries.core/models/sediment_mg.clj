@@ -136,7 +136,7 @@
   (classification (ranking habitat:PercentFloodplainVegetationCover)
     [:exclusive 0 20]              VeryLowFloodplainVegetationCover
     [20 40]                        LowFloodplainVegetationCover
-    [40 60]                        ModerateVegetationCover
+    [40 60]                        ModerateFloodplainVegetationCover
     [60 80]                        HighFloodplainVegetationCover
     [80 100 :inclusive]            VeryHighFloodplainVegetationCover))
 
@@ -188,7 +188,7 @@
 (defmodel hydroelectric-use-level HydroelectricUseLevel
   (measurement HydroelectricUseLevel "m^3"))
 
-;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in the floodplain via basic spatial overlap.
 (defmodel farmers-deposition-use-mg DepositionProneFarmers 
   (ranking DepositionProneFarmers
        :state #(if (and (= (:floodplains %) 1.0)
@@ -199,7 +199,7 @@
           (ranking mglulc:MGLULCNumeric :as farmlandpresent)
           (ranking geofeatures:Floodplain :as floodplains)))) 
 
-;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in regions with erodible soils via basic spatial overlap.
 ;; FV FIXME I don't see any SedimentSourceValueAnnual in the context?
 (defmodel farmers-erosion-use-mg ErosionProneFarmers
   (ranking ErosionProneFarmers

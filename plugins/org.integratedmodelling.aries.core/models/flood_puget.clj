@@ -512,7 +512,7 @@ be added to this list if desired."
         :sink-type          :finite
    	    :use-type           :infinite
    	    :benefit-type       :non-rival
-   	    :downscaling-factor 1
+   	    :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
    	    :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -541,7 +541,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3       ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -570,7 +570,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -599,7 +599,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3       ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -628,7 +628,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -657,7 +657,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -689,7 +689,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -718,7 +718,7 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")

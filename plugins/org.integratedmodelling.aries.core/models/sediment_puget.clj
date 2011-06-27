@@ -146,7 +146,7 @@
   (classification (ranking habitat:PercentFloodplainVegetationCover)
     [0 20]              VeryLowFloodplainVegetationCover
     [20 40]             LowFloodplainVegetationCover
-    [40 60]             ModerateVegetationCover
+    [40 60]             ModerateFloodplainVegetationCover
     [60 80]             HighFloodplainVegetationCover
     [80 100 :inclusive] VeryHighFloodplainVegetationCover))
 
@@ -200,17 +200,16 @@
 (defmodel hydroelectric-use-level HydroelectricUseLevel
   (measurement HydroelectricUseLevel "m^3" :as hydro-use-level))
 
-;; Models farmland in the floodplain, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in the floodplain via basic spatial overlap.
 (defmodel farmers-deposition-use-puget DepositionProneFarmers 
   (binary-coding DepositionProneFarmers
-       :context ((ranking        nlcd:NLCDNumeric       :as farmlandpresent)
-                 (categorization geofeatures:Floodplain :as floodplains))
-       :state #(if (and (= (:floodplains %) 1.0)
-                        (= (:farmland-present %) 82.0))
+       :context (floodplains farmland)
+       :state #(if (and (= (tl/conc 'soilRetentionEcology:InFloodplain)    (:in-floodplain))
+                        (= (tl/conc 'soilRetentionEcology:FarmlandPresent) (:farmland-present)))
                     1
                     0))) 
 
-;; Models farmland in regions with erodible soils, the non-Bayesian way (i.e., basic spatial overlap).
+;; Models farmland in regions with erodible soils, via basic spatial overlap.
 (defmodel farmers-erosion-use-puget ErosionProneFarmers
   (ranking ErosionProneFarmers
        :state #(if (= (:farmlandpresent %) 82.0)
