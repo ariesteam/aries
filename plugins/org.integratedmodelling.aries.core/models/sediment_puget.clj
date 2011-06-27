@@ -76,7 +76,7 @@
 ;;CANT do a global vegetation type defmodel if classes are different: split this up & use the local
 ;; vegetation type defmodel into the BN
 ;;Vegetation type
-(defmodel vegetation-type VegetationType
+(defmodel vegetation-type VegetationTypeSedimentPuget
 	"Just a reclass of the NLCD land use layer"
 	(classification (numeric-coding nlcd:NLCDNumeric)
 		#{41 42 43 71 90 95} ForestGrasslandWetland
@@ -403,8 +403,8 @@
                         (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
-  (model VegetationType
-    (classification VegetationType
+  (model VegetationTypeSedimentPuget
+    (classification VegetationTypeSedimentPuget
         :context (open-development-scenario vegetation-type)
         :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -459,8 +459,8 @@
                         (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'soilretentionEcology:SoilGroupD)
                   (:soil-group %))))
-  (model VegetationType
-    (classification VegetationType
+  (model VegetationTypeSedimentPuget
+    (classification VegetationTypeSedimentPuget
         :context (constrained-development-scenario vegetation-type)
         :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))

@@ -15,7 +15,7 @@
 			<state id="LowVegetationCover" />
 			<probabilities>0.37 0.26 0.37</probabilities>
 		</cpt>
-		<cpt id="VegetationType">
+		<cpt id="VegetationTypeSedimentPuget">
 			<state id="ForestGrasslandWetland" />
 			<state id="ShrublandPasture" />
 			<state id="CropsBarrenDeveloped" />
@@ -35,7 +35,7 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStageClass VegetationType PercentVegetationCoverClass</parents>
+			<parents>SuccessionalStageClass VegetationTypeSedimentPuget PercentVegetationCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0.05 0.95 0.95 0.05 0 0 0.85 0.15 0 0 0.75 0.15 0.1 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.75 0.2 0.05 0 0.55 0.35 0.1 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.15 0.4 0.45 0 0.05 0.35 0.6 0 0 0.25 0.75 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.05 0.4 0.55 0 0 0.3 0.7 0 0 0.1 0.9 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SlopeStabilityClass">
@@ -83,7 +83,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
 			<node id="SedimentSourceValueAnnualClass">
 				<name>SedimentSourceValueAnnualClass</name>
 				<interior color="ffffff" />
@@ -116,8 +116,8 @@
 				<position>876 389 987 423</position>
 				<barchart active="true" width="296" height="72" />
 			</node>
-			<node id="VegetationType">
-				<name>VegetationType</name>
+			<node id="VegetationTypeSedimentPuget">
+				<name>VegetationTypeSedimentPuget</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

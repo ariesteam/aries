@@ -79,7 +79,7 @@
 ;; create problems because the BNs are not prepared to get the GLC classes, which do come
 ;; up when the DR data have holes. Commenting out the non-DR contingencies - we should put them
 ;; back when models are general, but then only after making the BNs aware of all possible values.
-(defmodel vegetation-type VegetationType
+(defmodel vegetation-type VegetationTypeSedimentDR
 	"Just a reclass of the NLCD land use layer"
 ;	(classification (numeric-coding nlcd:NLCDNumeric)
 ;		#{41 42 43 71 90 95} ForestGrasslandWetland
@@ -93,7 +93,7 @@
   (classification (numeric-coding domlulc:DOMLULCNumeric)
     #{1 2 4 6 8 9 11 18 35} ForestAndShrubland
     #{22 24 62}             WaterWetlandsMangroves
-	 	#{41 45 53}             ShadeCoffeeCocoa
+	 	#{41 45 53}         ShadeCoffeeCocoa
     #{23 36 38 40 59}       IntensiveCroplandAndPasture
     #{42}                   UrbanAndRoads)
 ;  (classification (numeric-coding glc:GLCNumeric)

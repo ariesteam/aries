@@ -74,7 +74,7 @@
 		[2400 :>] 	  VeryHighAnnualRunoff))
 
 ;;Vegetation type
-(defmodel vegetation-type VegetationType
+(defmodel vegetation-type VegetationTypeSedimentMg
   (classification (numeric-coding mglulc:MGLULCNumeric)
     #{1 2 4 5 6 10 14}                         ForestWetland
     #{3 7 23}                                  DegradedForest

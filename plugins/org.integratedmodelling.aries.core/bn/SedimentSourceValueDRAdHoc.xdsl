@@ -38,7 +38,7 @@
 			<state id="SoilGroupD" />
 			<probabilities>0.01 0.01 0.01 0.97</probabilities>
 		</cpt>
-		<cpt id="VegetationType">
+		<cpt id="VegetationTypeSedimentDR">
 			<state id="WaterWetlandsMangroves" />
 			<state id="ForestAndShrubland" />
 			<state id="ShadeCoffeeCocoa" />
@@ -79,7 +79,7 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStageClass VegetationType PercentVegetationCoverClass</parents>
+			<parents>SuccessionalStageClass VegetationTypeSedimentDR PercentVegetationCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.975 0.025 0 0 0.5 0.4 0.1 0 0.25 0.5 0.25 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.05 0.4 0.55 0 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.1 0.35 0.4 0.15 0.8 0.2 0 0 0.35 0.5 0.15 0 0.05 0.3 0.4 0.25 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.4 0.5 0.1 0 0.2 0.4 0.4 0 0 0.2 0.5 0.3 0.3 0.4 0.3 0 0.15 0.3 0.55 0 0 0.15 0.5 0.35 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.1 0.4 0.4 0.1 0 0.3 0.4 0.3 0 0.1 0.45 0.45 0 0.4 0.4 0.2 0 0.25 0.35 0.4 0 0.05 0.4 0.55 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.025 0.975 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValueAnnualClass">
@@ -93,8 +93,8 @@
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
-			<node id="VegetationType">
-				<name>VegetationType</name>
+			<node id="VegetationTypeSedimentDR">
+				<name>VegetationTypeSedimentDR</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
