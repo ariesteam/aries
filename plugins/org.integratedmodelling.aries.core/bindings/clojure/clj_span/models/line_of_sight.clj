@@ -91,7 +91,9 @@
   (let [projected-elev (rv-fn (fn [e r] (max 0.0 (+ e r))) use-elev (_* slope distance))]
     (if (_>_ slope _0_)
       ;; We are looking up, so only count the visible part of the feature.
-      (let [visible-fraction (-_ 1.0 (rv-fn (fn [p s] (min 1.0 (/ p s))) projected-elev scenic-elev))]
+      (let [visible-fraction (-_ 1.0 (rv-fn (fn [p s] (if (< p s) (/ p s) 1.0))
+                                            projected-elev
+                                            scenic-elev))]
         (_*_ scenic-value visible-fraction))
       ;; We are looking straight ahead or down, so count the whole
       ;; feature if we can see any part of it.
