@@ -631,7 +631,7 @@ be added to this list if desired."
         :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+        :save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
         :keep (Runoff                             PotentialRunoffMitigation 
                PotentiallyVulnerablePopulations   PotentiallyDamagingFloodFlow 
                PotentiallyDamagingRunoff          PotentialFloodDamageReceived

@@ -273,7 +273,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 3
         :rv-max-states      10
         :animation?         false
         :keep (MaximumSedimentSource                       MaximumPotentialDeposition 
@@ -284,7 +284,7 @@
                UnutilizedSedimentSource                    InaccessibleSedimentDepositionBeneficiaries
                AbsorbedSedimentFlow                        NegatedSedimentSource
                LostValuableSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_data.clj")
+        :save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains)))
 
 ;; Sediment flow model for deposition in hydro reservoirs
@@ -303,7 +303,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 3
         :rv-max-states      10
         :animation?         false
         :keep (MaximumSedimentSource                                MaximumPotentialDeposition 
@@ -313,7 +313,7 @@
                UtilizedDeposition                                   ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition                                 AbsorbedSedimentFlow
                NegatedSedimentSource                                BlockedHarmfulSediment)
-        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_data.clj")
+        :save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
         :context (source-puget reservoirs sediment-sink-us altitude levees streams floodplains)))
 
 ;; FIXME: There is no WaterIntakeUse observation defined above.
