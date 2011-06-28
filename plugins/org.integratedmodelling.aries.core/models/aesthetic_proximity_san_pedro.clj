@@ -193,7 +193,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
+        :save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
         :keep (PotentialProximateOpenSpace
                PotentialProximitySink
                HomeownersWithOpenSpaceDemand
