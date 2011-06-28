@@ -144,7 +144,7 @@
                                            sight-slopes
                                            runs
                                            (take-while pos? (map sink-decay runs))))
-                  actual-weight (rv-fn (fn [p s] (max 0.0 (- p s))) possible-weight (reduce _+_ (vals sink-effects)))
+                  actual-weight (rv-fn (fn [p s] (max 0.0 (- p s))) possible-weight (reduce _+_ _0_ (vals sink-effects)))
                   carrier       (struct-map service-carrier
                                   :source-id       source-point
                                   ;;:route           (bitpack-route (reverse (cons use-point sight-line))) ;; Temporary efficiency hack
@@ -162,7 +162,7 @@
   [_ cell-width cell-height _ _ cache-layer possible-flow-layer
    actual-flow-layer source-layer sink-layer _ source-points
    _ use-points {elev-layer "Altitude"}]
-  (let [num-view-lines (* (count source-points) (count use-points))
+  (let [num-view-lines (* (long (count source-points)) (long (count use-points)))
         to-meters      (fn [[i j]] [(* i cell-height) (* j cell-width)])]
     (with-message (str "Scanning " num-view-lines " view lines...\n") "\nAll done."
       (with-progress-bar-cool

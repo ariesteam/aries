@@ -1,7 +1,8 @@
 (ns clj-span.repl-utils
   (:use (clj-span core commandline aries-span-bridge analyzer gui)
         (clj-misc utils matrix-ops randvars stats)
-        clojure.contrib.pprint))
+        clojure.contrib.pprint)
+  (:require [clj-misc.varprop :as vp]))
 
 (defn load-layers
   [filename]
@@ -175,17 +176,18 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   50.0
-             :sink-threshold     50.0
+             :source-threshold   25.0
+             :sink-threshold     25.0
              :use-threshold      0.2
              :trans-threshold    1.0
              :source-type        :infinite
              :sink-type          :infinite
              :use-type           :infinite
              :benefit-type       :non-rival
+             :value-type         :varprop
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-proximity
@@ -205,6 +207,7 @@
              :sink-type          :infinite
              :use-type           :infinite
              :benefit-type       :non-rival
+             :value-type         :varprop
              :downscaling-factor 1
              :rv-max-states      10
              :animation?         true

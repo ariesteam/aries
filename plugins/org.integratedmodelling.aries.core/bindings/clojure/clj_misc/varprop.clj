@@ -22,7 +22,8 @@
 ;;; var].
 
 (ns clj-misc.varprop
-  (:use [clj-misc.utils :only [my-partition-all replace-all]]))
+  (:use [clj-misc.utils :only [my-partition-all replace-all]])
+  (:import (clojure.lang IPersistentMap)))
 
 ;;(defrecord FuzzyNumber [mean var])
 (defstruct FuzzyNumber :mean :var)
@@ -247,10 +248,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?+? [FuzzyNumber FuzzyNumber] [X Y & _] (_+_ X Y))
-(defmethod ?+? [FuzzyNumber Number]      [X Y & _] (_+  X Y))
-(defmethod ?+? [Number      FuzzyNumber] [X Y & _] ( +_ X Y))
-(defmethod ?+? [Number      Number]      [X Y & _] ( +  X Y))
+(defmethod ?+? [IPersistentMap IPersistentMap] [X Y & _] (_+_ X Y))
+(defmethod ?+? [IPersistentMap Number]         [X Y & _] (_+  X Y))
+(defmethod ?+? [Number         IPersistentMap] [X Y & _] ( +_ X Y))
+(defmethod ?+? [Number         Number]         [X Y & _] ( +  X Y))
 (defmethod ?+? :more [X Y & more] (reduce ?+? (?+? X Y) more))
 
 (defmulti ?-?
@@ -259,10 +260,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?-? [FuzzyNumber FuzzyNumber] [X Y & _] (_-_ X Y))
-(defmethod ?-? [FuzzyNumber Number]      [X Y & _] (_-  X Y))
-(defmethod ?-? [Number      FuzzyNumber] [X Y & _] ( -_ X Y))
-(defmethod ?-? [Number      Number]      [X Y & _] ( -  X Y))
+(defmethod ?-? [IPersistentMap IPersistentMap] [X Y & _] (_-_ X Y))
+(defmethod ?-? [IPersistentMap Number]         [X Y & _] (_-  X Y))
+(defmethod ?-? [Number         IPersistentMap] [X Y & _] ( -_ X Y))
+(defmethod ?-? [Number         Number]         [X Y & _] ( -  X Y))
 (defmethod ?-? :more [X Y & more] (reduce ?-? (?-? X Y) more))
 
 (defmulti ?*?
@@ -271,10 +272,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?*? [FuzzyNumber FuzzyNumber] [X Y & _] (_*_ X Y))
-(defmethod ?*? [FuzzyNumber Number]      [X Y & _] (_*  X Y))
-(defmethod ?*? [Number      FuzzyNumber] [X Y & _] ( *_ X Y))
-(defmethod ?*? [Number      Number]      [X Y & _] ( *  X Y))
+(defmethod ?*? [IPersistentMap IPersistentMap] [X Y & _] (_*_ X Y))
+(defmethod ?*? [IPersistentMap Number]         [X Y & _] (_*  X Y))
+(defmethod ?*? [Number         IPersistentMap] [X Y & _] ( *_ X Y))
+(defmethod ?*? [Number         Number]         [X Y & _] ( *  X Y))
 (defmethod ?*? :more [X Y & more] (reduce ?*? (?*? X Y) more))
 
 (defmulti ?d?
@@ -283,10 +284,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?d? [FuzzyNumber FuzzyNumber] [X Y & _] (_d_ X Y))
-(defmethod ?d? [FuzzyNumber Number]      [X Y & _] (_d  X Y))
-(defmethod ?d? [Number      FuzzyNumber] [X Y & _] ( d_ X Y))
-(defmethod ?d? [Number      Number]      [X Y & _] ( /  X Y))
+(defmethod ?d? [IPersistentMap IPersistentMap] [X Y & _] (_d_ X Y))
+(defmethod ?d? [IPersistentMap Number]         [X Y & _] (_d  X Y))
+(defmethod ?d? [Number         IPersistentMap] [X Y & _] ( d_ X Y))
+(defmethod ?d? [Number         Number]         [X Y & _] ( /  X Y))
 (defmethod ?d? :more [X Y & more] (reduce ?d? (?d? X Y) more))
 
 (defmulti ?<?
@@ -297,10 +298,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?<? [FuzzyNumber FuzzyNumber] [X Y & _] (_<_ X Y))
-(defmethod ?<? [FuzzyNumber Number]      [X Y & _] (_<  X Y))
-(defmethod ?<? [Number      FuzzyNumber] [X Y & _] ( <_ X Y))
-(defmethod ?<? [Number      Number]      [X Y & _] ( <  X Y))
+(defmethod ?<? [IPersistentMap IPersistentMap] [X Y & _] (_<_ X Y))
+(defmethod ?<? [IPersistentMap Number]         [X Y & _] (_<  X Y))
+(defmethod ?<? [Number         IPersistentMap] [X Y & _] ( <_ X Y))
+(defmethod ?<? [Number         Number]         [X Y & _] ( <  X Y))
 (defmethod ?<? :more [X Y & more] (every? (fn [[X Y]] (?<? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?>?
@@ -311,10 +312,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?>? [FuzzyNumber FuzzyNumber] [X Y & _] (_>_ X Y))
-(defmethod ?>? [FuzzyNumber Number]      [X Y & _] (_>  X Y))
-(defmethod ?>? [Number      FuzzyNumber] [X Y & _] ( >_ X Y))
-(defmethod ?>? [Number      Number]      [X Y & _] ( >  X Y))
+(defmethod ?>? [IPersistentMap IPersistentMap] [X Y & _] (_>_ X Y))
+(defmethod ?>? [IPersistentMap Number]         [X Y & _] (_>  X Y))
+(defmethod ?>? [Number         IPersistentMap] [X Y & _] ( >_ X Y))
+(defmethod ?>? [Number         Number]         [X Y & _] ( >  X Y))
 (defmethod ?>? :more [X Y & more] (every? (fn [[X Y]] (?>? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?min?
@@ -323,10 +324,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?min? [FuzzyNumber FuzzyNumber] [X Y & _] (_min_ X Y))
-(defmethod ?min? [FuzzyNumber Number]      [X Y & _] (_min  X Y))
-(defmethod ?min? [Number      FuzzyNumber] [X Y & _] ( min_ X Y))
-(defmethod ?min? [Number      Number]      [X Y & _] ( min  X Y))
+(defmethod ?min? [IPersistentMap IPersistentMap] [X Y & _] (_min_ X Y))
+(defmethod ?min? [IPersistentMap Number]         [X Y & _] (_min  X Y))
+(defmethod ?min? [Number         IPersistentMap] [X Y & _] ( min_ X Y))
+(defmethod ?min? [Number         Number]         [X Y & _] ( min  X Y))
 (defmethod ?min? :more [X Y & more] (reduce ?min? (?min? X Y) more))
 
 (defmulti ?max?
@@ -335,10 +336,10 @@
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?max? [FuzzyNumber FuzzyNumber] [X Y & _] (_max_ X Y))
-(defmethod ?max? [FuzzyNumber Number]      [X Y & _] (_max  X Y))
-(defmethod ?max? [Number      FuzzyNumber] [X Y & _] ( max_ X Y))
-(defmethod ?max? [Number      Number]      [X Y & _] ( max  X Y))
+(defmethod ?max? [IPersistentMap IPersistentMap] [X Y & _] (_max_ X Y))
+(defmethod ?max? [IPersistentMap Number]         [X Y & _] (_max  X Y))
+(defmethod ?max? [Number         IPersistentMap] [X Y & _] ( max_ X Y))
+(defmethod ?max? [Number         Number]         [X Y & _] ( max  X Y))
 (defmethod ?max? :more [X Y & more] (reduce ?max? (?max? X Y) more))
 
 (def fuzzy-arithmetic-mapping
@@ -351,6 +352,12 @@
     min clj-misc.varprop/?min?
     max clj-misc.varprop/?max?})
 
+(defn ensure-fuzzy
+  [value]
+  (if (number? value)
+    (fuzzy-number value 0.0)
+    value))
+
 (defn fuzzify-fn
   "Transforms f into its fuzzy arithmetic equivalent, using the
    mappings defined in fuzzy-arithmetic-mapping."
@@ -360,7 +367,8 @@
     (if (list? f)
       (let [[lambda args & body] f]
         (if (and (= lambda 'fn) (vector? args))
-          `(~lambda ~args ~@(replace-all fuzzy-arithmetic-mapping body))))
+          `(comp ensure-fuzzy (~lambda ~args ~@(replace-all fuzzy-arithmetic-mapping body)))
+          f))
       f)))
 
 (defmacro rv-fn
