@@ -186,6 +186,11 @@
 			#{"A" "X500"} InFloodplain
 			:otherwise    NotInFloodplain))
 
+(defmodel floodplains-code Floodplains
+  (binary-coding Floodplains
+    :context ((categorization geofeatures:Floodplain))
+    :state   #(if (contains? #{"A" "X500"} (:floodplain %)) 1 0)))
+
 (defmodel farmland Farmland
 	"Just a reclass of the regionally appropriate LULC layer"
 	(classification (numeric-coding nlcd:NLCDNumeric)
@@ -285,7 +290,7 @@
                AbsorbedSedimentFlow                        NegatedSedimentSource
                LostValuableSediment)
         :save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
-        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains)))
+        :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains-code)))
 
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs DetrimentalSedimentTransport
@@ -314,7 +319,7 @@
                UnutilizedDeposition                                 AbsorbedSedimentFlow
                NegatedSedimentSource                                BlockedHarmfulSediment)
         :save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
-        :context (source-puget reservoirs sediment-sink-us altitude levees streams floodplains)))
+        :context (source-puget reservoirs sediment-sink-us altitude levees streams floodplains-code)))
 
 ;; FIXME: There is no WaterIntakeUse observation defined above.
 ;; Sediment flow model for assessing turbidity
@@ -344,7 +349,7 @@
                UnutilizedDeposition                             AbsorbedSedimentFlow 
                NegatedSedimentSource                            ReducedTurbidity)
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_turbidity_data.clj")
-        :context (source-puget sediment-sink-us altitude levees streams floodplains))) ;;change the beneficiary group as needed
+        :context (source-puget sediment-sink-us altitude levees streams floodplains-code))) ;;change the beneficiary group as needed
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Scenarios 
