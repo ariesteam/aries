@@ -204,8 +204,8 @@
 (defmodel farmers-deposition-use-puget DepositionProneFarmers 
   (binary-coding DepositionProneFarmers
        :context (floodplains farmland)
-       :state #(if (and (= (tl/conc 'soilRetentionEcology:InFloodplain)    (:floodplains %))
-                        (= (tl/conc 'soilRetentionEcology:FarmlandPresent) (:farmland    %)))
+       :state #(if (and (= (tl/conc 'soilretentionEcology:InFloodplain)    (:floodplains %))
+                        (= (tl/conc 'soilretentionEcology:FarmlandPresent) (:farmland    %)))
                  1
                  0)))
 
