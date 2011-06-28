@@ -296,7 +296,7 @@
 (defmodel sediment-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
         SedimentSourceValueAnnual
-        Reservoir
+        geofeatures:Reservoir
         AnnualSedimentSink
         nil
         (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River)
