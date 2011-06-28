@@ -15,6 +15,8 @@ import org.integratedmodelling.thinklab.transformations.ITransformation;
 import org.integratedmodelling.thinklab.transformations.TransformationFactory;
 
 import clojure.lang.IFn;
+import clojure.lang.Symbol;
+import clojure.lang.Keyword;
 
 public class SPANDistributionState extends MemDoubleContextualizedDatasource
     implements IState {
@@ -26,6 +28,8 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
     private IFn closure = null;
     private int rows;
     private int cols;
+    private Keyword MEAN = Keyword.intern(Symbol.create("mean"));
+    private Keyword VAR  = Keyword.intern(Symbol.create("var"));
 
     // for serializer only
     public SPANDistributionState() {
@@ -40,10 +44,97 @@ public class SPANDistributionState extends MemDoubleContextualizedDatasource
         metadata.put(Metadata.CONTINUOUS, Boolean.TRUE);
         
         // TODO make it lazy by computing values only when getDataAsDoubles is called
-        computeValues(clojure);
+        computeValuesFromVarprop(clojure);
     }
 
-    private void computeValues(IFn clojure) {
+    private void computeValuesFromVarprop(IFn clojure) {
+        try {
+            
+            Map<?,?> map = (Map<?, ?>) closure.invoke();
+
+            ITransformation transformation = 
+                TransformationFactory.get().getTransformation(getObservableClass());
+            
+            /*
+             * we get a different distribution than the one we originally set in,
+             * so we store mean and standard deviation for now. Later we can get
+             * the whole thing and use it for more.
+             */
+            if (map != null) {
+                
+                double mmax = 0.0; double mmin = 0.0;
+                double smax = 0.0; double smin = 0.0;
+                boolean first = true;
+                double[] uncertainty = null;
+                
+                for (Map.Entry<?,?> e : map.entrySet()) {
+                
+                    // LazilyPersistentVector
+                    Iterable<?> location = (Iterable<?>) e.getKey();
+                    // PersistentHashMap
+                    Map<Keyword,Double> distribu = (Map<Keyword,Double>) e.getValue();
+                
+                    if (distribu == null || location == null)
+                        continue;
+                    
+                    Iterator<?> it = location.iterator();
+                    int x = ((Number)(it.next())).intValue();
+                    int y = ((Number)(it.next())).intValue();
+    
+                    double mean = distribu.get(MEAN);
+                    double std = Math.sqrt(distribu.get(VAR));
+
+                    /*
+                     * set mean and std in proper location. If std == 0 it was
+                     * a deterministic source.
+                     */
+                    if (first) {
+                        first = false;
+                        mmax = mmin = mean;
+                    } else {
+                        if (mean > mmax) mmax = mean;
+                        if (mean < mmin) mmin = mean;
+                    }
+                    
+                    data[(x*cols) + y] = 
+                        transformation == null ? 
+                        mean :
+                        transformation.transform(new Double(mean), null);
+                    
+                    if (Double.compare(std, 0.0) != 0) {
+                        if (uncertainty == null) {
+                            uncertainty = new double[this.rows*this.cols];
+                            smax = smin = std;
+                        } else {
+                            if (std > smax) smax = std;
+                            if (std < smin) smin = std;
+                        }
+                        uncertainty[(x*cols) + y] = std;
+                    }
+                }
+                
+                /*
+                 * normalize uncertainty and insert it
+                 */
+                if (uncertainty != null) {
+                    double range = (mmax - mmin) * STD_UNCERTAINTY_MULTIPLIER; 
+                    for (int i = 0; i < uncertainty.length; i++) {
+                        uncertainty[i] = uncertainty[i]/range;
+                        if (uncertainty[i] > 1.0)
+                            uncertainty[i] = 1.0;
+                        uncertainty[i] = 1 - uncertainty[i];
+                    }
+                    getMetadata().put(Metadata.UNCERTAINTY, uncertainty);
+                }
+
+            }
+
+        } catch (Exception e) {
+            throw new ThinklabRuntimeException(e);
+        }
+    }
+
+    private void computeValuesFromRandvars(IFn clojure) {
         
         try {
             
