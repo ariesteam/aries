@@ -124,6 +124,7 @@ public class SPANModel extends DefaultAbstractModel {
             keyword.equals(":sink-type")          ||
             keyword.equals(":use-type")           ||
             keyword.equals(":benefit-type")       ||
+            keyword.equals(":value-type")         ||
             keyword.equals(":rv-max-states")      ||
             keyword.equals(":downscaling-factor") ||
             keyword.equals(":animation?") ||
