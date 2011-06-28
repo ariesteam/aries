@@ -329,6 +329,16 @@
                   #{"A" "X500"}      In500YrFloodplain
                   :otherwise         NotIn500YrFloodplain))
 
+(defmodel floodplains-100-code Floodplains100
+  (binary-coding Floodplains100
+    :context ((categorization geofeatures:Floodplain))
+    :state   #(if (= (:floodplain %) "A") 1 0)))
+
+(defmodel floodplains-500-code Floodplains500
+  (binary-coding Floodplains500
+    :context ((categorization geofeatures:Floodplain))
+    :state   #(if (contains? #{"A" "X500"} (:floodplain %)) 1 0)))
+
 ;;KB: Don't seem to have any corresponding data here, but the assumption that structures are in the floodplain wherever
 ;; there is private land is a bad one.  Let's avoid using this for now.
 (defmodel structures Structures
@@ -446,11 +456,7 @@ be added to this list if desired."
 
 ;;Levees and floodplain width: used in the flow model
 (defmodel levees Levees
-  (classification (binary-coding infrastructure:Levee)
-      0 LeveesNotPresent
-      1 LeveesPresent
-;    :agent "aries/flood/levee"
-))
+  (binary-coding infrastructure:Levee))
 
 (defmodel floodplain-width FloodplainWidth
 (classification (measurement habitat:FloodplainWidth "m")
@@ -524,7 +530,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual farmers-use-100 sink-annual altitude streams floodplains-100 levees)))
+        :context (source-annual farmers-use-100 sink-annual altitude streams floodplains-100-code levees)))
 
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
   (span FloodWaterMovement
@@ -553,7 +559,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual farmers-use-500 sink-annual altitude streams floodplains-500 levees)))
+        :context (source-annual farmers-use-500 sink-annual altitude streams floodplains-500-code levees)))
 
 (defmodel flood-regulation-public-assets-100 AvoidedDamageToPublicAssets100
   (span FloodWaterMovement
@@ -582,7 +588,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual public-use-100 sink-annual altitude streams floodplains-100 levees)))
+        :context (source-annual public-use-100 sink-annual altitude streams floodplains-100-code levees)))
 
 (defmodel flood-regulation-public-assets-500 AvoidedDamageToPublicAssets500
   (span FloodWaterMovement
@@ -611,7 +617,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual public-use-500 sink-annual altitude streams floodplains-500 levees)))
+        :context (source-annual public-use-500 sink-annual altitude streams floodplains-500-code levees)))
 
 (defmodel flood-regulation-residents-100 AvoidedDamageToResidents100
   (span FloodWaterMovement
@@ -640,7 +646,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual residents-use-100 sink-annual altitude streams floodplains-100 levees)))
+        :context (source-annual residents-use-100 sink-annual altitude streams floodplains-100-code levees)))
 
 (defmodel flood-regulation-residents-500 AvoidedDamageToResidents500
   (span FloodWaterMovement
@@ -669,7 +675,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual residents-use-500 sink-annual altitude streams floodplains-500 levees)))
+        :context (source-annual residents-use-500 sink-annual altitude streams floodplains-500-code levees)))
 
 ;; DO NOT use these flow models for now.  We don't have a way of explicitly mapping private assests, aside from housing, which 
 ;;  is treated elsewhere.  So for now, just run housing, public infrastructure, and farmland as the 3 classes of flow models (each
@@ -701,7 +707,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual private-use-100 sink-annual altitude streams floodplains-100 levees)))
+        :context (source-annual private-use-100 sink-annual altitude streams floodplains-100-code levees)))
 
 (defmodel flood-regulation-private-500 AvoidedDamageToPrivateAssets500
   (span FloodWaterMovement
@@ -730,7 +736,7 @@ be added to this list if desired."
                BenignRunoff                       UnutilizedRunoffMitigation
                AbsorbedFloodFlow                  FloodMitigatedRunoff 
                FloodMitigationBenefitsAccrued) 
-        :context (source-annual private-use-500 sink-annual altitude streams floodplains-500 levees)))
+        :context (source-annual private-use-500 sink-annual altitude streams floodplains-500-code levees)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Scenarios 
