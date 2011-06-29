@@ -52,7 +52,7 @@
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :rival ;; or :non-rival for turbidity
-             :downscaling-factor 1
+             :downscaling-factor 3
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
@@ -74,7 +74,7 @@
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :non-rival
-             :downscaling-factor 1
+             :downscaling-factor 3
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))

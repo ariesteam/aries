@@ -190,9 +190,10 @@
 
 (defn get-matrix-coverage
   [matrix l w i j]
-  (for [[i* l*] (cell-fractions-covered i l)
-        [j* w*] (cell-fractions-covered j w)]
-    [(get-in matrix [i* j*]) (* l* w*)]))
+  (remove (fn [[v f]] (nil? v))
+          (for [[i* l*] (cell-fractions-covered i l)
+                [j* w*] (cell-fractions-covered j w)]
+            [(get-in matrix [i* j*]) (* l* w*)])))
 
 (defn resample-matrix
   [new-rows new-cols sampling-fn matrix]
