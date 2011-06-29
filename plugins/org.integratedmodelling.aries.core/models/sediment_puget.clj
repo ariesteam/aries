@@ -289,7 +289,7 @@
                UnutilizedSedimentSource                    InaccessibleSedimentDepositionBeneficiaries
                AbsorbedSedimentFlow                        NegatedSedimentSource
                LostValuableSediment)
-        :save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
         :context (source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains-code)))
 
 ;; Sediment flow model for deposition in hydro reservoirs
@@ -318,7 +318,7 @@
                UtilizedDeposition                                   ActualReducedSedimentDepositionBeneficiaries
                UnutilizedDeposition                                 AbsorbedSedimentFlow
                NegatedSedimentSource                                BlockedHarmfulSediment)
-        :save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
         :context (source-puget reservoirs sediment-sink-us altitude levees streams floodplains-code)))
 
 ;; FIXME: There is no WaterIntakeUse observation defined above.
