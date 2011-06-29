@@ -1,8 +1,8 @@
 (ns clj-span.repl-utils
   (:use (clj-span core commandline aries-span-bridge analyzer gui)
-        (clj-misc utils matrix-ops randvars stats)
+        (clj-misc utils matrix-ops varprop stats)
         clojure.contrib.pprint)
-  (:require [clj-misc.varprop :as vp]))
+  (:require [clj-misc.randvars :as rv]))
 
 (defn load-layers
   [filename]
@@ -54,7 +54,7 @@
              :benefit-type       :rival ;; or :non-rival for turbidity
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-flood
@@ -76,7 +76,7 @@
              :benefit-type       :non-rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-storm
@@ -185,7 +185,7 @@
              :use-type           :infinite
              :benefit-type       :non-rival
              :value-type         :varprop
-             :downscaling-factor 1
+             :downscaling-factor 4
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
@@ -210,5 +210,5 @@
              :value-type         :varprop
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))

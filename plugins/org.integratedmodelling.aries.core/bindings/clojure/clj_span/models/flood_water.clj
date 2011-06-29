@@ -240,7 +240,7 @@
              :actual-weight   source-weight
              :sink-effects    {}
              :stream-bound?   (in-stream? %)))
-        (remove on-bounds? source-points)))))))
+        (remove (p on-bounds? rows cols) source-points)))))))
 
 (defn- make-buckets
   [mm2-per-cell layer active-points]
@@ -266,7 +266,7 @@
                 ;; the in-stream proxy location, and the nearest
                 ;; floodplain boundary
                 (let [loc-delta       (subtract-ids data-id in-stream-id)
-                      inside-id       (last (take-while in-floodplain? (rest (iterate (p add-ids loc-delta) data-id))))
+                      inside-id       (last (take-while in-floodplain? (iterate (p add-ids loc-delta) data-id)))
                       outside-id      (add-ids inside-id loc-delta)
                       boundary-id     (first (remove in-floodplain? (find-line-between inside-id outside-id)))
                       run-to-boundary (euclidean-distance in-stream-id boundary-id)
@@ -299,9 +299,9 @@
     floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
   (println "Operating in" (if floodplain-layer500 "500" "100") "year floodplain.")
   (let [floodplain-layer    (or floodplain-layer500 floodplain-layer100)
-        levee?              (memoize #(not= _0_ (get-in levees-layer     %)))
-        in-stream?          (memoize #(not= _0_ (get-in stream-layer     %)))
-        in-floodplain?      (memoize #(not= _0_ (get-in floodplain-layer %)))
+        levee?              (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))
+        in-stream?          (memoize #(if-let [val (get-in stream-layer     %)] (not= _0_ val)))
+        in-floodplain?      (memoize #(if-let [val (get-in floodplain-layer %)] (not= _0_ val)))
         floodplain-sinks    (filter in-floodplain? sink-points)
         floodplain-users    (filter in-floodplain? use-points)
         sink-stream-intakes (find-nearest-stream-points in-stream? rows cols floodplain-sinks)

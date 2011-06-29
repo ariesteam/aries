@@ -84,7 +84,7 @@
    out-of-stream flow path. Reduces the sink-caps for each sink which
    captures some of the service medium. Returns remaining
    actual-weight and the local sink effects."
-  [current-id sink-stream-intakes sink-AFs sink-caps cache-layer ha-per-cell use-id?
+  [current-id sink-stream-intakes sink-AFs sink-caps use-id? cache-layer ha-per-cell
    {:keys [possible-weight actual-weight sink-effects stream-bound?] :as sediment-carrier}]
   (if (= _0_ actual-weight)
     ;; Skip all computations, since there's no sediment left in this
@@ -176,7 +176,6 @@
                                                                                use-id?
                                                                                cache-layer
                                                                                ha-per-cell
-                                                                               use-id?
                                                                                sediment-carrier)]
         (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
           (assoc sediment-carrier
@@ -239,7 +238,7 @@
              :actual-weight   source-weight
              :sink-effects    {}
              :stream-bound?   (in-stream? %)))
-        (remove on-bounds? source-points)))))))
+        (remove (p on-bounds? rows cols) source-points)))))))
 
 (defn- make-buckets
   [ha-per-cell layer active-points]
@@ -265,7 +264,7 @@
                 ;; the in-stream proxy location, and the nearest
                 ;; floodplain boundary
                 (let [loc-delta       (subtract-ids data-id in-stream-id)
-                      inside-id       (last (take-while in-floodplain? (rest (iterate (p add-ids loc-delta) data-id))))
+                      inside-id       (last (take-while in-floodplain? (iterate (p add-ids loc-delta) data-id)))
                       outside-id      (add-ids inside-id loc-delta)
                       boundary-id     (first (remove in-floodplain? (find-line-between inside-id outside-id)))
                       run-to-boundary (euclidean-distance in-stream-id boundary-id)
@@ -296,10 +295,10 @@
   [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
    source-layer sink-layer _ source-points sink-points use-points
    {stream-layer "River", elevation-layer "Altitude", levees-layer "Levee",
-    floodplain-layer "FloodPlains"}]
-  (let [levee?               (memoize #(not= _0_ (get-in levees-layer     %)))
-        in-stream?           (memoize #(not= _0_ (get-in stream-layer     %)))
-        in-floodplain?       (memoize #(not= _0_ (get-in floodplain-layer %)))
+    floodplain-layer "Floodplains"}]
+  (let [levee?               (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))
+        in-stream?           (memoize #(if-let [val (get-in stream-layer     %)] (not= _0_ val)))
+        in-floodplain?       (memoize #(if-let [val (get-in floodplain-layer %)] (not= _0_ val)))
         floodplain-sinks     (filter in-floodplain? sink-points)
         sink-stream-intakes  (find-nearest-stream-points in-stream? rows cols floodplain-sinks)
         sink-AFs             (flood-activation-factors in-floodplain? sink-stream-intakes)
