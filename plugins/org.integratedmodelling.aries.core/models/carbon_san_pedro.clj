@@ -330,7 +330,7 @@
     (classification FireFrequency
         :context (constrained-development-scenario fire-frequency)
         :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:exNoFireFrequency)
+                  (conc 'carbonService:NoFireFrequency)
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
