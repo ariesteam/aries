@@ -117,7 +117,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<measurement:Ranking id="usa_meandaysprecipannual">
+<!-- <measurement:Ranking id="usa_meandaysprecipannual">
   <observation:hasObservable>
     <habitat:AnnualDaysOfPrecipitation />
   </observation:hasObservable>
@@ -140,6 +140,31 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
+</measurement:Ranking> -->
+
+<measurement:Ranking id="usa_mean_days_precip_annual2">
+<observation:hasObservable>
+<habitat:AnnualDaysOfPrecipitation/>
+</observation:hasObservable>
+<rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+<observation:hasDataSource>
+<geospace:WFSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>usa:mean_days_precip_annual2</geospace:hasCoverageId>
+<geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
+<geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+</geospace:WFSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:ArealFeatureSet>
+<geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-124.802</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>49.425</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>-66.935</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:ArealFeatureSet>
+</observation:hasObservationExtent>
 </measurement:Ranking>
 
 <!--Native units are in inches, convert to mm for consistency with other data sources-->
