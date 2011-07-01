@@ -140,7 +140,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</measurement:Ranking> -->
+</measurement:Ranking> 
 
 <measurement:Ranking id="usa_mean_days_precip_annual2">
 <observation:hasObservable>
@@ -165,6 +165,32 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
 </geospace:ArealFeatureSet>
 </observation:hasObservationExtent>
+</measurement:Ranking> -->
+
+<measurement:Ranking id="DaysAnnual">
+  <observation:hasObservable>
+    <habitat:AnnualDaysOfPrecipitation/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:DaysAnnual</geospace:hasCoverageId>
+      <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>3856</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>1663</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-124.802</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>49.438</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-66.932</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
 <!--Native units are in inches, convert to mm for consistency with other data sources-->
