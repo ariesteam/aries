@@ -22,11 +22,15 @@
 			<state id="VeryLowVegetationCover" />
 			<probabilities>0.05 0.05 0.05 0.1 0.75</probabilities>
 		</cpt>
-		<cpt id="HardwoodSoftwoodRatio">
-			<state id="HighHardness" />
-			<state id="ModerateHardness" />
-			<state id="LowHardness" />
-			<probabilities>0.7 0.15 0.15</probabilities>
+		<cpt id="VegetationType">
+			<state id="Forest" />
+			<state id="OakWoodland" />
+			<state id="MesquiteWoodland" />
+			<state id="Grassland" />
+			<state id="DesertScrub" />
+			<state id="Riparian" />
+			<state id="UrbanBarrenWaterAgriculture" />
+			<probabilities>0.1 0.1 0.1 0.2 0.4 0.025 0.075</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -35,8 +39,8 @@
 			<state id="LowVegetationDensity" />
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
-			<parents>HardwoodSoftwoodRatio PercentVegetationCover</parents>
-			<probabilities>0.97 0.03 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.98 0.02 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 1 0 0 0 0 0 0.95 0.05 0 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0</probabilities>
+			<parents>VegetationType PercentVegetationCover</parents>
+			<probabilities>0.5 0.4 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.4 0.4 0.1 0 0 0.2 0.4 0.3 0.1 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.35 0.4 0.2 0 0 0 0.4 0.4 0.2 0 0 0 0.35 0.35 0.3 0 0 0.2 0.4 0.3 0.1 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.35 0.4 0.2 0 0 0 0.35 0.4 0.25 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.8 0 0 0 0 0.2 0.8 0 0 0 0 0.2 0.8 0 0 0 0 0.2 0.8 0 0 0 0 0.2 0.8 0 0 0 0 0.3 0.7 0 0 0 0 0.3 0.7 0 0 0 0 0.3 0.7 0 0 0 0 0.3 0.7 0 0 0 0 0.3 0.7 0 0.5 0.4 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0.1 0.1 0.1 0.7 0 0 0.05 0.05 0.1 0.8 0 0 0 0.05 0.1 0.85 0 0 0 0.05 0.1 0.85 0 0 0 0.05 0.05 0.9</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="SoilOxygenConditions">
@@ -106,7 +110,7 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
 			<node id="StoredCarbonRelease">
 				<name>StoredCarbonRelease</name>
 				<interior color="ffffff" />
@@ -145,16 +149,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>762 721 869 751</position>
+				<position>901 720 1008 750</position>
 				<barchart active="true" width="269" height="108" />
-			</node>
-			<node id="HardwoodSoftwoodRatio">
-				<name>HardwoodSoftwoodRatio</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>504 712 662 740</position>
-				<barchart active="true" width="189" height="90" />
 			</node>
 			<node id="Slope">
 				<name>Slope</name>
@@ -170,7 +166,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1054 707 1190 742</position>
+				<position>1202 706 1338 741</position>
 				<barchart active="true" width="333" height="85" />
 			</node>
 			<node id="VegetationDensity">
@@ -220,8 +216,16 @@
 			<textbox>
 				<caption>For soil carbon storage, Brown et al. (2010) use PRISM precip, SSURGO/STATSGO soil organic C, CaCO3, wind erodibility index data as inputs to CENTURY model.\n\nBrown, J., et al. 2010.  Improving estimates of rangeland carbon sequestration potential in the US southwest.  Rangeland Ecology and Management 63 (1): 147-154.\n\nMartens et al. 2005: Soil C positively correlated with clay content, precipitation, negatively correlated with temperature. But clay content was the strongest predictor.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>983 145 1295 299</position>
+				<position>983 145 1294 299</position>
 			</textbox>
+			<node id="VegetationType">
+				<name>VegetationType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>604 739 699 769</position>
+				<barchart active="true" width="312" height="144" />
+			</node>
 		</genie>
 	</extensions>
 </smile>

@@ -27,18 +27,24 @@
                   [20 40]             LowVegetationCover
                   [0 20]              VeryLowVegetationCover))
 
-;;ARE WE OK HAVING SOME CLASSES IN THE DATA WITH NO CORRESPONDING DISCRETE STATES (i.e., ag, developed, barren)?
-;; Not considered but in the area: 5 9 15 16 17 18 19 20 21 65 93 110 111 112 114 117 (could set these to hard, indicating slower sequestration)
-;;Ditto for Mexico: most LULC categories are not used, and not all discrete states are represented.
-(defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
-     (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-        #{14 34 35 83 92}                   LowHardness
-        #{33 45 51 91}                      ModerateHardness
-        #{52 55 56 57 59 60 84 96 105 118}  HighHardness))
-;;     (classification (categorization mexico:CONABIOLULCCategory)
-;;        #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"} LowHardness
-;;        #{"Chaparral"}                                              ModerateHardness
-;;        #{"Bosque de encino" "Mezquital-huizachal"}                 HighHardness))
+(defmodel vegetation-type sanPedro:CarbonVegetationType
+  "Reclass of SWReGAP & CONABIO LULC layers"
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           sanPedro:Forest
+    #{33 41 91}                                                                        sanPedro:OakWoodland
+    #{52 109}                                                                          sanPedro:MesquiteWoodland
+    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              sanPedro:Grassland
+    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
+    #{77 78 79 80 81 83 84 85 98 109 110 118}                                          sanPedro:Riparian
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              sanPedro:UrbanBarrenWaterAgriculture)
+   (classification (categorization mexico:CONABIOLULCCategory)
+     #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
+     #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
+     #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
+     #{"Pastizal natural"}                                                        sanPedro:Grassland
+     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
+     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
+     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWaterAgriculture))
 
 ;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their discretization for rangeland carbon modeling.
 ;; For the San Pedro, the entire valley floor would be in the 230-460 range and the surrounding mountains as >460.
@@ -64,7 +70,7 @@
             :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :result   veg-soil-sequestration
-            :context  (hardwood-softwood-ratio percent-vegetation-cover annual-precipitation)))
+            :context  (vegetation-type percent-vegetation-cover annual-precipitation)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
@@ -130,7 +136,7 @@
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
-            :context  (annual-precipitation percent-vegetation-cover hardwood-softwood-ratio)
+            :context  (annual-precipitation percent-vegetation-cover vegetation-type)
             :result    veg-storage
             :keep     (VegetationCarbonStorage)))
 
@@ -146,7 +152,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
             :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
-            :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio)
+            :context  (soil-ph slope oxygen percent-vegetation-cover vegetation-type)
             :result    soil-storage
             :keep     (SoilCarbonStorage)))
 
@@ -288,7 +294,7 @@
             :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :result   veg-soil-sequestration
-            :context  (hardwood-softwood-ratio percent-vegetation-cover-new annual-precipitation)))
+            :context  (vegetation-type percent-vegetation-cover-new annual-precipitation)))
 
 (defmodel sink-new CarbonSinkValue   
   (bayesian CarbonSinkValue 
