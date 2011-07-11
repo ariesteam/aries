@@ -518,7 +518,7 @@
                     78 79 84 87 88 89 90}                          NoPublicAccess))
        :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                  (conc 'recreationService:NoPublicAccess)    
-                 (:public-lands %))))
+                 (:public-lands %)))))
 ;; (model WildlifeSpeciesRichnessClass
 ;;   (classification WildlifeSpeciesRichnessClass
 ;;       :context (constrained-development-scenario
