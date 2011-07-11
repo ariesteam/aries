@@ -301,19 +301,30 @@
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCover
     (classification PercentVegetationCover
-        :context (open-development-scenario percent-vegetation-cover)
+        :context (open-development-scenario
+                  (classification (ranking habitat:PercentVegetationCover :units "%")
+                                  [80 100 :inclusive] VeryHighVegetationCover
+                                  [60 80]             HighVegetationCover
+                                  [40 60]             ModerateVegetationCover
+                                  [20 40]             LowVegetationCover
+                                  [0 20]              VeryLowVegetationCover))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowVegetationCover)
                   (:percent-vegetation-cover %))))
   (model FireFrequency
     (classification FireFrequency
-        :context (open-development-scenario fire-frequency)
+                    :context (open-development-scenario
+                              (classification (numeric-coding habitat:FireReturnInterval)
+                                              1      HighFireFrequency
+                                              #{2 3} ModerateFireFrequency ;;Includes "variable" fire frequency"
+                                              4      LowFireFrequency
+                                              #{5 6} NoFireFrequency))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:NoFireFrequency)    
                   (:fire-frequency %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
-        :context (open-development-scenario use-simple)
+        :context (open-development-scenario (measurement GreenhouseGasEmissions "t/ha*year"))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (* 1.568 (:greenhouse-gas-emissions %)) ;;Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
