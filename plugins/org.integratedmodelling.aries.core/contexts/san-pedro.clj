@@ -287,7 +287,7 @@
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3) 
 ;; Changes to carbon models
   (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
-     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
+     mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
   (transform 'sanPedro:CarbonVegetationType 'sanPedro:Grassland
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
 
