@@ -585,16 +585,16 @@
 ;;     :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
 ;;               (conc 'sanPedro:QuailSpeciesAbsent)    
 ;;               (:quail-habitat %))))
- (model sanPedro:JavelinaHabitat
-   (classification sanPedro:JavelinaHabitat
-       :context (constrained-development-scenario
-                (classification (numeric-coding sanPedro:JavelinaHabitat)
-                  29            sanPedro:JavelinaHabitatPresent
-                  nil           sanPedro:JavelinaHabitatAbsent
-                  :otherwise    sanPedro:JavelinaHabitatAbsent))
-       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                 (conc 'sanPedro:JavelinaHabitatAbsent)    
-                  (:javelina-habitat %)))))
+;; (model sanPedro:JavelinaHabitat
+;;   (classification sanPedro:JavelinaHabitat
+;;       :context (constrained-development-scenario
+;;                (classification (numeric-coding sanPedro:JavelinaHabitat)
+;;                  29            sanPedro:JavelinaHabitatPresent
+;;                  nil           sanPedro:JavelinaHabitatAbsent
+;;                  :otherwise    sanPedro:JavelinaHabitatAbsent))
+;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                 (conc 'sanPedro:JavelinaHabitatAbsent)    
+;;                  (:javelina-habitat %)))))
 
 (defscenario open-development-recreation
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species r;;ichness."
