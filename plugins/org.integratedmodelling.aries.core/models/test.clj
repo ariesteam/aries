@@ -5,13 +5,18 @@
 ;; --------------------------------------------------------------------------------------------------
 (ns core.models.test
   (:refer-clojure :rename {count length})
-  (:refer modelling :only (defmodel defagent defscenario numeric-coding 
+  (:refer modelling :only (defmodel defagent defscenario defcontext numeric-coding 
                             binary-coding count model
                             measurement classification categorization 
-                            ranking identification bayesian)))
+                            ranking identification bayesian))
+  (:refer time :only (time-extent)))
 
 ;(defmodel altitude-mm Altitude
 ;	(measurement geophysics:Altitude "mm"))
+
+(defcontext h12 
+   "Twelwe hours starting now" 
+  (time-extent "12h"))
 
 (defmodel conservation-status conservation:ProtectedStatus
 	(ranking conservation:ProtectedStatus))
@@ -65,7 +70,7 @@
 
 ;; simple test of dynamic updating
 (defmodel dynamic representation:GenericQuantifiable 
-  (measurement representation:GenericQuantifiable "m"
+  (measurement representation:Length "m/s"
     :value  (corescience/gaussian 150.0 3.75)
     :as     self
     :update #(do  
@@ -74,14 +79,7 @@
 
 
 ;; simple test of ODE integration. This should grow exponentially.
-(defmodel ode representation:GenericQuantifiable
-  (ranking representation:GenericQuantifiable
-    :value  50
-    :as     self
-    :rate #(do  
-              (println (:time %) ": value was " (:self %) 
-                       " at " (:time#now %) " = tstep " (:time#index %))
-              (* (:self %) 0.03)))) 
+ 
 
 (defmodel farmland floodService:Farmland
 	(classification (numeric-coding nlcd:NLCDNumeric)

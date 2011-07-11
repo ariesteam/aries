@@ -238,9 +238,7 @@ public class SPANModel extends DefaultAbstractModel {
     
     @Override
     public String toString() {
-    	return "SPAN [" +
-    			getObservableClass() + 
-    			"]";
+    	return "span";
     }
 
 }
