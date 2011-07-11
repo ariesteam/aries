@@ -182,9 +182,9 @@
         ProximitySink
         nil
         nil
-        :source-threshold   40.0  ;; Excludes LowProximityPotential
+        :source-threshold   20.0  ;; Excludes LowProximityPotential
         :sink-threshold     0.0   ;; Deterministic as 0.0 or 50.0 based on presence of highways
-        :use-threshold      0.2   ;; Excludes HomeownerProximityUseAbsent
+        :use-threshold      0.1   ;; Excludes HomeownerProximityUseAbsent
         :trans-threshold    1.0
         :source-type        :infinite
         :sink-type          :infinite
