@@ -541,50 +541,50 @@
 ;;     :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
 ;;               (conc 'recreationService:LowWildlifeSpeciesRichness)    
 ;;               (:wildlife-species-richness-class %))))
- (model sanPedro:DoveHabitat
-   (classification sanPedro:DoveHabitat
-       :context (constrained-development-scenario
-                (classification sanPedro:DoveHabitat
-                  :context ((numeric-coding sanPedro:MourningDoveHabitat    :as mourning-dove)
-                            (numeric-coding sanPedro:WhiteWingedDoveHabitat :as white-winged-dove))
-                  :state   #(let [num-dove (+ (if (no-data? (:mourning-dove %)) 0 1)
-                                              (if (no-data? (:white-winged-dove %)) 0 1))]
-                              (cond (= num-dove 2) (tl/conc 'sanPedro:MultipleDoveSpeciesPresent)
-                                    (= num-dove 1) (tl/conc 'sanPedro:SingleDoveSpeciesPresent)
-                                    :otherwise     (tl/conc 'sanPedro:DoveSpeciesAbsent)))))
-       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                 (conc 'sanPedro:SingleDoveSpeciesPresent)    
-                 (:dove-habitat %))))
- (model sanPedro:DeerHabitat
-   (classification sanPedro:DeerHabitat
-       :context (constrained-development-scenario
-                (classification sanPedro:DeerHabitat
-                  :context ((numeric-coding sanPedro:MuleDeerHabitat      :as mule-deer)
-                            (numeric-coding sanPedro:WhiteTailDeerHabitat :as white-tail-deer))
-                  :state   #(let [num-deer (+ (if (no-data? (:mule-deer %)) 0 1)
-                                              (if (no-data? (:white-tail-deer %)) 0 1))]
-                              (cond (= num-deer 2) (tl/conc 'sanPedro:MultipleDeerSpeciesPresent)
-                                    (= num-deer 1) (tl/conc 'sanPedro:SingleDeerSpeciesPresent)
-                                    :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
-       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                 (conc 'sanPedro:DeerSpeciesAbsent)    
-                 (:deer-habitat %))))
- (model sanPedro:QuailHabitat
-   (classification sanPedro:QuailHabitat
-       :context (constrained-development-scenario
-                (classification sanPedro:QuailHabitat
-                  :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
-                            (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail)
-                            (numeric-coding sanPedro:GambelsQuailHabitat :as gambels-quail))
-                  :state   #(let [num-quail (+ (if (no-data? (:scaled-quail %)) 0 1)
-                                               (if (no-data? (:mearns-quail %)) 0 1)
-                                               (if (no-data? (:gambels-quail %)) 0 1))]
-                              (cond (> num-quail 1) (tl/conc 'sanPedro:MultipleQuailSpeciesPresent)
-                                    (= num-quail 1) (tl/conc 'sanPedro:SingleQuailSpeciesPresent)
-                                    :otherwise      (tl/conc 'sanPedro:QuailSpeciesAbsent)))))
-       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                 (conc 'sanPedro:QuailSpeciesAbsent)    
-                 (:quail-habitat %))))
+;; (model sanPedro:DoveHabitat
+;;   (classification sanPedro:DoveHabitat
+;;       :context (constrained-development-scenario
+;;                (classification sanPedro:DoveHabitat
+;;                  :context ((numeric-coding sanPedro:MourningDoveHabitat    :as mourning-dove)
+;;                            (numeric-coding sanPedro:WhiteWingedDoveHabitat :as white-winged-dove))
+;;                  :state   #(let [num-dove (+ (if (no-data? (:mourning-dove %)) 0 1)
+;;                                              (if (no-data? (:white-winged-dove %)) 0 1))]
+;;                              (cond (= num-dove 2) (tl/conc 'sanPedro:MultipleDoveSpeciesPresent)
+;;                                    (= num-dove 1) (tl/conc 'sanPedro:SingleDoveSpeciesPresent)
+;;                                    :otherwise     (tl/conc 'sanPedro:DoveSpeciesAbsent)))))
+;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                 (conc 'sanPedro:SingleDoveSpeciesPresent)    
+;;                 (:dove-habitat %))))
+;; (model sanPedro:DeerHabitat
+;;   (classification sanPedro:DeerHabitat
+;;       :context (constrained-development-scenario
+;;                (classification sanPedro:DeerHabitat
+;;                  :context ((numeric-coding sanPedro:MuleDeerHabitat      :as mule-deer)
+;;                            (numeric-coding sanPedro:WhiteTailDeerHabitat :as white-tail-deer))
+;;                  :state   #(let [num-deer (+ (if (no-data? (:mule-deer %)) 0 1)
+;;                                              (if (no-data? (:white-tail-deer %)) 0 1))]
+;;                             (cond (= num-deer 2) (tl/conc 'sanPedro:MultipleDeerSpeciesPresent)
+;;                                    (= num-deer 1) (tl/conc 'sanPedro:SingleDeerSpeciesPresent)
+;;                                    :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
+;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;                 (conc 'sanPedro:DeerSpeciesAbsent)    
+;;                 (:deer-habitat %))))
+;;(model sanPedro:QuailHabitat
+;; (classification sanPedro:QuailHabitat
+;;     :context (constrained-development-scenario
+;;              (classification sanPedro:QuailHabitat
+;;                :context ((numeric-coding sanPedro:ScaledQuailHabitat  :as scaled-quail)
+;;                          (numeric-coding sanPedro:MearnsQuailHabitat  :as mearns-quail)
+;;                          (numeric-coding sanPedro:GambelsQuailHabitat :as gambels-quail))
+;;                :state   #(let [num-quail (+ (if (no-data? (:scaled-quail %)) 0 1)
+;;                                             (if (no-data? (:mearns-quail %)) 0 1)
+;;                                             (if (no-data? (:gambels-quail %)) 0 1))]
+;;                            (cond (> num-quail 1) (tl/conc 'sanPedro:MultipleQuailSpeciesPresent)
+;;                                  (= num-quail 1) (tl/conc 'sanPedro:SingleQuailSpeciesPresent)
+;;                                  :otherwise      (tl/conc 'sanPedro:QuailSpeciesAbsent)))))
+;;     :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+;;               (conc 'sanPedro:QuailSpeciesAbsent)    
+;;               (:quail-habitat %))))
  (model sanPedro:JavelinaHabitat
    (classification sanPedro:JavelinaHabitat
        :context (constrained-development-scenario
