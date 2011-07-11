@@ -225,25 +225,48 @@
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
   (model sanPedro:ScenicVegetationType
     (classification sanPedro:ScenicVegetationType
-        :context (open-development-scenario scenic-vegetation)
+        :context (open-development-scenario
+                 (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
+;;                  :when #(= (:country %) "United States")
+                  #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               sanPedro:AlpineAndCliff
+                  #{22 23 33 37 38 91}                                    sanPedro:Forests
+                  #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} sanPedro:Woodland ;; includes pinon & juniper savannas
+                  #{77 78 79 80 81 83 84 85 98 109 110 118}               sanPedro:RiparianAndWater
+                  :otherwise                                              sanPedro:Other))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:Other)
                   (:scenic-vegetation-type %))))
   (model DevelopedLand
     (classification DevelopedLand
-        :context (open-development-scenario developed-land)
+        :context (open-development-scenario
+                 (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)           
+                  111        LowDensityDevelopment
+                  112        HighDensityDevelopment
+                  :otherwise NoDevelopment))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:LowDensityDevelopment)     ;;Might have to add "aestheticService" in between the tick and LowDensityDevelopment
                   (:developed-land %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-        :context (open-development-scenario housing)
+        :context (open-development-scenario
+                 (classification (ranking economics:AppraisedPropertyValue)
+                                 [1 :>]       HousingPresent
+                                 :otherwise   HousingAbsent)
+                 (classification (numeric-coding nlcd:NLCDNumeric) ;;Using NLCD where parcel data are unavailable.
+                                 [22 23 24]   HousingPresent  ;;Assumes (incorrectly) that all developed land is housing.
+                                 :otherwise   HousingAbsent))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)            ;;Might have to add "aestheticService" in between the tick and HousingPresent
                   (:presence-of-housing %))))
   (model HousingValue
     (classification HousingValue
-        :context (open-development-scenario property-value)
+        :context (open-development-scenario
+                 (classification (ranking economics:AppraisedPropertyValue)
+                                 [0         10000] VeryLowHousingValue
+                                 [10000    25000]  LowHousingValue
+                                 [25000   50000]   ModerateHousingValue
+                                 [50000  200000]   HighHousingValue
+                                 [200000 :>]       VeryHighHousingValue))
         :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)            ;;Might have to add "aestheticService" in between the tick and HighHousingValue
                   (:housing-value %)))))
