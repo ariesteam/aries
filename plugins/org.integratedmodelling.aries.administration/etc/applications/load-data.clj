@@ -10,7 +10,7 @@
         :metadata (:centroid    geospace:Point
                    :boundingbox geospace:Polygon
                    :dataset     thinklab-core:Text)
-        :sql.log.queries "true"
+        :sql.log.queries "false"
         :kbox.parameter.srid "4326")
 
   ;; rebuild the db from scratch every time this is run
