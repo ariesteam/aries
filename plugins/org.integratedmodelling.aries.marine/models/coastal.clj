@@ -324,7 +324,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-lives-data.clj")
         :context            (coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               (CoastalWaveSource
@@ -361,7 +361,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-lives-data.clj")
         :context            (coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               (CoastalWaveSource
@@ -398,7 +398,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-lives-data.clj")
         :context            (coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               (CoastalWaveSource
@@ -435,7 +435,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-assets-data.clj")
         :context            (coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink)
         :keep               (CoastalWaveSource
@@ -472,7 +472,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-assets-data.clj")
         :context            (coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink)
         :keep               (CoastalWaveSource
@@ -509,7 +509,7 @@
         :benefit-type       :non-rival
         :downscaling-factor 1
         :rv-max-states      10
-        :animation?         true
+        :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-assets-data.clj")
         :context            (coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink)
         :keep               (CoastalWaveSource

@@ -83,12 +83,12 @@ public class ModelStorylineView extends StorylineView {
 				patch = (VIEWPORT_Y - 2 - 166)/2;
 				
 			} else if (storyline.getStatus() == ModelStoryline.COMPUTED) {
-
+				
 				ret = "/aries/images/computed.png";
 				patch = (VIEWPORT_Y - 2 - 166)/2;
 				initPages();
 				
-			} else if (storyline.getContext() != null){
+			} else if (storyline.getContext() != null) {
 				
 				if (covUrl == null) {
 					
@@ -141,7 +141,7 @@ public class ModelStorylineView extends StorylineView {
 	protected ZKComponent getRibbon(int width, int height) throws ThinklabException {
 		
 		ZKComponent ret = null;
-		
+				
 		if (storyline.getStatus() == ModelStoryline.IDLE) {
 			
 			/*

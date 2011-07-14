@@ -120,8 +120,13 @@ public class StorylineControlPanel extends ThinkcapComponent {
 		@Override
 		public void notifyVisualization(Storyline modelStoryline, IModel model,
 				IContext context, IVisualization visualization) {
-			// TODO Auto-generated method stub
-			
+			((ModelStoryline)storyline).setVisualization(visualization);
+//			try {
+//				if (sview != null)
+//					sview.setupView();
+//			} catch (ThinklabException e) {
+//				throw new ThinklabRuntimeException(e);
+//			}
 		}
 
 		@Override

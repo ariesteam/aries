@@ -27,7 +27,6 @@ public class ARIESUserModel extends ThinklabWebModel implements IGeolocatedModel
 	private static final String MAX_RESOLUTION_PROPERTY = "aries.resolution.default";
 	private static final String ROOT_STORYLINE_PROPERTY = "aries.storyline";
 	
-//	private AriesBrowser browser;
 	private int maxResolution = 512;
 	ShapeValue roi = null;
 	
@@ -78,7 +77,7 @@ public class ARIESUserModel extends ThinklabWebModel implements IGeolocatedModel
 		this.maxResolution = 
 			Integer.parseInt(
 					ARIESWebappPlugin.get().getProperties().getProperty(MAX_RESOLUTION_PROPERTY, 
-					"512"));
+					"384"));
 		
 		this.storyline = StorylineFactory.getStorylines(slPath);
 		
