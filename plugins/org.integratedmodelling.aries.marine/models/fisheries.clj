@@ -22,17 +22,17 @@
 (defmodel slender-emperor-harvest LethrinusBorbonicusHarvest
   (measurement LethrinusBorbonicusHarvest "kg/km^2*year" 
       :context ((measurement LethrinusBorbonicusAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
+      :state   #(if (not (nil? (:abundance %))) (* (:abundance %) 8712431))))
 
 (defmodel sky-emperor-harvest LethrinusMahsenaHarvest
   (measurement LethrinusMahsenaHarvest "kg/km^2*year" 
       :context ((measurement LethrinusMahsenaAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
+      :state   #(if (not (nil? (:abundance %))) (* (:abundance %) 8712431))))
 
 (defmodel mangrove-red-snapper-harvest LutjanusArgentimaculatusHarvest
   (measurement LutjanusArgentimaculatusHarvest "kg/km^2*year" 
       :context ((measurement LutjanusArgentimaculatusAbundanceMg "kg/km^2*year" :as abundance))
-      :state   #(* (:abundance %) 8712431)))
+      :state   #(if (not (nil? (:abundance %))) (* (:abundance %) 8712431))))
 
 (defmodel total-pelagic-subsistence-harvest TotalSubsistenceHarvest
   (measurement TotalSubsistenceHarvest "kg/km^2*year"
