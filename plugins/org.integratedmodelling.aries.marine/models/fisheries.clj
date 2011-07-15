@@ -219,7 +219,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        :save-file          (str (System/getProperty "user.home") "/subsistence-fisheries-data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/subsistence-fisheries-data.clj")
         :context            (total-pelagic-subsistence-harvest subsistence-fishing paths population-density)
         :keep               (SubsistenceFishSupply
                              SubsistenceFishDemand
