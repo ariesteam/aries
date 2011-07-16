@@ -85,12 +85,10 @@ public class StorylineControlPanel extends ThinkcapComponent {
 		
 		@Override
 		public void onStatusChange(Storyline storyline, IModel model, IContext context, int original, int newstatus) {
-			
-			browser.send(browser, "refreshStoryline", storyline.getTemplateSignature());
-			if (original == Storyline.COMPUTING && newstatus == Storyline.COMPUTED) {
-				for (IMonitoringModule m : notified) {
-					m.onStorylineComputed((ModelStoryline) storyline);
-				}
+
+			// only refresh to computed after the visualization has been created, which takes a while
+			if (! (original == Storyline.COMPUTING && newstatus == Storyline.COMPUTED)) {
+				browser.send(browser, "refreshStoryline", storyline.getTemplateSignature());
 			}
 		}
 
@@ -121,12 +119,10 @@ public class StorylineControlPanel extends ThinkcapComponent {
 		public void notifyVisualization(Storyline modelStoryline, IModel model,
 				IContext context, IVisualization visualization) {
 			((ModelStoryline)storyline).setVisualization(visualization);
-//			try {
-//				if (sview != null)
-//					sview.setupView();
-//			} catch (ThinklabException e) {
-//				throw new ThinklabRuntimeException(e);
-//			}
+			browser.send(browser, "refreshStoryline", storyline.getTemplateSignature());
+			for (IMonitoringModule m : notified) {
+				m.onStorylineComputed((ModelStoryline) storyline);
+			}
 		}
 
 		@Override
