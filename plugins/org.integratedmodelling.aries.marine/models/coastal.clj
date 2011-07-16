@@ -204,10 +204,14 @@
 ;;The discretization below is a first cut, may need to be changed based on results of the flow model.
 (defmodel coastal-flood-protection TotalCoastalFloodProtection
   (probabilistic-measurement TotalCoastalFloodProtection "m"
-                  [0.07 0.1]      HighCoastalFloodProtection
-                  [0.03 0.07]     ModerateCoastalFloodProtection
-                  [0 0.03]        LowCoastalFloodProtection
+                  [0.007 0.01]      HighCoastalFloodProtection
+                  [0.003 0.007]     ModerateCoastalFloodProtection
+                  [0 0.003]        LowCoastalFloodProtection
                   [0 0]           NoCoastalFloodProtection))
+;;                  [0.07 0.1]      HighCoastalFloodProtection
+;;                  [0.03 0.07]     ModerateCoastalFloodProtection
+;;                  [0 0.03]        LowCoastalFloodProtection
+;;                  [0 0]           NoCoastalFloodProtection))
 
 ;; selects overland and shallow areas to clip coastal protection bn
 (defmodel protection-selector ProtectionPresence
