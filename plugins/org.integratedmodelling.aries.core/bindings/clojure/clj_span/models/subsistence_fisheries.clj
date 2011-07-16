@@ -40,6 +40,7 @@
                                     angular-distance
                                     with-message
                                     with-progress-bar-cool
+                                    my-partition-all
                                     iterate-while-seq
                                     shortest-path-bfgs
                                     shortest-path-idgs)]
@@ -111,15 +112,28 @@
       "Distinct route lengths:      " (count-distinct (map (& count :route) %)) "\n"
       "Distinct fishing area sizes: " (count-distinct (map (& count :fishing-area) %)))
     (remove nil?
-            (map (fn [demand route]
-                   (if route
-                     (struct-map fisherman
-                       :need         demand
-                       :route        route
-                       :cache        (get-in cache-layer (first route))
-                       :fishing-area (find-in-range fishing-spot? *fishing-range* cell-width cell-height rows cols (peek route)))))
-                 fish-demand
-                 fishing-routes))))
+            (with-progress-bar-cool
+              :keep
+              (count fish-demand)
+              (apply concat
+                     (pmap (fn [demand-part route-part]
+                             (doall
+                              (map (fn [demand route]
+                                     (if route
+                                       (struct-map fisherman
+                                         :need         demand
+                                         :route        route
+                                         :cache        (get-in cache-layer (first route))
+                                         :fishing-area (doall (find-in-range fishing-spot?
+                                                                             *fishing-range*
+                                                                             cell-width
+                                                                             cell-height
+                                                                             rows
+                                                                             cols
+                                                                             (peek route))))))
+                                   demand-part route-part)))
+                           (my-partition-all 1000 fish-demand)
+                           (my-partition-all 1000 fishing-routes)))))))
 
 (defn nearest-to-bearing
   [bearing id neighbors]
@@ -176,12 +190,16 @@
     (with-progress-bar-cool
       :keep
       (count use-points)
-      (map
-       #(let [path-root    (find-nearest path?         rows cols %)
-              fishing-spot (find-nearest fishing-spot? rows cols %)]
-          (vec (concat (find-line-between % path-root)
-                       (rest (find-line-between path-root fishing-spot)))))
-       use-points))))
+      (apply concat
+             (pmap
+              (fn [part]
+                (doall
+                 (map #(let [path-root    (find-nearest path?         rows cols %)
+                             fishing-spot (find-nearest fishing-spot? rows cols %)]
+                         (vec (concat (find-line-between % path-root)
+                                      (rest (find-line-between path-root fishing-spot)))))
+                      part)))
+              (my-partition-all 1000 use-points))))))
 
 ;; FIXME: Because Theoretical Use is in kg/person*year and
 ;;        Possible/Actual Use are in kg/km^2*year, Inaccessible Use
