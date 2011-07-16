@@ -110,9 +110,9 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   nil
+             :source-threshold   0.0
              :sink-threshold     nil
-             :use-threshold      nil
+             :use-threshold      0.0
              :trans-threshold    0.1
              :source-type        :finite
              :sink-type          nil
@@ -120,7 +120,7 @@
              :benefit-type       :rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-water

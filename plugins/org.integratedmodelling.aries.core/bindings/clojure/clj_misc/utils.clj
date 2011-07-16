@@ -208,37 +208,123 @@
   (loop [open-list  open-list
          closed-set closed-set]
     (when-first [this-node open-list]
-                (if (contains? closed-set this-node)
-                  (recur (rest open-list) closed-set)
-                  (if (goal? this-node)
-                    this-node
-                    (recur (concat (rest open-list)
-                                   (filter (complement closed-set) (successors this-node)))
-                           (conj closed-set this-node)))))))
+      (if (contains? closed-set this-node)
+        (recur (rest open-list) closed-set)
+        (if (goal? this-node)
+          this-node
+          (recur (concat (rest open-list)
+                         (filter (complement closed-set) (successors this-node)))
+                 (conj closed-set this-node)))))))
 
-(defn shortest-path
-  "The classic breadth-first-search.  Bread and butter of computer
+(defn shortest-path-bfgs
+  "The classic breadth-first-graph-search.  Bread and butter of computer
    science.  Implemented using tail recursion, of course! ;)"
   [root successors goal? heuristic-filter]
   (loop [open-list  [[root]]
          closed-set #{}]
     (when-first [this-route open-list]
-                (let [this-node (peek this-route)]
-                  (if (goal? this-node)
-                    this-route
-                    (recur (concat (rest open-list)
-                                   (map (p conj this-route) (heuristic-filter this-node (remove closed-set (successors this-node)))))
-                           (conj closed-set this-node)))))))
+      (let [this-node (peek this-route)]
+        (if (goal? this-node)
+          this-route
+          (recur (concat (rest open-list)
+                         (map (p conj this-route) (heuristic-filter this-node (remove closed-set (successors this-node)))))
+                 (conj closed-set this-node)))))))
 
 (defn depth-first-tree-search
-  "The classic depth-first-tree-search.  Bread and butter of computer
-   science.  Implemented using tail recursion, of course! ;)"
-  [open-list successors goal?]
-  (loop [open-list open-list]
+  "The classic depth-first-tree-search. Bread and butter of computer
+   science. Implemented using tail recursion, of course! ;)"
+  [root successors goal?]
+  (loop [open-list [root]]
     (when-first [this-node open-list]
-                (if (goal? this-node)
-                  this-node
-                  (recur (concat (successors this-node) (rest open-list)))))))
+      (if (goal? this-node)
+        this-node
+        (recur (concat (successors this-node) (rest open-list)))))))
+
+(defn depth-first-graph-search
+  "The classic depth-first-graph-search. Bread and butter of computer
+   science. Implemented using tail recursion, of course! ;)"
+  [root successors goal?]
+  (loop [open-list  [root]
+         closed-set #{}]
+    (when-first [this-node open-list]
+      (if (goal? this-node)
+        this-node
+        (recur (concat (remove closed-set (successors this-node)) (rest open-list))
+               (conj closed-set this-node))))))
+
+(defn depth-limited-graph-search
+  ([root successors goal? depth-limit]
+     (depth-limited-graph-search successors goal? depth-limit [root] #{} 0))
+  ([successors goal? depth-limit open-list closed-set current-depth]
+     (if (seq open-list)
+       (first
+        (remove nil?
+                (for [this-node open-list]
+                  (if (goal? this-node)
+                    this-node
+                    (if (< current-depth depth-limit)
+                      (depth-limited-graph-search successors
+                                                  goal?
+                                                  depth-limit
+                                                  (remove closed-set (successors this-node))
+                                                  (conj closed-set this-node)
+                                                  (inc current-depth))))))))))
+
+(defn iterative-deepening-graph-search
+  [root successors goal?]
+  (first (remove nil? (map (p depth-limited-graph-search root successors goal?) (iterate inc 1)))))
+
+(defn shortest-path-dlgs
+  ([root successors goal? depth-limit]
+     (shortest-path-dlgs successors goal? depth-limit [root] #{} 0))
+  ([successors goal? depth-limit open-list closed-set current-depth]
+     (if (seq open-list)
+       (first
+        (remove nil?
+                (for [this-node open-list]
+                  (if (goal? this-node)
+                    (list this-node)
+                    (if (< current-depth depth-limit)
+                      (if-let [tail (shortest-path-dlgs successors
+                                                        goal?
+                                                        depth-limit
+                                                        (remove closed-set (successors this-node))
+                                                        (conj closed-set this-node)
+                                                        (inc current-depth))]
+                        (cons this-node tail))))))))))
+
+(defn shortest-path-dlgs2
+  ([root successors goal? depth-limit]
+     (shortest-path-dlgs successors goal? depth-limit [[root]] #{} 0))
+  ([successors goal? depth-limit open-list closed-set current-depth]
+     (if (seq open-list)
+       (first
+        (remove nil?
+                (for [this-route open-list]
+                  (let [this-node (peek this-route)]
+                    (if (goal? this-node)
+                      this-route
+                      (if (< current-depth depth-limit)
+                        (shortest-path-dlgs successors
+                                            goal?
+                                            depth-limit
+                                            (map (p conj this-route) (remove closed-set (successors this-node)))
+                                            (conj closed-set this-node)
+                                            (inc current-depth)))))))))))
+
+(defn shortest-path-idgs
+  [root successors goal?]
+  (first (remove nil? (map (p shortest-path-dlgs root successors goal?) (iterate inc 1)))))
+
+(defn shortest-path-idgs2
+  [root successors goal?]
+  (let [[id depth-limit] (first
+                          (remove nil?
+                                  (map (fn [depth-limit]
+                                         (if-let [id (depth-limited-graph-search root successors goal? depth-limit)]
+                                           [id depth-limit]))
+                                       (iterate inc 1))))]
+    (shortest-path-dlgs root successors #{id} depth-limit)))
 
 (defn between? [low high val] (and (>= val low) (<= val high)))
 

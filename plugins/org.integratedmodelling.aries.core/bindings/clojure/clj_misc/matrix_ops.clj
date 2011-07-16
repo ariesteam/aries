@@ -527,6 +527,6 @@
 
 (defn get-bearing
   [source destination]
-  (let [delta-vec (subtract-ids destination source)
-        delta-mag (magnitude delta-vec)]
-    (map #(/ % delta-mag) delta-vec)))
+  (let [[dx dy :as delta-vec] (subtract-ids destination source)
+        delta-mag             (magnitude delta-vec)]
+    [(/ dx delta-mag) (/ dy delta-mag)]))

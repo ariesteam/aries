@@ -35,12 +35,14 @@
         [clj-misc.utils      :only (p
                                     &
                                     seq2map
+                                    seq2redundant-map
                                     count-distinct
                                     angular-distance
                                     with-message
                                     with-progress-bar-cool
                                     iterate-while-seq
-                                    shortest-path)]
+                                    shortest-path-bfgs
+                                    shortest-path-idgs)]
         [clj-misc.matrix-ops :only (subtract-ids
                                     filter-matrix-for-coords
                                     get-neighbors
@@ -100,7 +102,7 @@
 
 ;; FIXME: Use locations with no path to the coast will not create fishermen agents.
 (defn make-fishermen
-  [fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height rows cols]
+  [fishing-spot? fish-demand fishing-routes cache-layer cell-width cell-height rows cols]
   (with-message
     "Creating fishermen agents...\n"
     #(str
@@ -109,36 +111,76 @@
       "Distinct route lengths:      " (count-distinct (map (& count :route) %)) "\n"
       "Distinct fishing area sizes: " (count-distinct (map (& count :fishing-area) %)))
     (remove nil?
-            (map (fn [use-val route]
+            (map (fn [demand route]
                    (if route
                      (struct-map fisherman
-                       :need         use-val
+                       :need         demand
                        :route        route
                        :cache        (get-in cache-layer (first route))
                        :fishing-area (find-in-range fishing-spot? *fishing-range* cell-width cell-height rows cols (peek route)))))
-                 use-vals
+                 fish-demand
                  fishing-routes))))
 
+(defn nearest-to-bearing
+  [bearing id neighbors]
+  (if (seq neighbors)
+    (let [bearing-changes (seq2redundant-map neighbors
+                                             #(let [bearing-to-neighbor (subtract-ids % id)]
+                                                [(angular-distance bearing bearing-to-neighbor) [%]])
+                                             concat)]
+      (bearing-changes (apply min (keys bearing-changes))))))
+
+(defn follow-path
+  [path? rows cols id]
+  (filter path? (get-neighbors rows cols id)))
+(def follow-path (memoize follow-path))
+
+(defn find-shortest-paths-to-coast-heuristic
+  [path? fishing-spot? rows cols use-points]
+  (let [follow-path-wrapper (p follow-path path? rows cols)]
+    (with-message "Finding paths to coast...\n" "\nAll done."
+      (with-progress-bar-cool
+        :keep
+        (count use-points)
+        (map
+         #(let [path-root    (find-nearest path?         rows cols %)
+                fishing-spot (find-nearest fishing-spot? rows cols %)]
+            (if (= path-root fishing-spot)
+              (vec (find-line-between % path-root))
+              (if-let [path-ids (seq (shortest-path-bfgs path-root
+                                                         follow-path-wrapper
+                                                         fishing-spot?
+                                                         (p nearest-to-bearing (get-bearing path-root fishing-spot))))]
+                (vec (concat (find-line-between % path-root) (rest path-ids))))))
+         use-points)))))
+
+(defn find-shortest-paths-to-coast-idgs
+  [path? fishing-spot? rows cols use-points]
+  (let [follow-path-wrapper (p follow-path path? rows cols)]
+    (with-message "Finding paths to coast...\n" "\nAll done."
+      (with-progress-bar-cool
+        :keep
+        (count use-points)
+        (map
+         #(let [path-root (find-nearest path? rows cols %)]
+            (if-let [path-ids (seq (shortest-path-idgs path-root
+                                                       follow-path-wrapper
+                                                       fishing-spot?))]
+              (vec (concat (find-line-between % path-root) (rest path-ids)))))
+         use-points)))))
+
 (defn find-shortest-paths-to-coast
+  "Fuck it. I'm just drawing a line and going to bed."
   [path? fishing-spot? rows cols use-points]
   (with-message "Finding paths to coast...\n" "\nAll done."
     (with-progress-bar-cool
       :keep
       (count use-points)
       (map
-       #(let [path-root      (find-nearest path?         rows cols %)
-              fishing-spot   (find-nearest fishing-spot? rows cols %)
-              bearing        (get-bearing path-root fishing-spot)
-              follow-path    (fn [id] (filter path? (get-neighbors rows cols id)))
-              follow-bearing (fn [id neighbors] (if (seq neighbors)
-                                                  (let [neighbor-bearings  (map (fn [nid] (subtract-ids nid id)) neighbors)
-                                                        bearing-deviations (map (p angular-distance bearing) neighbor-bearings)
-                                                        min-deviation      (apply min bearing-deviations)]
-                                                    (keys (filter (fn [[_ dev]] (== dev min-deviation))
-                                                                  (zipmap neighbors bearing-deviations))))))
-              path-ids       (shortest-path path-root follow-path fishing-spot? follow-bearing)]
-          (if (seq path-ids)
-            (vec (concat (find-line-between % path-root) (rest path-ids)))))
+       #(let [path-root    (find-nearest path?         rows cols %)
+              fishing-spot (find-nearest fishing-spot? rows cols %)]
+          (vec (concat (find-line-between % path-root)
+                       (rest (find-line-between path-root fishing-spot)))))
        use-points))))
 
 ;; FIXME: Because Theoretical Use is in kg/person*year and
@@ -152,12 +194,12 @@
         fish-supply    (seq2map source-points
                                 (fn [id] [id (ref (*_ km2-per-cell ;; km^2
                                                       (get-in source-layer id)))])) ;; kg/km^2*year
-        use-vals       (map (fn [id] (*_ km2-per-cell ;; km^2
+        fish-demand    (map (fn [id] (*_ km2-per-cell ;; km^2
                                          (_*_ (get-in use-layer id) ;; kg/person*year
                                               (get-in population-density-layer id)))) ;; person/km^2
                             use-points)
         path?          (set (filter-matrix-for-coords (p not= _0_) path-layer))
         fishing-spot?  (set source-points)
         fishing-routes (find-shortest-paths-to-coast path? fishing-spot? rows cols use-points)
-        fishermen      (make-fishermen fishing-spot? use-vals fishing-routes cache-layer cell-width cell-height rows cols)]
+        fishermen      (make-fishermen fishing-spot? fish-demand fishing-routes cache-layer cell-width cell-height rows cols)]
     (send-forth-fishermen! fishermen fish-supply possible-flow-layer actual-flow-layer km2-per-cell)))
