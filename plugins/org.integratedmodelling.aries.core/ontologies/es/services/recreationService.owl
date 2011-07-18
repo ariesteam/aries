@@ -12,7 +12,6 @@
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY aestheticService "http://www.integratedmodelling.org/ks/es/aestheticService.owl#" >
-    <!ENTITY recreationService "http://www.integratedmodelling.org/ks/es/recreationService.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
@@ -22,7 +21,6 @@
      xml:base="http://www.integratedmodelling.org/ks/es/recreationService.owl"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/aestheticService.owl#"
-     xmlns:recreationService="http://www.integratedmodelling.org/ks/es/recreationService.owl#"
      xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
@@ -120,7 +118,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#isBeneficialFor -->
 
-    <owl:ObjectProperty rdf:about="&recreationService;isBeneficialFor">
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#isBeneficialFor">
         <rdfs:comment rdf:datatype="&xsd;string">Identifies the beneficiary for each benefit.</rdfs:comment>
         <rdfs:domain rdf:resource="&eserv;EcosystemBenefit"/>
     </owl:ObjectProperty>
@@ -242,7 +240,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualRecreationalUsers -->
 
-    <owl:Class rdf:about="&recreationService;ActualRecreationalUsers">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualRecreationalUsers">
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
     </owl:Class>
     
@@ -250,15 +248,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#AgriculturalLand -->
 
-    <owl:Class rdf:about="&recreationService;AgriculturalLand">
-        <rdfs:subClassOf rdf:resource="&recreationService;OpenSpaceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#AgriculturalLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;BirdSpeciesRichness">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness">
         <rdfs:subClassOf rdf:resource="&habitat;AvianRichness"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -267,7 +265,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;BirdingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -275,7 +273,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingDemand -->
 
-    <owl:Class rdf:about="&recreationService;BirdingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -283,7 +281,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;BirdingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -291,7 +289,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingUse -->
 
-    <owl:Class rdf:about="&recreationService;BirdingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -299,8 +297,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Congestion -->
 
-    <owl:Class rdf:about="&recreationService;Congestion">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Congestion">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -308,7 +306,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;DeerHuntingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -316,7 +314,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingDemand -->
 
-    <owl:Class rdf:about="&recreationService;DeerHuntingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -324,7 +322,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;DeerHuntingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -332,7 +330,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingUse -->
 
-    <owl:Class rdf:about="&recreationService;DeerHuntingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DeerHuntingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -340,7 +338,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Development -->
 
-    <owl:Class rdf:about="&recreationService;Development">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Development">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -349,7 +347,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;DoveHuntingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -357,7 +355,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingDemand -->
 
-    <owl:Class rdf:about="&recreationService;DoveHuntingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -365,7 +363,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;DoveHuntingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -373,7 +371,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingUse -->
 
-    <owl:Class rdf:about="&recreationService;DoveHuntingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#DoveHuntingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -381,15 +379,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Easy -->
 
-    <owl:Class rdf:about="&recreationService;Easy">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDifficulty"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Easy">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDifficulty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructure -->
 
-    <owl:Class rdf:about="&recreationService;EnergyInfrastructure">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructure">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
@@ -398,32 +396,32 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructureAbsent -->
 
-    <owl:Class rdf:about="&recreationService;EnergyInfrastructureAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;EnergyInfrastructure"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructureAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructure"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructurePresent -->
 
-    <owl:Class rdf:about="&recreationService;EnergyInfrastructurePresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;EnergyInfrastructure"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructurePresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#EnergyInfrastructure"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ForestedLand -->
 
-    <owl:Class rdf:about="&recreationService;ForestedLand">
-        <rdfs:subClassOf rdf:resource="&recreationService;OpenSpaceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ForestedLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HabitatForPlantsOrAnimals -->
 
-    <owl:Class rdf:about="&recreationService;HabitatForPlantsOrAnimals">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationallyValuableEcosystem"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HabitatForPlantsOrAnimals">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem"/>
         <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that produces plants or animals that are recreationally hunted, fished, or gathered.</rdfs:comment>
     </owl:Class>
     
@@ -431,120 +429,128 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighBirdSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;HighBirdSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;BirdSpeciesRichness"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighBirdingQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighBirdingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteBirdingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighCongestion -->
 
-    <owl:Class rdf:about="&recreationService;HighCongestion">
-        <rdfs:subClassOf rdf:resource="&recreationService;Congestion"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighCongestion">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Congestion"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighDeerHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDeerHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighDoveHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDoveHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighIntensityDevelopment -->
 
-    <owl:Class rdf:about="&recreationService;HighIntensityDevelopment">
-        <rdfs:subClassOf rdf:resource="&recreationService;Development"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighIntensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Development"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighJavelinaHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteJavelinaHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighQuailHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteQuailHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighQualityWaterView -->
 
-    <owl:Class rdf:about="&recreationService;HighQualityWaterView">
-        <rdfs:subClassOf rdf:resource="&recreationService;WaterView"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighQualityWaterView">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WaterView"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighRareCharismaticBirdHabitat -->
 
-    <owl:Class rdf:about="&recreationService;HighRareCharismaticBirdHabitat">
-        <rdfs:subClassOf rdf:resource="&recreationService;RareCharismaticBirdHabitat"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RareCharismaticBirdHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighSiteRecognition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighSiteRecognition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteRecognition"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighViewPosition -->
 
-    <owl:Class rdf:about="&recreationService;HighViewPosition">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewPositionClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighViewPosition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPositionClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighViewerEnjoyment -->
 
-    <owl:Class rdf:about="&recreationService;HighViewerEnjoyment">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewerEnjoyment"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighViewerEnjoyment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewerEnjoyment"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighWildlifeQuality -->
 
-    <owl:Class rdf:about="&recreationService;HighWildlifeQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteWildlifeQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HighWildlifeSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;HighWildlifeSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;WildlifeSpeciesRichnessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HighWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDifficulty -->
 
-    <owl:Class rdf:about="&recreationService;HikingDifficulty">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDifficulty">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -552,17 +558,17 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistance -->
 
-    <owl:Class rdf:about="&recreationService;HikingDistance">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistance">
         <rdfs:label rdf:datatype="&xsd;string">HikingDistance</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistanceClass -->
 
-    <owl:Class rdf:about="&recreationService;HikingDistanceClass">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistanceClass">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -570,7 +576,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlope -->
 
-    <owl:Class rdf:about="&recreationService;HikingSlope">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlope">
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
     </owl:Class>
     
@@ -578,7 +584,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlopeClass -->
 
-    <owl:Class rdf:about="&recreationService;HikingSlopeClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlopeClass">
         <rdfs:label rdf:datatype="&xsd;string">HikingSlope</rdfs:label>
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -588,8 +594,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Is_it_worth_it_to_try_listing_all_different_types_possible -->
 
-    <owl:Class rdf:about="&recreationService;Is_it_worth_it_to_try_listing_all_different_types_possible">
-        <rdfs:subClassOf rdf:resource="&recreationService;OutdoorRecreation"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Is_it_worth_it_to_try_listing_all_different_types_possible">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation"/>
         <rdfs:comment rdf:datatype="&xsd;string">Examples: bird watching, nature watching, cycling, hiking, camping, skiing/snowshoeing, snorkelling, swimming, kayaking, rafting, scuba diving, hunting, fishing, outdoor meditation, &quot;drive through parks&quot;</rdfs:comment>
     </owl:Class>
     
@@ -597,7 +603,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;JavelinaHuntingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -605,7 +611,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingDemand -->
 
-    <owl:Class rdf:about="&recreationService;JavelinaHuntingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -613,7 +619,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;JavelinaHuntingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -621,7 +627,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingUse -->
 
-    <owl:Class rdf:about="&recreationService;JavelinaHuntingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#JavelinaHuntingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -629,8 +635,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LandscapeFeaturesPresent -->
 
-    <owl:Class rdf:about="&recreationService;LandscapeFeaturesPresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationallyValuableEcosystem"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LandscapeFeaturesPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem"/>
         <rdfs:comment rdf:datatype="&xsd;string">Presence of landscape features amenable to a particular type of recreation.</rdfs:comment>
     </owl:Class>
     
@@ -638,8 +644,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#List_all_types_possible -->
 
-    <owl:Class rdf:about="&recreationService;List_all_types_possible">
-        <rdfs:subClassOf rdf:resource="&recreationService;Recreationists"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#List_all_types_possible">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
         <rdfs:comment rdf:datatype="&xsd;string">(???)  Importance of income, transport, access, cultural norms...</rdfs:comment>
     </owl:Class>
     
@@ -647,279 +653,295 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LongHikingDistance -->
 
-    <owl:Class rdf:about="&recreationService;LongHikingDistance">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDistanceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LongHikingDistance">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistanceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LongTravelTime -->
 
-    <owl:Class rdf:about="&recreationService;LongTravelTime">
-        <rdfs:subClassOf rdf:resource="&recreationService;TravelTimeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LongTravelTime">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTimeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowBirdSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;LowBirdSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;BirdSpeciesRichness"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowBirdingQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowBirdingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteBirdingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowCongestion -->
 
-    <owl:Class rdf:about="&recreationService;LowCongestion">
-        <rdfs:subClassOf rdf:resource="&recreationService;Congestion"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowCongestion">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Congestion"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowDeerHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDeerHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowDoveHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDoveHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowIntensityDevelopment -->
 
-    <owl:Class rdf:about="&recreationService;LowIntensityDevelopment">
-        <rdfs:subClassOf rdf:resource="&recreationService;Development"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowIntensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Development"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowJavelinaHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteJavelinaHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowQuailHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteQuailHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowQualityWaterView -->
 
-    <owl:Class rdf:about="&recreationService;LowQualityWaterView">
-        <rdfs:subClassOf rdf:resource="&recreationService;WaterView"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowQualityWaterView">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WaterView"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowRareCharismaticBirdHabitat -->
 
-    <owl:Class rdf:about="&recreationService;LowRareCharismaticBirdHabitat">
-        <rdfs:subClassOf rdf:resource="&recreationService;RareCharismaticBirdHabitat"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RareCharismaticBirdHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowSiteRecognition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowSiteRecognition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteRecognition"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowSlope -->
 
-    <owl:Class rdf:about="&recreationService;LowSlope">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingSlopeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowSlope">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlopeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewPosition -->
 
-    <owl:Class rdf:about="&recreationService;LowViewPosition">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewPositionClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewPosition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPositionClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewerEnjoyment -->
 
-    <owl:Class rdf:about="&recreationService;LowViewerEnjoyment">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewerEnjoyment"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowViewerEnjoyment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewerEnjoyment"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowWildlifeQuality -->
 
-    <owl:Class rdf:about="&recreationService;LowWildlifeQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteWildlifeQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#LowWildlifeSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;LowWildlifeSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;WildlifeSpeciesRichnessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#LowWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumIntensityDevelopment -->
 
-    <owl:Class rdf:about="&recreationService;MediumIntensityDevelopment">
-        <rdfs:subClassOf rdf:resource="&recreationService;Development"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumIntensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Development"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumViewPosition -->
 
-    <owl:Class rdf:about="&recreationService;MediumViewPosition">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewPositionClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MediumViewPosition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPositionClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Moderate -->
 
-    <owl:Class rdf:about="&recreationService;Moderate">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDifficulty"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Moderate">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDifficulty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateBirdSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;ModerateBirdSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;BirdSpeciesRichness"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateBirdingQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateBirdingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteBirdingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateCongestion -->
 
-    <owl:Class rdf:about="&recreationService;ModerateCongestion">
-        <rdfs:subClassOf rdf:resource="&recreationService;Congestion"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateCongestion">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Congestion"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateDeerHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDeerHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateDoveHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDoveHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateHikingDistance -->
 
-    <owl:Class rdf:about="&recreationService;ModerateHikingDistance">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDistanceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateHikingDistance">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistanceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateJavelinaHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteJavelinaHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateQuailHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteQuailHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateRareCharismaticBirdHabitat -->
 
-    <owl:Class rdf:about="&recreationService;ModerateRareCharismaticBirdHabitat">
-        <rdfs:subClassOf rdf:resource="&recreationService;RareCharismaticBirdHabitat"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RareCharismaticBirdHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateSiteRecognition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateSiteRecognition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteRecognition"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateSlope -->
 
-    <owl:Class rdf:about="&recreationService;ModerateSlope">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingSlopeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateSlope">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlopeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateTravelTime -->
 
-    <owl:Class rdf:about="&recreationService;ModerateTravelTime">
-        <rdfs:subClassOf rdf:resource="&recreationService;TravelTimeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateTravelTime">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTimeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateViewerEnjoyment -->
 
-    <owl:Class rdf:about="&recreationService;ModerateViewerEnjoyment">
-        <rdfs:subClassOf rdf:resource="&recreationService;ViewerEnjoyment"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateViewerEnjoyment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewerEnjoyment"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateWildlifeQuality -->
 
-    <owl:Class rdf:about="&recreationService;ModerateWildlifeQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteWildlifeQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateWildlifeSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;ModerateWildlifeSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;WildlifeSpeciesRichnessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ModerateWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;MountainViewAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -927,7 +949,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewDemand -->
 
-    <owl:Class rdf:about="&recreationService;MountainViewDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewDemand">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -935,7 +957,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;MountainViewSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -943,7 +965,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewUse -->
 
-    <owl:Class rdf:about="&recreationService;MountainViewUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#MountainViewUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -951,12 +973,12 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NaturalFeatures -->
 
-    <owl:Class rdf:about="&recreationService;NaturalFeatures">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NaturalFeatures">
         <rdfs:subClassOf rdf:resource="&eserv;Existence"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProducer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;LandscapeFeaturesPresent"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#LandscapeFeaturesPresent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Landscape features that attract a particular type of outdoor recreation (i.e., a whitewater river suitable for rafting or kayaking; a mountain ridge with scenic views from the top).</rdfs:comment>
@@ -966,12 +988,12 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NatureWatching -->
 
-    <owl:Class rdf:about="&recreationService;NatureWatching">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NatureWatching">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;Recreationists"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Non-exploitative use of nature, where the recreationist either intentionally views a certain part of the landscape (i.e., bird watchers, visitors to a particular unique ecosystem) or uses it as a natural backdrop for various outdoor activities.  Thus nature watching can encompass very diverse types of activities and modes of use (i.e., hiking on a mountain trail, riding on a bicycle trail, diving in a coral reef).</rdfs:comment>
@@ -981,28 +1003,28 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NoPublicAccess -->
 
-    <owl:Class rdf:about="&recreationService;NoPublicAccess">
-        <rdfs:subClassOf rdf:resource="&recreationService;PublicAccessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NoPublicAccess">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NoWaterView -->
 
-    <owl:Class rdf:about="&recreationService;NoWaterView">
-        <rdfs:subClassOf rdf:resource="&recreationService;WaterView"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NoWaterView">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WaterView"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NonrenewableHuntingFishingGathering -->
 
-    <owl:Class rdf:about="&recreationService;NonrenewableHuntingFishingGathering">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NonrenewableHuntingFishingGathering">
         <rdfs:subClassOf rdf:resource="&eserv;NonRenewableTransformation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;Recreationists"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Recreational hunting, fishing, or gathering of wild plant or animal species that takes place at levels too high to allow long-term persistence of wild populations.</rdfs:comment>
@@ -1012,23 +1034,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NotDeveloped -->
 
-    <owl:Class rdf:about="&recreationService;NotDeveloped">
-        <rdfs:subClassOf rdf:resource="&recreationService;Development"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NotDeveloped">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Development"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#NotOpenLand -->
 
-    <owl:Class rdf:about="&recreationService;NotOpenLand">
-        <rdfs:subClassOf rdf:resource="&recreationService;OpenSpaceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#NotOpenLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass -->
 
-    <owl:Class rdf:about="&recreationService;OpenSpaceClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
     </owl:Class>
     
@@ -1036,62 +1058,62 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#OtherOpenLand -->
 
-    <owl:Class rdf:about="&recreationService;OtherOpenLand">
-        <rdfs:subClassOf rdf:resource="&recreationService;OpenSpaceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#OtherOpenLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OpenSpaceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation -->
 
-    <owl:Class rdf:about="&recreationService;OutdoorRecreation">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;NonrenewableHuntingFishingGathering"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#NatureWatching"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;NaturalFeatures"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;SpeciesOrEcosystems"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ProductionOfPlantsOrAnimals"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;NatureWatching"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&recreationService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;Recreationists"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#NonrenewableHuntingFishingGathering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;ProductionOfPlantsOrAnimals"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;ScenicLandscapes"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscapes"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;RenewableHuntingFishingGathering"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RenewableHuntingFishingGathering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#NaturalFeatures"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SpeciesOrEcosystems"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The enjoyment of nature through various outdoor activities.</rdfs:comment>
@@ -1101,7 +1123,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PlantsOrAnimalsForRecreationalHarvest -->
 
-    <owl:Class rdf:about="&recreationService;PlantsOrAnimalsForRecreationalHarvest">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PlantsOrAnimalsForRecreationalHarvest">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:comment rdf:datatype="&xsd;string">Populations of plants or animals that are harvested through hunting, fishing, or gathering activities.  For this service, these activities are by definition recreational rather than for subsistence or commercial purposes.</rdfs:comment>
     </owl:Class>
@@ -1110,7 +1132,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PotentialRecreationalUsers -->
 
-    <owl:Class rdf:about="&recreationService;PotentialRecreationalUsers">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PotentialRecreationalUsers">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
     </owl:Class>
     
@@ -1118,20 +1140,20 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PrivateLandWithAccess -->
 
-    <owl:Class rdf:about="&recreationService;PrivateLandWithAccess">
-        <rdfs:subClassOf rdf:resource="&recreationService;PublicAccessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PrivateLandWithAccess">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ProductionOfPlantsOrAnimals -->
 
-    <owl:Class rdf:about="&recreationService;ProductionOfPlantsOrAnimals">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ProductionOfPlantsOrAnimals">
         <rdfs:subClassOf rdf:resource="&eserv;Production"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProducer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;HabitatForPlantsOrAnimals"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HabitatForPlantsOrAnimals"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">An ecosystem provides plant or animal species of interest for recreational hunters, fishermen, or plant gatherers.</rdfs:comment>
@@ -1141,7 +1163,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccess -->
 
-    <owl:Class rdf:about="&recreationService;PublicAccess">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccess">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -1149,7 +1171,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccessClass -->
 
-    <owl:Class rdf:about="&recreationService;PublicAccessClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccessClass">
         <rdfs:label rdf:datatype="&xsd;string">PublicAccess</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
@@ -1158,15 +1180,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicLand -->
 
-    <owl:Class rdf:about="&recreationService;PublicLand">
-        <rdfs:subClassOf rdf:resource="&recreationService;PublicAccessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#PublicAccessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;QuailHuntingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -1174,7 +1196,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingDemand -->
 
-    <owl:Class rdf:about="&recreationService;QuailHuntingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -1182,7 +1204,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;QuailHuntingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -1190,7 +1212,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingUse -->
 
-    <owl:Class rdf:about="&recreationService;QuailHuntingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#QuailHuntingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     
@@ -1198,7 +1220,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RareCharismaticBirdHabitat -->
 
-    <owl:Class rdf:about="&recreationService;RareCharismaticBirdHabitat">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RareCharismaticBirdHabitat">
         <rdfs:subClassOf rdf:resource="&habitat;CommunityQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -1207,7 +1229,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreation -->
 
-    <owl:Class rdf:about="&recreationService;Recreation">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreation">
         <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
         <rdfs:comment rdf:datatype="&xsd;string">Spending leisure time outdoors, &quot;in nature.&quot;  Outdoor recreation has important physical and psychological benefits, especially for urban populations that spend much of their lives indoors.</rdfs:comment>
     </owl:Class>
@@ -1216,42 +1238,42 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationService -->
 
-    <owl:Class rdf:about="&recreationService;RecreationService">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationService">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;OutdoorRecreation"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueLandscapeFeatures"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;UniqueSpeciesOrEcosystems"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;VisuallySignificantLanscapes"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#VisuallySignificantLanscapes"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;Recreation"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;UniqueLandscapeFeatures"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#PlantsOrAnimalsForRecreationalHarvest"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;PlantsOrAnimalsForRecreationalHarvest"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesOrEcosystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The use of nature as a place for rest, relaxation, or contemplation.</rdfs:comment>
@@ -1261,7 +1283,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalAttractiveness -->
 
-    <owl:Class rdf:about="&recreationService;RecreationalAttractiveness">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalAttractiveness">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
     </owl:Class>
     
@@ -1269,7 +1291,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality -->
 
-    <owl:Class rdf:about="&recreationService;RecreationalQuality">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality">
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;physical-quality"/>
     </owl:Class>
     
@@ -1277,7 +1299,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalUse -->
 
-    <owl:Class rdf:about="&recreationService;RecreationalUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalUse">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
     </owl:Class>
     
@@ -1285,7 +1307,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalUserFlow -->
 
-    <owl:Class rdf:about="&recreationService;RecreationalUserFlow">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalUserFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
     </owl:Class>
     
@@ -1293,7 +1315,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem -->
 
-    <owl:Class rdf:about="&recreationService;RecreationallyValuableEcosystem">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
         <rdfs:comment rdf:datatype="&xsd;string">An area that receives recreational use by humans.  Access is a critical factor in determining this, as are cultural norms and recreational activities of interest (i.e., the types of outdoor recreation that local human populations or visitors typically engage in).</rdfs:comment>
     </owl:Class>
@@ -1302,7 +1324,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists -->
 
-    <owl:Class rdf:about="&recreationService;Recreationists">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
         <rdfs:comment rdf:datatype="&xsd;string">People who engage in outdoor recreation of any type.</rdfs:comment>
     </owl:Class>
@@ -1311,12 +1333,12 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RenewableHuntingFishingGathering -->
 
-    <owl:Class rdf:about="&recreationService;RenewableHuntingFishingGathering">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RenewableHuntingFishingGathering">
         <rdfs:subClassOf rdf:resource="&eserv;RenewableTransformation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;Recreationists"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Recreational hunting, fishing, or gathering of wild plant or animal species that takes place at levels low enough to allow long-term persistence of wild populations.</rdfs:comment>
@@ -1326,7 +1348,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Riparian -->
 
-    <owl:Class rdf:about="&recreationService;Riparian">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Riparian">
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;physical-quality"/>
     </owl:Class>
     
@@ -1334,23 +1356,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RiparianAbsent -->
 
-    <owl:Class rdf:about="&recreationService;RiparianAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Riparian"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiparianAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Riparian"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RiparianPresent -->
 
-    <owl:Class rdf:about="&recreationService;RiparianPresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Riparian"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiparianPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Riparian"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStream -->
 
-    <owl:Class rdf:about="&recreationService;RiverStream">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStream">
         <rdfs:label rdf:datatype="&xsd;string">Rivers and streams</rdfs:label>
         <rdfs:subClassOf rdf:resource="&aestheticService;ScenicViews"/>
     </owl:Class>
@@ -1359,23 +1381,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStreamAbsent -->
 
-    <owl:Class rdf:about="&recreationService;RiverStreamAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;RiverStream"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStreamAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStream"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStreamPresent -->
 
-    <owl:Class rdf:about="&recreationService;RiverStreamPresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;RiverStream"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStreamPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RiverStream"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadTravelCapacity -->
 
-    <owl:Class rdf:about="&recreationService;RoadTravelCapacity">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadTravelCapacity">
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;physical-quality"/>
     </owl:Class>
     
@@ -1383,7 +1405,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Roads -->
 
-    <owl:Class rdf:about="&recreationService;Roads">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Roads">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
@@ -1392,24 +1414,24 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadsAbsent -->
 
-    <owl:Class rdf:about="&recreationService;RoadsAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Roads"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadsAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Roads"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadsPresent -->
 
-    <owl:Class rdf:about="&recreationService;RoadsPresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Roads"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#RoadsPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Roads"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscape -->
 
-    <owl:Class rdf:about="&recreationService;ScenicLandscape">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationallyValuableEcosystem"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscape">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem"/>
         <rdfs:comment rdf:datatype="&xsd;string">A landscape with scenic value that increases its recreational use.</rdfs:comment>
     </owl:Class>
     
@@ -1417,12 +1439,12 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscapes -->
 
-    <owl:Class rdf:about="&recreationService;ScenicLandscapes">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscapes">
         <rdfs:subClassOf rdf:resource="&eserv;Existence"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProducer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;ScenicLandscape"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscape"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Scenic landscapes that draw people to an area for various types of outdoor recreation.</rdfs:comment>
@@ -1432,23 +1454,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ShortHikingDistance -->
 
-    <owl:Class rdf:about="&recreationService;ShortHikingDistance">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDistanceClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ShortHikingDistance">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDistanceClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ShortTravelTime -->
 
-    <owl:Class rdf:about="&recreationService;ShortTravelTime">
-        <rdfs:subClassOf rdf:resource="&recreationService;TravelTimeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ShortTravelTime">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTimeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteBirdingQuality">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1457,8 +1479,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -1466,8 +1488,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -1475,7 +1497,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteHuntingQuality">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality">
         <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
@@ -1483,8 +1505,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -1492,16 +1514,25 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteHuntingQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteRecognition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteRecognition">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;abstract-quality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality -->
 
-    <owl:Class rdf:about="&recreationService;SiteWildlifeQuality">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1510,12 +1541,12 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SpeciesOrEcosystems -->
 
-    <owl:Class rdf:about="&recreationService;SpeciesOrEcosystems">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SpeciesOrEcosystems">
         <rdfs:subClassOf rdf:resource="&eserv;Existence"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProducer"/>
-                <owl:someValuesFrom rdf:resource="&recreationService;UniqueSpeciesEcosystem"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesEcosystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The existence of unique species or ecosystems that make an area more desirable for outdoor recreation (i.e., an area that attracts high concentrations of migratory birds; a regionally or globally unique ecosystem that draws in nature viewers).</rdfs:comment>
@@ -1525,23 +1556,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#SteepSlope -->
 
-    <owl:Class rdf:about="&recreationService;SteepSlope">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingSlopeClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#SteepSlope">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingSlopeClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Strenuous -->
 
-    <owl:Class rdf:about="&recreationService;Strenuous">
-        <rdfs:subClassOf rdf:resource="&recreationService;HikingDifficulty"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Strenuous">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#HikingDifficulty"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails -->
 
-    <owl:Class rdf:about="&recreationService;Trails">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails">
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;physical-object"/>
     </owl:Class>
     
@@ -1549,23 +1580,23 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TrailsAbsent -->
 
-    <owl:Class rdf:about="&recreationService;TrailsAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Trails"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TrailsAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TrailsPresent -->
 
-    <owl:Class rdf:about="&recreationService;TrailsPresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;Trails"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TrailsPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructure -->
 
-    <owl:Class rdf:about="&recreationService;TransportationEnergyInfrastructure">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructure">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
     </owl:Class>
@@ -1574,15 +1605,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructureAbsent -->
 
-    <owl:Class rdf:about="&recreationService;TransportationEnergyInfrastructureAbsent">
-        <rdfs:subClassOf rdf:resource="&recreationService;TransportationEnergyInfrastructure"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructureAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructure"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructureCode -->
 
-    <owl:Class rdf:about="&recreationService;TransportationEnergyInfrastructureCode">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructureCode">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
     </owl:Class>
     
@@ -1590,15 +1621,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructurePresent -->
 
-    <owl:Class rdf:about="&recreationService;TransportationEnergyInfrastructurePresent">
-        <rdfs:subClassOf rdf:resource="&recreationService;TransportationEnergyInfrastructure"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructurePresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationEnergyInfrastructure"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationRestrictedRecreationalUse -->
 
-    <owl:Class rdf:about="&recreationService;TransportationRestrictedRecreationalUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationRestrictedRecreationalUse">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
     </owl:Class>
     
@@ -1606,7 +1637,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationRestrictedRecreationalUsers -->
 
-    <owl:Class rdf:about="&recreationService;TransportationRestrictedRecreationalUsers">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TransportationRestrictedRecreationalUsers">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
     </owl:Class>
     
@@ -1614,17 +1645,17 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTime -->
 
-    <owl:Class rdf:about="&recreationService;TravelTime">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTime">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTimeClass -->
 
-    <owl:Class rdf:about="&recreationService;TravelTimeClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TravelTimeClass">
         <rdfs:label rdf:datatype="&xsd;string">TravelTime</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -1632,7 +1663,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueLandscapeFeatures -->
 
-    <owl:Class rdf:about="&recreationService;UniqueLandscapeFeatures">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueLandscapeFeatures">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:comment rdf:datatype="&xsd;string">Particular landscape features that make an area amenable to particular types of outdoor recreation (i.e., a beach that provides access for swimming, a mountain that people will want to climb).</rdfs:comment>
     </owl:Class>
@@ -1641,8 +1672,8 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesEcosystem -->
 
-    <owl:Class rdf:about="&recreationService;UniqueSpeciesEcosystem">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationallyValuableEcosystem"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesEcosystem">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationallyValuableEcosystem"/>
         <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that includes regionally or globally significant species or ecosystems.</rdfs:comment>
     </owl:Class>
     
@@ -1650,7 +1681,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesOrEcosystems -->
 
-    <owl:Class rdf:about="&recreationService;UniqueSpeciesOrEcosystems">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesOrEcosystems">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:comment rdf:datatype="&xsd;string">Unique species or ecosystems are more likely to be a target for birdwatching, ecotourism, etc.  These areas are also places where parks are more likely to be located.</rdfs:comment>
     </owl:Class>
@@ -1659,72 +1690,72 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryHighBirdSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;VeryHighBirdSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;BirdSpeciesRichness"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryHighBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#BirdSpeciesRichness"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryHighWildlifeSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;VeryHighWildlifeSpeciesRichness">
-        <rdfs:subClassOf rdf:resource="&recreationService;WildlifeSpeciesRichnessClass"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryHighWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowBirdingQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowBirdingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteBirdingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteBirdingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowDeerHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDeerHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDeerHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowDoveHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteDoveHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowJavelinaHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteJavelinaHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteJavelinaHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowQuailHuntingQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteQuailHuntingQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteQuailHuntingQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowWildlifeQuality -->
 
-    <owl:Class rdf:about="&recreationService;VeryLowWildlifeQuality">
-        <rdfs:subClassOf rdf:resource="&recreationService;SiteWildlifeQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VeryLowWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SiteWildlifeQuality"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPosition -->
 
-    <owl:Class rdf:about="&recreationService;ViewPosition">
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPosition">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
@@ -1732,9 +1763,9 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPositionClass -->
 
-    <owl:Class rdf:about="&recreationService;ViewPositionClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewPositionClass">
         <rdfs:label rdf:datatype="&xsd;string">ViewPosition</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&recreationService;RecreationalQuality"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RecreationalQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
@@ -1743,7 +1774,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewerEnjoyment -->
 
-    <owl:Class rdf:about="&recreationService;ViewerEnjoyment">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ViewerEnjoyment">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1752,7 +1783,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#VisuallySignificantLanscapes -->
 
-    <owl:Class rdf:about="&recreationService;VisuallySignificantLanscapes">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#VisuallySignificantLanscapes">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
         <rdfs:comment rdf:datatype="&xsd;string">Landscapes with aesthetic qualities that provide a scenic backdrop for outdoor recreation.</rdfs:comment>
     </owl:Class>
@@ -1761,7 +1792,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WaterView -->
 
-    <owl:Class rdf:about="&recreationService;WaterView">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WaterView">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1770,7 +1801,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichness -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeSpeciesRichness">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichness">
         <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
     </owl:Class>
     
@@ -1778,7 +1809,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeSpeciesRichnessClass">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeSpeciesRichnessClass">
         <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
@@ -1787,7 +1818,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingAccessAndUse -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeViewingAccessAndUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingAccessAndUse">
         <rdfs:subClassOf rdf:resource="&eserv;Flow"/>
     </owl:Class>
     
@@ -1795,7 +1826,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingDemand -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeViewingDemand">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingDemand">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -1803,7 +1834,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingSourceValue -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeViewingSourceValue">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingSourceValue">
         <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
     </owl:Class>
     
@@ -1811,7 +1842,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingUse -->
 
-    <owl:Class rdf:about="&recreationService;WildlifeViewingUse">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#WildlifeViewingUse">
         <rdfs:subClassOf rdf:resource="&eserv;NonRivalBenefit"/>
     </owl:Class>
     

@@ -83,6 +83,16 @@
                   #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
                     78 79 84 87 88 89 90}                          NoPublicAccess))
 
+;;This statement (not yet implemented) accounts for public recognition of a site, e.g., SPRNCA & Ramsy Canyon's high
+;; values for birding, or Mt. Mansfield & Camels Hump's high values for hiking in the VT model.  Need to develop a
+;; data layer that has these features, link nodes in the BN and finish the CPT, and include the correct concepts in
+;; the defmodel statement below, then test results.
+;;(defmodel site-recognition SiteRecognition
+;;  (classification (ranking SiteRecognition)
+;;               1 HighSiteRecognition
+;;               2 ModerateSiteRecognition
+;;               3 LowSiteRecognition))
+
 ;;Undiscretization statements to be use in BNs
 (defmodel birding-quality SiteBirdingQuality
   (probabilistic-ranking SiteBirdingQuality

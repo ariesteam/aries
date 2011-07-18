@@ -10,20 +10,20 @@
 			<probabilities>0.2 0.5 0.2 0.09 0.01</probabilities>
 		</cpt>
 		<cpt id="LandCover">
-			<state id="HighAndMedDevelopedLandCover" />
-			<state id="LowDevelopedLandCover" />
-			<state id="OpenSpaceLandCover" />
-			<state id="GrasslandAndCultivatedLandCover" />
-			<state id="ScrubAndForestLandCover" />
-			<state id="WetlandLandCover" />
-			<state id="OpenWaterLandCover" />
+			<state id="HighAndMedDensityDeveloped" />
+			<state id="LowDensityDeveloped" />
+			<state id="OpenSpace" />
+			<state id="GrasslandAndCultivated" />
+			<state id="ScrubAndForest" />
+			<state id="Wetland" />
+			<state id="OpenWater" />
 			<probabilities>0.7 0.2 0.01 0.03 0.05 0.005 0.005</probabilities>
 		</cpt>
-		<cpt id="FireThreat">
+		<cpt id="FireThreatClass">
+			<state id="LowFireThreat" />
 			<state id="ModerateFireThreat" />
 			<state id="HighFireThreat" />
 			<state id="VeryHighFireThreat" />
-			<state id="ExtremeFireThreat" />
 			<probabilities>0.9300000000000001 0.02 0.04 0.01</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCover">
@@ -36,10 +36,10 @@
 			<probabilities>0.05 0.05 0.2 0.3 0.35 0.05</probabilities>
 		</cpt>
 		<cpt id="VegetationTypeSoCalCarbon">
-			<state id="HardwoodForestVegetationType" />
-			<state id="MixedConiferVegetationType" />
-			<state id="ShrubVegetationType" />
-			<state id="HerbaceousVegetationType" />
+			<state id="HardwoodForestVegetation" />
+			<state id="MixedConiferVegetation" />
+			<state id="ShrubVegetation" />
+			<state id="HerbaceousVegetation" />
 			<probabilities>0.05 0.45 0.05 0.45</probabilities>
 		</cpt>
 		<cpt id="VegetationCarbonStorage">
@@ -89,7 +89,7 @@
 			<state id="LowRelease" />
 			<state id="VeryLowRelease" />
 			<state id="NoRelease" />
-			<parents>VegetationAndSoilCarbonStorageClass FireThreat</parents>
+			<parents>VegetationAndSoilCarbonStorageClass FireThreatClass</parents>
 			<probabilities>0.01 0 0 0 0 0.99 0.04 0.01 0 0 0 0.95 0.08 0.02 0 0 0 0.9 0.15 0.05 0 0 0 0.8 0 0.01 0 0 0 0.99 0 0.04 0.01 0 0 0.95 0 0.08 0.02 0 0 0.9 0 0.15 0.05 0 0 0.8 0 0 0.01 0 0 0.99 0 0 0.04 0.01 0 0.95 0 0 0.08 0.02 0 0.9 0 0 0.15 0.05 0 0.8 0 0 0 0.01 0 0.99 0 0 0 0.04 0.01 0.95 0 0 0 0.08 0.02 0.9 0 0 0 0.15 0.05 0.8 0 0 0 0 0.01 0.99 0 0 0 0 0.05 0.95 0 0 0 0 0.1 0.9 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
@@ -142,8 +142,8 @@
 				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
 				<barchart active="true" width="232" height="126" />
 			</node>
-			<node id="FireThreat">
-				<name>FireThreat</name>
+			<node id="FireThreatClass">
+				<name>FireThreatClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

@@ -626,9 +626,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Forested -->
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Forest -->
 
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Forested">
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#Forest">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#TerrestrialVegetationType"/>
     </owl:Class>
     
@@ -1926,24 +1926,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighCoastalFloodProtection"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowCoastalFloodProtection"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateCoastalFloodProtection"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoCoastalFloodProtection"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighMangroveWidth"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowMangroveWidth"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateMangroveWidth"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoMangroveWidth"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighSeagrassDensity"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowSeagrassDensity"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSeagrassDensity"/>
@@ -1956,6 +1938,15 @@
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighBleaching"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateBleaching"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoBleaching"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighCoastalFloodProtection"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowCoastalFloodProtection"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateCoastalFloodProtection"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoCoastalFloodProtection"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1974,6 +1965,15 @@
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToLife"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToLife"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToLife"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighMangroveWidth"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowMangroveWidth"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateMangroveWidth"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoMangroveWidth"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

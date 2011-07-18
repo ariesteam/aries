@@ -49,6 +49,16 @@
       #{31 90 95 52} OtherOpenLand
       :otherwise     NotOpenLand))
 
+;;This statement (not yet implemented) accounts for public recognition of a site, e.g., SPRNCA & Ramsy Canyon's high
+;; values for birding, or Mt. Mansfield & Camels Hump's high values for hiking in the VT model.  Need to develop a
+;; data layer that has these features, link nodes in the BN and finish the CPT, and include the correct concepts in
+;; the defmodel statement below, then test results.
+;;(defmodel site-recognition SiteRecognition
+;;  (classification (ranking SiteRecognition)
+;;               1 HighSiteRecognition
+;;               2 ModerateSiteRecognition
+;;               3 LowSiteRecognition))
+
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
 	(probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
   		[0 25]   aestheticService:NoNaturalBeauty 

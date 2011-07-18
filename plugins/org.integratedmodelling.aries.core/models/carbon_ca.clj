@@ -33,21 +33,21 @@
 ;;This does not account for barren, water, agriculture, or urban cover (though these are accounted for in NLCD)
 (defmodel vegetation-type southernCalifornia:VegetationTypeSoCalCarbon
   (classification (numeric-coding southernCalifornia:VegTypeSoCal)
-                  1          southernCalifornia:HardwoodForestVegetationType
-                  #{4 7}     southernCalifornia:MixedConiferVegetationType
-                  0          southernCalifornia:ShrubVegetationType
-                  3          southernCalifornia:HerbaceousVegetationType))
+                  1          southernCalifornia:HardwoodForestVegetation
+                  #{4 7}     southernCalifornia:MixedConiferVegetation
+                  0          southernCalifornia:ShrubVegetation
+                  3          southernCalifornia:HerbaceousVegetation))
 
 ;;"Reclass of the NLCD land use for the purposes of carbon modeling"
 (defmodel land-use southernCalifornia:LandCover
   (classification (numeric-coding nlcd:NLCDNumeric)
-                  11                  southernCalifornia:OpenWaterLandCover
-                  #{90 95}            southernCalifornia:WetlandLandCover
-                  #{41 42 43 51 52}   southernCalifornia:ScrubAndForestLandCover
-                  #{71 81 82}         southernCalifornia:GrasslandAndCultivatedLandCover
-                  21                  southernCalifornia:OpenSpaceLandCover
-                  22                  southernCalifornia:LowDevelopedLandCover
-                  #{23 24}            southernCalifornia:HighAndMedDevelopedLandCover))
+                  11                  southernCalifornia:OpenWater
+                  #{90 95}            southernCalifornia:Wetland
+                  #{41 42 43 51 52}   southernCalifornia:ScrubAndForest
+                  #{71 81 82}         southernCalifornia:GrasslandAndCultivated
+                  21                  southernCalifornia:OpenSpace
+                  22                  southernCalifornia:LowDensityDeveloped
+                  #{23 24}            southernCalifornia:HighAndMedDensityDeveloped))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
