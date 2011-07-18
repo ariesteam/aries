@@ -258,9 +258,28 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoralQuality -->
+
+    <owl:Class rdf:about="&fisheries;CoralQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoralReefArea -->
 
     <owl:Class rdf:about="&fisheries;CoralReefArea">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&representation;Area"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#CoralReefAreaClass -->
+
+    <owl:Class rdf:about="&fisheries;CoralReefAreaClass">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&representation;Area"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -280,6 +299,16 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#EstuaryArea -->
 
     <owl:Class rdf:about="&fisheries;EstuaryArea">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&representation;Area"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#EstuaryAreaClass -->
+
+    <owl:Class rdf:about="&fisheries;EstuaryAreaClass">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
         <rdfs:subClassOf rdf:resource="&representation;Area"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
@@ -429,7 +458,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighReefArea -->
 
     <owl:Class rdf:about="&fisheries;HighReefArea">
-        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefAreaClass"/>
     </owl:Class>
     
 
@@ -442,10 +471,18 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#HighlyBleachedCoralPresent -->
+
+    <owl:Class rdf:about="&fisheries;HighlyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LargeEstuary -->
 
     <owl:Class rdf:about="&fisheries;LargeEstuary">
-        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryAreaClass"/>
     </owl:Class>
     
 
@@ -615,7 +652,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#LowReefArea -->
 
     <owl:Class rdf:about="&fisheries;LowReefArea">
-        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefAreaClass"/>
     </owl:Class>
     
 
@@ -665,6 +702,14 @@
 
     <owl:Class rdf:about="&fisheries;LutjanusArgentimaculatusStock">
         <rdfs:subClassOf rdf:resource="&fisheries;FishStock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#MinimallyBleachedCoralPresent -->
+
+    <owl:Class rdf:about="&fisheries;MinimallyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralQuality"/>
     </owl:Class>
     
 
@@ -760,7 +805,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModerateReefArea -->
 
     <owl:Class rdf:about="&fisheries;ModerateReefArea">
-        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefAreaClass"/>
     </owl:Class>
     
 
@@ -769,6 +814,14 @@
 
     <owl:Class rdf:about="&fisheries;ModerateSubsistenceUse">
         <rdfs:subClassOf rdf:resource="&fisheries;SubsistenceUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#ModeratelyBleachedCoralPresent -->
+
+    <owl:Class rdf:about="&fisheries;ModeratelyBleachedCoralPresent">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralQuality"/>
     </owl:Class>
     
 
@@ -799,10 +852,18 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoCoralPresent -->
+
+    <owl:Class rdf:about="&fisheries;NoCoralPresent">
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoEstuary -->
 
     <owl:Class rdf:about="&fisheries;NoEstuary">
-        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryAreaClass"/>
     </owl:Class>
     
 
@@ -858,7 +919,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#NoReefArea -->
 
     <owl:Class rdf:about="&fisheries;NoReefArea">
-        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;CoralReefAreaClass"/>
     </owl:Class>
     
 
@@ -941,7 +1002,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#SmallEstuary -->
 
     <owl:Class rdf:about="&fisheries;SmallEstuary">
-        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryArea"/>
+        <rdfs:subClassOf rdf:resource="&fisheries;EstuaryAreaClass"/>
     </owl:Class>
     
 
@@ -1101,28 +1162,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighQualityAHHabitat"/>
-            <rdf:Description rdf:about="&fisheries;LowQualityAHHabitat"/>
-            <rdf:Description rdf:about="&fisheries;ModerateQualityAHHabitat"/>
-            <rdf:Description rdf:about="&fisheries;NoAHHabitat"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighQualityEstuary"/>
-            <rdf:Description rdf:about="&fisheries;LowQualityEstuary"/>
-            <rdf:Description rdf:about="&fisheries;ModerateQualityEstuary"/>
-            <rdf:Description rdf:about="&fisheries;NoQualityEstuary"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighReefArea"/>
-            <rdf:Description rdf:about="&fisheries;LowReefArea"/>
-            <rdf:Description rdf:about="&fisheries;ModerateReefArea"/>
-            <rdf:Description rdf:about="&fisheries;NoReefArea"/>
+            <rdf:Description rdf:about="&fisheries;HighBleaching"/>
+            <rdf:Description rdf:about="&fisheries;ModerateBleaching"/>
+            <rdf:Description rdf:about="&fisheries;NoBleaching"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1145,9 +1187,36 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighBleaching"/>
-            <rdf:Description rdf:about="&fisheries;ModerateBleaching"/>
-            <rdf:Description rdf:about="&fisheries;NoBleaching"/>
+            <rdf:Description rdf:about="&fisheries;HighQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;LowQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;ModerateQualityAHHabitat"/>
+            <rdf:Description rdf:about="&fisheries;NoAHHabitat"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&fisheries;HighCoastalProximity"/>
+            <rdf:Description rdf:about="&fisheries;LowCoastalProximity"/>
+            <rdf:Description rdf:about="&fisheries;ModerateCoastalProximity"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&fisheries;HighSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;LowSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;ModerateSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;NoSubsistenceUse"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&fisheries;HighQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;LowQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;ModerateQualityEstuary"/>
+            <rdf:Description rdf:about="&fisheries;NoQualityEstuary"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1163,10 +1232,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighSubsistenceUse"/>
-            <rdf:Description rdf:about="&fisheries;LowSubsistenceUse"/>
-            <rdf:Description rdf:about="&fisheries;ModerateSubsistenceUse"/>
-            <rdf:Description rdf:about="&fisheries;NoSubsistenceUse"/>
+            <rdf:Description rdf:about="&fisheries;HighReefArea"/>
+            <rdf:Description rdf:about="&fisheries;LowReefArea"/>
+            <rdf:Description rdf:about="&fisheries;ModerateReefArea"/>
+            <rdf:Description rdf:about="&fisheries;NoReefArea"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1176,14 +1245,6 @@
             <rdf:Description rdf:about="&fisheries;LowQualityReef"/>
             <rdf:Description rdf:about="&fisheries;ModerateQualityReef"/>
             <rdf:Description rdf:about="&fisheries;NoQualityReef"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&fisheries;HighCoastalProximity"/>
-            <rdf:Description rdf:about="&fisheries;LowCoastalProximity"/>
-            <rdf:Description rdf:about="&fisheries;ModerateCoastalProximity"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

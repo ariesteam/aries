@@ -15,7 +15,7 @@
 			<state id="NoNitrogenRunoff" />
 			<probabilities>0.015 0.035 0.15 0.8</probabilities>
 		</cpt>
-		<cpt id="EstuaryArea">
+		<cpt id="EstuaryAreaClass">
 			<state id="LargeEstuary" />
 			<state id="SmallEstuary" />
 			<state id="NoEstuary" />
@@ -26,20 +26,21 @@
 			<state id="ModerateQualityEstuary" />
 			<state id="LowQualityEstuary" />
 			<state id="NoQualityEstuary" />
-			<parents>EstuaryArea Sedimentation NitrogenRunoff</parents>
+			<parents>EstuaryAreaClass Sedimentation NitrogenRunoff</parents>
 			<probabilities>0.1 0.3 0.6 0 0.25 0.5 0.25 0 0.45 0.5 0.05 0 0.55 0.4 0.05 0 0.25 0.55 0.2 0 0.45 0.55 0 0 0.6 0.4 0 0 0.65 0.35 0 0 0.45 0.55 0 0 0.65 0.35 0 0 0.8 0.2 0 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.7 0.3 0 0 0.9 0.1 0 0 1 0 0 0 0 0.25 0.75 0 0.15 0.45 0.4 0 0.35 0.45 0.2 0 0.45 0.35 0.2 0 0.15 0.45 0.4 0 0.35 0.45 0.2 0 0.45 0.55 0 0 0.5 0.5 0 0 0.35 0.45 0.2 0 0.5 0.5 0 0 0.65 0.35 0 0 0.7 0.3 0 0 0.5 0.4 0.1 0 0.6 0.4 0 0 0.8 0.2 0 0 0.9 0.1 0 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="CoralBleaching">
-			<state id="HighBleaching" />
-			<state id="ModerateBleaching" />
-			<state id="NoBleaching" />
-			<probabilities>0.25 0.25 0.5</probabilities>
+		<cpt id="CoralQuality">
+			<state id="MinimallyBleachedCoralPresent" />
+			<state id="ModeratelyBleachedCoralPresent" />
+			<state id="HighlyBleachedCoralPresent" />
+			<state id="NoCoralPresent" />
+			<probabilities>0.01 0.01 0.01 0.97</probabilities>
 		</cpt>
-		<cpt id="ReefArea">
-			<state id="LargeReef" />
-			<state id="ModerateReef" />
-			<state id="SmallReef" />
-			<state id="NoReef" />
+		<cpt id="CoralReefAreaClass">
+			<state id="HighReefArea" />
+			<state id="ModerateReefArea" />
+			<state id="LowReefArea" />
+			<state id="NoReefArea" />
 			<probabilities>0.001 0.019 0.03 0.95</probabilities>
 		</cpt>
 		<cpt id="ReefQuality">
@@ -47,8 +48,8 @@
 			<state id="ModerateQualityReef" />
 			<state id="LowQualityReef" />
 			<state id="NoQualityReef" />
-			<parents>ReefArea CoralBleaching Sedimentation NitrogenRunoff</parents>
-			<probabilities>0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+			<parents>CoralReefAreaClass CoralQuality Sedimentation NitrogenRunoff</parents>
+			<probabilities>0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.5 0.5 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 		<cpt id="A_hololepidotusAbundance">
 			<state id="HighQualityAHHabitat" />
@@ -60,10 +61,10 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3717.0" name="Network2" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network2" faultnameformat="nodestate">
 			<node id="A_hololepidotusAbundance">
 				<name>A_hololepidotusAbundance</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>395 62 590 110</position>
@@ -71,59 +72,59 @@
 			</node>
 			<node id="ReefQuality">
 				<name>ReefQuality</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>262 218 308 246</position>
 				<barchart active="true" width="208" height="90" />
 			</node>
-			<node id="CoralBleaching">
-				<name>CoralBleaching</name>
-				<interior color="e5f6f7" />
+			<node id="CoralQuality">
+				<name>CoralQuality</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>253 372 353 405</position>
-				<barchart active="true" width="215" height="72" />
+				<position>255 379 355 412</position>
+				<barchart active="true" width="215" height="90" />
 			</node>
 			<node id="Sedimentation">
 				<name>Sedimentation</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>446 382 535 415</position>
-				<barchart active="true" width="128" height="90" />
+				<position>488 378 577 411</position>
+				<barchart active="true" width="225" height="90" />
 			</node>
 			<node id="NitrogenRunoff">
 				<name>NitrogenRunoff</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>631 382 731 412</position>
-				<barchart active="true" width="225" height="90" />
+				<position>760 380 860 410</position>
+				<barchart active="true" width="318" height="90" />
 			</node>
 			<node id="EstuaryQuality">
 				<name>EstuaryQuality</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>596 212 655 248</position>
 				<barchart active="true" width="230" height="90" />
 			</node>
-			<node id="ReefArea">
-				<name>ReefArea</name>
-				<interior color="e5f6f7" />
+			<node id="CoralReefAreaClass">
+				<name>CoralReefAreaClass</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>86 376 150 416</position>
-				<barchart active="true" width="146" height="90" />
+				<position>70 375 134 415</position>
+				<barchart active="true" width="185" height="90" />
 			</node>
-			<node id="EstuaryArea">
-				<name>EstuaryArea</name>
-				<interior color="e5f6f7" />
+			<node id="EstuaryAreaClass">
+				<name>EstuaryAreaClass</name>
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>867 365 940 410</position>
-				<barchart active="true" width="128" height="75" />
+				<position>1038 365 1111 410</position>
+				<barchart active="true" width="200" height="75" />
 			</node>
 			<textbox>
 				<caption>Use just one top node, but compare the difference between existing and potential as the difference between high versus low priors (e.g., for sedimentation, nutrient runoff, coral bleaching)</caption>
@@ -144,6 +145,11 @@
 				<caption>The sink is what keeps people from getting to it -&gt; here there really is no sink but there is a distance decay function.</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
 				<position>96 449 470 477</position>
+			</textbox>
+			<textbox>
+				<caption>CPTs are incomplete.</caption>
+				<font color="000000" name="Arial" size="8" bold="true" />
+				<position>110 211 175 239</position>
 			</textbox>
 		</genie>
 	</extensions>
