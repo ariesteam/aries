@@ -181,8 +181,8 @@
 (defmodel seagrass SeagrassPresenceClass
   "Indicates presence or absence of seagrass."
   (classification (binary-coding SeagrassPresence)
-    0 SeagrassAbsent
-    1 SeagrassPresent))
+    1 SeagrassPresent
+    0 SeagrassAbsent))
 
 (defmodel terrestrial-vegetation TerrestrialVegetationType
   "Reclasses Madagascar LULC into 5 discrete categories."
@@ -197,7 +197,7 @@
 ;; port city in Madagascar.  Development around the small ports is
 ;; minimal.
 (defmodel artificial-coastal-protection ArtificialCoastalProtection
-  "Indicates presence or absence or ports."
+  "Indicates presence or absence of ports."
   (classification (ranking infrastructure:Port)
     3          ArtificialCoastalProtectionPresent
     :otherwise ArtificialCoastalProtectionAbsent))
@@ -314,10 +314,6 @@
     :context [storm-tracks]
     :state   #(if (= (:storm-tracks %) "litanne") 1 0)))
 
-(defmodel storm-track-all StormTrack
-  "Indicates the presence of any tropical storm within the context."
-  (binary-coding StormTrack))
-
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
@@ -333,7 +329,9 @@
               risk-to-assets
               coastal-flood-sink
               geomorphic-flood-sink
-              storm-track-all]))
+              storm-track-daisy
+              storm-track-geralda
+              storm-track-litanne]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
