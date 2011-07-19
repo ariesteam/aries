@@ -118,7 +118,7 @@
 ;; source bayesian model for Puget Sound   	 
 (defmodel source-puget SedimentSourceValueAnnual
   (bayesian SedimentSourceValueAnnual 
-    :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
+    :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass) 
     :required (SlopeClass)
     :result   sediment-source-value-annual
@@ -168,7 +168,7 @@
 
 (defmodel sediment-sink-us AnnualSedimentSink
   (bayesian AnnualSedimentSink    
-    :import  "aries.core::SedimentSink.xdsl"
+    :import  "aries.core::SedimentSinkPuget.xdsl"
     :keep     (AnnualSedimentSinkClass)
     :required (FloodplainWidthClass)
     :result   sediment-sink-annual
@@ -233,7 +233,7 @@
 ;; 2) use BNs as generalized fisheries impact model.
 ;;(defmodel fishermen-use-puget FishermenUse 
 	  ;;(bayesian FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUse.xdsl"
+	 ;; 	:import   "aries.core::SedimentUsePugetFishermen.xdsl"
 	 ;; 	:keep     (FishermenUse)
 	 ;;	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
 

@@ -97,7 +97,7 @@
 
 (defmodel et-sink EvapotranspirationClass
     (bayesian EvapotranspirationClass
-      :import   "aries.core::SurfaceWaterSupplySinkLA.xdsl"
+      :import   "aries.core::SurfaceWaterSinkLA.xdsl"
       :context  (vegetation-type percent-vegetation-cover) 
       :keep     (EvapotranspirationClass)
       :result   evapotranspiration))
@@ -112,7 +112,7 @@
 
 (defmodel soil-sink SoilInfiltrationClass
     (bayesian SoilInfiltrationClass
-      :import   "aries.core::SurfaceWaterSupplySinkLA.xdsl"
+      :import   "aries.core::SurfaceWaterSinkLA.xdsl"
       :context  (soil-group slope imperviousness) 
       :keep     (SoilInfiltrationClass)
       :result   soil-infiltration))
@@ -250,7 +250,7 @@
 
 ;;(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUseClass
 ;;  (bayesian AgriculturalSurfaceWaterUseClass  
-;;    :import   "aries.core::SurfaceWaterUseAgriculture.xdsl"
+;;    :import   "aries.core::SurfaceWaterUseLAAgriculture.xdsl"
 ;;    ;;:context  (surface-water-proximity livestock-total-water-use-discretized irrigation-water-use-discretized)
 ;;    :context  (surface-water-proximity livestock-total-water-use-discretized)
 ;;    :keep     (AgriculturalSurfaceWaterUseClass)

@@ -50,32 +50,32 @@
 		</deterministic>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3470.0" name="Network4" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network4" faultnameformat="nodestate">
 			<textbox>
-				<caption>See: http://www.ecn.purdue.edu/runoff/documentation/scs.htm</caption>
+				<caption>See: https://engineering.purdue.edu/mapserve/LTHIA7/documentation/scs.htm</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>735 103 1043 117</position>
+				<position>710 91 1085 105</position>
 			</textbox>
 			<node id="Runoff">
 				<name>Runoff</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>271 82 368 119</position>
+				<position>301 82 398 119</position>
 				<comment>Runoff = (Rainfall - 0.2*MaxRetention)^2/(Rainfall + 0.8*MaxRetention)</comment>
-				<barchart active="true" width="128" height="108" />
+				<barchart active="true" width="189" height="108" />
 			</node>
 			<node id="Precipitation">
 				<name>Precipitation</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>487 220 566 263</position>
-				<barchart active="true" width="128" height="108" />
+				<position>544 220 623 263</position>
+				<barchart active="true" width="243" height="108" />
 			</node>
 			<node id="CurveNumber">
 				<name>CurveNumber</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>97 254 205 302</position>
@@ -84,7 +84,7 @@
 			</node>
 			<node id="LandUseLandCover">
 				<name>LandUseLandCover</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>88 425 229 466</position>
@@ -92,7 +92,7 @@
 			</node>
 			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>346 366 499 405</position>
@@ -100,7 +100,7 @@
 			</node>
 			<node id="MaximumRetention">
 				<name>MaximumRetention</name>
-				<interior color="e5f6f7" />
+				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>75 169 236 205</position>
@@ -110,7 +110,7 @@
 			<textbox>
 				<caption>Flood regulation source value: SCS Curve Number method</caption>
 				<font color="000000" name="Arial" size="8" bold="true" />
-				<position>849 224 1015 252</position>
+				<position>713 59 879 87</position>
 			</textbox>
 		</genie>
 	</extensions>

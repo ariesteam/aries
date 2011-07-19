@@ -138,7 +138,7 @@
 ;; Sink model
 ;; ----------------------------------------------------------------------------------------------
 
-(defmodel slope Slope
+(defmodel slope SlopeClass
 		(classification (measurement geophysics:DegreeSlope "\u00b0")
 			 [:< 1.15] 	  Level
 			 [1.15 4.57] 	GentlyUndulating
@@ -193,15 +193,6 @@
                   [30 60]    ModerateEvapotranspiration
                   [12 30]    LowEvapotranspiration
                   [0 12]     VeryLowEvapotranspiration))
-
-;;(defmodel dam-storage DamStorageClass
-;;  (classification (measurement DamStorage "mm")
-;;                  [30000 :>]      VeryLargeDamStorage
-;;                  [9000 30000]    LargeDamStorage
-;;                  [3000 9000]     ModerateDamStorage
-;;                  [900 3000]      SmallDamStorage
-;;                  [0 900]         VerySmallDamStorage
-;;                   :otherwise     NoDamStorage))
 			
 (defmodel mean-days-precipitation-monthly MeanDaysPrecipitationPerMonth
 	(classification (ranking habitat:JanuaryDaysOfPrecipitation)
@@ -217,35 +208,10 @@
     #{4 5}    LowDaysPrecipitationPerYear
     #{1 2 3}  VeryLowDaysPrecipitationPerYear))
 
-;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
-;;  empty.  Can alter this as appropriate.  This is likely a more accurate way to measure detention basin storage
-;;  but in its current form is incompatible with the BN.  Consider the best way to do this (i.e., combining deterministic
-;;  and probabilistic functions when the time comes?)
-;;(defmodel detention-basin-storage DetentionBasinStorage
-;;  (measurement DetentionBasinStorage "mm" 
-;;    :context ((binary-coding infrastructure:DetentionBasin :as detention-basin-storage))
-;;    :state #(cond (== (:detention-basin-storage %) 0) 0
-;;                  (== (:detention-basin-storage %) 1) 3000)))
-
-;;Use this one for the time being so the sink model will run.  Then review which one to use with Gary.
-;;(defmodel detention-basin-storage DetentionBasinStorage
-;;  (classification (binary-coding infrastructure:DetentionBasin)
-;;    0    DetentionBasinStorageNotPresent
-;;    1    DetentionBasinStoragePresent))
-
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
     (classification  (measurement geophysics:Altitude "m")
        [:exclusive 0 :>] OnLand))
-
-;;Undiscretizer for FloodSink
-;;(defmodel flood-sink AnnualFloodSink
-;;  (probabilistic-measurement AnnualFloodSink "mm" 
-;;                  [30000 90000]     VeryHighFloodSink
-;;                  [10000 30000]     HighFloodSink
-;;                  [3000 10000]      ModerateFloodSink
-;;                  [900 3000]        LowFloodSink
-;;                  [0 900]           VeryLowFloodSink))
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
@@ -255,15 +221,6 @@
                   [40 72]      ModerateGreenStorage
                   [15 40]      LowGreenStorage
                   [0 15]       VeryLowGreenStorage))
-
-;;Undiscretizer for GrayInfrastructureStorage
-;;(defmodel gray-infrastructure-storage GrayInfrastructureStorage
-;;  (probabilistic-measurement GrayInfrastructureStorage "mm" 
-;;                  [30000 90000]     VeryHighGrayStorage
-;;                  [10000 30000]     HighGrayStorage
-;;                  [3000 10000]      ModerateGrayStorage
-;;                  [900 3000]        LowGrayStorage
-;;                  [0 900]           VeryLowGrayStorage))
 
 ;;Assumes that detention basins average 3 m, i.e., 3000 mm, in depth, i.e., storage capacity when
 ;;  empty.  Can alter this as appropriate.
@@ -284,7 +241,7 @@
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 ;;(defmodel sink-monthly MonthlyFloodSink
 ;;	  (bayesian MonthlyFloodSink
-;;  	:import   "aries.core::FloodSinkMonthly.xdsl"
+;;  	:import   "aries.core::FloodSinkPugetMonthly.xdsl"
 ;;	  	:keep     (
 ;;	  			MonthlyFloodSink 
 ;;	  			GreenInfrastructureStorage
@@ -300,7 +257,7 @@
 ;;  small layers + priors for areas without evidence.
 (defmodel green-infrastructure-sink GreenInfrastructureSink 
     (bayesian GreenInfrastructureSink
-      :import   "aries.core::FloodSinkAnnualSimple.xdsl"
+      :import   "aries.core::FloodSinkPugetAnnual.xdsl"
       :keep     (GreenInfrastructureStorage)
       :required (LandOrSea) 
       :context (soil-group-puget vegetation-type slope annual-temperature  ;;vegetation-height
@@ -344,7 +301,7 @@
 (defmodel structures Structures
 	"Assume that any privately owned land in floodplain has vulnerable structures. TODO make more specific when we know more"
 	(classification (ranking lulc:PrivatelyOwnedLand)
-			0 StructuresNotPresent
+			0 StructuresAbsent
 			1 StructuresPresent))
 			
 (defmodel housing aestheticService:PresenceOfHousing
@@ -363,7 +320,7 @@ be added to this list if desired."
 	(classification PublicAsset 
 		:state   #(if (> (+ (:highway %) (:railway %)) 0) 
 								(tl/conc 'floodService:PublicAssetPresent) 
-								(tl/conc 'floodService:PublicAssetNotPresent))
+								(tl/conc 'floodService:PublicAssetNotAbsent))
 		:context ((ranking infrastructure:Highway) (ranking infrastructure:Railway))))
 
 (defmodel farmland Farmland

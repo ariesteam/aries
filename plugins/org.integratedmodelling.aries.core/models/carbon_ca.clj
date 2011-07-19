@@ -67,7 +67,7 @@
 ;;See above statement for AET: Add back in if you use it for wider extents of Southern California
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationCa.xdsl"
+            :import   "aries.core::CarbonSourceCa.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (LandOrSea)
             :result   veg-soil-sequestration
@@ -124,7 +124,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
+            :import   "aries.core::CarbonSinkCa.xdsl"
             :context  (vegetation-type land-use percent-vegetation-cover land-selector)
             :result    veg-storage
             :keep     (VegetationCarbonStorage)))
@@ -140,7 +140,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
+            :import   "aries.core::CarbonSinkCa.xdsl"
             :context  (soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector)
             :result    soil-storage
             :keep     (SoilCarbonStorage)))
@@ -173,7 +173,7 @@
 ;; For some reason slope has value here in the ocean and using elevation as a mask made the whole model disappear.
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseCa.xdsl"
+            :import   "aries.core::CarbonSinkCa.xdsl"
             :keep     (StoredCarbonRelease)
             :required (LandOrSea)
             :result   stored-carbon-release

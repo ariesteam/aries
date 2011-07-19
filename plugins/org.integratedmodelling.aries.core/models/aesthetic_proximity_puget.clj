@@ -96,7 +96,7 @@
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian AestheticProximityProvision
-            :import   "aries.core::ProximitySource.xdsl"
+            :import   "aries.core::ProximitySourcePuget.xdsl"
             :context  (lake-front river-front beach forest woody-wetland emergent-wetland farmland park
                        crime-potential water-quality formal-protection area)
             :result   theoretical-open-space
@@ -162,7 +162,7 @@
 (defmodel homeowners ProximityUse
   "Property owners who can afford to pay for proximity to open space"
   (bayesian ProximityUse 
-            :import  "aries.core::ProximityUse.xdsl"
+            :import  "aries.core::ProximityUsePuget.xdsl"
             :context (property-value urban-proximity housing land-selector)
             :required (LandOrSea)
             :result  proximity-use-undiscretizer 

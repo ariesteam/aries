@@ -73,7 +73,7 @@
           [:< 10]         VeryLowCNRatio)) 
 
 ;;Not used in the model but masks out carbon over open water
-(defmodel slope Slope
+(defmodel slope SlopeClass
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
        [1.15 4.57]  GentlyUndulating
@@ -93,9 +93,9 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationLyeBrook.xdsl"
+            :import   "aries.core::CarbonSourceLyeBrook.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :required (Slope)
+            :required (SlopeClass)
             :result   veg-soil-sequestration
             :context  (soil-CN-ratio stand-size-density stand-condition summer-high-winter-low)))
 
@@ -129,9 +129,9 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseLyeBrook.xdsl"
+            :import   "aries.core::CarbonSinkLyeBrook.xdsl"
             :keep     (StoredCarbonRelease)
-            :required (Slope)
+            :required (SlopeClass)
             :result   stored-carbon-release
             :context  (fire-frequency veg-storage soil-storage)))
 

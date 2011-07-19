@@ -125,7 +125,7 @@
 ;; training, when the PI eventually implements it. Commented those below.
 (defmodel source-dr SedimentSourceValueAnnual
   (bayesian SedimentSourceValueAnnual
-    :import   "aries.core::SedimentSourceValueDRAdHoc.xdsl"
+    :import   "aries.core::SedimentSourceDRAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
     :required (SlopeClass)
     :result   sediment-source-value-annual 
@@ -232,22 +232,6 @@
                         0)
                   0)
        :context ((binary-coding FarmlandCode :as farmlandpresent))))
-
-;;Still need defmodels for all components of fisheries BNs.  What about deterministic nodes?
-;;Need an undiscretization defmodel before this, for the "observed"? In the long run, could take 2 paths:
-;; 1) ditch fisheries BNs & use source/use models for actual fisheries
-;; 2) use BNs as generalized fisheries impact model.
-;;(defmodel fishermen-use-puget FishermenUse 
-	  ;;(bayesian FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUse.xdsl"
-	 ;; 	:keep     (FishermenUse)
-	 ;;	 	:context  (lakes rivers coastline coastal-wetlands salmon-spawning-grounds public-access population-density)))
-
-;;defmodel fishermen-use-mg FishermenUse 
-	;;  (bayesian FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUseMg.xdsl"
-	 ;; 	:keep     (FishermenUse)
-	 ;;	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density)))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Dependencies for the flow model

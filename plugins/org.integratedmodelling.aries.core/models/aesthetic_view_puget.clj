@@ -47,7 +47,7 @@
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian AestheticViewProvision 
-            :import   "aries.core::ViewSource.xdsl"
+            :import   "aries.core::ViewSourcePuget.xdsl"
             :context  (mountain lake ocean)
             :result   theoretical-beauty
             :keep     (TheoreticalNaturalBeauty)))
@@ -82,7 +82,7 @@
 (defmodel sink ViewSink
   "Landscape features that reduce the quality and enjoyment of scenic views"
   (bayesian ViewSink 
-            :import  "aries.core::ViewSink.xdsl"
+            :import  "aries.core::ViewSinkPuget.xdsl"
             :context (commercial-transportation clearcut highway)
             :result  view-sink-undiscretizer
             :keep    (VisualBlight)))
@@ -134,7 +134,7 @@
 (defmodel homeowners ViewUse
   "Property owners who can afford to pay for the view"
   (bayesian ViewUse 
-            :import  "aries.core::ViewUse.xdsl"
+            :import  "aries.core::ViewUsePuget.xdsl"
             :context (property-value housing land-selector)
             :required (LandOrSea)
             :result  view-use-undiscretizer 

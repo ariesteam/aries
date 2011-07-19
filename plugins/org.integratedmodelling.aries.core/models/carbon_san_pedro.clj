@@ -67,7 +67,7 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationSanPedro.xdsl"
+            :import   "aries.core::CarbonSourceSanPedro.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :result   veg-soil-sequestration
             :context  (vegetation-type percent-vegetation-cover annual-precipitation)))
@@ -99,7 +99,7 @@
                   [5.5 7.3]                ModeratePh
                   [:exclusive 0 5.5]       LowPh))
 
-(defmodel slope Slope
+(defmodel slope SlopeClass
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
        [1.15 4.57]  GentlyUndulating
@@ -135,7 +135,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :import   "aries.core::CarbonSinkSanPedro.xdsl"
             :context  (annual-precipitation percent-vegetation-cover vegetation-type)
             :result    veg-storage
             :keep     (VegetationCarbonStorage)))
@@ -151,7 +151,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :import   "aries.core::CarbonSinkSanPedro.xdsl"
             :context  (soil-ph slope oxygen percent-vegetation-cover vegetation-type)
             :result    soil-storage
             :keep     (SoilCarbonStorage)))
@@ -185,7 +185,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :import   "aries.core::CarbonSinkSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
             :result   stored-carbon-release
             :context  (veg-soil-storage fire-frequency)))
@@ -298,7 +298,7 @@
 
 (defmodel sink-new CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseSanPedro.xdsl"
+            :import   "aries.core::CarbonSinkSanPedro.xdsl"
             :keep     (StoredCarbonRelease)
             :result   stored-carbon-release
             :context  (veg-soil-storage fire-frequency-new)))

@@ -22,11 +22,11 @@
 
 ;;Need a new defmodel statement combining lake & river into "waterview," with rivers as low quality and
 ;; lakes as high.
-(defmodel lake Lake
+(defmodel lake aestheticService:Lake
   "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding geofeatures:Lake)
-		  0          LakeAbsent
-		  :otherwise LakePresent))
+		  0          aestheticService:LakeAbsent
+		  :otherwise aestheticService:LakePresent))
 
 (defmodel river-stream RiverStream
   "Presence of a river or stream."
@@ -34,12 +34,12 @@
 		  0          RiverStreamAbsent
 		  :otherwise RiverStreamPresent))
 
-(defmodel mountain Mountain
+(defmodel mountain aestheticService:Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement geophysics:Altitude "m")
-		  [457 914]  SmallMountain ; 
-		  [914 8850] LargeMountain ;; no higher than Mt. Everest, catches artifacts
-		  :otherwise NoMountain)) ; will catch artifacts too		  
+		  [457 914]  aestheticService:SmallMountain ; 
+		  [914 8850] aestheticService:LargeMountain ;; no higher than Mt. Everest, catches artifacts
+		  :otherwise aestheticService:NoMountain)) ; will catch artifacts too		  
 		  
 (defmodel open-space OpenSpaceClass
   "Classifies an area as open space according to NLCD 2001 data"
@@ -71,7 +71,7 @@
   "This one will harmonize the context, then retrieve and run the BN with the given
    evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian aestheticService:AestheticEnjoymentProvision 
-    :import   "aries.core::RecreationViewSource.xdsl"
+    :import   "aries.core::RecreationSourceVtView.xdsl"
     :keep     (aestheticService:TheoreticalNaturalBeauty)
     :context  (lake river-stream mountain open-space)
     :result   theoretical-beauty))
@@ -113,7 +113,7 @@
 (defmodel sink aestheticService:ViewSink
   "Whatever is ugly enough to absorb our enjoyment"
   (bayesian aestheticService:ViewSink 
-    :import  "aries.core::RecreationViewSink.xdsl"
+    :import  "aries.core::RecreationSinkVtView.xdsl"
     :keep    (aestheticService:VisualBlight)
     :context (development transportation-energy-infrastructure)
     :result  visual-blight))

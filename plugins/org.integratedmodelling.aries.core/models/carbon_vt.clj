@@ -62,7 +62,7 @@
           111           OpenWater))
 
 ;;Not used in the model but masks out carbon over open water
-(defmodel slope Slope
+(defmodel slope SlopeClass
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
        [1.15 4.57]  GentlyUndulating
@@ -82,9 +82,9 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationVt.xdsl"
+            :import   "aries.core::CarbonSourceVt.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
-            :required (Slope)
+            :required (SlopeClass)
             :result   veg-soil-sequestration
             :context  (summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope)))
 
@@ -108,7 +108,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :import   "aries.core::CarbonSinkVt.xdsl"
             :context  (veg-type summer-high-winter-low mean-annual-precip)
             :result    veg-storage
             :keep     (VegetationCarbonStorage)))
@@ -124,7 +124,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :import   "aries.core::CarbonSinkVt.xdsl"
             :context  (veg-type soil-CN-ratio)
             :result    soil-storage
             :keep     (SoilCarbonStorage)))
@@ -155,9 +155,9 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseVt.xdsl"
+            :import   "aries.core::CarbonSinkVt.xdsl"
             :keep     (StoredCarbonRelease)            
-            :required (Slope)
+            :required (SlopeClass)
             :result   stored-carbon-release
             :context  (veg-soil-storage)))  ;; add biomass-removal-rate if there's supporting data
   	 		

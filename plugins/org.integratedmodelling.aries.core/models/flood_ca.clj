@@ -78,7 +78,7 @@
 ;; Flood source probability, ad hoc method
 (defmodel source FloodSource
   (bayesian FloodSource 
-            :import   "aries.core::FloodSourceValueAdHocCa.xdsl"
+            :import   "aries.core::FloodSourceCaAdHoc.xdsl"
             :context  (precipitation imperviousness)
             :keep     (FloodSourceValue)
             :observed (flood-source-value)))
@@ -114,7 +114,7 @@
                   3        SoilGroupC
                   4        SoilGroupD))
 
-(defmodel slope Slope
+(defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
                   [:< 1.15]    Level
                   [1.15 4.57]  GentlyUndulating
@@ -155,12 +155,6 @@
                   [3 8]     LowSoilInfiltration
                   [0 3]     VeryLowSoilInfiltration))
 
-;;This only presence/absence data as data are lacking for southern California.
-;;(defmodel dam-storage DamStorageClass
-;;  (classification (binary-coding DamStorage)
-;;                  0  NoDamStorage
-;;                  1  SmallDamStorage))
-
 ;;Doing this one like the detention basin model for Puget Sound.
 (defmodel dam-storage DamStorage
   (measurement DamStorage "mm" 
@@ -173,15 +167,6 @@
     (classification  (measurement geophysics:Altitude "m")
        [:exclusive 0 :>] OnLand))
 
-;;Undiscretizer for FloodSink
-;;(defmodel flood-sink AnnualFloodSink
-;;  (probabilistic-measurement AnnualFloodSink "mm" 
-;;                  [30000 90000]     VeryHighFloodSink
-;;                  [10000 30000]     HighFloodSink
-;;                  [3000 10000]      ModerateFloodSink
-;;                  [900 3000]        LowFloodSink
-;;                  [0 900]           VeryLowFloodSink))
-
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage GreenInfrastructureStorage
   (probabilistic-measurement GreenInfrastructureStorage "mm" 
@@ -191,20 +176,11 @@
                   [15 40]      LowGreenStorage
                   [0 15]       VeryLowGreenStorage))
 
-;;Undiscretizer for GrayInfrastructureStorage
-;;(defmodel gray-infrastructure-storage GrayInfrastructureStorage
-;;  (probabilistic-measurement GrayInfrastructureStorage "mm" 
-;;                  [30000 90000]     VeryHighGrayStorage
-;;                  [10000 30000]     HighGrayStorage
-;;                  [3000 10000]      ModerateGrayStorage
-;;                  [900 3000]        LowGrayStorage
-;;                  [0 900]           VeryLowGrayStorage))
-
 ;; Flood sink probability
 ;; TODO missing data
 (defmodel green-infrastructure-sink GreenInfrastructureSink
   (bayesian GreenInfrastructureSink 
-            :import   "aries.core::FloodSinkCaSimple.xdsl"
+            :import   "aries.core::FloodSinkCa.xdsl"
             :keep     (GreenInfrastructureStorage)
             :required (LandOrSea)
             :context  (soil-group slope imperviousness percent-vegetation-cover vegetation-type land-selector)
@@ -239,7 +215,7 @@ be added to this list if desired."
   (classification PublicAsset 
                   :state   #(if (> (+ (:highway %) (:railway %)) 0) 
                               (tl/conc 'floodService:PublicAssetPresent) 
-                              (tl/conc 'floodService:PublicAssetNotPresent))
+                              (tl/conc 'floodService:PublicAssetAbsent))
                   :context ((ranking infrastructure:Highway)
                             (ranking infrastructure:Railway))))
 
@@ -475,7 +451,7 @@ be added to this list if desired."
 (defmodel levees Levees
   "Presence of a levee in given context"
   (classification (binary-coding infrastructure:Levee)
-                  0 LeveesNotPresent
+                  0 LeveesAbsent
                   1 LeveesPresent
                                         ;    :agent "aries/flood/levee"
                   ))

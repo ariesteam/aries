@@ -88,16 +88,6 @@
     [30 70]                       ModerateVegetationCover
     [:exclusive 0 30]             LowVegetationCover))
 
-
-;;Sediment source value - we have evidence for this but can't yet train so keep this commented out for now and use the
-;; undiscretization statement below (?)
-;;(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-;;	(classification (measurement SedimentSourceValueAnnualClass "t/ha")
-;;      0                     NoAnnualSedimentSource
-;;  		[:exclusive 0 15]     LowAnnualSedimentSource 
-;;  		[15 40]               ModerateAnnualSedimentSource
-;;  		[40 :>]               HighAnnualSedimentSource))
-
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
   (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
       [0 0.01]              NoAnnualSedimentSource
@@ -108,7 +98,7 @@
 ;; source bayesian model for Madagascar   	 
 (defmodel source-mg SedimentSourceValueAnnual
   (bayesian SedimentSourceValueAnnual 
-    :import   "aries.core::SedimentSourceValueMgAdHoc.xdsl"
+    :import   "aries.core::SedimentSourceMgAdHoc.xdsl"
     :keep     (SedimentSourceValueAnnualClass)
     :required (SlopeClass)
     :result   sediment-source-value-annual
@@ -219,7 +209,7 @@
 ;; 2) use BNs as generalized fisheries impact model.
 ;;defmodel fishermen-use-mg FishermenUse 
 	;;  (bayesian FishermenUse  
-	 ;; 	:import   "aries.core::SedimentFishermenUseMg.xdsl"
+	 ;; 	:import   "aries.core::SedimentUseMgFishermen.xdsl"
 	 ;; 	:keep     (FishermenUse)
 	 ;;	 	:context  (lakes rivers coastline coastal-wetlands mangroves reefs seagrass population-density)))
 

@@ -182,14 +182,14 @@
 
 (defmodel et-sink Evapotranspiration
     (bayesian Evapotranspiration
-      :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
+      :import   "aries.core::SurfaceWaterSinkSanPedro.xdsl"
       :context  (annual-temperature vegetation-type percent-vegetation-cover)
       :keep     (sanPedro:EvapotranspirationClass)
       :result   evapotranspiration))
 
 (defmodel infiltration-sink SoilInfiltration
     (bayesian SoilInfiltration
-      :import   "aries.core::SurfaceWaterSupplySinkSanPedro.xdsl"
+      :import   "aries.core::SurfaceWaterSinkSanPedro.xdsl"
       :context  (stream-channel mountain-front)
       :keep     (sanPedro:SoilInfiltrationClass)
       :result   infiltration))

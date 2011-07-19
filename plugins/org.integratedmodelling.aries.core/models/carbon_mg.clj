@@ -41,7 +41,7 @@
        [10 20]   LowCNRatio
        [:< 10]   VeryLowCNRatio)) 
 
-(defmodel degradation-status DegradationStatus
+(defmodel degradation-status ForestDegradationStatus
   (classification (numeric-coding mglulc:MGLULCNumeric)
          #{3 7 23}         Degraded
          :otherwise        NotDegraded))
@@ -59,7 +59,7 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestrationMg.xdsl"
+            :import   "aries.core::CarbonSourceMg.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (SummerHighWinterLow)
             :result   veg-soil-sequestration
@@ -74,7 +74,7 @@
 ;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
 ;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
-(defmodel slope Slope
+(defmodel slope SlopeClass
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
        [1.15 4.57]  GentlyUndulating
@@ -126,7 +126,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-            :import   "aries.core::StoredCarbonReleaseMg.xdsl"
+            :import   "aries.core::CarbonSinkMg.xdsl"
             :context  (percent-vegetation-cover summer-high-winter-low degradation-status population-density)
             :required (SummerHighWinterLow)
             :result    veg-storage
@@ -148,7 +148,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-            :import   "aries.core::StoredCarbonReleaseMg.xdsl"
+            :import   "aries.core::CarbonSinkMg.xdsl"
             :context  (soil-cn-ratio degradation-status soil-ph slope oxygen percent-vegetation-cover)
             :required (SummerHighWinterLow)
             :result    soil-storage
@@ -181,7 +181,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonReleaseMg.xdsl"
+            :import   "aries.core::CarbonSinkMg.xdsl"
             :keep     (StoredCarbonRelease)
             :required (SummerHighWinterLow)
             :result   stored-carbon-release

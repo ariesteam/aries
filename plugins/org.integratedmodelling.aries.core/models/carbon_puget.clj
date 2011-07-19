@@ -86,7 +86,7 @@
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-            :import   "aries.core::CarbonSequestration.xdsl"
+            :import   "aries.core::CarbonSourcePuget.xdsl"
             :keep     (VegetationAndSoilCarbonSequestration)
             :required (LandOrSea)
             :result    veg-soil-sequestration
@@ -102,7 +102,7 @@
 ;;   into the atmosphere.  The difference between carbon sinks and sources is the amount remaining 
 ;;   to mitigate direct anthropogenic emissions (aside from land conversion and fire).
 
-(defmodel slope Slope
+(defmodel slope SlopeClass
     (classification (measurement geophysics:DegreeSlope "\u00b0")
        [:< 1.15]    Level
        [1.15 4.57]  GentlyUndulating
@@ -139,7 +139,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-            :import   "aries.core::StoredCarbonRelease.xdsl"
+            :import   "aries.core::CarbonSinkPuget.xdsl"
             :context  (percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage summer-high-winter-low land-selector)
             :required (LandOrSea)
@@ -157,7 +157,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-            :import   "aries.core::StoredCarbonRelease.xdsl"
+            :import   "aries.core::CarbonSinkPuget.xdsl"
             :context  (soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                        successional-stage soil-cn-ratio land-selector)
             :required (LandOrSea)
@@ -190,7 +190,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-            :import   "aries.core::StoredCarbonRelease.xdsl"
+            :import   "aries.core::CarbonSinkPuget.xdsl"
             :keep     (StoredCarbonRelease)
             :required (LandOrSea)
             :result    stored-carbon-release

@@ -24,20 +24,7 @@
   (classification (ranking habitat:RareBirdHabitat)
                  #{4 5}          HighRareCharismaticBirdHabitat
                  #{1 2 3}        ModerateRareCharismaticBirdHabitat
-                  0              LowRareCharismaticBirdHabitat)) 
-
-(defmodel bird-rarity2 RareCharismaticBirdHabitat
-  (classification (ranking habitat:RareBirdHabitat)
-                 [4 5 :inclusive]   HighRareCharismaticBirdHabitat
-                 [1 4]              ModerateRareCharismaticBirdHabitat
-                  0                 LowRareCharismaticBirdHabitat)) 
-
-(defmodel bird-rarity3 RareCharismaticBirdHabitat
-  (classification RareCharismaticBirdHabitat
-                  :context ((ranking habitat:RareBirdHabitat :as rbh))
-                  :state #(cond (contains? #{4 5} (:rbh %))   (tl/conc 'recreationService:HighRareCharismaticBirdHabitat)
-                                (contains? #{1 2 3} (:rbh %)) (tl/conc 'recreationService:ModerateRareCharismaticBirdHabitat)
-                                :otherwise                    (tl/conc 'recreationService:LowRareCharismaticBirdHabitat))))
+                  0              LowRareCharismaticBirdHabitat))
 
 ;;Riparian zones as important to birding and hunting because of their importance to valued animal species
 ;; and for human preferences to recreate in riparian areas in the desert.
@@ -75,13 +62,13 @@
 ;;No public access includes private land, Native American reservations, military land.
 ;; Accessible public land includes state trust land, BLM, Forest Service, NPS, FWS, etc.
 ;; Ft. Huachucha currently is accessible to the public and birdwatching and hunting occur on-base
-(defmodel public-lands PublicAccessClass
+(defmodel public-lands sanPedro:PublicAccessClass
   (classification (numeric-coding habitat:LandOwnership)
                   #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
                     68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
-                    117 118 119 120 121 122 123 124 125 126 127}   PublicLand
+                    117 118 119 120 121 122 123 124 125 126 127}   sanPedro:PublicLand
                   #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
-                    78 79 84 87 88 89 90}                          NoPublicAccess))
+                    78 79 84 87 88 89 90}                          sanPedro:NoPublicAccess))
 
 ;;This statement (not yet implemented) accounts for public recognition of a site, e.g., SPRNCA & Ramsy Canyon's high
 ;; values for birding, or Mt. Mansfield & Camels Hump's high values for hiking in the VT model.  Need to develop a
@@ -104,7 +91,7 @@
 ;; Bayesian source models
 (defmodel source-birding BirdingSourceValue   
   (bayesian BirdingSourceValue                
-            :import   "aries.core::RecreationBirdingSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroBirding.xdsl"
             :keep     (SiteBirdingQuality)
             :result   birding-quality
             :context  (bird-richness bird-rarity riparian-wetland public-lands)))
@@ -145,7 +132,7 @@
 
 (defmodel source-wildlife WildlifeViewingSourceValue
   (bayesian WildlifeViewingSourceValue
-            :import   "aries.core::RecreationWildlifeSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroWildlife.xdsl"
             :keep     (SiteWildlifeQuality)
             :result   wildlife-quality
             :context  (riparian-wetland public-lands wildlife-species-richness-class)))
@@ -243,28 +230,28 @@
 ;; Bayesian source models
 (defmodel source-deer-hunting DeerHuntingSourceValue
   (bayesian DeerHuntingSourceValue                
-            :import   "aries.core::RecreationHuntingDeerSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroDeerHunting.xdsl"
             :keep     (SiteDeerHuntingQuality)
             :result   deer-hunting-quality
             :context  (riparian-wetland public-lands deer-habitat)))
 
 (defmodel source-javelina-hunting JavelinaHuntingSourceValue  
   (bayesian JavelinaHuntingSourceValue                
-            :import   "aries.core::RecreationHuntingJavelinaSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroJavelinaHunting.xdsl"
             :keep     (SiteJavelinaHuntingQuality)
             :result   javelina-hunting-quality
             :context  (riparian-wetland public-lands javelina-habitat)))
 
 (defmodel source-dove-hunting DoveHuntingSourceValue
   (bayesian DoveHuntingSourceValue
-            :import   "aries.core::RecreationHuntingDoveSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroDoveHunting.xdsl"
             :keep     (SiteDoveHuntingQuality)
             :result   dove-hunting-quality
             :context  (riparian-wetland public-lands dove-habitat)))
 
 (defmodel source-quail-hunting QuailHuntingSourceValue
   (bayesian QuailHuntingSourceValue                
-            :import   "aries.core::RecreationHuntingQuailSourceSanPedro.xdsl"
+            :import   "aries.core::RecreationSourceSanPedroQuailHunting.xdsl"
             :keep     (SiteQuailHuntingQuality)
             :result   quail-hunting-quality
             :context  (riparian-wetland public-lands quail-habitat)))

@@ -619,6 +619,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoPublicAccess -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoPublicAccess">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicAccessClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained">
@@ -674,6 +682,22 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PlansDevelopment">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Steinitz30ClassUrbanGrowthLULCPlans"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicAccessClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicAccessClass">
+        <rdfs:subClassOf rdf:resource="&lulc;LandTypology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicLand -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicLand">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PublicAccessClass"/>
     </owl:Class>
     
 
