@@ -7,13 +7,7 @@
                             identification bayesian count))
   (:refer aries :only (span)))
 
-;; This is the model for Puget Sound.
-
-;; fv - shouldn't this be soilretentionService?
-;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
-;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
-;; and "ecology" ontologies that should be merged)
-(namespace-ontology soilretentionEcology)
+(namespace-ontology soilRetentionService)
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -209,8 +203,8 @@
 (defmodel farmers-deposition-use-puget DepositionProneFarmers 
   (binary-coding DepositionProneFarmers
        :context (floodplains farmland)
-       :state #(if (and (= (tl/conc 'soilretentionEcology:InFloodplain)    (:floodplains %))
-                        (= (tl/conc 'soilretentionEcology:FarmlandPresent) (:farmland    %)))
+       :state #(if (and (= (tl/conc 'soilRetentionService:InFloodplain)    (:floodplains %))
+                        (= (tl/conc 'soilRetentionService:FarmlandPresent) (:farmland    %)))
                  1
                  0)))
 
@@ -397,7 +391,7 @@
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'soilretentionEcology:NoSuccession)
+                  (conc 'soilRetentionService:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
     (classification HydrologicSoilsGroup
@@ -406,7 +400,7 @@
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'soilretentionEcology:SoilGroupD)
+                  (conc 'soilRetentionService:SoilGroupD)
                   (:soil-group %))))
   (model VegetationTypeSedimentPuget
     (classification VegetationTypeSedimentPuget
@@ -414,10 +408,10 @@
         :state #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
-                  (conc 'soilretentionEcology:CropsBarrenDeveloped)
+                  (conc 'soilRetentionService:CropsBarrenDeveloped)
 
                   (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
-                  (conc 'soilretentionEcology:ForestGrasslandWetland)
+                  (conc 'soilRetentionService:ForestGrasslandWetland)
 
                   :otherwise (:vegetation-type %))))
   (model Farmland
@@ -427,7 +421,7 @@
                         (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'soilretentionEcology:FarmlandAbsent) 
+                  (conc 'soilRetentionService:FarmlandAbsent) 
                   (:farmland %)))))
 
 (defscenario constrained-development-sediment
@@ -453,7 +447,7 @@
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'soilretentionEcology:NoSuccession)
+                  (conc 'soilRetentionService:NoSuccession)
                   (:successional-stage %))))
   (model HydrologicSoilsGroup
     (classification HydrologicSoilsGroup
@@ -462,7 +456,7 @@
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'soilretentionEcology:SoilGroupD)
+                  (conc 'soilRetentionService:SoilGroupD)
                   (:soil-group %))))
   (model VegetationTypeSedimentPuget
     (classification VegetationTypeSedimentPuget
@@ -470,10 +464,10 @@
         :state #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
-                  (conc 'soilretentionEcology:CropsBarrenDeveloped)
+                  (conc 'soilRetentionService:CropsBarrenDeveloped)
 
                   (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
-                  (conc 'soilretentionEcology:ForestGrasslandWetland)
+                  (conc 'soilRetentionService:ForestGrasslandWetland)
                      
                   :otherwise (:vegetation-type %))))
   (model Farmland
@@ -483,5 +477,5 @@
                         (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
                         (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'soilretentionEcology:FarmlandAbsent) 
+                  (conc 'soilRetentionService:FarmlandAbsent) 
                   (:farmland %)))))

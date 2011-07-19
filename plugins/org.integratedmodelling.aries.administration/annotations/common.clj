@@ -141,7 +141,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject CoastalWetlands soilretentionEcology:CoastalWetlands
+(defobject CoastalWetlands soilRetentionService:CoastalWetlands
 
   "Data source: Derived from NLCD 2001"
 
@@ -185,7 +185,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:26910")))))
 
 
-(defobject pfactor1990_30min soilretentionEcology:ConservationPractice
+(defobject pfactor1990_30min soilRetentionService:ConservationPractice
 
   "Data source: Yang et al. (2003)"
 
@@ -207,7 +207,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject cfactor1990_30min soilretentionEcology:CoverManagement
+(defobject cfactor1990_30min soilRetentionService:CoverManagement
 
   "Data source: Yang et al. (2003)"
 
@@ -811,7 +811,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:2926")))))
 
 
-(defobject rfactor_1980 soilretentionEcology:RainfallRunoffErosivityIndex
+(defobject rfactor_1980 soilRetentionService:RainfallRunoffErosivityIndex
 
   "Data source: Yang et al. (2003)"
 
@@ -916,7 +916,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject lsfactor_30min soilretentionEcology:SlopeSteepnessAndLengthFactor
+(defobject lsfactor_30min soilRetentionService:SlopeSteepnessAndLengthFactor
 
   "Data source: Yang et al. (2003)"
 
@@ -1025,7 +1025,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject annual_loss1980 soilretentionEcology:SedimentSourceValueAnnual
+(defobject annual_loss1980 soilRetentionService:SedimentSourceValueAnnual
 
   "Data source: Yang et al. (2003)"
 
