@@ -75,7 +75,7 @@
   (numeric-coding sanPedro:RiparianAndWetlandCode
     :context [(numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
               (ranking sanPedro:RiparianConditionClass)]
-    :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:southwest-regional-gap-analysis-lulc %))
+    :state   #(if (contains? #{77.0 78.0 79.0 80.0 81.0 83.0 84.0 85.0 98.0 109.0 110.0 118.0} (:southwest-regional-gap-analysis-l-u-l-c %))
                 (let [condition (:riparian-condition-class %)]
                   (if (no-data? condition)
                     1
