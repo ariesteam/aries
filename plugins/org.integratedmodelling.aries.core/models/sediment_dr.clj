@@ -6,11 +6,7 @@
                             binary-coding identification bayesian count))
   (:refer aries :only (span)))
 
-;; fv - shouldn't this be soilretentionService?
-;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
-;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
-;; and "ecology" ontologies that should be merged)
-(namespace-ontology soilretentionEcology)
+(namespace-ontology soilRetentionService)
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model
@@ -195,7 +191,7 @@
 ;;  (classification (binary-coding FarmlandCode)
 ;;    1          FarmlandPresent
 ;;    0          FarmlandAbsent))
-;;Above statement (soilretentionEcology:Farmland) is for coffee farmers in the DR; to use farmland 
+;;Above statement (soilRetentionService:Farmland) is for coffee farmers in the DR; to use farmland 
 ;; from DR LULC data, comment out the above and turn on the statement below (domlulc:DOMLULCNumeric)
 (defmodel farmland FarmlandCode
   (classification (numeric-coding domlulc:DOMLULCNumeric)

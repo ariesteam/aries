@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:soilretention="http://www.integratedmodelling.org/ks/es/soilretentionEcology#"
+    xmlns:soilretention="http://www.integratedmodelling.org/ks/es/soilRetentionService#"
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -9,7 +9,7 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#"
   xml:base="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology"/>
+    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService"/>
   </owl:Ontology>
   <owl:Class rdf:ID="PhosphorusPools">
     <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#MaterialStock"/>
@@ -285,7 +285,7 @@
   <owl:Class rdf:ID="Snowmelt">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The seasonal melting of snow, which can occur slowly as temperatures warm in the spring or quickly as rain falls on snow.  In the Lake Champlain Basin spring snowmelt, along with major storms, contributes a large amount of P to the watershed (Gaddis 2007).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#Precipitation"/>
+    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#Precipitation"/>
   </owl:Class>
   <owl:Class rdf:about="#PhosphorusCycling">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -316,7 +316,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="Runoff"/>
         </owl:someValuesFrom>
@@ -327,12 +327,12 @@
         <owl:someValuesFrom>
           <owl:Class rdf:about="#AquaticTrophicStatus"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#NBioticRelease"/>
         </owl:someValuesFrom>
@@ -340,7 +340,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom rdf:resource="#HumanNApplication"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -363,7 +363,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#PBioticRelease"/>
         </owl:someValuesFrom>
@@ -371,7 +371,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom rdf:resource="#HumanPApplication"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -508,13 +508,13 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#HumanNApplication"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#AquaticTrophicStatus"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -538,13 +538,13 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#PBioticRelease"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#NBioticRelease"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -552,12 +552,12 @@
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Runoff"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#matters-in-event-of"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of"/>
         <owl:someValuesFrom rdf:resource="#HumanPApplication"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -650,7 +650,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#Amount"/>
+        <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#Amount"/>
         <owl:onProperty rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#generically-dependent-on"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -659,12 +659,12 @@
         <owl:someValuesFrom>
           <owl:Class rdf:ID="NRunoff"/>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#leadsToMore"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#leadsToMore"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#leadsToMore"/>
+        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#leadsToMore"/>
         <owl:someValuesFrom rdf:resource="#PRunoff"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -750,7 +750,7 @@
   </owl:Class>
   <owl:ObjectProperty rdf:ID="ObjectProperty_26">
     <rdfs:domain>
-      <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/soilretentionEcology#IncreasedStormRainfall">
+      <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService#IncreasedStormRainfall">
         <rdfs:subClassOf>
           <owl:Restriction>
             <owl:onProperty>
@@ -789,7 +789,7 @@
   <owl:ObjectProperty rdf:about="#leadsToChanged">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Climate change may have uncertain effects.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/soilretentionEcology#ClimateChange"/>
+    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService#ClimateChange"/>
   </owl:ObjectProperty>
 </rdf:RDF>
 

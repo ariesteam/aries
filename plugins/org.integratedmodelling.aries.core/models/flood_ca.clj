@@ -51,7 +51,7 @@
 ;;Error in Ferds code in handling this layer: removing from the context list and setting the prior
 ;; at a uniform level reflecting the data for the site of interest.
 (defmodel rainfall-erosivity RainfallErosivityClass
-  (classification (ranking soilretentionEcology:RainfallRunoffErosivityIndex)
+  (classification (ranking soilRetentionService:RainfallRunoffErosivityIndex)
                   [90 :>]  VeryHighRainfallErosivity
                   [70 89]  HighRainfallErosivity
                   [50 69]  ModerateRainfallErosivity

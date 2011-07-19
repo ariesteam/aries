@@ -472,7 +472,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:32614")))))
 
 
-(defobject usa_pugeterosionmetrics soilretentionEcology:ConservationPractice
+(defobject usa_pugeterosionmetrics soilRetentionService:ConservationPractice
 
   "Data source: U.S. EPA EMAP-West Metric Browser"
 
@@ -509,7 +509,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject usa_pugeterosionmetrics soilretentionEcology:CoverManagement
+(defobject usa_pugeterosionmetrics soilRetentionService:CoverManagement
 
   "Data source: U.S. EPA EMAP-West Metric Browser"
 
@@ -621,7 +621,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:32619")))))
 
 
-(defobject dominicanRepublic_coffee_farms soilretentionEcology:FarmlandCode
+(defobject dominicanRepublic_coffee_farms soilRetentionService:FarmlandCode
   (measurement:BinaryCoding
     (observation:hasDataSource
       (geospace:WFSDataSource
@@ -899,7 +899,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject puget_hydroreservoirs2 soilretentionEcology:HydroelectricUseLevel
+(defobject puget_hydroreservoirs2 soilRetentionService:HydroelectricUseLevel
 
   "Data source: National Atlas of the United States, Major Dams of the United States"
 
@@ -922,7 +922,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4269")))))
 
 
-(defobject HydroDams soilretentionEcology:HydroelectricUseLevel
+(defobject HydroDams soilRetentionService:HydroelectricUseLevel
 
   "Data source: FAO AQUASTAT"
 
@@ -2308,7 +2308,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject usa_pugeterosionmetrics soilretentionEcology:RainfallRunoffErosivityIndex
+(defobject usa_pugeterosionmetrics soilRetentionService:RainfallRunoffErosivityIndex
 
   "Data source: U.S. EPA EMAP-West Metric Browser"
 
@@ -2781,7 +2781,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject puget_pugeterosionmetrics soilretentionEcology:SedimentSourceValueAnnual
+(defobject puget_pugeterosionmetrics soilRetentionService:SedimentSourceValueAnnual
 
   "Data source: U.S. EPA EMAP-West Metric Browser"
 
@@ -2826,7 +2826,7 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
 
 
-(defobject usa_pugeterosionmetrics soilretentionEcology:SlopeSteepnessAndLengthFactor
+(defobject usa_pugeterosionmetrics soilRetentionService:SlopeSteepnessAndLengthFactor
 
   "Data source: U.S. EPA EMAP-West Metric Browser"
 

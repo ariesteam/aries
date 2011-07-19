@@ -20,7 +20,7 @@
 	xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
 	xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-	xmlns:soilretentionEcology="http://www.integratedmodelling.org/ks/es/services/soilretentionEcology.owl#"
+	xmlns:soilRetentionService="http://www.integratedmodelling.org/ks/es/services/soilRetentionService.owl#"
 	xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/services/waterSupplyService.owl#"
 	xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
 	xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
@@ -744,7 +744,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Ranking id="usa_pugeterosionmetrics">
   <observation:hasObservable>
-    <soilretentionEcology:ConservationPractice />
+    <soilRetentionService:ConservationPractice />
   </observation:hasObservable>
   <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
@@ -791,7 +791,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Ranking id="usa_pugeterosionmetrics">
   <observation:hasObservable>
-    <soilretentionEcology:CoverManagement />
+    <soilRetentionService:CoverManagement />
   </observation:hasObservable>
   <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
@@ -1145,7 +1145,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:BinaryCoding id="dominicanRepublic_coffee_farms">
   <observation:hasObservable>
-    <soilretentionEcology:FarmlandCode />
+    <soilRetentionService:FarmlandCode />
   </observation:hasObservable>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
@@ -1525,7 +1525,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Measurement id="puget_hydroreservoirs2">
   <observation:hasObservable>
-    <soilretentionEcology:HydroelectricUseLevel />
+    <soilRetentionService:HydroelectricUseLevel />
   </observation:hasObservable>
   <rdfs:comment>Data source: National Atlas of the United States, Major Dams of the United States</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
@@ -1552,7 +1552,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Measurement id="HydroDams">
   <observation:hasObservable>
-    <soilretentionEcology:HydroelectricUseLevel />
+    <soilRetentionService:HydroelectricUseLevel />
   </observation:hasObservable>
   <rdfs:comment>Data source: FAO AQUASTAT</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
@@ -3240,7 +3240,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Ranking id="usa_pugeterosionmetrics">
   <observation:hasObservable>
-    <soilretentionEcology:RainfallRunoffErosivityIndex />
+    <soilRetentionService:RainfallRunoffErosivityIndex />
   </observation:hasObservable>
   <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
@@ -3943,7 +3943,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Measurement id="puget_pugeterosionmetrics">
   <observation:hasObservable>
-    <soilretentionEcology:SedimentSourceValueAnnual />
+    <soilRetentionService:SedimentSourceValueAnnual />
   </observation:hasObservable>
   <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
@@ -3996,7 +3996,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 
 <measurement:Ranking id="usa_pugeterosionmetrics">
   <observation:hasObservable>
-    <soilretentionEcology:SlopeSteepnessAndLengthFactor />
+    <soilRetentionService:SlopeSteepnessAndLengthFactor />
   </observation:hasObservable>
   <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>

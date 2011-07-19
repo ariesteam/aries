@@ -6,11 +6,7 @@
                             identification bayesian count))
   (:refer aries :only (span)))
 
-;; fv - shouldn't this be soilretentionService?
-;; kb - yes, but need to refactor files, as all the concepts are in soilretentionEcology and some concepts are also in 
-;; soilretentionservice -> this was an old naming convention we used, you see it with salmon & nutrients as well ("service"
-;; and "ecology" ontologies that should be merged)
-(namespace-ontology soilretentionEcology)
+(namespace-ontology soilRetentionService)
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Source model

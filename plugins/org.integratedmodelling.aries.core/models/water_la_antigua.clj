@@ -20,13 +20,13 @@
   (measurement habitat:AnnualPrecipitation "mm"))
 
 ;;Incorporate runoff data in the future once we've done a better job with the hydro modeling.
-;;(defmodel runoff soilretentionEcology:AnnualRunoff
-	;;(classification (measurement soilretentionEcology:Runoff "mm/year")
-		;;[0 200] 	    soilretentionEcology:VeryLowAnnualRunoff
-		;;[200 600] 	  soilretentionEcology:LowAnnualRunoff
-		;;[600 1200]  	soilretentionEcology:ModerateAnnualRunoff
-		;;[1200 2400] 	soilretentionEcology:HighAnnualRunoff
-		;;[2400 :>] 	  soilretentionEcology:VeryHighAnnualRunoff))
+;;(defmodel runoff soilRetentionService:AnnualRunoff
+	;;(classification (measurement soilRetentionService:Runoff "mm/year")
+		;;[0 200] 	    soilRetentionService:VeryLowAnnualRunoff
+		;;[200 600] 	  soilRetentionService:LowAnnualRunoff
+		;;[600 1200]  	soilRetentionService:ModerateAnnualRunoff
+		;;[1200 2400] 	soilRetentionService:HighAnnualRunoff
+		;;[2400 :>] 	  soilRetentionService:VeryHighAnnualRunoff))
 
 ;; ----------------------------------------------------------------------------------------------
 ;; Sink model
