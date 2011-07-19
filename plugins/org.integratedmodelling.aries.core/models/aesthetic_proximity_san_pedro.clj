@@ -224,23 +224,23 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
-        :context [source homeowners sink]
-        :keep [PotentialProximateOpenSpace
-               PotentialProximitySink
-               HomeownersWithOpenSpaceDemand
-               PossibleProximateOpenSpace
-               AccessibleOpenSpace
-               OpenSpaceProximateHomeowners
-               AccessibleProximity
-               EnjoyedOpenSpace
-               BlockingProximitySink
-               HomeownersWithProximateOpenSpace
-               UnaccessedOpenSpace
-               InaccessibleProximitySink
-               HomeownersWithoutProximateOpenSpace
-               BlockedProximity
-               BlockedOpenSpace
-               HomeownersWithBlockedProximity]))
+        :context            [source homeowners sink]
+        :keep               [PotentialProximateOpenSpace
+                             PotentialProximitySink
+                             HomeownersWithOpenSpaceDemand
+                             PossibleProximateOpenSpace
+                             AccessibleOpenSpace
+                             OpenSpaceProximateHomeowners
+                             AccessibleProximity
+                             EnjoyedOpenSpace
+                             BlockingProximitySink
+                             HomeownersWithProximateOpenSpace
+                             UnaccessedOpenSpace
+                             InaccessibleProximitySink
+                             HomeownersWithoutProximateOpenSpace
+                             BlockedProximity
+                             BlockedOpenSpace
+                             HomeownersWithBlockedProximity]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
