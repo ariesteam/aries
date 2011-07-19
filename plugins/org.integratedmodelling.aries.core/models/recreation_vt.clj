@@ -1,4 +1,4 @@
-(ns core.models.recreation-viewsheds
+(ns core.models.recreation-vt
   (:refer-clojure :rename {count length}) 
   (:refer modelling :only (defscenario defmodel measurement classification categorization 
                             namespace-ontology ranking numeric-coding binary-coding
