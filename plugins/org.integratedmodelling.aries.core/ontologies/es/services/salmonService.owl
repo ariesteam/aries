@@ -1,639 +1,2043 @@
 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-    xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-    xmlns="http://www.integratedmodelling.org/ks/es/services/salmonService#"
-  xml:base="http://www.integratedmodelling.org/ks/es/services/salmonService">
-  <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
-  </owl:Ontology>
-  <owl:Class rdf:ID="SubsistenceFishermen">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Subsistence fishermen participate in salmon fishing solely to obtain food.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonCapture">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Extraction of fish for subsistence, commercial, or recreational use.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#DestructiveExploitation"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom rdf:resource="#SubsistenceFishermen"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NativeAmericans"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="RecreationalFishermen"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="CommercialFishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonCulturalIdentity">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Food"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The continued existence of salmon as a cultural icon and an ongoing part of life, consistent with the history and connection to place that has existed for a group throughout its history.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="RecreationalAmenity"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="CulturalIdentity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="AdultSalmonStocks"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SpeciesProtection"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="FoodSource"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="ConnectionToPlace"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="CulturalIcon"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#NativeAmericans">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Salmon have played an important role in Native American culture throughout their history.  Salmon are important both as a food source and as part of cultural identity.  Most fishing by Native Americans takes place as adults return to the river mouths.  Native Americans are composed of policitcally soverign tribes that differ in their cultural, political, and ecological relationships with salmon.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SustainableHarvest">
-    <rdfs:subClassOf rdf:resource="#SalmonCapture"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Harvest levels that maintain or increase the population of adults at or above the level needed to reproduce an equal sized cohort in the next generation of salmon.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#AdultSalmonStocks">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The stock of adult salmon present in a region or an individual salmon run.  This can be salmon of five salmon species (Chinook (king), coho, pink, chum salmon and bull trout) and two additional anadromous salmonids.  A healthy adult salmon stock is dependent on the presence of habitat requirements at different life stages, as well as a viable population.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Food">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Intake of adequate food for survival and day-to-day activity.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="ExistenceOfSalmon">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The mere existence of wild salmon is an important culturally and could be important for catch-and-release fishermen, salmon wildlife watching, and the general Anglo American (?) population.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom rdf:resource="#NativeAmericans"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RecreationalFishermen"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="AngloAmericans">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Americans of European descent (uhh, how can we put this so as to include other "culturally mainstream but non-Anglo residents of the area - Asian, African American, Hispanic...)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="ProductionOfAdultSalmon">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Production"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SalmonProducingEcosystems"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="BaseSalmonStock"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The growth of adequate adult salmon populations for harvest, produced as a result of adequate salmon habitat plus a healthy base salmon population stock.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Recreation">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Spending leisure time outdoors, "in nature."  Outdoor recreation has important physical and psychological benefits, especially for urban populations that spend much of their lives indoors.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#FoodSource">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#ProductionOfAdultSalmon"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#SalmonCapture"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#NativeAmericans"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#SubsistenceFishermen"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RecreationalFishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Salmon as a source of food.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#CulturalIcon">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-        <owl:someValuesFrom rdf:resource="#ExistenceOfSalmon"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RecreationalFishermen"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#AngloAmericans"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The presence of salmon in the wild and the opportunity to participate in catching, preparing, and eating salmon as part of the cultural identity of people who have lived with salmon throughout their history.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#NativeAmericans"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom rdf:resource="#ProductionOfAdultSalmon"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SalmonCapture"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SalmonWildlifeWatchers"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#SpeciesProtection">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Maintenance of species under the Endangered Species Act.  This is a social goal to prevent extinction, which offers legal protection of threatened or endangered species.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CatchAndRelease">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Catch and release fishing does occur for salmon.  However, catch and release mortality may be as high as 30% (PSC 1997, as cited in Ruckelshaus et al. 2002).</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonForFood">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CulturalIdentity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#FoodSource"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        <owl:someValuesFrom rdf:resource="#CulturalIcon"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#AdultSalmonStocks"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#ConnectionToPlace"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Food"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="SourceOfLivelihood"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SpeciesProtection"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The nutritional value provided by salmon as part of a person or population's diet.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-  </owl:Class>
-  <owl:Class rdf:ID="AdultSalmonScavengingAndConsumption">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasConsumer"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="FarmersNearStreams"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#RenewableTransformation"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Recycling of nutrients back into the ecosystem by consumers and scavengers as adult salmon die.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="NonsustainableHarvest">
-    <rdfs:subClassOf rdf:resource="#SalmonCapture"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Harvest levels that reduce the population of adults below the level needed to reproduce an equal sized cohort in the next generation of salmon.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#SalmonProducingEcosystems">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Necessary habitat conditions for different salmon life stages along different parts of the river, estuary, nearshore, and oceanic habitat.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
-  </owl:Class>
-  <owl:Class rdf:about="#FarmersNearStreams">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Farmers near streams may receive "free" fertilizer as the nutrients from adult salmon being cycled back into the ecosystem (Merz and Moyle 2006).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SalmonWildlifeWatchers">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Groups visiting salmon runs to watch their upstream migration.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#RecreationalAmenity">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Salmon as a contributor to the outdoor recreational experience.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="ObservationOfSalmon"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#SalmonWildlifeWatchers"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#RecreationalFishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom rdf:resource="#ProductionOfAdultSalmon"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#ExistenceOfSalmon"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-        <owl:someValuesFrom rdf:resource="#SalmonCapture"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonBasedRecreation">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Food"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        <owl:someValuesFrom rdf:resource="#RecreationalAmenity"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-        <owl:allValuesFrom rdf:resource="#AdultSalmonStocks"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Recreation"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#ConnectionToPlace"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#FoodSource"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#CulturalIcon"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Outdoor recreation centered around salmon, generally from fishing though possibly through wildlife watching.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CulturalIdentity"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SpeciesProtection"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#SourceOfLivelihood">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Salmon are a primary or important supplemental income source for commercial fishermen.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#CommercialFishermen"/>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#ProductionOfAdultSalmon"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#SalmonCapture"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#CulturalIdentity">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The spiritual, community, and psychological benefits a group gains from having a component of the natural landscape as a continuous part of their individual and collective lives.  This includes both Native and Anglo-American inhabitants of a given area.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#RecreationalFishermen">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Recreational fishermen participate in salmon fishing both to catch salmon and for the recreational experience.  Along with actual catch, a high quality physical setting is likely to be an important contributor to a successful fishing trip.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:about="#BaseSalmonStock">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >In addition to habitat requirements, a healthy base salmon stock is needed to have a perpetually healthy population.  A healthy salmon stock has four characteristics: abundance, productivity, life history diversity, and spatial structure (Scheurell et al. 2006)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SalmonContributionsToNutrientCycles">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Nutrient flow from salmon to the riparian forest: salmon fertilize trees and other vegetation in and near the riparian zone, increasing their growth rate, which provides other ecosystem services as part of a positive feedback loop.  Trees and shrubs in the riparian zone get 22-24% of their foliar N from spawning salmon (Helfield and Naiman 2001).</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Recreation"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Food"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NutrientSourceToEcosystem"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#AdultSalmonStocks"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#ConnectionToPlace">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The local cultural connections enhanced by existence of salmon stocks and participating in salmon-based consumption and recreation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#CulturalIdentity"/>
-  </owl:Class>
-  <owl:Class rdf:about="#NutrientSourceToEcosystem">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Adult spawning salmon move marine-derived nutrients inland and upstream.  Salmon have impacts throughout the food web, from plankton and aquatic insects to riparian vegetation, scavengers, and consumers, all in a positive feedback loop.  These nutrients can also be valuable to farmers by providing "free" fertilizer - increasingly important as energy and synthetic fertilizer continue to become more expensive (Merz and Moyle 2006).</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SalmonWildlifeWatchers"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#FarmersNearStreams"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-        <owl:allValuesFrom rdf:resource="#AdultSalmonScavengingAndConsumption"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom rdf:resource="#ProductionOfAdultSalmon"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#ObservationOfSalmon">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Salmon wildlife watching, including watching the salmon themselves, as well as bald eagles, bears, and other species of interest that are drawn to salmon.  This wildlife watching activity can suport tourism, having clear monetary/economic benefits.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Contemplation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#CommercialFishermen">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The goal of commercial fishermen is to catch and sell salmon as a livelihood.  Most commercial salmon fishing takes place in the open ocean or large estuaries.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:ObjectProperty rdf:about="#isBeneficialFor">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Identifies the beneficiary for each benefit.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-  </owl:ObjectProperty>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY salmonService "http://www.integratedmodelling.org/ks/es/services/salmonService#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/services/salmonEcology#"
+     xml:base="http://www.integratedmodelling.org/ks/es/services/salmonEcology"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:salmonService="http://www.integratedmodelling.org/ks/es/services/salmonService#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
+    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#habitatImpactedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#habitatImpactedBy">
+        <rdfs:comment rdf:datatype="&xsd;string">Physical changes or altered processes that change the quality of the habitat for the organism(s) of interest.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource">
+        <rdfs:comment rdf:datatype="&xsd;string">Identifies the food source for different consumers or individuals at different life stages</rdfs:comment>
+        <rdfs:domain rdf:resource="&ecology;TaxonomicGroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToLess -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToLess">
+        <rdfs:comment rdf:datatype="&xsd;string">Climate change leads to less of this certain condition</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedOceanicPhytoplankton"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore">
+        <rdfs:comment rdf:datatype="&xsd;string">Climate change leads to more of this certain condition</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedOceanicPhytoplankton"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat">
+        <rdfs:comment rdf:datatype="&xsd;string">Identifies particular habitat needs, either an ecosystem itself or ecosystem structure/components, for a particular individual, population, or species.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ecology;TaxonomicGroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy">
+        <rdfs:comment rdf:datatype="&xsd;string">Identifies primary known threats to the existence of individuals, populations, or species of a particular organism.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ecology;TaxonomicGroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Abundance -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Abundance">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The sheer number of salmon present in a population, across life stages.  When all else is equal, smaller populations face greater risk of extinction than larger populations, due to environmental changes, catastrophic events, and genetic and demographic problems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Adult -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Adult">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#CompetitionWithFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Plankton"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;nextLifeStage"/>
+                <owl:allValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Egg"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Adult salmon living in the ocean (Stage 5).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Alevin -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Alevin">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;nextLifeStage"/>
+                <owl:allValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fry-Parr"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fines"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InstreamWoodyDebris"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OverhangingCanopy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Hatched eggs living in gravel, absorbing their yolk sac for nutrition (Stage 2).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#BaseSalmonStock -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#BaseSalmonStock">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="&ecology;LifeStageGroup"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">In addition to habitat requirements, a healthy base salmon stock is needed to have a perpetually healthy population.  A healthy salmon stock has four characteristics: abundance, productivity, life history diversity, and spatial structure (Scheurell et al. 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#BullTrout -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#BullTrout">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Salvelinus confluentus (Suckley, 1859); largely a non-andadromous species, but an anadromous form exists in Puget Sound.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Channelization -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Channelization">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The straightening of an otherwise meandering river, reducing habitat and complexity.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChinookBrookTroutCompetition -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChinookBrookTroutCompetition">
+        <rdfs:subClassOf rdf:resource="&ecology;Competition"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Young chinook salmon and nonnative brook trout compete for space and resources in streams, reducing survival rates for chinook (Ruckelshaus et al. 2002).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChinookSalmon -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChinookSalmon">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus tshawytscha (Walbaum, 1792).  Also known as King Salmon. Preferred habitat includes large rivers and tributaries, with deeper water and larger spawning gravels (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChumSalmon -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChumSalmon">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus keta (Walbaum, 1792).  Also known as dog salmon.  Preferred spawning habitat is in the lower reaches of rivers with medium gravels free of fines.  Young chum salmon move quickly to estuaries where they mature (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange">
+        <rdfs:subClassOf rdf:resource="&ecology;DirectedInteraction"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Changes in climate due to increases in atmospheric greenhouse gas concentrations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#CohoSalmon -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#CohoSalmon">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus kisutch (Walbaum, 1792).  Also known as silver salmon.  Utilize almost all accesssible coastal streams (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).  Pess et al. (2002) discuss effects of landscape variables on Chinook abundance.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#CompetitionWithFishermen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#CompetitionWithFishermen">
+        <rdfs:subClassOf rdf:resource="&ecology;Competition"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Fishermen harvest Dungeness crab and other forage fish that are important food sources for estuarine and oceanic adult salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Crustaceans -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Crustaceans">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Include crabs and krill.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Culverts -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Culverts">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#StreamCrossings"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#CutthroatTrout -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#CutthroatTrout">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus clarkii subsp. clarkii (Richardson, 1836); also have non-anadomous forms.  Coastal cutthroat are found in most all coastal streams.  Fry live in headwater streams farther upstream than any other salmon species in the summer, then move downstream in winter where they will be less vulnerable to floods (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Diversity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Diversity">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Genetic variability within the population, as well as expression of traits due to environmental conditions.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassBeds -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassBeds">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NearshoreEstuarine"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Eelgrass beds provide shelter and food for salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassLoss -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassLoss">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The loss of estuarine eelgrass beds.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Egg -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Egg">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;nextLifeStage"/>
+                <owl:allValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Alevin"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fines"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OverhangingCanopy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Gravels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Eggs laid in gravel and fertilized (Stage 1).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#EvolutionarilySignificantUnits -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#EvolutionarilySignificantUnits">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Evolutionarily Significant Units, or ESUs, are defined as the unit of concern under the Endangered Species Act.  There are 51 ESUs among 6 species of Pacific salmonids, with 26 of these listed as threatened or endangered, including Puget Sound Chinook and Puget Sound Bull Trout.  Each ESU has between 3 and 30 independent populations (Ruckelshaus et al. 2002).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fines -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fines">
+        <rdfs:subClassOf rdf:resource="&habitat;SubstrateQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Landsliding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#TimberHarvest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#StreamCrossings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Percent fines are important in determining egg to fry survival rate.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Food sources differ at different stages in the salmon life cycle.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#FreshwaterLotic -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FreshwaterLotic">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedRainOnSnowPotential"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Oxygen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Channelization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedStormRainfall"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InstreamWoodyDebris"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HydroelectricDams"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Leveeing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedForestFirePotential"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedSnowpack"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Substrate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OverhangingCanopy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SideChannels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#RiparianBufferRemoval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Rivers and streams where adult salmon spawn and young salmon grow.  Pulses of material also move downstream (i.e., gravels, sediment, debris).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fry-Parr -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fry-Parr">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SideChannels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InstreamWoodyDebris"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ChinookBrookTroutCompetition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WatershedImperviousArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;nextLifeStage"/>
+                <owl:allValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Smolt"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Young salmon living and independently feeding within the stream (Stage 3).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Gravels -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Gravels">
+        <rdfs:subClassOf rdf:resource="&habitat;SubstrateQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Landsliding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;dependsOnProcess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Gravel content is important in determining the egg laying capacity for spawning salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#HatcheryFish -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HatcheryFish">
+        <rdfs:subClassOf rdf:resource="&habitat;CommunityQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Hatchery fish compete with wild salmon for food, shelter, and other resources.  Potential also exists for genetic changes in wild populations if wild and hatchery fish breed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#HeavyMetals -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HeavyMetals">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#HydroelectricDams -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HydroelectricDams">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatConnectivity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Dams restrict upstream migration of adult salmon, unless equipped with fish ladders.  They also restrict downstream gravel movement and change the natural flow regime.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedForestFirePotential -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedForestFirePotential">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fines"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">More frequent forest fires will reduce the hydrologic maturity of watersheds, leaving them less able to absorb rainfall.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedRainOnSnowPotential -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedRainOnSnowPotential">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Warmer winters will lead to more winter rainfall than snowfall, potentially leading to more rain-on-snow events.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedStormRainfall -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#IncreasedStormRainfall">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Larger storms with more precipitation will increase the intensity of flood events.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Insects and other aquatic invertebrates are an important food items for young salmon living in streams and estuaries.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#InstreamWoodyDebris -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InstreamWoodyDebris">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Woody debris provides shelter for young salmon and habitat for potential food sources (i.e., aquatic insects).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Landsliding -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Landsliding">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A natural process that can be accelerated by human development and its effects on stream geomorphology.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Leveeing -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Leveeing">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Construction or existence of levees along rivers, which disconnects the river from its floodplain.  Disrupted watershed-scale hydrologic and geomorphic processes can also separate the river from its floodplain by leading to downcutting.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#LowerReaches -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#LowerReaches">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FreshwaterLotic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fry-Parr"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Mercury -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Mercury">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#MiddleReaches -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#MiddleReaches">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FreshwaterLotic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Egg"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Spawner"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Fry-Parr"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Alevin"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#NaturalBlockages -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NaturalBlockages">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatConnectivity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">i.e., big waterfalls that naturally restrict upstream salmon migration.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#NearshoreEstuarine -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NearshoreEstuarine">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#RisingSeaLevel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Smolt"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Crustaceans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Other components of the estuary include: subtidal distrbutaries, mud and sand flats, gravel-cobble beaches, low elevation emergent marshes, high elevation emergent marshes, forested and shrub swamps, eelgrass, and kelp.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#NonHardenedShoreline -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NonHardenedShoreline">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NearshoreEstuarine"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ShorelineArmoring"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Various shoreline including sand and mud flats, forested and shrub swamps, marshes, and beaches.  Armoring or bulkheading destroys these habitats.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Ocean -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Ocean">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#habitatImpactedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#CompetitionWithFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Adult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#habitatImpactedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#PacificDecadalOscillation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Plankton"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedOceanicPhytoplankton"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Crustaceans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Open ocean, habitat for adult salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Oil -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Oil">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#OpenWaterEstuarine -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OpenWaterEstuarine">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Adult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Crustaceans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Smolt"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Open waters (i.e., central Puget Sound) that are not yet open ocean.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Smolt and adult salmon eat other fish.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#OverhangingCanopy -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OverhangingCanopy">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Overhanging canopy provides several functions for salmon habitat - it shades the stream, stabilizes streambanks, reducing sedimentation, moderates water temperatures and increasing dissolved oxygen, contributes instream woody debris, and provides direct or indirect food sources via allochthanous material input.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Oxygen -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Oxygen">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Dissolved oxygen (DO) content of the stream, which is dependent on temperature and water flow.  DO standards are 9.5 mg/L in freshwater core salmonid rearing areas and 8.0 mg/L in noncore salmonid rearing areas (WRIA-9 Salmon Habitat Plan).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#PacificDecadalOscillation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#PacificDecadalOscillation">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The Pacific Decadal Oscillation influences nutrient upwelling.  During times of weak upwelling, fewer nutrients are available for prey organisms of adult salmon, resulting in less survival of adult salmon.  This is a several-decades long cycle.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#PinkSalmon -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#PinkSalmon">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus gorbuscha (Walbaum, 1792).  Also known as humpy salmon.  Spawning generally occurs in much lower reaches than other salmon species; young pink salmon move quickly to estuaries where they mature.  Their life span is 2 years. (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Plankton -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Plankton">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FoodSources"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Zooplankton and phytoplankton are important estuarine and oceanic food items.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Pollutants can cause nest failure, genetic anomalies, outright fish kills, reduced reproductive capacity, and bioaccumulation within the food web.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Productivity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Productivity">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Population growth rate; the number of new (replacement) young salmon generated per adult spawner.  A stable or growing population is needed over the long term to maintain salmon stocks.  Improving productivity is usually the immediate priority for restoring threatened or endangered salmon populations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedOceanicPhytoplankton -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedOceanicPhytoplankton">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Plankton"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Changing ocean temperatures and ocean water chemistry lead to fewer oceanic phytoplankton at the base of the food web.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedSnowpack -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ReducedSnowpack">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Leads to greater stream temperatures and lower summer low-flow periods.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#RiparianBufferRemoval -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#RiparianBufferRemoval">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The removal of overhanging riparian vegetation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#RisingSeaLevel -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#RisingSeaLevel">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ClimateChange"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NearshoreEstuarine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Rising sea level will submerge coastal ecosystems, reducing their capability of providing ecosystem services.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#RoadsAndBridges -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#RoadsAndBridges">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#StreamCrossings"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingEcosystems -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingEcosystems">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Necessary habitat conditions for different salmon life stages along different parts of the river, estuary, nearshore, and oceanic habitat.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;Habitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Ranges from freshwater streams to open ocean and estuarine transition zones.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#ShorelineArmoring -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#ShorelineArmoring">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Construction of hardened shorelines such as seawalls or revetments.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SideChannels -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SideChannels">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Side channels provide shelter and areas of slow moving current important for young salmon growing in the stream, particularly on the middle and lower reaches of a stream.  In spawning reaches side channels let salmon build redds in slower-moving parts of the stream, reducing the potential for redd loss due to scour.  The presence of levees removes side channels, often leading to changes in water temperature and current.  Channel incision can also reduce connectivity between the river and its side channels.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Smolt -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Smolt">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#EelgrassBeds"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#OtherFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#hasFoodSource"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#InsectsAndAquaticInvertebrates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#NonHardenedShoreline"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HatcheryFish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;nextLifeStage"/>
+                <owl:allValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Adult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Young salmon migrating through the estuary to the ocean (Stage 4).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SockeyeSalmon -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SockeyeSalmon">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus nerka (Walbaum, 1792); exist in both anadromous and non-anadromous forms, non-anadromous sockeye are known as kokanee, and are generally smaller.  Also known as red salmon.  Preferred habitat is large rivers with associated lakes; they do much of their spawning and rearing in these lentic waters (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SpatialStructure -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SpatialStructure">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The distribution of individual salmon within and between subwatersheds, as well as the processes (i.e., habitat, ecosystem processes) that lead to that distribution.  A well-distributed population protects that population from catastrophic loss caused by stochiastic events.  Improving spatial structure is an important medium- to long-term priority for restoration of threatened or endangered salmon populations.  Specific events spatial structure can protect against include chemical/oil spills, landslides, dam failure, and disease outbreaks.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Spawner -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Spawner">
+        <rdfs:subClassOf rdf:resource="&ecology;LifeStageGroup"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HydroelectricDams"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#threatenedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Pollution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#needsHabitat"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Gravels"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Adult salmon returning from the ocean to the stream for spawning (Stage 6).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#SteelheadTrout -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SteelheadTrout">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Oncorhynchus mykiss (Walbaum, 1792); non-anadromous steelhead are known as rainbow trout.  Preferred habitat is cold, fast-flowing streams (Pacific salmon and wildlife: Ecological contexts, relationships, and implications for management).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#StreamCrossings -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#StreamCrossings">
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Human built structures that cross the stream and can affect natural stream erosion and flow rates.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Substrate -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Substrate">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Composition of the stream bottom is important to egg and alevin survival.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Temperature">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Water temperature changes seasonally but is influenced by the presence/absence and quantity of overhanging canopy.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#TimberHarvest -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#TimberHarvest">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">If not done carefully, timber harvesting can increase input of fines to a stream, and can also result in reduced summer flows and increased winter flood flows, all problematic to salmon survival (Moore and Wondzell 2005).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#UpperReaches -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#UpperReaches">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#FreshwaterLotic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Spawner"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Egg"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecology;isEnvironmentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#Alevin"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#VSPCharacteristics">
+        <rdfs:subClassOf rdf:resource="&ecology;TaxonomicGroup"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A Viable Salmon Population (VSP) is &quot;an independent population of any Pacific salmon (genus Oncorhynchus) that has a negligible risk of extinction due to threats from demographic variation, local environmental variation, and genetic diversity changes over a 100-year time frame (McElhany et al. 2000 as cited in Anchor Environmental 2003).  VSP characteristics are the four criteria needed to maintain viable salmon populations (Scheuerell et al. 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WaterFlow">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#HydroelectricDams"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Flow influences stream oxygen levels.  Flows also affect stream substrate and physical habitat diversity, which can improve spatial distribution of salmon.  Goodstein and Matson (2007) discuss climate change impacts on salmon.  Mote et al. (2003) project 59% snowpack loss by 2040s, reducing summer flows for salmon and increasing winter flooding that can damage redds and in-stream juvenilles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonEcology#WatershedImperviousArea -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/services/salmonEcology#WatershedImperviousArea">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The percentage of watershed impervious area is important for determining fry survival.  Booth and Jackson (1997) discuss effects of impervious surface on watershed processes.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#AdultSalmonScavengingAndConsumption -->
+
+    <owl:Class rdf:about="&salmonService;AdultSalmonScavengingAndConsumption">
+        <rdfs:subClassOf rdf:resource="&eserv;RenewableTransformation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;FarmersNearStreams"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Recycling of nutrients back into the ecosystem by consumers and scavengers as adult salmon die.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#AdultSalmonStocks -->
+
+    <owl:Class rdf:about="&salmonService;AdultSalmonStocks">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+        <rdfs:comment>The stock of adult salmon present in a region or an individual salmon run.  This can be salmon of five salmon species (Chinook (king), coho, pink, chum salmon and bull trout) and two additional anadromous salmonids.  A healthy adult salmon stock is dependent on the presence of habitat requirements at different life stages, as well as a viable population.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#AngloAmericans -->
+
+    <owl:Class rdf:about="&salmonService;AngloAmericans">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Americans of European descent (uhh, how can we put this so as to include other &quot;culturally mainstream but non-Anglo residents of the area - Asian, African American, Hispanic...)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#CatchAndRelease -->
+
+    <owl:Class rdf:about="&salmonService;CatchAndRelease">
+        <rdfs:subClassOf rdf:resource="&eserv;ConservativeExploitation"/>
+        <rdfs:comment>Catch and release fishing does occur for salmon.  However, catch and release mortality may be as high as 30% (PSC 1997, as cited in Ruckelshaus et al. 2002).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#CommercialFishermen -->
+
+    <owl:Class rdf:about="&salmonService;CommercialFishermen">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>The goal of commercial fishermen is to catch and sell salmon as a livelihood.  Most commercial salmon fishing takes place in the open ocean or large estuaries.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#CulturalIcon -->
+
+    <owl:Class rdf:about="&salmonService;CulturalIcon">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;ExistenceOfSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SalmonCapture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;ProductionOfAdultSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;AngloAmericans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SalmonWildlifeWatchers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;NativeAmericans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The presence of salmon in the wild and the opportunity to participate in catching, preparing, and eating salmon as part of the cultural identity of people who have lived with salmon throughout their history.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#CulturalIdentity -->
+
+    <owl:Class rdf:about="&salmonService;CulturalIdentity">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>The spiritual, community, and psychological benefits a group gains from having a component of the natural landscape as a continuous part of their individual and collective lives.  This includes both Native and Anglo-American inhabitants of a given area.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#ExistenceOfSalmon -->
+
+    <owl:Class rdf:about="&salmonService;ExistenceOfSalmon">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;NativeAmericans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The mere existence of wild salmon is an important culturally and could be important for catch-and-release fishermen, salmon wildlife watching, and the general Anglo American (?) population.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#FarmersNearStreams -->
+
+    <owl:Class rdf:about="&salmonService;FarmersNearStreams">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Farmers near streams may receive &quot;free&quot; fertilizer as the nutrients from adult salmon being cycled back into the ecosystem (Merz and Moyle 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#Food -->
+
+    <owl:Class rdf:about="&salmonService;Food">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Intake of adequate food for survival and day-to-day activity.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#FoodSource -->
+
+    <owl:Class rdf:about="&salmonService;FoodSource">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SubsistenceFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;SalmonCapture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;ProductionOfAdultSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;NativeAmericans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Salmon as a source of food.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#NativeAmericans -->
+
+    <owl:Class rdf:about="&salmonService;NativeAmericans">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Salmon have played an important role in Native American culture throughout their history.  Salmon are important both as a food source and as part of cultural identity.  Most fishing by Native Americans takes place as adults return to the river mouths.  Native Americans are composed of policitcally soverign tribes that differ in their cultural, political, and ecological relationships with salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#NonsustainableHarvest -->
+
+    <owl:Class rdf:about="&salmonService;NonsustainableHarvest">
+        <rdfs:subClassOf rdf:resource="&salmonService;SalmonCapture"/>
+        <rdfs:comment>Harvest levels that reduce the population of adults below the level needed to reproduce an equal sized cohort in the next generation of salmon.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#NutrientSourceToEcosystem -->
+
+    <owl:Class rdf:about="&salmonService;NutrientSourceToEcosystem">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;FarmersNearStreams"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SalmonWildlifeWatchers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;AdultSalmonScavengingAndConsumption"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;ProductionOfAdultSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Adult spawning salmon move marine-derived nutrients inland and upstream.  Salmon have impacts throughout the food web, from plankton and aquatic insects to riparian vegetation, scavengers, and consumers, all in a positive feedback loop.  These nutrients can also be valuable to farmers by providing &quot;free&quot; fertilizer - increasingly important as energy and synthetic fertilizer continue to become more expensive (Merz and Moyle 2006).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#ObservationOfSalmon -->
+
+    <owl:Class rdf:about="&salmonService;ObservationOfSalmon">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:comment>Salmon wildlife watching, including watching the salmon themselves, as well as bald eagles, bears, and other species of interest that are drawn to salmon.  This wildlife watching activity can suport tourism, having clear monetary/economic benefits.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#PlaceAttachment -->
+
+    <owl:Class rdf:about="&salmonService;PlaceAttachment">
+        <rdfs:subClassOf rdf:resource="&salmonService;CulturalIdentity"/>
+        <rdfs:comment>The local cultural connections enhanced by existence of salmon stocks and participating in salmon-based consumption and recreation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#ProductionOfAdultSalmon -->
+
+    <owl:Class rdf:about="&salmonService;ProductionOfAdultSalmon">
+        <rdfs:subClassOf rdf:resource="&eserv;Production"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#SalmonProducingEcosystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#BaseSalmonStock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The growth of adequate adult salmon populations for harvest, produced as a result of adequate salmon habitat plus a healthy base salmon population stock.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#Recreation -->
+
+    <owl:Class rdf:about="&salmonService;Recreation">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Spending leisure time outdoors, &quot;in nature.&quot;  Outdoor recreation has important physical and psychological benefits, especially for urban populations that spend much of their lives indoors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#RecreationalAmenity -->
+
+    <owl:Class rdf:about="&salmonService;RecreationalAmenity">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;ProductionOfAdultSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;ExistenceOfSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;ObservationOfSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SalmonWildlifeWatchers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SalmonCapture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Salmon as a contributor to the outdoor recreational experience.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#RecreationalFishermen -->
+
+    <owl:Class rdf:about="&salmonService;RecreationalFishermen">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Recreational fishermen participate in salmon fishing both to catch salmon and for the recreational experience.  Along with actual catch, a high quality physical setting is likely to be an important contributor to a successful fishing trip.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonBasedRecreation -->
+
+    <owl:Class rdf:about="&salmonService;SalmonBasedRecreation">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;AdultSalmonStocks"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIdentity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SpeciesProtection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalAmenity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;PlaceAttachment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Recreation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIcon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;FoodSource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Outdoor recreation centered around salmon, generally from fishing though possibly through wildlife watching.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonCapture -->
+
+    <owl:Class rdf:about="&salmonService;SalmonCapture">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SubsistenceFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CommercialFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;NativeAmericans"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Extraction of fish for subsistence, commercial, or recreational use.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonContributionsToNutrientCycles -->
+
+    <owl:Class rdf:about="&salmonService;SalmonContributionsToNutrientCycles">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;NutrientSourceToEcosystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Recreation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;AdultSalmonStocks"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Nutrient flow from salmon to the riparian forest: salmon fertilize trees and other vegetation in and near the riparian zone, increasing their growth rate, which provides other ecosystem services as part of a positive feedback loop.  Trees and shrubs in the riparian zone get 22-24% of their foliar N from spawning salmon (Helfield and Naiman 2001).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonCulturalIdentity -->
+
+    <owl:Class rdf:about="&salmonService;SalmonCulturalIdentity">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;RecreationalAmenity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;FoodSource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIdentity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;AdultSalmonStocks"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;PlaceAttachment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SpeciesProtection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIcon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The continued existence of salmon as a cultural icon and an ongoing part of life, consistent with the history and connection to place that has existed for a group throughout its history.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonForFood -->
+
+    <owl:Class rdf:about="&salmonService;SalmonForFood">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SpeciesProtection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;SourceOfLivelihood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;AdultSalmonStocks"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIdentity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;PlaceAttachment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;FoodSource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CulturalIcon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The nutritional value provided by salmon as part of a person or population&#39;s diet.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SalmonWildlifeWatchers -->
+
+    <owl:Class rdf:about="&salmonService;SalmonWildlifeWatchers">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Groups visiting salmon runs to watch their upstream migration.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SourceOfLivelihood -->
+
+    <owl:Class rdf:about="&salmonService;SourceOfLivelihood">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/services/salmonEcology#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&salmonService;CommercialFishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;ProductionOfAdultSalmon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&salmonService;SalmonCapture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Salmon are a primary or important supplemental income source for commercial fishermen.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SpeciesProtection -->
+
+    <owl:Class rdf:about="&salmonService;SpeciesProtection">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Maintenance of species under the Endangered Species Act.  This is a social goal to prevent extinction, which offers legal protection of threatened or endangered species.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SubsistenceFishermen -->
+
+    <owl:Class rdf:about="&salmonService;SubsistenceFishermen">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Subsistence fishermen participate in salmon fishing solely to obtain food.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/services/salmonService#SustainableHarvest -->
+
+    <owl:Class rdf:about="&salmonService;SustainableHarvest">
+        <rdfs:subClassOf rdf:resource="&salmonService;SalmonCapture"/>
+        <rdfs:comment>Harvest levels that maintain or increase the population of adults at or above the level needed to reproduce an equal sized cohort in the next generation of salmon.</rdfs:comment>
+    </owl:Class>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
+
+
+<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+

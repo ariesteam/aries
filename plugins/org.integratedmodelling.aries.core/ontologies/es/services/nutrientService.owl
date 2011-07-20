@@ -1,278 +1,1446 @@
 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns="http://www.integratedmodelling.org/ks/es/nutrientService.owl#"
-    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-  xml:base="http://www.integratedmodelling.org/ks/es/nutrientService.owl">
-  <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
-  </owl:Ontology>
-  <owl:Class rdf:ID="Recreation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Spending leisure time outdoors, "in nature."  Outdoor recreation has important physical and psychological benefits, especially for urban populations that spend much of their lives indoors.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Food">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >When nutrients are retained, food can be grown with less artificial fertilizer; avoided nutrients in waterways also reduce the likelihood of fisheries decline due to eutrophication.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Aesthetics">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Sensory enjoyment of functioning ecological systems (Farber et al. 2006);algal blooms may produce visual and odor-related problems that reduce aesthetic quality.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Fishermen">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Eutrophication can reduce oxygen concentrations in water bodies, leading to smaller populations of commercially desirable fish, and impacting the livelihoods of fishermen.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="PublicWaterSupplyUsers">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Public water supply users benefit from clean surface waters which do not run the risk of harboring toxic algal blooms.  In the Lake Champlain Basin, 188,000 users depend on this system, which using prices for water supplied gives a value of at least $36 million/yr (LCBP 2003).</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Farmers">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >When soil fertility is lost, farmers must replace nutrients, often in the form of commercial fertlizers.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="FertilityMaintenance">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The maintenance of soil fertility.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ConservativeExploitation"/>
-  </owl:Class>
-  <owl:Class rdf:ID="FertileSoils">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#FertilityMaintenance"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NutrientAssimilationUptake"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NutrientRetention"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Farmers"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="isBeneficialFor"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Soils that have enough fertility to support the growth of desirable types of vegetation (i.e., agriculture, forests, ornamental landscapes).</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="SoilFertilityMaintenance">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The maintenance of soil fertility, which is provided by a stable level of nutrients important for the growth of crops, forests, and other desirable types of vegetation.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource"/>
-  </owl:Class>
-  <owl:Class rdf:ID="NutrientRemoval">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#RenewableTransformation"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The absorption of aquatic nitrate or phosphate by the ecosystem.  The ecosystem is generally unchanged.  However, under extremely high rates of nutrient input, the competitive balance of plant species in the ecosystem may change, leading to dominance by species capable of taking up and processing higher levels of nutrients.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="WaterfrontPropertyOwners">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Homeowners near waterfront property receive aesthetic and recreational benefits from living near a clean waterway.  Eutrophic waters reduce recreational opportunities, may have undesirable views or odors, and may present health risks.  For example, lakefront housing on St. Albans Bay, VT, a eutrophic water body, is valued at 20% less than comparable lakefront housing along a non-eutrophic part of Lake Champlain (Gaddis 2007).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-  </owl:Class>
-  <owl:Class rdf:ID="EutrophicationPrevention">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#UndesiredEndurant"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The prevention of premature eutrophication, a state of high nutrient loading and productivity, in lakes and rivers.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Health">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Algal blooms, which can result from eutrophication from excess nutrients, can produce toxins that are hazardous to health, especially for children.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-  </owl:Class>
-  <owl:Class rdf:ID="NutrientRetainingEcosystem">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem that maintains a given level of nutrients, particularly in the soils, conducive to the growth of desirable plant species.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#NutrientRetention">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The retention of nutrients within the soil, so that their loss out of the system is avoided.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#NutrientRetainingEcosystem"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Performance"/>
-  </owl:Class>
-  <owl:Class rdf:ID="NutrientAssimilatingEcosystem">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ecosystem that takes up and stores nutrients, helping to maintain nutrient levels at more desirable levels.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemProducer"/>
-  </owl:Class>
-  <owl:Class rdf:about="#NutrientAssimilationUptake">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#NutrientRetainingEcosystem"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProducer"/>
-        <owl:someValuesFrom rdf:resource="#NutrientAssimilatingEcosystem"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#Transformation"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The biotic uptake of nutrients from areas where their concentration is undesirably high (i.e., from nutrients dissolved in water as nitrate or phosphate into storage in plant material or soils).  Can also include the uptake of nutrients from weathering of rocks or nitrification.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="NutrientRegulation">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Water"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#EutrophicationPrevention"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Food"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Aesthetics"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="NonEutrophicAquaticSystems"/>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SoilFertilityMaintenance"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#ecologicalFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemService"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#producesBenefit"/>
-        <owl:someValuesFrom rdf:resource="#FertileSoils"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Nutrient concentrations that are maintained within acceptable limits.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-        <owl:someValuesFrom rdf:resource="#Recreation"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Health"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#humanFocus"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#NonEutrophicAquaticSystems">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#PublicWaterSupplyUsers"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#NutrientRemoval"/>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasUsage"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#hasProvision"/>
-        <owl:allValuesFrom rdf:resource="#NutrientAssimilationUptake"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Fishermen"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#WaterfrontPropertyOwners"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#isBeneficialFor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Recreationists"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Aquatic systems that have nutrient concentrations at or near their desirable levels.  While some aquatic systems are naturally eutrophic, others become eutrophic through addition of excess nutrients.  The ecosystem service of nutrient regulation helps to prevent this undesirable condition.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Water">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanPolicyTarget"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Safe drinking water is critical to maintaining healthy communities.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Recreationists">
-    <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#HumanConsumer"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Recreational fishermen, swimmers, and boaters face aesthetic decline and possible health risks as waters become overly eutrophic and growth of undesirable aquatic plants increases.  In Lake Champlain, $200,000-350,000/yr is lost in recreational value from beach closings (LCBP 2003).  This can lead to recognized recreational benefits from the Conservation Reserve Program and similar programs (Feng et al. 2007).</rdfs:comment>
-  </owl:Class>
-  <owl:ObjectProperty rdf:about="#isBeneficialFor">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Identifies the beneficiary for each benefit.</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemBenefit"/>
-  </owl:ObjectProperty>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY nutrientService "http://www.integratedmodelling.org/ks/es/nutrientService.owl#" >
+    <!ENTITY soilretention "http://www.integratedmodelling.org/ks/es/soilRetentionService#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY soilRetentionService "http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#"
+     xml:base="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:soilretention="http://www.integratedmodelling.org/ks/es/soilRetentionService#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:nutrientService="http://www.integratedmodelling.org/ks/es/nutrientService.owl#"
+     xmlns:soilRetentionService="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
+    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl">
+        <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged">
+        <rdfs:comment rdf:datatype="&xsd;string">Climate change may have uncertain effects.</rdfs:comment>
+        <rdfs:domain rdf:resource="&soilretention;ClimateChange"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ObjectProperty_26 -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ObjectProperty_26">
+        <rdfs:domain rdf:resource="&soilretention;IncreasedStormRainfall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged -->
+
+    <owl:ObjectProperty rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged">
+        <rdfs:comment rdf:datatype="&xsd;string">Climate change may have uncertain effects.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService#leadsToMore -->
+
+    <owl:ObjectProperty rdf:about="&soilretention;leadsToMore"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService#matters-in-event-of -->
+
+    <owl:ObjectProperty rdf:about="&soilretention;matters-in-event-of"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AgriculturalFields -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AgriculturalFields">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientReleasingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Intensive agriculture can lead to both soil erosion (producing sediment runoff) and nutrients in runoff from excess fertilizer.  Weller et al. (1996) has P loading coefficients for agricultural lands in rural watersheds for the basin.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticNPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticNPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Nitrate enters aquatic systems through runoff.  There it can be taken up by algae, plankton, and other aquatic organisms.  Denitrification returns nitrogen to the atmosphere.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticPPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticPPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Phosphate enters aquatic systems through runoff.  There it can be taken up by algae, plankton, and other aquatic organisms.  Sedimentation eventually can return phosphorus to the sediment and rock pool.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus">
+        <rdfs:subClassOf rdf:resource="&habitat;PollutionQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientLimitingFactor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">The nutrient content and productivity level of an aquatic system.  Although systems can be naturally oligotrophic, mesotrophic, or eutrophic, excessive anthropogenic nutrient inputs are acting as pollutants that increase the productivity of aquatic ecosystems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AtmosphericNPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AtmosphericNPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The atmosphere is a major pool of molecular nitrogen (N2), which composes 78% of the atmosphere.  Atmospheric nitrogen becomes biologically available through nitrogen fixation.  Denitrification returns nitrate to the atmosphere.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#BioticNPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#BioticNPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Nitrogen is incorporated into biological molecules in plants or animals.  Nitrogen fixing bacteria convert atmospheric nitrogen into biologically useful nitrogen.  This can exist in three forms - ammonia, nitrite, and nitrate.  Nitrate is generally the more biologically-useful form; it can be taken up by plants (then animals) or run off into aquatic systems.  Denitrification returns nitrogen to the atmosphere.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#BioticPPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#BioticPPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Phosphorus is incorporated into biological molecules in plants or animals.  Dissolved phosphorus from weathering of rocks can be taken up by plants, then consumed by animals.  Excretion and death and decomposition return phosphorus to the soil and water.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Denitrification -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Denitrification">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The return of nitrate (NO3) in organic matter, soil, or water to atmospheric nitrogen (N2) by bacteria.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Eutrophic -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Eutrophic">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An aqutatic system with high productivity and nutrient content.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#UrbanAreas"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Areas where soil is disturbed for long periods of time (e.g., construction sites) may contribute excess sediment to the watershed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Forest -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Forest">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Forests -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Forests">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientReleasingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Forests may naturally export some nutrients.  Weller et al. (1996) has P loading coefficients for forests in rural watersheds for the basin.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Freezing -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Freezing">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Frozen soils allow for essentially zero infiltration.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Humans apply large amounts of nitrogen as fertilizers, especially to agricultural fields and suburban lawns (at least in the U.S.).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Humans apply large amounts of phosphorus as fertilizers, especially to agricultural fields and suburban lawns (at least in the U.S.).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#UrbanAreas"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Impervious surfaces increase runoff rates, increasing the likelihood that nutrients will run off into aquatic systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Different soil types have different infiltration capacities.  See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Lawns -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Lawns">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#UrbanAreas"/>
+        <rdfs:comment rdf:datatype="&xsd;string">At least in the U.S., many lawns are fertilized with nitrogen and phosphorus to keep them green and growing quickly.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Mesotrophic -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Mesotrophic">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An aqutatic system with intermediate productivity and nutrient content.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+        <rdfs:comment rdf:datatype="&xsd;string">In the Lake Champlain Basin, agricultural area declined 5.4% from 1992-2001.  Agriculture accounted for 39% of P input, with 0.61 kg P/ha-yr released into the watershed (Troy et al. 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Through excreation or death and decomposition of organisms, biotic nitrogen is re-released into ammonia (NH4), which is eventually converted into nitrite (NO2) and nitrate (NO3).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticUptake -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticUptake">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Uptake of nitrogen by an organism, typically terrestrial or aquatic plants or plankton.  When these organisms are consumed, nitrogen moves through the food web.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NExposedSoils -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NExposedSoils">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Construction sites and eroding streambanks are sediment sources, which can then bind nutrients and lead to their runoff into aquatic systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NFertilizer -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NFertilizer">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Direct application of fertilizer to fields often leads to its runoff.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NFixation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NFixation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Fixation of nitrogen by bacteria moves N2 from the atmosphere to the soil, making it biologically available.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NLawnFertilizer -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NLawnFertilizer">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Lawn fertilizer is a major nutrient source in urban areas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NManure -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NManure">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Closely related to the number and density of animals on the farm, and how their waste is managed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NPetWaste -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NPetWaste">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Pet waste can run directly into sewers or water bodies.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NPointRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NPointRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Point source release of nutrients; in the U.S., point source discharges have declined in recent decades.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NRunoff -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NRunoff">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Movement of nitrate (NO3), typically from the soil to aquatic systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NSepticRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NSepticRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Release of nutrients from old, improperly maintained, damaged, or leaking septic systems (Moore et al. 2003).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenCycling">
+        <rdfs:subClassOf rdf:resource="&ecology;NutrientFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The processes that move nitrogen between its different chemical forms and pools.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialStock"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Nitrogen naturally cycles between the atmosphere, soil, water, and living things.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingEcosystem -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingEcosystem">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilationCapacity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that takes up and stores nutrients, helping to maintain nutrient levels at more desirable levels.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;Habitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that takes up and stores nutrients, helping to maintain nutrient levels at more desirable levels.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilationCapacity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilationCapacity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem&#39;s ability to take up nutrients.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientLimitingFactor -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientLimitingFactor">
+        <rdfs:subClassOf rdf:resource="&ecology;NutrientFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Although P is typically thought of as the limiting nutrient in aquatic systems, N may play a synergistic role in some cases, including Lake Champlain (at least for certain seasons, Levine et al. 1997).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientReleasingHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientReleasingHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;Habitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that typically serves as a source of nutrients to surrounding ecosystems (i.e., nutrients are lost/exported from that ecosystem).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingEcosystem -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingEcosystem">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemProducer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetentionCapacity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that maintains a given level of nutrients, particularly in the soils, conducive to the growth of desirable plant species.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;Habitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem that maintains a given level of nutrients, particularly in the soils, conducive to the growth of desirable plant species.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetentionCapacity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetentionCapacity">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">An ecosystem&#39;s ability to retain nutrients.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Soils can become &quot;saturated&quot; with nutrients, so that continued nutrient application leads to more nutrient runoff, and that even when nutrient application is stopped, it takes time to flush the excess nutrients out fo the soil.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Oligotrophic -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Oligotrophic">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+        <rdfs:comment rdf:datatype="&xsd;string">An aqutatic system with low productivity and nutrient content.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+        <rdfs:comment rdf:datatype="&xsd;string">In the Lake Champlain Basin, agricultural area declined 5.4% from 1992-2001.  Agriculture accounted for 39% of P input, with 0.61 kg P/ha-yr released into the watershed (Troy et al. 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Through excreation or death and decomposition of organisms, biotic phosphorus is re-released where it can enter the soil, aquatic, or sedimentary phosphorus pools.  In the Lake Champlain Basin, natural P release from forests is responsible for 8% of basin P inputs, with 0.04 kg P/ha-yr released (Troy et al. 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticUptake -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticUptake">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Uptake of phosphorus by an organism, typically terrestrial or aquatic plants or plankton.  When these organisms are consumed, phosphorus moves through the food web.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PExposedSoils -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PExposedSoils">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Construction sites and eroding streambanks are sediment sources, which can then bind nutrients and lead to their runoff into aquatic systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PFertilizer -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PFertilizer">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Direct application of fertilizer to fields often leads to its runoff.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PLawnFertilizer -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PLawnFertilizer">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Lawn fertilizer is a major nutrient source in urban areas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PManure -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PManure">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Closely related to the number and density of animals on the farm, and how their waste is managed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PPetWaste -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PPetWaste">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PPointRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PPointRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Point source release of nutrients; in the U.S., point source discharges have declined in recent decades.  Point sources accounted for &lt;10% of Lake Champlain&#39;s P inputs in 1993 (LCBP 2003).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PRunoff -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PRunoff">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Movement of phosphate (PO4), typically from the soil to aquatic systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PSedimentation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PSedimentation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Aquatic phosphate may sink to the bottom of lakes, seas, or oceans, where it can eventually be compressed into phosphate-bearing sedimentary rocks.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PSepticRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PSepticRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Release of nutrients from old, improperly maintained, damaged, or leaking septic systems (Moore et al. 2003).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+        <rdfs:comment rdf:datatype="&xsd;string">In the Lake Champlain Basin, urban areas produce three times the P runoff as an equivalently-sized agricultural area.  Urban areas grew 1.9% from 1992-2001, accounted for 53% of total P input, and 2.52 kg P/ha-yr (Troy et al. 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphateRockWeathering -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphateRockWeathering">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Physical or biological weathering of phosphate rocks makes phosphate available for biotic uptake.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusCycling">
+        <rdfs:subClassOf rdf:resource="&ecology;NutrientFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The processes that move phosphorus between its different chemical forms and pools.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialStock"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Phosphorus naturally cycles between the sediments and rocks, soil, water, and living things.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PresenceOfOtherElements -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PresenceOfOtherElements">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The presence of aluminum, iron, or calcium can tightly bind phosphate, reducing its availability for biological uptake.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialEnergyFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PRunoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NRunoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&soilretention;Amount"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Surface flow of water across the landscape after falling as precipitation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentAndRockPPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentAndRockPPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Rocks containing phosphate are a major pool in the phosphorus cycle.  These release phosphorus by weathering.  Aquatic phosphorus may eventually sink into benthic sediments and again be compressed into sedimentary phosphate rock.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentRelease">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialEnergyFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The removal and resuspension of sediments, typically occurring in areas with fast-moving water.  The rate of sediment trapping or release, especially in riverine wetlands, is important for the sequestration of carbon in wetland soils or the release of carbon from wetlands to locations where it may be oxidized (Mitra et al. 2005).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping">
+        <rdfs:subClassOf rdf:resource="&ecology;MaterialEnergyFlow"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The deposition of sediments in the landscape, typically occurring in areas with slow-flowing water.  The rate of sediment trapping or release, especially in riverine wetlands, is important for the sequestration of carbon in wetland soils or the release of carbon from wetlands to locations where it may be oxidized (Mitra et al. 2005).  Polyakov et al. (2005) discuss trapping of sediment by riparian buffers that removes nutrients.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt">
+        <rdfs:subClassOf rdf:resource="&soilretention;Precipitation"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The seasonal melting of snow, which can occur slowly as temperatures warm in the spring or quickly as rain falls on snow.  In the Lake Champlain Basin spring snowmelt, along with major storms, contributes a large amount of P to the watershed (Gaddis 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupA -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupA">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Greatest infiltration capacity; generally sand, loamy sand, or sandy loam, with &quot;low runoff potential and high infiltration rates even when thoroughly wetted.  They consist chiefly of deep, well to excessively drained sand or gravel and have a high rate of water transmission (greater than 0.30 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupB -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupB">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Generally silt loam or loam, with &quot;moderate infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr ).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupC -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupC">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Generally sandy clay loams, with &quot;low infiltration rates when thoroughly wetted and consist(ing) chiefly of soils with a layer that impedes downward movement of water and soils with moderately fine to fine texture.  These soils have a low rate of water transmission (0.05-0.15 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupD -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilGroupD">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#InfiltrationCapacity"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Least infiltration capacity, including clay loams, silty clay loams, sandy clay, silty clay, or clay, with &quot;high runoff potential.  They have very low infiltration rates when thoroughly wetted and consist chiefly of clay soils with a high swelling potential, soils with a permanent high water table, soils with a claypan or clay layer at or near the surface, and shallow soils over nearly impervious material.  These soils have a very low rate of water transmission (0-0.05 in/hr).&quot; (USDA-NRCS)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilNPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilNPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NitrogenPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Newly-fixed nitrogen often exists in the soil.  It can exist in three forms - ammonia, nitrite, and nitrate.  Nitrate is generally the more biologically-useful form; it can be taken up by plants (then animals) or run off into aquatic systems.  Denitrification returns nitrogen to the atmosphere.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilPPool -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SoilPPool">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PhosphorusPools"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Newly-weathered phosphorus often exists in the soil.  Phosphate (PO4) can be taken up by plants and enter the biotic phosphate pool, but under conditions with different pH and other elements present in the soil, it may become strongly bound to other ions and more difficult to be taken up by plants.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#StreamBuffer -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#StreamBuffer">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Stream buffers are extremely important for watershed health, including their potential role in sediment and nutrient trapping.  Wang et al. (2001) found that impervious area within a 50-m stream buffer reduced watershed health, as did impervious surface within 1.6 km upstream of the sample site.  Stream shading can also reduce the algal content of the stream itself, which is often fertilized by nitrogen and phosphorus in urban and agricultural watersheds (LCBP 2003).  Polyakov et al. (2005) extensively review riparian buffers.  They note that the first 3-6 m of riparian buffer are important for sediment removal, with smaller particles being harder to remove.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#UrbanAreas -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#UrbanAreas">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientReleasingHabitat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterQuality">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Climate change may lead to alteration of temperature, pH, and redox status, altering wetland nutrient dynamics and potentially leading to wide-scale P release from wetlands (Pant 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterSaturation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterSaturation">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Infiltration capacity depends on how saturated soils are when additional water comes into contact with the soil surface.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Water temperature can affect nutrient balance and processes in wetlands.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Water pH can affect nutrient balance and processes in wetlands.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Wetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Wetland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Wetlands -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Wetlands">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingHabitat"/>
+        <rdfs:comment rdf:datatype="&xsd;string">300,000 ac in the Lake Champlain Basin.  Weller et al. (1996) has P loading coefficients for riparian wetlands in rural watersheds for the basin.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#pH -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#pH">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Highly alkaline or acidic soils will tightly bind phosphate, reducing its availability for biological uptake.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Aesthetics -->
+
+    <owl:Class rdf:about="&nutrientService;Aesthetics">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Sensory enjoyment of functioning ecological systems (Farber et al. 2006); algal blooms may produce visual and odor-related problems that reduce aesthetic quality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#EutrophicationPrevention -->
+
+    <owl:Class rdf:about="&nutrientService;EutrophicationPrevention">
+        <rdfs:subClassOf rdf:resource="&eserv;UndesiredEndurant"/>
+        <rdfs:comment>The prevention of premature eutrophication, a state of high nutrient loading and productivity, in lakes and rivers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Farmers -->
+
+    <owl:Class rdf:about="&nutrientService;Farmers">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>When soil fertility is lost, farmers must replace nutrients, often in the form of commercial fertlizers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#FertileSoils -->
+
+    <owl:Class rdf:about="&nutrientService;FertileSoils">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&nutrientService;FertilityMaintenance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;NutrientRetention"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;NutrientAssimilationUptake"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Soils that have enough fertility to support the growth of desirable types of vegetation (i.e., agriculture, forests, ornamental landscapes).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#FertilityMaintenance -->
+
+    <owl:Class rdf:about="&nutrientService;FertilityMaintenance">
+        <rdfs:subClassOf rdf:resource="&eserv;ConservativeExploitation"/>
+        <rdfs:comment>The maintenance of soil fertility.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Fishermen -->
+
+    <owl:Class rdf:about="&nutrientService;Fishermen">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Eutrophication can reduce oxygen concentrations in water bodies, leading to smaller populations of commercially desirable fish, and impacting the livelihoods of fishermen.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Food -->
+
+    <owl:Class rdf:about="&nutrientService;Food">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>When nutrients are retained, food can be grown with less artificial fertilizer; avoided nutrients in waterways also reduce the likelihood of fisheries decline due to eutrophication.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Health -->
+
+    <owl:Class rdf:about="&nutrientService;Health">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Algal blooms, which can result from eutrophication from excess nutrients, can produce toxins that are hazardous to health, especially for children.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#NonEutrophicAquaticSystems -->
+
+    <owl:Class rdf:about="&nutrientService;NonEutrophicAquaticSystems">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientRemoval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;PublicWaterSupplyUsers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;WaterfrontPropertyOwners"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Recreationists"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Fishermen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientAssimilationUptake"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Aquatic systems that have nutrient concentrations at or near their desirable levels.  While some aquatic systems are naturally eutrophic, others become eutrophic through addition of excess nutrients.  The ecosystem service of nutrient regulation helps to prevent this undesirable condition.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#NutrientAssimilationUptake -->
+
+    <owl:Class rdf:about="&nutrientService;NutrientAssimilationUptake">
+        <rdfs:subClassOf rdf:resource="&eserv;Transformation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingEcosystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientAssimilatingEcosystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The biotic uptake of nutrients from areas where their concentration is undesirably high (i.e., from nutrients dissolved in water as nitrate or phosphate into storage in plant material or soils).  Can also include the uptake of nutrients from weathering of rocks or nitrification.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#NutrientRegulation -->
+
+    <owl:Class rdf:about="&nutrientService;NutrientRegulation">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Aesthetics"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;NonEutrophicAquaticSystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;SoilFertilityMaintenance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;EutrophicationPrevention"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Recreation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;FertileSoils"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Water"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Nutrient concentrations that are maintained within acceptable limits.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#NutrientRemoval -->
+
+    <owl:Class rdf:about="&nutrientService;NutrientRemoval">
+        <rdfs:subClassOf rdf:resource="&eserv;RenewableTransformation"/>
+        <rdfs:comment>The absorption of aquatic nitrate or phosphate by the ecosystem.  The ecosystem is generally unchanged.  However, under extremely high rates of nutrient input, the competitive balance of plant species in the ecosystem may change, leading to dominance by species capable of taking up and processing higher levels of nutrients.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#NutrientRetention -->
+
+    <owl:Class rdf:about="&nutrientService;NutrientRetention">
+        <rdfs:subClassOf rdf:resource="&eserv;Performance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasProducer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientRetainingEcosystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The retention of nutrients within the soil, so that their loss out of the system is avoided.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#PublicWaterSupplyUsers -->
+
+    <owl:Class rdf:about="&nutrientService;PublicWaterSupplyUsers">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Public water supply users benefit from clean surface waters which do not run the risk of harboring toxic algal blooms.  In the Lake Champlain Basin, 188,000 users depend on this system, which using prices for water supplied gives a value of at least $36 million/yr (LCBP 2003).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Recreation -->
+
+    <owl:Class rdf:about="&nutrientService;Recreation">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Spending leisure time outdoors, &quot;in nature.&quot;  Outdoor recreation has important physical and psychological benefits, especially for urban populations that spend much of their lives indoors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Recreationists -->
+
+    <owl:Class rdf:about="&nutrientService;Recreationists">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Recreational fishermen, swimmers, and boaters face aesthetic decline and possible health risks as waters become overly eutrophic and growth of undesirable aquatic plants increases.  In Lake Champlain, $200,000-350,000/yr is lost in recreational value from beach closings (LCBP 2003).  This can lead to recognized recreational benefits from the Conservation Reserve Program and similar programs (Feng et al. 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#SoilFertilityMaintenance -->
+
+    <owl:Class rdf:about="&nutrientService;SoilFertilityMaintenance">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+        <rdfs:comment>The maintenance of soil fertility, which is provided by a stable level of nutrients important for the growth of crops, forests, and other desirable types of vegetation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#Water -->
+
+    <owl:Class rdf:about="&nutrientService;Water">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanPolicyTarget"/>
+        <rdfs:comment>Safe drinking water is critical to maintaining healthy communities.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/nutrientService.owl#WaterfrontPropertyOwners -->
+
+    <owl:Class rdf:about="&nutrientService;WaterfrontPropertyOwners">
+        <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
+        <rdfs:comment>Homeowners near waterfront property receive aesthetic and recreational benefits from living near a clean waterway.  Eutrophic waters reduce recreational opportunities, may have undesirable views or odors, and may present health risks.  For example, lakefront housing on St. Albans Bay, VT, a eutrophic water body, is valued at 20% less than comparable lakefront housing along a non-eutrophic part of Lake Champlain (Gaddis 2007).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService#Amount -->
+
+    <owl:Class rdf:about="&soilretention;Amount"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService#IncreasedStormRainfall -->
+
+    <owl:Class rdf:about="&soilretention;IncreasedStormRainfall">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
+                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService#Precipitation -->
+
+    <owl:Class rdf:about="&soilretention;Precipitation"/>
 </rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->
+
+
+<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+
