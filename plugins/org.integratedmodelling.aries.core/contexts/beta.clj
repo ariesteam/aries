@@ -1,4 +1,4 @@
-;;Proximity model for San Pedro
+
 (ns core.contexts.beta
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defcontext model])
