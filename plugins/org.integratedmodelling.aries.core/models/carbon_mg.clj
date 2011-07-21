@@ -47,13 +47,13 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-vegetation-cover PercentVegetationCover
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover :units "%")
     [80 :>] VeryHighVegetationCover
     [60 80] HighVegetationCover
     [40 60] ModerateVegetationCover
     [20 40] LowVegetationCover
-    [0 20]  VeryLowVegetationCover))
+    [ 0 20] VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
@@ -131,8 +131,8 @@
 (defmodel population-density PopulationDensity
   (classification (count policytarget:PopulationDensity "/km^2")
     [12 :>] HighPopulationDensity
-    [7 12]  ModeratePopulationDensity
-    [:< 7]  LowPopulationDensity))
+    [7  12] ModeratePopulationDensity
+    [:<  7] LowPopulationDensity))
 
 (defmodel deforestation-risk DeforestationRiskClass
   (classification (ranking DeforestationRisk)

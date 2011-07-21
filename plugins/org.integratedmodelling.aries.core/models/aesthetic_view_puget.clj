@@ -66,9 +66,9 @@
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
     [50 100] HighNaturalBeauty
-    [25 50]  ModerateNaturalBeauty
-    [5 25]   LowNaturalBeauty
-    [0 5]    NoNaturalBeauty))
+    [25  50] ModerateNaturalBeauty
+    [ 5  25] LowNaturalBeauty
+    [ 0   5] NoNaturalBeauty))
 
 ;; source bayesian model                 
 (defmodel source AestheticViewProvision
@@ -103,9 +103,9 @@
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
     [50 100] HighBlight
-    [25 50]  ModerateBlight
-    [5 25]   LowBlight
-    [0 5]    NoBlight))
+    [25  50] ModerateBlight
+    [ 5  25] LowBlight
+    [ 0   5] NoBlight))
 
 (defmodel sink ViewSink
   "Landscape features that reduce the quality and enjoyment of scenic views"
@@ -139,17 +139,17 @@
   ;; TODO we need this to become an actual valuation with currency and date, so we can 
   ;; turn any values into these dollars
   (classification (ranking  economics:AppraisedPropertyValue)
-    [:exclusive 0 50000]  VeryLowHousingValue
-    [50000       150000]  LowHousingValue
-    [150000       300000] ModerateHousingValue
-    [300000      500000]  HighHousingValue
-    [500000     :>]       VeryHighHousingValue))
+    [:exclusive 0 50000] VeryLowHousingValue
+    [ 50000      150000] LowHousingValue
+    [150000      300000] ModerateHousingValue
+    [300000      500000] HighHousingValue
+    [500000          :>] VeryHighHousingValue))
 
 ;; Training data for King County: actual housing with views.  
 ;; Do not use until BNs can be properly trained.
 (defmodel view-use-king HomeownerViewUse
   (classification (binary-coding HomeownerViewUse)
-    [0 5]   HomeownerViewUsePresent ; Change to "IF ZERO OR GREATER" view use present when using training data, otherwise not.
+    [0   5] HomeownerViewUsePresent ; Change to "IF ZERO OR GREATER" view use present when using training data, otherwise not.
     [5 100] HomeownerViewUseAbsent)) 
 
 ;;undiscretizer for view use

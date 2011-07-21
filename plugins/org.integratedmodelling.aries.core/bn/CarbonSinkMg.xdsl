@@ -15,7 +15,7 @@
 			<state id="LowPopulationDensity" />
 			<probabilities>0.45 0.1 0.45</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCover">
+		<cpt id="PercentVegetationCoverClass">
 			<state id="VeryLowVegetationCover" />
 			<state id="LowVegetationCover" />
 			<state id="ModerateVegetationCover" />
@@ -23,7 +23,7 @@
 			<state id="VeryHighVegetationCover" />
 			<probabilities>0.1 0.1 0.1 0.1 0.6</probabilities>
 		</cpt>
-		<cpt id="DegradationStatus">
+		<cpt id="ForestDegradationStatus">
 			<state id="Degraded" />
 			<state id="NotDegraded" />
 			<probabilities>0.05 0.95</probabilities>
@@ -35,7 +35,7 @@
 			<state id="LowVegetationDensity" />
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
-			<parents>PercentVegetationCover DegradationStatus</parents>
+			<parents>PercentVegetationCoverClass ForestDegradationStatus</parents>
 			<probabilities>0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
@@ -154,8 +154,8 @@
 				<position>255 744 390 774</position>
 				<barchart active="true" width="128" height="64" />
 			</node>
-			<node id="PercentVegetationCover">
-				<name>PercentVegetationCover</name>
+			<node id="PercentVegetationCoverClass">
+				<name>PercentVegetationCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -231,13 +231,13 @@
 				<position>1036 639 1156 673</position>
 				<barchart active="true" width="273" height="72" />
 			</node>
-			<node id="DegradationStatus">
-				<name>DegradationStatus</name>
+			<node id="ForestDegradationStatus">
+				<name>ForestDegradationStatus</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>906 737 1023 771</position>
-				<barchart active="true" width="128" height="64" />
+				<position>919 737 1036 771</position>
+				<barchart active="true" width="155" height="64" />
 			</node>
 			<node id="FireFrequency">
 				<name>FireFrequency</name>

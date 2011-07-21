@@ -66,9 +66,9 @@
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
     [50 100] HighNaturalBeauty
-    [25 50]  ModerateNaturalBeauty
-    [10 25]  LowNaturalBeauty
-    [0 1]    NoNaturalBeauty))
+    [25  50] ModerateNaturalBeauty
+    [10  25] LowNaturalBeauty
+    [ 0   1] NoNaturalBeauty))
 
 ;; source bayesian model                 
 (defmodel source AestheticViewProvision
@@ -109,9 +109,9 @@
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
     [50 100] HighBlight
-    [25 50]  ModerateBlight
-    [5 25]   LowBlight
-    [0 5]    NoBlight))
+    [25  50] ModerateBlight
+    [ 5  25] LowBlight
+    [ 0   5] NoBlight))
 
 (defmodel sink ViewSink
   "Landscape features that reduce the quality and enjoyment of scenic views"
@@ -135,11 +135,11 @@
 
 (defmodel property-value HousingValue ; Value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
   (classification (ranking economics:AppraisedPropertyValue)
-    [0 10000]      VeryLowHousingValue
-    [10000 25000]  LowHousingValue
-    [25000 50000]  ModerateHousingValue
-    [50000 200000] HighHousingValue
-    [200000 :>]    VeryHighHousingValue))
+    [     0  10000] VeryLowHousingValue
+    [ 10000  25000] LowHousingValue
+    [ 25000  50000] ModerateHousingValue
+    [ 50000 200000] HighHousingValue
+    [200000     :>] VeryHighHousingValue))
 
 ;; Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
 (defmodel scenic-highways ScenicDrivePresence
@@ -280,11 +280,11 @@
     (classification HousingValue
       :context [open-development-scenario
                 (classification (ranking economics:AppraisedPropertyValue)
-                  [0 10000]      VeryLowHousingValue
-                  [10000 25000]  LowHousingValue
-                  [25000 50000]  ModerateHousingValue
-                  [50000 200000] HighHousingValue
-                  [200000 :>]    VeryHighHousingValue)]
+                  [     0  10000] VeryLowHousingValue
+                  [ 10000  25000] LowHousingValue
+                  [ 25000  50000] ModerateHousingValue
+                  [ 50000 200000] HighHousingValue
+                  [200000     :>] VeryHighHousingValue)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)
                   (:housing-value %)))))

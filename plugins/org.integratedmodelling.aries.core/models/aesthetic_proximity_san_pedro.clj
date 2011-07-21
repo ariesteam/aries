@@ -114,10 +114,10 @@
 ;; this value in each pixel
 (defmodel area OpenSpaceAreaClass
   (classification (measurement OpenSpaceArea "ha")
-    [40 :>] VeryLargeArea
-    [10 40] LargeArea
-    [ 2 10] SmallArea
-    [:<  2] VerySmallArea))
+    [40 :>]  VeryLargeArea
+    [10 40]  LargeArea
+    [ 2 10]  SmallArea
+    [:<  2]  VerySmallArea))
 
 (defmodel theoretical-open-space TheoreticalProximitySource
   (probabilistic-ranking TheoreticalProximitySource
@@ -160,19 +160,18 @@
 ;; kept as a ranking for now.
 (defmodel property-value HousingValue
   (classification (ranking economics:AppraisedPropertyValue)
-    [0       10000] VeryLowHousingValue
-    [10000   25000] LowHousingValue
-    [25000   50000] ModerateHousingValue
-    [50000  200000] HighHousingValue
-    [200000     :>] VeryHighHousingValue))
+    [     0   10000] VeryLowHousingValue
+    [ 10000   25000] LowHousingValue
+    [ 25000   50000] ModerateHousingValue
+    [ 50000  200000] HighHousingValue
+    [200000      :>] VeryHighHousingValue))
 
 ;; Urban proximity proxied by year 2000 population density for Arizona
 (defmodel urban-proximity UrbanProximity
   (classification (count policytarget:PopulationDensity "/km^2")
-    [309 :>] Urban
-    [77 309] Suburban
-    [:<  77] Rural))
-
+    [309  :>] Urban
+    [ 77 309] Suburban
+    [:<   77] Rural))
 (defmodel proximity-use-undiscretizer HomeownerProximityUse
   (probabilistic-ranking HomeownerProximityUse
     [0 0.05] HomeownerProximityUseAbsent

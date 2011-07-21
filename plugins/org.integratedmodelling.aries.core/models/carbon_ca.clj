@@ -50,12 +50,12 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-vegetation-cover PercentVegetationCover
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover :units "%")
     [80 100 :inclusive] VeryHighVegetationCover
-    [60 80]             HighVegetationCover
-    [40 60]             ModerateVegetationCover
-    [20 40]             LowVegetationCover
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
     [:exclusive 0 20]   VeryLowVegetationCover
     [0]                 NoVegetationCover))
 

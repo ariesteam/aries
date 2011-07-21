@@ -87,8 +87,8 @@
     [50 80]             HighImperviousCover
     [20 50]             ModeratelyHighImperviousCover
     [10 20]             ModeratelyLowImperviousCover
-    [5 10]              LowImperviousCover
-    [0 5]               VeryLowImperviousCover))
+    [ 5 10]             LowImperviousCover
+    [ 0  5]             VeryLowImperviousCover))
 
 ;; these classes do not show up in the classification statement, but are present in the data layer
 ;; Cuerpo de agua, Manglar, humedad
@@ -106,10 +106,10 @@
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover)
     [80 100 :inclusive] VeryHighVegetationCover
-    [60 80]             HighVegetationCover
-    [40 60]             ModerateVegetationCover
-    [20 40]             LowVegetationCover
-    [0 20]              VeryLowVegetationCover))
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
+    [ 0  20]            VeryLowVegetationCover))
 
 ;; see e-mail from Octavio regarding the fact that there are no major dams to consider in the La Antigua watershed
 ;;(defmodel dam-presence Dams
@@ -123,9 +123,9 @@
   (probabilistic-measurement EvapotranspirationClass "mm" 
     [180 260] VeryHighEvapotranspiration
     [100 180] HighEvapotranspiration
-    [50 100]  ModerateEvapotranspiration
-    [0 50]    LowEvapotranspiration
-    [0 0]     VeryLowEvapotranspiration))
+    [ 50 100] ModerateEvapotranspiration
+    [  0  50] LowEvapotranspiration
+    [  0   0] VeryLowEvapotranspiration))
 
 (defmodel et-sink EvapotranspirationClass
   (bayesian EvapotranspirationClass
@@ -138,9 +138,9 @@
   (probabilistic-measurement SoilInfiltrationClass "mm" 
     [180 260] VeryHighInfiltration
     [100 180] HighInfiltration
-    [50 100]  ModerateInfiltration
-    [0 50]    LowInfiltration
-    [0 0]     VeryLowInfiltration))
+    [ 50 100] ModerateInfiltration
+    [  0  50] LowInfiltration
+    [  0   0] VeryLowInfiltration))
 
 (defmodel soil-sink SoilInfiltrationClass
   (bayesian SoilInfiltrationClass
@@ -247,9 +247,9 @@
 ;;Agricultural surface water use. Step 2: Consider proximity to surface water.
 ;;(defmodel surface-water-proximity ProximityToSurfaceWaterClass
 ;;  (classification (measurement ProximityToSurfaceWater "m")
-;;    [:< 250]  HighSurfaceWaterProximity
+;;    [:<  250] HighSurfaceWaterProximity
 ;;    [250 500] ModerateSurfaceWaterProximity
-;;    [500 :>]  LowSurfaceWaterProximity))
+;;    [500  :>] LowSurfaceWaterProximity))
 
 ;; Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
 ;; Need better irrigation water estimates OR should we only rely on the water rights data???
@@ -257,7 +257,7 @@
 ;; be changed based on workshop inputs
 ;; (defmodel irrigation-water-use IrrigationWaterUseClass
 ;;  (measurement IrrigationWaterUse "mm"  ;;This is an annual value
-;;     :context ((categorization veracruz-lulc:VeracruzLULCCategory))
+;;     :context [(categorization veracruz-lulc:VeracruzLULCCategory)]
 ;;     :state   #(if (= (:veracruz-l-u-l-c-category %) "riego")
 ;;                  2000
 ;;                  0)))
@@ -265,19 +265,19 @@
 ;; Classification of irrigationWaterUse into 6 classes.
 ;; (defmodel irrigation-water-use-discretized IrrigationWaterUseClass
 ;;  (classification irrigation-water-use
-;;    [2400 :>]   VeryHighIrrigationUse
+;;    [2400   :>] VeryHighIrrigationUse
 ;;    [2150 2400] HighIrrigationUse
 ;;    [1850 2150] ModerateIrrigationUse
 ;;    [1600 1850] LowIrrigationUse
-;;    [:< 1600]   VeryLowIrrigationUse
+;;    [:<   1600] VeryLowIrrigationUse
 ;;    0           NoIrrigationUse))
 
 ;;Undiscretization of agricultural surface water use
 ;;(defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
 ;;  (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
-;;    [2000 3000]    HighAgriculturalSurfaceWaterUse
-;;    [1000 2000]    ModerateAgriculturalSurfaceWaterUse
-;;    [0 1000]       LowAgriculturalSurfaceWaterUse)) 
+;;    [2000 3000] HighAgriculturalSurfaceWaterUse
+;;    [1000 2000] ModerateAgriculturalSurfaceWaterUse
+;;    [   0 1000] LowAgriculturalSurfaceWaterUse)) 
 
 ;;(defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUseClass
 ;;  (bayesian AgriculturalSurfaceWaterUseClass  

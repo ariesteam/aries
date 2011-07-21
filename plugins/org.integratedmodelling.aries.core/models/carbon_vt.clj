@@ -69,11 +69,11 @@
 
 (defmodel mean-annual-precip MeanAnnualPrecipitation
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [2500 :>]   VeryHighMeanAnnualPrecipitation
+    [2500   :>] VeryHighMeanAnnualPrecipitation
     [1500 2500] HighMeanAnnualPrecipitation
     [1000 1500] ModerateMeanAnnualPrecipitation
-    [700 1000]  LowMeanAnnualPrecipitation
-    [:< 700]    VeryLowMeanAnnualPrecipitation))
+    [ 700 1000] LowMeanAnnualPrecipitation
+    [:<    700] VeryLowMeanAnnualPrecipitation))
 
 (defmodel soil-CN-ratio SoilCNRatio
   (classification (ranking habitat:SoilCNRatio)

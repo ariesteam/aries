@@ -7,7 +7,7 @@
 			<state id="DevelopedCultivatedVegetation" />
 			<probabilities>0.03 0.17 0.8</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCover">
+		<cpt id="PercentVegetationCoverClass">
 			<state id="VeryHighVegetationCover" />
 			<state id="HighVegetationCover" />
 			<state id="ModerateVegetationCover" />
@@ -21,7 +21,7 @@
 			<state id="ModerateEvaoptranspiration" />
 			<state id="LowEvaoptranspiration" />
 			<state id="VeryLowEvaoptranspiration" />
-			<parents>PercentVegetationCover VegetationTypeSoCalFlood</parents>
+			<parents>PercentVegetationCoverClass VegetationTypeSoCalFlood</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0 0.2 0.2 0.3 0.3 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0 0.05 0.15 0.4 0.4 0.8 0.2 0 0 0 0.7 0.2 0.1 0 0 0 0 0.1 0.4 0.5 0.75 0.25 0 0 0 0.6 0.2 0.1 0.1 0 0 0 0.05 0.3 0.65 0.7 0.3 0 0 0 0.4 0.4 0.1 0.1 0 0 0 0 0.2 0.8</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
@@ -39,7 +39,7 @@
 			<state id="SoilGroupD" />
 			<probabilities>0.075 0.225 0.27 0.43</probabilities>
 		</cpt>
-		<cpt id="PercentImperviousCover">
+		<cpt id="PercentImperviousCoverClass">
 			<state id="VeryHighImperviousCover" />
 			<state id="HighImperviousCover" />
 			<state id="ModeratelyHighImperviousCover" />
@@ -54,7 +54,7 @@
 			<state id="ModerateSoilInfiltration" />
 			<state id="LowSoilInfiltration" />
 			<state id="VeryLowSoilInfiltration" />
-			<parents>SlopeClass HydrologicSoilGroup PercentImperviousCover</parents>
+			<parents>SlopeClass HydrologicSoilGroup PercentImperviousCoverClass</parents>
 			<probabilities>0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0 0.25 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0.025 0.175 0.8 0 0 0.05 0.2 0.75 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0 0.25 0.75 0 0 0 0 1 0 0 0.05 0.15 0.8 0 0 0.025 0.225 0.75 0 0 0.05 0.25 0.7 0 0 0.1 0.25 0.65 0 0 0.15 0.2 0.65 0 0 0 0 1 0 0 0 0.15 0.85 0 0 0.05 0.15 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0.1 0.25 0.65 0 0 0 0 1 0 0 0 0.1 0.9 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.1 0.2 0.7 0 0 0 0 1 0 0 0 0.05 0.95 0 0 0 0.15 0.85 0 0 0 0.2 0.8 0 0 0.05 0.2 0.75 0 0 0.05 0.25 0.7 0 0.05 0.125 0.125 0.7 0.05 0.125 0.225 0.25 0.35 0.65 0.15 0.15 0.05 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0.9 0.075 0.025 0 0 0 0.025 0.125 0.15 0.7 0.025 0.125 0.25 0.25 0.35 0.6 0.2 0.15 0.05 0 0.75 0.2 0.05 0 0 0.8 0.15 0.05 0 0 0.85 0.1 0.05 0 0 0 0 0.1 0.3 0.6 0 0.05 0.375 0.375 0.2 0 0.15 0.325 0.325 0.2 0 0.25 0.45 0.3 0 0.15 0.425 0.425 0 0 0.35 0.4 0.25 0 0 0 0 0 0.25 0.75 0 0 0.25 0.4 0.35 0 0.05 0.3 0.4 0.25 0 0.15 0.425 0.425 0 0.05 0.425 0.425 0.1 0 0.15 0.325 0.325 0.2 0 0.05 0.05 0.1 0.1 0.7 0.1 0.1 0.2 0.25 0.35 0.7 0.15 0.1 0.05 0 0.85 0.1 0.05 0 0 0.9 0.1 0 0 0 0.95 0.05 0 0 0 0.025 0.025 0.125 0.125 0.7 0.075 0.075 0.25 0.25 0.35 0.65 0.175 0.125 0.05 0 0.8 0.15 0.05 0 0 0.85 0.15 0 0 0 0.9 0.1 0 0 0 0 0 0.15 0.25 0.6 0 0.1 0.35 0.35 0.2 0 0.2 0.3 0.3 0.2 0 0.3 0.4 0.3 0 0.2 0.4 0.4 0 0 0.4 0.4 0.2 0 0 0 0 0.05 0.2 0.75 0 0 0.3 0.4 0.3 0 0.1 0.25 0.4 0.25 0 0.2 0.4 0.4 0 0.1 0.4 0.4 0.1 0 0.2 0.3 0.3 0.2 0</probabilities>
 			<property id="SoilInfiltration">SoilInfiltration=1-((ObservedSlope/MaxSlope)/3)-((ObservedHSG/HSGD)/3)-((ObservedImperviousCover/100)/3)</property>
 		</cpt>
@@ -98,8 +98,8 @@
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="282" height="108" />
 			</node>
-			<node id="PercentVegetationCover">
-				<name>PercentVegetationCover</name>
+			<node id="PercentVegetationCoverClass">
+				<name>PercentVegetationCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -134,8 +134,8 @@
 				<comment>Data sources: SSURGO (Orange County), STATSGO (Los Angeles)\n\nNo SSURGO data for South Los Angeles (northern part of study area) is currently available.\n\nSSURGO dataset is more detailed.\n\n\n\n</comment>
 				<barchart active="true" width="128" height="90" />
 			</node>
-			<node id="PercentImperviousCover">
-				<name>PercentImperviousCover</name>
+			<node id="PercentImperviousCoverClass">
+				<name>PercentImperviousCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

@@ -71,13 +71,13 @@
     1                                EarlySuccession
     #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
 
-(defmodel percent-vegetation-cover PercentVegetationCover
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover :units "%")
     [80 100 :inclusive] VeryHighVegetationCover
-    [60 80]             HighVegetationCover
-    [40 60]             ModerateVegetationCover
-    [20 40]             LowVegetationCover
-    [1 20]              VeryLowVegetationCover))
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
+    [ 1  20]            VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
@@ -96,10 +96,10 @@
 
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
   (classification (ranking habitat:HardwoodSoftwoodRatio)
-    [1 2]             VeryHighHardness
-    [2 4]             HighHardness
-    [4 6]             ModerateHardness
-    [6 8]             LowHardness
+    [1  2]            VeryHighHardness
+    [2  4]            HighHardness
+    [4  6]            ModerateHardness
+    [6  8]            LowHardness
     [8 10 :inclusive] VeryLowHardness))
 
 ;; Ceiling based off highest local values from MODIS NPP data.
