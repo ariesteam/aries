@@ -49,12 +49,12 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils. Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils. Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
 (defmodel veg-storage VegetationCarbonStorage
   (classification (measurement habitat:VegetationCarbonStorage "t/ha")
@@ -101,7 +101,7 @@
     [10 20] LowCNRatio
     [:< 10] VeryLowCNRatio))
 
-;;Not used in the model but masks out carbon over open water
+;; Not used in the model but masks out carbon over open water
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
     [:< 1.15]    Level
@@ -109,7 +109,7 @@
     [4.57 16.70] RollingToHilly
     [16.70 :>]   SteeplyDissectedToMountainous))
 
-;;Ceiling based off highest local values from MODIS NPP data.
+;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
     [5 9]      VeryHighSequestration
@@ -132,14 +132,14 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils. Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils. Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
-;;Use Bayesian priors for insect & blowdown frequencies
+;; Use Bayesian priors for insect & blowdown frequencies
 
 (defmodel fire-frequency FireFrequency
   (classification (ranking habitat:FireFrequency) 

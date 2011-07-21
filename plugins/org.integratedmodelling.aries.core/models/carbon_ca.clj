@@ -43,12 +43,12 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils. Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils. Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
@@ -59,8 +59,8 @@
     [:exclusive 0 20]   VeryLowVegetationCover
     [0]                 NoVegetationCover))
 
-;;This does not account for barren, water, agriculture, or urban cover
-;;(though these are accounted for in NLCD)
+;; This does not account for barren, water, agriculture, or urban cover
+;; (though these are accounted for in NLCD)
 (defmodel vegetation-type southernCalifornia:VegetationTypeSoCalCarbon
   (classification (numeric-coding southernCalifornia:VegTypeSoCal)
     1      southernCalifornia:HardwoodForestVegetation
@@ -68,7 +68,7 @@
     0      southernCalifornia:ShrubVegetation
     3      southernCalifornia:HerbaceousVegetation))
 
-;;"Reclass of the NLCD land use for the purposes of carbon modeling"
+;; "Reclass of the NLCD land use for the purposes of carbon modeling"
 (defmodel land-use southernCalifornia:LandCover
   (classification (numeric-coding nlcd:NLCDNumeric)
     11                southernCalifornia:OpenWater
@@ -84,7 +84,7 @@
   (classification  (measurement geophysics:Altitude "m")
     [:exclusive 0 :>] OnLand))
 
-;;Ceiling based off highest local values from MODIS NPP data.
+;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
     [6 13]             VeryHighSequestration
@@ -94,8 +94,8 @@
     [:exclusive 0 1.5] VeryLowSequestration
     [0]                NoSequestration))
 
-;;See above statement for AET: Add back in if you use it for wider
-;;extents of Southern California
+;; See above statement for AET: Add back in if you use it for wider
+;; extents of Southern California
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
     :import   "aries.core::CarbonSourceCa.xdsl"
@@ -108,12 +108,12 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils.  .  Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils.  .  Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all
 ;; other ecosystem types
@@ -136,7 +136,7 @@
     2 ModerateFireThreat
     1 LowFireThreat))
 
-;;Problems with coarse-grain pixels; removed this from the bayesian
+;; Problems with coarse-grain pixels; removed this from the bayesian
 ;; statement and set the prior to its actual value from the data
 ;; (LowActualEvapotranspiration) - a good temporary solution for WCH
 ;; but change if you ran it again for Southern California.
@@ -204,7 +204,7 @@
     [0.01 10] VeryLowRelease
     [0 0.01]  NoRelease))
 
-;;Source and sink values are still calculated over the ocean, though
+;; Source and sink values are still calculated over the ocean, though
 ;; they're set to almost-zero, so it's a temporary fix.  For some
 ;; reason slope has value here in the ocean and using elevation as a
 ;; mask made the whole model disappear.
@@ -220,14 +220,14 @@
 ;;; Carbon model accuracy check
 ;;;-------------------------------------------------------------------
 
-;;Decomposition Factor (DF) has been noted to be a good predictor of
-;;NPP for chaparral ecosystems (Li, et al. 2006), which is highly
-;;correlated with carbon sequestration rates (sources).  Since water
-;;is a primary limiting factor for the study site's ecoregion this
-;;sub-modeled deterministic node serves to assess model accuracy
-;;(Expressed as: DF = P/PET) Values from this check should be compared
-;;to soil and vegetation carbon sequestration, or possibly used as a
-;;higher resolution proxy.
+;; Decomposition Factor (DF) has been noted to be a good predictor of
+;; NPP for chaparral ecosystems (Li, et al. 2006), which is highly
+;; correlated with carbon sequestration rates (sources).  Since water
+;; is a primary limiting factor for the study site's ecoregion this
+;; sub-modeled deterministic node serves to assess model accuracy
+;; (Expressed as: DF = P/PET) Values from this check should be compared
+;; to soil and vegetation carbon sequestration, or possibly used as a
+;; higher resolution proxy.
 
 (defmodel decomposition-factor habitat:DecompositionFactor
   (ranking habitat:DecompositionFactor

@@ -41,12 +41,12 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils. Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils. Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
 (defmodel percent-vegetation-cover PercentVegetationCover
   (classification (ranking habitat:PercentVegetationCover :units "%")
@@ -75,11 +75,18 @@
     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWaterAgriculture))
 
-;;Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their
+;; Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their
 ;; discretization for rangeland carbon modeling.  For the San Pedro,
 ;; the entire valley floor would be in the 230-460 range and the
 ;; surrounding mountains as >460.  For now, keep the below
 ;; discretization, though strongly consider using it.
+
+;; Annual precipitation used as the main climatic variable in the
+;; model, as opposed to the difference between mean summer high and
+;; winter low temperatures. This is probably a better variable to
+;; include in carbon models in wetter regions, while annual precip
+;; is far more important in water-limited regions.
+
 (defmodel annual-precipitation MeanAnnualPrecipitation
   (classification (measurement habitat:AnnualPrecipitation "mm")
     [500 :>]  HighMeanAnnualPrecipitation
@@ -107,28 +114,16 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-;;NB: ARIES defines sources of carbon areas that are sequester carbon
-;;in vegetation and soils.  .  Sinks are emissions from areas at risk
-;;of deforestation or fire, which can release carbon into the
-;;atmosphere.  The difference between carbon sinks and sources is the
-;;amount remaining to mitigate direct anthropogenic emissions (aside
-;;from land conversion and fire).
-
-;;Have removed this from the model and replaced it with annual precip.
-;; This is probably a better variable to include in carbon models in
-;; wetter regions, while annual precip is far more important in
-;; water-limited regions.
-(defmodel summer-high-winter-low SummerHighWinterLow
-  (classification (ranking habitat:SummerHighWinterLow)
-    [40 :>] VeryHighSOL
-    [35 40] HighSOL
-    [30 35] ModerateSOL
-    [24 30] LowSOL
-    [:< 24] VeryLowSOL))
+;; ARIES defines sources of carbon areas that are sequester carbon
+;; in vegetation and soils. Sinks are emissions from areas at risk
+;; of deforestation or fire, which can release carbon into the
+;; atmosphere.  The difference between carbon sinks and sources is the
+;; amount remaining to mitigate direct anthropogenic emissions (aside
+;; from land conversion and fire).
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all
-;;other ecosystem types This should work OK with both global & SSURGO
-;;data, but check to make sure.
+;; other ecosystem types This should work OK with both global & SSURGO
+;; data, but check to make sure.
 (defmodel soil-ph Soilph
   (classification (ranking habitat:SoilPhDeep)
     [7.3 :>]           HighPh
@@ -142,7 +137,7 @@
     [4.57 16.70] RollingToHilly
     [16.70 :>]   SteeplyDissectedToMountainous))
 
-;;Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC
+;; Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC
 ;; data (i.e., CONABIO) denote wetlands at least for Sonora.
 (defmodel oxygen SoilOxygenConditions 
   (classification (numeric-coding nlcd:NLCDNumeric)
@@ -152,9 +147,9 @@
     15         AnoxicSoils
     :otherwise OxicSoils))
 
-;;Per Schussman et al. (2006), the middle of each of these ranges is
-;;around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs
-;;for low.
+;; Per Schussman et al. (2006), the middle of each of these ranges is
+;; around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs
+;; for low.
 (defmodel fire-frequency FireFrequency
   (classification (numeric-coding habitat:FireReturnInterval) 
     1      HighFireFrequency
@@ -233,11 +228,11 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-;:GHG emissions map for the U.S.  For the rest of the world, use
-;;global population density layer multiplied by per capita emissions
-;;for that country from EIA.  2006 data used as this corresponds to
-;;current population density layer: 4.05 tonnes CO2/capita for Mexico
-;;in 2006, which is equivalent to 1.105 tonnes C/capita
+;: GHG emissions map for the U.S.  For the rest of the world, use
+;; global population density layer multiplied by per capita emissions
+;; for that country from EIA.  2006 data used as this corresponds to
+;; current population density layer: 4.05 tonnes CO2/capita for Mexico
+;; in 2006, which is equivalent to 1.105 tonnes C/capita
 
 (defmodel use-simple GreenhouseGasEmissions
   [(categorization geofeatures:Country)]
