@@ -107,10 +107,10 @@
 
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [:< 1.15]    Level
-    [1.15 4.57]  GentlyUndulating
-    [4.57 16.70] RollingToHilly
-    [16.70 :>]   SteeplyDissectedToMountainous))
+    [:<     1.15] Level
+    [ 1.15  4.57] GentlyUndulating
+    [ 4.57 16.70] RollingToHilly
+    [16.70    :>] SteeplyDissectedToMountainous))
 
 ;; Values of "1" correspond to high pH (>7.3), "2" to low pH (<5.5), "3-4" to intermediate pH (5.5-7.3)
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types

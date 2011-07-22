@@ -69,9 +69,9 @@
 
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00B0")
-    [0 1.15]              Level
-    [1.15 4.57]           GentlyUndulating
-    [4.57 16.70]          RollingToHilly
+    [    0  1.15]         Level
+    [ 1.15  4.57]         GentlyUndulating
+    [ 4.57 16.70]         RollingToHilly
     [16.70 90 :inclusive] SteeplyDissectedToMountainous))
 
 (defmodel soil-group HydrologicSoilsGroup

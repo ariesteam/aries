@@ -94,10 +94,10 @@
 ;; Not used in the model but masks out carbon over open water
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [:< 1.15]    Level
-    [1.15 4.57]  GentlyUndulating
-    [4.57 16.70] RollingToHilly
-    [16.70 :>]   SteeplyDissectedToMountainous))
+    [:<     1.15] Level
+    [ 1.15  4.57] GentlyUndulating
+    [ 4.57 16.70] RollingToHilly
+    [16.70    :>] SteeplyDissectedToMountainous))
 
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
