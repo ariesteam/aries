@@ -176,22 +176,22 @@
 
 (defmodel stream-gradient StreamGradientClass 
   (classification (measurement habitat:StreamGradient "\u00B0")
-	[:<	  1.15]	LowStreamGradient
+	[2.86   :>]	HighStreamGradient
 	[1.15 2.86]	ModerateStreamGradient
-	[2.86   :>]	HighStreamGradient))
+	[:<	  1.15]	LowStreamGradient))
 
 (defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
   (classification (numeric-coding habitat:PercentFloodplainVegetationCover)
-	[ 0 20]				VeryLowFloodplainVegetationCover
-	[20 40]				LowFloodplainVegetationCover
-	[40 60]				ModerateFloodplainVegetationCover
+	[80 100 :inclusive] VeryHighFloodplainVegetationCover
 	[60 80]				HighFloodplainVegetationCover
-	[80 100 :inclusive] VeryHighFloodplainVegetationCover))
+	[40 60]				ModerateFloodplainVegetationCover
+    [20 40]				LowFloodplainVegetationCover
+	[ 0 20]				VeryLowFloodplainVegetationCover))
 
 (defmodel floodplains Floodplains
   (classification (binary-coding geofeatures:Floodplain)
-    0 NotInFloodplain
-    1 InFloodplain))
+    1 InFloodplain
+    0 NotInFloodplain))
 
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
@@ -245,10 +245,11 @@
                 0))) 
 
 ;; Models farmland in regions with erodible soils via basic spatial overlap.
-;; FV FIXME I don't see any SedimentSourceValueAnnual in the context???
+;; FV FIXME I don't see any SedimentSourceValueAnnual in the context?
+;; Gary, is the context now correct to use the annual sediment source value properly?
 (defmodel farmers-erosion-use-dr ErosionProneFarmers
   (ranking ErosionProneFarmers
-    :context [(binary-coding FarmlandCode)]
+    :context [(binary-coding FarmlandCode) source-dr]
     :state   #(if (= (:farmland-code %) 1.0)
                 (cond (= (:sediment-source-value-annual %) (tl/conc 'sedimentretentionEcology:ModerateAnnualSedimentSource))
                       1
