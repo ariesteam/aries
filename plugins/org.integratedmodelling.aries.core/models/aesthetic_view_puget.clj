@@ -128,7 +128,7 @@
     [:exclusive 0 :>] OnLand))
 
 (defmodel housing PresenceOfHousing
-  (classification (ranking PresenceOfHousing)
+  (classification (ranking PresenceOfHousingRank)
     [1 :>]     HousingPresent  
     :otherwise HousingAbsent)
   (classification (numeric-coding nlcd:NLCDNumeric) ; Using NLCD where parcel data are unavailable.
