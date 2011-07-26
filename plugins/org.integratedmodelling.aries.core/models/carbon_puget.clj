@@ -36,7 +36,7 @@
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
-  (PercentVegetationCover :editable "true")
+  (PercentVegetationCoverClass :editable "true")
   (FireFrequency :editable "true")
   (GreenhouseGasEmissions :editable "true")
   (thinklab-core:BooleanRanking
@@ -350,8 +350,8 @@
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio,low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentVegetationCover
-    (classification PercentVegetationCover
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
       :context [open-development-scenario percent-vegetation-cover]
       :state   #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen)))
@@ -404,8 +404,8 @@ greenhouse gas emissions."
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio,low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentVegetationCover
-    (classification PercentVegetationCover
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
       :context [constrained-development-scenario percent-vegetation-cover]
       :state   #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained)))

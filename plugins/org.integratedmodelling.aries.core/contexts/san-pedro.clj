@@ -90,7 +90,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_1) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_1)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_1))
@@ -132,7 +132,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_2) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_2) 
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_2))
@@ -174,7 +174,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_3) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_3)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_3))
@@ -216,7 +216,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_4) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_4)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_4))
@@ -258,7 +258,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_5) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_5)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_5))
@@ -286,7 +286,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentVegetationCover 'carbonService:VeryLowVegetationCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
   (transform 'sanPedro:CarbonVegetationType 'sanPedro:Grassland
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))
