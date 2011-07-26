@@ -323,7 +323,7 @@ fire frequency, increased greenhouse gas emissions."
                   [0 20]              VeryLowVegetationCover)]
       :state    #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                    (conc 'carbonService:VeryLowVegetationCover)
-                   (:percent-vegetation-cover %))))
+                   (:percent-vegetation-cover-class %))))
   (model FireFrequency
     (classification FireFrequency
       :context [open-development-scenario
@@ -350,7 +350,7 @@ fire frequency, increased greenhouse gas emissions."
       :context [constrained-development-scenario percent-vegetation-cover]
       :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowVegetationCover)
-                  (:percent-vegetation-cover %))))
+                  (:percent-vegetation-cover-class %))))
   (model FireFrequency
     (classification FireFrequency
       :context [constrained-development-scenario fire-frequency]

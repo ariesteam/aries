@@ -363,7 +363,7 @@ greenhouse gas emissions."
                       (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
                       (conc 'carbonService:ModerateVegetationCover)
                     
-                      :otherwise (:percent-vegetation-cover %))))
+                      :otherwise (:percent-vegetation-cover-class %))))
   (model HardwoodSoftwoodRatio
     (classification HardwoodSoftwoodRatio
       :context [open-development-scenario hardwood-softwood-ratio]
@@ -417,7 +417,7 @@ greenhouse gas emissions."
                       (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
                       (conc 'carbonService:ModerateVegetationCover)
                     
-                      :otherwise (:percent-vegetation-cover %))))
+                      :otherwise (:percent-vegetation-cover-class %))))
   (model HardwoodSoftwoodRatio
     (classification HardwoodSoftwoodRatio
       :context [constrained-development-scenario hardwood-softwood-ratio]

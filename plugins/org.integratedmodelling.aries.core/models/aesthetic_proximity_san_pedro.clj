@@ -97,7 +97,7 @@
 
 (defmodel fire-threat FireThreat
   (classification (numeric-coding habitat:FireReturnInterval) 
-    #{1 2 3} HighFireThreat ; includes high, moderate, variable fire frequency
+    #{1 2 3} HighFireThreat ; Includes high, moderate, variable fire frequency
     #{4 5 6} LowFireThreat))
 
 ;; This uses the WDPA data - need to double check that the numbers
@@ -160,11 +160,11 @@
 ;; kept as a ranking for now.
 (defmodel property-value HousingValue
   (classification (ranking economics:AppraisedPropertyValue)
-    [     0   10000] VeryLowHousingValue
-    [ 10000   25000] LowHousingValue
-    [ 25000   50000] ModerateHousingValue
-    [ 50000  200000] HighHousingValue
-    [200000      :>] VeryHighHousingValue))
+    [200000     :>] VeryHighHousingValue
+    [ 50000 200000] HighHousingValue
+    [ 25000  50000] ModerateHousingValue
+    [ 10000  25000] LowHousingValue
+    [     0  10000] VeryLowHousingValue))
 
 ;; Urban proximity proxied by year 2000 population density for Arizona
 (defmodel urban-proximity UrbanProximity
@@ -272,55 +272,91 @@
    fire threat to low, high housing value present."
   (model sanPedro:ForestAndWoodland
     (classification sanPedro:ForestAndWoodland
-      :context [open-development-scenario forest]
+      :context [open-development-scenario
+                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
+                  #{22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 41 45 46 63 64 91 92 95 101 102 103} sanPedro:ForestOrWoodlandPresent               
+                  :otherwise                                                                                sanPedro:ForestOrWoodlandAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:ForestOrWoodlandAbsent)
                   (:forest-and-woodland %)))) ; Not sure if this is correct or if it should just be "forest"
   (model Farmland
     (classification Farmland
-      :context [open-development-scenario farmland]
+      :context [open-development-scenario
+                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+                  114        FarmlandPresent                     
+                  :otherwise FarmlandAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:FarmlandAbsent) 
                   (:farmland %))))
   (model Grassland
     (classification Grassland
-      :context [open-development-scenario grassland]
+      :context [open-development-scenario
+                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+                  #{65 68 73 74 75 76 90 93 106} GrasslandPresent                     
+                  :otherwise                     GrasslandAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:GrasslandAbsent)
                   (:grassland %))))
   (model DesertScrub
     (classification DesertScrub
-      :context [open-development-scenario desert-scrub]
+      :context [open-development-scenario
+                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+                  #{40 44 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 66 67 82 94 96 97 105 108} DesertScrubPresent
+                  :otherwise                                                                         DesertScrubAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:DesertScrubAbsent)
                   (:desert-scrub %))))
   (model Park
     (classification Park
-      :context [open-development-scenario park]
+      :context [open-development-scenario
+                (classification (numeric-coding habitat:LandOwnership)
+                  #{8 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115
+                    116 117 118 119 120 121 122 123 124 125 126 127} ParkPresent
+                    :otherwise                                       ParkAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:ParkAbsent) 
                   (:park %))))
   (model sanPedro:RiparianAndWetland
     (classification sanPedro:RiparianAndWetland
-      :context [open-development-scenario riparian-wetland]
+      :context [open-development-scenario
+                (classification riparian-wetland-code ; No idea if this is done correctly.
+                  3 sanPedro:HighQualityRiparianOrWetlandPresent
+                  2 sanPedro:ModerateQualityRiparianOrWetlandPresent
+                  1 sanPedro:LowQualityRiparianOrWetlandPresent
+                  0 sanPedro:RiparianOrWetlandAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:RiparianOrWetlandAbsent)
                   (:riparian-and-wetland %))))
   (model FireThreat
     (classification FireThreat
-      :context [open-development-scenario fire-threat]
+      :context [open-development-scenario
+                (classification (numeric-coding habitat:FireReturnInterval) 
+                  #{1 2 3} HighFireThreat ; Includes high, moderate, variable fire frequency
+                  #{4 5 6} LowFireThreat)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:LowFireThreat) 
                   (:fire-threat %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [open-development-scenario housing]
+      :context [open-development-scenario
+                (classification (ranking economics:AppraisedPropertyValue)
+                  [1 :>]     HousingPresent
+                  :otherwise HousingAbsent)
+                (classification (numeric-coding nlcd:NLCDNumeric) ; Using NLCD where parcel data are unavailable.
+                  [22 23 24] HousingPresent  ; Assumes (incorrectly) that all developed land is housing.
+                  :otherwise HousingAbsent)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)           
                   (:presence-of-housing %))))
   (model HousingValue
     (classification HousingValue
-      :context [open-development-scenario property-value]
+      :context [open-development-scenario
+                (classification (ranking economics:AppraisedPropertyValue)
+                  [200000     :>] VeryHighHousingValue
+                  [ 50000 200000] HighHousingValue
+                  [ 25000  50000] ModerateHousingValue
+                  [ 10000  25000] LowHousingValue
+                  [     0  10000] VeryLowHousingValue)]
       :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)           
                   (:housing-value %)))))
