@@ -231,13 +231,13 @@
 
 (defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
-    #{10 11 12 13 19 22 25}              sanPedro:DevelopedConstrained
-    #{1 2 4 5 6 7 8 9 14 16 23 26 27 28} sanPedro:NotDevelopedConstrained))
+    #{10 11 12 13 19 22 25}                sanPedro:DevelopedConstrained
+    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28} sanPedro:NotDevelopedConstrained))
 
 (defmodel open-development-scenario sanPedro:OpenDevelopment
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
-    #{10 11 12 13 19 22 25}                 sanPedro:DevelopedOpen
-    #{1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
+    #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
+    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
 
 (defscenario open-development-viewshed
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
