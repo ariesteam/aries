@@ -4646,9 +4646,8 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:NumericCoding> -->
+</measurement:NumericCoding> 
 
-<!--This version has "0" values outside the modeled sceanario area, enabling it to be run for the whole San Pedro context. -->
 <measurement:NumericCoding id="clulclots2_project">
   <observation:hasObservable>
     <sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained/>
@@ -4669,6 +4668,32 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasLonLowerBound>-111.013</geospace:hasLonLowerBound>
       <geospace:hasLatUpperBound>33.282</geospace:hasLatUpperBound>
       <geospace:hasLonUpperBound>-109.794</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
+
+<!--This version has "0" values outside the modeled sceanario area, enabling it to be run for the whole San Pedro context. -->
+<measurement:NumericCoding id="clulclots3_project">
+  <observation:hasObservable>
+    <sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained />
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Steinitz et al. (2003)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>sanPedro:clulclots3_project</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>2066</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>4003</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>30.92</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-111.013</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>33.283</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-109.793</geospace:hasLonUpperBound>
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
@@ -4698,9 +4723,8 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:NumericCoding> -->
+</measurement:NumericCoding> 
 
-<!--This version has "0" values outside the modeled sceanario area, enabling it to be run for the whole San Pedro context. -->
 <measurement:NumericCoding id="olulclots2_project">
   <observation:hasObservable>
     <sanPedro:Steinitz30ClassUrbanGrowthLULCOpen />
@@ -4721,6 +4745,32 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
       <geospace:hasLonLowerBound>-111.013</geospace:hasLonLowerBound>
       <geospace:hasLatUpperBound>33.282</geospace:hasLatUpperBound>
       <geospace:hasLonUpperBound>-109.794</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
+
+<!--This version has "0" values outside the modeled sceanario area, enabling it to be run for the whole San Pedro context. -->
+<measurement:NumericCoding id="olulclots3_project">
+  <observation:hasObservable>
+    <sanPedro:Steinitz30ClassUrbanGrowthLULCOpen />
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Steinitz et al. (2003)</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>sanPedro:olulclots3_project</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>2066</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>4003</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>30.92</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-111.013</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>33.283</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-109.793</geospace:hasLonUpperBound>
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
