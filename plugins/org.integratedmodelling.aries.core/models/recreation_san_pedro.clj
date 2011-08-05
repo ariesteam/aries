@@ -532,7 +532,7 @@
       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'recreationService:LowRareCharismaticBirdHabitat)    
                 (:this %))))
-  (model PublicAccessClass
+  (model sanPedro:PublicAccessClass
     (classification (numeric-coding habitat:LandOwnership)
       #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
         68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
