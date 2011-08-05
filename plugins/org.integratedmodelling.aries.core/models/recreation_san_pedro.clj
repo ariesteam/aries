@@ -514,38 +514,35 @@
 (defscenario constrained-development-recreation
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species richness."
   (model BirdSpeciesRichness
-    (classification BirdSpeciesRichness
-      :context [constrained-development-scenario
-                (classification (ranking habitat:AvianRichness)
-                  [8 10 :inclusive] VeryHighBirdSpeciesRichness
-                  [6  8]            HighBirdSpeciesRichness
-                  [4  6]            ModerateBirdSpeciesRichness
-                  [0  4]            LowBirdSpeciesRichness)]
+    (classification (ranking habitat:AvianRichness)
+       [8 10 :inclusive] VeryHighBirdSpeciesRichness
+       [6  8]            HighBirdSpeciesRichness
+       [4  6]            ModerateBirdSpeciesRichness
+       [0  4]            LowBirdSpeciesRichness
+      :context [constrained-development-scenario]
       :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'recreationService:LowBirdSpeciesRichness)
-                  (:bird-richness %))))
+                  (:this %))))
   (model RareCharismaticBirdHabitat
-    (classification RareCharismaticBirdHabitat
-      :context [constrained-development-scenario
-                (classification (ranking habitat:RareBirdHabitat)
-                  #{4 5}   HighRareCharismaticBirdHabitat
-                  #{1 2 3} ModerateRareCharismaticBirdHabitat
-                  0        LowRareCharismaticBirdHabitat)]
+    (classification  (ranking habitat:RareBirdHabitat)
+      #{4 5}   HighRareCharismaticBirdHabitat
+      #{1 2 3} ModerateRareCharismaticBirdHabitat
+      0        LowRareCharismaticBirdHabitat      
+      :context [constrained-development-scenario]
       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'recreationService:LowRareCharismaticBirdHabitat)    
-                (:bird-rarity %))))
+                (:this %))))
   (model PublicAccessClass
-    (classification PublicAccessClass
-      :context [constrained-development-scenario
-                (classification (numeric-coding habitat:LandOwnership)
-                  #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
-                    68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
-                    117 118 119 120 121 122 123 124 125 126 127} PublicLand
-                    #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
-                      78 79 84 87 88 89 90}                      NoPublicAccess)]
+    (classification (numeric-coding habitat:LandOwnership)
+      #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
+        68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
+        117 118 119 120 121 122 123 124 125 126 127} sanPedro:PublicLand
+      #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
+        78 79 84 87 88 89 90}                        sanPedro:NoPublicAccess
+      :context [constrained-development-scenario]
       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-                (conc 'recreationService:NoPublicAccess)    
-                (:public-lands %)))))
+                (conc 'sanPedro:NoPublicAccess)    
+                (:this %)))))
 ;; (model WildlifeSpeciesRichnessClass
 ;;   (classification WildlifeSpeciesRichnessClass
 ;;       :context [constrained-development-scenario
