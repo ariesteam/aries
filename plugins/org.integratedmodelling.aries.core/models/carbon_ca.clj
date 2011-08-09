@@ -50,6 +50,18 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
+;; Problems with coarse-grain pixels; removed this from the bayesian
+;; statement and set the prior to its actual value from the data
+;; (LowActualEvapotranspiration) - a good temporary solution for WCH
+;; but change if you ran it again for Southern California.
+(defmodel actual-evapotranspiration ActualEvapotranspirationClass
+  (classification (measurement habitat:ActualEvapotranspiration "mm")
+    [92 :>] VeryHighActualEvapotranspiration
+    [58 92] HighActualEvapotranspiration
+    [32 58] ModerateActualEvapotranspiration
+    [12 32] LowActualEvapotranspiration
+    [:< 12] VeryLowActualEvapotranspiration))
+
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover :units "%")
     [80 100 :inclusive] VeryHighVegetationCover
@@ -94,6 +106,15 @@
     [:exclusive 0 1.5] VeryLowSequestration
     [0]                NoSequestration))
 
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel source-sj CarbonSourceValue   
+  (bayesian CarbonSourceValue 
+    :import   "aries.core::CarbonSourceCa.xdsl"
+    :context  [percent-vegetation-cover land-use land-selector]
+    :required [LandOrSea]
+    :keep     [VegetationAndSoilCarbonSequestration]
+    :result   veg-soil-sequestration))
+
 ;; See above statement for AET: Add back in if you use it for wider
 ;; extents of Southern California
 (defmodel source CarbonSourceValue   
@@ -136,18 +157,6 @@
     2 ModerateFireThreat
     1 LowFireThreat))
 
-;; Problems with coarse-grain pixels; removed this from the bayesian
-;; statement and set the prior to its actual value from the data
-;; (LowActualEvapotranspiration) - a good temporary solution for WCH
-;; but change if you ran it again for Southern California.
-(defmodel actual-evapotranspiration ActualEvapotranspirationClass
-  (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [92 :>] VeryHighActualEvapotranspiration
-    [58 92] HighActualEvapotranspiration
-    [32 58] ModerateActualEvapotranspiration
-    [12 32] LowActualEvapotranspiration
-    [:< 12] VeryLowActualEvapotranspiration))
-
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
     [150 315] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
@@ -156,6 +165,14 @@
     [10 30]   LowVegetationStorage
     [0.01 10] VeryLowVegetationStorage
     [0 0.01]  NoVegetationStorage))   
+
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel vegetation-carbon-storage-sj VegetationCStorage 
+  (bayesian VegetationCStorage 
+    :import  "aries.core::CarbonSinkCa.xdsl"
+    :context [vegetation-type land-use percent-vegetation-cover land-selector]
+    :keep    [VegetationCarbonStorage]
+    :result  veg-storage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
@@ -173,6 +190,14 @@
     [0.01 2] VeryLowSoilStorage
     [0 0.01] NoSoilStorage))
 
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel soil-carbon-storage-sj SoilCStorage 
+  (bayesian SoilCStorage 
+    :import  "aries.core::CarbonSinkCa.xdsl"
+    :context [soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector]
+    :keep    [SoilCarbonStorage]
+    :result  soil-storage))
+
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
     :import  "aries.core::CarbonSinkCa.xdsl"
@@ -180,11 +205,28 @@
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel vegetation-soil-storage-sj VegetationAndSoilCarbonStorage
+  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+    :context [vegetation-carbon-storage soil-carbon-storage] 
+    :state   #(+ (if (nil? (:vegetation-c-storage-sj%)) 0.0 (.getMean (:vegetation-c-storage-sj %)))
+                 (if (nil? (:soil-c-storage-sj %))       0.0 (.getMean (:soil-c-storage-sj %))))))
+
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
     :context [vegetation-carbon-storage soil-carbon-storage] 
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
+
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel veg-soil-storage-sj VegetationAndSoilCarbonStorageClass
+  (classification vegetation-soil-storage
+    [160 365] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [100 160] HighStorage
+    [40 100]  ModerateStorage
+    [15 40]   LowStorage
+    [0.01 15] VeryLowStorage
+    [0 0.01]  NoStorage))
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
@@ -203,6 +245,15 @@
     [10 25]   LowRelease
     [0.01 10] VeryLowRelease
     [0 0.01]  NoRelease))
+
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel sink-sj CarbonSinkValue   
+  (bayesian CarbonSinkValue 
+    :import   "aries.core::CarbonSinkCa.xdsl"
+    :context  [veg-soil-storage-sj fire-threat land-selector]
+    :required [LandOrSea]
+    :keep     [StoredCarbonRelease]
+    :result   stored-carbon-release))
 
 ;; Source and sink values are still calculated over the ocean, though
 ;; they're set to almost-zero, so it's a temporary fix.  For some
@@ -249,6 +300,11 @@
 (defmodel identification-carbon ClimateStability
   (identification ClimateStability
     :context [source sink use-simple]))
+
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
+(defmodel identification-carbon-sj ClimateStability
+  (identification ClimateStability
+    :context [source-sj sink-sj use-simple]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
