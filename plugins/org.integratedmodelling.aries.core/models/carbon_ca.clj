@@ -170,7 +170,7 @@
 (defmodel vegetation-carbon-storage-sj VegetationCStorage 
   (bayesian VegetationCStorage 
     :import  "aries.core::CarbonSinkCa.xdsl"
-    :context [vegetation-type land-use percent-vegetation-cover land-selector]
+    :context [land-use percent-vegetation-cover land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
