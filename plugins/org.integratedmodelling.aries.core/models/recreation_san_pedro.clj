@@ -514,35 +514,25 @@
 (defscenario constrained-development-recreation
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species richness."
   (model BirdSpeciesRichness
-    (classification (ranking habitat:AvianRichness)
-       [8 10 :inclusive] VeryHighBirdSpeciesRichness
-       [6  8]            HighBirdSpeciesRichness
-       [4  6]            ModerateBirdSpeciesRichness
-       [0  4]            LowBirdSpeciesRichness
-      :context [constrained-development-scenario]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+    (classification BirdSpeciesRichness
+      :context [bird-richness :as br constrained-development-scenario :as cd]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'recreationService:LowBirdSpeciesRichness)
-                  (:this %))))
+                  (:br %))))
   (model RareCharismaticBirdHabitat
-    (classification  (ranking habitat:RareBirdHabitat)
-      #{4 5}   HighRareCharismaticBirdHabitat
-      #{1 2 3} ModerateRareCharismaticBirdHabitat
-      0        LowRareCharismaticBirdHabitat      
-      :context [constrained-development-scenario]
-      :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+    (classification RareCharismaticBirdHabitat      
+      :context [bird-rarity :as br constrained-development-scenario :as cd]
+      :state #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'recreationService:LowRareCharismaticBirdHabitat)    
-                (:this %))))
+                (:br %))))
+                
   (model sanPedro:PublicAccessClass
-    (classification (numeric-coding habitat:LandOwnership)
-      #{2 3 4 8 12 13 14 15 16 36 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 60 61 62 63 64 65 66 67 
-        68 69 70 71 73 75 76 82 83 86 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 
-        117 118 119 120 121 122 123 124 125 126 127} sanPedro:PublicLand
-      #{1 5 6 11 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 72 74 77 
-        78 79 84 87 88 89 90}                        sanPedro:NoPublicAccess
-      :context [constrained-development-scenario]
-      :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+    (classification sanPedro:PublicAccessClass
+      :context [public-lands :as pl constrained-development-scenario :as cd]
+      :state #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'sanPedro:NoPublicAccess)    
-                (:this %)))))
+                (:pl %)))))
+                
 ;; (model WildlifeSpeciesRichnessClass
 ;;   (classification WildlifeSpeciesRichnessClass
 ;;       :context [constrained-development-scenario
@@ -622,52 +612,52 @@
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species richness."
   (model BirdSpeciesRichness
     (classification BirdSpeciesRichness
-      :context [open-development-scenario bird-richness]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od bird-richness :as br]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'recreationService:LowBirdSpeciesRichness)
-                  (:bird-richness %))))
+                  (:br %))))
   (model RareCharismaticBirdHabitat
     (classification RareCharismaticBirdHabitat
-      :context [open-development-scenario bird-rarity]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od bird-rarity :as br]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'recreationService:LowRareCharismaticBirdHabitat)    
-                  (:bird-rarity %))))
+                  (:br %))))
   (model PublicAccessClass
     (classification PublicAccessClass
-      :context [open-development-scenario public-lands]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od public-lands :as pl]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'recreationService:NoPublicAccess)    
-                  (:public-lands %))))
+                  (:pl %))))
   (model WildlifeSpeciesRichnessClass
     (classification WildlifeSpeciesRichnessClass
-      :context [open-development-scenario wildlife-species-richness-class]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od wildlife-species-richness-class :as wl]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'recreationService:LowWildlifeSpeciesRichness)    
-                  (:wildlife-species-richness-class %))))
+                  (:wl %))))
   (model sanPedro:DoveHabitat
     (classification sanPedro:DoveHabitat
-      :context [open-development-scenario dove-habitat]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od dove-habitat :as dh]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:SingleDoveSpeciesPresent)
-                  (:dove-habitat %))))
+                  (:dh %))))
   (model sanPedro:DeerHabitat
     (classification sanPedro:DeerHabitat
-      :context [open-development-scenario deer-habitat]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od deer-habitat :as dh]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:DeerSpeciesAbsent)    
-                  (:deer-habitat %))))
+                  (:dh %))))
   (model sanPedro:QuailHabitat
     (classification sanPedro:QuailHabitat
-      :context [open-development-scenario quail-habitat]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od quail-habitat :as qh]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:QuailSpeciesAbsent)    
-                  (:quail-habitat %))))
+                  (:qh %))))
   (model sanPedro:JavelinaHabitat
     (classification sanPedro:JavelinaHabitat
-      :context [open-development-scenario javelina-habitat]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od javelina-habitat :as jh]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:JavelinaHabitatAbsent)    
-                  (:javelina-habitat %)))))
+                  (:jh %)))))
 
 ;;(defscenario urban-growth sanPedro:UrbanGrowth (add new users, up 10.4% in constrained, 56.8% in open)
 ;;sanPedro:UrbanGrowth2020Open
