@@ -248,27 +248,27 @@
   "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [open-development-scenario housing]
-      :state   #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:HousingPresent)  
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [open-development-scenario property-value]
-      :state   #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+      :context [open-development-scenario :as od property-value :as pv]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:ModerateHousingValue) 
-                  (:housing-value %)))))
+                  (:pv %)))))
 
 (defscenario constrained-development-viewshed  "Changes values in low-density developed areas to moderate housing value present. Moderate to high density assumed to be primarily nonresidential land use, in the absence of more information."
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [constrained-development-scenario housing]
-      :state   #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:HousingPresent) 
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [constrained-development-scenario property-value]
-      :state   #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+      :context [constrained-development-scenario :as cd property-value :as pv]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:ModerateHousingValue)  
-                  (:housing-value %)))))
+                  (:pv %)))))

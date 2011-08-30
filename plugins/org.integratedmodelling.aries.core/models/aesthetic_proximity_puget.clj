@@ -262,125 +262,125 @@
    moderate housing value present."
   (model Forest
     (classification Forest
-      :context [open-development-scenario forest]
-      :state   #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+      :context [open-development-scenario :as od forest :as for]
+      :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'aestheticService:ForestAbsent)
-                  (:forest %))))
+                  (:for %))))
   (model Farmland
     (classification Farmland
-      :context [open-development-scenario farmland]
-      :state   #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+      :context [open-development-scenario :as od farmland :as farm]
+      :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'aestheticService:FarmlandAbsent) 
-                  (:farmland %))))
+                  (:farm %))))
   (model WoodyWetland
     (classification WoodyWetland
-      :context [open-development-scenario woody-wetland]
-      :state   #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+      :context [open-development-scenario :as od woody-wetland :as ww]
+      :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'aestheticService:WoodyWetlandAbsent)
-                  (:woody-wetland %))))
+                  (:ww %))))
   (model EmergentWetland
     (classification EmergentWetland
-      :context [open-development-scenario emergent-wetland]
-      :state   #(if (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
-                        (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen)))
+      :context [open-development-scenario :as od emergent-wetland :as ew]
+      :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                        (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'aestheticService:EmergentWetlandAbsent)
-                  (:emergent-wetland %))))
+                  (:ew %))))
   (model Park
     (classification Park
-      :context [open-development-scenario park]
-      :state   #(cond (or (is? (:open-development %) (conc 'puget:HighDensityDevelopedOpen))
-                          (is? (:open-development %) (conc 'puget:ModerateDensityDevelopedOpen))
-                          (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen)))
+      :context [open-development-scenario :as od park :as p]
+      :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
+                          (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
+                          (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
                       (conc 'aestheticService:ParkAbsent)
                     
-                      (is? (:open-development %) (conc 'puget:UrbanOpenSpaceOpen))
+                      (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
                       (conc 'aestheticService:ParkPresent)
 
-                      :otherwise (:park %))))
+                      :otherwise (:p %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [open-development-scenario housing]
-      :state   #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:HousingPresent)           
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [open-development-scenario property-value]
-      :state   #(if (is? (:open-development %) (conc 'puget:LowDensityDevelopedOpen))
+      :context [open-development-scenario :as od property-value :as pv]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:ModerateHousingValue)           
-                  (:housing-value %)))))
+                  (:pv %)))))
 
 (defscenario constrained-development-proximity
   "Changes values in developed areas to no valuable open space type,
    moderate housing value present."
   (model Forest
     (classification Forest
-      :context [constrained-development-scenario forest]
-      :state   #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+      :context [constrained-development-scenario :as cd forest :as for]
+      :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:ForestAbsent)
-                  (:forest %))))
+                  (:for %))))
   (model Farmland
     (classification Farmland
-      :context [constrained-development-scenario farmland]
-      :state   #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+      :context [constrained-development-scenario :as cd farmland :as farm]
+      :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:FarmlandAbsent)
-                  (:farmland %))))
+                  (:farm %))))
   (model WoodyWetland
     (classification WoodyWetland
-      :context [constrained-development-scenario woody-wetland]
-      :state   #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+      :context [constrained-development-scenario :as cd woody-wetland :as ww]
+      :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:WoodyWetlandAbsent)
-                  (:woody-wetland %))))
+                  (:ww %))))
   (model EmergentWetland
     (classification EmergentWetland
-      :context [constrained-development-scenario emergent-wetland]
-      :state   #(if (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
-                        (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained)))
+      :context [constrained-development-scenario :as cd emergent-wetland :as ew]
+      :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                        (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:EmergentWetlandAbsent)
-                  (:emergent-wetland %))))
+                  (:ew %))))
   (model Park
     (classification Park
-      :context [constrained-development-scenario park]
-      :state   #(cond (or (is? (:constrained-development %) (conc 'puget:HighDensityDevelopedConstrained))
-                          (is? (:constrained-development %) (conc 'puget:ModerateDensityDevelopedConstrained))
-                          (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained)))
+      :context [constrained-development-scenario :as cd park :as p]
+      :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
+                          (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
+                          (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
                       (conc 'aestheticService:ParkAbsent)
                     
-                      (is? (:constrained-development %) (conc 'puget:UrbanOpenSpaceConstrained))
+                      (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
                       (conc 'aestheticService:ParkPresent)
 
-                      :otherwise (:park %))))
+                      :otherwise (:p %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [constrained-development-scenario housing]
-      :state   #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:HousingPresent)           
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [constrained-development-scenario property-value]
-      :state   #(if (is? (:constrained-development %) (conc 'puget:LowDensityDevelopedConstrained))
+      :context [constrained-development-scenario :as cd property-value :as pv]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:ModerateHousingValue)           
-                  (:housing-value %)))))
+                  (:pv %)))))

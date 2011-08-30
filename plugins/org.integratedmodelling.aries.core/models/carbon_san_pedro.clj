@@ -314,31 +314,20 @@
 fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [open-development-scenario
-                (classification (ranking habitat:PercentVegetationCover :units "%")
-                  [80 100 :inclusive] VeryHighVegetationCover
-                  [60 80]             HighVegetationCover
-                  [40 60]             ModerateVegetationCover
-                  [20 40]             LowVegetationCover
-                  [0 20]              VeryLowVegetationCover)]
-      :state    #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
-                   (conc 'carbonService:VeryLowVegetationCover)
-                   (:percent-vegetation-cover-class %))))
+      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'carbonService:VeryLowVegetationCover)
+                  (:pvc %))))
   (model FireFrequency
     (classification FireFrequency
-      :context [open-development-scenario
-                (classification (numeric-coding habitat:FireReturnInterval)
-                  1      HighFireFrequency
-                  #{2 3} ModerateFireFrequency ; Includes "variable" fire frequency"
-                  4      LowFireFrequency
-                  #{5 6} NoFireFrequency)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od fire-frequency :as ff]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:NoFireFrequency)    
-                  (:fire-frequency %))))
+                  (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
-      :context [open-development-scenario (measurement GreenhouseGasEmissions "t/ha*year")]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od (measurement GreenhouseGasEmissions "t/ha*year")]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (* 1.568 (:greenhouse-gas-emissions %)) ; Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
 
@@ -347,19 +336,19 @@ fire frequency, increased greenhouse gas emissions."
 fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario percent-vegetation-cover]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowVegetationCover)
-                  (:percent-vegetation-cover-class %))))
+                  (:pvc %))))
   (model FireFrequency
     (classification FireFrequency
-      :context [constrained-development-scenario fire-frequency]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd fire-frequency :as ff]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:NoFireFrequency)
-                  (:fire-frequency %))))
+                  (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
-      :context [constrained-development-scenario use-simple]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd use-simple]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (* 1.104 (:greenhouse-gas-emissions %)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))

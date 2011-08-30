@@ -243,75 +243,52 @@
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
   (model sanPedro:ScenicVegetationType
     (classification sanPedro:ScenicVegetationType
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
-                  ;;                  :when #(= (:country %) "United States")
-                  #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               sanPedro:AlpineAndCliff
-                  #{22 23 33 37 38 91}                                    sanPedro:Forests
-                  #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} sanPedro:Woodland ; Includes pinon & juniper savannas
-                  #{77 78 79 80 81 83 84 85 98 109 110 118}               sanPedro:RiparianAndWater
-                  :otherwise                                              sanPedro:Other)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od scenic-vegetation :as sv]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:Other)
-                  (:scenic-vegetation-type %))))
+                  (:sv %))))
   (model DevelopedLand
     (classification DevelopedLand
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)           
-                  112        HighDensityDevelopment
-                  111        LowDensityDevelopment
-                  :otherwise NoDevelopment)]
-      :state #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od developed-land :as dl]
+      :state #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                 (conc 'aestheticService:LowDensityDevelopment)
-                (:developed-land %))))
+                (:dl %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [open-development-scenario
-                (classification (ranking economics:AppraisedPropertyValue)
-                  [1 :>]     HousingPresent
-                  :otherwise HousingAbsent)
-                (classification (numeric-coding nlcd:NLCDNumeric) ; Using NLCD where parcel data are unavailable.
-                  [22 23 24] HousingPresent ; Assumes (incorrectly) that all developed land is housing.
-                  :otherwise HousingAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [open-development-scenario
-                (classification (ranking economics:AppraisedPropertyValue)
-                  [     0  10000] VeryLowHousingValue
-                  [ 10000  25000] LowHousingValue
-                  [ 25000  50000] ModerateHousingValue
-                  [ 50000 200000] HighHousingValue
-                  [200000     :>] VeryHighHousingValue)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od property-value :as pv]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)
-                  (:housing-value %)))))
+                  (:pv %)))))
 
 (defscenario constrained-development-viewshed
   "Changes values in developed areas to 'other' scenic vegetation type, low-density development, high housing value present."
   (model sanPedro:ScenicVegetationType
     (classification sanPedro:ScenicVegetationType
-      :context [constrained-development-scenario scenic-vegetation]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd scenic-vegetation :as sv]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:Other)
-                  (:scenic-vegetation-type %))))
+                  (:sv %))))
   (model DevelopedLand
     (classification DevelopedLand
-      :context [constrained-development-scenario developed-land]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd developed-land :as dl]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:LowDensityDevelopment)
-                  (:developed-land %))))
+                  (:dl %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [constrained-development-scenario housing]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HousingPresent)
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [constrained-development-scenario property-value]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd property-value :as pv]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HighHousingValue)
-                  (:housing-value %)))))
+                  (:pv %)))))
