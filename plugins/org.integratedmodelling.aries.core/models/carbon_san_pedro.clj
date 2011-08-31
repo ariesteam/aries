@@ -56,6 +56,7 @@
     [20  40]            LowVegetationCover
     [ 0  20]            VeryLowVegetationCover))
 
+;; Add the Mexican layers in if/when cross-boundary data integration is enabled.
 (defmodel vegetation-type sanPedro:CarbonVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
@@ -65,15 +66,15 @@
     #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              sanPedro:Grassland
     #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
     #{77 78 79 80 81 83 84 85 98 109 110 118}                                          sanPedro:Riparian
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              sanPedro:UrbanBarrenWaterAgriculture)
-  (classification (categorization mexico:CONABIOLULCCategory)
-    #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
-    #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
-    #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
-    #{"Pastizal natural"}                                                        sanPedro:Grassland
-    #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
-    #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
-    #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWaterAgriculture))
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              sanPedro:UrbanBarrenWaterAgriculture))
+;;  (classification (categorization mexico:CONABIOLULCCategory)
+;;    #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
+;;    #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
+;;    #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
+;;    #{"Pastizal natural"}                                                        sanPedro:Grassland
+;;    #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
+;;    #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
+;;    #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWaterAgriculture))
 
 ;; Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their
 ;; discretization for rangeland carbon modeling.  For the San Pedro,
