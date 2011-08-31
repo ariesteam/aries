@@ -20,11 +20,11 @@
 			<probabilities>0.7 0.2 0.01 0.03 0.05 0.005 0.005</probabilities>
 		</cpt>
 		<cpt id="FireThreatClass">
-			<state id="LowFireThreat" />
-			<state id="ModerateFireThreat" />
-			<state id="HighFireThreat" />
 			<state id="VeryHighFireThreat" />
-			<probabilities>0.9300000000000001 0.02 0.04 0.01</probabilities>
+			<state id="HighFireThreat" />
+			<state id="ModerateFireThreat" />
+			<state id="LowFireThreat" />
+			<probabilities>0.01 0.04 0.02 0.9300000000000001</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCoverClass">
 			<state id="VeryHighVegetationCover" />
@@ -90,7 +90,7 @@
 			<state id="VeryLowRelease" />
 			<state id="NoRelease" />
 			<parents>VegetationAndSoilCarbonStorageClass FireThreatClass</parents>
-			<probabilities>0.01 0 0 0 0 0.99 0.04 0.01 0 0 0 0.95 0.08 0.02 0 0 0 0.9 0.15 0.05 0 0 0 0.8 0 0.01 0 0 0 0.99 0 0.04 0.01 0 0 0.95 0 0.08 0.02 0 0 0.9 0 0.15 0.05 0 0 0.8 0 0 0.01 0 0 0.99 0 0 0.04 0.01 0 0.95 0 0 0.08 0.02 0 0.9 0 0 0.15 0.05 0 0.8 0 0 0 0.01 0 0.99 0 0 0 0.04 0.01 0.95 0 0 0 0.08 0.02 0.9 0 0 0 0.15 0.05 0.8 0 0 0 0 0.01 0.99 0 0 0 0 0.05 0.95 0 0 0 0 0.1 0.9 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<probabilities>0.15 0.05 0 0 0 0.8 0.08 0.02 0 0 0 0.9 0.04 0.01 0 0 0 0.95 0.01 0 0 0 0 0.99 0 0.15 0.05 0 0 0.8 0 0.08 0.02 0 0 0.9 0 0.04 0.01 0 0 0.95 0 0.01 0 0 0 0.99 0 0 0.15 0.05 0 0.8 0 0 0.08 0.02 0 0.9 0 0 0.04 0.01 0 0.95 0 0 0.01 0 0 0.99 0 0 0 0.15 0.05 0.8 0 0 0 0.08 0.02 0.9 0 0 0 0.04 0.01 0.95 0 0 0 0.01 0 0.99 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.05 0.95 0 0 0 0 0.01 0.99 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
 	</nodes>

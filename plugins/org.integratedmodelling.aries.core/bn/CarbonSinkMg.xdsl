@@ -16,12 +16,12 @@
 			<probabilities>0.45 0.1 0.45</probabilities>
 		</cpt>
 		<cpt id="PercentVegetationCoverClass">
-			<state id="VeryLowVegetationCover" />
-			<state id="LowVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="HighVegetationCover" />
 			<state id="VeryHighVegetationCover" />
-			<probabilities>0.1 0.1 0.1 0.1 0.6</probabilities>
+			<state id="HighVegetationCover" />
+			<state id="ModerateVegetationCover" />
+			<state id="LowVegetationCover" />
+			<state id="VeryLowVegetationCover" />
+			<probabilities>0.6 0.1 0.1 0.1 0.1</probabilities>
 		</cpt>
 		<cpt id="ForestDegradationStatus">
 			<state id="Degraded" />
@@ -36,7 +36,7 @@
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
 			<parents>PercentVegetationCoverClass ForestDegradationStatus</parents>
-			<probabilities>0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0</probabilities>
+			<probabilities>0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
 		<cpt id="SoilCNRatio">

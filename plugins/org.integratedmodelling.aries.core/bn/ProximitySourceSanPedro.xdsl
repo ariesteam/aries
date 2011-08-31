@@ -2,11 +2,11 @@
 <smile version="1.0" id="Network3" numsamples="1000" discsamples="10000">
 	<nodes>
 		<cpt id="OpenSpaceAreaClass">
-			<state id="VerySmallArea" />
-			<state id="SmallArea" />
-			<state id="LargeArea" />
 			<state id="VeryLargeArea" />
-			<probabilities>0.05 0.1 0.25 0.6</probabilities>
+			<state id="LargeArea" />
+			<state id="SmallArea" />
+			<state id="VerySmallArea" />
+			<probabilities>0.6 0.25 0.1 0.05</probabilities>
 		</cpt>
 		<cpt id="FormalProtection">
 			<state id="Protected" />
@@ -23,7 +23,7 @@
 			<state id="ModerateResourceQuality" />
 			<state id="LowResourceQuality" />
 			<parents>FireThreat FormalProtection OpenSpaceAreaClass</parents>
-			<probabilities>0.65 0.175 0.175 0.5 0.3 0.2 0.4 0.3 0.3 0.3 0.3 0.4 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0.8500000000000002 0.07500000000000001 0.07500000000000001 0.75 0.15 0.1 0.6000000000000001 0.3 0.1 0.5 0.4 0.1 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9</probabilities>
+			<probabilities>0.3 0.3 0.4 0.4 0.3 0.3 0.5 0.3 0.2 0.65 0.175 0.175 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0 0.05 0.95 0.5 0.4 0.1 0.6000000000000001 0.3 0.1 0.75 0.15 0.1 0.8500000000000002 0.07500000000000001 0.07500000000000001 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9 0 0.1 0.9</probabilities>
 			<property id="ResourceCharacteristics">ResourceCharacteristics=WaterQuality+Crime+FormalProtection</property>
 		</cpt>
 		<cpt id="Farmland">
