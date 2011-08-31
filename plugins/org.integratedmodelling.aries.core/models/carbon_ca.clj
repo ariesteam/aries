@@ -130,7 +130,7 @@
 ;;;-------------------------------------------------------------------
 
 ;; ARIES defines sources of carbon areas that are sequester carbon
-;; in vegetation and soils.  .  Sinks are emissions from areas at risk
+;; in vegetation and soils. Sinks are emissions from areas at risk
 ;; of deforestation or fire, which can release carbon into the
 ;; atmosphere.  The difference between carbon sinks and sources is the
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
