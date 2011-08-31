@@ -472,40 +472,40 @@
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [open-development-scenario percent-vegetation-cover]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'waterSupplyService:VeryLowVegetationCover)
-                  (:percent-vegetation-cover-class %))))
+                  (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
-      :context [open-development-scenario vegetation-type]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od vegetation-type :as vt]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:UrbanBarrenWater)
-                  (:evapotranspiration-vegetation-type %))))
+                  (:vt %))))
   (model MountainFront
     (classification MountainFront
-      :context [open-development-scenario mountain-front]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od mountain-front :as mf]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'waterSupplyService:MountainFrontAbsent)
-                  (:mountain-front %)))))
+                  (:mf %)))))
 
 (defscenario constrained-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario percent-vegetation-cover]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'waterSupplyService:VeryLowVegetationCover)
-                  (:percent-vegetation-cover-class %))))
+                  (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
-      :context [constrained-development-scenario vegetation-type]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd  vegetation-type :as vt]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:UrbanBarrenWater)
-                  (:evapotranspiration-vegetation-type %))))
+                  (:vt %))))
   (model MountainFront
     (classification MountainFront
-      :context [constrained-development-scenario mountain-front]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd mountain-front :as mf]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'waterSupplyService:MountainFrontAbsent)
-                  (:mountain-front %)))))
+                  (:mf %)))))

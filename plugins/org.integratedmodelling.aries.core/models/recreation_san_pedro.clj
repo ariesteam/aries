@@ -525,88 +525,42 @@
       :state #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'recreationService:LowRareCharismaticBirdHabitat)    
                 (:br %))))
-                
   (model sanPedro:PublicAccessClass
     (classification sanPedro:PublicAccessClass
       :context [public-lands :as pl constrained-development-scenario :as cd]
       :state #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                 (conc 'sanPedro:NoPublicAccess)    
-                (:pl %)))))
-                
-;; (model WildlifeSpeciesRichnessClass
-;;   (classification WildlifeSpeciesRichnessClass
-;;       :context [constrained-development-scenario
-;;                (ranking WildlifeSpeciesRichness
-;;                 :context [(ranking habitat:AvianRichness) (ranking habitat:MammalRichness)
-;;                           (ranking habitat:ReptileRichness) (ranking habitat:AmphibianRichness)]
-;;                 :state   #(Math/round (* (+ (or (:avian-richness %) 0)  
-;;                                             (or (:mammal-richness %) 0) 
-;;                                             (or (:reptile-richness %) 0) 
-;;                                             (or (:amphibian-richness %) 0))
-;;                                              0.25))]
-;;              (defmodel wildlife-species-richness-class WildlifeSpeciesRichnessClass ;;This is no doubt the wrong way to do it, but need a proper guide
-;;              (classification wildlife-species-richness
-;;                [8 10] VeryHighWildlifeSpeciesRichness
-;;                [6 8]  HighWildlifeSpeciesRichness
-;;                [4 6]  ModerateWildlifeSpeciesRichness
-;;                [0 4]  LowWildlifeSpeciesRichness)) 
-;;     :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-;;               (conc 'recreationService:LowWildlifeSpeciesRichness)    
-;;               (:wildlife-species-richness-class %))))
-;; (model sanPedro:DoveHabitat
-;;   (classification sanPedro:DoveHabitat
-;;       :context (constrained-development-scenario
-;;                (classification sanPedro:DoveHabitat
-;;                  :context [(numeric-coding sanPedro:MourningDoveHabitat)
-;;                            (numeric-coding sanPedro:WhiteWingedDoveHabitat)]
-;;                  :state   #(let [num-dove (+ (if (no-data? (:mourning-dove-habitat %)) 0 1)
-;;                                              (if (no-data? (:white-winged-dove-habitat %)) 0 1))]
-;;                              (cond (= num-dove 2) (tl/conc 'sanPedro:MultipleDoveSpeciesPresent)
-;;                                    (= num-dove 1) (tl/conc 'sanPedro:SingleDoveSpeciesPresent)
-;;                                    :otherwise     (tl/conc 'sanPedro:DoveSpeciesAbsent)))))
-;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-;;                 (conc 'sanPedro:SingleDoveSpeciesPresent)    
-;;                 (:dove-habitat %))))
-;; (model sanPedro:DeerHabitat
-;;   (classification sanPedro:DeerHabitat
-;;       :context (constrained-development-scenario
-;;                (classification sanPedro:DeerHabitat
-;;                  :context [(numeric-coding sanPedro:MuleDeerHabitat)
-;;                            (numeric-coding sanPedro:WhiteTailDeerHabitat)]
-;;                  :state   #(let [num-deer (+ (if (no-data? (:mule-deer-habitat %)) 0 1)
-;;                                              (if (no-data? (:white-tail-deer-habitat %)) 0 1))]
-;;                             (cond (= num-deer 2) (tl/conc 'sanPedro:MultipleDeerSpeciesPresent)
-;;                                    (= num-deer 1) (tl/conc 'sanPedro:SingleDeerSpeciesPresent)
-;;                                    :otherwise     (tl/conc 'sanPedro:DeerSpeciesAbsent)))))
-;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-;;                 (conc 'sanPedro:DeerSpeciesAbsent)    
-;;                 (:deer-habitat %))))
-;;(model sanPedro:QuailHabitat
-;; (classification sanPedro:QuailHabitat
-;;     :context (constrained-development-scenario
-;;              (classification sanPedro:QuailHabitat
-;;                :context [(numeric-coding sanPedro:ScaledQuailHabitat)
-;;                          (numeric-coding sanPedro:MearnsQuailHabitat)
-;;                          (numeric-coding sanPedro:GambelsQuailHabitat)]
-;;                :state   #(let [num-quail (+ (if (no-data? (:scaled-quail-habitat %)) 0 1)
-;;                                             (if (no-data? (:mearns-quail-habitat %)) 0 1)
-;;                                             (if (no-data? (:gambels-quail-habitat %)) 0 1))]
-;;                            (cond (> num-quail 1) (tl/conc 'sanPedro:MultipleQuailSpeciesPresent)
-;;                                  (= num-quail 1) (tl/conc 'sanPedro:SingleQuailSpeciesPresent)
-;;                                  :otherwise      (tl/conc 'sanPedro:QuailSpeciesAbsent)))))
-;;     :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-;;               (conc 'sanPedro:QuailSpeciesAbsent)    
-;;               (:quail-habitat %))))
-;; (model sanPedro:JavelinaHabitat
-;;   (classification sanPedro:JavelinaHabitat
-;;       :context [constrained-development-scenario
-;;                (classification (numeric-coding sanPedro:JavelinaHabitat)
-;;                  29            sanPedro:JavelinaHabitatPresent
-;;                  nil           sanPedro:JavelinaHabitatAbsent
-;;                  :otherwise    sanPedro:JavelinaHabitatAbsent)]
-;;       :state #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
-;;                 (conc 'sanPedro:JavelinaHabitatAbsent)    
-;;                  (:javelina-habitat %)))))
+                (:pl %))))
+  (model WildlifeSpeciesRichnessClass
+    (classification WildlifeSpeciesRichnessClass
+      :context [constrained-development-scenario :as cd wildlife-species-richness-class :as wl]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'recreationService:LowWildlifeSpeciesRichness)    
+                  (:wl %))))
+  (model sanPedro:DoveHabitat
+    (classification sanPedro:DoveHabitat
+      :context [constrained-development-scenario :as cd dove-habitat :as dh]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:SingleDoveSpeciesPresent)
+                  (:dh %))))
+  (model sanPedro:DeerHabitat
+    (classification sanPedro:DeerHabitat
+      :context [constrained-development-scenario :as cd deer-habitat :as dh]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:DeerSpeciesAbsent)    
+                  (:dh %))))
+  (model sanPedro:QuailHabitat
+    (classification sanPedro:QuailHabitat
+      :context [constrained-development-scenario :as cd quail-habitat :as qh]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:QuailSpeciesAbsent)    
+                  (:qh %))))
+  (model sanPedro:JavelinaHabitat
+    (classification sanPedro:JavelinaHabitat
+      :context [constrained-development-scenario :as cd javelina-habitat :as jh]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'sanPedro:JavelinaHabitatAbsent)    
+                  (:jh %)))))
 
 (defscenario open-development-recreation
   "Changes values in developed areas to very private land and locally appropriate low values for habitat and species richness."

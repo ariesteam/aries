@@ -272,149 +272,113 @@
    fire threat to low, high housing value present."
   (model sanPedro:ForestAndWoodland
     (classification sanPedro:ForestAndWoodland
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
-                  #{22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 41 45 46 63 64 91 92 95 101 102 103} sanPedro:ForestOrWoodlandPresent               
-                  :otherwise                                                                                sanPedro:ForestOrWoodlandAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od forest :as fw]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:ForestOrWoodlandAbsent)
-                  (:forest-and-woodland %)))) ; Not sure if this is correct or if it should just be "forest"
+                  (:fw %))))
   (model Farmland
     (classification Farmland
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-                  114        FarmlandPresent                     
-                  :otherwise FarmlandAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od farmland :as f]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:FarmlandAbsent) 
-                  (:farmland %))))
+                  (:f %))))
   (model Grassland
     (classification Grassland
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-                  #{65 68 73 74 75 76 90 93 106} GrasslandPresent                     
-                  :otherwise                     GrasslandAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od grassland :as g]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:GrasslandAbsent)
-                  (:grassland %))))
+                  (:g %))))
   (model DesertScrub
     (classification DesertScrub
-      :context [open-development-scenario
-                (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-                  #{40 44 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 66 67 82 94 96 97 105 108} DesertScrubPresent
-                  :otherwise                                                                         DesertScrubAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od desert-scrub :as ds]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:DesertScrubAbsent)
-                  (:desert-scrub %))))
+                  (:ds %))))
   (model Park
     (classification Park
-      :context [open-development-scenario
-                (classification (numeric-coding habitat:LandOwnership)
-                  #{8 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115
-                    116 117 118 119 120 121 122 123 124 125 126 127} ParkPresent
-                    :otherwise                                       ParkAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od park :as p]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:ParkAbsent) 
-                  (:park %))))
+                  (:p %))))
   (model sanPedro:RiparianAndWetland
     (classification sanPedro:RiparianAndWetland
-      :context [open-development-scenario
-                (classification riparian-wetland-code ; No idea if this is done correctly.
-                  3 sanPedro:HighQualityRiparianOrWetlandPresent
-                  2 sanPedro:ModerateQualityRiparianOrWetlandPresent
-                  1 sanPedro:LowQualityRiparianOrWetlandPresent
-                  0 sanPedro:RiparianOrWetlandAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od riparian-wetland :as rw]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'sanPedro:RiparianOrWetlandAbsent)
-                  (:riparian-and-wetland %))))
+                  (:rw %))))
   (model FireThreat
     (classification FireThreat
-      :context [open-development-scenario
-                (classification (numeric-coding habitat:FireReturnInterval) 
-                  #{1 2 3} HighFireThreat ; Includes high, moderate, variable fire frequency
-                  #{4 5 6} LowFireThreat)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od fire-threat :as ft]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:LowFireThreat) 
-                  (:fire-threat %))))
+                  (:ft %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [open-development-scenario
-                (classification (ranking economics:AppraisedPropertyValue)
-                  [1 :>]     HousingPresent
-                  :otherwise HousingAbsent)
-                (classification (numeric-coding nlcd:NLCDNumeric) ; Using NLCD where parcel data are unavailable.
-                  [22 23 24] HousingPresent  ; Assumes (incorrectly) that all developed land is housing.
-                  :otherwise HousingAbsent)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)           
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [open-development-scenario
-                (classification (ranking economics:AppraisedPropertyValue)
-                  [200000     :>] VeryHighHousingValue
-                  [ 50000 200000] HighHousingValue
-                  [ 25000  50000] ModerateHousingValue
-                  [ 10000  25000] LowHousingValue
-                  [     0  10000] VeryLowHousingValue)]
-      :state   #(if (is? (:open-development %) (conc 'sanPedro:DevelopedOpen))
+      :context [open-development-scenario :as od property-value :as pv]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HighHousingValue)           
-                  (:housing-value %)))))
+                  (:pv %)))))
 
 (defscenario constrained-development-proximity
   "Changes values in developed areas to no valuable open space type,
    fire threat to low, high housing value present."
   (model sanPedro:ForestAndWoodland
     (classification sanPedro:ForestAndWoodland
-      :context [constrained-development-scenario forest]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd forest :as fw]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:ForestOrWoodlandAbsent)
-                  (:forest-and-woodland %))))
+                  (:fw %))))
   (model Farmland
     (classification Farmland
-      :context [constrained-development-scenario farmland]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd farmland :as f]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:FarmlandAbsent)
-                  (:farmland %))))
+                  (:f %))))
   (model Grassland
     (classification Grassland
-      :context [constrained-development-scenario grassland]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd grassland :as g]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:GrasslandAbsent)  
-                  (:grassland %))))
+                  (:g %))))
   (model DesertScrub
     (classification DesertScrub
-      :context [constrained-development-scenario desert-scrub]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd desert-scrub :as ds]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:DesertScrubAbsent) 
-                  (:desert-scrub %))))
+                  (:ds %))))
   (model Park
     (classification Park
-      :context [constrained-development-scenario park]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd park :as p]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:ParkAbsent) 
-                  (:park %))))
+                  (:p %))))
   (model sanPedro:RiparianAndWetland
     (classification sanPedro:RiparianAndWetland
-      :context [constrained-development-scenario riparian-wetland]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd riparian-wetland :as rw]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'sanPedro:RiparianOrWetlandAbsent)
-                  (:riparian-and-wetland %))))
+                  (:rw %))))
   (model FireThreat
     (classification FireThreat
-      :context [constrained-development-scenario fire-threat]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd fire-threat :as ft]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:LowFireThreat)     
-                  (:fire-threat %))))
+                  (:ft %))))
   (model PresenceOfHousing
     (classification PresenceOfHousing
-      :context [constrained-development-scenario housing]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HousingPresent)          
-                  (:presence-of-housing %))))
+                  (:h %))))
   (model HousingValue
     (classification HousingValue
-      :context [constrained-development-scenario property-value]
-      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+      :context [constrained-development-scenario :as cd property-value :as pv]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'aestheticService:HighHousingValue)            
-                  (:housing-value %)))))
+                  (:pv %)))))
