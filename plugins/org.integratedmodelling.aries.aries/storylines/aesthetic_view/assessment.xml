@@ -1,7 +1,7 @@
 <presentation>
 
 	<title>Aesthetic viewsheds</title>
-	<runninghead>Values resulting from scenic views of ecosystems</runninghead>
+	<runninghead>Values resulting from scenic views of ecosystems.</runninghead>
 	<description>Aesthetic values are typically defined as the value derived from views or proximity 
 			to open space.  These values often accrue to housing or property values and are often 
 			measured using hedonic pricing.  Homeowners typically gain some combination of benefits 
@@ -10,10 +10,11 @@
 			aesthetic viewsheds, including the type and quality of views, location and type of 
 			housing, the presence of features that block or degrade view quality, and flow models
 			to connect beneficiaries to high quality views via a line-of-sight model.</description>
-	<!-- the concept of the main observation (the top-level model) -->
+
+	<!-- The concept of the main observation (the top-level model). -->
 	<concept>aestheticService:AestheticView</concept>  <!-- NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
 
-	<!-- All the models that apply and in which context.-->
+	<!-- All the models that apply and in which context. -->
 	<model>
 		<id>core.models.aesthetic-view-puget/view</id>
 		<context>core.contexts.beta/western_wa2048</context>
@@ -24,24 +25,15 @@
 		<context>core.contexts.beta/san_pedro_us512</context>
 	</model>
 
-	<page id="info">
-		<id>info</id>
-		<name>PLEASE UPDATE</name>
-		<title>UPDATE PLEASE</title>
-		<description>PLEASE UPDATE</description>
-		<see-also>PLEASE UPDATE</see-also>
-		<credits>PLEASE UPDATE</credits>
-	</page>
-	
-
-
+    <!-- Storyline description. -->
 	<page id="aesthetic-view">
 		<concept>aestheticService:AestheticView</concept>
 		<name>Aesthetic views from housing</name>
-		<title>Aesthetic views from housing</title>
+		<title>Introduction</title>
+		<runninghead>Aesthetic viewsheds.</runninghead>
 		<group></group>
 		<description>	
-		This model considers the contribution of ecosystems toward providing high-quality views and their impact on 
+		This storyline considers the contribution of ecosystems toward providing high-quality views and their impact on 
 		property values.  The source model maps areas that contain beautiful views, the sink model maps areas with 
 		objects that degrade views, and the use model maps the location of homeowners.  By combining these maps with a
 		line of sight model, we can analyze actual view quality and its potential impact on property values.  In the 
@@ -53,8 +45,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -63,9 +54,10 @@
 
   <page id="lake">
     <concept>aestheticService:Lake</concept>
-    <name>Lake</name>
+    <name>Lakes</name>
     <title>Presence of lakes</title>
-    <runninghead>Lake</runninghead> 
+    <runninghead>Lakes.</runninghead>
+    <group>source</group>
     <description><![CDATA[
 			<p>The presence of lakes as aesthetically beautiful natural features.</p>
 			<h1>Role in models</h1>
@@ -80,8 +72,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -91,7 +82,8 @@
     <concept>aestheticService:Ocean</concept>
     <name>Ocean</name>
     <title>Presence of ocean</title>
-    <runninghead>Ocean</runninghead> 
+    <runninghead>Ocean.</runninghead>
+    <group>source</group>
     <description><![CDATA[
 			<p>The presence of the ocean as an aesthetically beautiful natural feature.</p>
 			<h1>Role in models</h1>
@@ -106,8 +98,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -115,9 +106,10 @@
 
   <page id="mountain">
     <concept>aestheticService:Mountain</concept>
-    <name>Mountain</name>
+    <name>Mountains</name>
     <title>Presence of mountains</title>
-    <runninghead>Mountain</runninghead>
+    <runninghead>Mountains.</runninghead>
+    <group>source</group>
     <description><![CDATA[
 			<p>The presence of mountains as aesthetically beautiful natural features.</p>
 			<h1>Role in models</h1>
@@ -133,8 +125,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -144,10 +135,11 @@
     <concept>sanPedro:ScenicVegetationType</concept>
     <name>Scenic vegetation type</name>
     <title>Scenic vegetation type</title>
-    <runninghead>Scenic vegetation type</runninghead>
+    <runninghead>Scenic vegetation type.</runninghead>
+    <group>source</group>
     <description><![CDATA[
 			<p>The presence of aesthetically pleasing land cover types, such as forests or riparian areas, which 
-			can be important in arid environments where green vegetation is scarcer and may be more highly valued.</p>
+			can be important in arid environments where green vegetation is scarcer and may be more highly valued than in humid environments.</p>
 			<h1>Role in models</h1>
 			<p>The view of particular types of natural land cover, such as forests or riparian areas, 
 			is used as an input to a probabilistic model to estimate view quality.</p>
@@ -161,8 +153,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -172,7 +163,8 @@
     <concept>aestheticService:AestheticViewProvision</concept>
     <name>Potential view quality</name>
     <title>Potential view quality</title>
-    <runninghead>Potential view quality</runninghead>
+    <runninghead>Potential view quality.</runninghead>
+    <group>source</group>
     <description><![CDATA[
 			<p>The quality of a potential view from residences.</p>
 			<h1>Role in models</h1>
@@ -186,15 +178,14 @@
 			of variation are reported along with the probabilities.</p>
 			<h1>Source</h1>
 			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server when the area was selected.</p>
+			ARIES server for the selected area.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -204,7 +195,8 @@
     <concept>aestheticService:DevelopedLand</concept>
     <name>Development</name>
     <title>Presence of developed land</title>
-    <runninghead>Development</runninghead>
+    <runninghead>Development.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land cover types, such as high density development.</p>
 			<h1>Role in models</h1>
@@ -220,8 +212,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -231,7 +222,8 @@
     <concept>aestheticService:TransmissionLines</concept>
     <name>Transmission lines</name>
     <title>Presence of transmission lines</title>
-    <runninghead>Transmission lines</runninghead>
+    <runninghead>Transmission lines.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types, such as transmission lines.</p>
 			<h1>Role in models</h1>
@@ -247,8 +239,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -258,7 +249,8 @@
     <concept>aestheticService:Highways</concept>
     <name>Highways</name>
     <title>Presence of highways</title>
-    <runninghead>Highways</runninghead>
+    <runninghead>Highways.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types, such as highways.</p>
 			<h1>Role in models</h1>
@@ -274,8 +266,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -285,7 +276,8 @@
     <concept>aestheticService:Mines</concept>
     <name>Mines</name>
     <title>Presence of mines</title>
-    <runninghead>Mines</runninghead>
+    <runninghead>Mines.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types, such as open pit mines.</p>
 			<h1>Role in models</h1>
@@ -301,8 +293,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -312,7 +303,8 @@
     <concept>aestheticService:Clearcuts</concept>
     <name>Clearcuts</name>
     <title>Presence of clearcuts</title>
-    <runninghead>Clearcuts</runninghead>
+    <runninghead>Clearcuts.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types, such as clearcuts.</p>
 			<h1>Role in models</h1>
@@ -328,8 +320,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -339,7 +330,8 @@
     <concept>aestheticService:CommercialIndustrialTransportation</concept>
     <name>Commercial, industrial, transportation</name>
     <title>Presence of commercial, industrial, or transportation land use</title>
-    <runninghead>Commercial, industrial, transportation</runninghead>
+    <runninghead>Commercial, industrial, or transportation land use.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The presence of aesthetically displeasing land use types, such as commercial, industrial, or 
 			transportation land use.</p>
@@ -357,8 +349,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -368,7 +359,8 @@
     <concept>aestheticService:ViewSink</concept>
     <name>Visual blight</name>
     <title>Visual blight</title>
-    <runninghead>Visual blight</runninghead>
+    <runninghead>Visual blight.</runninghead>
+    <group>sink</group>
     <description><![CDATA[
 			<p>The ability of parts of the landscape to degrade views, based on the presence of visually 
 			unappealing features.</p>
@@ -383,15 +375,14 @@
 			reported along with the probabilities.</p>
 			<h1>Source</h1>
 			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server when the area was selected.</p>
+			ARIES server for the selected area.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -400,8 +391,9 @@
   <page id="housing">
     <concept>aestheticService:PresenceOfHousing</concept>
     <name>Housing</name>
-    <title>Housing</title>
-    <runninghead>Housing</runninghead>
+    <title>Presence of housing</title>
+    <runninghead>Presence of housing.</runninghead>
+    <group>use</group>
 		<description><![CDATA[
 			<p>Residences at who may benefit from access to high-quality views.</p>
 			<h1>Role in models</h1>
@@ -410,7 +402,7 @@
 			<h1>Representation</h1>
 			<p>Data are represented as a presence or absence map showing the location of housing.</p>
 			<h1>Source</h1>
-			<p>County assessors' offices (where available) or NLCD developed land (otherwise).</p>
+			<p>County assessors' offices (where available), otherwise NLCD developed land.</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -419,9 +411,8 @@
 		]]></see-also>
 		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
-    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -431,7 +422,9 @@
     <concept>aestheticService:HousingValue</concept>
     <name>Property value</name>
     <title>Property value</title>
-    <runninghead>Property value</runninghead>
+    <runninghead>Property value.</runninghead>
+    <units>$/ac</units>
+    <group>use</group>
 		<description><![CDATA[
 			<p>Property value, which may be increased with access to high-quality views.</p>
 			<h1>Role in models</h1>
@@ -449,9 +442,8 @@
 		]]></see-also>
 		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
-    <group></group>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -461,7 +453,8 @@
     <concept>aestheticService:ViewUse</concept>
     <name>Potential homeowner view use</name>
     <title>Potential homeowner view use</title>
-    <runninghead>Potential homeowner view use</runninghead>
+    <runninghead>Potential homeowner view use.</runninghead>
+    <group>use</group>
     <description><![CDATA[
 			<p>The potential property value benefit from access to high-quality views.</p>
 			<h1>Role in models</h1>
@@ -475,15 +468,14 @@
 			reported along with the probabilities.</p>
 			<h1>Source</h1>
 			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server when the area was selected.</p>
+			ARIES server for the selected area.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-    <credits></credits>
-    <group></group>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -497,7 +489,8 @@
 		<concept>aestheticService:PossibleViews</concept>
 		<name>Possible views</name>
 		<title>Possible views</title>
-		<group>source</group>
+		<runninghead>Possible flow map.</runninghead>
+		<group>flow</group>
 		<description>
 		*Possible flow maps* represent the path that the carrier of the service would take
 		if it was not intercepted by sinks.  As such it considers source and use models and
@@ -512,8 +505,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -522,7 +514,8 @@
 		<concept>aestheticService:VisibleNaturalBeauty</concept>
 		<name>Visible natural beauty</name>
 		<title>Visible natural beauty</title>
-		<group>source</group>
+		<runninghead>Possible source map.</runninghead>
+		<group>flow</group>
 		<description>
 		Even in the absence of sinks, not all of a source quantity actually has the
 		ability to reach users, because of the route that an ecosystem service carrier
@@ -544,8 +537,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -554,7 +546,8 @@
 		<concept>aestheticService:HomeownersWithPossibleViews</concept>
 		<name>Homeowners with possible views</name>
 		<title>Homeowners with possible views</title>
-		<group>source</group>
+		<runninghead>Possible use map.</runninghead>
+		<group>flow</group>
 		<description>
 		*Possible use maps* show the locations of users on the landscape that can receive a
 		benefit due to flow connections with a source of an ecosystem service carrier, but may
@@ -571,8 +564,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -581,7 +573,8 @@
 		<concept>aestheticService:ActualViews</concept>
 		<name>Actual views</name>
 		<title>Actual view flow</title>
-		<group>source</group>
+		<runninghead>Actual flow map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *actual flow density* map shows the flow paths that deliver actual services to
 		humans. These are selected from the total flow density to only show these flow paths
@@ -600,8 +593,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -610,7 +602,8 @@
 		<concept>aestheticService:EnjoyedViews</concept>
 		<name>Enjoyed views</name>
 		<title>Enjoyed views</title>
-		<group>source</group>
+		<runninghead>Actual source map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *actual source map* shows the portion of the source map that is relevant to 
 		the provision of a service after accounting for sinks and flow dynamics. 
@@ -627,8 +620,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-				<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -637,7 +629,8 @@
 		<concept>aestheticService:RelevantVisualBlight</concept>
 		<name>Relevant visual blight</name>
 		<title>Relevant visual blight</title>
-		<group>source</group>
+		<runninghead>Actual sink map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *actual sink map* shows the portion of the sinks that actually contribute
 		to depleting a service carrier given its flow patterns. For provisioning
@@ -653,8 +646,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -663,7 +655,8 @@
 		<concept>aestheticService:HomeownersWithViews</concept>
 		<name>Homeowners with views</name>
 		<title>Homeowners with views</title>
-		<group>source</group>
+		<runninghead>Actual use map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
 		service or damage caused by a detrimental carrier for a preventive service, for 
@@ -677,8 +670,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -687,7 +679,8 @@
 		<concept>aestheticService:HomeownersWithoutViews</concept>
 		<name>Homeowners without views</name>
 		<title>Homeowners without views</title>
-		<group>source</group>
+		<runninghead>Inaccessible use map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *inaccessible use map* shows the potential users that cannot receive a service
 		carrier due to flow routes and the source and user locations. For provisioning services,
@@ -703,8 +696,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -713,7 +705,8 @@
 		<concept>aestheticService:BlockedViews</concept>
 		<name>Blocked views</name>
 		<title>Blocked views</title>
-		<group>source</group>
+		<runninghead>Blocked flow map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *blocked flow map* shows the flow paths that could have delivered the 
 		service carrier to humans based on the flow routes and the source and user
@@ -733,8 +726,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -743,7 +735,8 @@
 		<concept>aestheticService:DegradedNaturalBeauty</concept>
 		<name>Degraded natural beauty</name>
 		<title>Degraded natural beauty</title>
-		<group>source</group>
+		<runninghead>Blocked source map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *blocked source map* shows the part of the source map that had the possibility
 		of reaching users given the location of the users and the flow dynamics, but
@@ -759,8 +752,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -769,7 +761,8 @@
 		<concept>aestheticService:HomeownersWithDegradedViews</concept>
 		<name>Homeowners with degraded views</name>
 		<title>Homeowners with degraded views</title>
-		<group>source</group>
+		<runninghead>Blocked use map.</runninghead>
+		<group>flow</group>
 		<description>
 		The *blocked use map* shows those users that would have been reached by the service
 		carrier based only on the source and the flow dynamics, but were not reached because 
@@ -788,8 +781,7 @@
 			<a href="http://www.ariesonline.org/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]></credits>
-		<runninghead>No description given</runninghead>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>

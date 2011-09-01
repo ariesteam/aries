@@ -1,27 +1,27 @@
 <presentation>
 
 	<title>Subsistence fisheries in Madagascar</title>
-	<runninghead>Values of fish to coastal populations in Madagascar</runninghead>
+	<runninghead>Values of fish to coastal populations in Madagascar.</runninghead>
 	<description>The values resulting from subsistence fishing, particularly in poor coastal
 		communities, quantified through the analysis of potential sources of fish, demand for and
 		simulation of actual access to fisheries.</description>
 	
-	<!-- the concept of the main observation (the top-level model) -->
+	<!-- The concept of the main observation (the top-level model). -->
 	<concept>fisheries:SubsistenceFishProvision</concept>
 
-	<!-- all the models that apply and in which context -->
+	<!-- All the models that apply and in which context. -->
 	<model>
 		<id>marine.models.fisheries/fisheries-subsistence-flow</id>
 		<context>core.contexts.beta/mg512</context>
 	</model>
 
-	<!--  main info page, visible when nothing has been computed yet -->
+	<!-- Storyline description. -->
 	<page>
 		<id>info</id>
 		<name>Subsistence fishing</name>
 		<title>Introduction</title>
+		<runninghead>Subsistence fishing.</runninghead>
 		<description>
-		
 			This storyline demonstrates the use of ARIES in quantifying
 			specific values of fisheries resources to coastal populations 
 			that depend on these resources as critical sources of nutrition
@@ -29,21 +29,20 @@
 			
 			Subsistence harvesting of ecosystem goods is critical 
 			in the developing world as well as in developed nations. 
-			Such ecosystem goods have been termed the “GDP of the poor”, 
+			Such ecosystem goods have been termed the "GDP of the poor," 
 			since they provide employment and livelihoods for many of the 
 			world’s poor while not being monetized in traditional economic 
 			accounts like GDP. Societal dependence on subsistence fisheries, 
 			combined with overfishing, pollution, and climate change, adds to
 			the importance of sustainably managing aquatic resources.
 
-			Thanks to the support of the 
+			With the support of the 
 			"UNEP World Conservation Monitoring Centre":http://www.unep-wcmc.org
 			we have developed this storyline for Madagascar, chosen 
 			because of its high rate of poverty, dependence on fisheries
 			as a key protein source in rural communities, and prevalent
 			deforestation-driven sedimentation and erosion, which
-			impact its coastal and marine systems.
-			
+			impact its coastal and marine systems.			
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -53,7 +52,6 @@
 		<credits><![CDATA[
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead></runninghead>
 	</page>
 
 	<!-- the following pages illustrate results one by one, and appear in the given sequence when the model(s) has been computed. If the results
@@ -62,7 +60,8 @@
 		<concept>fisheries:CoastalProximity</concept>
 		<name>Proximity</name>
 		<title>Distance To coast</title>
-		<group />
+		<runninghead>Distance To Coast.</runninghead>
+		<group>use</group>
 		<description>
 		Populations that live in coastal areas in developing nations often depend on local fisheries for 
 		their daily subsistence. This analysis was therefore restricted to populations living
@@ -80,7 +79,6 @@
 	    <b>Data provided by</b>: public world coastline database</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Distance To Coast</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -89,7 +87,8 @@
 		<concept>fisheries:PopulationDensityClass</concept>
 		<name>Population</name>
 		<title>Population density</title>
-		<group />
+		<runninghead>Population Density.</runninghead>
+		<group>use</group>
 		<description>
 			To estimate demand for subsistence fisheries, population density data
 			were used as a first step to determine demand levels. These data were 
@@ -107,17 +106,16 @@
 	    <b>Data provided by</b>: LANDSCAN, Oak Ridge National Laboratories</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Population Density</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
-
 
 	<page>
 		<concept>fisheries:Poverty</concept>
 		<name>Poverty</name>
 		<title>Poverty level</title>
-		<group />
+		<runninghead>Poverty level.</runninghead>
+		<group>use</group>
 		<description>
 			People are more likely to rely on fisheries for subsistence use 
 			when they lack other sources of nutrition. Poverty rates estimated by
@@ -137,7 +135,6 @@
 	    <b>Data provided by</b>: Elvidge et al., 2009</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Poverty</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -146,7 +143,9 @@
 		<concept>fisheries:SubsistenceUse</concept>
 		<name>Subsistence demand</name>
 		<title>Subsistence demand</title>
-		<group />
+		<runninghead>Subsistence use.</runninghead>
+		<group>use</group>
+        <units>kg fish/year</units>
 		<description>
 			h1. Subsistence fishery demand
 			
@@ -165,7 +164,6 @@
 		<credits><![CDATA[
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Subsistence Use</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -174,7 +172,8 @@
 		<concept>fisheries:LethrinusMahsenaAbundanceMg</concept>
 		<name>Sky emperor</name>
 		<title>Sky emperor abundance</title>
-		<group />
+		<runninghead>_Lethrinus mahsena_ abundance.</runninghead>
+		<group>source</group>
 		<description>
 			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
@@ -197,7 +196,6 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus mahsena abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -206,7 +204,8 @@
 		<concept>fisheries:LethrinusBorbonicusAbundanceMg</concept>
 		<name>Snubnose emperor</name>
 		<title>Snubnose emperor abundance</title>
-		<group />
+		<runninghead>_Lethrinus borbonicus_ abundance</runninghead>
+		<group>source</group>
 		<description>
 			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
@@ -229,7 +228,6 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lethrinus borbonicus abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -238,7 +236,8 @@
 		<concept>fisheries:LutjanusArgentimaculatusAbundanceMg</concept>
 		<name>Mangrove snapper</name>
 		<title>Mangrove red snapper abundance</title>
-		<group />
+		<runninghead>_Lutjanus argentimaculatus_ abundance</runninghead>
+		<group>source</group>
 		<description>
 			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
@@ -261,7 +260,6 @@
 	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Lutjanus argentimaculatus abundance</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -270,7 +268,9 @@
 		<concept>fisheries:TotalSubsistenceHarvest</concept>
 		<name>Total harvest</name>
 		<title>Total potential subsistence harvest</title>
-		<group />
+		<runninghead>Subsistence fisheries harvest.</runninghead>
+		<group>source</group>
+        <units>kg fish/year</units>
 		<description language="html"><![CDATA[
 		<h1>Subsistence fisheries provision map</h1>
 		<p>The source of benefits for this storyline is the total amount of potential fish 
@@ -288,14 +288,14 @@
 		for the other species considered. The sum of these maps constitutes our <b>source model</b>.</p>  
 		
 		<p>Historical catch data from The Sea Around Us Project shows that 71.6% of the total 
-		catch for Madagascar from 1950-2004 is “non-identified marine pelagic fishes.”  
+		catch for Madagascar from 1950-2004 is "non-identified marine pelagic fishes."  
 		In 2005, Madagascar produced 138,477 tonnes of fish from capture fisheries, of which 
 		77,636 tonnes were for commodity trade and production.  Another 72,300 tonnes were 
 		taken by traditional fishermen; however, this catch is not necessarily mutually 
 		exclusive of the commodity sector.  Subtracting the commodity catch from the 
 		total catch leaves 60,841 tonnes of fish which we assume goes toward 
 		local consumption.  Assuming 71.6% of the locally consumed fish are 
-		“non-identified marine pelagic fishes,” these account for 43,562 tonnes.
+		"non-identified marine pelagic fishes," these account for 43,562 tonnes.
 		Assuming that each of the fish species for which we have distribution data 
 		accounted for 20% of that total, this would give 8,712 tonnes of fish caught 
 		for each of these species.  We then divide the total catch for each species according 
@@ -332,7 +332,6 @@
 	    <b>Data provided by</b>: FAO 2008</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Subsistence harvest</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -480,7 +479,8 @@ habitat quality as part of mapping species abudnance.
 		<concept>infrastructure:Path</concept>
 		<name>Paths</name>
 		<title>Pathways to shore</title>
-		<group />
+		<runninghead>Paths.</runninghead>
+		<group>flow</group>
 		<description>
 			We have computed both the amount of need (demand) and the amount of potential
 			provision (supply) of fish. The last step of the analysis is to model the
@@ -515,7 +515,6 @@ habitat quality as part of mapping species abudnance.
 	    <b>Data provided by</b>: Madagascar infrastructure database (BD500)</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead> Path</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -526,8 +525,9 @@ habitat quality as part of mapping species abudnance.
 		<concept>fisheries:SubsistenceFishFlow</concept>
 		<name>Fish flow</name>
 		<title>Actual subsistence fish flow</title>
-		<group />
-		<disabled>true</disabled>
+		<runninghead>Actual flow map.</runninghead>
+		<group>flow</group>
+		<units>kg fish/year</units>
 		<description>
 		The *actual flow density* map shows the flow paths that deliver actual services to
 		humans. These are selected from the total flow density to only show these flow paths
@@ -543,9 +543,9 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead>Actual subsistence fish flow</runninghead>
+		<disabled>true</disabled>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -553,9 +553,10 @@ habitat quality as part of mapping species abudnance.
 	<page>
 		<concept>fisheries:UtilizedSubsistenceFish</concept>
 		<name>Actual value</name>
-		<units>kg</units>
 		<title>Actually utilized subsistence fish</title>
-		<group />
+		<runninghead>Actual source map.</runninghead>
+		<group>flow</group>
+		<units>kg fish/year</units>
 		<description>
 		The *actual source map* shows the portion of the source map that is actually
 		relevant to the provision of a service after accounting for flow dynamics. 
@@ -571,9 +572,8 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead>Actually utilized subsistence fish</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -582,8 +582,9 @@ habitat quality as part of mapping species abudnance.
 		<concept>fisheries:SatisfiedSubsistenceFishDemand</concept>
 		<name>Satisfied need</name>
 		<title>Satisfied subsistence fish demand</title>
-		<units>kg</units>
-		<group />
+		<runninghead>Actual use map.</runninghead>
+		<group>flow</group>
+		<units>kg fish/year</units>
 		<description>
 		The *actual use map* represents the portion of the demand map or potential users  whose needs 
 		have been satisfied by the flow of services, taking into account the availability of the resource,
@@ -598,9 +599,8 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead>Satisfied subsistence fish demand</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -609,7 +609,9 @@ habitat quality as part of mapping species abudnance.
 		<concept>fisheries:UnutilizedSubsistenceFish</concept>
 		<name>Unused fish</name>
 		<title>Unutilized subsistence fish</title>
-		<group />
+		<runninghead>Inaccessible source map.</runninghead>
+		<group>flow</group>
+		<units>kg fish/year</units>
 		<description>
 		The *inaccessible source map* shows the part of the source value that cannot 
 		deliver a service carrier to humans based on the flow routes and the source 
@@ -625,9 +627,8 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead>Unutilized subsistence fish</runninghead>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -636,7 +637,9 @@ habitat quality as part of mapping species abudnance.
 		<concept>fisheries:UnsatisfiedSubsistenceFishDemand</concept>
 		<name>Unmet need</name>
 		<title>Unsatisfied subsistence fish demand</title>
-		<group />
+		<runninghead>Inaccessible use map.</runninghead>
+		<group>flow</group>
+		<units>kg fish/year</units>
 		<description>
 		The *inaccessible use map* shows the potential users that cannot receive a service
 		carrier due to flow routes and the source and user locations. For provisioning services,
@@ -655,12 +658,10 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
-		<runninghead>Unsatisfied subsistence fish demand</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>     
-
 
 </presentation>
