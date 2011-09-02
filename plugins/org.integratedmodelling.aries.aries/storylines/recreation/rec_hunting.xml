@@ -17,88 +17,9 @@
 		<context>core.contexts.beta/san_pedro_us512</context>
 	</model>
 
-<!-- The Vermont viewsheds model needs to have its use model replaced.  While we should eventually incorporate it into the 
-online interface we should hold off on doing so for now.  We also have data & defmodel statements for scenic drives that I 
-think should go in the rec models vs. viewsheds - if we do so, need to add the concepts to the right storylines.
-	<model>
-		<id>core.models.recreation-vt/data</id>
-		<context>core.contexts.beta/vt512</context> 
-	</model>
-
-	<page id="viewer-enjoyment">
-		<concept>recreationService:ViewerEnjoyment</concept>
-		<name>Enjoyment of views from mountain summits and overlooks</name>
-		<title>Natural areas for scenic views</title>
-		<runninghead>Natural areas for scenic views.</runninghead>
-		<group></group>
-		<description>
-		This storyline considers the value of views from mountain summits and overlooks for hikers.  View quality and obstructions are
-		modeled using a line-of-sight model, which identifies viewshed quality at alternative mountain summits.  A transportation
-		model using road networks and recreational preferences will be developed in the future to identify spatial connections 
-        between people and their preferred recreational sites.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>  -->
-
     <!-- Storyline description. -->
-	<page id="birding-use">
-		<concept>recreationService:BirdingUse</concept>
-		<name>Enjoyment of natural areas for bird watching</name>
-		<title>Natural areas for birding</title>
-		<runninghead>Natural areas for birding.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for bird watching.  The 
-		source model maps areas that have high bird species diversity, the presence of rare or charismatic species, land that is
-		accessible to the public, and areas where surface water is present as having high potential value for bird watching.
-		By combining this map with information about recreational travel patterns and site selection, we can map the connections
-		between recreational users and specific sites, showing recreational use alongside other ecosystem services provided by 
-		recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page id="wildlife-viewing-use">
-		<concept>recreationService:WildlifeViewingUse</concept>
-		<name>Enjoyment of natural areas for wildlife viewing</name>
-		<title>Natural areas for wildlife viewing</title>
-		<runninghead>Natural areas for wildlife viewing.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for wildlife viewing.  Since 
-		wildlife viewing may be enjoyed as a part of numerous different types of outdoor activities, we can show the suitability 
-		of areas for wildlife viewing in conjunction with areas suitable for other types of recreational activities (e.g., hiking, 
-		camping, hunting, fishing, scenic drives).  The source model maps areas that have high wildlife species diversity, land 
-		that is accessible to the public, and areas where surface water is present as having high potential value for wildlife 
-		viewing.  By combining this map with information about recreational travel patterns and site selection, we can map the 
-		connections between recreational users and specific sites, showing recreational use alongside other ecosystem services 
-		provided by recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
 
-<!-- NEED ONE STORYLINE FOR HUNTING - COMBINE THESE.  MEANS YOU NEED A NEW CONCEPT IN THE REC ONTOLOGY, UNFORTUNATELY. -->
+<!-- DO WE NEED AN OVERALL "HUNTING" STORYLINE?  I THINK IT'S SENSIBLE TO KEEP THESE TOGETHER BUT NOT SURE IF THEY NEED A TOP "AGGREGATING CONCEPT". -->
 	<page id="javelina-hunting-use">
 		<concept>recreationService:JavelinaHuntingUse</concept>
 		<name>Enjoyment of natural areas for javelina hunting</name>
@@ -106,7 +27,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 		<runninghead>Natural areas for javelina hunting.</runninghead>
 		<group></group>
 		<description>	
-		This model considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
 		javelina (peccaries), one of several important game species in southeast Arizona.  The source model maps areas where 
 		javelina habitat is present, land that is accessible to the public, and areas where surface water is present as having 
 		high potential value for javelina hunting.  By combining this map with information about recreational travel patterns 
@@ -130,7 +51,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 		<runninghead>Natural areas for deer hunting.</runninghead>		
         <group></group>
 		<description>	
-		This model considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
 		deer (mule and whitetail), which are important game species in southeast Arizona.  The source model maps areas where 
 		one or more deer species' habitat is present, land that is accessible to the public, and areas where surface water is 
 		present as having high potential value for deer hunting.  By combining this map with information about recreational 
@@ -154,7 +75,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 		<runninghead>Natural areas for quail hunting.</runninghead>
 		<group></group>
 		<description>	
-		This model considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
 		quail (Gambels, Mearns', and scaled), which are important game species in southeast Arizona.  The source model maps 
 		areas where one or more quail species' habitat is present, land that is accessible to the public, and areas where surface 
 		water is present as having high potential value for quail hunting.  By combining this map with information about 
@@ -178,7 +99,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 		<runninghead>Natural areas for dove hunting.</runninghead>
 		<group></group>
 		<description>	
-		This model considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
 		dove (mourning and white-winged), which are important game species in southeast Arizona.  The source model maps 
 		areas where one or more dove species' habitat is present, land that is accessible to the public, and areas where surface 
 		water is present as having high potential value for dove hunting.  By combining this map with information about recreational 
@@ -195,299 +116,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-<!-- Input data and model results for source, sink, and use models.  -->
-
-  <page id="lake">
-    <concept>recreationService:Lake</concept>
-    <name>Lakes</name>
-    <title>Presence of lakes</title>
-    <runninghead>Lakes.</runninghead> 
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of lakes as aesthetically pleasing natural features to view from mountain summits.</p>
-			<h1>Role in models</h1>
-			<p>Lake presence is defined as a high-quality water view and used as an input to a probabilistic model
-			to estimate view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of lakes.</p>
-			<h1>Source</h1>
-			<p>National Hydrography Dataset.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="river-stream">
-    <concept>recreationService:RiverStream</concept>
-    <name>Rivers and streams</name>
-    <title>Presence of rivers or streams</title>
-    <runninghead>Rivers and streams.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of rivers and streams as aesthetically pleasing natural features to view from mountain summits.</p>
-			<h1>Role in models</h1>
-			<p>Rivers and streams, which are less prominent water features on the landscape than lakes, are defined 
-			as a lower-quality water view and used as an input to a probabilistic model to estimate view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
-			<h1>Source</h1>
-			<p>National Hydrography Dataset.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="mountain">
-    <concept>recreationService:Mountain</concept>
-    <name>Mountain</name>
-    <title>Presence of mountains</title>
-    <runninghead>Mountains.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of other mountains as aesthetically pleasing natural features to view from mountain summits.</p>
-			<h1>Role in models</h1>
-			<p>The view of other mountains, and their height, is used as an input to a probabilistic model to estimate 
-			view quality from a given mountain summit.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of meters above sea level.</p>
-			<h1>Source</h1>
-			<p>Global 90-m SRTM digital elevation model.</p>
-		]]></description>
-        <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>=
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="open-space-class">
-    <concept>recreationService:OpenSpaceClass</concept>
-    <name>Open space class</name>
-    <title>Open space class</title>
-    <runninghead>Open space type.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of aesthetically pleasing land cover types as viewed from mountain summits, such as forests or 
-            farmland.</p>
-			<h1>Role in models</h1>
-			<p>The view of natural land cover, such as forests or farmland, is used as an input to a probabilistic model to 
-            estimate view quality from a given mountain summit.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from NLCD land cover classes.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="aesthetic-enjoyment-provision">
-    <concept>aestheticService:AestheticEnjoymentProvision</concept>
-    <name>Potential view quality</name>
-    <title>Potential view quality</title>
-    <runninghead>Potential view quality.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The quality of a potential view from a mountain summit.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the viewshed source model, and estimates the relative quality 
-			of different areas in providing aesthetically pleasing views, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to provide aesthetically pleasing views. As the output of the models 
-			is probabilistic, each point contains the probability distribution for potential view quality. 
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient 
-			of variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="development">
-    <concept>recreationService:Development</concept>
-    <name>Developed land</name>
-    <title>Presence of developed land</title>
-    <runninghead>Developed land.</runninghead>
-    <group>sink</group>
-    <description><![CDATA[
-			<p>The presence of aesthetically displeasing land cover types as viewed from mountain summits, such as 
-			high density development.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an 
-			input to a probabilistic model to estimate visual blight visible from a given mountain summit.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from NLCD land cover classes.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="transportation-energy-infrastructure">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept>
-    <name>Transportation and energy infrastructure</name>
-    <title>Presence of transportation and energy infrastructure</title>
-    <runninghead>Transportation and energy infrastructure.</runninghead>
-    <group>sink</group>
-    <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types as viewed from mountain summits, such as 
-			highways or transmission lines.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as highways or transmission lines, is used as an 
-			input to a probabilistic model to estimate visual blight visible from a given mountain summit.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of roads and utility lines.</p>
-			<h1>Source</h1>
-			<p>Vermont Center for Geographic Information.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="visual-blight">
-    <concept>aestheticService:ViewSink</concept>
-    <name>Visual blight</name>
-    <title>Visual blight</title>
-    <runninghead>Visual blight</runninghead>
-    <group>sink</group>
-    <description><![CDATA[
-			<p>The ability of parts of the landscape to degrade views, based on the presence of visually 
-			unappealing features.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the viewshed sink model, and estimates the relative ability 
-			of different areas to degrade high-quality views, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative ability of different
-			parts of the landscape to degrade high-quality views. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential visual blight.  The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation are 
-			reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="mountain-summits-with-views">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept> <!-- REPLACE WITH CORRECT CONCEPT -->
-    <name>Summits with views</name>
-    <title>Mountain summits and overlooks with views</title>
-    <runninghead>Summits with views.</runninghead>
-    <group>use</group>
-    <description><![CDATA[
-			<p>The presence of mountain summits or overlooks with views of the surrounding landscape, as opposed to forested
-			summits with limited views.</p>
-			<h1>Role in models</h1>
-			<p>Viewsheds are calculated from all mountain summits or overlooks with views using a viewshed flow model, which 
-			quantifies view quality for each summit or overlook.  View quality can then be used as the source value for a recreation
-			flow model that connects recreationists to mountain summits of interest.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of mountain summits or overlooks with views
-			of the surrounding landscape.</p>
-			<h1>Source</h1>
-			<p>Digitized based on Vermont hiking guides.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="actual-view-quality">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept> <!-- REPLACE WITH CORRECT CONCEPT -->
-    <name>Actual view quality</name>
-    <title>Actual view quality from summits and overlooks</title>
-    <runninghead>Actual view quality.</runninghead>
-    <group>use</group>
-    <description><![CDATA[
-			<p>The actual quality of views from mountain summits and overlooks, when accounting for the source of high quality 
-			views, visual blight that degrades views, and distance decay in viewsheds.  The viewshed flow model accounts for these
-			parameters, providing this map of acutal view quality from summits and overlooks.</p>
-			<h1>Role in models</h1>
-			<p>Viewsheds are calculated from all mountain summits or overlooks with views using a viewshed flow model, which 
-			quantifies view quality for each summit or overlook.  View quality can then be used as the source value for a recreation
-			flow model that connects recreationists to mountain summits of interest.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative view quality from a given summit or overlook.</p>
-			<h1>Source</h1>
-			<p>Calculated using the viewshed flow model, accounting for sources of high quality views and visual blight
-			that degrades views from mountain summits and overlooks.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
+  <!-- Input data and model results for source, sink, and use models.  -->
   <page id="public-access-class">
     <concept>recreationService:PublicAccessClass</concept>
     <name>Public access</name>
@@ -505,67 +134,6 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 			or private land without public access.</p>
 			<h1>Source</h1>
 			<p>Arizona Geographic Information Council, Vermont Center for Geographic Information.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="bird-species-richness">
-    <concept>recreationService:BirdSpeciesRichness</concept>
-    <name>Bird species richness</name>
-    <title>Bird species richness</title>
-    <runninghead>Bird species richness.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>Bird species richness, used to estimate an area's quality for bird watching.</p>
-			<h1>Role in models</h1>
-			<p>Bird species richness data are used as an input to the birding source model, which is used to 
-			estimate an area's suitability for birding.  Data for public access, the presence of surface water, 
-			and the presence of rare or charismatic bird species are also used as inputs to the source model.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, representing bird species richness.</p>
-			<h1>Source</h1>
-			<p>Arizona GAP Analysis Program.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="rare-charismatic-bird-habitat">
-    <concept>recreationService:RareCharismaticBirdHabitat</concept>
-    <name>Rare and charismatic bird habitat</name>
-    <title>Rare and charismatic bird habitat</title>
-    <runninghead>Rare and charismatic bird habitat.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of ten rare or charismatic bird species identified as important by birding tour guides
-			for southeast Arizona.  The ten species included are: elegant trogon (_Trogon elegans_), red-faced warbler 
-			(_Cardelina rubrifrons_), sulphur-bellied flycatcher (_Myiodynastes luteiventris_), painted redstart 
-			(_Myioborus pictus_), five-striped sparrow (_Aimophila quinquestriata_), Cassin’s sparrow (_Aimophila 
-			cassinii_), Botteri’s sparrow (_Aimophila botterii_), vermillion flycatcher (_Pyrocephalus rubinus_), 
-			tropical kingbird (_Tyrannus melancholicus_), and yellow-billed cuckoo (_Coccyzus americanus_).</p>
-			<h1>Role in models</h1>
-			<p>Rare or charismatic bird data are used as an input to the birding source model, which is used to 
-			estimate an area's suitability for birding.  Data for public access, the presence of surface water, 
-			and the bird species richness are also used as inputs to the source model.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, based on the number of rare or charismatic birds present.</p>
-			<h1>Source</h1>
-			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
@@ -655,99 +223,6 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
 			<p>Data are categorical.</p>
 			<h1>Source</h1>
 			<p>Derived from surface water presence and riparian condition class data.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="birding-source-value">
-    <concept>recreationService:BirdingSourceValue</concept>
-    <name>Potential birding quality</name>
-    <title>Potential birding quality</title>
-    <runninghead>Potential birding quality.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>Suitability of different areas to support bird watching.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the birding source model, and estimates the relative quality 
-			of different areas to support birding, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support bird watching. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential bird watching quality. The 
-			distribution can be visualized by clicking on the map; the mean value and the coefficient of 
-			variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="wildlife-species-richness">
-    <concept>recreationService:WildlifeSpeciesRichness</concept>
-    <name>Wildlife species richness</name>
-    <title>Wildlife species richness</title>
-    <runninghead>Wildlife species richness.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>Weighted average biodiversity values for amphibians, birds, mammals, and reptiles.</p>
-			<h1>Role in models</h1>
-			<p>Overall biodiversity levels influence an area's suitability for wildlife viewing.  Wildlife richness data
-			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for wildlife viewing.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and represent average biodiversity values for amphibians, birds, mammals, and
-			reptiles.</p>
-			<h1>Source</h1>
-			<p>Derived from Arizona GAP Analysis Program.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="wildlife-viewing-source-value">
-    <concept>recreationService:WildlifeViewingSourceValue</concept>
-    <name>Potential wildlife viewing quality</name>
-    <title>Potential wildlife viewing quality</title>
-    <runninghead>Potential wildlife viewing quality.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>Suitability of different areas to support wildlife viewing.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the wildlife viewing source model, and estimates the relative quality 
-			of different areas to support wildlife viewing, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support wildlife viewing. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential wildlife viewing quality. The 
-			distribution can be visualized by clicking on the map; the mean value and the coefficient of 
-			variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
