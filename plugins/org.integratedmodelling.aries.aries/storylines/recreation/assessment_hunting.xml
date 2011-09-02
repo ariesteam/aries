@@ -1,7 +1,7 @@
 <presentation>
 
 	<title>Recreation</title>
-	<runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
+	<runninghead>Values resulting from ecosystem contributions toward recreational activities.</runninghead>
 	<description>Values resulting from ecosystem contributions toward recreational activities, as opposed to the
 	infrastructure, skills, and preferences of individuals participating in a given activity.  Source models map
 	the potential recreational quality of a given part of the landscape for a particular activity.  Flow models 
@@ -18,21 +18,93 @@
 	</model>
 
     <!-- Storyline description. -->
-	<page id="wildlife-viewing-use">
-		<concept>recreationService:WildlifeViewingUse</concept>
-		<name>Enjoyment of natural areas for wildlife viewing</name>
-		<title>Natural areas for wildlife viewing</title>
-		<runninghead>Natural areas for wildlife viewing.</runninghead>
+
+<!-- DO WE NEED AN OVERALL "HUNTING" STORYLINE?  I THINK IT'S SENSIBLE TO KEEP THESE TOGETHER BUT NOT SURE IF THEY NEED A TOP "AGGREGATING CONCEPT". -->
+	<page id="javelina-hunting-use">
+		<concept>recreationService:JavelinaHuntingUse</concept>
+		<name>Enjoyment of natural areas for javelina hunting</name>
+		<title>Natural areas for javelina hunting</title>
+		<runninghead>Natural areas for javelina hunting.</runninghead>
 		<group></group>
 		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for wildlife viewing.  Since 
-		wildlife viewing may be enjoyed as a part of numerous different types of outdoor activities, we can show the suitability 
-		of areas for wildlife viewing in conjunction with areas suitable for other types of recreational activities (e.g., hiking, 
-		camping, hunting, fishing, scenic drives).  The source model maps areas that have high wildlife species diversity, land 
-		that is accessible to the public, and areas where surface water is present as having high potential value for wildlife 
-		viewing.  By combining this map with information about recreational travel patterns and site selection, we can map the 
-		connections between recreational users and specific sites, showing recreational use alongside other ecosystem services 
-		provided by recreational areas.
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		javelina (peccaries), one of several important game species in southeast Arizona.  The source model maps areas where 
+		javelina habitat is present, land that is accessible to the public, and areas where surface water is present as having 
+		high potential value for javelina hunting.  By combining this map with information about recreational travel patterns 
+		and site selection, we can map the connections between recreational users and specific sites, showing recreational use 
+		alongside other ecosystem services provided by recreational areas.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="deer-hunting-use">
+		<concept>recreationService:DeerHuntingUse</concept>
+		<name>Enjoyment of natural areas for deer hunting</name>
+		<title>Natural areas for deer hunting</title>
+		<runninghead>Natural areas for deer hunting.</runninghead>		
+        <group></group>
+		<description>	
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		deer (mule and whitetail), which are important game species in southeast Arizona.  The source model maps areas where 
+		one or more deer species' habitat is present, land that is accessible to the public, and areas where surface water is 
+		present as having high potential value for deer hunting.  By combining this map with information about recreational 
+		travel patterns and site selection, we can map the connections between recreational users and specific sites, showing 
+		recreational use alongside other ecosystem services provided by recreational areas.
+		</description>
+		<see-also><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="quail-hunting-use">
+		<concept>recreationService:QuailHuntingUse</concept>
+		<name>Enjoyment of natural areas for quail hunting</name>
+		<title>Natural areas for quail hunting</title>
+		<runninghead>Natural areas for quail hunting.</runninghead>
+		<group></group>
+		<description>	
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		quail (Gambels, Mearns', and scaled), which are important game species in southeast Arizona.  The source model maps 
+		areas where one or more quail species' habitat is present, land that is accessible to the public, and areas where surface 
+		water is present as having high potential value for quail hunting.  By combining this map with information about 
+        recreational travel patterns and site selection, we can map the connections between recreational users and specific sites, 
+        showing recreational use alongside other ecosystem services provided by recreational areas.
+		</description>
+		<see-also><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+	
+	<page id="dove-hunting-use">
+		<concept>recreationService:DoveHuntingUse</concept>
+		<name>Enjoyment of natural areas for dove hunting</name>
+		<title>Natural areas for dove hunting</title>
+		<runninghead>Natural areas for dove hunting.</runninghead>
+		<group></group>
+		<description>	
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
+		dove (mourning and white-winged), which are important game species in southeast Arizona.  The source model maps 
+		areas where one or more dove species' habitat is present, land that is accessible to the public, and areas where surface 
+		water is present as having high potential value for dove hunting.  By combining this map with information about recreational 
+		travel patterns and site selection, we can map the connections between recreational users and specific sites, showing 
+		recreational use alongside other ecosystem services provided by recreational areas.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -162,24 +234,25 @@
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-
-  <page id="wildlife-species-richness">
-    <concept>recreationService:WildlifeSpeciesRichness</concept>
-    <name>Wildlife species richness</name>
-    <title>Wildlife species richness</title>
-    <runninghead>Wildlife species richness.</runninghead>
+  
+  <page id="dove-habitat">
+    <concept>sanPedro:DoveHabitat</concept>
+    <name>Dove habitat</name>
+    <title>Dove habitat</title>
+    <runninghead>Dove habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Weighted average biodiversity values for amphibians, birds, mammals, and reptiles.</p>
+			<p>Areas where mourning and/or white-winged dove (_Zenaida macroura_, _Z. asiatica_) are known or predicted 
+			to occur in the southwestern United States.</p>
 			<h1>Role in models</h1>
-			<p>Overall biodiversity levels influence an area's suitability for wildlife viewing.  Wildlife richness data
+			<p>The presence of dove habitat is a prerequisite for an area to support dove hunting.  Habitat presence
 			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for wildlife viewing.</p>
+			identify an area's suitability for dove hunting.</p>
 			<h1>Representation</h1>
-			<p>Data are categorical, and represent average biodiversity values for amphibians, birds, mammals, and
-			reptiles.</p>
+			<p>Data are categorical, and are mapped as the presence of one species of dove habitat, multiple species of dove 
+			habitat, or the absence of any dove species habitat.</p>
 			<h1>Source</h1>
-			<p>Derived from Arizona GAP Analysis Program.</p>
+			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
@@ -192,23 +265,207 @@
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="wildlife-viewing-source-value">
-    <concept>recreationService:WildlifeViewingSourceValue</concept>
-    <name>Potential wildlife viewing quality</name>
-    <title>Potential wildlife viewing quality</title>
-    <runninghead>Potential wildlife viewing quality.</runninghead>
+  <page id="deer-habitat">
+    <concept>sanPedro:DeerHabitat</concept>
+    <name>Deer habitat</name>
+    <title>Deer habitat</title>
+    <runninghead>Deer habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support wildlife viewing.</p>
+			<p>Areas where mule and/or white-tailed deer (_Odocoileus hemionus_, _O. virginianus_) are known or predicted 
+			to occur in the southwestern United States.</p>
 			<h1>Role in models</h1>
-			<p>This is the output of the wildlife viewing source model, and estimates the relative quality 
-			of different areas to support wildlife viewing, based on relevant input data.</p>
+			<p>The presence of deer habitat is a prerequisite for an area to support deer hunting.  Habitat presence
+			data are used as an input to the source model, along with public access and presence of surface water, to 
+			identify an area's suitability for deer hunting.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, and are mapped as the presence of one species of deer habitat, multiple species of deer 
+			habitat, or the absence of any deer species habitat.</p>
+			<h1>Source</h1>
+			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="quail-habitat">
+    <concept>sanPedro:QuailHabitat</concept>
+    <name>Quail habitat</name>
+    <title>Quail habitat</title>
+    <runninghead>Quail habitat.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Areas where Gambels', Mearns', and/or scaled quail (_Callipepla gambelii_, _C. montezumae_, _C. squamata_) are 
+			known or predicted to occur in the southwestern United States.</p>
+			<h1>Role in models</h1>
+			<p>The presence of quail habitat is a prerequisite for an area to support quail hunting.  Habitat presence
+			data are used as an input to the source model, along with public access and presence of surface water, to 
+			identify an area's suitability for quail hunting.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, and are mapped as the presence of one species of quail habitat, multiple species of quail 
+			habitat, or the absence of any quail species habitat.</p>
+			<h1>Source</h1>
+			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="javelina-habitat">
+    <concept>sanPedro:JavelinaHabitat</concept>
+    <name>Javelina habitat</name>
+    <title>Javelina habitat</title>
+    <runninghead>Javelina habitat.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Areas where javelina (_Pecari tajacu_) are known or predicted to occur in the southwestern United States.</p>
+			<h1>Role in models</h1>
+			<p>The presence of javelina habitat is a prerequisite for an area to support javelina hunting.  Habitat presence
+			data are used as an input to the source model, along with public access and presence of surface water, to 
+			identify an area's suitability for javelina hunting.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of potential javelina habitat.</p>
+			<h1>Source</h1>
+			<p>Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="dove-hunting-source-value">
+    <concept>sanPedro:DoveHuntingSourceValue</concept>
+    <name>Potential Dove hunting quality</name>
+    <title>Potential Dove hunting quality</title>
+    <runninghead>Potential Dove hunting quality.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Suitability of different areas to support dove hunting.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of the dove hunting source model, and estimates the relative quality 
+			of different areas to support dove hunting, based on relevant input data.</p>
 			<h1>Representation</h1>
 			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support wildlife viewing. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential wildlife viewing quality. The 
-			distribution can be visualized by clicking on the map; the mean value and the coefficient of 
-			variation are reported along with the probabilities.</p>
+			parts of the landscape to support dove hunting. As the output of the models is probabilistic, 
+			each point contains the probability distribution for potential hunting quality. The distribution 
+			can be visualized by clicking on the map; the mean value and the coefficient of variation 
+			are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
+			ARIES server for the selected area.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="deer-hunting-source-value">
+    <concept>sanPedro:DeerHuntingSourceValue</concept>
+    <name>Potential deer hunting quality</name>
+    <title>Potential deer hunting quality</title>
+    <runninghead>Potential deer hunting quality.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Suitability of different areas to support deer hunting.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of the deer hunting source model, and estimates the relative quality 
+			of different areas to support deer hunting, based on relevant input data.</p>
+			<h1>Representation</h1>
+			<p>The data are in abstract units from 0-100, representing relative suitability of different
+			parts of the landscape to support deer hunting. As the output of the models is probabilistic, 
+			each point contains the probability distribution for potential hunting quality. The distribution 
+			can be visualized by clicking on the map; the mean value and the coefficient of variation 
+			are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
+			ARIES server for the selected area.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="quail-hunting-source-value">
+    <concept>sanPedro:QuailHuntingSourceValue</concept>
+    <name>Potential quail hunting quality</name>
+    <title>Potential quail hunting quality</title>
+    <runninghead>Potential quail hunting quality.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Suitability of different areas to support quail hunting.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of the quail hunting source model, and estimates the relative quality 
+			of different areas to support quail hunting, based on relevant input data.</p>
+			<h1>Representation</h1>
+			<p>The data are in abstract units from 0-100, representing relative suitability of different
+			parts of the landscape to support quail hunting. As the output of the models is probabilistic, 
+			each point contains the probability distribution for potential hunting quality. The distribution 
+			can be visualized by clicking on the map; the mean value and the coefficient of variation 
+			are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
+			ARIES server for the selected area.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="javelina-hunting-source-value">
+    <concept>sanPedro:JavelinaHuntingSourceValue</concept>
+    <name>Potential javelina hunting quality</name>
+    <title>Potential javelina hunting quality</title>
+    <runninghead>Potential javelina hunting quality.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Suitability of different areas to support javelina hunting.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of the javelina hunting source model, and estimates the relative quality 
+			of different areas to support javelina hunting, based on relevant input data.</p>
+			<h1>Representation</h1>
+			<p>The data are in abstract units from 0-100, representing relative suitability of different
+			parts of the landscape to support javelina hunting. As the output of the models is probabilistic, 
+			each point contains the probability distribution for potential hunting quality. The distribution 
+			can be visualized by clicking on the map; the mean value and the coefficient of variation 
+			are reported along with the probabilities.</p>
 			<h1>Source</h1>
 			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
 			ARIES server for the selected area.</p>

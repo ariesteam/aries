@@ -8,33 +8,18 @@
 	sources of sediment or "sinks" that promote sediment deposition in relation to their human beneficiaries.</description>
 
 	<!-- The concept of the main observation (the top-level model). -->
-	<concept>carbonService:CarbonSourceValue</concept> <!-- FERD: NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
+	<concept>carbonService:CarbonSourceValue</concept> <!-- FERD: UNCLEAR WHAT THIS SHOULD BE SET TO. -->
 
 	<!-- All the models that apply and in which context.-->
-	<model>
-		<id>core.models.sediment-puget/sediment-farmers</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
-
 	<model>
 		<id>core.models.sediment-puget/sediment-reservoirs</id>
 		<context>core.contexts.beta/western_wa2048</context>
 	</model>	
 
 	<model>
-		<id>core.models.sediment-mg/sediment-detrimental-farmers</id>
-		<context>core.contexts.beta/mg_sed</context>
-	</model>	
-
-	<model>
 		<id>core.models.sediment-mg/sediment-detrimental-reservoirs</id>
 		<context>core.contexts.beta/mg_sed</context>
-	</model>	
-
-	<model>
-		<id>core.models.sediment-dr/sediment-detrimental-farmers</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
+	</model>
 
 	<model>
 		<id>core.models.sediment-dr/sediment-detrimental-reservoirs</id>
@@ -44,30 +29,6 @@
 <!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
 reservoirs as beneficiary groups.  Could also write storylines for erosion prone farmers (who benefit from soil
 retention on the farm), drinking water intakes, other beneficiary groups as appropriate. -->
-
-	<page id="deposition-prone-farmers">
-		<concept>soilRetentionService:DepositionProneFarmers</concept>
-		<name>Farmland susceptible to sediment deposition</name>
-		<title>Farmland susceptible to sediment deposition</title>
-		<runninghead>Farmland susceptible to sediment deposition.</runninghead>
-		<group></group>
-		<description>
-		This model considers floodplain farmland as a potential beneficiary of sediment regulation.  
-		Depending on the crops and timing of sedimentation, this process can be beneficial, delivering
-		new fertile sediment, or detrimental, causing crop damage.  These models map flows from sediment 
-		sources (areas of erosion), sinks (areas where deposition occurs), and beneficiary groups and 
-		link these via a flow model accounting for the downstream movement of sediment.  To map farms 
-		susceptible to sedimentation, we simply intersect farmland with floodplain extents data.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
 	
 	<page id="hydroelectric-use">
 		<concept>soilRetentionService:HydroelectricUse</concept>
@@ -705,99 +666,6 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="floodplains">
-    <concept>soilRetentionService:Floodplains</concept>
-    <name>Floodplain extent</name>
-    <title>Floodplain extent</title>
-    <runninghead>Floodplain extent.</runninghead>
-    <group>use</group>
-	<description><![CDATA[
-			<p>The extent of the mapped or observed floodplain.</p>
-			<h1>Role in models</h1>
-			<p>Floodplain extents are used in the use models to identify the presence of farmland located
-			in the flood zone.  These are the beneficiaries of either beneficial sediment delievery or avoided
-			delivery of detrimental sediment.  Floodplain extents are also used in the flow models to distribute 
-			sediment across the floodplain.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing extent of the floodplain.</p>
-			<h1>Source</h1>
-			<p>FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="farmland">
-    <concept>soilRetentionService:Farmland</concept>
-    <name>Farmland</name>
-    <title>Farmland</title>
-    <runninghead>Farmland.</runninghead>
-    <group>use</group>
-    <description><![CDATA[
-			<p>Farmland that can either benefit from or be harmed by sediment deposition.</p>
-			<h1>Role in models</h1>
-			<p>Farmland locations are intersected with floodplain extents data to map the potential beneficiaries
-			of sediment regulation.  The sediment flow model is then used to estimate actual sediment regulation values.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland.</p>
-			<h1>Source</h1>
-			<p>Various national land cover datasets.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="deposition-prone-farmers">
-    <concept>soilRetentionService:DepositionProneFarmers</concept>
-    <name>Deposition prone farmers</name>
-    <title>Deposition prone farmers</title>
-    <runninghead>Deposition prone farmers.</runninghead>   
-    <group>use</group>
-	<description><![CDATA[
-			<p>Farmland located in floodplains is a beneficiary group of sediment regulation, either of avoided detrimental 
-			sediment or delivery of beneficial sediment.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for sediment regulation.  The location of farmland susceptible to sedimentation
-			is passed to the flow model, which calculates actual sedimentation levels, given erosion levels and the
-			location of sinks that deposit sediment.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of floodplain farmland.</p>
-			<h1>Source</h1>
-			<p>Intersection of floodplain extents data and farmland cover data.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>

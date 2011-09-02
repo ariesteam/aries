@@ -1,7 +1,7 @@
 <presentation>
 
 	<title>Recreation</title>
-	<runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
+	<runninghead>Values resulting from ecosystem contributions toward recreational activities.</runninghead>
 	<description>Values resulting from ecosystem contributions toward recreational activities, as opposed to the
 	infrastructure, skills, and preferences of individuals participating in a given activity.  Source models map
 	the potential recreational quality of a given part of the landscape for a particular activity.  Flow models 
@@ -18,19 +18,21 @@
 	</model>
 
     <!-- Storyline description. -->
-	<page id="birding-use">
-		<concept>recreationService:BirdingUse</concept>
-		<name>Enjoyment of natural areas for bird watching</name>
-		<title>Natural areas for birding</title>
-		<runninghead>Natural areas for birding.</runninghead>
+	<page id="wildlife-viewing-use">
+		<concept>recreationService:WildlifeViewingUse</concept>
+		<name>Enjoyment of natural areas for wildlife viewing</name>
+		<title>Natural areas for wildlife viewing</title>
+		<runninghead>Natural areas for wildlife viewing.</runninghead>
 		<group></group>
 		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for bird watching.  The 
-		source model maps areas that have high bird species diversity, the presence of rare or charismatic species, land that is
-		accessible to the public, and areas where surface water is present as having high potential value for bird watching.
-		By combining this map with information about recreational travel patterns and site selection, we can map the connections
-		between recreational users and specific sites, showing recreational use alongside other ecosystem services provided by 
-		recreational areas.
+		This storyline considers the contribution of ecosystems toward providing high-quality areas for wildlife viewing.  Since 
+		wildlife viewing may be enjoyed as a part of numerous different types of outdoor activities, we can show the suitability 
+		of areas for wildlife viewing in conjunction with areas suitable for other types of recreational activities (e.g., hiking, 
+		camping, hunting, fishing, scenic drives).  The source model maps areas that have high wildlife species diversity, land 
+		that is accessible to the public, and areas where surface water is present as having high potential value for wildlife 
+		viewing.  By combining this map with information about recreational travel patterns and site selection, we can map the 
+		connections between recreational users and specific sites, showing recreational use alongside other ecosystem services 
+		provided by recreational areas.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -42,8 +44,7 @@
 		<plot-type>geocontour-2d</plot-type>
 	</page>
 
-<!-- Input data and model results for source, sink, and use models.  -->
-
+  <!-- Input data and model results for source, sink, and use models.  -->
   <page id="public-access-class">
     <concept>recreationService:PublicAccessClass</concept>
     <name>Public access</name>
@@ -61,67 +62,6 @@
 			or private land without public access.</p>
 			<h1>Source</h1>
 			<p>Arizona Geographic Information Council, Vermont Center for Geographic Information.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="bird-species-richness">
-    <concept>recreationService:BirdSpeciesRichness</concept>
-    <name>Bird species richness</name>
-    <title>Bird species richness</title>
-    <runninghead>Bird species richness.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>Bird species richness, used to estimate an area's quality for bird watching.</p>
-			<h1>Role in models</h1>
-			<p>Bird species richness data are used as an input to the birding source model, which is used to 
-			estimate an area's suitability for birding.  Data for public access, the presence of surface water, 
-			and the presence of rare or charismatic bird species are also used as inputs to the source model.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, representing bird species richness.</p>
-			<h1>Source</h1>
-			<p>Arizona GAP Analysis Program.</p>
-		]]></description>
-    <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="rare-charismatic-bird-habitat">
-    <concept>recreationService:RareCharismaticBirdHabitat</concept>
-    <name>Rare and charismatic bird habitat</name>
-    <title>Rare and charismatic bird habitat</title>
-    <runninghead>Rare and charismatic bird habitat.</runninghead>
-    <group>source</group>
-    <description><![CDATA[
-			<p>The presence of ten rare or charismatic bird species identified as important by birding tour guides
-			for southeast Arizona.  The ten species included are: elegant trogon (_Trogon elegans_), red-faced warbler 
-			(_Cardelina rubrifrons_), sulphur-bellied flycatcher (_Myiodynastes luteiventris_), painted redstart 
-			(_Myioborus pictus_), five-striped sparrow (_Aimophila quinquestriata_), Cassin’s sparrow (_Aimophila 
-			cassinii_), Botteri’s sparrow (_Aimophila botterii_), vermillion flycatcher (_Pyrocephalus rubinus_), 
-			tropical kingbird (_Tyrannus melancholicus_), and yellow-billed cuckoo (_Coccyzus americanus_).</p>
-			<h1>Role in models</h1>
-			<p>Rare or charismatic bird data are used as an input to the birding source model, which is used to 
-			estimate an area's suitability for birding.  Data for public access, the presence of surface water, 
-			and the bird species richness are also used as inputs to the source model.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, based on the number of rare or charismatic birds present.</p>
-			<h1>Source</h1>
-			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
 		]]></description>
     <see-also language="html"><![CDATA[
 		<p>
@@ -223,21 +163,50 @@
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="birding-source-value">
-    <concept>recreationService:BirdingSourceValue</concept>
-    <name>Potential birding quality</name>
-    <title>Potential birding quality</title>
-    <runninghead>Potential birding quality.</runninghead>
+  <page id="wildlife-species-richness">
+    <concept>recreationService:WildlifeSpeciesRichness</concept>
+    <name>Wildlife species richness</name>
+    <title>Wildlife species richness</title>
+    <runninghead>Wildlife species richness.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support bird watching.</p>
+			<p>Weighted average biodiversity values for amphibians, birds, mammals, and reptiles.</p>
 			<h1>Role in models</h1>
-			<p>This is the output of the birding source model, and estimates the relative quality 
-			of different areas to support birding, based on relevant input data.</p>
+			<p>Overall biodiversity levels influence an area's suitability for wildlife viewing.  Wildlife richness data
+			data are used as an input to the source model, along with public access and presence of surface water, to 
+			identify an area's suitability for wildlife viewing.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, and represent average biodiversity values for amphibians, birds, mammals, and
+			reptiles.</p>
+			<h1>Source</h1>
+			<p>Derived from Arizona GAP Analysis Program.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="wildlife-viewing-source-value">
+    <concept>recreationService:WildlifeViewingSourceValue</concept>
+    <name>Potential wildlife viewing quality</name>
+    <title>Potential wildlife viewing quality</title>
+    <runninghead>Potential wildlife viewing quality.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+			<p>Suitability of different areas to support wildlife viewing.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of the wildlife viewing source model, and estimates the relative quality 
+			of different areas to support wildlife viewing, based on relevant input data.</p>
 			<h1>Representation</h1>
 			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support bird watching. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential bird watching quality. The 
+			parts of the landscape to support wildlife viewing. As the output of the models is probabilistic, 
+			each point contains the probability distribution for potential wildlife viewing quality. The 
 			distribution can be visualized by clicking on the map; the mean value and the coefficient of 
 			variation are reported along with the probabilities.</p>
 			<h1>Source</h1>

@@ -283,7 +283,7 @@
 (defmodel green-infrastructure-sink GreenInfrastructureSink 
   (bayesian GreenInfrastructureSink
     :import  "aries.core::FloodSinkPugetAnnual.xdsl"
-    :context  [soil-group-puget vegetation-type slope annual-temperature  ; vegetation-height
+    :context  [soil-group-puget vegetation-type slope ; vegetation-height
                successional-stage imperviousness percent-vegetation-cover 
                mean-days-precipitation-annual land-selector]
     :required [LandOrSea]

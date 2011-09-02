@@ -8,16 +8,11 @@
 	sources of sediment or "sinks" that promote sediment deposition in relation to their human beneficiaries.</description>
 
 	<!-- The concept of the main observation (the top-level model). -->
-	<concept>carbonService:CarbonSourceValue</concept> <!-- FERD: NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
+	<concept>carbonService:CarbonSourceValue</concept> <!-- FERD: UNCLEAR WHAT THIS SHOULD BE SET TO. -->
 
 	<!-- All the models that apply and in which context.-->
 	<model>
 		<id>core.models.sediment-puget/sediment-farmers</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
-
-	<model>
-		<id>core.models.sediment-puget/sediment-reservoirs</id>
 		<context>core.contexts.beta/western_wa2048</context>
 	</model>	
 
@@ -27,19 +22,9 @@
 	</model>	
 
 	<model>
-		<id>core.models.sediment-mg/sediment-detrimental-reservoirs</id>
-		<context>core.contexts.beta/mg_sed</context>
-	</model>	
-
-	<model>
 		<id>core.models.sediment-dr/sediment-detrimental-farmers</id>
 		<context>core.contexts.beta/western_wa2048</context>
 	</model>	
-
-	<model>
-		<id>core.models.sediment-dr/sediment-detrimental-reservoirs</id>
-		<context>core.contexts.beta/western_wa</context>
-	</model>
 
 <!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
 reservoirs as beneficiary groups.  Could also write storylines for erosion prone farmers (who benefit from soil
@@ -58,30 +43,6 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
 		sources (areas of erosion), sinks (areas where deposition occurs), and beneficiary groups and 
 		link these via a flow model accounting for the downstream movement of sediment.  To map farms 
 		susceptible to sedimentation, we simply intersect farmland with floodplain extents data.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page id="hydroelectric-use">
-		<concept>soilRetentionService:HydroelectricUse</concept>
-		<name>Reservoirs susceptible to sediment deposition</name>
-		<title>Reservoirs susceptible to sediment deposition</title>
-		<runninghead>Reservoirs susceptible to sediment deposition.</runninghead>
-		<group></group>
-		<description>
-		This model considers hydroelectric reservoirs as a potential beneficiary of sediment regulation.  
-		Sedimentation reduces reservoir and hydroelectric generation capacity, and dredging to remove 
-		accumulated sediment and restore storage capacity can be extremely expensive.  These models map 
-		flows from sediment sources (areas of erosion), sinks (areas where deposition occurs), and 
-		beneficiary groups and link these via a flow model accounting for the downstream movement of 
-		sediment.
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -641,70 +602,6 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="hydroelectric-use-level">
-    <concept>soilRetentionService:HydroelectricUseLevel</concept>
-    <name>Hydroelectric use level</name>
-    <title>Hydroelectric use level</title>
-    <runninghead>Hydroelectric use level.</runninghead>
-    <group>use</group>
-	<description><![CDATA[
-			<p>The storage capacity of floodwater by dams, used as a proxy for power generation capacity.</p>
-			<h1>Role in models</h1>
-			<p>The potential hydroelectric generating capacity of a dam, used to measure the impact of sedimentation 
-			on power generating capacity.  These data are use values for hydroelectric dams as beneficiaries of 
-			sediment regulation, with their use and location passed to flow models which map actual sediment delivery
-			to reservoirs.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of cubic meters of storage capacity by reservoir.</p>
-			<h1>Source</h1>
-			<p>National Atlas of the United States, Major Dams of the United States.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="hydroelectric-use-presence">
-    <concept>soilRetentionService:HydroelectricUsePresence</concept>
-    <name>Hydroelectric use presence</name>
-    <title>Hydroelectric use presence</title>
-    <runninghead>Hydroelectric use presence.</runninghead>
-    <group>use</group>
-	<description><![CDATA[
-			<p>When dam storage capacities are unavailable, we use reservoir location data to map impacts of sedimentation
-			on hydroelectric generation.</p>
-			<h1>Role in models</h1>
-			<p>The location of reservoirs for hydroelectric dams, where generation capacity or storage data are unavailable.  
-			These data are use values for hydroelectric dams as beneficiaries of sediment regulation, with their use 
-			and location passed to flow models which map actual sediment delivery to reservoirs.</p>
-			<h1>Representation</h1>
-			<p>The data are represented as a presence or absence map showing the location of reservoirs.</p>
-			<h1>Source</h1>
-			<p>FAO AQUASTAT (Africa); Global Database of Dams (global).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
 	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
