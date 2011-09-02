@@ -325,6 +325,12 @@ fire frequency, increased greenhouse gas emissions."
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:NoFireFrequency)    
                   (:ff %))))
+  (model sanPedro:CarbonVegetationType
+    (classification sanPedro:CarbonVegetationType
+      :context [open-development-scenario :as od vegetation-type :as vt]
+      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'sanPedro:UrbanBarrenWaterAgriculture)
+                  (:vt %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [open-development-scenario :as od (measurement GreenhouseGasEmissions "t/ha*year")]
@@ -347,6 +353,12 @@ fire frequency, increased greenhouse gas emissions."
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:NoFireFrequency)
                   (:ff %))))
+  (model sanPedro:CarbonVegetationType
+    (classification sanPedro:CarbonVegetationType
+      :context [constrained-development-scenario :as cd vegetation-type :as vt]
+      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedOpen))
+                  (conc 'sanPedro:UrbanBarrenWaterAgriculture)
+                  (:vt %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [constrained-development-scenario :as cd use-simple]
