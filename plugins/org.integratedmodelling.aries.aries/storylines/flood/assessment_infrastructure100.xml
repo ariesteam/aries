@@ -1,56 +1,47 @@
 <presentation>
 
-	<title>Farms in floodplains</title>
-	<runninghead>Farm damage avoided by flood regulation.</runninghead>
+    <title>Public assets in the 100-year floodplain</title>
+	<runninghead>Damage to public assets avoided by flood regulation.</runninghead>
 	<description>Values resulting from flood regulation by ecosystems, including precipitation, ecosystems capable
-	of providing infiltration or detention of flood waters, and farmland at
-	risk of flooding.  Flow models are used to connect beneficiaries to potential sources of flood water and 
+	of providing infiltration or detention of flood waters, and infrastructure at
+	risk of flooding (within the 100-year floodplain).  Flow models are used to connect beneficiaries to potential sources of flood water and 
 	quantify the action of natural "sinks" that slow, detain, or infiltrate flood water.</description>
-	
-    <!-- The concept of the main observation (the top-level model). -->
+
+	<!-- The concept of the main observation (the top-level model). -->
 	<concept>floodService:???</concept>  <!-- Fix this, obviously: there are m\ultiple separate flow concepts for flood so it's not clear what this concept should be.-->
 
-	<!-- All the models that apply and in which context. -->
+	<!-- All the models that apply and in which context.-->
 	<model>
-		<id>core.models.flood-puget/flood-regulation-farmers-100</id>
+		<id>core.models.flood-puget/flood-regulation-public-assets-100</id>
 		<context>core.contexts.beta/western_wa2048</context>
-	</model>
-
-	<model>
-		<id>core.models.flood-puget/flood-regulation-farmers-500</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>
-
-	<model>
-		<id>core.models.flood-ca/flood-regulation-farmers-100</id>
-		<context>core.contexts.beta/ca_mark_watershed512</context>
 	</model>
 	
 	<model>
-		<id>core.models.flood-ca/flood-regulation-farmers-500</id>
+		<id>core.models.flood-ca/flood-regulation-public-assets-100</id>
 		<context>core.contexts.beta/ca_mark_watershed512</context>
 	</model>
 
-	<!-- Storyline description. -->
-	<page id="farmland-at-risk-flood">
+	<!-- Storyline description. -->	
+	<page id="public-infrastructure-at-risk-flood">
 		<id>info</id>
-		<name>Assessment of farmland at risk from flooding</name>
+		<name>Assessment of public assets at risk from flooding (100-year floodplain)</name>
 		<title>Introduction</title>
-		<runninghead>Farmland at risk from flooding.</runninghead>
+		<runninghead>Public assets at risk from flooding (100-year floodplain).</runninghead>
 		<group></group>
-		<description>
-		This model considers floodplain farmland as a potential beneficiary of flood regulation.  Depending on their magnitude and
-		timing, floods can have devastating effects on crops.  These models map flows from flood sources (precipitation), sinks (areas
+		<description>	
+		This model considers protection of public infrastructure within the 100-year floodplain as a potential beneficiary of flood regulation.  Public infrastructure (e.g.,
+		transportation, energy, or water infrastructure) can be damaged by floodwater or the use of such infrastructure can be impaired 
+		by inundation (e.g., roads being impassable due to flooding).  These models map flows from flood sources (precipitation), sinks (areas
 		whose topography, vegetation, and soils promote detention and infiltration of flood water), and beneficiary groups and link these
-		via a flow model accounting for the downstream movement of floodwater.  To map farms at risk of flooding, we simply intersect farmland
-		with floodplain extents data for either the 100 or 500-year floodplain.
+		via a flow model accounting for the downstream movement of floodwater.  To map public infrastructure at risk of flooding, 
+		we simply intersect roads, railways, or other infrastructure with data delimiting the 100-year floodplain.
 		</description>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -84,7 +75,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -116,7 +107,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.blm.gov/or/gis/data-details.php?data=ds000103" target="_blank">Interagency Vegetation Mapping Project.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -150,7 +141,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -183,7 +174,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -215,7 +206,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -245,7 +236,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -280,7 +271,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -313,7 +304,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://pugetsoundlidar.ess.washington.edu/" target="_blank">Puget Sound LIDAR Consortium.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -346,7 +337,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -355,7 +346,7 @@ comes online. -->
   </page>
 
  <!--FERD: is this the proper way to deal with multiple models having different ontologic concepts associated with the same concept (e.g., see the defmodel vegetation-type statement in flood_ca.clj vs. flood_puget.clj.  If two concepts are needed (as has been done here), need to do it right for carbon as well. -->
- <page id="vegetation-type">  
+ <page id="vegetation-type"> 
     <concept>floodService:VegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
@@ -378,7 +369,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -409,7 +400,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -447,7 +437,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -480,7 +469,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.nationalatlas.gov/mld/dams00x.html" target="_blank">Major dams of the United States</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -513,7 +502,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -545,7 +533,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -579,7 +566,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -611,7 +597,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.fema.gov/hazard/map/q3.shtm" target="_blank">FEMA Q3 Flood Data</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -619,23 +605,22 @@ comes online. -->
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="floodplains500">
-    <concept>floodService:Floodplains500</concept>
-    <name>500-year floodplain extent</name>
-    <title>500-year floodplain</title>
-    <runninghead>500-year floodplain.</runninghead>
+  <page id="highways">
+    <concept>infrastructure:Highway</concept>
+    <name>Highways</name>
+    <title>Highways</title>
+    <runninghead>Highways.</runninghead>
     <group>use</group>
 	<description><![CDATA[
-			<p>The extent of the mapped 500-year floodplain.</p>
+			<p>Highways at risk of flood damage or inundation, limiting their use for transportation during flood events.</p>
 			<h1>Role in models</h1>
-			<p>Floodplain extents are used in the use models to identify the presence of lives and property located
-			in the flood zone.  These are the beneficiaries of flood regulation, who are at risk of flooding in the 
-			absence of natural or engineered flood control measures.  Floodplain extents are also used in the flood flow
-			models to distribute floodwater across the floodplain.</p>
+			<p>Highway locations are summed with railway locations then intersected with floodplain extents data to map 
+			the potential beneficiaries of flood regulation.  The flood flow model is then used to estimate actual flood 
+			regulation values.</p>
 			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing extent of the 500-year floodplain.</p>
+			<p>Data are represented as a presence or absence map showing the location of highways.</p>
 			<h1>Source</h1>
-			<p>FEMA Q3 Flood Data.</p>
+			<p>TIGER highway line file data.</p>
 		]]></description>
 	<see-also language="html"><![CDATA[
 		<p>
@@ -643,7 +628,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -651,21 +636,22 @@ comes online. -->
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="farmland">
-    <concept>floodService:Farmland</concept>
-    <name>Farmland</name>
-    <title>Farmland</title>
-    <runninghead>Farmland.</runninghead>
+  <page id="railways">
+    <concept>infrastructure:Railway</concept>
+    <name>Railways</name>
+    <title>Railways</title>
+    <runninghead>Railways.</runninghead>
     <group>use</group>
-    <description><![CDATA[
-			<p>Farmland at risk of flood damage to crops.</p>
+	<description><![CDATA[
+			<p>Railways at risk of flood damage or inundation, limiting their use for transportation during flood events.</p>
 			<h1>Role in models</h1>
-			<p>Farmland locations are intersected with floodplain extents data to map the potential beneficiaries
-			of flood regulation.  The flood flow model is then used to estimate actual flood regulation values.</p>
+			<p>Railway locations are summed with highway locations then intersected with floodplain extents data to map 
+			the potential beneficiaries of flood regulation.  The flood flow model is then used to estimate actual flood 
+			regulation values.</p>
 			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland.</p>
+			<p>Data are represented as a presence or absence map showing the location of railways.</p>
 			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
+			<p>TIGER railway line file data.</p>
 		]]></description>
 	<see-also language="html"><![CDATA[
 		<p>
@@ -673,7 +659,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -681,25 +667,57 @@ comes online. -->
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="flood-farmers-use100">
-    <concept>floodService:FloodFarmersUse100</concept>
-    <name>Farmland in 100-year floodplain</name>
-    <title>Farmland in 100-year floodplain</title>
-    <runninghead>Farmland in 100-year floodplain.</runninghead>
+  <page id="public-asset">
+    <concept>floodService:PublicAsset</concept>
+    <name>Public assets</name>
+    <title>Public assets</title>
+    <runninghead>Public assets.</runninghead>
     <group>use</group>
 	<description><![CDATA[
-			<p>Farmland located in the 100-year floodplain is a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
-			during flood events.</p>
+			<p>Public assets at risk of flood damage or inundation, limiting their use during flood events.</p>
 			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
+			<p>Public assets are currently estimated by summing highway and railway presence data then intersecting these 
+			locations with floodplain extents data to map the potential beneficiaries of flood regulation.  The flood flow 
+			model is then used to estimate actual flood regulation values.  Other types of public infastructure at risk of
+			flooding could also be added to the public assets layer, assuming data were available to show locations of 
+			locally important infrastructure.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of public infrastructure in floodplains.</p>
+			<h1>Source</h1>
+			<p>TIGER highway and railway line file data.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="flood-public-assets-use100">
+    <concept>floodService:FloodPublicAssetsUse100</concept>
+    <name>Public assets in 100-year floodplain</name>
+    <title>Public assets in 100-year floodplain</title>
+    <runninghead>Public assets in 100-year floodplain.</runninghead>
+    <group>use</group>
+	<description><![CDATA[
+			<p>Roads and railways located in the 100-year floodplain are a beneficiary group whose protection 
+			by ecosystems and engineered flood control infrastructure helps avoid public replacement and repair costs
+			and maximize access during high precipitation events.</p>
+			<h1>Role in models</h1>
+			<p>This is one beneficiary group for flood regulation.  The location of public assets at risk of flooding
 			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
 			location of sinks that reduce flood flows.</p>
 			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland in the 100-year
-			floodplain.</p>
+			<p>Data are represented as a presence or absence map showing the location of public infrastructure 
+			in the 100-year floodplain.</p>
 			<h1>Source</h1>
-			<p>Intersection of FEMA 100-year floodplain data and NLCD farmland cover data.</p>
+			<p>Intersection of FEMA 100-year floodplain data and TIGER road and rail data.</p>
 		]]></description>
 	<see-also language="html"><![CDATA[
 		<p>
@@ -707,48 +725,13 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
-  <page id="flood-farmers-use500">
-    <concept>floodService:FloodFarmersUse500</concept>
-    <name>Farmland in 500-year floodplain</name>
-    <title>Farmland in 500-year floodplain</title>
-    <runninghead>Farmland in 500-year floodplain.</runninghead>
-    <group>use</group>
-	<description><![CDATA[
-			<p>Farmland located in the 500-year floodplain is a beneficiary group whose protection 
-			by ecosystems and engineered flood control infrastructure helps avoid crop damage and loss
-			during flood events.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for flood regulation.  The location of farmland at risk of flooding
-			is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
-			location of sinks that reduce flood flows.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland in the 500-year
-			floodplain.</p>
-			<h1>Source</h1>
-			<p>Intersection of FEMA 500-year floodplain data and NLCD farmland cover data.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
+
   <page id="river">
     <concept>geofeatures:River</concept>
     <name>Rivers</name>
@@ -764,7 +747,7 @@ comes online. -->
 			<h1>Representation</h1>
 			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
 			<h1>Source</h1>
-			<p>CalTrans Teale Data Center; Washington Department of Natural Resources.</p>
+			<p>Cal-Atlas Geospatial Clearinghouse; Washington Department of Natural Resources.</p>
 		]]></description>
 	<see-also language="html"><![CDATA[
 		<p>
@@ -772,7 +755,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR,</a> <a href="http://atlas.ca.gov/" target="_blank">Cal-Atlas Geospatial Clearinghouse.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -804,7 +787,7 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -835,7 +818,6 @@ comes online. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -868,7 +850,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -900,7 +882,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -928,7 +910,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -959,7 +941,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -986,7 +968,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 				<runninghead>No description given</runninghead>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
@@ -1013,7 +995,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1037,7 +1019,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1067,7 +1049,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1094,7 +1076,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1123,7 +1105,7 @@ comes online. -->
 			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>

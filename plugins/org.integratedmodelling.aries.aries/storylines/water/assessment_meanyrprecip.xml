@@ -1,7 +1,7 @@
 <presentation>
 
-	<title>Water supply</title>
-	<runninghead>Values resulting from water regulation and supply by ecosystems</runninghead>
+	<title>Surface water supply, mean annual precipitation</title>
+	<runninghead>Values resulting from water regulation and supply by ecosystems under mean annual precipitation levels</runninghead>
 	<description>Values resulting from the provision of surface and groundwater water supply by ecosystems, 
 	including precipitation, ecosystems capable of providing groundwater recharge or delivery of surface 
 	water through streams, lakes, or reservoirs.</description>
@@ -12,39 +12,30 @@
 	<!-- All the models that apply and in which context. -->
 	<model>
 		<id>core.models.water-la-antigua/surface-flow</id>
-		<context>core.contexts.beta/la_antigua512</context> <!-- Change this if necessary, not sure which context you're running it on these days. -->
-	</model>	
-
-	<model>
-		<id>core.models.water-san-pedro/surface-flow-dry</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
-	</model>
-
-	<model>
-		<id>core.models.water-san-pedro/surface-flow-wet</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
+		<context>core.contexts.beta/la_antigua1024</context> <!-- Change this if necessary, not sure which context you're running it on these days. -->
 	</model>
 
     <!-- Storyline description. -->
     <page id="info">
 		<id>info</id>
-		<name>Surface water supply assessment</name>
+		<name>Surface water supply assessment - mean annual precipitation levels</name>
 		<title>Introduction</title>
-		<runninghead>Surface water supply.</runninghead>
+		<runninghead>Surface water supply - mean annual precipitation levels.</runninghead>
 		<group></group>
 		<description>
 		This model considers surface water supply for various human beneficiary groups, including agriculture, industry, 
-		domestic use, and in-stream flow to support hydroelectric power generation, navigation, or recreation.  
-		These models map flows sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, incoming 
-		water transfers), sinks (areas of groundwater infiltration or evapotranspiration), and beneficiary groups and 
-		link these via a flow model accounting for the downstream movement of floodwater.
+		domestic use, and in-stream flow to support hydroelectric power generation, navigation, or recreation.  The model uses 
+        mean annual precipitation as the primary source of surface water. These models collectively map flows sources of surface water 
+        (precipitation, snowmelt, springs, baseflow to rivers, incoming water transfers), sinks (areas of groundwater 
+        infiltration or evapotranspiration), and beneficiary groups and link these via a flow model accounting for the 
+        downstream movement of floodwater.
 		</description>
 		<see-also><![CDATA[
 		<p>
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-        <credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+        <credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page>
@@ -69,7 +60,7 @@ when this is up and running.
 			<a href="http://www.ariesonline.org/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><a href="http://www.nsf.gov" target="_bland">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<a href="http://www.nsf.gov" target="_bland">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
 		<plot-type>geocontour-2d</plot-type>
 	</page> -->
@@ -104,83 +95,7 @@ when this is up and running.
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="annual-precipitation-dry-year">
-    <concept>waterSupplyService:AnnualPrecipitationDryYear</concept>
-    <name>Annual precipitation, dry year</name>
-    <title>Annual precipitation, dry year</title>
-    <runninghead>Annual precipitation, dry year.</runninghead>
-    <group>source</group>
-    <units>mm/year</units>
-    <description><![CDATA[
-			<p>Annual precipitation, dry year.</p>
-			<h1>Role in models</h1>
-			<p>Precipitation data are used as the most important "source" of surface and groundwater.  Particularly in
-			arid and semiarid regions, where year-to-year rainfall is highly variable, it is more realistic for us to 
-			model the range of variability in water supply, based on a representative wet and dry year, than to model 
-			mean annual precipitation.  Precipitation runs off into water bodies where it is used or recharges 
-			groundwater through percolation to aquifers.  Data are currently at an annual time scale; finer temporal 
-			resolution could be added to the ARIES system in the future to better account for seasonal wet and dry 
-			seasons and their impacts on water supply.  These data are passed to the flow model to estimate actual 
-			water supply used given the locations of beneficiaries, their demand, and infiltration or evapotranspiration 
-			that occur as water flows across the landscape.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of precipitation per year.</p>
-			<h1>Source</h1>
-			<p>PRISM Climate Group (U.S. data).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-  
-  <page id="annual-precipitation-wet-year">
-    <concept>waterSupplyService:AnnualPrecipitationWetYear</concept>
-    <name>Annual precipitation, wet year</name>
-    <title>Annual precipitation, wet year</title>
-    <runninghead>Annual precipitation, wet year</runninghead>
-    <group>source</group>
-    <units>mm/year</units>
-    <description><![CDATA[
-			<p>Annual precipitation, wet year.</p>
-			<h1>Role in models</h1>
-			<p>Precipitation data are used as the most important "source" of surface and groundwater.  Particularly in
-			arid and semiarid regions, where year-to-year rainfall is highly variable, it is more realistic for us to 
-			model the range of variability in water supply, based on a representative wet and dry year, than to model 
-			mean annual precipitation.  Precipitation runs off into water bodies where it is used or recharges 
-			groundwater through percolation to aquifers.  Data are currently at an annual time scale; finer temporal 
-			resolution could be added to the ARIES system in the future to better account for seasonal wet and dry 
-			seasons and their impacts on water supply.  These data are passed to the flow model to estimate actual 
-			water supply used given the locations of beneficiaries, their demand, and infiltration or evapotranspiration 
-			that occur as water flows across the landscape.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of precipitation per year.</p>
-			<h1>Source</h1>
-			<p>PRISM Climate Group (U.S. data).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -217,7 +132,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://water.usgs.gov/lookup/getgislist" target="_blank">U.S. Geological Survey.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -249,7 +164,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -282,7 +197,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -312,7 +226,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <b>Data source</b>: <a href="http://www.ngdc.noaa.gov/dmsp/download_global_isa.html" target="_blank">NOAA-NGDC global impervious surface data</a>/br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -345,7 +259,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
     <credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -376,7 +290,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -414,7 +328,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -445,7 +358,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -475,7 +388,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -499,7 +412,7 @@ not used as a source of groundwater. -->
 			<h1>Representation</h1>
 			<p>Data represent the percentage of the land surface under tree canopy cover.</p>
 			<h1>Source</h1>
-			<p>)2001 National Land Cover Dataset.</p>
+			<p>)NLCD 2001 data (U.S. data); GLCF (University of Maryland, global data).</p>
 		]]></description>
 		<see-also language="html"><![CDATA[
 		<p>
@@ -507,7 +420,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -545,7 +458,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -579,7 +491,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -611,7 +522,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -643,7 +553,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -675,7 +584,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -707,7 +615,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -741,7 +648,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -774,7 +680,6 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 		<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -807,7 +712,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="https://gisweb.azwater.gov/waterresourcedata/" target="_blank">Arizona Department of Water Resources Wells-55 Database.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -839,7 +744,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -870,7 +775,7 @@ not used as a source of groundwater. -->
 		</p>
 		]]></see-also>
 	<credits language="html"><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
     <disabled>false</disabled>
@@ -945,7 +850,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -979,7 +884,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1006,7 +911,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1037,7 +942,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1066,7 +971,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1094,7 +999,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1118,7 +1023,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1150,7 +1055,7 @@ so not repeated here.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
 		<disabled>true</disabled>
@@ -1181,7 +1086,7 @@ so not repeated here.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: </br>
+	    <b>Data source</b>: </br>
 	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 		]]></credits>
 		<disabled>true</disabled>
@@ -1215,7 +1120,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page> 
@@ -1244,7 +1149,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>
@@ -1275,7 +1180,7 @@ so not repeated here.
 			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
 		</p>
 		]]></see-also>
-		<credits><![CDATA[]]><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
 		<plot-type>geosurface-2d</plot-type>
 		<plot-type default="true">geocontour-2d</plot-type>
 	</page>

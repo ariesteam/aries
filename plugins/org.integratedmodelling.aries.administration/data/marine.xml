@@ -21,10 +21,6 @@
 	xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
 	xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#">
 
-<!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
-Potter, P., et al. In press. Characterizing the spatial patterns of global fertilizer application and manure production. Forthcoming in Earth Interactions. 
- -->
-
 <!-- Conversion turns this value from a percentage of the abundance in Madagascar per 0.5x0.5 degree
 pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a latitude of 19 degrees
 (the mean of latitudes in Madagascar), which gives a value of 11,654.98 km^2/degree^2 -->
@@ -380,7 +376,7 @@ with the BS numbers. KB: This layer still has major issues.  Commenting it out a
 	<observation:hasObservable>
 		<geofeatures:Dune />
 	</observation:hasObservable>
-	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<rdfs:comment>Data source: Foiben-Taosarintanin'i Madagasikara (FTM)</rdfs:comment>
 	<metadata:hasPriority>0</metadata:hasPriority>
 	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 	<observation:hasDataSource>
@@ -654,7 +650,8 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		<observation:hasObservable>
 			<policytarget:NitrogenFromFertilizerAndManure />
 		</observation:hasObservable>
-				<rdfs:comment>Data source: Potter et al. (in press)</rdfs:comment>
+				<rdfs:comment>Data source: Potter, P., N. Ramankutty, E.M. Bennett, and S.D. Donner.  2010.  Characterizing the spatial patterns of global 
+                fertilizer application and manure production.  Earth Interactions 14 (2): 1-22.</rdfs:comment>
 				<metadata:hasPriority>10</metadata:hasPriority> 
 				<metadata:hasURL>http://www.geog.mcgill.ca/~nramankutty/Datasets/Datasets.html</metadata:hasURL>
 				<measurement:unit>kg/ha*year</measurement:unit>
@@ -681,7 +678,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	<observation:hasObservable>
 		<infrastructure:Path />
 	</observation:hasObservable>
-	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<rdfs:comment>Data source: Foiben-Taosarintanin'i Madagasikara (FTM)</rdfs:comment>
 	<metadata:hasPriority>0</metadata:hasPriority>
 	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 	<observation:hasDataSource>
@@ -735,7 +732,7 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 	<observation:hasObservable>
 		<infrastructure:Port />
 	</observation:hasObservable>
-	<rdfs:comment>Data source: Foiben-Taosarintanini Madagasikara (FTM)</rdfs:comment>
+	<rdfs:comment>Data source: Foiben-Taosarintanin'i Madagasikara (FTM)</rdfs:comment>
 	<metadata:hasPriority>0</metadata:hasPriority>
 	<metadata:hasURL>http://www.ftm.mg/</metadata:hasURL>
 	<observation:hasDataSource>
@@ -762,9 +759,11 @@ pixel to a percentage of the abundance per 1 km^2.  Conversion is based on a lat
 		<observation:hasObservable>
 			<policytarget:PovertyPercentage />
 		</observation:hasObservable>
-			<rdfs:comment>Data source: SEDAC-CIESIN Poverty Mapping Project</rdfs:comment>
+			<rdfs:comment>Data source: Elvidge, C.D., P.S. Sutton, K.E. Baugh, B.T. Tuttle, A.T. Howard, 
+			E.H. Erwin, B. Bhaduri, and E. Bright.  2009.  A global poverty map 
+			derived from satellite data.  Computers and Geosciences 35 (8): 1652-1660.</rdfs:comment>
 			<metadata:hasPriority>10</metadata:hasPriority> 
-			<metadata:hasURL>http://sedac.ciesin.columbia.edu/povmap/ds_global.jsp</metadata:hasURL>
+			<metadata:hasURL>http://www.ngdc.noaa.gov/dmsp/download_poverty.html</metadata:hasURL>
 		<observation:hasDataSource>
 			<geospace:WCSDataSource>
 				<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>

@@ -1,0 +1,1191 @@
+<presentation>
+
+	<title>Water supply, wet year annual precipitation</title>
+	<runninghead>Values resulting from water regulation and supply by ecosystems under wet year annual precipitation levels</runninghead>
+	<description>Values resulting from the provision of surface and groundwater water supply by ecosystems, 
+	including precipitation, ecosystems capable of providing groundwater recharge or delivery of surface 
+	water through streams, lakes, or reservoirs.</description>
+
+	<!-- The concept of the main observation (the top-level model). -->
+	<concept>waterSupplyService:SurfaceWaterMovement</concept>
+
+	<!-- All the models that apply and in which context. -->
+
+	<model>
+		<id>core.models.water-san-pedro/surface-flow-wet</id>
+		<context>core.contexts.beta/san_pedro_us512</context>
+	</model>
+
+    <!-- Storyline description. -->
+    <page id="info">
+		<id>info</id>
+		<name>Surface water supply assessment</name>
+		<title>Introduction</title>
+		<runninghead>Surface water supply.</runninghead>
+		<group></group>
+		<description>
+		This model considers surface water supply for various human beneficiary groups, including agriculture, industry, 
+		domestic use, and in-stream flow to support hydroelectric power generation, navigation, or recreation.  The model uses 
+        wet year annual precipitation as the primary source of surface water to estimate upper-bound values for water supply in a wet year. 
+		These models collectively map flows sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, incoming 
+		water transfers), sinks (areas of groundwater infiltration or evapotranspiration), and beneficiary groups and 
+		link these via a flow model accounting for the downstream movement of floodwater.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+        <credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page>
+
+<!-- Groundwater model not yet implemented, so not including this for now.  Groundwater flow concepts should also be added
+when this is up and running.
+
+ 	<page id="groundwater-supply">
+		<concept>waterSupplyService:GroundwaterMovement</concept>
+		<name>Groundwater supply</name>
+		<title>Groundwater supply</title>
+		<runninghead>Groundwater supply.</runninghead>
+		<group></group>
+		<description>
+		This model considers groundwater supply for various human beneficiary groups, including agriculture, industry, 
+		and domestic use.  
+		These models map flows sources of groundwater (infiltration, artificial recharge), sinks (springs or baseflow), 
+		and beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<a href="http://www.nsf.gov" target="_bland">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type default="true">geosurface-2d</plot-type>
+		<plot-type>geocontour-2d</plot-type>
+	</page> -->
+
+<!-- Input and output data for source, sink, and use models. -->
+
+  <page id="annual-precipitation-wet-year">
+    <concept>waterSupplyService:AnnualPrecipitationWetYear</concept>
+    <name>Annual precipitation, wet year</name>
+    <title>Annual precipitation, wet year</title>
+    <runninghead>Annual precipitation, wet year</runninghead>
+    <group>source</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+			<p>Annual precipitation, wet year.</p>
+			<h1>Role in models</h1>
+			<p>Precipitation data are used as the most important "source" of surface and groundwater.  Particularly in
+			arid and semiarid regions, where year-to-year rainfall is highly variable, it is more realistic for us to 
+			model the range of variability in water supply, based on a representative wet and dry year, than to model 
+			mean annual precipitation.  Precipitation runs off into water bodies where it is used or recharges 
+			groundwater through percolation to aquifers.  Data are currently at an annual time scale; finer temporal 
+			resolution could be added to the ARIES system in the future to better account for seasonal wet and dry 
+			seasons and their impacts on water supply.  These data are passed to the flow model to estimate actual 
+			water supply used given the locations of beneficiaries, their demand, and infiltration or evapotranspiration 
+			that occur as water flows across the landscape.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of precipitation per year.</p>
+			<h1>Source</h1>
+			<p>PRISM Climate Group (U.S. data).</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+<!-- Springs, snomelt, baseflow, incoming water transfers not used as sources of surface water as the concepts are not
+relevant and/or data are unavailable for the La Antigua and San Pedro case studies.  Similarly, artificial recharge is
+not used as a source of groundwater. -->
+
+  <page id="groundwater-recharge">
+    <concept>waterSupplyService:AnnualRecharge</concept>
+    <name>Annual groundwater recharge</name>
+    <title>Annual groundwater recharge</title>
+    <runninghead>Annual groundwater recharge.</runninghead>
+    <group>source, sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+			<p>Annual groundwater recharge, wet year.</p>
+			<h1>Role in models</h1>
+			<p>Groundwater recharge data are the "source" of groundwater.  Groundwater then moves through aquifers
+			based on various geologic factors, or is extracted by wells for use.  These data are passed to the flow 
+			model to estimate actual groundwater used given the locations of beneficiaries and their demand, along 
+			with any springs or baseflow to rivers that naturally converts groundwater back to surface water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of groundwater recharge per year.</p>
+			<h1>Source</h1>
+			<p>U.S. Geological Survey.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://water.usgs.gov/lookup/getgislist" target="_blank">U.S. Geological Survey.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="slope">
+    <concept>waterSupplyService:SlopeClass</concept>
+    <name>Slope</name>
+    <title>Slope</title>
+    <runninghead>Slope.</runninghead>
+    <group>sink</group>
+    <units>degrees slope</units>
+	<description><![CDATA[
+			<p>Slope strongly affects runoff by influencing potential infiltration.</p>
+			<h1>Role in models</h1>
+			<p>Since hydrologic soils group classifications do not account for slope, we use slope data along with HSG 
+			and impervious surface data to estimate the soil infiltration component in the surface water sink 
+			models.  Greater infiltration is expected on level slopes than on steep slopes where runoff occurs quickly.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of degrees slope.</p>
+			<h1>Source</h1>
+			<p>Data are derived from a global 90-m SRTM digital elevation model.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="hydrologic-soils-group">
+    <concept>waterSupplyService:HydrologicSoilsGroup</concept>
+    <name>Hydrologic soils group</name>
+    <title>Hydrologic soils group</title>
+    <runninghead>Hydrologic soils group.</runninghead>
+    <group>sink</group>
+	<description><![CDATA[
+			<p>Different soil types have different infiltration capacities.  
+			See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
+			<h1>Role in models</h1>
+			<p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
+			accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
+			does not account for slope.  We use HSG along with slope and impervious surface data to estimate the soil infiltration
+			component of surface water sink models.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical.</p>
+			<h1>Source</h1>
+			<p>University of Vermont Spatial Analysis Lab, derived from FAO soils data.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-impervious-cover">
+    <concept>waterSupplyService:PercentImperviousCoverClass</concept>
+    <name>Percent impervious cover</name>
+    <title>Percent impervious cover</title>
+    <runninghead>Percent impervious surface cover.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+			<p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
+			<h1>Role in models</h1>
+			<p>We use impervious surface along with slope and hydrologic soils group to estimate the soil infiltration
+			component of the surface water sink models.  Zero infiltration is expected on impervious surfaces.</p>
+			<h1>Representation</h1>
+			<p>Data represent the percentage of the land surface under impervious cover.</p>
+			<h1>Source</h1>
+			<p>NOAA-NGDC global impervious surface data.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <b>Data source</b>: <a href="http://www.ngdc.noaa.gov/dmsp/download_global_isa.html" target="_blank">NOAA-NGDC global impervious surface data</a>/br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="mountain-front-recharge">
+    <concept>waterSupplyService:MountainFront</concept>
+    <name>Mountain front recharge zones</name>
+    <title>Mountain front recharge zones</title>
+    <runninghead>Mountain front recharge zones.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+			<p>The intersection of valley fill alluvium and mountain fronts.</p>
+			<h1>Role in models</h1>
+			<p>In the southwestern United States, mountain fronts and stream channels are two primary areas of groundwater.
+			recharge.  They are thus used as the inputs to a probabilistic model of infiltration.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of potential mountainfront recharge
+			zones, represented as a 1,600-meter wide band around the base of mountainfronts where subsurface geology shifts 
+			to valley fill alluvium.  Areas of limestone bedrock, which promote high levels of infiltration, are also 
+			included in this layer.</p>
+			<h1>Source</h1>
+			<p>Derived from Arizona Geographic Information Council geology data.</p>
+		]]></description>
+    <see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+    <credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="stream-channel">
+    <concept>waterSupplyService:StreamChannel</concept>
+    <name>Stream channels</name>
+    <title>Stream channels</title>
+    <runninghead>Stream channels.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+			<p>Perennial, intermittent, and ephemeral stream channels.</p>
+			<h1>Role in models</h1>
+			<p>In the southwestern United States, mountain fronts and stream channels are two primary areas of groundwater.
+			recharge.  They are thus used as the inputs to a probabilistic model of infiltration.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of perennial, intermittent, 
+			or ephemeral stream channels.</p>
+			<h1>Source</h1>
+			<p>Arizona Geographic Information Council.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="soil-infiltration-class">
+    <concept>waterSupplyService:SoilInfiltrationClass</concept>
+    <name>Soil infiltration</name>
+    <title>Soil infiltration</title>
+    <runninghead>Soil infiltration.</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+			<p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of a probabilistic model accounting for the influence of soil and geologic
+			characteristics on infiltration.  Results are summed with evapotranspiration to give total surface 
+			water sink values, and then passed to the flow model to estimate actual surface water availability 
+			given the location of sources of surface water and users of water.  In the absence of direct data on 
+			infiltration, the results of this model can also be used as source data for groundwater flow models.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the 
+			models is probabilistic, each point contains the probability distribution of the amount of water 
+			infiltrated. The distribution can be visualized by clicking on the map; the mean value and the 
+			coefficient of variation are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server for the selected area.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-maximum-temperature">
+    <concept>waterSupplyService:AnnualMaximumTemperature</concept>
+    <name>Annual maximum temperature</name>
+    <title>Annual maximum temperature</title>
+    <runninghead>Annual maximum temperature.</runninghead>
+    <group>sink</group>
+    <units>degrees centigrade</units>
+	<description><![CDATA[
+			<p>Annual maximum temperature influences water demand by plants and potential levels of evaporation.</p>
+			<h1>Role in models</h1>
+			<p>Particularly in water limited environments, annual maximum temperature is used as an influence on 
+			evapotranspiration, with greater evapotranspiration under higher temperatures.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of degrees celsius.</p>
+			<h1>Source</h1>
+			<p>PRISM Climate Group (U.S. data); WorldClim (global data).</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-type">
+    <concept>waterSupplyService:VegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>sink</group>
+	<description><![CDATA[
+			<p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
+			<h1>Role in models</h1>
+			<p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
+			part of the sink model for surface water.</p>
+			<h1>Representation</h1>
+			<p>Data are categorical, derived from land cover classes.</p>
+			<h1>Source</h1>
+			<p>2001 National Land Cover Dataset (U.S. data); Veracruz land cover dataset (La Antigua case study).</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-vegetation-cover">
+    <concept>waterSupplyService:PercentVegetationCoverClass</concept>
+    <name>Percent tree canopy cover</name>
+    <title>Percent tree canopy cover</title>
+    <runninghead>Percent tree canopy cover.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+			<p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and 
+			transpiration rates.</p>
+			<h1>Role in models</h1>
+			<p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
+			toward evapotranpiration.  All else being equal, we expect greater evapotranspiration under higher tree 
+			canopy cover.</p>
+			<h1>Representation</h1>
+			<p>Data represent the percentage of the land surface under tree canopy cover.</p>
+			<h1>Source</h1>
+			<p>)NLCD 2001 data (U.S. data); GLCF (University of Maryland, global data).</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="evapotranspiration-class">
+    <concept>waterSupplyService:EvapotranspirationClass</concept>
+    <name>Evapotranspiration class</name>
+    <title>Evapotranspiration class</title>
+    <runninghead>Evapotranspiration class</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+			<p>The total surface water evaporated or taken up by vegetation and transpired, becoming no longer 
+			available as surface or groundwater.</p>
+			<h1>Role in models</h1>
+			<p>This is the output of a probabilistic model accounting for the influence of vegetation and climatic
+			characteristics on evapotranspiration.  Results are summed with infiltration to give total surface 
+			water sink values, and then passed to the flow model to estimate actual surface water availability 
+			given the location of sources of surface water and users of water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water evaporated or transpired per year.  As the 
+			output of the models is probabilistic, each point contains the probability distribution of the amount 
+			of water infiltrated. The distribution can be visualized by clicking on the map; the mean value and the 
+			coefficient of variation are reported along with the probabilities.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server for the selected area.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="surface-water-sink">
+    <concept>waterSupplyService:SurfaceWaterSink</concept>
+    <name>Surface water sink</name>
+    <title>Surface water sink</title>
+    <runninghead>Surface water sink.</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>The sum of infiltration and evapotranspiration, e.g., all surface water that returns to the atmosphere or
+			infiltrates to groundwater, becoming unavailable as downstream surface water.</p>
+			<h1>Role in models</h1>
+			<p>The surface water sink is the total water that was once surface water but is no longer available as 
+			surface water.  These data are passed to the surface water flow model, which calculates actual surface water
+			availability for beneficiaries, given precipitation levels, the activity of sinks, and use of and demand 
+			for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water infiltrated, evaporated, or transpired per year.</p>
+			<h1>Source</h1>
+			<p>Calculated as the sum of outputs from a probabilistic models for infiltration and evapotranspiration.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="industrial-surface-water-use">
+    <concept>waterSupplyService:IndustrialSurfaceWaterUse</concept>
+    <name>Industrial surface water use</name>
+    <title>Industrial surface water use</title>
+    <runninghead>Industrial surface water use.</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>Water use by industrial water users.</p>
+			<h1>Role in models</h1>
+			<p>Results are summed with other types of water users to give total water demand.  Total demand is 
+			passed to the flow model to estimate actual water availability given the location of sources of 
+			fresh water, evapotranspiration and infiltration, and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water used per year.</p>
+			<h1>Source</h1>
+			<p>Instituto de Ecologia, INECOL.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+    <page id="agricultural-surface-water-use">
+    <concept>waterSupplyService:AgriculturalSurfaceWaterUse</concept>
+    <name>Agricultural surface water use</name>
+    <title>Agricultural surface water use</title>
+    <runninghead>Agricultural surface water use.</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>Water use by agricultural water users.</p>
+			<h1>Role in models</h1>
+			<p>Results are summed with other types of water users to give total water demand.  Total demand is 
+			passed to the flow model to estimate actual water availability given the location of sources of 
+			fresh water, evapotranspiration and infiltration, and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water used per year.</p>
+			<h1>Source</h1>
+			<p>Instituto de Ecologia, INECOL.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="residential-surface-water-use">
+    <concept>waterSupplyService:ResidentialSurfaceWaterUse</concept>
+    <name>Residential surface water use</name>
+    <title>Residential surface water use</title>
+    <runninghead>Residential surface water use</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>Water use by residential water users.</p>
+			<h1>Role in models</h1>
+			<p>Results are summed with other types of water users to give total water demand.  Total demand is 
+			passed to the flow model to estimate actual water availability given the location of sources of 
+			fresh water, evapotranspiration and infiltration, and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water used per year.</p>
+			<h1>Source</h1>
+			<p>Instituto de Ecologia, INECOL.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="aquacultural-surface-water-use">
+    <concept>waterSupplyService:AquaculturalSurfaceWaterUse</concept>
+    <name>Aquacultural surface water use</name>
+    <title>Aquacultural surface water use</title>
+    <runninghead>Aquacultural surface water use.</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>Water use by aquacultural water users.</p>
+			<h1>Role in models</h1>
+			<p>Results are summed with other types of water users to give total water demand.  Total demand is 
+			passed to the flow model to estimate actual water availability given the location of sources of 
+			fresh water, evapotranspiration and infiltration, and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water used per year.</p>
+			<h1>Source</h1>
+			<p>Instituto de Ecologia, INECOL.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="total-surface-water-use">
+    <concept>waterSupplyService:TotalSurfaceWaterUse</concept>
+    <name>Total surface water use</name>
+    <title>Total surface water use</title>
+    <runninghead>Total surface water use</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+		<description><![CDATA[
+			<p>The sum of water use by residential, industrial, agricultural, and aquacultural 
+			water users.</p>
+			<h1>Role in models</h1>
+			<p>Results are the final water use values.  These are passed to the flow model to estimate actual 
+			water availability given the location of sources of fresh water, evapotranspiration and infiltration, 
+			and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water used per year.</p>
+			<h1>Source</h1>
+			<p>Calculated deterministically as the sum of residential, industrial, agricultural, and aquacultural 
+			water use.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="surface-diversions">
+    <concept>waterSupplyService:SurfaceDiversionCapacity</concept>
+    <name>Surface diversion capacity</name>
+    <title>Surface diversion capacity</title>
+    <runninghead>Surface diversion capacity.</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+		<description><![CDATA[
+			<p>Surface diversions, primarily for agriculture, are a key surface water user, and are the only surface
+			water user for our San Pedro case study.</p>
+			<h1>Role in models</h1>
+			<p>Results are the final surface water use values for the San Pedro.  These are passed to the flow model 
+			to estimate actual water availability given the location of sources of fresh water, evapotranspiration 
+			and infiltration, and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water diversion capacity per year.</p>
+			<h1>Source</h1>
+			<p>Digitized the locations and level of diversion capacity for surface diversions in the San Pedro watershed.</p>
+		]]></description>
+		<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits language="html"><![CDATA[
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="well-capacity">
+    <concept>waterSupplyService:Wells</concept>
+    <name>Well pumping capacity</name>
+    <title>Well pumping capacity</title>
+    <runninghead>Well pumping capacity.</runninghead>
+    <group>use</group>
+    <units>mm/year</units>
+	<description><![CDATA[
+			<p>Groundwater wells locations and use data where available, are the source of use data for groundwater
+			flow models.</p>
+			<h1>Role in models</h1>
+			<p>Results are the final groundwater use values for the San Pedro.  These could be passed to a groundwater 
+			flow model to estimate actual groundwater availability given the location of infiltration zone locations and
+			groundwater recharge quantities and demand for water.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of millimeters of water pumping capacity per year.</p>
+			<h1>Source</h1>
+			<p>Arizona Department of Water Resources (U.S.); INECOL (Mexico).</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="https://gisweb.azwater.gov/waterresourcedata/" target="_blank">Arizona Department of Water Resources Wells-55 Database.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="altitude">
+    <concept>geophysics:Altitude</concept>
+    <name>Elevation</name>
+    <title>Elevation</title>
+    <runninghead>Elevation.</runninghead>
+    <group>flow</group>
+    <units>m</units>
+	<description><![CDATA[
+			<p>Elevation above sea level.</p>
+			<h1>Role in models</h1>
+			<p>A digital elevation model is used along with hydrography data to route water across the land surface.
+			The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
+			water then follows through the stream network.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of meters above sea level.</p>
+			<h1>Source</h1>
+			<p>Global 90-m SRTM digital elevation model.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="river">
+    <concept>geofeatures:River</concept>
+    <name>Rivers</name>
+    <title>Rivers</title>
+    <runninghead>Rivers</runninghead>
+    <group>flow</group>
+	<description><![CDATA[
+			<p>River and stream locations.</p>
+			<h1>Role in models</h1>
+			<p>River and stream locations, or hydrography data, are used to route surface water.  The flow model 
+			moves precipitation downslope using elevation data until it reaches a stream network, which water 
+			then follows through the stream network.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
+			<h1>Source</h1>
+			<p>Arizona Geographic Information Council; Veracruz hydrgraphy data.</p>
+		]]></description>
+	<see-also language="html"><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+	<credits language="html"><![CDATA[
+	    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <!-- Flow concepts. -->
+
+<!-- Theoretical source, sink, and use.  Already included as outputs of probabilistic or deterministic models,
+so not repeated here.
+ <page id="surface-water-supply">
+    <concept>waterSupplyService:SurfaceWaterSupply</concept>
+    <name>Surface water supply</name>
+    <title>Surface water supply</title>
+    <description>No description given</description>
+    <runninghead>Surface Water Supply</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="maximum-surface-water-sink">
+    <concept>waterSupplyService:MaximumSurfaceWaterSink</concept>
+    <name>Maximum surface water sink</name>
+    <title>Maximum surface water sink</title>
+    <description>No description given</description>
+    <runninghead>Maximum Surface Water Sink</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+  
+  <page id="surface-water-demand">
+    <concept>waterSupplyService:SurfaceWaterDemand</concept>
+    <name>Surface Water Demand</name>
+    <title>Surface Water Demand</title>
+    <description>No description given</description>
+    <runninghead>Surface Water Demand</runninghead>
+    <see-also></see-also>
+    <credits></credits>
+    <group></group>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>  -->
+
+  <page id="possible-surface-water-flow">
+		<concept>waterSupplyService:PossibleSurfaceWaterFlow</concept>
+		<name>Possible surface water flow</name>
+		<title>Possible surface water flow</title>
+		<runninghead>Possible flow map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		*Possible flow maps* represent the path that the carrier of the service would take
+		if it was not intercepted by sinks.  As such it considers source and use models and
+		shows the maximum amount of flow. For provisioning services, this corresponds to the
+		maximum potential benefit; for preventive services, the maximum potential damage.
+		
+		This map shows the movement of surface water via topography and stream networks, 
+		when not accounting for sinks (infiltration or evapotranspirative losses of surface water).
+		</description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+	
+ 	<page id="possible-surface-water-supply">
+		<concept>waterSupplyService:PossibleSurfaceWaterSupply</concept>
+		<name>Possible surface water supply</name>
+		<title>Possible surface water supply</title>
+        <runninghead>Possible source map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		Even in the absence of sinks, not all of a source quantity actually has the
+		ability to reach users, because of the route that an ecosystem service carrier
+		moves across the landscape. Flow analysis allows us to identify which particular 
+		portion of the total source quantity is actually generating carriers that 
+		reach the users, independent of the existence of sinks but taking into account 
+		the result of use values, the structure of the landscape and the flow paths of 
+		the carrier, producing this *possible source map*. For provisioning services, 
+		this corresponds to the source of benefits that has the potential of being actually 
+		useful. For preventive services, this corresponds to the portion of the source 
+		field that could actually cause damage to people. The location and strength of 
+		sinks determines how much of the source actually reaches the users.
+		
+		This map shows surface water in its initial source location, that is capable of providing water 
+		to human beneficiaries when accounting for flow paths but not accounting for sinks 
+		(i.e., potentially can provide water to human beneficiaries).
+		</description>
+				<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+ 	<page id="possible-surface-water-use">
+		<concept>waterSupplyService:PossibleSurfaceWaterUse</concept>
+		<name>Possible surface water use</name>
+		<title>Possible surface water use</title>
+		<runninghead>Possible use map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		*Possible use maps* show the locations of users on the landscape that can receive a
+		benefit due to flow connections with a source of an ecosystem service carrier, but may
+		or may not actually receive the carrier due to the action of sinks.  For provisioning 
+		services, potential use identifies areas where it is physically possible for a benefit to 
+		be received.  For preventive services, potential use identifies areas that may be damaged
+		by a detrimental carrier if sinks do not prevent such damage. 
+		
+		This map represents water actually reaching a user, but not accounting for the activity of sinks.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+  
+  <page id="actual-surface-water-flow">
+		<concept>waterSupplyService:ActualSurfaceWaterFlow</concept>
+		<name>Actual surface water flow</name>
+		<title>Actual surface water flow</title>
+		<runninghead>Actual flow map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *actual flow density* map shows the flow paths that deliver actual services to
+		humans. These are selected from the total flow density to only show these flow paths
+		that are not depleted by sinks and actually reach users.
+		
+		For provisioning services, these flow paths deliver valuable benefits to the
+		users and the density is proportional to the value accrued. For preventive services,
+		the flow paths show how much of the carrier reaches users, delivering actual
+		damage.
+		
+		In this case, the density of actual flows represents the movement of surface water
+		when accounting for flow paths and sinks (i.e., transitions from surface to 
+		groundwater, or evapotranspirative losses of surface water).
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+ 	<page id="used-surface-water-supply">
+		<concept>waterSupplyService:UsedSurfaceWaterSupply</concept>
+		<name>Used surface water supply</name>
+		<title>Used surface water supply</title>
+		<runninghead>Actual source map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *actual source map* shows the portion of the source map that is relevant to 
+		the provision of a service after accounting for sinks and flow dynamics. 
+		For provisioning services, this is the amount and location of a benefit that 
+		actually provides benefits to the users. For preventive services, it shows
+		where the actual damage came from. Source regions that provided a damaging carrier
+		were neutralized by sinks are not shown.
+		 
+		This map shows sources of surface water transitions that are capable of providing 
+		water to human beneficiaries when accounting for surface flow paths 
+		and sinks (i.e., areas that actually provide water to human beneficiaries).
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+ 	<page id="actual-surface-water-sink">
+		<concept>waterSupplyService:ActualSurfaceWaterSink</concept>
+		<name>Actual surface water sink</name>
+		<title>Actual surface water sink</title>
+		<runninghead>Actual sink map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *actual sink map* shows the portion of the sinks that actually contribute
+		to depleting a service carrier given its flow patterns. For provisioning
+		services, such sinks are responsible for reducing the benefits compared to their
+		possible value. For preventive services, such sinks provide the actual
+		service because they prevent a damaging carrier from reaching users.
+		
+		This map shows the locations where surface water transitions into groundwater 
+		(via infiltration) or atmospheric water (via evapotranspiration), becoming unavailable
+		for use as surface water.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+ 	<page id="satisfied-surface-water-demand">
+		<concept>waterSupplyService:SatisfiedSurfaceWaterDemand</concept>
+		<name>Satisfied surface water demand</name>
+		<title>Satisfied surface water demand</title>
+		<runninghead>Actual use map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+		service or damage caused by a detrimental carrier for a preventive service, for 
+		users located across the landscape.
+		
+		This map shows the portion of demand for water satisfied by the actual supply of surface water.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+<page id="unusable-surface-water-supply">
+		<concept>waterSupplyService:UnusableSurfaceWaterSupply</concept>
+		<name>Unusable surface water supply</name>
+		<title>Unusable surface water supply</title>
+		<runninghead>Inaccessible source map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *inaccessible source map* shows those areas of the source map whose values are 
+		irrelevant to the delivery of the service, because of the impossibility of reaching
+		users given the relevant ecosystem services flow path. For provisioning services, this
+		is the portion of the value that must be subtracted from the total source map to
+		define a maximum potential benefit for the users. For preventive services, it
+		shows those areas that have no potential of producing damage because the 
+		flow dynamics prevent the carrier from reaching any significant user.
+		
+		This map shows the source locations of surface water that are not available 
+		to human users because their flow paths do not move them in a direction where 
+		they can be accessed by human beneficiaries.
+		
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Data source</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+		<disabled>true</disabled>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+<page id="inaccessible-surface-water-demand">
+		<concept>waterSupplyService:InaccessibleSurfaceWaterDemand</concept>
+		<name>Inaccessible surface water demand</name>
+		<title>Inaccessible surface water demand</title>
+		<runninghead>Inaccessible use map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *inaccessible use map* shows those areas of the use map where beneficiaries fail
+		to receive a service because of the impossibility of reaching users given the relevant 
+		ecosystem services flow path.
+		
+		This map shows areas of demand for surface water that goes unsatisfied due to 
+		a lack of surface or groundwater flow connections between sources of water and 
+		the location of water users.
+		
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[
+	    <b>Data source</b>: </br>
+	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+		]]></credits>
+		<disabled>true</disabled>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+  <page id="sunk-surface-water-flow">
+		<concept>waterSupplyService:SunkSurfaceWaterFlow</concept>
+		<name>Sunk surface water flow</name>
+		<title>Sunk surface water flow</title>
+		<runninghead>Blocked flow map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *blocked flow map* shows the flow paths that could have delivered the 
+		service carrier to humans based on the flow routes and the source and user
+		locations, but did not because of the action of sinks. These are selected from among 
+		all actual flows.
+		
+		For provisioning services, these flow paths show the loss in possible flow of
+		beneficial services to the users, and their density is proportional to the value lost. 
+		For preventive services, the flow paths show the amount of the total flow that 
+		was prevented by natural features from causing damage.
+		
+		This map shows water flows that fail to reach a user because it encountered a 
+		sink and transitions from surface water into the atmospheric or groundwater.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page> 
+
+ 	<page id="sunk-surface-water-supply">
+		<concept>waterSupplyService:SunkSurfaceWaterSupply</concept>
+		<name>Sunk surface water supply</name>
+		<title>Sunk surface water supply</title>
+		<runninghead>Blocked source map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *blocked source map* shows the part of the source map that had the possibility
+		of reaching users given the location of the users and the flow dynamics, but
+		was blocked from doing so because of the action of sinks. For provisioning services,
+		this corresponds to value produced by the environment but lost before it reaches
+		the users. For preventive services, it corresponds to damage that could have been
+		inflicted on users but was blocked by natural features.
+		
+		This map shows the source locations of surface water that fails to reach a user 
+		due to their encountering a sink and transitioning from surface water 
+		into the atmosphere or groundwater.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+	<page id="blocked-surface-water-demand">
+		<concept>waterSupplyService:BlockedSurfaceWaterDemand</concept>
+		<name>Blocked surface water demand</name>
+		<title>Blocked surface water demand</title>
+		<runninghead>Blocked use map.</runninghead>
+		<group>flow</group>
+        <units>mm/year</units>
+		<description>
+		The *blocked use map* shows those users that would have been reached by the service
+		carrier based only on the source and the flow dynamics, but were not reached because 
+		of the action of sinks. For provisioning services, the map shows possible value that 
+		has not been accrued to users because of sinks; for preventive services, it shows 
+		actual value accrued by users thanks to sink configuration. 
+		
+		For preventive services, therefore, this map is the ultimate quantification of
+		value given the locations and quantity of users and natural sink features.
+		
+		This map shows demand for surface water that goes unsatisfied due to the action of 
+		sinks that transition water from surface water to inaccessible atmospheric moisture or 
+		groundwater.
+		</description>
+		<see-also><![CDATA[
+		<p>
+			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+		</p>
+		]]></see-also>
+		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+		<plot-type>geosurface-2d</plot-type>
+		<plot-type default="true">geocontour-2d</plot-type>
+	</page>
+
+</presentation>

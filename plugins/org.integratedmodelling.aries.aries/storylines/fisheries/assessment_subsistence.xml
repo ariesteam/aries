@@ -62,13 +62,20 @@
 		<title>Distance To coast</title>
 		<runninghead>Distance To Coast.</runninghead>
 		<group>use</group>
+        <units>km</units>
 		<description>
-		Populations that live in coastal areas in developing nations often depend on local fisheries for 
-		their daily subsistence. This analysis was therefore restricted to populations living
-		near the coast. In this storyline, we used a coastal buffer of 5km, assuming that the 
-		likely beneficiaries of subsistence fisheries need to be able to reach the coast by walking. 
-		Distance to the coast was categorized in three classes of distance, and this variable entered 
-		the probabilistic calculation to identify actual use of subsistence fisheries.
+            <p>Distance to the coast determines access to fisheries.</p>
+			<h1>Role in models</h1>
+			<p>Populations that live in coastal areas in developing nations often depend on local fisheries for 
+            their daily subsistence. This analysis was therefore restricted to populations living
+            near the coast. In this storyline, we used a coastal buffer of 5km, assuming that the 
+            likely beneficiaries of subsistence fisheries need to be able to reach the coast by walking. 
+            Distance to the coast was categorized in three classes of distance, and this variable entered 
+            the probabilistic calculation to identify actual use of subsistence fisheries.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of kilometers from the coast.</p>
+			<h1>Source</h1>
+			<p>Data are derived from a coastline layer provided by FTM.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -76,7 +83,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: <a href="http://www.ftm.mg/framepro.htm" target="_blank">Foiben-Taosarintanin'i Madagasikara</a></br>
+	    <b>Data source</b>: <a href="http://www.ftm.mg/framepro.htm" target="_blank">Foiben-Taosarintanin'i Madagasikara.</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -89,13 +96,20 @@
 		<title>Population density</title>
 		<runninghead>Population Density.</runninghead>
 		<group>use</group>
+        <units>persons/<sup>km</sup></units>
 		<description>
-			To estimate demand for subsistence fisheries, population density data
+            <p>Population density influences both total demand and competition for subsistence fishery resources.</p>
+			<h1>Role in models</h1>
+			<p>To estimate demand for subsistence fisheries, population density data
 			were used as a first step to determine demand levels. These data were 
 			intersected with the coastal proximity layer to estimate how many people 
 			are likely to depend on subsistence fisheries in an area. This map 
 			shows population density for all of Madagascar, and is used as an input 
-			in the probabilistic demand calculations.
+			in the probabilistic demand calculations.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of persons per square kilometer.</p>
+			<h1>Source</h1>
+			<p>LANDSCAN global population density (Oak Ridge National Laboratory).</p>	
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -103,7 +117,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>:  <a href="http://www.ornl.gov/sci/landscanLANDSCAN" target="_blank"> Oak Ridge National Laboratories</br>
+	    <b>Data source</b>: <a href="http://www.ornl.gov/sci/landscanLANDSCAN" target="_blank">Oak Ridge National Laboratory.</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -117,11 +131,17 @@
 		<runninghead>Poverty level.</runninghead>
 		<group>use</group>
 		<description>
-			People are more likely to rely on fisheries for subsistence use 
+			<p>Poverty influences the degree of dependence on subsistence fishery resources.</p>
+			<h1>Role in models</h1>
+			<p>People are more likely to rely on fisheries for subsistence use 
 			when they lack other sources of nutrition. Poverty rates estimated by
 			Elvidge et al. (2009) were used as part of the probabilistic determination
 			of the degree of subsistence fisheries use. The map shows reclassified
-			poverty rates for the whole region of interest.
+			poverty rates for the whole region of interest.</p>
+			<h1>Representation</h1>
+			<p>The data are show the percentage of the population living in poverty.</p>
+			<h1>Source</h1>
+			<p>NOAA-National Geophysical Data Center.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -132,7 +152,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: Elvidge et al., 2009</br>
+	    <b>Data source</b>: <a href="http://www.ngdc.noaa.gov/dmsp/download_poverty.html" target="_blank">Elvidge et al., 2009.</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -147,14 +167,19 @@
 		<group>use</group>
         <units>kg fish/year</units>
 		<description>
-			h1. Subsistence fishery demand
-			
-			This map shows the result of a probabilistic models estimating the need for fish to support the 
+			<p>Subsistence fishery demand.</p>
+			<h1>Role in models</h1>
+			<p>This map shows the result of a probabilistic models estimating the need for fish to support the 
 			livelihoods of coastal populations. Darker blues indicate greater need - among poorer populations that live 
 			closer to the coast. This map is a probabilistic one, illustrating the probability of needing fish 
 			for subsistence. You can click on the map and visualize the probability distribution in each point. The flow model 
 			you will see later determines the actual value of the fish resource, depending on the need, the quality and abundance 
-			of the resource, and the ability to access it by walking to the shoreline.
+			of the resource, and the ability to access it by walking to the shoreline.</p>
+			<h1>Representation</h1>
+			<p>The data are in physical units of kilograms of fish demanded per year.</p>
+			<h1>Source</h1>
+			<p>This map has been computed at your request by a Bayesian model built and 
+			   calibrated by the ARIES server for the selected area.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -175,7 +200,9 @@
 		<runninghead>_Lethrinus mahsena_ abundance.</runninghead>
 		<group>source</group>
 		<description>
-			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+			<p>Relative abundance of _Lethrinus mahsena_ (sky emperor).</p>
+			<h1>Role in models</h1>
+			<p>Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
 			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
 			which relative abundance data are available.  This maps shows relative abundance of _Lethrinus mahsena_ (sky emperor). 
@@ -184,7 +211,11 @@
 			
 			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
  			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
- 			that no information is lost.
+ 			that no information is lost.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as relative abundance of _Lethrinus mahsena_ (sky emperor).</p>
+			<h1>Source</h1>
+			<p>Sea Around Us Project.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -193,7 +224,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
+	    <b>Data source</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us Project.</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -207,7 +238,9 @@
 		<runninghead>_Lethrinus borbonicus_ abundance</runninghead>
 		<group>source</group>
 		<description>
-			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+            <p>Relative abundance of _Lethrinus borbonicus_ (snubnose emperor).</p>
+			<h1>Role in models</h1>
+			<p>Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
 			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
 			which relative abundance data are available.  This maps shows relative abundance of _Lethrinus borbonicus_ (snubnose emperor). 
@@ -216,7 +249,11 @@
 			
 			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
  			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
- 			that no information is lost.	
+ 			that no information is lost.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as relative abundance of _Lethrinus borbonicus_ (snubnose emperor).</p>
+			<h1>Source</h1>
+			<p>Sea Around Us Project.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -225,7 +262,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
+	    <b>Data source</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us Project.</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -239,7 +276,9 @@
 		<runninghead>_Lutjanus argentimaculatus_ abundance</runninghead>
 		<group>source</group>
 		<description>
-			Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
+			<p>Relative abundance of _Lutjanus argentimaculatus_ (mangrove red snapper).</p>
+			<h1>Role in models</h1>
+			<p>Now that we have quantified the need for fish, we must model the likely provision of fish. Fish species abundance
 			data are difficult to find.  We use data on relative abundances from The Sea Around Us project as a starting point 
 			in modeling likely fish availability. We have chosen the three important species for subsistence in Madagascar for 
 			which relative abundance data are available.  This maps shows relative abundance of _Lutjanus argentimaculatus_ (mangrove red snapper). 
@@ -248,7 +287,11 @@
 			
 			The data have 0.5 degree resolution, so these results are relatively coarse. ARIES can automatically interpolate values
  			based on the resolution of the use and flow models, and will compute the uncertainty related to the interpolation so 
- 			that no information is lost.	
+ 			that no information is lost.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as relative abundance of _Lutjanus argentimaculatus_ (mangrove red snapper).</p>
+			<h1>Source</h1>
+			<p>Sea Around Us Project.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -257,7 +300,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us project</a></br>
+	    <b>Data source</b>: <a href="http://www.seaaroundus.org/" target="_blank">Sea Around Us Project.</a></br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -272,7 +315,8 @@
 		<group>source</group>
         <units>kg fish/year</units>
 		<description language="html"><![CDATA[
-		<h1>Subsistence fisheries provision map</h1>
+		<p>Subsistence fisheries provision map</p>
+        <h1>Role in models</h1>
 		<p>The source of benefits for this storyline is the total amount of potential fish 
 		harvestable by coastal populations. Only a small fraction of this potential is usable
 		by the beneficiaries; the computation of the actual use is shown later in
@@ -320,7 +364,10 @@
 		Given better data and/or expert knowledge of the relative use of different species, 
 		we can easily adjust the model coefficients to more accurately quantify human 
 		dependence on local subsistence fisheries in Madagascar or elsewhere.</p>
-
+        <h1>Representation</h1>
+		<p>The data are in physical units of kilograms of fish supplied per year.</p>
+		<h1>Source</h1>
+		<p>Calculated deterministically based on the data and assumptions described above.</p>
 		]]></description>
 		<see-also><![CDATA[
 		<p>
@@ -329,7 +376,7 @@
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: FAO 2008</br>
+	    <b>Data source</b>: FAO fishery statistical collections, 2008.</br>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
@@ -482,7 +529,9 @@ habitat quality as part of mapping species abudnance.
 		<runninghead>Paths.</runninghead>
 		<group>flow</group>
 		<description>
-			We have computed both the amount of need (demand) and the amount of potential
+            <p>The presence of paths, used to model access to the coast.</p>
+            <h1>Role in models</h1>
+			<p>We have computed both the amount of need (demand) and the amount of potential
 			provision (supply) of fish. The last step of the analysis is to model the
 			flow of this ecosystem service to the beneficiaries we have identified, which allows us
 			to understand the actual value of this resource used in this context, as well as pointing 
@@ -504,7 +553,11 @@ habitat quality as part of mapping species abudnance.
 			the coast and declines relatively quickly moving inland.  We model this distance 
 			decay as a Gaussian curve with high subsistence use within 1 km of the coast, 
 			steep decline at distances of 2-3 km of the coast, and slowly declining 
-			subsistence use out to a distance of 5 km of the coast.
+			subsistence use out to a distance of 5 km of the coast.</p>
+			<h1>Representation</h1>
+			<p>Data are represented as the presence/absence of paths.</p>
+			<h1>Source</h1>
+			<p>FTM.</p>
 		</description>
 		<see-also><![CDATA[
 		<p>
@@ -512,7 +565,7 @@ habitat quality as part of mapping species abudnance.
 		</p>
 		]]></see-also>
 		<credits><![CDATA[
-	    <b>Data provided by</b>: Madagascar infrastructure database (BD500)</br>
+	    <b>Data source</b>: <a href="http://www.ftm.mg/framepro.htm" target="_blank">Foiben-Taosarintanin'i Madagasikara.</a>
 	    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
 		]]></credits>
 		<plot-type default="true">geosurface-2d</plot-type>
