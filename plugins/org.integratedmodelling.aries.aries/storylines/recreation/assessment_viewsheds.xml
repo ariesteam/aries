@@ -8,7 +8,7 @@
 	can be used to connect beneficiaries to areas where recreation occurs.</description>
 
 	<!-- The concept of the main observation (the top-level model). -->
-	<concept>carbonService:CarbonSourceValue</concept>  <!-- FERD: NOT REALLY CLEAR WHAT THIS SHOULD BE SET TO. -->
+	<concept>recreationService:OutdoorRecreation</concept>
 
 	<!-- All the models that apply and in which context.  Need to separate out the different San
 	Pedro rec models.-->
@@ -307,7 +307,7 @@ think should go in the rec models vs. viewsheds - if we do so, need to add the c
   </page>
 
   <page id="actual-view-quality">
-    <concept>recreationService:TransportationEnergyInfrastructure</concept> <!-- REPLACE WITH CORRECT CONCEPT -->
+    <concept>aestheticService:ActualViews</concept> <!-- REPLACE WITH CORRECT CONCEPT - this is the flow concept, should be the use concept for the 1st stage flow model. -->
     <name>Actual view quality</name>
     <title>Actual view quality from summits and overlooks</title>
     <runninghead>Actual view quality.</runninghead>

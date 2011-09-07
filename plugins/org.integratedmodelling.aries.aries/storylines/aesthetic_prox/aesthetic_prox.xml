@@ -3,8 +3,11 @@
 	<runninghead>Values resulting from open space proximity</runninghead>
 	<description>Aesthetic value module</description>
 	<!-- the concept of the main observation (the top-level model) -->
-	<concept>aries:AestheticValueAnalysis</concept>  <!-- Ferd: does this needs to be updated (split) into viewsheds & proximity? -->
-	
+	<concept>aries:AestheticViewshedAnalysis</concept>
+
+	<!-- The storylines that this module can compute. One or more, and all their children scenarios are included. -->
+	<model-storyline>aestheticService:AestheticProximity</model-storyline>
+
 	<page>
 		<id>info</id>
 		<name>Aesthetics: open space proximity</name>

@@ -214,7 +214,7 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))        
 
-(defmodel data aestheticService:AestheticEnjoyment 
+(defmodel data OutdoorRecreation 
   (identification aestheticService:AestheticEnjoyment
     :context [source user sink altitude]))
 

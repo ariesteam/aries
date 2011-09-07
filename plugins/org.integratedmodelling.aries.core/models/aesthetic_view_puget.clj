@@ -212,7 +212,8 @@
                   PossibleViews
                   VisibleNaturalBeauty
                   HomeownersWithPossibleViews
-                  ActualViews EnjoyedViews
+                  ActualViews
+                  EnjoyedViews
                   RelevantVisualBlight
                   HomeownersWithViews
                   UnseenViews
