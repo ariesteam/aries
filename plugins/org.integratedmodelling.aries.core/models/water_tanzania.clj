@@ -95,7 +95,7 @@
 ;; the aggregation procedure. The future iteration of the model should
 ;; revisit this aggregation to potentially generate our own more specific
 ;; land cover classification scheme.
-(defmodel land-cover-typology tanzania-lulc:LandCoverTypology
+(defmodel land-cover-typology lulc:LandCoverTypology
   (classification (categorization tanzania-lulc:TanzaniaLULCCategory)
     "AG"   tanzania-lulc:Agriculture
     "NVT"  tanzania-lulc:TerrestrialVegetation
