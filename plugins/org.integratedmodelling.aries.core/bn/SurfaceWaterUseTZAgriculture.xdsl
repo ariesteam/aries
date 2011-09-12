@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network4" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="ProximityToSurfaceWaterClass">
+			<state id="HighSurfaceWaterProximity" />
+			<state id="ModerateSurfaceWaterProximity" />
+			<state id="LowSurfaceWaterProximity" />
+			<probabilities>0.49 0.49 0.02</probabilities>
+		</cpt>
+		<cpt id="LivestockTotalWaterUseClass">
+			<state id="HighLivestockTotalWaterUse" />
+			<state id="ModerateLivestockTotalWaterUse" />
+			<state id="LowLivestockTotalWaterUse" />
+			<probabilities>0.495 0.495 0.01</probabilities>
+		</cpt>
+		<cpt id="LivestockSurfaceWaterUseClass">
+			<state id="HighLivestockSurfaceWaterUse" />
+			<state id="ModerageLivestockSurfaceWaterUse" />
+			<state id="LowLivestockSurfaceWaterUse" />
+			<parents>ProximityToSurfaceWaterClass LivestockTotalWaterUseClass</parents>
+			<probabilities>0.6 0.3 0.1 0.5 0.35 0.15 0.4 0.4 0.2 0.2 0.4 0.4 0.15 0.35 0.5 0.1 0.3 0.6 0.1 0.2 0.7 0.05 0.15 0.8 0 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="IrrigationWaterUseClass">
+			<state id="VeryHighIrrigationUse" />
+			<state id="HighIrrigationUse" />
+			<state id="ModerateIrrigationUse" />
+			<state id="LowIrrigationUse" />
+			<state id="VeryLowIrrigationUse" />
+			<state id="NoIrrigationUse" />
+			<probabilities>0.01 0.63 0.01 0.01 0.01 0.33</probabilities>
+		</cpt>
+		<cpt id="AgriculturalSurfaceWaterUseClass">
+			<state id="HighAgriculturalSurfaceWaterUse" />
+			<state id="ModerateAgriculturalSurfaceWaterUse" />
+			<state id="LowAgriculturalSurfaceWaterUse" />
+			<parents>IrrigationWaterUseClass LivestockSurfaceWaterUseClass</parents>
+			<probabilities>1 0 0 0.8 0.2 0 0.6 0.4 0 0.9 0.1 0 0.7 0.3 0 0.5 0.5 0 0.5 0.5 0 0.1 0.8 0.1 0 0.7 0.3 0.35 0.5 0.15 0 0.5 0.5 0 0.2 0.8 0 0.5 0.5 0 0.35 0.65 0 0.1 0.9 0 0.4 0.6 0 0.2 0.8 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3717.0" name="AgriculturalSurfaceWaterUse" faultnameformat="nodestate">
+			<node id="ProximityToSurfaceWaterClass">
+				<name>ProximityToSurfaceWaterClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>153 363 290 444</position>
+				<comment>SWProximate &lt; .25KM\nSWModeratlyProximate=.25km - .5km\nSWNotProximate &gt; .5KM</comment>
+				<barchart active="true" width="355" height="72" />
+			</node>
+			<node id="LivestockSurfaceWaterUseClass">
+				<name>LivestockSurfaceWaterUseClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>337 203 478 291</position>
+				<barchart active="true" width="390" height="90" />
+			</node>
+			<node id="LivestockTotalWaterUseClass">
+				<name>LivestockTotalWaterUseClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>540 368 644 433</position>
+				<comment>Sum of CattleWU+SheepWU+GoatsWU+PigsWU\n\nI found data on cattle here: http://www.inegi.org.mx/sistemas/mexicocifras/MexicoCifras.aspx?e=30&amp;m=0&amp;sec=M&amp;ind=1009000053&amp;ent=30&amp;enn=Veracruz%20de%20Ignacio%20de%20la%20Llave&amp;ani=2008\nThere you can export data for each municipality on pigs, cows. tec. Data are in production on anual tons. I also add to excel files as examples for pigs and cows. Octavio\n\nWater use for cattle I think can be also obtained from this file: new data La Atigua/water permission</comment>
+				<barchart active="true" width="334" height="72" />
+			</node>
+			<node id="AgriculturalSurfaceWaterUseClass">
+				<name>AgriculturalSurfaceWaterUseClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>542 66 652 98</position>
+				<comment>Sum of LivstockSWU+IrrigationCropWU</comment>
+				<barchart active="true" width="412" height="72" />
+			</node>
+			<node id="IrrigationWaterUseClass">
+				<name>IrrigationWaterUseClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>858 216 940 266</position>
+				<comment>VeryHighIrrigationWU=720 \nHighIrrigationWU= 700\nModerateIrrigationWU=660\nLowIrrigationWU=620\nVeryLowIrrigation=580\n\nUnits=cubic meters per hecter\n\nSource:\nhttp://www.iwmi.cgiar.org/EWMA/files/papers/Chris_Perry.pdf</comment>
+				<barchart active="true" width="275" height="126" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
