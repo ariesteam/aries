@@ -34,9 +34,7 @@
                            probabilistic-ranking bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology waterSupplyService
-  (representation:GenericObservable
-   (TempSurfaceWaterData)))
+(namespace-ontology waterSupplyService)
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -185,10 +183,10 @@
               (count SheepPopulation  "/km^2")
               (count PigsPopulation   "/km^2")
               (count GoatsPopulation  "/km^2")]
-    :state   #(+ (* (:sheep-population  %) 0.002745) ;;this is in m^3/1000 animals, the conversion ultimately giving mm
-                 (* (:goats-population  %) 0.002745)
-                 (* (:cattle-population %) 0.011032)
-                 (* (:pigs-population   %) 0.013310))))
+    :state   #(+ (* (or (:sheep-population  %) 0.0) 0.002745) ;;this is in m^3/1000 animals, the conversion ultimately giving mm
+                 (* (or (:goats-population  %) 0.0) 0.002745)
+                 (* (or (:cattle-population %) 0.0) 0.011032)
+                 (* (or (:pigs-population   %) 0.0) 0.013310))))
 
 (defmodel livestock-total-water-use-class LivestockTotalWaterUseClass
   (classification livestock-total-water-use
@@ -204,7 +202,7 @@
     [500  :>] LowSurfaceWaterProximity))
 
 ;; Agricultural surface water use. Step 3: Estimate crop irrigation water needs.
-(defmodel irrigation-water-use IrrigationWaterUseClass
+(defmodel irrigation-water-use IrrigationWaterUse
   (measurement IrrigationWaterUse "mm"  ;;This is an annual value
      :context [(categorization tanzania-lulc:TanzaniaLULCCategory)]
      :state   #(if (= (:tanzania-l-u-l-c-category %) "AG")
@@ -239,7 +237,7 @@
 (defmodel total-surface-water-use TotalSurfaceWaterUse
   (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
     :context [agricultural-surface-water-use residential-surface-water-use]
-    :state   #(+ (or (:agricultural-surface-water-use %) 0)
+    :state   #(+ (if (nil? (:agricultural-surface-water-use %)) 0 (.getMean (:agricultural-surface-water-use %)))
                  (or (:residential-surface-water-use  %) 0))))
 
 ;;;-------------------------------------------------------------------
