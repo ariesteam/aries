@@ -132,8 +132,8 @@
     [  0  50] LowEvapotranspiration
     [  0   0] VeryLowEvapotranspiration))
 
-(defmodel et-sink EvapotranspirationClass
-  (bayesian EvapotranspirationClass
+(defmodel et-sink Evapotranspiration
+  (bayesian Evapotranspiration
     :import  "aries.core::SurfaceWaterSinkTZ.xdsl"
     :context [land-cover-typology percent-vegetation-cover]
     :keep    [EvapotranspirationClass]
@@ -147,8 +147,8 @@
     [  0  50] LowInfiltration
     [  0   0] VeryLowInfiltration))
 
-(defmodel soil-sink SoilInfiltrationClass
-  (bayesian SoilInfiltrationClass
+(defmodel soil-sink SoilInfiltration
+  (bayesian SoilInfiltration
     :import  "aries.core::SurfaceWaterSinkTZ.xdsl"
     :context [soil-group slope imperviousness]
     :keep    [SoilInfiltrationClass]
@@ -157,8 +157,8 @@
 (defmodel surface-water-sink SurfaceWaterSink
   (measurement SurfaceWaterSink "mm"
     :context [soil-sink et-sink] 
-    :state   #(let [si (:soil-infiltration-class  %)
-                    et (:evapotranspiration-class %)]
+    :state   #(let [si (:soil-infiltration  %)
+                    et (:evapotranspiration %)]
                 (+ 
                  (if (nil? si) 0.0 (.getMean si))
                  (if (nil? et) 0.0 (.getMean et))))))
@@ -207,7 +207,7 @@
 (defmodel irrigation-water-use IrrigationWaterUseClass
   (measurement IrrigationWaterUse "mm"  ;;This is an annual value
      :context [(categorization tanzania-lulc:TanzaniaLULCCategory)]
-     :state   #(if (= (:tanzania-lulc-category %) "AG")
+     :state   #(if (= (:tanzania-l-u-l-c-category %) "AG")
                   2000
                   0)))
 
@@ -218,7 +218,7 @@
     [2150 2400] HighIrrigationUse
     [1850 2150] ModerateIrrigationUse
     [1600 1850] LowIrrigationUse
-    [:<   1600] VeryLowIrrigationUse
+    [:exclusive 0   1600] VeryLowIrrigationUse
     0           NoIrrigationUse))
 
 ;; Undiscretization of agricultural surface water use.

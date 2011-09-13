@@ -31,7 +31,8 @@
 	xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#"
 	xmlns:mexico="http://www.integratedmodelling.org/ks/es/services/local/mexico.owl#"
 	xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
-	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#">
+	xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
+    xmlns:tanzania-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/tanzania-lulc.owl#">
 
 <!-- References listed in the data sources (no doubt these should go elsewhere, but ought to be referenced somewhere):
 Bolte, J., et al. 2010. Envisioning Puget Sound Alternative Futures: PSNERP Final Report. Prepared for the Puget Sound Nearshore Ecosystem Restoration Partnership.
@@ -167,7 +168,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 </observation:hasObservationExtent>
 </measurement:Ranking> -->
 
-<measurement:Ranking id="DaysAnnual">
+<measurement:Ranking id="mean_days_precip_annual">
   <observation:hasObservable>
     <habitat:AnnualDaysOfPrecipitation/>
   </observation:hasObservable>
@@ -176,7 +177,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
   <observation:hasDataSource>
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:DaysAnnual</geospace:hasCoverageId>
+      <geospace:hasCoverageId>usa:mean_days_precip_annual</geospace:hasCoverageId>
       <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
     </geospace:WCSDataSource>
   </observation:hasDataSource>
@@ -1606,7 +1607,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<measurement:Ranking id="HSG4">
+<measurement:Ranking id="hsg_statsgo">
   <observation:hasObservable>
     <habitat:HydrologicSoilsGroup/>
   </observation:hasObservable>
@@ -1616,7 +1617,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
   <observation:hasDataSource>
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:HSG4</geospace:hasCoverageId>
+      <geospace:hasCoverageId>usa:hsg_statsgo</geospace:hasCoverageId>
     </geospace:WCSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -5554,5 +5555,27 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
 			</geospace:RasterGrid> 
 		</observation:hasObservationExtent>
 	</measurement:BinaryCoding>-->
+
+<observation:Categorization id="tanzania_tanzania_land_cover">
+  <observation:hasObservable>
+    <tanzania-lulc:TanzaniaLULCCategory/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>tanzania:tanzania_land_cover</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>lc</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>8945572.677388238</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>529687.2161211444</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>9250109.11211885</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>844644.2739955618</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</observation:Categorization>
 
 </kbox>
