@@ -194,9 +194,12 @@
     [0.5 1.15] ModerateLivestockTotalWaterUse
     [:<  0.5]  LowLivestockTotalWaterUse))
 
+(defmodel proximity-to-surface-water ProximityToSurfaceWater
+  (measurement ProximityToSurfaceWater "m"))
+
 ;; Agricultural surface water use. Step 2: Consider proximity to surface water.
 (defmodel proximity-to-surface-water-class ProximityToSurfaceWaterClass
-  (classification (measurement ProximityToSurfaceWater "m")
+  (classification proximity-to-surface-water
     [:<  250] HighSurfaceWaterProximity
     [250 500] ModerateSurfaceWaterProximity
     [500  :>] LowSurfaceWaterProximity))
