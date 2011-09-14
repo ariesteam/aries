@@ -192,7 +192,8 @@
   (classification livestock-total-water-use
     [1.15 :>]  HighLivestockTotalWaterUse
     [0.5 1.15] ModerateLivestockTotalWaterUse
-    [:<  0.5]  LowLivestockTotalWaterUse))
+    [0.1 0.5]  LowLivestockTotalWaterUse
+    [:< 0.1]   NoLivestockTotalWaterUse))
 
 ;; Agricultural surface water use. Step 2: Consider proximity to surface water.
 (defmodel proximity-to-surface-water-class ProximityToSurfaceWaterClass
@@ -224,7 +225,8 @@
   (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
     [2000 3000] HighAgriculturalSurfaceWaterUse
     [1000 2000] ModerateAgriculturalSurfaceWaterUse
-    [   0 1000] LowAgriculturalSurfaceWaterUse)) 
+    [0 1000] LowAgriculturalSurfaceWaterUse
+    [0 0]    NoAgriculturalSurfaceWaterUse))
 
 (defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUse
  (bayesian AgriculturalSurfaceWaterUse

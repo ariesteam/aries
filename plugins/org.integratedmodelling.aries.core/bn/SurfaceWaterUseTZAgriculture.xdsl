@@ -11,14 +11,16 @@
 			<state id="HighLivestockTotalWaterUse" />
 			<state id="ModerateLivestockTotalWaterUse" />
 			<state id="LowLivestockTotalWaterUse" />
-			<probabilities>0.495 0.495 0.01</probabilities>
+			<state id="NoLivestockTotalWaterUse" />
+			<probabilities>0.3 0.5 0.1 0.1</probabilities>
 		</cpt>
 		<cpt id="LivestockSurfaceWaterUseClass">
 			<state id="HighLivestockSurfaceWaterUse" />
-			<state id="ModerageLivestockSurfaceWaterUse" />
+			<state id="ModerateLivestockSurfaceWaterUse" />
 			<state id="LowLivestockSurfaceWaterUse" />
+			<state id="NoLivestockSurfaceWaterUse" />
 			<parents>ProximityToSurfaceWaterClass LivestockTotalWaterUseClass</parents>
-			<probabilities>0.6 0.3 0.1 0.5 0.35 0.15 0.4 0.4 0.2 0.2 0.4 0.4 0.15 0.35 0.5 0.1 0.3 0.6 0.1 0.2 0.7 0.05 0.15 0.8 0 0.1 0.9</probabilities>
+			<probabilities>0.6000000000000001 0.3 0.1 0 0.4 0.35 0.15 0.1 0.2 0.4 0.2 0.2 0.1 0.3 0.35 0.25 0.2 0.4 0.4 0 0.1 0.3 0.5 0.1 0 0.2 0.6 0.2 0 0.1 0.65 0.25 0.1 0.2 0.5 0.2 0 0.1 0.6 0.3 0 0.1 0.55 0.35 0 0.1 0.5 0.4</probabilities>
 		</cpt>
 		<cpt id="IrrigationWaterUseClass">
 			<state id="VeryHighIrrigationUse" />
@@ -33,8 +35,9 @@
 			<state id="HighAgriculturalSurfaceWaterUse" />
 			<state id="ModerateAgriculturalSurfaceWaterUse" />
 			<state id="LowAgriculturalSurfaceWaterUse" />
+			<state id="NoAgriculturalSurfaceWaterUse" />
 			<parents>IrrigationWaterUseClass LivestockSurfaceWaterUseClass</parents>
-			<probabilities>1 0 0 0.8 0.2 0 0.6 0.4 0 0.9 0.1 0 0.7 0.3 0 0.5 0.5 0 0.5 0.5 0 0.1 0.8 0.1 0 0.7 0.3 0.35 0.5 0.15 0 0.5 0.5 0 0.2 0.8 0 0.5 0.5 0 0.35 0.65 0 0.1 0.9 0 0.4 0.6 0 0.2 0.8 0 0 1</probabilities>
+			<probabilities>1 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0.5 0.3 0.1 0.1 0.25 0.25 0.25 0.25 0.9 0.1 0 0 0.6 0.25 0.1 0.05 0.5 0.3 0.1 0.1 0.25 0.25 0.25 0.25 0.6 0.2 0.1 0.1 0.1 0.6000000000000001 0.2000000000000001 0.1 0 0.6 0.2 0.2 0.25 0.25 0.25 0.25 0.25 0.5 0.15 0.1 0.2 0.4 0.2 0.2 0 0.3 0.4 0.3 0.25 0.25 0.25 0.25 0 0.4 0.4 0.2 0 0.3 0.5 0.2 0 0.2 0.5 0.3 0.25 0.25 0.25 0.25 0 0.3 0.4 0.3 0 0.2 0.4 0.4 0 0 0 1 0.25 0.25 0.25 0.25</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
