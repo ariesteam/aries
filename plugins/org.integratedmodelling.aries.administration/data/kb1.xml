@@ -5531,6 +5531,30 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
   </observation:hasObservationExtent>
 </measurement:Measurement>
 
+<measurement:Measurement id="surface_water_prox_tz">
+  <observation:hasObservable>
+    <waterSupplyService:ProximityToSurfaceWater />
+  </observation:hasObservable>
+  <measurement:unit>m</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>tanzania:surface_water_prox_tz</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>2354</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>2558</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>8959680.277</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>587928.783</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>9215680.277</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>823528.783</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
 <!--Need an ontologic concept for this one - basically EPA-regulated facilities (industry, waste discharge points,
 	superfund sites, etc.)
 	<measurement:BinaryCoding id="facilities"> 
@@ -5577,5 +5601,7 @@ Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San 
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
 </observation:Categorization>
+
+
 
 </kbox>
