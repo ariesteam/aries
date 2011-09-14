@@ -334,6 +334,12 @@
    256
    "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
 
+(defcontext grr_tanzania_coarse
+  "Great Ruaha River bounding box"
+  (grid
+   100
+   "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
+
 (defcontext grr_tanzania_old
   "Great Ruaha River bounding box"
   (grid
