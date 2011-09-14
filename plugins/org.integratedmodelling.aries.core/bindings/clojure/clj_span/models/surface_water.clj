@@ -24,7 +24,8 @@
   (:use [clj-span.core          :only (distribute-flow! service-carrier)]
         [clj-span.params        :only (*trans-threshold*)]
         [clj-misc.utils         :only (seq2map mapmap iterate-while-seq with-message
-                                       memoize-by-first-arg angular-distance p & def-)]
+                                       memoize-by-first-arg angular-distance p & def-
+                                       with-progress-bar-cool)]
         [clj-misc.matrix-ops    :only (get-neighbors on-bounds? subtract-ids find-nearest)]
         [clj-misc.varprop       :only (_0_ _+_ *_ _d rv-fn _min_ _>)]))
 
@@ -233,9 +234,11 @@
     #(str "done. [Claimed intakes: " (count %) "]")
     (let [in-stream-users (filter in-stream? use-points)
           claimed-intakes (ref (zipmap in-stream-users in-stream-users))]
-      (dorun
-       (pmap (p find-nearest-stream-point! in-stream? claimed-intakes rows cols)
-             (remove in-stream? use-points)))
+      (with-progress-bar-cool
+        :drop
+        (- (count use-points) (count in-stream-users))
+        (pmap (p find-nearest-stream-point! in-stream? claimed-intakes rows cols)
+              (remove in-stream? use-points)))
       @claimed-intakes)))
 
 (defn- make-buckets
