@@ -290,7 +290,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        :save-file          (str (System/getProperty "user.home") "/water_tanzania_data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/water_tanzania_data.clj")
         :context             [precipitation-annual
                               total-surface-water-use
                               surface-water-sink
