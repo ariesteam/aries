@@ -230,8 +230,8 @@
 (defn find-nearest-stream-points
   [in-stream? rows cols use-points]
   (with-message
-    "Finding nearest stream points to all users..."
-    #(str "done. [Claimed intakes: " (count %) "]")
+    "Finding nearest stream points to all users...\n"
+    #(str "\nDone. [Claimed intakes: " (count %) "]")
     (let [in-stream-users (filter in-stream? use-points)
           claimed-intakes (ref (zipmap in-stream-users in-stream-users))]
       (with-progress-bar-cool
