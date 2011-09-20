@@ -7,7 +7,7 @@
 ;; Using a variable for the resolution, so you can change it here and it gets
 ;; changed in all contexts. 
 ;; ---------------------------------------------------------------------------
-(def resolution 512)
+(def resolution 2048)
 
 ;; -----------------------------------------------------------------------------
 ;; FV pre-defining the inline WKT-specified shapes as variables to keep the context
