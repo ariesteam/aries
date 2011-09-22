@@ -64,12 +64,12 @@
 
 (defmodel percent-vegetation-cover PercentVegetationCoverClass
   (classification (ranking habitat:PercentVegetationCover :units "%")
-    [80 100 :inclusive] VeryHighVegetationCover
+    [80 100] VeryHighVegetationCover
     [60  80]            HighVegetationCover
     [40  60]            ModerateVegetationCover
     [20  40]            LowVegetationCover
-    [:exclusive 0 20]   VeryLowVegetationCover
-    [0]                 NoVegetationCover))
+    [0.001 20]          VeryLowVegetationCover
+    [-0.001 0.001]      NoVegetationCover))
 
 ;; This does not account for barren, water, agriculture, or urban cover
 ;; (though these are accounted for in NLCD)
