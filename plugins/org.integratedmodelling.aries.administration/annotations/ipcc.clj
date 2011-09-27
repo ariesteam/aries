@@ -1,6 +1,6 @@
-(ns aries.db.ipcc  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.ipcc
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject SumHiWintLowHadleyA2 habitat:SummerHighWinterLow
 
@@ -49,5 +49,3 @@
         (geospace:hasLatUpperBound 80.0)
         (geospace:hasLonUpperBound -52.0)
         (geospace:hasCoordinateReferenceSystem "EPSG:4269")))))
-
-

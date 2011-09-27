@@ -1,6 +1,6 @@
-(ns aries.db.kb1  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.kb1
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject usa_airports infrastructure:Airport
 
@@ -3888,5 +3888,3 @@
         (geospace:hasLatUpperBound 52.928)
         (geospace:hasLonUpperBound -64.209)
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
-
-

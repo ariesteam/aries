@@ -1,6 +1,6 @@
-(ns aries.db.bv1  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.bv1
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject puget_pugetbeaches aestheticService:BeachPresence
   (measurement:BinaryCoding
@@ -237,5 +237,3 @@
         (geospace:hasLatUpperBound 2165494.042)
         (geospace:hasLonUpperBound 785698.0)
         (geospace:hasCoordinateReferenceSystem "EPSG:32614")))))
-
-

@@ -1,6 +1,6 @@
-(ns aries.db.raven_ridge_viewsheds  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.raven-ridge-viewsheds
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject vt_ny_nhdwaterbody geofeatures:Lake
   (measurement:BinaryCoding
@@ -147,5 +147,3 @@
         (geospace:hasLatUpperBound 44.286)
         (geospace:hasLonUpperBound -73.144)
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
-
-

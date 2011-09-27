@@ -1,6 +1,6 @@
-(ns aries.db.marine  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.marine
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject A_hololepidotus_Mg_abun fisheries:ArgyrosomusHololepidotusAbundanceMg
 
@@ -644,5 +644,3 @@
         (geospace:hasLatUpperBound -7.5)
         (geospace:hasLonUpperBound 96.9000015258789)
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
-
-
