@@ -1,56 +1,58 @@
 <presentation>
 
-	<title>Aesthetic viewsheds</title>
-	<runninghead>Values resulting from scenic views of ecosystems.</runninghead>
-	<description>Aesthetic values are typically defined as the value derived from views or proximity 
-			to open space.  These values often accrue to housing or property values and are often 
-			measured using hedonic pricing.  Homeowners typically gain some combination of benefits 
-			through sensory enjoyment of views of nearby open space, proximity to open space for 
-			recreation, or privacy.  This storyline maps ecosytem service provision, use, and flows for
-			aesthetic viewsheds, including the type and quality of views, location and type of 
-			housing, the presence of features that block or degrade view quality, and flow models
-			to connect beneficiaries to high quality views via a line-of-sight model.</description>
+  <title>Aesthetic viewsheds</title>
+  <runninghead>Values resulting from scenic views of ecosystems.</runninghead>
+  <description>Aesthetic values are typically defined as the value derived from views or proximity
+  to open space.  These values often accrue to housing or property values and are often
+  measured using hedonic pricing.  Homeowners typically gain some combination of benefits
+  through sensory enjoyment of views of nearby open space, proximity to open space for
+  recreation, or privacy.  This storyline maps ecosytem service provision, use, and flows for
+  aesthetic viewsheds, including the type and quality of views, location and type of
+  housing, the presence of features that block or degrade view quality, and flow models
+  to connect beneficiaries to high quality views via a line-of-sight model.</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>aestheticService:AestheticView</concept>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>aestheticService:AestheticView</concept>
 
-	<!-- All the models that apply and in which context. -->
-	<model>
-		<id>core.models.aesthetic-view-puget/view</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
+  <!-- All the models that apply and in which context. -->
+  <model>
+    <id>core.models.aesthetic-view-puget/view</id>
+    <context>core.contexts.beta/western_wa2048</context>
+  </model>
 
-	<model>
-		<id>core.models.aesthetic-view-san-pedro/view</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
-	</model>
+  <model>
+    <id>core.models.aesthetic-view-san-pedro/view</id>
+    <context>core.contexts.beta/san_pedro_us512</context>
+  </model>
 
-    <!-- Storyline description. -->
-	<page id="info">
-		<id>info</id>
-		<name>Aesthetic viewshed assessment</name>
-		<title>Introduction</title>
-		<runninghead>Aesthetic viewsheds.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality views and their impact on 
-		property values.  The source model maps areas that contain beautiful views, the sink model maps areas with 
-		objects that degrade views, and the use model maps the location of homeowners.  By combining these maps with a
-		line of sight model, we can analyze actual view quality and its potential impact on property values.  In the 
-		recreation module, we use a similar set of models to map and value viewsheds as they contribute to recreational
-		experiences, such as on trails, mountain summits, or scenic drives.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
+  <!-- Storyline description. -->
+  <page id="info">
+    <id>info</id>
+    <name>Aesthetic viewshed assessment</name>
+    <title>Introduction</title>
+    <runninghead>Aesthetic viewsheds.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality views and their impact on
+      property values.  The source model maps areas that contain beautiful views, the sink model maps areas with
+      objects that degrade views, and the use model maps the location of homeowners.  By combining these maps with a
+      line of sight model, we can analyze actual view quality and its potential impact on property values.  In the
+      recreation module, we use a similar set of models to map and value viewsheds as they contribute to recreational
+      experiences, such as on trails, mountain summits, or scenic drives.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
 
-<!-- Input data and model results for source, sink, and use models.  -->
+  <!-- Input data and model results for source, sink, and use models.  -->
 
   <page id="lake">
     <concept>aestheticService:Lake</concept>
@@ -59,22 +61,23 @@
     <runninghead>Lakes.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The presence of lakes as aesthetically beautiful natural features.</p>
-			<h1>Role in models</h1>
-			<p>Lake presence is used as an input to a probabilistic model to estimate view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of lakes.</p>
-			<h1>Source</h1>
-			<p>Derived from 2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of lakes as aesthetically beautiful natural features.</p>
+    <h1>Role in models</h1>
+    <p>Lake presence is used as an input to a probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of lakes.</p>
+    <h1>Source</h1>
+    <p>Derived from 2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -87,22 +90,23 @@
     <runninghead>Ocean.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The presence of the ocean as an aesthetically beautiful natural feature.</p>
-			<h1>Role in models</h1>
-			<p>Ocean presence is used as an input to a probabilistic model to estimate view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of the ocean.</p>
-			<h1>Source</h1>
-			<p>Derived from 2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of the ocean as an aesthetically beautiful natural feature.</p>
+    <h1>Role in models</h1>
+    <p>Ocean presence is used as an input to a probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of the ocean.</p>
+    <h1>Source</h1>
+    <p>Derived from 2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -115,23 +119,24 @@
     <runninghead>Mountains.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The presence of mountains as aesthetically beautiful natural features.</p>
-			<h1>Role in models</h1>
-			<p>The view of mountains, and their height, is used as an input to a probabilistic model to estimate 
-			view quality.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of meters above sea level.</p>
-			<h1>Source</h1>
-			<p>Global 90-m SRTM digital elevation model.</p>
-		]]></description>
-        <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>The presence of mountains as aesthetically beautiful natural features.</p>
+    <h1>Role in models</h1>
+    <p>The view of mountains, and their height, is used as an input to a probabilistic model to estimate
+    view quality.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of meters above sea level.</p>
+    <h1>Source</h1>
+    <p>Global 90-m SRTM digital elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -144,56 +149,59 @@
     <runninghead>Scenic vegetation type.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The presence of aesthetically pleasing land cover types, such as forests or riparian areas, which 
-			can be important in arid environments where green vegetation is scarcer and may be more highly valued than in humid environments.</p>
-			<h1>Role in models</h1>
-			<p>The view of particular types of natural land cover, such as forests or riparian areas, 
-			is used as an input to a probabilistic model to estimate view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from SWREGAP land cover classes.</p>
-			<h1>Source</h1>
-			<p>Southwestern Regional GAP Analysis Land Use-Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of aesthetically pleasing land cover types, such as forests or riparian areas, which
+    can be important in arid environments where green vegetation is scarcer and may be more highly valued than in humid environments.</p>
+    <h1>Role in models</h1>
+    <p>The view of particular types of natural land cover, such as forests or riparian areas,
+    is used as an input to a probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from SWREGAP land cover classes.</p>
+    <h1>Source</h1>
+    <p>Southwestern Regional GAP Analysis Land Use-Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
-    <page id="aesthetic-view-provision">
+
+  <page id="aesthetic-view-provision">
     <concept>aestheticService:AestheticViewProvision</concept>
     <name>Potential view quality</name>
     <title>Potential view quality</title>
     <runninghead>Potential view quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The quality of a potential view from residences.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the viewshed source model, and estimates the relative quality 
-			of different areas in providing aesthetically pleasing views, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to provide aesthetically pleasing views. As the output of the models 
-			is probabilistic, each point contains the probability distribution for potential view quality. 
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient 
-			of variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>The quality of a potential view from residences.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the viewshed source model, and estimates the relative quality
+    of different areas in providing aesthetically pleasing views, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to provide aesthetically pleasing views. As the output of the models
+    is probabilistic, each point contains the probability distribution for potential view quality.
+    The distribution can be visualized by clicking on the map; the mean value and the coefficient
+    of variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -206,23 +214,24 @@
     <runninghead>Development.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land cover types, such as high density development.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an 
-			input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from NLCD land cover classes.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land cover types, such as high density development.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an
+    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from NLCD land cover classes.</p>
+    <h1>Source</h1>
+    <p>2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -235,23 +244,24 @@
     <runninghead>Transmission lines.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types, such as transmission lines.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as transmission lines, is used as an 
-			input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of transmission lines.</p>
-			<h1>Source</h1>
-			<p>Census TIGER/Line Files.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land use types, such as transmission lines.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land use, such as transmission lines, is used as an
+    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of transmission lines.</p>
+    <h1>Source</h1>
+    <p>Census TIGER/Line Files.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -264,28 +274,29 @@
     <runninghead>Highways.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types, such as highways.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as highways, is used as an 
-			input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of highways.</p>
-			<h1>Source</h1>
-			<p>Census TIGER/Line Files.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land use types, such as highways.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land use, such as highways, is used as an
+    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of highways.</p>
+    <h1>Source</h1>
+    <p>Census TIGER/Line Files.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
+
   <page id="mine">
     <concept>aestheticService:Mines</concept>
     <name>Mines</name>
@@ -293,23 +304,24 @@
     <runninghead>Mines.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types, such as open pit mines.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as open pit mines, is used as an 
-			input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of mines.</p>
-			<h1>Source</h1>
-			<p>Southwestern Regional GAP Analysis Land Use-Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land use types, such as open pit mines.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land use, such as open pit mines, is used as an
+    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of mines.</p>
+    <h1>Source</h1>
+    <p>Southwestern Regional GAP Analysis Land Use-Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -322,23 +334,24 @@
     <runninghead>Clearcuts.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types, such as clearcuts.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as clearcuts, is used as an 
-			input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of clearcuts.</p>
-			<h1>Source</h1>
-			<p>Washington State Department of Natural Resources.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land use types, such as clearcuts.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land use, such as clearcuts, is used as an
+    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of clearcuts.</p>
+    <h1>Source</h1>
+    <p>Washington State Department of Natural Resources.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -351,25 +364,26 @@
     <runninghead>Commercial, industrial, or transportation land use.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of aesthetically displeasing land use types, such as commercial, industrial, or 
-			transportation land use.</p>
-			<h1>Role in models</h1>
-			<p>The view of aesthetically displeasing land use, such as commercial, industrial, or transportation land 
-			use, is used as an input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of commercial, industrial,
-			or transportation land use.</p>
-			<h1>Source</h1>
-			<p>1992 National Land Cover Dataset.</p>
-		]]></description>
+    <p>The presence of aesthetically displeasing land use types, such as commercial, industrial, or
+    transportation land use.</p>
+    <h1>Role in models</h1>
+    <p>The view of aesthetically displeasing land use, such as commercial, industrial, or transportation land
+    use, is used as an input to a probabilistic model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of commercial, industrial,
+    or transportation land use.</p>
+    <h1>Source</h1>
+    <p>1992 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -382,27 +396,29 @@
     <runninghead>Visual blight.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The ability of parts of the landscape to degrade views, based on the presence of visually 
-			unappealing features.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the viewshed sink model, and estimates the relative ability 
-			of different areas to degrade high-quality views, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative ability of different
-			parts of the landscape to degrade high-quality views. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential visual blight.  The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation are 
-			reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>The ability of parts of the landscape to degrade views, based on the presence of visually
+    unappealing features.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the viewshed sink model, and estimates the relative ability
+    of different areas to degrade high-quality views, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative ability of different
+    parts of the landscape to degrade high-quality views. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential visual blight.  The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation are
+    reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -414,25 +430,25 @@
     <title>Presence of housing</title>
     <runninghead>Presence of housing.</runninghead>
     <group>use</group>
-		<description><![CDATA[
-			<p>Residences at who may benefit from access to high-quality views.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the 
-			potential aesthetic value, as reflected in property value, of high-quality views.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of housing.</p>
-			<h1>Source</h1>
-			<p>County assessors' offices (where available), otherwise NLCD developed land.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-        <b>Data source</b>: County assessors' offices.</br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Residences at who may benefit from access to high-quality views.</p>
+    <h1>Role in models</h1>
+    <p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the
+    potential aesthetic value, as reflected in property value, of high-quality views.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of housing.</p>
+    <h1>Source</h1>
+    <p>County assessors' offices (where available), otherwise NLCD developed land.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: County assessors' offices.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -445,25 +461,25 @@
     <runninghead>Property value.</runninghead>
     <units>$/ac</units>
     <group>use</group>
-		<description><![CDATA[
-			<p>Property value, which may be increased with access to high-quality views.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the 
-			potential aesthetic value, as reflected in property value, of high-quality views.</p>
-			<h1>Representation</h1>
-			<p>Data are represented in dollars per acre of property.</p>
-			<h1>Source</h1>
-			<p>County assessors' offices (where available).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-        <b>Data source</b>: County assessors' offices.</br>
-        <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Property value, which may be increased with access to high-quality views.</p>
+    <h1>Role in models</h1>
+    <p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the
+    potential aesthetic value, as reflected in property value, of high-quality views.</p>
+    <h1>Representation</h1>
+    <p>Data are represented in dollars per acre of property.</p>
+    <h1>Source</h1>
+    <p>County assessors' offices (where available).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: County assessors' offices.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -476,334 +492,358 @@
     <runninghead>Potential homeowner view use.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>The potential property value benefit from access to high-quality views.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the viewshed use model, and estimates the potential property value benefit
-			that could be provided by high-quality views, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative potential property value benefit
-			as reflected by the presence of housing and property values. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential visual blight.  The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation are 
-			reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>The potential property value benefit from access to high-quality views.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the viewshed use model, and estimates the potential property value benefit
+    that could be provided by high-quality views, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative potential property value benefit
+    as reflected by the presence of housing and property values. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential visual blight.  The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation are
+    reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
- <!-- Flow concepts.  The flow concepts below include possible, actual, and blocked flow concepts plus inaccessible use, 
- since theoretical source, sink, and use have been provided above and inaccessible sources and sinks are likely irrelevant 
- to the user.-->
+  <!-- Flow concepts.  The flow concepts below include possible, actual, and blocked flow concepts plus inaccessible use,
+       since theoretical source, sink, and use have been provided above and inaccessible sources and sinks are likely irrelevant
+       to the user.-->
 
   <page id="possible-views">
-		<concept>aestheticService:PossibleViews</concept>
-		<name>Possible views</name>
-		<title>Possible views</title>
-		<runninghead>Possible flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible flow maps* represent the path that the carrier of the service would take
-		if it was not intercepted by sinks.  As such it considers source and use models and
-		shows the maximum amount of flow. For provisioning services, this corresponds to the
-		maximum potential benefit; for preventive services, the maximum potential damage.
-		
-		This map shows the flow of views as aesthetic information from natural areas toward 
-		homeowners, when not accounting for sinks).
-		</description>
-				<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="visible-natural-beauty">
-		<concept>aestheticService:VisibleNaturalBeauty</concept>
-		<name>Visible natural beauty</name>
-		<title>Visible natural beauty</title>
-		<runninghead>Possible source map.</runninghead>
-		<group>flow</group>
-		<description>
-		Even in the absence of sinks, not all of a source quantity actually has the
-		ability to reach users, because of the route that an ecosystem service carrier
-		moves across the landscape. Flow analysis allows us to identify which particular 
-		portion of the total source quantity is actually generating carriers that 
-		reach the users, independent of the existence of sinks but taking into account 
-		the result of use values, the structure of the landscape and the flow paths of 
-		the carrier, producing this *possible source map*. For provisioning services, 
-		this corresponds to the source of benefits that has the potential of being actually 
-		useful. For preventive services, this corresponds to the portion of the source 
-		field that could actually cause damage to people. The location and strength of 
-		sinks determines how much of the source actually reaches the users.
-		
-		This map shows open space providing views when accounting for lines of sight and 
-		the location of homeowners but not visual blight.
-		</description>
-				<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:PossibleViews</concept>
+    <name>Possible views</name>
+    <title>Possible views</title>
+    <runninghead>Possible flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible flow maps* represent the path that the carrier of the service would take
+      if it was not intercepted by sinks.  As such it considers source and use models and
+      shows the maximum amount of flow. For provisioning services, this corresponds to the
+      maximum potential benefit; for preventive services, the maximum potential damage.
 
- 	<page id="homeowners-with-possible-views">
-		<concept>aestheticService:HomeownersWithPossibleViews</concept>
-		<name>Homeowners with possible views</name>
-		<title>Homeowners with possible views</title>
-		<runninghead>Possible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible use maps* show the locations of users on the landscape that can receive a
-		benefit due to flow connections with a source of an ecosystem service carrier, but may
-		or may not actually receive the carrier due to the action of sinks.  For provisioning 
-		services, potential use identifies areas where it is physically possible for a benefit to 
-		be received.  For preventive services, potential use identifies areas that may be damaged
-		by a detrimental carrier if sinks do not prevent such damage. 
-		
-		This map shows homeowners benefiting from views when sources of high-quality views and 
-		their flow paths are accounted for, but visual blight is not.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows the flow of views as aesthetic information from natural areas toward
+      homeowners, when not accounting for sinks).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="visible-natural-beauty">
+    <concept>aestheticService:VisibleNaturalBeauty</concept>
+    <name>Visible natural beauty</name>
+    <title>Visible natural beauty</title>
+    <runninghead>Possible source map.</runninghead>
+    <group>flow</group>
+    <description>
+      Even in the absence of sinks, not all of a source quantity actually has the
+      ability to reach users, because of the route that an ecosystem service carrier
+      moves across the landscape. Flow analysis allows us to identify which particular
+      portion of the total source quantity is actually generating carriers that
+      reach the users, independent of the existence of sinks but taking into account
+      the result of use values, the structure of the landscape and the flow paths of
+      the carrier, producing this *possible source map*. For provisioning services,
+      this corresponds to the source of benefits that has the potential of being actually
+      useful. For preventive services, this corresponds to the portion of the source
+      field that could actually cause damage to people. The location and strength of
+      sinks determines how much of the source actually reaches the users.
+
+      This map shows open space providing views when accounting for lines of sight and
+      the location of homeowners but not visual blight.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-with-possible-views">
+    <concept>aestheticService:HomeownersWithPossibleViews</concept>
+    <name>Homeowners with possible views</name>
+    <title>Homeowners with possible views</title>
+    <runninghead>Possible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible use maps* show the locations of users on the landscape that can receive a
+      benefit due to flow connections with a source of an ecosystem service carrier, but may
+      or may not actually receive the carrier due to the action of sinks.  For provisioning
+      services, potential use identifies areas where it is physically possible for a benefit to
+      be received.  For preventive services, potential use identifies areas that may be damaged
+      by a detrimental carrier if sinks do not prevent such damage.
+
+      This map shows homeowners benefiting from views when sources of high-quality views and
+      their flow paths are accounted for, but visual blight is not.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
   <page id="actual-views">
-		<concept>aestheticService:ActualViews</concept>
-		<name>Actual views</name>
-		<title>Actual view flow</title>
-		<runninghead>Actual flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual flow density* map shows the flow paths that deliver actual services to
-		humans. These are selected from the total flow density to only show these flow paths
-		that are not depleted by sinks and actually reach users.
-		
-		For provisioning services, these flow paths deliver valuable benefits to the
-		users and the density is proportional to the value accrued. For preventive services,
-		the flow paths show how much of the carrier reaches users, delivering actual
-		damage.
-		
-		This map shows the actual flow of views as aesthetic information from 
-		natural areas toward homeowners, when accounting for sinks and flow paths.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="enjoyed-views">
-		<concept>aestheticService:EnjoyedViews</concept>
-		<name>Enjoyed views</name>
-		<title>Enjoyed views</title>
-		<runninghead>Actual source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual source map* shows the portion of the source map that is relevant to 
-		the provision of a service after accounting for sinks and flow dynamics. 
-		For provisioning services, this is the amount and location of a benefit that 
-		actually provides benefits to the users. For preventive services, it shows
-		where the actual damage came from. Source regions that provided a damaging carrier
-		were neutralized by sinks are not shown.
-		 
-		This map shows open space that actually provides views when accounting for flow 
-		paths, sinks, and the location of beneficiaries.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:ActualViews</concept>
+    <name>Actual views</name>
+    <title>Actual view flow</title>
+    <runninghead>Actual flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual flow density* map shows the flow paths that deliver actual services to
+      humans. These are selected from the total flow density to only show these flow paths
+      that are not depleted by sinks and actually reach users.
 
- 	<page id="relevant-visual-blight">
-		<concept>aestheticService:RelevantVisualBlight</concept>
-		<name>Relevant visual blight</name>
-		<title>Relevant visual blight</title>
-		<runninghead>Actual sink map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual sink map* shows the portion of the sinks that actually contribute
-		to depleting a service carrier given its flow patterns. For provisioning
-		services, such sinks are responsible for reducing the benefits compared to their
-		possible value. For preventive services, such sinks provide the actual
-		service because they prevent a damaging carrier from reaching users.
-		
-		This map shows areas of visual blight located between visually valuable views 
-		and beneficiaries, that actually degrades high quality views.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      For provisioning services, these flow paths deliver valuable benefits to the
+      users and the density is proportional to the value accrued. For preventive services,
+      the flow paths show how much of the carrier reaches users, delivering actual
+      damage.
 
- 	<page id="homeowners-with-views">
-		<concept>aestheticService:HomeownersWithViews</concept>
-		<name>Homeowners with views</name>
-		<title>Homeowners with views</title>
-		<runninghead>Actual use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
-		service or damage caused by a detrimental carrier for a preventive service, for 
-		users located across the landscape.
-		
-		This map shows homeowners who benefit from views when accounting for sources of views, sinks, and 
-		flow paths.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows the actual flow of views as aesthetic information from
+      natural areas toward homeowners, when accounting for sinks and flow paths.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
- 	<page id="homeowners-without-views">
-		<concept>aestheticService:HomeownersWithoutViews</concept>
-		<name>Homeowners without views</name>
-		<title>Homeowners without views</title>
-		<runninghead>Inaccessible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *inaccessible use map* shows the potential users that cannot receive a service
-		carrier due to flow routes and the source and user locations. For provisioning services,
-		this corresponds to value produced by the environment but that cannot be reached by
-		users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but is not due to a lack of flow connections to users.
-		
-		This map shows homeowners who lack any views due to their lack of flow connections 
-		(i.e., living in areas too flat or distant from high quality views).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <page id="enjoyed-views">
+    <concept>aestheticService:EnjoyedViews</concept>
+    <name>Enjoyed views</name>
+    <title>Enjoyed views</title>
+    <runninghead>Actual source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual source map* shows the portion of the source map that is relevant to
+      the provision of a service after accounting for sinks and flow dynamics.
+      For provisioning services, this is the amount and location of a benefit that
+      actually provides benefits to the users. For preventive services, it shows
+      where the actual damage came from. Source regions that provided a damaging carrier
+      were neutralized by sinks are not shown.
+
+      This map shows open space that actually provides views when accounting for flow
+      paths, sinks, and the location of beneficiaries.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="relevant-visual-blight">
+    <concept>aestheticService:RelevantVisualBlight</concept>
+    <name>Relevant visual blight</name>
+    <title>Relevant visual blight</title>
+    <runninghead>Actual sink map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual sink map* shows the portion of the sinks that actually contribute
+      to depleting a service carrier given its flow patterns. For provisioning
+      services, such sinks are responsible for reducing the benefits compared to their
+      possible value. For preventive services, such sinks provide the actual
+      service because they prevent a damaging carrier from reaching users.
+
+      This map shows areas of visual blight located between visually valuable views
+      and beneficiaries, that actually degrades high quality views.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-with-views">
+    <concept>aestheticService:HomeownersWithViews</concept>
+    <name>Homeowners with views</name>
+    <title>Homeowners with views</title>
+    <runninghead>Actual use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      service or damage caused by a detrimental carrier for a preventive service, for
+      users located across the landscape.
+
+      This map shows homeowners who benefit from views when accounting for sources of views, sinks, and
+      flow paths.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-without-views">
+    <concept>aestheticService:HomeownersWithoutViews</concept>
+    <name>Homeowners without views</name>
+    <title>Homeowners without views</title>
+    <runninghead>Inaccessible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *inaccessible use map* shows the potential users that cannot receive a service
+      carrier due to flow routes and the source and user locations. For provisioning services,
+      this corresponds to value produced by the environment but that cannot be reached by
+      users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections to users.
+
+      This map shows homeowners who lack any views due to their lack of flow connections
+      (i.e., living in areas too flat or distant from high quality views).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
   <page id="blocked-views">
-		<concept>aestheticService:BlockedViews</concept>
-		<name>Blocked views</name>
-		<title>Blocked views</title>
-		<runninghead>Blocked flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked flow map* shows the flow paths that could have delivered the 
-		service carrier to humans based on the flow routes and the source and user
-		locations, but did not because of the action of sinks. These are selected from among 
-		all actual flows.
-		
-		For provisioning services, these flow paths show the loss in possible flow of
-		beneficial services to the users, and their density is proportional to the value lost. 
-		For preventive services, the flow paths show the amount of the total flow that 
-		was prevented by natural features from causing damage.
-		
-		This map shows flows of views as aesthetic information toward homeowners that are 
-		blocked by visual blight.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:BlockedViews</concept>
+    <name>Blocked views</name>
+    <title>Blocked views</title>
+    <runninghead>Blocked flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked flow map* shows the flow paths that could have delivered the
+      service carrier to humans based on the flow routes and the source and user
+      locations, but did not because of the action of sinks. These are selected from among
+      all actual flows.
 
- 	<page id="degraded-natural-beauty">
-		<concept>aestheticService:DegradedNaturalBeauty</concept>
-		<name>Degraded natural beauty</name>
-		<title>Degraded natural beauty</title>
-		<runninghead>Blocked source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked source map* shows the part of the source map that had the possibility
-		of reaching users given the location of the users and the flow dynamics, but
-		was blocked from doing so because of the action of sinks. For provisioning services,
-		this corresponds to value produced by the environment but lost before it reaches
-		the users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but was blocked by natural features.
-		
-		This map shows sources of views that are blocked by the presence of visual blight.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      For provisioning services, these flow paths show the loss in possible flow of
+      beneficial services to the users, and their density is proportional to the value lost.
+      For preventive services, the flow paths show the amount of the total flow that
+      was prevented by natural features from causing damage.
 
-	<page id="homeowners-with-degraded-views">
-		<concept>aestheticService:HomeownersWithDegradedViews</concept>
-		<name>Homeowners with degraded views</name>
-		<title>Homeowners with degraded views</title>
-		<runninghead>Blocked use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked use map* shows those users that would have been reached by the service
-		carrier based only on the source and the flow dynamics, but were not reached because 
-		of the action of sinks. For provisioning services, the map shows possible value that 
-		has not been accrued to users because of sinks; for preventive services, it shows 
-		actual value accrued by users thanks to sink configuration. 
-		
-		For preventive services, therefore, this map is the ultimate quantification of
-		value given the locations and quantity of users and natural sink features.
-		
-		This map shows homeowners who would receive benefits from views but have their 
-		views degraded by visual blight.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows flows of views as aesthetic information toward homeowners that are
+      blocked by visual blight.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="degraded-natural-beauty">
+    <concept>aestheticService:DegradedNaturalBeauty</concept>
+    <name>Degraded natural beauty</name>
+    <title>Degraded natural beauty</title>
+    <runninghead>Blocked source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked source map* shows the part of the source map that had the possibility
+      of reaching users given the location of the users and the flow dynamics, but
+      was blocked from doing so because of the action of sinks. For provisioning services,
+      this corresponds to value produced by the environment but lost before it reaches
+      the users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but was blocked by natural features.
+
+      This map shows sources of views that are blocked by the presence of visual blight.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-with-degraded-views">
+    <concept>aestheticService:HomeownersWithDegradedViews</concept>
+    <name>Homeowners with degraded views</name>
+    <title>Homeowners with degraded views</title>
+    <runninghead>Blocked use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked use map* shows those users that would have been reached by the service
+      carrier based only on the source and the flow dynamics, but were not reached because
+      of the action of sinks. For provisioning services, the map shows possible value that
+      has not been accrued to users because of sinks; for preventive services, it shows
+      actual value accrued by users thanks to sink configuration.
+
+      For preventive services, therefore, this map is the ultimate quantification of
+      value given the locations and quantity of users and natural sink features.
+
+      This map shows homeowners who would receive benefits from views but have their
+      views degraded by visual blight.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
 </presentation>

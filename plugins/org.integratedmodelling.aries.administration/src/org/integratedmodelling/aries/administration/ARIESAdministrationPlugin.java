@@ -13,13 +13,9 @@ public class ARIESAdministrationPlugin extends ThinklabPlugin {
     }
 
     @Override
-        protected void load(KnowledgeManager km) throws ThinklabException {
-    }
+    protected void load(KnowledgeManager km) throws ThinklabException { }
 
     @Override
-        protected void unload() throws ThinklabException {
-        // TODO Auto-generated method stub
-
-    }
+    protected void unload() throws ThinklabException { }
 
 }
