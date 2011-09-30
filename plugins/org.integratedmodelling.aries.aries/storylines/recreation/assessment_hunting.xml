@@ -1,121 +1,132 @@
 <presentation>
 
-	<title>Recreation: Hunting</title>
-	<runninghead>Values resulting from ecosystem contributions toward hunting as a recreational activity.</runninghead>
-	<description>Values resulting from ecosystem contributions toward hunting as a recreational activity, as opposed to the
-	infrastructure, skills, and preferences of individuals participating in a given activity.  Source models map
-	the potential quality for habitat for harvestable species in a given part of the landscape.  Flow models 
-	can be used to connect beneficiaries to areas where hunting can occur.</description>
+  <title>Recreation: Hunting</title>
+  <runninghead>Values resulting from ecosystem contributions toward hunting as a recreational activity.</runninghead>
+  <description>Values resulting from ecosystem contributions toward
+  hunting as a recreational activity, as opposed to the
+  infrastructure, skills, and preferences of individuals participating
+  in a given activity.  Source models map the potential quality for
+  habitat for harvestable species in a given part of the landscape.
+  Flow models can be used to connect beneficiaries to areas where
+  hunting can occur.</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>recreationService:OutdoorRecreation</concept>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>recreationService:OutdoorRecreation</concept>
 
-	<!-- All the models that apply and in which context.  Need to separate out the different San
-	Pedro rec models.-->
-	<model>
-		<id>core.models.recreation-san-pedro/recreation-data</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
-	</model>
+  <!-- All the models that apply and in which context.  Need to
+       separate out the different San Pedro rec models. -->
+  <model>
+    <id>core.models.recreation-san-pedro/recreation-data</id>
+    <context>core.contexts.beta/san_pedro_us512</context>
+  </model>
 
-    <!-- Storyline description. -->
+  <!-- Storyline description. -->
 
-	<page id="info">
-		<id>info</id>
-		<name>Assessment of natural areas for javelina hunting</name>
-		<title>Introduction</title>
-		<runninghead>Natural areas for javelina hunting.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
-		javelina (peccaries), one of several important game species in southeast Arizona.  The source model maps areas where 
-		javelina habitat is present, land that is accessible to the public, and areas where surface water is present as having 
-		high potential value for javelina hunting.  By combining this map with information about recreational travel patterns 
-		and site selection, we can map the connections between recreational users and specific sites, showing recreational use 
-		alongside other ecosystem services provided by recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page id="info">
-		<id>info</id>
-		<name>Assessment of natural areas for deer hunting</name>
-		<title>Introduction</title>
-		<runninghead>Natural areas for deer hunting.</runninghead>		
-        <group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
-		deer (mule and whitetail), which are important game species in southeast Arizona.  The source model maps areas where 
-		one or more deer species' habitat is present, land that is accessible to the public, and areas where surface water is 
-		present as having high potential value for deer hunting.  By combining this map with information about recreational 
-		travel patterns and site selection, we can map the connections between recreational users and specific sites, showing 
-		recreational use alongside other ecosystem services provided by recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page id="info">
-		<id>info</id>
-		<name>Assessment of natural areas for quail hunting</name>
-		<title>Introduction</title>
-		<runninghead>Natural areas for quail hunting.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
-		quail (Gambels, Mearns', and scaled), which are important game species in southeast Arizona.  The source model maps 
-		areas where one or more quail species' habitat is present, land that is accessible to the public, and areas where surface 
-		water is present as having high potential value for quail hunting.  By combining this map with information about 
-        recreational travel patterns and site selection, we can map the connections between recreational users and specific sites, 
-        showing recreational use alongside other ecosystem services provided by recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
-	
-	<page id="info">
-		<id>info</id>
-		<name>Assessment of natural areas for dove hunting</name>
-		<title>Introduction</title>
-		<runninghead>Natural areas for dove hunting.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for 
-		dove (mourning and white-winged), which are important game species in southeast Arizona.  The source model maps 
-		areas where one or more dove species' habitat is present, land that is accessible to the public, and areas where surface 
-		water is present as having high potential value for dove hunting.  By combining this map with information about recreational 
-		travel patterns and site selection, we can map the connections between recreational users and specific sites, showing 
-		recreational use alongside other ecosystem services provided by recreational areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
+  <page id="info">
+    <id>info</id>
+    <name>Assessment of natural areas for javelina hunting</name>
+    <title>Introduction</title>
+    <runninghead>Natural areas for javelina hunting.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for
+      javelina (peccaries), one of several important game species in southeast Arizona.  The source model maps areas where
+      javelina habitat is present, land that is accessible to the public, and areas where surface water is present as having
+      high potential value for javelina hunting.  By combining this map with information about recreational travel patterns
+      and site selection, we can map the connections between recreational users and specific sites, showing recreational use
+      alongside other ecosystem services provided by recreational areas.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
 
-  <!-- Input data and model results for source, sink, and use models.  -->
+  <page id="info">
+    <id>info</id>
+    <name>Assessment of natural areas for deer hunting</name>
+    <title>Introduction</title>
+    <runninghead>Natural areas for deer hunting.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for
+      deer (mule and whitetail), which are important game species in southeast Arizona.  The source model maps areas where
+      one or more deer species' habitat is present, land that is accessible to the public, and areas where surface water is
+      present as having high potential value for deer hunting.  By combining this map with information about recreational
+      travel patterns and site selection, we can map the connections between recreational users and specific sites, showing
+      recreational use alongside other ecosystem services provided by recreational areas.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="info">
+    <id>info</id>
+    <name>Assessment of natural areas for quail hunting</name>
+    <title>Introduction</title>
+    <runninghead>Natural areas for quail hunting.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for
+      quail (Gambels, Mearns', and scaled), which are important game species in southeast Arizona.  The source model maps
+      areas where one or more quail species' habitat is present, land that is accessible to the public, and areas where surface
+      water is present as having high potential value for quail hunting.  By combining this map with information about
+      recreational travel patterns and site selection, we can map the connections between recreational users and specific sites,
+      showing recreational use alongside other ecosystem services provided by recreational areas.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="info">
+    <id>info</id>
+    <name>Assessment of natural areas for dove hunting</name>
+    <title>Introduction</title>
+    <runninghead>Natural areas for dove hunting.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality areas for hunting, specifically for
+      dove (mourning and white-winged), which are important game species in southeast Arizona.  The source model maps
+      areas where one or more dove species' habitat is present, land that is accessible to the public, and areas where surface
+      water is present as having high potential value for dove hunting.  By combining this map with information about recreational
+      travel patterns and site selection, we can map the connections between recreational users and specific sites, showing
+      recreational use alongside other ecosystem services provided by recreational areas.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <!-- Input data and model results for source, sink, and use models. -->
   <page id="public-access-class">
     <concept>recreationService:PublicAccessClass</concept>
     <name>Public access</name>
@@ -123,25 +134,26 @@
     <runninghead>Public access.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Areas with public access for recreational activities.</p>
-			<h1>Role in models</h1>
-			<p>Public access is a critical input to any recreation source model, as recreationists must be able to access
-			land in order to engage in their activity of interest.  Public access data are combined with other appropriate 
-			data to identify an area's suitability for the recreational activity of interest.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and identify public land, private land with public access granted (e.g., nature preserves),
-			or private land without public access.</p>
-			<h1>Source</h1>
-			<p>Arizona Geographic Information Council.</p>
-		]]></description>
+    <p>Areas with public access for recreational activities.</p>
+    <h1>Role in models</h1>
+    <p>Public access is a critical input to any recreation source model, as recreationists must be able to access
+    land in order to engage in their activity of interest.  Public access data are combined with other appropriate
+    data to identify an area's suitability for the recreational activity of interest.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, and identify public land, private land with public access granted (e.g., nature preserves),
+    or private land without public access.</p>
+    <h1>Source</h1>
+    <p>Arizona Geographic Information Council.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -154,26 +166,27 @@
     <runninghead>Presence of surface water.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The presence of surface water from streams and springs.</p>
-			<h1>Role in models</h1>
-			<p>Surface water presence is an important input to birding source models for birding, wildlife viewing, 
-			and hunting, as surface water attracts wildlife of all kinds in arid and semiarid environments.  Surface
-			water presence data is combined with data on riparian quality (where available) to further estimate the
-			quality of the surface water resource.  These data are combined with public access data and species presence
-			or richness in relevant source models for wildlife-based recreation.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of streams and springs.</p>
-			<h1>Source</h1>
-			<p>Arizona Geographic Information Council.</p>
-		]]></description>
+    <p>The presence of surface water from streams and springs.</p>
+    <h1>Role in models</h1>
+    <p>Surface water presence is an important input to birding source models for birding, wildlife viewing,
+    and hunting, as surface water attracts wildlife of all kinds in arid and semiarid environments.  Surface
+    water presence data is combined with data on riparian quality (where available) to further estimate the
+    quality of the surface water resource.  These data are combined with public access data and species presence
+    or richness in relevant source models for wildlife-based recreation.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of streams and springs.</p>
+    <h1>Source</h1>
+    <p>Arizona Geographic Information Council.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -186,24 +199,26 @@
     <runninghead>Riparian condition class</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Riparian quality, rated from dry to wet, based on nine vegetation bioindicators sensitive to surface and 
-			groundwater conditions.</p>
-			<h1>Role in models</h1>
-			<p>Surface water presence data is combined with data on riparian quality (where available) to further estimate the
-			quality of the surface water resource.  These data are combined with public access data and species presence
-			or richness in relevant source models for wildlife-based recreation.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, representing riparian condition class as described by Stromberg et al. (2006).</p>
-			<h1>Source</h1>
-			<p>Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona: 
-			Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173.</p>
-		]]></description>
+    <p>Riparian quality, rated from dry to wet, based on nine vegetation bioindicators sensitive to surface and
+    groundwater conditions.</p>
+    <h1>Role in models</h1>
+    <p>Surface water presence data is combined with data on riparian quality (where available) to further estimate the
+    quality of the surface water resource.  These data are combined with public access data and species presence
+    or richness in relevant source models for wildlife-based recreation.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, representing riparian condition class as described by Stromberg et al. (2006).</p>
+    <h1>Source</h1>
+    <p>Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona:
+    Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -216,28 +231,30 @@
     <runninghead>Riparian, spring, or wetland quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Presence of high, moderate, low quality, or no springs or surface water.</p>
-			<h1>Role in models</h1>
-			<p>Surface water presence data are combined with data on riparian quality (where available) to further estimate the
-			quality of the surface water resource.  These data are combined with public access data and species presence
-			or richness in relevant source models for wildlife-based recreation.  Where no condition class data are available the
-			model currently assumes surface water to be ephemerally flowing.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>Derived from surface water presence and riparian condition class data.</p>
-		]]></description>
+    <p>Presence of high, moderate, low quality, or no springs or surface water.</p>
+    <h1>Role in models</h1>
+    <p>Surface water presence data are combined with data on riparian quality (where available) to further estimate the
+    quality of the surface water resource.  These data are combined with public access data and species presence
+    or richness in relevant source models for wildlife-based recreation.  Where no condition class data are available the
+    model currently assumes surface water to be ephemerally flowing.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>Derived from surface water presence and riparian condition class data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
+
   <page id="dove-habitat">
     <concept>sanPedro:DoveHabitat</concept>
     <name>Dove habitat</name>
@@ -245,26 +262,27 @@
     <runninghead>Dove habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Areas where mourning and/or white-winged dove (_Zenaida macroura_, _Z. asiatica_) are known or predicted 
-			to occur in the southwestern United States.</p>
-			<h1>Role in models</h1>
-			<p>The presence of dove habitat is a prerequisite for an area to support dove hunting.  Habitat presence
-			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for dove hunting.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and are mapped as the presence of one species of dove habitat, multiple species of dove 
-			habitat, or the absence of any dove species habitat.</p>
-			<h1>Source</h1>
-			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
-		]]></description>
+    <p>Areas where mourning and/or white-winged dove (_Zenaida macroura_, _Z. asiatica_) are known or predicted
+    to occur in the southwestern United States.</p>
+    <h1>Role in models</h1>
+    <p>The presence of dove habitat is a prerequisite for an area to support dove hunting.  Habitat presence
+    data are used as an input to the source model, along with public access and presence of surface water, to
+    identify an area's suitability for dove hunting.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, and are mapped as the presence of one species of dove habitat, multiple species of dove
+    habitat, or the absence of any dove species habitat.</p>
+    <h1>Source</h1>
+    <p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -277,26 +295,27 @@
     <runninghead>Deer habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Areas where mule and/or white-tailed deer (_Odocoileus hemionus_, _O. virginianus_) are known or predicted 
-			to occur in the southwestern United States.</p>
-			<h1>Role in models</h1>
-			<p>The presence of deer habitat is a prerequisite for an area to support deer hunting.  Habitat presence
-			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for deer hunting.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and are mapped as the presence of one species of deer habitat, multiple species of deer 
-			habitat, or the absence of any deer species habitat.</p>
-			<h1>Source</h1>
-			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
-		]]></description>
+    <p>Areas where mule and/or white-tailed deer (_Odocoileus hemionus_, _O. virginianus_) are known or predicted
+    to occur in the southwestern United States.</p>
+    <h1>Role in models</h1>
+    <p>The presence of deer habitat is a prerequisite for an area to support deer hunting.  Habitat presence
+    data are used as an input to the source model, along with public access and presence of surface water, to
+    identify an area's suitability for deer hunting.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, and are mapped as the presence of one species of deer habitat, multiple species of deer
+    habitat, or the absence of any deer species habitat.</p>
+    <h1>Source</h1>
+    <p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -309,26 +328,27 @@
     <runninghead>Quail habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Areas where Gambels', Mearns', and/or scaled quail (_Callipepla gambelii_, _C. montezumae_, _C. squamata_) are 
-			known or predicted to occur in the southwestern United States.</p>
-			<h1>Role in models</h1>
-			<p>The presence of quail habitat is a prerequisite for an area to support quail hunting.  Habitat presence
-			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for quail hunting.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, and are mapped as the presence of one species of quail habitat, multiple species of quail 
-			habitat, or the absence of any quail species habitat.</p>
-			<h1>Source</h1>
-			<p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
-		]]></description>
+    <p>Areas where Gambels', Mearns', and/or scaled quail (_Callipepla gambelii_, _C. montezumae_, _C. squamata_) are
+    known or predicted to occur in the southwestern United States.</p>
+    <h1>Role in models</h1>
+    <p>The presence of quail habitat is a prerequisite for an area to support quail hunting.  Habitat presence
+    data are used as an input to the source model, along with public access and presence of surface water, to
+    identify an area's suitability for quail hunting.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, and are mapped as the presence of one species of quail habitat, multiple species of quail
+    habitat, or the absence of any quail species habitat.</p>
+    <h1>Source</h1>
+    <p>Derived from Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -341,29 +361,30 @@
     <runninghead>Javelina habitat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Areas where javelina (_Pecari tajacu_) are known or predicted to occur in the southwestern United States.</p>
-			<h1>Role in models</h1>
-			<p>The presence of javelina habitat is a prerequisite for an area to support javelina hunting.  Habitat presence
-			data are used as an input to the source model, along with public access and presence of surface water, to 
-			identify an area's suitability for javelina hunting.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of potential javelina habitat.</p>
-			<h1>Source</h1>
-			<p>Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
-		]]></description>
+    <p>Areas where javelina (_Pecari tajacu_) are known or predicted to occur in the southwestern United States.</p>
+    <h1>Role in models</h1>
+    <p>The presence of javelina habitat is a prerequisite for an area to support javelina hunting.  Habitat presence
+    data are used as an input to the source model, along with public access and presence of surface water, to
+    identify an area's suitability for javelina hunting.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of potential javelina habitat.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis Project Animal Habitat Models.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
+
   <page id="dove-hunting-source-value">
     <concept>sanPedro:DoveHuntingSourceValue</concept>
     <name>Potential Dove hunting quality</name>
@@ -371,26 +392,28 @@
     <runninghead>Potential Dove hunting quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support dove hunting.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the dove hunting source model, and estimates the relative quality 
-			of different areas to support dove hunting, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support dove hunting. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential hunting quality. The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>Suitability of different areas to support dove hunting.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the dove hunting source model, and estimates the relative quality
+    of different areas to support dove hunting, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to support dove hunting. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential hunting quality. The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -403,26 +426,28 @@
     <runninghead>Potential deer hunting quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support deer hunting.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the deer hunting source model, and estimates the relative quality 
-			of different areas to support deer hunting, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support deer hunting. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential hunting quality. The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>Suitability of different areas to support deer hunting.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the deer hunting source model, and estimates the relative quality
+    of different areas to support deer hunting, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to support deer hunting. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential hunting quality. The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -435,26 +460,28 @@
     <runninghead>Potential quail hunting quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support quail hunting.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the quail hunting source model, and estimates the relative quality 
-			of different areas to support quail hunting, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support quail hunting. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential hunting quality. The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>Suitability of different areas to support quail hunting.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the quail hunting source model, and estimates the relative quality
+    of different areas to support quail hunting, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to support quail hunting. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential hunting quality. The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -467,26 +494,28 @@
     <runninghead>Potential javelina hunting quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Suitability of different areas to support javelina hunting.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the javelina hunting source model, and estimates the relative quality 
-			of different areas to support javelina hunting, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to support javelina hunting. As the output of the models is probabilistic, 
-			each point contains the probability distribution for potential hunting quality. The distribution 
-			can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>Suitability of different areas to support javelina hunting.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the javelina hunting source model, and estimates the relative quality
+    of different areas to support javelina hunting, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to support javelina hunting. As the output of the models is probabilistic,
+    each point contains the probability distribution for potential hunting quality. The distribution
+    can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -499,24 +528,25 @@
     <runninghead>Population density.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
-			<h1>Role in models</h1>
-			<p>Population density can be used along with recreational preference data, where available, to estimate
-			the number of potential recreational uesrs for a given activity in a particular area.  These data are thus 
-			used in the recreational use model.</p>
-			<h1>Representation</h1>
-			<p>Data are in physical units of persons per square kilometer.</p>
-			<h1>Source</h1>
-			<p>U.S. Census Bureau population estimates and TIGER block group files.</p>
-		]]></description>
+    <p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+    <h1>Role in models</h1>
+    <p>Population density can be used along with recreational preference data, where available, to estimate
+    the number of potential recreational uesrs for a given activity in a particular area.  These data are thus
+    used in the recreational use model.</p>
+    <h1>Representation</h1>
+    <p>Data are in physical units of persons per square kilometer.</p>
+    <h1>Source</h1>
+    <p>U.S. Census Bureau population estimates and TIGER block group files.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -529,23 +559,24 @@
     <runninghead>Roads.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>Roads used to travel to recreational areas.</p>
-			<h1>Role in models</h1>
-			<p>Roads are used in the recreation flow model to determine the accessibility of recreational areas 
-			for potential users.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of roads.</p>
-			<h1>Source</h1>
-			<p>Arizona Geographic Information Coucil.</p>
-		]]></description>
+    <p>Roads used to travel to recreational areas.</p>
+    <h1>Role in models</h1>
+    <p>Roads are used in the recreation flow model to determine the accessibility of recreational areas
+    for potential users.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of roads.</p>
+    <h1>Source</h1>
+    <p>Arizona Geographic Information Coucil.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -558,24 +589,25 @@
     <runninghead>Road travel capacity.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>The type of road, which determines how quickly users can travel to potential recreation areas.</p>
-			<h1>Role in models</h1>
-			<p>These data identify the type of road (e.g., interstate, state highway, arterial, unpaved), which 
-			can be used by the recreation flow model to determine ease of access (e.g., travel cost to reach 
-			different sites).</p>
-			<h1>Representation</h1>
-			<p>Data are categorical by road type.</p>
-			<h1>Source</h1>
-			<p>Arizona Geographic Information Coucil.</p>
-		]]></description>
+    <p>The type of road, which determines how quickly users can travel to potential recreation areas.</p>
+    <h1>Role in models</h1>
+    <p>These data identify the type of road (e.g., interstate, state highway, arterial, unpaved), which
+    can be used by the recreation flow model to determine ease of access (e.g., travel cost to reach
+    different sites).</p>
+    <h1>Representation</h1>
+    <p>Data are categorical by road type.</p>
+    <h1>Source</h1>
+    <p>Arizona Geographic Information Coucil.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -588,165 +620,177 @@
     <runninghead>Trails.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>Trails used by hikers, campers, and other recreational users.</p>
-			<h1>Role in models</h1>
-			<p>Trail data can be used in the recreation flow model to show recreational accessibility for certain parts of 
-			a recreation area.  Without dedicated trail access, recreational use may be much lower.  Areas with easily-accessible 
-			or high use trails offer a different visitor experience than more remote trails.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of trails.</p>
-			<h1>Source</h1>
-			<p>Various public land management agencies.</p>
-		]]></description>
+    <p>Trails used by hikers, campers, and other recreational users.</p>
+    <h1>Role in models</h1>
+    <p>Trail data can be used in the recreation flow model to show recreational accessibility for certain parts of
+    a recreation area.  Without dedicated trail access, recreational use may be much lower.  Areas with easily-accessible
+    or high use trails offer a different visitor experience than more remote trails.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of trails.</p>
+    <h1>Source</h1>
+    <p>Various public land management agencies.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
- <!-- Flow models and maps are not yet active for recreation.  Concepts are described below so that they
- can be included once recreational flow models have been implemented.  The flow concepts below currently 
- including only actual and inaccessible flow concepts, since theoretical concepts are already included as 
- source and use model outputs and there are no sinks for recreation.-->
-  
-  <page id="recreational-user-flow">
-		<concept>recreationService:RecreationalUserFlow</concept>
-		<name>Recreation flow</name>
-		<title>Recreational user flow</title>
-		<runninghead>Actual flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual flow density* map shows the flow paths that deliver actual services to
-		humans. These are selected from the total flow density to only show these flow paths
-		that are not depleted by sinks and actually reach users.
-		
-		For provisioning services, these flow paths deliver valuable benefits to the
-		users and the density is proportional to the value accrued. For preventive services,
-		the flow paths show how much of the carrier reaches users, delivering actual
-		damage.
-		
-		In this case, this map shows the movement of people toward recreation areas, based on 
-		transportation networks, recreational preferences, site quality, and a distance decay 
-		function.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="recreational-use">
-		<concept>recreationService:RecreationalUse</concept>
-		<name>Recreational use</name>
-		<title>Recreational use</title>
-		<runninghead>Actual source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual source map* shows the portion of the source map that is relevant to 
-		the provision of a service after accounting for sinks and flow dynamics. 
-		For provisioning services, this is the amount and location of a benefit that 
-		actually provides benefits to the users. For preventive services, it shows
-		where the actual damage came from. Source regions that provided a damaging carrier
-		were neutralized by sinks are not shown.
-		 
-		This map shows the amount of recreational use actually seen at a recreation area 
-		when accounting for demand and spatial flows of visitors.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="actual-recreational-users">
-		<concept>recreationService:ActualRecreationalUsers</concept>
-		<name>Actual recreational users</name>
-		<title>Actual recreational users</title>
-		<runninghead>Actual use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
-		service or damage caused by a detrimental carrier for a preventive service, for 
-		users located across the landscape.
-		
-		This map shows the residential location of users who actually travel to sites 
-		via “recreation flows” to engage in recreational activities at source areas.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-  
-  <page id="transportation-restricted-recreational-use">
-		<concept>recreationService:TransportationRestrictedRecreationalUse</concept>
-		<name>Transportation restricted use</name>
-		<title>Transportation restricted use</title>
-		<runninghead>Inaccessible source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *inaccessible source map* shows the flow paths that cannot deliver a 
-		service carrier to humans based on the flow routes and the source and user
-		locations.
-		
-		For provisioning services, these flow paths show areas that could provide a benefit,
-		but do not due to a lack of flow connections to potential users.  For preventive services, 
-		the flow paths show potential sources of a damaging carrier that do not impact people.
-		
-		This map shows recreational areas whose current accessibility via transportation 
-		networks makes their use level more limited than their attractiveness alone would 
-		dictate.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <!-- Flow models and maps are not yet active for recreation.  Concepts are described below so that they
+       can be included once recreational flow models have been implemented.  The flow concepts below currently
+       including only actual and inaccessible flow concepts, since theoretical concepts are already included as
+       source and use model outputs and there are no sinks for recreation. -->
 
- 	<page id="transportation-restricted-recreational-users">
-		<concept>recreationService:TransportationRestrictedRecreationalUsers</concept>
-		<name>Transportation restricted users</name>
-		<title>Transportation restricted users</title>
-		<runninghead>Inaccessible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *inaccessible use map* shows the potential users that cannot receive a service
-		carrier due to flow routes and the source and user locations. For provisioning services,
-		this corresponds to value produced by the environment but that cannot be reached by
-		users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but is not due to a lack of flow connections to users.
-		
-		This map shows users too distant from a recreational resource to benefit from it.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <page id="recreational-user-flow">
+    <concept>recreationService:RecreationalUserFlow</concept>
+    <name>Recreation flow</name>
+    <title>Recreational user flow</title>
+    <runninghead>Actual flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual flow density* map shows the flow paths that deliver actual services to
+      humans. These are selected from the total flow density to only show these flow paths
+      that are not depleted by sinks and actually reach users.
+
+      For provisioning services, these flow paths deliver valuable benefits to the
+      users and the density is proportional to the value accrued. For preventive services,
+      the flow paths show how much of the carrier reaches users, delivering actual
+      damage.
+
+      In this case, this map shows the movement of people toward recreation areas, based on
+      transportation networks, recreational preferences, site quality, and a distance decay
+      function.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="recreational-use">
+    <concept>recreationService:RecreationalUse</concept>
+    <name>Recreational use</name>
+    <title>Recreational use</title>
+    <runninghead>Actual source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual source map* shows the portion of the source map that is relevant to
+      the provision of a service after accounting for sinks and flow dynamics.
+      For provisioning services, this is the amount and location of a benefit that
+      actually provides benefits to the users. For preventive services, it shows
+      where the actual damage came from. Source regions that provided a damaging carrier
+      were neutralized by sinks are not shown.
+
+      This map shows the amount of recreational use actually seen at a recreation area
+      when accounting for demand and spatial flows of visitors.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="actual-recreational-users">
+    <concept>recreationService:ActualRecreationalUsers</concept>
+    <name>Actual recreational users</name>
+    <title>Actual recreational users</title>
+    <runninghead>Actual use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      service or damage caused by a detrimental carrier for a preventive service, for
+      users located across the landscape.
+
+      This map shows the residential location of users who actually travel to sites
+      via “recreation flows” to engage in recreational activities at source areas.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="transportation-restricted-recreational-use">
+    <concept>recreationService:TransportationRestrictedRecreationalUse</concept>
+    <name>Transportation restricted use</name>
+    <title>Transportation restricted use</title>
+    <runninghead>Inaccessible source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *inaccessible source map* shows the flow paths that cannot deliver a
+      service carrier to humans based on the flow routes and the source and user
+      locations.
+
+      For provisioning services, these flow paths show areas that could provide a benefit,
+      but do not due to a lack of flow connections to potential users.  For preventive services,
+      the flow paths show potential sources of a damaging carrier that do not impact people.
+
+      This map shows recreational areas whose current accessibility via transportation
+      networks makes their use level more limited than their attractiveness alone would
+      dictate.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="transportation-restricted-recreational-users">
+    <concept>recreationService:TransportationRestrictedRecreationalUsers</concept>
+    <name>Transportation restricted users</name>
+    <title>Transportation restricted users</title>
+    <runninghead>Inaccessible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *inaccessible use map* shows the potential users that cannot receive a service
+      carrier due to flow routes and the source and user locations. For provisioning services,
+      this corresponds to value produced by the environment but that cannot be reached by
+      users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections to users.
+
+      This map shows users too distant from a recreational resource to benefit from it.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
 </presentation>

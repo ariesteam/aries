@@ -1,71 +1,72 @@
 <presentation>
-	<title>Water supply</title>
-	<runninghead>Benefits related to water provision and purification.</runninghead>
-	<description>The benefits of surface water supply to human users.</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>aries:WaterProvisionAnalysis</concept>
+  <title>Water supply</title>
+  <runninghead>Benefits related to water provision and purification.</runninghead>
+  <description>The benefits of surface water supply to human users.</description>
 
-	<model-storyline>waterSupplyService:SurfaceWaterMovement</model-storyline>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>aries:WaterProvisionAnalysis</concept>
 
-	<page>
-		<id>info</id>
-		<name>Water supply</name>
-		<title>Model coverage and general information</title>
-		<description><![CDATA[
-			<p>Water supply is a critical ecosystem service, and the quantity, quality, and timing 
-			of freshwater in surface water bodies and groundwater are important factors in supporting 
-			human well-being.  While the role of ecosystems in protecting the quality, quantity, and 
-			timing of freshwater flows has long been recognized, payments for ecosystem services 
-			programs, particularly in the developing world, are rapidly emerging to protect sources 
-			of water supply for urban water users.  While the Millennium Ecosystem Assessment lists 
-			water supply and water regulation as separate ecosystem services, ARIES maps the combined 
-			quantity, location, and timing of freshwater flows to particular beneficiary groups 
-			(agriculture, industry, domestic use).  This provides a clearer view of the dependencies 
-			by various human beneficiaries on ecosystems for freshwater.  In ARIES, we can model 
-			water quality by accounting for spatial flows of sediment, nutrients, or pathogens. In 
-			this storyline, we describe models for quantity and timing of surface and groundwater.</p>
+  <model-storyline>waterSupplyService:SurfaceWaterMovement</model-storyline>
 
-			<p>Given the difficulty in developing a generalized model of hydrologic processes that 
-			is applicable across multiple spatial scales and in different ecological contexts, the 
-			initial ARIES water supply models include direct data or Bayesian models (for surface 
-			water sinks) that are applicable to our case study regions but that incorporate the many 
-			of the influences on hydrologic processes that were used by other ecosystem service 
-			modelers.  In cases where vegetation-hydrology relationships are poorly understood, 
-			such as in tropical forests, ARIES’ data-driven modeling approach may be more appropriate 
-			than using process-based approaches.  In many other cases, future ARIES models will seek 
-			to link existing hydrologic models, improving model quality and credibility.</p>
+  <page>
+    <id>info</id>
+    <name>Water supply</name>
+    <title>Model coverage and general information</title>
+    <description><![CDATA[
+    <p>Water supply is a critical ecosystem service, and the quantity, quality, and timing
+    of freshwater in surface water bodies and groundwater are important factors in supporting
+    human well-being.  While the role of ecosystems in protecting the quality, quantity, and
+    timing of freshwater flows has long been recognized, payments for ecosystem services
+    programs, particularly in the developing world, are rapidly emerging to protect sources
+    of water supply for urban water users.  While the Millennium Ecosystem Assessment lists
+    water supply and water regulation as separate ecosystem services, ARIES maps the combined
+    quantity, location, and timing of freshwater flows to particular beneficiary groups
+    (agriculture, industry, domestic use).  This provides a clearer view of the dependencies
+    by various human beneficiaries on ecosystems for freshwater.  In ARIES, we can model
+    water quality by accounting for spatial flows of sediment, nutrients, or pathogens. In
+    this storyline, we describe models for quantity and timing of surface and groundwater.</p>
 
-			<p>Water supply is a complex ecosystem service to spatially model, given that groundwater 
-			and surface water are closely connected but move based on different controlling factors, 
-			that controls on hydrology and hydrologic models differ greatly based on the spatial and 
-			temporal scale of analysis and the region of the world of interest to the modeler, and 
-			that spatial data are unlikely to currently support modeling at both high spatial and 
-			temporal resolutions.  Given these limitations, ARIES' initial hydrologic models operate on 
-			an annual scale (which is supported by spatial data on important factors including 
-			precipitation, infiltration, snowmelt, and evapotranspiration).  We currently consider 
-			only flows of surface water, though we do model the infiltration of surface water into 
-			groundwater and groundwater extraction from wells. We also use a set of generalized models to 
-			represent sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, 
-			and incoming inter-basin water transfers), sinks of surface water (evapotranspiration, 
-			infiltration), users of surface water, and the flow of surface water across the landscape.  
-			The long-term intent of this modeling process is to incorporate existing hydrologic models 
-			wherever appropriate that will more realistically account for hydrologic processes, 
-			including groundwater. As spatial data continue to improve, it may also be possible 
-			to model water supply at finer temporal scales.</p>
+    <p>Given the difficulty in developing a generalized model of hydrologic processes that
+    is applicable across multiple spatial scales and in different ecological contexts, the
+    initial ARIES water supply models include direct data or Bayesian models (for surface
+    water sinks) that are applicable to our case study regions but that incorporate the many
+    of the influences on hydrologic processes that were used by other ecosystem service
+    modelers.  In cases where vegetation-hydrology relationships are poorly understood,
+    such as in tropical forests, ARIES’ data-driven modeling approach may be more appropriate
+    than using process-based approaches.  In many other cases, future ARIES models will seek
+    to link existing hydrologic models, improving model quality and credibility.</p>
 
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-		<b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
-		
-		<b>Additional contributors</b>: Octavio Perez-Maqueo, Gabriela Mendoza, Karyn Tabor.<br/> 
-	    
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
-		]]></credits>
-	</page>
+    <p>Water supply is a complex ecosystem service to spatially model, given that groundwater
+    and surface water are closely connected but move based on different controlling factors,
+    that controls on hydrology and hydrologic models differ greatly based on the spatial and
+    temporal scale of analysis and the region of the world of interest to the modeler, and
+    that spatial data are unlikely to currently support modeling at both high spatial and
+    temporal resolutions.  Given these limitations, ARIES' initial hydrologic models operate on
+    an annual scale (which is supported by spatial data on important factors including
+    precipitation, infiltration, snowmelt, and evapotranspiration).  We currently consider
+    only flows of surface water, though we do model the infiltration of surface water into
+    groundwater and groundwater extraction from wells. We also use a set of generalized models to
+    represent sources of surface water (precipitation, snowmelt, springs, baseflow to rivers,
+    and incoming inter-basin water transfers), sinks of surface water (evapotranspiration,
+    infiltration), users of surface water, and the flow of surface water across the landscape.
+    The long-term intent of this modeling process is to incorporate existing hydrologic models
+    wherever appropriate that will more realistically account for hydrologic processes,
+    including groundwater. As spatial data continue to improve, it may also be possible
+    to model water supply at finer temporal scales.</p>
+    ]]></description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
+
+    <b>Additional contributors</b>: Octavio Perez-Maqueo, Gabriela Mendoza, Karyn Tabor.<br/>
+
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+    ]]></credits>
+    </page>
+
 </presentation>
