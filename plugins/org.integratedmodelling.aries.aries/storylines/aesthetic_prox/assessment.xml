@@ -1,53 +1,55 @@
 <presentation>
 
-	<title>Open space proximity</title>
-	<runninghead>Values resulting from open space proximity.</runninghead>
-	<description>Aesthetic values are typically defined as the value derived from views or proximity 
-			to open space.  These values often accrue to housing or property values and are often 
-			measured using hedonic pricing.  Homeowners typically gain some combination of benefits 
-			through sensory enjoyment of views of nearby open space, proximity to open space for 
-			recreation, or privacy.  This storyline maps ecosytem service provision, use, and flows for
-			open space proximity, including the type and quality of open space, location and type of 
-			housing, the presence of highways that can block easy access to open space, and flow models
-			to connect beneficiaries to open space via walking simulation.</description>
+  <title>Open space proximity</title>
+  <runninghead>Values resulting from open space proximity.</runninghead>
+  <description>Aesthetic values are typically defined as the value derived from views or proximity
+  to open space.  These values often accrue to housing or property values and are often
+  measured using hedonic pricing.  Homeowners typically gain some combination of benefits
+  through sensory enjoyment of views of nearby open space, proximity to open space for
+  recreation, or privacy.  This storyline maps ecosytem service provision, use, and flows for
+  open space proximity, including the type and quality of open space, location and type of
+  housing, the presence of highways that can block easy access to open space, and flow models
+  to connect beneficiaries to open space via walking simulation.</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>aestheticService:AestheticProximity</concept>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>aestheticService:AestheticProximity</concept>
 
-	<!-- All the models that apply and in which context.-->
-	<model>
-		<id>core.models.aesthetic-proximity-puget/proximity</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
+  <!-- All the models that apply and in which context.-->
+  <model>
+    <id>core.models.aesthetic-proximity-puget/proximity</id>
+    <context>core.contexts.beta/western_wa2048</context>
+  </model>
 
-	<model>
-		<id>core.models.aesthetic-proximity-san-pedro/proximity</id>
-		<context>core.contexts.beta/san_pedro_us512</context>
-	</model>	
+  <model>
+    <id>core.models.aesthetic-proximity-san-pedro/proximity</id>
+    <context>core.contexts.beta/san_pedro_us512</context>
+  </model>
 
-    <!-- Storyline description. -->
-	<page id="info">
-		<id>info</id>
-		<name>Open space proximity assessment</name>
-		<title>Introduction</title>
-		<runninghead>Open space proximity.</runninghead>
-		<group></group>
-		<description>	
-		This storyline considers the contribution of ecosystems toward providing high-quality open space, and the impact 
-		of open space on property values.  The source model quantifies open space quality, the sink model maps 
-		highways that reduce privacy and obstruct direct access to open space, and the use model maps the location 
-		of homeowners.  By combining these maps with a walking simulation model, we can analyze actual open space 
-		proximity its potential impact on property values.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
+  <!-- Storyline description. -->
+  <page id="info">
+    <id>info</id>
+    <name>Open space proximity assessment</name>
+    <title>Introduction</title>
+    <runninghead>Open space proximity.</runninghead>
+    <group></group>
+    <description>
+      This storyline considers the contribution of ecosystems toward providing high-quality open space, and the impact
+      of open space on property values.  The source model quantifies open space quality, the sink model maps
+      highways that reduce privacy and obstruct direct access to open space, and the use model maps the location
+      of homeowners.  By combining these maps with a walking simulation model, we can analyze actual open space
+      proximity its potential impact on property values.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
 
   <!-- Input data and model results for source, sink, and use models.  -->
   <page id="lakefront">
@@ -57,22 +59,23 @@
     <runninghead>Lakefront.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Lakefront land, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Lakefront presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of lakefront land.</p>
-			<h1>Source</h1>
-			<p>Derived from 2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>Lakefront land, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Lakefront presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of lakefront land.</p>
+    <h1>Source</h1>
+    <p>Derived from 2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
     <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -85,22 +88,23 @@
     <runninghead>Riverfront.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Riverfront land, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Riverfront presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of riverfront land.</p>
-			<h1>Source</h1>
-			<p>Derived from Washington State DNR hydrography data.</p>
-		]]></description>
+    <p>Riverfront land, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Riverfront presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of riverfront land.</p>
+    <h1>Source</h1>
+    <p>Derived from Washington State DNR hydrography data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR hydrography data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR hydrography data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -110,25 +114,26 @@
     <concept>aestheticService:Beach</concept>
     <name>Beach</name>
     <title>Beach</title>
-    <runninghead>Beach.</runninghead> 
+    <runninghead>Beach.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Beaches, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Beach presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of beaches.</p>
-			<h1>Source</h1>
-			<p>Washington State DNR ShoreZone data.</p>
-		]]></description>
+    <p>Beaches, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Beach presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of beaches.</p>
+    <h1>Source</h1>
+    <p>Washington State DNR ShoreZone data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
     <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR ShoreZone data.</a>
-    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -138,25 +143,26 @@
     <concept>aestheticService:Forest</concept>
     <name>Forest</name>
     <title>Forest</title>
-    <runninghead>Forest.</runninghead> 
+    <runninghead>Forest.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Forests, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Forest presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of forested land.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>Forests, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Forest presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of forested land.</p>
+    <h1>Source</h1>
+    <p>2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -166,25 +172,26 @@
     <concept>sanPedro:ForestAndWoodland</concept>
     <name>Forest or woodland</name>
     <title>Forest or woodland</title>
-    <runninghead>Forest or woodland</runninghead> 
+    <runninghead>Forest or woodland</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Forests, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Forest presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of forested land.</p>
-			<h1>Source</h1>
-			<p>Southwest Regional GAP Analysis Land Use-Land Cover data.</p>
-		]]></description>
+    <p>Forests, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Forest presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of forested land.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis Land Use-Land Cover data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -197,22 +204,23 @@
     <runninghead>Woody wetland.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Woody wetlands, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Woody wetland presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of woody wetlands.</p>
-			<h1>Source</h1>
-			<p>Derived from 2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>Woody wetlands, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Woody wetland presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of woody wetlands.</p>
+    <h1>Source</h1>
+    <p>Derived from 2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -225,22 +233,23 @@
     <runninghead>Emergent wetland.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Emergent wetlands, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Emergent wetland presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of emergent wetlands.</p>
-			<h1>Source</h1>
-			<p>Derived from 2001 National Land Cover Dataset.</p>
-		]]></description>
+    <p>Emergent wetlands, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Emergent wetland presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of emergent wetlands.</p>
+    <h1>Source</h1>
+    <p>Derived from 2001 National Land Cover Dataset.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -250,27 +259,27 @@
     <concept>aestheticService:Farmland</concept>
     <name>Farmland</name>
     <title>Farmland</title>
-    <runninghead>Farmland.</runninghead> 
+    <runninghead>Farmland.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Farmland, a relatively low-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Farmland presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland.</p>
-			<h1>Source</h1>
-			<p>2001 National Land Cover Dataset, Southwest Regional GAP Analysis land use-land cover data.</p>
-		]]></description>
+    <p>Farmland, a relatively low-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Farmland presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of farmland.</p>
+    <h1>Source</h1>
+    <p>2001 National Land Cover Dataset, Southwest Regional GAP Analysis land use-land cover data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset,</a>
-      <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-    </credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset,</a>
+    <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -283,22 +292,23 @@
     <runninghead>Grasslands.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Grasslands, a relatively low-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Grassland presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of grassland.</p>
-			<h1>Source</h1>
-			<p>Southwest Regional GAP Analysis land use-land cover data.</p>
-		]]></description>
+    <p>Grasslands, a relatively low-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Grassland presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of grassland.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis land use-land cover data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -311,22 +321,23 @@
     <runninghead>Desert scrub.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Desert scrub, a relatively low-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Desert scrub presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of desert scrub.</p>
-			<h1>Source</h1>
-			<p>Southwest Regional GAP Analysis Land Use-Land Cover data.</p>
-		]]></description>
+    <p>Desert scrub, a relatively low-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Desert scrub presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of desert scrub.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis Land Use-Land Cover data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -339,27 +350,28 @@
     <runninghead>Riparian or wetland presence and quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Presence of high, moderate, low quality, or no riparian or wetland habitat, a relatively high-value
-			open space type for nearby residences.</p>
-			<h1>Role in models</h1>
-			<p>Riparian and wetland presence data are combined with data on riparian quality (where available) to further 
-			estimate the quality of the surface water resource.  Given its rarity in the Southwest, riparian habitat 
-			has been found to contribute relatively high value to nearby property.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>Derived from SWREGAP land use-land cover data and riparian condition class data 
-			(Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona: 
-			Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173.)</p>
-		]]></description>
+    <p>Presence of high, moderate, low quality, or no riparian or wetland habitat, a relatively high-value
+    open space type for nearby residences.</p>
+    <h1>Role in models</h1>
+    <p>Riparian and wetland presence data are combined with data on riparian quality (where available) to further
+    estimate the quality of the surface water resource.  Given its rarity in the Southwest, riparian habitat
+    has been found to contribute relatively high value to nearby property.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>Derived from SWREGAP land use-land cover data and riparian condition class data
+    (Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona:
+    Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173.)</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
     <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data and Stromberg et al. 2006.</a>
-    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -372,22 +384,23 @@
     <runninghead>Park.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Parks, a relatively high-value open space type for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Park presence is used as an input to a probabilistic model to estimate open space quality.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of parks.</p>
-			<h1>Source</h1>
-			<p>State and county level land ownership data.</p>
-		]]></description>
+    <p>Parks, a relatively high-value open space type for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Park presence is used as an input to a probabilistic model to estimate open space quality.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of parks.</p>
+    <h1>Source</h1>
+    <p>State and county level land ownership data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
     <credits><![CDATA[
-      <b>Data source</b>: Various state and county level ownership data. </br> 
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+    <b>Data source</b>: Various state and county level ownership data. </br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -400,23 +413,24 @@
     <runninghead>Crime potential.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Urban areas, crime may reduce the value of open space for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Potential for crime is used as an input to a probabilistic model to estimate open space quality.  
-			Generally, urban open space may be of lower value in high-crime or perceived high-crime areas.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of urban areas.</p>
-			<h1>Source</h1>
-			<p>Washington State Office of Financial Management urban boundary data.</p>
-		]]></description>
+    <p>Urban areas, crime may reduce the value of open space for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Potential for crime is used as an input to a probabilistic model to estimate open space quality.
+    Generally, urban open space may be of lower value in high-crime or perceived high-crime areas.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of urban areas.</p>
+    <h1>Source</h1>
+    <p>Washington State Office of Financial Management urban boundary data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.ofm.wa.gov/pop/geographic/default.asp" target="_blank">Washington State Office of Financial Management urban boundary data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.ofm.wa.gov/pop/geographic/default.asp" target="_blank">Washington State Office of Financial Management urban boundary data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -429,24 +443,25 @@
     <runninghead>Fire threat.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Fire frequency within an open space parcel as a determinant of its quality for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Fire frequency is used as an input to a probabilistic model to estimate open space quality.  Generally,
-			high fire risk would be expected to reduce a parcel's value to nearby residents.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, based on fire return interval.</p>
-			<h1>Source</h1>
-			<p>Southwest Regional GAP Analysis and The Nature Conservancy.</p>
-		]]></description>
+    <p>Fire frequency within an open space parcel as a determinant of its quality for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Fire frequency is used as an input to a probabilistic model to estimate open space quality.  Generally,
+    high fire risk would be expected to reduce a parcel's value to nearby residents.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, based on fire return interval.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis and The Nature Conservancy.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://azconservation.org/projects/southwest_forest_assessment/" target="_blank">TNC Southwest Forest Assessment Project</a>
-      <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://azconservation.org/projects/southwest_forest_assessment/" target="_blank">TNC Southwest Forest Assessment Project</a>
+    <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -459,24 +474,25 @@
     <runninghead>Water quality.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Water quality, if present, within an open space parcel as a determinant of its quality for nearby 
-			residents.</p>
-			<h1>Role in models</h1>
-			<p>Water quality is used as an input to a probabilistic model to estimate open space quality.  Generally,
-			low water quality would be expected to reduce a parcel's value to nearby residents.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>Washington State Department of Ecology 303 (d) data.</p>
-		]]></description>
+    <p>Water quality, if present, within an open space parcel as a determinant of its quality for nearby
+    residents.</p>
+    <h1>Role in models</h1>
+    <p>Water quality is used as an input to a probabilistic model to estimate open space quality.  Generally,
+    low water quality would be expected to reduce a parcel's value to nearby residents.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>Washington State Department of Ecology 303 (d) data.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.ecy.wa.gov/services/gis/data/data.htm" target="_blank">Washington State Department of Ecology 303 (d) data.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.ecy.wa.gov/services/gis/data/data.htm" target="_blank">Washington State Department of Ecology 303 (d) data.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -489,24 +505,25 @@
     <runninghead>Formal protection.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The protected or unprotected legal status of the open space parcel as a determinant of its 
-			quality for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Protected status is used as an input to a probabilistic model to estimate open space quality.  Generally,
-			legally protected areas are of higher value than unprotected areas, which may be developed in the future.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of protected land.</p>
-			<h1>Source</h1>
-			<p>World Database on Protected Areas.</p>
-		]]></description>
+    <p>The protected or unprotected legal status of the open space parcel as a determinant of its
+    quality for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Protected status is used as an input to a probabilistic model to estimate open space quality.  Generally,
+    legally protected areas are of higher value than unprotected areas, which may be developed in the future.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of protected land.</p>
+    <h1>Source</h1>
+    <p>World Database on Protected Areas.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://www.wdpa.org/" target="_blank">World Database on Protected Areas.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.wdpa.org/" target="_blank">World Database on Protected Areas.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -519,54 +536,58 @@
     <runninghead>Open space area.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The area of the open space parcel as a determinant of its quality for nearby residents.</p>
-			<h1>Role in models</h1>
-			<p>Open space area is used as an input to a probabilistic model to estimate open space quality.  Generally,
-			larger-area parcels are of higher value than smaller parcels.</p>
-			<h1>Representation</h1>
-			<p>Data are in physical units of hectares per open space parcel.</p>
-			<h1>Source</h1>
-			<p>Calculated for all open space parcels in the case study region.</p>
-		]]></description>
+    <p>The area of the open space parcel as a determinant of its quality for nearby residents.</p>
+    <h1>Role in models</h1>
+    <p>Open space area is used as an input to a probabilistic model to estimate open space quality.  Generally,
+    larger-area parcels are of higher value than smaller parcels.</p>
+    <h1>Representation</h1>
+    <p>Data are in physical units of hectares per open space parcel.</p>
+    <h1>Source</h1>
+    <p>Calculated for all open space parcels in the case study region.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-    <page id="aesthetic-proximity-provision">
+  <page id="aesthetic-proximity-provision">
     <concept>aestheticService:AestheticProximityProvision</concept>
     <name>Potential proximity value</name>
     <title>Potential proximity value</title>
     <runninghead>Potential proximity value</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>The quality of potential open space for nearby residences.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the proximity source model, and estimates the relative quality 
-			of different areas in providing aesthetically valuable open space, based on relevant input data
-			for the type of open space and its relative quality.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative suitability of different
-			parts of the landscape to provide aesthetically valuable open space. As the output of the models 
-			is probabilistic, each point contains the probability distribution for potential open space quality. 
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient 
-			of variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>The quality of potential open space for nearby residences.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the proximity source model, and estimates the relative quality
+    of different areas in providing aesthetically valuable open space, based on relevant input data
+    for the type of open space and its relative quality.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative suitability of different
+    parts of the landscape to provide aesthetically valuable open space. As the output of the models
+    is probabilistic, each point contains the probability distribution for potential open space quality.
+    The distribution can be visualized by clicking on the map; the mean value and the coefficient
+    of variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -579,25 +600,26 @@
     <runninghead>Highways.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-			<p>The presence of highways, which limit immediate access to open space and reduce privacy.</p>
-			<h1>Role in models</h1>
-			<p>Highways are used as the sink layer for open space proximity.  Although highways can increase
-			access to parks and other open space, for the purposes of property value benefits from open space proximity,
-			highways increase noise, reduce privacy, and restrict the ability to easily walk to the nearby open space
-			parcel.  They thus act as sinks in the proximity flow model.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of highways.</p>
-			<h1>Source</h1>
-			<p>Census TIGER/Line Files.</p>
-		]]></description>
+    <p>The presence of highways, which limit immediate access to open space and reduce privacy.</p>
+    <h1>Role in models</h1>
+    <p>Highways are used as the sink layer for open space proximity.  Although highways can increase
+    access to parks and other open space, for the purposes of property value benefits from open space proximity,
+    highways increase noise, reduce privacy, and restrict the ability to easily walk to the nearby open space
+    parcel.  They thus act as sinks in the proximity flow model.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of highways.</p>
+    <h1>Source</h1>
+    <p>Census TIGER/Line Files.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits>
-      <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
-      <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -610,25 +632,25 @@
     <runninghead>Presence of housing.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>Residences at who may benefit from open space proximity.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations, housing value, and population density data are used as inputs to a 
-			probabilistic model to estimate the potential aesthetic value, as reflected in property value, 
-			of open space proximity.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of housing.</p>
-			<h1>Source</h1>
-			<p>County assessors' offices (where available), otherwise NLCD developed land.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-        <b>Data source</b>: County assessors' offices.</br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <p>Residences at who may benefit from open space proximity.</p>
+    <h1>Role in models</h1>
+    <p>Housing locations, housing value, and population density data are used as inputs to a
+    probabilistic model to estimate the potential aesthetic value, as reflected in property value,
+    of open space proximity.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of housing.</p>
+    <h1>Source</h1>
+    <p>County assessors' offices (where available), otherwise NLCD developed land.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: County assessors' offices.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -641,26 +663,26 @@
     <runninghead>Property value.</runninghead>
     <group>use</group>
     <units>$/ac</units>
-		<description><![CDATA[
-			<p>Property value, which may be increased with access to nearby open space.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations, housing value, and population density data are used as inputs to a 
-			probabilistic model to estimate the potential aesthetic value, as reflected in property value, 
-			of open space proximity.</p>
-			<h1>Representation</h1>
-			<p>Data are represented in dollars per acre of property.</p>
-			<h1>Source</h1>
-			<p>County assessors' offices (where available).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-        <b>Data source</b>: County assessors' offices.</br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Property value, which may be increased with access to nearby open space.</p>
+    <h1>Role in models</h1>
+    <p>Housing locations, housing value, and population density data are used as inputs to a
+    probabilistic model to estimate the potential aesthetic value, as reflected in property value,
+    of open space proximity.</p>
+    <h1>Representation</h1>
+    <p>Data are represented in dollars per acre of property.</p>
+    <h1>Source</h1>
+    <p>County assessors' offices (where available).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: County assessors' offices.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -674,28 +696,28 @@
     <group>use</group>
     <units>persons/<sup>km</sup></units>
     <description><![CDATA[
-			<p>Urban proximity, measured here based on population density, reflects both the scarcity of open 
-			space and the degree of crowding, which can increase demand for open space.  In dense urban areas, 
-			open space is relatively more valuable, on a per-area basis, than in rural areas where open space is
-			abundant.</p>
-			<h1>Role in models</h1>
-			<p>Housing locations, housing value, and population density data are used as inputs to a 
-			probabilistic model to estimate the potential aesthetic value, as reflected in property value, 
-			of open space proximity.</p>
-			<h1>Representation</h1>
-			<p>Data are in physical units of persons per square kilometer.</p>
-			<h1>Source</h1>
-			<p>U.S. Census Bureau population estimates and TIGER block group files.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <p>Urban proximity, measured here based on population density, reflects both the scarcity of open
+    space and the degree of crowding, which can increase demand for open space.  In dense urban areas,
+    open space is relatively more valuable, on a per-area basis, than in rural areas where open space is
+    abundant.</p>
+    <h1>Role in models</h1>
+    <p>Housing locations, housing value, and population density data are used as inputs to a
+    probabilistic model to estimate the potential aesthetic value, as reflected in property value,
+    of open space proximity.</p>
+    <h1>Representation</h1>
+    <p>Data are in physical units of persons per square kilometer.</p>
+    <h1>Source</h1>
+    <p>U.S. Census Bureau population estimates and TIGER block group files.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -708,333 +730,357 @@
     <runninghead>Potential homeowner proximity use</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>The potential property value benefit from access to open space.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of the proximity use model, and estimates the potential property value benefit
-			that could be provided by high-quality open space access, based on relevant input data.</p>
-			<h1>Representation</h1>
-			<p>The data are in abstract units from 0-100, representing relative potential property value benefit
-			as reflected by the presence of housing, property values, and urban proxmity. As the output of the 
-			models is probabilistic, each point contains the probability distribution for potential visual blight.  
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient of 
-			variation are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the 
-			ARIES server for the selected area.</p>
-		]]></description>
+    <p>The potential property value benefit from access to open space.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of the proximity use model, and estimates the potential property value benefit
+    that could be provided by high-quality open space access, based on relevant input data.</p>
+    <h1>Representation</h1>
+    <p>The data are in abstract units from 0-100, representing relative potential property value benefit
+    as reflected by the presence of housing, property values, and urban proxmity. As the output of the
+    models is probabilistic, each point contains the probability distribution for potential visual blight.
+    The distribution can be visualized by clicking on the map; the mean value and the coefficient of
+    variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
+    ARIES server for the selected area.</p>
+    ]]></description>
     <see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-    <credits><b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.</credits>
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
- <!-- Flow concepts.  The flow concepts below include possible, actual, and blocked flow concepts plus inaccessible use, 
- since theoretical source, sink, and use have been provided above and inaccessible sources and sinks are likely irrelevant 
- to the user.-->
+  <!-- Flow concepts.  The flow concepts below include possible, actual, and blocked flow concepts plus inaccessible use,
+       since theoretical source, sink, and use have been provided above and inaccessible sources and sinks are likely irrelevant
+       to the user.-->
 
   <page id="possible-proximate-open-space">
-		<concept>aestheticService:PossibleProximateOpenSpace</concept>
-		<name>Possible proximate open space</name>
-		<title>Possible proximate open space</title>
-		<runninghead>Possible flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible flow maps* represent the path that the carrier of the service would take
-		if it was not intercepted by sinks.  As such it considers source and use models and
-		shows the maximum amount of flow. For provisioning services, this corresponds to the
-		maximum potential benefit; for preventive services, the maximum potential damage.
-		
-		This map shows the flow of proximity from natural areas toward homeowners, before 
-		accounting for highways that limit local access.
-		</description>
-				<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="accessible-open-space">
-		<concept>aestheticService:AccessibleOpenSpace</concept>
-		<name>Accessible open space</name>
-		<title>Accessible open space</title>
-		<runninghead>Possible source map.</runninghead>
-		<group>flow</group>
-		<description>
-		Even in the absence of sinks, not all of a source quantity actually has the
-		ability to reach users, because of the route that an ecosystem service carrier
-		moves across the landscape. Flow analysis allows us to identify which particular 
-		portion of the total source quantity is actually generating carriers that 
-		reach the users, independent of the existence of sinks but taking into account 
-		the result of use values, the structure of the landscape and the flow paths of 
-		the carrier, producing this *possible source map*. For provisioning services, 
-		this corresponds to the source of benefits that has the potential of being actually 
-		useful. For preventive services, this corresponds to the portion of the source 
-		field that could actually cause damage to people. The location and strength of 
-		sinks determines how much of the source actually reaches the users.
-		
-		This map shows open space providing value when accounting for proximity and the 
-		location of homeowners but not highways that limit local access.
-		</description>
-				<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:PossibleProximateOpenSpace</concept>
+    <name>Possible proximate open space</name>
+    <title>Possible proximate open space</title>
+    <runninghead>Possible flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible flow maps* represent the path that the carrier of the service would take
+      if it was not intercepted by sinks.  As such it considers source and use models and
+      shows the maximum amount of flow. For provisioning services, this corresponds to the
+      maximum potential benefit; for preventive services, the maximum potential damage.
 
- 	<page id="open-space-proximate-homeowners">
-		<concept>aestheticService:OpenSpaceProximateHomeowners</concept>
-		<name>Open space proximate homeowners</name>
-		<title>Open space proximate homeowners</title>
-		<runninghead>Possible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible use maps* show the locations of users on the landscape that can receive a
-		benefit due to flow connections with a source of an ecosystem service carrier, but may
-		or may not actually receive the carrier due to the action of sinks.  For provisioning 
-		services, potential use identifies areas where it is physically possible for a benefit to 
-		be received.  For preventive services, potential use identifies areas that may be damaged
-		by a detrimental carrier if sinks do not prevent such damage. 
-		
-		This map shows homeowners benefiting from proximity after accounting for sources of open 
-		space and their flow paths, but before accounting for highways that limit local access.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows the flow of proximity from natural areas toward homeowners, before
+      accounting for highways that limit local access.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="accessible-open-space">
+    <concept>aestheticService:AccessibleOpenSpace</concept>
+    <name>Accessible open space</name>
+    <title>Accessible open space</title>
+    <runninghead>Possible source map.</runninghead>
+    <group>flow</group>
+    <description>
+      Even in the absence of sinks, not all of a source quantity actually has the
+      ability to reach users, because of the route that an ecosystem service carrier
+      moves across the landscape. Flow analysis allows us to identify which particular
+      portion of the total source quantity is actually generating carriers that
+      reach the users, independent of the existence of sinks but taking into account
+      the result of use values, the structure of the landscape and the flow paths of
+      the carrier, producing this *possible source map*. For provisioning services,
+      this corresponds to the source of benefits that has the potential of being actually
+      useful. For preventive services, this corresponds to the portion of the source
+      field that could actually cause damage to people. The location and strength of
+      sinks determines how much of the source actually reaches the users.
+
+      This map shows open space providing value when accounting for proximity and the
+      location of homeowners but not highways that limit local access.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="open-space-proximate-homeowners">
+    <concept>aestheticService:OpenSpaceProximateHomeowners</concept>
+    <name>Open space proximate homeowners</name>
+    <title>Open space proximate homeowners</title>
+    <runninghead>Possible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible use maps* show the locations of users on the landscape that can receive a
+      benefit due to flow connections with a source of an ecosystem service carrier, but may
+      or may not actually receive the carrier due to the action of sinks.  For provisioning
+      services, potential use identifies areas where it is physically possible for a benefit to
+      be received.  For preventive services, potential use identifies areas that may be damaged
+      by a detrimental carrier if sinks do not prevent such damage.
+
+      This map shows homeowners benefiting from proximity after accounting for sources of open
+      space and their flow paths, but before accounting for highways that limit local access.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
   <page id="accessible-proximity">
-		<concept>aestheticService:AccessibleProximity</concept>
-		<name>Accessible proximity</name>
-		<title>Accessible proximity flow</title>
-		<runninghead>Actual flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual flow density* map shows the flow paths that deliver actual services to
-		humans. These are selected from the total flow density to only show these flow paths
-		that are not depleted by sinks and actually reach users.
-		
-		For provisioning services, these flow paths deliver valuable benefits to the
-		users and the density is proportional to the value accrued. For preventive services,
-		the flow paths show how much of the carrier reaches users, delivering actual
-		damage.
-		
-		This map shows the actual flow of proximity from natural areas toward homeowners, 
-		when accounting for sinks and flow paths.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="enjoyed-open-space">
-		<concept>aestheticService:EnjoyedOpenSpace</concept>
-		<name>Enjoyed open space</name>
-		<title>Enjoyed open space</title>
-		<runninghead>Actual source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual source map* shows the portion of the source map that is relevant to 
-		the provision of a service after accounting for sinks and flow dynamics. 
-		For provisioning services, this is the amount and location of a benefit that 
-		actually provides benefits to the users. For preventive services, it shows
-		where the actual damage came from. Source regions that provided a damaging carrier
-		were neutralized by sinks are not shown.
-		 
-		This map shows open space providing proximity when accounting for flow paths, 
-		sinks, and the location of beneficiaries.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:AccessibleProximity</concept>
+    <name>Accessible proximity</name>
+    <title>Accessible proximity flow</title>
+    <runninghead>Actual flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual flow density* map shows the flow paths that deliver actual services to
+      humans. These are selected from the total flow density to only show these flow paths
+      that are not depleted by sinks and actually reach users.
 
- 	<page id="blocking-proximity-sink">
-		<concept>aestheticService:BlockingProximitySink</concept>
-		<name>Blocking proximity sink</name>
-		<title>Blocking proximity sink</title>
-		<runninghead>Actual sink map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual sink map* shows the portion of the sinks that actually contribute
-		to depleting a service carrier given its flow patterns. For provisioning
-		services, such sinks are responsible for reducing the benefits compared to their
-		possible value. For preventive services, such sinks provide the actual
-		service because they prevent a damaging carrier from reaching users.
-		
-		This map shows highways that actually separate residences from open space.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      For provisioning services, these flow paths deliver valuable benefits to the
+      users and the density is proportional to the value accrued. For preventive services,
+      the flow paths show how much of the carrier reaches users, delivering actual
+      damage.
 
- 	<page id="homeowners-with-proximate-open-space">
-		<concept>aestheticService:HomeownersWithProximateOpenSpace</concept>
-		<name>Homeowners with proximate open space</name>
-		<title>Homeowners with proximate open space</title>
-		<runninghead>Actual use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
-		service or damage caused by a detrimental carrier for a preventive service, for 
-		users located across the landscape.
-		
-		This map shows homeowners benefiting from proximity after accounting for sources of open 
-		space, sinks, and flow paths.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows the actual flow of proximity from natural areas toward homeowners,
+      when accounting for sinks and flow paths.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
- 	<page id="homeowners-without-proximate-open-space">
-		<concept>aestheticService:HomeownersWithoutProximateOpenSpace</concept>
-		<name>Homeowners without proximate open space</name>
-		<title>Homeowners without proximate open space</title>		
-        <runninghead>Inaccessible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *inaccessible use map* shows the potential users that cannot receive a service
-		carrier due to flow routes and the source and user locations. For provisioning services,
-		this corresponds to value produced by the environment but that cannot be reached by
-		users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but is not due to a lack of flow connections to users.
-		
-		This map shows homeowners lacking any proximity to open space due to their location 
-		(typically in urban areas).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <page id="enjoyed-open-space">
+    <concept>aestheticService:EnjoyedOpenSpace</concept>
+    <name>Enjoyed open space</name>
+    <title>Enjoyed open space</title>
+    <runninghead>Actual source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual source map* shows the portion of the source map that is relevant to
+      the provision of a service after accounting for sinks and flow dynamics.
+      For provisioning services, this is the amount and location of a benefit that
+      actually provides benefits to the users. For preventive services, it shows
+      where the actual damage came from. Source regions that provided a damaging carrier
+      were neutralized by sinks are not shown.
+
+      This map shows open space providing proximity when accounting for flow paths,
+      sinks, and the location of beneficiaries.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="blocking-proximity-sink">
+    <concept>aestheticService:BlockingProximitySink</concept>
+    <name>Blocking proximity sink</name>
+    <title>Blocking proximity sink</title>
+    <runninghead>Actual sink map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual sink map* shows the portion of the sinks that actually contribute
+      to depleting a service carrier given its flow patterns. For provisioning
+      services, such sinks are responsible for reducing the benefits compared to their
+      possible value. For preventive services, such sinks provide the actual
+      service because they prevent a damaging carrier from reaching users.
+
+      This map shows highways that actually separate residences from open space.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-with-proximate-open-space">
+    <concept>aestheticService:HomeownersWithProximateOpenSpace</concept>
+    <name>Homeowners with proximate open space</name>
+    <title>Homeowners with proximate open space</title>
+    <runninghead>Actual use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      service or damage caused by a detrimental carrier for a preventive service, for
+      users located across the landscape.
+
+      This map shows homeowners benefiting from proximity after accounting for sources of open
+      space, sinks, and flow paths.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-without-proximate-open-space">
+    <concept>aestheticService:HomeownersWithoutProximateOpenSpace</concept>
+    <name>Homeowners without proximate open space</name>
+    <title>Homeowners without proximate open space</title>
+    <runninghead>Inaccessible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *inaccessible use map* shows the potential users that cannot receive a service
+      carrier due to flow routes and the source and user locations. For provisioning services,
+      this corresponds to value produced by the environment but that cannot be reached by
+      users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections to users.
+
+      This map shows homeowners lacking any proximity to open space due to their location
+      (typically in urban areas).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
   <page id="blocked-proximity">
-		<concept>aestheticService:BlockedProximity</concept>
-		<name>Blocked proximity</name>
-		<title>Blocked proximity</title>
-		<runninghead>Blocked flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked flow map* shows the flow paths that could have delivered the 
-		service carrier to humans based on the flow routes and the source and user
-		locations, but did not because of the action of sinks. These are selected from among 
-		all actual flows.
-		
-		For provisioning services, these flow paths show the loss in possible flow of
-		beneficial services to the users, and their density is proportional to the value lost. 
-		For preventive services, the flow paths show the amount of the total flow that 
-		was prevented by natural features from causing damage.
-		
-		This map shows flows of open space proximity toward homeowners that are blocked 
-		by highways.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+    <concept>aestheticService:BlockedProximity</concept>
+    <name>Blocked proximity</name>
+    <title>Blocked proximity</title>
+    <runninghead>Blocked flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked flow map* shows the flow paths that could have delivered the
+      service carrier to humans based on the flow routes and the source and user
+      locations, but did not because of the action of sinks. These are selected from among
+      all actual flows.
 
- 	<page id="blocked-open-space">
-		<concept>aestheticService:BlockedOpenSpace</concept>
-		<name>Blocked open space</name>
-		<title>Blocked open space</title>
-		<runninghead>Blocked source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked source map* shows the part of the source map that had the possibility
-		of reaching users given the location of the users and the flow dynamics, but
-		was blocked from doing so because of the action of sinks. For provisioning services,
-		this corresponds to value produced by the environment but lost before it reaches
-		the users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but was blocked by natural features.
-		
-		This map shows open space that is blocked by the action of sinks (highways).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>=
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      For provisioning services, these flow paths show the loss in possible flow of
+      beneficial services to the users, and their density is proportional to the value lost.
+      For preventive services, the flow paths show the amount of the total flow that
+      was prevented by natural features from causing damage.
 
-	<page id="homeowners-with-blocked-proximity">
-		<concept>aestheticService:HomeownersWithBlockedProximity</concept>
-		<name>Homeowners with blocked proximity</name>
-		<title>Homeowners with blocked proximity</title>
-		<runninghead>Blocked use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked use map* shows those users that would have been reached by the service
-		carrier based only on the source and the flow dynamics, but were not reached because 
-		of the action of sinks. For provisioning services, the map shows possible value that 
-		has not been accrued to users because of sinks; for preventive services, it shows 
-		actual value accrued by users thanks to sink configuration. 
-		
-		For preventive services, therefore, this map is the ultimate quantification of
-		value given the locations and quantity of users and natural sink features.
-		
-		This map shows homeowners who would receive benefits from open space proximity 
-		but have their access blocked by highways.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows flows of open space proximity toward homeowners that are blocked
+      by highways.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="blocked-open-space">
+    <concept>aestheticService:BlockedOpenSpace</concept>
+    <name>Blocked open space</name>
+    <title>Blocked open space</title>
+    <runninghead>Blocked source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked source map* shows the part of the source map that had the possibility
+      of reaching users given the location of the users and the flow dynamics, but
+      was blocked from doing so because of the action of sinks. For provisioning services,
+      this corresponds to value produced by the environment but lost before it reaches
+      the users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but was blocked by natural features.
+
+      This map shows open space that is blocked by the action of sinks (highways).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="homeowners-with-blocked-proximity">
+    <concept>aestheticService:HomeownersWithBlockedProximity</concept>
+    <name>Homeowners with blocked proximity</name>
+    <title>Homeowners with blocked proximity</title>
+    <runninghead>Blocked use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked use map* shows those users that would have been reached by the service
+      carrier based only on the source and the flow dynamics, but were not reached because
+      of the action of sinks. For provisioning services, the map shows possible value that
+      has not been accrued to users because of sinks; for preventive services, it shows
+      actual value accrued by users thanks to sink configuration.
+
+      For preventive services, therefore, this map is the ultimate quantification of
+      value given the locations and quantity of users and natural sink features.
+
+      This map shows homeowners who would receive benefits from open space proximity
+      but have their access blocked by highways.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">The aesthetic views and proximity section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
 </presentation>

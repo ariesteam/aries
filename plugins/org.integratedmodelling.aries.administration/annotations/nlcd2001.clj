@@ -1,6 +1,6 @@
-(ns aries.db.nlcd2001  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.nlcd2001
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject nlcd_lc_ll_01 nlcd:NLCDNumeric
 
@@ -337,5 +337,3 @@
         (geospace:hasLatUpperBound 39.08)
         (geospace:hasLonUpperBound -74.753)
         (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
-
-

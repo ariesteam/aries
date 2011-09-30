@@ -1,0 +1,137 @@
+ARIES Installation Instructions
+===============================
+
+Thinklab dependency
+-------------------
+
+ARIES depends on a working Thinklab installation. If you have not yet
+installed Thinklab, please download it from our Github repo here:
+https://github.com/ariesteam/thinklab. Installation instructions for
+Thinklab are included with that package.
+
+
+PostgreSQL+PostGIS configuration
+--------------------------------
+
+In order to run ARIES models, Thinklab needs access to a local
+database where it can store mappings between its modelling concepts
+and the (possibly remote) datasources that will supply them with
+values as needed.  We'll use PostgreSQL with the PostGIS extensions to
+set this up.
+
+1) Install PostgreSQL - http://www.postgresql.org/download/
+
+2) Install the PostGIS extensions into PostgreSQL (if your installer
+   didn't do that already) - http://postgis.refractions.net/download/
+
+3) Start up your PostgreSQL server as a background service.  You might
+   want to configure this to startup automatically whenever you login.
+
+4) Run pgAdminIII to get a graphical PostgreSQL client running (or
+   psql if you prefer to use a command line client).
+
+5) Connect to your database server and create two new databases with
+   these settings:
+
+   Name: ariesdata
+   Encoding: UTF8
+   Template: template_postgis (you did remember to install PostGIS, right?)
+   Owner: postgres (this is the default PostgreSQL administrator account)
+
+   Name: <your_username>
+   Encoding: UTF8
+   Template: template_postgis
+   Owner: postgres
+
+7) Next open
+   .thinklab/data/org.integratedmodelling.thinklab.sql/config/sql.properties
+   in your user's home directory (it's just a text file), and add
+   these lines to the end:
+
+     thinklab.sql.user=postgres
+     thinklab.sql.password=<your_database_administrator_password>
+     thinklab.sql.host=localhost
+
+   Save the file and exit.
+
+
+Set your Environment Variables
+------------------------------
+
+|-----------------------+-------------------------------------------------------------------|
+| ARIES_SRC             | directory containing this INSTALL file                            |
+| ARIES_HOME            | directory where you want to install the compiled version of ARIES |
+| THINKLAB_PLUGINS      | plugins directory below ARIES_HOME                                |
+| ARIES_GAZETTEERS_HOME | directory where gazetteer entries will be written                 |
+| THINKLAB_ARCHIVE_DIR  | directory where GeoTIFF and PNG model outputs will be written     |
+|-----------------------+-------------------------------------------------------------------|
+
+
+Build ARIES
+-----------
+
+On Windows, run the build_aries.bat script in the bin/ directory of
+this repository.
+
+On MacOS X or Linux/FreeBSD/PickYourNix, open up a command prompt and:
+
+  $ cd $ARIES_SRC
+  $ ant install
+
+
+Run ARIES
+---------
+
+Just startup Thinklab (see the instructions in the INSTALL file of
+that repository). Then when you reach the Thinklab prompt, you can
+pull in the ARIES plugins like so:
+
+  > pload aries
+
+To update your ARIES PostgreSQL database, type this as well:
+
+  > pload administration
+  > run aries.initdb
+
+If this runs to completion without errors, your database has been
+populated and you can proceed to the next step. Note that you will
+need an internet connection for this procedure to work as Thinklab
+must connect to one or more remote geoservers to build up its
+datasource mappings. You only need to rerun this command when there is
+an update to the datasources available on these geoservers.
+
+Next, you want to create and initialize your gazetteer database, so
+that you can construct model contexts from WFS-accessible
+Shapefiles. This only needs to be done once per ARIES installation. To
+do this, type:
+
+  > gazetteer create
+
+You are now free to run models at your prompt with the model command,
+like so:
+
+  > model [-d | -v | -t | -o <filename.nc>] <model-name> <context-name>
+
+For more information, type 'help model' at the Thinklab prompt.
+
+To use ARIES' web-based user interface, you can run it on a local web
+server like so:
+
+  > pload explorer
+  > http start aries
+
+Then connect to the address that is printed as a response (usually
+http://localhost:8060/aries.app) using Google Chrome, Mozilla Firefox,
+or Safari. You can keep working at the Thinklab prompt while the
+server is active. Just keep in mind that your machine may be taxed
+excessively by running too many models simultaneously.
+
+To shutdown the web-based user interface, type this:
+
+  > http stop aries
+
+Finally, to quit the Thinklab application, just type:
+
+  > exit
+
+That's it. Enjoy.

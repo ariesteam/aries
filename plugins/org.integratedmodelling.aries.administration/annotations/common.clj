@@ -1,6 +1,6 @@
-(ns aries.db.common  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.common
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject evapotrans habitat:ActualEvapotranspiration
 
@@ -2874,5 +2874,3 @@
         (geospace:hasLatUpperBound 8703357.75)
         (geospace:hasLonUpperBound 1128301.5)
         (geospace:hasCoordinateReferenceSystem "EPSG:32738")))))
-
-

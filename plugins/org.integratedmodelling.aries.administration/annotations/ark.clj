@@ -1,6 +1,6 @@
-(ns aries.db.ark  
-  (:refer-clojure :rename {count length}) 
-  (:refer modelling :only (defobject namespace-ontology count)))
+(ns administration.annotations.ark
+  (:refer-clojure :rename {count length})
+  (:refer modelling :only [defobject count]))
 
 (defobject corine2000 corine:CORINENumeric
 
@@ -89,5 +89,3 @@
         (geospace:hasLatUpperBound 49.0003072438)
         (geospace:hasLonUpperBound -121.02006408919881)
         (geospace:hasCoordinateReferenceSystem "EPSG:4267")))))
-
-

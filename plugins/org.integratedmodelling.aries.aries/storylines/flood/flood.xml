@@ -1,66 +1,73 @@
 <presentation>
-	<title>Flood regulation</title>
-	<runninghead>The role of nature in protecting people and assets from floods</runninghead>
-	<description>The case study</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>aries:FloodProtectionAnalysis</concept>
+  <title>Flood regulation</title>
+  <runninghead>The role of nature in protecting people and assets from floods</runninghead>
+  <description>The case study</description>
 
-	<!-- <model-storyline>floodService:??</model-storyline> --> <!-- Fix this, obviously: there are m\ultiple separate flow concepts for flood so it's not clear what this concept should be.-->
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>aries:FloodProtectionAnalysis</concept>
 
-	<page>
-		<id>info</id>
-		<name>Flood regulation</name>
-		<title>Model coverage and general information</title>
-		<description><![CDATA[
-			<p>To better idenfify the distinct economic benefits and ecological processes 
-			related to disturbance regulation, we separately consider the protection of 
-			life and property from flooding along rivers, flooding in coastal zones, and
-			prevention of landslides, mudslides, or avalanches. This module assembles 
-			all the storylines related to for flood regulationin the user-defined region.</p>
+  <!-- Fix this, obviously: there are multiple separate flow concepts
+       for flood so it's not clear what this concept should be.
 
-			<p>Ecological restoration focused on improving flood regulation can provide a 
-			range of co-beneficial ecosystem services, which can be simulated using scenarios 
-			in the ARIES flood model and other relevant ecosystem services models. For instance, 
-			reconnecting rivers to floodplains through levee setbacks can provide a wide range 
-			of economic benefits from ecosystem services.  ARIES provides a missing spatial 
-			planning tool to explore tradeoffs between multiple ecosystem services associated 
-			with forest management and other flood mitigation projects.</p>
+  <model-storyline>floodService:??</model-storyline>
 
-			<p>The ARIES flood models start by mapping sources of precipitation, which can cause 
-			floods, “sinks” that absorb, detain, or promote infiltration of floodwater, and the 
-			location of beneficiaries at risk of flooding that may receive flood mitigation benefits.  
-			Sink models incorporate vegetation and soils data that describes how well different areas 
-			can promote infiltration, as well as the location of engineered flood control infrastructure 
-			such as dams and detention basins.  Flood flow models spatially link sources of floodwater, 
-			beneficial sinks, and beneficiaries in the landscape.  These flow models account for the 
-			location and width of floodplains and the effects of levees, which both protect assets at 
-			risk behind levees and speed the flow of water downstream, potentially increasing 
-			downstream damage.  Different beneficiary groups may be protected from flooding – crops, 
-			privately owned housing or other buildings, publicly owned infrastructure, and human life.  
-			GIS data showing riverine flood zones and maps of population, agriculture, and structures 
-			allows beneficiaries to be mapped.</p>
+  -->
 
-			<p>The ARIES flood regulation model currently operates using annual data for precipitation, 
-			runoff, infiltration, and evapotranspiration (measured in mm/yr).  While modeling specific flood 
-			events) would be desirable, the data needed to populate these models at such time scales is 
-			rarely available.  The current ARIES flood models can thus be used to explore general flood 
-			vulnerability, the beneficiaries of flood regulation, and the effects of flood mitigation 
-			alternatives (e.g., forest management, levee setbacks) on provision of flood regulation plus 
-			other co-benefit ecosystem services.</p>
+  <page>
+    <id>info</id>
+    <name>Flood regulation</name>
+    <title>Model coverage and general information</title>
+    <description><![CDATA[
+    <p>To better idenfify the distinct economic benefits and ecological processes
+    related to disturbance regulation, we separately consider the protection of
+    life and property from flooding along rivers, flooding in coastal zones, and
+    prevention of landslides, mudslides, or avalanches. This module assembles
+    all the storylines related to for flood regulationin the user-defined region.</p>
 
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-		<b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
-		
-		<b>Additional contributors</b>: Mark Casias, Dave Batker, Jim Pittman, Paula Swedeen.<br/> 
-	    
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-	</page>
+    <p>Ecological restoration focused on improving flood regulation can provide a
+    range of co-beneficial ecosystem services, which can be simulated using scenarios
+    in the ARIES flood model and other relevant ecosystem services models. For instance,
+    reconnecting rivers to floodplains through levee setbacks can provide a wide range
+    of economic benefits from ecosystem services.  ARIES provides a missing spatial
+    planning tool to explore tradeoffs between multiple ecosystem services associated
+    with forest management and other flood mitigation projects.</p>
+
+    <p>The ARIES flood models start by mapping sources of precipitation, which can cause
+    floods, “sinks” that absorb, detain, or promote infiltration of floodwater, and the
+    location of beneficiaries at risk of flooding that may receive flood mitigation benefits.
+    Sink models incorporate vegetation and soils data that describes how well different areas
+    can promote infiltration, as well as the location of engineered flood control infrastructure
+    such as dams and detention basins.  Flood flow models spatially link sources of floodwater,
+    beneficial sinks, and beneficiaries in the landscape.  These flow models account for the
+    location and width of floodplains and the effects of levees, which both protect assets at
+    risk behind levees and speed the flow of water downstream, potentially increasing
+    downstream damage.  Different beneficiary groups may be protected from flooding – crops,
+    privately owned housing or other buildings, publicly owned infrastructure, and human life.
+    GIS data showing riverine flood zones and maps of population, agriculture, and structures
+    allows beneficiaries to be mapped.</p>
+
+    <p>The ARIES flood regulation model currently operates using annual data for precipitation,
+    runoff, infiltration, and evapotranspiration (measured in mm/yr).  While modeling specific flood
+    events) would be desirable, the data needed to populate these models at such time scales is
+    rarely available.  The current ARIES flood models can thus be used to explore general flood
+    vulnerability, the beneficiaries of flood regulation, and the effects of flood mitigation
+    alternatives (e.g., forest management, levee setbacks) on provision of flood regulation plus
+    other co-benefit ecosystem services.</p>
+
+    ]]></description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
+
+    <b>Additional contributors</b>: Mark Casias, Dave Batker, Jim Pittman, Paula Swedeen.<br/>
+
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+  </page>
+
 </presentation>
