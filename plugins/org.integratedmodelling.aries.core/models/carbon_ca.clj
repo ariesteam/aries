@@ -99,12 +99,12 @@
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [6 13]             VeryHighSequestration
-    [4 6]              HighSequestration
-    [3 4]              ModerateSequestration
-    [1.5 3]            LowSequestration
-    [:exclusive 0 1.5] VeryLowSequestration
-    [0]                NoSequestration))
+    [6   13]    VeryHighSequestration
+    [4    6]    HighSequestration
+    [3    4]    ModerateSequestration
+    [1.5  3]    LowSequestration
+    [0.01 1.5]  VeryLowSequestration
+    [0    0.01] NoSequestration))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel source-sj CarbonSourceValue   

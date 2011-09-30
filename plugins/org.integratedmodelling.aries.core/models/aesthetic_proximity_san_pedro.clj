@@ -121,10 +121,10 @@
 
 (defmodel theoretical-open-space TheoreticalProximitySource
   (probabilistic-ranking TheoreticalProximitySource
-    [ 0   5] NoProximityPotential
-    [ 5  25] LowProximityPotential
+    [50 100] HighProximityPotential
     [25  50] ModerateProximityPotential
-    [50 100] HighProximityPotential))
+    [ 5  25] LowProximityPotential
+    [ 0   5] NoProximityPotential))
 
 (defmodel source AestheticProximityProvision
   (bayesian AestheticProximityProvision
@@ -172,10 +172,11 @@
     [309  :>] Urban
     [ 77 309] Suburban
     [:<   77] Rural))
+
 (defmodel proximity-use-undiscretizer HomeownerProximityUse
   (probabilistic-ranking HomeownerProximityUse
-    [0 0.05] HomeownerProximityUseAbsent
-    [0.05 1] HomeownerProximityUsePresent))
+    [0.05 1] HomeownerProximityUsePresent
+    [0 0.05] HomeownerProximityUseAbsent))
 
 (defmodel homeowners ProximityUse
   "Property owners who can afford to pay for proximity to open space."

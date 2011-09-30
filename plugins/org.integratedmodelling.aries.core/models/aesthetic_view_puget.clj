@@ -155,8 +155,8 @@
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer HomeownerViewUse
   (probabilistic-ranking HomeownerViewUse
-    [0 0.05] HomeownerViewUseAbsent 
-    [0.05 1] HomeownerViewUsePresent))
+    [0.05 1] HomeownerViewUsePresent
+    [0 0.05] HomeownerViewUseAbsent))
 
 ;; bayesian model
 (defmodel homeowners ViewUse

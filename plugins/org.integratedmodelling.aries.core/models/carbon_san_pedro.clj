@@ -29,7 +29,7 @@
   (:refer modelling :only [defscenario defmodel model measurement
                            classification categorization ranking
                            numeric-coding binary-coding
-                           probabilistic-measurement
+                           probabilistic-measurement no-data?
                            probabilistic-classification identification
                            bayesian namespace-ontology count])
   (:refer aries :only (span)))
