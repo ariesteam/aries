@@ -1,100 +1,101 @@
 <presentation>
-	<title>Recreation</title>
-	<runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
-	<description>The case study</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>aries:RecreationAnalysis</concept>
+  <title>Recreation</title>
+  <runninghead>Values resulting from ecosystem contributions toward recreational activities</runninghead>
+  <description>The case study</description>
 
-	<model-storyline>recreationService:OutdoorRecreation</model-storyline>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>aries:RecreationAnalysis</concept>
 
-	<page>
-		<id>info</id>
-		<name>Recreation</name>
-		<title>Model coverage and general information</title>
-		<description><![CDATA[
-			<p>Ecosystems provide settings for a diverse array of recreational activities.  
-			Recreational values are among the most well-recognized of all ecosystem services by 
-			the public, and human preferences for recreation have been well-studied by economists 
-			and other social scientists.  From a spatial perspective, we can map sources of 
-			recreational value (areas capable of providing the natural setting needed for a particular 
-			activity), sinks of recreational value (landscape features that reduce those source 
-			values, if applicable), and the users of a particular recreation area for a given 
-			activity.  Users may simultaneously value a particular bundle of recreational attributes 
-			(e.g., the quality of an area for hunting or fishing plus the quality of scenic views), 
-			infrastructure that contributes to the recreational experience (i.e., trails, other 
-			facilities), congestion or lack thereof (with potential resulting visitor response), 
-			and the management policies that facilitate a particular recreational experience.  
-			The ARIES recreation models are intended to solely map an ecosystem’s capacity to 
-			support a particular recreational activity, as opposed to the other attributes that 
-			contribute to the overall quality of a recreational experience, with the understanding 
-			that only the ecosystem attributes supporting recreation are a true ecosystem service.  
-			By mapping the ecosystem’s contribution toward different recreational attributes, we 
-			can explore tradeoffs between different types of recreational use, tradeoffs between 
-			recreation and other ecosystem services, and relative preferences for certain 
-			recreational attributes.</p>
+  <model-storyline>recreationService:OutdoorRecreation</model-storyline>
 
-			<p>In our current case studies, we map scenic viewsheds as they are valued by hikers to 
-			mountain summits, usinga viewshed model described in the aesthetic models.  We also model 
-			wildlife-based recreational values for birding, hunting, and wildlife viewing.  
-			Although we do not yet incorporate flow models for transportation, these will be implemented
-			in the future as described below.</p>
+  <page>
+    <id>info</id>
+    <name>Recreation</name>
+    <title>Model coverage and general information</title>
+    <description><![CDATA[
+    <p>Ecosystems provide settings for a diverse array of recreational activities.
+    Recreational values are among the most well-recognized of all ecosystem services by
+    the public, and human preferences for recreation have been well-studied by economists
+    and other social scientists.  From a spatial perspective, we can map sources of
+    recreational value (areas capable of providing the natural setting needed for a particular
+    activity), sinks of recreational value (landscape features that reduce those source
+    values, if applicable), and the users of a particular recreation area for a given
+    activity.  Users may simultaneously value a particular bundle of recreational attributes
+    (e.g., the quality of an area for hunting or fishing plus the quality of scenic views),
+    infrastructure that contributes to the recreational experience (i.e., trails, other
+    facilities), congestion or lack thereof (with potential resulting visitor response),
+    and the management policies that facilitate a particular recreational experience.
+    The ARIES recreation models are intended to solely map an ecosystem’s capacity to
+    support a particular recreational activity, as opposed to the other attributes that
+    contribute to the overall quality of a recreational experience, with the understanding
+    that only the ecosystem attributes supporting recreation are a true ecosystem service.
+    By mapping the ecosystem’s contribution toward different recreational attributes, we
+    can explore tradeoffs between different types of recreational use, tradeoffs between
+    recreation and other ecosystem services, and relative preferences for certain
+    recreational attributes.</p>
 
-			<p>A recreation flow model accounts for travel from a person’s home to a particular 
-			location suitable for that recreational activity.  Travel cost and recreational site 
-			choice studies also use basic transportation routing to connect recreationists to 
-			recreation sites, but typically do not map the process or facilitate comparisons with 
-			other ecosystem services.  In this way, a recreation flow model can show from where a 
-			particular recreation area draws its users or to which (substitute) areas a specific 
-			recreational user group in a region gravitates toward.  All recreation models thus 
-			contain a transportation network-based flow model to move people toward recreational 
-			areas capable of supporting their activities of interest.  While flows of most other 
-			ecosystem services are defined biophysically (i.e., through movement of water, nutrients, 
-			sediment, or atmospheric gases), biologically (i.e., through migration and movement 
-			of key species), or through trade networks (i.e., for ecosystem goods), recreational 
-			flows are based on human preferences for a particular activity and perceptions about 
-			places capable of providing a desirable setting for that activity.  This adds a great 
-			deal of complexity to understanding recreational flows, as preferences can be shaped by 
-			past experiences and place attachment, as well as distance and subjective measures of 
-			a site’s suitability for a given recreational activity.</p>
+    <p>In our current case studies, we map scenic viewsheds as they are valued by hikers to
+    mountain summits, usinga viewshed model described in the aesthetic models.  We also model
+    wildlife-based recreational values for birding, hunting, and wildlife viewing.
+    Although we do not yet incorporate flow models for transportation, these will be implemented
+    in the future as described below.</p>
 
-			<p>To calculate the recreation source value to feed into the transportation flow 
-			model, an optional initial physical or biological flow model may also be needed 
-			(e.g., to identify spatial dependencies for areas having high quality viewsheds, 
-			providing sources of water for water-based recreation, or providing habitat for 
-			recreationally valued species).  For instance, a physical or biological flow model 
-			could show where high-quality views are provided to key vantage points (along with 
-			visual blight that reduces view quality), where runoff is provided to a watershed 
-			valued for rafting or fishing, or where critical habitat outside a protected area 
-			supports populations of recreationally valuable species.  These models can then 
-			show off-site areas outside of the directly valued recreational resource that are 
-			critical toward maintaining the quality of that resource.  The transportation flow 
-			model is then used to link source (recreational use) points to the location of 
-			recreational users.  For viewsheds, we use a viewshed model to identify mountain 
-			summits that can provide scenic views, with view quality estimated using a line 
-			of sight flow model.  We then apply a transportation flow model to link potential 
-			users to these scenic trails themselves.</p>
+    <p>A recreation flow model accounts for travel from a person’s home to a particular
+    location suitable for that recreational activity.  Travel cost and recreational site
+    choice studies also use basic transportation routing to connect recreationists to
+    recreation sites, but typically do not map the process or facilitate comparisons with
+    other ecosystem services.  In this way, a recreation flow model can show from where a
+    particular recreation area draws its users or to which (substitute) areas a specific
+    recreational user group in a region gravitates toward.  All recreation models thus
+    contain a transportation network-based flow model to move people toward recreational
+    areas capable of supporting their activities of interest.  While flows of most other
+    ecosystem services are defined biophysically (i.e., through movement of water, nutrients,
+    sediment, or atmospheric gases), biologically (i.e., through migration and movement
+    of key species), or through trade networks (i.e., for ecosystem goods), recreational
+    flows are based on human preferences for a particular activity and perceptions about
+    places capable of providing a desirable setting for that activity.  This adds a great
+    deal of complexity to understanding recreational flows, as preferences can be shaped by
+    past experiences and place attachment, as well as distance and subjective measures of
+    a site’s suitability for a given recreational activity.</p>
 
-			<p>Given the heterogeneity of recreational preferences in different parts of the world, 
-			we do not currently envision creating a generalized global ARIES recreation model, but 
-			instead plan to develop local case studies such as those described in this chapter, 
-			along with other recreational activities, as we develop new case studies.  These future 
-			case studies could allow us to expand the geographic coverage of ARIES recreation models 
-			while enabling us to better understand when and where development of national or global 
-			scale recreation models might be more appropriate.</p>
+    <p>To calculate the recreation source value to feed into the transportation flow
+    model, an optional initial physical or biological flow model may also be needed
+    (e.g., to identify spatial dependencies for areas having high quality viewsheds,
+    providing sources of water for water-based recreation, or providing habitat for
+    recreationally valued species).  For instance, a physical or biological flow model
+    could show where high-quality views are provided to key vantage points (along with
+    visual blight that reduces view quality), where runoff is provided to a watershed
+    valued for rafting or fishing, or where critical habitat outside a protected area
+    supports populations of recreationally valuable species.  These models can then
+    show off-site areas outside of the directly valued recreational resource that are
+    critical toward maintaining the quality of that resource.  The transportation flow
+    model is then used to link source (recreational use) points to the location of
+    recreational users.  For viewsheds, we use a viewshed model to identify mountain
+    summits that can provide scenic views, with view quality estimated using a line
+    of sight flow model.  We then apply a transportation flow model to link potential
+    users to these scenic trails themselves.</p>
 
-		]]></description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[
-		<b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
-		
-		<b>Additional contributors</b>: Rose Graves.<br/> 
-	    
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-	</page>
+    <p>Given the heterogeneity of recreational preferences in different parts of the world,
+    we do not currently envision creating a generalized global ARIES recreation model, but
+    instead plan to develop local case studies such as those described in this chapter,
+    along with other recreational activities, as we develop new case studies.  These future
+    case studies could allow us to expand the geographic coverage of ARIES recreation models
+    while enabling us to better understand when and where development of national or global
+    scale recreation models might be more appropriate.</p>
+    ]]></description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/rec.html" target="_blank">The recreation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Model and data development</b>: Ken Bagstad, Ferdinando Villa, Gary Johnson, Brian Voigt.<br/>
+
+    <b>Additional contributors</b>: Rose Graves.<br/>
+
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+  </page>
+
 </presentation>

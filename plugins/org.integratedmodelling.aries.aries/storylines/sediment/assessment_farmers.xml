@@ -1,58 +1,63 @@
 <presentation>
 
-	<title>Sediment regulation: Delivery of beneficial sediment to farmers or avoided undesirable sedimentation of farmland</title>
-	<runninghead>Values resulting from sediment regulation by ecosystems in providing beneficial or detrimental sediment to floodplain farmland.</runninghead>
-	<description>Values resulting from erosion prevention and natural sediment deposition by ecosystems, and accounting for 
-    the delivery of beneficial sediment or the prevention of detrimental sedimentation to farmland. Flow models are used to 
-    attribute beneficial or detrimental sources of sediment or "sinks" that promote sediment deposition in relation to their 
-    human beneficiaries.</description>
+  <title>Sediment regulation: Delivery of beneficial sediment to farmers or avoided undesirable sedimentation of farmland</title>
+  <runninghead>Values resulting from sediment regulation by ecosystems in providing beneficial or detrimental sediment to floodplain farmland.</runninghead>
+  <description>Values resulting from erosion prevention and natural
+  sediment deposition by ecosystems, and accounting for the delivery
+  of beneficial sediment or the prevention of detrimental
+  sedimentation to farmland. Flow models are used to attribute
+  beneficial or detrimental sources of sediment or "sinks" that
+  promote sediment deposition in relation to their human
+  beneficiaries.</description>
 
-	<!-- The concept of the main observation (the top-level model). -->
-	<concept>soilRetentionService:FarmlandSoilDeposition</concept>
+  <!-- The concept of the main observation (the top-level model). -->
+  <concept>soilRetentionService:FarmlandSoilDeposition</concept>
 
-	<!-- All the models that apply and in which context.-->
-	<model>
-		<id>core.models.sediment-puget/sediment-farmers</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
+  <!-- All the models that apply and in which context. -->
+  <model>
+    <id>core.models.sediment-puget/sediment-farmers</id>
+    <context>core.contexts.beta/western_wa2048</context>
+  </model>
 
-	<model>
-		<id>core.models.sediment-mg/sediment-detrimental-farmers</id>
-		<context>core.contexts.beta/mg_sed</context>
-	</model>	
+  <model>
+    <id>core.models.sediment-mg/sediment-detrimental-farmers</id>
+    <context>core.contexts.beta/mg_sed</context>
+  </model>
 
-	<model>
-		<id>core.models.sediment-dr/sediment-detrimental-farmers</id>
-		<context>core.contexts.beta/western_wa2048</context>
-	</model>	
+  <model>
+    <id>core.models.sediment-dr/sediment-detrimental-farmers</id>
+    <context>core.contexts.beta/western_wa2048</context>
+  </model>
 
-<!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
-reservoirs as beneficiary groups.  Could also write storylines for erosion prone farmers (who benefit from soil
-retention on the farm), drinking water intakes, other beneficiary groups as appropriate. -->
+  <!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
+       reservoirs as beneficiary groups.  Could also write storylines for erosion prone farmers (who benefit from soil
+       retention on the farm), drinking water intakes, other beneficiary groups as appropriate. -->
 
-	<page id="info">
-		<id>info</id>
-		<name>Assessment of farmland susceptible to sediment deposition</name>
-		<title>Introduction</title>
-		<runninghead>Farmland susceptible to sediment deposition.</runninghead>
-		<group></group>
-		<description>
-		This model considers floodplain farmland as a potential beneficiary of sediment regulation.  
-		Depending on the crops and timing of sedimentation, this process can be beneficial, delivering
-		new fertile sediment, or detrimental, causing crop damage.  These models map flows from sediment 
-		sources (areas of erosion), sinks (areas where deposition occurs), and beneficiary groups and 
-		link these via a flow model accounting for the downstream movement of sediment.  To map farms 
-		susceptible to sedimentation, we simply intersect farmland with floodplain extents data.
-		</description>
-		<see-also><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type default="true">geosurface-2d</plot-type>
-		<plot-type>geocontour-2d</plot-type>
-	</page>
+  <page id="info">
+    <id>info</id>
+    <name>Assessment of farmland susceptible to sediment deposition</name>
+    <title>Introduction</title>
+    <runninghead>Farmland susceptible to sediment deposition.</runninghead>
+    <group></group>
+    <description>
+      This model considers floodplain farmland as a potential beneficiary of sediment regulation.
+      Depending on the crops and timing of sedimentation, this process can be beneficial, delivering
+      new fertile sediment, or detrimental, causing crop damage.  These models map flows from sediment
+      sources (areas of erosion), sinks (areas where deposition occurs), and beneficiary groups and
+      link these via a flow model accounting for the downstream movement of sediment.  To map farms
+      susceptible to sedimentation, we simply intersect farmland with floodplain extents data.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
 
   <!-- Input and output data for source, sink, and use models -->
   <page id="hydrologic-soils-group">
@@ -61,28 +66,28 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <title>Hydrologic soils group</title>
     <runninghead>Hydrologic soils group.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Different soil types have different infiltration capacities.  
-			See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
-			<h1>Role in models</h1>
-			<p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
-			accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
-			does not account for slope.  We use HSG along with slope, slope stability, and soil texture data to estimate 
-			soil erodibility in ad hoc erosion models.  We assume greater erodibility in soils with higher infiltration capacity.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>SSURGO soils data (U.S.); University of Vermont Spatial Analysis Lab, derived from FAO soils data (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-		<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Different soil types have different infiltration capacities.
+    See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
+    <h1>Role in models</h1>
+    <p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
+    accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
+    does not account for slope.  We use HSG along with slope, slope stability, and soil texture data to estimate
+    soil erodibility in ad hoc erosion models.  We assume greater erodibility in soils with higher infiltration capacity.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>SSURGO soils data (U.S.); University of Vermont Spatial Analysis Lab, derived from FAO soils data (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -95,26 +100,26 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <runninghead>Slope.</runninghead>
     <group>source</group>
     <units>degrees slope</units>
-	<description><![CDATA[
-			<p>Slope strongly affects potential erosion by influencing slope stability and runoff speed.</p>
-			<h1>Role in models</h1>
-			<p>Since hydrologic soils group classifications do not account for slope, we use slope along with 
-			hydrologic soils group, slope stability, and soil texture data to estimate soil erodibility in ad 
-			hoc erosion models.  Greater erodibility is assumed on steep slopes where runoff occurs quickly.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of degrees slope.</p>
-			<h1>Source</h1>
-			<p>Data are derived from a global 90-m SRTM digital elevation model.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Slope strongly affects potential erosion by influencing slope stability and runoff speed.</p>
+    <h1>Role in models</h1>
+    <p>Since hydrologic soils group classifications do not account for slope, we use slope along with
+    hydrologic soils group, slope stability, and soil texture data to estimate soil erodibility in ad
+    hoc erosion models.  Greater erodibility is assumed on steep slopes where runoff occurs quickly.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of degrees slope.</p>
+    <h1>Source</h1>
+    <p>Data are derived from a global 90-m SRTM digital elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -126,55 +131,55 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <title>Slope stability</title>
     <runninghead>Slope stability.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>A classification of the mechanical stability of slopes.</p>
-			<h1>Role in models</h1>
-			<p>Slope stability data, where available, can be used to probabilistically estimate soil erodibility.
-			Unstable slopes are particularly prone to erosion.</p>
-			<h1>Representation</h1>
-			<p>The data are categorical.</p>
-			<h1>Source</h1>
-			<p>Washington State Department of Natural Resources.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>A classification of the mechanical stability of slopes.</p>
+    <h1>Role in models</h1>
+    <p>Slope stability data, where available, can be used to probabilistically estimate soil erodibility.
+    Unstable slopes are particularly prone to erosion.</p>
+    <h1>Representation</h1>
+    <p>The data are categorical.</p>
+    <h1>Source</h1>
+    <p>Washington State Department of Natural Resources.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
+
   <page id="soil-texture">
     <concept>soilRetentionService:SoilTextureClass</concept>
     <name>Soil texture</name>
     <title>Soil texture</title>
     <runninghead>Soil texture.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Soil texture can influence its erodibility.</p>
-			<h1>Role in models</h1>
-			<p>Soil texture data can be used to probabilistically estimate soil erodibility.
-			We assume greater erodibility for finer-textued soils.</p>
-			<h1>Representation</h1>
-			<p>The data are categorical.</p>
-			<h1>Source</h1>
-			<p>SSURGO soils data (U.S.); FAO soils data (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database</a>, FAO Global Soils database.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Soil texture can influence its erodibility.</p>
+    <h1>Role in models</h1>
+    <p>Soil texture data can be used to probabilistically estimate soil erodibility.
+    We assume greater erodibility for finer-textued soils.</p>
+    <h1>Representation</h1>
+    <p>The data are categorical.</p>
+    <h1>Source</h1>
+    <p>SSURGO soils data (U.S.); FAO soils data (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database</a>, FAO Global Soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -186,27 +191,27 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <title>Soil erodibility</title>
     <runninghead>Soil erodibility.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Soil erodibility coefficients used in the Revised Universal Soil Loss Equation.</p>
-			<h1>Role in models</h1>
-			<p>Soil erodibility estimates can either be directly used to estimate erosion using RUSLE or can
-			be used to train Bayesian networks when using ad hoc probabilistic models of erosion in cases where
-			RUSLE's use is inappropriate.</p>
-			<h1>Representation</h1>
-			<p>The data are unitless estimates of erodibility used in the Revised Universal Soil Loss Equation.</p>
-			<h1>Source</h1>
-			<p>U.S. EPA EMAP-West Metric Browser (U.S.); Yang, D., et al. 2003. Global potential soil erosion with 
-			reference to land use and climate changes. Hydrological Processes 17: 2913-2928 (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_table.htm" target="_blank">U.S. EPA EMAP-West Metric Browser</a>, Yang et al. (2003).</br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Soil erodibility coefficients used in the Revised Universal Soil Loss Equation.</p>
+    <h1>Role in models</h1>
+    <p>Soil erodibility estimates can either be directly used to estimate erosion using RUSLE or can
+    be used to train Bayesian networks when using ad hoc probabilistic models of erosion in cases where
+    RUSLE's use is inappropriate.</p>
+    <h1>Representation</h1>
+    <p>The data are unitless estimates of erodibility used in the Revised Universal Soil Loss Equation.</p>
+    <h1>Source</h1>
+    <p>U.S. EPA EMAP-West Metric Browser (U.S.); Yang, D., et al. 2003. Global potential soil erosion with
+    reference to land use and climate changes. Hydrological Processes 17: 2913-2928 (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_table.htm" target="_blank">U.S. EPA EMAP-West Metric Browser</a>, Yang et al. (2003).</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -220,61 +225,61 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <group>source</group>
     <units>mm/year</units>
     <description><![CDATA[
-			<p>Annual precipitation.</p>
-			<h1>Role in models</h1>
-			<p>Precipitation data are used along with soil erodiblity and vegetative maturity to estimate overall
-			erosion in the ad hoc erosion source models.  In regions susceptible to tropical storms and with steep
-			slopes, tropical storm probability is included as an influence on runoff, with annual precipitation, since
-			these extreme storm events can cause larger event-based episodes of erosion.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of millimeters of precipitation per year.</p>
-			<h1>Source</h1>
-			<p>PRISM Climate Group (U.S. data); WorldClim (global data).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <p>Annual precipitation.</p>
+    <h1>Role in models</h1>
+    <p>Precipitation data are used along with soil erodiblity and vegetative maturity to estimate overall
+    erosion in the ad hoc erosion source models.  In regions susceptible to tropical storms and with steep
+    slopes, tropical storm probability is included as an influence on runoff, with annual precipitation, since
+    these extreme storm events can cause larger event-based episodes of erosion.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of millimeters of precipitation per year.</p>
+    <h1>Source</h1>
+    <p>PRISM Climate Group (U.S. data); WorldClim (global data).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-	<page id="tropical-storm-probability">
-		<concept>soilRetentionService:TropicalStormProbabilityClass</concept>
-		<name>Tropical storm probability</name>
-		<title>Tropical storm probability</title>
-		<runninghead>Tropical storm probability.</runninghead>
-        <group>source</group>
-   		<description><![CDATA[
-			<p>Deciles estimates of tropical storm risk.</p>
-			<h1>Role in models</h1>
-			<p>In regions susceptible to tropical storms and with steep slopes, tropical storm probability 
-			is included with annual precipitation as an influence on runoff, since these extreme storm events 
-			can cause larger event-based episodes of erosion.  Runoff estimates are then used along with soil 
-			erodiblity and vegetative maturity to estimate overall erosion in the ad hoc erosion source models</p>
-			<h1>Representation</h1>
-			<p>The data are in deciles of tropical storm risk.</p>
-			<h1>Source</h1>
-			<p>CIESIN Hazards Data.</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://sedac.ciesin.columbia.edu/wdc/hazards.jsp" target="_blank">CIESIN Hazards data.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
-        <disabled>false</disabled>
-        <plot-type default="true">geosurface-2d</plot-type>
-        <plot-type>geocontour-2d</plot-type>
+  <page id="tropical-storm-probability">
+    <concept>soilRetentionService:TropicalStormProbabilityClass</concept>
+    <name>Tropical storm probability</name>
+    <title>Tropical storm probability</title>
+    <runninghead>Tropical storm probability.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Deciles estimates of tropical storm risk.</p>
+    <h1>Role in models</h1>
+    <p>In regions susceptible to tropical storms and with steep slopes, tropical storm probability
+    is included with annual precipitation as an influence on runoff, since these extreme storm events
+    can cause larger event-based episodes of erosion.  Runoff estimates are then used along with soil
+    erodiblity and vegetative maturity to estimate overall erosion in the ad hoc erosion source models</p>
+    <h1>Representation</h1>
+    <p>The data are in deciles of tropical storm risk.</p>
+    <h1>Source</h1>
+    <p>CIESIN Hazards Data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://sedac.ciesin.columbia.edu/wdc/hazards.jsp" target="_blank">CIESIN Hazards data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
   </page>
 
   <page id="runoff">
@@ -284,25 +289,25 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <runninghead>Annual runoff.</runninghead>
     <group>source</group>
     <units>mm/year</units>
-	<description><![CDATA[
-			<p>Runoff as used to estimate soil erosion, along with soil and vegetation characteristics.</p>
-			<h1>Role in models</h1>
-			<p>Runoff estimates can be used to train Bayesian networks when using ad hoc probabilistic models 
-			of erosion.</p>
-			<h1>Representation</h1>
-			<p>The data are physical units of millimeters of runoff per year.</p>
-			<h1>Source</h1>
-			<p>UNH GRDC Composite Runoff Data.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.grdc.sr.unh.edu/" target="_blank">UNH GRDC Composite Runoff Data.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Runoff as used to estimate soil erosion, along with soil and vegetation characteristics.</p>
+    <h1>Role in models</h1>
+    <p>Runoff estimates can be used to train Bayesian networks when using ad hoc probabilistic models
+    of erosion.</p>
+    <h1>Representation</h1>
+    <p>The data are physical units of millimeters of runoff per year.</p>
+    <h1>Source</h1>
+    <p>UNH GRDC Composite Runoff Data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.grdc.sr.unh.edu/" target="_blank">UNH GRDC Composite Runoff Data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -314,25 +319,25 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like 
-			vegetation height, life form, rooting depth and density.</p>
-			<h1>Role in models</h1>
-			<p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
-			in reducing soil erosion.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical, derived from land cover classes.</p>
-			<h1>Source</h1>
-			<p>Various national land cover datasets.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Various national land cover datasets.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -345,25 +350,25 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <runninghead>Percent tree canopy cover.</runninghead>
     <group>source</group>
     <description><![CDATA[
-			<p>Percent tree canopy cover.</p>
-			<h1>Role in models</h1>
-			<p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-			in reducing soil erosion.  All else being equal, we expect greater protection from soil erosion under 
-			higher tree canopy cover.</p>
-			<h1>Representation</h1>
-			<p>Data represent the percentage of the land surface under tree canopy cover.</p>
-			<h1>Source</h1>
-			<p>)2001 National Land Cover Dataset (U.S.); University of Maryland - Global Land Cover Facility (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <p>Percent tree canopy cover.</p>
+    <h1>Role in models</h1>
+    <p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.  All else being equal, we expect greater protection from soil erosion under
+    higher tree canopy cover.</p>
+    <h1>Representation</h1>
+    <p>Data represent the percentage of the land surface under tree canopy cover.</p>
+    <h1>Source</h1>
+    <p>)2001 National Land Cover Dataset (U.S.); University of Maryland - Global Land Cover Facility (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -375,68 +380,68 @@ retention on the farm), drinking water intakes, other beneficiary groups as appr
     <title>Successional stage</title>
     <runninghead>Successional stage.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Forest succession stage can dictate attributes such as vegetation height, tree canopy cover, root 
-			densities, and litter and woody debris cover, all of which can potentially reduce soil erosion.</p>
-			<h1>Role in models</h1>
-			<p>Successional stage is used as input into a probabilistic model estimating the contribution of vegetation
-			in reducing soil erosion.  All else being equal, we expect later successional forests to provide greater 
-			protection from soil erosion.</p>
-			<h1>Representation</h1>
-			<p>Data are categorical.</p>
-			<h1>Source</h1>
-			<p>BLM Interagency Vegetation Mapping Project (WA/OR).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.blm.gov/or/gis/data-details.php?data=ds000103" target="_blank">Interagency Vegetation Mapping Project.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Forest succession stage can dictate attributes such as vegetation height, tree canopy cover, root
+    densities, and litter and woody debris cover, all of which can potentially reduce soil erosion.</p>
+    <h1>Role in models</h1>
+    <p>Successional stage is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.  All else being equal, we expect later successional forests to provide greater
+    protection from soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>BLM Interagency Vegetation Mapping Project (WA/OR).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.blm.gov/or/gis/data-details.php?data=ds000103" target="_blank">Interagency Vegetation Mapping Project.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-<!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily 
-multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
-models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about.-->
+  <!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily
+       multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
+       models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about. -->
 
-<!-- ALSO saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
-use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
+  <!-- ALSO saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
+       use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-sink">
     <concept>soilRetentionService:SedimentSourceValueAnnual</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source.</runninghead>
     <group>source</group>
-	<description><![CDATA[
-			<p>Annual soil erosion from the landscape.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of a probabilistic model accounting for the influence of vegetation, soils, and 
-			precipitation on erosion.  These data are passed to the sediment flow model, which calculates actual 
-			sediment delivered to beneficiaries, given erosion levels, the activity of sinks, and the location of 
-			beneficiaries of sedimentation or avoided sedimentation.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of tons of sediment eroded per year.   As the output of the models is 
-			probabilistic, each point contains the probability distribution of the amount of sediment eroded. 
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES 
-			server for the selected area.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Annual soil erosion from the landscape.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of a probabilistic model accounting for the influence of vegetation, soils, and
+    precipitation on erosion.  These data are passed to the sediment flow model, which calculates actual
+    sediment delivered to beneficiaries, given erosion levels, the activity of sinks, and the location of
+    beneficiaries of sedimentation or avoided sedimentation.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of tons of sediment eroded per year.   As the output of the models is
+    probabilistic, each point contains the probability distribution of the amount of sediment eroded.
+    The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES
+    server for the selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -448,27 +453,27 @@ use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, usi
     <title>Reservoir presence</title>
     <runninghead>Reservoir presence.</runninghead>
     <group>sink</group>
-	<description><![CDATA[
-			<p>Reservoirs stop the downstream movement of sediment by trapping it in the reservoir and releasing
-			low-sediment water downstream.</p>
-			<h1>Role in models</h1>
-			<p>Reservoir locations enter into a probabilistic model to estimate sediment sink values.  Deposition
-			values in reservoirs are always set to high in the probabilistic model.</p>
-			<h1>Representation</h1>
-			<p>The data are represented as a presence or absence map showing the location of reservoirs.</p>
-			<h1>Source</h1>
-			<p>National Atlas of the United States, Major Dams of the United States (U.S.); FAO AQUASTAT (Africa); 
-			Global Database of Dams (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.nationalatlas.gov/mld/dams00x.html" target="_blank">Major dams of the United States, </a> <a href="http://www.fao.org/nr/water/aquastat/gis/index2.stm" target="_blank">FAO AQUASTAT, </a> <a href="earth.google.com/gallery/kmz/dams_database.kmz" target="_blank">Global Database of Dams.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Reservoirs stop the downstream movement of sediment by trapping it in the reservoir and releasing
+    low-sediment water downstream.</p>
+    <h1>Role in models</h1>
+    <p>Reservoir locations enter into a probabilistic model to estimate sediment sink values.  Deposition
+    values in reservoirs are always set to high in the probabilistic model.</p>
+    <h1>Representation</h1>
+    <p>The data are represented as a presence or absence map showing the location of reservoirs.</p>
+    <h1>Source</h1>
+    <p>National Atlas of the United States, Major Dams of the United States (U.S.); FAO AQUASTAT (Africa);
+    Global Database of Dams (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.nationalatlas.gov/mld/dams00x.html" target="_blank">Major dams of the United States, </a> <a href="http://www.fao.org/nr/water/aquastat/gis/index2.stm" target="_blank">FAO AQUASTAT, </a> <a href="earth.google.com/gallery/kmz/dams_database.kmz" target="_blank">Global Database of Dams.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -481,62 +486,62 @@ use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, usi
     <runninghead>Stream gradient.</runninghead>
     <group>sink</group>
     <units>degrees slope</units>
-	<description><![CDATA[
-			<p>Stream gradient helps dictate the speed of floodwater flows, causing sediment to either be deposited 
-			or remain suspended as it moves downstream.</p>
-			<h1>Role in models</h1>
-			<p>Stream gradient enters into a probabilistic model to estimate sediment sink values.  Deposition values 
-			are assumed to be higher along low-gradient streams, where slower-flowing water promotes deposition.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of degrees slope.</p>
-			<h1>Source</h1>
-			<p>Derived from local hydrography data and SRTM slope data.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Stream gradient helps dictate the speed of floodwater flows, causing sediment to either be deposited
+    or remain suspended as it moves downstream.</p>
+    <h1>Role in models</h1>
+    <p>Stream gradient enters into a probabilistic model to estimate sediment sink values.  Deposition values
+    are assumed to be higher along low-gradient streams, where slower-flowing water promotes deposition.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of degrees slope.</p>
+    <h1>Source</h1>
+    <p>Derived from local hydrography data and SRTM slope data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
-    <page id="floodplain-vegetation-cover">
+
+  <page id="floodplain-vegetation-cover">
     <concept>soilRetentionService:FloodplainVegetationCoverClass</concept>
     <name>Floodplain tree canopy cover</name>
     <title>Floodplain tree canopy cover</title>
     <runninghead>Floodplain tree canopy cover.</runninghead>
     <group>sink</group>
-	<description><![CDATA[
-			<p>Well-vegetatated floodplains can better trap sediment by slowing the flow of floodwater and providing
-			microtopography where sediment can be deposited.</p>
-			<h1>Role in models</h1>
-			<p>Floodplain tree canopy cover enters into a probabilistic model to estimate sediment sink values.  
-			Deposition values are assumed to be higher in more forested floodplains, where vegetation can better
-			trap sediment.</p>
-			<h1>Representation</h1>
-			<p>Data represent the percentage of the floodplain under tree canopy cover.</p>
-			<h1>Source</h1>
-			<p>)2001 National Land Cover Dataset (U.S.); University of Maryland - Global Land Cover Facility (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Well-vegetatated floodplains can better trap sediment by slowing the flow of floodwater and providing
+    microtopography where sediment can be deposited.</p>
+    <h1>Role in models</h1>
+    <p>Floodplain tree canopy cover enters into a probabilistic model to estimate sediment sink values.
+    Deposition values are assumed to be higher in more forested floodplains, where vegetation can better
+    trap sediment.</p>
+    <h1>Representation</h1>
+    <p>Data represent the percentage of the floodplain under tree canopy cover.</p>
+    <h1>Source</h1>
+    <p>)2001 National Land Cover Dataset (U.S.); University of Maryland - Global Land Cover Facility (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
-  
+
   <page id="floodplain-width">
     <concept>soilRetentionService:FloodplainWidthClass</concept>
     <name>Floodplain width</name>
@@ -544,64 +549,64 @@ use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, usi
     <runninghead>Floodplain width.</runninghead>
     <group>sink</group>
     <units>m</units>
-	<description><![CDATA[
-			<p>Wider floodplains can promote sediment deposition by slowing the flow of sediment-carrying floodwater.</p>
-			<h1>Role in models</h1>
-			<p>Floodplain width is used as input data for a probabilistic model to estimate sediment sink values.  
-			Deposition values are assumed to be higher in wide floodplains, where floodwater can spread out and 
-			move more slowly, leading to deposition.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of meters of floodplain width.</p>
-			<h1>Source</h1>
-			<p>Derived from FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.fema.gov/hazard/map/q3.shtm" target="_blank">FEMA Q3 Flood Data</a>, <a href="http://floodobservatory.colorado.edu/" target="_blank">Dartmouth Flood Observatory.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Wider floodplains can promote sediment deposition by slowing the flow of sediment-carrying floodwater.</p>
+    <h1>Role in models</h1>
+    <p>Floodplain width is used as input data for a probabilistic model to estimate sediment sink values.
+    Deposition values are assumed to be higher in wide floodplains, where floodwater can spread out and
+    move more slowly, leading to deposition.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of meters of floodplain width.</p>
+    <h1>Source</h1>
+    <p>Derived from FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.fema.gov/hazard/map/q3.shtm" target="_blank">FEMA Q3 Flood Data</a>, <a href="http://floodobservatory.colorado.edu/" target="_blank">Dartmouth Flood Observatory.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-<!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily 
-multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
-models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about.-->
+  <!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily
+       multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
+       models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about. -->
   <page id="annual-sediment-sink">
     <concept>soilRetentionService:AnnualSedimentSink</concept>
     <name>Annual sediment sink</name>
     <title>Annual sediment sink</title>
     <runninghead>Annual sediment sink</runninghead>
     <group>sink</group>
-	<description><![CDATA[
-			<p>The deposition of waterborne sediment in floodplains.</p>
-			<h1>Role in models</h1>
-			<p>This is the output of a probabilistic model accounting for the influence of floodplain
-			characteristics on sediment deposition.  These data are passed to the sediment flow model, 
-			which calculates actual sediment delivered to beneficiaries, given erosion levels, the activity 
-			of sinks, and the location of beneficiaries of sedimentation or avoided sedimentation.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of tons of sediment deposited per year.   As the output of the models is 
-			probabilistic, each point contains the probability distribution of the amount of sediment deposited. 
-			The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation 
-			are reported along with the probabilities.</p>
-			<h1>Source</h1>
-			<p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES 
-			server for the selected area.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>The deposition of waterborne sediment in floodplains.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of a probabilistic model accounting for the influence of floodplain
+    characteristics on sediment deposition.  These data are passed to the sediment flow model,
+    which calculates actual sediment delivered to beneficiaries, given erosion levels, the activity
+    of sinks, and the location of beneficiaries of sedimentation or avoided sedimentation.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of tons of sediment deposited per year.   As the output of the models is
+    probabilistic, each point contains the probability distribution of the amount of sediment deposited.
+    The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES
+    server for the selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -613,27 +618,27 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
     <title>Floodplain extent</title>
     <runninghead>Floodplain extent.</runninghead>
     <group>use</group>
-	<description><![CDATA[
-			<p>The extent of the mapped or observed floodplain.</p>
-			<h1>Role in models</h1>
-			<p>Floodplain extents are used in the use models to identify the presence of farmland located
-			in the flood zone.  These are the beneficiaries of either beneficial sediment delievery or avoided
-			delivery of detrimental sediment.  Floodplain extents are also used in the flow models to distribute 
-			sediment across the floodplain.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing extent of the floodplain.</p>
-			<h1>Source</h1>
-			<p>FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
-		]]></description>
-		<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://www.fema.gov/hazard/map/q3.shtm" target="_blank">FEMA Q3 Flood Data</a>, <a href="http://floodobservatory.colorado.edu/" target="_blank">Dartmouth Flood Observatory.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>The extent of the mapped or observed floodplain.</p>
+    <h1>Role in models</h1>
+    <p>Floodplain extents are used in the use models to identify the presence of farmland located
+    in the flood zone.  These are the beneficiaries of either beneficial sediment delievery or avoided
+    delivery of detrimental sediment.  Floodplain extents are also used in the flow models to distribute
+    sediment across the floodplain.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing extent of the floodplain.</p>
+    <h1>Source</h1>
+    <p>FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.fema.gov/hazard/map/q3.shtm" target="_blank">FEMA Q3 Flood Data</a>, <a href="http://floodobservatory.colorado.edu/" target="_blank">Dartmouth Flood Observatory.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -646,22 +651,23 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
     <runninghead>Farmland.</runninghead>
     <group>use</group>
     <description><![CDATA[
-			<p>Farmland that can either benefit from or be harmed by sediment deposition.</p>
-			<h1>Role in models</h1>
-			<p>Farmland locations are intersected with floodplain extents data to map the potential beneficiaries
-			of sediment regulation.  The sediment flow model is then used to estimate actual sediment regulation values.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of farmland.</p>
-			<h1>Source</h1>
-			<p>Various national land cover datasets.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
+    <p>Farmland that can either benefit from or be harmed by sediment deposition.</p>
+    <h1>Role in models</h1>
+    <p>Farmland locations are intersected with floodplain extents data to map the potential beneficiaries
+    of sediment regulation.  The sediment flow model is then used to estimate actual sediment regulation values.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of farmland.</p>
+    <h1>Source</h1>
+    <p>Various national land cover datasets.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -671,28 +677,28 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
     <concept>soilRetentionService:DepositionProneFarmers</concept>
     <name>Deposition prone farmers</name>
     <title>Deposition prone farmers</title>
-    <runninghead>Deposition prone farmers.</runninghead>   
+    <runninghead>Deposition prone farmers.</runninghead>
     <group>use</group>
-	<description><![CDATA[
-			<p>Farmland located in floodplains is a beneficiary group of sediment regulation, either of avoided detrimental 
-			sediment or delivery of beneficial sediment.</p>
-			<h1>Role in models</h1>
-			<p>This is one beneficiary group for sediment regulation.  The location of farmland susceptible to sedimentation
-			is passed to the flow model, which calculates actual sedimentation levels, given erosion levels and the
-			location of sinks that deposit sediment.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of floodplain farmland.</p>
-			<h1>Source</h1>
-			<p>Intersection of floodplain extents data and farmland cover data.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Farmland located in floodplains is a beneficiary group of sediment regulation, either of avoided detrimental
+    sediment or delivery of beneficial sediment.</p>
+    <h1>Role in models</h1>
+    <p>This is one beneficiary group for sediment regulation.  The location of farmland susceptible to sedimentation
+    is passed to the flow model, which calculates actual sedimentation levels, given erosion levels and the
+    location of sinks that deposit sediment.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of floodplain farmland.</p>
+    <h1>Source</h1>
+    <p>Intersection of floodplain extents data and farmland cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -705,26 +711,26 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
     <runninghead>Elevation.</runninghead>
     <group>flow</group>
     <units>m</units>
-	<description><![CDATA[
-			<p>Elevation above sea level.</p>
-			<h1>Role in models</h1>
-			<p>A digital elevation model is used along with hydrography data to route sediment-carrying water across 
-			the land surface.  The flow model moves precipitation downslope using elevation data until it reaches a 
-			stream network, which water then follows through the stream network.</p>
-			<h1>Representation</h1>
-			<p>The data are in physical units of meters above sea level.</p>
-			<h1>Source</h1>
-			<p>Global 90-m SRTM digital elevation model.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a></br>
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Elevation above sea level.</p>
+    <h1>Role in models</h1>
+    <p>A digital elevation model is used along with hydrography data to route sediment-carrying water across
+    the land surface.  The flow model moves precipitation downslope using elevation data until it reaches a
+    stream network, which water then follows through the stream network.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of meters above sea level.</p>
+    <h1>Source</h1>
+    <p>Global 90-m SRTM digital elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
@@ -736,375 +742,402 @@ models appropriately) but that wouldn't let us multiply values in RUSLE appropri
     <title>Rivers</title>
     <runninghead>Rivers.</runninghead>
     <group>flow</group>
-	<description><![CDATA[
-			<p>River and stream locations.</p>
-			<h1>Role in models</h1>
-			<p>River and stream locations, or hydrography data, are used to route sediment-carrying surface water.  
-			The flow model moves precipitation downslope using elevation data until it reaches a stream network, 
-			which water then follows through the stream network.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
-			<h1>Source</h1>
-			<p>Digital Chart of the World; BD500 (Madagascar infrastructure dataset); Washington Department of Natural Resources.</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>River and stream locations.</p>
+    <h1>Role in models</h1>
+    <p>River and stream locations, or hydrography data, are used to route sediment-carrying surface water.
+    The flow model moves precipitation downslope using elevation data until it reaches a stream network,
+    which water then follows through the stream network.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
+    <h1>Source</h1>
+    <p>Digital Chart of the World; BD500 (Madagascar infrastructure dataset); Washington Department of Natural Resources.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
   <page id="levees">
-    <concept>soilRetentionService:LeveesClass</concept> <!--Ferd: This is goofy - I don't see "LeveesClass" anywhere in the .clj file -->
+    <concept>soilRetentionService:LeveesClass</concept> <!-- Ferd: This is goofy - I don't see "LeveesClass" anywhere in the .clj file -->
     <name>Levees</name>
     <title>Levees</title>
     <runninghead>Levees.</runninghead>
     <group>flow</group>
-	<description><![CDATA[
-			<p>Levees restrict a river's flow to its channel, limiting the ability of floodwater to spread across
-			the floodplain and deposit sediment.</p>
-			<h1>Role in models</h1>
-			<p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
-			levees are present, eliminating the possibility of sediment deposition beyond levees.</p>
-			<h1>Representation</h1>
-			<p>Data are represented as a presence or absence map showing the location of levees.</p>
-			<h1>Source</h1>
-			<p>County GIS offices (where available).</p>
-		]]></description>
-	<see-also language="html"><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-	<credits language="html"><![CDATA[
-	    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-		]]></credits>
+    <description><![CDATA[
+    <p>Levees restrict a river's flow to its channel, limiting the ability of floodwater to spread across
+    the floodplain and deposit sediment.</p>
+    <h1>Role in models</h1>
+    <p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
+    levees are present, eliminating the possibility of sediment deposition beyond levees.</p>
+    <h1>Representation</h1>
+    <p>Data are represented as a presence or absence map showing the location of levees.</p>
+    <h1>Source</h1>
+    <p>County GIS offices (where available).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
- <!-- The flow concepts below currently including only possible, actual, and blocked flow concepts, 
- plus inaccessible sources, since they still may be relevant for impacts to coastal and aquatic ecosystems, 
- for instance.  Theoretical concepts are already included as source, sink, and use model outputs and 
- inaccessible sinks and uses are likely irrelevant for this service.
- 
- These flow concepts are also only for avoided delivery of detrimental sediment, i.e., the preventive 
- service of sediment regulation.  Prevention of erosion, provision of beneficial sediment, and regulation of
- detrimental turbidity would be included as differently named flow concepts.-->
-  
-     <page id="possible-sediment-flow">
-		<concept>soilRetentionService:PossibleSedimentFlow</concept>
-		<name>Possible sediment flow</name>
-		<title>Possible sediment flow</title>
-		<runninghead>Possible flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible flow maps* represent the path that the carrier of the service would take
-		if it was not intercepted by sinks.  As such it considers source and use models and
-		shows the maximum amount of flow. For provisioning services, this corresponds to the
-		maximum potential benefit; for preventive services, the maximum potential damage.
-		
-		This map shows the downstream movement of sediment when not accounting for sediment 
-		sinks (i.e., areas of deposition).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="possible-sediment-source">
-		<concept>soilRetentionService:PossibleSedimentSource</concept>
-		<name>Possible sediment source</name>
-		<title>Possible sediment source</title>
-		<runninghead>Possible source map.</runninghead>
-		<group>flow</group>
-		<description>
-		Even in the absence of sinks, not all of a source quantity actually has the
-		ability to reach users, because of the route that an ecosystem service carrier
-		moves across the landscape. Flow analysis allows us to identify which particular 
-		portion of the total source quantity is actually generating carriers that 
-		reach the users, independent of the existence of sinks but taking into account 
-		the result of use values, the structure of the landscape and the flow paths of 
-		the carrier, producing this *possible source map*. For provisioning services, 
-		this corresponds to the source of benefits that has the potential of being actually 
-		useful. For preventive services, this corresponds to the portion of the source 
-		field that could actually cause damage to people. The location and strength of 
-		sinks determines how much of the source actually reaches the users.
-		
-		This map shows areas which, based on the flow pattern of sediment but when not 
-		accounting for sinks (i.e., depositional areas), provide sediment which reaches 
-		downstream users who either benefit from or are damaged by sediment delivery.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <!-- The flow concepts below currently including only possible,
+       actual, and blocked flow concepts, plus inaccessible sources,
+       since they still may be relevant for impacts to coastal and
+       aquatic ecosystems, for instance.  Theoretical concepts are
+       already included as source, sink, and use model outputs and
+       inaccessible sinks and uses are likely irrelevant for this
+       service. -->
 
- 	<page id="possible-reduced-sediment-deposition-beneficiaries">
-		<concept>soilRetentionService:PossibleReducedSedimentDepositionBeneficiaries</concept>
-		<name>Possible reduced sediment deposition beneficiaries</name>
-		<title>Possible reduced sediment deposition beneficiaries</title>
-		<runninghead>Possible use map.</runninghead>
-		<group>flow</group>
-		<description>
-		*Possible use maps* show the locations of users on the landscape that can receive a
-		benefit due to flow connections with a source of an ecosystem service carrier, but may
-		or may not actually receive the carrier due to the action of sinks.  For provisioning 
-		services, potential use identifies areas where it is physically possible for a benefit to 
-		be received.  For preventive services, potential use identifies areas that may be damaged
-		by a detrimental carrier if sinks do not prevent such damage. 
-		
-		This map shows beneficiaries who receive beneficial or detrimental sedimentation when 
-		accounting for flow paths but not sinks.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-  
-     <page id="actual-sediment-flow">
-		<concept>soilRetentionService:ActualSedimentFlow</concept>
-		<name>Actual sediment flow</name>
-		<title>Actual sediment flow</title>
-        <runninghead>Actual flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual flow density* map shows the flow paths that deliver actual services to
-		humans. These are selected from the total flow density to only show these flow paths
-		that are not depleted by sinks and actually reach users.
-		
-		For provisioning services, these flow paths deliver valuable benefits to the
-		users and the density is proportional to the value accrued. For preventive services,
-		the flow paths show how much of the carrier reaches users, delivering actual
-		damage.
-		
-		In this case, the density of actual flows represents the downstream movement of sediment 
-		when accounting for sediment sinks (i.e., areas of deposition).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="actual-sediment-source">
-		<concept>soilRetentionService:ActualSedimentSource</concept>
-		<name>Actual sediment source</name>
-		<title>Actual sediment source</title>
-		<runninghead>Actual source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual source map* shows the portion of the source map that is relevant to 
-		the provision of a service after accounting for sinks and flow dynamics. 
-		For provisioning services, this is the amount and location of a benefit that 
-		actually provides benefits to the users. For preventive services, it shows
-		where the actual damage came from. Source regions that provided a damaging carrier
-		were neutralized by sinks are not shown.
-		 
-		This map shows areas which, based on the flow pattern of sediment and accounting 
-		for sinks (i.e., depositional areas), provide sediment to downstream users who 
-		either benefit from or are damaged by sediment delivery.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <!-- These flow concepts are also only for avoided delivery of
+       detrimental sediment, i.e., the preventive service of sediment
+       regulation.  Prevention of erosion, provision of beneficial
+       sediment, and regulation of detrimental turbidity would be
+       included as differently named flow concepts. -->
 
- 	<page id="utilized-deposition">
-		<concept>soilRetentionService:UtilizedDeposition</concept>
-		<name>Actual deposition</name>
-		<title>Utilized sediment deposition</title>
-		<runninghead>Actual sink map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual sink map* shows the portion of the sinks that actually contribute
-		to depleting a service carrier given its flow patterns. For provisioning
-		services, such sinks are responsible for reducing the benefits compared to their
-		possible value. For preventive services, such sinks provide the actual
-		service because they prevent a damaging carrier from reaching users.
-		
-		This map shows depositional areas that undergo sedimentation, receiving 
-		upstream sediment and actively performing a sediment trapping function.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
- 	<page id="actual-reduced-sediment-deposition-beneficiaries">
-		<concept>soilRetentionService:ActualReducedSedimentDepositionBeneficiaries</concept>
-		<name>Actual reduced sediment deposition beneficiaries</name>
-		<title>Actual reduced sediment deposition beneficiaries</title>
-		<runninghead>Actual use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *actual use map* shows the level of use of a beneficial carrier for a provisioning
-		service or damage caused by a detrimental carrier for a preventive service, for 
-		users located across the landscape.
-		
-		This map shows beneficiaries who receive beneficial or detrimental sedimentation when 
-		accounting for flow paths and sinks.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <page id="possible-sediment-flow">
+    <concept>soilRetentionService:PossibleSedimentFlow</concept>
+    <name>Possible sediment flow</name>
+    <title>Possible sediment flow</title>
+    <runninghead>Possible flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible flow maps* represent the path that the carrier of the service would take
+      if it was not intercepted by sinks.  As such it considers source and use models and
+      shows the maximum amount of flow. For provisioning services, this corresponds to the
+      maximum potential benefit; for preventive services, the maximum potential damage.
 
-     <page id="unutilized-sediment-source">
-		<concept>soilRetentionService:UnutilizedSedimentSource</concept>
-		<name>Unutilized sediment source</name>
-		<title>Unutilized sediment source</title>
-		<runninghead>Inaccessible source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *inaccessible source map* shows the flow paths that cannot deliver a 
-		service carrier to humans based on the flow routes and the source and user
-		locations.
-		
-		For provisioning services, these flow paths show areas that could provide a benefit,
-		but do not due to a lack of flow connections to potential users.  For preventive services, 
-		the flow paths show potential sources of a damaging carrier that do not impact people.
-		
-		This map shows areas which, based on the flow pattern of sediment, do not provide sediment 
-		to downstream users who either benefit from or are damaged by sediment delivery.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows the downstream movement of sediment when not accounting for sediment
+      sinks (i.e., areas of deposition).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
-     <page id="absorbed-sediment-flow">
-		<concept>soilRetentionService:AbsorbedSedimentFlow</concept>
-		<name>Absorbed sediment flow</name>
-		<title>Absorbed sediment flow</title>
-		<runninghead>Blocked flow map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked flow map* shows the flow paths that could have delivered the 
-		service carrier to humans based on the flow routes and the source and user
-		locations, but did not because of the action of sinks. These are selected from among 
-		all actual flows.
-		
-		For provisioning services, these flow paths show the loss in possible flow of
-		beneficial services to the users, and their density is proportional to the value lost. 
-		For preventive services, the flow paths show the amount of the total flow that 
-		was prevented by natural features from causing damage.
-		
-		This map shows the flow of sediment that does not reach downstream beneficiaries 
-		(who benefit from either avoided detrimental sedimentation or beneficial sediment 
-		delivery).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+  <page id="possible-sediment-source">
+    <concept>soilRetentionService:PossibleSedimentSource</concept>
+    <name>Possible sediment source</name>
+    <title>Possible sediment source</title>
+    <runninghead>Possible source map.</runninghead>
+    <group>flow</group>
+    <description>
+      Even in the absence of sinks, not all of a source quantity actually has the
+      ability to reach users, because of the route that an ecosystem service carrier
+      moves across the landscape. Flow analysis allows us to identify which particular
+      portion of the total source quantity is actually generating carriers that
+      reach the users, independent of the existence of sinks but taking into account
+      the result of use values, the structure of the landscape and the flow paths of
+      the carrier, producing this *possible source map*. For provisioning services,
+      this corresponds to the source of benefits that has the potential of being actually
+      useful. For preventive services, this corresponds to the portion of the source
+      field that could actually cause damage to people. The location and strength of
+      sinks determines how much of the source actually reaches the users.
 
- 	<page id="negated-sediment-source">
-		<concept>soilRetentionService:NegatedSedimentSource</concept>
-		<name>Negated sediment source</name>
-		<title>Negated sediment source</title>
-		<runninghead>Blocked source map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked source map* shows the part of the source map that had the possibility
-		of reaching users given the location of the users and the flow dynamics, but
-		was blocked from doing so because of the action of sinks. For provisioning services,
-		this corresponds to value produced by the environment but lost before it reaches
-		the users. For preventive services, it corresponds to damage that could have been
-		inflicted on users but was blocked by natural features.
-		
-		This map shows areas which, based on the deposition occurring sinks areas, do not 
-		provide sediment to downstream users who either benefit from or are damaged by 
-		sediment delivery.
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
+      This map shows areas which, based on the flow pattern of sediment but when not
+      accounting for sinks (i.e., depositional areas), provide sediment which reaches
+      downstream users who either benefit from or are damaged by sediment delivery.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
 
-	<page id="blocked-harmful-sediment">
-		<concept>soilRetentionService:BlockedHarmfulSediment</concept>
-		<name>Blocked harmful sediment</name>
-		<title>Blocked harmful sediment</title>
-		<runninghead>Blocked use map.</runninghead>
-		<group>flow</group>
-		<description>
-		The *blocked use map* shows those users that would have been reached by the service
-		carrier based only on the source and the flow dynamics, but were not reached because 
-		of the action of sinks. For provisioning services, the map shows possible value that 
-		has not been accrued to users because of sinks; for preventive services, it shows 
-		actual value accrued by users thanks to sink configuration. 
-		
-		For preventive services, therefore, this map is the ultimate quantification of
-		value given the locations and quantity of users and natural sink features.
-		
-		This map shows beneficiaries who receive less detrimental sediment as a result of 
-		sink actions (sediment deposition).
-		</description>
-		<see-also><![CDATA[
-		<p>
-			<a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
-		</p>
-		]]></see-also>
-		<credits><![CDATA[<b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.]]></credits>
-		<plot-type>geosurface-2d</plot-type>
-		<plot-type default="true">geocontour-2d</plot-type>
-	</page>
-	
+  <page id="possible-reduced-sediment-deposition-beneficiaries">
+    <concept>soilRetentionService:PossibleReducedSedimentDepositionBeneficiaries</concept>
+    <name>Possible reduced sediment deposition beneficiaries</name>
+    <title>Possible reduced sediment deposition beneficiaries</title>
+    <runninghead>Possible use map.</runninghead>
+    <group>flow</group>
+    <description>
+      *Possible use maps* show the locations of users on the landscape that can receive a
+      benefit due to flow connections with a source of an ecosystem service carrier, but may
+      or may not actually receive the carrier due to the action of sinks.  For provisioning
+      services, potential use identifies areas where it is physically possible for a benefit to
+      be received.  For preventive services, potential use identifies areas that may be damaged
+      by a detrimental carrier if sinks do not prevent such damage.
+
+      This map shows beneficiaries who receive beneficial or detrimental sedimentation when
+      accounting for flow paths but not sinks.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="actual-sediment-flow">
+    <concept>soilRetentionService:ActualSedimentFlow</concept>
+    <name>Actual sediment flow</name>
+    <title>Actual sediment flow</title>
+    <runninghead>Actual flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual flow density* map shows the flow paths that deliver actual services to
+      humans. These are selected from the total flow density to only show these flow paths
+      that are not depleted by sinks and actually reach users.
+
+      For provisioning services, these flow paths deliver valuable benefits to the
+      users and the density is proportional to the value accrued. For preventive services,
+      the flow paths show how much of the carrier reaches users, delivering actual
+      damage.
+
+      In this case, the density of actual flows represents the downstream movement of sediment
+      when accounting for sediment sinks (i.e., areas of deposition).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="actual-sediment-source">
+    <concept>soilRetentionService:ActualSedimentSource</concept>
+    <name>Actual sediment source</name>
+    <title>Actual sediment source</title>
+    <runninghead>Actual source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual source map* shows the portion of the source map that is relevant to
+      the provision of a service after accounting for sinks and flow dynamics.
+      For provisioning services, this is the amount and location of a benefit that
+      actually provides benefits to the users. For preventive services, it shows
+      where the actual damage came from. Source regions that provided a damaging carrier
+      were neutralized by sinks are not shown.
+
+      This map shows areas which, based on the flow pattern of sediment and accounting
+      for sinks (i.e., depositional areas), provide sediment to downstream users who
+      either benefit from or are damaged by sediment delivery.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="utilized-deposition">
+    <concept>soilRetentionService:UtilizedDeposition</concept>
+    <name>Actual deposition</name>
+    <title>Utilized sediment deposition</title>
+    <runninghead>Actual sink map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual sink map* shows the portion of the sinks that actually contribute
+      to depleting a service carrier given its flow patterns. For provisioning
+      services, such sinks are responsible for reducing the benefits compared to their
+      possible value. For preventive services, such sinks provide the actual
+      service because they prevent a damaging carrier from reaching users.
+
+      This map shows depositional areas that undergo sedimentation, receiving
+      upstream sediment and actively performing a sediment trapping function.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="actual-reduced-sediment-deposition-beneficiaries">
+    <concept>soilRetentionService:ActualReducedSedimentDepositionBeneficiaries</concept>
+    <name>Actual reduced sediment deposition beneficiaries</name>
+    <title>Actual reduced sediment deposition beneficiaries</title>
+    <runninghead>Actual use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      service or damage caused by a detrimental carrier for a preventive service, for
+      users located across the landscape.
+
+      This map shows beneficiaries who receive beneficial or detrimental sedimentation when
+      accounting for flow paths and sinks.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="unutilized-sediment-source">
+    <concept>soilRetentionService:UnutilizedSedimentSource</concept>
+    <name>Unutilized sediment source</name>
+    <title>Unutilized sediment source</title>
+    <runninghead>Inaccessible source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *inaccessible source map* shows the flow paths that cannot deliver a
+      service carrier to humans based on the flow routes and the source and user
+      locations.
+
+      For provisioning services, these flow paths show areas that could provide a benefit,
+      but do not due to a lack of flow connections to potential users.  For preventive services,
+      the flow paths show potential sources of a damaging carrier that do not impact people.
+
+      This map shows areas which, based on the flow pattern of sediment, do not provide sediment
+      to downstream users who either benefit from or are damaged by sediment delivery.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="absorbed-sediment-flow">
+    <concept>soilRetentionService:AbsorbedSedimentFlow</concept>
+    <name>Absorbed sediment flow</name>
+    <title>Absorbed sediment flow</title>
+    <runninghead>Blocked flow map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked flow map* shows the flow paths that could have delivered the
+      service carrier to humans based on the flow routes and the source and user
+      locations, but did not because of the action of sinks. These are selected from among
+      all actual flows.
+
+      For provisioning services, these flow paths show the loss in possible flow of
+      beneficial services to the users, and their density is proportional to the value lost.
+      For preventive services, the flow paths show the amount of the total flow that
+      was prevented by natural features from causing damage.
+
+      This map shows the flow of sediment that does not reach downstream beneficiaries
+      (who benefit from either avoided detrimental sedimentation or beneficial sediment
+      delivery).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="negated-sediment-source">
+    <concept>soilRetentionService:NegatedSedimentSource</concept>
+    <name>Negated sediment source</name>
+    <title>Negated sediment source</title>
+    <runninghead>Blocked source map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked source map* shows the part of the source map that had the possibility
+      of reaching users given the location of the users and the flow dynamics, but
+      was blocked from doing so because of the action of sinks. For provisioning services,
+      this corresponds to value produced by the environment but lost before it reaches
+      the users. For preventive services, it corresponds to damage that could have been
+      inflicted on users but was blocked by natural features.
+
+      This map shows areas which, based on the deposition occurring sinks areas, do not
+      provide sediment to downstream users who either benefit from or are damaged by
+      sediment delivery.
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="blocked-harmful-sediment">
+    <concept>soilRetentionService:BlockedHarmfulSediment</concept>
+    <name>Blocked harmful sediment</name>
+    <title>Blocked harmful sediment</title>
+    <runninghead>Blocked use map.</runninghead>
+    <group>flow</group>
+    <description>
+      The *blocked use map* shows those users that would have been reached by the service
+      carrier based only on the source and the flow dynamics, but were not reached because
+      of the action of sinks. For provisioning services, the map shows possible value that
+      has not been accrued to users because of sinks; for preventive services, it shows
+      actual value accrued by users thanks to sink configuration.
+
+      For preventive services, therefore, this map is the ultimate quantification of
+      value given the locations and quantity of users and natural sink features.
+
+      This map shows beneficiaries who receive less detrimental sediment as a result of
+      sink actions (sediment deposition).
+    </description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
 </presentation>
