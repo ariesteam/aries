@@ -119,7 +119,7 @@
     :otherwise  MountainFrontAbsent))
 
 (defmodel stream-channel StreamChannel
-  (classification (binary-coding geofeatures:River) 
+  (classification (binary-coding geofeatures:EphemeralStream) 
     1           StreamChannelPresent
     :otherwise  StreamChannelAbsent))
 
@@ -468,6 +468,28 @@
     #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
     #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
 
+(defmodel vegetation-type-constrained sanPedro:CarbonVegetationType
+  "Reclass of Steinitz LULC layers where they have coverage"
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained)
+    1                                 sanPedro:Forest
+    2                                 sanPedro:OakWoodland
+    #{6 26}                           sanPedro:MesquiteWoodland
+    #{4 5}                            sanPedro:Grassland
+    #{7 23}                           sanPedro:DesertScrub
+    #{27 28 29 30}                    sanPedro:Riparian
+    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
+
+(defmodel vegetation-type-open sanPedro:CarbonVegetationType
+  "Reclass of Steinitz LULC layers where they have coverage"
+  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen)
+    1                                 sanPedro:Forest
+    2                                 sanPedro:OakWoodland
+    #{6 26}                           sanPedro:MesquiteWoodland
+    #{4 5}                            sanPedro:Grassland
+    #{7 23}                           sanPedro:DesertScrub
+    #{27 28 29 30}                    sanPedro:Riparian
+    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
+
 (defscenario open-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
@@ -478,10 +500,10 @@
                   (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
-      :context [open-development-scenario :as od vegetation-type :as vt]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'sanPedro:UrbanBarrenWater)
-                  (:vt %))))
+      :context [vegetation-type-open :as vto vegetation-type :as vt]
+      :state   #(if (no-data? (:vto %))
+                  (:vt %)
+                  (:vto %))))
   (model MountainFront
     (classification MountainFront
       :context [open-development-scenario :as od mountain-front :as mf]
@@ -499,10 +521,10 @@
                   (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
-      :context [constrained-development-scenario :as cd  vegetation-type :as vt]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'sanPedro:UrbanBarrenWater)
-                  (:vt %))))
+      :context [vegetation-type-constrained :as vtc  vegetation-type :as vt]
+      :state   #(if (no-data? (:vtc %))
+                  (:vt %)
+                  (:vtc %))))
   (model MountainFront
     (classification MountainFront
       :context [constrained-development-scenario :as cd mountain-front :as mf]

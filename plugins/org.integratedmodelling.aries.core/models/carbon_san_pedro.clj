@@ -377,10 +377,10 @@ fire frequency, increased greenhouse gas emissions."
                   (:ff %))))
   (model sanPedro:CarbonVegetationType
     (classification sanPedro:CarbonVegetationType
-      :context [constrained-development-scenario :as cd vegetation-type :as vt]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'sanPedro:UrbanBarrenWaterAgriculture)
-                  (:vt %))))
+      :context [vegetation-type-constrained :as vtc vegetation-type :as vt]
+      :state   #(if (no-data? (:vtc %))
+                  (:vt %)
+                  (:vtc %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [constrained-development-scenario :as cd use-simple]

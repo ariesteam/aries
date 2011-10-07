@@ -355,12 +355,12 @@ list if desired."
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-;; flow model for farmers in the 100-year floodplain   
+;; Flow model for farmers in the 100-year floodplain   
 (defmodel flood-regulation-farmers-100 AvoidedDamageToFarms100
   (span FloodWaterMovement
 		Precipitation
 		FloodFarmersUse100
-		AnnualFloodSink
+		FloodSink
 		nil 
 		(geophysics:Altitude geofeatures:River Floodplains100)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -374,7 +374,7 @@ list if desired."
 		:downscaling-factor 1  ; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
-		:context [source-annual farmers-use-100 sink-annual flood-flow-data100]
+		:context [source-annual farmers-use-100 sink-annual altitude streams floodplains-100]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -391,12 +391,12 @@ list if desired."
                   FloodMitigatedRunoff
                   FloodMitigationBenefitsAccrued]))
 
-;; flow model for farmers in the 500-year floodplain  
+;; Flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
   (span FloodWaterMovement 
 		Precipitation
 		FloodFarmersUse500
-		AnnualFloodSink
+		FloodSink
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -427,12 +427,12 @@ list if desired."
                   FloodMitigatedRunoff
                   FloodMitigationBenefitsAccrued]))
 
-;; flow model for public-assets in the 100-year floodplain
+;; Flow model for public-assets in the 100-year floodplain
 (defmodel flood-regulation-public-assets-100 AvoidedDamageToPublicAssets100
   (span FloodWaterMovement
 		Precipitation
 		FloodPublicAssetsUse100
-		AnnualFloodSink
+		FloodSink
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -463,12 +463,12 @@ list if desired."
                   FloodMitigatedRunoff
                   FloodMitigationBenefitsAccrued]))
 
-;; flow model for public-assets in the 500-year floodplain
+;; Flow model for public-assets in the 500-year floodplain
 (defmodel flood-regulation-public-assets-500 AvoidedDamageToPublicAssets500
   (span FloodWaterMovement
 		Precipitation
 		FloodPublicAssetsUse500
-		AnnualFloodSink
+		FloodSink
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -499,11 +499,12 @@ list if desired."
                   FloodMitigatedRunoff
                   FloodMitigationBenefitsAccrued]))
 
+;; Flow model for residents in the 100-year floodplain
 (defmodel flood-regulation-residents-100 AvoidedDamageToResidents100
   (span FloodWaterMovement
         Precipitation
         FloodResidentsUse100
-        AnnualFloodSink
+        FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -518,8 +519,7 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
-        :context            [source-annual residents-use-100 sink-annual altitude
-                             streams floodplains-100]
+        :context            [source-annual residents-use-100 sink-annual flood-flow-data100]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations
@@ -536,6 +536,7 @@ list if desired."
                              FloodMitigatedRunoff
                              FloodMitigationBenefitsAccrued]))
 
+;; Flow model for residents in the 500-year floodplain
 (defmodel flood-regulation-residents-500 AvoidedDamageToResidents500
   (span FloodWaterMovement
         Precipitation
@@ -555,8 +556,226 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context            [source-annual residents-use-500 sink-annual altitude
-                             streams floodplains-500]
+        :context            [source-annual residents-use-500 sink-annual flood-flow-data500]
+        :keep               [Runoff
+                             PotentialRunoffMitigation
+                             PotentiallyVulnerablePopulations
+                             PotentiallyDamagingFloodFlow
+                             PotentiallyDamagingRunoff
+                             PotentialFloodDamageReceived
+                             ActualFloodFlow
+                             FloodDamagingRunoff
+                             UtilizedRunoffMitigation
+                             FloodDamageReceived
+                             BenignRunoff
+                             UnutilizedRunoffMitigation
+                             AbsorbedFloodFlow
+                             FloodMitigatedRunoff
+                             FloodMitigationBenefitsAccrued]))
+
+;; Models below are for San Joaquin: need to use GreenInfrastructureSink instead of FloodSink
+;; Flow model for farmers in the 100-year floodplain   
+(defmodel flood-regulation-farmers-100-sj AvoidedDamageToFarms100
+  (span FloodWaterMovement
+		Precipitation
+		FloodFarmersUse100
+		GreenInfrastructureSink
+		nil
+		(geophysics:Altitude geofeatures:River Floodplains100)
+		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:source-type		:finite
+		:sink-type			:finite
+		:use-type			:infinite
+		:benefit-type		:non-rival
+		:downscaling-factor 1  ; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
+		:rv-max-states		10
+		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
+		:context [source-annual farmers-use-100 green-infrastructure-sink flood-flow-data100]
+        :keep    [Runoff
+                  PotentialRunoffMitigation
+                  PotentiallyVulnerablePopulations
+                  PotentiallyDamagingFloodFlow
+                  PotentiallyDamagingRunoff
+                  PotentialFloodDamageReceived
+                  ActualFloodFlow
+                  FloodDamagingRunoff
+                  UtilizedRunoffMitigation
+                  FloodDamageReceived
+                  BenignRunoff
+                  UnutilizedRunoffMitigation
+                  AbsorbedFloodFlow
+                  FloodMitigatedRunoff
+                  FloodMitigationBenefitsAccrued]))
+
+;; Flow model for farmers in the 500-year floodplain  
+(defmodel flood-regulation-farmers-500-sj AvoidedDamageToFarms500
+  (span FloodWaterMovement 
+		Precipitation
+		FloodFarmersUse500
+		GreenInfrastructureSink
+		nil
+		(geophysics:Altitude geofeatures:River Floodplains500)
+		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:source-type		:finite
+		:sink-type			:finite
+		:use-type			:infinite
+		:benefit-type		:non-rival
+		:downscaling-factor 8
+		:rv-max-states		10
+		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
+		:context [source-annual farmers-use-500 green-infrastructure-sink flood-flow-data500]
+		:keep    [Runoff
+                  PotentialRunoffMitigation
+                  PotentiallyVulnerablePopulations
+                  PotentiallyDamagingFloodFlow
+                  PotentiallyDamagingRunoff
+                  PotentialFloodDamageReceived
+                  ActualFloodFlow
+                  FloodDamagingRunoff
+                  UtilizedRunoffMitigation
+                  FloodDamageReceived
+                  BenignRunoff
+                  UnutilizedRunoffMitigation
+                  AbsorbedFloodFlow
+                  FloodMitigatedRunoff
+                  FloodMitigationBenefitsAccrued]))
+
+;; Flow model for public-assets in the 100-year floodplain
+(defmodel flood-regulation-public-assets-100-sj AvoidedDamageToPublicAssets100
+  (span FloodWaterMovement
+		Precipitation
+		FloodPublicAssetsUse100
+		GreenInfrastructureSink
+		nil
+		(geophysics:Altitude geofeatures:River Floodplains100)
+		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:source-type		:finite
+		:sink-type			:finite
+		:use-type			:infinite
+		:benefit-type		:non-rival
+		:downscaling-factor 8
+		:rv-max-states		10
+		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
+		:context [source-annual public-use-100 green-infrastructure-sink flood-flow-data100]
+        :keep    [Runoff
+                  PotentialRunoffMitigation
+                  PotentiallyVulnerablePopulations
+                  PotentiallyDamagingFloodFlow
+                  PotentiallyDamagingRunoff
+                  PotentialFloodDamageReceived
+                  ActualFloodFlow
+                  FloodDamagingRunoff
+                  UtilizedRunoffMitigation
+                  FloodDamageReceived
+                  BenignRunoff
+                  UnutilizedRunoffMitigation
+                  AbsorbedFloodFlow
+                  FloodMitigatedRunoff
+                  FloodMitigationBenefitsAccrued]))
+
+;; Flow model for public-assets in the 500-year floodplain
+(defmodel flood-regulation-public-assets-500-sj AvoidedDamageToPublicAssets500
+  (span FloodWaterMovement
+		Precipitation
+		FloodPublicAssetsUse500
+		GreenInfrastructureSink
+		nil
+		(geophysics:Altitude geofeatures:River Floodplains500)
+		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:source-type		:finite
+		:sink-type			:finite
+		:use-type			:infinite
+		:benefit-type		:non-rival
+		:downscaling-factor 8
+		:rv-max-states		10
+		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
+		:context [source-annual public-use-500 green-infrastructure-sink flood-flow-data500]
+		:keep    [Runoff
+                  PotentialRunoffMitigation
+                  PotentiallyVulnerablePopulations
+                  PotentiallyDamagingFloodFlow
+                  PotentiallyDamagingRunoff
+                  PotentialFloodDamageReceived
+                  ActualFloodFlow
+                  FloodDamagingRunoff
+                  UtilizedRunoffMitigation
+                  FloodDamageReceived
+                  BenignRunoff
+                  UnutilizedRunoffMitigation
+                  AbsorbedFloodFlow
+                  FloodMitigatedRunoff
+                  FloodMitigationBenefitsAccrued]))
+
+;; Flow model for residents in the 100-year floodplain
+(defmodel flood-regulation-residents-100-sj AvoidedDamageToResidents100
+  (span FloodWaterMovement
+        Precipitation
+        FloodResidentsUse100
+        GreenInfrastructureSink
+        nil
+        (geophysics:Altitude geofeatures:River Floodplains100)
+        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :rv-max-states      10 
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
+        :context            [source-annual residents-use-100 green-infrastructure-sink flood-flow-data100]
+        :keep               [Runoff
+                             PotentialRunoffMitigation
+                             PotentiallyVulnerablePopulations
+                             PotentiallyDamagingFloodFlow
+                             PotentiallyDamagingRunoff
+                             PotentialFloodDamageReceived
+                             ActualFloodFlow
+                             FloodDamagingRunoff
+                             UtilizedRunoffMitigation
+                             FloodDamageReceived
+                             BenignRunoff
+                             UnutilizedRunoffMitigation
+                             AbsorbedFloodFlow
+                             FloodMitigatedRunoff
+                             FloodMitigationBenefitsAccrued]))
+
+;; Flow model for residents in the 500-year floodplain
+(defmodel flood-regulation-residents-500-sj AvoidedDamageToResidents500
+  (span FloodWaterMovement
+        Precipitation
+        FloodResidentsUse500
+        GreenInfrastructureSink
+        nil
+        (geophysics:Altitude geofeatures:River Floodplains500)
+        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :rv-max-states      10 
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+        :context            [source-annual residents-use-500 green-infrastructure-sink flood-flow-data500]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations

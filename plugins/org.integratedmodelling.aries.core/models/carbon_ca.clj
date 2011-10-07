@@ -152,10 +152,10 @@
 
 (defmodel fire-threat FireThreatClass
   (classification (ranking habitat:FireThreat) 
-    4 VeryHighFireThreat
-    3 HighFireThreat
-    2 ModerateFireThreat
-    1 LowFireThreat))
+    4        VeryHighFireThreat
+    3        HighFireThreat
+    2        ModerateFireThreat
+    #{1 255} LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
@@ -168,7 +168,7 @@
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel vegetation-carbon-storage-sj VegetationCStorage 
-  (bayesian VegetationCStorage 
+  (bayesian VegetationCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [land-use percent-vegetation-cover land-selector]
     :keep    [VegetationCarbonStorage]
@@ -192,14 +192,14 @@
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel soil-carbon-storage-sj SoilCStorage 
-  (bayesian SoilCStorage 
+  (bayesian SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
 (defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage 
+  (bayesian SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector]
     :keep    [SoilCarbonStorage]
@@ -209,7 +209,7 @@
 (defmodel vegetation-soil-storage-sj VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
     :context [vegetation-carbon-storage-sj soil-carbon-storage-sj] 
-    :state   #(+ (if (nil? (:vegetation-c-storage-sj%)) 0.0 (.getMean (:vegetation-c-storage-sj %)))
+    :state   #(+ (if (nil? (:vegetation-c-storage-sj %)) 0.0 (.getMean (:vegetation-c-storage-sj %)))
                  (if (nil? (:soil-c-storage-sj %))       0.0 (.getMean (:soil-c-storage-sj %))))))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
