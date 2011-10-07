@@ -107,8 +107,8 @@
     [0    0.01] NoSequestration))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel source-sj CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source-sj CarbonSourceValue
+  (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-vegetation-cover land-use land-selector]
     :required [LandOrSea]
@@ -117,8 +117,8 @@
 
 ;; See above statement for AET: Add back in if you use it for wider
 ;; extents of Southern California
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source CarbonSourceValue
+  (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-vegetation-cover vegetation-type land-use land-selector]
     :required [LandOrSea]
@@ -208,7 +208,7 @@
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel vegetation-soil-storage-sj VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
-    :context [vegetation-carbon-storage soil-carbon-storage] 
+    :context [vegetation-carbon-storage-sj soil-carbon-storage-sj] 
     :state   #(+ (if (nil? (:vegetation-c-storage-sj%)) 0.0 (.getMean (:vegetation-c-storage-sj %)))
                  (if (nil? (:soil-c-storage-sj %))       0.0 (.getMean (:soil-c-storage-sj %))))))
 
@@ -220,7 +220,7 @@
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel veg-soil-storage-sj VegetationAndSoilCarbonStorageClass
-  (classification vegetation-soil-storage
+  (classification vegetation-soil-storage-sj
     [160 365] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [100 160] HighStorage
     [40 100]  ModerateStorage

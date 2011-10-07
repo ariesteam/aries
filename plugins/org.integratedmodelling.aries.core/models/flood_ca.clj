@@ -39,7 +39,7 @@
    (TempFloodData500))
   (thinklab-core:BooleanRanking
    (LandOrSea
-    (OnLand) (NotOnLand))))
+     (OnLand) (NotOnLand))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -106,6 +106,9 @@
     :context [precipitation imperviousness]
     :keep	 [FloodSourceValue]
     :result  flood-source-value))
+
+(defmodel source-annual Precipitation
+  (measurement habitat:AnnualPrecipitation "mm"))
 
 ;;;-------------------------------------------------------------------
 ;;; CN source model
@@ -207,6 +210,14 @@
     :required [LandOrSea]
     :keep	  [GreenInfrastructureStorage]
     :result	  green-infrastructure-storage))
+
+;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon (NEEDS MORE WORK...)
+(defmodel sink-annual-sj FloodSink
+  (measurement FloodSink "mm"
+	:context (green-infrastructure-sink-sj dam-storage) 
+	:state   #(+ 
+               (if (nil? (:green-infrastructure-sink %)) 0.0 (.getMean (:green-infrastructure-sink %)))
+               (or		 (:dam-storage %)   0.0))))
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
