@@ -49,7 +49,7 @@
   (measurement geophysics:Altitude "m"))   
 
 (defmodel flow-direction geophysics:FlowDirection
-  (ranking geophysics:FlowDirection)) 
+  (ranking geophysics:FlowDirection))
 
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
@@ -80,7 +80,7 @@
     [70 89] HighRainfallErosivity
     [50 69] ModerateRainfallErosivity
     [30 49] LowRainfallErosivity
-    [:< 29] VeryLowRainfallErosivity)) 
+    [:< 29] VeryLowRainfallErosivity))
 
 ;; Use runoff as training data - or possibly for the sink model (talk to a hydrologist)
 (defmodel flood-source-training FloodSourceValue
@@ -202,7 +202,6 @@
     [  0  15] VeryLowGreenStorage))
 
 ;; Flood sink probability
-;; TODO missing data
 (defmodel green-infrastructure-sink GreenInfrastructureSink
   (bayesian GreenInfrastructureSink 
     :import	  "aries.core::FloodSinkCa.xdsl"
@@ -210,14 +209,6 @@
     :required [LandOrSea]
     :keep	  [GreenInfrastructureStorage]
     :result	  green-infrastructure-storage))
-
-;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon (NEEDS MORE WORK...)
-(defmodel sink-annual-sj FloodSink
-  (measurement FloodSink "mm"
-	:context (green-infrastructure-sink-sj dam-storage) 
-	:state   #(+ 
-               (if (nil? (:green-infrastructure-sink %)) 0.0 (.getMean (:green-infrastructure-sink %)))
-               (or		 (:dam-storage %)   0.0))))
 
 (defmodel sink-annual FloodSink
   (measurement FloodSink "mm"
@@ -249,9 +240,9 @@
 both. Other classes of public infrastructure could be added to this
 list if desired."
   (classification PublicAsset 
-    :context [(ranking infrastructure:Highway)
-              (ranking infrastructure:Railway)]
-    :state   #(if (> (+ (:highway %) (:railway %)) 0) 
+    :context [(binary-coding infrastructure:Highway)
+              (binary-coding infrastructure:Railway)]
+    :state   #(if (or (:highway %) (:railway %))
                 (tl/conc 'floodService:PublicAssetPresent) 
                 (tl/conc 'floodService:PublicAssetAbsent))))
 
@@ -262,6 +253,12 @@ list if desired."
     :otherwise FarmlandAbsent
 										;	 :agent		"aries/flood/farm"
     :editable	 true))
+
+;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
+(defmodel housing aestheticService:PresenceOfHousing
+  (classification (numeric-coding nlcd:NLCDNumeric)
+    [22 23 24] aestheticService:HousingPresent
+    :otherwise aestheticService:HousingAbsent))
 
 ;; Models farmland in the floodplain via basic spatial overlap.
 (defmodel farmers-use-100 FloodFarmersUse100
@@ -297,6 +294,23 @@ list if desired."
                  1
                  0)))
 
+;; Models housing in the floodplain via basic spatial overlap.
+(defmodel residents-use-100 FloodResidentsUse100
+  (binary-coding FloodResidentsUse100
+    :context [housing floodplains-100]
+    :state   #(if (and (= (tl/conc 'floodService:In100YrFloodplain)  (:floodplains100 %))
+                       (= (tl/conc 'aestheticService:HousingPresent) (:presence-of-housing %)))
+                1
+                0)))
+
+(defmodel residents-use-500 FloodResidentsUse500
+  (binary-coding FloodResidentsUse500
+    :context [housing floodplains-500]
+    :state   #(if (and (= (tl/conc 'floodService:In500YrFloodplain)  (:floodplains500 %))
+                       (= (tl/conc 'aestheticService:HousingPresent) (:presence-of-housing %)))
+                1
+                0)))
+
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
@@ -325,13 +339,17 @@ list if desired."
   (identification AvoidedPublicAssetDamage500
     :context [source sink-annual public-use-500 flood-flow-data500]))
 
+(defmodel data-residents-100 AvoidedDamageToResidents100 
+  (identification AvoidedDamageToResidents100 
+    :context [source-annual sink-annual residents-use-100 flood-flow-data100]))
+
+(defmodel data-residents-500 AvoidedDamageToResidents500 
+  (identification AvoidedDamageToResidents500 
+    :context [source-annual sink-annual residents-use-500 flood-flow-data500]))
+
 ;;(defmodel data-private AvoidedDamageToPrivateAssets 
 ;; (identification AvoidedDamageToPrivateAssets 
 ;;	  :context [source sink-annual private-use]))
-
-;;(defmodel data-residents AvoidedDamageToResidents 
-;; (identification AvoidedDamageToResidents 
-;;	  :context [source sink-annual residents-use]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -356,7 +374,7 @@ list if desired."
 		:downscaling-factor 1  ; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
-		:context [source farmers-use-100 sink-annual flood-flow-data100]
+		:context [source-annual farmers-use-100 sink-annual flood-flow-data100]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -392,7 +410,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
-		:context [source farmers-use-500 sink-annual flood-flow-data500]
+		:context [source-annual farmers-use-500 sink-annual flood-flow-data500]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -428,7 +446,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
-		:context [source public-use-100 sink-annual flood-flow-data100]
+		:context [source-annual public-use-100 sink-annual flood-flow-data100]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -464,7 +482,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
-		:context [source public-use-500 sink-annual flood-flow-data500]
+		:context [source-annual public-use-500 sink-annual flood-flow-data500]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -480,6 +498,80 @@ list if desired."
                   AbsorbedFloodFlow
                   FloodMitigatedRunoff
                   FloodMitigationBenefitsAccrued]))
+
+(defmodel flood-regulation-residents-100 AvoidedDamageToResidents100
+  (span FloodWaterMovement
+        Precipitation
+        FloodResidentsUse100
+        AnnualFloodSink
+        nil
+        (geophysics:Altitude geofeatures:River Floodplains100)
+        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :rv-max-states      10 
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
+        :context            [source-annual residents-use-100 sink-annual altitude
+                             streams floodplains-100]
+        :keep               [Runoff
+                             PotentialRunoffMitigation
+                             PotentiallyVulnerablePopulations
+                             PotentiallyDamagingFloodFlow
+                             PotentiallyDamagingRunoff
+                             PotentialFloodDamageReceived
+                             ActualFloodFlow
+                             FloodDamagingRunoff
+                             UtilizedRunoffMitigation
+                             FloodDamageReceived
+                             BenignRunoff
+                             UnutilizedRunoffMitigation
+                             AbsorbedFloodFlow
+                             FloodMitigatedRunoff
+                             FloodMitigationBenefitsAccrued]))
+
+(defmodel flood-regulation-residents-500 AvoidedDamageToResidents500
+  (span FloodWaterMovement
+        Precipitation
+        FloodResidentsUse500
+        FloodSink
+        nil
+        (geophysics:Altitude geofeatures:River Floodplains500)
+        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
+        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :rv-max-states      10 
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
+        :context            [source-annual residents-use-500 sink-annual altitude
+                             streams floodplains-500]
+        :keep               [Runoff
+                             PotentialRunoffMitigation
+                             PotentiallyVulnerablePopulations
+                             PotentiallyDamagingFloodFlow
+                             PotentiallyDamagingRunoff
+                             PotentialFloodDamageReceived
+                             ActualFloodFlow
+                             FloodDamagingRunoff
+                             UtilizedRunoffMitigation
+                             FloodDamageReceived
+                             BenignRunoff
+                             UnutilizedRunoffMitigation
+                             AbsorbedFloodFlow
+                             FloodMitigatedRunoff
+                             FloodMitigationBenefitsAccrued]))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.	   

@@ -345,10 +345,11 @@
   "Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could
 be added to this list if desired."
   (classification PublicAsset
-    :context [(ranking infrastructure:Highway) (ranking infrastructure:Railway)]
-    :state   #(if (> (+ (:highway %) (:railway %)) 0) 
+    :context [(binary-coding infrastructure:Highway)
+              (binary-coding infrastructure:Railway)]
+    :state   #(if (or (:highway %) (:railway %)) 
                 (tl/conc 'floodService:PublicAssetPresent) 
-                (tl/conc 'floodService:PublicAssetNotAbsent))))
+                (tl/conc 'floodService:PublicAssetAbsent))))
 
 (defmodel farmland Farmland
   "Just a reclass of the NLCD land use layer"
