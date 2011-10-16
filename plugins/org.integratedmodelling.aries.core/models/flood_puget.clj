@@ -581,7 +581,7 @@ be added to this list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context            [source-annual public-use-100 sink-annual altitude
+        :context            [altitude source-annual public-use-100 sink-annual 
                              streams floodplains-100-code levees]
         :keep               [Runoff
                              PotentialRunoffMitigation

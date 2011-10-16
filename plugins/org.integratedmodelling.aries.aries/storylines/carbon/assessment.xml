@@ -1,16 +1,21 @@
 <presentation>
 
   <title>Carbon sequestration and storage</title>
-  <runninghead>The values associated with ecosystems' abiility to sequester and store CO<sub>2</sub>, removing it from the atmosphere.</runninghead>
-  <description>The values associated with ecosystems' abiility to sequester and store CO<sub>2</sub>, removing it from the atmosphere.</description>
+  <runninghead>The values associated with ecosystems' ability to sequester and store CO2, removing it from the atmosphere.</runninghead>
+  <description>The values associated with ecosystems' ability to sequester and store CO2, removing it from the atmosphere.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>carbonService:ClimateStability</concept>
 
   <!-- All the models that apply and in which context. -->
   <model>
+    <id>core.models.carbon-mg/carbon-flow</id>
+    <context>core.contexts.beta/mg512</context>
+  </model>
+  
+  <model>
     <id>core.models.carbon-puget/carbon-flow</id>
-    <context>core.contexts.beta/western_wa2048</context>
+    <context>core.contexts.beta/western_wa256</context>
   </model>
 
   <model>
@@ -26,11 +31,6 @@
   <model>
     <id>core.models.carbon-san-pedro/carbon-flow</id>
     <context>core.contexts.beta/san_pedro_us512</context>
-  </model>
-
-  <model>
-    <id>core.models.carbon-mg/carbon-flow</id>
-    <context>core.contexts.beta/mg512</context>
   </model>
 
   <!-- Storyline description. -->
