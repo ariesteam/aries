@@ -325,19 +325,19 @@ list if desired."
 
 (defmodel data-farmers-100 AvoidedFarmDamage100
   (identification AvoidedFarmDamage100
-    :context [source sink-annual farmers-use-100 flood-flow-data100]))
+    :context [source-annual sink-annual farmers-use-100 flood-flow-data100]))
 
 (defmodel data-farmers-500 AvoidedFarmDamage500
   (identification AvoidedFarmDamage500
-    :context [source sink-annual farmers-use-500 flood-flow-data500]))
+    :context [source-annual sink-annual farmers-use-500 flood-flow-data500]))
 
 (defmodel data-public-100 AvoidedPublicAssetDamage100
   (identification AvoidedPublicAssetDamage100
-    :context [source sink-annual public-use-100 flood-flow-data100]))
+    :context [source-annual sink-annual public-use-100 flood-flow-data100]))
 
 (defmodel data-public-500 AvoidedPublicAssetDamage500
   (identification AvoidedPublicAssetDamage500
-    :context [source sink-annual public-use-500 flood-flow-data500]))
+    :context [source-annual sink-annual public-use-500 flood-flow-data500]))
 
 (defmodel data-residents-100 AvoidedDamageToResidents100 
   (identification AvoidedDamageToResidents100 
@@ -346,6 +346,30 @@ list if desired."
 (defmodel data-residents-500 AvoidedDamageToResidents500 
   (identification AvoidedDamageToResidents500 
     :context [source-annual sink-annual residents-use-500 flood-flow-data500]))
+
+(defmodel data-farmers-100-sj AvoidedFarmDamage100
+  (identification AvoidedFarmDamage100
+    :context [source-annual green-infrastructure-sink farmers-use-100 flood-flow-data100]))
+
+(defmodel data-farmers-500-sj AvoidedFarmDamage500
+  (identification AvoidedFarmDamage500
+    :context [source-annual green-infrastructure-sink farmers-use-500 flood-flow-data500]))
+
+(defmodel data-public-100-sj AvoidedPublicAssetDamage100
+  (identification AvoidedPublicAssetDamage100
+    :context [source-annual green-infrastructure-sink public-use-100 flood-flow-data100]))
+
+(defmodel data-public-500-sj AvoidedPublicAssetDamage500
+  (identification AvoidedPublicAssetDamage500
+    :context [source-annual green-infrastructure-sink public-use-500 flood-flow-data500]))
+
+(defmodel data-residents-100-sj AvoidedDamageToResidents100 
+  (identification AvoidedDamageToResidents100 
+    :context [source-annual green-infrastructure-sink residents-use-100 flood-flow-data100]))
+
+(defmodel data-residents-500-sj AvoidedDamageToResidents500 
+  (identification AvoidedDamageToResidents500 
+    :context [source-annual green-infrastructure-sink residents-use-500 flood-flow-data500]))
 
 ;;(defmodel data-private AvoidedDamageToPrivateAssets 
 ;; (identification AvoidedDamageToPrivateAssets 

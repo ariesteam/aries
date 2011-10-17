@@ -311,13 +311,13 @@
     #{"A" "X500"} In500YrFloodplain
     :otherwise    NotIn500YrFloodplain))
 
-(defmodel floodplains-100-code Floodplains100
-  (binary-coding Floodplains100
+(defmodel floodplains-100-code Floodplains100Code
+  (binary-coding Floodplains100Code
     :context [(categorization geofeatures:Floodplain)]
     :state   #(if (= (:floodplain %) "A") 1 0)))
 
-(defmodel floodplains-500-code Floodplains500
-  (binary-coding Floodplains500
+(defmodel floodplains-500-code Floodplains500Code
+  (binary-coding Floodplains500Code
     :context [(categorization geofeatures:Floodplain)]
     :state   #(if (contains? #{"A" "X500"} (:floodplain %)) 1 0)))
 
@@ -494,7 +494,7 @@ be added to this list if desired."
         FloodFarmersUse100
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -531,7 +531,7 @@ be added to this list if desired."
         FloodFarmersUse500
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -568,7 +568,7 @@ be added to this list if desired."
         FloodPublicAssetsUse100
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -581,7 +581,7 @@ be added to this list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context            [source-annual public-use-100 sink-annual altitude
+        :context            [altitude source-annual public-use-100 sink-annual 
                              streams floodplains-100-code levees]
         :keep               [Runoff
                              PotentialRunoffMitigation
@@ -605,7 +605,7 @@ be added to this list if desired."
         FloodPublicAssetsUse500
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -642,7 +642,7 @@ be added to this list if desired."
         FloodResidentsUse100
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -651,7 +651,11 @@ be added to this list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 3        ; Originally set at 1; bumped it
+                                     ; to 3 in order to run models at
+                                     ; high enough resolution to
+                                     ; produce a continuous streams
+                                     ; layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
@@ -679,7 +683,7 @@ be added to this list if desired."
         FloodResidentsUse500
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -721,7 +725,7 @@ be added to this list if desired."
         FloodPrivateAssetsUse100
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -758,7 +762,7 @@ be added to this list if desired."
         FloodPrivateAssetsUse500
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500 Levees)
+        (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1

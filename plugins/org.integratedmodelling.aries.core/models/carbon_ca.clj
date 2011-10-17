@@ -190,14 +190,6 @@
     [0.01 2] VeryLowSoilStorage
     [0 0.01] NoSoilStorage))
 
-;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel soil-carbon-storage-sj SoilCStorage 
-  (bayesian SoilCStorage
-    :import  "aries.core::CarbonSinkCa.xdsl"
-    :context [soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector]
-    :keep    [SoilCarbonStorage]
-    :result  soil-storage))
-
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
@@ -208,13 +200,13 @@
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel vegetation-soil-storage-sj VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
-    :context [vegetation-carbon-storage-sj soil-carbon-storage-sj] 
-    :state   #(+ (if (nil? (:vegetation-c-storage-sj %)) 0.0 (.getMean (:vegetation-c-storage-sj %)))
-                 (if (nil? (:soil-c-storage-sj %))       0.0 (.getMean (:soil-c-storage-sj %))))))
+    :context [vegetation-carbon-storage-sj soil-carbon-storage]
+    :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                 (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
-    :context [vegetation-carbon-storage soil-carbon-storage] 
+    :context [vegetation-carbon-storage soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 

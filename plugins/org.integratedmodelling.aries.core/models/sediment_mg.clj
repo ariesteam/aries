@@ -273,9 +273,9 @@
 ;; implemented in the future, however.
 (defmodel sediment-beneficial BeneficialSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual
         DepositionProneFarmers
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
         :source-threshold   2.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
@@ -311,9 +311,9 @@
 ;; currently designed to be run.
 (defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual 
         DepositionProneFarmers
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
         :source-threshold   2.0
@@ -348,9 +348,9 @@
 ;; models currently designed to be run.
 (defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual
         HydroelectricUseLevel
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
         :source-threshold   2.0
@@ -386,9 +386,9 @@
 ;; easily implemented in the future, however.
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-        SedimentSourceValueAnnualClass 
+        SedimentSourceValueAnnual
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
-        AnnualSedimentSinkClass 
+        AnnualSedimentSink
         nil
         (geophysics:Altitude Floodplains geofeatures:River)
         :source-threshold   2.0

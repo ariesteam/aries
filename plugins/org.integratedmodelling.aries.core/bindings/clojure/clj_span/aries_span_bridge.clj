@@ -176,11 +176,11 @@
         (for [value (NaNs-to-zero (get-data ds))]
           (with-meta (array-map value 1.0) disc-type)))))
 
-
 (defmethod unpack-datasource :varprop
   [_ ds _]
   (println "Inside unpack-datasource!\nChecking datasource type..." ds)
-  (cond (instance? MemObjectContextualizedDatasource ds)
+  (if (nil? ds) (throw (Exception. (str "null datasource"))))
+  (cond (and (.isProbabilistic ds) (.isContinuous ds))
         (do (println "It's probabilistic and continuous.")
             (let [dists                 (.getRawData ds)
                   example-dist          (first (remove nil? dists))
@@ -197,13 +197,11 @@
                   (fuzzy-number-from-ranges bounds (.getData dist))
                   _0_))))
 
-        (instance? MemDoubleContextualizedDatasource ds)
+        ;; other checks available: isCategorical isBoolean isNumeric
+        :otherwise
         (do (println "It's deterministic.")
             (for [value (NaNs-to-zero (get-data ds))]
-              (fuzzy-number value 0.0)))
-
-        :otherwise
-        (throw (Exception. (str "Unrecognized datasource type: " (class ds))))))
+              (fuzzy-number value 0.0)))))
 
 (defn- unpack-datasource-orig
   "Returns a seq of length n of the values in ds,
@@ -288,6 +286,7 @@
     (println "Unpacking observation into data-layers.")
     ;; FIXME fv this is to address an issue before it shows up - to be removed
     (collect-states observation)
+    (println (. observation getStates))
     (let [rows            (grid-rows       observation)
           cols            (grid-columns    observation)
           [cell-w cell-h] (cell-dimensions observation) ;; in meters

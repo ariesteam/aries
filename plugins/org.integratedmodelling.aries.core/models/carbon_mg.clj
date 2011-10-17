@@ -238,7 +238,7 @@
 (defmodel use-simple GreenhouseGasEmissions
   (measurement GreenhouseGasEmissions "t/ha*year"
     :context [(count policytarget:PopulationDensity "/km^2")]
-    :state   #(* (:population-density %) 0.04)))
+    :state   #(if (nil? (:population-density %)) nil (* (:population-density %) 0.04))))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
