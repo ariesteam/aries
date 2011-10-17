@@ -350,7 +350,7 @@
 
 ;; Flow model for surface water in a dry year
 (defmodel surface-flow-dry SurfaceWaterMovement
-  (span SurfaceWaterMovement ; Can this be the same as the above concept?
+  (span SurfaceWaterMovement
         AnnualPrecipitationDryYear
         SurfaceDiversionCapacity
         SurfaceWaterSink
@@ -390,7 +390,7 @@
 
 ;; Flow model for surface water in a wet year
 (defmodel surface-flow-wet SurfaceWaterMovement
-  (span SurfaceWaterMovement ; Can this be the same as the above concept?
+  (span SurfaceWaterMovement
         AnnualPrecipitationWetYear
         SurfaceDiversionCapacity
         SurfaceWaterSink
@@ -430,7 +430,7 @@
 
 ;; Flow model for groundwater
 ;; (defmodel groundwater-flow GroundwaterMovement
-;;  (span GroundwaterMovement  ; Can this be the same as the above concept?
+;;  (span GroundwaterMovement
 ;;    habitat:AnnualRecharge   
 ;;    Wells
 ;;    SurfaceWaterSinkClass ; Replace with proper GW sink class when it's ready
