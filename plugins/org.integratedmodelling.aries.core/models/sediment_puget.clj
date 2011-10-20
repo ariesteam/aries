@@ -215,8 +215,8 @@
     #{"A" "X500"} InFloodplain
     :otherwise    NotInFloodplain))
 
-(defmodel floodplains-code Floodplains
-  (binary-coding Floodplains
+(defmodel floodplains-code FloodplainsCode
+  (binary-coding FloodplainsCode
     :context [(categorization geofeatures:Floodplain)]
     :state   #(if (contains? #{"A" "X500"} (:floodplain %)) 1 0)))
 
@@ -303,7 +303,7 @@
         DepositionProneFarmers
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River) 
+        (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River) 
         :source-threshold   1000.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
         :sink-threshold      500.0
         :use-threshold         0.0
@@ -340,7 +340,7 @@
         geofeatures:Reservoir
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River)
+        (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
         :source-threshold   1000.0
         :sink-threshold      500.0
         :use-threshold         0.0
@@ -377,7 +377,7 @@
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSink 
         nil
-        (geophysics:Altitude Floodplains infrastructure:Levee geofeatures:River)
+        (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
         :source-threshold   1000.0
         :sink-threshold      500.0
         :use-threshold         0.0

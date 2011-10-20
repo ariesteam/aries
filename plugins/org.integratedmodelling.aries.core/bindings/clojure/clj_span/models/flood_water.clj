@@ -296,7 +296,7 @@
   [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
    source-layer sink-layer _ source-points sink-points use-points
    {stream-layer "River", elevation-layer "Altitude", levees-layer "Levees",
-    floodplain-layer100 "Floodplains100", floodplain-layer500 "Floodplains500"}]
+    floodplain-layer100 "Floodplains100Code", floodplain-layer500 "Floodplains500Code"}]
   (println "Operating in" (if floodplain-layer500 "500" "100") "year floodplain.")
   (let [floodplain-layer    (or floodplain-layer500 floodplain-layer100)
         levee?              (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))

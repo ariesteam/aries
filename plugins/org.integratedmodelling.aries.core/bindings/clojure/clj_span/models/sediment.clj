@@ -295,7 +295,7 @@
   [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
    source-layer sink-layer _ source-points sink-points use-points
    {stream-layer "River", elevation-layer "Altitude", levees-layer "Levee",
-    floodplain-layer "Floodplains"}]
+    floodplain-layer "FloodplainsCode"}]
   (let [levee?               (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))
         in-stream?           (memoize #(if-let [val (get-in stream-layer     %)] (not= _0_ val)))
         in-floodplain?       (memoize #(if-let [val (get-in floodplain-layer %)] (not= _0_ val)))

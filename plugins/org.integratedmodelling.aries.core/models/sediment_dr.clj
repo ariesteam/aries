@@ -188,10 +188,8 @@
     [20 40]				LowFloodplainVegetationCover
 	[ 0 20]				VeryLowFloodplainVegetationCover))
 
-(defmodel floodplains Floodplains
-  (classification (binary-coding geofeatures:Floodplain)
-    1 InFloodplain
-    0 NotInFloodplain))
+(defmodel floodplains-code FloodplainsCode
+  (binary-coding geofeatures:Floodplain))
 
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
@@ -294,7 +292,7 @@
 		DepositionProneFarmers
 		AnnualSedimentSinkClass 
 		nil
-		(geophysics:Altitude Floodplains geofeatures:River)
+		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
 		:sink-threshold		1.0
 		:use-threshold		0.5
@@ -306,7 +304,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_beneficial.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams]
+        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams]
 		:keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialSedimentDepositionBeneficiaries
@@ -331,7 +329,7 @@
 		DepositionProneFarmers
 		AnnualSedimentSinkClass 
 		nil
-		(geophysics:Altitude Floodplains geofeatures:River)
+		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
 		:sink-threshold		1.0
 		:use-threshold		0.5
@@ -343,7 +341,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_farmers.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams] ; Change the beneficiary group as needed
+        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedSedimentDepositionBeneficiaries
@@ -368,7 +366,7 @@
 		HydroelectricUsePresenceClass
 		AnnualSedimentSinkClass 
 		nil
-		(geophysics:Altitude Floodplains geofeatures:River)
+		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
 		:sink-threshold		1.0
 		:use-threshold		0.5
@@ -380,7 +378,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_reservoirs.clj")
-		:context [source-dr hydroelectric-use-presence sediment-sink-dr altitude floodplains streams] ; Change the beneficiary group as needed
+		:context [source-dr hydroelectric-use-presence sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedSedimentDepositionBeneficiaries
@@ -406,7 +404,7 @@
 		WaterIntakeUse	; Change the beneficiary group as needed
 		AnnualSedimentSinkClass 
 		nil
-		(geophysics:Altitude Floodplains geofeatures:River)
+		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
 		:sink-threshold		1.0
 		:use-threshold		0.5
@@ -418,7 +416,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_turbidity.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains streams] ; Change the beneficiary group as needed
+        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedTurbidityBeneficiaries
