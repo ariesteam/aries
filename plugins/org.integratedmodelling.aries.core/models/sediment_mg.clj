@@ -156,10 +156,8 @@
     [20  40]            LowFloodplainVegetationCover
     [:exclusive 0 20]   VeryLowFloodplainVegetationCover))
 
-(defmodel floodplains Floodplains
-  (classification (binary-coding geofeatures:Floodplain)
-    1          InFloodplain
-    :otherwise NotInFloodplain))
+(defmodel floodplains-code FloodplainsCode
+  (binary-coding geofeatures:Floodplain))
 
 ;; Having problems generating this layer from Dartmouth Flood Observatory data
 ;;(defmodel floodplain-width FloodplainWidthClass 
@@ -277,7 +275,7 @@
         DepositionProneFarmers
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains geofeatures:River)
+        (geophysics:Altitude FloodplainsCode geofeatures:River)
         :source-threshold   2.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
         :sink-threshold     1.0
         :use-threshold      0.5
@@ -289,7 +287,7 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_beneficial.clj")
-        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams]
+        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams]
         :keep [MaximumSedimentSource
                MaximumPotentialDeposition
                PotentialSedimentDepositionBeneficiaries
@@ -315,7 +313,7 @@
         DepositionProneFarmers
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains geofeatures:River)
+        (geophysics:Altitude FloodplainsCode geofeatures:River)
         :source-threshold   2.0
         :sink-threshold     1.0
         :use-threshold      0.5
@@ -327,7 +325,7 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_farmers.clj")
-        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams]
+        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams]
         :keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedSedimentDepositionBeneficiaries
@@ -352,7 +350,7 @@
         HydroelectricUseLevel
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains geofeatures:River)
+        (geophysics:Altitude FloodplainsCode geofeatures:River)
         :source-threshold   2.0
         :sink-threshold     1.0
         :use-threshold      0.5
@@ -364,7 +362,7 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_reservoirs.clj")
-        :context [source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains streams]
+        :context [source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains-code streams]
         :keep [MaximumSedimentSource
                MaximumPotentialDeposition
                PotentialReducedSedimentDepositionBeneficiaries
@@ -390,7 +388,7 @@
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSink
         nil
-        (geophysics:Altitude Floodplains geofeatures:River)
+        (geophysics:Altitude FloodplainsCode geofeatures:River)
         :source-threshold   2.0
         :sink-threshold     1.0
         :use-threshold      0.5
@@ -402,7 +400,7 @@
         :rv-max-states      10
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_turbidity.clj")
-        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains streams] ; Change the beneficiary group as needed
+        :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams] ; Change the beneficiary group as needed
         :keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedTurbidityBeneficiaries

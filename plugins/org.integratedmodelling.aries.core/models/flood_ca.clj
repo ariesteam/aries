@@ -235,6 +235,16 @@
     #{"ANI" "X"}	   NotIn500YrFloodplain
     #{"A" "AO" "X500"} In500YrFloodplain))
 
+(defmodel floodplains-100-code Floodplains100Code
+  (binary-coding Floodplains100Code
+    :context [(categorization geofeatures:Floodplain)]
+    :state   #(if (= (:floodplain %) "A") 1 0)))
+
+(defmodel floodplains-500-code Floodplains500Code
+  (binary-coding Floodplains500Code
+    :context [(categorization geofeatures:Floodplain)]
+    :state   #(if (contains? #{"A" "X500"} (:floodplain %)) 1 0)))
+
 (defmodel public-asset PublicAsset
   "Public assets are defined as presence of highways, railways or
 both. Other classes of public infrastructure could be added to this
@@ -386,7 +396,7 @@ list if desired."
 		FloodFarmersUse100
 		FloodSink
 		nil 
-		(geophysics:Altitude geofeatures:River Floodplains100)
+		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -395,10 +405,10 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 1  ; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
-		:context [source-annual farmers-use-100 sink-annual altitude streams floodplains-100]
+		:context [source-annual farmers-use-100 sink-annual altitude streams floodplains-100-code]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -422,7 +432,7 @@ list if desired."
 		FloodFarmersUse500
 		FloodSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains500)
+		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -434,7 +444,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
-		:context [source-annual farmers-use-500 sink-annual flood-flow-data500]
+		:context [source-annual farmers-use-500 sink-annual altitude streams floodplains-500-code]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -458,7 +468,7 @@ list if desired."
 		FloodPublicAssetsUse100
 		FloodSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains100)
+		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -470,7 +480,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
-		:context [source-annual public-use-100 sink-annual flood-flow-data100]
+		:context [source-annual public-use-100 sink-annual altitude streams floodplains-100-code]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -494,7 +504,7 @@ list if desired."
 		FloodPublicAssetsUse500
 		FloodSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains500)
+		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -506,7 +516,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
-		:context [source-annual public-use-500 sink-annual flood-flow-data500]
+		:context [source-annual public-use-500 sink-annual altitude streams floodplains-500-code]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -530,7 +540,7 @@ list if desired."
         FloodResidentsUse100
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100)
+        (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -543,7 +553,7 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
-        :context            [source-annual residents-use-100 sink-annual flood-flow-data100]
+        :context            [source-annual residents-use-100 sink-annual altitude streams floodplains-100-code]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations
@@ -567,7 +577,7 @@ list if desired."
         FloodResidentsUse500
         FloodSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500)
+        (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -580,7 +590,7 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context            [source-annual residents-use-500 sink-annual flood-flow-data500]
+        :context            [source-annual residents-use-500 sink-annual altitude streams floodplains-500-code]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations
@@ -605,7 +615,7 @@ list if desired."
 		FloodFarmersUse100
 		GreenInfrastructureSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains100)
+		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -617,7 +627,7 @@ list if desired."
 		:downscaling-factor 1  ; MUST NOT trigger resampling! Fucking hydrosheds extent is prime!
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
-		:context [source-annual farmers-use-100 green-infrastructure-sink flood-flow-data100]
+		:context [source-annual farmers-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -641,7 +651,7 @@ list if desired."
 		FloodFarmersUse500
 		GreenInfrastructureSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains500)
+		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -653,7 +663,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
-		:context [source-annual farmers-use-500 green-infrastructure-sink flood-flow-data500]
+		:context [source-annual farmers-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -677,7 +687,7 @@ list if desired."
 		FloodPublicAssetsUse100
 		GreenInfrastructureSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains100)
+		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -689,7 +699,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
-		:context [source-annual public-use-100 green-infrastructure-sink flood-flow-data100]
+		:context [source-annual public-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
         :keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -713,7 +723,7 @@ list if desired."
 		FloodPublicAssetsUse500
 		GreenInfrastructureSink
 		nil
-		(geophysics:Altitude geofeatures:River Floodplains500)
+		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
 		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
@@ -725,7 +735,7 @@ list if desired."
 		:downscaling-factor 8
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
-		:context [source-annual public-use-500 green-infrastructure-sink flood-flow-data500]
+		:context [source-annual public-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
 		:keep    [Runoff
                   PotentialRunoffMitigation
                   PotentiallyVulnerablePopulations
@@ -749,7 +759,7 @@ list if desired."
         FloodResidentsUse100
         GreenInfrastructureSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains100)
+        (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -762,7 +772,7 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
-        :context            [source-annual residents-use-100 green-infrastructure-sink flood-flow-data100]
+        :context            [source-annual residents-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations
@@ -786,7 +796,7 @@ list if desired."
         FloodResidentsUse500
         GreenInfrastructureSink
         nil
-        (geophysics:Altitude geofeatures:River Floodplains500)
+        (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
         :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
@@ -799,7 +809,7 @@ list if desired."
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
-        :context            [source-annual residents-use-500 green-infrastructure-sink flood-flow-data500]
+        :context            [source-annual residents-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
         :keep               [Runoff
                              PotentialRunoffMitigation
                              PotentiallyVulnerablePopulations
