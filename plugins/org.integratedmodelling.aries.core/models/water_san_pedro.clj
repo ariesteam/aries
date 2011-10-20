@@ -468,27 +468,29 @@
     #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
     #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
 
-(defmodel vegetation-type-constrained sanPedro:CarbonVegetationType
+(defmodel vegetation-type-constrained sanPedro:EvapotranspirationVegetationType
   "Reclass of Steinitz LULC layers where they have coverage"
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained)
-    1                                 sanPedro:Forest
-    2                                 sanPedro:OakWoodland
-    #{6 26}                           sanPedro:MesquiteWoodland
-    #{4 5}                            sanPedro:Grassland
-    #{7 23}                           sanPedro:DesertScrub
-    #{27 28 29 30}                    sanPedro:Riparian
-    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
+    1                             sanPedro:Forest
+    2                             sanPedro:OakWoodland
+    #{6 26}                       sanPedro:MesquiteWoodland
+    #{4 5}                        sanPedro:Grassland
+    #{7 23}                       sanPedro:DesertScrub
+    #{27 28 29 30}                sanPedro:Riparian
+    #{8 9}                        sanPedro:Agriculture
+    #{10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWater))
 
-(defmodel vegetation-type-open sanPedro:CarbonVegetationType
+(defmodel vegetation-type-open sanPedro:EvapotranspirationVegetationType
   "Reclass of Steinitz LULC layers where they have coverage"
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen)
-    1                                 sanPedro:Forest
-    2                                 sanPedro:OakWoodland
-    #{6 26}                           sanPedro:MesquiteWoodland
-    #{4 5}                            sanPedro:Grassland
-    #{7 23}                           sanPedro:DesertScrub
-    #{27 28 29 30}                    sanPedro:Riparian
-    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
+    1                             sanPedro:Forest
+    2                             sanPedro:OakWoodland
+    #{6 26}                       sanPedro:MesquiteWoodland
+    #{4 5}                        sanPedro:Grassland
+    #{7 23}                       sanPedro:DesertScrub
+    #{27 28 29 30}                sanPedro:Riparian
+    #{8 9}                        sanPedro:Agriculture
+    #{10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWater))
 
 (defscenario open-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
