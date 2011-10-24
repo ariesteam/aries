@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="VegetationType">
+		<cpt id="EvapotranspirationVegetationType">
 			<state id="Forest" />
 			<state id="OakWoodland" />
 			<state id="MesquiteWoodland" />
@@ -30,7 +30,7 @@
 			<state id="HighEvapotranspiration" />
 			<state id="ModerateEvapotranspiration" />
 			<state id="LowEvapotranspiration" />
-			<parents>VegetationType PercentVegetationCoverClass AnnualMaximumTemperature</parents>
+			<parents>EvapotranspirationVegetationType PercentVegetationCoverClass AnnualMaximumTemperature</parents>
 			<probabilities>0.5 0.5 0 0.4 0.6 0 0.3 0.7 0 0.45 0.55 0 0.35 0.65 0 0.25 0.75 0 0.25 0.65 0.1 0.15 0.65 0.2 0.05 0.65 0.3 0.3333333333333333 0.3333333333333333 0.3333333333333333 0.3 0.3 0.4 0.25 0.25 0.5 0 0.5 0.5 0 0.4 0.6 0 0.3 0.7 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.1 0.6 0.3 0.15 0.7 0.15 0.05 0.75 0.2 0.05 0.7 0.25 0.15 0.6 0.25 0.05 0.6 0.35 0.05 0.5 0.45 0.1 0.45 0.45 0.05 0.4 0.55 0.05 0.3 0.65 0 0.4 0.6 0 0.3 0.7 0 0.2 0.8 0.3 0.7 0 0.2 0.8 0 0.1 0.9 0 0.4 0.4 0.2 0.3 0.4 0.3 0.2 0.5 0.3 0.2 0.6 0.2 0.1 0.6 0.3 0.1 0.5 0.4 0 0.4 0.6 0 0.3 0.7 0 0.2 0.8 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.7 0.3 0 0.6 0.4 0 0.5 0.4 0.1 0.3 0.7 0 0.2 0.8 0 0.2 0.7 0.1 0.1 0.9 0 0.05 0.8 0.15 0.05 0.7 0.25 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.05 0.65 0.3 0.1 0.8 0.1 0.05 0.8 0.15 0 0.8 0.2 0.05 0.8 0.15 0 0.8 0.2 0 0.7 0.3 0 0.8 0.2 0 0.7 0.3 0 0.6 0.4 0 0.6 0.4 0 0.5 0.5 0 0.4 0.6 0.1 0.3 0.6 0.05 0.25 0.7 0.05 0.2 0.75 0.1 0.2 0.7 0.05 0.15 0.8 0.05 0.1 0.85 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
@@ -80,8 +80,8 @@
 				<position>902 306 1014 340</position>
 				<barchart active="true" width="279" height="108" />
 			</node>
-			<node id="VegetationType">
-				<name>VegetationType</name>
+			<node id="EvapotranspirationVegetationType">
+				<name>EvapotranspirationVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
