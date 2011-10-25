@@ -165,7 +165,7 @@
     [5 20]   ModerateVegetationStorage
     [2 5]    LowVegetationStorage
     [0.01 2] VeryLowVegetationStorage
-    [0 0.01] NoVegetationStorage)) 
+    [0 0.01] NoVegetationStorage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
@@ -385,5 +385,33 @@ fire frequency, increased greenhouse gas emissions."
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [constrained-development-scenario :as cd use-simple]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
+                  (* 1.104 (:greenhouse-gas-emissions %)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
+                  (:greenhouse-gas-emissions %)))))
+
+(defscenario constrained-development-carbon2
+  "Changes values in developed areas to very low vegetation cover, no
+fire frequency, increased greenhouse gas emissions."
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
+      :context [constrained-development-scenario percent-vegetation-cover]
+      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'carbonService:VeryLowVegetationCover)
+                  (:percent-vegetation-cover-class %))))
+  (model FireFrequency
+    (classification FireFrequency
+      :context [constrained-development-scenario fire-frequency]
+      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
+                  (conc 'carbonService:NoFireFrequency)
+                  (:fire-frequency %))))
+  (model sanPedro:CarbonVegetationType
+    (classification sanPedro:CarbonVegetationType
+      :context [vegetation-type-constrained :as vtc vegetation-type :as vt]
+      :state   #(if (no-data? (:vtc %))
+                  (:vt %)
+                  (:vtc %))))
+  (model GreenhouseGasEmissions
+    (measurement GreenhouseGasEmissions "t/ha*year"
+      :context [constrained-development-scenario use-simple]
+      :state   #(if (is? (:constrained-development %) (conc 'sanPedro:DevelopedConstrained))
                   (* 1.104 (:greenhouse-gas-emissions %)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
