@@ -81,7 +81,6 @@
     [:<    0.1]   VeryLowSoilErodibility))
 
 (defmodel precipitation-annual AnnualPrecipitationClass
-  "FIXME this is annual precipitation."
   (classification (measurement habitat:AnnualPrecipitation "mm")
     [2200   :>] VeryHighAnnualPrecipitation
     [1800 2200] HighAnnualPrecipitation
