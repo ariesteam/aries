@@ -17,13 +17,13 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; Water supply model for San Pedro
+;;; Water supply model for Colorado
 ;;;
-;;; Valid Contexts: core.contexts.beta/san_pedro_us*
+;;; Valid Contexts: core.contexts.beta/co*
 ;;;
 ;;;-------------------------------------------------------------------
 
-(ns core.models.water-san-pedro
+(ns core.models.water-colorado
   (:refer-clojure :rename {count length}) 
   (:refer tl        :only [is? conc])
   (:refer modelling :only [defscenario defmodel measurement
@@ -458,79 +458,3 @@
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
 ;;;-------------------------------------------------------------------
-
-(defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
-    #{10 11 12 13 19 22 25}                sanPedro:DevelopedConstrained
-    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28} sanPedro:NotDevelopedConstrained))
-
-(defmodel open-development-scenario sanPedro:OpenDevelopment
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
-    #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
-    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
-
-(defmodel vegetation-type-constrained EvapotranspirationVegetationTypeConstrained
-  "Reclass of Steinitz LULC layers where they have coverage"
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained)
-    1                             sanPedro:Forest
-    2                             sanPedro:OakWoodland
-    #{6 26}                       sanPedro:MesquiteWoodland
-    #{4 5}                        sanPedro:Grassland
-    #{7 23}                       sanPedro:DesertScrub
-    #{27 28 29 30}                sanPedro:Riparian
-    #{8 9}                        sanPedro:Agriculture
-    #{10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWater))
-
-(defmodel vegetation-type-open EvapotranspirationVegetationTypeOpen
-  "Reclass of Steinitz LULC layers where they have coverage"
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen)
-    1                             sanPedro:Forest
-    2                             sanPedro:OakWoodland
-    #{6 26}                       sanPedro:MesquiteWoodland
-    #{4 5}                        sanPedro:Grassland
-    #{7 23}                       sanPedro:DesertScrub
-    #{27 28 29 30}                sanPedro:Riparian
-    #{8 9}                        sanPedro:Agriculture
-    #{10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWater))
-
-(defscenario open-development-water
-  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
-      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'waterSupplyService:VeryLowVegetationCover)
-                  (:pvc %))))
-  (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:EvapotranspirationVegetationType
-      :context [vegetation-type-open :as vto vegetation-type :as vt]
-      :state   #(if (no-data? (:vto %))
-                  (:vt %)
-                  (:vto %))))
-  (model MountainFront
-    (classification MountainFront
-      :context [open-development-scenario :as od mountain-front :as mf]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'waterSupplyService:MountainFrontAbsent)
-                  (:mf %)))))
-
-(defscenario constrained-development-water
-  "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'waterSupplyService:VeryLowVegetationCover)
-                  (:pvc %))))
-  (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:EvapotranspirationVegetationType
-      :context [vegetation-type-constrained :as vtc  vegetation-type :as vt]
-      :state   #(if (no-data? (:vtc %))
-                  (:vt %)
-                  (:vtc %))))
-  (model MountainFront
-    (classification MountainFront
-      :context [constrained-development-scenario :as cd mountain-front :as mf]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'waterSupplyService:MountainFrontAbsent)
-                  (:mf %)))))

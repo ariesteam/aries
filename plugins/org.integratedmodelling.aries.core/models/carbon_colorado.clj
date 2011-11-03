@@ -17,13 +17,13 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; Carbon model for San Pedro
+;;; Carbon model for Colorado
 ;;;
-;;; Valid Contexts: core.contexts.beta/san_pedro_us*
+;;; Valid Contexts: core.contexts.beta/co*
 ;;;
 ;;;-------------------------------------------------------------------
 
-(ns core.models.carbon-san-pedro
+(ns core.models.carbon-colorado
   (:refer-clojure :rename {count length})
   (:refer tl        :only [is? conc])
   (:refer modelling :only [defscenario defmodel model measurement
@@ -230,26 +230,8 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-;: GHG emissions map for the U.S.  For the rest of the world, use
-;; global population density layer multiplied by per capita emissions
-;; for that country from EIA.  2006 data used as this corresponds to
-;; current population density layer: 4.05 tonnes CO2/capita for Mexico
-;; in 2006, which is equivalent to 1.105 tonnes C/capita
-
+;: GHG emissions map for the U.S.
 (defmodel use-simple GreenhouseGasEmissions
-  [(categorization geofeatures:Country)]
-  (measurement GreenhouseGasEmissions "t/ha*year")
-  :when #(= (:country %) "United States")
-  (measurement GreenhouseGasEmissions "t/ha*year"
-    :context [(count policytarget:PopulationDensity "/km^2")]
-    :state   #(* (:population-density %) 1.105)))
-
-(defmodel use-simple-pop GreenhouseGasEmissions
-  (measurement GreenhouseGasEmissions "t/ha*year"
-    :context [(count policytarget:PopulationDensity "/km^2")]
-    :state   #(* (:population-density %) 1.105)))
-
-(defmodel use-simple-us GreenhouseGasEmissions
   (measurement GreenhouseGasEmissions "t/ha*year"))
 
 ;;;-------------------------------------------------------------------
@@ -300,91 +282,3 @@
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
 ;;;-------------------------------------------------------------------
-
-(defmodel constrained-development-scenario sanPedro:ConstrainedDevelopment
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained) 
-    #{10 11 12 13 19 22 25}                sanPedro:DevelopedConstrained
-    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28} sanPedro:NotDevelopedConstrained))
-
-(defmodel open-development-scenario sanPedro:OpenDevelopment
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen) 
-    #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
-    #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
-
-(defmodel vegetation-type-constrained CarbonVegetationTypeConstrained
-  "Reclass of Steinitz LULC layers where they have coverage"
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained)
-    1                                 sanPedro:Forest
-    2                                 sanPedro:OakWoodland
-    #{6 26}                           sanPedro:MesquiteWoodland
-    #{4 5}                            sanPedro:Grassland
-    #{7 23}                           sanPedro:DesertScrub
-    #{27 28 29 30}                    sanPedro:Riparian
-    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
-
-(defmodel vegetation-type-open CarbonVegetationTypeOpen
-  "Reclass of Steinitz LULC layers where they have coverage"
-  (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen)
-    1                                 sanPedro:Forest
-    2                                 sanPedro:OakWoodland
-    #{6 26}                           sanPedro:MesquiteWoodland
-    #{4 5}                            sanPedro:Grassland
-    #{7 23}                           sanPedro:DesertScrub
-    #{27 28 29 30}                    sanPedro:Riparian
-    #{8 9 10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWaterAgriculture))
-
-(defscenario open-development-carbon
-  "Changes values in developed areas to very low vegetation cover, no
-fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
-      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:VeryLowVegetationCover)
-                  (:pvc %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [open-development-scenario :as od fire-frequency :as ff]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:NoFireFrequency)    
-                  (:ff %))))
-  (model sanPedro:CarbonVegetationType
-    (classification sanPedro:CarbonVegetationType
-      :context [vegetation-type-open :as vto vegetation-type :as vt]
-      :state   #(if (no-data? (:vto %))
-                  (:vt %)
-                  (:vto %))))
-  (model GreenhouseGasEmissions
-    (measurement GreenhouseGasEmissions "t/ha*year"
-      :context [open-development-scenario :as od (measurement GreenhouseGasEmissions "t/ha*year")]
-      :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (* 1.568 (:greenhouse-gas-emissions %)) ; Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
-                  (:greenhouse-gas-emissions %)))))
-
-(defscenario constrained-development-carbon
-  "Changes values in developed areas to very low vegetation cover, no
-fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:VeryLowVegetationCover)
-                  (:pvc %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [constrained-development-scenario :as cd fire-frequency :as ff]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:NoFireFrequency)
-                  (:ff %))))
-  (model sanPedro:CarbonVegetationType
-    (classification sanPedro:CarbonVegetationType
-      :context [vegetation-type-constrained :as vtc vegetation-type :as vt]
-      :state   #(if (no-data? (:vtc %))
-                  (:vt %)
-                  (:vtc %))))
-  (model GreenhouseGasEmissions
-    (measurement GreenhouseGasEmissions "t/ha*year"
-      :context [constrained-development-scenario :as cd use-simple]
-      :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (* 1.104 (:greenhouse-gas-emissions %)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
-                  (:greenhouse-gas-emissions %)))))
