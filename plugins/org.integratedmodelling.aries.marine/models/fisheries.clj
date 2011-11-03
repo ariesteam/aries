@@ -139,7 +139,9 @@
 (defmodel coastal-proximity CoastalProximity
   "Reclasses distance to coast into 3 discrete categories."
   (classification (measurement DistanceToCoast "km")
-    1       HighCoastalProximity
+    1       HighCoastalProximity ; Consider revisiting these numbers
+                                 ; based on Halpern et al. (2008):
+                                 ; might go 5-10-25
     5       ModerateCoastalProximity
     [25 :>] LowCoastalProximity))
 
