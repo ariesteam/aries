@@ -72,8 +72,6 @@
 
 ;; source bayesian model                 
 (defmodel source AestheticViewProvision
-  "This one will harmonize the context, then retrieve and run the BN with the given
-   evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian AestheticViewProvision 
     :import  "aries.core::ViewSourceSanPedro.xdsl"
     :context [mountain scenic-vegetation]
@@ -114,7 +112,7 @@
     [ 0   5] NoBlight))
 
 (defmodel sink ViewSink
-  "Landscape features that reduce the quality and enjoyment of scenic views"
+  "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkSanPedro.xdsl"
     :context [mine highway transmission-line developed-land]
@@ -156,7 +154,7 @@
 
 ;; bayesian model
 (defmodel homeowners ViewUse
-  "Property owners who can afford to pay for the view"
+  "Property owners who benefit from high-quality views"
   (bayesian ViewUse 
     :import  "aries.core::ViewUseSanPedro.xdsl"
     :context [housing property-value]

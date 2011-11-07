@@ -180,7 +180,7 @@
     [0 0.05] HomeownerProximityUseAbsent))
 
 (defmodel homeowners ProximityUse
-  "Property owners who can afford to pay for proximity to open space."
+  "Property owners who benefit from open space proximity"
   (bayesian ProximityUse 
     :import   "aries.core::ProximityUsePuget.xdsl"
     :context  [property-value urban-proximity housing land-selector]

@@ -45,13 +45,11 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel lake Lake
-  "Just being a lake. We may want to reclass lake area instead"
   (classification (binary-coding geofeatures:Lake)
     1          LakePresent
     :otherwise LakeAbsent))
 
 (defmodel ocean Ocean
-  "Just being there."
   (classification (binary-coding geofeatures:Ocean)
     1          OceanPresent
     :otherwise OceanAbsent))
@@ -72,8 +70,6 @@
 
 ;; source bayesian model                 
 (defmodel source AestheticViewProvision
-  "This one will harmonize the context, then retrieve and run the BN with the given
-   evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian AestheticViewProvision 
     :import  "aries.core::ViewSourcePuget.xdsl"
     :context [mountain lake ocean]
@@ -108,7 +104,7 @@
     [ 0   5] NoBlight))
 
 (defmodel sink ViewSink
-  "Landscape features that reduce the quality and enjoyment of scenic views"
+  "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkPuget.xdsl"
     :context [commercial-transportation clearcut highway]
@@ -160,7 +156,7 @@
 
 ;; bayesian model
 (defmodel homeowners ViewUse
-  "Property owners who can afford to pay for the view"
+  "Property owners who benefit from high-quality views"
   (bayesian ViewUse 
     :import   "aries.core::ViewUsePuget.xdsl"
     :context  [property-value housing land-selector]

@@ -71,7 +71,7 @@
     #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104 116 124 126 140 151 163 166 168 169 179 181 189} MediumSoilTexture
     #{7 16 23 41 44 45 46 52 53 54 56 58 100 101 106 113 119 120 122 131 135 136 138 145 146 148 149 156 170 171 174 177 182 183 186 188 193 194} FineSoilTexture))
 
-;;Soil erodibility factor from USLE (unitless).
+;;Soil erodibility factor (k) from USLE/RUSLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass
   (classification (numeric-coding habitat:SoilErodibility)
     [0.375 :>]    VeryHighSoilErodibility

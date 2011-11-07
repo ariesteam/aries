@@ -61,7 +61,7 @@
     "Medium" MediumSoilTexture
     "Fine"   FineSoilTexture))
 
-;; Soil erodibility factor from USLE (unitless).
+;; Soil erodibility factor (k) from USLE/RUSLE (unitless).
 (defmodel soil-erodibility SoilErodibilityClass
   (classification (numeric-coding habitat:SoilErodibility)
     [0.0375     :>] VeryHighSoilErodibility
