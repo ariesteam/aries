@@ -64,11 +64,11 @@
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100] VeryHighVegetationCover
-    [60  80] HighVegetationCover
-    [40  60] ModerateVegetationCover
-    [20  40] LowVegetationCover
-    [ 0  20] VeryLowVegetationCover))
+    [80 100] VeryHighCanopyCover
+    [60  80] HighCanopyCover
+    [40  60] ModerateCanopyCover
+    [20  40] LowCanopyCover
+    [ 0  20] VeryLowCanopyCover))
 
 ;; This does not account for barren, water, agriculture, or urban cover
 ;; (though these are accounted for in NLCD)

@@ -183,7 +183,7 @@
 ;; Total surface water use. Add the rival user groups
 (defmodel total-surface-water-use TotalSurfaceWaterUse
   (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
-    :context [agricultural-surface-water-use aquacultural-surface-water-use residential-surface-water-use industrial-surface-water-use]
+    :context [agricultural-surface-water-use residential-surface-water-use oil-and-gas-surface-water-use]
     :state   #(let [a (:agricultural-surface-water-use %)
                     r (:residential-surface-water-use  %)
                     o (:oil-and-gas-surface-water-use  %)]

@@ -129,12 +129,12 @@
     [   0.01 4900]    LowAnnualSedimentSource 
     [   0       0.01] NoAnnualSedimentSource))
     
-(defmodel source-colorado SedimentSourceValueAnnual
+(defmodel source SedimentSourceValueAnnual
   (bayesian SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage slope-stability]
+               successional-stage mountain-pine-beetle]
     :required [SlopeClass]
     :keep     [SedimentSourceValueAnnualClass]
     :result   sediment-source-value-annual))
@@ -146,30 +146,14 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel reservoirs-class ReservoirsClass ; Review how to do this
-                                        ; properly with Gary on 11-9.
-  (classification (binary-coding geofeatures:Reservoir)
-    1          ReservoirPresent
-    :otherwise ReservoirAbsent))
+;; There are essentially no floodplain sinks in the steep mountain
+;; regions in the Rockies.  Hence all sediment that's eroded moves
+;; downslope and eventually ends up in reservoirs.
 
-;; These are arbitrary numbers discretized based on the "low" soil
-;; erosion level defined by the US & global datasets, respectively.
-;; Have these numbers reviewed by someone knowledgable about
-;; sedimentation.
-(defmodel sediment-sink-annual AnnualSedimentSinkClass
-  (probabilistic-measurement AnnualSedimentSinkClass "kg/ha"
-    [20000 30000] HighAnnualSedimentSink
-    [10000 20000] ModerateAnnualSedimentSink
-    [0.01  10000] LowAnnualSedimentSink
-    [    0  0.01] NoAnnualSedimentSink)) 
-
-(defmodel sediment-sink-us AnnualSedimentSink
-  (bayesian AnnualSedimentSink    
-    :import  "aries.core::SedimentSinkPuget.xdsl"
-    :context  [reservoirs-class]
-    :required [FloodplainWidthClass]
-    :keep     [AnnualSedimentSinkClass]
-    :result   sediment-sink-annual))
+(defmodel sink ReservoirsClass
+  (measurement ReservoirsClass "kg/ha"
+    :context [(binary-coding geofeatures:Reservoir)]
+    :state   #(if (== (:reservoir %) 1) 5000000 0)))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -182,15 +166,18 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
+(defmodel floodplains-code FloodplainsCode
+  (binary-coding geofeatures:Reservoir))
+
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))        
 
-(defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
+(defmodel reservoir-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
-    :context [source-puget sediment-sink-us hydroelectric-use-level levees]))
+    :context [source sink reservoirs altitude streams]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -205,9 +192,9 @@
   (span SedimentTransport
         SedimentSourceValueAnnual
         geofeatures:Reservoir
-        AnnualSedimentSink
+        ReservoirsClass
         nil
-        (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
+        (geophysics:Altitude geofeatures:River FloodplainsCode)
         :source-threshold   1000.0
         :sink-threshold      500.0
         :use-threshold         0.0
@@ -219,8 +206,8 @@
         :downscaling-factor 3
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
-        :context [source-puget reservoirs sediment-sink-us altitude levees streams floodplains-code]
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
+        :context [source reservoirs sink altitude streams floodplains-code]
         :keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedSedimentDepositionBeneficiaries

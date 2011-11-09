@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="TreeCanopy">
+		<cpt id="SedimentVegetationType">
 			<state id="PonderosaPine" />
 			<state id="AspenWoodland" />
-			<state id="Spruce_Fir" />
+			<state id="SpruceFir" />
 			<state id="LodgepolePine" />
 			<probabilities>0.16 0.36 0.28 0.2</probabilities>
 		</cpt>
-		<cpt id="MountainPineBeetleDamage">
+		<cpt id="MountainPineBeetleDamageClass">
 			<state id="SevereDamage" />
 			<state id="ModerateDamage" />
 			<state id="LowDamage" />
 			<state id="NoDamage" />
 			<probabilities>0.13 0.08 0.77 0.02</probabilities>
 		</cpt>
-		<cpt id="Fire">
+		<cpt id="FireOccurrence">
 			<state id="Occurrence" />
 			<state id="None" />
-			<parents>MountainPineBeetleDamage</parents>
+			<parents>MountainPineBeetleDamageClass</parents>
 			<probabilities>1 0 1 0 1 0 1 0</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCover">
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
 			<probabilities>0.35 0.5 0.15</probabilities>
 		</cpt>
-		<cpt id="ForestSuccessionalStage">
+		<cpt id="SuccessionalStageClass">
 			<state id="OldGrowth" />
 			<state id="LateSuccession" />
 			<state id="MidSuccession" />
@@ -41,10 +41,10 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>ForestSuccessionalStage PercentVegetationCover TreeCanopy</parents>
+			<parents>SuccessionalStageClass PercentTreeCanopyCoverClass SedimentVegetationType</parents>
 			<probabilities>0.5 0.25 0.25 0 0.5 0.25 0.25 0 0.5 0.25 0.25 0 0.5 0.25 0.25 0 0.4 0.2 0.15 0.25 0.4 0.2 0.15 0.25 0.4 0.2 0.15 0.25 0.4 0.2 0.15 0.25 0.3 0.15 0.2000000000000001 0.35 0.3 0.15 0.2000000000000001 0.35 0.3 0.15 0.2000000000000001 0.35 0.3 0.15 0.2000000000000001 0.35 0.6 0.2 0.2 0 0.6 0.2 0.2 0 0.6 0.2 0.2 0 0.6 0.2 0.2 0 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.05 0.2 0.35 0.4 0.1 0.1 0.4 0.4 0.1 0.1 0.4 0.4 0.1 0.1 0.4 0.4 0.1 0.1 0.4 0.4500000000000001 0.2500000000000001 0.2000000000000001 0.1 0.4500000000000001 0.2500000000000001 0.2000000000000001 0.1 0.4500000000000001 0.2500000000000001 0.2000000000000001 0.1 0.4500000000000001 0.2500000000000001 0.2000000000000001 0.1 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.2 0.25 0.45 0.1 0.2 0.25 0.45 0.1 0.2 0.25 0.45 0.1 0.2 0.25 0.45 0.1 0.15 0.15 0.3 0.4 0.15 0.15 0.3 0.4 0.15 0.15 0.3 0.4 0.15 0.15 0.3 0.4 0.2 0.15 0.05 0.6 0.2 0.15 0.05 0.6 0.2 0.15 0.05 0.6 0.2 0.15 0.05 0.6 0.15 0.15 0.05 0.65 0.15 0.15 0.05 0.65 0.15 0.15 0.05 0.65 0.15 0.15 0.05 0.65 0.1 0.1 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 0.8</probabilities>
 		</cpt>
-		<cpt id="HSG_">
+		<cpt id="HydrologicSoilsGroup">
 			<state id="SoilGroupA" />
 			<state id="SoilGroupB" />
 			<state id="SoilGroupC" />
@@ -57,7 +57,7 @@
 			<state id="FineSoilTexture" />
 			<probabilities>0.5 0.35 0.15</probabilities>
 		</cpt>
-		<cpt id="Node3">
+		<cpt id="AnnualPrecipitationClass">
 			<state id="VeryHighAnnualPrecipitation" />
 			<state id="HighAnnualPrecipitation" />
 			<state id="ModerateAnnualPrecipitation" />
@@ -65,34 +65,35 @@
 			<state id="VeryLowAnnualPrecipitation" />
 			<probabilities>0.05 0.25 0.4 0.25 0.05</probabilities>
 		</cpt>
-		<cpt id="Node2">
+		<cpt id="SlopeClass">
 			<state id="Level" />
 			<state id="GentlyUndulating" />
 			<state id="RollingToHilly" />
 			<state id="SteeplyDissectedToMountainous" />
 			<probabilities>0.05 0.2 0.3 0.45</probabilities>
 		</cpt>
-		<cpt id="Node1">
+		<cpt id="SoilErodibilityClass">
 			<state id="VeryHighSoilErodibility" />
 			<state id="HighSoilErodibility" />
 			<state id="ModerateSoilErodibility" />
 			<state id="LowSoilErodibility" />
 			<state id="VeryLowSoilErodibilty" />
-			<parents>SoilTexture HSG_ Node2 Fire</parents>
+			<parents>SoilTexture HydrologicSoilsGroup SlopeClass FireOccurrence</parents>
 			<probabilities>0 0 0 0.42 0.58 0 0 0 0 1 0 0 0.3 0.7 0 0 0 0 1 0 0 0.76 0.24 0 0 0 0 1 0 0 0.5600000000000001 0.44 0 0 0 0 1 0 0 0 0 0 0 0.62 0.38 0 0 0 0 1 0 0 0.38 0.62 0 0 0 0 1 0 0 0.8 0.2 0 0 0 0 1 0 0 0.61 0.39 0 0 0 0 1 0 0 0 0 0 0 0.43 0.57 0 0 0 0 1 0 0 0.45 0.55 0 0 0 0 1 0 0 0.37 0.63 0 0 0 0 1 0 0 0.7 0.3 0 0 0 0 1 0 0 0 0 0 0 0.13 0.87 0 0 0 0 1 0 0 0.6 0.4 0 0 0 0 1 0 0 0.45 0.55 0 0 0 0 1 0 0 0.8 0.2 0 0 0 0 1 0 0 0 0 0 0 0.3 0.7 0 0 0 0 1 0 0 0.35 0.65 0 0 0 0 1 0 0 0.3 0.7 0 0 0 0 1 0 0 0.55 0.45 0 0 0 0 1 0 0 0 0 0 0 0.4 0.6 0 0 0 0 1 0 0 0.5 0.5 0 0 0 0 1 0 0 0.78 0.22 0 0 0 0 1 0 0 0.58 0.42 0 0 0 0 1 0 0 0 0 0 0 0.7 0.3 0 0 0 0 1 0 0 0.7 0.3 0 0 0 0 1 0 0 0.75 0.25 0 0 0 0 1 0 0 0.65 0.35 0 0 0 0 1 0 0 0 0 0 0 0.2 0.8 0 0 0 0 1 0 0 0.3 0.7 0 0 0 0 1 0 0 0.33 0.67 0 0 0 0 1 0 0 0.47 0.53 0 0 0 0 1 0 0 0 0 0 0 0.4 0.6 0 0 0 0 1 0 0 0 0.35 0.65 0 0 0 1 0 0 0 0.48 0.52 0 0 0 1 0 0 0 0.5 0.5 0 0 0 1 0 0 0 0 0 0 0.3 0.7 0 0 0 0 1 0 0 0.28 0.72 0 0 0 0 1 0 0 0.22 0.78 0 0 0 0 1 0 0 0.65 0.35 0 0 0 0 1 0 0 0 0 0 0 0.2 0.8 0 0 0 0 1 0 0 0.18 0.82 0 0 0 0 1 0 0 0.75 0.25 0 0 0 0 1 0 0 0.55 0.45 0 0 0 0 1 0 0 0 0 0 0 0.1 0.9 0 0 0 0 1 0 0 0.15 0.85 0 0 0 0 1 0 0 0.3 0.6 0.1 0 0 0 1 0 0 0.48 0.52 0 0 0 0 1 0 0 0</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValueAnnual">
-			<state id="HighSedimentSource" />
-			<state id="MediumSedimentSource" />
-			<state id="LowSedimentSource" />
-			<parents>Node3 Node1 VegetativeMaturity</parents>
-			<probabilities>0 0.5 0.5 0 0.4 0.6 0 0.3 0.7 0 0 1 0 0.55 0.45 0 0.65 0.35 0 0.35 0.65 0 0.05 0.95 0 0.6 0.4 0 0.65 0.35 0 0.75 0.25 0 0.1 0.9 0.2 0.2 0.6 0.1 0.3 0.6 0 0.4 0.6 0 0.2 0.8 0.3 0.2 0.5 0.2 0.2 0.6 0.1 0.1 0.8 0 0.2 0.8 0 0.3 0.7 0 0.25 0.75 0 0.2 0.8 0 0 1 0 0.4 0.6 0 0.3 0.7 0 0.25 0.75 0 0.1 0.9 0.1 0.5 0.4 0 0.35 0.65 0 0.3 0.7 0 0.2 0.8 0.25 0.75 0 0.1 0.4 0.5 0 0.5 0.5 0 0.3 0.7 0.35 0.65 0 0.2 0.7 0.1 0.1 0.3 0.6 0 0.4 0.6 0.5 0.5 0 0.55 0.4 0.05 0.2 0.3 0.5 0 0.2 0.8 0.6 0.3 0.1 0.4 0.6 0 0.3 0.4 0.3 0 0.15 0.85 0.7 0.3 0 0.5 0.5 0 0.4 0.4 0.2 0 0.1 0.9 0.8 0.2 0 0.5 0.4 0.1 0.4 0.5 0.1 0 0.1 0.9 0.9 0.1 0 0.6 0.3 0.1 0.5 0.3 0.2 0 0.05 0.95 0.5 0.4 0.1 0.45 0.35 0.2 0.4 0.3 0.3 0.3 0.4 0.3 0.6 0.3 0.1 0.5 0.3 0.2 0.4 0.4 0.2 0.2 0.4 0.4 0.5 0.4 0.1 0.6 0.3 0.1 0.5 0.3 0.2 0.1 0.4 0.5 0.8 0.2 0 0.6 0.4 0 0.5 0.3 0.2 0.15 0.25 0.6 0.9 0.1 0 0.7 0.3 0 0.6 0.4 0 0.2 0.6 0.2 0.6 0.4 0 0.5 0.4 0.1 0.4 0.35 0.25 0.3 0.3 0.4 0.7 0.3 0 0.6 0.3 0.1 0.5 0.3 0.2 0.4 0.3 0.3 0.8 0.2 0 0.7 0.2 0.1 0.6 0.3 0.1 0.5 0.4 0.1 0.9 0.1 0 0.8 0.2 0 0.7 0.2 0.1 0.6 0.4 0 1 0 0 0.9 0.1 0 0.8 0.2 0 0.7 0.15 0.15</probabilities>
+			<state id="HighAnnualSedimentSource" />
+			<state id="MediumAnnualSedimentSource" />
+			<state id="LowAnnualSedimentSource" />
+			<state id="NoAnnualSedimentSource" />
+			<parents>AnnualPrecipitationClass SoilErodibilityClass VegetativeMaturity</parents>
+			<probabilities>0 0.5 0.5 0 0 0.4 0.6 0 0 0.3 0.7 0 0 0 1 0 0 0.55 0.45 0 0 0.65 0.35 0 0 0.35 0.65 0 0 0.05 0.95 0 0 0.6 0.4 0 0 0.65 0.35 0 0 0.75 0.25 0 0 0.1 0.9 0 0.2 0.2 0.6 0 0.1 0.3 0.6 0 0 0.4 0.6 0 0 0.2 0.8 0 0.3 0.2 0.5 0 0.2 0.2 0.6 0 0.1 0.1 0.8 0 0 0.2 0.8 0 0 0.3 0.7 0 0 0.25 0.75 0 0 0.2 0.8 0 0 0 1 0 0 0.4 0.6 0 0 0.3 0.7 0 0 0.25 0.75 0 0 0.1 0.9 0 0.1 0.5 0.4 0 0 0.35 0.65 0 0 0.3 0.7 0 0 0.2 0.8 0 0.25 0.75 0 0 0.1 0.4 0.5 0 0 0.5 0.5 0 0 0.3 0.7 0 0.35 0.65 0 0 0.2 0.7 0.1 0 0.1 0.3 0.6 0 0 0.4 0.6 0 0.5 0.5 0 0 0.55 0.4 0.05 0 0.2 0.3 0.5 0 0 0.2 0.8 0 0.6 0.3 0.1 0 0.4 0.6 0 0 0.3 0.4 0.3 0 0 0.15 0.85 0 0.7 0.3 0 0 0.5 0.5 0 0 0.4 0.4 0.2 0 0 0.1 0.9 0 0.8 0.2 0 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0 0.1 0.9 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0 0.05 0.95 0 0.5 0.4 0.1 0 0.45 0.35 0.2 0 0.4 0.3 0.3 0 0.3 0.4 0.3 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.4 0.4 0.2 0 0.2 0.4 0.4 0 0.5 0.4 0.1 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.1 0.4 0.5 0 0.8 0.2 0 0 0.6 0.4 0 0 0.5 0.3 0.2 0 0.15 0.25 0.6 0 0.9 0.1 0 0 0.7 0.3 0 0 0.6 0.4 0 0 0.2 0.6 0.2 0 0.6 0.4 0 0 0.5 0.4 0.1 0 0.4 0.35 0.25 0 0.3 0.3 0.4 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.4 0.3 0.3 0 0.8 0.2 0 0 0.7 0.2 0.1 0 0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.2 0.1 0 0.6 0.4 0 0 1 0 0 0 0.9 0.1 0 0 0.8 0.2 0 0 0.7 0.15 0.15 0</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
-			<node id="MountainPineBeetleDamage">
-				<name>MountainPineBeetleDamage</name>
+			<node id="MountainPineBeetleDamageClass">
+				<name>MountainPineBeetleDamageClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -100,7 +101,7 @@
 				<comment>The extent that MPB has affected fire is under much debate and is given that consideration when weighing each stage.  Therefore we have removed a direct affect on fire and changed it to tree canopy.</comment>
 				<barchart active="true" width="188" height="90" />
 			</node>
-			<node id="Fire">
+			<node id="FireOccurrence">
 				<name>FireOccurrence</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
@@ -117,20 +118,20 @@
 				<position>711 157 911 267</position>
 				<barchart active="true" width="256" height="90" />
 			</node>
-			<node id="ForestSuccessionalStage">
+			<node id="SuccessionalStageClass">
 				<name>SuccessionalStageClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>740 413 874 489</position>
+				<position>739 339 873 415</position>
 				<barchart active="true" width="181" height="126" />
 			</node>
-			<node id="HSG_">
+			<node id="HydrologicSoilsGroup">
 				<name>HydrologicSoilsGroup</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>337 367 401 417</position>
+				<position>359 367 423 417</position>
 				<barchart active="true" width="191" height="91" />
 			</node>
 			<node id="SoilTexture">
@@ -147,17 +148,17 @@
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>367 -21 641 140</position>
-				<barchart active="true" width="526" height="72" />
+				<barchart active="true" width="526" height="90" />
 			</node>
-			<node id="TreeCanopy">
-				<name>TreeCanopyType</name>
+			<node id="SedimentVegetationType">
+				<name>SedimentVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1000 327 1068 369</position>
-				<barchart active="true" width="201" height="108" />
+				<position>1043 337 1111 379</position>
+				<barchart active="true" width="201" height="90" />
 			</node>
-			<node id="Node2">
+			<node id="SlopeClass">
 				<name>SlopeClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
@@ -165,15 +166,15 @@
 				<position>287 478 386 556</position>
 				<barchart active="true" width="229" height="90" />
 			</node>
-			<node id="Node3">
-				<name>AnnualPrecipitation</name>
+			<node id="AnnualPrecipitationClass">
+				<name>AnnualPrecipitationClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>455 167 566 262</position>
 				<barchart active="true" width="279" height="108" />
 			</node>
-			<node id="Node1">
+			<node id="SoilErodibilityClass">
 				<name>SoilErodibilityClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
@@ -181,14 +182,19 @@
 				<position>33 176 261 260</position>
 				<barchart active="true" width="233" height="108" />
 			</node>
-			<node id="PercentVegetationCover">
-				<name>VegetationCover</name>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1017 159 1185 264</position>
-				<barchart active="true" width="259" height="89" />
+				<position>1017 151 1185 256</position>
+				<barchart active="true" width="259" height="72" />
 			</node>
+			<textbox>
+				<caption>Finish CPT with &quot;NoAnnualSedimentSource&quot;</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>71 57 205 85</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>

@@ -1,69 +1,87 @@
 <?xml version="1.0"?>
 
 
-<!DOCTYPE Ontology [
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY dominican "http://www.integratedmodelling.org/ks/aries/local/dominican.owl#" >
 ]>
 
 
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.integratedmodelling.org/ks/aries/local/dominican.owl"
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     ontologyIRI="http://www.integratedmodelling.org/ks/aries/local/dominican.owl">
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Import>http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl</Import>
-    <Declaration>
-        <Class IRI="#ForestAndShrubland"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#IntensiveCroplandAndPasture"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#SedimentVegetationType"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#ShadeCoffeeCocoa"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#UrbanAndRoads"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#WaterWetlandsMangroves"/>
-    </Declaration>
-    <SubClassOf>
-        <Class IRI="#ForestAndShrubland"/>
-        <Class IRI="#SedimentVegetationType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#IntensiveCroplandAndPasture"/>
-        <Class IRI="#SedimentVegetationType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#SedimentVegetationType"/>
-        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#ShadeCoffeeCocoa"/>
-        <Class IRI="#SedimentVegetationType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#UrbanAndRoads"/>
-        <Class IRI="#SedimentVegetationType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#WaterWetlandsMangroves"/>
-        <Class IRI="#SedimentVegetationType"/>
-    </SubClassOf>
-</Ontology>
+     xmlns:dominican="http://www.integratedmodelling.org/ks/aries/local/dominican.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/dominican.owl">
+        <imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#ForestAndShrubland -->
+
+    <Class rdf:about="&dominican;ForestAndShrubland">
+        <rdfs:subClassOf rdf:resource="&dominican;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#IntensiveCroplandAndPasture -->
+
+    <Class rdf:about="&dominican;IntensiveCroplandAndPasture">
+        <rdfs:subClassOf rdf:resource="&dominican;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#SedimentVegetationType -->
+
+    <Class rdf:about="&dominican;SedimentVegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#ShadeCoffeeCocoa -->
+
+    <Class rdf:about="&dominican;ShadeCoffeeCocoa">
+        <rdfs:subClassOf rdf:resource="&dominican;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#UrbanAndRoads -->
+
+    <Class rdf:about="&dominican;UrbanAndRoads">
+        <rdfs:subClassOf rdf:resource="&dominican;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/dominican.owl#WaterWetlandsMangroves -->
+
+    <Class rdf:about="&dominican;WaterWetlandsMangroves">
+        <rdfs:subClassOf rdf:resource="&dominican;SedimentVegetationType"/>
+    </Class>
+</rdf:RDF>
 
 
 

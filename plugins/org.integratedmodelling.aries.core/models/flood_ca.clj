@@ -63,7 +63,7 @@
     [:<   75] VeryLowPrecipitation))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousCover)
+  (classification (ranking habitat:PercentImperviousSurface)
     [80 100 :inclusive]	VeryHighImperviousCover
     [50  80]			HighImperviousCover
     [20  50]			ModeratelyHighImperviousCover
@@ -118,7 +118,7 @@
 ;; See: https://engineering.purdue.edu/mapserve/LTHIA7/documentation/scs.htm
 ;;(defmodel source-cn FloodSource
 ;;	  (measurement habitat:AnnualRunoff "mm" 
-;;			:context  [land-use soil-group precipitation (ranking habitat:PercentImperviousCover)]
+;;			:context  [land-use soil-group precipitation (ranking habitat:PercentImperviousSurface)]
 ;;		    :state    #(let [ctable {(tl/conc 'floodService:Agriculture)		[64 75 82 85]
 ;;					         		 (tl/conc 'floodService:Forest)			    [64 75 82 85]
 ;;							         (tl/conc 'floodService:GrassPasture)		[64 75 82 85]

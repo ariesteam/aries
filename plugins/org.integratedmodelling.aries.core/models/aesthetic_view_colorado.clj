@@ -48,7 +48,7 @@
     :otherwise LakeAbsent))
 
 (defmodel peaks SharpPeaks
-  (classification (binary-coding colorado:SharpPeaks)
+  (classification (binary-coding colorado:SharpPeakPresence)
     1          PeaksPresent
     :otherwise PeaksAbsent))
 

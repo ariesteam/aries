@@ -336,8 +336,8 @@
 (defscenario open-development-carbon
   "Changes values in developed areas to very low vegetation cover, no
 fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
+  (model PercentTreeCanopyCoverClass
+    (classification PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowVegetationCover)
@@ -364,8 +364,8 @@ fire frequency, increased greenhouse gas emissions."
 (defscenario constrained-development-carbon
   "Changes values in developed areas to very low vegetation cover, no
 fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
+  (model PercentTreeCanopyCoverClass
+    (classification PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowVegetationCover)

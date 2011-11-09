@@ -82,7 +82,7 @@
     4 SoilGroupD))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousCover)
+  (classification (ranking habitat:PercentImperviousSurface)
     [80 100 :inclusive] VeryHighImperviousCover
     [50 80]             HighImperviousCover
     [20 50]             ModeratelyHighImperviousCover

@@ -153,7 +153,7 @@
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [annual-precipitation percent-tree-canopy-cover vegetation-type]
+    :context [percent-tree-canopy-cover vegetation-type beetle-kill]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
@@ -169,7 +169,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [soil-ph slope oxygen percent-tree-canopy-cover vegetation-type]
+    :context [soil-type annual-precipitation]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
@@ -204,7 +204,7 @@
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [veg-soil-storage fire-frequency]
+    :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
 

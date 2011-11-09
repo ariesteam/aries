@@ -79,7 +79,7 @@
 ;; of each impervious class within my region of interest. Finally, I 
 ;; compute the probabilities and updated SurfaceWaterSinkTZ.%Impervious
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousCover)
+  (classification (ranking habitat:PercentImperviousSurface)
     [80 100 :inclusive] VeryHighImperviousCover
     [50 80]             HighImperviousCover
     [20 50]             ModeratelyHighImperviousCover

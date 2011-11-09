@@ -147,7 +147,7 @@
 (defmodel source-cn FloodSource
   (measurement habitat:AnnualRunoff "mm" 
     :context [land-use soil-group-puget source-annual
-             (ranking habitat:PercentImperviousnCover)]
+             (ranking habitat:PercentImperviousSurface)]
     :state   #(let [
                     ctable 
                     {(tl/conc 'floodService:Agriculture) [64 75 82 85],
@@ -203,7 +203,7 @@
     #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousCover)
+  (classification (ranking habitat:PercentImperviousSurface)
     [80 100 :inclusive] VeryHighImperviousCover
     [50  80]            HighImperviousCover
     [20  50]            ModeratelyHighImperviousCover
@@ -815,8 +815,8 @@ be added to this list if desired."
 
 (defscenario open-development-flood
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
+  (model PercentTreeCanopyCoverClass
+    (classification PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
@@ -870,8 +870,8 @@ be added to this list if desired."
 
 (defscenario constrained-development-flood
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentVegetationCoverClass
-    (classification PercentVegetationCoverClass
+  (model PercentTreeCanopyCoverClass
+    (classification PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
