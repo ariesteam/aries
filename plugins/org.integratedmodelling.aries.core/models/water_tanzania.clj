@@ -79,7 +79,7 @@
 ;; of each impervious class within my region of interest. Finally, I 
 ;; compute the probabilities and updated SurfaceWaterSinkTZ.%Impervious
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousness)
+  (classification (ranking habitat:PercentImperviousCover)
     [80 100 :inclusive] VeryHighImperviousCover
     [50 80]             HighImperviousCover
     [20 50]             ModeratelyHighImperviousCover
@@ -103,13 +103,13 @@
 
 ;; there are values of 254 and 255 in the source data set and we're not sure what that means
 ;; so we're treating them as No Data along with the other No Data values
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover)
-    [80 100 :inclusive] VeryHighVegetationCover
-    [60  80]            HighVegetationCover
-    [40  60]            ModerateVegetationCover
-    [20  40]            LowVegetationCover
-    [ 0  20]            VeryLowVegetationCover))
+(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover)
+    [80 100 :inclusive] VeryHighCanopyCover
+    [60  80]            HighCanopyCover
+    [40  60]            ModerateCanopyCover
+    [20  40]            LowCanopyCover
+    [ 0  20]            VeryLowCanopyCover))
 
 ;; there is a dam in the area but don't currently have the information
 ;; to conclude that it is a factor for water provision in the
@@ -133,7 +133,7 @@
 (defmodel et-sink Evapotranspiration
   (bayesian Evapotranspiration
     :import  "aries.core::SurfaceWaterSinkTZ.xdsl"
-    :context [land-cover-typology percent-vegetation-cover]
+    :context [land-cover-typology percent-canopy-cover]
     :keep    [EvapotranspirationClass]
     :result  evapotranspiration))
 

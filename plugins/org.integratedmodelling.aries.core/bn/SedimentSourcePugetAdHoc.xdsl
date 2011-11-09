@@ -9,13 +9,13 @@
 			<state id="VeryLowAnnualPrecipitation" />
 			<probabilities>0.7 0.25 0.04 0.01 0</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCoverClass">
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
 			<probabilities>0.37 0.26 0.37</probabilities>
 		</cpt>
-		<cpt id="VegetationTypeSedimentPuget">
+		<cpt id="SedimentVegetationType">
 			<state id="ForestGrasslandWetland" />
 			<state id="ShrublandPasture" />
 			<state id="CropsBarrenDeveloped" />
@@ -35,7 +35,7 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStageClass VegetationTypeSedimentPuget PercentVegetationCoverClass</parents>
+			<parents>SuccessionalStageClass SedimentVegetationType PercentTreeCanopyCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0.05 0.95 0.95 0.05 0 0 0.85 0.15 0 0 0.75 0.15 0.1 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.75 0.2 0.05 0 0.55 0.35 0.1 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0.15 0.4 0.45 0 0.05 0.35 0.6 0 0 0.25 0.75 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.2 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1 0 0.05 0.4 0.55 0 0 0.3 0.7 0 0 0.1 0.9 0.2 0.4 0.4 0 0.05 0.2 0.35 0.4 0 0 0.1 0.9 0 0.05 0.3 0.65 0 0.05 0.1 0.85 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SlopeStabilityClass">
@@ -108,16 +108,16 @@
 				<position>864 268 988 307</position>
 				<barchart active="true" width="279" height="90" />
 			</node>
-			<node id="PercentVegetationCoverClass">
-				<name>PercentVegetationCoverClass</name>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
 				<position>876 389 987 423</position>
 				<barchart active="true" width="296" height="72" />
 			</node>
-			<node id="VegetationTypeSedimentPuget">
-				<name>VegetationTypeSedimentPuget</name>
+			<node id="SedimentVegetationType">
+				<name>SedimentVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

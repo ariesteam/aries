@@ -38,7 +38,7 @@
 			<state id="SoilGroupD" />
 			<probabilities>0.01 0.01 0.01 0.97</probabilities>
 		</cpt>
-		<cpt id="VegetationTypeSedimentDR">
+		<cpt id="SedimentVegetationType">
 			<state id="WaterWetlandsMangroves" />
 			<state id="ForestAndShrubland" />
 			<state id="ShadeCoffeeCocoa" />
@@ -68,10 +68,10 @@
 			<parents>SlopeClass SoilTextureClass HydrologicSoilsGroup</parents>
 			<probabilities>0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0 0 0.75 0.25 0 0 0 0.5 0.5 0 0 0 0.25 0.75 0 0 0 0.3 0.7 0 0 0 0.2 0.8 0 0 0 0.1 0.9 0 0 0 0.05 0.95 0 0 0 0 1 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0 0 0 0 0.85 0.15 0 0 0 0.8 0.2 0 0 0 0.75 0.25 0 0 0 0.7 0.3 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.95 0.05 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 0 0.9 0.1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCoverClass">
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
 			<probabilities>0.195 0.505 0.3</probabilities>
 		</cpt>
 		<cpt id="VegetativeMaturity">
@@ -79,7 +79,7 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStageClass VegetationTypeSedimentDR PercentVegetationCoverClass</parents>
+			<parents>SuccessionalStageClass SedimentVegetationType PercentTreeCanopyCoverClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.975 0.025 0 0 0.5 0.4 0.1 0 0.25 0.5 0.25 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.05 0.4 0.55 0 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.1 0.35 0.4 0.15 0.8 0.2 0 0 0.35 0.5 0.15 0 0.05 0.3 0.4 0.25 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.4 0.5 0.1 0 0.2 0.4 0.4 0 0 0.2 0.5 0.3 0.3 0.4 0.3 0 0.15 0.3 0.55 0 0 0.15 0.5 0.35 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.1 0.4 0.4 0.1 0 0.3 0.4 0.3 0 0.1 0.45 0.45 0 0.4 0.4 0.2 0 0.25 0.35 0.4 0 0.05 0.4 0.55 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.025 0.975 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SedimentSourceValueAnnualClass">
@@ -93,8 +93,8 @@
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
-			<node id="VegetationTypeSedimentDR">
-				<name>VegetationTypeSedimentDR</name>
+			<node id="SedimentVegetationType">
+				<name>SedimentVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -131,8 +131,8 @@
 				<position>814 235 938 274</position>
 				<barchart active="true" width="290" height="90" />
 			</node>
-			<node id="PercentVegetationCoverClass">
-				<name>PercentVegetationCoverClass</name>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

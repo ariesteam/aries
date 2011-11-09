@@ -49,13 +49,13 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover :units "%")
-    [80 100 :inclusive] VeryHighVegetationCover
-    [60  80]            HighVegetationCover
-    [40  60]            ModerateVegetationCover
-    [20  40]            LowVegetationCover
-    [ 0  20]            VeryLowVegetationCover))
+(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
+    [80 100 :inclusive] VeryHighCanopyCover
+    [60  80]            HighCanopyCover
+    [40  60]            ModerateCanopyCover
+    [20  40]            LowCanopyCover
+    [ 0  20]            VeryLowCanopyCover))
 
 ;; Add the Mexican layers in if/when cross-boundary data integration is enabled.
 (defmodel vegetation-type sanPedro:CarbonVegetationType
@@ -108,7 +108,7 @@
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
     :import  "aries.core::CarbonSourceSanPedro.xdsl"
-    :context [vegetation-type percent-vegetation-cover annual-precipitation]
+    :context [vegetation-type percent-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))
 
@@ -171,7 +171,7 @@
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [annual-precipitation percent-vegetation-cover vegetation-type]
+    :context [annual-precipitation percent-canopy-cover vegetation-type]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
@@ -187,7 +187,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [soil-ph slope oxygen percent-vegetation-cover vegetation-type]
+    :context [soil-ph slope oxygen percent-canopy-cover vegetation-type]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
@@ -338,10 +338,10 @@
 fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
+      :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowVegetationCover)
-                  (:pvc %))))
+                  (:pcc %))))
   (model FireFrequency
     (classification FireFrequency
       :context [open-development-scenario :as od fire-frequency :as ff]
@@ -366,10 +366,10 @@ fire frequency, increased greenhouse gas emissions."
 fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
+      :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowVegetationCover)
-                  (:pvc %))))
+                  (:pcc %))))
   (model FireFrequency
     (classification FireFrequency
       :context [constrained-development-scenario :as cd fire-frequency :as ff]

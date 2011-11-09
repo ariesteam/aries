@@ -7,12 +7,12 @@
 			<state id="ModerateHousingValue" />
 			<state id="LowHousingValue" />
 			<state id="VeryLowHousingValue" />
-			<probabilities>0.01 0.09 0.35 0.4 0.15</probabilities>
+			<probabilities>0.0005 0.0035 0.023 0.123 0.85</probabilities>
 		</cpt>
 		<cpt id="PresenceOfHousing">
 			<state id="HousingPresent" />
 			<state id="HousingAbsent" />
-			<probabilities>0.1 0.9</probabilities>
+			<probabilities>0.015 0.985</probabilities>
 		</cpt>
 		<cpt id="HomeownerViewUse">
 			<state id="HomeownerViewUsePresent" />
@@ -28,15 +28,15 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>374 253 510 283</position>
-				<barchart active="true" width="186" height="54" />
+				<position>177 316 313 346</position>
+				<barchart active="true" width="186" height="64" />
 			</node>
 			<node id="HousingValue">
 				<name>HousingValue</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>791 281 891 310</position>
+				<position>507 316 607 345</position>
 				<barchart active="true" width="287" height="108" />
 			</node>
 			<node id="HomeownerViewUse">
@@ -44,8 +44,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>521 116 658 149</position>
-				<barchart active="true" width="312" height="54" />
+				<position>402 139 539 172</position>
+				<barchart active="true" width="312" height="64" />
 			</node>
 		</genie>
 	</extensions>

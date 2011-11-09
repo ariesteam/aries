@@ -147,7 +147,7 @@
 (defmodel source-cn FloodSource
   (measurement habitat:AnnualRunoff "mm" 
     :context [land-use soil-group-puget source-annual
-             (ranking habitat:PercentImperviousness)]
+             (ranking habitat:PercentImperviousnCover)]
     :state   #(let [
                     ctable 
                     {(tl/conc 'floodService:Agriculture) [64 75 82 85],
@@ -185,13 +185,13 @@
     [ 20  50] LowVegetationHeight
     [ :<  20] VeryLowVegetationHeight))
 
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover)
-    [80 100 :inclusive] VeryHighVegetationCover
-    [60  80]            HighVegetationCover
-    [40  60]            ModerateVegetationCover
-    [20  40]            LowVegetationCover
-    [ 0  20]            VeryLowVegetationCover))
+(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover)
+    [80 100 :inclusive] VeryHighCanopyCover
+    [60  80]            HighCanopyCover
+    [40  60]            ModerateCanopyCover
+    [20  40]            LowCanopyCover
+    [ 0  20]            VeryLowCanopyCover))
 
 (defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
@@ -203,7 +203,7 @@
     #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousness)
+  (classification (ranking habitat:PercentImperviousCover)
     [80 100 :inclusive] VeryHighImperviousCover
     [50  80]            HighImperviousCover
     [20  50]            ModeratelyHighImperviousCover
@@ -275,7 +275,7 @@
 ;;          :context  (
 ;;                  soil-group-puget vegetation-type slope monthly-temperature vegetation-height
 ;;                  successional-stage imperviousness dam-storage detention-basin-storage
-;;                  percent-vegetation-cover mean-days-precipitation-monthly land-selector)))
+;;                  percent-canopy-cover mean-days-precipitation-monthly land-selector)))
 
 ;; Flood sink probability, annual Comment veg height back in once the
 ;; layers been expanded to a meaningful extent OR Ferd's enabled
@@ -284,7 +284,7 @@
   (bayesian GreenInfrastructureSink
     :import  "aries.core::FloodSinkPugetAnnual.xdsl"
     :context  [soil-group-puget vegetation-type slope ; vegetation-height
-               successional-stage imperviousness percent-vegetation-cover 
+               successional-stage imperviousness percent-canopy-cover 
                mean-days-precipitation-annual land-selector]
     :required [LandOrSea]
     :keep     [GreenInfrastructureStorage]
@@ -817,7 +817,7 @@ be added to this list if desired."
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
+      :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
                       (conc 'carbonService:VeryLowVegetationCover)
@@ -828,7 +828,7 @@ be added to this list if desired."
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
                       (conc 'carbonService:ModerateVegetationCover)
                     
-                      :otherwise (:pvc %))))
+                      :otherwise (:pcc %))))
   (model SuccessionalStage
     (classification SuccessionalStage
       :context [open-development-scenario :as od successional-stage :as ss]
@@ -872,7 +872,7 @@ be added to this list if desired."
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
   (model PercentVegetationCoverClass
     (classification PercentVegetationCoverClass
-      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
+      :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
                       (conc 'carbonService:VeryLowVegetationCover)
@@ -883,7 +883,7 @@ be added to this list if desired."
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
                       (conc 'carbonService:ModerateVegetationCover)
 
-                      :otherwise (:pvc %))))
+                      :otherwise (:pcc %))))
   (model SuccessionalStage
     (classification SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]

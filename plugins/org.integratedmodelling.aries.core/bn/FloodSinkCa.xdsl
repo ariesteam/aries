@@ -7,12 +7,12 @@
 			<state id="DevelopedCultivatedVegetation" />
 			<probabilities>0.03 0.17 0.8</probabilities>
 		</cpt>
-		<cpt id="PercentVegetationCoverClass">
-			<state id="VeryHighVegetationCover" />
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
-			<state id="VeryLowVegetationCover" />
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
 			<probabilities>0.05 0.05 0.2 0.3 0.4</probabilities>
 		</cpt>
 		<cpt id="EvapotranspirationClass">
@@ -21,7 +21,7 @@
 			<state id="ModerateEvaoptranspiration" />
 			<state id="LowEvaoptranspiration" />
 			<state id="VeryLowEvaoptranspiration" />
-			<parents>PercentVegetationCoverClass VegetationTypeSoCalFlood</parents>
+			<parents>PercentTreeCanopyCoverClass VegetationTypeSoCalFlood</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0 0.2 0.2 0.3 0.3 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0 0.05 0.15 0.4 0.4 0.8 0.2 0 0 0 0.7 0.2 0.1 0 0 0 0 0.1 0.4 0.5 0.75 0.25 0 0 0 0.6 0.2 0.1 0.1 0 0 0 0.05 0.3 0.65 0.7 0.3 0 0 0 0.4 0.4 0.1 0.1 0 0 0 0 0.2 0.8</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
@@ -98,8 +98,8 @@
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="282" height="108" />
 			</node>
-			<node id="PercentVegetationCoverClass">
-				<name>PercentVegetationCoverClass</name>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -112,9 +112,9 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>961 424 1056 454</position>
+				<position>961 422 1056 452</position>
 				<comment>Data Source: USDA Forest Service - Pacific Southwest Region - Remote Sensing Lab \n\n2002,2003 existing vegetation map product at a scale of 1:24,000\n\n&quot;Tile 51&quot; covers parts of Orange and Los Angeles Counties\n\n&quot;Shrub&quot;, &quot;Mixed Conifer Hardwood&quot;, &quot;Herbaceous&quot;, and &quot;Hardwood&quot; attributes aggregated together to = ForestGrasslandShrublandCultivatedVegetation\n\n&quot;Urban&quot; attribute = DevelopedVegetation\n\n&quot;Water&quot; = WetlandVegetation\n\nBased on review of GIS datasets within the study area (San Gabriel River Watershed) priors were assigned to each &quot;vegetation type.&quot;</comment>
-				<barchart active="true" width="472" height="76" />
+				<barchart active="true" width="472" height="72" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>

@@ -100,19 +100,19 @@
     [   0  200] VeryLowAnnualRunoff))
 
 ;; Vegetation type
-(defmodel vegetation-type VegetationTypeSedimentMg
+(defmodel vegetation-type mg:SedimentVegetationType
   (classification (numeric-coding mglulc:MGLULCNumeric)
-    #{1 2 4 5 6 10 14}                         ForestWetland
-    #{3 7 23}                                  DegradedForest
-    #{8 9 20 21 22 24 25 26 28 29 30 31 32 33} Savanna
-    #{11 12 13 16 17}                          CroplandDeveloped))
+    #{1 2 4 5 6 10 14}                         mg:ForestWetland
+    #{3 7 23}                                  mg:DegradedForest
+    #{8 9 20 21 22 24 25 26 28 29 30 31 32 33} mg:Savanna
+    #{11 12 13 16 17}                          mg:CroplandDeveloped))
 
 ;; Discretization based on Quinton et al. (1997)
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover)
-    [70 100 :inclusive] HighVegetationCover
-    [30  70]            ModerateVegetationCover
-    [:exclusive 0 30]   LowVegetationCover))
+(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover)
+    [70 100 :inclusive] HighCanopyCover
+    [30  70]            ModerateCanopyCover
+    [:exclusive 0 30]   LowCanopyCover))
 
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
   (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
@@ -126,7 +126,7 @@
   (bayesian SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourceMgAdHoc.xdsl"
     :context  [soil-group slope soil-texture soil-erodibility precipitation-annual  
-               storm-probability runoff vegetation-type percent-vegetation-cover]
+               storm-probability runoff vegetation-type percent-canopy-cover]
     :required [SlopeClass]
     :keep     [SedimentSourceValueAnnualClass]
     :result   sediment-source-value-annual))
@@ -148,13 +148,13 @@
     [1.15 2.86]           ModerateStreamGradient
     [:exclusive 0   1.15] LowStreamGradient))
 
-(defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
-  (classification (ranking habitat:PercentFloodplainVegetationCover)
-    [80 100 :inclusive] VeryHighFloodplainVegetationCover
-    [60  80]            HighFloodplainVegetationCover
-    [40  60]            ModerateFloodplainVegetationCover
-    [20  40]            LowFloodplainVegetationCover
-    [:exclusive 0 20]   VeryLowFloodplainVegetationCover))
+(defmodel floodplain-canopy-cover FloodplainTreeCanopyCoverClass 
+  (classification (ranking habitat:PercentFloodplainTreeCanopyCover)
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [:exclusive 0 20]   VeryLowFloodplainCanopyCover))
 
 (defmodel floodplains-code FloodplainsCode
   (binary-coding geofeatures:Floodplain))
@@ -183,7 +183,7 @@
 (defmodel sediment-sink-mg AnnualSedimentSink
   (bayesian AnnualSedimentSink 
     :import   "aries.core::SedimentSinkMg.xdsl"
-    :context  [reservoirs stream-gradient floodplain-vegetation-cover]
+    :context  [reservoirs stream-gradient floodplain-canopy-cover]
     :required [StreamGradientClass]
     :keep     [AnnualSedimentSinkClass]
     :result   sediment-sink-annual))

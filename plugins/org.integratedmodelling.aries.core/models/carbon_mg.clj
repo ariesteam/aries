@@ -47,13 +47,13 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover :units "%")
-    [80 :>] VeryHighVegetationCover
-    [60 80] HighVegetationCover
-    [40 60] ModerateVegetationCover
-    [20 40] LowVegetationCover
-    [ 0 20] VeryLowVegetationCover))
+(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
+    [80 :>] VeryHighCanopyCover
+    [60 80] HighCanopyCover
+    [40 60] ModerateCanopyCover
+    [20 40] LowCanopyCover
+    [ 0 20] VeryLowCanopyCover))
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
@@ -89,7 +89,7 @@
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
     :import   "aries.core::CarbonSourceMg.xdsl"
-    :context  [percent-vegetation-cover summer-high-winter-low soil-cn-ratio degradation-status]
+    :context  [percent-canopy-cover summer-high-winter-low soil-cn-ratio degradation-status]
     :required [SummerHighWinterLow]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
@@ -162,7 +162,7 @@
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
     :import   "aries.core::CarbonSinkMg.xdsl"
-    :context  [percent-vegetation-cover summer-high-winter-low degradation-status population-density]
+    :context  [percent-canopy-cover summer-high-winter-low degradation-status population-density]
     :required [SummerHighWinterLow]
     :keep     [VegetationCarbonStorage]
     :result    veg-storage))
@@ -188,7 +188,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
     :import   "aries.core::CarbonSinkMg.xdsl"
-    :context  [soil-cn-ratio degradation-status soil-ph slope oxygen percent-vegetation-cover]
+    :context  [soil-cn-ratio degradation-status soil-ph slope oxygen percent-canopy-cover]
     :required [SummerHighWinterLow]
     :keep     [SoilCarbonStorage]
     :result    soil-storage))

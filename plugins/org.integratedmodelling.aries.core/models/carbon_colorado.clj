@@ -49,33 +49,24 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-vegetation-cover PercentVegetationCoverClass
-  (classification (ranking habitat:PercentVegetationCover :units "%")
-    [80 100 :inclusive] VeryHighVegetationCover
-    [60  80]            HighVegetationCover
-    [40  60]            ModerateVegetationCover
-    [20  40]            LowVegetationCover
-    [ 0  20]            VeryLowVegetationCover))
+(defmodel percent-tree-canopy-cover PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
+    [80 100 :inclusive] VeryHighCanopyCover
+    [60  80]            HighCanopyCover
+    [40  60]            ModerateCanopyCover
+    [20  40]            LowCanopyCover
+    [ 0  20]            VeryLowCanopyCover))
 
-;; Add the Mexican layers in if/when cross-boundary data integration is enabled.
-(defmodel vegetation-type sanPedro:CarbonVegetationType
-  "Reclass of SWReGAP & CONABIO LULC layers"
-  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           sanPedro:Forest
-    #{33 41 91}                                                                        sanPedro:OakWoodland
-    #{52 109}                                                                          sanPedro:MesquiteWoodland
-    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              sanPedro:Grassland
-    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
-    #{77 78 79 80 81 83 84 85 98 118}                                                  sanPedro:Riparian
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              sanPedro:UrbanBarrenWaterAgriculture))
-;;  (classification (categorization mexico:CONABIOLULCCategory)
-;;    #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
-;;    #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
-;;    #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
-;;    #{"Pastizal natural"}                                                        sanPedro:Grassland
-;;    #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
-;;    #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
-;;    #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWaterAgriculture))
+(defmodel vegetation-type colorado:CarbonVegetationType
+  "Reclass of SWReGAP LULC"
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) ; Discretize correctly!
+    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           colorado:ConiferousForest
+    #{33 41 91}                                                                        colorado:DeciduousForest
+    #{52 109}                                                                          colorado:Grassland
+    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              colorado:Shrubland
+    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} colorado:Wetland
+    #{77 78 79 80 81 83 84 85 98 118}                                                  colorado:Cropland
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              colorado:Unvegetated))
 
 ;; Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their
 ;; discretization for rangeland carbon modeling.  For the San Pedro,
@@ -97,18 +88,18 @@
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [3 4.6]  VeryHighSequestration
-    [2 3]    HighSequestration
-    [1.5 2]  ModerateSequestration
-    [1 1.5]  LowSequestration
-    [0.01 1] VeryLowSequestration ; Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
-    [0 0.01] NoSequestration))
+    [10   20]    VeryHighSequestration
+    [ 6   10]    HighSequestration
+    [ 4    6]    ModerateSequestration
+    [ 2.5  4]    LowSequestration
+    [ 0.01 2.5]  VeryLowSequestration
+    [ 0    0.01] NoSequestration))
 
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
     :import  "aries.core::CarbonSourceSanPedro.xdsl"
-    :context [vegetation-type percent-vegetation-cover annual-precipitation]
+    :context [vegetation-type percent-tree-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))
 
@@ -123,71 +114,62 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-;; Using deep soil pH for grasslands and deserts, shallow for all
-;; other ecosystem types This should work OK with both global & SSURGO
-;; data, but check to make sure.
-(defmodel soil-ph Soilph
-  (classification (ranking habitat:SoilPhDeep)
-    [7.3 :>]           HighPh
-    [5.5 7.3]          ModeratePh
-    [:exclusive 0 5.5] LowPh))
+(defmodel soil-type colorado:SoilType
+  (classification (ranking colorado:CarbonSoilType)
+    1 colorado:Alfisols
+    2 colorado:Aridisols
+    3 colorado:Entisols
+    4 colorado:Inceptisols
+    5 colorado:Mollisols
+    6 colorado:Water))
 
-(defmodel slope SlopeClass
-  (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [:<     1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+(defmodel beetle-kill colorado:BeetleKill
+  (classification (ranking colorado:BeetleKillLevel)
+    [150 200] colorado:VeryHighBeetleKill ; Values are in trees
+                                        ; killed/ha - definitely not a
+                                        ; thinklab-recognized unit, so
+                                        ; keep as is.
+    [100 150] colorado:HighBeetleKill
+    [ 50 100] colorado:ModerateBeetleKill
+    [  1  50] colorado:LowBeetleKill
+           0  colorado:NoBeetleKill))
 
-;; Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC
-;; data (i.e., CONABIO) denote wetlands at least for Sonora.
-(defmodel oxygen SoilOxygenConditions 
-  (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}   AnoxicSoils
-    :otherwise OxicSoils)
-  (classification (numeric-coding glc:GLCNumeric)
-    15         AnoxicSoils
-    :otherwise OxicSoils))
-
-;; Per Schussman et al. (2006), the middle of each of these ranges is
-;; around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs
-;; for low.
-(defmodel fire-frequency FireFrequency
-  (classification (numeric-coding habitat:FireReturnInterval) 
-    1      HighFireFrequency
-    #{2 3} ModerateFireFrequency ; includes "variable" fire frequency
-    4      LowFireFrequency
-    #{5 6} NoFireFrequency))
+(defmodel fire-threat FireThreatClass
+  (classification (ranking habitat:FireThreat) 
+    1 VeryHighFireThreat
+    2 HighFireThreat
+    3 ModerateFireThreat
+    4 LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
-    [75 100] VeryHighVegetationStorage
-    [20 75]  HighVegetationStorage
-    [5 20]   ModerateVegetationStorage
-    [2 5]    LowVegetationStorage
-    [0.01 2] VeryLowVegetationStorage
-    [0 0.01] NoVegetationStorage))
+    [89  127]    VeryHighVegetationStorage
+    [69   89]    HighVegetationStorage
+    [37   69]    ModerateVegetationStorage
+    [ 9.3 37]    LowVegetationStorage
+    [ 0.01 9.3]  VeryLowVegetationStorage
+    [ 0    0.01] NoVegetationStorage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [annual-precipitation percent-vegetation-cover vegetation-type]
+    :import  "aries.core::CarbonSinkColorado.xdsl"
+    :context [annual-precipitation percent-tree-canopy-cover vegetation-type]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
-    [40 80]        VeryHighSoilStorage
-    [20 40]        HighSoilStorage
-    [5 20]         ModerateSoilStorage
-    [2 5]          LowSoilStorage
-    [0.01 2]       VeryLowSoilStorage
-    [0 0.01]       NoSoilStorage))
+    [69   108]    VeryHighSoilStorage
+    [46.6  69]    HighSoilStorage
+    [27    46.6]  ModerateSoilStorage
+    [10    27]    LowSoilStorage
+    [ 0.01 10]    VeryLowSoilStorage
+    [ 0     0.01] NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [soil-ph slope oxygen percent-vegetation-cover vegetation-type]
+    :import  "aries.core::CarbonSinkColorado.xdsl"
+    :context [soil-ph slope oxygen percent-tree-canopy-cover vegetation-type]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
@@ -203,21 +185,21 @@
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [50 180] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [15 50]  HighStorage
-    [6 15]   ModerateStorage
-    [3 6]    LowStorage
-    [0.02 3] VeryLowStorage
-    [0 0.02] NoStorage))
+    [159 235] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [116   159]    HighStorage
+    [ 66   116]    ModerateStorage
+    [ 10    64]    LowStorage
+    [  0.02 10]    VeryLowStorage
+    [  0     0.02] NoStorage))
 
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-    [12 90]  VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
-    [9 12]   HighRelease
-    [6 9]    ModerateRelease
-    [3 6]    LowRelease
-    [0.02 3] VeryLowRelease
-    [0 0.02] NoRelease))
+    [59   118]    VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+    [29.5  59]    HighRelease
+    [14.8  29.5]  ModerateRelease
+    [ 7.4  14.8]  LowRelease
+    [ 0.02  7.4]  VeryLowRelease
+    [ 0     0.02] NoRelease))
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 

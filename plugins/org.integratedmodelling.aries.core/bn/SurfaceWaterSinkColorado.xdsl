@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="RivalUser" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SlopeClass">
+			<state id="Level" />
+			<state id="GentlyUndulating" />
+			<state id="RollingToHilly" />
+			<state id="SteeplyDissectedToMountainous" />
+			<probabilities>0.8 0.12 0.06 0.02</probabilities>
+		</cpt>
+		<cpt id="EvapotranspirationVegetationType">
+			<state id="Forest" />
+			<state id="ScrubBrush" />
+			<state id="ShortgrassPrairie" />
+			<state id="Water" />
+			<state id="Urban" />
+			<state id="Agriculture" />
+			<probabilities>0.211 0.223 0.414 0.004 0.008 0.14</probabilities>
+		</cpt>
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
+			<probabilities>0.1 0.1 0.05 0.7 0.05</probabilities>
+		</cpt>
+		<cpt id="SoilInfiltrationClass">
+			<state id="HighInfiltration" />
+			<state id="MediumInfiltration" />
+			<state id="LowInfiltration" />
+			<parents>EvapotranspirationVegetationType SlopeClass PercentTreeCanopyCoverClass</parents>
+			<probabilities>0.9 0.1 0 0.85 0.15 0 0.75 0.25 0 0.2000000000000001 0.7000000000000001 0.1 0.8 0.1 0.1 0.7000000000000001 0.2000000000000001 0.1 0.7 0.25 0.05 0.6 0.35 0.05 0.15 0.75 0.1 0.6000000000000001 0.3 0.1 0.2 0.4 0.4 0.15 0.4 0.45 0.1 0.45 0.45 0.1 0.65 0.25 0.2 0.5 0.3 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 0.8 0.2 0 0.85 0.15 0 0.75 0.25 0 0.4 0.4 0.2 0.85 0.1 0.05 0.65 0.25 0.1 0.7 0.25 0.05 0.7 0.25 0.05 0.4 0.35 0.25 0.6000000000000001 0.3 0.1 0.15 0.4 0.45 0.25 0.4 0.35 0.25 0.4 0.35 0.2 0.55 0.25 0.2 0.5 0.3 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 1 0 0 0.9 0.1 0 0.85 0.15 0 0.8 0.15 0.05 0.75 0.15 0.1 0.95 0.05 0 0.85 0.1 0.05 0.8 0.15 0.05 0.55 0.35 0.1 0.55 0.35 0.1 0.25 0.5 0.25 0.25 0.4 0.35 0.25 0.4 0.35 0.2 0.3 0.5 0.35 0.25 0.4 0.1 0.2 0.7 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.15 0.85 1 0 0 0.95 0.05 0 0.9 0.1 0 1 0 0 0.9 0.1 0 0.95 0.05 0 0.85 0.1 0.05 0.8 0.1 0.1 0.9 0.1 0 0.8 0.1 0.1 0.85 0.1 0.05 0.2 0.6 0.2 0.2 0.6 0.2 0.5 0.4 0.1 0.2 0.6 0.2 0.3 0.5 0.2 0.4 0.5 0.1 0.4 0.5 0.1 0.3 0.5 0.2 0 0 1 0.4 0.3 0.3 0.2 0.2 0.6 0.05 0.15 0.8 0 0.05 0.95 0 0.1 0.9 0.35 0.35 0.3 0.15 0.15 0.7 0.1 0.2 0.7 0 0.07000000000000001 0.9300000000000001 0 0.05 0.95 0.2 0.3 0.5 0.05 0.1 0.85 0 0.08 0.92 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0.05 0.95 0 0 1 0 0 1 1 0 0 0.9 0.1 0 0.85 0.15 0 0.8 0.15 0.05 0.75 0.15 0.1 0.95 0.05 0 0.9 0.1 0 0.8 0.15 0.05 0.55 0.35 0.1 0.55 0.35 0.1 0.25 0.5 0.25 0.25 0.45 0.3 0.25 0.4 0.35 0.2 0.3 0.5 0.35 0.25 0.4 0.1 0.2 0.7 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.15 0.85</probabilities>
+		</cpt>
+		<cpt id="EvapotranspirationClass">
+			<state id="HighEvapotranspiration" />
+			<state id="ModerateEvapotranspiration" />
+			<state id="LowEvapotranspiration" />
+			<parents>EvapotranspirationVegetationType SlopeClass PercentTreeCanopyCoverClass</parents>
+			<probabilities>0.2 0.3 0.5 0.3 0.35 0.35 0.3 0.3 0.4 0.4 0.3 0.3 0.5 0.3 0.2 0.15 0.2 0.65 0.2 0.3 0.5 0.25 0.25 0.5 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.05 0.1 0.85 0.15 0.15 0.7 0.15 0.2 0.65 0.2 0.3 0.5 0.3 0.35 0.35 0.05 0.1 0.85 0.1 0.1 0.8 0.15 0.15 0.7 0.15 0.2 0.65 0.2 0.3 0.5 0.2 0.3 0.5 0.3 0.3 0.4 0.35 0.35 0.3 0.35 0.35 0.3 0.65 0.2 0.15 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.5 0.3 0.2 0.25 0.25 0.5 0.2 0.3 0.5 0.2 0.25 0.55 0.3 0.3 0.4 0.3 0.3 0.4 0.15 0.2 0.65 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.35 0.35 0.3 0.4 0.3 0.3 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.25 0.55 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.3 0.4 0.5 0.3 0.2 0.2 0.25 0.55 0.2 0.25 0.55 0.65 0.2 0.15 0.55 0.25 0.2 0.2 0.3 0.5 0.2 0.3 0.5 0.2 0.3 0.5 0.5 0.25 0.25 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.15 0.2 0.65 0.2 0.25 0.55 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.1 0.1 0.8 0.15 0.15 0.7 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65 0.25 0.25 0.5 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.5 0.3 0.2 0.85 0.1 0.05 0.3 0.3 0.4 0.3 0.3 0.4 0.3 0.3 0.4 0.4 0.3 0.3 0.5 0.3 0.2 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.15 0.2 0.65 0.2 0.25 0.55 0.2 0.3 0.5 0.3 0.3 0.4 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.3 0.5 0.3 0.3 0.4 0.35 0.35 0.3 0.35 0.35 0.3 0.65 0.2 0.15 0.3 0.3 0.4 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.5 0.3 0.2 0.25 0.25 0.5 0.2 0.3 0.5 0.2 0.25 0.55 0.3 0.3 0.4 0.3 0.3 0.4 0.15 0.2 0.65 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65</probabilities>
+			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Rival User Consumption" faultnameformat="nodestate">
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>94 372 206 406</position>
+				<comment>The Vegetative Density of Each landcover can provide secondary analysis of land use.   Vegetative density adds value to the analysis by taking hetergeneity in landscapes into account.  \n\nFor Example: A Land Use of Urban can have parks, impervious surfaces, yard....  Using the vegetative density these variations are considered.\n\nNoCover: Open Water, Snow/Ice, Developed Roads, Barren, Quarries, fallow idle cropland\n\nLowCover: Developed-Upland Herbaceous, Herbaceous &lt;=70%, grain crops, close ground crop, close ground crop, Shrub &lt;=40%, Tree &lt;= 30%\n\nModerateCover: Shrub Cover, Cropland, Hay, Developed Upland Shrub Cover, Pasture and Hayland, Row Crop, Herbaceous 70-90%, Shrub 40-90%, Tree 30-60%\n\nHighCover: Tree Cover, Developed Upland Tree Cover, Mixed Forest, Herbaceous &gt;90%, Shrub &gt;90%, Tree &gt; 60%</comment>
+				<barchart active="true" width="254" height="108" />
+			</node>
+			<node id="EvapotranspirationVegetationType">
+				<name>EvapotranspirationVegetationType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>706 379 801 409</position>
+				<comment>Land Use determines how wate reacts with the landscape.  We are assuming that how the water reacts with the landscape can be used to identify amounts being either be evaporated, absorbed.  The remaining will be considered run of to be collected in streams. \n\nLULC layer:\nForest: 16-27, 53-55, 59-62, 72-75, 80-81\nScrub: 0-15, 28-39, 52, 56, 63, 65-66, 70\nPlains: 40-51, 57-58, 64, 76-79\nUrban: 68, 69, 82\nAgriculture: 71\nWater: 67</comment>
+				<barchart active="true" width="243" height="126" />
+			</node>
+			<node id="SoilInfiltrationClass">
+				<name>SoilInfiltrationClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>541 221 589 251</position>
+				<barchart active="true" width="172" height="72" />
+			</node>
+			<node id="SlopeClass">
+				<name>SlopeClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>434 364 482 394</position>
+				<comment>The effect of slope on the two child nodes is very simple the higher the slope the less the residences time at that location (water flows down hill), and is therefore less likely to have the opurtunity to be subject to environmental factors. \n\nDiscretization based on the natural breaks for slope values on the front range.\n\nExtreme: &gt;11\nModerate: 6-11\nLow: 2-6\nFlat: 0-2\n</comment>
+				<barchart active="true" width="324" height="90" />
+			</node>
+			<node id="EvapotranspirationClass">
+				<name>EvapotranspirationClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>140 223 356 257</position>
+				<comment>Evaporation is affected by land cover. Urban areas tend to hava a very high evaporation due to concrete and asphalt cover that doesn&apos;t absorb water. The heat absorbed during the day by these surfaces also increases evaporation. Areas with low ground cover will have higher evaporation because the plants will not sheild sitting water from the heat. Trees reduce evaporation because water filters through and sun rays are blocked from hitting sitting water. Moving water ways have a lower evaporation if the river is moving at a fast pace or is heavily covered by tree canopy. The rivers along the plains will have a higher evaporation rate because water moves at a sower pace and their is less tree cover. \n\nKB: I don&apos;t understand your interpretation of these concepts: the relevant concept is evapotranspiration, which includes the plant component of the process!</comment>
+				<barchart active="true" width="273" height="72" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

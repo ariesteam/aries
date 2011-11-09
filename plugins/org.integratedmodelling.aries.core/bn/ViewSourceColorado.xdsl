@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SharpPeaks">
+			<state id="PeaksPresent" />
+			<state id="PeaksAbsent" />
+			<probabilities>0.037 0.963</probabilities>
+		</cpt>
+		<cpt id="ConiferForests">
+			<state id="ConfiersPresent" />
+			<state id="ConfiersAbsent" />
+			<probabilities>0.53 0.47</probabilities>
+		</cpt>
+		<cpt id="Lake">
+			<state id="LakePresent" />
+			<state id="LakeAbsent" />
+			<probabilities>0.013 0.987</probabilities>
+		</cpt>
+		<cpt id="AspenForests">
+			<state id="AspensPresent" />
+			<state id="AspensAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="HighGrassOrShrubs">
+			<state id="HighGrassShrubsPresent" />
+			<state id="HighGrassShrubsAbsent" />
+			<probabilities>0.083 0.917</probabilities>
+		</cpt>
+		<cpt id="LowGrassOrShrubs">
+			<state id="LowGrassShrubsPresent" />
+			<state id="LowGrassShrubsAbsent" />
+			<probabilities>0.27 0.73</probabilities>
+		</cpt>
+		<cpt id="TheoreticalNaturalBeauty">
+			<state id="HighNaturalBeauty" />
+			<state id="ModerateNaturalBeauty" />
+			<state id="LowNaturalBeauty" />
+			<state id="NoNaturalBeauty" />
+			<parents>SharpPeaks Lake ConiferForests AspenForests HighGrassOrShrubs LowGrassOrShrubs</parents>
+			<probabilities>1 0 0 0 0.95 0 0 0.05 0.9 0 0 0.1 0.85 0 0 0.15 0.75 0 0.15 0.1 0.75 0 0.1 0.15 0.65 0.15 0 0.2 0.65 0.1 0 0.25 0.75 0 0.15 0.1 0.85 0 0 0.15 0.65 0.15 0 0.2 0.65 0.1 0 0.25 0.65 0 0.15 0.2 0.65 0 0.1 0.25 0.65 0 0.05 0.3 0.65 0 0 0.35 0.7 0 0 0.3 0.35 0.3 0 0.35 0.35 0.25 0 0.4 0.35 0.2 0 0.45 0.45 0 0.15 0.4 0.45 0 0.1 0.45 0.35 0.15 0 0.5 0.35 0.1 0 0.55 0.45 0 0.15 0.4 0.45 0 0.1 0.45 0.35 0.15 0 0.5 0.35 0.1 0 0.55 0.35 0 0.15 0.5 0.35 0 0.1 0.55 0.35 0 0.05 0.6 0.35 0 0 0.65 0.3 0.35 0 0.35 0.3 0.3 0 0.4 0.3 0.25 0 0.45 0.3 0.2 0 0.5 0.4 0 0.15 0.45 0.4 0 0.1 0.5 0.3 0.15 0 0.55 0.3 0.1 0 0.6 0.4 0 0.15 0.45 0.4 0 0.1 0.5 0.3 0.15 0 0.55 0.3 0.1 0 0.6 0.3 0 0.15 0.55 0.3 0 0.1 0.6 0.3 0 0.05 0.65 0.3 0 0 0.7 0 0.35 0 0.65 0 0.3 0 0.7 0 0.25 0 0.75 0 0.2 0 0.8 0 0.1 0.15 0.75 0 0.1 0.1 0.8 0 0.15 0 0.85 0.9 0 0.1 0 0 0.1 0.15 0.75 0 0.1 0.1 0.8 0 0.15 0 0.85 0 0.1 0 0.9 0 0 0.15 0.85 0 0 0.1 0.9 0 0 0.05 0.95 0 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+			<node id="SharpPeaks">
+				<name>SharpPeaks</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>156 258 285 288</position>
+				<barchart active="true" width="162" height="54" />
+			</node>
+			<node id="TheoreticalNaturalBeauty">
+				<name>TheoreticalNaturalBeauty</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>432 117 544 147</position>
+				<barchart active="true" width="226" height="90" />
+			</node>
+			<node id="Lake">
+				<name>Lake</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>46 260 88 286</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="ConiferForests">
+				<name>ConiferForests</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>347 247 431 299</position>
+				<barchart active="true" width="158" height="54" />
+			</node>
+			<node id="AspenForests">
+				<name>AspenForests</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>511 247 595 299</position>
+				<barchart active="true" width="154" height="54" />
+			</node>
+			<node id="HighGrassOrShrubs">
+				<name>HighGrassOrShrubs</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>721 246 805 298</position>
+				<barchart active="true" width="249" height="54" />
+			</node>
+			<node id="LowGrassOrShrubs">
+				<name>LowGrassOrShrubs</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>977 245 1061 297</position>
+				<barchart active="true" width="248" height="54" />
+			</node>
+		</genie>
+	</extensions>
+</smile>

@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.integratedmodelling.org/ks/aries/local/colorado.owl"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     ontologyIRI="http://www.integratedmodelling.org/ks/aries/local/colorado.owl">
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Import>http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl</Import>
+    <Declaration>
+        <Class IRI="#Agriculture"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Alfisols"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Aridisols"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspenForest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspenForestPresence"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspenForests"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspenWoodland"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspensAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AspensPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BeetleKillLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CarbonVegetationType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConiferForest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConiferForestPresence"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConiferForests"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConiferousForest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConifersAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConifersPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cropland"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DeciduousForest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DevelopmentInfrastructure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DisturbanceAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DisturbancePresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Entisols"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Forest"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GenericDisturbance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Grassland"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrayBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrayBeetleStage"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrayKillAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrayKillPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GreenGrayBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GreenGrayBeetleStage"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GreenGrayKillAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GreenGrayKillPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighGrassOrShrubs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighGrassShrubPresence"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighGrassShrubs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighGrassShrubsAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighGrassShrubsPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Inceptisols"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InfrastructureAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InfrastructurePresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LodgepolePine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowGrassOrShrubs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowGrassShrubPresence"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowGrassShrubs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowGrassShrubsAbsent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowGrassShrubsPresent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ModerateBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mollisols"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MountainPineBeetle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NoBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Other"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PonderosaPine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ScenicVegetationType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ScrubBrush"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SedimentVegetationType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ShortgrassPrairie"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Shrubland"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SoilType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SpruceFir"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Unvegetated"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Urban"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VeryHighBeetleKill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Water"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wetland"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Agriculture"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Alfisols"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Aridisols"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspenForest"/>
+        <Class IRI="#ScenicVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspenForestPresence"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspenForests"/>
+        <Class IRI="#AspenForestPresence"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspenWoodland"/>
+        <Class IRI="#SedimentVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspensAbsent"/>
+        <Class IRI="#AspenForests"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AspensPresent"/>
+        <Class IRI="#AspenForests"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BeetleKill"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BeetleKillLevel"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CarbonVegetationType"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConiferForest"/>
+        <Class IRI="#ScenicVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConiferForestPresence"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConiferForests"/>
+        <Class IRI="#ConiferForestPresence"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConiferousForest"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConifersAbsent"/>
+        <Class IRI="#ConiferForests"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConifersPresent"/>
+        <Class IRI="#ConiferForests"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cropland"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DeciduousForest"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DevelopmentInfrastructure"/>
+        <Class IRI="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-object"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DisturbanceAbsent"/>
+        <Class IRI="#GenericDisturbance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DisturbancePresent"/>
+        <Class IRI="#GenericDisturbance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Entisols"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Forest"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GenericDisturbance"/>
+        <Class IRI="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-object"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Grassland"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrayBeetleKill"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrayBeetleStage"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrayKillAbsent"/>
+        <Class IRI="#GrayBeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrayKillPresent"/>
+        <Class IRI="#GrayBeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GreenGrayBeetleKill"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GreenGrayBeetleStage"/>
+        <Class IRI="#MountainPineBeetle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GreenGrayKillAbsent"/>
+        <Class IRI="#GreenGrayBeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GreenGrayKillPresent"/>
+        <Class IRI="#GreenGrayBeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighBeetleKill"/>
+        <Class IRI="#BeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighGrassOrShrubs"/>
+        <Class IRI="#HighGrassShrubPresence"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighGrassShrubPresence"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighGrassShrubs"/>
+        <Class IRI="#ScenicVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighGrassShrubsAbsent"/>
+        <Class IRI="#HighGrassOrShrubs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighGrassShrubsPresent"/>
+        <Class IRI="#HighGrassOrShrubs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Inceptisols"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InfrastructureAbsent"/>
+        <Class IRI="#DevelopmentInfrastructure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InfrastructurePresent"/>
+        <Class IRI="#DevelopmentInfrastructure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LodgepolePine"/>
+        <Class IRI="#SedimentVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowBeetleKill"/>
+        <Class IRI="#BeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowGrassOrShrubs"/>
+        <Class IRI="#LowGrassShrubPresence"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowGrassShrubPresence"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowGrassShrubs"/>
+        <Class IRI="#ScenicVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowGrassShrubsAbsent"/>
+        <Class IRI="#LowGrassOrShrubs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowGrassShrubsPresent"/>
+        <Class IRI="#LowGrassOrShrubs"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ModerateBeetleKill"/>
+        <Class IRI="#BeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mollisols"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MountainPineBeetle"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#InterspecificInteraction"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NoBeetleKill"/>
+        <Class IRI="#BeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Other"/>
+        <Class IRI="#ScenicVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PonderosaPine"/>
+        <Class IRI="#SedimentVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ScenicVegetationType"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ScrubBrush"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SedimentVegetationType"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ShortgrassPrairie"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Shrubland"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SoilType"/>
+        <Class IRI="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilQuality"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SpruceFir"/>
+        <Class IRI="#SedimentVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Unvegetated"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Urban"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VeryHighBeetleKill"/>
+        <Class IRI="#BeetleKill"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Water"/>
+        <Class IRI="#EvapotranspirationVegetationType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Water"/>
+        <Class IRI="#SoilType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wetland"/>
+        <Class IRI="#CarbonVegetationType"/>
+    </SubClassOf>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#GenericDisturbance</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Includes mining, fires, and other disturbed and potentially transitional land use types.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

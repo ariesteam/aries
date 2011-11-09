@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="PercentVegetationCoverClass">
-			<state id="VeryHighVegetationCover" />
-			<state id="HighVegetationCover" />
-			<state id="ModerateVegetationCover" />
-			<state id="LowVegetationCover" />
-			<state id="VeryLowVegetationCover" />
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
 			<probabilities>0.6 0.1 0.1 0.1 0.1</probabilities>
 		</cpt>
 		<cpt id="ForestDegradationStatus">
@@ -21,7 +21,7 @@
 			<state id="LowVegetationDensity" />
 			<state id="VeryLowVegetationDensity" />
 			<state id="NoVegetationDensity" />
-			<parents>PercentVegetationCoverClass ForestDegradationStatus</parents>
+			<parents>PercentTreeCanopyCoverClass ForestDegradationStatus</parents>
 			<probabilities>0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
 		</cpt>
@@ -74,8 +74,8 @@
 				<comment>VegetationAndSoilCarbonSequetration = VegetationDensity*SequestrationRate\n\n(Ideally; since we&apos;re unlikely to get numbers for either of these variables we are including probabilities instead.)</comment>
 				<barchart active="true" width="294" height="126" />
 			</node>
-			<node id="PercentVegetationCoverClass">
-				<name>PercentVegetationCoverClass</name>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -121,8 +121,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1049 457 1166 491</position>
-				<barchart active="true" width="154" height="64" />
+				<position>1049 452 1166 486</position>
+				<barchart active="true" width="154" height="54" />
 			</node>
 		</genie>
 	</extensions>
