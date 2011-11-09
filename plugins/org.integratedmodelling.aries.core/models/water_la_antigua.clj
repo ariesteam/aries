@@ -82,7 +82,7 @@
     4 SoilGroupD))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousSurface)
+  (classification (ranking habitat:PercentImperviousness)
     [80 100 :inclusive] VeryHighImperviousCover
     [50 80]             HighImperviousCover
     [20 50]             ModeratelyHighImperviousCover
@@ -103,13 +103,13 @@
 
 ;; there are values of 254 and 255 in the source data set and we're not sure what that means
 ;; so we're treating them as No Data along with the other No Data values
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [80 100 :inclusive] VeryHighVegetationCover
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
+    [ 0  20]            VeryLowVegetationCover))
 
 ;; see e-mail from Octavio regarding the fact that there are no major dams to consider in the La Antigua watershed
 ;;(defmodel dam-presence Dams
@@ -130,7 +130,7 @@
 (defmodel et-sink EvapotranspirationClass
   (bayesian EvapotranspirationClass
     :import  "aries.core::SurfaceWaterSinkLA.xdsl"
-    :context [vegetation-type percent-canopy-cover]
+    :context [vegetation-type percent-vegetation-cover]
     :keep    [EvapotranspirationClass]
     :result  evapotranspiration))
 

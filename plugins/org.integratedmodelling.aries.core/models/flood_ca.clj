@@ -63,7 +63,7 @@
     [:<   75] VeryLowPrecipitation))
 
 (defmodel imperviousness PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousSurface)
+  (classification (ranking habitat:PercentImperviousness)
     [80 100 :inclusive]	VeryHighImperviousCover
     [50  80]			HighImperviousCover
     [20  50]			ModeratelyHighImperviousCover
@@ -118,7 +118,7 @@
 ;; See: https://engineering.purdue.edu/mapserve/LTHIA7/documentation/scs.htm
 ;;(defmodel source-cn FloodSource
 ;;	  (measurement habitat:AnnualRunoff "mm" 
-;;			:context  [land-use soil-group precipitation (ranking habitat:PercentImperviousSurface)]
+;;			:context  [land-use soil-group precipitation (ranking habitat:PercentImperviousness)]
 ;;		    :state    #(let [ctable {(tl/conc 'floodService:Agriculture)		[64 75 82 85]
 ;;					         		 (tl/conc 'floodService:Forest)			    [64 75 82 85]
 ;;							         (tl/conc 'floodService:GrassPasture)		[64 75 82 85]
@@ -152,13 +152,13 @@
     #{41 42 43 52 71} southernCalifornia:ForestGrasslandShrublandVegetation
     #{21 22 23 24 82} southernCalifornia:DevelopedCultivatedVegetation))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]			HighCanopyCover
-    [40  60]		    ModerateCanopyCover
-    [20  40]			LowCanopyCover
-    [ 0  20]			VeryLowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [80 100 :inclusive] VeryHighVegetationCover
+    [60  80]			HighVegetationCover
+    [40  60]		    ModerateVegetationCover
+    [20  40]			LowVegetationCover
+    [ 0  20]			VeryLowVegetationCover))
 
 ;; Problems with coarse-grain pixels; removed this from the bayesian
 ;; statement and set the prior to its actual value from the data
@@ -205,7 +205,7 @@
 (defmodel green-infrastructure-sink GreenInfrastructureSink
   (bayesian GreenInfrastructureSink 
     :import	  "aries.core::FloodSinkCa.xdsl"
-    :context  [soil-group slope imperviousness percent-canopy-cover vegetation-type land-selector]
+    :context  [soil-group slope imperviousness percent-vegetation-cover vegetation-type land-selector]
     :required [LandOrSea]
     :keep	  [GreenInfrastructureStorage]
     :result	  green-infrastructure-storage))

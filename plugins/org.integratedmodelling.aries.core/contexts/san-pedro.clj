@@ -59,7 +59,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_1)  
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_1)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_1)  
@@ -91,7 +91,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_1) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_1)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_1))
@@ -102,7 +102,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_2)  
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_2)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_2)  
@@ -133,7 +133,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_2) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_2) 
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_2))
@@ -144,7 +144,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_3)  
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_3)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_3)  
@@ -175,7 +175,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_3) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_3)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_3))
@@ -186,7 +186,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_4)  
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_4)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_4)  
@@ -217,7 +217,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_4) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_4)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_4))
@@ -228,7 +228,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:MountainFront 'waterSupplyService:MountainFrontAbsent
      bsr_sc_5)  
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      bsr_sc_5)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_5)  
@@ -259,7 +259,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      bsr_sc_5) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      bsr_sc_5)  
   (transform 'carbonService:FireFrequency 'carbonService:NoFireFrequency
      bsr_sc_5))
@@ -269,7 +269,7 @@
   (grid resolution san_pedro_us) ;;Change back to san_pedro_sprnca for
   ;;non-hydrologic services
 ;; Changes to surface water model
-  (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
+  (transform 'waterSupplyService:PercentVegetationCoverClass 'waterSupplyService:VeryLowVegetationCover
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
   (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:Grassland
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
@@ -288,7 +288,7 @@
   (transform 'aestheticService:Park 'aestheticService:ParkAbsent
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3) 
 ;; Changes to carbon models
-  (transform 'carbonService:PercentTreeCanopyCoverClass 'carbonService:VeryLowCanopyCover
+  (transform 'carbonService:PercentVegetationCoverClass 'carbonService:VeryLowVegetationCover
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)
   (transform 'sanPedro:CarbonVegetationType 'sanPedro:Grassland
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3))

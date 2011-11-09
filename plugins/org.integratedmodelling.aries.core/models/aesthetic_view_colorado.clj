@@ -42,54 +42,26 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-(defmodel lake Lake
-  (classification (binary-coding geofeatures:Lake)
-    1          LakePresent
-    :otherwise LakeAbsent))
+(defmodel mountain Mountain
+  (classification (measurement geophysics:Altitude "m")
+    [1800 8850]  LargeMountain ; No higher than Mt. Everest, catches artifacts
+    [1400 1800]  SmallMountain
+    :otherwise   NoMountain)) ; Catches low artifacts
 
-(defmodel peaks SharpPeaks
-  (classification (binary-coding colorado:SharpPeakPresence)
-    1          PeaksPresent
-    :otherwise PeaksAbsent))
-
-;; Consider combining the four below based on the simplified BN if
-;; Gary's flow model description.
-(defmodel conifer colorado:ConiferForests
-  (classification (binary-coding colorado:ConiferForestPresence)
-    1          colorado:ConifersPresent
-    :otherwise colorado:ConifersAbsent))
-
-(defmodel aspen colorado:AspenForests
-  (classification (binary-coding colorado:AspenForestPresence)
-    1          colorado:AspensPresent
-    :otherwise colorado:AspensAbsent))
-
-(defmodel high-grass-shrubs colorado:HighGrassOrShrubs
-  (classification (binary-coding colorado:HighGrassShrubPresence)
-    1          colorado:HighGrassShrubsPresent
-    :otherwise colorado:HighGrassShrubsAbsent))
-
-(defmodel low-grass-shrubs colorado:LowGrassOrShrubs
-  (classification (binary-coding colorado:LowGrassShrubPresence)
-    1          colorado:LowGrassShrubsPresent
-    :otherwise colorado:LowGrassShrubsAbsent))
-
-;; Interesting that they decided to exclude elevation. Consider
-;; re-adding if the choice isn't well justified.
-;; (defmodel mountain Mountain
-;;   (classification (measurement geophysics:Altitude "m")
-;;      [1800 8850]  LargeMountain ; No higher than Mt. Everest, catches artifacts
-;;      [1400 1800]  SmallMountain
-;;      :otherwise   NoMountain)) ; Catches low artifacts
-
-;; Replace above pending review of Gary's plain-English flow model description
-;; (defmodel scenic-vegetation colorado:ScenicVegetationType
-;; (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-;;  #{24 26 28 29 30 32 34 35 36 78 79} colorado:ConiferForest
-;;  #{22 38}                            colorado:AspenForest
-;;  #{69 70 71 77 86}                   colorado:HighGrassShrubs
-;;  #{41 42 48 62 67 82 85 114}         colorado:LowGrassShrubs
-;;  :otherwise                          colorado:Other))
+(defmodel scenic-vegetation sanPedro:ScenicVegetationType
+  ;;  [(categorization geofeatures:Country)]
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
+    ;;                  :when #(= (:country %) "United States")
+    #{1 2 3 4 5 6 7 8 9 15 39 69 70 71 86 89}               sanPedro:AlpineAndCliff
+    #{22 23 33 37 38 91}                                    sanPedro:Forests
+    #{34 35 36 41 42 44 46 63 64 92 95 100 101 102 103 109} sanPedro:Woodland ; Includes pinon & juniper savannas
+    #{77 78 79 80 81 83 84 85 98 109 110 118}               sanPedro:RiparianAndWater
+    :otherwise                                              sanPedro:Other)
+  (classification (categorization mexico:CONABIOLULCCategory)
+    #{"Bosque de coniferas distintas a Pinus" "Bosque de encino" "Bosque de pino"} sanPedro:Forests
+    #{"Vegetacion de galeria"}                                                     sanPedro:Woodland
+    #{"Cuerpos de agua"}                                                           sanPedro:RiparianAndWater
+    :otherwise                                                                     sanPedro:Other))
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
@@ -100,49 +72,39 @@
 
 ;; source bayesian model                 
 (defmodel source AestheticViewProvision
+  "This one will harmonize the context, then retrieve and run the BN with the given
+   evidence, and produce a new observation with distributions for the requested nodes."
   (bayesian AestheticViewProvision 
-    :import  "aries.core::ViewSourceColorado.xdsl"
-    :context [lake peaks conifer aspen high-grass-shrubs low-grass-shrubs]
+    :import  "aries.core::ViewSourceSanPedro.xdsl"
+    :context [mountain scenic-vegetation]
     :keep    [TheoreticalNaturalBeauty]
     :result  theoretical-beauty))
-
-;; Source bayesian model, simplified. Consider using when you can look
-;; at Gary's plain-English description of the flow models.              
-;;(defmodel source AestheticViewProvision
-;;  (bayesian AestheticViewProvision 
-    ;;    :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
-    ;;    :context [lake peaks scenic-vegetation]
-    ;;    :keep    [TheoreticalNaturalBeauty]
-    ;;    :result  theoretical-beauty))
 
 ;;;-------------------------------------------------------------------
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel general-disturbance colorado:GenericDisturbance
-  (classification (binary-coding colorado:GeneralDisturbance)
-    1          colorado:DisturbancePresent
-    :otherwise colorado:DisturbanceAbsent))
+(defmodel mine Mines                         
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
+    #{19 117}  MinesPresent
+    :otherwise MinesAbsent))
 
-(defmodel clearcut Clearcuts 
-  (classification (binary-coding geofeatures:Clearcut)
-    1          ClearcutsPresent
-    :otherwise ClearcutsAbsent))
+(defmodel transmission-line TransmissionLines 
+  (classification (binary-coding infrastructure:TransmissionLine)
+    1          TransmissionLinesPresent
+    :otherwise TransmissionLinesAbsent))
 
-(defmodel development-infrastructure colorado:DevelopmentInfrastructure 
-  (classification (binary-coding colorado:Development)
-    1          colorado:InfrastructurePresent
-    :otherwise colorado:InfrastructureAbsent))
+(defmodel highway Highways 
+  (classification (binary-coding infrastructure:Highway)
+    1          HighwaysPresent
+    :otherwise HighwaysAbsent))
 
-(defmodel gray-kill colorado:GrayBeetleKill
-  (classification (binary-coding colorado:GrayBeetleStage)
-    1          colorado:GrayKillPresent
-    :otherwise colorado:GrayKillAbsent))
-
-(defmodel green-gray-kill colorado:GreenGrayBeetleKill
-  (classification (binary-coding colorado:GreenGrayBeetleStage)
-    1          colorado:GreenGrayKillPresent
-    :otherwise colorado:GreenGrayKillAbsent))
+;; Insert correct concepts for Mexico
+(defmodel developed-land DevelopedLand
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)           
+    112        HighDensityDevelopment
+    111        LowDensityDevelopment
+    :otherwise NoDevelopment))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
@@ -152,10 +114,10 @@
     [ 0   5] NoBlight))
 
 (defmodel sink ViewSink
-  "Landscape features that reduce the quality of scenic views"
+  "Landscape features that reduce the quality and enjoyment of scenic views"
   (bayesian ViewSink 
-    :import  "aries.core::ViewSinkColorado.xdsl"
-    :context [general-disturbance clearcut development-infrastructure gray-kill green-gray-kill]
+    :import  "aries.core::ViewSinkSanPedro.xdsl"
+    :context [mine highway transmission-line developed-land]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -164,19 +126,26 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel housing PresenceOfHousing
-  (classification (binary-coding economics:AppraisedPropertyValue) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
-    1          HousingPresent
-    :otherwise HousingAbsent)) 
-
-(defmodel property-value HousingValue
   (classification (ranking economics:AppraisedPropertyValue)
-    1 VeryLowHousingValue ; This is a poor classification, would be
-                          ; better to have the actual $ valus and
-                          ; classify according to those.
-    2 LowHousingValue
-    3 ModerateHousingValue
-    4 HighHousingValue
-    5 VeryHighHousingValue))
+    [1 :>]     HousingPresent
+    :otherwise HousingAbsent)
+  (classification (numeric-coding nlcd:NLCDNumeric) ; Using NLCD where parcel data are unavailable.
+    [22 23 24] HousingPresent  ; Assumes (incorrectly) that all developed land is housing.
+    :otherwise HousingAbsent))
+
+(defmodel property-value HousingValue ; Value is in $/ac, which is not a legitimate unit in thinklab, so kept as a ranking for now.
+  (classification (ranking economics:AppraisedPropertyValue)
+    [     0  10000] VeryLowHousingValue
+    [ 10000  25000] LowHousingValue
+    [ 25000  50000] ModerateHousingValue
+    [ 50000 200000] HighHousingValue
+    [200000     :>] VeryHighHousingValue))
+
+;; Scenic highways as another beneficiary class - i.e., their drivers benefit from views along highways.
+(defmodel scenic-highways ScenicDrivePresence
+  (classification (binary-coding ScenicDrives)
+    1          ScenicDrivesPresent
+    :otherwise ScenicDrivesAbsent))
 
 ;; Undiscretizer for view use
 ;; This could be a range (high-mod-low)
@@ -187,9 +156,9 @@
 
 ;; bayesian model
 (defmodel homeowners ViewUse
-  "Property owners who benefit from high-quality views"
+  "Property owners who can afford to pay for the view"
   (bayesian ViewUse 
-    :import  "aries.core::ViewUseColorado.xdsl"
+    :import  "aries.core::ViewUseSanPedro.xdsl"
     :context [housing property-value]
     :keep    [HomeownerViewUse]
     :result  view-use-undiscretizer))

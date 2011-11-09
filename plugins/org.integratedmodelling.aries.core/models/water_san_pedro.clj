@@ -153,13 +153,13 @@
     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60 80]             HighCanopyCover
-    [40 60]             ModerateCanopyCover
-    [20 40]             LowCanopyCover
-    [0 20]              VeryLowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [80 100 :inclusive] VeryHighVegetationCover
+    [60 80]             HighVegetationCover
+    [40 60]             ModerateVegetationCover
+    [20 40]             LowVegetationCover
+    [0 20]              VeryLowVegetationCover))
 
 ;; Global dataset values are in the range of 25-30 mm for the San
 ;; Pedro but (uncalibrated) SWAT model results say 99-482.  Need to
@@ -180,7 +180,7 @@
 (defmodel et-sink Evapotranspiration
   (bayesian Evapotranspiration
     :import   "aries.core::SurfaceWaterSinkSanPedro.xdsl"
-    :context  [annual-temperature vegetation-type percent-canopy-cover]
+    :context  [annual-temperature vegetation-type percent-vegetation-cover]
     :keep     [sanPedro:EvapotranspirationClass]
     :result   evapotranspiration))
 
@@ -495,12 +495,12 @@
 
 (defscenario open-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
-      :context [open-development-scenario :as od percent-canopy-cover :as pcc]
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
+      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'waterSupplyService:VeryLowCanopyCover)
-                  (:pcc %))))
+                  (conc 'waterSupplyService:VeryLowVegetationCover)
+                  (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
       :context [vegetation-type-open :as vto vegetation-type :as vt]
@@ -516,12 +516,12 @@
 
 (defscenario constrained-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
-      :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
+      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'waterSupplyService:VeryLowCanopyCover)
-                  (:pcc %))))
+                  (conc 'waterSupplyService:VeryLowVegetationCover)
+                  (:pvc %))))
   (model sanPedro:EvapotranspirationVegetationType
     (classification sanPedro:EvapotranspirationVegetationType
       :context [vegetation-type-constrained :as vtc  vegetation-type :as vt]

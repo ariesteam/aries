@@ -75,11 +75,11 @@
 		#{21 22 23 24 31 82} 'soilRetentionService:CropsBarrenDeveloped))
 
 ;;Discretization based on Quinton et al. (1997)
-(defmodel percent-canopy-cover 'soilRetentionService:PercentTreeCanopyCoverClass
-  (classification (numeric-coding 'habitat:PercentTreeCanopyCover)
-    [70 100]  'soilRetentionService:HighCanopyCover
-    [30 70]  'soilRetentionService:ModerateCanopyCover
-    [0 30]  'soilRetentionService:LowCanopyCover))
+(defmodel percent-vegetation-cover 'soilRetentionService:PercentVegetationCoverClass
+  (classification (numeric-coding 'habitat:PercentVegetationCover)
+    [70 100]  'soilRetentionService:HighVegetationCover
+    [30 70]  'soilRetentionService:ModerateVegetationCover
+    [0 30]  'soilRetentionService:LowVegetationCover))
 
 (defmodel successional-stage 'soilRetentionService:SuccessionalStageClass
 	 (classification (numeric-coding 'ecology:SuccessionalStage)  
@@ -104,7 +104,7 @@
     :import   "aries.core::SedimentSourceValueAdHoc.xdsl"
     :keep     ('soilRetentionService:SedimentSourceValueAnnualClass) 
     :observed (sediment-source-value-annual) 
-    :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-canopy-cover 
+    :context  (soil-group slope soil-texture precipitation-annual vegetation-type percent-vegetation-cover 
               successional-stage slope-stability)))
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and globally.
@@ -124,13 +124,13 @@
     [1.15 2.86]  'soilRetentionService:ModerateStreamGradient
     [2.86 :>]    'soilRetentionService:HighStreamGradient))
 
-(defmodel floodplain-tree-canopy-cover 'soilRetentionService:FloodplainTreeCanopyCoverClass 
-  (classification (ranking 'habitat:PercentFloodplainTreeCanopyCover)
-    [0 20]   'soilRetentionService:VeryLowFloodplainCanopyCover
-    [20 40]  'soilRetentionService:LowFloodplainCanopyCover
-    [40 60]  'soilRetentionService:ModerateCanopyCover
-    [60 80]  'soilRetentionService:HighFloodplainCanopyCover
-    [80 100] 'soilRetentionService:VeryHighFloodplainCanopyCover))
+(defmodel floodplain-vegetation-cover 'soilRetentionService:FloodplainVegetationCoverClass 
+  (classification (ranking 'habitat:PercentFloodplainVegetationCover)
+    [0 20]   'soilRetentionService:VeryLowFloodplainVegetationCover
+    [20 40]  'soilRetentionService:LowFloodplainVegetationCover
+    [40 60]  'soilRetentionService:ModerateVegetationCover
+    [60 80]  'soilRetentionService:HighFloodplainVegetationCover
+    [80 100] 'soilRetentionService:VeryHighFloodplainVegetationCover))
 
 (defmodel floodplain-width 'soilRetentionService:FloodplainWidthClass 
   (classification (measurement 'habitat:FloodplainWidth "m")
@@ -153,7 +153,7 @@
     :import  "aries.core::SedimentSink.xdsl"
     :keep    ('soilRetentionService:AnnualSedimentSinkClass)
     :observed (sediment-sink-annual) 
-    :context (reservoirs stream-gradient floodplain-tree-canopy-cover floodplain-width)))
+    :context (reservoirs stream-gradient floodplain-vegetation-cover floodplain-width)))
 
 
 ;; ----------------------------------------------------------------------------------------------

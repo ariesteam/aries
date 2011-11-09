@@ -140,7 +140,7 @@
 (defagent test-agent carbonService:Emitter 
 
   (measurement geophysics:Altitude "m" :as altitude)
-  (ranking habitat:PercentImperviousSurface :as imperviousness)
+  (ranking habitat:PercentImperviousness :as imperviousness)
   (classification (ranking geophysics:DegreeSlope)
     :units       "degrees" 
     :as          slope

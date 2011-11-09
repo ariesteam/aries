@@ -99,19 +99,19 @@
 ;;CANT do a global vegetation type defmodel if classes are different:
 ;; split this up & use the local vegetation type defmodel into the BN
 ;;Vegetation type
-(defmodel vegetation-type puget:SedimentVegetationType
+(defmodel vegetation-type VegetationTypeSedimentPuget
   "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{41 42 43 71 90 95} puget:ForestGrasslandWetland
-    #{52 81}             puget:ShrublandPasture
-    #{21 22 23 24 31 82} puget:CropsBarrenDeveloped))
+    #{41 42 43 71 90 95} ForestGrasslandWetland
+    #{52 81}             ShrublandPasture
+    #{21 22 23 24 31 82} CropsBarrenDeveloped))
 
 ;;Discretization based on Quinton et al. (1997)
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [70 100 :inclusive] HighCanopyCover
-    [30  70]            ModerateCanopyCover
-    [ 0  30]            LowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [70 100 :inclusive] HighVegetationCover
+    [30  70]            ModerateVegetationCover
+    [ 0  30]            LowVegetationCover))
 
 (defmodel successional-stage SuccessionalStageClass
   (classification (ranking ecology:SuccessionalStage)  
@@ -144,7 +144,7 @@
   (bayesian SedimentSourceValueAnnual 
     :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
-               vegetation-type percent-canopy-cover
+               vegetation-type percent-vegetation-cover
                successional-stage slope-stability]
     :required [SlopeClass]
     :keep     [SedimentSourceValueAnnualClass]
@@ -168,13 +168,13 @@
     [1.15 2.86] ModerateStreamGradient
     [:<   1.15] LowStreamGradient))
 
-(defmodel floodplain-canopy-cover FloodplainTreeCanopyCoverClass 
-  (classification (ranking habitat:PercentFloodplainTreeCanopyCover)
-    [80 100 :inclusive] VeryHighFloodplainCanopyCover
-    [60  80]            HighFloodplainCanopyCover
-    [40  60]            ModerateFloodplainCanopyCover
-    [20  40]            LowFloodplainCanopyCover
-    [ 0  20]            VeryLowFloodplainCanopyCover))
+(defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
+  (classification (ranking habitat:PercentFloodplainVegetationCover)
+    [80 100 :inclusive] VeryHighFloodplainVegetationCover
+    [60  80]            HighFloodplainVegetationCover
+    [40  60]            ModerateFloodplainVegetationCover
+    [20  40]            LowFloodplainVegetationCover
+    [ 0  20]            VeryLowFloodplainVegetationCover))
 
 (defmodel floodplain-width FloodplainWidthClass 
   (classification (measurement habitat:FloodplainWidth "m")
@@ -197,7 +197,7 @@
 (defmodel sediment-sink-us AnnualSedimentSink
   (bayesian AnnualSedimentSink    
     :import  "aries.core::SedimentSinkPuget.xdsl"
-    :context  [reservoirs-class stream-gradient floodplain-canopy-cover floodplain-width]
+    :context  [reservoirs-class stream-gradient floodplain-vegetation-cover floodplain-width]
     :required [FloodplainWidthClass]
     :keep     [AnnualSedimentSinkClass]
     :result   sediment-sink-annual))
@@ -429,18 +429,20 @@
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio, low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentTreeCanopyCover
-    (classification PercentTreeCanopyCover
-      :context [open-development-scenario :as od percent-canopy-cover :as pcc]
+  (model PercentVegetationCover
+    (classification PercentVegetationCover
+      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
-                          (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
-                          (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
-                      (conc 'carbonService:LowCanopyCover)
+                          (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                    
+                      (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                      (conc 'carbonService:LowVegetationCover)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'carbonService:ModerateCanopyCover)
+                      (conc 'carbonService:ModerateVegetationCover)
 
-                      :otherwise (:pcc %))))
+                      :otherwise (:pvc %))))
   (model SuccessionalStageClass
     (classification SuccessionalStageClass
       :context [open-development-scenario :as od successional-stage :as ss]
@@ -459,16 +461,16 @@ greenhouse gas emissions."
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'soilRetentionService:SoilGroupD)
                   (:sg %))))
-  (model puget:SedimentVegetationType
-    (classification puget:SedimentVegetationType
+  (model VegetationTypeSedimentPuget
+    (classification VegetationTypeSedimentPuget
       :context [open-development-scenario :as od vegetation-type :as vt]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
-                      (conc 'puget:CropsBarrenDeveloped)
+                      (conc 'soilRetentionService:CropsBarrenDeveloped)
                       
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'puget:ForestGrasslandWetland)
+                      (conc 'soilRetentionService:ForestGrasslandWetland)
 
                       :otherwise (:vt %))))
   (model Farmland
@@ -483,18 +485,20 @@ greenhouse gas emissions."
 
 (defscenario constrained-development-sediment
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCover
-    (classification PercentTreeCanopyCover
-      :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
+  (model PercentVegetationCover
+    (classification PercentVegetationCover
+      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                          (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
-                          (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
+                          (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
+                      (conc 'carbonService:VeryLowVegetationCover)
+                      
+                      (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                       (conc 'carbonService:LowVegetationCover)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
                       (conc 'carbonService:ModerateVegetationCover)
 
-                      :otherwise (:pcc %))))
+                      :otherwise (:pvc %))))
   (model SuccessionalStageClass
     (classification SuccessionalStageClass
       :context [constrained-development-scenario :as cd successional-stage :as ss]
@@ -513,16 +517,16 @@ greenhouse gas emissions."
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'soilRetentionService:SoilGroupD)
                   (:sg %))))
-  (model puget:SedimentVegetationType
-    (classification puget:SedimentVegetationType
+  (model VegetationTypeSedimentPuget
+    (classification VegetationTypeSedimentPuget
       :context [constrained-development-scenario :as cd vegetation-type :as vt]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
-                      (conc 'puget:CropsBarrenDeveloped)
+                      (conc 'soilRetentionService:CropsBarrenDeveloped)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'puget:ForestGrasslandWetland)
+                      (conc 'soilRetentionService:ForestGrasslandWetland)
                     
                       :otherwise (:vt %))))
   (model Farmland

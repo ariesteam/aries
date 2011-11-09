@@ -62,13 +62,14 @@
     [12 32] LowActualEvapotranspiration
     [:< 12] VeryLowActualEvapotranspiration))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100] VeryHighCanopyCover
-    [60  80] HighCanopyCover
-    [40  60] ModerateCanopyCover
-    [20  40] LowCanopyCover
-    [ 0  20] VeryLowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover :units "%")
+    [80 100] VeryHighVegetationCover
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
+    [0.001 20]          VeryLowVegetationCover
+    [-0.001 0.001]      NoVegetationCover))
 
 ;; This does not account for barren, water, agriculture, or urban cover
 ;; (though these are accounted for in NLCD)
@@ -109,7 +110,7 @@
 (defmodel source-sj CarbonSourceValue
   (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
-    :context  [percent-canopy-cover land-use land-selector]
+    :context  [percent-vegetation-cover land-use land-selector]
     :required [LandOrSea]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
@@ -119,7 +120,7 @@
 (defmodel source CarbonSourceValue
   (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
-    :context  [percent-canopy-cover vegetation-type land-use land-selector]
+    :context  [percent-vegetation-cover vegetation-type land-use land-selector]
     :required [LandOrSea]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
@@ -169,14 +170,14 @@
 (defmodel vegetation-carbon-storage-sj VegetationCStorage 
   (bayesian VegetationCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
-    :context [land-use percent-canopy-cover land-selector]
+    :context [land-use percent-vegetation-cover land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
     :import  "aries.core::CarbonSinkCa.xdsl"
-    :context [vegetation-type land-use percent-canopy-cover land-selector]
+    :context [vegetation-type land-use percent-vegetation-cover land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
@@ -192,7 +193,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
-    :context [soil-ph percent-canopy-cover soil-oxygen-conditions land-selector]
+    :context [soil-ph percent-vegetation-cover soil-oxygen-conditions land-selector]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 

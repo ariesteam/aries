@@ -107,7 +107,7 @@
 ;; the DR data have holes. Commenting out the non-DR contingencies -
 ;; we should put them back when models are general, but then only
 ;; after making the BNs aware of all possible values.
-(defmodel vegetation-type dominican:SedimentVegetationType
+(defmodel vegetation-type VegetationTypeSedimentDR
   "Just a reclass of the NLCD land use layer"
                                         ;	(classification (numeric-coding nlcd:NLCDNumeric)
                                         ;		#{41 42 43 71 90 95} ForestGrasslandWetland
@@ -119,11 +119,11 @@
                                         ;		#{8 9 20 21 22 24 25 26 28 29 30 31 32 33} Savanna
                                         ;	 #{11 12 13 16 17}							CroplandDeveloped)
   (classification (numeric-coding domlulc:DOMLULCNumeric)
-	#{1 2 4 6 8 9 11 18 35} dominican:ForestAndShrubland
-	#{22 24 62}				dominican:WaterWetlandsMangroves
-    #{41 45 53}			    dominican:ShadeCoffeeCocoa
-	#{23 36 38 40 59}		dominican:IntensiveCroplandAndPasture
-	#{42}					dominican:UrbanAndRoads)
+	#{1 2 4 6 8 9 11 18 35} ForestAndShrubland
+	#{22 24 62}				WaterWetlandsMangroves
+    #{41 45 53}			    ShadeCoffeeCocoa
+	#{23 36 38 40 59}		IntensiveCroplandAndPasture
+	#{42}					UrbanAndRoads)
                                         ;  (classification (numeric-coding glc:GLCNumeric)
                                         ;		#{1 2 3 4 5 6 7 8 9 15} ForestGrasslandWetland
                                         ;		#{10 11 12 13 14 17 18} ShrublandPasture
@@ -131,11 +131,11 @@
   )
 
 ;;Discretization based on Quinton et al. (1997)
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [70 100 :inclusive] HighCanopyCover
-    [30 70]			    ModerateCanopyCover
-    [ 1 30]				LowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover)
+    [70 100 :inclusive] HighVegetationCover
+    [30 70]			    ModerateVegetationCover
+    [ 1 30]				LowVegetationCover))
 
 ;;Sediment source value
 (defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
@@ -158,7 +158,7 @@
 	:import	  "aries.core::SedimentSourceDRAdHoc.xdsl"
 	:context  [soil-group slope soil-texture (comment soil-erodibility)
               precipitation-annual storm-probability (comment runoff) 
-              vegetation-type percent-canopy-cover]
+              vegetation-type percent-vegetation-cover]
 	:required [SlopeClass]
 	:keep	  [SedimentSourceValueAnnualClass]
 	:result	  sediment-source-value-annual))
@@ -180,13 +180,13 @@
 	[1.15 2.86]	ModerateStreamGradient
 	[:<	  1.15]	LowStreamGradient))
 
-(defmodel floodplain-canopy-cover FloodplainTreeCanopyCoverClass 
-  (classification (numeric-coding habitat:PercentFloodplainTreeCanopyCover)
-	[80 100 :inclusive] VeryHighFloodplainCanopyCover
-	[60 80]				HighFloodplainCanopyCover
-	[40 60]				ModerateFloodplainCanopyCover
-    [20 40]				LowFloodplainCanopyCover
-	[ 0 20]				VeryLowFloodplainCanopyCover))
+(defmodel floodplain-vegetation-cover FloodplainVegetationCoverClass 
+  (classification (numeric-coding habitat:PercentFloodplainVegetationCover)
+	[80 100 :inclusive] VeryHighFloodplainVegetationCover
+	[60 80]				HighFloodplainVegetationCover
+	[40 60]				ModerateFloodplainVegetationCover
+    [20 40]				LowFloodplainVegetationCover
+	[ 0 20]				VeryLowFloodplainVegetationCover))
 
 (defmodel floodplains-code FloodplainsCode
   (binary-coding geofeatures:Floodplain))
@@ -200,13 +200,13 @@
     [10  15] HighAnnualSedimentSink
     [ 5  10] ModerateAnnualSedimentSink
     [0.01 5] LowAnnualSedimentSink
-    [0 0.01] NoAnnualSedimentSink))
+    [0 0.01] NoAnnualSedimentSink)) 
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
 (defmodel sediment-sink-dr AnnualSedimentSink
   (bayesian AnnualSedimentSink 
 	:import	  "aries.core::SedimentSinkDR.xdsl"
-	:context  [reservoirs stream-gradient floodplain-canopy-cover]
+	:context  [reservoirs stream-gradient floodplain-vegetation-cover]
 	:required [StreamGradientClass]
 	:keep	  [AnnualSedimentSinkClass]
 	:result	  sediment-sink-annual))

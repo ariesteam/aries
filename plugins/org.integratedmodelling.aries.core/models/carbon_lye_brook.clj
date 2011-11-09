@@ -61,8 +61,7 @@
     [80 :>] VeryHighVegetationStorage
     [70 80] HighVegetationStorage
     [50 70] ModerateVegetationStorage
-    [ 5 50] LowVegetationStorage
-    [ 0  5] VeryLowVegetationStorage
+    [ 0 50] LowVegetationStorage
     0       NoVegetationStorage))      
 
 (defmodel soil-storage SoilCarbonStorage
@@ -70,8 +69,7 @@
     [210  :>] VeryHighSoilStorage
     [140 210] HighSoilStorage
     [70  140] ModerateSoilStorage
-    [10   70] LowSoilStorage
-    [ 0   10] VeryLowSoilStorage
+    [0    70] LowSoilStorage
     0         NoSoilStorage))
 
 (defmodel summer-high-winter-low SummerHighWinterLow

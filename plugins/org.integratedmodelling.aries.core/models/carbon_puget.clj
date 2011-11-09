@@ -36,7 +36,7 @@
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
-  (PercentTreeCanopyCoverClass :editable "true")
+  (PercentVegetationCoverClass :editable "true")
   (FireFrequency :editable "true")
   (GreenhouseGasEmissions :editable "true")
   (thinklab-core:BooleanRanking
@@ -71,13 +71,13 @@
     1                                EarlySuccession
     #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+(defmodel percent-vegetation-cover PercentVegetationCoverClass
+  (classification (ranking habitat:PercentVegetationCover :units "%")
+    [80 100 :inclusive] VeryHighVegetationCover
+    [60  80]            HighVegetationCover
+    [40  60]            ModerateVegetationCover
+    [20  40]            LowVegetationCover
+    [ 1  20]            VeryLowVegetationCover))
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
@@ -117,7 +117,7 @@
   (bayesian CarbonSourceValue 
     :import   "aries.core::CarbonSourcePuget.xdsl"
     :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
-               percent-canopy-cover successional-stage land-selector]
+               percent-vegetation-cover successional-stage land-selector]
     :required [LandOrSea]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
@@ -171,7 +171,7 @@
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
     :import   "aries.core::CarbonSinkPuget.xdsl"
-    :context  [percent-canopy-cover hardwood-softwood-ratio 
+    :context  [percent-vegetation-cover hardwood-softwood-ratio 
                successional-stage summer-high-winter-low land-selector]
     :required [LandOrSea]
     :keep     [VegetationCarbonStorage]
@@ -189,7 +189,7 @@
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
     :import   "aries.core::CarbonSinkPuget.xdsl"
-    :context  [soil-ph slope oxygen percent-canopy-cover hardwood-softwood-ratio 
+    :context  [soil-ph slope oxygen percent-vegetation-cover hardwood-softwood-ratio 
                successional-stage soil-cn-ratio land-selector]
     :required [LandOrSea]
     :keep     [SoilCarbonStorage]
@@ -350,9 +350,9 @@
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio,low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
-      :context [open-development-scenario :as od percent-canopy-cover :as pcc]
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
+      :context [open-development-scenario :as od percent-vegetation-cover :as pvc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
                       (conc 'carbonService:VeryLowVegetationCover)
@@ -363,7 +363,7 @@ greenhouse gas emissions."
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
                       (conc 'carbonService:ModerateVegetationCover)
                     
-                      :otherwise (:pcc %))))
+                      :otherwise (:pvc %))))
   (model HardwoodSoftwoodRatio
     (classification HardwoodSoftwoodRatio
       :context [open-development-scenario :as od hardwood-softwood-ratio :as hsr]
@@ -404,9 +404,9 @@ greenhouse gas emissions."
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio,low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
-      :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
+  (model PercentVegetationCoverClass
+    (classification PercentVegetationCoverClass
+      :context [constrained-development-scenario :as cd percent-vegetation-cover :as pvc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
                       (conc 'carbonService:VeryLowVegetationCover)
@@ -417,7 +417,7 @@ greenhouse gas emissions."
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
                       (conc 'carbonService:ModerateVegetationCover)
                     
-                      :otherwise (:pcc %))))
+                      :otherwise (:pvc %))))
   (model HardwoodSoftwoodRatio
     (classification HardwoodSoftwoodRatio
       :context [constrained-development-scenario :as cd hardwood-softwood-ratio :as hsr]

@@ -14,12 +14,12 @@
 			<state id="VeryNarrowFloodplain" />
 			<probabilities>0.1 0.1 0.2 0.6</probabilities>
 		</cpt>
-		<cpt id="FloodplainTreeCanopyCoverClass">
-			<state id="VeryHighFloodplainCanopyCover" />
-			<state id="HighFloodplainCanopyCover" />
-			<state id="ModerateFloodplainCanopyCover" />
-			<state id="LowFloodplainCanopyCover" />
-			<state id="VeryLowFloodplainCanopyCover" />
+		<cpt id="FloodplainVegetationCoverClass">
+			<state id="VeryHighFloodplainVegetationCover" />
+			<state id="HighFloodplainVegetationCover" />
+			<state id="ModerateFloodplainVegetationCover" />
+			<state id="LowFloodplainVegetationCover" />
+			<state id="VeryLowFloodplainVegetationCover" />
 			<probabilities>0.48 0.28 0.14 0.08 0.02</probabilities>
 		</cpt>
 		<cpt id="ReservoirsClass">
@@ -32,7 +32,7 @@
 			<state id="ModerateAnnualSedimentSink" />
 			<state id="LowAnnualSedimentSink" />
 			<state id="NoAnnualSedimentSink" />
-			<parents>ReservoirsClass StreamGradientClass FloodplainTreeCanopyCoverClass FloodplainWidthClass</parents>
+			<parents>ReservoirsClass StreamGradientClass FloodplainVegetationCoverClass FloodplainWidthClass</parents>
 			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0.35 0.35 0.3 0 0.2 0.2 0.6 0 0.05 0.3 0.65 0 0 0.25 0.75 0 0.3 0.35 0.35 0 0.15 0.25 0.6 0 0.05 0.25 0.7 0 0 0.2 0.8 0 0 0.5 0.5 0 0 0.35 0.65 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.4 0.6 0 0 0.25 0.75 0 0 0.1 0.9 0 0 0.05 0.95 0 0 0.35 0.65 0 0 0.2 0.8 0 0 0.05 0.95 0 0 0.01 0.99 0 0.6 0.2 0.2 0 0.45 0.5 0.05 0 0.3 0.5 0.2 0 0.2 0.5 0.3 0 0.55 0.25 0.2 0 0.4 0.4 0.2 0 0.25 0.55 0.2 0 0.15 0.6 0.25 0 0.5 0.3 0.2 0 0.35 0.45 0.2 0 0.2 0.6 0.2 0 0.1 0.65 0.25 0 0.45 0.3 0.25 0 0.3 0.45 0.25 0 0.15 0.6 0.25 0 0.05 0.65 0.3 0 0.4 0.35 0.25 0 0.25 0.5 0.25 0 0.1 0.65 0.25 0 0.05 0.6 0.35 0.6 0.3 0.05 0.05 0.45 0.3 0.15 0.1 0.3 0.3 0.2 0.2 0.2 0.3 0.3 0.2 0.55 0.25 0.15 0.05 0.4 0.25 0.2 0.15 0.25 0.25 0.25 0.25 0.15 0.25 0.3 0.3 0.5 0.25 0.2 0.05 0.35 0.25 0.25 0.15 0.2 0.25 0.25 0.3 0.1 0.25 0.3 0.35 0.45 0.225 0.225 0.1 0.3 0.3 0.25 0.15 0.15 0.2 0.3 0.35 0.05 0.3 0.3 0.35 0.4 0.3 0.2 0.1 0.25 0.25 0.25 0.25 0.1 0.2 0.35 0.35 0.05 0.15 0.45 0.35</probabilities>
 		</cpt>
 	</nodes>
@@ -64,8 +64,8 @@
 				<position>962 365 1066 402</position>
 				<barchart active="true" width="223" height="90" />
 			</node>
-			<node id="FloodplainTreeCanopyCoverClass">
-				<name>FloodplainTreeCanopyCoverClass</name>
+			<node id="FloodplainVegetationCoverClass">
+				<name>FloodplainVegetationCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -77,8 +77,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>103 352 148 380</position>
-				<barchart active="true" width="196" height="54" />
+				<position>103 359 148 387</position>
+				<barchart active="true" width="196" height="69" />
 			</node>
 		</genie>
 	</extensions>
