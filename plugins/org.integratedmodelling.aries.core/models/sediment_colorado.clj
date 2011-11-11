@@ -90,7 +90,7 @@
     22       colorado:AspenWoodland))
 
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
-  (classification (ranking colorado:MountainPineBeetleDamage)
+  (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage
      1         colorado:ModerateDamage
     -1         colorado:LowDamage
@@ -128,13 +128,25 @@
     [4900    9000]    ModerateAnnualSedimentSource
     [   0.01 4900]    LowAnnualSedimentSource 
     [   0       0.01] NoAnnualSedimentSource))
-    
-(defmodel source SedimentSourceValueAnnual
-  (bayesian SedimentSourceValueAnnual 
-    :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
+
+;; The two Bayesian statements calculate source value with and without
+;; fire, for comparison.
+(defmodel source-fire SedimentSourceValueAnnualFire
+  (bayesian SedimentSourceValueAnnualFire
+    :import   "aries.core::SedimentSourceColoradoFireAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage mountain-pine-beetle]
+    :required [SlopeClass]
+    :keep     [SedimentSourceValueAnnualClass]
+    :result   sediment-source-value-annual))
+
+(defmodel source-no-fire SedimentSourceValueAnnualNoFire
+  (bayesian SedimentSourceValueAnnualNoFire
+    :import   "aries.core::SedimentSourceColoradoNoFireAdHocNoFire.xdsl"
+    :context  [soil-group slope soil-texture precipitation-annual
+               vegetation-type percent-canopy-cover
+               successional-stage]
     :required [SlopeClass]
     :keep     [SedimentSourceValueAnnualClass]
     :result   sediment-source-value-annual))
@@ -154,7 +166,7 @@
   (measurement ReservoirsClass "kg/ha"
     :context [(binary-coding geofeatures:Reservoir)]
     :state   #(if (== (:reservoir %) 1) 5000000 0)))
-
+ 
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
@@ -175,9 +187,13 @@
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))        
 
-(defmodel reservoir-deposition-data ReservoirSoilDeposition
-  (identification ReservoirSoilDeposition 
-    :context [source sink reservoirs altitude streams]))
+(defmodel reservoir-deposition-data-fire ReservoirSoilDepositionFire
+  (identification ReservoirSoilDepositionFire
+    :context [source-fire sink reservoirs altitude streams]))
+
+(defmodel reservoir-deposition-data-no-fire ReservoirSoilDepositionNoFire
+  (identification ReservoirSoilDepositionNoFire
+    :context [source-no-fire sink reservoirs altitude streams]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -188,9 +204,9 @@
 ;; or western parts of the state).
 
 ;; Sediment flow model for deposition in hydro reservoirs
-(defmodel sediment-reservoirs DetrimentalSedimentTransport
+(defmodel sediment-reservoirs-fire DetrimentalSedimentTransportFire
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        SedimentSourceValueAnnualFire
         geofeatures:Reservoir
         ReservoirsClass
         nil
@@ -207,7 +223,43 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
-        :context [source reservoirs sink altitude streams floodplains-code]
+        :context [source-fire reservoirs sink altitude streams floodplains-code]
+        :keep    [MaximumSedimentSource
+                  MaximumPotentialDeposition
+                  PotentialReducedSedimentDepositionBeneficiaries
+                  PossibleSedimentFlow
+                  PossibleSedimentSource
+                  PossibleReducedSedimentDepositionBeneficiaries
+                  ActualSedimentFlow
+                  ActualSedimentSource
+                  UtilizedDeposition
+                  ActualReducedSedimentDepositionBeneficiaries
+                  UnutilizedDeposition
+                  AbsorbedSedimentFlow
+                  NegatedSedimentSource
+                  BlockedHarmfulSediment]))
+
+;; Sediment flow model for deposition in hydro reservoirs
+(defmodel sediment-reservoirs-no-fire DetrimentalSedimentTransportNoFire
+  (span SedimentTransport
+        SedimentSourceValueAnnualNoFire
+        geofeatures:Reservoir
+        ReservoirsClass
+        nil
+        (geophysics:Altitude geofeatures:River FloodplainsCode)
+        :source-threshold   1000.0
+        :sink-threshold      500.0
+        :use-threshold         0.0
+        :trans-threshold     100.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :rival
+        :downscaling-factor 3
+        :rv-max-states      10
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
+        :context [source-no-fire reservoirs sink altitude streams floodplains-code]
         :keep    [MaximumSedimentSource
                   MaximumPotentialDeposition
                   PotentialReducedSedimentDepositionBeneficiaries

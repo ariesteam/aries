@@ -94,12 +94,12 @@
 (defmodel vegetation-type colorado:EvapotranspirationVegetationType
   "Reclass of SWReGAP LULC layer"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           colorado:Forest ;;UPDATE CORRESPONDING NUMBERS 
-    #{33 41 91}                                                                        colorado:ScrubBrush
-    #{52 109}                                                                          colorado:ShortgrassPrairie
-    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              colorado:Water
-    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} colorado:Urban
-    114                                                                                colorado:Agriculture))
+    #{22 24 26 28 29 30 32 33 34 35 36 38 78 79 81 92 95 99 103 116 118 123 124}                       colorado:Forest
+    #{1 2 4 5 7 8 9 10 11 13 14 15 17 19 21 40 41 42 43 44 46 48 50 53 56 58 62 77 82 104 108 109 113} colorado:ScrubBrush
+    #{63 64 67 68 69 70 71 72 73 74 75 76 85 86 106 119 120 121 122}                                   colorado:ShortgrassPrairie
+    110                                                                                                colorado:Water
+    #{111 112 115 117 125}                                                                             colorado:UrbanBarren
+    114                                                                                                colorado:Agriculture))
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)

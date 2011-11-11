@@ -134,22 +134,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#BeetleKill -->
-
-    <Class rdf:about="&colorado;BeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
-    </Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#BeetleKillLevel -->
-
-    <Class rdf:about="&colorado;BeetleKillLevel">
-        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonSoilType -->
 
     <Class rdf:about="&colorado;CarbonSoilType">
@@ -375,14 +359,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighBeetleKill -->
-
-    <Class rdf:about="&colorado;HighBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;BeetleKill"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighGrassOrShrubs -->
 
     <Class rdf:about="&colorado;HighGrassOrShrubs">
@@ -455,14 +431,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowBeetleKill -->
-
-    <Class rdf:about="&colorado;LowBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;BeetleKill"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowDamage -->
 
     <Class rdf:about="&colorado;LowDamage">
@@ -511,14 +479,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateBeetleKill -->
-
-    <Class rdf:about="&colorado;ModerateBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;BeetleKill"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateDamage -->
 
     <Class rdf:about="&colorado;ModerateDamage">
@@ -543,14 +503,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamage -->
-
-    <Class rdf:about="&colorado;MountainPineBeetleDamage">
-        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamageClass -->
 
     <Class rdf:about="&colorado;MountainPineBeetleDamageClass">
@@ -559,10 +511,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoBeetleKill -->
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamageSeverity -->
 
-    <Class rdf:about="&colorado;NoBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;BeetleKill"/>
+    <Class rdf:about="&colorado;MountainPineBeetleDamageSeverity">
+        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamageTreesPerAcre -->
+
+    <Class rdf:about="&colorado;MountainPineBeetleDamageTreesPerAcre">
+        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
     </Class>
     
 
@@ -671,18 +631,10 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Urban -->
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#UrbanBarren -->
 
-    <Class rdf:about="&colorado;Urban">
+    <Class rdf:about="&colorado;UrbanBarren">
         <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
-    </Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighBeetleKill -->
-
-    <Class rdf:about="&colorado;VeryHighBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;BeetleKill"/>
     </Class>
     
 
@@ -701,6 +653,12 @@
     <Class rdf:about="&colorado;Wetland">
         <rdfs:subClassOf rdf:resource="&colorado;CarbonVegetationType"/>
     </Class>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-object -->
+
+    <Class rdf:about="&DOLCE-Lite;physical-object"/>
 </rdf:RDF>
 
 

@@ -51,28 +51,22 @@
 
 (defmodel percent-tree-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+    [75 100 :inclusive] VeryHighCanopyCover
+    [50  75]            HighCanopyCover
+    [30  50]            ModerateCanopyCover
+    [10  30]            LowCanopyCover
+    [ 0  10]            VeryLowCanopyCover))
 
 (defmodel vegetation-type colorado:CarbonVegetationType
   "Reclass of SWReGAP LULC"
-  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) ; Discretize correctly!
-    #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           colorado:ConiferousForest
-    #{33 41 91}                                                                        colorado:DeciduousForest
-    #{52 109}                                                                          colorado:Grassland
-    #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              colorado:Shrubland
-    #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} colorado:Wetland
-    #{77 78 79 80 81 83 84 85 98 118}                                                  colorado:Cropland
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              colorado:Unvegetated))
-
-;; Brown et al. (2010) use 0-130, 130-230, 230-460, >460 mm as their
-;; discretization for rangeland carbon modeling.  For the San Pedro,
-;; the entire valley floor would be in the 230-460 range and the
-;; surrounding mountains as >460.  For now, keep the below
-;; discretization, though strongly consider using it.
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
+    #{24 26 28 29 30 32 34 35 36 92 103}                                             colorado:ConiferousForest
+    #{22 33 38 41}                                                                   colorado:DeciduousForest
+    #{68 70 71 72 73 74 75 76 106 119 120 121 122}                                   colorado:Grassland
+    #{40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 69 82 95 104 108 109}             colorado:Shrubland
+    #{77 78 79 81 85 86 99 118}                                                      colorado:Wetland
+    114                                                                              colorado:Cropland
+    #{1 2 4 5 7 8 9 10 11 13 14 15 17 19 21 110 111 112 113 115 116 117 123 124 125} colorado:Unvegetated))
 
 ;; Annual precipitation used as the main climatic variable in the
 ;; model, as opposed to the difference between mean summer high and
@@ -82,8 +76,8 @@
 
 (defmodel annual-precipitation MeanAnnualPrecipitation
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [500  :>] HighMeanAnnualPrecipitation
-    [400 500] ModerateMeanAnnualPrecipitation
+    [600  :>] HighMeanAnnualPrecipitation
+    [400 600] ModerateMeanAnnualPrecipitation
     [:<  400] LowMeanAnnualPrecipitation))
 
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
@@ -123,23 +117,24 @@
     5 colorado:Mollisols
     6 colorado:Water))
 
-(defmodel beetle-kill colorado:BeetleKill
-  (classification (ranking colorado:BeetleKillLevel)
-    [150 200] colorado:VeryHighBeetleKill ; Values are in trees
-                                        ; killed/ha - definitely not a
+(defmodel beetle-kill colorado:MountainPineBeetleDamageClass ; Values
+                                        ; in trees killed/ac: not a
                                         ; thinklab-recognized unit, so
-                                        ; keep as is.
-    [100 150] colorado:HighBeetleKill
-    [ 50 100] colorado:ModerateBeetleKill
-    [  1  50] colorado:LowBeetleKill
-           0  colorado:NoBeetleKill))
+                                        ; keep as a ranking.
+  (classification (ranking colorado:MountainPineBeetleDamageTreesPerAcre)
+    [17.6 500] colorado:SevereDamage
+    [ 2 17.6] colorado:ModerateDamage
+    [  1  2] colorado:LowDamage
+           0  colorado:NoDamage))
 
-(defmodel fire-threat FireThreatClass
+(defmodel fire-threat FireThreatClass ; This is actually fire return
+                                      ; interval data, but uses
+                                      ; student discretization.
   (classification (ranking habitat:FireThreat) 
-    1 VeryHighFireThreat
-    2 HighFireThreat
-    3 ModerateFireThreat
-    4 LowFireThreat))
+    [ 2   9] VeryHighFireThreat
+    [ 9  12] HighFireThreat
+    [12  18] ModerateFireThreat
+    [18 133] LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
@@ -185,7 +180,7 @@
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [159 235] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [159   235]    VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [116   159]    HighStorage
     [ 66   116]    ModerateStorage
     [ 10    64]    LowStorage
@@ -203,7 +198,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
+    :import  "aries.core::CarbonSinkColorado.xdsl"
     :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
