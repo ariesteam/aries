@@ -543,6 +543,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PeaksAbsent -->
+
+    <Class rdf:about="&colorado;PeaksAbsent">
+        <rdfs:subClassOf rdf:resource="&colorado;SharpPeaks"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PeaksPresent -->
+
+    <Class rdf:about="&colorado;PeaksPresent">
+        <rdfs:subClassOf rdf:resource="&colorado;SharpPeaks"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PonderosaPine -->
 
     <Class rdf:about="&colorado;PonderosaPine">
@@ -587,6 +603,14 @@
 
     <Class rdf:about="&colorado;SharpPeakPresence">
         <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SharpPeaks -->
+
+    <Class rdf:about="&colorado;SharpPeaks">
+        <rdfs:subClassOf rdf:resource="&colorado;SharpPeakPresence"/>
     </Class>
     
 
