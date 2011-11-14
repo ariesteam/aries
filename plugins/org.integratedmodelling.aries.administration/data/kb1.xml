@@ -31,6 +31,7 @@ DATASET THEY ANNOTATE. ENJOY!
       xmlns:mglulc="http://www.integratedmodelling.org/ks/ecology/lulc/mglulc.owl#"
       xmlns:mexico="http://www.integratedmodelling.org/ks/es/services/local/mexico.owl#"
       xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
+      xmlns:colorado="http://www.integratedmodelling.org/ks/es/services/local/colorado.owl#"
       xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
       xmlns:tanzania-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/tanzania-lulc.owl#">
 
@@ -85,6 +86,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Measurement>
   -->
+
+
+  <measurement:Measurement id="irrigation_water_use_co">
+    <observation:hasObservable>
+      <waterSupplyService:AgriculturalWaterUse/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: </rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>mm</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:irrigation_water_use_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-1.7976931348623157E308</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>326</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>239</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4302344.703</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>404577.678</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4543344.703</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>732577.678</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
 
   <measurement:BinaryCoding id="usa_airports">
     <observation:hasObservable>
@@ -569,6 +598,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <measurement:BinaryCoding id="aspen_forests_co">
+    <observation:hasObservable>
+      <colorado:AspenForestPresence />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:aspen_forests_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:Ranking id="sanPedro_bird_rich">
     <observation:hasObservable>
       <habitat:AvianRichness />
@@ -673,6 +730,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Count>
 
+  <measurement:BinaryCoding id="clearcuts_co">
+    <observation:hasObservable>
+      <geofeatures:Clearcut/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:clearcuts_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <observation:Categorization id="mexico_mex_lulc">
     <observation:hasObservable>
       <mexico:CONABIOLULCCategory />
@@ -698,28 +783,33 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <observation:Categorization id="mexico_lalulc">
+  <measurement:BinaryCoding id="conifer_forests_co">
     <observation:hasObservable>
-      <veracruz-lulc:VeracruzLULCCategory />
+      <colorado:ConiferForestPresence />
     </observation:hasObservable>
-    <metadata:hasPriority>5</metadata:hasPriority>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
     <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:conifer_forests_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>2099767.0934606227</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>673608.6731989896</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>2187949.8171524717</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>817055.4370278353</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </observation:Categorization>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
@@ -790,6 +880,33 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasLonUpperBound>1.0537895527671775E7</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="RUSLE_cover_management_co">
+    <observation:hasObservable>
+      <soilRetentionService:CoverManagement/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USGS Effects of Energy Development in
+    the Rocky Mountain Area (EERMA) Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:RUSLE_cover_management_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>28356</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>30881</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>31.2389411</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.803085</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5229801</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.359871</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
@@ -877,6 +994,34 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+  <measurement:BinaryCoding id="development_co">
+    <observation:hasObservable>
+      <colorado:DevelopmentInfrastructure/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:development_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
 
   <measurement:NumericCoding id="DR_lulc">
     <observation:hasObservable>
@@ -1193,6 +1338,33 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <measurement:Ranking id="fire_return_interval_co">
+    <observation:hasObservable>
+      <habitat:FireThreat/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: LANDFIRE 2001 data</rdfs:comment>
+    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:fire_return_interval_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>24112</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>15195</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>36.4285068</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.805531</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5372625</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.699159</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
   <measurement:Ranking id="Reclass_fthr1">
     <observation:hasObservable>
       <habitat:FireThreat />
@@ -1350,6 +1522,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <measurement:BinaryCoding id="human_disturbance_co">
+    <observation:hasObservable>
+      <colorado:GenericDisturbance/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:human_disturbance_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:NumericCoding id="landcover_glc2000">
     <observation:hasObservable>
       <glc:GLCNumeric />
@@ -1428,26 +1628,83 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <measurement:BinaryCoding id="sanPedro_grazing_land_az">
+  <measurement:BinaryCoding id="gray_beetle_kill_co">
     <observation:hasObservable>
-      <habitat:PastureLand/>
+      <colorado:GrayBeetleKill/>
     </observation:hasObservable>
-    <rdfs:comment>Data source: BLM Grazing Allotments and Arizona State Trust Land</rdfs:comment>
+    <rdfs:comment>Data source: Derived from USFS aerial survey data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
     <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:grazing_land_az</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:gray_beetle_kill_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3460635.309193411</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>119493.20265665092</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106671.988379051</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>698577.6979459908</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="green_gray_beetle_kill_co">
+    <observation:hasObservable>
+      <colorado:GreenGrayBeetleKill/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from USFS aerial survey data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:green_gray_beetle_kill_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="high_elev_grass_shrubs_co">
+    <observation:hasObservable>
+      <colorado:HighGrassOrShrubPresence />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:high_elev_grass_shrubs_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
@@ -1525,6 +1782,31 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+
+  <measurement:Ranking id="housing_value_grand_co">
+    <observation:hasObservable>
+      <aestheticService:HousingValue/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:housing_value_grand_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
 
   <measurement:Measurement id="puget_hydroreservoirs2">
     <observation:hasObservable>
@@ -1662,6 +1944,33 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <measurement:Measurement id="incoming_water_transfer_co">
+    <observation:hasObservable>
+      <waterSupplyService:IncomingWaterTransfer/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Colorado Water Conservation Board</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>mm</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:incoming_water_transfer_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>26</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>177</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4349704.9</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>427398.482</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4528704.9</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>455398.482</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
   <!-- KINEROS model data, uncalibrated, run through AGWA using
        default inputs and a 10-year, 1-hour design storm and 1997 land
        cover, for the Sierra Vista subwatershed only
@@ -1745,13 +2054,42 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <measurement:BinaryCoding id="lakes_co">
+    <observation:hasObservable>
+      <geofeatures:Lake/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:lakes_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:NumericCoding id="sanPedro_az_land_ownership">
     <observation:hasObservable>
       <habitat:LandOwnership />
     </observation:hasObservable>
     <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL><observation:hasDataSource>
+    <metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
+  <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>sanPedro:az_land_ownership</geospace:hasCoverageId>
@@ -1769,6 +2107,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
   </measurement:NumericCoding>
+
+  <measurement:BinaryCoding id="low_elev_grass_shrubs_co">
+    <observation:hasObservable>
+      <colorado:LowGrassOrShrubPresence />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:low_elev_grass_shrubs_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="sanPedro_mammal_rich">
     <observation:hasObservable>
@@ -1898,6 +2264,54 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <measurement:Ranking id="colorado_mpb_damage_co">
+    <observation:hasObservable>
+      <colorado:MountainPineBeetleDamageSeverity/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>severity1</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4084477.379135117</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>37140.84674774384</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5010596.768577957</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>897848.888465635</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="colorado_mpb_damage_co">
+    <observation:hasObservable>
+      <colorado:MountainPineBeetleDamageTreesPerAcre/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4084477.379135117</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>37140.84674774384</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5010596.768577957</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>897848.888465635</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
   <measurement:NumericCoding id="mourning_240">
     <observation:hasObservable>
       <sanPedro:MourningDoveHabitat />
@@ -1974,6 +2388,33 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <measurement:Measurement id="hydrofracking_water_use_co">
+    <observation:hasObservable>
+      <waterSupplyService:OilAndGasSurfaceWaterUse/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: </rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>mm</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:hydrofracking_water_use_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-1.7976931348623157E308</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>317</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>239</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4295776.751</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>426746.572</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4536776.751</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>745746.572</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
   <measurement:Measurement id="open_space_area_san_pedro">
     <observation:hasObservable>
       <aestheticService:OpenSpaceArea />
@@ -2027,6 +2468,29 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+  <measurement:BinaryCoding id="sanPedro_grazing_land_az">
+    <observation:hasObservable>
+      <habitat:PastureLand/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: BLM Grazing Allotments and Arizona State Trust Land</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>sanPedro:grazing_land_az</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>3460635.309193411</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>119493.20265665092</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4106671.988379051</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>698577.6979459908</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
 
   <measurement:BinaryCoding id="sanPedro_trails_sprnca2">
     <observation:hasObservable>
@@ -3201,6 +3665,32 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Count>
 
+  <measurement:BinaryCoding id="housing_presence_grand_co">
+    <observation:hasObservable>
+      <aestheticService:PresenceOfHousing/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: County assessors' offices</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:housing_presence_grand_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:Ranking id="parcels_puget2">
     <observation:hasObservable>
       <aestheticService:PresenceOfHousingRank />
@@ -3226,6 +3716,30 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+  <measurement:Measurement id="surface_water_prox_tz">
+    <observation:hasObservable>
+      <waterSupplyService:ProximityToSurfaceWater />
+    </observation:hasObservable>
+    <measurement:unit>m</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>tanzania:surface_water_prox_tz</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2354</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>2558</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>8959680.277</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>587928.783</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>9215680.277</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>823528.783</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
 
   <measurement:BinaryCoding id="usa_railroads">
     <observation:hasObservable>
@@ -3270,6 +3784,33 @@ DATASET THEY ANNOTATE. ENJOY!
       <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="RUSLE_rainfall_runoff_index_co">
+    <observation:hasObservable>
+      <soilRetentionService:RainfallRunoffErosivityIndex/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USGS Effects of Energy Development in
+    the Rocky Mountain Area (EERMA) Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:RUSLE_rainfall_runoff_index_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>28365</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>30891</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>31.2390316</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.803085</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5229801</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.3600148</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
   </measurement:Ranking>
 
   <measurement:Ranking id="rare_charismatic_bird_richness2">
@@ -3372,6 +3913,81 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="colorado_reservoirs_co">
+    <observation:hasObservable>
+      <geofeatures:Reservoir/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: National Hydrograpy Dataset</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://nhd.usgs.gov/</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:reservoirs_co</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4087587.920997873</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>117909.61828044674</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4551732.071844412</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>776460.9570560753</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="global_reservoirs_global">
+    <observation:hasObservable>
+      <geofeatures:Reservoir/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Global Reservoir and Dam Database 1.1</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://www.gwsp.org/85.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:reservoirs_global</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>-45.8806686401367</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-153.036895751953</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>70.3976135253906</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>176.825454711914</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:Measurement id="municipal_water_use_co">
+    <observation:hasObservable>
+      <waterSupplyService:ResidentialWaterUse/>
+    </observation:hasObservable>
+      <rdfs:comment>Data source: </rdfs:comment>
+      <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>mm</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:municipal_water_use_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-1.7976931348623157E308</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>338</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>240</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4299544.939</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>407599.157</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4541544.939</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>747599.157</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
 
   <measurement:Ranking id="sanPedro_sprnca_condition_class">
     <observation:hasObservable>
@@ -3775,6 +4391,30 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <measurement:BinaryCoding id="colorado_hydrography_co">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Colorado Department of Transportation</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://apps.coloradodot.info/dataaccess/GeoData/index.cfm?fuseaction=GeoDataMain></metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:hydrography_co</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4087398.1803142843</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>118899.56160218053</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4555172.061802939</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>778773.5584162764</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:BinaryCoding id="global_hydrography_samerica">
     <observation:hasObservable>
       <geofeatures:River />
@@ -4008,6 +4648,34 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <measurement:BinaryCoding id="sharp_peaks_co">
+    <observation:hasObservable>
+      <colorado:SharpPeakPresence/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Reclassified from Southwest Regional
+    Gap Analysis Project LULC data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:sharp_peaks_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
   <measurement:Count id="sheep">
     <observation:hasObservable>
       <waterSupplyService:SheepPopulation />
@@ -4057,6 +4725,33 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasLonUpperBound>1.0537895527671775E7</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="RUSLE_slope_steepness_co">
+    <observation:hasObservable>
+      <soilRetentionService:SlopeSteepnessAndLengthFactor/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USGS Effects of Energy Development in
+    the Rocky Mountain Area (EERMA) Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:RUSLE_slope_steepness_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>28356</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>30881</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>31.2389411</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.803085</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5229801</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.359871</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
@@ -4193,6 +4888,33 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasLatUpperBound>49.385</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>-66.949</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="RUSLE_soil_erodibility_co">
+    <observation:hasObservable>
+      <habitat:SoilErodibility/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USGS Effects of Energy Development in
+    the Rocky Mountain Area (EERMA) Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>colorado:RUSLE_soil_erodibility_co</geospace:hasCoverageId>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>28356</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>30881</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>31.2389411</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.803085</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5229801</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.359871</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
@@ -4588,6 +5310,32 @@ DATASET THEY ANNOTATE. ENJOY!
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+  <observation:Categorization id="colorado_soil_orders_co">
+    <observation:hasObservable>
+      <colorado:SoilType/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
+    Regions Map</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:soil_orders_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>soil_name</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4391527.265422749</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>357247.9016186695</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4540586.529115257</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>505664.0137468534</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
 
   <measurement:NumericCoding id="swregap_landcover_Project">
     <observation:hasObservable>
@@ -5154,6 +5902,28 @@ DATASET THEY ANNOTATE. ENJOY!
   </measurement:Measurement>
   -->
 
+  <observation:Categorization id="tanzania_tanzania_land_cover">
+    <observation:hasObservable>
+      <tanzania-lulc:TanzaniaLULCCategory/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>tanzania:tanzania_land_cover</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>lc</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>8945572.677388238</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>529687.2161211444</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>9250109.11211885</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>844644.2739955618</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
   <measurement:Ranking id="global_terrestrialecoregions">
     <observation:hasObservable>
       <ecology:TerrestrialEcoregion />
@@ -5376,6 +6146,29 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <observation:Categorization id="mexico_lalulc">
+    <observation:hasObservable>
+      <veracruz-lulc:VeracruzLULCCategory />
+    </observation:hasObservable>
+    <metadata:hasPriority>5</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>2099767.0934606227</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>673608.6731989896</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>2187949.8171524717</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>817055.4370278353</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:32614</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
   <observation:Categorization id="usa_watersheds_us">
     <observation:hasObservable>
       <geofeatures:Watershed />
@@ -5590,30 +6383,6 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Measurement id="surface_water_prox_tz">
-    <observation:hasObservable>
-      <waterSupplyService:ProximityToSurfaceWater />
-    </observation:hasObservable>
-    <measurement:unit>m</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>tanzania:surface_water_prox_tz</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2354</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>2558</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>8959680.277</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>587928.783</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>9215680.277</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>823528.783</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
   <!-- Need an ontologic concept for this one - basically
        EPA-regulated facilities (industry, waste discharge points,
        superfund sites, etc.)
@@ -5640,27 +6409,5 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
   -->
-
-  <observation:Categorization id="tanzania_tanzania_land_cover">
-    <observation:hasObservable>
-      <tanzania-lulc:TanzaniaLULCCategory/>
-    </observation:hasObservable>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>tanzania:tanzania_land_cover</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>lc</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>8945572.677388238</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>529687.2161211444</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>9250109.11211885</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>844644.2739955618</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:32736</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </observation:Categorization>
 
 </kbox>
