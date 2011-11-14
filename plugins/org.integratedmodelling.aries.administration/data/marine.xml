@@ -196,6 +196,8 @@
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!-- This layer should be removed once the global layer is shown to
+     work. -->
   <measurement:Measurement id="mg_bath1-171_ProjectRaster1">
     <observation:hasObservable>
       <geophysics:Bathymetry />
@@ -218,6 +220,33 @@
         <geospace:hasLonLowerBound>39.992</geospace:hasLonLowerBound>
         <geospace:hasLatUpperBound>-8.992</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>55.008</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
+  <measurement:Measurement id="bathymetry_etopo1">
+    <observation:hasObservable>
+      <geophysics:Bathymetry/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NASA ETOPO1 1 arc-minute global relief model</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/docs/ETOPO1.pdf</metadata:hasURL>
+    <measurement:unit>m</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:bathymetry_etopo1</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>21599</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>10799</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-90.0083333</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.0083333</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>90.0083333</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>180.0083333</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
@@ -687,6 +716,33 @@
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <measurement:Ranking id="coastal_nutrient_inputs">
+    <observation:hasObservable>
+      <fisheries:NutrientRunoff/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NCEAS Global map of human impacts to
+    marine ecosystems</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:coastal_nutrient_inputs</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>38753</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>18679</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-89.9093163</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-179.999989</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>83.6214908</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>180.0014258</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
   <measurement:BinaryCoding id="mg_paths2">
     <observation:hasObservable>
       <infrastructure:Path />
@@ -870,6 +926,33 @@
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
+
+  <measurement:Ranking id="artisinal_fishing">
+    <observation:hasObservable>
+      <fisheries:SubsistenceUse/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NCEAS Global map of human impacts to
+    marine ecosystems</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:artisinal_fishing</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>38608</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>19303</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-89.9999999</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>179.9999998</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
 
   <measurement:Ranking id="gdcyc">
     <observation:hasObservable>
