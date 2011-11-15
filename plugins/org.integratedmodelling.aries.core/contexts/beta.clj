@@ -361,7 +361,7 @@
 (defcontext co_grand_boulder_larimer
   "Grand, Boulder, and Larimer counties, CO, for carbon analysis"
   (grid
-   512 ; Bump to 1024?
+   1024 ; Bump to 1024?
    "EPSG:4326 POLYGON((-106.66 41.01, -104.93 41.01, -104.93 39.67, -106.66 39.67, -106.66 41.01))"))
 
 (defcontext co_north_rockies
