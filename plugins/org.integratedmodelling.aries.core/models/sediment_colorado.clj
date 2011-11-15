@@ -208,7 +208,7 @@
   (span SedimentTransport
         SedimentSourceValueAnnualFire
         geofeatures:Reservoir
-        ReservoirsClass
+        ReservoirSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)
         :source-threshold   1000.0
@@ -244,7 +244,7 @@
   (span SedimentTransport
         SedimentSourceValueAnnualNoFire
         geofeatures:Reservoir
-        ReservoirsClass
+        ReservoirSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)
         :source-threshold   1000.0
