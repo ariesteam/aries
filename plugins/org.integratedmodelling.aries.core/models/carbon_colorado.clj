@@ -92,7 +92,7 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-    :import  "aries.core::CarbonSourceSanPedro.xdsl"
+    :import  "aries.core::CarbonSourceColorado.xdsl"
     :context [vegetation-type percent-tree-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))
@@ -109,13 +109,13 @@
 ;; from land conversion and fire).
 
 (defmodel soil-type colorado:SoilType
-  (classification (ranking colorado:CarbonSoilType)
-    1 colorado:Alfisols
-    2 colorado:Aridisols
-    3 colorado:Entisols
-    4 colorado:Inceptisols
-    5 colorado:Mollisols
-    6 colorado:Water))
+  (classification (categorization colorado:CarbonSoilType)
+    "Alfisols"    colorado:Alfisols
+    "Aridisols"   colorado:Aridisols
+    "Entisols"    colorado:Entisols
+    "Inceptisols" colorado:Inceptisols
+    "Mollisols"   colorado:Mollisols
+    "Water"       colorado:Water))
 
 (defmodel beetle-kill colorado:MountainPineBeetleDamageClass ; Values
                                         ; in trees killed/ac: not a
@@ -123,9 +123,9 @@
                                         ; keep as a ranking.
   (classification (ranking colorado:MountainPineBeetleDamageTreesPerAcre)
     [17.6 500] colorado:SevereDamage
-    [ 2 17.6] colorado:ModerateDamage
-    [  1  2] colorado:LowDamage
-           0  colorado:NoDamage))
+    [ 2 17.6]  colorado:ModerateDamage
+    [  1  2]   colorado:LowDamage
+    :otherwise colorado:NoDamage))
 
 (defmodel fire-threat FireThreatClass ; This is actually fire return
                                       ; interval data, but uses
@@ -182,7 +182,7 @@
   (classification vegetation-soil-storage
     [159   235]    VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [116   159]    HighStorage
-    [ 66   116]    ModerateStorage
+    [ 64   116]    ModerateStorage
     [ 10    64]    LowStorage
     [  0.02 10]    VeryLowStorage
     [  0     0.02] NoStorage))

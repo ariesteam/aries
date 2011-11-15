@@ -37,11 +37,12 @@
 		<cpt id="SoilCarbonStorage">
 			<state id="VeryHighSoilStorage" />
 			<state id="HighSoilStorage" />
-			<state id="MediumSoilStorage" />
+			<state id="ModerateSoilStorage" />
 			<state id="LowSoilStorage" />
+			<state id="VeryLowSoilStorage" />
 			<state id="NoSoilStorage" />
 			<parents>SoilType MeanAnnualPrecipitation</parents>
-			<probabilities>0.45 0.3 0.25 0 0 0.2 0.2 0.3 0.3 0 0 0.05 0.25 0.7 0 0 0 0.6 0.3 0.1 0 0 0.2 0.4 0.4 0 0 0 0.1 0.9 0 0.6 0.35 0.05 0 0 0.1 0.4 0.5 0 0 0 0.1 0.9 0 0.45 0.3 0.25 0 0 0 0.1 0.65 0.25 0 0 0 0.3 0.6 0.1 0.3 0.2 0.5 0 0 0 0.1 0.4 0.5 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</probabilities>
+			<probabilities>0.45 0.3 0.25 0 0 0 0.2 0.2 0.3 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0.6 0.3 0.05 0.05 0 0 0.2 0.4 0.2 0.2 0 0 0 0.1 0.45 0.45 0 0.6 0.35 0.05 0 0 0 0.1 0.4 0.5 0 0 0 0 0.1 0.9 0 0 0.45 0.3 0.25 0 0 0 0 0.1 0.65 0.25 0 0 0 0 0.3 0.6 0.05 0.05 0.3 0.2 0.5 0 0 0 0 0.1 0.4 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="MountainPineBeetleDamageClass">
 			<state id="SevereDamage" />
@@ -119,8 +120,8 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>256 326 396 356</position>
-				<barchart active="true" width="282" height="108" />
+				<position>244 334 384 364</position>
+				<barchart active="true" width="282" height="126" />
 			</node>
 			<node id="VegetationCarbonStorage">
 				<name>VegetationCarbonStorage</name>

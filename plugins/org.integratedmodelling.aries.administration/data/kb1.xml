@@ -87,10 +87,9 @@ DATASET THEY ANNOTATE. ENJOY!
   </measurement:Measurement>
   -->
 
-
   <measurement:Measurement id="irrigation_water_use_co">
     <observation:hasObservable>
-      <waterSupplyService:AgriculturalWaterUse/>
+      <waterSupplyService:AgriculturalSurfaceWaterUse/>
     </observation:hasObservable>
     <rdfs:comment>Data source: </rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -2275,6 +2274,7 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
         <geospace:hasValueAttribute>severity1</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -2299,6 +2299,7 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
         <geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -3964,7 +3965,7 @@ DATASET THEY ANNOTATE. ENJOY!
 
   <measurement:Measurement id="municipal_water_use_co">
     <observation:hasObservable>
-      <waterSupplyService:ResidentialWaterUse/>
+      <waterSupplyService:ResidentialSurfaceWaterUse/>
     </observation:hasObservable>
       <rdfs:comment>Data source: </rdfs:comment>
       <metadata:hasPriority>0</metadata:hasPriority>
@@ -5313,7 +5314,7 @@ DATASET THEY ANNOTATE. ENJOY!
 
   <observation:Categorization id="colorado_soil_orders_co">
     <observation:hasObservable>
-      <colorado:SoilType/>
+      <colorado:CarbonSoilType/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Digitized based on NRCS Global Soil
     Regions Map</rdfs:comment>

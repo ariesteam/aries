@@ -252,7 +252,7 @@
                              PossibleSurfaceWaterSupply
                              PossibleSurfaceWaterUse
                              ActualSurfaceWaterFlow
-                             UsedSurfaceWaterSupply
+                              UsedSurfaceWaterSupply
                              ActualSurfaceWaterSink
                              SatisfiedSurfaceWaterDemand
                              UnusableSurfaceWaterSupply
