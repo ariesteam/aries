@@ -164,12 +164,12 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel housing PresenceOfHousing
-  (classification (binary-coding economics:AppraisedPropertyValue) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
+  (classification (binary-coding aestheticService:PresenceOfHousing) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
     1          HousingPresent
-    :otherwise HousingAbsent)) 
+    :otherwise HousingAbsent))
 
 (defmodel property-value HousingValue
-  (classification (ranking economics:AppraisedPropertyValue)
+  (classification (ranking aestheticService:HousingValue)
     1 VeryLowHousingValue ; This is a poor classification, would be
                           ; better to have the actual $ valus and
                           ; classify according to those.
