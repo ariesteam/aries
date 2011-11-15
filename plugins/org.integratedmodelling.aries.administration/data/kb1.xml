@@ -702,6 +702,32 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Count>
 
+  <observation:Categorization id="colorado_soil_orders_co">
+    <observation:hasObservable>
+      <colorado:CarbonSoilType/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
+    Regions Map</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:soil_orders_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>soil_name</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4391527.265422749</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>357247.9016186695</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4540586.529115257</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>505664.0137468534</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
   <measurement:Count id="cattle">
     <observation:hasObservable>
       <waterSupplyService:CattlePopulation />
@@ -5312,32 +5338,6 @@ DATASET THEY ANNOTATE. ENJOY!
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <observation:Categorization id="colorado_soil_orders_co">
-    <observation:hasObservable>
-      <colorado:CarbonSoilType/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
-    Regions Map</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:soil_orders_co</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>soil_name</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>4391527.265422749</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>357247.9016186695</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4540586.529115257</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>505664.0137468534</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </observation:Categorization>
-
   <measurement:NumericCoding id="swregap_landcover_Project">
     <observation:hasObservable>
       <sanPedro:SouthwestRegionalGapAnalysisLULC />
@@ -5817,6 +5817,33 @@ DATASET THEY ANNOTATE. ENJOY!
         <geospace:hasLonUpperBound>-34.8422622680664</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="successional_stage_co">
+    <observation:hasObservable>
+      <ecology:SuccessionalStage/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: LANDFIRE 2001 data</rdfs:comment>
+    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:successional_stage_co</geospace:hasCoverageId>
+        <geospace:hasNodataValue>2.147483647E9</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>24046</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>15224</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>36.417913</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.822192</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5369109</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.7372279</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 

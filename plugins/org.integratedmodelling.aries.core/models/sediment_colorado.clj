@@ -96,15 +96,14 @@
     -1         colorado:LowDamage
     :otherwise colorado:NoDamage))
 
-;;Discretization based on Quinton et al. (1997) ; Problem here: VERY strange.
+;;Discretization based on Quinton et al. (1997)
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
     [70 100 :inclusive] HighCanopyCover
     [30  70]            ModerateCanopyCover
     [ 0  30]            LowCanopyCover))
 
-(defmodel successional-stage SuccessionalStageClass ; Still gotta get
-                                        ; this baby into GS/.xml
+(defmodel successional-stage SuccessionalStageClass
   (classification (ranking ecology:SuccessionalStage)
     1          OldGrowth
     2          LateSuccession
@@ -134,7 +133,7 @@
 ;; fire, for comparison.
 (defmodel source-fire SedimentSourceValueAnnualFire
   (bayesian SedimentSourceValueAnnualFire
-    :import   "aries.core::SedimentSourceColoradoFireAdHoc.xdsl"
+    :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage mountain-pine-beetle]
@@ -144,7 +143,7 @@
 
 (defmodel source-no-fire SedimentSourceValueAnnualNoFire
   (bayesian SedimentSourceValueAnnualNoFire
-    :import   "aries.core::SedimentSourceColoradoNoFireAdHocNoFire.xdsl"
+    :import   "aries.core::SedimentSourceColoradoAdHocNoFire.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage]
