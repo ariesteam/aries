@@ -352,11 +352,29 @@
    256
    "EPSG:4326 POLYGON((33.8 -7.087872, 35.934146 -7.087872, 35.934146 -9.407777, 33.8 -9.407777, 33.8 -7.087872))"))
 
-(defcontext co_grand_county
-  "Grand County, CO, for viewshed analysis"
+(defcontext co_grand_county400
+  "Grand County, CO, for viewshed & sediment analysis"
   (grid
    400
    "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))"))
+
+(defcontext co_grand_county512
+  "Grand County, CO, for viewshed & sediment analysis"
+  (grid
+   512
+   "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))"))
+
+(defcontext co_blue
+  "Colorado Blue River watershed, including Dillon and Green Mountain Reservoirs, for sediment analysis"
+  (grid
+   512
+   "EPSG:4326 POLYGON((-106.475 40.05, -105.76 40.05, -105.76 39.35, -106.475 39.35, -106.475 40.05))"))
+
+(defcontext upper_south_platte
+  "Upper South Platte watershed, including several reservoirs, for sediment analysis"
+  (grid
+   512
+   "EPSG:4326 POLYGON((-106.215 39.77, -104.8 39.77, -104.8 38.73, -106.215 38.73, -106.215 39.77))"))
 
 (defcontext co_grand_boulder_larimer
   "Grand, Boulder, and Larimer counties, CO, for carbon analysis"
@@ -364,14 +382,8 @@
    1024
    "EPSG:4326 POLYGON((-106.66 41.01, -104.93 41.01, -104.93 39.67, -106.66 39.67, -106.66 41.01))"))
 
-(defcontext co_north_rockies
-  "Colorado Rocky Mountains from Park County to Wyoming border, for sediment analysis"
-  (grid
-   512 ; bump to 1024
-   "EPSG:4326 POLYGON((-106.9 41.01, -104.8 41.01, -104.8 38.63, -106.9 38.63, -106.9 41.01))"))
-
 (defcontext co_south_platte
   "Colorado Water Division 1 (South Platte River watershed), for water analysis"
   (grid
-   1024 ; bump to 1024
+   1024
    "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
