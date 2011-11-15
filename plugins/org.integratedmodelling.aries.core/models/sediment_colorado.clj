@@ -96,14 +96,15 @@
     -1         colorado:LowDamage
     :otherwise colorado:NoDamage))
 
-;;Discretization based on Quinton et al. (1997)
+;;Discretization based on Quinton et al. (1997) ; Problem here: VERY strange.
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
     [70 100 :inclusive] HighCanopyCover
     [30  70]            ModerateCanopyCover
     [ 0  30]            LowCanopyCover))
 
-(defmodel successional-stage SuccessionalStageClass
+(defmodel successional-stage SuccessionalStageClass ; Still gotta get
+                                        ; this baby into GS/.xml
   (classification (ranking ecology:SuccessionalStage)
     1          OldGrowth
     2          LateSuccession
@@ -162,8 +163,8 @@
 ;; regions in the Rockies.  Hence all sediment that's eroded moves
 ;; downslope and eventually ends up in reservoirs.
 
-(defmodel sink ReservoirsClass
-  (measurement ReservoirsClass "kg/ha"
+(defmodel sink ReservoirSedimentSink
+  (measurement ReservoirSedimentSink "kg/ha"
     :context [(binary-coding geofeatures:Reservoir)]
     :state   #(if (== (:reservoir %) 1) 5000000 0)))
  
