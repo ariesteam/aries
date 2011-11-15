@@ -45,10 +45,10 @@
 (defmodel soil-group HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    4          SoilGroupA
-    #{0 7}     SoilGroupB
-    #{1 5 6 7} SoilGroupC
-    3          SoilGroupD))
+    1 SoilGroupA
+    2 SoilGroupB
+    3 SoilGroupC
+    4 SoilGroupD))
 
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
