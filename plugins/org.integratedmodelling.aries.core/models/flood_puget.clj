@@ -820,13 +820,13 @@ be added to this list if desired."
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
-                      (conc 'carbonService:VeryLowVegetationCover)
+                      (conc 'carbonService:VeryLowCanopyCover)
                     
                       (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
-                      (conc 'carbonService:LowVegetationCover)
+                      (conc 'carbonService:LowCanopyCover)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'carbonService:ModerateVegetationCover)
+                      (conc 'carbonService:ModerateCanopyCover)
                     
                       :otherwise (:pcc %))))
   (model SuccessionalStage
@@ -875,13 +875,13 @@ be added to this list if desired."
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
-                      (conc 'carbonService:VeryLowVegetationCover)
+                      (conc 'carbonService:VeryLowCanopyCover)
                     
                       (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
-                      (conc 'carbonService:LowVegetationCover)
+                      (conc 'carbonService:LowCanopyCover)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'carbonService:ModerateVegetationCover)
+                      (conc 'carbonService:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
   (model SuccessionalStage

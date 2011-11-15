@@ -340,7 +340,7 @@ fire frequency, increased greenhouse gas emissions."
     (classification PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:VeryLowVegetationCover)
+                  (conc 'carbonService:VeryLowCanopyCover)
                   (:pcc %))))
   (model FireFrequency
     (classification FireFrequency
@@ -368,7 +368,7 @@ fire frequency, increased greenhouse gas emissions."
     (classification PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:VeryLowVegetationCover)
+                  (conc 'carbonService:VeryLowCanopyCover)
                   (:pcc %))))
   (model FireFrequency
     (classification FireFrequency

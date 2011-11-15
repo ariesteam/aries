@@ -70,8 +70,8 @@
 (defmodel runoff AnnualRunoffSummed
   (measurement AnnualRunoffSummed "mm"
     :context [precipitation-annual incoming-water-transfer]
-    :state #(+ (:precipitation-annual    %)
-               (:incoming-water-transfer %))))
+    :state #(+ (:annual-precipitation    %)
+               (or (:incoming-water-transfer %) 0.0))))
 
 ;;;-------------------------------------------------------------------
 ;;; Groundwater source models

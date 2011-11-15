@@ -489,10 +489,10 @@ greenhouse gas emissions."
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
-                      (conc 'carbonService:LowVegetationCover)
+                      (conc 'carbonService:LowCanopyCover)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'carbonService:ModerateVegetationCover)
+                      (conc 'carbonService:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
   (model SuccessionalStageClass
