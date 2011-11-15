@@ -230,10 +230,10 @@
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   5.0  ; La Antigua used 1500, also 500 & 100
-        :sink-threshold     5.0  ; La Antigua used 25
-        :use-threshold      1.0  ; La Antigua used 5
-        :trans-threshold    0.1  ; La Antigua used 5
+        :source-threshold   0
+        :sink-threshold     0
+        :use-threshold      0
+        :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
