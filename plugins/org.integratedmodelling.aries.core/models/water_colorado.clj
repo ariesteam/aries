@@ -191,6 +191,15 @@
                    (or r 0)
                    (or o 0)))))
 
+;; Total surface water use, without hydrofracking.
+(defmodel total-surface-water-use-no-fracking colorado:TotalSurfaceWaterUseNoFracking
+  (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
+    :context [agricultural-surface-water-use residential-surface-water-use]
+    :state   #(let [a (:agricultural-surface-water-use %)
+                    r (:residential-surface-water-use  %)]
+                (+ (or a 0)
+                   (or r 0)))))
+
 ;;;-------------------------------------------------------------------
 ;;; Groundwater use models
 ;;;-------------------------------------------------------------------
@@ -219,6 +228,11 @@
     :context [precipitation-annual surface-water-sink
               total-surface-water-use altitude streams-simple]))
 
+(defmodel data-all-no-fracking colorado:WaterSupplyNoFracking
+  (identification WaterSupply
+    :context [precipitation-annual surface-water-sink
+              total-surface-water-use-no-fracking altitude streams-simple]))
+
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
@@ -244,6 +258,45 @@
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
         :context            [precipitation-annual surface-water-sink
                              total-surface-water-use altitude
+                             streams-simple]
+        :keep               [SurfaceWaterSupply
+                             MaximumSurfaceWaterSink
+                             SurfaceWaterDemand
+                             PossibleSurfaceWaterFlow
+                             PossibleSurfaceWaterSupply
+                             PossibleSurfaceWaterUse
+                             ActualSurfaceWaterFlow
+                              UsedSurfaceWaterSupply
+                             ActualSurfaceWaterSink
+                             SatisfiedSurfaceWaterDemand
+                             UnusableSurfaceWaterSupply
+                             UnusableSurfaceWaterSink
+                             InaccessibleSurfaceWaterDemand
+                             SunkSurfaceWaterFlow
+                             SunkSurfaceWaterSupply
+                             BlockedSurfaceWaterDemand]))
+
+(defmodel surface-flow-no-fracking colorado:SurfaceWaterMovementNoFracking
+  (span SurfaceWaterMovement
+        AnnualPrecipitation
+        colorado:TotalSurfaceWaterUseNoFracking
+        SurfaceWaterSink
+        nil
+        (geophysics:Altitude geofeatures:River)
+        :source-threshold   0
+        :sink-threshold     0
+        :use-threshold      0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
+        :context            [precipitation-annual surface-water-sink
+                             total-surface-water-use-no-fracking altitude
                              streams-simple]
         :keep               [SurfaceWaterSupply
                              MaximumSurfaceWaterSink

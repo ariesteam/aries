@@ -10,6 +10,7 @@
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY colorado "http://www.integratedmodelling.org/ks/aries/local/colorado.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
 ]>
 
 
@@ -17,6 +18,7 @@
      xml:base="http://www.w3.org/2002/07/owl"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
      xmlns:colorado="http://www.integratedmodelling.org/ks/aries/local/colorado.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
@@ -647,6 +649,23 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SurfaceWaterMovementNoFracking -->
+
+    <Class rdf:about="&colorado;SurfaceWaterMovementNoFracking">
+        <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#TotalSurfaceWaterUseNoFracking -->
+
+    <Class rdf:about="&colorado;TotalSurfaceWaterUseNoFracking">
+        <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Unvegetated -->
 
     <Class rdf:about="&colorado;Unvegetated">
@@ -668,6 +687,14 @@
     <Class rdf:about="&colorado;Water">
         <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#WaterSupplyNoFracking -->
+
+    <Class rdf:about="&colorado;WaterSupplyNoFracking">
+        <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
     </Class>
     
 
