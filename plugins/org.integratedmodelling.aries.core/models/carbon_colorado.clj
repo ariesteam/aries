@@ -152,6 +152,14 @@
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
+;; Hack; remove once a proper context model is working
+(defmodel vegetation-carbon-storage-no-beetle colorado:VegetationCStorageNoBeetle
+  (bayesian VegetationCStorage 
+    :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
+    :context [percent-tree-canopy-cover vegetation-type]
+    :keep    [VegetationCarbonStorage]
+    :result  veg-storage))
+
 (defmodel soil-storage SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
     [69   108]    VeryHighSoilStorage
@@ -168,14 +176,17 @@
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
-;;Consider reworking the soil carbon storage part of the model based
-;; on Martens et al. 2005 - soil texture, precip, temperature as most
-;; important correlates of high soil carbon storage.
-
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha*year"
     :context [vegetation-carbon-storage soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
+                 (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
+
+;; Hack, remove when contexts are working properly.
+(defmodel vegetation-soil-storage-no-beetle colorado:VegetationAndSoilCarbonStorageNoBeetle
+  (measurement colorado:VegetationAndSoilCarbonStorageNoBeetle "t/ha*year"
+    :context [vegetation-carbon-storage-no-beetle soil-carbon-storage]
+    :state   #(+ (if (nil? (:vegetation-c-storage-no-beetle %)) 0.0 (.getMean (:vegetation-c-storage-no-beetle %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
@@ -196,9 +207,17 @@
     [ 0.02  7.4]  VeryLowRelease
     [ 0     0.02] NoRelease))
 
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel sink CarbonSinkValue
+  (bayesian CarbonSinkValue
     :import  "aries.core::CarbonSinkColorado.xdsl"
+    :context [veg-soil-storage fire-threat]
+    :keep    [StoredCarbonRelease]
+    :result  stored-carbon-release))
+
+;; Hack, remove when contexts are working properly.
+(defmodel sink-no-beetle colorado:CarbonSinkValueNoBeetle
+  (bayesian colorado:CarbonSinkValueNoBeetle
+    :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
     :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
@@ -218,6 +237,11 @@
 (defmodel identification-carbon ClimateStability
   (identification ClimateStability
     :context [source sink use-simple]))
+
+;; Hack, remove when contexts are working properly.
+(defmodel identification-carbon-no-beetle colorado:ClimateStabilityNoBeetle
+  (identification ClimateStability
+    :context [source sink-no-beetle use-simple]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models

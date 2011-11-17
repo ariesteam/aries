@@ -216,7 +216,7 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    2.5
+        :source-threshold    4.0
         :sink-threshold      5.0
         :use-threshold       0.05
         :trans-threshold     1.0
