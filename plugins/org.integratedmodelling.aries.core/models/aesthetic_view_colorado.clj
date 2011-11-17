@@ -95,7 +95,7 @@
   (probabilistic-ranking TheoreticalNaturalBeauty
     [50 100] HighNaturalBeauty
     [25  50] ModerateNaturalBeauty
-    [10  25] LowNaturalBeauty
+    [ 1  25] LowNaturalBeauty
     [ 0   1] NoNaturalBeauty))
 
 ;; source bayesian model                 

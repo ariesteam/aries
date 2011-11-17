@@ -141,7 +141,9 @@
     :keep     [SedimentSourceValueAnnualClass]
     :result   sediment-source-value-annual))
 
-(defmodel source-no-fire SedimentSourceValueAnnualNoFire
+(defmodel source-no-fire SedimentSourceValueAnnualNoFire ; Delete this
+                                        ; and the other statements
+                                        ; once contexts are working correctly.
   (bayesian SedimentSourceValueAnnualNoFire
     :import   "aries.core::SedimentSourceColoradoAdHocNoFire.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
