@@ -225,7 +225,7 @@
 
 (defmodel data-all WaterSupply
   (identification WaterSupply
-    :context [precipitation-annual surface-water-sink
+    :context [runoff surface-water-sink
               total-surface-water-use altitude streams-simple]))
 
 (defmodel data-all-no-fracking colorado:WaterSupplyNoFracking
@@ -239,7 +239,7 @@
 
 (defmodel surface-flow SurfaceWaterMovement
   (span SurfaceWaterMovement
-        AnnualPrecipitation
+        AnnualRunoffSummed
         TotalSurfaceWaterUse
         SurfaceWaterSink
         nil
@@ -255,8 +255,8 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
-        :context            [precipitation-annual surface-water-sink
+        ;; :save-file          (str (System/getProperty "user.home") "/water_colorado_data.clj")
+        :context            [runoff surface-water-sink
                              total-surface-water-use altitude
                              streams-simple]
         :keep               [SurfaceWaterSupply
@@ -266,7 +266,7 @@
                              PossibleSurfaceWaterSupply
                              PossibleSurfaceWaterUse
                              ActualSurfaceWaterFlow
-                              UsedSurfaceWaterSupply
+                             UsedSurfaceWaterSupply
                              ActualSurfaceWaterSink
                              SatisfiedSurfaceWaterDemand
                              UnusableSurfaceWaterSupply
@@ -294,7 +294,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/water_colorado_data_no_fracking.clj")
         :context            [precipitation-annual surface-water-sink
                              total-surface-water-use-no-fracking altitude
                              streams-simple]
@@ -305,7 +305,7 @@
                              PossibleSurfaceWaterSupply
                              PossibleSurfaceWaterUse
                              ActualSurfaceWaterFlow
-                              UsedSurfaceWaterSupply
+                             UsedSurfaceWaterSupply
                              ActualSurfaceWaterSink
                              SatisfiedSurfaceWaterDemand
                              UnusableSurfaceWaterSupply

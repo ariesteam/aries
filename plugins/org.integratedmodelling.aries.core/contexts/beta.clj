@@ -387,3 +387,9 @@
   (grid
    1024
    "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
+
+(defcontext co_south_platte_lowres
+  "Colorado Water Division 1 (South Platte River watershed), for water analysis"
+  (grid
+   512
+   "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
