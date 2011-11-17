@@ -135,14 +135,14 @@
              :source-threshold   nil ;; 1500.0
              :sink-threshold     nil ;; 300.0
              :use-threshold      nil ;; 500.0
-             :trans-threshold    10.0
+             :trans-threshold    0.1
              :source-type        :finite
              :sink-type          :finite
              :use-type           :finite
              :benefit-type       :rival
              :downscaling-factor 1
              :rv-max-states      10
-             :animation?         true
+             :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-carbon
