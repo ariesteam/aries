@@ -244,9 +244,9 @@
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   0.0
-        :sink-threshold     0.0
-        :use-threshold      0.0
+        :source-threshold   nil
+        :sink-threshold     nil
+        :use-threshold      nil
         :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
@@ -283,9 +283,9 @@
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
-        :source-threshold   0.0
-        :sink-threshold     0.0
-        :use-threshold      0.0
+        :source-threshold   nil
+        :sink-threshold     nil
+        :use-threshold      nil
         :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
