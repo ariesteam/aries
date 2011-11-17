@@ -417,6 +417,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighStorage -->
+
+    <Class rdf:about="&colorado;HighStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Inceptisols -->
 
     <Class rdf:about="&colorado;Inceptisols">
@@ -497,10 +505,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowStorage -->
+
+    <Class rdf:about="&colorado;LowStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateDamage -->
 
     <Class rdf:about="&colorado;ModerateDamage">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetleDamageClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateStorage -->
+
+    <Class rdf:about="&colorado;ModerateStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
     </Class>
     
 
@@ -549,6 +573,14 @@
 
     <Class rdf:about="&colorado;NoDamage">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetleDamageClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoStorage -->
+
+    <Class rdf:about="&colorado;NoStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
     </Class>
     
 
@@ -698,10 +730,19 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationAndSoilCarbonStorageClassNoBeetle -->
+
+    <Class rdf:about="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle">
+        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationAndSoilCarbonStorageNoBeetle -->
 
     <Class rdf:about="&colorado;VegetationAndSoilCarbonStorageNoBeetle">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
     </Class>
     
 
@@ -710,6 +751,22 @@
 
     <Class rdf:about="&colorado;VegetationCStorageNoBeetle">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighStorage -->
+
+    <Class rdf:about="&colorado;VeryHighStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowStorage -->
+
+    <Class rdf:about="&colorado;VeryLowStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
     </Class>
     
 

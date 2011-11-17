@@ -198,6 +198,16 @@
     [  0.02 10]    VeryLowStorage
     [  0     0.02] NoStorage))
 
+;; One more hack for good measure
+(defmodel veg-soil-storage-no-beetle colorado:VegetationAndSoilCarbonStorageClassNoBeetle
+  (classification vegetation-soil-storage-no-beetle
+    [159   235]    colorado:VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [116   159]    colorado:HighStorage
+    [ 64   116]    colorado:ModerateStorage
+    [ 10    64]    colorado:LowStorage
+    [  0.02 10]    colorado:VeryLowStorage
+    [  0     0.02] colorado:NoStorage))
+
 (defmodel stored-carbon-release StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
     [59   118]    VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
@@ -218,7 +228,7 @@
 (defmodel sink-no-beetle colorado:CarbonSinkValueNoBeetle
   (bayesian colorado:CarbonSinkValueNoBeetle
     :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
-    :context [veg-soil-storage fire-threat]
+    :context [veg-soil-storage-no-beetle fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
 
