@@ -216,9 +216,9 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold   25.0 ; Excludes LowNaturalBeauty
-        :sink-threshold     25.0 ; Excludes LowBlight
-        :use-threshold       0.2 ; Excludes HomeownerViewUseAbsent
+        :source-threshold    2.5
+        :sink-threshold      5.0
+        :use-threshold       0.05
         :trans-threshold     1.0
         :source-type        :infinite
         :sink-type          :infinite

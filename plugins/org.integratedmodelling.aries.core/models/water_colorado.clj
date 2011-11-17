@@ -225,7 +225,7 @@
 
 (defmodel data-all WaterSupply
   (identification WaterSupply
-    :context [precipitation-annual surface-water-sink
+    :context [runoff surface-water-sink
               total-surface-water-use altitude streams-simple]))
 
 (defmodel data-all-no-fracking colorado:WaterSupplyNoFracking
@@ -239,7 +239,7 @@
 
 (defmodel surface-flow SurfaceWaterMovement
   (span SurfaceWaterMovement
-        AnnualPrecipitation
+        AnnualRunoffSummed
         TotalSurfaceWaterUse
         SurfaceWaterSink
         nil
@@ -256,7 +256,7 @@
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/water_colorado_data.clj")
-        :context            [precipitation-annual surface-water-sink
+        :context            [runoff surface-water-sink
                              total-surface-water-use altitude
                              streams-simple]
         :keep               [SurfaceWaterSupply
