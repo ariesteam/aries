@@ -216,7 +216,7 @@
 
 (defmodel data-all WaterSupply
   (identification WaterSupply
-    :context [precipitation-annual surface-water-sink
+    :context [runoff surface-water-sink
               total-surface-water-use altitude streams-simple]))
 
 ;;;-------------------------------------------------------------------
@@ -225,7 +225,7 @@
 
 (defmodel surface-flow SurfaceWaterMovement
   (span SurfaceWaterMovement
-        AnnualPrecipitation
+        AnnualRunoffSummed
         TotalSurfaceWaterUse
         SurfaceWaterSink
         nil
@@ -242,7 +242,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
-        :context            [precipitation-annual surface-water-sink
+        :context            [runoff surface-water-sink
                              total-surface-water-use altitude
                              streams-simple]
         :keep               [SurfaceWaterSupply
