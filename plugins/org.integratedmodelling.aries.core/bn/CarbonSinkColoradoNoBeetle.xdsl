@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="MeanAnnualPrecipitation">
+			<state id="HighMeanAnnualPrecipitation" />
+			<state id="ModerateMeanAnnualPrecipitation" />
+			<state id="LowMeanAnnualPrecipitation" />
+			<probabilities>0.13 0.21 0.66</probabilities>
+		</cpt>
+		<cpt id="CarbonVegetationType">
+			<state id="ConiferousForest" />
+			<state id="DeciduousForest" />
+			<state id="Grassland" />
+			<state id="Shrubland" />
+			<state id="Wetland" />
+			<state id="Cropland" />
+			<state id="Unvegetated" />
+			<probabilities>0.28 0.04 0.28 0.21 0.005 0.145 0.04</probabilities>
+		</cpt>
+		<cpt id="PercentTreeCanopyCover">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
+			<probabilities>0.06 0.06 0.29 0.54 0.05</probabilities>
+		</cpt>
+		<cpt id="SoilType">
+			<state id="Alfisols" />
+			<state id="Aridisols" />
+			<state id="Entisols" />
+			<state id="Inceptisols" />
+			<state id="Mollisols" />
+			<state id="Water" />
+			<probabilities>0.186 0.08400000000000001 0.003 0.346 0.375 0.006</probabilities>
+		</cpt>
+		<cpt id="SoilCarbonStorage">
+			<state id="VeryHighSoilStorage" />
+			<state id="HighSoilStorage" />
+			<state id="ModerateSoilStorage" />
+			<state id="LowSoilStorage" />
+			<state id="VeryLowSoilStorage" />
+			<state id="NoSoilStorage" />
+			<parents>SoilType MeanAnnualPrecipitation</parents>
+			<probabilities>0.45 0.3 0.25 0 0 0 0.2 0.2 0.3 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0.6 0.3 0.05 0.05 0 0 0.2 0.4 0.2 0.2 0 0 0 0.1 0.45 0.45 0 0.6 0.35 0.05 0 0 0 0.1 0.4 0.5 0 0 0 0 0.1 0.9 0 0 0.45 0.3 0.25 0 0 0 0 0.1 0.65 0.25 0 0 0 0 0.3 0.6 0.05 0.05 0.3 0.2 0.5 0 0 0 0 0.1 0.4 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="VegetationCarbonStorage">
+			<state id="VeryHighVegetationStorage" />
+			<state id="HighVegetationStorage" />
+			<state id="ModerateVegetationStorage" />
+			<state id="LowVegetationStorage" />
+			<state id="VeryLowVegetationStorage" />
+			<state id="NoVegetationStorage" />
+			<parents>CarbonVegetationType PercentTreeCanopyCover</parents>
+			<probabilities>0 0.05 0.35 0.55 0.05 0 0 0 0.3 0.65 0.05 0 0 0 0.35 0.5 0.15 0 0 0 0.01 0.6 0.39 0 0 0 0 0 0.5 0.5 0.25 0.25 0.45 0.05 0 0 0.2 0.2 0.55 0.05 0 0 0 0.01 0.25 0.74 0 0 0 0 0.01 0.99 0 0 0 0 0 0 0.5 0.5 0 0.05 0.1 0.85 0 0 0 0 0.05 0.95 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0.5 0.5 0.15 0.2 0.65 0 0 0 0.1 0.15 0.75 0 0 0 0.01 0.01 0.75 0.23 0 0 0 0 0.01 0.99 0 0 0 0 0 0 0.5 0.5 0 0.05 0.06 0.89 0 0 0 0 0.01 0.99 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0.5 0.5 0 0 0.05 0.3 0 0.65 0 0 0 0.25 0 0.75 0 0 0 0.05 0 0.95 0 0 0 0.01 0 0.99 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonStorageClass">
+			<state id="VeryHighStorage" />
+			<state id="HighStorage" />
+			<state id="ModerateStorage" />
+			<state id="LowStorage" />
+			<state id="VeryLowStorage" />
+			<state id="NoStorage" />
+			<probabilities>0.19 0.19 0.19 0.19 0.19 0.05</probabilities>
+		</cpt>
+		<cpt id="FireThreatClass">
+			<state id="VeryHighFireThreat" />
+			<state id="HighFireThreat" />
+			<state id="ModerateFireThreat" />
+			<state id="LowFireThreat" />
+			<probabilities>0 0 0.85 0.15</probabilities>
+		</cpt>
+		<cpt id="StoredCarbonRelease">
+			<state id="VeryHighRelease" />
+			<state id="HighRelease" />
+			<state id="ModerateRelease" />
+			<state id="LowRelease" />
+			<state id="VeryLowRelease" />
+			<state id="NoRelease" />
+			<parents>VegetationAndSoilCarbonStorageClass FireThreatClass</parents>
+			<probabilities>0.75 0.1 0.1 0.03 0.01 0.01 0.2 0.2 0.3 0.19 0.1 0.01 0.01 0.05 0.1 0.5 0.1 0.24 0 0 0 0 0 1 0.25 0.5 0.2 0.03 0.01 0.01 0.1 0.15 0.3 0.25 0.15 0.05 0.01 0.04 0.1 0.3 0.05 0.5 0 0 0 0 0 1 0 0.19 0.5 0.2 0.1 0.01 0 0 0.4 0.15 0.1 0.35 0 0 0.1 0.3 0.1 0.5 0 0 0 0 0 1 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.2 0.6 0 0 0 0.05 0.15 0.8 0 0 0 0 0 1 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+			<node id="StoredCarbonRelease">
+				<name>StoredCarbonRelease</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>354 55 454 85</position>
+				<barchart active="true" width="277" height="126" />
+			</node>
+			<node id="VegetationAndSoilCarbonStorageClass">
+				<name>VegetationAndSoilCarbonStorageClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>130 199 225 229</position>
+				<barchart active="true" width="294" height="126" />
+			</node>
+			<node id="SoilCarbonStorage">
+				<name>SoilCarbonStorage</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>244 334 384 364</position>
+				<barchart active="true" width="282" height="126" />
+			</node>
+			<node id="VegetationCarbonStorage">
+				<name>VegetationCarbonStorage</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>742 331 870 361</position>
+				<barchart active="true" width="291" height="108" />
+			</node>
+			<node id="MeanAnnualPrecipitation">
+				<name>MeanAnnualPrecipitation</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>365 458 458 488</position>
+				<barchart active="true" width="330" height="72" />
+			</node>
+			<node id="FireThreatClass">
+				<name>FireThreatClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>484 192 557 222</position>
+				<barchart active="true" width="199" height="90" />
+			</node>
+			<node id="PercentTreeCanopyCover">
+				<name>PercentTreeCanopyCover</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>685 481 765 511</position>
+				<barchart active="true" width="270" height="108" />
+			</node>
+			<node id="CarbonVegetationType">
+				<name>CarbonVegetationType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>950 498 1037 530</position>
+				<barchart active="true" width="233" height="144" />
+			</node>
+			<node id="SoilType">
+				<name>SoilType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>63 451 214 530</position>
+				<barchart active="true" width="128" height="126" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
