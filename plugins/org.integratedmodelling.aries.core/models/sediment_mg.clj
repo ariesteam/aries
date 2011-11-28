@@ -314,16 +314,16 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode geofeatures:River)
-        :source-threshold   2.0
-        :sink-threshold     1.0
-        :use-threshold      0.5
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
         :trans-threshold    0.25
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :non-rival
         :rv-max-states      10
-        :downscaling-factor 2
+        :downscaling-factor 1
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_farmers.clj")
         :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams]
         :keep    [MaximumSedimentSource
