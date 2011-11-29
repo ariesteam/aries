@@ -160,7 +160,7 @@
     #{5 6} NoFireFrequency))
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [75 100] VeryHighVegetationStorage
     [20 75]  HighVegetationStorage
     [5 20]   ModerateVegetationStorage
@@ -176,7 +176,7 @@
     :result  veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [40 80]        VeryHighSoilStorage
     [20 40]        HighSoilStorage
     [5 20]         ModerateSoilStorage
@@ -196,7 +196,7 @@
 ;; important correlates of high soil carbon storage.
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))

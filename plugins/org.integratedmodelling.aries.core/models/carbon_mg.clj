@@ -154,7 +154,7 @@
 ;; and that for San Pedro, Puget Sound, California, and Vermont we
 ;; used Smith et al. 2006 for discretization.
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [300 500] VeryHighVegetationStorage  
     [100 300] HighVegetationStorage
     [25 100]  ModerateVegetationStorage
@@ -180,7 +180,7 @@
 ;; Sound, California, and Vermont we used Smith et al. 2006 for
 ;; discretization.
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [75 150]  VeryHighSoilStorage
     [40 75]   HighSoilStorage
     [20 40]   ModerateSoilStorage
@@ -197,7 +197,7 @@
     :result    soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage] 
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))

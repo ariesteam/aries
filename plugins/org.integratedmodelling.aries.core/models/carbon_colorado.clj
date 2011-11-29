@@ -137,7 +137,7 @@
     [18 133] LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [89  127]    VeryHighVegetationStorage
     [69   89]    HighVegetationStorage
     [37   69]    ModerateVegetationStorage
@@ -161,7 +161,7 @@
     :result  veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [69   108]    VeryHighSoilStorage
     [46.6  69]    HighSoilStorage
     [27    46.6]  ModerateSoilStorage
@@ -177,14 +177,14 @@
     :result  soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 ;; Hack, remove when contexts are working properly.
 (defmodel vegetation-soil-storage-no-beetle colorado:VegetationAndSoilCarbonStorageNoBeetle
-  (measurement colorado:VegetationAndSoilCarbonStorageNoBeetle "t/ha*year"
+  (measurement colorado:VegetationAndSoilCarbonStorageNoBeetle "t/ha"
     :context [vegetation-carbon-storage-no-beetle soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage-no-beetle %)) 0.0 (.getMean (:vegetation-c-storage-no-beetle %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))

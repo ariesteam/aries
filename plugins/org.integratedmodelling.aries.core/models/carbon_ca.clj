@@ -157,7 +157,7 @@
     #{1 255} LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [150 315] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [80 150]  HighVegetationStorage
     [30 80]   ModerateVegetationStorage
@@ -181,7 +181,7 @@
     :result  veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [25 50]  VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [15 25]  HighSoilStorage
     [5 15]   ModerateSoilStorage
@@ -198,13 +198,13 @@
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
 (defmodel vegetation-soil-storage-sj VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage-sj soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage]
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))

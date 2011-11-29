@@ -130,7 +130,7 @@
 ;; from land conversion and fire).
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [100 300] VeryHighVegetationStorage ; High value bound from Smith et al. (2006); check with local experts.
     [50 100]  HighVegetationStorage
     [25 50]   ModerateVegetationStorage
@@ -146,7 +146,7 @@
     :result   veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [60 100] VeryHighSoilStorage  ; High value bound from Smith et al. (2006); check with local experts.
     [35 60]  HighSoilStorage
     [10 35]  ModerateSoilStorage
@@ -162,7 +162,7 @@
     :result  soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage] 
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))

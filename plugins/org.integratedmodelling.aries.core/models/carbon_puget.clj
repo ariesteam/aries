@@ -160,7 +160,7 @@
     [:< 0.25]  LowFireFrequency))
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha*year" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
     [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [200 500] HighVegetationStorage
     [75 200]  ModerateVegetationStorage
@@ -178,7 +178,7 @@
     :result   veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha*year" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [60 115] VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [30 60]  HighSoilStorage
     [15 30]  ModerateSoilStorage
@@ -196,7 +196,7 @@
     :result   soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
-  (measurement VegetationAndSoilCarbonStorage "t/ha*year"
+  (measurement VegetationAndSoilCarbonStorage "t/ha"
     :context [vegetation-carbon-storage soil-carbon-storage]
     :state #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
