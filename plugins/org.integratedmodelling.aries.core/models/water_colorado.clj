@@ -177,6 +177,7 @@
 (defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUse
   (measurement AgriculturalSurfaceWaterUse "mm")) 
 
+;; NB: this assumes each well uses 5 million gallons, a nonconservative estimate (range is 2-5 million).
 (defmodel oil-and-gas-surface-water-use OilAndGasSurfaceWaterUse
   (measurement OilAndGasSurfaceWaterUse "mm")) 
 
@@ -199,6 +200,8 @@
                     r (:residential-surface-water-use  %)]
                 (+ (or a 0)
                    (or r 0)))))
+
+;; Need to account for the South Platte River Compact, in which 47% (?) is promised to downstream Nebraska (check also the Republican River Compact).
 
 ;;;-------------------------------------------------------------------
 ;;; Groundwater use models
