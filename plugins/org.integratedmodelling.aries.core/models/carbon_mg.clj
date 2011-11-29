@@ -85,6 +85,9 @@
     [0.01 4] VeryLowSequestration
     [0 0.01] NoSequestration))
 
+(defmodel vss VegetationAndSoilCarbonSequestration
+  (measurement VegetationAndSoilCarbonSequestration "t/ha*year"))
+
 ;; Bayesian source model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
