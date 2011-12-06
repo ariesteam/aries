@@ -61,7 +61,7 @@
      bsr_sc_1)  
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      bsr_sc_1)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_1)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
@@ -104,7 +104,7 @@
      bsr_sc_2)  
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      bsr_sc_2)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_2)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
@@ -146,7 +146,7 @@
      bsr_sc_3)  
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      bsr_sc_3)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_3)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
@@ -188,7 +188,7 @@
      bsr_sc_4)  
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      bsr_sc_4)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_4)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
@@ -230,7 +230,7 @@
      bsr_sc_5)  
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      bsr_sc_5)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:UrbanBarrenWater
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:UrbanBarrenWater
      bsr_sc_5)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other
@@ -271,7 +271,7 @@
 ;; Changes to surface water model
   (transform 'waterSupplyService:PercentTreeCanopyCoverClass 'waterSupplyService:VeryLowCanopyCover
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
-  (transform 'sanPedro:EvapotranspirationVegetationType 'sanPedro:Grassland
+  (transform 'sanPedro:WaterSupplyVegetationType 'sanPedro:Grassland
      mesquite_sc_1 mesquite_sc_2 mesquite_sc_3)  
 ;; Changes to aesthetic view models
   (transform 'sanPedro:ScenicVegetationType 'sanPedro:Other

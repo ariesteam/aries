@@ -82,14 +82,14 @@
     [10 17.5] LowCNRatio
     [:< 10]   VeryLowCNRatio))
 
-(defmodel veg-type VegetationType
+(defmodel veg-type vermont:CarbonVegetationType
   (classification (ranking VegType)
-    #{1 5 25}   RowCrops
-    #{36 37 62} GrasslandHerbaceous
-    63          Forest
-    87          Wetland
-    #{61 82}    NoVegetation
-    111         OpenWater))
+    #{1 5 25}   vermont:RowCrops
+    #{36 37 62} vermont:GrasslandHerbaceous
+    63          vermont:Forest
+    87          vermont:Wetland
+    #{61 82}    vermont:NoVegetation
+    111         vermont:OpenWater))
 
 ;; Not used in the model but masks out carbon over open water
 (defmodel slope SlopeClass

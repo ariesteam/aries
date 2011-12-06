@@ -146,11 +146,11 @@
     [16.70    :>] SteeplyDissectedToMountainous))
 
 ;;Use NLCD here, the Vegetation Type SoCal layer provided by Mark doesn't have enough categories to cover the discretization below.
-(defmodel vegetation-type southernCalifornia:VegetationTypeSoCalFlood
+(defmodel vegetation-type southernCalifornia:FloodVegetationType
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}		  southernCalifornia:WetlandVegetation
-    #{41 42 43 52 71} southernCalifornia:ForestGrasslandShrublandVegetation
-    #{21 22 23 24 82} southernCalifornia:DevelopedCultivatedVegetation))
+    #{90 95}		  southernCalifornia:Wetland
+    #{41 42 43 52 71} southernCalifornia:ForestGrasslandShrubland
+    #{21 22 23 24 82} southernCalifornia:DevelopedCultivated))
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)

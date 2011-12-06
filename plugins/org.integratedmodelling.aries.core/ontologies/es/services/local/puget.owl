@@ -85,6 +85,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#DevelopedCultivated -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#DevelopedCultivated">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthImpervious">
@@ -161,6 +169,22 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULCPlans2060">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ENVISIONUrbanGrowthLULC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ForestGrasslandShrubland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ForestGrasslandShrubland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType"/>
     </owl:Class>
     
 
@@ -363,6 +387,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpacePlans">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#Wetland -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#Wetland">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType"/>
     </owl:Class>
     
 

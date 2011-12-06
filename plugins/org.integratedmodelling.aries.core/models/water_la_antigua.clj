@@ -92,14 +92,14 @@
 
 ;; these classes do not show up in the classification statement, but are present in the data layer
 ;; Cuerpo de agua, Manglar, humedad
-(defmodel vegetation-type VegetationType
+(defmodel vegetation-type veracruz:WaterSupplyVegetationType
   "Just a reclass of the Veracruz land use layer"
   (classification (categorization veracruz-lulc:VeracruzLULCCategory)
-    "Bosque mesofilo de montana"                                                                         CloudForest
-    #{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"}                         DevelopedCultivated
-    #{"Bosque cultivado" "Bosque de encino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino"} DryForest
-    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras"}          GrasslandShrubland
-    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                                           Rainforest))
+    "Bosque mesofilo de montana"                                                                         veracruz:CloudForest
+    #{"Pastizal cultivado" "Pastizal inducido" "Zona Urbana" "riego" "temporal"}                         veracruz:DevelopedCultivated
+    #{"Bosque cultivado" "Bosque de encino" "Bosque de oyamel" "Bosque de pino" "Bosque de pino-encino"} veracruz:DryForest
+    #{"Matorral desertico rosetofilo" "Pradera de alta montana" "Vegetacion de dunas costeras"}          veracruz:GrasslandShrubland
+    #{"Selva baja caducifolia" "Selva mediana subcaducifolia"}                                           veracruz:Rainforest))
 
 ;; there are values of 254 and 255 in the source data set and we're not sure what that means
 ;; so we're treating them as No Data along with the other No Data values

@@ -67,7 +67,7 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Agriculture -->
 
     <Class rdf:about="&colorado;Agriculture">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -272,18 +272,10 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#EvapotranspirationVegetationType -->
-
-    <Class rdf:about="&colorado;EvapotranspirationVegetationType">
-        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Forest -->
 
     <Class rdf:about="&colorado;Forest">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -628,7 +620,7 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ScrubBrush -->
 
     <Class rdf:about="&colorado;ScrubBrush">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -668,7 +660,7 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ShortgrassPrairie -->
 
     <Class rdf:about="&colorado;ShortgrassPrairie">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -725,7 +717,7 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#UrbanBarren -->
 
     <Class rdf:about="&colorado;UrbanBarren">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -774,8 +766,8 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Water -->
 
     <Class rdf:about="&colorado;Water">
-        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationVegetationType"/>
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+        <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
 
@@ -784,6 +776,14 @@
 
     <Class rdf:about="&colorado;WaterSupplyNoFracking">
         <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#WaterSupplyVegetationType -->
+
+    <Class rdf:about="&colorado;WaterSupplyVegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
     </Class>
     
 

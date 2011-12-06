@@ -93,13 +93,13 @@
 ;; the aggregation procedure. The future iteration of the model should
 ;; revisit this aggregation to potentially generate our own more specific
 ;; land cover classification scheme.
-(defmodel land-cover-typology lulc:LandCoverTypology
+(defmodel land-cover-typology tanzania:WaterSupplyVegetationType
   (classification (categorization tanzania-lulc:TanzaniaLULCCategory)
-    "AG"   tanzania-lulc:Agriculture
-    "NVT"  tanzania-lulc:TerrestrialVegetation
-    "NVW"  tanzania-lulc:AquaticVegetation
-    "UR"   tanzania-lulc:Urban
-    "WAT"  tanzania-lulc:Water))
+    "AG"   tanzania:Agriculture
+    "NVT"  tanzania:TerrestrialVegetation
+    "NVW"  tanzania:AquaticVegetation
+    "UR"   tanzania:Urban
+    "WAT"  tanzania:Water))
 
 ;; there are values of 254 and 255 in the source data set and we're not sure what that means
 ;; so we're treating them as No Data along with the other No Data values
@@ -193,7 +193,7 @@
     [1.15 :>]  HighLivestockTotalWaterUse
     [0.5 1.15] ModerateLivestockTotalWaterUse
     [0.1 0.5]  LowLivestockTotalWaterUse
-    [:< 0.1]   NoLivestockTotalWaterUse))
+    [:<  0.1]  NoLivestockTotalWaterUse))
 
 (defmodel proximity-to-surface-water ProximityToSurfaceWater
   (measurement ProximityToSurfaceWater "m"))
@@ -216,20 +216,20 @@
 ;; Classification of irrigationWaterUse into 6 classes.
 (defmodel irrigation-water-use-class IrrigationWaterUseClass
   (classification irrigation-water-use
-    [2400   :>] VeryHighIrrigationUse
-    [2150 2400] HighIrrigationUse
-    [1850 2150] ModerateIrrigationUse
-    [1600 1850] LowIrrigationUse
-    [:exclusive 0   1600] VeryLowIrrigationUse
-    0           NoIrrigationUse))
+    [2400   :>]         VeryHighIrrigationUse
+    [2150 2400]         HighIrrigationUse
+    [1850 2150]         ModerateIrrigationUse
+    [1600 1850]         LowIrrigationUse
+    [:exclusive 0 1600] VeryLowIrrigationUse
+    0                   NoIrrigationUse))
 
 ;; Undiscretization of agricultural surface water use.
 (defmodel use-undiscretizer AgriculturalSurfaceWaterUseClass
   (probabilistic-measurement AgriculturalSurfaceWaterUseClass "mm" 
     [2000 3000] HighAgriculturalSurfaceWaterUse
     [1000 2000] ModerateAgriculturalSurfaceWaterUse
-    [0 1000] LowAgriculturalSurfaceWaterUse
-    [0 0]    NoAgriculturalSurfaceWaterUse))
+    [   0 1000] LowAgriculturalSurfaceWaterUse
+    [   0    0] NoAgriculturalSurfaceWaterUse))
 
 (defmodel agricultural-surface-water-use AgriculturalSurfaceWaterUse
  (bayesian AgriculturalSurfaceWaterUse

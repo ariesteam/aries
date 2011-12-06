@@ -72,12 +72,12 @@
 
 ;; This does not account for barren, water, agriculture, or urban cover
 ;; (though these are accounted for in NLCD)
-(defmodel vegetation-type southernCalifornia:VegetationTypeSoCalCarbon
+(defmodel vegetation-type southernCalifornia:CarbonVegetationType
   (classification (numeric-coding southernCalifornia:VegTypeSoCal)
-    1      southernCalifornia:HardwoodForestVegetation
-    #{4 7} southernCalifornia:MixedConiferVegetation
-    0      southernCalifornia:ShrubVegetation
-    3      southernCalifornia:HerbaceousVegetation))
+    1      southernCalifornia:HardwoodForest
+    #{4 7} southernCalifornia:MixedConifer
+    0      southernCalifornia:Shrub
+    3      southernCalifornia:Herbaceous))
 
 ;; "Reclass of the NLCD land use for the purposes of carbon modeling"
 (defmodel land-use southernCalifornia:LandCover

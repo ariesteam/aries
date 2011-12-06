@@ -35,7 +35,7 @@
   (:refer aries :only [span]))
 
 (namespace-ontology waterSupplyService
-  (EvapotranspirationVegetationType (EvapotranspirationVegetationTypeOpen) (EvapotranspirationVegetationTypeConstrained))
+  (WaterSupplyVegetationType (WaterSupplyVegetationTypeOpen) (WaterSupplyVegetationTypeConstrained))
   (representation:GenericObservable
    (TempSurfaceWaterData SurfaceDiversionCapacityCode)))
 
@@ -133,7 +133,7 @@
     [22 28]   HighAnnualMaximumTemperature
     [:< 22]   ModerateAnnualMaximumTemperature)) 
 
-(defmodel vegetation-type sanPedro:EvapotranspirationVegetationType
+(defmodel vegetation-type sanPedro:WaterSupplyVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
     #{22 23 24 25 26 27 28 29 30 31 32 34 35 36 37 38 45 92}                           sanPedro:Forest
@@ -469,7 +469,7 @@
     #{10 11 12 13 19 22 25}                   sanPedro:DevelopedOpen
     #{0 1 2 4 5 6 7 8 9 14 16 23 26 27 28 29} sanPedro:NotDevelopedOpen))
 
-(defmodel vegetation-type-constrained EvapotranspirationVegetationTypeConstrained
+(defmodel vegetation-type-constrained WaterSupplyVegetationTypeConstrained
   "Reclass of Steinitz LULC layers where they have coverage"
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained)
     1                             sanPedro:Forest
@@ -481,7 +481,7 @@
     #{8 9}                        sanPedro:Agriculture
     #{10 11 12 13 14 16 19 22 25} sanPedro:UrbanBarrenWater))
 
-(defmodel vegetation-type-open EvapotranspirationVegetationTypeOpen
+(defmodel vegetation-type-open WaterSupplyVegetationTypeOpen
   "Reclass of Steinitz LULC layers where they have coverage"
   (classification (numeric-coding sanPedro:Steinitz30ClassUrbanGrowthLULCOpen)
     1                             sanPedro:Forest
@@ -501,8 +501,8 @@
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'waterSupplyService:VeryLowCanopyCover)
                   (:pcc %))))
-  (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:EvapotranspirationVegetationType
+  (model sanPedro:WaterSupplyVegetationType
+    (classification sanPedro:WaterSupplyVegetationType
       :context [vegetation-type-open :as vto vegetation-type :as vt]
       :state   #(if (no-data? (:vto %))
                   (:vt %)
@@ -522,8 +522,8 @@
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'waterSupplyService:VeryLowCanopyCover)
                   (:pcc %))))
-  (model sanPedro:EvapotranspirationVegetationType
-    (classification sanPedro:EvapotranspirationVegetationType
+  (model sanPedro:WaterSupplyVegetationType
+    (classification sanPedro:WaterSupplyVegetationType
       :context [vegetation-type-constrained :as vtc  vegetation-type :as vt]
       :state   #(if (no-data? (:vtc %))
                   (:vt %)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="VegetationTypeSoCalFlood">
-			<state id="WetlandVegetation" />
-			<state id="ForestGrasslandShrublandVegetation" />
-			<state id="DevelopedCultivatedVegetation" />
+		<cpt id="FloodVegetationType">
+			<state id="Wetland" />
+			<state id="ForestGrasslandShrubland" />
+			<state id="DevelopedCultivated" />
 			<probabilities>0.03 0.17 0.8</probabilities>
 		</cpt>
 		<cpt id="PercentTreeCanopyCoverClass">
@@ -21,7 +21,7 @@
 			<state id="ModerateEvaoptranspiration" />
 			<state id="LowEvaoptranspiration" />
 			<state id="VeryLowEvaoptranspiration" />
-			<parents>PercentTreeCanopyCoverClass VegetationTypeSoCalFlood</parents>
+			<parents>PercentTreeCanopyCoverClass FloodVegetationType</parents>
 			<probabilities>0.95 0.05 0 0 0 0.9 0.1 0 0 0 0 0.2 0.2 0.3 0.3 0.9 0.1 0 0 0 0.8 0.2 0 0 0 0 0.05 0.15 0.4 0.4 0.8 0.2 0 0 0 0.7 0.2 0.1 0 0 0 0 0.1 0.4 0.5 0.75 0.25 0 0 0 0.6 0.2 0.1 0.1 0 0 0 0.05 0.3 0.65 0.7 0.3 0 0 0 0.4 0.4 0.1 0.1 0 0 0 0 0.2 0.8</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
 		</cpt>
@@ -107,14 +107,14 @@
 				<comment>Data source: GLF/Univ. of Maryland\nResolution 1km2\n\nStudy area is highly urbanized. The percent vegetation cover priors reflect such conditions. \n\nDecreased vegetation cover decreases &apos;Vegetation infiltration and interception,&apos; and vice versa.  </comment>
 				<barchart active="true" width="340" height="108" />
 			</node>
-			<node id="VegetationTypeSoCalFlood">
-				<name>VegetationTypeSoCalFlood</name>
+			<node id="FloodVegetationType">
+				<name>FloodVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>961 422 1056 452</position>
+				<position>866 422 961 452</position>
 				<comment>Data Source: USDA Forest Service - Pacific Southwest Region - Remote Sensing Lab \n\n2002,2003 existing vegetation map product at a scale of 1:24,000\n\n&quot;Tile 51&quot; covers parts of Orange and Los Angeles Counties\n\n&quot;Shrub&quot;, &quot;Mixed Conifer Hardwood&quot;, &quot;Herbaceous&quot;, and &quot;Hardwood&quot; attributes aggregated together to = ForestGrasslandShrublandCultivatedVegetation\n\n&quot;Urban&quot; attribute = DevelopedVegetation\n\n&quot;Water&quot; = WetlandVegetation\n\nBased on review of GIS datasets within the study area (San Gabriel River Watershed) priors were assigned to each &quot;vegetation type.&quot;</comment>
-				<barchart active="true" width="472" height="72" />
+				<barchart active="true" width="282" height="72" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>

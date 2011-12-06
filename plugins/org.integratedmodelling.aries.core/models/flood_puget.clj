@@ -170,12 +170,12 @@
     [ 4.57 16.70] RollingToHilly
     [16.70    :>] SteeplyDissectedToMountainous))
 
-(defmodel vegetation-type VegetationType
+(defmodel vegetation-type puget:FloodVegetationType
   "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}          WetlandVegetation
-    #{41 42 43 52 71} ForestGrasslandShrublandVegetation
-    #{21 22 23 24 82} DevelopedCultivatedVegetation))
+    #{90 95}          puget:Wetland
+    #{41 42 43 52 71} puget:ForestGrasslandShrubland
+    #{21 22 23 24 82} puget:DevelopedCultivated))
 
 (defmodel vegetation-height VegetationHeight
   (classification (measurement habitat:VegetationHeight "ft")

@@ -15,14 +15,14 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#">
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
         <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
@@ -62,7 +62,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Agriculture -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Agriculture">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -199,7 +199,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DesertScrub">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -268,19 +268,11 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType">
-        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -329,7 +321,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Grassland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -490,7 +482,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MesquiteWoodland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -611,7 +603,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OakWoodland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -684,7 +676,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Riparian">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonVegetationType"/>
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -900,7 +892,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationVegetationType"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
@@ -953,6 +945,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterSupplyVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WetRiparianCondition -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WetRiparianCondition">
@@ -986,5 +986,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
 

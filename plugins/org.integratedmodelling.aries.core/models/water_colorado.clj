@@ -91,7 +91,7 @@
 ;; Includes infiltration & evapotranspiration processes.  Deterministic
 ;; models could be used to replace this as appropriate.
 
-(defmodel vegetation-type colorado:EvapotranspirationVegetationType
+(defmodel vegetation-type colorado:WaterSupplyVegetationType
   "Reclass of SWReGAP LULC layer"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
     #{22 24 26 28 29 30 32 33 34 35 36 38 78 79 81 92 95 99 103 116 118 123 124}                       colorado:Forest
