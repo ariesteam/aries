@@ -156,6 +156,8 @@ public class ARIESUserModel extends ThinklabWebModel implements IGeolocatedModel
 		moduleIndex.clear();
 		for (Storyline s : this.storyline.getChildren()) {
 			
+			if (!s.isEnabled())
+				continue;
 			/*
 			 * use the class specified in the module storyline if any is
 			 * given; if not, create a stock AriesModule.
