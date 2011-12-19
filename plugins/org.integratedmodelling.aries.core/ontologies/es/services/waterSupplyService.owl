@@ -368,6 +368,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -377,6 +378,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterSink">
         <rdfs:label rdf:datatype="&xsd;string">Locations where surface water transitions into groundwater (via infiltration) or atmospheric water (via evapotranspiration), or where groundwater transitions into surface water (via springs or baseflow).</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -609,6 +611,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedWaterDemand">
         <rdfs:label rdf:datatype="&xsd;string">Demand for surface or groundwater that goes unsatisfied due to the action of sinks that transition water between surface, atmospheric, and groundwater.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -1402,6 +1405,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleWaterDemand">
         <rdfs:label rdf:datatype="&xsd;string">Demand for surface or groundwater that goes unsatisfied due to a lack of surface or groundwater flow connections between sources of water and the location of water users.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -1521,6 +1525,22 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUseClass">
         <rdfs:label rdf:datatype="&xsd;string">Irrigation Water Use</rdfs:label>
         <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUseNotRice -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUseNotRice">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUseRice -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUseRice">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUse"/>
     </owl:Class>
     
 
@@ -2101,6 +2121,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#MaximumWaterSink">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">Any location where surface water can transition into groundwater (via percolation/recharge) or atmospheric water (via evapotranspiration), or where groundwater can transition into surface water (via springs or baseflow).</rdfs:comment>
     </owl:Class>
     
@@ -2999,6 +3020,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterFlow">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">The movement of surface water via topography and stream networks, and groundwater via appropriate groundwater modeling, but not accounting for sinks (i.e., transitions between surface and groundwater, or evapotranspirative losses of surface water)</rdfs:comment>
     </owl:Class>
     
@@ -3008,6 +3030,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths but not accounting for sinks (i.e., potentially can provide water to human beneficiaries).</rdfs:comment>
     </owl:Class>
     
@@ -3017,6 +3040,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">Water actually reaching a user, but not accounting for the activity of sinks.</rdfs:comment>
     </owl:Class>
     
@@ -3171,6 +3195,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SatisfiedWaterDemand">
         <rdfs:label rdf:datatype="&xsd;string">The portion of demand for water satisfied by extraction of surface or groundwater.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -3388,6 +3413,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SunkWaterFlow">
         <rdfs:label rdf:datatype="&xsd;string">Water flow that fails to reach a user because it encountered a sink and transitioned from surface or groundwater into the atmosphere, surface, or groundwater.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -3397,6 +3423,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SunkWaterSupply">
         <rdfs:label rdf:datatype="&xsd;string">The source locations of surface or groundwater that fail to reach a user due to their encountering a sink and transitioning from surface or groundwater into the atmosphere, surface, or groundwater.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;BlockedSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -3456,6 +3483,14 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSinkClass">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
         <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSinkRival -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSinkRival">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSink"/>
     </owl:Class>
     
 
@@ -3580,6 +3615,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#UnusableWaterSink">
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -3589,6 +3625,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#UnusableWaterSupply">
         <rdfs:label rdf:datatype="&xsd;string">The source locations of surface or groundwater that are not available to human users because their flow paths do not move them in a direction where they can be accessed by human beneficiaries.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -3621,6 +3658,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#UsedWaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths and sinks (i.e., actually provide water to human beneficiaries).</rdfs:comment>
     </owl:Class>
     
@@ -3879,6 +3917,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterDemand">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:comment rdf:datatype="&xsd;string">Total demand for water (most realistically portrayed as total demand, but can be split into surface and groundwater).</rdfs:comment>
     </owl:Class>
     
@@ -3889,6 +3928,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;ServiceObservable"/>
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
