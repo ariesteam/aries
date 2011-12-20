@@ -133,37 +133,39 @@
   [cache-layer possible-flow-layer actual-flow-layer sink-caps possible-use-caps actual-use-caps
    in-stream? stream-intakes mm2-per-cell trans-threshold-volume elevation-layer rows cols
    {:keys [route possible-weight actual-weight sink-effects stream-bound?] :as surface-water-carrier}]
-  (let [current-id (peek route)
-        prev-id    (peek (pop route))
-        bearing    (if prev-id (subtract-ids current-id prev-id))]
-    (dosync
-     (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
-     (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
-    (if stream-bound?
-      (let [[new-possible-weight new-actual-weight] (handle-use-effects! current-id
-                                                                         possible-weight
+  (try
+    (let [current-id (peek route)
+          prev-id    (peek (pop route))
+          bearing    (if prev-id (subtract-ids current-id prev-id))]
+      (dosync
+       (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
+       (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
+      (if stream-bound?
+        (let [[new-possible-weight new-actual-weight] (handle-use-effects! current-id
+                                                                           possible-weight
+                                                                           actual-weight
+                                                                           stream-intakes
+                                                                           possible-use-caps
+                                                                           actual-use-caps
+                                                                           cache-layer
+                                                                           mm2-per-cell
+                                                                           surface-water-carrier)]
+          (if (_> new-possible-weight trans-threshold-volume)
+            (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
+              (assoc surface-water-carrier
+                :route           (conj route next-id)
+                :possible-weight new-possible-weight
+                :actual-weight   new-actual-weight))))
+        (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
                                                                          actual-weight
-                                                                         stream-intakes
-                                                                         possible-use-caps
-                                                                         actual-use-caps
-                                                                         cache-layer
-                                                                         mm2-per-cell
-                                                                         surface-water-carrier)]
-        (if (_> new-possible-weight trans-threshold-volume)
+                                                                         sink-caps)]
           (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
             (assoc surface-water-carrier
               :route           (conj route next-id)
-              :possible-weight new-possible-weight
-              :actual-weight   new-actual-weight))))
-      (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
-                                                                       actual-weight
-                                                                       sink-caps)]
-        (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
-          (assoc surface-water-carrier
-            :route           (conj route next-id)
-            :actual-weight   new-actual-weight
-            :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
-            :stream-bound?   (in-stream? next-id)))))))
+              :actual-weight   new-actual-weight
+              :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
+              :stream-bound?   (in-stream? next-id))))))
+    (catch Exception _ (println "Bad agent go BOOM!"))))
 
 (defn- stop-unless-reducing
   [n coll]

@@ -148,41 +148,43 @@
    sink-caps levee? in-stream? sink-stream-intakes use-stream-intakes
    sink-AFs use-AFs elevation-layer cell-width cell-height rows cols
    {:keys [route possible-weight actual-weight sink-effects stream-bound?] :as flood-water-carrier}]
-  (let [current-id (peek route)
-        prev-id    (peek (pop route))
-        bearing    (if prev-id (subtract-ids current-id prev-id))]
-    (dosync
-     (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
-     (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
-    (if (and stream-bound? bearing (nearby-levees current-id bearing levee? cell-width cell-height))
-      ;; Levees channel the water, so floodplain sinks and users will
-      ;; not be affected.
-      (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
-        (assoc flood-water-carrier
-          :route         (conj route next-id)
-          :stream-bound? (in-stream? next-id)))
-      ;; Either we're over-land or there are no levees nearby, so we
-      ;; may proceed with the local checks.
-      (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
-                                                                       stream-bound?
-                                                                       sink-stream-intakes
-                                                                       sink-AFs
-                                                                       actual-weight
-                                                                       sink-caps)
-            post-sink-carrier (assoc flood-water-carrier
-                                :actual-weight new-actual-weight
-                                :sink-effects  (merge-with _+_ sink-effects new-sink-effects))]
-        (if stream-bound?
-          (handle-use-effects! current-id
-                               use-stream-intakes
-                               use-AFs
-                               cache-layer
-                               mm2-per-cell
-                               post-sink-carrier))
+  (try
+    (let [current-id (peek route)
+          prev-id    (peek (pop route))
+          bearing    (if prev-id (subtract-ids current-id prev-id))]
+      (dosync
+       (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight mm2-per-cell))
+       (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   mm2-per-cell)))
+      (if (and stream-bound? bearing (nearby-levees current-id bearing levee? cell-width cell-height))
+        ;; Levees channel the water, so floodplain sinks and users will
+        ;; not be affected.
         (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
-          (assoc post-sink-carrier
-            :route           (conj route next-id)
-            :stream-bound?   (in-stream? next-id)))))))
+          (assoc flood-water-carrier
+            :route         (conj route next-id)
+            :stream-bound? (in-stream? next-id)))
+        ;; Either we're over-land or there are no levees nearby, so we
+        ;; may proceed with the local checks.
+        (let [[new-actual-weight new-sink-effects] (handle-sink-effects! current-id
+                                                                         stream-bound?
+                                                                         sink-stream-intakes
+                                                                         sink-AFs
+                                                                         actual-weight
+                                                                         sink-caps)
+              post-sink-carrier (assoc flood-water-carrier
+                                  :actual-weight new-actual-weight
+                                  :sink-effects  (merge-with _+_ sink-effects new-sink-effects))]
+          (if stream-bound?
+            (handle-use-effects! current-id
+                                 use-stream-intakes
+                                 use-AFs
+                                 cache-layer
+                                 mm2-per-cell
+                                 post-sink-carrier))
+          (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
+            (assoc post-sink-carrier
+              :route           (conj route next-id)
+              :stream-bound?   (in-stream? next-id))))))
+    (catch Exception _ (println "Bad agent go BOOM!"))))
 
 (defn- stop-unless-reducing
   [n coll]
