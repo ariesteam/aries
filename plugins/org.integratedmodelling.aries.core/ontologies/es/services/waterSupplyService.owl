@@ -383,6 +383,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterTurbidity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterTurbidity">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterTurbidity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Agricultural -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Agricultural">
@@ -3036,6 +3044,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterTurbidity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterTurbidity">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterTurbidity"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterUse -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterUse">
@@ -3945,6 +3961,15 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterSupplyWetYear">
         <rdfs:subClassOf rdf:resource="&eserv;RivalBenefit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterTurbidity -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterTurbidity">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
     </owl:Class>
     
 
