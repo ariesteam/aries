@@ -316,21 +316,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
         :context [source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains-code]
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialSedimentDepositionBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleSedimentDepositionBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualSedimentDepositionBeneficiaries
-                  UnutilizedSedimentSource
-                  InaccessibleSedimentDepositionBeneficiaries
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  LostValuableSediment]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs DetrimentalSedimentTransport
@@ -353,20 +353,20 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
         :context [source-puget reservoirs sediment-sink-us altitude levees streams floodplains-code]
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedSedimentDepositionBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedSedimentDepositionBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedSedimentDepositionBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  BlockedHarmfulSediment]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; FIXME: There is no WaterIntakeUse observation defined above.
 ;; Sediment flow model for assessing turbidity
@@ -390,20 +390,20 @@
         :animation?         false
       ;;:save-file          (str (System/getProperty "user.home") "/sediment_turbidity_data.clj")
         :context [source-puget sediment-sink-us altitude levees streams floodplains-code] ;change the beneficiary group as needed
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedTurbidityBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedTurbidityBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedTurbidityBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  ReducedTurbidity]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

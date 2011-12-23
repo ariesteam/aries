@@ -189,9 +189,9 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold   25.0  ; Excludes LowNaturalBeauty
-        :sink-threshold     25.0  ; Excludes LowBlight
-        :use-threshold       0.2  ; Excludes HomeownerViewUseAbsent
+        :source-threshold    5.0  
+        :sink-threshold      5.0
+        :use-threshold       0.1
         :trans-threshold     1.0
         :source-type        :infinite
         :sink-type          :infinite
@@ -202,22 +202,22 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_puget_data.clj")
         :context [source homeowners sink altitude]
-        :keep    [PotentialViews
-                  PotentialVisualBlight
-                  HomeownersWithViewDemand
-                  PossibleViews
-                  VisibleNaturalBeauty
-                  HomeownersWithPossibleViews
-                  ActualViews
-                  EnjoyedViews
-                  RelevantVisualBlight
-                  HomeownersWithViews
-                  UnseenViews
-                  InaccessibleVisualBlight
-                  HomeownersWithoutViews
-                  BlockedViews
-                  DegradedNaturalBeauty
-                  HomeownersWithDegradedViews]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleSink
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Develop another flow model to account for scenic drives.
 

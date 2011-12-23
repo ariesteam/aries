@@ -68,7 +68,7 @@
     [35 :>] VeryHighCNRatio
     [20 35] HighCNRatio
     [10 20] LowCNRatio
-    [:< 10] VeryLowCNRatio)) 
+    [:< 10] VeryLowCNRatio))
 
 (defmodel degradation-status ForestDegradationStatus
   (classification (numeric-coding mglulc:MGLULCNumeric)
@@ -89,8 +89,8 @@
   (measurement VegetationAndSoilCarbonSequestration "t/ha*year"))
 
 ;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source CarbonSourceValue
+  (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceMg.xdsl"
     :context  [percent-canopy-cover summer-high-winter-low soil-cn-ratio degradation-status]
     :required [SummerHighWinterLow]
@@ -142,10 +142,10 @@
     "High"     HighDeforestationRisk
     "Moderate" ModerateDeforestationRisk
     "Low"      LowDeforestationRisk
-    :otherwise NoDeforestationRisk)) 
+    :otherwise NoDeforestationRisk))
 
 ;; This discretization is based off comparison with Reusch & Gibbs'
-;; global vegetation carbon storage layer, with maximum values from \
+;; global vegetation carbon storage layer, with maximum values from
 ;; Madagascar being slightly over half of that in Puget Sound.  Need
 ;; to run this by folks familiar with carbon data/forestry in
 ;; Madagascar.  Note that using spatial data to determine these
@@ -154,16 +154,16 @@
 ;; and that for San Pedro, Puget Sound, California, and Vermont we
 ;; used Smith et al. 2006 for discretization.
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
-    [300 500] VeryHighVegetationStorage  
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
+    [300 500] VeryHighVegetationStorage
     [100 300] HighVegetationStorage
     [25 100]  ModerateVegetationStorage
     [10 25]   LowVegetationStorage
     [0.01 10] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))      
+    [0 0.01]  NoVegetationStorage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage 
-  (bayesian VegetationCStorage 
+(defmodel vegetation-carbon-storage VegetationCStorage
+  (bayesian VegetationCStorage
     :import   "aries.core::CarbonSinkMg.xdsl"
     :context  [percent-canopy-cover summer-high-winter-low degradation-status population-density]
     :required [SummerHighWinterLow]
@@ -180,7 +180,7 @@
 ;; Sound, California, and Vermont we used Smith et al. 2006 for
 ;; discretization.
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha"
     [75 150]  VeryHighSoilStorage
     [40 75]   HighSoilStorage
     [20 40]   ModerateSoilStorage
@@ -189,7 +189,7 @@
     [0 0.01]  NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage 
+  (bayesian SoilCStorage
     :import   "aries.core::CarbonSinkMg.xdsl"
     :context  [soil-cn-ratio degradation-status soil-ph slope oxygen percent-canopy-cover]
     :required [SummerHighWinterLow]
@@ -221,7 +221,7 @@
     [0.01 3]  VeryLowRelease
     [0 0.01]  NoRelease))
 
-(defmodel sink CarbonSinkValue   
+(defmodel sink CarbonSinkValue
   (bayesian CarbonSinkValue 
     :import   "aries.core::CarbonSinkMg.xdsl"
     :context  [veg-soil-storage degradation-status]
@@ -275,15 +275,15 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_san_pedro_data.clj")
         :context [source use-simple sink]
-        :keep    [StoredCarbonRelease
-                  CarbonSequestration
-                  GreenhouseGasEmissions
-                  PotentialCarbonMitigationProvision
-                  PotentialCarbonMitigationUse
-                  DetrimentalCarbonSource
-                  UsedCarbonSink
-                  SatisfiedCarbonMitigationDemand
-                  CarbonMitigationSurplus
-                  CarbonMitigationDeficit
-                  DepletedCarbonMitigation
-                  DepletedCarbonMitigationDemand]))
+        :keep    [TheoreticalSink
+                  TheoreticalSource
+                  TheoreticalUse
+                  PossibleSource
+                  PossibleUse
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedSink
+                  BlockedUse]))

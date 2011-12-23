@@ -225,22 +225,22 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_san_pedro_data.clj")
         :context            [source homeowners sink]
-        :keep               [PotentialProximateOpenSpace
-                             PotentialProximitySink
-                             HomeownersWithOpenSpaceDemand
-                             PossibleProximateOpenSpace
-                             AccessibleOpenSpace
-                             OpenSpaceProximateHomeowners
-                             AccessibleProximity
-                             EnjoyedOpenSpace
-                             BlockingProximitySink
-                             HomeownersWithProximateOpenSpace
-                             UnaccessedOpenSpace
-                             InaccessibleProximitySink
-                             HomeownersWithoutProximateOpenSpace
-                             BlockedProximity
-                             BlockedOpenSpace
-                             HomeownersWithBlockedProximity]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

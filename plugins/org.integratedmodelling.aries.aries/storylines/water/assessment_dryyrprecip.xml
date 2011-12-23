@@ -29,7 +29,7 @@
       dry year annual precipitation as the primary source of surface water to estimate lower-bound values for water supply in a dry year.
       These models collectively map flows sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, incoming
       water transfers), sinks (areas of groundwater infiltration or evapotranspiration), and beneficiary groups and
-      link these via a flow model accounting for the downstream movement of floodwater.
+      link these via a flow model accounting for the downstream movement of water.
     </description>
     <see-also><![CDATA[
     <p>
@@ -56,7 +56,7 @@
 This model considers groundwater supply for various human beneficiary groups, including agriculture, industry,
 and domestic use.
 These models map flows sources of groundwater (infiltration, artificial recharge), sinks (springs or baseflow),
-and beneficiary groups and link these via a flow model accounting for the downstream movement of floodwater.
+and beneficiary groups and link these via a flow model accounting for the downstream movement of water.
 </description>
 <see-also><![CDATA[
 <p>
@@ -333,7 +333,8 @@ and beneficiary groups and link these via a flow model accounting for the downst
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/water.html"
+    target="_blank">The waterr supply section of the ARIES web site</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -376,7 +377,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="vegetation-type">
-    <concept>waterSupplyService:VegetationType</concept>
+    <concept>sanPedro:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
@@ -389,7 +390,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <h1>Representation</h1>
     <p>Data are categorical, derived from land cover classes.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset (U.S. data); Veracruz land cover dataset (La Antigua case study).</p>
+    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -439,9 +440,9 @@ and beneficiary groups and link these via a flow model accounting for the downst
 
   <page id="evapotranspiration-class">
     <concept>waterSupplyService:EvapotranspirationClass</concept>
-    <name>Evapotranspiration class</name>
-    <title>Evapotranspiration class</title>
-    <runninghead>Evapotranspiration class</runninghead>
+    <name>Evapotranspiration</name>
+    <title>Evapotranspiration</title>
+    <runninghead>Evapotranspiration.</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -463,11 +464,50 @@ and beneficiary groups and link these via a flow model accounting for the downst
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/water.html"
+    target="_blank">The water supply section of the ARIES web site</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="soil-infiltration-class">
+    <concept>waterSupplyService:SoilInfiltrationClass</concept>
+    <name>Soil infiltration</name>
+    <title>Soil infiltration</title>
+    <runninghead>Soil infiltration.</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
+    <h1>Role in models</h1>
+    <p>This is the output of a probabilistic model accounting for the influence of soil and geologic
+    characteristics on infiltration.  Results are summed with evapotranspiration to give total surface
+    water sink values, and then passed to the flow model to estimate actual surface water availability
+    given the location of sources of surface water and users of water.  In the absence of direct data on
+    infiltration, the results of this model can also be used as source data for groundwater flow models.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the
+    models is probabilistic, each point contains the probability distribution of the amount of water
+    infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and
+    calibrated by the ARIES server for the selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html"
+    target="_blank">The water supply section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -798,7 +838,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
        so not repeated here.
 
 <page id="surface-water-supply">
-<concept>waterSupplyService:SurfaceWaterSupply</concept>
+<concept>waterSupplyService:TheoreticalSource</concept>
 <name>Surface water supply</name>
 <title>Surface water supply</title>
 <description>No description given</description>
@@ -812,7 +852,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
 </page>
 
 <page id="maximum-surface-water-sink">
-<concept>waterSupplyService:MaximumSurfaceWaterSink</concept>
+<concept>waterSupplyService:TheoreticalSink</concept>
 <name>Maximum surface water sink</name>
 <title>Maximum surface water sink</title>
 <description>No description given</description>
@@ -826,7 +866,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
 </page>
 
 <page id="surface-water-demand">
-<concept>waterSupplyService:SurfaceWaterDemand</concept>
+<concept>waterSupplyService:TheoreticalUse</concept>
 <name>Surface Water Demand</name>
 <title>Surface Water Demand</title>
 <description>No description given</description>
@@ -842,7 +882,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   -->
 
   <page id="possible-surface-water-flow">
-    <concept>waterSupplyService:PossibleSurfaceWaterFlow</concept>
+    <concept>waterSupplyService:PossibleFlow</concept>
     <name>Possible surface water flow</name>
     <title>Possible surface water flow</title>
     <runninghead>Possible flow map.</runninghead>
@@ -870,7 +910,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="possible-surface-water-supply">
-    <concept>waterSupplyService:PossibleSurfaceWaterSupply</concept>
+    <concept>waterSupplyService:PossibleSource</concept>
     <name>Possible surface water supply</name>
     <title>Possible surface water supply</title>
     <runninghead>Possible source map.</runninghead>
@@ -906,7 +946,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="possible-surface-water-use">
-    <concept>waterSupplyService:PossibleSurfaceWaterUse</concept>
+    <concept>waterSupplyService:PossibleUse</concept>
     <name>Possible surface water use</name>
     <title>Possible surface water use</title>
     <runninghead>Possible use map.</runninghead>
@@ -935,7 +975,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="actual-surface-water-flow">
-    <concept>waterSupplyService:ActualSurfaceWaterFlow</concept>
+    <concept>waterSupplyService:ActualFlow</concept>
     <name>Actual surface water flow</name>
     <title>Actual surface water flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -968,7 +1008,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="used-surface-water-supply">
-    <concept>waterSupplyService:UsedSurfaceWaterSupply</concept>
+    <concept>waterSupplyService:ActualSource</concept>
     <name>Used surface water supply</name>
     <title>Used surface water supply</title>
     <runninghead>Actual source map.</runninghead>
@@ -999,7 +1039,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="actual-surface-water-sink">
-    <concept>waterSupplyService:ActualSurfaceWaterSink</concept>
+    <concept>waterSupplyService:ActualSink</concept>
     <name>Actual surface water sink</name>
     <title>Actual surface water sink</title>
     <runninghead>Actual sink map.</runninghead>
@@ -1029,7 +1069,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="satisfied-surface-water-demand">
-    <concept>waterSupplyService:SatisfiedSurfaceWaterDemand</concept>
+    <concept>waterSupplyService:ActualUse</concept>
     <name>Satisfied surface water demand</name>
     <title>Satisfied surface water demand</title>
     <runninghead>Actual use map.</runninghead>
@@ -1055,7 +1095,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="unusable-surface-water-supply">
-    <concept>waterSupplyService:UnusableSurfaceWaterSupply</concept>
+    <concept>waterSupplyService:InaccessibleSource</concept>
     <name>Unusable surface water supply</name>
     <title>Unusable surface water supply</title>
     <runninghead>Inaccessible source map.</runninghead>
@@ -1089,7 +1129,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="inaccessible-surface-water-demand">
-    <concept>waterSupplyService:InaccessibleSurfaceWaterDemand</concept>
+    <concept>waterSupplyService:InaccessibleUse</concept>
     <name>Inaccessible surface water demand</name>
     <title>Inaccessible surface water demand</title>
     <runninghead>Inaccessible use map.</runninghead>
@@ -1119,7 +1159,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="sunk-surface-water-flow">
-    <concept>waterSupplyService:SunkSurfaceWaterFlow</concept>
+    <concept>waterSupplyService:BlockedFlow</concept>
     <name>Sunk surface water flow</name>
     <title>Sunk surface water flow</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -1152,7 +1192,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="sunk-surface-water-supply">
-    <concept>waterSupplyService:SunkSurfaceWaterSupply</concept>
+    <concept>waterSupplyService:BlockedSource</concept>
     <name>Sunk surface water supply</name>
     <title>Sunk surface water supply</title>
     <runninghead>Blocked source map.</runninghead>
@@ -1183,7 +1223,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="blocked-surface-water-demand">
-    <concept>waterSupplyService:BlockedSurfaceWaterDemand</concept>
+    <concept>waterSupplyService:BlockedUse</concept>
     <name>Blocked surface water demand</name>
     <title>Blocked surface water demand</title>
     <runninghead>Blocked use map.</runninghead>

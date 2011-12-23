@@ -244,8 +244,10 @@
 ;;        :animation?         true
 ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
 ;;        :context [source viewpoints sink altitude] ; Need to create the viewpoints layer, showing mountain views.
-;;        :keep [aestheticService:ActualViews            aestheticService:EnjoyedViews
-;;               aestheticService:RelevantVisualBlight   aestheticService:HomeownersWithViews]))  
+;;        :keep    [aestheticService:ActualFlow
+;;                  aestheticService:ActualSource
+;;                  aestheticService:ActualSink
+;;                  aestheticService:ActualUse]))
 
 ;; The "second stage" flow model moves people to mountain summits with views.
 ;;(defmodel recreation-flow-mountain-view MountainViewUse
@@ -267,8 +269,11 @@
 ;;        :rv-max-states      10
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
-;;        :context [source-mountain-view population-density roads] ; Replace with final use concept
-;;        :keep [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers]))
+;;        :context [source-mountain-view population-density roads] ;Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))

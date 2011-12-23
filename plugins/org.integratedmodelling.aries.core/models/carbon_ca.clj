@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for Southern California
 ;;;
-;;; Valid Contexts: core.contexts.beta/{ca_mark_watershed,ca_mark}*
+;;; Valid Contexts: core.contexts.beta/{san_gabriel,west_coyote_hills}*
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -321,15 +321,15 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_san_pedro_data.clj")
         :context [source use-simple sink]
-        :keep    [StoredCarbonRelease
-                  CarbonSequestration
-                  GreenhouseGasEmissions
-                  PotentialCarbonMitigationProvision
-                  PotentialCarbonMitigationUse
-                  DetrimentalCarbonSource
-                  UsedCarbonSink
-                  SatisfiedCarbonMitigationDemand
-                  CarbonMitigationSurplus
-                  CarbonMitigationDeficit
-                  DepletedCarbonMitigation
-                  DepletedCarbonMitigationDemand]))
+        :keep    [TheoreticalSink
+                  TheoreticalSource
+                  TheoreticalUse
+                  PossibleSource
+                  PossibleUse
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedSink
+                  BlockedUse]))

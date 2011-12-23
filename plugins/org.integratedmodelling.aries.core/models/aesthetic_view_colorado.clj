@@ -74,14 +74,6 @@
     1          colorado:LowGrassShrubsPresent
     :otherwise colorado:LowGrassShrubsAbsent))
 
-;; Interesting that they decided to exclude elevation. Consider
-;; re-adding if the choice isn't well justified.
-;; (defmodel mountain Mountain
-;;   (classification (measurement geophysics:Altitude "m")
-;;      [1800 8850]  LargeMountain ; No higher than Mt. Everest, catches artifacts
-;;      [1400 1800]  SmallMountain
-;;      :otherwise   NoMountain)) ; Catches low artifacts
-
 ;; Replace above pending review of Gary's plain-English flow model description
 ;; (defmodel scenic-vegetation colorado:ScenicVegetationType
 ;; (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
@@ -229,22 +221,22 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
         :context [source homeowners sink altitude]
-        :keep    [PotentialViews
-                  PotentialVisualBlight
-                  HomeownersWithViewDemand
-                  PossibleViews
-                  VisibleNaturalBeauty
-                  HomeownersWithPossibleViews
-                  ActualViews
-                  EnjoyedViews
-                  RelevantVisualBlight
-                  HomeownersWithViews
-                  UnseenViews
-                  InaccessibleVisualBlight
-                  HomeownersWithoutViews
-                  BlockedViews
-                  DegradedNaturalBeauty
-                  HomeownersWithDegradedViews]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleSink
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

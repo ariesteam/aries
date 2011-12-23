@@ -226,20 +226,20 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
         :context [source-fire reservoirs sink altitude streams floodplains-code]
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedSedimentDepositionBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedSedimentDepositionBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedSedimentDepositionBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  BlockedHarmfulSediment]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))                        
 
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-no-fire DetrimentalSedimentTransportNoFire
@@ -262,20 +262,20 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
         :context [source-no-fire reservoirs sink altitude streams floodplains-code]
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedSedimentDepositionBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedSedimentDepositionBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedSedimentDepositionBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  BlockedHarmfulSediment]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

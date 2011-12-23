@@ -15,12 +15,12 @@
   
   <model>
     <id>core.models.carbon-puget/identification-carbon</id>
-    <context>core.contexts.beta/western_wa256</context>
+    <context>core.contexts.beta/western_wa512</context>
   </model>
 
   <model>
     <id>core.models.carbon-ca/identification-carbon</id>
-    <context>core.contexts.beta/ca_mark_watershed256</context>
+    <context>core.contexts.beta/san_gabriel256</context>
   </model>
 
   <model>
@@ -31,6 +31,11 @@
   <model>
     <id>core.models.carbon-san-pedro/identification-carbon</id>
     <context>core.contexts.beta/san_pedro_us512</context>
+  </model>
+
+  <model>
+    <id>core.models.carbon-colorado/identification-carbon</id>
+    <context>core.contexts.beta/co_grand_boulder_larimer</context>
   </model>
 
   <!-- Storyline description. -->
@@ -347,8 +352,8 @@
   </page>
 
   <page>
-    <concept>carbonService:VegetationType</concept>
-    <name>Vegetation</name>
+    <concept>colorado:CarbonVegetationType</concept>
+    <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
     <group>source, sink</group>
@@ -361,7 +366,94 @@
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
-    <p>NLCD or other land use/land cover data.</p>
+    <p>Southwest Regional GAP Analysis Land Cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page>
+    <concept>sanPedro:CarbonVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <group>source, sink</group>
+    <description language="html"><![CDATA[
+    <p>Different plant communities or land cover types have different carbon
+    sequestration rates and different capacity to store carbon.</p>
+    <h1>Role in models</h1>
+    <p>Data are used as input to compute carbon sequestration and
+    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis Land Cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page>
+    <concept>southernCalifornia:CarbonVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <group>source, sink</group>
+    <description language="html"><![CDATA[
+    <p>Different plant communities or land cover types have different carbon
+    sequestration rates and different capacity to store carbon.</p>
+    <h1>Role in models</h1>
+    <p>Data are used as input to compute carbon sequestration and
+    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>USDA Forest Service vegetation type data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page>
+    <concept>vermont:CarbonVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <group>source, sink</group>
+    <description language="html"><![CDATA[
+    <p>Different plant communities or land cover types have different carbon
+    sequestration rates and different capacity to store carbon.</p>
+    <h1>Role in models</h1>
+    <p>Data are used as input to compute carbon sequestration and
+    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>USDA National Agricultural Statistics Service Cropland Data Layer.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -387,8 +479,7 @@
     predicting carbon sequestration and storage.</p>
     <h1>Role in models</h1>
     <p>Forest degradation data are available for Madagascar, a nation with high deforestation rates
-    and levels of forest degradation.  In degraded forests, we expect lower levels of carbon sequestration
-    and storage.</p>
+    and levels of forest degradation.  In degraded forests, we expect lower levels of carbon sequestration and storage.</p>
     <h1>Representation</h1>
     <p>Data are categorical, and identify degraded forest and savanna ecosystems.</p>
     <h1>Source</h1>
@@ -616,6 +707,34 @@
   </page>
 
   <page>
+    <concept>colorado:SpilType</concept>
+    <name>Soil type</name>
+    <title>Soil type</title>
+    <runninghead>Soil type.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Different soil orders support different levels of soil carbon storage.</p>
+    <h1>Role in models</h1>
+    <p>Soil type and mean annual precipitation are used as influnces
+    on soil carbon storage.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical.</p>
+    <h1>Source</h1>
+    <p>USDA-NRCS.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page>
     <concept>carbonService:SoilCarbonStorage</concept>
     <name>Carbon storage in soils</name>
     <title>Carbon storage in soils</title>
@@ -681,6 +800,39 @@
     <plot-type>geocontour-2d</plot-type>
     <plot-type>uncertainty-2d</plot-type>
     <!-- <statistics>totals</statistics> -->
+  </page>
+
+  <page>
+    <concept>colorado:MountainPineBeetleDamageClass</concept>
+    <name>Mountain pine beetle damage class</name>
+    <title>Mountain pine beetle damage class</title>
+    <runninghead>Mountain pine beetle damage class.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Mountain pine beetle _(Dendroctonus ponderosae)_ is a native of
+    forests of western North America. Periodic mountain pine beetle
+    outbreaks impact multiple ecosystem services in these regions by
+    killing large numbers of native pine trees.</p>
+    <h1>Role in models</h1>
+    <p>Mountain pine beetle mortality affects forest flamability, as
+    well as the quantity of live versus standing dead or downed wood
+    as forest biomass in lodgepole and ponderosa pine forests.</p>
+    <h1>Representation</h1>
+    <p>Data are continuous, and represent the number of trees killed
+    per acre.</p>
+    <h1>Source</h1>
+    <p>USDA Forest Service aerial surveys.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
   </page>
 
   <page>
@@ -860,7 +1012,7 @@
        values produced by probabilistic or deterministic models. -->
 
   <page>
-    <concept>carbonService:CarbonMitigationSurplus</concept>
+    <concept>carbonService:InaccessibleSource</concept>
     <name>Carbon mitigation surplus</name>
     <title>Carbon mitigation surplus</title>
     <runninghead>Regional carbon mitigation surplus.</runninghead>
@@ -897,7 +1049,7 @@
   </page>
 
   <page>
-    <concept>carbonService:CarbonMitigationDeficit</concept>
+    <concept>carbonService:InaccessibleUse</concept>
     <name>Carbon mitigation deficit</name>
     <title>Carbon mitigation deficit</title>
     <runninghead>Regional carbon mitigation deficit.</runninghead>

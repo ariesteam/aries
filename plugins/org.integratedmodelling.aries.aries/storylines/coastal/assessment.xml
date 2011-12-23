@@ -566,7 +566,7 @@ published by CIESIN and is used directly.
        storyline for now.
 
 <page id="coastal-wave-source">
-<concept>coastalProtection:CoastalWaveSource</concept>
+<concept>coastalProtection:TheoreticalSource</concept>
 <name>Wave source</name>
 <title>Coastal wave source</title>
 <runninghead>Theoretical source map.</runninghead>
@@ -603,7 +603,7 @@ account for flows.
 </page>
 
 <page id="potential-wave-mitigation">
-<concept>coastalProtection:PotentialWaveMitigation</concept>
+<concept>coastalProtection:TheoreticalSink</concept>
 <name>Wave mitigation</name>
 <title>Potential wave mitigation</title>
 <runninghead>Theoretical sink map.</runninghead>
@@ -636,7 +636,7 @@ as an input to the flow model and therefore does not account for flows.
 </page>
 
 <page id="potentially-wave-vulnerable-populations">
-<concept>coastalProtection:PotentiallyWaveVulnerablePopulations</concept>
+<concept>coastalProtection:TheoreticalUse</concept>
 <name>Vulnerable groups</name>
 <title>Potentially wave-vulnerable populations</title>
 <runninghead>Theoretical use map.</runninghead>
@@ -664,7 +664,7 @@ flows, but is used as an input to the flow models.
   -->
 
   <page id="potentially-damaging-wave-flow">
-    <concept>coastalProtection:PotentiallyDamagingWaveFlow</concept>
+    <concept>coastalProtection:PossibleFlow</concept>
     <name>Potential damage</name>
     <title>Potentially damaging wave flow</title>
     <runninghead>Possible flow map.</runninghead>
@@ -693,7 +693,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="potentially-damaging-wave-source">
-    <concept>coastalProtection:PotentiallyDamagingWaveSource</concept>
+    <concept>coastalProtection:PossibleSource</concept>
     <name>Potential waves</name>
     <title>Source of potentially damaging waves</title>
     <runninghead>Possible source map</runninghead>
@@ -727,7 +727,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="potential-wave-damage-received">
-    <concept>coastalProtection:PotentialWaveDamageReceived</concept>
+    <concept>coastalProtection:PossibleUse</concept>
     <name>Potential damage</name>
     <title>Potential wave damage</title>
     <runninghead>Possible use map.</runninghead>
@@ -757,7 +757,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="actual-wave-flow">
-    <concept>coastalProtection:ActualWaveFlow</concept>
+    <concept>coastalProtection:ActualFlow</concept>
     <name>Actual waves</name>
     <title>Actual wave flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -789,7 +789,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="flood-damaging-wave-source">
-    <concept>coastalProtection:FloodDamagingWaveSource</concept>
+    <concept>coastalProtection:ActualSource</concept>
     <name>Flood source</name>
     <title>Flood damaging wave source</title>
     <runninghead>Actual source map.</runninghead>
@@ -818,7 +818,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="utilized-wave-mitigation">
-    <concept>coastalProtection:UtilizedWaveMitigation</concept>
+    <concept>coastalProtection:ActualSink</concept>
     <name>Actual mitigation</name>
     <title>Utilized wave mitigation</title>
     <runninghead>Actual sink map.</runninghead>
@@ -846,7 +846,7 @@ flows, but is used as an input to the flow models.
   </page>
 
   <page id="wave-damage-received">
-    <concept>coastalProtection:WaveDamageReceived</concept>
+    <concept>coastalProtection:ActualUse</concept>
     <name>Actual damage</name>
     <title>Wave damage received</title>
     <runninghead>Actual use map.</runninghead>
@@ -876,7 +876,7 @@ flows, but is used as an input to the flow models.
        from the storyline.
 
 <page id="benign-wave-source">
-<concept>coastalProtection:BenignWaveSource</concept>
+<concept>coastalProtection:InaccessibleSource</concept>
 <name>Benign waves</name>
 <title>Benign wave source</title>
 <runninghead>Inaccessible source map.</runninghead>
@@ -907,7 +907,7 @@ assets lying in their path.
 </page>
 
 <page id="unutilized-wave-mitigation">
-<concept>coastalProtection:UnutilizedWaveMitigation</concept>
+<concept>coastalProtection:InaccessibleSink</concept>
 <name>Unused protection</name>
 <title>Unutilized wave mitigation</title>
 <runninghead>Inacessible sink map.</runninghead>
@@ -936,7 +936,7 @@ waves that they could mitigate.
   -->
 
   <page id="absorbed-wave-flow">
-    <concept>coastalProtection:AbsorbedWaveFlow</concept>
+    <concept>coastalProtection:BlockedFlow</concept>
     <name>Absorbed waves</name>
     <title>Absorbed wave flow</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -968,7 +968,7 @@ waves that they could mitigate.
   </page>
 
   <page id="mitigated-wave-source">
-    <concept>coastalProtection:MitigatedWaveSource</concept>
+    <concept>coastalProtection:BlockedSource</concept>
     <name>Mitigated waves</name>
     <title>Mitigated wave source</title>
     <runninghead>Blocked source map.</runninghead>
@@ -997,7 +997,7 @@ waves that they could mitigate.
   </page>
 
   <page id="wave-mitigation-benefits-accrued">
-    <concept>coastalProtection:WaveMitigationBenefitsAccrued</concept>
+    <concept>coastalProtection:BlockedUse</concept>
     <name>Total benefit</name>
     <title>Wave mitigation benefits accrued</title>
     <runninghead>Blocked use map.</runninghead>

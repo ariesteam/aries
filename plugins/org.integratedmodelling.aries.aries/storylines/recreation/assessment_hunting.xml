@@ -644,12 +644,12 @@
   </page>
 
   <!-- Flow models and maps are not yet active for recreation.  Concepts are described below so that they
-       can be included once recreational flow models have been implemented.  The flow concepts below currently
+       can be included once recreational flow models have been developed.  The flow concepts below currently
        including only actual and inaccessible flow concepts, since theoretical concepts are already included as
        source and use model outputs and there are no sinks for recreation. -->
 
   <page id="recreational-user-flow">
-    <concept>recreationService:RecreationalUserFlow</concept>
+    <concept>recreationService:ActualFlow</concept>
     <name>Recreation flow</name>
     <title>Recreational user flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -681,7 +681,7 @@
   </page>
 
   <page id="recreational-use">
-    <concept>recreationService:RecreationalUse</concept>
+    <concept>recreationService:ActualSource</concept>
     <name>Recreational use</name>
     <title>Recreational use</title>
     <runninghead>Actual source map.</runninghead>
@@ -710,7 +710,7 @@
   </page>
 
   <page id="actual-recreational-users">
-    <concept>recreationService:ActualRecreationalUsers</concept>
+    <concept>recreationService:ActualUse</concept>
     <name>Actual recreational users</name>
     <title>Actual recreational users</title>
     <runninghead>Actual use map.</runninghead>
@@ -736,7 +736,7 @@
   </page>
 
   <page id="transportation-restricted-recreational-use">
-    <concept>recreationService:TransportationRestrictedRecreationalUse</concept>
+    <concept>recreationService:InaccessibleSource</concept>
     <name>Transportation restricted use</name>
     <title>Transportation restricted use</title>
     <runninghead>Inaccessible source map.</runninghead>
@@ -767,7 +767,7 @@
   </page>
 
   <page id="transportation-restricted-recreational-users">
-    <concept>recreationService:TransportationRestrictedRecreationalUsers</concept>
+    <concept>recreationService:InaccessibleUse</concept>
     <name>Transportation restricted users</name>
     <title>Transportation restricted users</title>
     <runninghead>Inaccessible use map.</runninghead>

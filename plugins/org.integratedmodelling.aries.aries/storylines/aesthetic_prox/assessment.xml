@@ -17,7 +17,7 @@
   <!-- All the models that apply and in which context.-->
   <model>
     <id>core.models.aesthetic-proximity-puget/proximity</id>
-    <context>core.contexts.beta/western_wa256</context>
+    <context>core.contexts.beta/western_wa512</context>
   </model>
 
   <model>
@@ -789,7 +789,7 @@
   </page>
 
   <page id="accessible-open-space">
-    <concept>aestheticService:AccessibleOpenSpace</concept>
+    <concept>aestheticService:PossibleSource</concept>
     <name>Accessible open space</name>
     <title>Accessible open space</title>
     <runninghead>Possible source map.</runninghead>
@@ -823,7 +823,7 @@
   </page>
 
   <page id="open-space-proximate-homeowners">
-    <concept>aestheticService:OpenSpaceProximateHomeowners</concept>
+    <concept>aestheticService:PossibleUse</concept>
     <name>Open space proximate homeowners</name>
     <title>Open space proximate homeowners</title>
     <runninghead>Possible use map.</runninghead>
@@ -852,7 +852,7 @@
   </page>
 
   <page id="accessible-proximity">
-    <concept>aestheticService:AccessibleProximity</concept>
+    <concept>aestheticService:ActualFlow</concept>
     <name>Accessible proximity</name>
     <title>Accessible proximity flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -883,7 +883,7 @@
   </page>
 
   <page id="enjoyed-open-space">
-    <concept>aestheticService:EnjoyedOpenSpace</concept>
+    <concept>aestheticService:ActualSource</concept>
     <name>Enjoyed open space</name>
     <title>Enjoyed open space</title>
     <runninghead>Actual source map.</runninghead>
@@ -912,7 +912,7 @@
   </page>
 
   <page id="blocking-proximity-sink">
-    <concept>aestheticService:BlockingProximitySink</concept>
+    <concept>aestheticService:ActualSink</concept>
     <name>Blocking proximity sink</name>
     <title>Blocking proximity sink</title>
     <runninghead>Actual sink map.</runninghead>
@@ -939,7 +939,7 @@
   </page>
 
   <page id="homeowners-with-proximate-open-space">
-    <concept>aestheticService:HomeownersWithProximateOpenSpace</concept>
+    <concept>aestheticService:ActualUse</concept>
     <name>Homeowners with proximate open space</name>
     <title>Homeowners with proximate open space</title>
     <runninghead>Actual use map.</runninghead>
@@ -965,7 +965,7 @@
   </page>
 
   <page id="homeowners-without-proximate-open-space">
-    <concept>aestheticService:HomeownersWithoutProximateOpenSpace</concept>
+    <concept>aestheticService:InaccessibleUse</concept>
     <name>Homeowners without proximate open space</name>
     <title>Homeowners without proximate open space</title>
     <runninghead>Inaccessible use map.</runninghead>
@@ -993,7 +993,7 @@
   </page>
 
   <page id="blocked-proximity">
-    <concept>aestheticService:BlockedProximity</concept>
+    <concept>aestheticService:BlockedFlow</concept>
     <name>Blocked proximity</name>
     <title>Blocked proximity</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -1025,7 +1025,7 @@
   </page>
 
   <page id="blocked-open-space">
-    <concept>aestheticService:BlockedOpenSpace</concept>
+    <concept>aestheticService:BlockedSource</concept>
     <name>Blocked open space</name>
     <title>Blocked open space</title>
     <runninghead>Blocked source map.</runninghead>
@@ -1053,7 +1053,7 @@
   </page>
 
   <page id="homeowners-with-blocked-proximity">
-    <concept>aestheticService:HomeownersWithBlockedProximity</concept>
+    <concept>eserv:BlockedUse</concept>
     <name>Homeowners with blocked proximity</name>
     <title>Homeowners with blocked proximity</title>
     <runninghead>Blocked use map.</runninghead>

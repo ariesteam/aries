@@ -17,13 +17,21 @@
   <!-- All the models that apply and in which context. -->
   <model>
     <id>core.models.aesthetic-view-puget/view</id>
-    <context>core.contexts.beta/western_wa256</context>
+    <context>core.contexts.beta/western_wa512</context>
   </model>
 
   <model>
     <id>core.models.aesthetic-view-san-pedro/view</id>
     <context>core.contexts.beta/san_pedro_us512</context>
   </model>
+
+<!-- Add Colorado to the storyline - but need to add correct concepts
+     once Gary gets me the plain English flow model descriptions and I
+     can determine the best model structure.
+  <model>
+    <id>core.models.aesthetic-view-colorado/view</id>
+    <context>core.contexts.beta/co_grand_county400</context>
+  </model> -->
 
   <!-- Storyline description. -->
   <page id="info">
@@ -524,7 +532,7 @@
        to the user.-->
 
   <page id="possible-views">
-    <concept>aestheticService:PossibleViews</concept>
+    <concept>aestheticService:PossibleFlow</concept>
     <name>Possible views</name>
     <title>Possible views</title>
     <runninghead>Possible flow map.</runninghead>
@@ -551,7 +559,7 @@
   </page>
 
   <page id="visible-natural-beauty">
-    <concept>aestheticService:VisibleNaturalBeauty</concept>
+    <concept>aestheticService:PossibleSource</concept>
     <name>Visible natural beauty</name>
     <title>Visible natural beauty</title>
     <runninghead>Possible source map.</runninghead>
@@ -585,7 +593,7 @@
   </page>
 
   <page id="homeowners-with-possible-views">
-    <concept>aestheticService:HomeownersWithPossibleViews</concept>
+    <concept>aestheticService:PossibleUse</concept>
     <name>Homeowners with possible views</name>
     <title>Homeowners with possible views</title>
     <runninghead>Possible use map.</runninghead>
@@ -614,7 +622,7 @@
   </page>
 
   <page id="actual-views">
-    <concept>aestheticService:ActualViews</concept>
+    <concept>aestheticService:ActualFlow</concept>
     <name>Actual views</name>
     <title>Actual view flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -645,7 +653,7 @@
   </page>
 
   <page id="enjoyed-views">
-    <concept>aestheticService:EnjoyedViews</concept>
+    <concept>aestheticService:ActualSource</concept>
     <name>Enjoyed views</name>
     <title>Enjoyed views</title>
     <runninghead>Actual source map.</runninghead>
@@ -674,7 +682,7 @@
   </page>
 
   <page id="relevant-visual-blight">
-    <concept>aestheticService:RelevantVisualBlight</concept>
+    <concept>aestheticService:ActualSink</concept>
     <name>Relevant visual blight</name>
     <title>Relevant visual blight</title>
     <runninghead>Actual sink map.</runninghead>
@@ -702,7 +710,7 @@
   </page>
 
   <page id="homeowners-with-views">
-    <concept>aestheticService:HomeownersWithViews</concept>
+    <concept>aestheticService:ActualUse</concept>
     <name>Homeowners with views</name>
     <title>Homeowners with views</title>
     <runninghead>Actual use map.</runninghead>
@@ -728,7 +736,7 @@
   </page>
 
   <page id="homeowners-without-views">
-    <concept>aestheticService:HomeownersWithoutViews</concept>
+    <concept>aestheticService:InaccessibleUse</concept>
     <name>Homeowners without views</name>
     <title>Homeowners without views</title>
     <runninghead>Inaccessible use map.</runninghead>
@@ -756,7 +764,7 @@
   </page>
 
   <page id="blocked-views">
-    <concept>aestheticService:BlockedViews</concept>
+    <concept>aestheticService:BlockedFlow</concept>
     <name>Blocked views</name>
     <title>Blocked views</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -788,7 +796,7 @@
   </page>
 
   <page id="degraded-natural-beauty">
-    <concept>aestheticService:DegradedNaturalBeauty</concept>
+    <concept>aestheticService:BlockedSource</concept>
     <name>Degraded natural beauty</name>
     <title>Degraded natural beauty</title>
     <runninghead>Blocked source map.</runninghead>
@@ -816,7 +824,7 @@
   </page>
 
   <page id="homeowners-with-degraded-views">
-    <concept>aestheticService:HomeownersWithDegradedViews</concept>
+    <concept>aestheticService:BlockedUse</concept>
     <name>Homeowners with degraded views</name>
     <title>Homeowners with degraded views</title>
     <runninghead>Blocked use map.</runninghead>

@@ -331,6 +331,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualFlow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualGroundwaterFlow -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualGroundwaterFlow">
@@ -348,6 +356,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSink -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSink">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSource">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSurfaceWaterFlow -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSurfaceWaterFlow">
@@ -360,6 +384,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualSurfaceWaterSink">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualUse">
+        <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
     </owl:Class>
     
 
@@ -588,6 +620,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedFlow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedFlow"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedGroundwaterDemand -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedGroundwaterDemand">
@@ -596,10 +636,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedSource">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedSource"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedSurfaceWaterDemand -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedSurfaceWaterDemand">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedWaterDemand"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#BlockedUse">
+        <rdfs:subClassOf rdf:resource="&eserv;BlockedUse"/>
     </owl:Class>
     
 
@@ -1389,10 +1445,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSink -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSink">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSource">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSurfaceWaterDemand -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleSurfaceWaterDemand">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleWaterDemand"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InaccessibleUse">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
     </owl:Class>
     
 
@@ -2947,6 +3027,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleFlow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleFlow">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleGroundwaterFlow -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleGroundwaterFlow">
@@ -2971,6 +3059,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleSource">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleSurfaceWaterFlow -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleSurfaceWaterFlow">
@@ -2991,6 +3087,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleUse">
+        <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
     </owl:Class>
     
 
@@ -3480,6 +3584,30 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalSink -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalSink">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalSource">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TheoreticalUse">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
     </owl:Class>
     
 

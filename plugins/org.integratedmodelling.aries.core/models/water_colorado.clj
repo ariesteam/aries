@@ -262,22 +262,22 @@
         :context            [runoff surface-water-sink
                              total-surface-water-use altitude
                              streams-simple]
-        :keep               [SurfaceWaterSupply
-                             MaximumSurfaceWaterSink
-                             SurfaceWaterDemand
-                             PossibleSurfaceWaterFlow
-                             PossibleSurfaceWaterSupply
-                             PossibleSurfaceWaterUse
-                             ActualSurfaceWaterFlow
-                             UsedSurfaceWaterSupply
-                             ActualSurfaceWaterSink
-                             SatisfiedSurfaceWaterDemand
-                             UnusableSurfaceWaterSupply
-                             UnusableSurfaceWaterSink
-                             InaccessibleSurfaceWaterDemand
-                             SunkSurfaceWaterFlow
-                             SunkSurfaceWaterSupply
-                             BlockedSurfaceWaterDemand]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel surface-flow-no-fracking colorado:SurfaceWaterMovementNoFracking
   (span SurfaceWaterMovement
@@ -301,22 +301,22 @@
         :context            [precipitation-annual surface-water-sink
                              total-surface-water-use-no-fracking altitude
                              streams-simple]
-        :keep               [SurfaceWaterSupply
-                             MaximumSurfaceWaterSink
-                             SurfaceWaterDemand
-                             PossibleSurfaceWaterFlow
-                             PossibleSurfaceWaterSupply
-                             PossibleSurfaceWaterUse
-                             ActualSurfaceWaterFlow
-                             UsedSurfaceWaterSupply
-                             ActualSurfaceWaterSink
-                             SatisfiedSurfaceWaterDemand
-                             UnusableSurfaceWaterSupply
-                             UnusableSurfaceWaterSink
-                             InaccessibleSurfaceWaterDemand
-                             SunkSurfaceWaterFlow
-                             SunkSurfaceWaterSupply
-                             BlockedSurfaceWaterDemand]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;; Flow model for groundwater
 ;; (defmodel groundwater-flow GroundwaterMovement
@@ -338,11 +338,22 @@
 ;;      :rv-max-states      10 
 ;;      :save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_groundwater.clj")
 ;;      :context [recharge groundwater-sink well-presence]
-;;      :keep [GroundwaterRecharge        MaximumGroundwaterSink      GroundwaterDemand
-;;             PossibleGroundwaterFlow    PossibleGroundwaterRecharge PossibleGroundwaterUse
-;;             ActualGroundwaterFlow      UsedGroundwaterRechage      ActualGroundwaterSink          SatisfiedGroundwaterDemand
-;;             UnusableGroundwaterRechage UnusableGroundwaterSink     InaccessibleGroundwaterDemand
-;;             SunkGroundwaterFlow        SunkSurfaceWaterSupply      BlockedGroundwaterDemand])))
+;;      :keep [TheoreticalSource
+;;             TheoreticalSink
+;;             TheoreticalUse
+;;             PossibleFlow
+;;             PossibleSource
+;;             PossibleUse
+;;             ActualFlow
+;;             ActualSource
+;;             ActualSink
+;;             ActualUse
+;;             InaccessibleSource
+;;             InaccessibleSink
+;;             InaccessibleUse
+;;             BlockedFlow
+;;             BlockedSource
+;;             BlockedUse])))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

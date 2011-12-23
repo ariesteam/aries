@@ -19,7 +19,7 @@
 ;;;
 ;;; Flood regulation model for Southern California
 ;;;
-;;; Valid Contexts: core.contexts.beta/{ca_mark_watershed,ca_mark}*
+;;; Valid Contexts: core.contexts.beta/{san_gabriel,west_coyote_hills}*
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -170,7 +170,7 @@
     [60 90]	HighEvapotranspiration
     [30 60] ModerateEvapotranspiration
     [12 30] LowEvapotranspiration
-    [ 0 12] VeryLowEvapotranspiration)) 
+    [ 0 12] VeryLowEvapotranspiration))
 
 (defmodel infiltration SoilInfiltrationClass
   (classification (measurement habitat:AnnualInfiltration "mm")
@@ -409,21 +409,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
 		:context [source-annual farmers-use-100 sink-annual altitude streams floodplains-100-code]
-        :keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))   
 
 ;; Flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
@@ -445,21 +445,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 sink-annual altitude streams floodplains-500-code]
-		:keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+		:keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for public-assets in the 100-year floodplain
 (defmodel flood-regulation-public-assets-100 AvoidedDamageToPublicAssets100
@@ -481,21 +481,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 sink-annual altitude streams floodplains-100-code]
-        :keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for public-assets in the 500-year floodplain
 (defmodel flood-regulation-public-assets-500 AvoidedDamageToPublicAssets500
@@ -517,21 +517,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 sink-annual altitude streams floodplains-500-code]
-		:keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+		:keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for residents in the 100-year floodplain
 (defmodel flood-regulation-residents-100 AvoidedDamageToResidents100
@@ -554,21 +554,21 @@ list if desired."
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
         :context            [source-annual residents-use-100 sink-annual altitude streams floodplains-100-code]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;; Flow model for residents in the 500-year floodplain
 (defmodel flood-regulation-residents-500 AvoidedDamageToResidents500
@@ -591,21 +591,21 @@ list if desired."
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual residents-use-500 sink-annual altitude streams floodplains-500-code]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;; Models below are for San Joaquin: need to use GreenInfrastructureSink instead of FloodSink
 ;; Flow model for farmers in the 100-year floodplain   
@@ -628,21 +628,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers100.clj")
 		:context [source-annual farmers-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
-        :keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500-sj AvoidedDamageToFarms500
@@ -664,21 +664,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
-		:keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+		:keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for public-assets in the 100-year floodplain
 (defmodel flood-regulation-public-assets-100-sj AvoidedDamageToPublicAssets100
@@ -700,21 +700,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
-        :keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for public-assets in the 500-year floodplain
 (defmodel flood-regulation-public-assets-500-sj AvoidedDamageToPublicAssets500
@@ -736,21 +736,21 @@ list if desired."
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
-		:keep    [Runoff
-                  PotentialRunoffMitigation
-                  PotentiallyVulnerablePopulations
-                  PotentiallyDamagingFloodFlow
-                  PotentiallyDamagingRunoff
-                  PotentialFloodDamageReceived
-                  ActualFloodFlow
-                  FloodDamagingRunoff
-                  UtilizedRunoffMitigation
-                  FloodDamageReceived
-                  BenignRunoff
-                  UnutilizedRunoffMitigation
-                  AbsorbedFloodFlow
-                  FloodMitigatedRunoff
-                  FloodMitigationBenefitsAccrued]))
+		:keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Flow model for residents in the 100-year floodplain
 (defmodel flood-regulation-residents-100-sj AvoidedDamageToResidents100
@@ -773,21 +773,21 @@ list if desired."
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
         :context            [source-annual residents-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;; Flow model for residents in the 500-year floodplain
 (defmodel flood-regulation-residents-500-sj AvoidedDamageToResidents500
@@ -810,21 +810,21 @@ list if desired."
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual residents-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;;Levees and floodplain width: used in the flow model
 ;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.	   

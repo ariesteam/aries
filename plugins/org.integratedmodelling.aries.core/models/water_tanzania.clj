@@ -296,19 +296,19 @@
                               surface-water-sink
                               altitude
                               streams]
-        :keep                [SurfaceWaterSupply
-                              MaximumSurfaceWaterSink
-                              SurfaceWaterDemand
-                              PossibleSurfaceWaterFlow
-                              PossibleSurfaceWaterSupply
-                              PossibleSurfaceWaterUse
-                              ActualSurfaceWaterFlow
-                              UsedSurfaceWaterSupply
-                              ActualSurfaceWaterSink
-                              SatisfiedSurfaceWaterDemand
-                              UnusableSurfaceWaterSupply
-                              UnusableSurfaceWaterSink
-                              InaccessibleSurfaceWaterDemand
-                              SunkSurfaceWaterFlow
-                              SunkSurfaceWaterSupply
-                              BlockedSurfaceWaterDemand]))
+        :keep                [TheoreticalSource
+                              TheoreticalSink
+                              TheoreticalUse
+                              PossibleFlow
+                              PossibleSource
+                              PossibleUse
+                              ActualFlow
+                              ActualSource
+                              ActualSink
+                              ActualUse
+                              InaccessibleSource
+                              InaccessibleSink
+                              InaccessibleUse
+                              BlockedFlow
+                              BlockedSource
+                              BlockedUse]))

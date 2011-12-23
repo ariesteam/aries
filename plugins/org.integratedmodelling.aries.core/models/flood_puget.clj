@@ -509,21 +509,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual farmers-use-100 sink-annual altitude
                              streams floodplains-100-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
   (span FloodWaterMovement
@@ -546,21 +546,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual farmers-use-500 sink-annual altitude
                              streams floodplains-500-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-public-assets-100 AvoidedDamageToPublicAssets100
   (span FloodWaterMovement
@@ -583,21 +583,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [altitude source-annual public-use-100 sink-annual 
                              streams floodplains-100-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-public-assets-500 AvoidedDamageToPublicAssets500
   (span FloodWaterMovement
@@ -620,21 +620,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual public-use-500 sink-annual altitude
                              streams floodplains-500-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-residents-100 AvoidedDamageToResidents100
   (span FloodWaterMovement
@@ -661,21 +661,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
         :context            [source-annual residents-use-100 sink-annual altitude
                              streams floodplains-100-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-residents-500 AvoidedDamageToResidents500
   (span FloodWaterMovement
@@ -698,21 +698,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual residents-use-500 sink-annual altitude
                              streams floodplains-500-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;; DO NOT use these flow models for now.  We don't have a way of
 ;;  explicitly mapping private assests, aside from housing, which is
@@ -740,21 +740,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual private-use-100 sink-annual altitude
                              streams floodplains-100-code levees]
-        :keep               [Runoff
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel flood-regulation-private-500 AvoidedDamageToPrivateAssets500
   (span FloodWaterMovement
@@ -777,21 +777,21 @@ be added to this list if desired."
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
         :context            [source-annual private-use-500 sink-annual altitude
                              streams floodplains-500-code levees]
-        :keep               [Runoff 
-                             PotentialRunoffMitigation
-                             PotentiallyVulnerablePopulations
-                             PotentiallyDamagingFloodFlow
-                             PotentiallyDamagingRunoff
-                             PotentialFloodDamageReceived
-                             ActualFloodFlow
-                             FloodDamagingRunoff
-                             UtilizedRunoffMitigation
-                             FloodDamageReceived
-                             BenignRunoff
-                             UnutilizedRunoffMitigation
-                             AbsorbedFloodFlow
-                             FloodMitigatedRunoff
-                             FloodMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
@@ -847,16 +847,16 @@ be added to this list if desired."
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))                                    
                   (conc 'floodService:SoilGroupD)
                   (:sg))))
-  (model VegetationType
-    (classification VegetationType
+  (model puget:FloodVegetationType
+    (classification puget:FloodVegetationType
       :context [open-development-scenario :as od vegetation-type :as vt]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
-                      (conc 'floodService:DevelopedCultivatedVegetation)
+                      (conc 'puget:DevelopedCultivated)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'floodService:ForestGrasslandShrublandVegetation)
+                      (conc 'puget:ForestGrasslandShrubland)
 
                       :otherwise (:vt %))))
   (model PercentImperviousCoverClass
@@ -902,16 +902,16 @@ be added to this list if desired."
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'floodService:SoilGroupD)
                   (:sg))))
-  (model VegetationType
-    (classification VegetationType
+  (model puget:FloodVegetationType
+    (classification puget:FloodVegetationType
       :context [constrained-development-scenario :as cd vegetation-type :as vt]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
-                      (conc 'floodService:DevelopedCultivatedVegetation)
+                      (conc 'puget:DevelopedCultivated)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'floodService:ForestGrasslandShrublandVegetation)
+                      (conc 'puget:ForestGrasslandShrubland)
 
                       :otherwise (:vt %))))
   (model PercentImperviousCoverClass

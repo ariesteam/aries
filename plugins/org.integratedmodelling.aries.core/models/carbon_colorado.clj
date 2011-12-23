@@ -277,18 +277,18 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/carbon_san_pedro_data.clj")
         :context [source use-simple sink]
-        :keep    [StoredCarbonRelease
-                  CarbonSequestration
-                  GreenhouseGasEmissions
-                  PotentialCarbonMitigationProvision
-                  PotentialCarbonMitigationUse
-                  DetrimentalCarbonSource
-                  UsedCarbonSink
-                  SatisfiedCarbonMitigationDemand
-                  CarbonMitigationSurplus
-                  CarbonMitigationDeficit
-                  DepletedCarbonMitigation
-                  DepletedCarbonMitigationDemand]))
+        :keep    [TheoreticalSink
+                  TheoreticalSource
+                  TheoreticalUse
+                  PossibleSource
+                  PossibleUse
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleUse
+                  BlockedSink
+                  BlockedUse]))  
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

@@ -362,21 +362,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-lives-data.clj")
         :context            [coastal-wave-source-daisy risk-to-life coastal-flood-sink storm-track-daisy geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel coastal-protection-flow-geralda-lives CoastalStormProtection
   "Computes SPAN flow results for coastal storm protection.
@@ -401,21 +401,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-lives-data.clj")
         :context            [coastal-wave-source-geralda risk-to-life coastal-flood-sink storm-track-geralda geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel coastal-protection-flow-litanne-lives CoastalStormProtection
   "Computes SPAN flow results for coastal storm protection.
@@ -440,21 +440,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-lives-data.clj")
         :context            [coastal-wave-source-litanne risk-to-life coastal-flood-sink storm-track-litanne geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel coastal-protection-flow-daisy-assets CoastalStormProtection
   "Computes SPAN flow results for coastal storm protection.
@@ -479,21 +479,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-daisy-assets-data.clj")
         :context            [coastal-wave-source-daisy risk-to-assets coastal-flood-sink storm-track-daisy geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel coastal-protection-flow-geralda-assets CoastalStormProtection
   "Computes SPAN flow results for coastal storm protection.
@@ -518,21 +518,21 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-geralda-assets-data.clj")
         :context            [coastal-wave-source-geralda risk-to-assets coastal-flood-sink storm-track-geralda geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 (defmodel coastal-protection-flow-litanne-assets CoastalStormProtection
   "Computes SPAN flow results for coastal storm protection.
@@ -557,18 +557,18 @@
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/coastal-protection-flow-litanne-assets-data.clj")
         :context            [coastal-wave-source-litanne risk-to-assets coastal-flood-sink storm-track-litanne geomorphic-flood-sink]
-        :keep               [CoastalWaveSource
-                             PotentialWaveMitigation
-                             PotentiallyWaveVulnerablePopulations
-                             PotentiallyDamagingWaveFlow
-                             PotentiallyDamagingWaveSource
-                             PotentialWaveDamageReceived
-                             ActualWaveFlow
-                             FloodDamagingWaveSource
-                             UtilizedWaveMitigation
-                             WaveDamageReceived
-                             BenignWaveSource
-                             UnutilizedWaveMitigation
-                             AbsorbedWaveFlow
-                             MitigatedWaveSource
-                             WaveMitigationBenefitsAccrued]))
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))

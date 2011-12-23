@@ -267,10 +267,10 @@
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/subsistence-fisheries-data.clj")
         :context            [total-pelagic-subsistence-harvest subsistence-fishing paths population-density]
-        :keep               [SubsistenceFishSupply
-                             SubsistenceFishDemand
-                             SubsistenceFishFlow
-                             UtilizedSubsistenceFish
-                             SatisfiedSubsistenceFishDemand
-                             UnutilizedSubsistenceFish
-                             UnsatisfiedSubsistenceFishDemand]))
+        :keep               [TheoreticalSource
+                             TheoreticalUse
+                             ActualFlow
+                             ActualSource
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleUse]))

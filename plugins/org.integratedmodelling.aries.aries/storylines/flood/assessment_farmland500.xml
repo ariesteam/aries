@@ -15,13 +15,13 @@
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>core.models.flood-puget/flood-regulation-farmers-500</id>
-    <context>core.contexts.beta/western_wa256</context>
+    <id>core.models.flood-puget/flood-regulation-farmers-100</id>
+    <context>core.contexts.beta/western_wa512</context>
   </model>
 
   <model>
-    <id>core.models.flood-ca/flood-regulation-farmers-500</id>
-    <context>core.contexts.beta/ca_mark_watershed512</context>
+    <id>core.models.flood-ca/flood-regulation-farmers-100</id>
+    <context>core.contexts.beta/san_gabriel512</context>
   </model>
 
   <!-- Storyline description. -->
@@ -358,9 +358,8 @@ be highly important in event-based flood models.</p>
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <!--FERD: is this the proper way to deal with multiple models having different ontologic concepts associated with the same concept (e.g., see the defmodel vegetation-type statement in flood_ca.clj vs. flood_puget.clj.  If two concepts are needed (as has been done here), need to do it right for carbon as well. -->
   <page id="vegetation-type">
-    <concept>floodService:VegetationType</concept>
+    <concept>puget:FloodVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
@@ -391,7 +390,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="vegetation-type">
-    <concept>southernCalifornia:VegetationTypeSoCalFlood</concept>
+    <concept>southernCalifornia:FloodVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
@@ -405,11 +404,87 @@ be highly important in event-based flood models.</p>
     <h1>Representation</h1>
     <p>Data are categorical, derived from NLCD land cover classes.</p>
     <h1>Source</h1>
-    <p>U.S. Forest Service.</p>
+    <p>USDA Forest Service.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
     <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">The flood regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="soil-infiltration-class">
+    <concept>floodService:SoilInfiltrationClass</concept>
+    <name>Soil infiltration</name>
+    <title>Soil infiltration</title>
+    <runninghead>Soil infiltration.</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
+    <h1>Role in models</h1>
+    <p>This is an intermediate node in the Bayesian network that
+    accounts for soil infiltration in reducing the quantity of floodwater.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the
+    models is probabilistic, each point contains the probability distribution of the amount of water
+    infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and
+    calibrated by the ARIES server for the selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html"
+    target="_blank">The flood regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="evapotranspiration-class">
+    <concept>floodService:EvapotranspirationClass</concept>
+    <name>Evapotranspiration</name>
+    <title>Evapotranspiration</title>
+    <runninghead>Evapotranspiration.</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>The total surface water evaporated or taken up by vegetation and transpired, becoming no longer
+    available as surface or groundwater.</p>
+    <h1>Role in models</h1>
+    <p>This is an intermediate node in the Bayesian network that
+    accounts for the contribution of vegetation in reducing the
+    quantity of floodwater.  While evapotranspiration does not operate
+    on the same timescale as flooding, for our initial models of flood
+    mitigaiton, which take place using annual precipitation data, we
+    use evapotranspiration as a proxy for the effects of vegetation in
+    mitigating floodwater.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of millimeters of water evaporated or transpired per year.  As the
+    output of the models is probabilistic, each point contains the probability distribution of the amount
+    of water infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the probabilities.</p>
+    <h1>Source</h1>
+    <p>This map has been computed at your request by a Bayesian model built and
+    calibrated by the ARIES server for the selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html"
+    target="_blank">The flood regulation section of the ARIES web site</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -778,7 +853,7 @@ be highly important in event-based flood models.</p>
        concepts are already included as source, sink, and use model outputs and inaccessible flows are irrelevant for this service.-->
 
   <page id="potentially-damaging-flood-flow">
-    <concept>floodService:PotentiallyDamagingFloodFlow</concept>
+    <concept>floodService:PossibleFlow</concept>
     <name>Potential damage</name>
     <title>Potentially damaging flood flow</title>
     <runninghead>Possible flow map.</runninghead>
@@ -807,7 +882,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="potentially-damaging-runoff">
-    <concept>floodService:PotentiallyDamagingRunoff</concept>
+    <concept>floodService:PossibleSource</concept>
     <name>Potentially damaging runoff</name>
     <title>Source of potentially damaging runoff</title>
     <runninghead>Possible source map.</runninghead>
@@ -841,7 +916,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="potential-flood-damage-received">
-    <concept>floodService:PotentialFloodDamageReceived</concept>
+    <concept>floodService:PossibleUse</concept>
     <name>Potential damage</name>
     <title>Potential flood damage</title>
     <runninghead>Possible use map.</runninghead>
@@ -871,7 +946,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="actual-flood-flow">
-    <concept>floodService:ActualFloodFlow</concept>
+    <concept>floodService:ActualFlow</concept>
     <name>Actual flood</name>
     <title>Actual flood flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -904,7 +979,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="flood-damaging-runoff">
-    <concept>floodService:FloodDamagingRunoff</concept>
+    <concept>floodService:ActualSource</concept>
     <name>Flood source</name>
     <title>Flood damaging runoff</title>
     <runninghead>Actual source map.</runninghead>
@@ -934,7 +1009,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="utilized-runoff-mitigation">
-    <concept>floodService:UtilizedRunoffMitigation</concept>
+    <concept>floodService:ActualSink</concept>
     <name>Actual mitigation</name>
     <title>Utilized runoff mitigation</title>
     <runninghead>Actual sink map.</runninghead>
@@ -962,7 +1037,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="flood-damage-received">
-    <concept>floodService:FloodDamageReceived</concept>
+    <concept>floodService:ActualUse</concept>
     <name>Actual damage</name>
     <title>Flood damage received</title>
     <runninghead>Actual use map.</runninghead>
@@ -988,7 +1063,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="absorbed-flood-flow">
-    <concept>floodService:AbsorbedFloodFlow</concept>
+    <concept>floodService:BlockedFlow</concept>
     <name>Absorbed floodwater</name>
     <title>Absorbed flood flow</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -1020,7 +1095,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="mitigated-runoff">
-    <concept>floodService:FloodMitigatedRunoff</concept>
+    <concept>floodService:BlockedSource</concept>
     <name>Mitigated floodwater</name>
     <title>Mitigated flood source</title>
     <runninghead>Blocked source map.</runninghead>
@@ -1049,7 +1124,7 @@ be highly important in event-based flood models.</p>
   </page>
 
   <page id="flood-mitigation-benefits-accrued">
-    <concept>floodService:FloodMitigationBenefitsAccrued</concept>
+    <concept>floodService:BlockedUse</concept>
     <name>Total benefit</name>
     <title>Flood mitigation benefits accrued</title>
     <runninghead>Blocked use map.</runninghead>

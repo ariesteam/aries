@@ -288,21 +288,21 @@
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_beneficial.clj")
         :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams]
-        :keep [MaximumSedimentSource
-               MaximumPotentialDeposition
-               PotentialSedimentDepositionBeneficiaries
-               PossibleSedimentFlow
-               PossibleSedimentSource
-               PossibleSedimentDepositionBeneficiaries
-               ActualSedimentFlow
-               ActualSedimentSource
-               UtilizedDeposition
-               ActualSedimentDepositionBeneficiaries
-               UnutilizedSedimentSource
-               InaccessibleSedimentDepositionBeneficiaries
-               AbsorbedSedimentFlow
-               NegatedSedimentSource
-               LostValuableSediment]))
+        :keep [TheoreticalSource
+               TheoreticalSink
+               TheoreticalUse
+               PossibleFlow
+               PossibleSource
+               PossibleUse
+               ActualFlow
+               ActualSource
+               ActualSink
+               ActualUse
+               InaccessibleSource
+               InaccessibleUse
+               BlockedFlow
+               BlockedSource
+               BlockedUse]))
 
 ;; Sediment flow model for recipients of avoided detrimental
 ;; sedimentation: farmers.  This is one of two beneficiary models
@@ -326,20 +326,20 @@
         :downscaling-factor 1
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_farmers.clj")
         :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams]
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedSedimentDepositionBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedSedimentDepositionBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedSedimentDepositionBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  BlockedHarmfulSediment]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;; Sediment flow model for recipients of avoided detrimental
 ;; sedimentation: hydro reservoirs.  This is one of two beneficiary
@@ -363,20 +363,20 @@
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_detrimental_reservoirs.clj")
         :context [source-mg hydroelectric-use-level sediment-sink-mg altitude floodplains-code streams]
-        :keep [MaximumSedimentSource
-               MaximumPotentialDeposition
-               PotentialReducedSedimentDepositionBeneficiaries
-               PossibleSedimentFlow
-               PossibleSedimentSource
-               PossibleReducedSedimentDepositionBeneficiaries
-               ActualSedimentFlow
-               ActualSedimentSource
-               UtilizedDeposition
-               ActualReducedSedimentDepositionBeneficiaries
-               UnutilizedDeposition
-               AbsorbedSedimentFlow
-               NegatedSedimentSource
-               BlockedHarmfulSediment]))
+        :keep [TheoreticalSource
+               TheoreticalSink
+               TheoreticalUse
+               PossibleFlow
+               PossibleSource
+               PossibleUse
+               ActualFlow
+               ActualSource
+               ActualSink
+               ActualUse
+               InaccessibleSink
+               BlockedFlow
+               BlockedSource
+               BlockedUse]))
 
 ;; Sediment flow model for recipients of reduced turbidity.  This SPAN
 ;; statement is not currently set up to run as we lack data on
@@ -401,17 +401,17 @@
         :downscaling-factor 2
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_mg_data_turbidity.clj")
         :context [source-mg farmers-deposition-use-mg sediment-sink-mg altitude floodplains-code streams] ; Change the beneficiary group as needed
-        :keep    [MaximumSedimentSource
-                  MaximumPotentialDeposition
-                  PotentialReducedTurbidityBeneficiaries
-                  PossibleSedimentFlow
-                  PossibleSedimentSource
-                  PossibleReducedTurbidityBeneficiaries
-                  ActualSedimentFlow
-                  ActualSedimentSource
-                  UtilizedDeposition
-                  ActualReducedTurbidityBeneficiaries
-                  UnutilizedDeposition
-                  AbsorbedSedimentFlow
-                  NegatedSedimentSource
-                  ReducedTurbidity]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSink
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))

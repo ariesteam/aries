@@ -356,10 +356,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-birding population-density roads]
-;;        :keep    [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;                  RecreationalUserFlow                        RecreationalUse
-;;                  ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;                  TransportationRestrictedRecreationalUsers])) ; Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;(defmodel recreation-flow-wildlife WildlifeViewingUse
 ;;  (span WildlifeViewingAccessAndUse
@@ -381,11 +384,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-wildlife population-density roads] ; Replace with final use concept
-;;        :keep (RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers]))
-
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;(defmodel recreation-flow-javelina-hunting JavelinaHuntingUse
 ;;  (span JavelinaHuntingAccessAndUse
@@ -407,10 +412,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-javelina-hunting population-density roads]
-;;        :keep [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers])) ; Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;(defmodel recreation-flow-dove-hunting DoveHuntingUse
 ;;  (span DoveHuntingAccessAndUse
@@ -432,10 +440,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-dove-hunting population-density roads]
-;;        :keep [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers])) ; Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;(defmodel recreation-flow-quail-hunting QuailHuntingUse
 ;;  (span QuailHuntingAccessAndUse
@@ -457,10 +468,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-quail-hunting population-density roads]
-;;        :keep [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers])) ; Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;(defmodel recreation-flow-deer-hunting DeerHuntingUse
 ;; (span DeerHuntingAccessAndUse
@@ -482,10 +496,13 @@
 ;;        :animation?         true
 ;;        :save-file          (str (System/getProperty "user.home") "/recreation_san_pedro_data.clj")
 ;;        :context [source-deer-hunting population-density roads]
-;;        :keep [RecreationalAttractiveness                  PotentialRecreationalUsers
-;;               RecreationalUserFlow                        RecreationalUse
-;;               ActualRecreationalUsers                     TransportationRestrictedRecreationalUse
-;;               TransportationRestrictedRecreationalUsers])) ; Replace with final use concept
+;;        :keep    [TheoreticalSource
+;;                  TheoreticalUse
+;;                  ActualFlow
+;;                  ActualSource
+;;                  ActualUse
+;;                  InaccessibleSource
+;;                  InaccessibleUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

@@ -15,7 +15,7 @@
   <!-- All the models that apply and in which context. -->
   <model>
     <id>core.models.sediment-puget/sediment-reservoirs</id>
-    <context>core.contexts.beta/western_wa256</context>
+    <context>core.contexts.beta/western_wa512</context>
   </model>
 
   <model>
@@ -25,7 +25,12 @@
 
   <model>
     <id>core.models.sediment-dr/sediment-detrimental-reservoirs</id>
-    <context>core.contexts.beta/western_wa</context>
+    <context>core.contexts.beta/DR512</context>
+  </model>
+
+  <model>
+    <id>core.models.sediment-colorado/sediment-reservoirs-fire</id> <!--This gets changed once the CO context file is working properly. -->
+    <context>core.contexts.beta/co_blue</context>
   </model>
 
   <!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
@@ -312,8 +317,8 @@
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="vegetation-type">
-    <concept>soilRetentionService:VegetationType</concept>
+ <page id="vegetation-type">
+    <concept>puget:SedimentVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
@@ -327,7 +332,7 @@
     <h1>Representation</h1>
     <p>Data are categorical, derived from land cover classes.</p>
     <h1>Source</h1>
-    <p>Various national land cover datasets.</p>
+    <p>National Land Cover Dataset.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -338,6 +343,129 @@
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <page id="vegetation-type">
+    <concept>colorado:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis Land Cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <page id="vegetation-type">
+    <concept>dominican:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Deutsche Gesellschaft fur Technische Zusammenarbeit (GTZ).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <page id="vegetation-type">
+    <concept>mg:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Foiben-Taosarintanini Madagasikara (FTM), Madagsacar national land cover.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page>
+    <concept>colorado:MountainPineBeetleDamageClass</concept>
+    <name>Mountain pine beetle damage class</name>
+    <title>Mountain pine beetle damage class</title>
+    <runninghead>Mountain pine beetle damage class.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Mountain pine beetle _(Dendroctonus ponderosae)_ is a native of
+    forests of western North America. Periodic mountain pine beetle
+    outbreaks impact multiple ecosystem services in these regions by
+    killing large numbers of native pine trees.</p>
+    <h1>Role in models</h1>
+    <p>Mountain pine beetle mortality affects forest flamability,
+    rainfall interception, and trapping of sediments in downed wood 
+    in lodgepole and ponderosa pine forests.</p>
+    <h1>Representation</h1>
+    <p>Data are continuous, and represent relative damage.</p>
+    <h1>Source</h1>
+    <p>USDA Forest Service aerial surveys.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html"
+    target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
   </page>
@@ -782,7 +910,7 @@
        included as differently named flow concepts. -->
 
   <page id="possible-sediment-flow">
-    <concept>soilRetentionService:PossibleSedimentFlow</concept>
+    <concept>soilRetentionService:PossibleFlow</concept>
     <name>Possible sediment flow</name>
     <title>Possible sediment flow</title>
     <runninghead>Possible flow map.</runninghead>
@@ -809,7 +937,7 @@
   </page>
 
   <page id="possible-sediment-source">
-    <concept>soilRetentionService:PossibleSedimentSource</concept>
+    <concept>soilRetentionService:PossibleSource</concept>
     <name>Possible sediment source</name>
     <title>Possible sediment source</title>
     <runninghead>Possible source map.</runninghead>
@@ -844,7 +972,7 @@
   </page>
 
   <page id="possible-reduced-sediment-deposition-beneficiaries">
-    <concept>soilRetentionService:PossibleReducedSedimentDepositionBeneficiaries</concept>
+    <concept>soilRetentionService:PossibleUse</concept>
     <name>Possible reduced sediment deposition beneficiaries</name>
     <title>Possible reduced sediment deposition beneficiaries</title>
     <runninghead>Possible use map.</runninghead>
@@ -873,7 +1001,7 @@
   </page>
 
   <page id="actual-sediment-flow">
-    <concept>soilRetentionService:ActualSedimentFlow</concept>
+    <concept>soilRetentionService:ActualFlow</concept>
     <name>Actual sediment flow</name>
     <title>Actual sediment flow</title>
     <runninghead>Actual flow map.</runninghead>
@@ -904,7 +1032,7 @@
   </page>
 
   <page id="actual-sediment-source">
-    <concept>soilRetentionService:ActualSedimentSource</concept>
+    <concept>soilRetentionService:ActualSource</concept>
     <name>Actual sediment source</name>
     <title>Actual sediment source</title>
     <runninghead>Actual source map.</runninghead>
@@ -934,7 +1062,7 @@
   </page>
 
   <page id="utilized-deposition">
-    <concept>soilRetentionService:UtilizedDeposition</concept>
+    <concept>soilRetentionService:ActualSink</concept>
     <name>Actual deposition</name>
     <title>Utilized sediment deposition</title>
     <runninghead>Actual sink map.</runninghead>
@@ -962,7 +1090,7 @@
   </page>
 
   <page id="actual-reduced-sediment-deposition-beneficiaries">
-    <concept>soilRetentionService:ActualReducedSedimentDepositionBeneficiaries</concept>
+    <concept>soilRetentionService:ActualUse</concept>
     <name>Actual reduced sediment deposition beneficiaries</name>
     <title>Actual reduced sediment deposition beneficiaries</title>
     <runninghead>Actual use map.</runninghead>
@@ -988,7 +1116,7 @@
   </page>
 
   <page id="unutilized-sediment-source">
-    <concept>soilRetentionService:UnutilizedSedimentSource</concept>
+    <concept>soilRetentionService:InaccessibleSource</concept>
     <name>Unutilized sediment source</name>
     <title>Unutilized sediment source</title>
     <runninghead>Inaccessible source map.</runninghead>
@@ -1018,7 +1146,7 @@
   </page>
 
   <page id="absorbed-sediment-flow">
-    <concept>soilRetentionService:AbsorbedSedimentFlow</concept>
+    <concept>soilRetentionService:BlockedFlow</concept>
     <name>Absorbed sediment flow</name>
     <title>Absorbed sediment flow</title>
     <runninghead>Blocked flow map.</runninghead>
@@ -1051,7 +1179,7 @@
   </page>
 
   <page id="negated-sediment-source">
-    <concept>soilRetentionService:NegatedSedimentSource</concept>
+    <concept>soilRetentionService:BlockedSource</concept>
     <name>Negated sediment source</name>
     <title>Negated sediment source</title>
     <runninghead>Blocked source map.</runninghead>
@@ -1081,7 +1209,7 @@
   </page>
 
   <page id="blocked-harmful-sediment">
-    <concept>soilRetentionService:BlockedHarmfulSediment</concept>
+    <concept>soilRetentionService:BlockedUse</concept>
     <name>Blocked harmful sediment</name>
     <title>Blocked harmful sediment</title>
     <runninghead>Blocked use map.</runninghead>

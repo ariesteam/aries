@@ -7,11 +7,11 @@
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
-    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY aestheticService "http://www.integratedmodelling.org/ks/es/aestheticService.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
@@ -20,16 +20,16 @@
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/recreationService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/recreationService.owl"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/aestheticService.owl#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:aestheticService="http://www.integratedmodelling.org/ks/es/aestheticService.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl"/>
@@ -238,10 +238,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualFlow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualFlow">
+        <rdfs:subClassOf rdf:resource="&aestheticService;ActualFlow"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualRecreationalUsers -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualRecreationalUsers">
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualSource">
+        <rdfs:subClassOf rdf:resource="&aestheticService;ActualSource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#ActualUse">
+        <rdfs:subClassOf rdf:resource="&aestheticService;ActualUse"/>
     </owl:Class>
     
 
@@ -588,6 +612,22 @@
         <rdfs:label rdf:datatype="&xsd;string">HikingSlope</rdfs:label>
         <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#InaccessibleSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#InaccessibleSource">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleSource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#InaccessibleUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#InaccessibleUse">
+        <rdfs:subClassOf rdf:resource="&eserv;InaccessibleUse"/>
     </owl:Class>
     
 
@@ -1070,14 +1110,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#NatureWatching"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscapes"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1095,13 +1129,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#ScenicLandscapes"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SpeciesOrEcosystems"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RenewableHuntingFishingGathering"/>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1112,8 +1146,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#SpeciesOrEcosystems"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#NatureWatching"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#RenewableHuntingFishingGathering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The enjoyment of nature through various outdoor activities.</rdfs:comment>
@@ -1242,14 +1282,8 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueLandscapeFeatures"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#VisuallySignificantLanscapes"/>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1267,13 +1301,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#VisuallySignificantLanscapes"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueSpeciesOrEcosystems"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#OutdoorRecreation"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/recreationService.owl#UniqueLandscapeFeatures"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The use of nature as a place for rest, relaxation, or contemplation.</rdfs:comment>
@@ -1570,6 +1610,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TheoreticalSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TheoreticalSource">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#TheoreticalUse -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#TheoreticalUse">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/recreationService.owl#Trails">
@@ -1861,5 +1917,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
 
