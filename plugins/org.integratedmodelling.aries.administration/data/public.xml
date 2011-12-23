@@ -19,35 +19,27 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <kbox
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-
     xmlns:measurement="http://www.integratedmodelling.org/ks/science/measurement.owl#"
     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
     xmlns:weather="http://www.integratedmodelling.org/ks/science/weather.owl#"
-
     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/habitat.owl#"
     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/ecology.owl#"
     xmlns:domlulc="http://www.integratedmodelling.org/ks/ecology/lulc/domlulc.owl#"
     xmlns:veracruz-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/veracruz-lulc.owl#"
     xmlns:tanzania-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/tanzania-lulc.owl#"
-
     xmlns:economics="http://www.integratedmodelling.org/ks/economics/economics.owl#"
-
     xmlns:conservation="http://www.integratedmodelling.org/ks/policy/conservation.owl#"
     xmlns:policytarget="http://www.integratedmodelling.org/ks/policy/policytarget.owl#"
-
     xmlns:metadata="http://www.integratedmodelling.org/ks/metadata/metadata.owl#"
-
     xmlns:geospace="http://www.integratedmodelling.org/ks/geospace/geospace.owl#"
     xmlns:geofeatures="http://www.integratedmodelling.org/ks/geospace/geofeatures.owl#"
     xmlns:geophysics="http://www.integratedmodelling.org/ks/geospace/geophysics.owl#"
-
     xmlns:nlcd="http://www.integratedmodelling.org/ks/lulc/nlcd.owl#"
     xmlns:corine="http://www.integratedmodelling.org/ks/lulc/corine.owl#"
     xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
     xmlns:mglulc="http://www.integratedmodelling.org/ks/lulc/mglulc.owl#"
     xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
-
     xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
     xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
     xmlns:puget="http://www.integratedmodelling.org/ks/es/services/local/puget.owl#"
@@ -62,6 +54,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
 >
+
+  <!-- References listed in the data sources (no doubt these should go
+       elsewhere, but ought to be referenced somewhere):
+
+       Bolte, J., et al. 2010. Envisioning Puget Sound Alternative
+       Futures: PSNERP Final Report. Prepared for the Puget Sound
+       Nearshore Ecosystem Restoration Partnership.
+
+       Brookshire, D.S., et al. 2010. Ecosystem services and
+       reallocation choices: A framework for preserving semi-arid
+       regions in the Southwest. Journal of Contemporary Water
+       Research and Education 114: 60-74.
+
+       Steinitz, C., et al. 2003. Alternative futures for changing
+       landscapes: The Upper San Pedro River Basin in Arizona and
+       Sonora. Island Press: Wsahington, DC.
+
+       Stromberg, J.C., et al. 2006. Status of the riparian ecosystem
+       in the Upper San Pedro River, Arizona: Application of an
+       assessment model. Environmental Monitoring and Assessment 115:
+       145-173. 
+
+       Yang, D., et al. 2003. Global potential soil erosion with
+       reference to land use and climate changes. Hydrological
+       Processes 17: 2913-2928. -->
 
   <!--  Commenting this out as it's out of sync with the geoserver and we're allegedly not using hydroSHEDS anyway for water routing.
 
@@ -89,9 +106,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>  
-
-  -->
+  </measurement:Ranking>   -->
 
   <measurement:NumericCoding id="corine2000">
     <observation:hasObservable>
@@ -10111,6 +10126,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasObservable>
       <carbonService:VegType />
     </observation:hasObservable>
+    <rdfs:comment>Data source: USDA National Agricultural Statistics
+    Service cropland data layer</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
