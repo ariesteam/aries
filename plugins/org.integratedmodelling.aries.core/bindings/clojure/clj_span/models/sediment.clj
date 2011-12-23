@@ -154,35 +154,37 @@
   [cache-layer possible-flow-layer actual-flow-layer ha-per-cell sink-caps use-id? levee?
    in-stream? sink-stream-intakes sink-AFs elevation-layer cell-width cell-height rows cols
    {:keys [route possible-weight actual-weight sink-effects stream-bound?] :as sediment-carrier}]
-  (let [current-id (peek route)
-        prev-id    (peek (pop route))
-        bearing    (if prev-id (subtract-ids current-id prev-id))]
-    (dosync
-     (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight ha-per-cell))
-     (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   ha-per-cell)))
-    (if (and stream-bound? bearing (nearby-levees current-id bearing levee? cell-width cell-height))
-      ;; Levees channel the water, so floodplain sinks and users will
-      ;; not be affected.
-      (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
-        (assoc sediment-carrier
-          :route         (conj route next-id)
-          :stream-bound? (in-stream? next-id)))
-      ;; Either we're over-land or there are no levees nearby, so we
-      ;; may proceed with the local checks.
-      (let [[new-actual-weight new-sink-effects] (handle-sink-and-use-effects! current-id
-                                                                               sink-stream-intakes
-                                                                               sink-AFs
-                                                                               sink-caps
-                                                                               use-id?
-                                                                               cache-layer
-                                                                               ha-per-cell
-                                                                               sediment-carrier)]
+  (try
+    (let [current-id (peek route)
+          prev-id    (peek (pop route))
+          bearing    (if prev-id (subtract-ids current-id prev-id))]
+      (dosync
+       (alter (get-in possible-flow-layer current-id) _+_ (_d possible-weight ha-per-cell))
+       (alter (get-in actual-flow-layer   current-id) _+_ (_d actual-weight   ha-per-cell)))
+      (if (and stream-bound? bearing (nearby-levees current-id bearing levee? cell-width cell-height))
+        ;; Levees channel the water, so floodplain sinks and users will
+        ;; not be affected.
         (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
           (assoc sediment-carrier
-            :route           (conj route next-id)
-            :actual-weight   new-actual-weight
-            :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
-            :stream-bound?   (in-stream? next-id)))))))
+            :route         (conj route next-id)
+            :stream-bound? (in-stream? next-id)))
+        ;; Either we're over-land or there are no levees nearby, so we
+        ;; may proceed with the local checks.
+        (let [[new-actual-weight new-sink-effects] (handle-sink-and-use-effects! current-id
+                                                                                 sink-stream-intakes
+                                                                                 sink-AFs
+                                                                                 sink-caps
+                                                                                 use-id?
+                                                                                 cache-layer
+                                                                                 ha-per-cell
+                                                                                 sediment-carrier)]
+          (if-let [next-id (find-next-step current-id in-stream? elevation-layer rows cols bearing)]
+            (assoc sediment-carrier
+              :route           (conj route next-id)
+              :actual-weight   new-actual-weight
+              :sink-effects    (merge-with _+_ sink-effects new-sink-effects)
+              :stream-bound?   (in-stream? next-id))))))
+    (catch Exception _ (println "Bad agent go BOOM!"))))
 
 (defn- stop-unless-reducing
   [n coll]

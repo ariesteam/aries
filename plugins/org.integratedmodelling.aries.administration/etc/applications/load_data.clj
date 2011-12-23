@@ -1,3 +1,20 @@
+;;; Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
+;;;
+;;; This file is part of ARIES.
+;;;
+;;; ARIES is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published
+;;; by the Free Software Foundation, either version 3 of the License,
+;;; or (at your option) any later version.
+;;;
+;;; ARIES is distributed in the hope that it will be useful, but
+;;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;;; General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
+
 (ns administration.etc.applications.load-data
   (:refer tl :only [with-kbox kbox get-plugin-resource get-property-value])
   (:refer geospace :only [get-centroid get-bounding-box]))
@@ -23,11 +40,5 @@
                        :boundingbox #(get-bounding-box %)
                        :dataset     #(get-property-value % "metadata:belongsToDataset")}
 
-  (import (get-plugin-resource 'aries.administration "ark.xml"))
-  (import (get-plugin-resource 'aries.administration "bv1.xml"))
-  (import (get-plugin-resource 'aries.administration "common.xml"))
-  (import (get-plugin-resource 'aries.administration "ipcc.xml"))
-  (import (get-plugin-resource 'aries.administration "kb1.xml"))
-  (import (get-plugin-resource 'aries.administration "marine.xml"))
-  (import (get-plugin-resource 'aries.administration "nlcd2001.xml"))
-  (import (get-plugin-resource 'aries.administration "raven_ridge_viewsheds.xml")))
+  (import (get-plugin-resource 'aries.administration "public.xml"))
+  (import (get-plugin-resource 'aries.administration "private.xml")))

@@ -1,4 +1,4 @@
-;;; Copyright 2011 The ARIES Consortium
+;;; Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
 ;;;
 ;;; This file is part of ARIES.
 ;;;

@@ -1,3 +1,19 @@
+-- Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
+--
+-- This file is part of ARIES.
+--
+-- ARIES is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published
+-- by the Free Software Foundation, either version 3 of the License,
+-- or (at your option) any later version.
+--
+-- ARIES is distributed in the hope that it will be useful, but
+-- WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-- General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 96618, 'sr-org', 6618, '+proj=omerc +lat_0=-18.9 +lonc=46.43722917 +alpha=18.9 +k=0.9995000000000001 +x_0=400000 +y_0=800000 +ellps=intl +units=m +no_defs ', 'PROJCS["Madagascar_Laborde_Tan1925",GEOGCS["GCS_Tananarive_1925",DATUM["Tananarive_1925",SPHEROID["International_1924",6378388.0,297.0]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Hotine_Oblique_Mercator"],PARAMETER["False_Easting",400000.0],PARAMETER["False_Northing",800000.0],PARAMETER["Scale_Factor",0.9995],PARAMETER["Azimuth",18.9],PARAMETER["Longitude_Of_Center",46.43722917],PARAMETER["Latitude_Of_Center",-18.9],PARAMETER["rectified_grid_angle",18.9],UNIT["Meter",1.0]]');
 INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 929700, 'epsg', 29700, '+proj=omerc +lat_0=-18.9 +lonc=44.10000000000001 +alpha=18.9 +k=0.9995000000000001 +x_0=400000 +y_0=800000 +ellps=intl +towgs84=-189,-242,-91,0,0,0,0 +pm=paris +units=m +no_defs ', 'PROJCS["Tananarive (Paris) / Laborde Grid (deprecated)",GEOGCS["Tananarive (Paris)",DATUM["Tananarive_1925_Paris",SPHEROID["International 1924",6378388,297,AUTHORITY["EPSG","7022"]],TOWGS84[-189,-242,-91,0,0,0,0],AUTHORITY["EPSG","6810"]],PRIMEM["Paris",2.33722917,AUTHORITY["EPSG","8903"]],UNIT["grad",0.01570796326794897,AUTHORITY["EPSG","9105"]],AUTHORITY["EPSG","4810"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Hotine_Oblique_Mercator"],PARAMETER["latitude_of_center",-21],PARAMETER["longitude_of_center",49],PARAMETER["azimuth",21],PARAMETER["rectified_grid_angle",21],PARAMETER["scale_factor",0.9995],PARAMETER["false_easting",400000],PARAMETER["false_northing",800000],AUTHORITY["EPSG","29700"],AXIS["X",EAST],AXIS["Y",NORTH]]');
 INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 929701, 'epsg', 29701, '', 'PROJCS["Tananarive (Paris) / Laborde Grid",GEOGCS["Tananarive (Paris)",DATUM["Tananarive_1925_Paris",SPHEROID["International 1924",6378388,297,AUTHORITY["EPSG","7022"]],TOWGS84[-189,-242,-91,0,0,0,0],AUTHORITY["EPSG","6810"]],PRIMEM["Paris",2.33722917,AUTHORITY["EPSG","8903"]],UNIT["grad",0.01570796326794897,AUTHORITY["EPSG","9105"]],AUTHORITY["EPSG","4810"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Laborde_Oblique_Mercator"],PARAMETER["latitude_of_center",-21],PARAMETER["longitude_of_center",49],PARAMETER["azimuth",21],PARAMETER["rectified_grid_angle",100],PARAMETER["scale_factor",0.9995],PARAMETER["false_easting",400000],PARAMETER["false_northing",800000],AUTHORITY["EPSG","29701"],AXIS["Y",EAST],AXIS["X",NORTH]]');
