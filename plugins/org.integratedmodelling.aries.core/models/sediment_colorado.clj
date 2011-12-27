@@ -103,7 +103,7 @@
     [30  70]            ModerateCanopyCover
     [ 0  30]            LowCanopyCover))
 
-(defmodel successional-stage SuccessionalStageClass
+(defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
     1          OldGrowth
     2          LateSuccession
@@ -122,8 +122,8 @@
 ;;    [:exclusive 0 30000] LowAnnualSedimentSource 
 ;;    0                    NoAnnualSedimentSource))
 
-(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-  (probabilistic-measurement SedimentSourceValueAnnualClass "kg/ha"
+(defmodel sediment-source-value-annual AnnualSedimentSourceClass
+  (probabilistic-measurement AnnualSedimentSourceClass "kg/ha"
     [9000   17000]    HighAnnualSedimentSource
     [4900    9000]    ModerateAnnualSedimentSource
     [   0.01 4900]    LowAnnualSedimentSource 
@@ -131,8 +131,8 @@
 
 ;; The two Bayesian statements calculate source value with and without
 ;; fire, for comparison.
-(defmodel source-fire SedimentSourceValueAnnualFire
-  (bayesian SedimentSourceValueAnnualFire
+(defmodel source-fire AnnualSedimentSourceFire
+  (bayesian AnnualSedimentSourceFire
     :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
@@ -141,10 +141,10 @@
     :keep     [SedimentSourceValueAnnualClass]
     :result   sediment-source-value-annual))
 
-(defmodel source-no-fire SedimentSourceValueAnnualNoFire ; Delete this
+(defmodel source-no-fire AnnualSedimentSourceNoFire ; Delete this
                                         ; and the other statements
                                         ; once contexts are working correctly.
-  (bayesian SedimentSourceValueAnnualNoFire
+  (bayesian AnnualSedimentSourceNoFire
     :import   "aries.core::SedimentSourceColoradoAdHocNoFire.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
@@ -208,7 +208,7 @@
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-fire DetrimentalSedimentTransportFire
   (span SedimentTransport
-        SedimentSourceValueAnnualFire
+        AnnualSedimentSourceFire
         geofeatures:Reservoir
         ReservoirSedimentSink
         nil
@@ -244,7 +244,7 @@
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-no-fire DetrimentalSedimentTransportNoFire
   (span SedimentTransport
-        SedimentSourceValueAnnualNoFire
+        AnnualSedimentSourceNoFire
         geofeatures:Reservoir
         ReservoirSedimentSink
         nil

@@ -47,10 +47,7 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))    
-
-(defmodel flow-direction geophysics:FlowDirection
-  (ranking geophysics:FlowDirection)) 
+  (measurement geophysics:Altitude "m"))
 
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))

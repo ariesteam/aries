@@ -46,10 +46,7 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))   
-
-(defmodel flow-direction geophysics:FlowDirection
-  (ranking geophysics:FlowDirection))
+  (measurement geophysics:Altitude "m"))
 
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
@@ -324,6 +321,23 @@ list if desired."
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
+
+;;Levees and floodplain width: used in the flow model
+;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.	   
+(defmodel levees Levees
+  "Presence of a levee in given context"
+  (classification (binary-coding infrastructure:Levee)
+    1 LeveesPresent
+    0 LeveesAbsent
+										;	 :agent "aries/flood/levee"
+    ))
+
+(defmodel floodplain-width FloodplainWidth
+  (classification (measurement habitat:FloodplainWidth "m")
+    [400  :>]  HighFloodplainWidth
+    [200 400]  ModerateFloodplainWidth
+    [:<  200]  LowFloodplainWidth
+    :otherwise NoFloodplainWidth))
 
 (defmodel flood-flow-data100 TempFloodData100
   (identification TempFloodData100
@@ -825,19 +839,3 @@ list if desired."
                              BlockedFlow
                              BlockedSource
                              BlockedUse]))
-
-;;Levees and floodplain width: used in the flow model
-;;No data for levees in Orange County at this point but leaving the defmodel statement in for now.	   
-(defmodel levees Levees
-  "Presence of a levee in given context"
-  (classification (binary-coding infrastructure:Levee)
-    1 LeveesPresent
-    0 LeveesAbsent
-										;	 :agent "aries/flood/levee"
-    ))
-(defmodel floodplain-width FloodplainWidth
-  (classification (measurement habitat:FloodplainWidth "m")
-    [400  :>]  HighFloodplainWidth
-    [200 400]  ModerateFloodplainWidth
-    [:<  200]  LowFloodplainWidth
-    :otherwise NoFloodplainWidth))

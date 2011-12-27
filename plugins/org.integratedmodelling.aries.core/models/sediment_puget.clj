@@ -113,7 +113,7 @@
     [30  70]            ModerateCanopyCover
     [ 0  30]            LowCanopyCover))
 
-(defmodel successional-stage SuccessionalStageClass
+(defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)  
     #{5 6}                           OldGrowth
     4                                LateSuccession
@@ -132,16 +132,16 @@
 ;;    [:exclusive 0 30000] LowAnnualSedimentSource 
 ;;    0                    NoAnnualSedimentSource))
 
-(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-  (probabilistic-measurement SedimentSourceValueAnnualClass "kg/ha"
+(defmodel sediment-source-value-annual AnnualSedimentSourceClass
+  (probabilistic-measurement AnnualSedimentSourceClass "kg/ha"
     [100000 300000] HighAnnualSedimentSource
     [ 30000 100000] ModerateAnnualSedimentSource
     [   0.01 30000] LowAnnualSedimentSource 
     [     0   0.01] NoAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound     
-(defmodel source-puget SedimentSourceValueAnnual
-  (bayesian SedimentSourceValueAnnual 
+(defmodel source-puget AnnualSedimentSource
+  (bayesian AnnualSedimentSource 
     :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
@@ -298,7 +298,7 @@
 ;; Sediment flow model for farmers in floodplains
 (defmodel sediment-farmers BeneficialSedimentTransport ; or DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         DepositionProneFarmers
         AnnualSedimentSink
         nil
@@ -335,7 +335,7 @@
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         geofeatures:Reservoir
         AnnualSedimentSink
         nil
@@ -372,7 +372,7 @@
 ;; Sediment flow model for assessing turbidity
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSink 
         nil
@@ -441,8 +441,8 @@ greenhouse gas emissions."
                       (conc 'carbonService:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
-  (model SuccessionalStageClass
-    (classification SuccessionalStageClass
+  (model SuccessionalStage
+    (classification SuccessionalStage
       :context [open-development-scenario :as od successional-stage :as ss]
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
@@ -495,8 +495,8 @@ greenhouse gas emissions."
                       (conc 'carbonService:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
-  (model SuccessionalStageClass
-    (classification SuccessionalStageClass
+  (model SuccessionalStage
+    (classification SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))

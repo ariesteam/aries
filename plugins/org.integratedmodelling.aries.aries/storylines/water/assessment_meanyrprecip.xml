@@ -499,6 +499,36 @@ and beneficiary groups and link these via a flow model accounting for the downst
   </page>
 
   <page id="vegetation-type">
+    <concept>sanPedro:WaterSupplyVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
+    part of the sink model for surface water.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">The water supply section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-type">
     <concept>veracruz:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
@@ -1024,9 +1054,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
 <disabled>false</disabled>
 <plot-type default="true">geosurface-2d</plot-type>
 <plot-type>geocontour-2d</plot-type>
-</page>  
-
-  -->
+</page>   -->
 
   <page id="possible-surface-water-flow">
     <concept>waterSupplyService:PossibleFlow</concept>

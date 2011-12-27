@@ -332,7 +332,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="vegetation-type">
-    <concept>soilRetentionService:VegetationType</concept>
+    <concept>colorado:SedimentVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
     <runninghead>Vegetation type.</runninghead>
@@ -346,7 +346,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data are categorical, derived from land cover classes.</p>
     <h1>Source</h1>
-    <p>Various national land cover datasets.</p>
+    <p>Southwest Regional GAP Analysis Land Cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -354,6 +354,134 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://earth.gis.usu.edu/swgap/landcover.html"
+    target="_blank">Southwest Regional GAP Analayis Landcover Data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-type">
+    <concept>dominican:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Deutsche Gesellschaft fur Technische Zuaammenarbeit (GTZ).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-type">
+    <concept>mg:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>Foiben-Taosarintanini Madagasikara (FTM), Madagsacar national land cover.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.ftm.mg/framepro.htm" target="_blank">Foiben-Taosarintanin'i Madagasikara.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="vegetation-type">
+    <concept>puget:SedimentVegetationType</concept>
+    <name>Vegetation type</name>
+    <title>Vegetation type</title>
+    <runninghead>Vegetation type.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes like
+    vegetation height, life form, rooting depth and density.</p>
+    <h1>Role in models</h1>
+    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from land cover classes.</p>
+    <h1>Source</h1>
+    <p>NLCD 2001.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="mountain-pine-beetle">
+    <concept>colorado:MountainPineBeetleDamageClass</concept>
+    <name>Mountain pine beetle damage class</name>
+    <title>Mountain pine beetle damage class</title>
+    <runninghead>Mountain pine beetle damage class.</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Mountain pine beetle (_Dendroctonus ponderosae_), a native beetle
+    in western North America, can cause changes to forest structure in
+    beetle-infested forests.</p>
+    <h1>Role in models</h1>
+    <p>Mountain pine beetle-induced death in western forests causes changes to forest structure and
+    hydrologic processes.</p>
+    <h1>Representation</h1>
+    <p>Data are categorical, derived from aerial surveys of mountain
+    pine beetle damage.</p>
+    <h1>Source</h1>
+    <p>Derived from USDA-Forest Service aerial survey data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">The sediment regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -431,7 +559,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- ALSO saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
        use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-sink">
-    <concept>soilRetentionService:SedimentSourceValueAnnual</concept>
+    <concept>soilRetentionService:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source.</runninghead>
@@ -596,7 +724,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
        models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about. -->
   <page id="annual-sediment-sink">
-    <concept>soilRetentionService:AnnualSedimentSink</concept>
+    <concept>soilRetentionService:AnnualSedimentSinkClass</concept>
     <name>Annual sediment sink</name>
     <title>Annual sediment sink</title>
     <runninghead>Annual sediment sink</runninghead>
@@ -785,7 +913,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="levees">
-    <concept>soilRetentionService:LeveesClass</concept> <!-- Ferd: This is goofy - I don't see "LeveesClass" anywhere in the .clj file -->
+    <concept>infrastructure:Levee</concept>
     <name>Levees</name>
     <title>Levees</title>
     <runninghead>Levees.</runninghead>

@@ -46,12 +46,14 @@
 			<state id="UrbanAndRoads" />
 			<probabilities>0.01 0.5 0.08 0.38 0.03</probabilities>
 		</cpt>
-		<cpt id="SuccessionalStageClass">
+		<cpt id="SuccessionalStage">
+			<state id="OldGrowth" />
 			<state id="LateSuccession" />
 			<state id="MidSuccession" />
+			<state id="PoleSuccession" />
 			<state id="EarlySuccession" />
 			<state id="NoSuccession" />
-			<probabilities>0.03 0.2 0.2 0.57</probabilities>
+			<probabilities>0.01 0.02 0.1 0.1 0.2 0.57</probabilities>
 		</cpt>
 		<cpt id="SoilTextureClass">
 			<state id="FineSoilTexture" />
@@ -79,10 +81,10 @@
 			<state id="ModerateVegetativeMaturity" />
 			<state id="LowVegetativeMaturity" />
 			<state id="NoVegetativeMaturity" />
-			<parents>SuccessionalStageClass SedimentVegetationType PercentTreeCanopyCoverClass</parents>
-			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 0.975 0.025 0 0 0.5 0.4 0.1 0 0.25 0.5 0.25 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.05 0.4 0.55 0 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.9 0.1 0 0 0.4 0.5 0.1 0 0.1 0.35 0.4 0.15 0.8 0.2 0 0 0.35 0.5 0.15 0 0.05 0.3 0.4 0.25 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.4 0.5 0.1 0 0.2 0.4 0.4 0 0 0.2 0.5 0.3 0.3 0.4 0.3 0 0.15 0.3 0.55 0 0 0.15 0.5 0.35 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 0.1 0.4 0.4 0.1 0 0.3 0.4 0.3 0 0.1 0.45 0.45 0 0.4 0.4 0.2 0 0.25 0.35 0.4 0 0.05 0.4 0.55 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.025 0.975 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+			<parents>SedimentVegetationType PercentTreeCanopyCoverClass SuccessionalStage</parents>
+			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0.99 0.01 0 0 0.95 0.05 0 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.4 0.5 0.1 0 0.1 0.4 0.4 0.1 0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0.3 0.4 0.3 0 0.2 0.4 0.4 0 0 0.3 0.4 0.3 0.3 0.6 0.1 0 0.25 0.5 0.25 0 0.1 0.35 0.4 0.15 0 0.35 0.55 0.1 0 0.2 0.5 0.3 0 0.1 0.45 0.45 0.95 0.05 0 0 0.9 0.1 0 0 0.8 0.2 0 0 0.45 0.4 0.15 0 0.3 0.4 0.3 0 0 0.4 0.4 0.2 0.55 0.45 0 0 0.4 0.5 0.1 0 0.35 0.5 0.15 0 0.2 0.4 0.4 0 0.15 0.3 0.55 0 0 0.25 0.35 0.4 0.1 0.5 0.4 0 0.05 0.4 0.55 0 0.05 0.3 0.4 0.25 0.05 0.15 0.6 0.2 0 0.15 0.5 0.35 0 0.05 0.4 0.55 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0.1 0.45 0.45 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.025 0.975 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="SedimentSourceValueAnnualClass">
+		<cpt id="AnnualSedimentSourceClass">
 			<state id="HighAnnualSedimentSource" />
 			<state id="ModerateAnnualSedimentSource" />
 			<state id="LowAnnualSedimentSource" />
@@ -167,8 +169,8 @@
 				<comment>layer name: gdcyc.tif\ncoordinate system; GCS_WGS_1984\ndatum: D_WGS_1984\ncode:\n\ntwo colors in our region -- 5 (set as moderate) covered most and 7 (set as moderate to high) only crossed in a stripe</comment>
 				<barchart active="true" width="330" height="72" />
 			</node>
-			<node id="SedimentSourceValueAnnualClass">
-				<name>SedimentSourceValueAnnualClass</name>
+			<node id="AnnualSedimentSourceClass">
+				<name>AnnualSedimentSourceClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
@@ -192,14 +194,14 @@
 				<position>574 246 623 276</position>
 				<barchart active="true" width="241" height="108" />
 			</node>
-			<node id="SuccessionalStageClass">
-				<name>SuccessionalStageClass</name>
+			<node id="SuccessionalStage">
+				<name>SuccessionalStage</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1134 351 1249 386</position>
+				<position>1134 350 1249 385</position>
 				<comment>NO GIS LAYER</comment>
-				<barchart active="true" width="264" height="93" />
+				<barchart active="true" width="264" height="90" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>

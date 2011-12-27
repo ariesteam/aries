@@ -138,11 +138,11 @@
     [ 1 30]				LowCanopyCover))
 
 ;;Sediment source value
-(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
+(defmodel sediment-source-value-annual AnnualSedimentSourceClass
   ;; FV - sorry, my bad - theres a bug so the right way doesn't work
   ;; as a prototype obs. Will be fixed asap.  please leave as is for
   ;; now or the BN won't compile.
-  (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
+  (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
                                         ;	(classification (measurement SedimentSourceValueAnnual "t/ha")
     [40  100] HighAnnualSedimentSource
     [15   40] ModerateAnnualSedimentSource
@@ -153,8 +153,8 @@
 ;; evidence setting for intermediate nodes here - those should be used
 ;; for training, when the PI eventually implements it. Commented those
 ;; below.
-(defmodel source-dr SedimentSourceValueAnnual
-  (bayesian SedimentSourceValueAnnual
+(defmodel source-dr AnnualSedimentSource
+  (bayesian AnnualSedimentSource
 	:import	  "aries.core::SedimentSourceDRAdHoc.xdsl"
 	:context  [soil-group slope soil-texture (comment soil-erodibility)
               precipitation-annual storm-probability (comment runoff) 
@@ -288,7 +288,7 @@
 ;; future, however.
 (defmodel sediment-beneficial BeneficialSedimentTransport
   (span SedimentTransport
-		SedimentSourceValueAnnual 
+        AnnualSedimentSource
 		DepositionProneFarmers
 		AnnualSedimentSinkClass 
 		nil
@@ -325,7 +325,7 @@
 ;; currently designed to be run.
 (defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
-		SedimentSourceValueAnnual 
+        AnnualSedimentSource
 		DepositionProneFarmers
 		AnnualSedimentSinkClass 
 		nil
@@ -362,7 +362,7 @@
 ;; models currently designed to be run.
 (defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-		SedimentSourceValueAnnualClass 
+        AnnualSedimentSource
 		HydroelectricUsePresenceClass
 		AnnualSedimentSinkClass 
 		nil
@@ -400,7 +400,7 @@
 ;; easily implemented in the future, however.
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-		SedimentSourceValueAnnual 
+        AnnualSedimentSource
 		WaterIntakeUse	; Change the beneficiary group as needed
 		AnnualSedimentSinkClass 
 		nil

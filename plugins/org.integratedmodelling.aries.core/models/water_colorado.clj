@@ -218,9 +218,6 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-(defmodel flow-direction geophysics:FlowDirection
-  (ranking geophysics:FlowDirection))
-
 (defmodel streams-simple geofeatures:River ; This could be rasterized to speed the process, though probably not critical.
   (binary-coding geofeatures:River))
 

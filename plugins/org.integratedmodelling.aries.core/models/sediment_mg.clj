@@ -114,16 +114,16 @@
     [30  70]            ModerateCanopyCover
     [:exclusive 0 30]   LowCanopyCover))
 
-(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-  (probabilistic-measurement SedimentSourceValueAnnualClass "t/ha"
+(defmodel sediment-source-value-annual AnnualSedimentSourceClass
+  (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
     [40 100]  HighAnnualSedimentSource
     [15  40]  ModerateAnnualSedimentSource
     [0.01 15] LowAnnualSedimentSource 
     [0 0.01]  NoAnnualSedimentSource))
 
 ;; Source bayesian model for Madagascar      
-(defmodel source-mg SedimentSourceValueAnnual
-  (bayesian SedimentSourceValueAnnual 
+(defmodel source-mg AnnualSedimentSource
+  (bayesian  AnnualSedimentSource
     :import   "aries.core::SedimentSourceMgAdHoc.xdsl"
     :context  [soil-group slope soil-texture soil-erodibility precipitation-annual  
                storm-probability runoff vegetation-type percent-canopy-cover]
@@ -271,7 +271,7 @@
 ;; implemented in the future, however.
 (defmodel sediment-beneficial BeneficialSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         DepositionProneFarmers
         AnnualSedimentSink
         nil
@@ -309,7 +309,7 @@
 ;; currently designed to be run.
 (defmodel sediment-detrimental-farmers DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnual 
+        AnnualSedimentSource
         DepositionProneFarmers
         AnnualSedimentSink
         nil
@@ -346,7 +346,7 @@
 ;; models currently designed to be run.
 (defmodel sediment-detrimental-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         HydroelectricUseLevel
         AnnualSedimentSink
         nil
@@ -384,7 +384,7 @@
 ;; easily implemented in the future, however.
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-        SedimentSourceValueAnnual
+        AnnualSedimentSource
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSink
         nil
