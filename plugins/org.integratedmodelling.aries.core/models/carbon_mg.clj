@@ -117,7 +117,7 @@
 
 ;; Values of "1" correspond to high pH (>7.3), "2" to low pH (<5.5), "3-4" to intermediate pH (5.5-7.3)
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph Soilph
+(defmodel soil-ph SoilPh
   (classification (ranking habitat:SoilPhShallow)
     #{3 4} HighPh
     2      ModeratePh

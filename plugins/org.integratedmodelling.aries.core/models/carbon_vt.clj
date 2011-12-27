@@ -69,11 +69,9 @@
 
 (defmodel mean-annual-precip MeanAnnualPrecipitation
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [2500   :>] VeryHighMeanAnnualPrecipitation
-    [1500 2500] HighMeanAnnualPrecipitation
+    [1500   :>] HighMeanAnnualPrecipitation
     [1000 1500] ModerateMeanAnnualPrecipitation
-    [ 700 1000] LowMeanAnnualPrecipitation
-    [:<    700] VeryLowMeanAnnualPrecipitation))
+    [:<   1000] LowMeanAnnualPrecipitation))
 
 (defmodel soil-CN-ratio SoilCNRatio
   (classification (ranking habitat:SoilCNRatio)
@@ -88,7 +86,7 @@
     #{36 37 62} vermont:GrasslandHerbaceous
     63          vermont:Forest
     87          vermont:Wetland
-    #{61 82}    vermont:NoVegetation
+    #{61 82}    vermont:Unvegetated
     111         vermont:OpenWater))
 
 ;; Not used in the model but masks out carbon over open water

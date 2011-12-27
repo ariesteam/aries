@@ -137,7 +137,7 @@
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all
 ;; other ecosystem types
-(defmodel soil-ph Soilph
+(defmodel soil-ph SoilPh
   (classification (ranking habitat:SoilPhDeep)
     [7.3 :>]           HighPh
     [5.5 7.3]          ModeratePh

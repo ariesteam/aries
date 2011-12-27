@@ -92,7 +92,7 @@
     [35 :>] VeryHighCNRatio
     [20 35] HighCNRatio
     [10 20] LowCNRatio
-    [:< 10] VeryLowCNRatio)) 
+    [:< 10] VeryLowCNRatio))
 
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
   (classification (ranking habitat:HardwoodSoftwoodRatio)
@@ -141,13 +141,13 @@
     [16.70    :>] SteeplyDissectedToMountainous))
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all other ecosystem types
-(defmodel soil-ph Soilph
+(defmodel soil-ph SoilPh
   (classification (ranking habitat:SoilPhShallow)
     [7.3 :>]           HighPh
     [5.5 7.3]          ModeratePh
     [:exclusive 0 5.5] LowPh))
 
-                                        ; use NLCD layers to infer anoxic vs. oxic
+; use NLCD layers to infer anoxic vs. oxic
 (defmodel oxygen SoilOxygenConditions 
   (classification (numeric-coding nlcd:NLCDNumeric)
     #{90 95}   AnoxicSoils
@@ -155,9 +155,10 @@
 
 (defmodel fire-frequency FireFrequency
   (classification (measurement habitat:FireFrequency "/km^2")
-    [0.9 :>]   HighFireFrequency
-    [0.25 0.9] ModerateFireFrequency
-    [:< 0.25]  LowFireFrequency))
+    [0.9 :>]    HighFireFrequency
+    [0.25 0.9]  ModerateFireFrequency
+    [0.01 0.25] LowFireFrequency
+    [0    0.01] NoFireFrequency))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha"
@@ -328,7 +329,7 @@
      scenario. B2 is a world in which the emphasis is on local
      solutions to economic, social, and environmental sustainability,
      with continuously increasing population (lower than A2) and
-     intermediate economic development. "  )
+     intermediate economic development."  )
 
 (defmodel constrained-development-scenario puget:ConstrainedDevelopment
   (classification (numeric-coding puget:ENVISIONUrbanGrowthLULCConstrained2060) 
@@ -389,7 +390,7 @@ greenhouse gas emissions."
                       (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                       (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
-                (conc 'carbonService:LowFireFrequency)
+                (conc 'carbonService:NoFireFrequency)
                 (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
@@ -443,7 +444,7 @@ greenhouse gas emissions."
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'carbonService:LowFireFrequency)
+                  (conc 'carbonService:NoFireFrequency)
                   (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"

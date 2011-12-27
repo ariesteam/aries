@@ -126,7 +126,7 @@
 ;; Using deep soil pH for grasslands and deserts, shallow for all
 ;; other ecosystem types This should work OK with both global & SSURGO
 ;; data, but check to make sure.
-(defmodel soil-ph Soilph
+(defmodel soil-ph SoilPh
   (classification (ranking habitat:SoilPhDeep)
     [7.3 :>]           HighPh
     [5.5 7.3]          ModeratePh
