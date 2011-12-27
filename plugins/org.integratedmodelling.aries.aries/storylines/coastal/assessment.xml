@@ -198,9 +198,6 @@ published by CIESIN and is used directly.
 
   -->
 
-  <!-- Ferd: Why aren't atmospheric pressure or bathymetry written up
-       here - the two of those plus wind speed are inputs to the BN
-       for storm surge class. -->
   <page id="wind-speed-class">
     <concept>coastalProtection:WindSpeedClass</concept>
     <name>Wind speed</name>
@@ -212,7 +209,8 @@ published by CIESIN and is used directly.
     <p>Wind speed, used to model the storm surge.</p>
     <h1>Role in models</h1>
     <p>Wind speed, obtained here from historical storm records, is proportional to the
-    total potential damage inflicted by wind and waves and is used in the flow model
+    total potential damage inflicted by wind and waves. Storm surge
+    height and trajectory are used in the flow model
     to quantify the amount of damaging energy reaching coastal populations or assets
     or prevented from doing so by natural features.</p>
     <h1>Representation</h1>
@@ -233,6 +231,74 @@ published by CIESIN and is used directly.
     <plot-type default="true">geocontour-2d</plot-type>
   </page>
 
+  <page id="atmospheric-pressure-class">
+    <concept>coastalProtection:AtmosphericPressureClass</concept>
+    <name>Atmospheric pressure</name>
+    <title>Atmospheric pressure</title>
+    <runninghead>Atmospheric pressure.</runninghead>
+    <group>source</group>
+    <units>mb</units>
+    <description><![CDATA[
+    <p>Atmospheric pressure, used to model the storm surge.</p>
+    <h1>Role in models</h1>
+    <p>Atmospheric pressure, obtained here from historical storm records, is proportional to the
+    total potential damage inflicted by wind and waves. Storm surge
+    height and trajectory are used in the flow model
+    to quantify the amount of damaging energy reaching coastal populations or assets
+    or prevented from doing so by natural features.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of millibars atmospheric pressure.</p>
+    <h1>Source</h1>
+    <p>UNEP Division of Early Warning and Assessment Global Resource Information Database.</p>
+    ]]></description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/coast.html" target="_blank">The coastal flood regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://www.grid.unep.ch/data/gnv199.php">UNEP Global Cyclone Tracks Dataset.</a></br>
+    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
+  <page id="bathymetry-class">
+    <concept>coastalProtection:BathymetryClass</concept>
+    <name>Bathymetry</name>
+    <title>Bathymetry</title>
+    <runninghead>Bathymetry.</runninghead>
+    <group>source</group>
+    <units>m</units>
+    <description><![CDATA[
+    <p>Wind speed, used to model the storm surge.</p>
+    <h1>Role in models</h1>
+    <p>Ocean depth influences storm surge height, with larger waves typically
+    forming over shallower coastal waters. Storm surge
+    height and trajectory are used in the flow model
+    to quantify the amount of damaging energy reaching coastal populations or assets
+    or prevented from doing so by natural features.</p>
+    <h1>Representation</h1>
+    <p>The data are in physical units of meters.</p>
+    <h1>Source</h1>
+    <p>NASA ETOPO-1 Global Relief Model.</p>
+    ]]></description>
+    <see-also><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/coast.html" target="_blank">The coastal flood regulation section of the ARIES web site</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a
+    href="http://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/docs/ETOPO1.pdf">NASA ETOPO-1 Global
+    Relief Model.</a></br>
+    <b>Funding</b>: <a href="http://www.unep-wcmc.org" target="_blank">UNEP World Conservation Monitoring Centre</a>.
+    ]]></credits>
+    <plot-type>geosurface-2d</plot-type>
+    <plot-type default="true">geocontour-2d</plot-type>
+  </page>
+
   <page id="storm-surge-class">
     <concept>coastalProtection:StormSurgeClass</concept>
     <name>Storm surge</name>
@@ -246,7 +312,7 @@ published by CIESIN and is used directly.
     <p>This map shows results of a Bayesian model estimating the height of a potential storm surge based on wind speed
     and atmospheric pressure for a historic storm, as well as the ocean depth at a given location.  Greater wind
     speeds, lower atmospheric pressure, and shallower ocean depths are more likely to lead to greater storm surge
-    heights.  Height of the storm surge is in meters.</p>
+    heights.</p>
     <h1>Representation</h1>
     <p>The data are in physical units of meters.</p>
     <h1>Source</h1>
@@ -677,9 +743,7 @@ flows, but is used as an input to the flow models.
 ]]></credits>
 <plot-type>geosurface-2d</plot-type>
 <plot-type default="true">geocontour-2d</plot-type>
-</page>
-
-  -->
+</page>  -->
 
   <page id="potentially-damaging-wave-flow">
     <concept>coastalProtection:PossibleFlow</concept>
