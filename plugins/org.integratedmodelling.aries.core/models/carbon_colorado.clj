@@ -244,20 +244,20 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel identification-carbon ClimateStability
-  (identification ClimateStability
+(defmodel identification-carbon CarbonSequestrationAndStorage
+  (identification CarbonSequestrationAndStorage
     :context [source sink use-simple]))
 
 ;; Hack, remove when contexts are working properly.
 (defmodel identification-carbon-no-beetle colorado:ClimateStabilityNoBeetle
-  (identification ClimateStability
+  (identification CarbonSequestrationAndStorage
     :context [source sink-no-beetle use-simple]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel carbon-flow ClimateStability
+(defmodel carbon-flow CarbonSequestrationAndStorage
   (span CO2Removed
         CarbonSourceValue
         GreenhouseGasEmissions

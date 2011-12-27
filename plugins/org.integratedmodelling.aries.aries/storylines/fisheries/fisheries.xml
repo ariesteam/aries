@@ -21,10 +21,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <title>Subsistence fisheries</title>
   <runninghead>Values of fish to coastal populations</runninghead>
   <description>Valuation of fisheries resources</description>
+
   <!-- The concept of the main observation (the top-level model). -->
   <concept>aries:FisheriesAnalysis</concept>
 
-  <model-storyline>fisheries:SubsistenceFishProvision</model-storyline>
+  <!-- The storylines that this module can compute. One or more, and all their children scenarios are included. -->
+  <model-storyline>fisheries:SubsistenceFisheries</model-storyline>
 
   <page>
     <id>info</id>

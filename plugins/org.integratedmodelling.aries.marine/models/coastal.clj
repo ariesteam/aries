@@ -318,10 +318,10 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel coastal-protection-data CoastalStormProtection
+(defmodel coastal-protection-data CoastalFloodRegulation
   "Runs all the toplevel source, sink, use, and flow data models and
    collects their results."
-  (identification CoastalStormProtection
+  (identification CoastalFloodRegulation
     :context [coastal-wave-source-daisy
               coastal-wave-source-geralda
               coastal-wave-source-litanne
@@ -339,7 +339,7 @@
 
 ;;; We create two models per storm, differentiated by use type (assets vs. lives)
 
-(defmodel coastal-protection-flow-daisy-lives CoastalStormProtection
+(defmodel coastal-protection-flow-daisy-lives CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Daisy
    Use:    Lives at risk from cyclones"
@@ -378,7 +378,7 @@
                              BlockedSource
                              BlockedUse]))
 
-(defmodel coastal-protection-flow-geralda-lives CoastalStormProtection
+(defmodel coastal-protection-flow-geralda-lives CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Geralda
    Use:    Lives at risk from cyclones"
@@ -417,7 +417,7 @@
                              BlockedSource
                              BlockedUse]))
 
-(defmodel coastal-protection-flow-litanne-lives CoastalStormProtection
+(defmodel coastal-protection-flow-litanne-lives CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Litanne
    Use:    Lives at risk from cyclones"
@@ -456,7 +456,7 @@
                              BlockedSource
                              BlockedUse]))
 
-(defmodel coastal-protection-flow-daisy-assets CoastalStormProtection
+(defmodel coastal-protection-flow-daisy-assets CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Daisy
    Use:    Property at risk from cyclones"
@@ -495,7 +495,7 @@
                              BlockedSource
                              BlockedUse]))
 
-(defmodel coastal-protection-flow-geralda-assets CoastalStormProtection
+(defmodel coastal-protection-flow-geralda-assets CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Geralda
    Use:    Property at risk from cyclones"
@@ -534,7 +534,7 @@
                              BlockedSource
                              BlockedUse]))
 
-(defmodel coastal-protection-flow-litanne-assets CoastalStormProtection
+(defmodel coastal-protection-flow-litanne-assets CoastalFloodRegulation
   "Computes SPAN flow results for coastal storm protection.
    Source: Tropical Storm Litanne
    Use:    Property at risk from cyclones"

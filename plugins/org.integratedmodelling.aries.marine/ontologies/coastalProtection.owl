@@ -487,6 +487,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalFloodRegulation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalFloodRegulation">
+        <rdfs:subClassOf rdf:resource="&eserv;RivalBenefit"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalFloodSink -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#CoastalFloodSink">
@@ -2046,36 +2054,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighSeagrassDensity"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowSeagrassDensity"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSeagrassDensity"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoSeagrassDensity"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToLife"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToLife"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToLife"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToLife"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighBleaching"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateBleaching"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoBleaching"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToAssets"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToAssets"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToAssets"/>
-            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToAssets"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2094,6 +2075,33 @@
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowCoastalFloodProtection"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateCoastalFloodProtection"/>
             <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoCoastalFloodProtection"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToLife"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToLife"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToLife"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToLife"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighRiskToAssets"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowRiskToAssets"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateRiskToAssets"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoRiskToAssets"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#HighSeagrassDensity"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#LowSeagrassDensity"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#ModerateSeagrassDensity"/>
+            <rdf:Description rdf:about="http://www.integratedmodelling.org/ks/eserv/services/marine/coastalProtection.owl#NoSeagrassDensity"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

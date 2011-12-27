@@ -25,7 +25,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- The concept of the main observation (the top-level model). -->
   <concept>aries:WaterProvisionAnalysis</concept>
 
-  <model-storyline>waterSupplyService:SurfaceWaterMovement</model-storyline>
+  <!-- The storylines that this module can compute. One or more, and all their children scenarios are included. -->
+  <model-storyline>waterSupplyService:FreshwaterSupply</model-storyline>
 
   <page>
     <id>info</id>

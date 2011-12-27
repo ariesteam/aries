@@ -288,20 +288,20 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel identification-carbon ClimateStability
-  (identification ClimateStability
+(defmodel identification-carbon CarbonSequestrationAndStorage
+  (identification CarbonSequestrationAndStorage
     :context [source sink use-simple]))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel identification-carbon-sj ClimateStability
-  (identification ClimateStability
+(defmodel identification-carbon-sj CarbonSequestrationAndStorage
+  (identification CarbonSequestrationAndStorage
     :context [source-sj sink-sj use-simple]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel carbon-flow ClimateStability
+(defmodel carbon-flow CarbonSequestrationAndStorage
   (span CO2Removed
         CarbonSourceValue
         GreenhouseGasEmissions

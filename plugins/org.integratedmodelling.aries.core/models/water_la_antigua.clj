@@ -323,7 +323,7 @@
 ;;;-------------------------------------------------------------------
 
 ;; flow model for surface water
-(defmodel surface-flow SurfaceWaterMovement
+(defmodel surface-flow FreshwaterSupply
   (span SurfaceWaterMovement
         AnnualPrecipitation
         TotalSurfaceWaterUse

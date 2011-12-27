@@ -228,7 +228,7 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel fisheries-subsistence-data SubsistenceFishProvision
+(defmodel fisheries-subsistence-data SubsistenceFisheries
   "Runs all the toplevel source, use, and flow data models and
    collects their results."
   (identification SubsistenceFishProvision
@@ -241,12 +241,12 @@
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel fisheries-ass-saver SubsistenceFishProvision
+(defmodel fisheries-ass-saver SubsistenceFisheries
   "Ferd's legendary fisheries SPANK model."
   (modelling/spank SubsistenceFishProvision
                    :context [total-pelagic-subsistence-harvest subsistence-fishing paths population-density]))
 
-(defmodel fisheries-subsistence-flow SubsistenceFishProvision
+(defmodel fisheries-subsistence-flow SubsistenceFisheries
   "Computes SPAN flow results for subsistence fisheries."
   (span SubsistenceFishAccessibility
         TotalSubsistenceHarvest

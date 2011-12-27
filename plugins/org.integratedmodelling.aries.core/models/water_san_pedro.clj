@@ -350,7 +350,7 @@
 ;;;-------------------------------------------------------------------
 
 ;; Flow model for surface water in a dry year
-(defmodel surface-flow-dry SurfaceWaterMovement
+(defmodel surface-flow-dry FreshwaterSupply
   (span SurfaceWaterMovement
         AnnualPrecipitationDryYear
         SurfaceDiversionCapacity
@@ -390,7 +390,7 @@
                              BlockedUse]))
 
 ;; Flow model for surface water in a wet year
-(defmodel surface-flow-wet SurfaceWaterMovement
+(defmodel surface-flow-wet FreshwaterSupply
   (span SurfaceWaterMovement
         AnnualPrecipitationWetYear
         SurfaceDiversionCapacity

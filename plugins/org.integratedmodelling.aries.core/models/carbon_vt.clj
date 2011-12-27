@@ -1,4 +1,4 @@
-;;; Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
+;;; Copyright 2011 The ARIES Consortium (http://www.ariesonline.org
 ;;;
 ;;; This file is part of ARIES.
 ;;;
@@ -110,8 +110,8 @@
     [0 0.01]   NoSequestration))
 
 ;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source CarbonSourceValue
+  (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceVt.xdsl"
     :context  [summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope]
     :required [SlopeClass]
@@ -130,32 +130,32 @@
 ;; from land conversion and fire).
 
 (defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
     [100 300] VeryHighVegetationStorage ; High value bound from Smith et al. (2006); check with local experts.
     [50 100]  HighVegetationStorage
     [25 50]   ModerateVegetationStorage
     [10 25]   LowVegetationStorage
     [0.01 10] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))   
+    [0 0.01]  NoVegetationStorage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage 
-  (bayesian VegetationCStorage 
+(defmodel vegetation-carbon-storage VegetationCStorage
+  (bayesian VegetationCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type summer-high-winter-low mean-annual-precip]
     :keep    [VegetationCarbonStorage]
     :result   veg-storage))
 
 (defmodel soil-storage SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha"
     [60 100] VeryHighSoilStorage  ; High value bound from Smith et al. (2006); check with local experts.
     [35 60]  HighSoilStorage
     [10 35]  ModerateSoilStorage
     [5 10]   LowSoilStorage
     [0.01 5] VeryLowSoilStorage
-    [0 0.01] NoSoilStorage))   
+    [0 0.01] NoSoilStorage))
 
-(defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage 
+(defmodel soil-carbon-storage SoilCStorage
+  (bayesian SoilCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type soil-CN-ratio]
     :keep    [SoilCarbonStorage]
@@ -168,7 +168,7 @@
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 (defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
-  (classification vegetation-soil-storage 
+  (classification vegetation-soil-storage
     [150 400] VeryHighStorage
     [75 150]  HighStorage
     [40 75]   ModerateStorage
@@ -185,8 +185,8 @@
     [0.01 5] VeryLowRelease
     [0 0.01] NoRelease))
 
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel sink CarbonSinkValue
+  (bayesian CarbonSinkValue
     :import   "aries.core::CarbonSinkVt.xdsl"
     :context  [veg-soil-storage]
     :required [SlopeClass]
@@ -204,15 +204,15 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel identification-carbon ClimateStability
-  (identification ClimateStability
+(defmodel identification-carbon CarbonSequestrationAndStorage
+  (identification CarbonSequestrationAndStorage
     :context [source sink use-simple]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel carbon-flow ClimateStability
+(defmodel carbon-flow CarbonSequestrationAndStorage
   (span CO2Removed
         CarbonSourceValue
         GreenhouseGasEmissions

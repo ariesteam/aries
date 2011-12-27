@@ -25,7 +25,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- The concept of the main observation (the top-level model). -->
   <concept>aries:RecreationAnalysis</concept>
 
-  <model-storyline>recreationService:OutdoorRecreation</model-storyline>
+  <!-- The storylines that this module can compute. One or more, and all their children scenarios are included. -->
+  <model-storyline>recreationService:MountainViewUse</model-storyline>
+  <model-storyline>recreationService:BirdingUse</model-storyline>
+  <model-storyline>recreationService:HuntingUse</model-storyline>
+  <model-storyline>recreationService:WildlifeViewingUse</model-storyline>
 
   <page>
     <id>info</id>

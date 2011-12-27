@@ -182,7 +182,7 @@
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel view AestheticView
+(defmodel view AestheticViewsheds
   (span LineOfSight 
         AestheticViewProvision
         ViewUse

@@ -240,7 +240,7 @@
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel surface-flow SurfaceWaterMovement
+(defmodel surface-flow FreshwaterSupply
   (span SurfaceWaterMovement
         AnnualRunoffSummed
         TotalSurfaceWaterUse

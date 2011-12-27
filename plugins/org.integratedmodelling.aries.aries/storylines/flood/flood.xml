@@ -25,12 +25,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- The concept of the main observation (the top-level model). -->
   <concept>aries:FloodProtectionAnalysis</concept>
 
-  <!-- Fix this, obviously: there are multiple separate flow concepts
-       for flood so it's not clear what this concept should be.
-
-  <model-storyline>floodService:??</model-storyline>
-
-  -->
+  <!-- The storylines that this module can compute. One or more, and all their children scenarios are included. -->
+  <model-storyline>floodService:AvoidedDamageToResidents500</model-storyline>
+  <model-storyline>floodService:AvoidedDamageToResidents100</model-storyline>
+  <model-storyline>floodService:AvoidedDamageToPublicAssets500</model-storyline>
+  <model-storyline>floodService:AvoidedDamageToPublicAssets100</model-storyline>
+  <model-storyline>floodService:AvoidedDamageToFarms500</model-storyline>
+  <model-storyline>floodService:AvoidedDamageToFarms100</model-storyline>
 
   <page>
     <id>info</id>
