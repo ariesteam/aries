@@ -128,7 +128,7 @@
     :context  [soil-group slope soil-texture soil-erodibility precipitation-annual  
                storm-probability runoff vegetation-type percent-canopy-cover]
     :required [SlopeClass]
-    :keep     [SedimentSourceValueAnnualClass]
+    :keep     [AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 ;; Add deterministic model for USLE: Have data for it for the western U.S. and globally.
@@ -216,7 +216,7 @@
                 0))) 
 
 ;; Models farmland in regions with erodible soils via basic spatial overlap.
-;; FV FIXME I don't see any SedimentSourceValueAnnual in the context?
+;; FV FIXME I don't see any AnnualSedimentSource in the context?
 ;; Gary, is the context now correct to use the annual sediment source value properly?
 (defmodel farmers-erosion-use-mg ErosionProneFarmers
   (ranking ErosionProneFarmers

@@ -115,8 +115,8 @@
 ;;Sediment source value - we have evidence for this but can't yet
 ;; train so keep this commented out for now and use the
 ;; undiscretization statement below (?)
-;;(defmodel sediment-source-value-annual SedimentSourceValueAnnualClass
-;; (classification (measurement SedimentSourceValueAnnualClass "kg/ha")
+;;(defmodel sediment-source-value-annual AnnualSedimentSourceClass
+;; (classification (measurement AnnualSedimentSourceClass "kg/ha")
 ;;    [100000 :>]          HighAnnualSedimentSource
 ;;    [30000 100000]       ModerateAnnualSedimentSource
 ;;    [:exclusive 0 30000] LowAnnualSedimentSource 
@@ -138,7 +138,7 @@
                vegetation-type percent-canopy-cover
                successional-stage mountain-pine-beetle]
     :required [SlopeClass]
-    :keep     [SedimentSourceValueAnnualClass]
+    :keep     [AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 (defmodel source-no-fire AnnualSedimentSourceNoFire ; Delete this
@@ -150,7 +150,7 @@
                vegetation-type percent-canopy-cover
                successional-stage]
     :required [SlopeClass]
-    :keep     [SedimentSourceValueAnnualClass]
+    :keep     [AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 ;; Add deterministic model for USLE: Have data for it for the western
