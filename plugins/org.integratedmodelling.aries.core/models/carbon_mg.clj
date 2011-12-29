@@ -255,7 +255,7 @@
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel carbon-flow CarbonSequestrationAndStoragey
+(defmodel carbon-flow CarbonSequestrationAndStorage
   (span CO2Removed
         CarbonSourceValue
         GreenhouseGasEmissions
