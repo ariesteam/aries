@@ -117,20 +117,17 @@
     "Mollisols"   colorado:Mollisols
     "Water"       colorado:Water))
 
-(defmodel beetle-kill colorado:MountainPineBeetleDamageClass ; Values
-                                        ; in trees killed/ac: not a
-                                        ; thinklab-recognized unit, so
-                                        ; keep as a ranking.
-  (classification (ranking colorado:MountainPineBeetleDamageTreesPerAcre)
-    [17.6 500] colorado:SevereDamage
-    [ 2 17.6]  colorado:ModerateDamage
-    [  1  2]   colorado:LowDamage
-    :otherwise colorado:NoDamage))
+(defmodel beetle-kill colorado:MountainPineBeetleDamageClass
+  (classification (count colorado:MountainPineBeetleDamageTreesPerAcre "/ac")
+    [17.6 500]   colorado:SevereDamage
+    [ 2    17.6] colorado:ModerateDamage
+    [ 1     2]   colorado:LowDamage
+    :otherwise   colorado:NoDamage))
 
 (defmodel fire-threat FireThreatClass ; This is actually fire return
                                       ; interval data, but uses
                                       ; student discretization.
-  (classification (ranking habitat:FireThreat) 
+  (classification (numeric-coding habitat:FireThreat) 
     [ 2   9] VeryHighFireThreat
     [ 9  12] HighFireThreat
     [12  18] ModerateFireThreat

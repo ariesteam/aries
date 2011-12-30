@@ -1441,7 +1441,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_africa</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5361,7 +5360,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:Ranking id="fire_return_interval_co">
+  <measurement:NumericCoding id="fire_return_interval_co">
     <observation:hasObservable>
       <habitat:FireThreat/>
     </observation:hasObservable>
@@ -5386,7 +5385,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:NumericCoding>
 
   <measurement:Ranking id="Reclass_fthr1">
     <observation:hasObservable>
@@ -6312,12 +6311,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="colorado_mpb_damage_co">
+<!-- Commented out until Ferd enables acres as a legal unit in Thinklab.
+  <measurement:Count id="colorado_mpb_damage_co">
     <observation:hasObservable>
       <colorado:MountainPineBeetleDamageTreesPerAcre/>
     </observation:hasObservable>
     <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>/ac</measurement:unit>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -6335,7 +6336,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Count> -->
 
   <measurement:NumericCoding id="mourning_240">
     <observation:hasObservable>
@@ -7010,7 +7011,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_asia_pacific</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7038,7 +7038,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_europe_asia</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7066,7 +7065,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_north_america</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7094,7 +7092,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_south_america</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10133,6 +10130,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>vermont:crop_data_vt</geospace:hasCoverageId>
+        <geospace:hasNodataValue>0.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>

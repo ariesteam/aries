@@ -33,7 +33,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   
   <model>
     <id>core.models.carbon-puget/identification-carbon</id>
-    <context>core.contexts.beta/western_wa512</context>
+    <context>core.contexts.beta/wa_or_carbon</context>
   </model>
 
   <model>
@@ -48,7 +48,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <model>
     <id>core.models.carbon-san-pedro/identification-carbon</id>
-    <context>core.contexts.beta/san_pedro_us512</context>
+    <context>core.contexts.beta/arizona2048</context>
   </model>
 
   <model>
@@ -63,7 +63,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <title>Introduction</title>
     <runninghead>CO<sub>2</sub> sequestration and storage.</runninghead>
     <description language="html"><![CDATA[
-    <p>This storyline computes estimates carbon sequestration by
+    <p>This storyline computes estimates of carbon sequestration by
     terrestrial ecosystems - the net removal of carbon dioxide
     (CO<sub>2</sub>) from the atmosphere and the avoidance of CO<sub>2</sub> emissions
     from terrestrial ecosystems into the atmosphere via fire or
@@ -102,8 +102,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-    <a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    <a href="http://www.ipcc.ch" target="_blank">IPCC website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -123,7 +123,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>Actual evapotranspiration has a strong relationship with primary productivity (hence carbon sequestration, and indirectly carbon
     storage), becoming particularly important in water-limited environments.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to the sequestration (source) and potential stored carbon release (sink) models.</p>
+    <p>Data are used as an input to the sequestration (source) and potential stored carbon release (sink) models.</p>
     <h1>Representation</h1>
     <p>Data are in physical units of mm/year.</p>
     <h1>Source</h1>
@@ -131,7 +131,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -144,25 +144,24 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:SoilCNRatio</concept>
-    <name>C/N ratio</name>
+    <name>Soil C:N ratio</name>
     <title>Soil C:N ratio</title>
     <runninghead>Ratio of carbon to nitrogen in soils.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>The ratio of carbon to nitrogen in soils influences the rate of sequestration
-    of carbon from the vegetation, along with temperature ranges, land cover, vegetation
-    types and evapotranspiration.  In some ecosystems, carbon sequestration and storage
+    <p>The ratio of carbon to nitrogen in soils influences the rate of
+    carbon sequestration.  In some ecosystems, carbon sequestration and storage
     are predicted to be greater under higher soil C:N ratio values.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to the sequestration (source) model.</p>
+    <p>Data are used as an input to the sequestration model.</p>
     <h1>Representation</h1>
-    <p>Data are a unitless ratio of soil carbon:nitrogen concentrations.</p>
+    <p>Data are a unitless ratio of soil carbon:nitrogen content.</p>
     <h1>Source</h1>
-    <p>The data are derived from the FAO Global Soil database.</p>
+    <p>The data are derived from FAO Global Soils data.</p>
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -175,28 +174,30 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:SummerHighWinterLow</concept>
-    <name>Seasonality</name>
+    <name>Seasonal temperature range</name>
     <title>Summer - winter temperature range</title>
-    <runninghead>The difference between mean summer high and winter low
-    temperatures.</runninghead>
+    <runninghead>The difference between mean summer high and winter
+    low temperatures.</runninghead>
     <group>source, sink</group>
     <units>degrees centigrade</units>
     <description language="html"><![CDATA[
     <p>The difference between mean summer high and winter low
-    temperatures can be a meaningful predictor of net primary production.</p>
+    temperatures can be a meaningful predictor of ecosystem net primary
+    production.</p>
     <h1>Role in models</h1>
     <p>These data were derived from global mean temperature data and are used
-    as an input in the ARIES carbon models for both carbon sequestration and
-    storage. Seasonality is predicted to affect carbon sequestration and storage,
+    as an input in the ARIES carbon sequestration and
+    storage models. Seasonality is predicted to affect carbon sequestration and storage,
     with greater sequestration and storage under lower seasonal temperature variability.</p>
     <h1>Representation</h1>
     <p>The data are in physical units of degrees centigrade.</p>
     <h1>Source</h1>
-    <p>This map has been reclassified from globally available data provided by WorldClim.</p>
+    <p>This map has been reclassified from globally available
+    WorldClim climate data.</p>
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -218,12 +219,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     The rate of succession, type of late successional plant community,
     and importance of succession in predicting ecosystem carbon sequestration
     and storage will vary widely in different ecosystems. Generally, we predict
-    greater carbon storage in late successional ecosystems and greater
-    sequestration in early to mid successional ecosystems.
+    greater carbon storage in late-successional ecosystems and greater
+    sequestration in early- to mid-successional ecosystems.
     </p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -231,7 +232,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -249,12 +250,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Percent tree canopy cover.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Tree canopy data influences both carbon sequestration and
+    <p>Tree canopy cover influences both carbon sequestration and
     storage in most environments.  We generally predict greater carbon
     sequestration and storage in areas with greater tree canopy cover.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage.</p>
     <h1>Representation</h1>
     <p>Data are the percentage of the ground surface covered by tree canopy.</p>
     <h1>Source</h1>
@@ -262,11 +263,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Data sources</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -280,14 +281,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>The ratio of hardwood to softwood tree species.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Softwood and hardwood tree species grow at different rates, so they sequester and
-    store atmospheric carbon in different ways. Generally, we assume softwoods will grow
+    <p>Softwood and hardwood tree species grow at different rates, thus sequestering and
+    storeing atmospheric carbon differently. Generally, we assume softwoods will grow
     and sequester carbon at a greater rate early in their life, while hardwoods will grow
     more slowly (i.e., sequester less carbon annually) but will store more carbon in mature
-    hardwood forests).</p>
+    hardwood forests.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -295,7 +296,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -309,30 +310,30 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:MeanAnnualPrecipitation</concept>
-    <name>Precipitation</name>
+    <name>Annual precipitation</name>
     <title>Mean annual precipitation</title>
     <runninghead>Mean annual precipitation.</runninghead>
     <group>source, sink</group>
     <units>mm percipitation/year</units>
-    <description>
+    <description language="html"><![CDATA[
       <p>Ecosystems in regions with greater mean annual precipitation generally have greater carbon sequestration
       and/or storage.  Precipitation is particularly important in water-limited environments, where annual variation
       in precipitation strongly influences annual carbon sequestration.</p>
       <h1>Role in models</h1>
-      <p>Data are used as input to compute carbon sequestration and
-      storage distributions, particularly in arid environments.</p>
+      <p>Data are used as an input to compute carbon sequestration and
+      storage, particularly in arid environments.</p>
       <h1>Representation</h1>
       <p>The data are in physical units of millimeters of precipitation.</p>
-      <h1>Source</h1>
+      <h1>Sources</h1>
       <p>PRISM Climate Group (U.S. data); WorldClim (global data).</p>
-    </description>
+    ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Data sources</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a>.</br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -343,14 +344,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>southernCalifornia:LandCover</concept>
     <name>Land cover</name>
     <title>Land cover</title>
-    <runninghead>Land cover type helps determine sequestration and storage capacities.</runninghead>
+    <runninghead>Land cover type.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
     <p>Different land cover types have different carbon
     sequestration rates and different capacity to store carbon.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage across ecosystems such as forests, grasslands, and urban areas.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -358,7 +359,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -373,14 +374,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>colorado:CarbonVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <runninghead>Vegetation type.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Different plant communities or land cover types have different carbon
+    <p>Different plant communities have different carbon
     sequestration rates and different capacity to store carbon.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage across ecosystems such as forests, grasslands, and urban areas.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -388,7 +389,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -405,14 +406,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>sanPedro:CarbonVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <runninghead>Vegetation type.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Different plant communities or land cover types have different carbon
+    <p>Different plant communities have different carbon
     sequestration rates and different capacity to store carbon.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage across ecosystems such as forests, grasslands, and urban areas.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -420,7 +421,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -437,25 +438,29 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>southernCalifornia:CarbonVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <runninghead>Vegetation type.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Different plant communities or land cover types have different carbon
+    <p>Different plant communities have different carbon
     sequestration rates and different capacity to store carbon.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage across ecosystems such as forests, grasslands, and urban areas.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
-    <p>USDA Forest Service vegetation type data.</p>
+    <p>USDA Forest Service/CALVEG vegetation type data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://www.fs.fed.us/r5/rsl/clearinghouse/gettiles.shtml"
+    target="_blank">CALVEG vegetation data, distributed by USDA Forest
+    Service.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -466,14 +471,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>vermont:CarbonVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type helps determine sequestration and storage capacities.</runninghead>
+    <runninghead>Vegetation type.</runninghead>
     <group>source, sink</group>
     <description language="html"><![CDATA[
-    <p>Different plant communities or land cover types have different carbon
+    <p>Different plant communities have different carbon
     sequestration rates and different capacity to store carbon.</p>
     <h1>Role in models</h1>
-    <p>Data are used as input to compute carbon sequestration and
-    storage distributions across ecosystems such as forests, grasslands, and urban areas.</p>
+    <p>Data are used as an input to compute carbon sequestration and
+    storage across ecosystems such as forests, grasslands, and urban areas.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -481,7 +486,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -495,12 +500,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>carbonService:ForestDegradationStatus</concept>
     <name>Forest degradation</name>
     <title>Level of forest degradation</title>
-    <runninghead>Degradation of forests can reduce carbon sequestration and storage.</runninghead>
+    <runninghead>Forest degradation.</runninghead>
     <group>source, sink</group>
     <description><![CDATA[
-    <p>Where forest degradation data are available, it can be used to train
-    probabilistic models so that its effect is taken into consideration in
-    predicting carbon sequestration and storage.</p>
+    <p>Degraded forests are expected to sequester and store less
+    carbon than healthier forests.</p>
     <h1>Role in models</h1>
     <p>Forest degradation data are available for Madagascar, a nation with high deforestation rates
     and levels of forest degradation.  In degraded forests, we expect lower levels of carbon sequestration and storage.</p>
@@ -511,7 +515,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -526,7 +530,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>carbonService:VegetationAndSoilCarbonSequestration</concept>
     <name>Atmospheric CO<sub>2</sub> removed</name>
     <title>Carbon sequestration</title>
-    <runninghead>Tonnes of C sequestered by vegetation and soils.</runninghead>
+    <runninghead>Carbon sequestration by ecosystems.</runninghead>
     <group>source</group>
     <units>tonnes C/ha.year</units>
     <description language="html"><![CDATA[
@@ -549,8 +553,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-    <a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    <a href="http://www.ipcc.ch" target="_blank">IPCC website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -568,24 +572,25 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <title>Soil pH</title>
     <runninghead>Soil pH.</runninghead>
     <group>sink</group>
-    <description>
+    <description language="html"><![CDATA[
       <h1>Role in models</h1>
-      <p>Soil pH influences the amount of carbon stored in soils.  At low pH, fungi and microbes responsible
+      <p>Soil pH influences soil carbon storage.  At low pH, fungi and microbes responsible
       for soil respiration are less common and active, resulting in greater buildup of soil organic matter.
-      At high pH, soils more commonly contain carbonate rocks that both store carbon and keep pH high.  Many
-      high-pH soils also contain clays that can strongly adhere to organic matter.</p>
+      At high pH, soils more commonly contain carbonate rocks that store carbon.  Many
+      high-pH soils also contain clays that can strongly adhere to
+      carbon-containing organic matter.</p>
       <h1>Representation</h1>
       <p>The data are in physical units on the pH scale.</p>
       <h1>Sources</h1>
-      <p>SSURGO soils data (U.S. data); FAO data (global data).</p>
+      <p>SSURGO soils data (U.S. data); FAO data (global data).</p>]]>
     </description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database,</a> FAO Soils Database.</br>
+    <b>Data sources</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database,</a> FAO Soils Database.</br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -600,15 +605,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>sink</group>
     <units>persons/km2</units>
     <description language="html"><![CDATA[
-    <p>Population density can influences carbon storage. In tropical nations with high
+    <p>In tropical nations with high
     direct dependence on forests for firewood and other ecosystem goods, higher population density
     can lead to lower levels of forest carbon storage as woody debris and biomass are removed
     for direct human use.</p>
     <h1>Role in models</h1>
-    <p>These data are used to estimate the quantity of carbon stored in vegetation, with lower carbon storage assumed at greater population
-    density, particularly in rural subsistence economies .</p>
+    <p>These data are used to estimate the quantity of carbon stored in vegetation, with less carbon storage assumed at greater population
+    density in rural subsistence economies.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of persons per square kilometer. Gaston et al. (1998) define the discretization used here to model population density
+    <p>The data are in physical units of persons per square kilometer.
+    Gaston et al. (1998) define our discretization in modeling population density
     effects on carbon storage.</p>
     <h1>Source</h1>
     <p>LANDSCAN global population density (Oak Ridge National Laboratory).</p>
@@ -618,7 +624,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     Gaston, G., S. Brown, M. Lorenzini, and K.D. Singh. 1998.  State and change in
     carbon pools in the forests of tropical Africa.  Global Change Biology
     4: 97-114.<br/>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -633,11 +639,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>carbonService:SlopeClass</concept>
     <name>Slope</name>
     <title>Slope</title>
-    <runninghead>Slope determines likelihood that soil can potentially be eroded and soil carbon lost.</runninghead>
+    <runninghead>Slope.</runninghead>
     <group>sink</group>
     <units>degrees slope</units>
     <description><![CDATA[
-    <p>Soil on slopes can be more easily washed away, particularly in the absence of protective
+    <p>Soil on steep slopes can be more easily washed away, particularly in the absence of protective
     vegetation.</p>
     <h1>Role in models</h1>
     <p>Areas on steep slopes are predicted to have lower levels of soil carbon storage,
@@ -649,7 +655,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -664,29 +670,33 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>carbonService:SoilOxygenConditions</concept>
     <name>Soil oxygen</name>
     <title>Soil oxygen conditions</title>
-    <runninghead>The presence of oxygen allows soil respiration to occur, releasing CO<sub>2</sub> from soils.</runninghead>
+    <runninghead>The presence of wetlands with anoxic soils.</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>The presence of oxygen (aerobic environments) in soils allows respiration to take place,
     with CO<sub>2</sub> being released. In anaerobic environments such as wetlands, minimal soil
     respiration occurs, and greater buildup of soil carbon can occur (though generation of methane,
-    a powerful greenhouse gas) often also occurs.  Wetland degradation, such as through declining
-    water tables, can also allow oxidation of soil carbon, reducing their carbon storage.</p>
+    a powerful greenhouse gas often also occurs).  Declining water
+    tables that cause wetland degradation can also allow oxidation of soil carbon, reducing their carbon storage.</p>
     <h1>Role in models</h1>
     <p>Greater soil carbon storage is expected in wetland than upland environments, all else being equal.
     We currently do not consider the role of methane production by wetlands in the ARIES carbon models.</p>
     <h1>Representation</h1>
     <p>Data are represented as the presence/absence of wetlands.</p>
     <h1>Source</h1>
-    <p>Land cover data, such as the U.S. NLCD, global GLC2000, or European CORINE datasets
-    are used to identify the presence of wetlands.</p>
+    <p>Land cover data, such as the NLCD (U.S.), GLC2000 (global), or
+    CORINE (Europe) datasets are used to identify the presence of wetlands.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
+<b>Data sources</b>: <a href="http://www.mrlc.gov/"
+target="_blank">National Land Cover Dataset,</a> <a href="http://bioval.jrc.ec.europa.eu/products/glc2000/glc2000.php"
+target="_blank">Global Land Cover 2000 Dataset,</a><a href="http://www.eea.europa.eu/data-and-maps/data#c12=corine+land+cover+version+13"
+target="_blank">CORINE European Land Cover Dataset.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -695,9 +705,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:VegetationCarbonStorage</concept>
-    <name>Carbon storage in vegetation</name>
+    <name>Vegetation carbon storage</name>
     <title>Carbon storage in vegetation</title>
-    <runninghead>Carbon storage in vegetation, measured in tonnes.</runninghead>
+    <runninghead>Carbon storage in vegetation.</runninghead>
     <group>sink</group>
     <units>tonnes C/ha</units>
     <description language="html"><![CDATA[
@@ -717,8 +727,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-    <a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    <a href="http://www.ipcc.ch" target="_blank">IPCC website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -744,11 +754,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
-    <p>USDA-NRCS.</p>
+    <p>Digitized from USDA-NRCS data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -760,9 +770,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:SoilCarbonStorage</concept>
-    <name>Carbon storage in soils</name>
+    <name>Soil carbon storage</name>
     <title>Carbon storage in soils</title>
-    <runninghead>Carbon storage in soils, measured in tonnes.</runninghead>
+    <runninghead>Carbon storage in soils.</runninghead>
     <group>sink</group>
     <units>tonnes C/ha</units>
     <description language="html"><![CDATA[
@@ -782,8 +792,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-    <a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    <a href="http://www.ipcc.ch" target="_blank">IPCC website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -797,24 +807,24 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:VegetationAndSoilCarbonStorageClass</concept>
-    <name>Carbon storage in vegetation and soils</name>
+    <name>Vegetation and soil carbon storage</name>
     <title>Carbon storage in vegetation and soils</title>
-    <runninghead>Carbon storage in vegetation and soils, measured in tonnes.</runninghead>
+    <runninghead>Carbon storage in vegetation and soils.</runninghead>
     <group>sink</group>
     <units>tonnes C/ha</units>
     <description language="html"><![CDATA[
-    <p>CO<sub>2</sub> stored in soils.</p>
+    <p>CO<sub>2</sub> stored in vegetation and soils.</p>
     <h1>Role in models</h1>
     <p>This map shows the sum of vegetation and soil carbon storage, each of which were calculated using a Bayesian model. Estimates of the risk                of fire, deforestation, or land use change can then be used to estimate potential stored carbon release.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of tonnes of carbon stored in vegetation and soils per hectare.</p>
+    <p>The data are in physical units of tonnes of carbon per hectare stored in vegetation and soils.</p>
     <h1>Source</h1>
     <p>This map has been generated by summing vegetation and soil carbon storage results.</p>
     ]]></description>
     <see-also><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
-    <a href="http://www.ipcc.ch" target="_blank">IPCC web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    <a href="http://www.ipcc.ch" target="_blank">IPCC website</a><br/>
     </p>
     ]]></see-also>
     <credits><![CDATA[
@@ -830,13 +840,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>colorado:MountainPineBeetleDamageClass</concept>
     <name>Mountain pine beetle damage class</name>
     <title>Mountain pine beetle damage class</title>
-    <runninghead>Mountain pine beetle damage class.</runninghead>
+    <runninghead>Mountain pine beetle damage.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Mountain pine beetle _(Dendroctonus ponderosae)_ is a native of
-    forests of western North America. Periodic mountain pine beetle
+    <p>Mountain pine beetle _(Dendroctonus ponderosae)_ is native to
+    western North American forests. Periodic mountain pine beetle
     outbreaks impact multiple ecosystem services in these regions by
-    killing large numbers of native pine trees.</p>
+    killing large numbers of native pines.</p>
     <h1>Role in models</h1>
     <p>Mountain pine beetle mortality affects forest flamability, as
     well as the quantity of live versus standing dead or downed wood
@@ -849,7 +859,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -861,26 +871,25 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:FireFrequency</concept>
-    <name>Fire</name>
+    <name>Fire frequency</name>
     <title>Fire frequency</title>
     <runninghead>Fire frequency.</runninghead>
     <group>sink</group>
-    <description>
-      <p>Fires are an important and in some cases predictable variable in
-      determining release of carbon stored in biomass and soils.</p>
+    <description><![CDATA[
+      <p>Fires are a major landscape process that release carbon stored in biomass and soils.</p>
       <h1>Role in models</h1>
       <p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
-      ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+      ecosystem influence the amount of stored carbon that can be released by deforestation or fire.
       Fire is a strong influence on carbon dynamics in fire-adapted systems or those that have been altered
       by fire supression or invasive species, and is a weaker influence in colder and wetter climates.</p>
       <h1>Representation</h1>
       <p>Data are categorical.</p>
       <h1>Source</h1>
       <p>State-level data on fire frequency and fire prone vegetation types.</p>
-    </description>
+    ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -897,11 +906,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Fire threat class.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Fires are an important and in some cases predictable variable in
-    determining release of carbon stored in biomass and soils.</p>
+    <p>Fires are a major landscape process that release carbon stored in biomass and soils.</p>
     <h1>Role in models</h1>
     <p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
-    ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
+    ecosystem influence the amount of stored carbon that can be
+    released by deforestation or fire.
     Fire is a strong influence on carbon dynamics in fire-adapted systems or those that have been altered
     by fire supression or invasive species, and is a weaker influence in colder and wetter climates.</p>
     <h1>Representation</h1>
@@ -911,7 +920,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -923,17 +932,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:DeforestationRiskClass</concept>
-    <name>Deforestation</name>
+    <name>Deforestation risk</name>
     <title>Risk of deforestation</title>
-    <runninghead>Deforeastation risk.</runninghead>
+    <runninghead>Deforestation risk.</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+    <p>Areas at greater risk of deforestation are likely to lead to greater stored carbon release.</p>
     <h1>Role in models</h1>
     <p>The likelihood of deforestation and fire, combined with the quantity of stored carbon in an
     ecosystem, can predict the amount of stored carbon that is released during deforestation or fire.
-    Deforestation acts as a particularly strong influence in the model in tropical nations with higher
-    deforestation rates and weaker land tenure and enforcement of legal limits on forest clearing.</p>
+    Deforestation is a particularly strong influence in the model in tropical nations with higher
+    deforestation rates and weaker land tenure and enforcement of forest clearing laws.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -941,7 +950,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -956,7 +965,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>carbonService:StoredCarbonRelease</concept>
     <name>Potential tored carbon release</name>
     <title>Potential release of stored carbon</title>
-    <runninghead>Potential emissions of carbon from the landscape, i.e., due to fire, deforestation, or other land use-land cover
+    <runninghead>Potential carbon emissions from the landscape due to fire, deforestation, or other land use-land cover
     change.</runninghead>
     <group>sink</group>
     <units>tonnes C/ha</units>
@@ -981,7 +990,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -996,10 +1005,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:GreenhouseGasEmissions</concept>
-    <name>Carbon emitted</name>
+    <name>Carbon emissions</name>
     <title>CO<sub>2</sub> emission from human activity</title>
-    <runninghead>Greenhouse gas emitters, who rely on ecosystems to sequester and store atmospheric carbon in order
-    to avoid rising atmospheric carbon dioxide concentrations.</runninghead>
+    <runninghead>Greenhouse gas emitters rely on ecosystems to sequester and store atmospheric carbon in order to avoid rising atmospheric carbon dioxide concentrations.</runninghead>
     <group>use</group>
     <units>tonnes C/ha</units>
     <description language="html"><![CDATA[
@@ -1020,11 +1028,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://vulcan.project.asu.edu/" target="_blank">VULCAN Project, </a><a href="http://www.ornl.gov/sci/landscanLANDSCAN" target="_blank"> Oak Ridge National Laboratory.</a>, <a href="http://www.eia.gov/countries/" target="_blank"> U.S. Energy Information Administration.</a>.</br>
+    <b>Data sources</b>: <a href="http://vulcan.project.asu.edu/" target="_blank">Vulcan Project, </a><a href="http://www.ornl.gov/sci/landscanLANDSCAN" target="_blank"> Oak Ridge National Laboratory</a>, <a href="http://www.eia.gov/countries/" target="_blank"> U.S. Energy Information Administration.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -1037,8 +1045,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:InaccessibleSource</concept>
-    <name>Carbon mitigation surplus</name>
-    <title>Carbon mitigation surplus</title>
+    <name>Regional carbon mitigation surplus</name>
+    <title>Regional carbon mitigation surplus</title>
     <runninghead>Regional carbon mitigation surplus.</runninghead>
     <group>flow</group>
     <units>tonnes C/ha.year</units>
@@ -1062,7 +1070,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
@@ -1074,8 +1082,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page>
     <concept>carbonService:InaccessibleUse</concept>
-    <name>Carbon mitigation deficit</name>
-    <title>Carbon mitigation deficit</title>
+    <name>Regional carbon mitigation deficit</name>
+    <title>Regional carbon mitigation deficit</title>
     <runninghead>Regional carbon mitigation deficit.</runninghead>
     <group>flow</group>
     <units>tonnes C/ha.year</units>
@@ -1099,7 +1107,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
-    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">The carbon section of the ARIES web site</a><br/>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[

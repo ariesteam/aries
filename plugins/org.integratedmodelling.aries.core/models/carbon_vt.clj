@@ -82,12 +82,12 @@
 
 (defmodel veg-type vermont:CarbonVegetationType
   (classification (ranking VegType)
-    #{1 5 25}   vermont:RowCrops
-    #{36 37 62} vermont:GrasslandHerbaceous
-    63          vermont:Forest
-    87          vermont:Wetland
-    #{61 82}    vermont:Unvegetated
-    111         vermont:OpenWater))
+    #{1 4 5 6 12 21 23 24 25 27 28 36 43 44 47 229} vermont:RowCrops
+    #{36 37 58 61 62 121 152 242}                   vermont:GrasslandHerbaceous
+    #{63 68 70 71 141 142 143}                      vermont:Forest
+    #{87 190 195}                                   vermont:Wetland
+    #{61 82 122 123 124 131}                        vermont:Unvegetated
+    111                                             vermont:OpenWater))
 
 ;; Not used in the model but masks out carbon over open water
 (defmodel slope SlopeClass
