@@ -101,15 +101,16 @@
     "UR"   tanzania:Urban
     "WAT"  tanzania:Water))
 
-;; there are values of 254 and 255 in the source data set and we're not sure what that means
-;; so we're treating them as No Data along with the other No Data values
+;; 254 & 255 in the global layer are equal to zero, hence the strange
+;; discretization here.  Also 80 represents 80-100% tree canopy cover,
+;; and there are no values from 1-9..
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
+    80                                                             VeryHighCanopyCover
+    #{60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79} HighCanopyCover
+    #{40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59} ModerateCanopyCover
+    #{20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39} LowCanopyCover
+    #{0 10 11 12 13 14 15 16 17 18 19 254 255}                     VeryLowCanopyCover))
 
 ;; there is a dam in the area but don't currently have the information
 ;; to conclude that it is a factor for water provision in the

@@ -1441,7 +1441,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_africa</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1483,31 +1482,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonUpperBound>1197411.999278421</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-
-  <!-- protected status from national WDPA database, used as a presence/absence coverage -->
-  <measurement:Ranking id="WPA2a">
-    <observation:hasObservable>
-      <conservation:ProtectedStatus />
-    </observation:hasObservable>
-    <rdfs:comment>World Database on Protected Areas</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://www.wdpa.org/</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:wdpa2a</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-        <geospace:hasLatLowerBound>-68.65255775673205</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-179.99999963965692</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>83.7299995730599</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>179.9995396992789</geospace:hasLonUpperBound>
-      </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
@@ -4504,40 +4478,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- Native units are in gallons/minute, as a point file. To convert
-       this to aerial units, we assume each well to be 4 m^2 in aerial
-       extent (2x2 m). We convert gallons to cubic meters, divide
-       cubic meters by 4 m^2, convert m to mm, and convert minutes to
-       year. This gives an overall conversion factor of 497,349 -->
-  <measurement:Measurement id="well_tested_rate">
-    <observation:hasObservable>
-      <waterSupplyService:AnnualWellCapacity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
-    <measurement:unit>mm</measurement:unit>'
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:well_tested_rate_san_pedro</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 497349</geospace:hasTransformation>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
   <!-- $/ac not supported in Thinklab as a unit, so this remains a
        ranking rather than a measurement.  Values in US $, 2010. -->
   <measurement:Ranking id="housing_value_san_pedro3">
@@ -5290,30 +5230,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
-    <observation:hasObservable>
-      <geofeatures:EphemeralStream/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:hydrography_az_ephemeral</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3460301.793313013</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>116434.06409843237</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106902.8620400093</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>698491.277836395</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
   <measurement:BinaryCoding id="dominicanRepublic_coffee_farms">
     <observation:hasObservable>
       <soilRetentionService:FarmlandCode />
@@ -5361,7 +5277,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:Ranking id="fire_return_interval_co">
+  <measurement:NumericCoding id="fire_return_interval_co">
     <observation:hasObservable>
       <habitat:FireThreat/>
     </observation:hasObservable>
@@ -5386,7 +5302,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:NumericCoding>
 
   <measurement:Ranking id="Reclass_fthr1">
     <observation:hasObservable>
@@ -6105,32 +6021,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:NumericCoding id="sanPedro_az_land_ownership">
-    <observation:hasObservable>
-      <habitat:LandOwnership />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WFSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>sanPedro:az_land_ownership</geospace:hasCoverageId>
-      <geospace:hasValueAttribute>owner</geospace:hasValueAttribute>
-      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-    </geospace:WFSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:ArealFeatureSet>
-      <geospace:hasLatLowerBound>3414973.8504152074</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>114880.4225935507</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4106788.0780395595</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>699438.888976447</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:ArealFeatureSet>
-  </observation:hasObservationExtent>
-  </measurement:NumericCoding>
-
   <measurement:BinaryCoding id="low_elev_grass_shrubs_co">
     <observation:hasObservable>
       <colorado:LowGrassShrubPresence />
@@ -6312,12 +6202,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="colorado_mpb_damage_co">
+<!-- Commented out until Ferd enables acres as a legal unit in Thinklab.
+  <measurement:Count id="colorado_mpb_damage_co">
     <observation:hasObservable>
       <colorado:MountainPineBeetleDamageTreesPerAcre/>
     </observation:hasObservable>
     <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>/ac</measurement:unit>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -6335,7 +6227,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Count> -->
 
   <measurement:NumericCoding id="mourning_240">
     <observation:hasObservable>
@@ -7010,7 +6902,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_asia_pacific</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7038,7 +6929,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_europe_asia</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7066,7 +6956,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_north_america</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7094,7 +6983,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:tree_cover_south_america</geospace:hasCoverageId>
-        <geospace:hasNodataValue>254.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8422,7 +8310,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservable>
     <rdfs:comment>Data source: Colorado Department of Transportation</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://apps.coloradodot.info/dataaccess/GeoData/index.cfm?fuseaction=GeoDataMain></metadata:hasURL>
+    <metadata:hasURL>http://apps.coloradodot.info/dataaccess/GeoData/index.cfm?fuseaction=GeoDataMain</metadata:hasURL>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -8464,84 +8352,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-
-  <measurement:BinaryCoding id="sanPedro_hydrography_az_2">
-    <observation:hasObservable>
-      <geofeatures:River />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-    <metadata:belongsToDataset>san-pedro-hydrography</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:hydrography_az_2</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3460316.9198390865</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>116430.37599796552</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106928.2415295388</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>698532.9688473609</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
-  <!-- This one is just a presence/absence of roads -->
-  <measurement:BinaryCoding id="sanPedro_az_roads">
-    <observation:hasObservable>
-      <infrastructure:Road />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3414973.864255436</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>115167.55203442869</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>699343.2614684913</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
-  <!-- Road classification for calculating travel cost; 6 categories
-       of road (excluding access ramps) from interstate highways to
-       trails, alleys, and primitive roads -->
-  <observation:Categorization id="sanPedro_az_roads">
-    <observation:hasObservable>
-      <recreationService:RoadTravelCapacity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/main.do</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:az_roads</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>category</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3414973.864255436</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>115167.55203442869</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106554.7417112836</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>699343.2614684913</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </observation:Categorization>
 
   <!-- Road classification for calculating travel cost; 9 numeric classes of highways -->
   <measurement:NumericCoding id="usa_highways">
@@ -9979,9 +9789,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasObservable>
       <infrastructure:TransmissionLine />
     </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Land Resources Information System (ALRIS)</rdfs:comment>
+    <rdfs:comment>Data source: TIGER/Line files</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.land.state.az.us/alris/layers.html</metadata:hasURL>
+    <metadata:hasURL>http://www.esri.com/data/download/census2000-tigerline/index.html</metadata:hasURL>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -10133,6 +9943,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>vermont:crop_data_vt</geospace:hasCoverageId>
+        <geospace:hasNodataValue>0.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10302,34 +10113,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-
-  <measurement:Measurement id="well_depth">
-    <observation:hasObservable>
-      <waterSupplyService:WellDepth />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Arizona Department of Water Resources Wells-55 database</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>https://gisweb.azwater.gov/WellRegistry/MapHelp.aspx</metadata:hasURL>
-    <measurement:unit>ft</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:well_depth_san_pedro</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>7234</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>8413</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>142225.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4097784.5</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>684925.0</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
 
   <measurement:NumericCoding id="whitetail_240">
     <observation:hasObservable>

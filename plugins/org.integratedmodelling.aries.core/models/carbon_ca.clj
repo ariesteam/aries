@@ -24,7 +24,7 @@
 ;;;-------------------------------------------------------------------
 
 (ns core.models.carbon-ca
-  (:refer-clojure :rename {count length}) 
+  (:refer-clojure :rename {count length})
   (:refer modelling :only [defscenario defmodel model measurement
                            classification categorization ranking
                            numeric-coding binary-coding
