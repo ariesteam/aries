@@ -358,7 +358,7 @@ fire frequency, increased greenhouse gas emissions."
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [open-development-scenario :as od (measurement GreenhouseGasEmissions "t/ha*year")]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (* 1.568 (:greenhouse-gas-emissions %)) ; Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
+                  (* 1.568 (or (:greenhouse-gas-emissions %) 0)) ; Reflects 56.8% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
 
 (defscenario constrained-development-carbon
@@ -386,5 +386,5 @@ fire frequency, increased greenhouse gas emissions."
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [constrained-development-scenario :as cd use-simple]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (* 1.104 (:greenhouse-gas-emissions %)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
+                  (* 1.104 (or (:greenhouse-gas-emissions %) 0)) ; Reflects 10.4% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
