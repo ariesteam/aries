@@ -1,0 +1,23 @@
+#!/usr/bin/emacs --script
+;; Read in the lines from a CSV file. Each one contains <srid> <filepath> <tablename>.
+;; Run shp2db <srid> <filepath> <tablename> for each row, printing the results of each shell command.
+
+(defun join-strings (strings separator)
+  (mapconcat #'identity strings separator))
+
+(defun parse-csv-line (line)
+  (let ((command-string (join-strings (cons "shp2db" (split-string line ",")) " ")))
+    (princ (concat command-string "...\n" (shell-command-to-string command-string) "\n"))))
+
+(defun read-lines (csv-file)
+  (with-temp-buffer
+    (insert-file-contents csv-file)
+    (split-string (buffer-string) "\n" t)))
+
+(if (and (= 1 (length argv))
+         (file-readable-p (car argv)))
+    (mapc #'parse-csv-line (read-lines (car argv)))
+    (princ "Usage: shp2db_batch <input-file.csv>\n"))
+
+;; Obligatory calling shell protection
+(setq argv nil)
