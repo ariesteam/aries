@@ -123,9 +123,9 @@
 (defmodel transportation-energy-infrastructure-code TransportationEnergyInfrastructureCode
   (binary-coding TransportationEnergyInfrastructureCode
     :context [(binary-coding infrastructure:Road)
-              (binary-coding infrastructure:EnergyInfrastructure)]
+              (binary-coding infrastructure:TransmissionLine)]
     :state   #(if (or (= (:road %) 1)
-                      (= (:energy-infrastructure %) 1))
+                      (= (:transmission-line%) 1))
                 1
                 0))) 
 (defmodel transportation-energy-infrastructure TransportationEnergyInfrastructure
