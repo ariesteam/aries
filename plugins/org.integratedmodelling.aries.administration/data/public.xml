@@ -162,31 +162,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Measurement id="slope90m">
-    <observation:hasObservable>
-      <geophysics:DegreeSlope />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
-    <metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
-    <measurement:unit>°</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:slope90m</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
+<measurement:Measurement id="slope90m_smoothed">
+  <observation:hasObservable>
+    <geophysics:DegreeSlope/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
+  <metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+  <measurement:unit>°</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:slope90m_smoothed</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
 
   <!-- This should be the correct floodplains layer for Western Washington, capable of distinguishing
        between 100- and 500-year floodplains. -->
@@ -881,30 +881,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:Ranking id="usa_meandaysprecipdec">
-    <observation:hasObservable>
-      <habitat:DecemberDaysOfPrecipitation />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:meandaysprecipdec</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-124.783</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>49.427</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-66.915</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
+<measurement:Ranking id="mean_days_precip_dec">
+  <observation:hasObservable>
+    <habitat:DecemberDaysOfPrecipitation/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:mean_days_precip_dec</geospace:hasCoverageId>
+      <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>38577</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>16641</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>24.4630887</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-124.782977</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>49.4275887</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-66.914477</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
 
   <!-- Raw data are in degrees C*100, so use correction below -->
   <measurement:Measurement id="Temp_Max_Dec">
@@ -1179,28 +1180,29 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="usa_meandaysprecipjan">
+  <measurement:Ranking id="mean_days_precip_jan">
     <observation:hasObservable>
-      <habitat:JanuaryDaysOfPrecipitation />
+      <habitat:JanuaryDaysOfPrecipitation/>
     </observation:hasObservable>
     <rdfs:comment>Data source: NOAA-National Climatic Data Center</rdfs:comment>
     <metadata:hasPriority>5</metadata:hasPriority>
     <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:meandaysprecipjan</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:mean_days_precip_jan</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>24.463</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-124.802</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>49.425</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-66.915</geospace:hasLonUpperBound>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>38590</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>16640</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>24.4630887</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-124.802489</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>49.4260887</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-66.914489</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
@@ -5010,7 +5012,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:Ranking id="00imperv">
+  <measurement:Ranking id="impervious_puget_2000_scenario">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthImperviousBase/>
     </observation:hasObservable>
@@ -5022,7 +5024,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
         <geospace:hasTransformation>self * 100</geospace:hasTransformation>
-        <geospace:hasCoverageId>puget:00imperv</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:impervious_puget_2000_scenario</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5038,7 +5040,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="c60imperv">
+  <measurement:Ranking id="impervious_puget_2060_managed_growth">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthImperviousConstrained2060/>
     </observation:hasObservable>
@@ -5050,7 +5052,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
         <geospace:hasTransformation>self * 100</geospace:hasTransformation>
-        <geospace:hasCoverageId>puget:c60imperv</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:impervious_puget_2060_managed_growth</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5066,7 +5068,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="o60imperv">
+  <measurement:Ranking id="impervious_puget_2060_unmanaged_growth">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthImperviousOpen2060/>
     </observation:hasObservable>
@@ -5078,7 +5080,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
         <geospace:hasTransformation>self * 100</geospace:hasTransformation>
-        <geospace:hasCoverageId>puget:o60imperv</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:impervious_puget_2060_unmanaged_growth</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5094,7 +5096,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="p60imperv">
+  <measurement:Ranking id="impervious_puget_2060_status_quo">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthImperviousPlans2060/>
     </observation:hasObservable>
@@ -5106,7 +5108,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
         <geospace:hasTransformation>self * 100</geospace:hasTransformation>
-        <geospace:hasCoverageId>puget:p60imperv</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:impervious_puget_2060_status_quo</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5122,7 +5124,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:NumericCoding id="CLULC60">
+  <measurement:NumericCoding id="lulc_puget_2060_managed_growth">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthLULCConstrained2060/>
     </observation:hasObservable>
@@ -5133,7 +5135,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>puget:CLULC60</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lulc_puget_2060_managed_growth</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5149,7 +5151,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="LULC00">
+  <measurement:NumericCoding id="lulc_puget_2000_scenario">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthLULCBase/>
     </observation:hasObservable>
@@ -5160,7 +5162,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>puget:LULC00</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lulc_puget_2000_scenario</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5176,7 +5178,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="OLULC60">
+  <measurement:NumericCoding id="lulc_puget_2060_unmanaged_growth">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthLULCOpen2060/>
     </observation:hasObservable>
@@ -5187,7 +5189,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>puget:OLULC60</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lulc_puget_2060_unmanaged_growth</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5203,7 +5205,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="PLULC60">
+  <measurement:NumericCoding id="lulc_puget_2060_status_quo">
     <observation:hasObservable>
       <puget:ENVISIONUrbanGrowthLULCPlans2060/>
     </observation:hasObservable>
@@ -5214,7 +5216,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>puget:PLULC60</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lulc_puget_2060_status_quo</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8590,7 +8592,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Measurement id="soil_depth">
+  <measurement:Measurement id="soil_depth_statsgo">
     <observation:hasObservable>
       <habitat:SoilDepth/>
     </observation:hasObservable>
@@ -8601,7 +8603,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:soil_depth</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_depth_statsgo</geospace:hasCoverageId>
         <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8672,8 +8674,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </measurement:Ranking>
   -->
 
-  <!-- Check to see if hasNodataValue = 255.0 still needs to be included -->
-  <measurement:Ranking id="SoilErodibility2">
+  <!-- Check to see if hasNodataValue = 255.0 still needs to be included 
+  <measurement:Ranking id="soil_erodibility_puget">
     <observation:hasObservable>
       <habitat:SoilErodibility/>
     </observation:hasObservable>
@@ -8683,7 +8685,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:SoilErodibility2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
         <geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8698,9 +8700,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
-  <measurement:Ranking id="erodibility4">
+  <measurement:Ranking id="soil_erodibility_statsgo">
     <observation:hasObservable>
       <habitat:SoilErodibility/>
     </observation:hasObservable>
@@ -8710,7 +8712,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:erodibility4</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_erodibility_statsgo</geospace:hasCoverageId>
         <geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8925,7 +8927,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="pH_0_30_a2">
+  <measurement:Ranking id="soil_pH_0_30_statsgo_a">
     <observation:hasObservable>
       <habitat:SoilPhShallow/>
     </observation:hasObservable>
@@ -8936,7 +8938,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pH_0_30_a2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_0_30_statsgo_a</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8953,7 +8955,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="ph_0_30_b2">
+  <measurement:Ranking id="soil_pH_0_30_statsgo_b">
     <observation:hasObservable>
       <habitat:SoilPhShallow/>
     </observation:hasObservable>
@@ -8964,7 +8966,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:ph_0_30_b2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_0_30_statsgo_b</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8981,7 +8983,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="pH_0_30_c2">
+  <measurement:Ranking id="soil_pH_0_30_statsgo_c">
     <observation:hasObservable>
       <habitat:SoilPhShallow/>
     </observation:hasObservable>
@@ -8992,7 +8994,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pH_0_30_c2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_0_30_statsgo_c</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9009,7 +9011,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="pH_0_30_d2">
+  <measurement:Ranking id="soil_pH_0_30_statsgo_d">
     <observation:hasObservable>
       <habitat:SoilPhShallow/>
     </observation:hasObservable>
@@ -9020,7 +9022,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pH_0_30_d2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_0_30_statsgo_d</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9037,7 +9039,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="pH_30_100a2">
+  <measurement:Ranking id="soil_pH_30_100_statsgo_a">
     <observation:hasObservable>
       <habitat:SoilPhDeep/>
     </observation:hasObservable>
@@ -9048,7 +9050,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pH_30_100a2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_30_100_statsgo_a</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9065,7 +9067,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="pH_30_100b2">
+  <measurement:Ranking id="soil_pH_30_100_statsgo_b">
     <observation:hasObservable>
       <habitat:SoilPhDeep/>
     </observation:hasObservable>
@@ -9076,7 +9078,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pH_30_100b2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_pH_30_100_statsgo_b</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9120,7 +9122,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="texture3">
+  <measurement:NumericCoding id="soil_texture_statsgo">
     <observation:hasObservable>
       <habitat:SoilTexture/>
     </observation:hasObservable>
@@ -9130,7 +9132,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:texture3</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:soil_texture_statsgo</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9250,7 +9252,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="clulclots2_project">
+  <measurement:NumericCoding id="urban_growth_constrained_san_pedro2">
     <observation:hasObservable>
       <sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained/>
     </observation:hasObservable>
@@ -9259,7 +9261,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro2</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9278,7 +9280,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!--This version has "0" values outside the modeled sceanario area,
       enabling it to be run for the whole San Pedro context. -->
-  <measurement:NumericCoding id="clulclots3_project">
+  <measurement:NumericCoding id="urban_growth_constrained_san_pedro3">
     <observation:hasObservable>
       <sanPedro:Steinitz30ClassUrbanGrowthLULCConstrained />
     </observation:hasObservable>
@@ -9287,7 +9289,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:clulclots3_project</geospace:hasCoverageId>
+        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro3</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9330,7 +9332,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="olulclots2_project">
+  <measurement:NumericCoding id="urban_growth_open_san_pedro2">
     <observation:hasObservable>
       <sanPedro:Steinitz30ClassUrbanGrowthLULCOpen />
     </observation:hasObservable>
@@ -9339,7 +9341,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro2</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9358,7 +9360,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!--This version has "0" values outside the modeled sceanario area,
       enabling it to be run for the whole San Pedro context. -->
-  <measurement:NumericCoding id="olulclots3_project">
+  <measurement:NumericCoding id="urban_growth_open_san_pedro3">
     <observation:hasObservable>
       <sanPedro:Steinitz30ClassUrbanGrowthLULCOpen />
     </observation:hasObservable>
@@ -9367,7 +9369,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:olulclots3_project</geospace:hasCoverageId>
+        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro3</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9655,7 +9657,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Measurement id="Diversions3">
+  <measurement:Measurement id="diversions_san_pedro">
     <observation:hasObservable>
       <waterSupplyService:SurfaceDiversionCapacity/>
     </observation:hasObservable>
@@ -9665,7 +9667,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:Diversions3</geospace:hasCoverageId>
+        <geospace:hasCoverageId>sanPedro:diversions_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -11649,7 +11651,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- VT energy transmission lines -->
   <measurement:BinaryCoding id="vt_utility_lines">
     <observation:hasObservable>
-      <infrastructure:EnergyInfrastructure />
+      <infrastructure:TransmissionLine />
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WFSDataSource>

@@ -20,11 +20,11 @@
   :column-spec           {:Workspace    :A
                           :Store        :B
                           :Layer        :C
-                          :Description  :E
-                          :URI          :F
-                          :DefaultStyle :G
-                          :NativeSRS    :K
-                          :DeclaredSRS  :L}
+                          :Description  :D
+                          :URI          :E
+                          :DefaultStyle :F
+                          :NativeSRS    :J
+                          :DeclaredSRS  :K}
   :namespace-prefix      "http://www.integratedmodelling.org/geo/ns/"
   :geoserver-rest-uri    "http://ecoinformatics.uvm.edu/geoserver/rest"
   :geoserver-username    "admin"

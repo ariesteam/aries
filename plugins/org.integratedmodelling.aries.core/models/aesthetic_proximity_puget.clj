@@ -328,7 +328,7 @@
     (classification Forest
       :context [constrained-development-scenario :as cd forest :as for]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:ForestAbsent)
@@ -337,7 +337,7 @@
     (classification Farmland
       :context [constrained-development-scenario :as cd farmland :as farm]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:FarmlandAbsent)
@@ -346,7 +346,7 @@
     (classification WoodyWetland
       :context [constrained-development-scenario :as cd woody-wetland :as ww]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:WoodyWetlandAbsent)
@@ -355,7 +355,7 @@
     (classification EmergentWetland
       :context [constrained-development-scenario :as cd emergent-wetland :as ew]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'aestheticService:EmergentWetlandAbsent)

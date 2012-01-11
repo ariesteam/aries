@@ -885,7 +885,7 @@ be added to this list if desired."
     (classification SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'floodService:NoSuccession)
@@ -894,7 +894,7 @@ be added to this list if desired."
     (classification HydrologicSoilsGroup
       :context [constrained-development-scenario :as cd soil-group-puget :as sg]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'floodService:SoilGroupD)

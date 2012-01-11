@@ -357,13 +357,13 @@ greenhouse gas emissions."
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
                       (conc 'carbonService:VeryLowCanopyCover)
-                    
+
                       (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                       (conc 'carbonService:LowCanopyCover)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
                       (conc 'carbonService:ModerateCanopyCover)
-                    
+
                       :otherwise (:pcc %))))
   (model HardwoodSoftwoodRatio
     (classification HardwoodSoftwoodRatio
@@ -398,7 +398,7 @@ greenhouse gas emissions."
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
-                (* 1.871 (:greenhouse-gas-emissions %)) ; Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
+                (* 1.871 (or (:greenhouse-gas-emissions %) 0)) ; Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
                 (:greenhouse-gas-emissions %)))))
 
 (defscenario constrained-development-carbon
@@ -423,7 +423,7 @@ greenhouse gas emissions."
     (classification HardwoodSoftwoodRatio
       :context [constrained-development-scenario :as cd hardwood-softwood-ratio :as hsr]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'carbonService:ModerateHardness)
@@ -432,7 +432,7 @@ greenhouse gas emissions."
     (classification SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'carbonService:NoSuccession)
@@ -441,7 +441,7 @@ greenhouse gas emissions."
     (classification FireFrequency
       :context [constrained-development-scenario :as cd fire-frequency :as ff]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'carbonService:NoFireFrequency)
@@ -450,7 +450,7 @@ greenhouse gas emissions."
     (measurement GreenhouseGasEmissions "t/ha*year"
       :context [constrained-development-scenario :as cd use-simple]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
-                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrainedConstrained))
+                        (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
-                  (* 1.871 (:greenhouse-gas-emissions %)) ; Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
+                  (* 1.871 (or (:greenhouse-gas-emissions %) 0)) ; Reflects 87.1% population growth, assuming (crudely) same per capita emissions levels
                   (:greenhouse-gas-emissions %)))))
