@@ -200,7 +200,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetfloodplain</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:floodplain_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>zone</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -223,7 +223,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetbeaches</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:beaches_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -245,7 +245,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetcities</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:cities_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>place_nm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -268,7 +268,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetparks</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:parks_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -291,7 +291,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:lye_brook_stands_wgs84_v2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:stand_condition_lye_brook</geospace:hasCoverageId>
         <geospace:hasValueAttribute>stand_cond</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -313,7 +313,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:lye_brook_stands_wgs84_v2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:stand_condition_lye_brook</geospace:hasCoverageId>
         <geospace:hasValueAttribute>size_densi</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -336,7 +336,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:vt_soilcarbon</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:soil_carbon_vt</geospace:hasCoverageId>
         <geospace:hasValueAttribute>wt_avg_rv</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -679,7 +679,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetbridges</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:bridges_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -824,8 +824,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <!-- This should be a measurement, in mm.  Native units are in feet;
-       conversion from mm to feet is 1 ft = 304.8 mm. -->
+  <!-- This layer was completely screwed up in refactoring the names
+       with underscores.  It's pretty well lost and may limit use of
+       the Puget sedimentation models.
+
+This should be a measurement, in mm.  Native units are in feet;
+       conversion from mm to feet is 1 ft = 304.8 mm. 
   <measurement:Measurement id="puget_dam_storage_puget">
     <observation:hasObservable>
       <floodService:DamStorage />
@@ -852,7 +856,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <!-- Data for California are unfortunately lacking, so this is just
        a presence/absence map.  Assume values of "SmallDamStorage"
@@ -867,7 +871,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>california:dam_storage_socal</geospace:hasCoverageId>
+        <geospace:hasCoverageId>california:dam_storage_ca</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1004,7 +1008,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:mgdeforestation</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -1277,7 +1281,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetlake</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lake_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1301,7 +1305,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetlakefront</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lakefront_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1326,7 +1330,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetlevees</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:levees_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1356,7 +1360,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetocean</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:ocean_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>water_cd</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:Number</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -1507,7 +1511,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetformalprotection</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:formal_protection_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1548,6 +1552,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+<!-- This one is also completely screwed up and will impact the
+sedimentation models.  Rework if needed.
   <measurement:Ranking id="puget_dam_storage_puget">
     <observation:hasObservable>
       <geofeatures:Reservoir />
@@ -1570,7 +1576,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
   <measurement:BinaryCoding id="puget_pugetriverfront">
     <observation:hasObservable>
@@ -1582,7 +1588,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetriverfront</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:riverfront_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1606,7 +1612,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:mgrivers</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mg:hydrography_mg</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1685,7 +1691,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetrainonsnow</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:rain_on_snow_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>precip_sno</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -1882,7 +1888,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:globalsoiltexture</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:soil_texture_global</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -3907,7 +3913,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetwaterquality</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:water_quality_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>quality</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -4045,7 +4051,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>et_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4111,7 +4117,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:Ranking id="sanPedro_amphibian_rich">
+  <measurement:Ranking id="san_pedro_amphibian_rich">
     <observation:hasObservable>
       <habitat:AmphibianRichness />
     </observation:hasObservable>
@@ -4121,7 +4127,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:amphibian_rich</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:amphibian_rich</geospace:hasCoverageId>
         <geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -4224,7 +4230,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        inputs and a 12-year precipitation record (1960-1972) from 7
        rain gages in the Upper San Pedro watershed.  These are average
        annual values.
-  <measurement:Measurement id="sanPedro_sp_swat_97">
+  <measurement:Measurement id="san_pedro_sp_swat_97">
     <observation:hasObservable>
       <habitat:AnnualPrecipitation />
     </observation:hasObservable>
@@ -4235,7 +4241,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>precip_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4425,7 +4431,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        inputs and a 12-year precipitation record (1960-1972) from 7
        rain gages in the Upper San Pedro watershed. These are average
        annual values.
-  <measurement:Measurement id="sanPedro_sp_swat_97">
+  <measurement:Measurement id="san_pedro_sp_swat_97">
     <observation:hasObservable>
       <habitat:AnnualRunoff />
     </observation:hasObservable>
@@ -4436,7 +4442,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>surq_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4491,7 +4497,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:housing_value_san_pedro3</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:housing_value_san_pedro3</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -4565,7 +4571,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:Ranking id="sanPedro_bird_rich">
+  <measurement:Ranking id="san_pedro_bird_rich">
     <observation:hasObservable>
       <habitat:AvianRichness />
     </observation:hasObservable>
@@ -4575,7 +4581,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:bird_rich</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:bird_rich</geospace:hasCoverageId>
         <geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -4591,7 +4597,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="sanPedro_bsr_development_sites2">
+  <measurement:Ranking id="san_pedro_bsr_development_sites2">
     <observation:hasObservable>
       <sanPedro:BSRDevelopment />
     </observation:hasObservable>
@@ -4600,7 +4606,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:bsr_development_sites2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:bsr_development_sites2</geospace:hasCoverageId>
         <geospace:hasValueAttribute>site</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4733,7 +4739,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mexico:mex_lulc</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mexico:lulc_mexico</geospace:hasCoverageId>
         <geospace:hasValueAttribute>grupo_fina</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4786,7 +4792,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>rusle_p</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4801,14 +4807,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <observation:Categorization id="global_nationalboundaries">
+  <observation:Categorization id="national_boundaries">
     <observation:hasObservable>
       <geofeatures:Country />
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:nationalboundaries</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:national_boundaries</geospace:hasCoverageId>
         <geospace:hasValueAttribute>cntry_name</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4833,7 +4839,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>rusle_c</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -4914,7 +4920,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:depth_to_water_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:depth_to_water_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -5239,7 +5245,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>dominican:coffee_farms</geospace:hasCoverageId>
+        <geospace:hasCoverageId>dominican:coffee_farms_dr</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5263,7 +5269,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>sanPedro:fire_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:fire_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5343,7 +5349,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>california:ca_floodplain</geospace:hasCoverageId>
+        <geospace:hasCoverageId>california:floodplain_ca</geospace:hasCoverageId>
         <geospace:hasValueAttribute>zone_</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -5423,7 +5429,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:globalfloodplains</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:floodplains_global</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5447,7 +5453,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:gambels</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:gambels</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5554,7 +5560,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:grassland_quality_az</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:grassland_quality_az</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -5660,7 +5666,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mex_highway</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:highways_mex</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5684,7 +5690,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:highways</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:highways_us</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5749,7 +5755,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Measurement id="puget_hydroreservoirs2">
+<!-- These guys are all in bad shape - commenting out until I can
+straighten them out in the new spreadsheet. 
+  <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
       <soilRetentionService:HydroelectricUseLevel />
     </observation:hasObservable>
@@ -5760,7 +5768,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:hydroreservoirs2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>normal_s_1</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -5774,7 +5782,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <measurement:Measurement id="HydroDams">
     <observation:hasObservable>
@@ -5869,7 +5877,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:hsg_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:hsg_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -5926,7 +5934,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_kineros_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_kineros_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>infilt_m</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -5979,7 +5987,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:javelina</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:javelina</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6061,7 +6069,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mammal_rich</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mammal_rich</geospace:hasCoverageId>
         <geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -6087,7 +6095,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mearns</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mearns</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6112,7 +6120,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mesquite_management2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mesquite_management2</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6163,7 +6171,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mountainfront_recharge</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mountainfront_recharge</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6241,7 +6249,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mourning</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mourning</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6267,7 +6275,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mule</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:mule</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6344,7 +6352,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:open_space_area_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:open_space_area_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -6397,7 +6405,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:grazing_land_az</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:grazing_land_az</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -6420,7 +6428,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:trails_sprnca2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:trails_sprnca2</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7392,7 +7400,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>perc_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -7454,7 +7462,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:az_popdens</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:population_density_az</geospace:hasCoverageId>
         <geospace:hasValueAttribute>popdens00</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -7483,7 +7491,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:pugetpopulationdensity</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:population_density_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -7686,7 +7694,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL><observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+      <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
       <geospace:hasValueAttribute>rusle_r</geospace:hasValueAttribute>
     </geospace:WFSDataSource>
   </observation:hasDataSource>
@@ -7738,7 +7746,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:rare_charismatic_bird_richness2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:rare_charismatic_bird_richness2</geospace:hasCoverageId>
         <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -7766,7 +7774,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:reptile_rich</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:reptile_rich</geospace:hasCoverageId>
         <geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -7789,7 +7797,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>dominican:drreservoirs2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>dominican:reservoirs_dr2</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -7913,7 +7921,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sprnca_condition_class</geospace:hasCoverageId>
         <geospace:hasValueAttribute>condition</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -7939,7 +7947,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sprnca_condition_class</geospace:hasCoverageId>
         <geospace:hasValueAttribute>cc_gw__0_5__10</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -7965,7 +7973,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sprnca_condition_class</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sprnca_condition_class</geospace:hasCoverageId>
         <geospace:hasValueAttribute>scen9</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -8071,7 +8079,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>dominican:drrivers</geospace:hasCoverageId>
+        <geospace:hasCoverageId>dominican:hydrography_dr</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8094,7 +8102,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mexico:lastreams</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mexico:hydrography_la</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8120,7 +8128,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:mex_hydrography</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:hydrography_mex</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8145,7 +8153,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>california:hydro</geospace:hasCoverageId></geospace:WFSDataSource>
+      <geospace:hasCoverageId>california:hydrography_ca</geospace:hasCoverageId></geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
@@ -8365,7 +8373,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:highways</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:highways_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -8393,7 +8401,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_kineros_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_kineros_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>runoff_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -8419,7 +8427,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:scaled</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:scaled</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8470,7 +8478,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>rusle_a_kh</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -8550,7 +8558,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>rusle_ls</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -8630,7 +8638,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:pugeterosionmetrics</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>rusle_k</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -8882,7 +8890,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:soil_pH_0_30_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:soil_pH_0_30_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -8910,7 +8918,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:soil_pH_30_100_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:soil_pH_30_100_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9158,7 +9166,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:swregap_lulc</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:swregap_lulc</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9184,7 +9192,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:springs_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:springs_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9209,7 +9217,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_baseline_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_baseline_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9236,7 +9244,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_constrained_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9261,7 +9269,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_constrained_san_pedro2</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9289,7 +9297,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_constrained_san_pedro3</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_constrained_san_pedro3</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9316,7 +9324,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_open_san_pedro</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9341,7 +9349,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_open_san_pedro2</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9369,7 +9377,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:urban_growth_open_san_pedro3</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:urban_growth_open_san_pedro3</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9667,7 +9675,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:diversions_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:diversions_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9695,7 +9703,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:diversions_san_pedro</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:diversions_san_pedro</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9722,7 +9730,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:Diversions2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:Diversions2</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
@@ -9772,7 +9780,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:terrestrialecoregions</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:terrestrial_ecoregions</geospace:hasCoverageId>
         <geospace:hasValueAttribute>eco_id</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -9797,7 +9805,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:transmission_az</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:transmission_az</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -9826,7 +9834,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>tloss_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -9996,7 +10004,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mexico:lalulc</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mexico:lulc_la</geospace:hasCoverageId>
         <geospace:hasValueAttribute>tipo</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -10076,7 +10084,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:sp_swat_97</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:sp_swat_97</geospace:hasCoverageId>
         <geospace:hasValueAttribute>watyld_mm</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -10100,7 +10108,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:wells_sonora</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:wells_sonora</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10126,7 +10134,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:whitetail</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:whitetail</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10152,7 +10160,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>sanPedro:whitewing</geospace:hasCoverageId>
+        <geospace:hasCoverageId>san_pedro:whitewing</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10488,7 +10496,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:coral</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:coral_global</geospace:hasCoverageId>
         <geospace:hasValueAttribute>bleaching</geospace:hasValueAttribute>
         <geospace:hasValueDefault>None</geospace:hasValueDefault>
       </geospace:WFSDataSource>
@@ -10515,7 +10523,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:coral_area2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:coral_area_global</geospace:hasCoverageId>
         <geospace:hasValueAttribute>area_km2</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -10565,7 +10573,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>distance_to_coast</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mg:dist_to_coast_mg</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10642,7 +10650,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:estuaryarea</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mg:estuary_area_mg</geospace:hasCoverageId>
         <geospace:hasValueAttribute>estuary</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
@@ -10878,7 +10886,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:mangrove_width2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:mangrove_width_global</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10956,7 +10964,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:paths2</geospace:hasCoverageId>
+        <geospace:hasCoverageId>mg:paths_mg</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -11066,7 +11074,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:seagrass</geospace:hasCoverageId>
+        <geospace:hasCoverageId>global:seagrass_global</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -11612,7 +11620,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:vt_ny_nhdwaterbody</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:lakes_vt</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -11634,7 +11642,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:vt_ny_nhdflowline</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:hydrography_vt</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -11656,7 +11664,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:vt_utility_lines</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:transmission_vt</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -11678,7 +11686,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:vt_roads</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:roads_vt</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
