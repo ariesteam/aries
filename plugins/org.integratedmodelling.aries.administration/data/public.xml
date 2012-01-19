@@ -332,6 +332,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasObservable>
       <carbonService:SoilCarbonStorage />
     </observation:hasObservable>
+    <rdfs:comment>Data source: Vermont Department of Forests, Parks,
+    and Recreation</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
     <measurement:unit>g/m^2</measurement:unit>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
@@ -1552,8 +1555,6 @@ This should be a measurement, in mm.  Native units are in feet;
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-<!-- This one is also completely screwed up and will impact the
-sedimentation models.  Rework if needed.
   <measurement:Ranking id="puget_dam_storage_puget">
     <observation:hasObservable>
       <geofeatures:Reservoir />
@@ -1564,7 +1565,7 @@ sedimentation models.  Rework if needed.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:reservoirs_puget</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1576,7 +1577,7 @@ sedimentation models.  Rework if needed.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking> -->
+  </measurement:Ranking> 
 
   <measurement:BinaryCoding id="puget_pugetriverfront">
     <observation:hasObservable>
@@ -5755,8 +5756,6 @@ sedimentation models.  Rework if needed.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-<!-- These guys are all in bad shape - commenting out until I can
-straighten them out in the new spreadsheet. 
   <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
       <soilRetentionService:HydroelectricUseLevel />
@@ -5768,7 +5767,7 @@ straighten them out in the new spreadsheet.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:hydro_reservoir_us</geospace:hasCoverageId>
         <geospace:hasValueAttribute>normal_s_1</geospace:hasValueAttribute>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
@@ -5782,7 +5781,7 @@ straighten them out in the new spreadsheet.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Measurement> -->
+  </measurement:Measurement> 
 
   <measurement:Measurement id="HydroDams">
     <observation:hasObservable>

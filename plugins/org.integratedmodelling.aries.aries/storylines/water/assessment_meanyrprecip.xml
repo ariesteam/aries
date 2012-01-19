@@ -49,9 +49,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- Storyline description. -->
   <page id="info">
     <id>info</id>
-    <name>Surface water supply assessment - mean annual precipitation levels</name>
+    <name>Surface water supply assessment at mean annual precipitation levels</name>
     <title>Introduction</title>
-    <runninghead>Surface water supply - mean annual precipitation levels.</runninghead>
+    <runninghead>Surface water supply at mean annual precipitation levels</runninghead>
     <group></group>
     <description>
       This model considers surface water supply for various human beneficiary groups, including agriculture, industry,
@@ -80,7 +80,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <concept>waterSupplyService:GroundwaterMovement</concept>
 <name>Groundwater supply</name>
 <title>Groundwater supply</title>
-<runninghead>Groundwater supply.</runninghead>
+<runninghead>Groundwater supply</runninghead>
 <group></group>
 <description>
 This model considers groundwater supply for various human beneficiary groups, including agriculture, industry,
@@ -108,7 +108,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AnnualPrecipitation</concept>
     <name>Annual precipitation</name>
     <title>Annual precipitation</title>
-    <runninghead>Annual precipitation.</runninghead>
+    <runninghead>Annual precipitation</runninghead>
     <group>source</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -124,7 +124,8 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <h1>Representation</h1>
     <p>The data are in physical units of millimeters of precipitation per year.</p>
     <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University (U.S. data); WorldClim (global data).</p>
+    <p>PRISM Climate Group, Oregon State University (U.S. data);
+    WorldClim (global data).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -144,7 +145,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:IncomingWaterTransfer</concept>
     <name>Incoming water transfer</name>
     <title>Incoming water transfer</title>
-    <runninghead>Incoming water transfer.</runninghead>
+    <runninghead>Incoming water transfer</runninghead>
     <group>source</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -176,7 +177,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AnnualRunoffSummed</concept>
     <name>Summed surface water sources</name>
     <title>Summed surface water sources</title>
-    <runninghead>Summed surface water sources.</runninghead>
+    <runninghead>Summed surface water sources</runninghead>
     <group>source</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -212,7 +213,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AnnualRecharge</concept>
     <name>Annual groundwater recharge</name>
     <title>Annual groundwater recharge</title>
-    <runninghead>Annual groundwater recharge.</runninghead>
+    <runninghead>Annual groundwater recharge</runninghead>
     <group>source, sink</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -245,7 +246,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:SlopeClass</concept>
     <name>Slope</name>
     <title>Slope</title>
-    <runninghead>Slope.</runninghead>
+    <runninghead>Slope</runninghead>
     <group>sink</group>
     <units>degrees slope</units>
     <description><![CDATA[
@@ -277,7 +278,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:HydrologicSoilsGroup</concept>
     <name>Hydrologic soils group</name>
     <title>Hydrologic soils group</title>
-    <runninghead>Hydrologic soils group.</runninghead>
+    <runninghead>Hydrologic soils group</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different soil types have different infiltration capacities.
@@ -309,7 +310,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:PercentImperviousCoverClass</concept>
     <name>Percent impervious cover</name>
     <title>Percent impervious cover</title>
-    <runninghead>Percent impervious surface cover.</runninghead>
+    <runninghead>Percent impervious surface cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
@@ -339,7 +340,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:MountainFront</concept>
     <name>Mountain front recharge zones</name>
     <title>Mountain front recharge zones</title>
-    <runninghead>Mountain front recharge zones.</runninghead>
+    <runninghead>Mountain front recharge zones</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>The intersection of valley fill alluvium and mountain fronts.</p>
@@ -372,7 +373,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:StreamChannel</concept>
     <name>Stream channels</name>
     <title>Stream channels</title>
-    <runninghead>Stream channels.</runninghead>
+    <runninghead>Stream channels</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Perennial, intermittent, and ephemeral stream channels.</p>
@@ -403,7 +404,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
-    <runninghead>Soil infiltration.</runninghead>
+    <runninghead>Soil infiltration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -441,7 +442,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AnnualMaximumTemperature</concept>
     <name>Annual maximum temperature</name>
     <title>Annual maximum temperature</title>
-    <runninghead>Annual maximum temperature.</runninghead>
+    <runninghead>Annual maximum temperature</runninghead>
     <group>sink</group>
     <units>degrees centigrade</units>
     <description><![CDATA[
@@ -472,7 +473,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>colorado:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
@@ -502,7 +503,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>sanPedro:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
@@ -532,7 +533,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>veracruz:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
@@ -562,7 +563,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>tanzania:WaterSupplyVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
@@ -592,7 +593,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:PercentTreeCanopyCoverClass</concept>
     <name>Percent tree canopy cover</name>
     <title>Percent tree canopy cover</title>
-    <runninghead>Percent tree canopy cover.</runninghead>
+    <runninghead>Percent tree canopy cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and
@@ -624,7 +625,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:EvapotranspirationClass</concept>
     <name>Evapotranspiration</name>
     <title>Evapotranspiration</title>
-    <runninghead>Evapotranspiration.</runninghead>
+    <runninghead>Evapotranspiration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -662,7 +663,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:SurfaceWaterSink</concept>
     <name>Surface water sink</name>
     <title>Surface water sink</title>
-    <runninghead>Surface water sink.</runninghead>
+    <runninghead>Surface water sink</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -695,7 +696,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:IndustrialSurfaceWaterUse</concept>
     <name>Industrial surface water use</name>
     <title>Industrial surface water use</title>
-    <runninghead>Industrial surface water use.</runninghead>
+    <runninghead>Industrial surface water use</runninghead>
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -726,7 +727,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AgriculturalSurfaceWaterUse</concept>
     <name>Agricultural surface water use</name>
     <title>Agricultural surface water use</title>
-    <runninghead>Agricultural surface water use.</runninghead>
+    <runninghead>Agricultural surface water use</runninghead>
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -790,7 +791,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:AquaculturalSurfaceWaterUse</concept>
     <name>Aquacultural surface water use</name>
     <title>Aquacultural surface water use</title>
-    <runninghead>Aquacultural surface water use.</runninghead>
+    <runninghead>Aquacultural surface water use</runninghead>
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -885,7 +886,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:SurfaceDiversionCapacity</concept>
     <name>Surface diversion capacity</name>
     <title>Surface diversion capacity</title>
-    <runninghead>Surface diversion capacity.</runninghead>
+    <runninghead>Surface diversion capacity</runninghead>
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -917,7 +918,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:Wells</concept>
     <name>Well pumping capacity</name>
     <title>Well pumping capacity</title>
-    <runninghead>Well pumping capacity.</runninghead>
+    <runninghead>Well pumping capacity</runninghead>
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
@@ -950,7 +951,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>geophysics:Altitude</concept>
     <name>Elevation</name>
     <title>Elevation</title>
-    <runninghead>Elevation.</runninghead>
+    <runninghead>Elevation</runninghead>
     <group>flow</group>
     <units>m</units>
     <description><![CDATA[
@@ -983,7 +984,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <name>Rivers</name>
     <title>Rivers</title>
     <runninghead>Rivers</runninghead>
-    <group>flow</group>
+    <group>flow</group> <!-- Add data sources for Tanzania, Colorado-->
     <description><![CDATA[
     <p>River and stream locations.</p>
     <h1>Role in models</h1>
@@ -993,7 +994,8 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <h1>Representation</h1>
     <p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
     <h1>Source</h1>
-    <p>Arizona Geographic Information Council; Veracruz hydrgraphy data.</p>
+    <p>Arizona Geographic Information Council; Veracruz hydrgraphy
+    data.</p> 
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -1060,7 +1062,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:PossibleFlow</concept>
     <name>Possible surface water flow</name>
     <title>Possible surface water flow</title>
-    <runninghead>Possible flow map.</runninghead>
+    <runninghead>Possible flow map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1088,7 +1090,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:PossibleSource</concept>
     <name>Possible surface water supply</name>
     <title>Possible surface water supply</title>
-    <runninghead>Possible source map.</runninghead>
+    <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1124,7 +1126,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:PossibleUse</concept>
     <name>Possible surface water use</name>
     <title>Possible surface water use</title>
-    <runninghead>Possible use map.</runninghead>
+    <runninghead>Possible use map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1153,7 +1155,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:ActualFlow</concept>
     <name>Actual surface water flow</name>
     <title>Actual surface water flow</title>
-    <runninghead>Actual flow map.</runninghead>
+    <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1186,7 +1188,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:ActualSource</concept>
     <name>Used surface water supply</name>
     <title>Used surface water supply</title>
-    <runninghead>Actual source map.</runninghead>
+    <runninghead>Actual source map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1217,7 +1219,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:ActualSink</concept>
     <name>Actual surface water sink</name>
     <title>Actual surface water sink</title>
-    <runninghead>Actual sink map.</runninghead>
+    <runninghead>Actual sink map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1247,7 +1249,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:ActualUse</concept>
     <name>Satisfied surface water demand</name>
     <title>Satisfied surface water demand</title>
-    <runninghead>Actual use map.</runninghead>
+    <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1273,7 +1275,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:InaccessibleSource</concept>
     <name>Unusable surface water supply</name>
     <title>Unusable surface water supply</title>
-    <runninghead>Inaccessible source map.</runninghead>
+    <runninghead>Inaccessible source map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1307,7 +1309,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:InaccessibleUse</concept>
     <name>Inaccessible surface water demand</name>
     <title>Inaccessible surface water demand</title>
-    <runninghead>Inaccessible use map.</runninghead>
+    <runninghead>Inaccessible use map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1337,7 +1339,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:BlockedFlow</concept>
     <name>Sunk surface water flow</name>
     <title>Sunk surface water flow</title>
-    <runninghead>Blocked flow map.</runninghead>
+    <runninghead>Blocked flow map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1370,7 +1372,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:BlockedSource</concept>
     <name>Sunk surface water supply</name>
     <title>Sunk surface water supply</title>
-    <runninghead>Blocked source map.</runninghead>
+    <runninghead>Blocked source map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
@@ -1401,7 +1403,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <concept>waterSupplyService:BlockedUse</concept>
     <name>Blocked surface water demand</name>
     <title>Blocked surface water demand</title>
-    <runninghead>Blocked use map.</runninghead>
+    <runninghead>Blocked use map</runninghead>
     <group>flow</group>
     <units>mm/year</units>
     <description>
