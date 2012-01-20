@@ -133,11 +133,11 @@
 ;;    0                    NoAnnualSedimentSource))
 
 (defmodel sediment-source-value-annual AnnualSedimentSourceClass
-  (probabilistic-measurement AnnualSedimentSourceClass "kg/ha"
-    [100000 300000] HighAnnualSedimentSource
-    [ 30000 100000] ModerateAnnualSedimentSource
-    [   0.01 30000] LowAnnualSedimentSource 
-    [     0   0.01] NoAnnualSedimentSource))
+  (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
+    [100   300]    HighAnnualSedimentSource
+    [ 30   100]    ModerateAnnualSedimentSource
+    [  0.01 30]    LowAnnualSedimentSource 
+    [  0     0.01] NoAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound     
 (defmodel source-puget AnnualSedimentSource
@@ -188,11 +188,11 @@
 ;; Have these numbers reviewed by someone knowledgable about
 ;; sedimentation.
 (defmodel sediment-sink-annual AnnualSedimentSinkClass 
-  (probabilistic-measurement AnnualSedimentSinkClass "kg/ha"
-    [20000 30000] HighAnnualSedimentSink
-    [10000 20000] ModerateAnnualSedimentSink
-    [0.01  10000] LowAnnualSedimentSink
-    [    0  0.01] NoAnnualSedimentSink)) 
+  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
+    [20    30]    HighAnnualSedimentSink
+    [10    20]    ModerateAnnualSedimentSink
+    [ 0.01 10]    LowAnnualSedimentSink
+    [ 0     0.01] NoAnnualSedimentSink)) 
 
 (defmodel sediment-sink-us AnnualSedimentSink
   (bayesian AnnualSedimentSink    

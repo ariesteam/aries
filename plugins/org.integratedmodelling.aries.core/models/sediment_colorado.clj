@@ -123,11 +123,11 @@
 ;;    0                    NoAnnualSedimentSource))
 
 (defmodel sediment-source-value-annual AnnualSedimentSourceClass
-  (probabilistic-measurement AnnualSedimentSourceClass "kg/ha"
-    [9000   17000]    HighAnnualSedimentSource
-    [4900    9000]    ModerateAnnualSedimentSource
-    [   0.01 4900]    LowAnnualSedimentSource 
-    [   0       0.01] NoAnnualSedimentSource))
+  (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
+    [9   17]    HighAnnualSedimentSource
+    [4.9  9]    ModerateAnnualSedimentSource
+    [0.01 4.9]  LowAnnualSedimentSource 
+    [0    0.01] NoAnnualSedimentSource))
 
 ;; The two Bayesian statements calculate source value with and without
 ;; fire, for comparison.
@@ -165,9 +165,9 @@
 ;; downslope and eventually ends up in reservoirs.
 
 (defmodel sink ReservoirSedimentSink
-  (measurement ReservoirSedimentSink "kg/ha"
+  (measurement ReservoirSedimentSink "t/ha"
     :context [(binary-coding geofeatures:Reservoir)]
-    :state   #(if (== (:reservoir %) 1) 5000000 0)))
+    :state   #(if (== (:reservoir %) 1) 5000 0)))
  
 ;;;-------------------------------------------------------------------
 ;;; Use models

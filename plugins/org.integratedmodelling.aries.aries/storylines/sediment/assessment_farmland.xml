@@ -568,11 +568,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily
-       multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
-       models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about. -->
-
-  <!-- ALSO saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
+  <!-- Saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
        use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-source">
     <concept>soilRetentionService:AnnualSedimentSource</concept>
@@ -580,6 +576,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
     <group>source</group>
+    <units>t/ha</units>
     <description><![CDATA[
     <p>Annual soil erosion from the landscape.</p>
     <h1>Role in models</h1>
@@ -736,15 +733,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <!-- FERD: units are in tons of sediment for the DR & Mg models but in kg of sediment for Puget.  Could easily
-       multiply the Puget values in the underlying xml by 0.001 to put values in tons (and change discretization in the .clj
-       models appropriately) but that wouldn't let us multiply values in RUSLE appropriately.  Something to think about. -->
   <page id="annual-sediment-sink">
     <concept>soilRetentionService:AnnualSedimentSink</concept>
     <name>Annual sediment sink</name>
     <title>Annual sediment sink</title>
     <runninghead>Annual sediment sink</runninghead>
     <group>sink</group>
+    <units>t/ha</units>
     <description><![CDATA[
     <p>The deposition of waterborne sediment in floodplains.</p>
     <h1>Role in models</h1>
