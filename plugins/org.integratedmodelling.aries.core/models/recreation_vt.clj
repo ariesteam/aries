@@ -216,7 +216,7 @@
 
 (defmodel data OutdoorRecreation 
   (identification aestheticService:AestheticEnjoyment
-    :context [source user sink altitude]))
+    :context [source sink altitude population-density]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models

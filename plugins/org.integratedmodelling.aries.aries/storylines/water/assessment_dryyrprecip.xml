@@ -122,7 +122,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Data sources</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -373,16 +373,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <title>Annual maximum temperature</title>
     <runninghead>Annual maximum temperature</runninghead>
     <group>sink</group>
-    <units>degrees centigrade</units>
+    <units>degrees Celsius</units>
     <description><![CDATA[
     <p>Annual maximum temperature influences water demand by plants and potential levels of evaporation.</p>
     <h1>Role in models</h1>
     <p>Particularly in water limited environments, annual maximum temperature is used as an influence on
     evapotranspiration, with greater evapotranspiration under higher temperatures.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of degrees celsius.</p>
+    <p>Data are in physical units of degrees Celsius.</p>
     <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University (U.S. data); WorldClim (global data).</p>
+    <p>PRISM Climate Group, Oregon State University (U.S.); WorldClim (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -390,7 +390,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Data sources</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -420,7 +420,10 @@ and beneficiary groups and link these via a flow model accounting for the downst
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
+    <b>Data source</b>: <a
+    href="http://earth.gis.usu.edu/swgap/landcover.html"
+    target="_blank">Southwest Regional GAP Analayis land cover
+    data.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -435,16 +438,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Percent tree canopy cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and
-    transpiration rates.</p>
+    <p>Percent tree canopy cover.  Tree canopy cover influences root
+    and canopy characteristics that affect transpiration rates.</p>
     <h1>Role in models</h1>
     <p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-    toward evapotranpiration.  All else being equal, we expect greater evapotranspiration under higher tree
+    toward evapotranpiration.  All else being equal, expect greater
+    evapotranspiration is assumed under higher tree
     canopy cover.</p>
     <h1>Representation</h1>
-    <p>Data represent the percentage of the land surface under tree canopy cover.</p>
+    <p>Data show the percentage of the land surface under tree canopy cover.</p>
     <h1>Source</h1>
-    <p>)NLCD 2001 data (U.S. data); GLCF (University of Maryland, global data).</p>
+    <p>)NLCD 2001 data (U.S.); GLCF (University of Maryland, global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -452,7 +456,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Data sources</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -460,15 +464,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="evapotranspiration-class">
-    <concept>waterSupplyService:EvapotranspirationClass</concept>
+  <page id="evapotranspiration">
+    <concept>waterSupplyService:Evapotranspiration</concept>
     <name>Evapotranspiration</name>
     <title>Evapotranspiration</title>
     <runninghead>Evapotranspiration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The total surface water evaporated or taken up by vegetation and transpired, becoming no longer
+    <p>Total surface water evaporated or taken up by vegetation and transpired, becoming no longer
     available as surface or groundwater.</p>
     <h1>Role in models</h1>
     <p>This is the output of a probabilistic model accounting for the influence of vegetation and climatic
@@ -476,7 +480,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     water sink values, and then passed to the flow model to estimate actual surface water availability
     given the location of sources of surface water and users of water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water evaporated or transpired per year.  As the
+    <p>Data are in physical units of millimeters of water evaporated or transpired per year.  As the
     output of the models is probabilistic, each point contains the probability distribution of the amount
     of water infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
     coefficient of variation are reported along with the probabilities.</p>
@@ -492,44 +496,6 @@ and beneficiary groups and link these via a flow model accounting for the downst
     ]]></see-also>
     <credits language="html"><![CDATA[
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-    ]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
-  <page id="soil-infiltration-class">
-    <concept>waterSupplyService:SoilInfiltrationClass</concept>
-    <name>Soil infiltration</name>
-    <title>Soil infiltration</title>
-    <runninghead>Soil infiltration</runninghead>
-    <group>sink</group>
-    <units>mm/year</units>
-    <description><![CDATA[
-    <p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of a probabilistic model accounting for the influence of soil and geologic
-    characteristics on infiltration.  Results are summed with evapotranspiration to give total surface
-    water sink values, and then passed to the flow model to estimate actual surface water availability
-    given the location of sources of surface water and users of water.  In the absence of direct data on
-    infiltration, the results of this model can also be used as source data for groundwater flow models.</p>
-    <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the
-    models is probabilistic, each point contains the probability distribution of the amount of water
-    infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
-    coefficient of variation are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and
-    calibrated by the ARIES server for the selected area.</p>
-    ]]></description>
-    <see-also language="html"><![CDATA[
-    <p>
-    <a href="http://www.ariesonline.org/modules/water.html"
-    target="_blank">Water supply model details from the ARIES website</a><br/>
-    </p>
-    ]]></see-also>
-    <credits language="html"><![CDATA[
-    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
@@ -552,7 +518,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     availability for beneficiaries, given precipitation levels, the activity of sinks, and use of and demand
     for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water infiltrated, evaporated, or transpired per year.</p>
+    <p>Data are in physical units of millimeters of water infiltrated, evaporated, or transpired per year.</p>
     <h1>Source</h1>
     <p>Calculated as the sum of outputs from a probabilistic models for infiltration and evapotranspiration.</p>
     ]]></description>
@@ -583,7 +549,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     passed to the flow model to estimate actual water availability given the location of sources of
     fresh water, evapotranspiration and infiltration, and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water used per year.</p>
+    <p>Data are in physical units of millimeters of water used per year.</p>
     <h1>Source</h1>
     <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
@@ -614,7 +580,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     passed to the flow model to estimate actual water availability given the location of sources of
     fresh water, evapotranspiration and infiltration, and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water used per year.</p>
+    <p>Data are in physical units of millimeters of water used per year.</p>
     <h1>Source</h1>
     <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
@@ -645,7 +611,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     passed to the flow model to estimate actual water availability given the location of sources of
     fresh water, evapotranspiration and infiltration, and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water used per year.</p>
+    <p>Data are in physical units of millimeters of water used per year.</p>
     <h1>Source</h1>
     <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
@@ -676,7 +642,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     passed to the flow model to estimate actual water availability given the location of sources of
     fresh water, evapotranspiration and infiltration, and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water used per year.</p>
+    <p>Data are in physical units of millimeters of water used per year.</p>
     <h1>Source</h1>
     <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
@@ -708,7 +674,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     water availability given the location of sources of fresh water, evapotranspiration and infiltration,
     and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water used per year.</p>
+    <p>Data are in physical units of millimeters of water used per year.</p>
     <h1>Source</h1>
     <p>Calculated deterministically as the sum of residential, industrial, agricultural, and aquacultural
     water use.</p>
@@ -734,7 +700,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Surface diversions, primarily for agriculture, are a key surface water user, and are the only surface
+    <p>Surface diversions, primarily for agriculture, are an important surface water user, and are the only surface
     water user for our San Pedro case study.</p>
     <h1>Role in models</h1>
     <p>Results are the final surface water use values for the San Pedro.  These are passed to the flow model
@@ -743,7 +709,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <h1>Representation</h1>
     <p>The data are in physical units of millimeters of water diversion capacity per year.</p>
     <h1>Source</h1>
-    <p>Digitized the locations and level of diversion capacity for surface diversions in the San Pedro watershed.</p>
+    <p>Digitized the locations and diversion capacity for surface diversions in the San Pedro watershed.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -766,14 +732,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Groundwater wells locations and use data where available, are the source of use data for groundwater
+    <p>Groundwater wells locations, and use data where available, are the source of use data for groundwater
     flow models.</p>
     <h1>Role in models</h1>
     <p>Results are the final groundwater use values for the San Pedro.  These could be passed to a groundwater
     flow model to estimate actual groundwater availability given the location of infiltration zone locations and
     groundwater recharge quantities and demand for water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water pumping capacity per year.</p>
+    <p>Data are in physical units of millimeters of water pumping capacity per year.</p>
     <h1>Source</h1>
     <p>Arizona Department of Water Resources (U.S.); INECOL (Mexico).</p>
     ]]></description>
@@ -805,7 +771,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
     water then follows through the stream network.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of meters above sea level.</p>
+    <p>Data are in physical units of meters above sea level.</p>
     <h1>Source</h1>
     <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
@@ -832,13 +798,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <description><![CDATA[
     <p>River and stream locations.</p>
     <h1>Role in models</h1>
-    <p>River and stream locations, or hydrography data, are used to route surface water.  The flow model
+    <p>Hydrography data are used to route surface water.  The flow model
     moves precipitation downslope using elevation data until it reaches a stream network, which water
     then follows through the stream network.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
-    <h1>Source</h1>
-    <p>Arizona Geographic Information Council; Veracruz hydrgraphy data.</p>
+    <p>Data show the presence or absence of rivers and streams.</p>
+    <h1>Sources</h1>
+    <p>Arizona Geographic Information Council; Colorado Department of
+    Transportation; Veracruz hydrgraphy data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -846,7 +813,11 @@ and beneficiary groups and link these via a flow model accounting for the downst
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a></br>
+    <b>Data source</b>: <a
+    href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12"
+    target="_blank">Arizona Geographic Information Council,</a> <a
+    href="http://apps.coloradodot.info/dataaccess/GeoData/index.cfm?fuseaction=GeoDataMain"
+    target="_blank">Colorado DOT.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -911,10 +882,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Possible flow maps* represent the path that the carrier of the service would take
-      if it was not intercepted by sinks.  As such it considers source and use models and
-      shows the maximum amount of flow. For provisioning services, this corresponds to the
-      maximum potential benefit; for preventive services, the maximum potential damage.
+      *Possible flow maps* show the path that the carrier of the 
+      service would take if it was not intercepted by sinks.  
+      As such it considers source and use models and shows the 
+      maximum amount of flow. 
+
+      For provisioning services, this corresponds to the maximum 
+      potential benefit; for preventive services, the maximum
+      potential damage.
 
       This map shows the movement of surface water via topography and stream networks,
       when not accounting for sinks (infiltration or evapotranspirative losses of surface water).
@@ -939,19 +914,22 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      Even in the absence of sinks, not all of a source quantity actually has the
-      ability to reach users, because of the route that an ecosystem service carrier
-      moves across the landscape. Flow analysis allows us to identify which particular
-      portion of the total source quantity is actually generating carriers that
-      reach the users, independent of the existence of sinks but taking into account
-      the result of use values, the structure of the landscape and the flow paths of
-      the carrier, producing this *possible source map*. For provisioning services,
-      this corresponds to the source of benefits that has the potential of being actually
-      useful. For preventive services, this corresponds to the portion of the source
-      field that could actually cause damage to people. The location and strength of
-      sinks determines how much of the source actually reaches the users.
+      *Possible source maps*, generated through flow analysis, show which
+      specific sources actually generate carriers that reach users,
+      independent of the existence of sinks but taking into account
+      use values and the carrier flow paths. Even in the absence of
+      sinks, not all of a source quantity can actually reach users, 
+      because of the route that an ecosystem service carrier moves 
+      across the landscape. 
 
-      This map shows surface water in its initial source location, that is capable of providing water
+      For provisioning services, this corresponds to the source of 
+      benefits that has the potential of being actually useful. For 
+      preventive services, this corresponds to the sources that could 
+      actually cause damage to people. The location and strength of 
+      sinks determines how much of the source actually reaches the
+      users.
+
+      This map shows the initial location of surface water that is capable of providing water
       to human beneficiaries when accounting for flow paths but not accounting for sinks
       (i.e., potentially can provide water to human beneficiaries).
     </description>
@@ -975,14 +953,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Possible use maps* show the locations of users on the landscape that can receive a
+      *Possible use maps* show the locations of users that can receive a
       benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of sinks.  For provisioning
-      services, potential use identifies areas where it is physically possible for a benefit to
-      be received.  For preventive services, potential use identifies areas that may be damaged
-      by a detrimental carrier if sinks do not prevent such damage.
+      or may not actually receive the carrier due to the action of
+      sinks.  
 
-      This map represents water actually reaching a user, but not accounting for the activity of sinks.
+      For provisioning services, potential use identifies areas where
+      it is physically possible for a benefit to be received.  For 
+      preventive services, potential use identifies areas that may be 
+      damaged by a detrimental carrier if sinks do not prevent such
+      damage.
+
+      This map shows water actually reaching a user, but not accounting for the activity of sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1004,8 +986,8 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *actual flow density* map shows the flow paths that deliver actual services to
-      humans. These are selected from the total flow density to only show these flow paths
+      *Actual flow maps* show the flow paths that deliver actual services to
+      beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
       For provisioning services, these flow paths deliver valuable benefits to the
@@ -1013,7 +995,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
       the flow paths show how much of the carrier reaches users, delivering actual
       damage.
 
-      In this case, the density of actual flows represents the movement of surface water
+      In this case, the density of actual flows shows surface water movement 
       when accounting for flow paths and sinks (i.e., transitions from surface to
       groundwater, or evapotranspirative losses of surface water).
     </description>
@@ -1037,16 +1019,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *actual source map* shows the portion of the source map that is relevant to
-      the provision of a service after accounting for sinks and flow dynamics.
-      For provisioning services, this is the amount and location of a benefit that
-      actually provides benefits to the users. For preventive services, it shows
-      where the actual damage came from. Source regions that provided a damaging carrier
-      were neutralized by sinks are not shown.
+      *Actual source maps* show sources that actually provide a
+      service after accounting for sinks and flow dynamics. 
 
-      This map shows sources of surface water transitions that are capable of providing
+      For provisioning services, this is the amount and location of a 
+      benefit that actually provides benefits to the users. For 
+      preventive services, it shows where the actual damage came 
+      from. Source regions that provided a damaging carrier that 
+      was neutralized by sinks are not shown.
+
+      This map shows sources of surface water that provide
       water to human beneficiaries when accounting for surface flow paths
-      and sinks (i.e., areas that actually provide water to human beneficiaries).
+      and sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1068,11 +1052,13 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *actual sink map* shows the portion of the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. For provisioning
-      services, such sinks are responsible for reducing the benefits compared to their
-      possible value. For preventive services, such sinks provide the actual
-      service because they prevent a damaging carrier from reaching users.
+      *Actual sink maps* shows the sinks that actually contribute
+      to depleting a service carrier given its flow patterns. 
+
+      For provisioning services, such sinks reduce benefits to 
+      users compared to their possible value. For preventive 
+      services, such sinks provide the actual service because 
+      they prevent a damaging carrier from reaching users.
 
       This map shows the locations where surface water transitions into groundwater
       (via infiltration) or atmospheric water (via evapotranspiration), becoming unavailable
@@ -1098,11 +1084,12 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
       service or damage caused by a detrimental carrier for a preventive service, for
-      users located across the landscape.
+      users.
 
-      This map shows the portion of demand for water satisfied by the actual supply of surface water.
+      This map shows the portion of water demand satisfied by the
+      actual supply of surface water.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1124,13 +1111,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *inaccessible source map* shows those areas of the source map whose values are
-      irrelevant to the delivery of the service, because of the impossibility of reaching
-      users given the relevant ecosystem services flow path. For provisioning services, this
-      is the portion of the value that must be subtracted from the total source map to
-      define a maximum potential benefit for the users. For preventive services, it
+      *Inaccessible source maps* show source areas whose values are
+      irrelevant to ecosystem service delivery, because of a lack of flow
+      connections between sources and users. 
+
+      For provisioning services, this is the portion of the value that 
+      must be subtracted from the total source map to define a maximum 
+      potential benefit for the users. For preventive services, it
       shows those areas that have no potential of producing damage because the
-      flow dynamics prevent the carrier from reaching any significant user.
+      flow dynamics prevent the carrier from impacting any significant
+      user.
 
       This map shows the source locations of surface water that are not available
       to human users because their flow paths do not move them in a direction where
@@ -1158,9 +1148,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *inaccessible use map* shows those areas of the use map where beneficiaries fail
-      to receive a service because of the impossibility of reaching users given the relevant
-      ecosystem services flow path.
+      *Inaccessible use maps* shows potential users that cannot receive a service
+      due to a lack of flow routes linking source and user locations. 
+
+      For provisioning services, this corresponds to value produced by
+      the environment that cannot be reached by users. For preventive 
+      services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections
+      to users.
 
       This map shows areas of demand for surface water that goes unsatisfied due to
       a lack of surface or groundwater flow connections between sources of water and
@@ -1188,18 +1183,20 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *blocked flow map* shows the flow paths that could have delivered the
-      service carrier to humans based on the flow routes and the source and user
-      locations, but did not because of the action of sinks. These are selected from among
-      all actual flows.
+      *Blocked flow maps* show flow paths that could have delivered 
+      an ecosystem service to humans based on the flow routes and 
+      source and user locations, but did not because of the action 
+      of sinks. These are selected from among all actual flows.
 
-      For provisioning services, these flow paths show the loss in possible flow of
-      beneficial services to the users, and their density is proportional to the value lost.
-      For preventive services, the flow paths show the amount of the total flow that
-      was prevented by natural features from causing damage.
+      For provisioning services, these flow paths show the loss of
+      possible beneficial service flow to users, and their density 
+      is proportional to the value lost. For preventive services, 
+      the flow paths show the amount of the total flow that was 
+      prevented by natural features from causing damage.
 
       This map shows water flows that fail to reach a user because it encountered a
-      sink and transitions from surface water into the atmospheric or groundwater.
+      sink and transitioned from surface water into the atmospheric or
+      groundwater.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1221,11 +1218,13 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *blocked source map* shows the part of the source map that had the possibility
-      of reaching users given the location of the users and the flow dynamics, but
-      was blocked from doing so because of the action of sinks. For provisioning services,
-      this corresponds to value produced by the environment but lost before it reaches
-      the users. For preventive services, it corresponds to damage that could have been
+      *Blocked source maps* show sources that had the possibility of 
+      reaching users given the location of users and flow dynamics, but
+      were blocked from doing so because of the action of sinks. 
+
+      For provisioning services, this corresponds to value produced by the 
+      environment but lost before it could reach the users. For
+      preventive services, it corresponds to damage that could have been
       inflicted on users but was blocked by natural features.
 
       This map shows the source locations of surface water that fails to reach a user
@@ -1252,14 +1251,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      The *blocked use map* shows those users that would have been reached by the service
-      carrier based only on the source and the flow dynamics, but were not reached because
-      of the action of sinks. For provisioning services, the map shows possible value that
-      has not been accrued to users because of sinks; for preventive services, it shows
-      actual value accrued by users thanks to sink configuration.
+      *Blocked use maps* show users that would have received a service
+      carrier based on source and flow dynamics, but did not because
+      of the action of sinks. 
 
-      For preventive services, therefore, this map is the ultimate quantification of
-      value given the locations and quantity of users and natural sink features.
+      For provisioning services, the map shows possible value that
+      were prevented by sinks from reaching users; for preventive 
+      services, it shows actual value accrued by users from sinks 
+      that blocked damaging flows. For preventive services, therefore, 
+      this map is the ultimate quantification of value given the 
+      locations and quantity of users and sink features.
 
       This map shows demand for surface water that goes unsatisfied due to the action of
       sinks that transition water from surface water to inaccessible atmospheric moisture or
