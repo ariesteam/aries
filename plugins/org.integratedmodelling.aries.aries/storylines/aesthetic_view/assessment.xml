@@ -59,12 +59,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Aesthetic viewsheds</runninghead>
     <group></group>
     <description>
-      This storyline considers the contribution of ecosystems toward providing high-quality views and their impact on
-      property values.  The source model maps areas that contain high-quality views, the sink model maps areas with
-      objects that degrade views, and the use model maps the location of homeowners.  By combining these maps with a
-      line of sight model, we can analyze actual view quality and its potential impact on property values.  In the
-      recreation module, we use a similar set of models to map and value viewsheds as they contribute to recreational
-      experiences, such as on trails, mountain summits, or scenic drives.
+      This storyline considers the contribution of ecosystems 
+      toward providing high-quality views and their impact on
+      property values.  The source model maps areas that contain 
+      high-quality views, the sink model maps areas with
+      objects that degrade views, and the use model maps the 
+      location of homeowners.  By combining these maps with a
+      line of sight model, actual view quality and its potential
+      impact on property values can be analyzed.  In the recreation 
+      module, a similar set of models can be used to map and value 
+      viewsheds as they contribute to recreational experiences, 
+      such as on trails, mountain summits, or scenic drives.
     </description>
     <see-also><![CDATA[
     <p>
@@ -150,7 +155,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>The view of mountains, and their height, is used as an input to a probabilistic model to estimate
     view quality.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of meters above sea level.</p>
+    <p>Data are in physical units of meters above sea level.</p>
     <h1>Source</h1>
     <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
@@ -181,7 +186,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>The view of particular types of natural land cover, such as forests or riparian areas,
     is used as an input to a probabilistic model to estimate view quality.</p>
     <h1>Representation</h1>
-    <p>Data are categorical, derived from SWREGAP land cover classes.</p>
+    <p>Data are categorical, derived from SWReGAP land cover classes.</p>
     <h1>Source</h1>
     <p>Southwestern Regional GAP Analysis Land Use-Land Cover Dataset.</p>
     ]]></description>
@@ -245,7 +250,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an
     input to a probabilistic model to estimate visual blight that degrades view quality.</p>
     <h1>Representation</h1>
-    <p>Data are categorical, derived from NLCD land cover classes.</p>
+    <p>Data are categorical, derived from National Land Cover Dataset (NLCD) land cover classes.</p>
     <h1>Source</h1>
     <p>2001 National Land Cover Dataset.</p>
     ]]></description>
@@ -464,7 +469,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data show the presence or absence of housing.</p>
     <h1>Source</h1>
-    <p>County assessors' offices (where available), otherwise NLCD developed land.</p>
+    <p>County assessors' offices (where available), otherwise National
+    Land Cover Dataset (NLCD) developed land.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -493,7 +499,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the
     potential aesthetic value, as reflected in property value, of high-quality views.</p>
     <h1>Representation</h1>
-    <p>Data are shown in dollars per acre of property.</p>
+    <p>Data are in dollars per acre of property.</p>
     <h1>Source</h1>
     <p>County assessors' offices (where available).</p>
     ]]></description>
@@ -558,7 +564,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Possible flow maps* show the path that the carrier of the service would take
       if it was not intercepted by sinks.  As such it considers source and use models and
-      shows the maximum amount of flow. For provisioning services, this corresponds to the
+      shows the maximum amount of flow. 
+
+      For provisioning services, this corresponds to the
       maximum potential benefit; for preventive services, the maximum potential damage.
 
       This map shows the flow of views from natural areas toward
@@ -583,18 +591,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <description>
-      *Possible source maps*, generated through flow analysis, let 
-      us identify which specific sources actually generate carriers 
+      *Possible source maps*, generated through flow analysis, show 
+      which specific sources actually generate carriers 
       that reach users, independent of the existence of sinks but 
       taking into account use values and the carrier flow paths. 
       Even in the absence of sinks, not all of a source quantity can 
       actually reach users, because of the route that an ecosystem 
-      service carrier moves across the landscape. For provisioning 
-      services, this corresponds to the source of benefits that has 
-      the potential of being actually useful. For preventive services, 
-      this corresponds to the sources that could actually cause damage 
-      to people. The location and strength of sinks determines how
-      much of the source actually reaches the users.
+      service carrier moves across the landscape. 
+
+      For provisioning services, this corresponds to the source of 
+      benefits that has the potential of being actually useful. For 
+      preventive services, this corresponds to the sources that could 
+      actually cause damage to people. The location and strength of 
+      sinks determines how much of the source actually reaches the users.
 
       This map shows open space providing views when accounting for lines of sight and
       the location of homeowners but not visual blight.
@@ -620,9 +629,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Possible use maps* show the locations of users that can receive a
       benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of sinks.  For provisioning
-      services, potential use identifies areas where it is physically possible for a benefit to
-      be received.  For preventive services, potential use identifies areas that may be damaged
+      or may not actually receive the carrier due to the action of
+      sinks.  
+
+      For provisioning services, potential use identifies areas where
+      it is physically possible for a benefit to be received.  For 
+      preventive services, potential use identifies areas that may be damaged
       by a detrimental carrier if sinks do not prevent such damage.
 
       This map shows homeowners benefiting from views when sources of high-quality views and
@@ -647,7 +659,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      *Actual flow* maps show the flow paths that deliver actual services to
+      *Actual flow maps* show the flow paths that deliver actual services to
       beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
@@ -679,8 +691,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. For 
-      provisioning services, this is the amount and location of a 
+      service after accounting for sinks and flow dynamics. 
+
+      For provisioning services, this is the amount and location of a 
       benefit that actually provides benefits to the users. For 
       preventive services, it shows where the actual damage came 
       from. Source regions that provided a damaging carrier that 
@@ -709,10 +722,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual sink maps* shows the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. For provisioning
-      services, such sinks reduce benefits to users compared to their
-      possible value. For preventive services, such sinks provide the actual
-      service because they prevent a damaging carrier from reaching users.
+      to depleting a service carrier given its flow patterns. 
+
+      For provisioning services, such sinks reduce benefits to users 
+      compared to their possible value. For preventive services, such 
+      sinks provide the actual service because they prevent a damaging 
+      carrier from reaching users.
 
       This map shows areas of visual blight located between visually valuable views
       and beneficiaries - features that actually degrade high quality views.
@@ -763,10 +778,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Inaccessible use maps* shows potential users that cannot receive a service
-      due to a lack of flow routes linking source and user locations. For provisioning services,
-      this corresponds to value produced by the environment that cannot be reached by
-      users. For preventive services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections to users.
+      due to a lack of flow routes linking source and user locations. 
+
+      For provisioning services, this corresponds to value produced by
+      the environment that cannot be reached by users. For preventive 
+      services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections
+      to users.
 
       This map shows homeowners who lack any views due to their lack of flow connections
       (i.e., living in areas too flat or distant from high quality views).
@@ -823,13 +841,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Blocked source map</runninghead>
     <group>flow</group>
     <description>
-      *Blocked source maps* show sources that had the possibility of 
-      reaching users given the location of users and flow dynamics, but
-      were blocked from doing so because of the action of sinks. For 
-      provisioning services, this corresponds to value produced by the 
-      environment but lost before it could reach the users. For
-      preventive services, it corresponds to damage that could have been
-      inflicted on users but was blocked by natural features.
+      *Blocked use maps* show users that would have received a service
+      carrier based on source and flow dynamics, but did not because
+      of the action of sinks. 
+
+      For provisioning services, the map shows possible value that
+      were prevented by sinks from reaching users; for preventive
+      services, it shows actual value accrued by users from sinks that 
+      blocked damaging flows. For preventive services, therefore, this 
+      map is the ultimate quantification of value given the locations 
+      and quantity of users and sink features.
 
       This map shows sources of views that are blocked by the presence of visual blight.
     </description>
@@ -854,13 +875,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Blocked use maps* show users that would have received a service
       carrier based on source and flow dynamics, but did not because
-      of the action of sinks. For provisioning services, the map shows 
-      possible value that were prevented by sinks from reaching users; 
-      for preventive services, it shows actual value accrued by users 
-      from sinks that blocked damaging flows.
+      of the action of sinks. 
 
-      For preventive services, therefore, this map is the ultimate quantification of
-      value given the locations and quantity of users and sink features.
+      For provisioning services, the map shows possible value that
+      were prevented by sinks from reaching users; for preventive
+      services, it shows actual value accrued by users from sinks that 
+      blocked damaging flows. For preventive services, therefore, this 
+      map is the ultimate quantification of value given the locations 
+      and quantity of users and sink features.
 
       This map shows homeowners who would receive benefits from views but have their
       views degraded by visual blight.

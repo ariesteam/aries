@@ -54,8 +54,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       This storyline considers the contribution of ecosystems toward providing high-quality open space, and the impact
       of open space on property values.  The source model quantifies open space quality, the sink model maps
       highways that reduce privacy and obstruct direct access to open space, and the use model maps the location
-      of homeowners.  By combining these maps with a walking simulation model, we can analyze actual open space
-      proximity its potential impact on property values.
+      of homeowners.  By combining these maps with a walking simulation model, actual open space
+      proximity its potential impact on property values can be analyzed.
     </description>
     <see-also><![CDATA[
     <p>
@@ -287,7 +287,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data show the presence or absence of farmland.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset, Southwest Regional GAP Analysis land use-land cover data.</p>
+    <p>National Land Cover Dataset (NLCD), Southwest Regional GAP Analysis land use-land cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -295,8 +295,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a><br/>
-    <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a>
+    <b>Data sources</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset,</a><br/>
+    <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -378,7 +378,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
-    <p>Derived from SWREGAP land use-land cover data and riparian condition class data
+    <p>Derived from SWReGAP land use-land cover data and riparian condition class data
     (Stromberg, J.C., et al. 2006. Status of the riparian ecosystem in the Upper San Pedro River, Arizona:
     Application of an assessment model. Environmental Monitoring and Assessment 115: 145-173.)</p>
     ]]></description>
@@ -477,7 +477,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data sources</b>: <a href="http://azconservation.org/projects/southwest_forest_assessment/" target="_blank">TNC Southwest Forest Assessment Project</a>
+    <b>Data sources</b>: <a href="http://azconservation.org/projects/southwest_forest_assessment/" target="_blank">TNC Southwest Forest Assessment Project,</a>
     <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis Land Use-Land Cover data.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
@@ -659,7 +659,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data show the presence or absence map of housing.</p>
     <h1>Source</h1>
-    <p>County assessors' offices (where available), otherwise NLCD developed land.</p>
+    <p>County assessors' offices (where available), otherwise National
+    Land Cover Dataset (NLCD) developed land.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -689,7 +690,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     probabilistic model to estimate the potential aesthetic value, as reflected in property value,
     of open space proximity.</p>
     <h1>Representation</h1>
-    <p>Data are represented in dollars per acre of property.</p>
+    <p>Data are in dollars per acre of property.</p>
     <h1>Source</h1>
     <p>County assessors' offices (where available).</p>
     ]]></description>
@@ -789,7 +790,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Possible flow maps* show the path that the carrier of the service would take
       if it was not intercepted by sinks.  As such it considers source and use models and
-      shows the maximum amount of flow. For provisioning services, this corresponds to the
+      shows the maximum amount of flow. 
+
+      For provisioning services, this corresponds to the
       maximum potential benefit; for preventive services, the maximum
       potential damage.
 
@@ -815,18 +818,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <description>
-      *Possible source maps*, generated through flow analysis, let us identify which
-      specific sources actually generate carriers that reach users,
-      independent of the existence of sinks but taking into account
-      use values and the carrier flow paths. Even in the absence of
-      sinks, not all of a source quantity can actually reach users, 
-      because of the route that an ecosystem service carrier moves 
-      across the landscape. For provisioning services, this
-      corresponds to the source of benefits that has the potential of 
-      being actually useful. For preventive services, this corresponds 
-      to the sources that could actually cause damage to people. The 
-      location and strength of sinks determines how much of the source 
-      actually reaches the users.      
+      *Possible source maps*, generated through flow analysis, show 
+      which specific sources actually generate carriers 
+      that reach users, independent of the existence of sinks but 
+      taking into account use values and the carrier flow paths. 
+      Even in the absence of sinks, not all of a source quantity can 
+      actually reach users, because of the route that an ecosystem 
+      service carrier moves across the landscape. 
+
+      For provisioning services, this corresponds to the source of 
+      benefits that has the potential of being actually useful. For 
+      preventive services, this corresponds to the sources that could 
+      actually cause damage to people. The location and strength of 
+      sinks determines how much of the source actually reaches the
+      users.     
 
       This map shows open space providing value when accounting for proximity and the
       location of homeowners but not highways that limit local access.
@@ -852,9 +857,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Possible use maps* show the locations of users that can receive a
       benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of sinks.  For provisioning
-      services, potential use identifies areas where it is physically possible for a benefit to
-      be received.  For preventive services, potential use identifies areas that may be damaged
+      or may not actually receive the carrier due to the action of
+      sinks.  
+
+      For provisioning services, potential use identifies areas where
+      it is physically possible for a benefit to be received.  For 
+      preventive services, potential use identifies areas that may be damaged
       by a detrimental carrier if sinks do not prevent such damage.
 
       This map shows homeowners benefiting from proximity after accounting for sources of open
@@ -879,7 +887,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      *Actual flow* maps show the flow paths that deliver actual services to
+      *Actual flow maps* show the flow paths that deliver actual services to
       beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
@@ -911,8 +919,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. For 
-      provisioning services, this is the amount and location of a 
+      service after accounting for sinks and flow dynamics. 
+
+      For provisioning services, this is the amount and location of a 
       benefit that actually provides benefits to the users. For 
       preventive services, it shows where the actual damage came 
       from. Source regions that provided a damaging carrier that 
@@ -941,10 +950,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual sink maps* shows the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. For provisioning
-      services, such sinks reduce benefits to users compared to their
-      possible value. For preventive services, such sinks provide the actual
-      service because they prevent a damaging carrier from reaching users.
+      to depleting a service carrier given its flow patterns. 
+
+      For provisioning services, such sinks reduce benefits to users 
+      compared to their possible value. For preventive services, such 
+      sinks provide the actual service because they prevent a damaging 
+      carrier from reaching users.
 
       This map shows highways that actually separate residences from
       nearby open space.
@@ -995,9 +1006,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Inaccessible use maps* shows potential users that cannot receive a service
-      due to a lack of flow routes linking source and user locations. For provisioning services,
-      this corresponds to value produced by the environment that cannot be reached by
-      users. For preventive services, it corresponds to damage that could have been
+      due to a lack of flow routes linking source and user locations. 
+
+      For provisioning services, this corresponds to value produced by
+      the environment that cannot be reached by users. For preventive 
+      services, it corresponds to damage that could have been
       inflicted on users but is not due to a lack of flow connections
       to users.
 
@@ -1058,8 +1071,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Blocked source maps* show sources that had the possibility of 
       reaching users given the location of users and flow dynamics, but
-      were blocked from doing so because of the action of sinks. For 
-      provisioning services, this corresponds to value produced by the 
+      were blocked from doing so because of the action of sinks. 
+
+      For provisioning services, this corresponds to value produced by the 
       environment but lost before it could reach the users. For
       preventive services, it corresponds to damage that could have been
       inflicted on users but was blocked by natural features.
@@ -1087,14 +1101,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Blocked use maps* show users that would have received a service
       carrier based on source and flow dynamics, but did not because
-      of the action of sinks. For provisioning services, the map shows 
-      possible value that were prevented by sinks from reaching users; 
-      for preventive services, it shows actual value accrued by users 
-      from sinks that blocked damaging flows.
+      of the action of sinks. 
 
-      For preventive services, therefore, this map is the ultimate quantification of
-      value given the locations and quantity of users and sink
-      features.
+      For provisioning services, the map shows possible value that
+      were prevented by sinks from reaching users; for preventive
+      services, it shows actual value accrued by users from sinks that 
+      blocked damaging flows. For preventive services, therefore, this 
+      map is the ultimate quantification of value given the locations 
+      and quantity of users and sink features.
 
       This map shows homeowners who would receive benefits from open space proximity
       but have their access blocked by highways.

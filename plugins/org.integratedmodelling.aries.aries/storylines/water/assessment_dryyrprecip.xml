@@ -21,7 +21,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <title>Surface water supply, dry year annual precipitation</title>
   <runninghead>Values resulting from water regulation and supply by ecosystems under dry year annual precipitation levels</runninghead>
   <description>Values resulting from the provision of surface and groundwater water supply by ecosystems,
-  including precipitation, ecosystems capable of providing groundwater recharge or delivery of surface
+  including precipitation, groundwater recharge, or delivery of surface
   water through streams, lakes, or reservoirs.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
@@ -45,9 +45,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       This model considers surface water supply for various human beneficiary groups, including agriculture, industry,
       domestic use, and in-stream flow to support hydroelectric power generation, navigation, or recreation.  The model uses
       dry year annual precipitation as the primary source of surface water to estimate lower-bound values for water supply in a dry year.
-      These models collectively map flows sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, incoming
+      These models collectively map sources of surface water (precipitation, snowmelt, springs, baseflow to rivers, incoming
       water transfers), sinks (areas of groundwater infiltration or evapotranspiration), and beneficiary groups and
-      link these via a flow model accounting for the downstream movement of water.
+      link these via a flow model accounting for downstream water movement.
     </description>
     <see-also><![CDATA[
     <p>
@@ -102,19 +102,19 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <description><![CDATA[
     <p>Annual precipitation, dry year.</p>
     <h1>Role in models</h1>
-    <p>Precipitation data are used as the most important "source" of surface and groundwater.  Particularly in
-    arid and semiarid regions, where year-to-year rainfall is highly variable, it is more realistic for us to
-    model the range of variability in water supply, based on a representative wet and dry year, than to model
-    mean annual precipitation.  Precipitation runs off into water bodies where it is used or recharges
+    <p>Precipitation is the ultimate "source" of surface and groundwater.  Particularly in
+    arid and semiarid regions, where year-to-year rainfall is highly variable, it is more realistic to
+    model the range of variability in water supply based on representative wet and dry years than to model
+    mean annual precipitation.  Precipitation runs off into water bodies where it can be used, or recharges
     groundwater through percolation to aquifers.  Data are currently at an annual time scale; finer temporal
-    resolution could be added to the ARIES system in the future to better account for seasonal wet and dry
-    seasons and their impacts on water supply.  These data are passed to the flow model to estimate actual
-    water supply used given the locations of beneficiaries, their demand, and infiltration or evapotranspiration
+    resolution could be added in the future to better account for wet and dry
+    season water supply dynamics.  These data are passed to the flow model to estimate actual
+    water supply used given the locations of beneficiaries, their demand, and infiltration and evapotranspiration
     that occur as water flows across the landscape.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of precipitation per year.</p>
+    <p>Data are in physical units of millimeters of precipitation per year.</p>
     <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University  (U.S. data).</p>
+    <p>PRISM Climate Group, Oregon State University (U.S.).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -145,11 +145,11 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <p>Annual groundwater recharge, wet year.</p>
     <h1>Role in models</h1>
     <p>Groundwater recharge data are the "source" of groundwater.  Groundwater then moves through aquifers
-    based on various geologic factors, or is extracted by wells for use.  These data are passed to the flow
+    based on various geologic factors, or is extracted by wells for human use.  These data are passed to the flow
     model to estimate actual groundwater used given the locations of beneficiaries and their demand, along
-    with any springs or baseflow to rivers that naturally converts groundwater back to surface water.</p>
+    with any springs or baseflow to rivers that naturally returns groundwater back to surface water.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of groundwater recharge per year.</p>
+    <p>Data are in physical units of millimeters of groundwater recharge per year.</p>
     <h1>Source</h1>
     <p>U.S. Geological Survey.</p>
     ]]></description>
@@ -175,15 +175,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <units>degrees slope</units>
     <description><![CDATA[
-    <p>Slope strongly affects runoff by influencing potential infiltration.</p>
+    <p>Slope affects runoff by influencing potential infiltration.</p>
     <h1>Role in models</h1>
-    <p>Since hydrologic soils group classifications do not account for slope, we use slope data along with HSG
+    <p>Since hydrologic soils group classifications do not account for
+    slope, slope data are used along with HSG
     and impervious surface data to estimate the soil infiltration component in the surface water sink
     models.  Greater infiltration is expected on level slopes than on steep slopes where runoff occurs quickly.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of degrees slope.</p>
+    <p>Data are in physical units of degrees slope.</p>
     <h1>Source</h1>
-    <p>Data are derived from a global 90-m SRTM digital elevation model.</p>
+    <p>Derived from a global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -211,7 +212,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <h1>Role in models</h1>
     <p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
     accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
-    does not account for slope.  We use HSG along with slope and impervious surface data to estimate the soil infiltration
+    does not account for slope.  HSG is used along with slope and impervious surface data to estimate the soil infiltration
     component of surface water sink models.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
@@ -238,12 +239,12 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Percent impervious surface cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
+    <p>The amount of impervious surface (e.g., buildings, pavement) on the landscape.</p>
     <h1>Role in models</h1>
-    <p>We use impervious surface along with slope and hydrologic soils group to estimate the soil infiltration
+    <p>Impervious surface data are used along with slope and hydrologic soils group to estimate the soil infiltration
     component of the surface water sink models.  Zero infiltration is expected on impervious surfaces.</p>
     <h1>Representation</h1>
-    <p>Data represent the percentage of the land surface under impervious cover.</p>
+    <p>Data show the percentage of the land surface with impervious cover.</p>
     <h1>Source</h1>
     <p>NOAA-NGDC global impervious surface data.</p>
     ]]></description>
@@ -270,10 +271,12 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <description><![CDATA[
     <p>The intersection of valley fill alluvium and mountain fronts.</p>
     <h1>Role in models</h1>
-    <p>In the southwestern United States, mountain fronts and stream channels are two primary areas of groundwater.
-    recharge.  They are thus used as the inputs to a probabilistic model of infiltration.</p>
+    <p>In the basin and range geologic formations like in the
+    southwestern United States, mountain fronts are a key location for
+    groundwater recharge.  These data are thus used as an input to 
+    a probabilistic model of infiltration.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of potential mountainfront recharge
+    <p>Data show the presence or absence of potential mountainfront recharge
     zones, represented as a 1,600-meter wide band around the base of mountainfronts where subsurface geology shifts
     to valley fill alluvium.  Areas of limestone bedrock, which promote high levels of infiltration, are also
     included in this layer.</p>
@@ -303,10 +306,11 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <description><![CDATA[
     <p>Perennial, intermittent, and ephemeral stream channels.</p>
     <h1>Role in models</h1>
-    <p>In the southwestern United States, mountain fronts and stream channels are two primary areas of groundwater.
-    recharge.  They are thus used as the inputs to a probabilistic model of infiltration.</p>
+    <p>Along with mountain fronts, stream channels are another
+    important recharge zone in the southwestern United States. These
+    data are thus used as an input to a probabilistic model of infiltration.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of perennial, intermittent,
+    <p>Data show the presence or absence of perennial, intermittent,
     or ephemeral stream channels.</p>
     <h1>Source</h1>
     <p>Arizona Geographic Information Council.</p>
@@ -325,15 +329,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="soil-infiltration-class">
-    <concept>waterSupplyService:SoilInfiltrationClass</concept>
+  <page id="soil-infiltration">
+    <concept>waterSupplyService:SoilInfiltration</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
+    <p>Surface water absorbed by the soil, potentially becoming available as groundwater.</p>
     <h1>Role in models</h1>
     <p>This is the output of a probabilistic model accounting for the influence of soil and geologic
     characteristics on infiltration.  Results are summed with evapotranspiration to give total surface
@@ -341,7 +345,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
     given the location of sources of surface water and users of water.  In the absence of direct data on
     infiltration, the results of this model can also be used as source data for groundwater flow models.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the
+    <p>Data are in physical units of millimeters of water infiltrated per year.  As the output of the
     models is probabilistic, each point contains the probability distribution of the amount of water
     infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
     coefficient of variation are reported along with the probabilities.</p>

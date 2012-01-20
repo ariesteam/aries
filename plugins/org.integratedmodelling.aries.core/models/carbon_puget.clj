@@ -37,7 +37,7 @@
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
   (PercentTreeCanopyCoverClass :editable "true")
-  (FireFrequency :editable "true")
+  (FireThreat :editable "true")
   (GreenhouseGasEmissions :editable "true")
   (thinklab-core:BooleanRanking
    (LandOrSea
@@ -153,12 +153,12 @@
     #{90 95}   AnoxicSoils
     :otherwise OxicSoils))
 
-(defmodel fire-frequency FireFrequency
+(defmodel fire-threat FireThreatClass
   (classification (measurement habitat:FireFrequency "/km^2")
-    [0.9 :>]    HighFireFrequency
-    [0.25 0.9]  ModerateFireFrequency
-    [0.01 0.25] LowFireFrequency
-    [0    0.01] NoFireFrequency))
+    [0.9 :>]    VeryHighFireThreat
+    [0.25 0.9]  HighFireThreat
+    [0.01 0.25] ModerateFireThreat
+    [0    0.01] LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha"
@@ -223,7 +223,7 @@
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
     :import   "aries.core::CarbonSinkPuget.xdsl"
-    :context  [veg-soil-storage fire-frequency land-selector]
+    :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
     :keep     [StoredCarbonRelease]
     :result   stored-carbon-release))
@@ -383,14 +383,14 @@ greenhouse gas emissions."
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
                   (conc 'carbonService:NoSuccession)
                   (:ss %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [open-development-scenario :as od fire-frequency :as ff]
+  (model FireThreat
+    (classification FireThreat
+      :context [open-development-scenario :as od fire-threat :as ff]
     :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                       (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                       (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
-                (conc 'carbonService:NoFireFrequency)
+                (conc 'carbonService:LowFireThreat)
                 (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"
@@ -437,14 +437,14 @@ greenhouse gas emissions."
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'carbonService:NoSuccession)
                   (:ss %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [constrained-development-scenario :as cd fire-frequency :as ff]
+  (model FireThreat
+    (classification FireThreat
+      :context [constrained-development-scenario :as cd fire-threat :as ff]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'carbonService:NoFireFrequency)
+                  (conc 'carbonService:LowFireThreat)
                   (:ff %))))
   (model GreenhouseGasEmissions
     (measurement GreenhouseGasEmissions "t/ha*year"

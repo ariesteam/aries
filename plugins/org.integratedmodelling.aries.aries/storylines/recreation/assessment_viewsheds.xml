@@ -21,12 +21,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <title>Recreation: Scenic viewsheds</title>
   <runninghead>Values resulting from ecosystem contributions toward scenic viewsheds from mountains as a recreational activity</runninghead>
   <description>Values resulting from the value of hiking to scenic
-  viewsheds on mountaintops as a recreational activity, as opposed to
-  the infrastructure, skills, and preferences of individuals
-  participating in a given activity.  Source models map the potential
-  quality for viewing high-quality scenic vistas from mountains.  Flow
-  models can be used to connect beneficiaries to areas where birding
-  can occur.</description>
+  viewsheds on mountaintops as a recreational activity.  Source models 
+  map the potential quality for viewing high-quality scenic vistas
+  from mountains.  Flow models can be used to connect beneficiaries 
+  to areas where hiking can occur.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>recreationService:MountainViewUse</concept>
@@ -79,12 +77,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Lakes</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of lakes as aesthetically pleasing natural features to view from mountain summits.</p>
+    <p>The presence of lakes as aesthetically valued natural features to view from mountain summits.</p>
     <h1>Role in models</h1>
-    <p>Lake presence is defined as a high-quality water view and used as an input to a probabilistic model
+    <p>Lake presence is considered a high-quality view and used as an input to a probabilistic model
     to estimate view quality.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of lakes.</p>
+    <p>Data show the presence or absence of lakes.</p>
     <h1>Source</h1>
     <p>National Hydrography Dataset.</p>
     ]]></description>
@@ -94,7 +92,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://nhd.usgs.gov/" target="_blank">National Hydrography Dataset.</a>
+    <b>Data source</b>: <a href="http://nhd.usgs.gov/" target="_blank">National Hydrography Dataset.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -109,12 +107,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Rivers and streams</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of rivers and streams as aesthetically pleasing natural features to view from mountain summits.</p>
+    <p>The presence of rivers and streams as aesthetically valued natural features to view from mountain summits.</p>
     <h1>Role in models</h1>
     <p>Rivers and streams, which are less prominent water features on the landscape than lakes, are defined
-    as a lower-quality water view and used as an input to a probabilistic model to estimate view quality.</p>
+    as a lower-quality view and used as an input to a probabilistic model to estimate view quality.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
+    <p>Data show the presence or absence of rivers and streams.</p>
     <h1>Source</h1>
     <p>National Hydrography Dataset.</p>
     ]]></description>
@@ -124,7 +122,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://nhd.usgs.gov/" target="_blank">National Hydrography Dataset.</a>
+    <b>Data source</b>: <a href="http://nhd.usgs.gov/" target="_blank">National Hydrography Dataset.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -144,7 +142,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>The view of other mountains, and their height, is used as an input to a probabilistic model to estimate
     view quality from a given mountain summit.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of meters above sea level.</p>
+    <p>Data are in physical units of meters above sea level.</p>
     <h1>Source</h1>
     <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
@@ -154,7 +152,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a>
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Shuttle Radar Topography Mission data.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>=
     <disabled>false</disabled>
@@ -169,7 +167,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Open space type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of aesthetically pleasing land cover types as viewed from mountain summits, such as forests or
+    <p>The presence of aesthetically valued land cover types as viewed from mountain summits, such as forests or
     farmland.</p>
     <h1>Role in models</h1>
     <p>The view of natural land cover, such as forests or farmland, is used as an input to a probabilistic model to
@@ -177,7 +175,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data are categorical, derived from NLCD land cover classes.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -185,7 +183,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -194,7 +192,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="aesthetic-enjoyment-provision">
-    <concept>aestheticService:TheoreticalNaturalBeauty</concept>
+    <concept>aestheticService:AestheticEnjoymentProvision</concept>
     <name>Potential view quality</name>
     <title>Potential view quality</title>
     <runninghead>Potential view quality</runninghead>
@@ -242,7 +240,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1>
     <p>Data are categorical, derived from NLCD land cover classes.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -250,7 +248,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a>
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -271,7 +269,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>The view of aesthetically displeasing land use, such as highways or transmission lines, is used as an
     input to a probabilistic model to estimate visual blight visible from a given mountain summit.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of roads and utility lines.</p>
+    <p>Data show the presence or absence of roads and transmission lines.</p>
     <h1>Source</h1>
     <p>Vermont Center for Geographic Information.</p>
     ]]></description>
@@ -281,7 +279,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a>
+    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -289,8 +287,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="visual-blight">
-    <concept>aestheticService:VisualBlight</concept>
+  <page id="view-sink">
+    <concept>aestheticService:ViewSink</concept>
     <name>Visual blight</name>
     <title>Visual blight</title>
     <runninghead>Visual blight</runninghead>
@@ -341,7 +339,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     quantifies view quality for each summit or overlook.  View quality can then be used as the source value for a recreation
     flow model that connects recreationists to mountain summits of interest.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of mountain summits or overlooks with views
+    <p>Data show the presence or absence of mountain summits or overlooks with views
     of the surrounding landscape.</p>
     <h1>Source</h1>
     <p>Digitized based on Vermont hiking guides.</p>
@@ -401,8 +399,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description><![CDATA[
     <p>Areas with public access for recreational activities.</p>
     <h1>Role in models</h1>
-    <p>Public access is a critical input to any recreation source model, as recreationists must be able to access
-    land in order to engage in their activity of interest.  Public access data are combined with other appropriate
+    <p>Public access is a prerequisite for recreationists to engage in
+    their activity of interest on a given parcel of land. Public access data are combined with other appropriate
     data to identify an area's suitability for the recreational activity of interest.</p>
     <h1>Representation</h1>
     <p>Data are categorical, and identify public land, private land with public access granted (e.g., nature preserves),
@@ -416,7 +414,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a>
+    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -431,7 +429,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Population density</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+    <p>Population density estimates can be used to map recreational use.</p>
     <h1>Role in models</h1>
     <p>Population density can be used along with recreational preference data, where available, to estimate
     the number of potential recreational uesrs for a given activity in a particular area.  These data are thus
@@ -447,7 +445,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -467,7 +465,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>Roads are used in the recreation flow model to determine the accessibility of recreational areas
     for potential users.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of roads.</p>
+    <p>Data show the presence or absence of roads.</p>
     <h1>Source</h1>
     <p>Vermont Center for Geographic Information.</p>
     ]]></description>
@@ -477,7 +475,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a>
+    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -508,7 +506,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a>
+    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -529,7 +527,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     a recreation area.  Without dedicated trail access, recreational use may be much lower.  Areas with easily-accessible
     or high use trails offer a different visitor experience than more remote trails.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of trails.</p>
+    <p>Data show the presence or absence of trails.</p>
     <h1>Source</h1>
     <p>Vermont Center for Geographic Information.</p>
     ]]></description>
@@ -539,7 +537,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a>
+    <b>Data source</b>: <a href="http://www.vcgi.org/dataware/" target="_blank">Vermont Center for Geographic Information.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -559,8 +557,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      The *actual flow density* map shows the flow paths that deliver actual services to
-      humans. These are selected from the total flow density to only show these flow paths
+      *Actual flow maps* show the flow paths that deliver actual services to
+      beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
       For provisioning services, these flow paths deliver valuable benefits to the
@@ -568,7 +566,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       the flow paths show how much of the carrier reaches users, delivering actual
       damage.
 
-      In this case, this map shows the movement of people toward recreation areas, based on
+      This map shows the movement of people toward recreation areas, based on
       transportation networks, recreational preferences, site quality, and a distance decay
       function.
     </description>
@@ -591,14 +589,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual source map</runninghead>
     <group>flow</group>
     <description>
-      The *actual source map* shows the portion of the source map that is relevant to
-      the provision of a service after accounting for sinks and flow dynamics.
-      For provisioning services, this is the amount and location of a benefit that
-      actually provides benefits to the users. For preventive services, it shows
-      where the actual damage came from. Source regions that provided a damaging carrier
-      were neutralized by sinks are not shown.
+      *Actual source maps* show sources that actually provide a
+      service after accounting for sinks and flow dynamics. For 
+      provisioning services, this is the amount and location of a 
+      benefit that actually provides benefits to the users. For 
+      preventive services, it shows where the actual damage came 
+      from. Source regions that provided a damaging carrier that 
+      was neutralized by sinks are not shown.
 
-      This map shows the amount of recreational use actually seen at a recreation area
+      This map shows the amount of recreational use actually occurring at a recreation area
       when accounting for demand and spatial flows of visitors.
     </description>
     <see-also><![CDATA[
@@ -620,9 +619,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
       service or damage caused by a detrimental carrier for a preventive service, for
-      users located across the landscape.
+      users.
 
       This map shows the residential location of users who actually travel to sites
       via “recreation flows” to engage in recreational activities at source areas.
@@ -646,13 +645,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Inaccessible source map</runninghead>
     <group>flow</group>
     <description>
-      The *inaccessible source map* shows the flow paths that cannot deliver a
-      service carrier to humans based on the flow routes and the source and user
-      locations.
+      *Inaccessible source maps* show source areas whose values are
+      irrelevant to ecosystem service delivery, because of a lack of flow
+      connections between sources and users. 
 
-      For provisioning services, these flow paths show areas that could provide a benefit,
-      but do not due to a lack of flow connections to potential users.  For preventive services,
-      the flow paths show potential sources of a damaging carrier that do not impact people.
+      For provisioning services, this is the portion of the value that 
+      must be subtracted from the total source map to define a maximum 
+      potential benefit for the users. For preventive services, it
+      shows those areas that have no potential of producing damage because the
+      flow dynamics prevent the carrier from impacting any significant
+      user.
 
       This map shows recreational areas whose current accessibility via transportation
       networks makes their use level more limited than their attractiveness alone would
@@ -677,13 +679,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Inaccessible use map</runninghead>
     <group>flow</group>
     <description>
-      The *inaccessible use map* shows the potential users that cannot receive a service
-      carrier due to flow routes and the source and user locations. For provisioning services,
-      this corresponds to value produced by the environment but that cannot be reached by
-      users. For preventive services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections to users.
+      *Inaccessible use maps* shows potential users that cannot receive a service
+      due to a lack of flow routes linking source and user locations. 
 
-      This map shows users too distant from a recreational resource to benefit from it.
+      For provisioning services, this corresponds to value produced by
+      the environment that cannot be reached by users. For preventive 
+      services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections
+      to users.
+
+      This map shows users too distant from a recreational site to
+      benefit from it.
     </description>
     <see-also><![CDATA[
     <p>

@@ -152,12 +152,12 @@
 ;; Per Schussman et al. (2006), the middle of each of these ranges is
 ;; around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs
 ;; for low.
-(defmodel fire-frequency FireFrequency
+(defmodel fire-threat FireThreat
   (classification (numeric-coding habitat:FireReturnInterval) 
-    1      HighFireFrequency
-    #{2 3} ModerateFireFrequency ; includes "variable" fire frequency
-    4      LowFireFrequency
-    #{5 6} NoFireFrequency))
+    1      VeryHighFireThreat
+    #{2 3} HighFireThreat ; includes "variable" fire frequency
+    4      ModerateFireThreat
+    #{5 6} LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha" 
@@ -222,7 +222,7 @@
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
-    :context [veg-soil-storage fire-frequency]
+    :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
 
@@ -342,11 +342,11 @@ fire frequency, increased greenhouse gas emissions."
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'carbonService:VeryLowCanopyCover)
                   (:pcc %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [open-development-scenario :as od fire-frequency :as ff]
+  (model FireThreat
+    (classification FireThreat
+      :context [open-development-scenario :as od fire-threat :as ff]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:NoFireFrequency)    
+                  (conc 'carbonService:LowFireThreat)    
                   (:ff %))))
   (model sanPedro:CarbonVegetationType
     (classification sanPedro:CarbonVegetationType
@@ -370,11 +370,11 @@ fire frequency, increased greenhouse gas emissions."
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
                   (conc 'carbonService:VeryLowCanopyCover)
                   (:pcc %))))
-  (model FireFrequency
-    (classification FireFrequency
-      :context [constrained-development-scenario :as cd fire-frequency :as ff]
+  (model FireThreat
+    (classification FireThreat
+      :context [constrained-development-scenario :as cd fire-threat :as ff]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:NoFireFrequency)
+                  (conc 'carbonService:LowFireThreat)
                   (:ff %))))
   (model sanPedro:CarbonVegetationType
     (classification sanPedro:CarbonVegetationType
