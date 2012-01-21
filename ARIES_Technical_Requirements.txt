@@ -1,0 +1,48 @@
+ARIES Technical Requirements
+----------------------------
+
+The ARIES modelling platform follows a client-server architecture, in
+which the client and server components may be hosted either on the
+same or separate machines. Green Compass, LLC hosts a public ARIES
+server, which may be accessed through a web browser at this URL:
+
+  http://ecoinformatics.uvm.edu/aries.app
+
+This web-based interface allows users to:
+
+ 1. Select a geographic region of interest.
+ 2. Run one or more pre-defined ecosystem service models on the
+    selected region.
+ 3. View map images of the models' inputs and results with legends.
+ 4. Download any of the input or result datasets as PNG images or GIS
+    layers.
+
+The only technical requirement for a user of this public system is a
+modern web browser with a reasonably fast Javascript engine, such as
+Firefox, Safari, or Google Chrome. If you want to make use of the
+downloadable GIS layers, you will also need a GIS package. The public
+system is necessarily limited in features and spatial resolution.
+
+If a user wishes to setup and run their own ARIES server, then the
+technical requirements become much more complex. ARIES will run on a
+Linux, Windows or Mac computer configured as follows:
+
+ 1. Enough RAM and processing power. Because models and data for ARIES
+    are demanding, 4GB of RAM should be considered a bare minimum. 12
+    GB should be sufficient to run average sized models. More RAM is
+    never wasted. These requirements make a 64bit operating system
+    necessary. As the ARIES models are computationally demanding and
+    are optimized for parallel processing, a higher number of
+    processors will cut computation times considerably. An 8-core or
+    12-core machine is not required but will make simulation run much
+    faster.
+ 2. Oracle JDK 1.6+ (or another JDK if you know what you are doing)
+ 3. The following Java native libraries (all freely available):
+    - JAI         http://www.oracle.com/us/technologies/java/install-1-1-2-01-140526.html
+    - JAI-ImageIO http://www.oracle.com/us/technologies/java/install-jai-imageio-1-0-01-139659.html
+ 4. Apache Ant
+ 5. PostgreSQL 8.0+ w/ PostGIS spatial extensions
+
+Complete installation and setup instructions for the ARIES modelling
+platform are available in the toplevel INSTALL.txt file of the ARIES
+package.

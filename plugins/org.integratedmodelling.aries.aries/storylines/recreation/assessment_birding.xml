@@ -19,14 +19,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <presentation>
 
   <title>Recreation: Birding</title>
-  <runninghead>Values resulting from ecosystem contributions toward bird watching as a recreational activity.</runninghead>
+  <runninghead>Values resulting from ecosystem contributions toward bird watching as a recreational activity</runninghead>
   <description>Values resulting from ecosystem contributions toward
-  bird watching as a recreational activity, as opposed to the
-  infrastructure, skills, and preferences of individuals participating
-  in a given activity.  Source models map the potential quality for
-  viewing diverse and/or charismatic birds in a given part of the
-  landscape.  Flow models can be used to connect beneficiaries to
-  areas where birding can occur.</description>
+  bird watching as a recreational activity.  Source models map the 
+  potential quality for viewing diverse and/or charismatic birds in 
+  a given part of the landscape.  Flow models can be used to connect 
+  beneficiaries to areas where birding can occur.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>recreationService:BirdingUse</concept>
@@ -43,14 +41,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <id>info</id>
     <name>Assessment of natural areas for bird watching</name>
     <title>Introduction</title>
-    <runninghead>Natural areas for birding.</runninghead>
+    <runninghead>Natural areas for birding</runninghead>
     <group></group>
     <description>
       This storyline considers the contribution of ecosystems toward providing high-quality areas for bird watching.  The
       source model maps areas that have high bird species diversity, the presence of rare or charismatic species, land that is
       accessible to the public, and areas where surface water is present as having high potential value for bird watching.
-      By combining this map with information about recreational travel patterns and site selection, we can map the connections
-      between recreational users and specific sites, showing recreational use alongside other ecosystem services provided by
+      By combining this map with information about recreational travel patterns and site selection, the connections
+      between recreational users and specific sites can be mapped, showing recreational use alongside other ecosystem services provided by
       recreational areas.
     </description>
     <see-also><![CDATA[
@@ -71,13 +69,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:PublicAccessClass</concept>
     <name>Public access</name>
     <title>Public access</title>
-    <runninghead>Public access.</runninghead>
+    <runninghead>Public access</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>Areas with public access for recreational activities.</p>
     <h1>Role in models</h1>
-    <p>Public access is a critical input to any recreation source model, as recreationists must be able to access
-    land in order to engage in their activity of interest.  Public access data are combined with other appropriate
+    <p>Public access is a prerequisite for recreationists to engage in
+    their activity of interest on a given parcel of land. Public access data are combined with other appropriate
     data to identify an area's suitability for the recreational activity of interest.</p>
     <h1>Representation</h1>
     <p>Data are categorical, and identify public land, private land with public access granted (e.g., nature preserves),
@@ -91,7 +89,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -103,14 +101,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:BirdSpeciesRichness</concept>
     <name>Bird species richness</name>
     <title>Bird species richness</title>
-    <runninghead>Bird species richness.</runninghead>
+    <runninghead>Bird species richness</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>Bird species richness, used to estimate an area's quality for bird watching.</p>
     <h1>Role in models</h1>
-    <p>Bird species richness data are used as an input to the birding source model, which is used to
-    estimate an area's suitability for birding.  Data for public access, the presence of surface water,
-    and the presence of rare or charismatic bird species are also used as inputs to the source model.</p>
+    <p>Bird species richness data are used as an input to the birding
+    source model, which estimates an area's suitability for birding.
+    Data for public access, the presence of surface water, and the
+    presence of rare or charismatic bird species are also used as 
+    inputs to the source model.</p>
     <h1>Representation</h1>
     <p>Data are categorical, representing bird species richness.</p>
     <h1>Source</h1>
@@ -122,7 +122,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu" target="_blank">Arizona GAP Analysis Program.</a>
+    <b>Data source</b>: <a href="http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu" target="_blank">Arizona GAP Analysis Program.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -134,7 +134,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:RareCharismaticBirdHabitat</concept>
     <name>Rare and charismatic bird habitat</name>
     <title>Rare and charismatic bird habitat</title>
-    <runninghead>Rare and charismatic bird habitat.</runninghead>
+    <runninghead>Rare and charismatic bird habitat</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>The presence of ten rare or charismatic bird species identified as important by birding tour guides
@@ -144,8 +144,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     cassinii_), Botteri’s sparrow (_Aimophila botterii_), vermillion flycatcher (_Pyrocephalus rubinus_),
     tropical kingbird (_Tyrannus melancholicus_), and yellow-billed cuckoo (_Coccyzus americanus_).</p>
     <h1>Role in models</h1>
-    <p>Rare or charismatic bird data are used as an input to the birding source model, which is used to
-    estimate an area's suitability for birding.  Data for public access, the presence of surface water,
+    <p>Rare or charismatic bird data are used as an input to the birding source model, which
+    estimates an area's suitability for birding.  Data for public access, the presence of surface water,
     and the bird species richness are also used as inputs to the source model.</p>
     <h1>Representation</h1>
     <p>Data are categorical, based on the number of rare or charismatic birds present.</p>
@@ -158,7 +158,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a>
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap/habitatreview" target="_blank">Southwest Regional GAP Analysis Project Animal Habitat Models.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -170,18 +170,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>sanPedro:WaterPresence</concept>
     <name>Presence of surface water</name>
     <title>Presence of surface water</title>
-    <runninghead>Presence of surface water.</runninghead>
+    <runninghead>Presence of surface water</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>The presence of surface water from streams and springs.</p>
     <h1>Role in models</h1>
     <p>Surface water presence is an important input to birding source models for birding, wildlife viewing,
     and hunting, as surface water attracts wildlife of all kinds in arid and semiarid environments.  Surface
-    water presence data is combined with data on riparian quality (where available) to further estimate the
+    water presence data are combined with data on riparian quality (where available) to further estimate the
     quality of the surface water resource.  These data are combined with public access data and species presence
     or richness in relevant source models for wildlife-based recreation.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of streams and springs.</p>
+    <p>Data show the presence or absence of streams and springs.</p>
     <h1>Source</h1>
     <p>Arizona Geographic Information Council.</p>
     ]]></description>
@@ -191,7 +191,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -209,7 +209,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>Riparian quality, rated from dry to wet, based on nine vegetation bioindicators sensitive to surface and
     groundwater conditions.</p>
     <h1>Role in models</h1>
-    <p>Surface water presence data is combined with data on riparian quality (where available) to further estimate the
+    <p>Surface water presence data are combined with data on riparian quality (where available) to further estimate the
     quality of the surface water resource.  These data are combined with public access data and species presence
     or richness in relevant source models for wildlife-based recreation.</p>
     <h1>Representation</h1>
@@ -235,10 +235,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>sanPedro:RiparianSpringWetlandQuality</concept>
     <name>Riparian, spring, or wetland quality</name>
     <title>Riparian, spring, or wetland quality</title>
-    <runninghead>Riparian, spring, or wetland quality.</runninghead>
+    <runninghead>Riparian, spring, or wetland quality</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Presence of high, moderate, low quality, or no springs or surface water.</p>
+    <p>Presence of high, moderate, low quality, springs or surface
+    water, or their absence.</p>
     <h1>Role in models</h1>
     <p>Surface water presence data are combined with data on riparian quality (where available) to further estimate the
     quality of the surface water resource.  These data are combined with public access data and species presence
@@ -263,10 +264,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="birding-source-value">
-    <concept>recreationService:SiteBirdingQuality</concept>
+    <concept>recreationService:BirdingSourceValue</concept>
     <name>Potential birding quality</name>
     <title>Potential birding quality</title>
-    <runninghead>Potential birding quality.</runninghead>
+    <runninghead>Potential birding quality</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>Suitability of different areas to support bird watching.</p>
@@ -300,10 +301,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>policytarget:PopulationDensity</concept>
     <name>Population density</name>
     <title>Population density</title>
-    <runninghead>Population density.</runninghead>
+    <runninghead>Population density</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Areas at greater risk of deforestation is are likely to lead to greater stored carbon release.</p>
+    <p>Population density estimates can be used to map recreational
+    use.</p>
     <h1>Role in models</h1>
     <p>Population density can be used along with recreational preference data, where available, to estimate
     the number of potential recreational uesrs for a given activity in a particular area.  These data are thus
@@ -319,7 +321,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a>
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -331,7 +333,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:Roads</concept>
     <name>Roads</name>
     <title>Presence of roads</title>
-    <runninghead>Roads.</runninghead>
+    <runninghead>Roads</runninghead>
     <group>use</group>
     <description><![CDATA[
     <p>Roads used to travel to recreational areas.</p>
@@ -339,7 +341,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <p>Roads are used in the recreation flow model to determine the accessibility of recreational areas
     for potential users.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of roads.</p>
+    <p>Data show the presence or absence map of roads.</p>
     <h1>Source</h1>
     <p>Arizona Geographic Information Coucil.</p>
     ]]></description>
@@ -349,7 +351,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -361,7 +363,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:RoadTravelCapacity</concept>
     <name>Road travel capacity</name>
     <title>Road travel capacity</title>
-    <runninghead>Road travel capacity.</runninghead>
+    <runninghead>Road travel capacity</runninghead>
     <group>use</group>
     <description><![CDATA[
     <p>The type of road, which determines how quickly users can travel to potential recreation areas.</p>
@@ -380,7 +382,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a>
+    <b>Data source</b>: <a href="http://agic.az.gov/portal/main.do;jsessionid=D791E445701487B6E52CF98812E56A12" target="_blank">Arizona Geographic Information Council.</a><br/>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -392,7 +394,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:Trails</concept>
     <name>Trails</name>
     <title>Presence of trails</title>
-    <runninghead>Trails.</runninghead>
+    <runninghead>Trails</runninghead>
     <group>use</group>
     <description><![CDATA[
     <p>Trails used by hikers, campers, and other recreational users.</p>
@@ -401,7 +403,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     a recreation area.  Without dedicated trail access, recreational use may be much lower.  Areas with easily-accessible
     or high use trails offer a different visitor experience than more remote trails.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of trails.</p>
+    <p>Data show the presence or absence map of trails.</p>
     <h1>Source</h1>
     <p>Various public land management agencies.</p>
     ]]></description>
@@ -427,11 +429,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:ActualFlow</concept>
     <name>Recreation flow</name>
     <title>Recreational user flow</title>
-    <runninghead>Actual flow map.</runninghead>
+    <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      The *actual flow density* map shows the flow paths that deliver actual services to
-      humans. These are selected from the total flow density to only show these flow paths
+      *Actual flow maps* show the flow paths that deliver actual services to
+      beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
       For provisioning services, these flow paths deliver valuable benefits to the
@@ -439,7 +441,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       the flow paths show how much of the carrier reaches users, delivering actual
       damage.
 
-      In this case, this map shows the movement of people toward recreation areas, based on
+      This map shows the movement of people toward recreation areas, based on
       transportation networks, recreational preferences, site quality, and a distance decay
       function.
     </description>
@@ -459,17 +461,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:ActualSource</concept>
     <name>Recreational use</name>
     <title>Recreational use</title>
-    <runninghead>Actual source map.</runninghead>
+    <runninghead>Actual source map</runninghead>
     <group>flow</group>
     <description>
-      The *actual source map* shows the portion of the source map that is relevant to
-      the provision of a service after accounting for sinks and flow dynamics.
-      For provisioning services, this is the amount and location of a benefit that
-      actually provides benefits to the users. For preventive services, it shows
-      where the actual damage came from. Source regions that provided a damaging carrier
-      were neutralized by sinks are not shown.
+      *Actual source maps* show sources that actually provide a
+      service after accounting for sinks and flow dynamics. For 
+      provisioning services, this is the amount and location of a 
+      benefit that actually provides benefits to the users. For 
+      preventive services, it shows where the actual damage came 
+      from. Source regions that provided a damaging carrier that 
+      was neutralized by sinks are not shown.
 
-      This map shows the amount of recreational use actually seen at a recreation area
+      This map shows the amount of recreational use actually occurring at a recreation area
       when accounting for demand and spatial flows of visitors.
     </description>
     <see-also><![CDATA[
@@ -488,12 +491,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:ActualUse</concept>
     <name>Actual recreational users</name>
     <title>Actual recreational users</title>
-    <runninghead>Actual use map.</runninghead>
+    <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
       service or damage caused by a detrimental carrier for a preventive service, for
-      users located across the landscape.
+      users.
 
       This map shows the residential location of users who actually travel to sites
       via “recreation flows” to engage in recreational activities at source areas.
@@ -514,16 +517,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:InaccessibleSource</concept>
     <name>Transportation restricted use</name>
     <title>Transportation restricted use</title>
-    <runninghead>Inaccessible source map.</runninghead>
+    <runninghead>Inaccessible source map</runninghead>
     <group>flow</group>
     <description>
-      The *inaccessible source map* shows the flow paths that cannot deliver a
-      service carrier to humans based on the flow routes and the source and user
-      locations.
+      *Inaccessible source maps* show source areas whose values are
+      irrelevant to ecosystem service delivery, because of a lack of flow
+      connections between sources and users. 
 
-      For provisioning services, these flow paths show areas that could provide a benefit,
-      but do not due to a lack of flow connections to potential users.  For preventive services,
-      the flow paths show potential sources of a damaging carrier that do not impact people.
+      For provisioning services, this is the portion of the value that 
+      must be subtracted from the total source map to define a maximum 
+      potential benefit for the users. For preventive services, it
+      shows those areas that have no potential of producing damage because the
+      flow dynamics prevent the carrier from impacting any significant
+      user.
 
       This map shows recreational areas whose current accessibility via transportation
       networks makes their use level more limited than their attractiveness alone would
@@ -545,16 +551,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>recreationService:InaccessibleUse</concept>
     <name>Transportation restricted users</name>
     <title>Transportation restricted users</title>
-    <runninghead>Inaccessible use map.</runninghead>
+    <runninghead>Inaccessible use map</runninghead>
     <group>flow</group>
     <description>
-      The *inaccessible use map* shows the potential users that cannot receive a service
-      carrier due to flow routes and the source and user locations. For provisioning services,
-      this corresponds to value produced by the environment but that cannot be reached by
-      users. For preventive services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections to users.
+      *Inaccessible use maps* shows potential users that cannot receive a service
+      due to a lack of flow routes linking source and user locations. 
 
-      This map shows users too distant from a recreational resource to benefit from it.
+      For provisioning services, this corresponds to value produced by
+      the environment that cannot be reached by users. For preventive 
+      services, it corresponds to damage that could have been
+      inflicted on users but is not due to a lack of flow connections
+      to users.
+
+      This map shows users too distant from a recreational site to
+      benefit from it.
     </description>
     <see-also><![CDATA[
     <p>

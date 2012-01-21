@@ -827,13 +827,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <!-- This layer was completely screwed up in refactoring the names
-       with underscores.  It's pretty well lost and may limit use of
-       the Puget sedimentation models.
-
-This should be a measurement, in mm.  Native units are in feet;
-       conversion from mm to feet is 1 ft = 304.8 mm. 
-  <measurement:Measurement id="puget_dam_storage_puget">
+  <!-- This should be a measurement, in mm.  Native units are in feet;
+       conversion from mm to feet is 1 ft = 304.8 mm. -->
+  <measurement:Measurement id="puget_reservoirs_puget">
     <observation:hasObservable>
       <floodService:DamStorage />
     </observation:hasObservable>
@@ -844,7 +840,7 @@ This should be a measurement, in mm.  Native units are in feet;
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:dam_storage_puget</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:reservoirs_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>depth_ft</geospace:hasValueAttribute>
         <geospace:hasTransformation>self * 304.8</geospace:hasTransformation>
         <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
@@ -859,7 +855,7 @@ This should be a measurement, in mm.  Native units are in feet;
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Measurement> -->
+  </measurement:Measurement> 
 
   <!-- Data for California are unfortunately lacking, so this is just
        a presence/absence map.  Assume values of "SmallDamStorage"
@@ -1300,7 +1296,7 @@ This should be a measurement, in mm.  Native units are in feet;
 
   <measurement:BinaryCoding id="puget_pugetlakefront">
     <observation:hasObservable>
-      <aestheticService:LakeFrontPresence />
+      <aestheticService:LakefrontPresence />
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from NLCD 2001</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -1581,7 +1577,7 @@ This should be a measurement, in mm.  Native units are in feet;
 
   <measurement:BinaryCoding id="puget_pugetriverfront">
     <observation:hasObservable>
-      <aestheticService:RiverFrontPresence />
+      <aestheticService:RiverfrontPresence />
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from Washington DNR hydrography data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -8466,9 +8462,42 @@ This should be a measurement, in mm.  Native units are in feet;
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+<!-- This one is in t/ha, comparable to the global data. Use it in the
+probabilistic models and storylines for uniformity in units with the
+global data. -->
   <measurement:Measurement id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:AnnualSedimentSource />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
+    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasURL>http://www.epa.gov/nerlesd1/land-sci/emap_west_browser/pages/wemap_mm_sl_table.htm#mapnav</metadata:hasURL>
+    <measurement:unit>t/ha</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:erosion_metrics_western_us</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>rusle_a_kh</geospace:hasValueAttribute>
+        <geospace:hasTransformation>self * 0.001</geospace:hasTransformation>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>-5933788.227137955</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>58564.58686897659</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>3260467.140311843</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>1.0537895527671775E7</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
+<!-- This one is in kg/ha - the original form of the data. Use it in
+     RUSLE models so that multiplication of the RUSLE factors gives
+     the correct results. -->
+  <measurement:Measurement id="puget_pugeterosionmetrics">
+    <observation:hasObservable>
+      <soilRetentionService:AnnualSedimentSourceRUSLE />
     </observation:hasObservable>
     <rdfs:comment>Data source: U.S. EPA EMAP-West Metric Browser</rdfs:comment>
     <metadata:hasPriority>5</metadata:hasPriority>

@@ -18,8 +18,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <presentation>
 
-  <title>Residents in 500-year floodplains</title>
-  <runninghead>Property damage and lives in the 500-year floodplain protected by flood regulation.</runninghead>
+  <title>Residents in the 500-year floodplain</title>
+  <runninghead>Property damage and lives in the 500-year floodplain protected by flood regulation</runninghead>
   <description>Values resulting from flood regulation by ecosystems,
   including precipitation, ecosystems capable of providing
   infiltration or detention of flood waters, and housing at risk of
@@ -42,20 +42,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <id>info</id>
     <name>Assessment of residents at risk from flooding (500-year floodplain)</name>
     <title>Introduction</title>
-    <runninghead>Residents at risk from flooding (500-year floodplain).</runninghead>
+    <runninghead>Residents at risk from flooding (500-year floodplain)</runninghead>
     <group></group>
     <description>
       This model considers protection of human life and housing within
       the 500-year floodplain as a potential beneficiary of flood
       regulation.  For people living in flood zones, floodwater can
       destroy housing and personal property and pose a risk to human
-      lives.  These models map flows from flood sources
+      life.  These models map flows from flood sources
       (precipitation), sinks (areas whose topography, vegetation, and
       soils promote detention and infiltration of flood water), and
       beneficiary groups and link these via a flow model accounting
       for the downstream movement of floodwater.  To map housing at
-      risk of flooding, we simply housing data (where available) or
-      NLCD developed land with data delimiting the 500-year
+      risk of flooding, housing data or
+      NLCD developed land were intersected with data delimiting the 500-year
       floodplain.
     </description>
     <see-also><![CDATA[
@@ -84,13 +84,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description><![CDATA[
     <p>Annual precipitation.</p>
     <h1>Role in models</h1>
-    <p>Precipitation data are used as the "source" of floodwater.  Data are currently at an annual time
-    scale; event-based models may be added to the ARIES system as we better integrate external data and
-    models to allow flood modeling at finer time scales.  These data are passed to the flow model to
-    estimate actual flood mitigation given the location of sources of floodwater and beneficiaries at
-    risk of flooding.</p>
+    <p>Precipitation data are used as the "source" 
+    of floodwater.  Data are currently at an annual time
+    scale; event-based models may be added as external model
+    integration improves within the ARIES system, 
+    allowing flood modeling at finer time scales.  These 
+    data are passed to the flow model to estimate actual 
+    flood mitigation given the location of sources of floodwater 
+    and beneficiaries at risk of flooding.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of precipitation per year.</p>
+    <p>Data are in physical units of millimeters of precipitation per year.</p>
     <h1>Source</h1>
     <p>PRISM Climate Group, Oregon State University.</p>
     ]]></description>
@@ -112,15 +115,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>floodService:SuccessionalStage</concept>
     <name>Successional stage</name>
     <title>Successional stage</title>
-    <runninghead>Successional stage.</runninghead>
+    <runninghead>Successional stage</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Forest successional stage is an important determinant of hydrologic balance, surface flow disruption,
-    and sediment trapping capacity.</p>
+    <p>Forest successional stage is an important influence on
+    evapotranspiration and infiltration in forest ecosystems.</p>
     <h1>Role in models</h1>
     <p>Successional stage is used as input into a probabilistic model estimating the contribution of vegetation
-    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect later
-    successional forests to provide greater mitigation of floodwater than early successional forests.</p>
+    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, later
+    successional forests are assumed to provide greater mitigation of floodwater than early successional forests.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
     <h1>Source</h1>
@@ -144,7 +147,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>floodService:MeanDaysPrecipitationPerYear</concept>
     <name>Mean days precipitation per year</name>
     <title>Mean days precipitation per year</title>
-    <runninghead>Mean days precipitation per year.</runninghead>
+    <runninghead>Mean days precipitation per year</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>The number of days of precipitation per year across the landscape.</p>
@@ -153,8 +156,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     rather than being event-based, the mean number of days of precipitation per year is used as a proxy for how
     often the soils are saturated.  If rainfall is relatively uncommon, the landscape may better be able to absorb
     floodwater than in wetter regions.  Mean days of precipitation per month data are also available.  To run
-    flood models on an event-by-event basis, we would need data or proxies for variables like soil saturation,
-    precipitation, and snowmelt which often have limited availability on a landscape scale.</p>
+    flood models on an event-by-event basis, data or proxies for variables like soil saturation,
+    precipitation, and snowmelt would be required, which often have limited availability on a landscape scale.</p>
     <h1>Representation</h1>
     <p>Data are categorical, and have been pre-discretized based on the number of days of precipitation per year.</p>
     <h1>Source</h1>
@@ -178,15 +181,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>floodService:HydrologicSoilsGroup</concept>
     <name>Hydrologic soils group</name>
     <title>Hydrologic soils group</title>
-    <runninghead>Hydrologic soils group.</runninghead>
+    <runninghead>Hydrologic soils group</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different soil types have different infiltration capacities.
-    See http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm.</p>
+    See <a
+    href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
+    target="_blank">Computing composite CN and runoff
+    coefficients</a>.</p>
     <h1>Role in models</h1>
     <p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
     accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
-    does not account for slope.  We use HSG along with slope and impervious surface data to estimate the soil infiltration
+    does not account for slope.  HSG along with slope and impervious
+    surface data are used to estimate the soil infiltration
     component of flood control in the flood sink models.</p>
     <h1>Representation</h1>
     <p>Data are categorical.</p>
@@ -217,13 +224,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description><![CDATA[
     <p>Slope strongly affects runoff by influencing potential infiltration.</p>
     <h1>Role in models</h1>
-    <p>Since hydrologic soils group classifications do not account for slope, we use slope data along with HSG
-    and impervious surface data to estimate the soil infiltration component of flood control in the flood sink
+    <p>Since hydrologic soils group classifications do not account for slope, slope data along with HSG
+    and impervious surface data are used to estimate the soil infiltration component of flood control in the flood sink
     models.  Greater infiltration is expected on level slopes than on steep slopes where runoff occurs quickly.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of degrees slope.</p>
+    <p>Data are in physical units of degrees slope.</p>
     <h1>Source</h1>
-    <p>Data are derived from a global 90-m SRTM digital elevation model.</p>
+    <p>Derived from a global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -243,17 +250,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <concept>floodService:PercentImperviousCoverClass</concept>
     <name>Percent impervious cover</name>
     <title>Percent impervious cover</title>
-    <runninghead>Percent impervious cover.</runninghead>
+    <runninghead>Percent impervious cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The amount of impervious surface (buildings, roads, parking lots, etc.) on the landscape.</p>
+    <p>The amount of impervious surface (e.g., buildings, pavement) on the landscape.</p>
     <h1>Role in models</h1>
     <p>We use impervious surface along with slope and hydrologic soils group to estimate the soil infiltration
     component of flood control in the flood sink models.  Zero infiltration is expected on impervious surfaces.</p>
     <h1>Representation</h1>
-    <p>Data represent the percentage of the land surface under impervious cover.</p>
+    <p>Data show the percentage of the land surface with impervious cover.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -275,8 +282,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <concept>floodService:AnnualMaximumTemperature</concept>
 <name>Annual maximum temperature</name>
 <title>Annual maximum temperature</title>
-<runninghead>Annual maximum temperature.</runninghead>
+<runninghead>Annual maximum temperature</runninghead>
 <group>sink</group>
+<units>degrees Celsius</units>
 <description><![CDATA[
 <p>Maximum air surface temperature.</p>
 <h1>Role in models</h1>
@@ -287,7 +295,7 @@ time scale, the presence of frozen soils is highly important in the case of spri
 snowmelt occurs and soils may still be frozen.  Temperature data at finer temporal scales will thus
 be highly important in event-based flood models.</p>
 <h1>Representation</h1>
-<p>The data are in physical units of degrees celsius.</p>
+<p>Data are in physical units of degrees Celsius.</p>
 <h1>Source</h1>
 <p>PRISM Climate Group, Oregon State University.</p>
 ]]></description>
@@ -297,32 +305,30 @@ be highly important in event-based flood models.</p>
 </p>
 ]]></see-also>
 <credits language="html"><![CDATA[
-<b>Data source</b>: </br>
+<b>Data source</b>: <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a>.</br>
 <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
 ]]></credits>
 <disabled>false</disabled>
 <plot-type default="true">geosurface-2d</plot-type>
 <plot-type>geocontour-2d</plot-type>
-</page>
-
-  -->
+</page>  -->
 
   <page id="vegetation-height">
     <concept>floodService:VegetationHeight</concept>
     <name>Vegetation height</name>
     <title>Vegetation height</title>
-    <runninghead>Vegetation height.</runninghead>
+    <runninghead>Vegetation height</runninghead>
     <group>sink</group>
     <units>m</units>
     <description><![CDATA[
     <p>Height of the tree canopy above the ground surface.</p>
     <h1>Role in models</h1>
     <p>Vegetation height is used as input into a probabilistic model estimating the contribution of vegetation
-    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect taller tree
-    canopies to intercept more precipitation, leading to greater mitigation of floodwater than forests of shorter
+    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, taller tree
+    canopies are assumed to intercept more precipitation, leading to greater mitigation of floodwater than forests of shorter
     stature.</p>
     <h1>Representation</h1>
-    <p>Data are in physical units of meters, representing height of the tree canopy above the ground surface.</p>
+    <p>Data are in physical units of meters, showing height of the tree canopy above the ground surface.</p>
     <h1>Source</h1>
     <p>Puget Sound LIDAR Consortium.</p>
     ]]></description>
@@ -344,20 +350,20 @@ be highly important in event-based flood models.</p>
     <concept>floodService:PercentTreeCanopyCoverClass</concept>
     <name>Percent tree canopy cover</name>
     <title>Percent tree canopy cover</title>
-    <runninghead>Percent tree canopy cover.</runninghead>
+    <runninghead>Percent tree canopy cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Percent tree canopy cover.  Tree canopy cover influences rooting depths, root densities, and
     transpiration rates, affecting their ability to aid in infiltration of floodwater.</p>
     <h1>Role in models</h1>
     <p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, we expect greater
-    infiltration and evapotranspiration (under longer time scales), leading to greater mitigation of floodwater
-    under higher tree canopy cover.</p>
+    and soils, or "green infrastructure" in infiltrating floodwater.  All else being equal, greater
+    infiltration and evapotranspiration, leading to greater mitigation
+    of floodwater, are assumed under higher tree canopy cover.</p>
     <h1>Representation</h1>
-    <p>Data represent the percentage of the land surface under tree canopy cover.</p>
+    <p>Data show the percentage of the land surface under tree canopy cover.</p>
     <h1>Source</h1>
-    <p>)2001 National Land Cover Dataset.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -377,7 +383,7 @@ be highly important in event-based flood models.</p>
     <concept>puget:FloodVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration of water.</p>
@@ -388,7 +394,7 @@ be highly important in event-based flood models.</p>
     <h1>Representation</h1>
     <p>Data are categorical, derived from NLCD land cover classes.</p>
     <h1>Source</h1>
-    <p>2001 National Land Cover Dataset.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -408,7 +414,7 @@ be highly important in event-based flood models.</p>
     <concept>southernCalifornia:FloodVegetationType</concept>
     <name>Vegetation type</name>
     <title>Vegetation type</title>
-    <runninghead>Vegetation type.</runninghead>
+    <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
     <p>Different vegetation types will promote or reduce infiltration of water.</p>
@@ -419,7 +425,7 @@ be highly important in event-based flood models.</p>
     <h1>Representation</h1>
     <p>Data are categorical, derived from NLCD land cover classes.</p>
     <h1>Source</h1>
-    <p>USDA Forest Service.</p>
+    <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -427,6 +433,7 @@ be highly important in event-based flood models.</p>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -438,16 +445,16 @@ be highly important in event-based flood models.</p>
     <concept>floodService:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
-    <runninghead>Soil infiltration.</runninghead>
+    <runninghead>Soil infiltration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The total surface water absorbed by the soil, potentially becoming available as groundwater.</p>
+    <p>Surface water absorbed by the soil, potentially becoming available as groundwater.</p>
     <h1>Role in models</h1>
     <p>This is an intermediate node in the Bayesian network that
     accounts for soil infiltration in reducing the quantity of floodwater.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water infiltrated per year.  As the output of the
+    <p>Data are in physical units of millimeters of water infiltrated per year.  As the output of the
     models is probabilistic, each point contains the probability distribution of the amount of water
     infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
     coefficient of variation are reported along with the probabilities.</p>
@@ -473,22 +480,22 @@ be highly important in event-based flood models.</p>
     <concept>floodService:EvapotranspirationClass</concept>
     <name>Evapotranspiration</name>
     <title>Evapotranspiration</title>
-    <runninghead>Evapotranspiration.</runninghead>
+    <runninghead>Evapotranspiration</runninghead>
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The total surface water evaporated or taken up by vegetation and transpired, becoming no longer
+    <p>Surface water evaporated or taken up by vegetation and transpired, becoming no longer
     available as surface or groundwater.</p>
     <h1>Role in models</h1>
     <p>This is an intermediate node in the Bayesian network that
     accounts for the contribution of vegetation in reducing the
     quantity of floodwater.  While evapotranspiration does not operate
     on the same timescale as flooding, for our initial models of flood
-    mitigaiton, which take place using annual precipitation data, we
-    use evapotranspiration as a proxy for the effects of vegetation in
+    mitigaiton, which take place using annual precipitation data, 
+    evapotranspiration is used as a proxy for the effects of vegetation in
     mitigating floodwater.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of water evaporated or transpired per year.  As the
+    <p>Data are in physical units of millimeters of water evaporated or transpired per year.  As the
     output of the models is probabilistic, each point contains the probability distribution of the amount
     of water infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
     coefficient of variation are reported along with the probabilities.</p>
@@ -514,11 +521,11 @@ be highly important in event-based flood models.</p>
     <concept>floodService:GreenInfrastructureStorage</concept>
     <name>Green infrastructure storage</name>
     <title>Green infrastructure storage</title>
-    <runninghead>Green infrastructure storage.</runninghead>
+    <runninghead>Green infrastructure storage</runninghead>
     <group>sink</group>
     <units>mm</units>
     <description><![CDATA[
-    <p>The total floodwater absorption and detention capacity in soils, vegetation, and floodplains.</p>
+    <p>Total floodwater absorption and detention capacity in soils, vegetation, and floodplains.</p>
     <h1>Role in models</h1>
     <p>This is the output of a probabilistic model accounting for the influence of soil, vegetation,
     and their saturation on floodwater absorption and detention capacity.  Results are summed with
@@ -526,7 +533,7 @@ be highly important in event-based flood models.</p>
     model to estimate actual flood mitigation given the location of sources of floodwater and
     beneficiaries at risk of flooding.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of floodwater absorbed or detained per year.
+    <p>Data are in physical units of millimeters of floodwater absorbed or detained per year.
     As the output of the models is probabilistic, each point contains the probability distribution
     of the amount of floodwater regulated. The distribution can be visualized by clicking on the
     map; the mean value and the coefficient of variation are reported along with the probabilities.</p>
@@ -557,12 +564,12 @@ be highly important in event-based flood models.</p>
     <description><![CDATA[
     <p>The storage capacity of floodwater by dams.</p>
     <h1>Role in models</h1>
-    <p>Where dams are present, we can use data on typical storage capacity to estimate their contribution toward
-    flood regulation.  This storage is summed with detention basin storage to give total "gray infrastructure"
-    storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
-    flood regulation capacity.</p>
+    <p>Dam storage can be summed with detention basin storage
+    to give total "gray infrastructure" storage, 
+    which is then summed with "green infrastructure" storage to
+    estimate total natural and artificial flood regulation capacity.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of floodwater detention capacity by reservoir.</p>
+    <p>Data are in physical units of millimeters of floodwater detention capacity by reservoir.</p>
     <h1>Source</h1>
     <p>National Atlas of the United States, Major Dams of the United States.</p>
     ]]></description>
@@ -584,18 +591,18 @@ be highly important in event-based flood models.</p>
     <concept>floodService:DetentionBasinStorage</concept>
     <name>Detention basin storage</name>
     <title>Detention basin storage</title>
-    <runninghead>Detention basin storage.</runninghead>
+    <runninghead>Detention basin storage</runninghead>
     <group>sink</group>
     <units>mm</units>
     <description><![CDATA[
     <p>Storage of flood waters in detention basins.</p>
     <h1>Role in models</h1>
-    <p>Where detention basins are present, we assume a given level of flood regulation due to storage of
-    floodwater in basins.  This storage is summed with storage behind dams to give total "gray infrastructure"
-    storage, which is then summed with "green infrastructure" storage to estimate total natural and artificial
-    flood regulation capacity.</p>
+    <p>Detention basin storage can be summed with 
+    storage behind dams to give total "gray infrastructure" storage, 
+    which is then summed with "green infrastructure" storage to
+    estimate total natural and artificial flood regulation capacity.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of detention basins.</p>
+    <p>Data show the presence or absence of detention basins.</p>
     <h1>Source</h1>
     <p>County stormwater managment data (where available).</p>
     ]]></description>
@@ -616,17 +623,17 @@ be highly important in event-based flood models.</p>
     <concept>floodService:GrayInfrastructureStorage</concept>
     <name>Gray infrastructure storage</name>
     <title>Gray infrastructure storage</title>
-    <runninghead>Gray infrastructure storage.</runninghead>
+    <runninghead>Gray infrastructure storage</runninghead>
     <group>sink</group>
     <units>mm</units>
     <description><![CDATA[
-    <p>The sum of storage of floodwater by dams, detention basins, or other types of engineered infrastructure.</p>
+    <p>The sum of floodwater storage by dams, detention basins, or other engineered infrastructure.</p>
     <h1>Role in models</h1>
     <p>Results are summed with "green infrastructure" storage to give total flood regulation values, and then
     passed to the flow model to estimate actual flood mitigation given the location of sources of floodwater
-    and beneficiaries at risk of flooding.</p>
+    and lives and property at risk of flooding.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
+    <p>Data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
     <h1>Source</h1>
     <p>Calculated deterministically as the sum of dam and detention basin storage.</p>
     ]]></description>
@@ -647,18 +654,21 @@ be highly important in event-based flood models.</p>
     <concept>floodService:AnnualFloodSink</concept>
     <name>Annual flood sink</name>
     <title>Annual flood sink</title>
-    <runninghead>Annual flood sink.</runninghead>
+    <runninghead>Annual flood sink</runninghead>
     <group>sink</group>
     <units>mm</units>
     <description><![CDATA[
-    <p>The sum of "green" and "gray" infrastructure influences, e.g., all rainwater and floodwater detained and
-    infiltrated by natural features and engineered infrastructure.</p>
+    <p>The sum of "green" and "gray" infrastructure, e.g., 
+    all rainwater and floodwater detained and infiltrated by natural 
+    features and engineered infrastructure.</p>
     <h1>Role in models</h1>
-    <p>The annual flood sink is the total potential flood regulation by both natural and artificial flood control
-    features.  These data are passed to the flood flow model, which calculates actual flood risk, given precipitation
-    levels and the location of lives and property at risk from flood flows.</p>
+    <p>This is the total potential flood regulation by both natural 
+    and artificial flood control features, currently estimated using 
+    annual precipitation data. These data are passed to the flood flow 
+    model, which calculates actual flood risk, given precipitation 
+    levels and the location of lives and property at risk of flooding.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
+    <p>Data are in physical units of millimeters of floodwater absorbed or detained per year.</p>
     <h1>Source</h1>
     <p>Calculated as the sum of outputs from a probabilistic model of "green infrastructure" storage plus
     storage capacity of artificial detention basins and dams.</p>
@@ -680,17 +690,17 @@ be highly important in event-based flood models.</p>
     <concept>floodService:Floodplains500</concept>
     <name>500-year floodplain extent</name>
     <title>500-year floodplain</title>
-    <runninghead>500-year floodplain.</runninghead>
+    <runninghead>500-year floodplain</runninghead>
     <group>use</group>
     <description><![CDATA[
     <p>The extent of the mapped 500-year floodplain.</p>
     <h1>Role in models</h1>
-    <p>Floodplain extents are used in the use models to identify the presence of lives and property located
+    <p>Floodplain extents are inputs to the use models to identify the presence of lives and property located
     in the flood zone.  These are the beneficiaries of flood regulation, who are at risk of flooding in the
     absence of natural or engineered flood control measures.  Floodplain extents are also used in the flood flow
     models to distribute floodwater across the floodplain.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing extent of the 500-year floodplain.</p>
+    <p>Data show the presence or absence of the 500-year floodplain.</p>
     <h1>Source</h1>
     <p>FEMA Q3 Flood Data.</p>
     ]]></description>
@@ -712,7 +722,7 @@ be highly important in event-based flood models.</p>
     <concept>aestheticService:PresenceOfHousing</concept>
     <name>Presence of housing</name>
     <title>Presence of housing</title>
-    <runninghead>Presence of housing.</runninghead>
+    <runninghead>Presence of housing</runninghead>
     <group>use</group>
     <description><![CDATA[
     <p>Residences at risk of flood damage or inundation, potentially leading to loss of life or property
@@ -721,9 +731,10 @@ be highly important in event-based flood models.</p>
     <p>Housing locations are intersected with floodplain extents data to map the potential beneficiaries
     of flood regulation.  The flood flow model is then used to estimate actual flood regulation values.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of housing.</p>
+    <p>Data show the presence or absence of housing.</p>
     <h1>Source</h1>
-    <p>County assessors' offices (where available) or NLCD developed land (otherwise).</p>
+    <p>County assessors' offices (where available) or National Land
+    Cover Dataset (NLCD) developed land (otherwise).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -742,18 +753,17 @@ be highly important in event-based flood models.</p>
     <concept>floodService:FloodResidentsUse500</concept>
     <name>Residents in 500-year floodplain</name>
     <title>Residents in 500-year floodplain</title>
-    <runninghead>Residents in 500-year floodplain.</runninghead>
+    <runninghead>Residents in 500-year floodplain</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Residents with housing located in the 500-year floodplain are a beneficiary group who may have
+    <p>Residents with housing located in the 500-year floodplain may have
     life and property protected by ecosystems and engineered flood control infrastructure.</p>
     <h1>Role in models</h1>
     <p>This is one beneficiary group for flood regulation.  The location of residences at risk of flooding
     is passed to the flow model, which calculates actual flood risk, given precipitation levels and the
     location of sinks that reduce flood flows.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of residences in the 500-year
-    floodplain.</p>
+    <p>Data show the presence or absence of residences in the 500-year floodplain.</p>
     <h1>Source</h1>
     <p>Intersection of FEMA 500-year floodplain data and housing locations from county assessors' offices
     (where available) or NLCD developed land (otherwise).</p>
@@ -775,16 +785,16 @@ be highly important in event-based flood models.</p>
     <concept>geofeatures:River</concept>
     <name>Rivers</name>
     <title>Rivers</title>
-    <runninghead>Rivers.</runninghead>
+    <runninghead>Rivers</runninghead>
     <group>flow</group>
     <description><![CDATA[
     <p>River and stream locations.</p>
     <h1>Role in models</h1>
-    <p>River and stream locations, or hydrography data, are used to route floodwater across the land surface.
+    <p>Hydrography data are used to route floodwater across the land surface.
     The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
     floodwater then follows, spreading across the floodplain as it moves downstream.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of rivers and streams.</p>
+    <p>Data show the presence or absence of rivers and streams.</p>
     <h1>Source</h1>
     <p>CalTrans Teale Data Center; Washington Department of Natural Resources.</p>
     ]]></description>
@@ -806,7 +816,7 @@ be highly important in event-based flood models.</p>
     <concept>geophysics:Altitude</concept>
     <name>Elevation</name>
     <title>Elevation</title>
-    <runninghead>Elevation.</runninghead>
+    <runninghead>Elevation</runninghead>
     <group>flow</group>
     <units>m</units>
     <description><![CDATA[
@@ -816,7 +826,7 @@ be highly important in event-based flood models.</p>
     The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
     floodwater then follows, spreading across the floodplain as it moves downstream.</p>
     <h1>Representation</h1>
-    <p>The data are in physical units of meters above sea level.</p>
+    <p>Data are in physical units of meters above sea level.</p>
     <h1>Source</h1>
     <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
@@ -838,7 +848,7 @@ be highly important in event-based flood models.</p>
     <concept>floodService:Levees</concept>
     <name>Levees</name>
     <title>Levees</title>
-    <runninghead>Levees.</runninghead>
+    <runninghead>Levees</runninghead>
     <group>flow</group>
     <description><![CDATA[
     <p>Levees restrict floodwater to the river channel, protecting lives and property immediately behind the
@@ -847,7 +857,7 @@ be highly important in event-based flood models.</p>
     <p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
     levees are present.</p>
     <h1>Representation</h1>
-    <p>Data are represented as a presence or absence map showing the location of levees.</p>
+    <p>Data show the presence or absence map of levees.</p>
     <h1>Source</h1>
     <p>County GIS offices (where available).</p>
     ]]></description>
@@ -873,13 +883,17 @@ be highly important in event-based flood models.</p>
     <concept>floodService:PossibleFlow</concept>
     <name>Potential damage</name>
     <title>Potentially damaging flood flow</title>
-    <runninghead>Possible flow map.</runninghead>
+    <runninghead>Possible flow map</runninghead>
     <group>flow</group>
     <description>
-      *Possible flow maps* represent the path that the carrier of the service would take
-      if it was not intercepted by sinks.  As such it considers source and use models and
-      shows the maximum amount of flow. For provisioning services, this corresponds to the
-      maximum potential benefit; for preventive services, the maximum potential damage.
+      *Possible flow maps* show the path that the carrier of the 
+      service would take if it was not intercepted by sinks.  
+      As such it considers source and use models and shows the 
+      maximum amount of flow. 
+
+      For provisioning services, this corresponds to the maximum 
+      potential benefit; for preventive services, the maximum
+      potential damage.
 
       This map shows the flow route of floodwater across the landscape in the absence of
       sinks. Therefore it computes the maximum damage that would happen if natural features
@@ -902,19 +916,21 @@ be highly important in event-based flood models.</p>
     <concept>floodService:PossibleSource</concept>
     <name>Potentially damaging runoff</name>
     <title>Source of potentially damaging runoff</title>
-    <runninghead>Possible source map.</runninghead>
+    <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <description>
-      Even in the absence of sinks, not all of a source quantity actually has the
-      ability to reach users, because of the route that an ecosystem service carrier
-      moves across the landscape. Flow analysis allows us to identify which particular
-      portion of the total source quantity is actually generating carriers that
-      reach the users, independent of the existence of sinks but taking into account
-      the result of use values, the structure of the landscape and the flow paths of
-      the carrier, producing this *possible source map*. For provisioning services,
-      this corresponds to the source of benefits that has the potential of being actually
-      useful. For preventive services, this corresponds to the portion of the source
-      field that could actually cause damage to people. The location and strength of
+      *Possible source maps*, generated through flow analysis, show which
+      specific sources actually generate carriers that reach users,
+      independent of the existence of sinks but taking into account
+      use values and the carrier flow paths. Even in the absence of
+      sinks, not all of a source quantity can actually reach users, 
+      because of the route that an ecosystem service carrier moves 
+      across the landscape. 
+
+      For provisioning services, this corresponds to the source of 
+      benefits that has the potential of being actually useful. For 
+      preventive services, this corresponds to the sources that could 
+      actually cause damage to people. The location and strength of 
       sinks determines how much of the source actually reaches the users.
 
       This map shows runoff capable of harming people or damaging property when
@@ -936,19 +952,23 @@ be highly important in event-based flood models.</p>
     <concept>floodService:PossibleUse</concept>
     <name>Potential damage</name>
     <title>Potential flood damage</title>
-    <runninghead>Possible use map.</runninghead>
+    <runninghead>Possible use map</runninghead>
     <group>flow</group>
     <description>
-      *Possible use maps* show the locations of users on the landscape that can receive a
+      *Possible use maps* show the locations of users that can receive a
       benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of sinks.  For provisioning
-      services, potential use identifies areas where it is physically possible for a benefit to
-      be received.  For preventive services, potential use identifies areas that may be damaged
-      by a detrimental carrier if sinks do not prevent such damage.
+      or may not actually receive the carrier due to the action of
+      sinks.  
+
+      For provisioning services, potential use identifies areas where
+      it is physically possible for a benefit to be received.  For 
+      preventive services, potential use identifies areas that may be 
+      damaged by a detrimental carrier if sinks do not prevent such damage.
 
       This map shows people and property receiving damage when accounting for sources
       of floodwater and its flow path but not accounting for the action of sinks that
-      reduce potential damage from floodwater.
+      reduce potential damage from floodwater - in other words, the
+      damage that would occur in the absence of flood-mitigating sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -966,11 +986,11 @@ be highly important in event-based flood models.</p>
     <concept>floodService:ActualFlow</concept>
     <name>Actual flood</name>
     <title>Actual flood flow</title>
-    <runninghead>Actual flow map.</runninghead>
+    <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      The *actual flow density* map shows the flow paths that deliver actual services to
-      humans. These are selected from the total flow density to only show these flow paths
+      *Actual flow maps* show the flow paths that deliver actual services to
+      beneficiaries. These are selected from the total flow density to only show these flow paths
       that are not depleted by sinks and actually reach users.
 
       For provisioning services, these flow paths deliver valuable benefits to the
@@ -978,7 +998,7 @@ be highly important in event-based flood models.</p>
       the flow paths show how much of the carrier reaches users, delivering actual
       damage.
 
-      In this case, the density of actual flows represents floodwater that
+      In this case, the density of actual flows shows floodwater that
       impacts people or property, after accounting for flood routing due to topography,
       stream networks, and natural and artificial features that detain, slow, or
       infiltrate floodwater.
@@ -999,17 +1019,19 @@ be highly important in event-based flood models.</p>
     <concept>floodService:ActualSource</concept>
     <name>Flood source</name>
     <title>Flood damaging runoff</title>
-    <runninghead>Actual source map.</runninghead>
+    <runninghead>Actual source map</runninghead>
     <group>flow</group>
     <description>
-      The *actual source map* shows the portion of the source map that is relevant to
-      the provision of a service after accounting for sinks and flow dynamics.
-      For provisioning services, this is the amount and location of a benefit that
-      actually provides benefits to the users. For preventive services, it shows
-      where the actual damage came from. Source regions that provided a damaging carrier
-      were neutralized by sinks are not shown.
+      *Actual source maps* show sources that actually provide a
+      service after accounting for sinks and flow dynamics. 
 
-      This map shows runoff that actually harms people or damages property when
+      For provisioning services, this is the amount and location of a 
+      benefit that actually provides benefits to the users. For 
+      preventive services, it shows where the actual damage came 
+      from. Source regions that provided a damaging carrier that 
+      was neutralized by sinks are not shown.
+
+      This map shows runoff that actually harms people or property when
       accounting for flow paths and sinks.
     </description>
     <see-also><![CDATA[
@@ -1029,17 +1051,19 @@ be highly important in event-based flood models.</p>
     <concept>floodService:ActualSink</concept>
     <name>Actual mitigation</name>
     <title>Utilized runoff mitigation</title>
-    <runninghead>Actual sink map.</runninghead>
+    <runninghead>Actual sink map</runninghead>
     <group>flow</group>
     <description>
-      The *actual sink map* shows the portion of the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. For provisioning
-      services, such sinks are responsible for reducing the benefits compared to their
-      possible value. For preventive services, such sinks provide the actual
-      service because they prevent a damaging carrier from reaching users.
+      *Actual sink maps* shows the sinks that actually contribute
+      to depleting a service carrier given its flow patterns. 
+
+      For provisioning services, such sinks reduce benefits to 
+      users compared to their possible value. For preventive 
+      services, such sinks provide the actual service because 
+      they prevent a damaging carrier from reaching users.
 
       This map shows sinks that actively reduce floodwater, providing the benefit of
-      reduced flood damage for people.
+      reduced flood damage.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1057,12 +1081,12 @@ be highly important in event-based flood models.</p>
     <concept>floodService:ActualUse</concept>
     <name>Actual damage</name>
     <title>Flood damage received</title>
-    <runninghead>Actual use map.</runninghead>
+    <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      The *actual use map* shows the level of use of a beneficial carrier for a provisioning
+      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
       service or damage caused by a detrimental carrier for a preventive service, for
-      users located across the landscape.
+      users.
 
       This map shows actual damage received by people and property when accounting for
       sources of floodwater and their sinks and flow paths.
@@ -1083,21 +1107,22 @@ be highly important in event-based flood models.</p>
     <concept>floodService:BlockedFlow</concept>
     <name>Absorbed floodwater</name>
     <title>Absorbed flood flow</title>
-    <runninghead>Blocked flow map.</runninghead>
+    <runninghead>Blocked flow map</runninghead>
     <group>flow</group>
     <description>
-      The *blocked flow map* shows the flow paths that could have delivered the
-      service carrier to humans based on the flow routes and the source and user
-      locations, but did not because of the action of sinks. These are selected from among
-      all actual flows.
+      *Blocked flow maps* show flow paths that could have delivered 
+      an ecosystem service to humans based on the flow routes and 
+      source and user locations, but did not because of the action 
+      of sinks. These are selected from among all actual flows.
 
-      For provisioning services, these flow paths show the loss in possible flow of
-      beneficial services to the users, and their density is proportional to the value lost.
-      For preventive services, the flow paths show the amount of the total flow that
-      was prevented by natural features from causing damage.
+      For provisioning services, these flow paths show the loss of
+      possible beneficial service flow to users, and their density 
+      is proportional to the value lost. For preventive services, 
+      the flow paths show the amount of the total flow that was 
+      prevented by natural features from causing damage.
 
-      This map shows flood flows that are absorbed by sinks prior to reaching human
-      beneficiaries of flood regulation.
+      This map shows flood flows that are absorbed by sinks prior to
+      reaching people or property at risk of flooding.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1115,14 +1140,16 @@ be highly important in event-based flood models.</p>
     <concept>floodService:BlockedSource</concept>
     <name>Mitigated floodwater</name>
     <title>Mitigated flood source</title>
-    <runninghead>Blocked source map.</runninghead>
+    <runninghead>Blocked source map</runninghead>
     <group>flow</group>
     <description>
-      The *blocked source map* shows the part of the source map that had the possibility
-      of reaching users given the location of the users and the flow dynamics, but
-      was blocked from doing so because of the action of sinks. For provisioning services,
-      this corresponds to value produced by the environment but lost before it reaches
-      the users. For preventive services, it corresponds to damage that could have been
+      *Blocked source maps* show sources that had the possibility of 
+      reaching users given the location of users and flow dynamics, but
+      were blocked from doing so because of the action of sinks. 
+
+      For provisioning services, this corresponds to value produced by the 
+      environment but lost before it could reach the users. For
+      preventive services, it corresponds to damage that could have been
       inflicted on users but was blocked by natural features.
 
       This map shows the portion of the total runoff that is absorbed, detained, or
@@ -1144,20 +1171,23 @@ be highly important in event-based flood models.</p>
     <concept>floodService:BlockedUse</concept>
     <name>Total benefit</name>
     <title>Flood mitigation benefits accrued</title>
-    <runninghead>Blocked use map.</runninghead>
+    <runninghead>Blocked use map</runninghead>
     <group>flow</group>
     <description>
-      The *blocked use map* shows those users that would have been reached by the service
-      carrier based only on the source and the flow dynamics, but were not reached because
-      of the action of sinks. For provisioning services, the map shows possible value that
-      has not been accrued to users because of sinks; for preventive services, it shows
-      actual value accrued by users thanks to sink configuration.
+      *Blocked use maps* show users that would have received a service
+      carrier based on source and flow dynamics, but did not because
+      of the action of sinks. 
 
-      For preventive services, therefore, this map is the ultimate quantification of
-      value given the locations and quantity of users and natural sink features.
+      For provisioning services, the map shows possible value that
+      were prevented by sinks from reaching users; for preventive 
+      services, it shows actual value accrued by users from sinks 
+      that blocked damaging flows. For preventive services, therefore, 
+      this map is the ultimate quantification of value given the 
+      locations and quantity of users and sink features.
 
-      This map shows people or economically valuable assets who are spared from flood
-      damage due to the flood regulation activity of sinks.
+      This map shows people or economically valuable assets who are 
+      spared from flood damage due to the flood regulation provided by 
+      sinks.
     </description>
     <see-also><![CDATA[
     <p>

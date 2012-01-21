@@ -128,8 +128,8 @@
     [  0  50] LowEvapotranspiration
     [  0   0] VeryLowEvapotranspiration))
 
-(defmodel et-sink EvapotranspirationClass
-  (bayesian EvapotranspirationClass
+(defmodel et-sink Evapotranspiration
+  (bayesian Evapotranspiration
     :import  "aries.core::SurfaceWaterSinkLA.xdsl"
     :context [vegetation-type percent-canopy-cover]
     :keep    [EvapotranspirationClass]
@@ -143,8 +143,8 @@
     [  0  50] LowInfiltration
     [  0   0] VeryLowInfiltration))
 
-(defmodel soil-sink SoilInfiltrationClass
-  (bayesian SoilInfiltrationClass
+(defmodel soil-sink SoilInfiltration
+  (bayesian SoilInfiltration
     :import  "aries.core::SurfaceWaterSinkLA.xdsl"
     :context [soil-group slope imperviousness]
     :keep    [SoilInfiltrationClass]

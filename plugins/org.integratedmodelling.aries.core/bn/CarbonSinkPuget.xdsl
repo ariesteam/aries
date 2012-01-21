@@ -18,11 +18,11 @@
 			<state id="NoSuccession" />
 			<probabilities>0.1 0.15 0.15 0.15 0.05 0.4</probabilities>
 		</cpt>
-		<cpt id="FireFrequency">
-			<state id="HighFireFrequency" />
-			<state id="ModerateFireFrequency" />
-			<state id="LowFireFrequency" />
-			<state id="NoFireFrequency" />
+		<cpt id="FireThreatClass">
+			<state id="VeryHighFireThreat" />
+			<state id="HighFireThreat" />
+			<state id="ModerateFireThreat" />
+			<state id="LowFireThreat" />
 			<probabilities>0.01 0.29 0.3 0.4</probabilities>
 		</cpt>
 		<cpt id="PercentTreeCanopyCoverClass">
@@ -121,7 +121,7 @@
 			<state id="LowRelease" />
 			<state id="VeryLowRelease" />
 			<state id="NoRelease" />
-			<parents>VegetationAndSoilCarbonStorageClass DeforestationRiskClass FireFrequency</parents>
+			<parents>VegetationAndSoilCarbonStorageClass DeforestationRiskClass FireThreatClass</parents>
 			<probabilities>0.8 0.15 0.05 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.05 0.05 0 0 0.5 0.25 0.15 0.1 0 0 0.75 0.2 0.05 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.4 0.2 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0.1 0.15 0.15 0.3 0.3 0 0.15 0.05 0 0 0 0.8 0.015 0.005 0 0 0 0.98 0.004 0.001 0 0 0 0.995 0.002 0.001 0 0 0 0.997 0 0.85 0.1 0.05 0 0 0 0.75 0.15 0.1 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.1 0 0 0 0.8 0.15 0.05 0 0 0 0.7 0.25 0.05 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.3 0.35 0.1 0 0 0.75 0.15 0.1 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.15 0.2 0.35 0.3 0 0 0.15 0.05 0 0 0.8 0 0.015 0.005 0 0 0.98 0 0.004 0.001 0 0 0.995 0 0.002 0.001 0 0 0.997 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.95 0.05 0 0 0 0 0.8 0.2 0 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.8 0.15 0.05 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.2 0.2 0.4 0.2 0 0 0.15 0.05 0 0.8 0 0 0.015 0.005 0 0.98 0 0 0.004 0.001 0 0.995 0 0 0.002 0.001 0 0.997 0 0 0 1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.75 0.25 0 0 0 0 0.9 0.1 0 0 0 0 0.75 0.2 0.05 0 0 0 0.65 0.25 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.85 0.15 0 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.25 0.55 0 0 0 0.15 0.05 0.8 0 0 0 0.015 0.005 0.98 0 0 0 0.004 0.001 0.995 0 0 0 0.002 0.001 0.997 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.9 0.1 0 0 0 0 0.75 0.25 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.02 0.98 0 0 0 0 0.005 0.995 0 0 0 0 0.002 0.998 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
@@ -221,8 +221,8 @@
 				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
 				<barchart active="true" width="225" height="126" />
 			</node>
-			<node id="FireFrequency">
-				<name>FireFrequency</name>
+			<node id="FireThreatClass">
+				<name>FireThreatClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

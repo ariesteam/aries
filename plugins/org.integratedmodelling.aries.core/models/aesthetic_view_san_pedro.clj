@@ -84,7 +84,7 @@
 
 (defmodel mine Mines                         
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
-    #{19 117}  MinesPresent
+    117        MinesPresent
     :otherwise MinesAbsent))
 
 (defmodel transmission-line TransmissionLines 

@@ -44,15 +44,15 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-(defmodel lake-front LakeFront
-  (classification (binary-coding LakeFrontPresence)
-    1          LakeFrontPresent
-    :otherwise LakeFrontAbsent))
+(defmodel lake-front Lakefront
+  (classification (binary-coding LakefrontPresence)
+    1          LakefrontPresent
+    :otherwise LakefrontAbsent))
 
-(defmodel river-front RiverFront
-  (classification (binary-coding RiverFrontPresence)
-    1          RiverFrontPresent
-    :otherwise RiverFrontAbsent))
+(defmodel river-front Riverfront
+  (classification (binary-coding RiverfrontPresence)
+    1          RiverfrontPresent
+    :otherwise RiverfrontAbsent))
 
 (defmodel beach Beach
   (classification (binary-coding BeachPresence)
