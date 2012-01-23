@@ -305,6 +305,58 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <measurement:NumericCoding id="Reclass_fire_Clip">
+    <observation:hasObservable>
+      <habitat:FireReturnInterval />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from SWReGAP vegetation type and TNC historic fire return interval data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://azconservation.org/downloads/historical_fire_return_intervals_for_arizona_and_new_mexico</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+        <geospace:hasCoverageId>san_pedro:fire_san_pedro</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>51935</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>30893</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-120.016</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>42.022</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-102.017</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding>
+
+  <observation:Categorization id="sanPedro_grassland_quality_az">
+    <observation:hasObservable>
+      <habitat:GrasslandQuality/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: The Nature Conservancy - Arizona</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://azconservation.org/downloads/grasslands_assessment_gis_data</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:grassland_quality_az</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>3372453.535609444</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>165613.64288706274</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4102654.9781968</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>779348.8916769708</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
   <measurement:BinaryCoding id="housing_views_puget">
     <observation:hasObservable>
       <aestheticService:HomeownerViewUse />
