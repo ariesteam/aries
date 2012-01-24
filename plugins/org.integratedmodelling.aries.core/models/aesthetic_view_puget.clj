@@ -86,12 +86,12 @@
     :otherwise                              ClearcutsAbsent))
 
 ;; NLCD 1992 for Commercial/Industrial/Transportation land use
-(defmodel commercial-transportation CommercialIndustrialTransportation 
+(defmodel commercial-transportation CommercialIndustrialTransportation
   (classification (numeric-coding nlcd:NLCD1992Typology)
     23         TransportationInfrastructurePresent
     :otherwise TransportationInfrastructureAbsent))
 
-(defmodel highway Highways 
+(defmodel highway Highways
   (classification (binary-coding infrastructure:Highway)
     1          HighwaysPresent
     :otherwise HighwaysAbsent))

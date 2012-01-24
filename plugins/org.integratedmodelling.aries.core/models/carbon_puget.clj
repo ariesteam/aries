@@ -55,7 +55,7 @@
 ;; from land conversion and fire).
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))  
+  (measurement geophysics:Altitude "m"))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea

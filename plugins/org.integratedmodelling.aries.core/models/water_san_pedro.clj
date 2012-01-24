@@ -172,7 +172,7 @@
     [ 0  30] sanPedro:LowEvapotranspiration))
 
 (defmodel infiltration sanPedro:SoilInfiltrationClass
-  (probabilistic-measurement sanPedro:SoilInfiltrationClass  "mm"
+  (probabilistic-measurement SoilInfiltrationClass  "mm"
     [60 120] sanPedro:HighInfiltration
     [10  60] sanPedro:ModerateInfiltration
     [ 0  10] sanPedro:LowInfiltration))

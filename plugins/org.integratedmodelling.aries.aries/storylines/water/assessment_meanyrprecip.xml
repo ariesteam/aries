@@ -19,10 +19,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <presentation>
 
   <title>Surface water supply, mean annual precipitation</title>
-  <runninghead>Values resulting from water regulation and supply by ecosystems under mean annual precipitation levels</runninghead>
-  <description>Values resulting from the provision of surface and groundwater water supply by ecosystems,
-  including precipitation, groundwater recharge, or delivery of surface
-  water through streams, lakes, or reservoirs.</description>
+  <runninghead>Values resulting from water regulation and supply by
+  ecosystems under mean annual precipitation levels</runninghead>
+  <description>Values resulting from the provision of surface and
+  groundwater water supply by ecosystems, including precipitation,
+  groundwater recharge, or delivery of surface water through streams,
+  lakes, or reservoirs.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>waterSupplyService:FreshwaterSupply</concept>
@@ -38,9 +40,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <context>core.contexts.beta/grr_tanzania</context>
   </model>
 
-<!--Should figure out what's going on with the tree canopy cover data
-    gap and the South Platte Compact as a user before posting to the
-    online explorer.
+<!--Figure out what's going on with the tree canopy cover data
+    gap and the South Platte Compact as a user before posting the
+    Colorado models, below, to the online explorer.
   <model>
     <id>core.models.water-colorado/surface-flow</id>
     <context>core.contexts.beta/co_south_platte</context>
@@ -54,13 +56,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Surface water supply at mean annual precipitation levels</runninghead>
     <group></group>
     <description>
-      This model considers surface water supply for various human beneficiary groups, including agriculture, industry,
-      domestic use, and in-stream flow to support hydroelectric power generation, navigation, or recreation.  The model uses
-      mean annual precipitation as the primary source of surface water. These models collectively map sources of surface water
-      (precipitation, snowmelt, springs, baseflow to rivers, incoming
-      water transfers), their sinks (areas of groundwater
-      infiltration or evapotranspiration), and user groups and
-      link these via a flow model accounting for downstream water movement.
+      This model considers surface water supply for various human
+      beneficiary groups, including agriculture, industry, domestic use, and
+      in-stream flow to support hydroelectric power generation, navigation,
+      or recreation. The model uses mean annual precipitation as the primary
+      source of surface water. These models collectively map sources of
+      surface water (precipitation, snowmelt, springs, baseflow to rivers,
+      incoming water transfers), their sinks (areas of groundwater
+      infiltration or evapotranspiration), and user groups and link these
+      via a flow model accounting for downstream water movement.
     </description>
     <see-also><![CDATA[
     <p>
@@ -84,10 +88,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <runninghead>Groundwater supply</runninghead>
 <group></group>
 <description>
-This model considers groundwater supply for various human beneficiary groups, including agriculture, industry,
-and domestic use.
-These models map flows sources of groundwater (infiltration, artificial recharge), sinks (springs or baseflow),
-and beneficiary groups and link these via a flow model accounting for the downstream movement of water.
+This model considers groundwater supply for various human beneficiary
+groups, including agriculture, industry, and domestic use. These
+models map flows sources of groundwater (infiltration, artificial
+recharge), sinks (springs or baseflow), and beneficiary groups and
+link these via a flow model accounting for the downstream movement of
+water.
 </description>
 <see-also><![CDATA[
 <p>
@@ -114,19 +120,19 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Annual precipitation.</p>
-    <h1>Role in models</h1>
-    <p>Precipitation is the ultimate "source" of surface and groundwater.  Precipitation
-    runs off into water bodies where can be used, or recharges groundwater through percolation to aquifers.
-    Data are currently at an annual time scale; finer temporal resolution could be added 
-    in the future to better account for wet and dry season water
-    supply dynamics. These data are passed to the flow model to estimate actual water supply used given the locations of
-    beneficiaries, their demand, and infiltration and evapotranspiration that occur as water flows across
-    the landscape.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of precipitation per year.</p>
-    <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University (U.S.);
-    WorldClim (global).</p>
+    <h1>Role in models</h1> <p>Precipitation is the ultimate "source"
+    of surface and groundwater. Precipitation runs off into water bodies
+    where can be used, or recharges groundwater through percolation to
+    aquifers. Data are currently at an annual time scale; finer temporal
+    resolution could be added in the future to better account for wet and
+    dry season water supply dynamics. These data are passed to the flow
+    model to estimate actual water supply used given the locations of
+    beneficiaries, their demand, and infiltration and evapotranspiration
+    that occur as water flows across the landscape.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of precipitation per year.</p>
+    <h1>Source</h1> <p>PRISM Climate Group, Oregon State University
+    (U.S.); WorldClim (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -151,14 +157,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Incoming water transfer.</p>
-    <h1>Role in models</h1>
-    <p>In cases where water is transferred into a different watershed
-    via tunnels or aqueducts, the incoming diversion is included as a
-    source of surface water for that watershed.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of precipitation per year.</p>
-    <h1>Source</h1>
-    <p>Digitized from relevant regional water management authority data.</p>
+    <h1>Role in models</h1> <p>In cases where water is transferred
+    into a different watershed via tunnels or aqueducts, the incoming
+    diversion is included as a source of surface water for that
+    watershed.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of precipitation per year.</p>
+    <h1>Source</h1> <p>Digitized from relevant regional water
+    management authority data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -183,14 +189,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Summed surface water sources.</p>
-    <h1>Role in models</h1>
-    <p>This is the summed value of all relevant surface water sources
-    in a given model, which could include precipitation, incoming
-    water transfers, springs, snowmelt, and baseflow.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of precipitation per year.</p>
-    <h1>Source</h1>
-    <p>Deterministically calculated as sum of all surface water sources.</p>
+    <h1>Role in models</h1> <p>This is the summed value of all
+    relevant surface water sources in a given model, which could include
+    precipitation, incoming water transfers, springs, snowmelt, and
+    baseflow.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of precipitation per year.</p>
+    <h1>Source</h1> <p>Deterministically calculated as sum of all
+    surface water sources.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -219,15 +225,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Annual groundwater recharge, wet year.</p>
-    <h1>Role in models</h1>
-    <p>Groundwater recharge data are the "source" of groundwater.  Groundwater then moves through aquifers
-    based on various geologic factors, or is extracted by wells for human use.  These data are passed to the flow
-    model to estimate actual groundwater used given the locations of beneficiaries and their demand, along
-    with any springs or baseflow to rivers that naturally returns groundwater back to surface water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of groundwater recharge per year.</p>
-    <h1>Source</h1>
-    <p>U.S. Geological Survey.</p>
+    <h1>Role in models</h1> <p>Groundwater recharge data are the
+    "source" of groundwater. Groundwater then moves through aquifers based
+    on various geologic factors, or is extracted by wells for human use.
+    These data are passed to the flow model to estimate actual groundwater
+    used given the locations of beneficiaries and their demand, along with
+    any springs or baseflow to rivers that naturally returns groundwater
+    back to surface water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of groundwater recharge per year.</p>
+    <h1>Source</h1> <p>U.S. Geological Survey.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -252,14 +259,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>degrees slope</units>
     <description><![CDATA[
     <p>Slope affects runoff by influencing potential infiltration.</p>
-    <h1>Role in models</h1>
-    <p>Since hydrologic soils group classifications do not account for slope, slope data along with HSG
-    and impervious surface data are used to estimate the soil infiltration component in the surface water sink
-    models.  Greater infiltration is expected on level slopes than on steep slopes where runoff occurs quickly.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of degrees slope.</p>
-    <h1>Source</h1>
-    <p>Derived from a global 90-m SRTM digital elevation model.</p>
+    <h1>Role in models</h1> <p>Since hydrologic soils group
+    classifications do not account for slope, slope data along with HSG
+    and impervious surface data are used to estimate the soil infiltration
+    component in the surface water sink models. Greater infiltration is
+    expected on level slopes than on steep slopes where runoff occurs
+    quickly.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from a global 90-m SRTM digital
+    elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -287,15 +296,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
     target="_blank">Computing composite CN and runoff
     coefficients</a>.</p>
-    <h1>Role in models</h1>
-    <p>Soils are classified from group A (highest infiltraiton capacity) to D (lowest infiltration capacity); group
-    accounts for maximum yearly wetness, degree of soil freezing, bare soil surface, and swelling of clays, but
-    does not account for slope.  HSG is used along with slope and impervious surface data to estimate the soil infiltration
-    component of surface water sink models.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical.</p>
-    <h1>Source</h1>
-    <p>University of Vermont Spatial Analysis Lab, derived from FAO soils data.</p>
+    <h1>Role in models</h1> <p>Soils are classified from group A
+    (highest infiltraiton capacity) to D (lowest infiltration capacity);
+    group accounts for maximum yearly wetness, degree of soil freezing,
+    bare soil surface, and swelling of clays, but does not account for
+    slope. HSG is used along with slope and impervious surface data to
+    estimate the soil infiltration component of surface water sink
+    models.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>University of Vermont Spatial Analysis Lab,
+    derived from FAO soils data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -317,14 +327,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Percent impervious surface cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The amount of impervious surface (e.g., buildings, pavement) on the landscape.</p>
-    <h1>Role in models</h1>
-    <p>Impervious surface data are used along with slope and hydrologic soils group to estimate the soil infiltration
-    component of the surface water sink models.  Zero infiltration is expected on impervious surfaces.</p>
-    <h1>Representation</h1>
-    <p>Data show the percentage of the land surface with impervious cover.</p>
-    <h1>Source</h1>
-    <p>NOAA-NGDC global impervious surface data.</p>
+    <p>The amount of impervious surface (e.g., buildings, pavement) on
+    the landscape.</p>
+    <h1>Role in models</h1> <p>Impervious surface data are used along
+    with slope and hydrologic soils group to estimate the soil
+    infiltration component of the surface water sink models. Zero
+    infiltration is expected on impervious surfaces.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface with impervious cover.</p>
+    <h1>Source</h1> <p>NOAA-NGDC global impervious surface data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -348,18 +359,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <description><![CDATA[
     <p>The intersection of valley fill alluvium and mountain fronts.</p>
-    <h1>Role in models</h1>
-    <p>In the basin and range geologic formations like in the
-    southwestern United States, mountain fronts are a key location for
-    groundwater recharge.  These data are thus used as an input to 
-    a probabilistic model of infiltration.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of potential mountainfront recharge
-    zones, represented as a 1,600-meter wide band around the base of mountainfronts where subsurface geology shifts
-    to valley fill alluvium.  Areas of limestone bedrock, which promote high levels of infiltration, are also
-    included in this layer.</p>
-    <h1>Source</h1>
-    <p>Derived from Arizona Geographic Information Council geology data.</p>
+    <h1>Role in models</h1> <p>In the basin and range geologic
+    formations like in the southwestern United States, mountain fronts are
+    a key location for groundwater recharge. These data are thus used as
+    an input to a probabilistic model of infiltration.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    potential mountainfront recharge zones, represented as a 1,600-meter
+    wide band around the base of mountainfronts where subsurface geology
+    shifts to valley fill alluvium. Areas of limestone bedrock, which
+    promote high levels of infiltration, are also included in this
+    layer.</p>
+    <h1>Source</h1> <p>Derived from Arizona Geographic Information
+    Council geology data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -383,16 +394,13 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <description><![CDATA[
     <p>Perennial, intermittent, and ephemeral stream channels.</p>
-    <h1>Role in models</h1>
-    <p>Along with mountain fronts, stream channels are another
-    important recharge zone in the southwestern United States. These
-    data are thus used as an input to a probabilistic model of
-    infiltration.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of perennial, intermittent,
-    or ephemeral stream channels.</p>
-    <h1>Source</h1>
-    <p>Arizona Geographic Information Council.</p>
+    <h1>Role in models</h1> <p>Along with mountain fronts, stream
+    channels are another important recharge zone in the southwestern
+    United States. These data are thus used as an input to a probabilistic
+    model of infiltration.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    perennial, intermittent, or ephemeral stream channels.</p>
+    <h1>Source</h1> <p>Arizona Geographic Information Council.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -416,22 +424,26 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Surface water absorbed by the soil, potentially becoming available as groundwater.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of a probabilistic model accounting for the influence of soil and geologic
-    characteristics on infiltration.  Results are summed with evapotranspiration to give total surface
-    water sink values, and then passed to the flow model to estimate actual surface water availability
-    given the location of sources of surface water and users of water.  In the absence of direct data on
-    infiltration, the results of this model can also be used as source data for groundwater flow models.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water infiltrated per year.  As the output of the
-    models is probabilistic, each point contains the probability distribution of the amount of water
-    infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
-    coefficient of variation are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and
-    calibrated by the ARIES server for the selected area.  USGS WRD
-    NDSI groundwater recharge data were used for Bayesian network training.</p>
+    <p>Surface water absorbed by the soil, potentially becoming
+    available as groundwater.</p>
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of soil and geologic
+    characteristics on infiltration. Results are summed with
+    evapotranspiration to give total surface water sink values, and then
+    passed to the flow model to estimate actual surface water availability
+    given the location of sources of surface water and users of water. In
+    the absence of direct data on infiltration, the results of this model
+    can also be used as source data for groundwater flow models.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water infiltrated per year. As the output of the models
+    is probabilistic, each point contains the probability distribution of
+    the amount of water infiltrated. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. USGS WRD NDSI groundwater recharge data were used for
+    Bayesian network training.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -458,14 +470,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <units>degrees Celsius</units>
     <description><![CDATA[
-    <p>Annual maximum temperature influences water demand by plants and potential levels of evaporation.</p>
-    <h1>Role in models</h1>
-    <p>Particularly in water limited environments, annual maximum temperature is used as an influence on
-    evapotranspiration, with greater evapotranspiration under higher temperatures.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of degrees Celsius.</p>
-    <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University (U.S.); WorldClim (global).</p>
+    <p>Annual maximum temperature influences water demand by plants
+    and potential levels of evaporation.</p>
+    <h1>Role in models</h1> <p>Particularly in water limited
+    environments, annual maximum temperature is used as an influence on
+    evapotranspiration, with greater evapotranspiration under higher
+    temperatures.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    Celsius.</p>
+    <h1>Source</h1> <p>PRISM Climate Group, Oregon State University
+    (U.S.); WorldClim (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -488,14 +502,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
-    part of the sink model for surface water.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
+    <p>Different vegetation types will promote or reduce infiltration
+    and evapotranspiration.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as an input to
+    a probabilistic model for evapotranspiration, which is part of the
+    sink model for surface water.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -521,14 +536,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
-    part of the sink model for surface water.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
+    <p>Different vegetation types will promote or reduce infiltration
+    and evapotranspiration.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as an input to
+    a probabilistic model for evapotranspiration, which is part of the
+    sink model for surface water.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -554,14 +570,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
-    part of the sink model for surface water.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Veracruz land cover data.</p>
+    <p>Different vegetation types will promote or reduce infiltration
+    and evapotranspiration.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as an input to
+    a probabilistic model for evapotranspiration, which is part of the
+    sink model for surface water.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Veracruz land cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -583,14 +599,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Vegetation type</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Different vegetation types will promote or reduce infiltration and evapotranspiration.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as an input to a probabilistic model for evapotranspiration, which is
-    part of the sink model for surface water.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>AFRICOVER land cover data.</p>
+    <p>Different vegetation types will promote or reduce infiltration
+    and evapotranspiration.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as an input to
+    a probabilistic model for evapotranspiration, which is part of the
+    sink model for surface water.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>AFRICOVER land cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -614,17 +630,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <runninghead>Percent tree canopy cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Percent tree canopy cover.  Tree canopy cover influences root
+    <p>Percent tree canopy cover. Tree canopy cover influences root
     and canopy characteristics that affect transpiration rates.</p>
-    <h1>Role in models</h1>
-    <p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-    toward evapotranpiration.  All else being equal, expect greater
-    evapotranspiration is assumed under higher tree
-    canopy cover.</p>
-    <h1>Representation</h1>
-    <p>Data show the percentage of the land surface under tree canopy cover.</p>
-    <h1>Source</h1>
-    <p>)NLCD 2001 data (U.S.); GLCF (University of Maryland, global).</p>
+    <h1>Role in models</h1> <p>Tree canopy cover is used as input into
+    a probabilistic model estimating the contribution of vegetation toward
+    evapotranpiration. All else being equal, expect greater
+    evapotranspiration is assumed under higher tree canopy cover.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface under tree canopy cover.</p>
+    <h1>Source</h1> <p>)National Land Cover Dataset (NLCD, U.S.); GLCF
+    (University of Maryland, global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -648,22 +663,26 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Total surface water evaporated or taken up by vegetation and transpired, becoming no longer
-    available as surface or groundwater.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of a probabilistic model accounting for the influence of vegetation and climatic
-    characteristics on evapotranspiration.  Results are summed with infiltration to give total surface
-    water sink values, and then passed to the flow model to estimate actual surface water availability
-    given the location of sources of surface water and users of water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water evaporated or transpired per year.  As the
-    output of the models is probabilistic, each point contains the probability distribution of the amount
-    of water infiltrated. The distribution can be visualized by clicking on the map; the mean value and the
-    coefficient of variation are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and
-    calibrated by the ARIES server for the selected area.  University
-    of Delaware Global Water Balance data were used for Bayesian network training.</p>
+    <p>Total surface water evaporated or taken up by vegetation and
+    transpired, becoming no longer available as surface or
+    groundwater.</p>
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of vegetation and climatic
+    characteristics on evapotranspiration. Results are summed with
+    infiltration to give total surface water sink values, and then passed
+    to the flow model to estimate actual surface water availability given
+    the location of sources of surface water and users of water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water evaporated or transpired per year. As the output
+    of the models is probabilistic, each point contains the probability
+    distribution of the amount of water infiltrated. The distribution can
+    be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the
+    probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. University of Delaware Global Water Balance data were
+    used for Bayesian network training.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -690,17 +709,20 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>sink</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The sum of infiltration and evapotranspiration, e.g., all surface water that returns to the atmosphere or
-    infiltrates to groundwater, becoming unavailable as downstream surface water.</p>
-    <h1>Role in models</h1>
-    <p>The surface water sink is the total water that was once surface water but is no longer available as
-    surface water.  These data are passed to the surface water flow model, which calculates actual surface water
-    availability for beneficiaries, given precipitation levels, the activity of sinks, and use of and demand
-    for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water infiltrated, evaporated, or transpired per year.</p>
-    <h1>Source</h1>
-    <p>Calculated as the sum of outputs from a probabilistic models for infiltration and evapotranspiration.</p>
+    <p>The sum of infiltration and evapotranspiration, e.g., all
+    surface water that returns to the atmosphere or infiltrates to
+    groundwater, becoming unavailable as downstream surface water.</p>
+    <h1>Role in models</h1> <p>The surface water sink is the total
+    water that was once surface water but is no longer available as
+    surface water. These data are passed to the surface water flow model,
+    which calculates actual surface water availability for beneficiaries,
+    given precipitation levels, the activity of sinks, and use of and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water infiltrated, evaporated, or transpired per
+    year.</p>
+    <h1>Source</h1> <p>Calculated as the sum of outputs from a
+    probabilistic models for infiltration and evapotranspiration.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -724,14 +746,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Water use by industrial water users.</p>
-    <h1>Role in models</h1>
-    <p>Results are summed with other types of water users to give total water demand.  Total demand is
-    passed to the flow model to estimate actual water availability given the location of sources of
-    fresh water, evapotranspiration and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Instituto de Ecologia, INECOL.</p>
+    <h1>Role in models</h1> <p>Results are summed with other types of
+    water users to give total water demand. Total demand is passed to the
+    flow model to estimate actual water availability given the location of
+    sources of fresh water, evapotranspiration and infiltration, and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -755,15 +777,15 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Water use by agricultural water users.</p>
-    <h1>Role in models</h1>
-    <p>Results are summed with other types of water users to give total water demand.  Total demand is
-    passed to the flow model to estimate actual water availability given the location of sources of
-    fresh water, evapotranspiration and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Instituto de Ecologia, INECOL (Mexico); Colorado Division of
-    Water Resources (Colorado).</p>
+    <h1>Role in models</h1> <p>Results are summed with other types of
+    water users to give total water demand. Total demand is passed to the
+    flow model to estimate actual water availability given the location of
+    sources of fresh water, evapotranspiration and infiltration, and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Instituto de Ecologia, INECOL (Mexico);
+    Colorado Division of Water Resources (Colorado).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -789,15 +811,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Water use by residential water users.</p>
-    <h1>Role in models</h1>
-    <p>Results are summed with other types of water users to give total water demand.  Total demand is
-    passed to the flow model to estimate actual water availability given the location of sources of
-    fresh water, evapotranspiration and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Instituto de Ecologia, INECOL (Mexico); U.S. Census data on
-    households and EPA data on per household water consumption (Colorado).</p>
+    <h1>Role in models</h1> <p>Results are summed with other types of
+    water users to give total water demand. Total demand is passed to the
+    flow model to estimate actual water availability given the location of
+    sources of fresh water, evapotranspiration and infiltration, and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Instituto de Ecologia, INECOL (Mexico); U.S.
+    Census data on households and EPA data on per household water
+    consumption (Colorado).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -821,14 +844,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description><![CDATA[
     <p>Water use by aquacultural water users.</p>
-    <h1>Role in models</h1>
-    <p>Results are summed with other types of water users to give total water demand.  Total demand is
-    passed to the flow model to estimate actual water availability given the location of sources of
-    fresh water, evapotranspiration and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Instituto de Ecologia, INECOL.</p>
+    <h1>Role in models</h1> <p>Results are summed with other types of
+    water users to give total water demand. Total demand is passed to the
+    flow model to estimate actual water availability given the location of
+    sources of fresh water, evapotranspiration and infiltration, and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Instituto de Ecologia, INECOL.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -851,15 +874,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Water use by hydraulic fracturing water users for natural gas extraction.</p>
-    <h1>Role in models</h1>
-    <p>Results are summed with other types of water users to give total water demand.  Total demand is
-    passed to the flow model to estimate actual water availability given the location of sources of
-    fresh water, evapotranspiration and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Colorado Oil and Gas Conservation Commission (Colorado).</p>
+    <p>Water use by hydraulic fracturing water users for natural gas
+    extraction.</p>
+    <h1>Role in models</h1> <p>Results are summed with other types of
+    water users to give total water demand. Total demand is passed to the
+    flow model to estimate actual water availability given the location of
+    sources of fresh water, evapotranspiration and infiltration, and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Colorado Oil and Gas Conservation Commission
+    (Colorado).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -884,17 +909,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>The sum of water use by residential, industrial, agricultural, and aquacultural
-    water users.</p>
-    <h1>Role in models</h1>
-    <p>Results are the final water use values.  These are passed to the flow model to estimate actual
-    water availability given the location of sources of fresh water, evapotranspiration and infiltration,
-    and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water used per year.</p>
-    <h1>Source</h1>
-    <p>Calculated deterministically as the sum of residential, industrial, agricultural, and aquacultural
-    water use.</p>
+    <p>The sum of water use by residential, industrial, agricultural,
+    and aquacultural water users.</p>
+    <h1>Role in models</h1> <p>Results are the final water use values.
+    These are passed to the flow model to estimate actual water
+    availability given the location of sources of fresh water,
+    evapotranspiration and infiltration, and demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water used per year.</p>
+    <h1>Source</h1> <p>Calculated deterministically as the sum of
+    residential, industrial, agricultural, and aquacultural water use.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -917,23 +941,31 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Surface diversions, primarily for agriculture, are an important surface water user, and are the only surface
-    water user for our San Pedro case study.</p>
-    <h1>Role in models</h1>
-    <p>Results are the final surface water use values for the San Pedro.  These are passed to the flow model
-    to estimate actual water availability given the location of sources of fresh water, evapotranspiration
-    and infiltration, and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water diversion capacity per year.</p>
-    <h1>Source</h1>
-    <p>Digitized locations and diversion capacity for surface diversions in the San Pedro watershed.</p>
+    <p>Surface diversions, primarily for agriculture, are an important
+    surface water user, and are the only surface water user for our San
+    Pedro case study.</p>
+    <h1>Role in models</h1> <p>Results are the final surface water use
+    values for the San Pedro. These are passed to the flow model to
+    estimate actual water availability given the location of sources of
+    fresh water, evapotranspiration and infiltration, and demand for
+    water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water diversion capacity per year.</p>
+    <h1>Source</h1> <p>Digitized locations and diversion capacity for
+    surface diversions in the San Pedro watershed.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
+    Lacher, L.J.  1994.  Hydrologic and legal issues of the Upper San
+    Pedro River Basin, Arizona.  Semi-Arid Land-Surface Atmosphere
+    Program (SALSA) Online Publication.<br/>
     <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://www.tucson.ars.ag.gov/salsa/archive/publications/lacher/lacher0.html#anchor17747"
+    target="_blank">Lacher, L.J. (1994)</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -949,16 +981,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>use</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Groundwater well locations and use data, where available, are the source of use data for groundwater
-    flow models.</p>
-    <h1>Role in models</h1>
-    <p>Results are the final groundwater use values for the San Pedro.  These could be passed to a groundwater
-    flow model to estimate actual groundwater availability given the location of infiltration zone locations and
-    groundwater recharge quantities and demand for water.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of water pumping capacity per year.</p>
-    <h1>Source</h1>
-    <p>Arizona Department of Water Resources (U.S.); INECOL (Mexico).</p>
+    <p>Groundwater well locations and use data, where available, are
+    the source of use data for groundwater flow models.</p>
+    <h1>Role in models</h1> <p>Results are the final groundwater use
+    values for the San Pedro. These could be passed to a groundwater flow
+    model to estimate actual groundwater availability given the location
+    of infiltration zone locations and groundwater recharge quantities and
+    demand for water.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water pumping capacity per year.</p>
+    <h1>Source</h1> <p>Arizona Department of Water Resources (U.S.);
+    INECOL (Mexico).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -983,14 +1016,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>m</units>
     <description><![CDATA[
     <p>Elevation above sea level.</p>
-    <h1>Role in models</h1>
-    <p>A digital elevation model is used along with hydrography data to route water across the land surface.
-    The flow model moves precipitation downslope using elevation data until it reaches a stream network, which
-    water then follows through the stream network.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of meters above sea level.</p>
-    <h1>Source</h1>
-    <p>Global 90-m SRTM digital elevation model.</p>
+    <h1>Role in models</h1> <p>A digital elevation model is used along
+    with hydrography data to route water across the land surface. The flow
+    model moves precipitation downslope using elevation data until it
+    reaches a stream network, which water then follows through the stream
+    network.</p>
+    <h1>Representation</h1> <p>Data are in physical units of meters
+    above sea level.</p>
+    <h1>Source</h1> <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -1014,15 +1047,14 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group> <!-- Add data sources for Tanzania -->
     <description><![CDATA[
     <p>River and stream locations.</p>
-    <h1>Role in models</h1>
-    <p>Hydrography data are used to route surface water.  The flow model
-    moves precipitation downslope using elevation data until it reaches a stream network, which water
-    then follows through the stream network.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of rivers and streams.</p>
-    <h1>Sources</h1>
-    <p>Arizona Geographic Information Council; Colorado Department of
-    Transportation; Veracruz hydrgraphy
+    <h1>Role in models</h1> <p>Hydrography data are used to route
+    surface water. The flow model moves precipitation downslope using
+    elevation data until it reaches a stream network, which water then
+    follows through the stream network.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    rivers and streams.</p>
+    <h1>Sources</h1> <p>Arizona Geographic Information Council;
+    Colorado Department of Transportation; Veracruz hydrgraphy
     data.</p> 
     ]]></description>
     <see-also language="html"><![CDATA[
@@ -1045,7 +1077,7 @@ and beneficiary groups and link these via a flow model accounting for the downst
 
   <!-- Flow concepts. -->
 
-  <!-- Theoretical source, sink, and use.  Already included as outputs of probabilistic or deterministic models,
+  <!-- Theoretical source, sink, and use: already included as outputs of probabilistic or deterministic models,
        so not repeated here.
 
 <page id="surface-water-supply">
@@ -1098,17 +1130,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Possible flow maps* show the path that the carrier of the 
-      service would take if it was not intercepted by sinks.  
-      As such it considers source and use models and shows the 
-      maximum amount of flow. 
+      *Possible flow maps* show the path that the carrier of the
+      service would take if it was not intercepted by sinks. As such it
+      considers source and use models and shows the maximum amount of flow.
 
-      For provisioning services, this corresponds to the maximum 
-      potential benefit; for preventive services, the maximum
-      potential damage.
+      For provisioning services, this corresponds to the maximum
+      potential benefit; for preventive services, the maximum potential
+      damage.
 
-      This map shows the movement of surface water via topography and stream networks,
-      when not accounting for sinks (infiltration or evapotranspirative losses of surface water).
+      This map shows the movement of surface water via topography and
+      stream networks, when not accounting for sinks (infiltration or
+      evapotranspirative losses of surface water).
     </description>
     <see-also><![CDATA[
     <p>
@@ -1130,24 +1162,23 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Possible source maps*, generated through flow analysis, show which
-      specific sources actually generate carriers that reach users,
-      independent of the existence of sinks but taking into account
-      use values and the carrier flow paths. Even in the absence of
-      sinks, not all of a source quantity can actually reach users, 
-      because of the route that an ecosystem service carrier moves 
-      across the landscape. 
+      *Possible source maps*, generated through flow analysis, show
+      which specific sources actually generate carriers that reach users,
+      independent of the existence of sinks but taking into account use
+      values and the carrier flow paths. Even in the absence of sinks, not
+      all of a source quantity can actually reach users, because of the
+      route that an ecosystem service carrier moves across the landscape.
 
-      For provisioning services, this corresponds to the source of 
-      benefits that has the potential of being actually useful. For 
-      preventive services, this corresponds to the sources that could 
-      actually cause damage to people. The location and strength of 
-      sinks determines how much of the source actually reaches the
-      users.
+      For provisioning services, this corresponds to the source of
+      benefits that has the potential of being actually useful. For
+      preventive services, this corresponds to the sources that could
+      actually cause damage to people. The location and strength of sinks
+      determines how much of the source actually reaches the users.
 
-      This map shows the initial location of surface water that is capable of providing water
-      to human beneficiaries when accounting for flow paths but not accounting for sinks
-      (i.e., potentially can provide water to human beneficiaries).
+      This map shows the initial location of surface water that is
+      capable of providing water to human beneficiaries when accounting for
+      flow paths but not accounting for sinks (i.e., potentially can provide
+      water to human beneficiaries).
     </description>
     <see-also><![CDATA[
     <p>
@@ -1169,18 +1200,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Possible use maps* show the locations of users that can receive a
-      benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of
-      sinks.  
+      *Possible use maps* show the locations of users that can receive
+      a benefit due to flow connections with a source of an ecosystem
+      service carrier, but may or may not actually receive the carrier due
+      to the action of sinks.
 
       For provisioning services, potential use identifies areas where
-      it is physically possible for a benefit to be received.  For 
-      preventive services, potential use identifies areas that may be 
-      damaged by a detrimental carrier if sinks do not prevent such
-      damage.
-
-      This map shows water actually reaching a user, but not accounting for the activity of sinks.
+      it is physically possible for a benefit to be received. For preventive
+      services, potential use identifies areas that may be damaged by a
+      detrimental carrier if sinks do not prevent such damage.
+      
+      This map shows water actually reaching a user, but not
+      accounting for the activity of sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1202,18 +1233,20 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Actual flow maps* show the flow paths that deliver actual services to
-      beneficiaries. These are selected from the total flow density to only show these flow paths
-      that are not depleted by sinks and actually reach users.
+      *Actual flow maps* show the flow paths that deliver actual
+      services to beneficiaries. These are selected from the total flow
+      density to only show these flow paths that are not depleted by sinks
+      and actually reach users.
+      
+      For provisioning services, these flow paths deliver valuable
+      benefits to the users and the density is proportional to the value
+      accrued. For preventive services, the flow paths show how much of the
+      carrier reaches users, delivering actual damage.
 
-      For provisioning services, these flow paths deliver valuable benefits to the
-      users and the density is proportional to the value accrued. For preventive services,
-      the flow paths show how much of the carrier reaches users, delivering actual
-      damage.
-
-      In this case, the density of actual flows shows surface water movement 
-      when accounting for flow paths and sinks (i.e., transitions from surface to
-      groundwater, or evapotranspirative losses of surface water).
+      In this case, the density of actual flows shows surface water
+      movement when accounting for flow paths and sinks (i.e., transitions
+      from surface to groundwater, or evapotranspirative losses of surface
+      water).
     </description>
     <see-also><![CDATA[
     <p>
@@ -1236,17 +1269,16 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. 
+      service after accounting for sinks and flow dynamics.
 
-      For provisioning services, this is the amount and location of a 
-      benefit that actually provides benefits to the users. For 
-      preventive services, it shows where the actual damage came 
-      from. Source regions that provided a damaging carrier that 
-      was neutralized by sinks are not shown.
+      For provisioning services, this is the amount and location of a
+      benefit that actually provides benefits to the users. For preventive
+      services, it shows where the actual damage came from. Source regions
+      that provided a damaging carrier that was neutralized by sinks are not
+      shown.
 
-      This map shows sources of surface water that provide
-      water to human beneficiaries when accounting for surface flow paths
-      and sinks.
+      This map shows sources of surface water that provide water to
+      human beneficiaries when accounting for surface flow paths and sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1268,17 +1300,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Actual sink maps* shows the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. 
+      *Actual sink maps* shows the sinks that actually contribute to
+      depleting a service carrier given its flow patterns.
 
-      For provisioning services, such sinks reduce benefits to 
-      users compared to their possible value. For preventive 
-      services, such sinks provide the actual service because 
-      they prevent a damaging carrier from reaching users.
+      For provisioning services, such sinks reduce benefits to users
+      compared to their possible value. For preventive services, such sinks
+      provide the actual service because they prevent a damaging carrier
+      from reaching users.
 
-      This map shows the locations where surface water transitions into groundwater
-      (via infiltration) or atmospheric water (via evapotranspiration), becoming unavailable
-      for use as surface water.
+      This map shows the locations where surface water transitions
+      into groundwater (via infiltration) or atmospheric water (via
+      evapotranspiration), becoming unavailable for use as surface water.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1300,9 +1332,9 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
-      service or damage caused by a detrimental carrier for a preventive service, for
-      users.
+      *Actual use maps* show the level of use of a beneficial carrier
+      for a provisioning service or damage caused by a detrimental carrier
+      for a preventive service, for users.
 
       This map shows the portion of water demand satisfied by the
       actual supply of surface water.
@@ -1329,18 +1361,17 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <description>
       *Inaccessible source maps* show source areas whose values are
       irrelevant to ecosystem service delivery, because of a lack of flow
-      connections between sources and users. 
+      connections between sources and users.
 
-      For provisioning services, this is the portion of the value that 
-      must be subtracted from the total source map to define a maximum 
-      potential benefit for the users. For preventive services, it
-      shows those areas that have no potential of producing damage because the
-      flow dynamics prevent the carrier from impacting any significant
-      user.
+      For provisioning services, this is the portion of the value that
+      must be subtracted from the total source map to define a maximum
+      potential benefit for the users. For preventive services, it shows
+      those areas that have no potential of producing damage because the
+      flow dynamics prevent the carrier from impacting any significant user.
 
-      This map shows the source locations of surface water that are not available
-      to human users because their flow paths do not move them in a direction where
-      they can be accessed by human beneficiaries.
+      This map shows the source locations of surface water that are
+      not available to human users because their flow paths do not move them
+      in a direction where they can be accessed by human beneficiaries.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1364,18 +1395,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Inaccessible use maps* shows potential users that cannot receive a service
-      due to a lack of flow routes linking source and user locations. 
+      *Inaccessible use maps* shows potential users that cannot
+      receive a service due to a lack of flow routes linking source and user
+      locations.
 
       For provisioning services, this corresponds to value produced by
-      the environment that cannot be reached by users. For preventive 
-      services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections
-      to users.
+      the environment that cannot be reached by users. For preventive
+      services, it corresponds to damage that could have been inflicted on
+      users but is not due to a lack of flow connections to users.
 
-      This map shows areas of demand for surface water that goes unsatisfied due to
-      a lack of surface or groundwater flow connections between sources of water and
-      the location of water users.
+      This map shows areas of demand for surface water that goes
+      unsatisfied due to a lack of surface or groundwater flow connections
+      between sources of water and the location of water users.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1399,20 +1430,20 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Blocked flow maps* show flow paths that could have delivered 
-      an ecosystem service to humans based on the flow routes and 
-      source and user locations, but did not because of the action 
-      of sinks. These are selected from among all actual flows.
+      *Blocked flow maps* show flow paths that could have delivered an
+      ecosystem service to humans based on the flow routes and source and
+      user locations, but did not because of the action of sinks. These are
+      selected from among all actual flows.
 
       For provisioning services, these flow paths show the loss of
-      possible beneficial service flow to users, and their density 
-      is proportional to the value lost. For preventive services, 
-      the flow paths show the amount of the total flow that was 
-      prevented by natural features from causing damage.
+      possible beneficial service flow to users, and their density is
+      proportional to the value lost. For preventive services, the flow
+      paths show the amount of the total flow that was prevented by natural
+      features from causing damage.
 
-      This map shows water flows that fail to reach a user because it encountered a
-      sink and transitioned from surface water into the atmospheric or
-      groundwater.
+      This map shows water flows that fail to reach a user because it
+      encountered a sink and transitioned from surface water into the
+      atmospheric or groundwater.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1434,18 +1465,18 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <group>flow</group>
     <units>mm/year</units>
     <description>
-      *Blocked source maps* show sources that had the possibility of 
-      reaching users given the location of users and flow dynamics, but
-      were blocked from doing so because of the action of sinks. 
+      *Blocked source maps* show sources that had the possibility of
+      reaching users given the location of users and flow dynamics, but were
+      blocked from doing so because of the action of sinks.
 
-      For provisioning services, this corresponds to value produced by the 
-      environment but lost before it could reach the users. For
+      For provisioning services, this corresponds to value produced by
+      the environment but lost before it could reach the users. For
       preventive services, it corresponds to damage that could have been
       inflicted on users but was blocked by natural features.
 
-      This map shows the source locations of surface water that fails to reach a user
-      due to their encountering a sink and transitioning from surface water
-      into the atmosphere or groundwater.
+      This map shows the source locations of surface water that fails
+      to reach a user due to their encountering a sink and transitioning
+      from surface water into the atmosphere or groundwater.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1468,19 +1499,19 @@ and beneficiary groups and link these via a flow model accounting for the downst
     <units>mm/year</units>
     <description>
       *Blocked use maps* show users that would have received a service
-      carrier based on source and flow dynamics, but did not because
-      of the action of sinks. 
+      carrier based on source and flow dynamics, but did not because of the
+      action of sinks.
 
       For provisioning services, the map shows possible value that
-      were prevented by sinks from reaching users; for preventive 
-      services, it shows actual value accrued by users from sinks 
-      that blocked damaging flows. For preventive services, therefore, 
-      this map is the ultimate quantification of value given the 
-      locations and quantity of users and sink features.
+      were prevented by sinks from reaching users; for preventive services,
+      it shows actual value accrued by users from sinks that blocked
+      damaging flows. For preventive services, therefore, this map is the
+      ultimate quantification of value given the locations and quantity of
+      users and sink features.
 
-      This map shows demand for surface water that goes unsatisfied due to the action of
-      sinks that transition water from surface water to inaccessible atmospheric moisture or
-      groundwater.
+      This map shows demand for surface water that goes unsatisfied
+      due to the action of sinks that transition water from surface water to
+      inaccessible atmospheric moisture or groundwater.
     </description>
     <see-also><![CDATA[
     <p>

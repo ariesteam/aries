@@ -19,15 +19,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <presentation>
 
   <title>Aesthetic viewsheds</title>
-  <runninghead>Values resulting from scenic views of ecosystems.</runninghead>
-  <description>Aesthetic values are typically defined as the value derived from views or proximity
-  to open space.  These values often accrue to housing or property values and are often
-  measured using hedonic pricing.  Homeowners typically gain some combination of benefits
-  through sensory enjoyment of views of nearby open space, proximity to open space for
-  recreation, or privacy.  This storyline maps ecosytem service provision, use, and flows for
-  aesthetic viewsheds, including the type and quality of views, location and type of
-  housing, the presence of features that block or degrade view quality, and flow models
-  to connect beneficiaries to high quality views via a line-of-sight model.</description>
+  <runninghead>Values resulting from scenic views of
+  ecosystems.</runninghead>
+  <description>Aesthetic values are typically defined as the value
+  derived from views or proximity to open space. These values often
+  accrue to housing or property values and are often measured using
+  hedonic pricing. Homeowners typically gain some combination of
+  benefits through sensory enjoyment of views of nearby open space,
+  proximity to open space for recreation, or privacy. This storyline
+  maps ecosytem service provision, use, and flows for aesthetic
+  viewsheds, including the type and quality of views, location and type
+  of housing, the presence of features that block or degrade view
+  quality, and flow models to connect beneficiaries to high quality
+  views via a line-of-sight model.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>aestheticService:AestheticViewsheds</concept>
@@ -59,17 +63,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Aesthetic viewsheds</runninghead>
     <group></group>
     <description>
-      This storyline considers the contribution of ecosystems 
-      toward providing high-quality views and their impact on
-      property values.  The source model maps areas that contain 
-      high-quality views, the sink model maps areas with
-      objects that degrade views, and the use model maps the 
-      location of homeowners.  By combining these maps with a
-      line of sight model, actual view quality and its potential
-      impact on property values can be analyzed.  In the recreation 
-      module, a similar set of models can be used to map and value 
-      viewsheds as they contribute to recreational experiences, 
-      such as on trails, mountain summits, or scenic drives.
+      This storyline considers the contribution of ecosystems toward
+      providing high-quality views and their impact on property values. The
+      source model maps areas that contain high-quality views, the sink
+      model maps areas with objects that degrade views, and the use model
+      maps the location of homeowners. By combining these maps with a line
+      of sight model, actual view quality and its potential impact on
+      property values can be analyzed. In the recreation module, a similar
+      set of models can be used to map and value viewsheds as they
+      contribute to recreational experiences, such as on trails, mountain
+      summits, or scenic drives.
     </description>
     <see-also><![CDATA[
     <p>
@@ -92,13 +95,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Lakes</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of lakes as aesthetically valued natural features.</p>
-    <h1>Role in models</h1>
-    <p>Lake presence is used as an input to a probabilistic model to estimate view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of lakes.</p>
-    <h1>Source</h1>
-    <p>Derived from 2001 National Land Cover Dataset.</p>
+    <p>The presence of lakes as aesthetically valued natural
+    features.</p>
+    <h1>Role in models</h1> <p>Lake presence is used as an input to a
+    probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    lakes.</p>
+    <h1>Source</h1> <p>Derived from National Land Cover
+    Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -121,13 +125,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Ocean</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of the ocean as an aesthetically valued natural feature.</p>
-    <h1>Role in models</h1>
-    <p>Ocean presence is used as an input to a probabilistic model to estimate view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of the ocean.</p>
-    <h1>Source</h1>
-    <p>Derived from 2001 National Land Cover Dataset.</p>
+    <p>The presence of the ocean as an aesthetically valued natural
+    feature.</p>
+    <h1>Role in models</h1> <p>Ocean presence is used as an input to a
+    probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    the ocean.</p>
+    <h1>Source</h1> <p>Derived from National Land Cover Dataset
+    (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -150,14 +155,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Mountains</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of mountains as aesthetically valued natural features.</p>
-    <h1>Role in models</h1>
-    <p>The view of mountains, and their height, is used as an input to a probabilistic model to estimate
-    view quality.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of meters above sea level.</p>
-    <h1>Source</h1>
-    <p>Global 90-m SRTM digital elevation model.</p>
+    <p>The presence of mountains as aesthetically valued natural
+    features.</p>
+    <h1>Role in models</h1> <p>The view of mountains, and their
+    height, is used as an input to a probabilistic model to estimate view
+    quality.</p>
+    <h1>Representation</h1> <p>Data are in physical units of meters
+    above sea level.</p>
+    <h1>Source</h1> <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -180,15 +185,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Scenic vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of aesthetically pleasing land cover types, such as forests or riparian areas, which
-    can be important in arid environments where green vegetation is scarcer and may be more highly valued than in humid environments.</p>
-    <h1>Role in models</h1>
-    <p>The view of particular types of natural land cover, such as forests or riparian areas,
-    is used as an input to a probabilistic model to estimate view quality.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from SWReGAP land cover classes.</p>
-    <h1>Source</h1>
-    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
+    <p>The presence of aesthetically pleasing land cover types, such
+    as forests or riparian areas, which can be important in arid
+    environments where green vegetation is scarcer and may be more highly
+    valued than in humid environments.</p>
+    <h1>Role in models</h1> <p>The view of particular types of natural
+    land cover, such as forests or riparian areas, is used as an input to
+    a probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from
+    SWReGAP land cover classes.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -212,18 +219,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>The quality of a potential view from residences.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of the viewshed source model, and estimates the relative quality
-    of different areas in providing aesthetically pleasing views, based on relevant input data.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative suitability of different
-    parts of the landscape to provide aesthetically pleasing views. As the output of the models
-    is probabilistic, each point contains the probability distribution for potential view quality.
-    The distribution can be visualized by clicking on the map; the mean value and the coefficient
+    <h1>Role in models</h1> <p>This is the output of the viewshed
+    source model, and estimates the relative quality of different areas in
+    providing aesthetically pleasing views, based on relevant input
+    data.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative suitability of different parts of the
+    landscape to provide aesthetically pleasing views. As the output of
+    the models is probabilistic, each point contains the probability
+    distribution for potential view quality. The distribution can be
+    visualized by clicking on the map; the mean value and the coefficient
     of variation are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
-    ARIES server for the selected area.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -245,14 +254,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Development</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land cover types, such as high density development.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an
-    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from National Land Cover Dataset (NLCD) land cover classes.</p>
-    <h1>Source</h1>
-    <p>2001 National Land Cover Dataset.</p>
+    <p>The presence of aesthetically displeasing land cover types,
+    such as high density development.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land cover, such as high-density developed land, is used as an input
+    to a probabilistic model to estimate visual blight that degrades view
+    quality.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from
+    National Land Cover Dataset (NLCD) land cover classes.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -275,14 +285,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Transmission lines</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing infrastructure, such as transmission lines.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing infrastructure, such as transmission lines, is used as an
-    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of transmission lines.</p>
-    <h1>Source</h1>
-    <p>Census TIGER/Line Files.</p>
+    <p>The presence of aesthetically displeasing infrastructure, such
+    as transmission lines.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    infrastructure, such as transmission lines, is used as an input to a
+    probabilistic model to estimate visual blight that degrades view
+    quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    transmission lines.</p>
+    <h1>Source</h1> <p>Census TIGER/Line Files.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -305,14 +316,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Highways</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types, such as highways.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land use, such as highways, is used as an
-    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of highways.</p>
-    <h1>Source</h1>
-    <p>Census TIGER/Line Files.</p>
+    <p>The presence of aesthetically displeasing land use types, such
+    as highways.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as highways, is used as an input to a probabilistic
+    model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    highways.</p>
+    <h1>Source</h1> <p>Census TIGER/Line Files.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -335,14 +346,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Mines</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types, such as open pit mines.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land use, such as open pit mines, is used as an
-    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of mines.</p>
-    <h1>Source</h1>
-    <p>Southwest Regional GAP Analysis (SWReGAP) land cover data.</p>
+    <p>The presence of aesthetically displeasing land use types, such
+    as open pit mines.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as open pit mines, is used as an input to a
+    probabilistic model to estimate visual blight that degrades view
+    quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    mines.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -365,14 +378,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Clearcuts</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types, such as clearcuts.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land use, such as clearcuts, is used as an
-    input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of clearcuts.</p>
-    <h1>Source</h1>
-    <p>Washington State Department of Natural Resources.</p>
+    <p>The presence of aesthetically displeasing land use types, such
+    as clearcuts.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as clearcuts, is used as an input to a probabilistic
+    model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    clearcuts.</p>
+    <h1>Source</h1> <p>Washington State Department of Natural
+    Resources.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -395,16 +409,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Commercial, industrial, or transportation land use</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types, such as commercial, industrial, or
-    transportation land use.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land use, such as commercial, industrial, or transportation land
-    use, is used as an input to a probabilistic model to estimate visual blight that degrades view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of commercial, industrial,
-    or transportation land use.</p>
-    <h1>Source</h1>
-    <p>1992 National Land Cover Dataset.</p>
+    <p>The presence of aesthetically displeasing land use types, such
+    as commercial, industrial, or transportation land use.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as commercial, industrial, or transportation land use,
+    is used as an input to a probabilistic model to estimate visual blight
+    that degrades view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    commercial, industrial, or transportation land use.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD, 1992).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -427,20 +440,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Visual blight</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The ability of parts of the landscape to degrade views, based on the presence of visually
-    unappealing features.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of the viewshed sink model, and estimates the relative ability
-    of different areas to degrade high-quality views, based on relevant input data.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative ability of different
-    parts of the landscape to degrade high-quality views. As the output of the models is probabilistic,
-    each point contains the probability distribution for potential visual blight.  The distribution
-    can be visualized by clicking on the map; the mean value and the coefficient of variation are
-    reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
-    ARIES server for the selected area.</p>
+    <p>The ability of parts of the landscape to degrade views, based
+    on the presence of visually unappealing features.</p>
+    <h1>Role in models</h1> <p>This is the output of the viewshed sink
+    model, and estimates the relative ability of different areas to
+    degrade high-quality views, based on relevant input data.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative ability of different parts of the
+    landscape to degrade high-quality views. As the output of the models
+    is probabilistic, each point contains the probability distribution for
+    potential visual blight. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -462,15 +476,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Presence of housing</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Residences at who may benefit from access to high-quality views.</p>
-    <h1>Role in models</h1>
-    <p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the
-    potential aesthetic value, as reflected in property value, of high-quality views.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of housing.</p>
-    <h1>Source</h1>
-    <p>County assessors' offices (where available), otherwise National
-    Land Cover Dataset (NLCD) developed land.</p>
+    <p>Residences at who may benefit from access to high-quality
+    views.</p>
+    <h1>Role in models</h1> <p>Housing locations and housing value
+    data are used as inputs to a probabilistic model to estimate the
+    potential aesthetic value, as reflected in property value, of
+    high-quality views.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    housing.</p>
+    <h1>Source</h1> <p>County assessors' offices (where available),
+    otherwise National Land Cover Dataset (NLCD) developed land.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -494,14 +509,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <units>$/ac</units>
     <group>use</group>
     <description><![CDATA[
-    <p>Property value, which may be increased with access to high-quality views.</p>
-    <h1>Role in models</h1>
-    <p>Housing locations and housing value data are used as inputs to a probabilistic model to estimate the
-    potential aesthetic value, as reflected in property value, of high-quality views.</p>
-    <h1>Representation</h1>
-    <p>Data are in dollars per acre of property.</p>
-    <h1>Source</h1>
-    <p>County assessors' offices (where available).</p>
+    <p>Property value, which may be increased with access to
+    high-quality views.</p>
+    <h1>Role in models</h1> <p>Housing locations and housing value
+    data are used as inputs to a probabilistic model to estimate the
+    potential aesthetic value, as reflected in property value, of
+    high-quality views.</p>
+    <h1>Representation</h1> <p>Data are in dollars per acre of
+    property.</p>
+    <h1>Source</h1> <p>County assessors' offices (where
+    available).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -524,19 +541,22 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Potential homeowner view use</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>The potential property value benefit from access to high-quality views.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of the viewshed use model, and estimates the potential property value benefit
-    that could be provided by high-quality views, based on relevant input data.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative potential property value benefit
-    as reflected by the presence of housing and property values. As the output of the models is probabilistic,
-    each point contains the probability distribution for potential visual blight.  The distribution
-    can be visualized by clicking on the map; the mean value and the coefficient of variation are
-    reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
-    ARIES server for the selected area.</p>
+    <p>The potential property value benefit from access to
+    high-quality views.</p>
+    <h1>Role in models</h1> <p>This is the output of the viewshed use
+    model, and estimates the potential property value benefit that could
+    be provided by high-quality views, based on relevant input data.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative potential property value benefit as
+    reflected by the presence of housing and property values. As the
+    output of the models is probabilistic, each point contains the
+    probability distribution for potential visual blight. The distribution
+    can be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the
+    probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -562,12 +582,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible flow map</runninghead>
     <group>flow</group>
     <description>
-      *Possible flow maps* show the path that the carrier of the service would take
-      if it was not intercepted by sinks.  As such it considers source and use models and
-      shows the maximum amount of flow. 
+      *Possible flow maps* show the path that the carrier of the
+      service would take if it was not intercepted by sinks. As such it
+      considers source and use models and shows the maximum amount of flow.
 
-      For provisioning services, this corresponds to the
-      maximum potential benefit; for preventive services, the maximum potential damage.
+      For provisioning services, this corresponds to the maximum
+      potential benefit; for preventive services, the maximum potential
+      damage.
 
       This map shows the flow of views from natural areas toward
       homeowners when not accounting for sinks.
@@ -591,22 +612,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <description>
-      *Possible source maps*, generated through flow analysis, show 
-      which specific sources actually generate carriers 
-      that reach users, independent of the existence of sinks but 
-      taking into account use values and the carrier flow paths. 
-      Even in the absence of sinks, not all of a source quantity can 
-      actually reach users, because of the route that an ecosystem 
-      service carrier moves across the landscape. 
+      *Possible source maps*, generated through flow analysis, show
+      which specific sources actually generate carriers that reach users,
+      independent of the existence of sinks but taking into account use
+      values and the carrier flow paths. Even in the absence of sinks, not
+      all of a source quantity can actually reach users, because of the
+      route that an ecosystem service carrier moves across the landscape.
 
-      For provisioning services, this corresponds to the source of 
-      benefits that has the potential of being actually useful. For 
-      preventive services, this corresponds to the sources that could 
-      actually cause damage to people. The location and strength of 
-      sinks determines how much of the source actually reaches the users.
+      For provisioning services, this corresponds to the source of
+      benefits that has the potential of being actually useful. For
+      preventive services, this corresponds to the sources that could
+      actually cause damage to people. The location and strength of sinks
+      determines how much of the source actually reaches the users.
 
-      This map shows open space providing views when accounting for lines of sight and
-      the location of homeowners but not visual blight.
+      This map shows open space providing views when accounting for
+      lines of sight and the location of homeowners but not visual blight.
     </description>
     <see-also><![CDATA[
     <p>
@@ -627,18 +647,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible use map</runninghead>
     <group>flow</group>
     <description>
-      *Possible use maps* show the locations of users that can receive a
-      benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of
-      sinks.  
+      *Possible use maps* show the locations of users that can receive
+      a benefit due to flow connections with a source of an ecosystem
+      service carrier, but may or may not actually receive the carrier due
+      to the action of sinks.
 
       For provisioning services, potential use identifies areas where
-      it is physically possible for a benefit to be received.  For 
-      preventive services, potential use identifies areas that may be damaged
-      by a detrimental carrier if sinks do not prevent such damage.
+      it is physically possible for a benefit to be received. For preventive
+      services, potential use identifies areas that may be damaged by a
+      detrimental carrier if sinks do not prevent such damage.
 
-      This map shows homeowners benefiting from views when sources of high-quality views and
-      their flow paths are accounted for, but visual blight is not.
+      This map shows homeowners benefiting from views when sources of
+      high-quality views and their flow paths are accounted for, but visual
+      blight is not.
     </description>
     <see-also><![CDATA[
     <p>
@@ -659,17 +680,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      *Actual flow maps* show the flow paths that deliver actual services to
-      beneficiaries. These are selected from the total flow density to only show these flow paths
-      that are not depleted by sinks and actually reach users.
+      *Actual flow maps* show the flow paths that deliver actual
+      services to beneficiaries. These are selected from the total flow
+      density to only show these flow paths that are not depleted by sinks
+      and actually reach users.
 
-      For provisioning services, these flow paths deliver valuable benefits to the
-      users and the density is proportional to the value accrued. For preventive services,
-      the flow paths show how much of the carrier reaches users, delivering actual
-      damage.
+      For provisioning services, these flow paths deliver valuable
+      benefits to the users and the density is proportional to the value
+      accrued. For preventive services, the flow paths show how much of the
+      carrier reaches users, delivering actual damage.
 
-      This map shows the actual flow of aesthetic views from
-      natural areas toward homeowners, when accounting for sinks and flow paths.
+      This map shows the actual flow of aesthetic views from natural
+      areas toward homeowners, when accounting for sinks and flow paths.
     </description>
     <see-also><![CDATA[
     <p>
@@ -691,16 +713,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. 
+      service after accounting for sinks and flow dynamics.
 
-      For provisioning services, this is the amount and location of a 
-      benefit that actually provides benefits to the users. For 
-      preventive services, it shows where the actual damage came 
-      from. Source regions that provided a damaging carrier that 
-      was neutralized by sinks are not shown.
+      For provisioning services, this is the amount and location of a
+      benefit that actually provides benefits to the users. For preventive
+      services, it shows where the actual damage came from. Source regions
+      that provided a damaging carrier that was neutralized by sinks are not
+      shown.
 
-      This map shows open space that actually provide views when accounting for flow
-      paths, sinks, and the location of beneficiaries.
+      This map shows open space that actually provide views when
+      accounting for flow paths, sinks, and the location of beneficiaries.
     </description>
     <see-also><![CDATA[
     <p>
@@ -721,16 +743,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual sink map</runninghead>
     <group>flow</group>
     <description>
-      *Actual sink maps* shows the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. 
+      *Actual sink maps* shows the sinks that actually contribute to
+      depleting a service carrier given its flow patterns.
 
-      For provisioning services, such sinks reduce benefits to users 
-      compared to their possible value. For preventive services, such 
-      sinks provide the actual service because they prevent a damaging 
-      carrier from reaching users.
+      For provisioning services, such sinks reduce benefits to users
+      compared to their possible value. For preventive services, such sinks
+      provide the actual service because they prevent a damaging carrier
+      from reaching users.
 
-      This map shows areas of visual blight located between visually valuable views
-      and beneficiaries - features that actually degrade high quality views.
+      This map shows areas of visual blight located between visually
+      valuable views and beneficiaries - features that actually degrade high
+      quality views.
     </description>
     <see-also><![CDATA[
     <p>
@@ -751,12 +774,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
-      service or damage caused by a detrimental carrier for a preventive service, for
-      users.
+      *Actual use maps* show the level of use of a beneficial carrier
+      for a provisioning service or damage caused by a detrimental carrier
+      for a preventive service, for users.
 
-      This map shows homeowners who benefit from views when accounting for sources of views, sinks, and
-      flow paths.
+      This map shows homeowners who benefit from views when accounting
+      for sources of views, sinks, and flow paths.
     </description>
     <see-also><![CDATA[
     <p>
@@ -777,17 +800,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Inaccessible use map</runninghead>
     <group>flow</group>
     <description>
-      *Inaccessible use maps* shows potential users that cannot receive a service
-      due to a lack of flow routes linking source and user locations. 
+      *Inaccessible use maps* shows potential users that cannot
+      receive a service due to a lack of flow routes linking source and user
+      locations.
 
       For provisioning services, this corresponds to value produced by
-      the environment that cannot be reached by users. For preventive 
-      services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections
-      to users.
+      the environment that cannot be reached by users. For preventive
+      services, it corresponds to damage that could have been inflicted on
+      users but is not due to a lack of flow connections to users.
 
-      This map shows homeowners who lack any views due to their lack of flow connections
-      (i.e., living in areas too flat or distant from high quality views).
+      This map shows homeowners who lack any views due to their lack
+      of flow connections (i.e., living in areas too flat or distant from
+      high quality views).
     </description>
     <see-also><![CDATA[
     <p>
@@ -808,19 +832,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Blocked flow map</runninghead>
     <group>flow</group>
     <description>
-      *Blocked flow maps* show flow paths that could have delivered 
-      an ecosystem service to humans based on the flow routes and 
-      source and user locations, but did not because of the action 
-      of sinks. These are selected from among all actual flows.
+      *Blocked flow maps* show flow paths that could have delivered an
+      ecosystem service to humans based on the flow routes and source and
+      user locations, but did not because of the action of sinks. These are
+      selected from among all actual flows.
 
       For provisioning services, these flow paths show the loss of
-      possible beneficial service flow to users, and their density 
-      is proportional to the value lost. For preventive services, 
-      the flow paths show the amount of the total flow that was 
-      prevented by natural features from causing damage.
+      possible beneficial service flow to users, and their density is
+      proportional to the value lost. For preventive services, the flow
+      paths show the amount of the total flow that was prevented by natural
+      features from causing damage.
 
-      This map shows flows of views as aesthetic information toward homeowners that are
-      blocked by visual blight.
+      This map shows flows of views as aesthetic information toward
+      homeowners that are blocked by visual blight.
     </description>
     <see-also><![CDATA[
     <p>
@@ -842,17 +866,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Blocked use maps* show users that would have received a service
-      carrier based on source and flow dynamics, but did not because
-      of the action of sinks. 
+      carrier based on source and flow dynamics, but did not because of the
+      action of sinks.
 
       For provisioning services, the map shows possible value that
-      were prevented by sinks from reaching users; for preventive
-      services, it shows actual value accrued by users from sinks that 
-      blocked damaging flows. For preventive services, therefore, this 
-      map is the ultimate quantification of value given the locations 
-      and quantity of users and sink features.
+      were prevented by sinks from reaching users; for preventive services,
+      it shows actual value accrued by users from sinks that blocked
+      damaging flows. For preventive services, therefore, this map is the
+      ultimate quantification of value given the locations and quantity of
+      users and sink features.
 
-      This map shows sources of views that are blocked by the presence of visual blight.
+      This map shows sources of views that are blocked by the presence
+      of visual blight.
     </description>
     <see-also><![CDATA[
     <p>
@@ -874,18 +899,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Blocked use maps* show users that would have received a service
-      carrier based on source and flow dynamics, but did not because
-      of the action of sinks. 
+      carrier based on source and flow dynamics, but did not because of the
+      action of sinks.
 
       For provisioning services, the map shows possible value that
-      were prevented by sinks from reaching users; for preventive
-      services, it shows actual value accrued by users from sinks that 
-      blocked damaging flows. For preventive services, therefore, this 
-      map is the ultimate quantification of value given the locations 
-      and quantity of users and sink features.
+      were prevented by sinks from reaching users; for preventive services,
+      it shows actual value accrued by users from sinks that blocked
+      damaging flows. For preventive services, therefore, this map is the
+      ultimate quantification of value given the locations and quantity of
+      users and sink features.
 
-      This map shows homeowners who would receive benefits from views but have their
-      views degraded by visual blight.
+      This map shows homeowners who would receive benefits from views
+      but have their views degraded by visual blight.
     </description>
     <see-also><![CDATA[
     <p>
