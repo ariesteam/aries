@@ -30,4 +30,5 @@
   :geoserver-username    "admin"
   :geoserver-password    "rnbh304"
   :geoserver-data-dir    "/raid/geodata/"
+  :postgis-user          "aries"
 }
